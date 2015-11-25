@@ -300,11 +300,7 @@ type ComputeType struct {
 	// The name of the compute type for the bundle.
 	Name *string `type:"string" enum:"Compute"`
 
-	metadataComputeType `json:"-" xml:"-"`
-}
-
-type metadataComputeType struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -322,11 +318,7 @@ type CreateWorkspacesInput struct {
 	// An array of structures that specify the WorkSpaces to create.
 	Workspaces []*WorkspaceRequest `min:"1" type:"list" required:"true"`
 
-	metadataCreateWorkspacesInput `json:"-" xml:"-"`
-}
-
-type metadataCreateWorkspacesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -351,11 +343,7 @@ type CreateWorkspacesOutput struct {
 	// this identifier, no information will be returned.
 	PendingRequests []*Workspace `type:"list"`
 
-	metadataCreateWorkspacesOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateWorkspacesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -388,11 +376,7 @@ type DefaultWorkspaceCreationProperties struct {
 	// The WorkSpace user is an administrator on the WorkSpace.
 	UserEnabledAsLocalAdministrator *bool `type:"boolean"`
 
-	metadataDefaultWorkspaceCreationProperties `json:"-" xml:"-"`
-}
-
-type metadataDefaultWorkspaceCreationProperties struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -424,11 +408,7 @@ type DescribeWorkspaceBundlesInput struct {
 	//  AMAZON - Retrieves the bundles that are provided by AWS.
 	Owner *string `type:"string"`
 
-	metadataDescribeWorkspaceBundlesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeWorkspaceBundlesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -451,11 +431,7 @@ type DescribeWorkspaceBundlesOutput struct {
 	// of items. This token is valid for one day and must be used within that timeframe.
 	NextToken *string `min:"1" type:"string"`
 
-	metadataDescribeWorkspaceBundlesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeWorkspaceBundlesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -478,11 +454,7 @@ type DescribeWorkspaceDirectoriesInput struct {
 	// this is the first call.
 	NextToken *string `min:"1" type:"string"`
 
-	metadataDescribeWorkspaceDirectoriesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeWorkspaceDirectoriesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -505,11 +477,7 @@ type DescribeWorkspaceDirectoriesOutput struct {
 	// of items. This token is valid for one day and must be used within that timeframe.
 	NextToken *string `min:"1" type:"string"`
 
-	metadataDescribeWorkspaceDirectoriesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeWorkspaceDirectoriesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -554,11 +522,7 @@ type DescribeWorkspacesInput struct {
 	// DescribeWorkspaces with this identifier, no information will be returned.
 	WorkspaceIds []*string `min:"1" type:"list"`
 
-	metadataDescribeWorkspacesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeWorkspacesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -584,11 +548,7 @@ type DescribeWorkspacesOutput struct {
 	// may be incomplete for a newly-created WorkSpace.
 	Workspaces []*Workspace `type:"list"`
 
-	metadataDescribeWorkspacesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeWorkspacesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -613,11 +573,7 @@ type FailedCreateWorkspaceRequest struct {
 	// that could not be created.
 	WorkspaceRequest *WorkspaceRequest `type:"structure"`
 
-	metadataFailedCreateWorkspaceRequest `json:"-" xml:"-"`
-}
-
-type metadataFailedCreateWorkspaceRequest struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -642,11 +598,7 @@ type FailedWorkspaceChangeRequest struct {
 	// The identifier of the WorkSpace.
 	WorkspaceId *string `type:"string"`
 
-	metadataFailedWorkspaceChangeRequest `json:"-" xml:"-"`
-}
-
-type metadataFailedWorkspaceChangeRequest struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -665,11 +617,7 @@ type RebootRequest struct {
 	// The identifier of the WorkSpace to reboot.
 	WorkspaceId *string `type:"string" required:"true"`
 
-	metadataRebootRequest `json:"-" xml:"-"`
-}
-
-type metadataRebootRequest struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -687,11 +635,7 @@ type RebootWorkspacesInput struct {
 	// An array of structures that specify the WorkSpaces to reboot.
 	RebootWorkspaceRequests []*RebootRequest `min:"1" type:"list" required:"true"`
 
-	metadataRebootWorkspacesInput `json:"-" xml:"-"`
-}
-
-type metadataRebootWorkspacesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -709,11 +653,7 @@ type RebootWorkspacesOutput struct {
 	// An array of structures that represent any WorkSpaces that could not be rebooted.
 	FailedRequests []*FailedWorkspaceChangeRequest `type:"list"`
 
-	metadataRebootWorkspacesOutput `json:"-" xml:"-"`
-}
-
-type metadataRebootWorkspacesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -732,11 +672,7 @@ type RebuildRequest struct {
 	// The identifier of the WorkSpace to rebuild.
 	WorkspaceId *string `type:"string" required:"true"`
 
-	metadataRebuildRequest `json:"-" xml:"-"`
-}
-
-type metadataRebuildRequest struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -754,11 +690,7 @@ type RebuildWorkspacesInput struct {
 	// An array of structures that specify the WorkSpaces to rebuild.
 	RebuildWorkspaceRequests []*RebuildRequest `min:"1" type:"list" required:"true"`
 
-	metadataRebuildWorkspacesInput `json:"-" xml:"-"`
-}
-
-type metadataRebuildWorkspacesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -776,11 +708,7 @@ type RebuildWorkspacesOutput struct {
 	// An array of structures that represent any WorkSpaces that could not be rebuilt.
 	FailedRequests []*FailedWorkspaceChangeRequest `type:"list"`
 
-	metadataRebuildWorkspacesOutput `json:"-" xml:"-"`
-}
-
-type metadataRebuildWorkspacesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -799,11 +727,7 @@ type TerminateRequest struct {
 	// The identifier of the WorkSpace to terminate.
 	WorkspaceId *string `type:"string" required:"true"`
 
-	metadataTerminateRequest `json:"-" xml:"-"`
-}
-
-type metadataTerminateRequest struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -821,11 +745,7 @@ type TerminateWorkspacesInput struct {
 	// An array of structures that specify the WorkSpaces to terminate.
 	TerminateWorkspaceRequests []*TerminateRequest `min:"1" type:"list" required:"true"`
 
-	metadataTerminateWorkspacesInput `json:"-" xml:"-"`
-}
-
-type metadataTerminateWorkspacesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -843,11 +763,7 @@ type TerminateWorkspacesOutput struct {
 	// An array of structures that represent any WorkSpaces that could not be terminated.
 	FailedRequests []*FailedWorkspaceChangeRequest `type:"list"`
 
-	metadataTerminateWorkspacesOutput `json:"-" xml:"-"`
-}
-
-type metadataTerminateWorkspacesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -865,11 +781,7 @@ type UserStorage struct {
 	// The amount of user storage for the bundle.
 	Capacity *string `min:"1" type:"string"`
 
-	metadataUserStorage `json:"-" xml:"-"`
-}
-
-type metadataUserStorage struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -925,11 +837,7 @@ type Workspace struct {
 	// The identifier of the WorkSpace.
 	WorkspaceId *string `type:"string"`
 
-	metadataWorkspace `json:"-" xml:"-"`
-}
-
-type metadataWorkspace struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -964,11 +872,7 @@ type WorkspaceBundle struct {
 	// contains.
 	UserStorage *UserStorage `type:"structure"`
 
-	metadataWorkspaceBundle `json:"-" xml:"-"`
-}
-
-type metadataWorkspaceBundle struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1025,11 +929,7 @@ type WorkspaceDirectory struct {
 	// The identifier of the security group that is assigned to new WorkSpaces.
 	WorkspaceSecurityGroupId *string `type:"string"`
 
-	metadataWorkspaceDirectory `json:"-" xml:"-"`
-}
-
-type metadataWorkspaceDirectory struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1067,11 +967,7 @@ type WorkspaceRequest struct {
 	// The KMS key used to encrypt data stored on your WorkSpace.
 	VolumeEncryptionKey *string `type:"string"`
 
-	metadataWorkspaceRequest `json:"-" xml:"-"`
-}
-
-type metadataWorkspaceRequest struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

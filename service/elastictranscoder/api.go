@@ -648,11 +648,7 @@ type Artwork struct {
 	// this option, Elastic Transcoder does not scale the art up.
 	SizingPolicy *string `type:"string"`
 
-	metadataArtwork `json:"-" xml:"-"`
-}
-
-type metadataArtwork struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -715,11 +711,7 @@ type AudioCodecOptions struct {
 	// The supported value is Signed.
 	Signed *string `type:"string"`
 
-	metadataAudioCodecOptions `json:"-" xml:"-"`
-}
-
-type metadataAudioCodecOptions struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -846,11 +838,7 @@ type AudioParameters struct {
 	// rate.
 	SampleRate *string `type:"string"`
 
-	metadataAudioParameters `json:"-" xml:"-"`
-}
-
-type metadataAudioParameters struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -871,11 +859,7 @@ type CancelJobInput struct {
 	// Submitted, use the ListJobsByStatus API action.
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataCancelJobInput `json:"-" xml:"-"`
-}
-
-type metadataCancelJobInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -891,11 +875,7 @@ func (s CancelJobInput) GoString() string {
 // The response body contains a JSON object. If the job is successfully canceled,
 // the value of Success is true.
 type CancelJobOutput struct {
-	metadataCancelJobOutput `json:"-" xml:"-"`
-}
-
-type metadataCancelJobOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -957,11 +937,7 @@ type CaptionFormat struct {
 	// (en), the name of the first caption file will be Sydney-en-sunrise00000.srt.
 	Pattern *string `type:"string"`
 
-	metadataCaptionFormat `json:"-" xml:"-"`
-}
-
-type metadataCaptionFormat struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1008,11 +984,7 @@ type CaptionSource struct {
 	// Specify the TimeOffset in the form [+-]SS.sss or [+-]HH:mm:SS.ss.
 	TimeOffset *string `type:"string"`
 
-	metadataCaptionSource `json:"-" xml:"-"`
-}
-
-type metadataCaptionSource struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1055,11 +1027,7 @@ type Captions struct {
 	//  MergePolicy cannot be null.
 	MergePolicy *string `type:"string"`
 
-	metadataCaptions `json:"-" xml:"-"`
-}
-
-type metadataCaptions struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1078,11 +1046,7 @@ type Clip struct {
 	// Settings that determine when a clip begins and how long it lasts.
 	TimeSpan *TimeSpan `type:"structure"`
 
-	metadataClip `json:"-" xml:"-"`
-}
-
-type metadataClip struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1133,11 +1097,7 @@ type CreateJobInput struct {
 	// will be returned in the same order in which you specify them.
 	UserMetadata map[string]*string `type:"map"`
 
-	metadataCreateJobInput `json:"-" xml:"-"`
-}
-
-type metadataCreateJobInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1290,11 +1250,7 @@ type CreateJobOutput struct {
 	// the current output.
 	Watermarks []*JobWatermark `type:"list"`
 
-	metadataCreateJobOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateJobOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1372,11 +1328,7 @@ type CreateJobPlaylist struct {
 	// output files associated with this playlist.
 	PlayReadyDrm *PlayReadyDrm `type:"structure"`
 
-	metadataCreateJobPlaylist `json:"-" xml:"-"`
-}
-
-type metadataCreateJobPlaylist struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1395,11 +1347,7 @@ type CreateJobResponse struct {
 	// is created.
 	Job *Job `type:"structure"`
 
-	metadataCreateJobResponse `json:"-" xml:"-"`
-}
-
-type metadataCreateJobResponse struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1565,11 +1513,7 @@ type CreatePipelineInput struct {
 	// Transcoder to assign to the thumbnails that it stores in your Amazon S3 bucket.
 	ThumbnailConfig *PipelineOutputConfig `type:"structure"`
 
-	metadataCreatePipelineInput `json:"-" xml:"-"`
-}
-
-type metadataCreatePipelineInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1597,11 +1541,7 @@ type CreatePipelineOutput struct {
 	// cross-regional charges.
 	Warnings []*Warning `type:"list"`
 
-	metadataCreatePipelineOutput `json:"-" xml:"-"`
-}
-
-type metadataCreatePipelineOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1637,11 +1577,7 @@ type CreatePresetInput struct {
 	// A section of the request body that specifies the video parameters.
 	Video *VideoParameters `type:"structure"`
 
-	metadataCreatePresetInput `json:"-" xml:"-"`
-}
-
-type metadataCreatePresetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1666,11 +1602,7 @@ type CreatePresetOutput struct {
 	// preset because the settings might produce acceptable output.
 	Warning *string `type:"string"`
 
-	metadataCreatePresetOutput `json:"-" xml:"-"`
-}
-
-type metadataCreatePresetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1688,11 +1620,7 @@ type DeletePipelineInput struct {
 	// The identifier of the pipeline that you want to delete.
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataDeletePipelineInput `json:"-" xml:"-"`
-}
-
-type metadataDeletePipelineInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1707,11 +1635,7 @@ func (s DeletePipelineInput) GoString() string {
 
 // The DeletePipelineResponse structure.
 type DeletePipelineOutput struct {
-	metadataDeletePipelineOutput `json:"-" xml:"-"`
-}
-
-type metadataDeletePipelineOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1729,11 +1653,7 @@ type DeletePresetInput struct {
 	// The identifier of the preset for which you want to get detailed information.
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataDeletePresetInput `json:"-" xml:"-"`
-}
-
-type metadataDeletePresetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1748,11 +1668,7 @@ func (s DeletePresetInput) GoString() string {
 
 // The DeletePresetResponse structure.
 type DeletePresetOutput struct {
-	metadataDeletePresetOutput `json:"-" xml:"-"`
-}
-
-type metadataDeletePresetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1783,11 +1699,7 @@ type DetectedProperties struct {
 	// The detected width of the input file, in pixels.
 	Width *int64 `type:"integer"`
 
-	metadataDetectedProperties `json:"-" xml:"-"`
-}
-
-type metadataDetectedProperties struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1865,11 +1777,7 @@ type Encryption struct {
 	// data.
 	Mode *string `type:"string"`
 
-	metadataEncryption `json:"-" xml:"-"`
-}
-
-type metadataEncryption struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1930,11 +1838,7 @@ type HlsContentProtection struct {
 	// tag in the output playlist.
 	Method *string `type:"string"`
 
-	metadataHlsContentProtection `json:"-" xml:"-"`
-}
-
-type metadataHlsContentProtection struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2021,11 +1925,7 @@ type Job struct {
 	// The following symbols: _.:/=+-%@
 	UserMetadata map[string]*string `type:"map"`
 
-	metadataJob `json:"-" xml:"-"`
-}
-
-type metadataJob struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2056,11 +1956,7 @@ type JobAlbumArt struct {
 	// file.
 	MergePolicy *string `type:"string"`
 
-	metadataJobAlbumArt `json:"-" xml:"-"`
-}
-
-type metadataJobAlbumArt struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2137,11 +2033,7 @@ type JobInput struct {
 	// detect the resolution of the input file.
 	Resolution *string `type:"string"`
 
-	metadataJobInput `json:"-" xml:"-"`
-}
-
-type metadataJobInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2356,11 +2248,7 @@ type JobOutput struct {
 	// Specifies the width of the output file in pixels.
 	Width *int64 `type:"integer"`
 
-	metadataJobOutput `json:"-" xml:"-"`
-}
-
-type metadataJobOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2396,11 +2284,7 @@ type JobWatermark struct {
 	// Id tells Elastic Transcoder which settings to use.
 	PresetWatermarkId *string `min:"1" type:"string"`
 
-	metadataJobWatermark `json:"-" xml:"-"`
-}
-
-type metadataJobWatermark struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2426,11 +2310,7 @@ type ListJobsByPipelineInput struct {
 	// The ID of the pipeline for which you want to get job information.
 	PipelineId *string `location:"uri" locationName:"PipelineId" type:"string" required:"true"`
 
-	metadataListJobsByPipelineInput `json:"-" xml:"-"`
-}
-
-type metadataListJobsByPipelineInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2453,11 +2333,7 @@ type ListJobsByPipelineOutput struct {
 	// reached the last page of results, the value of NextPageToken is null.
 	NextPageToken *string `type:"string"`
 
-	metadataListJobsByPipelineOutput `json:"-" xml:"-"`
-}
-
-type metadataListJobsByPipelineOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2485,11 +2361,7 @@ type ListJobsByStatusInput struct {
 	// Progressing, Complete, Canceled, or Error.
 	Status *string `location:"uri" locationName:"Status" type:"string" required:"true"`
 
-	metadataListJobsByStatusInput `json:"-" xml:"-"`
-}
-
-type metadataListJobsByStatusInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2512,11 +2384,7 @@ type ListJobsByStatusOutput struct {
 	// reached the last page of results, the value of NextPageToken is null.
 	NextPageToken *string `type:"string"`
 
-	metadataListJobsByStatusOutput `json:"-" xml:"-"`
-}
-
-type metadataListJobsByStatusOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2540,11 +2408,7 @@ type ListPipelinesInput struct {
 	// in subsequent GET requests to get each successive page of results.
 	PageToken *string `location:"querystring" locationName:"PageToken" type:"string"`
 
-	metadataListPipelinesInput `json:"-" xml:"-"`
-}
-
-type metadataListPipelinesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2567,11 +2431,7 @@ type ListPipelinesOutput struct {
 	// An array of Pipeline objects.
 	Pipelines []*Pipeline `type:"list"`
 
-	metadataListPipelinesOutput `json:"-" xml:"-"`
-}
-
-type metadataListPipelinesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2595,11 +2455,7 @@ type ListPresetsInput struct {
 	// in subsequent GET requests to get each successive page of results.
 	PageToken *string `location:"querystring" locationName:"PageToken" type:"string"`
 
-	metadataListPresetsInput `json:"-" xml:"-"`
-}
-
-type metadataListPresetsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2622,11 +2478,7 @@ type ListPresetsOutput struct {
 	// An array of Preset objects.
 	Presets []*Preset `type:"list"`
 
-	metadataListPresetsOutput `json:"-" xml:"-"`
-}
-
-type metadataListPresetsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2661,11 +2513,7 @@ type Notifications struct {
 	// a warning condition.
 	Warning *string `type:"string"`
 
-	metadataNotifications `json:"-" xml:"-"`
-}
-
-type metadataNotifications struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2705,11 +2553,7 @@ type Permission struct {
 	// or LogDelivery.
 	GranteeType *string `type:"string"`
 
-	metadataPermission `json:"-" xml:"-"`
-}
-
-type metadataPermission struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2835,11 +2679,7 @@ type Pipeline struct {
 	// to the thumbnails that it stores in your Amazon S3 bucket.
 	ThumbnailConfig *PipelineOutputConfig `type:"structure"`
 
-	metadataPipeline `json:"-" xml:"-"`
-}
-
-type metadataPipeline struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2888,11 +2728,7 @@ type PipelineOutputConfig struct {
 	// in your Amazon S3 bucket.
 	StorageClass *string `type:"string"`
 
-	metadataPipelineOutputConfig `json:"-" xml:"-"`
-}
-
-type metadataPipelineOutputConfig struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2954,11 +2790,7 @@ type PlayReadyDrm struct {
 	// tags for HLS playlist outputs. An example URL looks like this: https://www.example.com/exampleKey/
 	LicenseAcquisitionUrl *string `min:"1" type:"string"`
 
-	metadataPlayReadyDrm `json:"-" xml:"-"`
-}
-
-type metadataPlayReadyDrm struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3046,11 +2878,7 @@ type Playlist struct {
 	// Information that further explains the status.
 	StatusDetail *string `type:"string"`
 
-	metadataPlaylist `json:"-" xml:"-"`
-}
-
-type metadataPlaylist struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3103,11 +2931,7 @@ type Preset struct {
 	// preset values.
 	Video *VideoParameters `type:"structure"`
 
-	metadataPreset `json:"-" xml:"-"`
-}
-
-type metadataPreset struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3246,11 +3070,7 @@ type PresetWatermark struct {
 	// offset calculation.
 	VerticalOffset *string `type:"string"`
 
-	metadataPresetWatermark `json:"-" xml:"-"`
-}
-
-type metadataPresetWatermark struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3268,11 +3088,7 @@ type ReadJobInput struct {
 	// The identifier of the job for which you want to get detailed information.
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataReadJobInput `json:"-" xml:"-"`
-}
-
-type metadataReadJobInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3290,11 +3106,7 @@ type ReadJobOutput struct {
 	// A section of the response body that provides information about the job.
 	Job *Job `type:"structure"`
 
-	metadataReadJobOutput `json:"-" xml:"-"`
-}
-
-type metadataReadJobOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3312,11 +3124,7 @@ type ReadPipelineInput struct {
 	// The identifier of the pipeline to read.
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataReadPipelineInput `json:"-" xml:"-"`
-}
-
-type metadataReadPipelineInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3342,11 +3150,7 @@ type ReadPipelineOutput struct {
 	// cross-regional charges.
 	Warnings []*Warning `type:"list"`
 
-	metadataReadPipelineOutput `json:"-" xml:"-"`
-}
-
-type metadataReadPipelineOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3364,11 +3168,7 @@ type ReadPresetInput struct {
 	// The identifier of the preset for which you want to get detailed information.
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataReadPresetInput `json:"-" xml:"-"`
-}
-
-type metadataReadPresetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3386,11 +3186,7 @@ type ReadPresetOutput struct {
 	// A section of the response body that provides information about the preset.
 	Preset *Preset `type:"structure"`
 
-	metadataReadPresetOutput `json:"-" xml:"-"`
-}
-
-type metadataReadPresetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3421,11 +3217,7 @@ type TestRoleInput struct {
 	// that you want the action to send a test notification to.
 	Topics []*string `type:"list" required:"true"`
 
-	metadataTestRoleInput `json:"-" xml:"-"`
-}
-
-type metadataTestRoleInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3448,11 +3240,7 @@ type TestRoleOutput struct {
 	// is false.
 	Success *string `type:"string"`
 
-	metadataTestRoleOutput `json:"-" xml:"-"`
-}
-
-type metadataTestRoleOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3540,11 +3328,7 @@ type Thumbnails struct {
 	// Transcoder does not scale thumbnails up.
 	SizingPolicy *string `type:"string"`
 
-	metadataThumbnails `json:"-" xml:"-"`
-}
-
-type metadataThumbnails struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3574,11 +3358,7 @@ type TimeSpan struct {
 	// value, Elastic Transcoder starts at the beginning of the input file.
 	StartTime *string `type:"string"`
 
-	metadataTimeSpan `json:"-" xml:"-"`
-}
-
-type metadataTimeSpan struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3602,11 +3382,7 @@ type Timing struct {
 	// The time the job was submitted to Elastic Transcoder, in epoch milliseconds.
 	SubmitTimeMillis *int64 `type:"long"`
 
-	metadataTiming `json:"-" xml:"-"`
-}
-
-type metadataTiming struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3743,11 +3519,7 @@ type UpdatePipelineInput struct {
 	// Transcoder to assign to the thumbnails that it stores in your Amazon S3 bucket.
 	ThumbnailConfig *PipelineOutputConfig `type:"structure"`
 
-	metadataUpdatePipelineInput `json:"-" xml:"-"`
-}
-
-type metadataUpdatePipelineInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3784,11 +3556,7 @@ type UpdatePipelineNotificationsInput struct {
 	// returned when you created the topic.
 	Notifications *Notifications `type:"structure" required:"true"`
 
-	metadataUpdatePipelineNotificationsInput `json:"-" xml:"-"`
-}
-
-type metadataUpdatePipelineNotificationsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3806,11 +3574,7 @@ type UpdatePipelineNotificationsOutput struct {
 	// A section of the response body that provides information about the pipeline.
 	Pipeline *Pipeline `type:"structure"`
 
-	metadataUpdatePipelineNotificationsOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdatePipelineNotificationsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3837,11 +3601,7 @@ type UpdatePipelineOutput struct {
 	// cross-regional charges.
 	Warnings []*Warning `type:"list"`
 
-	metadataUpdatePipelineOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdatePipelineOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3865,11 +3625,7 @@ type UpdatePipelineStatusInput struct {
 	// currently processing jobs.
 	Status *string `type:"string" required:"true"`
 
-	metadataUpdatePipelineStatusInput `json:"-" xml:"-"`
-}
-
-type metadataUpdatePipelineStatusInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3888,11 +3644,7 @@ type UpdatePipelineStatusOutput struct {
 	// A section of the response body that provides information about the pipeline.
 	Pipeline *Pipeline `type:"structure"`
 
-	metadataUpdatePipelineStatusOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdatePipelineStatusOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4202,11 +3954,7 @@ type VideoParameters struct {
 	// that have different dimensions.
 	Watermarks []*PresetWatermark `type:"list"`
 
-	metadataVideoParameters `json:"-" xml:"-"`
-}
-
-type metadataVideoParameters struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4235,11 +3983,7 @@ type Warning struct {
 	// Note: AWS KMS keys must be in the same region as the pipeline.
 	Message *string `type:"string"`
 
-	metadataWarning `json:"-" xml:"-"`
-}
-
-type metadataWarning struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

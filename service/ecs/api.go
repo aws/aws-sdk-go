@@ -981,11 +981,7 @@ type Attribute struct {
 	// The value of the container instance attribute.
 	Value *string `locationName:"value" type:"string"`
 
-	metadataAttribute `json:"-" xml:"-"`
-}
-
-type metadataAttribute struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1030,11 +1026,7 @@ type Cluster struct {
 	// the associated instances can accept tasks.
 	Status *string `locationName:"status" type:"string"`
 
-	metadataCluster `json:"-" xml:"-"`
-}
-
-type metadataCluster struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1071,11 +1063,7 @@ type Container struct {
 	// The Amazon Resource Name (ARN) of the task.
 	TaskArn *string `locationName:"taskArn" type:"string"`
 
-	metadataContainer `json:"-" xml:"-"`
-}
-
-type metadataContainer struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1340,11 +1328,7 @@ type ContainerDefinition struct {
 	// and the --workdir option to docker run (https://docs.docker.com/reference/commandline/run/).
 	WorkingDirectory *string `locationName:"workingDirectory" type:"string"`
 
-	metadataContainerDefinition `json:"-" xml:"-"`
-}
-
-type metadataContainerDefinition struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1405,11 +1389,7 @@ type ContainerInstance struct {
 	// running on the container instance.
 	VersionInfo *VersionInfo `locationName:"versionInfo" type:"structure"`
 
-	metadataContainerInstance `json:"-" xml:"-"`
-}
-
-type metadataContainerInstance struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1436,11 +1416,7 @@ type ContainerOverride struct {
 	// The name of the container that receives the override.
 	Name *string `locationName:"name" type:"string"`
 
-	metadataContainerOverride `json:"-" xml:"-"`
-}
-
-type metadataContainerOverride struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1459,11 +1435,7 @@ type CreateClusterInput struct {
 	// numbers, hyphens, and underscores are allowed.
 	ClusterName *string `locationName:"clusterName" type:"string"`
 
-	metadataCreateClusterInput `json:"-" xml:"-"`
-}
-
-type metadataCreateClusterInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1480,11 +1452,7 @@ type CreateClusterOutput struct {
 	// The full description of your new cluster.
 	Cluster *Cluster `locationName:"cluster" type:"structure"`
 
-	metadataCreateClusterOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateClusterOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1533,11 +1501,7 @@ type CreateServiceInput struct {
 	// the latest ACTIVE revision is used.
 	TaskDefinition *string `locationName:"taskDefinition" type:"string" required:"true"`
 
-	metadataCreateServiceInput `json:"-" xml:"-"`
-}
-
-type metadataCreateServiceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1554,11 +1518,7 @@ type CreateServiceOutput struct {
 	// The full description of your service following the create call.
 	Service *Service `locationName:"service" type:"structure"`
 
-	metadataCreateServiceOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateServiceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1575,11 +1535,7 @@ type DeleteClusterInput struct {
 	// The short name or full Amazon Resource Name (ARN) of the cluster to delete.
 	Cluster *string `locationName:"cluster" type:"string" required:"true"`
 
-	metadataDeleteClusterInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteClusterInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1596,11 +1552,7 @@ type DeleteClusterOutput struct {
 	// The full description of the deleted cluster.
 	Cluster *Cluster `locationName:"cluster" type:"structure"`
 
-	metadataDeleteClusterOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteClusterOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1621,11 +1573,7 @@ type DeleteServiceInput struct {
 	// The name of the service to delete.
 	Service *string `locationName:"service" type:"string" required:"true"`
 
-	metadataDeleteServiceInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteServiceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1642,11 +1590,7 @@ type DeleteServiceOutput struct {
 	// The full description of the deleted service.
 	Service *Service `locationName:"service" type:"structure"`
 
-	metadataDeleteServiceOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteServiceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1689,11 +1633,7 @@ type Deployment struct {
 	// The Unix time in seconds and milliseconds when the service was last updated.
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"unix"`
 
-	metadataDeployment `json:"-" xml:"-"`
-}
-
-type metadataDeployment struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1729,11 +1669,7 @@ type DeregisterContainerInstanceInput struct {
 	// of that task, on a different container instance if possible.
 	Force *bool `locationName:"force" type:"boolean"`
 
-	metadataDeregisterContainerInstanceInput `json:"-" xml:"-"`
-}
-
-type metadataDeregisterContainerInstanceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1751,11 +1687,7 @@ type DeregisterContainerInstanceOutput struct {
 	// with a cluster.
 	ContainerInstance *ContainerInstance `locationName:"containerInstance" type:"structure"`
 
-	metadataDeregisterContainerInstanceOutput `json:"-" xml:"-"`
-}
-
-type metadataDeregisterContainerInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1773,11 +1705,7 @@ type DeregisterTaskDefinitionInput struct {
 	// of the task definition to deregister. You must specify a revision.
 	TaskDefinition *string `locationName:"taskDefinition" type:"string" required:"true"`
 
-	metadataDeregisterTaskDefinitionInput `json:"-" xml:"-"`
-}
-
-type metadataDeregisterTaskDefinitionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1794,11 +1722,7 @@ type DeregisterTaskDefinitionOutput struct {
 	// The full description of the deregistered task.
 	TaskDefinition *TaskDefinition `locationName:"taskDefinition" type:"structure"`
 
-	metadataDeregisterTaskDefinitionOutput `json:"-" xml:"-"`
-}
-
-type metadataDeregisterTaskDefinitionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1816,11 +1740,7 @@ type DescribeClustersInput struct {
 	// (ARN) entries. If you do not specify a cluster, the default cluster is assumed.
 	Clusters []*string `locationName:"clusters" type:"list"`
 
-	metadataDescribeClustersInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeClustersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1840,11 +1760,7 @@ type DescribeClustersOutput struct {
 	// Any failures associated with the call.
 	Failures []*Failure `locationName:"failures" type:"list"`
 
-	metadataDescribeClustersOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeClustersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1867,11 +1783,7 @@ type DescribeContainerInstancesInput struct {
 	// Name (ARN) entries.
 	ContainerInstances []*string `locationName:"containerInstances" type:"list" required:"true"`
 
-	metadataDescribeContainerInstancesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeContainerInstancesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1891,11 +1803,7 @@ type DescribeContainerInstancesOutput struct {
 	// Any failures associated with the call.
 	Failures []*Failure `locationName:"failures" type:"list"`
 
-	metadataDescribeContainerInstancesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeContainerInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1916,11 +1824,7 @@ type DescribeServicesInput struct {
 	// A list of services to describe.
 	Services []*string `locationName:"services" type:"list" required:"true"`
 
-	metadataDescribeServicesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeServicesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1940,11 +1844,7 @@ type DescribeServicesOutput struct {
 	// The list of services described.
 	Services []*Service `locationName:"services" type:"list"`
 
-	metadataDescribeServicesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeServicesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1963,11 +1863,7 @@ type DescribeTaskDefinitionInput struct {
 	// of the task definition to describe.
 	TaskDefinition *string `locationName:"taskDefinition" type:"string" required:"true"`
 
-	metadataDescribeTaskDefinitionInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTaskDefinitionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1984,11 +1880,7 @@ type DescribeTaskDefinitionOutput struct {
 	// The full task definition description.
 	TaskDefinition *TaskDefinition `locationName:"taskDefinition" type:"structure"`
 
-	metadataDescribeTaskDefinitionOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTaskDefinitionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2010,11 +1902,7 @@ type DescribeTasksInput struct {
 	// A space-separated list of task IDs or full Amazon Resource Name (ARN) entries.
 	Tasks []*string `locationName:"tasks" type:"list" required:"true"`
 
-	metadataDescribeTasksInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTasksInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2034,11 +1922,7 @@ type DescribeTasksOutput struct {
 	// The list of tasks.
 	Tasks []*Task `locationName:"tasks" type:"list"`
 
-	metadataDescribeTasksOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTasksOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2062,11 +1946,7 @@ type DiscoverPollEndpointInput struct {
 	// example, arn:aws:ecs:region:aws_account_id:container-instance/container_instance_ID.
 	ContainerInstance *string `locationName:"containerInstance" type:"string"`
 
-	metadataDiscoverPollEndpointInput `json:"-" xml:"-"`
-}
-
-type metadataDiscoverPollEndpointInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2086,11 +1966,7 @@ type DiscoverPollEndpointOutput struct {
 	// The telemetry endpoint for the Amazon ECS agent.
 	TelemetryEndpoint *string `locationName:"telemetryEndpoint" type:"string"`
 
-	metadataDiscoverPollEndpointOutput `json:"-" xml:"-"`
-}
-
-type metadataDiscoverPollEndpointOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2111,11 +1987,7 @@ type Failure struct {
 	// The reason for the failure.
 	Reason *string `locationName:"reason" type:"string"`
 
-	metadataFailure `json:"-" xml:"-"`
-}
-
-type metadataFailure struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2137,11 +2009,7 @@ type HostEntry struct {
 	// The IP address to use in the /etc/hosts entry.
 	IpAddress *string `locationName:"ipAddress" type:"string" required:"true"`
 
-	metadataHostEntry `json:"-" xml:"-"`
-}
-
-type metadataHostEntry struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2161,11 +2029,7 @@ type HostVolumeProperties struct {
 	// for you.
 	SourcePath *string `locationName:"sourcePath" type:"string"`
 
-	metadataHostVolumeProperties `json:"-" xml:"-"`
-}
-
-type metadataHostVolumeProperties struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2188,11 +2052,7 @@ type KeyValuePair struct {
 	// of the environment variable.
 	Value *string `locationName:"value" type:"string"`
 
-	metadataKeyValuePair `json:"-" xml:"-"`
-}
-
-type metadataKeyValuePair struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2221,11 +2081,7 @@ type ListClustersInput struct {
 	// nextToken value. This value is null when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListClustersInput `json:"-" xml:"-"`
-}
-
-type metadataListClustersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2249,11 +2105,7 @@ type ListClustersOutput struct {
 	// more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListClustersOutput `json:"-" xml:"-"`
-}
-
-type metadataListClustersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2289,11 +2141,7 @@ type ListContainerInstancesInput struct {
 	// to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListContainerInstancesInput `json:"-" xml:"-"`
-}
-
-type metadataListContainerInstancesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2317,11 +2165,7 @@ type ListContainerInstancesOutput struct {
 	// when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListContainerInstancesOutput `json:"-" xml:"-"`
-}
-
-type metadataListContainerInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2355,11 +2199,7 @@ type ListServicesInput struct {
 	// nextToken value. This value is null when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListServicesInput `json:"-" xml:"-"`
-}
-
-type metadataListServicesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2383,11 +2223,7 @@ type ListServicesOutput struct {
 	// with the specified cluster.
 	ServiceArns []*string `locationName:"serviceArns" type:"list"`
 
-	metadataListServicesOutput `json:"-" xml:"-"`
-}
-
-type metadataListServicesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2423,11 +2259,7 @@ type ListTaskDefinitionFamiliesInput struct {
 	// to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListTaskDefinitionFamiliesInput `json:"-" xml:"-"`
-}
-
-type metadataListTaskDefinitionFamiliesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2451,11 +2283,7 @@ type ListTaskDefinitionFamiliesOutput struct {
 	// null when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListTaskDefinitionFamiliesOutput `json:"-" xml:"-"`
-}
-
-type metadataListTaskDefinitionFamiliesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2505,11 +2333,7 @@ type ListTaskDefinitionsInput struct {
 	// output, be sure to keep the status value constant in each subsequent request.
 	Status *string `locationName:"status" type:"string" enum:"TaskDefinitionStatus"`
 
-	metadataListTaskDefinitionsInput `json:"-" xml:"-"`
-}
-
-type metadataListTaskDefinitionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2533,11 +2357,7 @@ type ListTaskDefinitionsOutput struct {
 	// request.
 	TaskDefinitionArns []*string `locationName:"taskDefinitionArns" type:"list"`
 
-	metadataListTaskDefinitionsOutput `json:"-" xml:"-"`
-}
-
-type metadataListTaskDefinitionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2594,11 +2414,7 @@ type ListTasksInput struct {
 	// value limits the results to tasks that were started with that value.
 	StartedBy *string `locationName:"startedBy" type:"string"`
 
-	metadataListTasksInput `json:"-" xml:"-"`
-}
-
-type metadataListTasksInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2621,11 +2437,7 @@ type ListTasksOutput struct {
 	// The list of task Amazon Resource Name (ARN) entries for the ListTasks request.
 	TaskArns []*string `locationName:"taskArns" type:"list"`
 
-	metadataListTasksOutput `json:"-" xml:"-"`
-}
-
-type metadataListTasksOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2652,11 +2464,7 @@ type LoadBalancer struct {
 	// The name of the load balancer.
 	LoadBalancerName *string `locationName:"loadBalancerName" type:"string"`
 
-	metadataLoadBalancer `json:"-" xml:"-"`
-}
-
-type metadataLoadBalancer struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2685,11 +2493,7 @@ type LogConfiguration struct {
 	// | grep "Server API version"
 	Options map[string]*string `locationName:"options" type:"map"`
 
-	metadataLogConfiguration `json:"-" xml:"-"`
-}
-
-type metadataLogConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2715,11 +2519,7 @@ type MountPoint struct {
 	// The name of the volume to mount.
 	SourceVolume *string `locationName:"sourceVolume" type:"string"`
 
-	metadataMountPoint `json:"-" xml:"-"`
-}
-
-type metadataMountPoint struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2749,11 +2549,7 @@ type NetworkBinding struct {
 	// The protocol used for the network binding.
 	Protocol *string `locationName:"protocol" type:"string" enum:"TransportProtocol"`
 
-	metadataNetworkBinding `json:"-" xml:"-"`
-}
-
-type metadataNetworkBinding struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2805,11 +2601,7 @@ type PortMapping struct {
 	// default is tcp.
 	Protocol *string `locationName:"protocol" type:"string" enum:"TransportProtocol"`
 
-	metadataPortMapping `json:"-" xml:"-"`
-}
-
-type metadataPortMapping struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2851,11 +2643,7 @@ type RegisterContainerInstanceInput struct {
 	// running on the container instance.
 	VersionInfo *VersionInfo `locationName:"versionInfo" type:"structure"`
 
-	metadataRegisterContainerInstanceInput `json:"-" xml:"-"`
-}
-
-type metadataRegisterContainerInstanceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2873,11 +2661,7 @@ type RegisterContainerInstanceOutput struct {
 	// with a cluster.
 	ContainerInstance *ContainerInstance `locationName:"containerInstance" type:"structure"`
 
-	metadataRegisterContainerInstanceOutput `json:"-" xml:"-"`
-}
-
-type metadataRegisterContainerInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2905,11 +2689,7 @@ type RegisterTaskDefinitionInput struct {
 	// may use.
 	Volumes []*Volume `locationName:"volumes" type:"list"`
 
-	metadataRegisterTaskDefinitionInput `json:"-" xml:"-"`
-}
-
-type metadataRegisterTaskDefinitionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2926,11 +2706,7 @@ type RegisterTaskDefinitionOutput struct {
 	// The full description of the registered task definition.
 	TaskDefinition *TaskDefinition `locationName:"taskDefinition" type:"structure"`
 
-	metadataRegisterTaskDefinitionOutput `json:"-" xml:"-"`
-}
-
-type metadataRegisterTaskDefinitionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2966,11 +2742,7 @@ type Resource struct {
 	// The type of the resource, such as INTEGER, DOUBLE, LONG, or STRINGSET.
 	Type *string `locationName:"type" type:"string"`
 
-	metadataResource `json:"-" xml:"-"`
-}
-
-type metadataResource struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3021,11 +2793,7 @@ type RunTaskInput struct {
 	// ACTIVE revision is used.
 	TaskDefinition *string `locationName:"taskDefinition" type:"string" required:"true"`
 
-	metadataRunTaskInput `json:"-" xml:"-"`
-}
-
-type metadataRunTaskInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3046,11 +2814,7 @@ type RunTaskOutput struct {
 	// placed on your cluster are described here.
 	Tasks []*Task `locationName:"tasks" type:"list"`
 
-	metadataRunTaskOutput `json:"-" xml:"-"`
-}
-
-type metadataRunTaskOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3113,11 +2877,7 @@ type Service struct {
 	// UpdateService.
 	TaskDefinition *string `locationName:"taskDefinition" type:"string"`
 
-	metadataService `json:"-" xml:"-"`
-}
-
-type metadataService struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3141,11 +2901,7 @@ type ServiceEvent struct {
 	// The event message.
 	Message *string `locationName:"message" type:"string"`
 
-	metadataServiceEvent `json:"-" xml:"-"`
-}
-
-type metadataServiceEvent struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3197,11 +2953,7 @@ type StartTaskInput struct {
 	// ACTIVE revision is used.
 	TaskDefinition *string `locationName:"taskDefinition" type:"string" required:"true"`
 
-	metadataStartTaskInput `json:"-" xml:"-"`
-}
-
-type metadataStartTaskInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3222,11 +2974,7 @@ type StartTaskOutput struct {
 	// placed on your container instances are described here.
 	Tasks []*Task `locationName:"tasks" type:"list"`
 
-	metadataStartTaskOutput `json:"-" xml:"-"`
-}
-
-type metadataStartTaskOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3254,11 +3002,7 @@ type StopTaskInput struct {
 	// The task ID or full Amazon Resource Name (ARN) entry of the task to stop.
 	Task *string `locationName:"task" type:"string" required:"true"`
 
-	metadataStopTaskInput `json:"-" xml:"-"`
-}
-
-type metadataStopTaskInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3275,11 +3019,7 @@ type StopTaskOutput struct {
 	// Details on a task in a cluster.
 	Task *Task `locationName:"task" type:"structure"`
 
-	metadataStopTaskOutput `json:"-" xml:"-"`
-}
-
-type metadataStopTaskOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3316,11 +3056,7 @@ type SubmitContainerStateChangeInput struct {
 	// container.
 	Task *string `locationName:"task" type:"string"`
 
-	metadataSubmitContainerStateChangeInput `json:"-" xml:"-"`
-}
-
-type metadataSubmitContainerStateChangeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3337,11 +3073,7 @@ type SubmitContainerStateChangeOutput struct {
 	// Acknowledgement of the state change.
 	Acknowledgment *string `locationName:"acknowledgment" type:"string"`
 
-	metadataSubmitContainerStateChangeOutput `json:"-" xml:"-"`
-}
-
-type metadataSubmitContainerStateChangeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3369,11 +3101,7 @@ type SubmitTaskStateChangeInput struct {
 	// request.
 	Task *string `locationName:"task" type:"string"`
 
-	metadataSubmitTaskStateChangeInput `json:"-" xml:"-"`
-}
-
-type metadataSubmitTaskStateChangeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3390,11 +3118,7 @@ type SubmitTaskStateChangeOutput struct {
 	// Acknowledgement of the state change.
 	Acknowledgment *string `locationName:"acknowledgment" type:"string"`
 
-	metadataSubmitTaskStateChangeOutput `json:"-" xml:"-"`
-}
-
-type metadataSubmitTaskStateChangeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3454,11 +3178,7 @@ type Task struct {
 	// the task.
 	TaskDefinitionArn *string `locationName:"taskDefinitionArn" type:"string"`
 
-	metadataTask `json:"-" xml:"-"`
-}
-
-type metadataTask struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3503,11 +3223,7 @@ type TaskDefinition struct {
 	// in the Amazon EC2 Container Service Developer Guide.
 	Volumes []*Volume `locationName:"volumes" type:"list"`
 
-	metadataTaskDefinition `json:"-" xml:"-"`
-}
-
-type metadataTaskDefinition struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3525,11 +3241,7 @@ type TaskOverride struct {
 	// One or more container overrides sent to a task.
 	ContainerOverrides []*ContainerOverride `locationName:"containerOverrides" type:"list"`
 
-	metadataTaskOverride `json:"-" xml:"-"`
-}
-
-type metadataTaskOverride struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3553,11 +3265,7 @@ type Ulimit struct {
 	// The soft limit for the ulimit type.
 	SoftLimit *int64 `locationName:"softLimit" type:"integer" required:"true"`
 
-	metadataUlimit `json:"-" xml:"-"`
-}
-
-type metadataUlimit struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3581,11 +3289,7 @@ type UpdateContainerAgentInput struct {
 	// agent.
 	ContainerInstance *string `locationName:"containerInstance" type:"string" required:"true"`
 
-	metadataUpdateContainerAgentInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateContainerAgentInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3603,11 +3307,7 @@ type UpdateContainerAgentOutput struct {
 	// with a cluster.
 	ContainerInstance *ContainerInstance `locationName:"containerInstance" type:"structure"`
 
-	metadataUpdateContainerAgentOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateContainerAgentOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3640,11 +3340,7 @@ type UpdateServiceInput struct {
 	// definition and then stops an old task after the new version is running.
 	TaskDefinition *string `locationName:"taskDefinition" type:"string"`
 
-	metadataUpdateServiceInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateServiceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3661,11 +3357,7 @@ type UpdateServiceOutput struct {
 	// The full description of your service following the update call.
 	Service *Service `locationName:"service" type:"structure"`
 
-	metadataUpdateServiceOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateServiceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3691,11 +3383,7 @@ type VersionInfo struct {
 	// The Docker version running on the container instance.
 	DockerVersion *string `locationName:"dockerVersion" type:"string"`
 
-	metadataVersionInfo `json:"-" xml:"-"`
-}
-
-type metadataVersionInfo struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3719,11 +3407,7 @@ type Volume struct {
 	// of container definition mountPoints.
 	Name *string `locationName:"name" type:"string"`
 
-	metadataVolume `json:"-" xml:"-"`
-}
-
-type metadataVolume struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3746,11 +3430,7 @@ type VolumeFrom struct {
 	// The name of the container to mount volumes from.
 	SourceContainer *string `locationName:"sourceContainer" type:"string"`
 
-	metadataVolumeFrom `json:"-" xml:"-"`
-}
-
-type metadataVolumeFrom struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

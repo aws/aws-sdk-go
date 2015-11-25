@@ -427,11 +427,7 @@ type AlarmHistoryItem struct {
 	// in the Amazon CloudWatch Developer Guide.
 	Timestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataAlarmHistoryItem `json:"-" xml:"-"`
-}
-
-type metadataAlarmHistoryItem struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -473,11 +469,7 @@ type Datapoint struct {
 	// The standard unit used for the datapoint.
 	Unit *string `type:"string" enum:"StandardUnit"`
 
-	metadataDatapoint `json:"-" xml:"-"`
-}
-
-type metadataDatapoint struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -494,11 +486,7 @@ type DeleteAlarmsInput struct {
 	// A list of alarms to be deleted.
 	AlarmNames []*string `type:"list" required:"true"`
 
-	metadataDeleteAlarmsInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteAlarmsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -512,11 +500,7 @@ func (s DeleteAlarmsInput) GoString() string {
 }
 
 type DeleteAlarmsOutput struct {
-	metadataDeleteAlarmsOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteAlarmsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -549,11 +533,7 @@ type DescribeAlarmHistoryInput struct {
 	// The starting date to retrieve alarm history.
 	StartDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataDescribeAlarmHistoryInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAlarmHistoryInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -574,11 +554,7 @@ type DescribeAlarmHistoryOutput struct {
 	// A string that marks the start of the next batch of returned results.
 	NextToken *string `type:"string"`
 
-	metadataDescribeAlarmHistoryOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAlarmHistoryOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -610,11 +586,7 @@ type DescribeAlarmsForMetricInput struct {
 	// The unit for the metric.
 	Unit *string `type:"string" enum:"StandardUnit"`
 
-	metadataDescribeAlarmsForMetricInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAlarmsForMetricInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -632,11 +604,7 @@ type DescribeAlarmsForMetricOutput struct {
 	// A list of information for each alarm with the specified metric.
 	MetricAlarms []*MetricAlarm `type:"list"`
 
-	metadataDescribeAlarmsForMetricOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAlarmsForMetricOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -670,11 +638,7 @@ type DescribeAlarmsInput struct {
 	// The state value to be used in matching alarms.
 	StateValue *string `type:"string" enum:"StateValue"`
 
-	metadataDescribeAlarmsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAlarmsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -695,11 +659,7 @@ type DescribeAlarmsOutput struct {
 	// A string that marks the start of the next batch of returned results.
 	NextToken *string `type:"string"`
 
-	metadataDescribeAlarmsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAlarmsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -723,11 +683,7 @@ type Dimension struct {
 	// The value representing the dimension measurement
 	Value *string `min:"1" type:"string" required:"true"`
 
-	metadataDimension `json:"-" xml:"-"`
-}
-
-type metadataDimension struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -748,11 +704,7 @@ type DimensionFilter struct {
 	// The value of the dimension to be matched.
 	Value *string `min:"1" type:"string"`
 
-	metadataDimensionFilter `json:"-" xml:"-"`
-}
-
-type metadataDimensionFilter struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -769,11 +721,7 @@ type DisableAlarmActionsInput struct {
 	// The names of the alarms to disable actions for.
 	AlarmNames []*string `type:"list" required:"true"`
 
-	metadataDisableAlarmActionsInput `json:"-" xml:"-"`
-}
-
-type metadataDisableAlarmActionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -787,11 +735,7 @@ func (s DisableAlarmActionsInput) GoString() string {
 }
 
 type DisableAlarmActionsOutput struct {
-	metadataDisableAlarmActionsOutput `json:"-" xml:"-"`
-}
-
-type metadataDisableAlarmActionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -808,11 +752,7 @@ type EnableAlarmActionsInput struct {
 	// The names of the alarms to enable actions for.
 	AlarmNames []*string `type:"list" required:"true"`
 
-	metadataEnableAlarmActionsInput `json:"-" xml:"-"`
-}
-
-type metadataEnableAlarmActionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -826,11 +766,7 @@ func (s EnableAlarmActionsInput) GoString() string {
 }
 
 type EnableAlarmActionsOutput struct {
-	metadataEnableAlarmActionsOutput `json:"-" xml:"-"`
-}
-
-type metadataEnableAlarmActionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -877,11 +813,7 @@ type GetMetricStatisticsInput struct {
 	// The unit for the metric.
 	Unit *string `type:"string" enum:"StandardUnit"`
 
-	metadataGetMetricStatisticsInput `json:"-" xml:"-"`
-}
-
-type metadataGetMetricStatisticsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -902,11 +834,7 @@ type GetMetricStatisticsOutput struct {
 	// A label describing the specified metric.
 	Label *string `type:"string"`
 
-	metadataGetMetricStatisticsOutput `json:"-" xml:"-"`
-}
-
-type metadataGetMetricStatisticsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -933,11 +861,7 @@ type ListMetricsInput struct {
 	// available.
 	NextToken *string `type:"string"`
 
-	metadataListMetricsInput `json:"-" xml:"-"`
-}
-
-type metadataListMetricsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -958,11 +882,7 @@ type ListMetricsOutput struct {
 	// A string that marks the start of the next batch of returned results.
 	NextToken *string `type:"string"`
 
-	metadataListMetricsOutput `json:"-" xml:"-"`
-}
-
-type metadataListMetricsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -992,11 +912,7 @@ type Metric struct {
 	// The namespace of the metric.
 	Namespace *string `min:"1" type:"string"`
 
-	metadataMetric `json:"-" xml:"-"`
-}
-
-type metadataMetric struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1096,11 +1012,7 @@ type MetricAlarm struct {
 	// The unit of the alarm's associated metric.
 	Unit *string `type:"string" enum:"StandardUnit"`
 
-	metadataMetricAlarm `json:"-" xml:"-"`
-}
-
-type metadataMetricAlarm struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1146,11 +1058,7 @@ type MetricDatum struct {
 	// exponents less than -130 (1 x 10^-130) are also truncated.
 	Value *float64 `type:"double"`
 
-	metadataMetricDatum `json:"-" xml:"-"`
-}
-
-type metadataMetricDatum struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1221,11 +1129,7 @@ type PutMetricAlarmInput struct {
 	// The unit for the alarm's associated metric.
 	Unit *string `type:"string" enum:"StandardUnit"`
 
-	metadataPutMetricAlarmInput `json:"-" xml:"-"`
-}
-
-type metadataPutMetricAlarmInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1239,11 +1143,7 @@ func (s PutMetricAlarmInput) GoString() string {
 }
 
 type PutMetricAlarmOutput struct {
-	metadataPutMetricAlarmOutput `json:"-" xml:"-"`
-}
-
-type metadataPutMetricAlarmOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1263,11 +1163,7 @@ type PutMetricDataInput struct {
 	// The namespace for the metric data.
 	Namespace *string `min:"1" type:"string" required:"true"`
 
-	metadataPutMetricDataInput `json:"-" xml:"-"`
-}
-
-type metadataPutMetricDataInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1281,11 +1177,7 @@ func (s PutMetricDataInput) GoString() string {
 }
 
 type PutMetricDataOutput struct {
-	metadataPutMetricDataOutput `json:"-" xml:"-"`
-}
-
-type metadataPutMetricDataOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1314,11 +1206,7 @@ type SetAlarmStateInput struct {
 	// The value of the state.
 	StateValue *string `type:"string" required:"true" enum:"StateValue"`
 
-	metadataSetAlarmStateInput `json:"-" xml:"-"`
-}
-
-type metadataSetAlarmStateInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1332,11 +1220,7 @@ func (s SetAlarmStateInput) GoString() string {
 }
 
 type SetAlarmStateOutput struct {
-	metadataSetAlarmStateOutput `json:"-" xml:"-"`
-}
-
-type metadataSetAlarmStateOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1364,11 +1248,7 @@ type StatisticSet struct {
 	// The sum of values for the sample set.
 	Sum *float64 `type:"double" required:"true"`
 
-	metadataStatisticSet `json:"-" xml:"-"`
-}
-
-type metadataStatisticSet struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

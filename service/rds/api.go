@@ -2731,11 +2731,7 @@ type AccountQuota struct {
 	// The amount currently used toward the quota maximum.
 	Used *int64 `type:"long"`
 
-	metadataAccountQuota `json:"-" xml:"-"`
-}
-
-type metadataAccountQuota struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2766,11 +2762,7 @@ type AddSourceIdentifierToSubscriptionInput struct {
 	// identifier to.
 	SubscriptionName *string `type:"string" required:"true"`
 
-	metadataAddSourceIdentifierToSubscriptionInput `json:"-" xml:"-"`
-}
-
-type metadataAddSourceIdentifierToSubscriptionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2788,11 +2780,7 @@ type AddSourceIdentifierToSubscriptionOutput struct {
 	// action.
 	EventSubscription *EventSubscription `type:"structure"`
 
-	metadataAddSourceIdentifierToSubscriptionOutput `json:"-" xml:"-"`
-}
-
-type metadataAddSourceIdentifierToSubscriptionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2814,11 +2802,7 @@ type AddTagsToResourceInput struct {
 	// The tags to be assigned to the Amazon RDS resource.
 	Tags []*Tag `locationNameList:"Tag" type:"list" required:"true"`
 
-	metadataAddTagsToResourceInput `json:"-" xml:"-"`
-}
-
-type metadataAddTagsToResourceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2832,11 +2816,7 @@ func (s AddTagsToResourceInput) GoString() string {
 }
 
 type AddTagsToResourceOutput struct {
-	metadataAddTagsToResourceOutput `json:"-" xml:"-"`
-}
-
-type metadataAddTagsToResourceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2868,11 +2848,7 @@ type ApplyPendingMaintenanceActionInput struct {
 	// an RDS Amazon Resource Name (ARN) (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html#USER_Tagging.ARN).
 	ResourceIdentifier *string `type:"string" required:"true"`
 
-	metadataApplyPendingMaintenanceActionInput `json:"-" xml:"-"`
-}
-
-type metadataApplyPendingMaintenanceActionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2889,11 +2865,7 @@ type ApplyPendingMaintenanceActionOutput struct {
 	// Describes the pending maintenance actions for a resource.
 	ResourcePendingMaintenanceActions *ResourcePendingMaintenanceActions `type:"structure"`
 
-	metadataApplyPendingMaintenanceActionOutput `json:"-" xml:"-"`
-}
-
-type metadataApplyPendingMaintenanceActionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2930,11 +2902,7 @@ type AuthorizeDBSecurityGroupIngressInput struct {
 	// must be provided.
 	EC2SecurityGroupOwnerId *string `type:"string"`
 
-	metadataAuthorizeDBSecurityGroupIngressInput `json:"-" xml:"-"`
-}
-
-type metadataAuthorizeDBSecurityGroupIngressInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2955,11 +2923,7 @@ type AuthorizeDBSecurityGroupIngressOutput struct {
 	// in the DescribeDBSecurityGroups action.
 	DBSecurityGroup *DBSecurityGroup `type:"structure"`
 
-	metadataAuthorizeDBSecurityGroupIngressOutput `json:"-" xml:"-"`
-}
-
-type metadataAuthorizeDBSecurityGroupIngressOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2979,11 +2943,7 @@ type AvailabilityZone struct {
 	// The name of the availability zone.
 	Name *string `type:"string"`
 
-	metadataAvailabilityZone `json:"-" xml:"-"`
-}
-
-type metadataAvailabilityZone struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3013,11 +2973,7 @@ type Certificate struct {
 	// The final date that the certificate continues to be valid.
 	ValidTill *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataCertificate `json:"-" xml:"-"`
-}
-
-type metadataCertificate struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3038,11 +2994,7 @@ type CharacterSet struct {
 	// The name of the character set.
 	CharacterSetName *string `type:"string"`
 
-	metadataCharacterSet `json:"-" xml:"-"`
-}
-
-type metadataCharacterSet struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3079,11 +3031,7 @@ type CopyDBClusterSnapshotInput struct {
 	//  Example: my-cluster-snapshot2
 	TargetDBClusterSnapshotIdentifier *string `type:"string" required:"true"`
 
-	metadataCopyDBClusterSnapshotInput `json:"-" xml:"-"`
-}
-
-type metadataCopyDBClusterSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3103,11 +3051,7 @@ type CopyDBClusterSnapshotOutput struct {
 	// used as a response element in the DescribeDBClusterSnapshots action.
 	DBClusterSnapshot *DBClusterSnapshot `type:"structure"`
 
-	metadataCopyDBClusterSnapshotOutput `json:"-" xml:"-"`
-}
-
-type metadataCopyDBClusterSnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3149,11 +3093,7 @@ type CopyDBParameterGroupInput struct {
 	// hyphen or contain two consecutive hyphens  Example: my-db-parameter-group
 	TargetDBParameterGroupIdentifier *string `type:"string" required:"true"`
 
-	metadataCopyDBParameterGroupInput `json:"-" xml:"-"`
-}
-
-type metadataCopyDBParameterGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3174,11 +3114,7 @@ type CopyDBParameterGroupOutput struct {
 	// action, and as a response element in the DescribeDBParameterGroups action.
 	DBParameterGroup *DBParameterGroup `type:"structure"`
 
-	metadataCopyDBParameterGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataCopyDBParameterGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3225,11 +3161,7 @@ type CopyDBSnapshotInput struct {
 	// hyphen or contain two consecutive hyphens  Example: my-db-snapshot
 	TargetDBSnapshotIdentifier *string `type:"string" required:"true"`
 
-	metadataCopyDBSnapshotInput `json:"-" xml:"-"`
-}
-
-type metadataCopyDBSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3249,11 +3181,7 @@ type CopyDBSnapshotOutput struct {
 	// element in the DescribeDBSnapshots action.
 	DBSnapshot *DBSnapshot `type:"structure"`
 
-	metadataCopyDBSnapshotOutput `json:"-" xml:"-"`
-}
-
-type metadataCopyDBSnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3293,11 +3221,7 @@ type CopyOptionGroupInput struct {
 	// hyphen or contain two consecutive hyphens  Example: my-option-group
 	TargetOptionGroupIdentifier *string `type:"string" required:"true"`
 
-	metadataCopyOptionGroupInput `json:"-" xml:"-"`
-}
-
-type metadataCopyOptionGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3313,11 +3237,7 @@ func (s CopyOptionGroupInput) GoString() string {
 type CopyOptionGroupOutput struct {
 	OptionGroup *OptionGroup `type:"structure"`
 
-	metadataCopyOptionGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataCopyOptionGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3451,11 +3371,7 @@ type CreateDBClusterInput struct {
 	// A list of EC2 VPC security groups to associate with this DB cluster.
 	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
 
-	metadataCreateDBClusterInput `json:"-" xml:"-"`
-}
-
-type metadataCreateDBClusterInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3476,11 +3392,7 @@ type CreateDBClusterOutput struct {
 	// in the DescribeDBClusters action.
 	DBCluster *DBCluster `type:"structure"`
 
-	metadataCreateDBClusterOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateDBClusterOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3515,11 +3427,7 @@ type CreateDBClusterParameterGroupInput struct {
 	// A list of tags.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataCreateDBClusterParameterGroupInput `json:"-" xml:"-"`
-}
-
-type metadataCreateDBClusterParameterGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3541,11 +3449,7 @@ type CreateDBClusterParameterGroupOutput struct {
 	// action.
 	DBClusterParameterGroup *DBClusterParameterGroup `type:"structure"`
 
-	metadataCreateDBClusterParameterGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateDBClusterParameterGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3582,11 +3486,7 @@ type CreateDBClusterSnapshotInput struct {
 	// The tags to be assigned to the DB cluster snapshot.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataCreateDBClusterSnapshotInput `json:"-" xml:"-"`
-}
-
-type metadataCreateDBClusterSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3606,11 +3506,7 @@ type CreateDBClusterSnapshotOutput struct {
 	// used as a response element in the DescribeDBClusterSnapshots action.
 	DBClusterSnapshot *DBClusterSnapshot `type:"structure"`
 
-	metadataCreateDBClusterSnapshotOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateDBClusterSnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4093,11 +3989,7 @@ type CreateDBInstanceInput struct {
 	//  Default: The default EC2 VPC security group for the DB subnet group's VPC.
 	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
 
-	metadataCreateDBInstanceInput `json:"-" xml:"-"`
-}
-
-type metadataCreateDBInstanceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4117,11 +4009,7 @@ type CreateDBInstanceOutput struct {
 	// is used as a response element in the DescribeDBInstances action.
 	DBInstance *DBInstance `type:"structure"`
 
-	metadataCreateDBInstanceOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateDBInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4243,11 +4131,7 @@ type CreateDBInstanceReadReplicaInput struct {
 	// A list of tags.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataCreateDBInstanceReadReplicaInput `json:"-" xml:"-"`
-}
-
-type metadataCreateDBInstanceReadReplicaInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4267,11 +4151,7 @@ type CreateDBInstanceReadReplicaOutput struct {
 	// is used as a response element in the DescribeDBInstances action.
 	DBInstance *DBInstance `type:"structure"`
 
-	metadataCreateDBInstanceReadReplicaOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateDBInstanceReadReplicaOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4306,11 +4186,7 @@ type CreateDBParameterGroupInput struct {
 	// A list of tags.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataCreateDBParameterGroupInput `json:"-" xml:"-"`
-}
-
-type metadataCreateDBParameterGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4331,11 +4207,7 @@ type CreateDBParameterGroupOutput struct {
 	// action, and as a response element in the DescribeDBParameterGroups action.
 	DBParameterGroup *DBParameterGroup `type:"structure"`
 
-	metadataCreateDBParameterGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateDBParameterGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4364,11 +4236,7 @@ type CreateDBSecurityGroupInput struct {
 	// A list of tags.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataCreateDBSecurityGroupInput `json:"-" xml:"-"`
-}
-
-type metadataCreateDBSecurityGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4389,11 +4257,7 @@ type CreateDBSecurityGroupOutput struct {
 	// in the DescribeDBSecurityGroups action.
 	DBSecurityGroup *DBSecurityGroup `type:"structure"`
 
-	metadataCreateDBSecurityGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateDBSecurityGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4427,11 +4291,7 @@ type CreateDBSnapshotInput struct {
 	// A list of tags.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataCreateDBSnapshotInput `json:"-" xml:"-"`
-}
-
-type metadataCreateDBSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4451,11 +4311,7 @@ type CreateDBSnapshotOutput struct {
 	// element in the DescribeDBSnapshots action.
 	DBSnapshot *DBSnapshot `type:"structure"`
 
-	metadataCreateDBSnapshotOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateDBSnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4486,11 +4342,7 @@ type CreateDBSubnetGroupInput struct {
 	// A list of tags.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataCreateDBSubnetGroupInput `json:"-" xml:"-"`
-}
-
-type metadataCreateDBSubnetGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4511,11 +4363,7 @@ type CreateDBSubnetGroupOutput struct {
 	// action.
 	DBSubnetGroup *DBSubnetGroup `type:"structure"`
 
-	metadataCreateDBSubnetGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateDBSubnetGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4576,11 +4424,7 @@ type CreateEventSubscriptionInput struct {
 	// A list of tags.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataCreateEventSubscriptionInput `json:"-" xml:"-"`
-}
-
-type metadataCreateEventSubscriptionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4598,11 +4442,7 @@ type CreateEventSubscriptionOutput struct {
 	// action.
 	EventSubscription *EventSubscription `type:"structure"`
 
-	metadataCreateEventSubscriptionOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateEventSubscriptionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4639,11 +4479,7 @@ type CreateOptionGroupInput struct {
 	// A list of tags.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataCreateOptionGroupInput `json:"-" xml:"-"`
-}
-
-type metadataCreateOptionGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4659,11 +4495,7 @@ func (s CreateOptionGroupInput) GoString() string {
 type CreateOptionGroupOutput struct {
 	OptionGroup *OptionGroup `type:"structure"`
 
-	metadataCreateOptionGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateOptionGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4761,11 +4593,7 @@ type DBCluster struct {
 	// Provides a list of VPC security groups that the DB cluster belongs to.
 	VpcSecurityGroups []*VpcSecurityGroupMembership `locationNameList:"VpcSecurityGroupMembership" type:"list"`
 
-	metadataDBCluster `json:"-" xml:"-"`
-}
-
-type metadataDBCluster struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4791,11 +4619,7 @@ type DBClusterMember struct {
 	// DB cluster and false otherwise.
 	IsClusterWriter *bool `type:"boolean"`
 
-	metadataDBClusterMember `json:"-" xml:"-"`
-}
-
-type metadataDBClusterMember struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4816,11 +4640,7 @@ type DBClusterOptionGroupStatus struct {
 	// Specifies the status of the DB cluster option group.
 	Status *string `type:"string"`
 
-	metadataDBClusterOptionGroupStatus `json:"-" xml:"-"`
-}
-
-type metadataDBClusterOptionGroupStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4851,11 +4671,7 @@ type DBClusterParameterGroup struct {
 	// group.
 	Description *string `type:"string"`
 
-	metadataDBClusterParameterGroup `json:"-" xml:"-"`
-}
-
-type metadataDBClusterParameterGroup struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4878,11 +4694,7 @@ type DBClusterParameterGroupNameMessage struct {
 	// stored as a lowercase string.
 	DBClusterParameterGroupName *string `type:"string"`
 
-	metadataDBClusterParameterGroupNameMessage `json:"-" xml:"-"`
-}
-
-type metadataDBClusterParameterGroupNameMessage struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4950,11 +4762,7 @@ type DBClusterSnapshot struct {
 	// Provides the VPC ID associated with the DB cluster snapshot.
 	VpcId *string `type:"string"`
 
-	metadataDBClusterSnapshot `json:"-" xml:"-"`
-}
-
-type metadataDBClusterSnapshot struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4996,11 +4804,7 @@ type DBEngineVersion struct {
 	// to.
 	ValidUpgradeTarget []*UpgradeTarget `locationNameList:"UpgradeTarget" type:"list"`
 
-	metadataDBEngineVersion `json:"-" xml:"-"`
-}
-
-type metadataDBEngineVersion struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5186,11 +4990,7 @@ type DBInstance struct {
 	// to.
 	VpcSecurityGroups []*VpcSecurityGroupMembership `locationNameList:"VpcSecurityGroupMembership" type:"list"`
 
-	metadataDBInstance `json:"-" xml:"-"`
-}
-
-type metadataDBInstance struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5220,11 +5020,7 @@ type DBInstanceStatusInfo struct {
 	// This value is currently "read replication."
 	StatusType *string `type:"string"`
 
-	metadataDBInstanceStatusInfo `json:"-" xml:"-"`
-}
-
-type metadataDBInstanceStatusInfo struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5253,11 +5049,7 @@ type DBParameterGroup struct {
 	// Provides the customer-specified description for this DB parameter group.
 	Description *string `type:"string"`
 
-	metadataDBParameterGroup `json:"-" xml:"-"`
-}
-
-type metadataDBParameterGroup struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5276,11 +5068,7 @@ type DBParameterGroupNameMessage struct {
 	// Provides the name of the DB parameter group.
 	DBParameterGroupName *string `type:"string"`
 
-	metadataDBParameterGroupNameMessage `json:"-" xml:"-"`
-}
-
-type metadataDBParameterGroupNameMessage struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5306,11 +5094,7 @@ type DBParameterGroupStatus struct {
 	// The status of parameter updates.
 	ParameterApplyStatus *string `type:"string"`
 
-	metadataDBParameterGroupStatus `json:"-" xml:"-"`
-}
-
-type metadataDBParameterGroupStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5347,11 +5131,7 @@ type DBSecurityGroup struct {
 	// Provides the VpcId of the DB security group.
 	VpcId *string `type:"string"`
 
-	metadataDBSecurityGroup `json:"-" xml:"-"`
-}
-
-type metadataDBSecurityGroup struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5375,11 +5155,7 @@ type DBSecurityGroupMembership struct {
 	// The status of the DB security group.
 	Status *string `type:"string"`
 
-	metadataDBSecurityGroupMembership `json:"-" xml:"-"`
-}
-
-type metadataDBSecurityGroupMembership struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5473,11 +5249,7 @@ type DBSnapshot struct {
 	// Provides the VPC ID associated with the DB snapshot.
 	VpcId *string `type:"string"`
 
-	metadataDBSnapshot `json:"-" xml:"-"`
-}
-
-type metadataDBSnapshot struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5510,11 +5282,7 @@ type DBSnapshotAttribute struct {
 	// available for any AWS account to copy or restore.
 	AttributeValues []*string `locationNameList:"AttributeValue" type:"list"`
 
-	metadataDBSnapshotAttribute `json:"-" xml:"-"`
-}
-
-type metadataDBSnapshotAttribute struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5540,11 +5308,7 @@ type DBSnapshotAttributesResult struct {
 	// The identifier of the manual DB snapshot that the attributes apply to.
 	DBSnapshotIdentifier *string `type:"string"`
 
-	metadataDBSnapshotAttributesResult `json:"-" xml:"-"`
-}
-
-type metadataDBSnapshotAttributesResult struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5578,11 +5342,7 @@ type DBSubnetGroup struct {
 	// Provides the VpcId of the DB subnet group.
 	VpcId *string `type:"string"`
 
-	metadataDBSubnetGroup `json:"-" xml:"-"`
-}
-
-type metadataDBSubnetGroup struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5623,11 +5383,7 @@ type DeleteDBClusterInput struct {
 	// is false. Default: false
 	SkipFinalSnapshot *bool `type:"boolean"`
 
-	metadataDeleteDBClusterInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDBClusterInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5648,11 +5404,7 @@ type DeleteDBClusterOutput struct {
 	// in the DescribeDBClusters action.
 	DBCluster *DBCluster `type:"structure"`
 
-	metadataDeleteDBClusterOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDBClusterOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5675,11 +5427,7 @@ type DeleteDBClusterParameterGroupInput struct {
 	// DB clusters.
 	DBClusterParameterGroupName *string `type:"string" required:"true"`
 
-	metadataDeleteDBClusterParameterGroupInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDBClusterParameterGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5693,11 +5441,7 @@ func (s DeleteDBClusterParameterGroupInput) GoString() string {
 }
 
 type DeleteDBClusterParameterGroupOutput struct {
-	metadataDeleteDBClusterParameterGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDBClusterParameterGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5717,11 +5461,7 @@ type DeleteDBClusterSnapshotInput struct {
 	// available state.
 	DBClusterSnapshotIdentifier *string `type:"string" required:"true"`
 
-	metadataDeleteDBClusterSnapshotInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDBClusterSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5741,11 +5481,7 @@ type DeleteDBClusterSnapshotOutput struct {
 	// used as a response element in the DescribeDBClusterSnapshots action.
 	DBClusterSnapshot *DBClusterSnapshot `type:"structure"`
 
-	metadataDeleteDBClusterSnapshotOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDBClusterSnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5793,11 +5529,7 @@ type DeleteDBInstanceInput struct {
 	// is false. Default: false
 	SkipFinalSnapshot *bool `type:"boolean"`
 
-	metadataDeleteDBInstanceInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDBInstanceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5817,11 +5549,7 @@ type DeleteDBInstanceOutput struct {
 	// is used as a response element in the DescribeDBInstances action.
 	DBInstance *DBInstance `type:"structure"`
 
-	metadataDeleteDBInstanceOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDBInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5843,11 +5571,7 @@ type DeleteDBParameterGroupInput struct {
 	// default DB parameter group Cannot be associated with any DB instances
 	DBParameterGroupName *string `type:"string" required:"true"`
 
-	metadataDeleteDBParameterGroupInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDBParameterGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5861,11 +5585,7 @@ func (s DeleteDBParameterGroupInput) GoString() string {
 }
 
 type DeleteDBParameterGroupOutput struct {
-	metadataDeleteDBParameterGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDBParameterGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5888,11 +5608,7 @@ type DeleteDBSecurityGroupInput struct {
 	// Cannot contain spaces
 	DBSecurityGroupName *string `type:"string" required:"true"`
 
-	metadataDeleteDBSecurityGroupInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDBSecurityGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5906,11 +5622,7 @@ func (s DeleteDBSecurityGroupInput) GoString() string {
 }
 
 type DeleteDBSecurityGroupOutput struct {
-	metadataDeleteDBSecurityGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDBSecurityGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5930,11 +5642,7 @@ type DeleteDBSnapshotInput struct {
 	// state.
 	DBSnapshotIdentifier *string `type:"string" required:"true"`
 
-	metadataDeleteDBSnapshotInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDBSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5954,11 +5662,7 @@ type DeleteDBSnapshotOutput struct {
 	// element in the DescribeDBSnapshots action.
 	DBSnapshot *DBSnapshot `type:"structure"`
 
-	metadataDeleteDBSnapshotOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDBSnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5980,11 +5684,7 @@ type DeleteDBSubnetGroupInput struct {
 	// Cannot end with a hyphen or contain two consecutive hyphens
 	DBSubnetGroupName *string `type:"string" required:"true"`
 
-	metadataDeleteDBSubnetGroupInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDBSubnetGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5998,11 +5698,7 @@ func (s DeleteDBSubnetGroupInput) GoString() string {
 }
 
 type DeleteDBSubnetGroupOutput struct {
-	metadataDeleteDBSubnetGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDBSubnetGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6019,11 +5715,7 @@ type DeleteEventSubscriptionInput struct {
 	// The name of the RDS event notification subscription you want to delete.
 	SubscriptionName *string `type:"string" required:"true"`
 
-	metadataDeleteEventSubscriptionInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteEventSubscriptionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6041,11 +5733,7 @@ type DeleteEventSubscriptionOutput struct {
 	// action.
 	EventSubscription *EventSubscription `type:"structure"`
 
-	metadataDeleteEventSubscriptionOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteEventSubscriptionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6064,11 +5752,7 @@ type DeleteOptionGroupInput struct {
 	// You cannot delete default option groups.
 	OptionGroupName *string `type:"string" required:"true"`
 
-	metadataDeleteOptionGroupInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteOptionGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6082,11 +5766,7 @@ func (s DeleteOptionGroupInput) GoString() string {
 }
 
 type DeleteOptionGroupOutput struct {
-	metadataDeleteOptionGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteOptionGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6100,11 +5780,7 @@ func (s DeleteOptionGroupOutput) GoString() string {
 }
 
 type DescribeAccountAttributesInput struct {
-	metadataDescribeAccountAttributesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAccountAttributesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6123,11 +5799,7 @@ type DescribeAccountAttributesOutput struct {
 	// a count of usage toward the quota maximum, and a maximum value for the quota.
 	AccountQuotas []*AccountQuota `locationNameList:"AccountQuota" type:"list"`
 
-	metadataDescribeAccountAttributesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAccountAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6168,11 +5840,7 @@ type DescribeCertificatesInput struct {
 	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
-	metadataDescribeCertificatesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeCertificatesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6195,11 +5863,7 @@ type DescribeCertificatesOutput struct {
 	// beyond the marker, up to the value specified by MaxRecords .
 	Marker *string `type:"string"`
 
-	metadataDescribeCertificatesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeCertificatesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6238,11 +5902,7 @@ type DescribeDBClusterParameterGroupsInput struct {
 	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
-	metadataDescribeDBClusterParameterGroupsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDBClusterParameterGroupsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6264,11 +5924,7 @@ type DescribeDBClusterParameterGroupsOutput struct {
 	// beyond the marker, up to the value specified by MaxRecords.
 	Marker *string `type:"string"`
 
-	metadataDescribeDBClusterParameterGroupsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDBClusterParameterGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6312,11 +5968,7 @@ type DescribeDBClusterParametersInput struct {
 	// sources can be engine, service, or customer.
 	Source *string `type:"string"`
 
-	metadataDescribeDBClusterParametersInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDBClusterParametersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6340,11 +5992,7 @@ type DescribeDBClusterParametersOutput struct {
 	// Provides a list of parameters for the DB cluster parameter group.
 	Parameters []*Parameter `locationNameList:"Parameter" type:"list"`
 
-	metadataDescribeDBClusterParametersOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDBClusterParametersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6402,11 +6050,7 @@ type DescribeDBClusterSnapshotsInput struct {
 	// include all snapshot types.
 	SnapshotType *string `type:"string"`
 
-	metadataDescribeDBClusterSnapshotsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDBClusterSnapshotsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6430,11 +6074,7 @@ type DescribeDBClusterSnapshotsOutput struct {
 	// beyond the marker, up to the value specified by MaxRecords.
 	Marker *string `type:"string"`
 
-	metadataDescribeDBClusterSnapshotsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDBClusterSnapshotsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6475,11 +6115,7 @@ type DescribeDBClustersInput struct {
 	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
-	metadataDescribeDBClustersInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDBClustersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6501,11 +6137,7 @@ type DescribeDBClustersOutput struct {
 	// A pagination token that can be used in a subsequent DescribeDBClusters request.
 	Marker *string `type:"string"`
 
-	metadataDescribeDBClustersOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDBClustersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6561,11 +6193,7 @@ type DescribeDBEngineVersionsInput struct {
 	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
-	metadataDescribeDBEngineVersionsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDBEngineVersionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6589,11 +6217,7 @@ type DescribeDBEngineVersionsOutput struct {
 	// the value specified by MaxRecords.
 	Marker *string `type:"string"`
 
-	metadataDescribeDBEngineVersionsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDBEngineVersionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6633,11 +6257,7 @@ type DescribeDBInstancesInput struct {
 	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
-	metadataDescribeDBInstancesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDBInstancesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6661,11 +6281,7 @@ type DescribeDBInstancesOutput struct {
 	// the value specified by MaxRecords .
 	Marker *string `type:"string"`
 
-	metadataDescribeDBInstancesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDBInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6689,11 +6305,7 @@ type DescribeDBLogFilesDetails struct {
 	// The size, in bytes, of the log file for the specified DB instance.
 	Size *int64 `type:"long"`
 
-	metadataDescribeDBLogFilesDetails `json:"-" xml:"-"`
-}
-
-type metadataDescribeDBLogFilesDetails struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6740,11 +6352,7 @@ type DescribeDBLogFilesInput struct {
 	// is included in the response so that the remaining results can be retrieved.
 	MaxRecords *int64 `type:"integer"`
 
-	metadataDescribeDBLogFilesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDBLogFilesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6765,11 +6373,7 @@ type DescribeDBLogFilesOutput struct {
 	// A pagination token that can be used in a subsequent DescribeDBLogFiles request.
 	Marker *string `type:"string"`
 
-	metadataDescribeDBLogFilesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDBLogFilesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6808,11 +6412,7 @@ type DescribeDBParameterGroupsInput struct {
 	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
-	metadataDescribeDBParameterGroupsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDBParameterGroupsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6836,11 +6436,7 @@ type DescribeDBParameterGroupsOutput struct {
 	// the value specified by MaxRecords.
 	Marker *string `type:"string"`
 
-	metadataDescribeDBParameterGroupsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDBParameterGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6886,11 +6482,7 @@ type DescribeDBParametersInput struct {
 	// Valid Values: user | system | engine-default
 	Source *string `type:"string"`
 
-	metadataDescribeDBParametersInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDBParametersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6914,11 +6506,7 @@ type DescribeDBParametersOutput struct {
 	// A list of Parameter values.
 	Parameters []*Parameter `locationNameList:"Parameter" type:"list"`
 
-	metadataDescribeDBParametersOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDBParametersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6952,11 +6540,7 @@ type DescribeDBSecurityGroupsInput struct {
 	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
-	metadataDescribeDBSecurityGroupsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDBSecurityGroupsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6980,11 +6564,7 @@ type DescribeDBSecurityGroupsOutput struct {
 	// the value specified by MaxRecords.
 	Marker *string `type:"string"`
 
-	metadataDescribeDBSecurityGroupsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDBSecurityGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7001,11 +6581,7 @@ type DescribeDBSnapshotAttributesInput struct {
 	// The identifier for the DB snapshot to modify the attributes for.
 	DBSnapshotIdentifier *string `type:"string"`
 
-	metadataDescribeDBSnapshotAttributesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDBSnapshotAttributesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7027,11 +6603,7 @@ type DescribeDBSnapshotAttributesOutput struct {
 	// API.
 	DBSnapshotAttributesResult *DBSnapshotAttributesResult `type:"structure"`
 
-	metadataDescribeDBSnapshotAttributesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDBSnapshotAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7118,11 +6690,7 @@ type DescribeDBSnapshotsInput struct {
 	// apply when SnapshotType is set to public.
 	SnapshotType *string `type:"string"`
 
-	metadataDescribeDBSnapshotsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDBSnapshotsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7146,11 +6714,7 @@ type DescribeDBSnapshotsOutput struct {
 	// the value specified by MaxRecords.
 	Marker *string `type:"string"`
 
-	metadataDescribeDBSnapshotsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDBSnapshotsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7184,11 +6748,7 @@ type DescribeDBSubnetGroupsInput struct {
 	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
-	metadataDescribeDBSubnetGroupsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDBSubnetGroupsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7212,11 +6772,7 @@ type DescribeDBSubnetGroupsOutput struct {
 	// the value specified by MaxRecords.
 	Marker *string `type:"string"`
 
-	metadataDescribeDBSubnetGroupsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDBSubnetGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7251,11 +6807,7 @@ type DescribeEngineDefaultClusterParametersInput struct {
 	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
-	metadataDescribeEngineDefaultClusterParametersInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEngineDefaultClusterParametersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7273,11 +6825,7 @@ type DescribeEngineDefaultClusterParametersOutput struct {
 	// action.
 	EngineDefaults *EngineDefaults `type:"structure"`
 
-	metadataDescribeEngineDefaultClusterParametersOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEngineDefaultClusterParametersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7311,11 +6859,7 @@ type DescribeEngineDefaultParametersInput struct {
 	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
-	metadataDescribeEngineDefaultParametersInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEngineDefaultParametersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7333,11 +6877,7 @@ type DescribeEngineDefaultParametersOutput struct {
 	// action.
 	EngineDefaults *EngineDefaults `type:"structure"`
 
-	metadataDescribeEngineDefaultParametersOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEngineDefaultParametersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7359,11 +6899,7 @@ type DescribeEventCategoriesInput struct {
 	// Valid values: db-instance | db-parameter-group | db-security-group | db-snapshot
 	SourceType *string `type:"string"`
 
-	metadataDescribeEventCategoriesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEventCategoriesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7381,11 +6917,7 @@ type DescribeEventCategoriesOutput struct {
 	// A list of EventCategoriesMap data types.
 	EventCategoriesMapList []*EventCategoriesMap `locationNameList:"EventCategoriesMap" type:"list"`
 
-	metadataDescribeEventCategoriesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEventCategoriesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7419,11 +6951,7 @@ type DescribeEventSubscriptionsInput struct {
 	// The name of the RDS event notification subscription you want to describe.
 	SubscriptionName *string `type:"string"`
 
-	metadataDescribeEventSubscriptionsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEventSubscriptionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7446,11 +6974,7 @@ type DescribeEventSubscriptionsOutput struct {
 	// beyond the marker, up to the value specified by MaxRecords.
 	Marker *string `type:"string"`
 
-	metadataDescribeEventSubscriptionsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEventSubscriptionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7521,11 +7045,7 @@ type DescribeEventsInput struct {
 	// Example: 2009-07-08T18:00Z
 	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataDescribeEventsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEventsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7548,11 +7068,7 @@ type DescribeEventsOutput struct {
 	// up to the value specified by MaxRecords .
 	Marker *string `type:"string"`
 
-	metadataDescribeEventsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEventsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7591,11 +7107,7 @@ type DescribeOptionGroupOptionsInput struct {
 	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
-	metadataDescribeOptionGroupOptionsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeOptionGroupOptionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7617,11 +7129,7 @@ type DescribeOptionGroupOptionsOutput struct {
 	// List of available option group options.
 	OptionGroupOptions []*OptionGroupOption `locationNameList:"OptionGroupOption" type:"list"`
 
-	metadataDescribeOptionGroupOptionsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeOptionGroupOptionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7665,11 +7173,7 @@ type DescribeOptionGroupsInput struct {
 	// EngineName or MajorEngineVersion.
 	OptionGroupName *string `type:"string"`
 
-	metadataDescribeOptionGroupsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeOptionGroupsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7692,11 +7196,7 @@ type DescribeOptionGroupsOutput struct {
 	// List of option groups.
 	OptionGroupsList []*OptionGroup `locationNameList:"OptionGroup" type:"list"`
 
-	metadataDescribeOptionGroupsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeOptionGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7746,11 +7246,7 @@ type DescribeOrderableDBInstanceOptionsInput struct {
 	// or non-VPC offerings.
 	Vpc *bool `type:"boolean"`
 
-	metadataDescribeOrderableDBInstanceOptionsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeOrderableDBInstanceOptionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7775,11 +7271,7 @@ type DescribeOrderableDBInstanceOptionsOutput struct {
 	// options for the DB instance.
 	OrderableDBInstanceOptions []*OrderableDBInstanceOption `locationNameList:"OrderableDBInstanceOption" type:"list"`
 
-	metadataDescribeOrderableDBInstanceOptionsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeOrderableDBInstanceOptionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7820,11 +7312,7 @@ type DescribePendingMaintenanceActionsInput struct {
 	// The ARN of a resource to return pending maintenance actions for.
 	ResourceIdentifier *string `type:"string"`
 
-	metadataDescribePendingMaintenanceActionsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribePendingMaintenanceActionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7847,11 +7335,7 @@ type DescribePendingMaintenanceActionsOutput struct {
 	// A list of the pending maintenance actions for the resource.
 	PendingMaintenanceActions []*ResourcePendingMaintenanceActions `locationNameList:"ResourcePendingMaintenanceActions" type:"list"`
 
-	metadataDescribePendingMaintenanceActionsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribePendingMaintenanceActionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7914,11 +7398,7 @@ type DescribeReservedDBInstancesInput struct {
 	// purchased reservations matching the specified offering identifier.
 	ReservedDBInstancesOfferingId *string `type:"string"`
 
-	metadataDescribeReservedDBInstancesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeReservedDBInstancesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7979,11 +7459,7 @@ type DescribeReservedDBInstancesOfferingsInput struct {
 	// Example: 438012d3-4052-4cc7-b2e3-8d3372e0e706
 	ReservedDBInstancesOfferingId *string `type:"string"`
 
-	metadataDescribeReservedDBInstancesOfferingsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeReservedDBInstancesOfferingsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8007,11 +7483,7 @@ type DescribeReservedDBInstancesOfferingsOutput struct {
 	// A list of reserved DB instance offerings.
 	ReservedDBInstancesOfferings []*ReservedDBInstancesOffering `locationNameList:"ReservedDBInstancesOffering" type:"list"`
 
-	metadataDescribeReservedDBInstancesOfferingsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeReservedDBInstancesOfferingsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8035,11 +7507,7 @@ type DescribeReservedDBInstancesOutput struct {
 	// A list of reserved DB instances.
 	ReservedDBInstances []*ReservedDBInstance `locationNameList:"ReservedDBInstance" type:"list"`
 
-	metadataDescribeReservedDBInstancesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeReservedDBInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8091,11 +7559,7 @@ type DownloadDBLogFilePortionInput struct {
 	// continuing until the AdditionalDataPending response element returns false.
 	NumberOfLines *int64 `type:"integer"`
 
-	metadataDownloadDBLogFilePortionInput `json:"-" xml:"-"`
-}
-
-type metadataDownloadDBLogFilePortionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8120,11 +7584,7 @@ type DownloadDBLogFilePortionOutput struct {
 	// request.
 	Marker *string `type:"string"`
 
-	metadataDownloadDBLogFilePortionOutput `json:"-" xml:"-"`
-}
-
-type metadataDownloadDBLogFilePortionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8155,11 +7615,7 @@ type EC2SecurityGroup struct {
 	// "authorized", "revoking", and "revoked".
 	Status *string `type:"string"`
 
-	metadataEC2SecurityGroup `json:"-" xml:"-"`
-}
-
-type metadataEC2SecurityGroup struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8185,11 +7641,7 @@ type Endpoint struct {
 	// Specifies the port that the database engine is listening on.
 	Port *int64 `type:"integer"`
 
-	metadataEndpoint `json:"-" xml:"-"`
-}
-
-type metadataEndpoint struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8217,11 +7669,7 @@ type EngineDefaults struct {
 	// Contains a list of engine default parameters.
 	Parameters []*Parameter `locationNameList:"Parameter" type:"list"`
 
-	metadataEngineDefaults `json:"-" xml:"-"`
-}
-
-type metadataEngineDefaults struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8251,11 +7699,7 @@ type Event struct {
 	// Specifies the source type for this event.
 	SourceType *string `type:"string" enum:"SourceType"`
 
-	metadataEvent `json:"-" xml:"-"`
-}
-
-type metadataEvent struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8277,11 +7721,7 @@ type EventCategoriesMap struct {
 	// The source type that the returned categories belong to
 	SourceType *string `type:"string"`
 
-	metadataEventCategoriesMap `json:"-" xml:"-"`
-}
-
-type metadataEventCategoriesMap struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8334,11 +7774,7 @@ type EventSubscription struct {
 	// The time the RDS event notification subscription was created.
 	SubscriptionCreationTime *string `type:"string"`
 
-	metadataEventSubscription `json:"-" xml:"-"`
-}
-
-type metadataEventSubscription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8360,11 +7796,7 @@ type FailoverDBClusterInput struct {
 	// must be a letter Cannot end with a hyphen or contain two consecutive hyphens
 	DBClusterIdentifier *string `type:"string"`
 
-	metadataFailoverDBClusterInput `json:"-" xml:"-"`
-}
-
-type metadataFailoverDBClusterInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8385,11 +7817,7 @@ type FailoverDBClusterOutput struct {
 	// in the DescribeDBClusters action.
 	DBCluster *DBCluster `type:"structure"`
 
-	metadataFailoverDBClusterOutput `json:"-" xml:"-"`
-}
-
-type metadataFailoverDBClusterOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8409,11 +7837,7 @@ type Filter struct {
 	// This parameter is not currently supported.
 	Values []*string `locationNameList:"Value" type:"list" required:"true"`
 
-	metadataFilter `json:"-" xml:"-"`
-}
-
-type metadataFilter struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8436,11 +7860,7 @@ type IPRange struct {
 	// "revoking", and "revoked".
 	Status *string `type:"string"`
 
-	metadataIPRange `json:"-" xml:"-"`
-}
-
-type metadataIPRange struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8462,11 +7882,7 @@ type ListTagsForResourceInput struct {
 	// Amazon Resource Name (ARN) (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html#USER_Tagging.ARN).
 	ResourceName *string `type:"string" required:"true"`
 
-	metadataListTagsForResourceInput `json:"-" xml:"-"`
-}
-
-type metadataListTagsForResourceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8483,11 +7899,7 @@ type ListTagsForResourceOutput struct {
 	// List of tags returned by the ListTagsForResource operation.
 	TagList []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataListTagsForResourceOutput `json:"-" xml:"-"`
-}
-
-type metadataListTagsForResourceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8602,11 +8014,7 @@ type ModifyDBClusterInput struct {
 	// A lst of VPC security groups that the DB cluster will belong to.
 	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
 
-	metadataModifyDBClusterInput `json:"-" xml:"-"`
-}
-
-type metadataModifyDBClusterInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8627,11 +8035,7 @@ type ModifyDBClusterOutput struct {
 	// in the DescribeDBClusters action.
 	DBCluster *DBCluster `type:"structure"`
 
-	metadataModifyDBClusterOutput `json:"-" xml:"-"`
-}
-
-type metadataModifyDBClusterOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8651,11 +8055,7 @@ type ModifyDBClusterParameterGroupInput struct {
 	// A list of parameters in the DB cluster parameter group to modify.
 	Parameters []*Parameter `locationNameList:"Parameter" type:"list" required:"true"`
 
-	metadataModifyDBClusterParameterGroupInput `json:"-" xml:"-"`
-}
-
-type metadataModifyDBClusterParameterGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9018,11 +8418,7 @@ type ModifyDBInstanceInput struct {
 	// Cannot end with a hyphen or contain two consecutive hyphens
 	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
 
-	metadataModifyDBInstanceInput `json:"-" xml:"-"`
-}
-
-type metadataModifyDBInstanceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9042,11 +8438,7 @@ type ModifyDBInstanceOutput struct {
 	// is used as a response element in the DescribeDBInstances action.
 	DBInstance *DBInstance `type:"structure"`
 
-	metadataModifyDBInstanceOutput `json:"-" xml:"-"`
-}
-
-type metadataModifyDBInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9081,11 +8473,7 @@ type ModifyDBParameterGroupInput struct {
 	// are applied when you reboot the DB instance without failover.
 	Parameters []*Parameter `locationNameList:"Parameter" type:"list" required:"true"`
 
-	metadataModifyDBParameterGroupInput `json:"-" xml:"-"`
-}
-
-type metadataModifyDBParameterGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9127,11 +8515,7 @@ type ModifyDBSnapshotAttributeInput struct {
 	// attribute can still copy or restore the manual DB snapshot.
 	ValuesToRemove []*string `locationNameList:"AttributeValue" type:"list"`
 
-	metadataModifyDBSnapshotAttributeInput `json:"-" xml:"-"`
-}
-
-type metadataModifyDBSnapshotAttributeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9153,11 +8537,7 @@ type ModifyDBSnapshotAttributeOutput struct {
 	// API.
 	DBSnapshotAttributesResult *DBSnapshotAttributesResult `type:"structure"`
 
-	metadataModifyDBSnapshotAttributeOutput `json:"-" xml:"-"`
-}
-
-type metadataModifyDBSnapshotAttributeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9185,11 +8565,7 @@ type ModifyDBSubnetGroupInput struct {
 	// The EC2 subnet IDs for the DB subnet group.
 	SubnetIds []*string `locationNameList:"SubnetIdentifier" type:"list" required:"true"`
 
-	metadataModifyDBSubnetGroupInput `json:"-" xml:"-"`
-}
-
-type metadataModifyDBSubnetGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9210,11 +8586,7 @@ type ModifyDBSubnetGroupOutput struct {
 	// action.
 	DBSubnetGroup *DBSubnetGroup `type:"structure"`
 
-	metadataModifyDBSubnetGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataModifyDBSubnetGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9254,11 +8626,7 @@ type ModifyEventSubscriptionInput struct {
 	// The name of the RDS event notification subscription.
 	SubscriptionName *string `type:"string" required:"true"`
 
-	metadataModifyEventSubscriptionInput `json:"-" xml:"-"`
-}
-
-type metadataModifyEventSubscriptionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9276,11 +8644,7 @@ type ModifyEventSubscriptionOutput struct {
 	// action.
 	EventSubscription *EventSubscription `type:"structure"`
 
-	metadataModifyEventSubscriptionOutput `json:"-" xml:"-"`
-}
-
-type metadataModifyEventSubscriptionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9312,11 +8676,7 @@ type ModifyOptionGroupInput struct {
 	// Options in this list are removed from the option group.
 	OptionsToRemove []*string `type:"list"`
 
-	metadataModifyOptionGroupInput `json:"-" xml:"-"`
-}
-
-type metadataModifyOptionGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9332,11 +8692,7 @@ func (s ModifyOptionGroupInput) GoString() string {
 type ModifyOptionGroupOutput struct {
 	OptionGroup *OptionGroup `type:"structure"`
 
-	metadataModifyOptionGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataModifyOptionGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9377,11 +8733,7 @@ type Option struct {
 	// access to the port.
 	VpcSecurityGroupMemberships []*VpcSecurityGroupMembership `locationNameList:"VpcSecurityGroupMembership" type:"list"`
 
-	metadataOption `json:"-" xml:"-"`
-}
-
-type metadataOption struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9411,11 +8763,7 @@ type OptionConfiguration struct {
 	// A list of VpcSecurityGroupMemebrship name strings used for this option.
 	VpcSecurityGroupMemberships []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
 
-	metadataOptionConfiguration `json:"-" xml:"-"`
-}
-
-type metadataOptionConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9456,11 +8804,7 @@ type OptionGroup struct {
 	// that are in the VPC indicated by this field.
 	VpcId *string `type:"string"`
 
-	metadataOptionGroup `json:"-" xml:"-"`
-}
-
-type metadataOptionGroup struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9482,11 +8826,7 @@ type OptionGroupMembership struct {
 	// pending-maintenance, applying).
 	Status *string `type:"string"`
 
-	metadataOptionGroupMembership `json:"-" xml:"-"`
-}
-
-type metadataOptionGroupMembership struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9540,11 +8880,7 @@ type OptionGroupOption struct {
 	// Specifies whether the option requires a port.
 	PortRequired *bool `type:"boolean"`
 
-	metadataOptionGroupOption `json:"-" xml:"-"`
-}
-
-type metadataOptionGroupOption struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9580,11 +8916,7 @@ type OptionGroupOptionSetting struct {
 	// The name of the option group option.
 	SettingName *string `type:"string"`
 
-	metadataOptionGroupOptionSetting `json:"-" xml:"-"`
-}
-
-type metadataOptionGroupOptionSetting struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9630,11 +8962,7 @@ type OptionSetting struct {
 	// The current value of the option setting.
 	Value *string `type:"string"`
 
-	metadataOptionSetting `json:"-" xml:"-"`
-}
-
-type metadataOptionSetting struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9685,11 +9013,7 @@ type OrderableDBInstanceOption struct {
 	// Indicates whether this is a VPC orderable DB instance.
 	Vpc *bool `type:"boolean"`
 
-	metadataOrderableDBInstanceOption `json:"-" xml:"-"`
-}
-
-type metadataOrderableDBInstanceOption struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9740,11 +9064,7 @@ type Parameter struct {
 	// Indicates the source of the parameter value.
 	Source *string `type:"string"`
 
-	metadataParameter `json:"-" xml:"-"`
-}
-
-type metadataParameter struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9787,11 +9107,7 @@ type PendingMaintenanceAction struct {
 	// Indicates the type of opt-in request that has been received for the resource.
 	OptInStatus *string `type:"string"`
 
-	metadataPendingMaintenanceAction `json:"-" xml:"-"`
-}
-
-type metadataPendingMaintenanceAction struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9844,11 +9160,7 @@ type PendingModifiedValues struct {
 	// Specifies the storage type to be associated with the DB instance.
 	StorageType *string `type:"string"`
 
-	metadataPendingModifiedValues `json:"-" xml:"-"`
-}
-
-type metadataPendingModifiedValues struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9898,11 +9210,7 @@ type PromoteReadReplicaInput struct {
 	// be at least 30 minutes.
 	PreferredBackupWindow *string `type:"string"`
 
-	metadataPromoteReadReplicaInput `json:"-" xml:"-"`
-}
-
-type metadataPromoteReadReplicaInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9922,11 +9230,7 @@ type PromoteReadReplicaOutput struct {
 	// is used as a response element in the DescribeDBInstances action.
 	DBInstance *DBInstance `type:"structure"`
 
-	metadataPromoteReadReplicaOutput `json:"-" xml:"-"`
-}
-
-type metadataPromoteReadReplicaOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9958,11 +9262,7 @@ type PurchaseReservedDBInstancesOfferingInput struct {
 	// A list of tags.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataPurchaseReservedDBInstancesOfferingInput `json:"-" xml:"-"`
-}
-
-type metadataPurchaseReservedDBInstancesOfferingInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9980,11 +9280,7 @@ type PurchaseReservedDBInstancesOfferingOutput struct {
 	// and PurchaseReservedDBInstancesOffering actions.
 	ReservedDBInstance *ReservedDBInstance `type:"structure"`
 
-	metadataPurchaseReservedDBInstancesOfferingOutput `json:"-" xml:"-"`
-}
-
-type metadataPurchaseReservedDBInstancesOfferingOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10012,11 +9308,7 @@ type RebootDBInstanceInput struct {
 	// MultiAZ.
 	ForceFailover *bool `type:"boolean"`
 
-	metadataRebootDBInstanceInput `json:"-" xml:"-"`
-}
-
-type metadataRebootDBInstanceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10036,11 +9328,7 @@ type RebootDBInstanceOutput struct {
 	// is used as a response element in the DescribeDBInstances action.
 	DBInstance *DBInstance `type:"structure"`
 
-	metadataRebootDBInstanceOutput `json:"-" xml:"-"`
-}
-
-type metadataRebootDBInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10062,11 +9350,7 @@ type RecurringCharge struct {
 	// The frequency of the recurring charge.
 	RecurringChargeFrequency *string `type:"string"`
 
-	metadataRecurringCharge `json:"-" xml:"-"`
-}
-
-type metadataRecurringCharge struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10088,11 +9372,7 @@ type RemoveSourceIdentifierFromSubscriptionInput struct {
 	// source identifier from.
 	SubscriptionName *string `type:"string" required:"true"`
 
-	metadataRemoveSourceIdentifierFromSubscriptionInput `json:"-" xml:"-"`
-}
-
-type metadataRemoveSourceIdentifierFromSubscriptionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10110,11 +9390,7 @@ type RemoveSourceIdentifierFromSubscriptionOutput struct {
 	// action.
 	EventSubscription *EventSubscription `type:"structure"`
 
-	metadataRemoveSourceIdentifierFromSubscriptionOutput `json:"-" xml:"-"`
-}
-
-type metadataRemoveSourceIdentifierFromSubscriptionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10136,11 +9412,7 @@ type RemoveTagsFromResourceInput struct {
 	// The tag key (name) of the tag to be removed.
 	TagKeys []*string `type:"list" required:"true"`
 
-	metadataRemoveTagsFromResourceInput `json:"-" xml:"-"`
-}
-
-type metadataRemoveTagsFromResourceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10154,11 +9426,7 @@ func (s RemoveTagsFromResourceInput) GoString() string {
 }
 
 type RemoveTagsFromResourceOutput struct {
-	metadataRemoveTagsFromResourceOutput `json:"-" xml:"-"`
-}
-
-type metadataRemoveTagsFromResourceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10216,11 +9484,7 @@ type ReservedDBInstance struct {
 	// The hourly price charged for this reserved DB instance.
 	UsagePrice *float64 `type:"double"`
 
-	metadataReservedDBInstance `json:"-" xml:"-"`
-}
-
-type metadataReservedDBInstance struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10266,11 +9530,7 @@ type ReservedDBInstancesOffering struct {
 	// The hourly price charged for this offering.
 	UsagePrice *float64 `type:"double"`
 
-	metadataReservedDBInstancesOffering `json:"-" xml:"-"`
-}
-
-type metadataReservedDBInstancesOffering struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10297,11 +9557,7 @@ type ResetDBClusterParameterGroupInput struct {
 	// if there is a list of parameter names specified for the Parameters parameter.
 	ResetAllParameters *bool `type:"boolean"`
 
-	metadataResetDBClusterParameterGroupInput `json:"-" xml:"-"`
-}
-
-type metadataResetDBClusterParameterGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10355,11 +9611,7 @@ type ResetDBParameterGroupInput struct {
 	// Default: true
 	ResetAllParameters *bool `type:"boolean"`
 
-	metadataResetDBParameterGroupInput `json:"-" xml:"-"`
-}
-
-type metadataResetDBParameterGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10381,11 +9633,7 @@ type ResourcePendingMaintenanceActions struct {
 	// The ARN of the resource that has pending maintenance actions.
 	ResourceIdentifier *string `type:"string"`
 
-	metadataResourcePendingMaintenanceActions `json:"-" xml:"-"`
-}
-
-type metadataResourcePendingMaintenanceActions struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10453,11 +9701,7 @@ type RestoreDBClusterFromSnapshotInput struct {
 	// A list of VPC security groups that the new DB cluster will belong to.
 	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
 
-	metadataRestoreDBClusterFromSnapshotInput `json:"-" xml:"-"`
-}
-
-type metadataRestoreDBClusterFromSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10478,11 +9722,7 @@ type RestoreDBClusterFromSnapshotOutput struct {
 	// in the DescribeDBClusters action.
 	DBCluster *DBCluster `type:"structure"`
 
-	metadataRestoreDBClusterFromSnapshotOutput `json:"-" xml:"-"`
-}
-
-type metadataRestoreDBClusterFromSnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10550,11 +9790,7 @@ type RestoreDBClusterToPointInTimeInput struct {
 	// A lst of VPC security groups that the new DB cluster belongs to.
 	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
 
-	metadataRestoreDBClusterToPointInTimeInput `json:"-" xml:"-"`
-}
-
-type metadataRestoreDBClusterToPointInTimeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10575,11 +9811,7 @@ type RestoreDBClusterToPointInTimeOutput struct {
 	// in the DescribeDBClusters action.
 	DBCluster *DBCluster `type:"structure"`
 
-	metadataRestoreDBClusterToPointInTimeOutput `json:"-" xml:"-"`
-}
-
-type metadataRestoreDBClusterToPointInTimeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10733,11 +9965,7 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// device.
 	TdeCredentialPassword *string `type:"string"`
 
-	metadataRestoreDBInstanceFromDBSnapshotInput `json:"-" xml:"-"`
-}
-
-type metadataRestoreDBInstanceFromDBSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10757,11 +9985,7 @@ type RestoreDBInstanceFromDBSnapshotOutput struct {
 	// is used as a response element in the DescribeDBInstances action.
 	DBInstance *DBInstance `type:"structure"`
 
-	metadataRestoreDBInstanceFromDBSnapshotOutput `json:"-" xml:"-"`
-}
-
-type metadataRestoreDBInstanceFromDBSnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10928,11 +10152,7 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	// Constraints: Cannot be specified if RestoreTime parameter is provided.
 	UseLatestRestorableTime *bool `type:"boolean"`
 
-	metadataRestoreDBInstanceToPointInTimeInput `json:"-" xml:"-"`
-}
-
-type metadataRestoreDBInstanceToPointInTimeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10952,11 +10172,7 @@ type RestoreDBInstanceToPointInTimeOutput struct {
 	// is used as a response element in the DescribeDBInstances action.
 	DBInstance *DBInstance `type:"structure"`
 
-	metadataRestoreDBInstanceToPointInTimeOutput `json:"-" xml:"-"`
-}
-
-type metadataRestoreDBInstanceToPointInTimeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10995,11 +10211,7 @@ type RevokeDBSecurityGroupIngressInput struct {
 	// must be provided.
 	EC2SecurityGroupOwnerId *string `type:"string"`
 
-	metadataRevokeDBSecurityGroupIngressInput `json:"-" xml:"-"`
-}
-
-type metadataRevokeDBSecurityGroupIngressInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11020,11 +10232,7 @@ type RevokeDBSecurityGroupIngressOutput struct {
 	// in the DescribeDBSecurityGroups action.
 	DBSecurityGroup *DBSecurityGroup `type:"structure"`
 
-	metadataRevokeDBSecurityGroupIngressOutput `json:"-" xml:"-"`
-}
-
-type metadataRevokeDBSecurityGroupIngressOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11051,11 +10259,7 @@ type Subnet struct {
 	// Specifies the status of the subnet.
 	SubnetStatus *string `type:"string"`
 
-	metadataSubnet `json:"-" xml:"-"`
-}
-
-type metadataSubnet struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11082,11 +10286,7 @@ type Tag struct {
 	// white-space, '_', '.', '/', '=', '+', '-' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-]*)$").
 	Value *string `type:"string"`
 
-	metadataTag `json:"-" xml:"-"`
-}
-
-type metadataTag struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11118,11 +10318,7 @@ type UpgradeTarget struct {
 	// version.
 	IsMajorVersionUpgrade *bool `type:"boolean"`
 
-	metadataUpgradeTarget `json:"-" xml:"-"`
-}
-
-type metadataUpgradeTarget struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11144,11 +10340,7 @@ type VpcSecurityGroupMembership struct {
 	// The name of the VPC security group.
 	VpcSecurityGroupId *string `type:"string"`
 
-	metadataVpcSecurityGroupMembership `json:"-" xml:"-"`
-}
-
-type metadataVpcSecurityGroupMembership struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

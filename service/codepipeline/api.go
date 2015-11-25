@@ -686,11 +686,7 @@ type AWSSessionCredentials struct {
 	// The token for the session.
 	SessionToken *string `locationName:"sessionToken" type:"string" required:"true"`
 
-	metadataAWSSessionCredentials `json:"-" xml:"-"`
-}
-
-type metadataAWSSessionCredentials struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -713,11 +709,7 @@ type AcknowledgeJobInput struct {
 	// in the response.
 	Nonce *string `locationName:"nonce" type:"string" required:"true"`
 
-	metadataAcknowledgeJobInput `json:"-" xml:"-"`
-}
-
-type metadataAcknowledgeJobInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -735,11 +727,7 @@ type AcknowledgeJobOutput struct {
 	// Whether the job worker has received the specified job.
 	Status *string `locationName:"status" type:"string" enum:"JobStatus"`
 
-	metadataAcknowledgeJobOutput `json:"-" xml:"-"`
-}
-
-type metadataAcknowledgeJobOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -766,11 +754,7 @@ type AcknowledgeThirdPartyJobInput struct {
 	// in the response.
 	Nonce *string `locationName:"nonce" type:"string" required:"true"`
 
-	metadataAcknowledgeThirdPartyJobInput `json:"-" xml:"-"`
-}
-
-type metadataAcknowledgeThirdPartyJobInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -788,11 +772,7 @@ type AcknowledgeThirdPartyJobOutput struct {
 	// The status information for the third party job, if any.
 	Status *string `locationName:"status" type:"string" enum:"JobStatus"`
 
-	metadataAcknowledgeThirdPartyJobOutput `json:"-" xml:"-"`
-}
-
-type metadataAcknowledgeThirdPartyJobOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -810,11 +790,7 @@ type ActionConfiguration struct {
 	// The configuration data for the action.
 	Configuration map[string]*string `locationName:"configuration" type:"map"`
 
-	metadataActionConfiguration `json:"-" xml:"-"`
-}
-
-type metadataActionConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -864,11 +840,7 @@ type ActionConfigurationProperty struct {
 	// The type of the configuration property.
 	Type *string `locationName:"type" type:"string" enum:"ActionConfigurationPropertyType"`
 
-	metadataActionConfigurationProperty `json:"-" xml:"-"`
-}
-
-type metadataActionConfigurationProperty struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -887,11 +859,7 @@ type ActionContext struct {
 	// The name of the action within the context of a job.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	metadataActionContext `json:"-" xml:"-"`
-}
-
-type metadataActionContext struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -930,11 +898,7 @@ type ActionDeclaration struct {
 	// The order in which actions are run.
 	RunOrder *int64 `locationName:"runOrder" min:"1" type:"integer"`
 
-	metadataActionDeclaration `json:"-" xml:"-"`
-}
-
-type metadataActionDeclaration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -972,11 +936,7 @@ type ActionExecution struct {
 	// A summary of the run of the action.
 	Summary *string `locationName:"summary" type:"string"`
 
-	metadataActionExecution `json:"-" xml:"-"`
-}
-
-type metadataActionExecution struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1003,11 +963,7 @@ type ActionRevision struct {
 	// action.
 	RevisionId *string `locationName:"revisionId" type:"string" required:"true"`
 
-	metadataActionRevision `json:"-" xml:"-"`
-}
-
-type metadataActionRevision struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1039,11 +995,7 @@ type ActionState struct {
 	// page.
 	RevisionUrl *string `locationName:"revisionUrl" min:"1" type:"string"`
 
-	metadataActionState `json:"-" xml:"-"`
-}
-
-type metadataActionState struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1073,11 +1025,7 @@ type ActionType struct {
 	// The settings for the action type.
 	Settings *ActionTypeSettings `locationName:"settings" type:"structure"`
 
-	metadataActionType `json:"-" xml:"-"`
-}
-
-type metadataActionType struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1109,11 +1057,7 @@ type ActionTypeId struct {
 	// A string that identifies the action type.
 	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
 
-	metadataActionTypeId `json:"-" xml:"-"`
-}
-
-type metadataActionTypeId struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1150,11 +1094,7 @@ type ActionTypeSettings struct {
 	// and perform initial configuration of the action provided by that service.
 	ThirdPartyConfigurationUrl *string `locationName:"thirdPartyConfigurationUrl" min:"1" type:"string"`
 
-	metadataActionTypeSettings `json:"-" xml:"-"`
-}
-
-type metadataActionTypeSettings struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1180,11 +1120,7 @@ type Artifact struct {
 	// a commit ID (GitHub) or a revision ID (Amazon S3).
 	Revision *string `locationName:"revision" type:"string"`
 
-	metadataArtifact `json:"-" xml:"-"`
-}
-
-type metadataArtifact struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1205,11 +1141,7 @@ type ArtifactDetails struct {
 	// The minimum number of artifacts allowed for the action type.
 	MinimumCount *int64 `locationName:"minimumCount" type:"integer" required:"true"`
 
-	metadataArtifactDetails `json:"-" xml:"-"`
-}
-
-type metadataArtifactDetails struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1230,11 +1162,7 @@ type ArtifactLocation struct {
 	// The type of artifact in the location.
 	Type *string `locationName:"type" type:"string" enum:"ArtifactLocationType"`
 
-	metadataArtifactLocation `json:"-" xml:"-"`
-}
-
-type metadataArtifactLocation struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1263,11 +1191,7 @@ type ArtifactStore struct {
 	// The type of the artifact store, such as S3.
 	Type *string `locationName:"type" type:"string" required:"true" enum:"ArtifactStoreType"`
 
-	metadataArtifactStore `json:"-" xml:"-"`
-}
-
-type metadataArtifactStore struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1288,11 +1212,7 @@ type BlockerDeclaration struct {
 	// The type of the gate declaration.
 	Type *string `locationName:"type" type:"string" required:"true" enum:"BlockerType"`
 
-	metadataBlockerDeclaration `json:"-" xml:"-"`
-}
-
-type metadataBlockerDeclaration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1331,11 +1251,7 @@ type CreateCustomActionTypeInput struct {
 	// This is required.
 	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
 
-	metadataCreateCustomActionTypeInput `json:"-" xml:"-"`
-}
-
-type metadataCreateCustomActionTypeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1353,11 +1269,7 @@ type CreateCustomActionTypeOutput struct {
 	// Returns information about the details of an action type.
 	ActionType *ActionType `locationName:"actionType" type:"structure" required:"true"`
 
-	metadataCreateCustomActionTypeOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateCustomActionTypeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1375,11 +1287,7 @@ type CreatePipelineInput struct {
 	// Represents the structure of actions and stages to be performed in the pipeline.
 	Pipeline *PipelineDeclaration `locationName:"pipeline" type:"structure" required:"true"`
 
-	metadataCreatePipelineInput `json:"-" xml:"-"`
-}
-
-type metadataCreatePipelineInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1397,11 +1305,7 @@ type CreatePipelineOutput struct {
 	// Represents the structure of actions and stages to be performed in the pipeline.
 	Pipeline *PipelineDeclaration `locationName:"pipeline" type:"structure"`
 
-	metadataCreatePipelineOutput `json:"-" xml:"-"`
-}
-
-type metadataCreatePipelineOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1422,11 +1326,7 @@ type CurrentRevision struct {
 	// The revision ID of the current version of an artifact.
 	Revision *string `locationName:"revision" type:"string" required:"true"`
 
-	metadataCurrentRevision `json:"-" xml:"-"`
-}
-
-type metadataCurrentRevision struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1452,11 +1352,7 @@ type DeleteCustomActionTypeInput struct {
 	// The version of the custom action to delete.
 	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
 
-	metadataDeleteCustomActionTypeInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteCustomActionTypeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1470,11 +1366,7 @@ func (s DeleteCustomActionTypeInput) GoString() string {
 }
 
 type DeleteCustomActionTypeOutput struct {
-	metadataDeleteCustomActionTypeOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteCustomActionTypeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1492,11 +1384,7 @@ type DeletePipelineInput struct {
 	// The name of the pipeline to be deleted.
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	metadataDeletePipelineInput `json:"-" xml:"-"`
-}
-
-type metadataDeletePipelineInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1510,11 +1398,7 @@ func (s DeletePipelineInput) GoString() string {
 }
 
 type DeletePipelineOutput struct {
-	metadataDeletePipelineOutput `json:"-" xml:"-"`
-}
-
-type metadataDeletePipelineOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1548,11 +1432,7 @@ type DisableStageTransitionInput struct {
 	// in that stage (outbound).
 	TransitionType *string `locationName:"transitionType" type:"string" required:"true" enum:"StageTransitionType"`
 
-	metadataDisableStageTransitionInput `json:"-" xml:"-"`
-}
-
-type metadataDisableStageTransitionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1566,11 +1446,7 @@ func (s DisableStageTransitionInput) GoString() string {
 }
 
 type DisableStageTransitionOutput struct {
-	metadataDisableStageTransitionOutput `json:"-" xml:"-"`
-}
-
-type metadataDisableStageTransitionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1598,11 +1474,7 @@ type EnableStageTransitionInput struct {
 	// will be allowed to transition to the next stage (outbound).
 	TransitionType *string `locationName:"transitionType" type:"string" required:"true" enum:"StageTransitionType"`
 
-	metadataEnableStageTransitionInput `json:"-" xml:"-"`
-}
-
-type metadataEnableStageTransitionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1616,11 +1488,7 @@ func (s EnableStageTransitionInput) GoString() string {
 }
 
 type EnableStageTransitionOutput struct {
-	metadataEnableStageTransitionOutput `json:"-" xml:"-"`
-}
-
-type metadataEnableStageTransitionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1642,11 +1510,7 @@ type EncryptionKey struct {
 	// The type of AWS KMS key, such as a customer master key.
 	Type *string `locationName:"type" type:"string" required:"true" enum:"EncryptionKeyType"`
 
-	metadataEncryptionKey `json:"-" xml:"-"`
-}
-
-type metadataEncryptionKey struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1667,11 +1531,7 @@ type ErrorDetails struct {
 	// The text of the error message.
 	Message *string `locationName:"message" type:"string"`
 
-	metadataErrorDetails `json:"-" xml:"-"`
-}
-
-type metadataErrorDetails struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1698,11 +1558,7 @@ type ExecutionDetails struct {
 	// The summary of the current status of the actions.
 	Summary *string `locationName:"summary" type:"string"`
 
-	metadataExecutionDetails `json:"-" xml:"-"`
-}
-
-type metadataExecutionDetails struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1726,11 +1582,7 @@ type FailureDetails struct {
 	// The type of the failure.
 	Type *string `locationName:"type" type:"string" required:"true" enum:"FailureType"`
 
-	metadataFailureDetails `json:"-" xml:"-"`
-}
-
-type metadataFailureDetails struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1748,11 +1600,7 @@ type GetJobDetailsInput struct {
 	// The unique system-generated ID for the job.
 	JobId *string `locationName:"jobId" type:"string" required:"true"`
 
-	metadataGetJobDetailsInput `json:"-" xml:"-"`
-}
-
-type metadataGetJobDetailsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1773,11 +1621,7 @@ type GetJobDetailsOutput struct {
 	// again to obtain new credentials.
 	JobDetails *JobDetails `locationName:"jobDetails" type:"structure"`
 
-	metadataGetJobDetailsOutput `json:"-" xml:"-"`
-}
-
-type metadataGetJobDetailsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1800,11 +1644,7 @@ type GetPipelineInput struct {
 	// to the most current version.
 	Version *int64 `locationName:"version" min:"1" type:"integer"`
 
-	metadataGetPipelineInput `json:"-" xml:"-"`
-}
-
-type metadataGetPipelineInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1822,11 +1662,7 @@ type GetPipelineOutput struct {
 	// Represents the structure of actions and stages to be performed in the pipeline.
 	Pipeline *PipelineDeclaration `locationName:"pipeline" type:"structure"`
 
-	metadataGetPipelineOutput `json:"-" xml:"-"`
-}
-
-type metadataGetPipelineOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1844,11 +1680,7 @@ type GetPipelineStateInput struct {
 	// The name of the pipeline about which you want to get information.
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	metadataGetPipelineStateInput `json:"-" xml:"-"`
-}
-
-type metadataGetPipelineStateInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1881,11 +1713,7 @@ type GetPipelineStateOutput struct {
 	// The date and time the pipeline was last updated, in timestamp format.
 	Updated *time.Time `locationName:"updated" type:"timestamp" timestampFormat:"unix"`
 
-	metadataGetPipelineStateOutput `json:"-" xml:"-"`
-}
-
-type metadataGetPipelineStateOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1907,11 +1735,7 @@ type GetThirdPartyJobDetailsInput struct {
 	// The unique system-generated ID used for identifying the job.
 	JobId *string `locationName:"jobId" min:"1" type:"string" required:"true"`
 
-	metadataGetThirdPartyJobDetailsInput `json:"-" xml:"-"`
-}
-
-type metadataGetThirdPartyJobDetailsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1929,11 +1753,7 @@ type GetThirdPartyJobDetailsOutput struct {
 	// The details of the job, including any protected values defined for the job.
 	JobDetails *ThirdPartyJobDetails `locationName:"jobDetails" type:"structure"`
 
-	metadataGetThirdPartyJobDetailsOutput `json:"-" xml:"-"`
-}
-
-type metadataGetThirdPartyJobDetailsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1958,11 +1778,7 @@ type InputArtifact struct {
 	// turn consumed by different following actions.
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	metadataInputArtifact `json:"-" xml:"-"`
-}
-
-type metadataInputArtifact struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1991,11 +1807,7 @@ type Job struct {
 	// in the response.
 	Nonce *string `locationName:"nonce" type:"string"`
 
-	metadataJob `json:"-" xml:"-"`
-}
-
-type metadataJob struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2040,11 +1852,7 @@ type JobData struct {
 	// Represents information about a pipeline to a job worker.
 	PipelineContext *PipelineContext `locationName:"pipelineContext" type:"structure"`
 
-	metadataJobData `json:"-" xml:"-"`
-}
-
-type metadataJobData struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2069,11 +1877,7 @@ type JobDetails struct {
 	// The unique system-generated ID of the job.
 	Id *string `locationName:"id" type:"string"`
 
-	metadataJobDetails `json:"-" xml:"-"`
-}
-
-type metadataJobDetails struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2095,11 +1899,7 @@ type ListActionTypesInput struct {
 	// which can be used to return the next set of action types in the list.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListActionTypesInput `json:"-" xml:"-"`
-}
-
-type metadataListActionTypesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2122,11 +1922,7 @@ type ListActionTypesOutput struct {
 	// to return the next set of action types in the list.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListActionTypesOutput `json:"-" xml:"-"`
-}
-
-type metadataListActionTypesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2145,11 +1941,7 @@ type ListPipelinesInput struct {
 	// can be used to return the next set of pipelines in the list.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListPipelinesInput `json:"-" xml:"-"`
-}
-
-type metadataListPipelinesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2172,11 +1964,7 @@ type ListPipelinesOutput struct {
 	// The list of pipelines.
 	Pipelines []*PipelineSummary `locationName:"pipelines" type:"list"`
 
-	metadataListPipelinesOutput `json:"-" xml:"-"`
-}
-
-type metadataListPipelinesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2202,11 +1990,7 @@ type OutputArtifact struct {
 	// Output artifact names must be unique within a pipeline.
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	metadataOutputArtifact `json:"-" xml:"-"`
-}
-
-type metadataOutputArtifact struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2232,11 +2016,7 @@ type PipelineContext struct {
 	// The stage of the pipeline.
 	Stage *StageContext `locationName:"stage" type:"structure"`
 
-	metadataPipelineContext `json:"-" xml:"-"`
-}
-
-type metadataPipelineContext struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2271,11 +2051,7 @@ type PipelineDeclaration struct {
 	// of 1. This number is automatically incremented when a pipeline is updated.
 	Version *int64 `locationName:"version" min:"1" type:"integer"`
 
-	metadataPipelineDeclaration `json:"-" xml:"-"`
-}
-
-type metadataPipelineDeclaration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2302,11 +2078,7 @@ type PipelineSummary struct {
 	// The version number of the pipeline.
 	Version *int64 `locationName:"version" min:"1" type:"integer"`
 
-	metadataPipelineSummary `json:"-" xml:"-"`
-}
-
-type metadataPipelineSummary struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2333,11 +2105,7 @@ type PollForJobsInput struct {
 	// Only jobs whose action configuration matches the mapped value will be returned.
 	QueryParam map[string]*string `locationName:"queryParam" type:"map"`
 
-	metadataPollForJobsInput `json:"-" xml:"-"`
-}
-
-type metadataPollForJobsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2355,11 +2123,7 @@ type PollForJobsOutput struct {
 	// Information about the jobs to take action on.
 	Jobs []*Job `locationName:"jobs" type:"list"`
 
-	metadataPollForJobsOutput `json:"-" xml:"-"`
-}
-
-type metadataPollForJobsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2380,11 +2144,7 @@ type PollForThirdPartyJobsInput struct {
 	// The maximum number of jobs to return in a poll for jobs call.
 	MaxBatchSize *int64 `locationName:"maxBatchSize" min:"1" type:"integer"`
 
-	metadataPollForThirdPartyJobsInput `json:"-" xml:"-"`
-}
-
-type metadataPollForThirdPartyJobsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2402,11 +2162,7 @@ type PollForThirdPartyJobsOutput struct {
 	// Information about the jobs to take action on.
 	Jobs []*ThirdPartyJob `locationName:"jobs" type:"list"`
 
-	metadataPollForThirdPartyJobsOutput `json:"-" xml:"-"`
-}
-
-type metadataPollForThirdPartyJobsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2433,11 +2189,7 @@ type PutActionRevisionInput struct {
 	// The name of the stage that contains the action that will act upon the revision.
 	StageName *string `locationName:"stageName" min:"1" type:"string" required:"true"`
 
-	metadataPutActionRevisionInput `json:"-" xml:"-"`
-}
-
-type metadataPutActionRevisionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2458,11 +2210,7 @@ type PutActionRevisionOutput struct {
 	// The ID of the current workflow state of the pipeline.
 	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string"`
 
-	metadataPutActionRevisionOutput `json:"-" xml:"-"`
-}
-
-type metadataPutActionRevisionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2484,11 +2232,7 @@ type PutJobFailureResultInput struct {
 	// returned from PollForJobs.
 	JobId *string `locationName:"jobId" type:"string" required:"true"`
 
-	metadataPutJobFailureResultInput `json:"-" xml:"-"`
-}
-
-type metadataPutJobFailureResultInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2502,11 +2246,7 @@ func (s PutJobFailureResultInput) GoString() string {
 }
 
 type PutJobFailureResultOutput struct {
-	metadataPutJobFailureResultOutput `json:"-" xml:"-"`
-}
-
-type metadataPutJobFailureResultOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2537,11 +2277,7 @@ type PutJobSuccessResultInput struct {
 	// ID returned from PollForJobs.
 	JobId *string `locationName:"jobId" type:"string" required:"true"`
 
-	metadataPutJobSuccessResultInput `json:"-" xml:"-"`
-}
-
-type metadataPutJobSuccessResultInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2555,11 +2291,7 @@ func (s PutJobSuccessResultInput) GoString() string {
 }
 
 type PutJobSuccessResultOutput struct {
-	metadataPutJobSuccessResultOutput `json:"-" xml:"-"`
-}
-
-type metadataPutJobSuccessResultOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2584,11 +2316,7 @@ type PutThirdPartyJobFailureResultInput struct {
 	// The ID of the job that failed. This is the same ID returned from PollForThirdPartyJobs.
 	JobId *string `locationName:"jobId" min:"1" type:"string" required:"true"`
 
-	metadataPutThirdPartyJobFailureResultInput `json:"-" xml:"-"`
-}
-
-type metadataPutThirdPartyJobFailureResultInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2602,11 +2330,7 @@ func (s PutThirdPartyJobFailureResultInput) GoString() string {
 }
 
 type PutThirdPartyJobFailureResultOutput struct {
-	metadataPutThirdPartyJobFailureResultOutput `json:"-" xml:"-"`
-}
-
-type metadataPutThirdPartyJobFailureResultOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2640,11 +2364,7 @@ type PutThirdPartyJobSuccessResultInput struct {
 	// from PollForThirdPartyJobs.
 	JobId *string `locationName:"jobId" min:"1" type:"string" required:"true"`
 
-	metadataPutThirdPartyJobSuccessResultInput `json:"-" xml:"-"`
-}
-
-type metadataPutThirdPartyJobSuccessResultInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2658,11 +2378,7 @@ func (s PutThirdPartyJobSuccessResultInput) GoString() string {
 }
 
 type PutThirdPartyJobSuccessResultOutput struct {
-	metadataPutThirdPartyJobSuccessResultOutput `json:"-" xml:"-"`
-}
-
-type metadataPutThirdPartyJobSuccessResultOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2684,11 +2400,7 @@ type S3ArtifactLocation struct {
 	// the object in the bucket.
 	ObjectKey *string `locationName:"objectKey" type:"string" required:"true"`
 
-	metadataS3ArtifactLocation `json:"-" xml:"-"`
-}
-
-type metadataS3ArtifactLocation struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2706,11 +2418,7 @@ type StageContext struct {
 	// The name of the stage.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	metadataStageContext `json:"-" xml:"-"`
-}
-
-type metadataStageContext struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2734,11 +2442,7 @@ type StageDeclaration struct {
 	// The name of the stage.
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	metadataStageDeclaration `json:"-" xml:"-"`
-}
-
-type metadataStageDeclaration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2762,11 +2466,7 @@ type StageState struct {
 	// The name of the stage.
 	StageName *string `locationName:"stageName" min:"1" type:"string"`
 
-	metadataStageState `json:"-" xml:"-"`
-}
-
-type metadataStageState struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2784,11 +2484,7 @@ type StartPipelineExecutionInput struct {
 	// The name of the pipeline to start.
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	metadataStartPipelineExecutionInput `json:"-" xml:"-"`
-}
-
-type metadataStartPipelineExecutionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2806,11 +2502,7 @@ type StartPipelineExecutionOutput struct {
 	// The unique system-generated ID of the pipeline that was started.
 	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string"`
 
-	metadataStartPipelineExecutionOutput `json:"-" xml:"-"`
-}
-
-type metadataStartPipelineExecutionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2833,11 +2525,7 @@ type ThirdPartyJob struct {
 	// The identifier used to identify the job in AWS CodePipeline.
 	JobId *string `locationName:"jobId" type:"string"`
 
-	metadataThirdPartyJob `json:"-" xml:"-"`
-}
-
-type metadataThirdPartyJob struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2887,11 +2575,7 @@ type ThirdPartyJobData struct {
 	// Represents information about a pipeline to a job worker.
 	PipelineContext *PipelineContext `locationName:"pipelineContext" type:"structure"`
 
-	metadataThirdPartyJobData `json:"-" xml:"-"`
-}
-
-type metadataThirdPartyJobData struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2917,11 +2601,7 @@ type ThirdPartyJobDetails struct {
 	// in the response.
 	Nonce *string `locationName:"nonce" type:"string"`
 
-	metadataThirdPartyJobDetails `json:"-" xml:"-"`
-}
-
-type metadataThirdPartyJobDetails struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2950,11 +2630,7 @@ type TransitionState struct {
 	// The ID of the user who last changed the transition state.
 	LastChangedBy *string `locationName:"lastChangedBy" type:"string"`
 
-	metadataTransitionState `json:"-" xml:"-"`
-}
-
-type metadataTransitionState struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2972,11 +2648,7 @@ type UpdatePipelineInput struct {
 	// The name of the pipeline to be updated.
 	Pipeline *PipelineDeclaration `locationName:"pipeline" type:"structure" required:"true"`
 
-	metadataUpdatePipelineInput `json:"-" xml:"-"`
-}
-
-type metadataUpdatePipelineInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2994,11 +2666,7 @@ type UpdatePipelineOutput struct {
 	// The structure of the updated pipeline.
 	Pipeline *PipelineDeclaration `locationName:"pipeline" type:"structure"`
 
-	metadataUpdatePipelineOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdatePipelineOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

@@ -634,11 +634,7 @@ type AccountLimit struct {
 	// The value that is associated with the account limit name.
 	Value *int64 `type:"integer"`
 
-	metadataAccountLimit `json:"-" xml:"-"`
-}
-
-type metadataAccountLimit struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -656,11 +652,7 @@ type CancelUpdateStackInput struct {
 	// The name or the unique stack ID that is associated with the stack.
 	StackName *string `type:"string" required:"true"`
 
-	metadataCancelUpdateStackInput `json:"-" xml:"-"`
-}
-
-type metadataCancelUpdateStackInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -674,11 +666,7 @@ func (s CancelUpdateStackInput) GoString() string {
 }
 
 type CancelUpdateStackOutput struct {
-	metadataCancelUpdateStackOutput `json:"-" xml:"-"`
-}
-
-type metadataCancelUpdateStackOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -796,11 +784,7 @@ type CreateStackInput struct {
 	// back.
 	TimeoutInMinutes *int64 `min:"1" type:"integer"`
 
-	metadataCreateStackInput `json:"-" xml:"-"`
-}
-
-type metadataCreateStackInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -818,11 +802,7 @@ type CreateStackOutput struct {
 	// Unique identifier of the stack.
 	StackId *string `type:"string"`
 
-	metadataCreateStackOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateStackOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -840,11 +820,7 @@ type DeleteStackInput struct {
 	// The name or the unique stack ID that is associated with the stack.
 	StackName *string `type:"string" required:"true"`
 
-	metadataDeleteStackInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteStackInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -858,11 +834,7 @@ func (s DeleteStackInput) GoString() string {
 }
 
 type DeleteStackOutput struct {
-	metadataDeleteStackOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteStackOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -880,11 +852,7 @@ type DescribeAccountLimitsInput struct {
 	// A string that identifies the next page of limits that you want to retrieve.
 	NextToken *string `min:"1" type:"string"`
 
-	metadataDescribeAccountLimitsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAccountLimitsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -907,11 +875,7 @@ type DescribeAccountLimitsOutput struct {
 	// this value is null.
 	NextToken *string `min:"1" type:"string"`
 
-	metadataDescribeAccountLimitsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAccountLimitsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -940,11 +904,7 @@ type DescribeStackEventsInput struct {
 	// is no default value.
 	StackName *string `type:"string"`
 
-	metadataDescribeStackEventsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeStackEventsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -966,11 +926,7 @@ type DescribeStackEventsOutput struct {
 	// A list of StackEvents structures.
 	StackEvents []*StackEvent `type:"list"`
 
-	metadataDescribeStackEventsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeStackEventsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -998,11 +954,7 @@ type DescribeStackResourceInput struct {
 	// is no default value.
 	StackName *string `type:"string" required:"true"`
 
-	metadataDescribeStackResourceInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeStackResourceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1021,11 +973,7 @@ type DescribeStackResourceOutput struct {
 	// resource in the specified stack.
 	StackResourceDetail *StackResourceDetail `type:"structure"`
 
-	metadataDescribeStackResourceOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeStackResourceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1070,11 +1018,7 @@ type DescribeStackResourcesInput struct {
 	// PhysicalResourceId.
 	StackName *string `type:"string"`
 
-	metadataDescribeStackResourcesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeStackResourcesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1092,11 +1036,7 @@ type DescribeStackResourcesOutput struct {
 	// A list of StackResource structures.
 	StackResources []*StackResource `type:"list"`
 
-	metadataDescribeStackResourcesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeStackResourcesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1123,11 +1063,7 @@ type DescribeStacksInput struct {
 	// is no default value.
 	StackName *string `type:"string"`
 
-	metadataDescribeStacksInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeStacksInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1149,11 +1085,7 @@ type DescribeStacksOutput struct {
 	// A list of stack structures.
 	Stacks []*Stack `type:"list"`
 
-	metadataDescribeStacksOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeStacksOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1188,11 +1120,7 @@ type EstimateTemplateCostInput struct {
 	// only TemplateBody is used.
 	TemplateURL *string `min:"1" type:"string"`
 
-	metadataEstimateTemplateCostInput `json:"-" xml:"-"`
-}
-
-type metadataEstimateTemplateCostInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1211,11 +1139,7 @@ type EstimateTemplateCostOutput struct {
 	// resources required to run the template.
 	Url *string `type:"string"`
 
-	metadataEstimateTemplateCostOutput `json:"-" xml:"-"`
-}
-
-type metadataEstimateTemplateCostOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1234,11 +1158,7 @@ type GetStackPolicyInput struct {
 	// you want to get.
 	StackName *string `type:"string" required:"true"`
 
-	metadataGetStackPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataGetStackPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1258,11 +1178,7 @@ type GetStackPolicyOutput struct {
 	// in the AWS CloudFormation User Guide.)
 	StackPolicyBody *string `min:"1" type:"string"`
 
-	metadataGetStackPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataGetStackPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1285,11 +1201,7 @@ type GetTemplateInput struct {
 	// is no default value.
 	StackName *string `type:"string" required:"true"`
 
-	metadataGetTemplateInput `json:"-" xml:"-"`
-}
-
-type metadataGetTemplateInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1309,11 +1221,7 @@ type GetTemplateOutput struct {
 	// in the AWS CloudFormation User Guide.)
 	TemplateBody *string `min:"1" type:"string"`
 
-	metadataGetTemplateOutput `json:"-" xml:"-"`
-}
-
-type metadataGetTemplateOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1355,11 +1263,7 @@ type GetTemplateSummaryInput struct {
 	// TemplateBody, or TemplateURL.
 	TemplateURL *string `min:"1" type:"string"`
 
-	metadataGetTemplateSummaryInput `json:"-" xml:"-"`
-}
-
-type metadataGetTemplateSummaryInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1408,11 +1312,7 @@ type GetTemplateSummaryOutput struct {
 	// template.
 	Version *string `type:"string"`
 
-	metadataGetTemplateSummaryOutput `json:"-" xml:"-"`
-}
-
-type metadataGetTemplateSummaryOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1441,11 +1341,7 @@ type ListStackResourcesInput struct {
 	// is no default value.
 	StackName *string `type:"string" required:"true"`
 
-	metadataListStackResourcesInput `json:"-" xml:"-"`
-}
-
-type metadataListStackResourcesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1467,11 +1363,7 @@ type ListStackResourcesOutput struct {
 	// A list of StackResourceSummary structures.
 	StackResourceSummaries []*StackResourceSummary `type:"list"`
 
-	metadataListStackResourcesOutput `json:"-" xml:"-"`
-}
-
-type metadataListStackResourcesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1497,11 +1389,7 @@ type ListStacksInput struct {
 	// stack status codes, see the StackStatus parameter of the Stack data type.
 	StackStatusFilter []*string `type:"list"`
 
-	metadataListStacksInput `json:"-" xml:"-"`
-}
-
-type metadataListStacksInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1524,11 +1412,7 @@ type ListStacksOutput struct {
 	// stacks.
 	StackSummaries []*StackSummary `type:"list"`
 
-	metadataListStacksOutput `json:"-" xml:"-"`
-}
-
-type metadataListStacksOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1552,11 +1436,7 @@ type Output struct {
 	// The value associated with the output.
 	OutputValue *string `type:"string"`
 
-	metadataOutput `json:"-" xml:"-"`
-}
-
-type metadataOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1584,11 +1464,7 @@ type Parameter struct {
 	// value.
 	UsePreviousValue *bool `type:"boolean"`
 
-	metadataParameter `json:"-" xml:"-"`
-}
-
-type metadataParameter struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1608,11 +1484,7 @@ type ParameterConstraints struct {
 	// A list of values that are permitted for a parameter.
 	AllowedValues []*string `type:"list"`
 
-	metadataParameterConstraints `json:"-" xml:"-"`
-}
-
-type metadataParameterConstraints struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1646,11 +1518,7 @@ type ParameterDeclaration struct {
 	// The type of parameter.
 	ParameterType *string `type:"string"`
 
-	metadataParameterDeclaration `json:"-" xml:"-"`
-}
-
-type metadataParameterDeclaration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1680,11 +1548,7 @@ type SetStackPolicyInput struct {
 	// but not both.
 	StackPolicyURL *string `min:"1" type:"string"`
 
-	metadataSetStackPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataSetStackPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1698,11 +1562,7 @@ func (s SetStackPolicyInput) GoString() string {
 }
 
 type SetStackPolicyOutput struct {
-	metadataSetStackPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataSetStackPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1735,11 +1595,7 @@ type SignalResourceInput struct {
 	// condition), each signal requires a different unique ID.
 	UniqueId *string `min:"1" type:"string" required:"true"`
 
-	metadataSignalResourceInput `json:"-" xml:"-"`
-}
-
-type metadataSignalResourceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1753,11 +1609,7 @@ func (s SignalResourceInput) GoString() string {
 }
 
 type SignalResourceOutput struct {
-	metadataSignalResourceOutput `json:"-" xml:"-"`
-}
-
-type metadataSignalResourceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1817,11 +1669,7 @@ type Stack struct {
 	// The amount of time within which stack creation should complete.
 	TimeoutInMinutes *int64 `min:"1" type:"integer"`
 
-	metadataStack `json:"-" xml:"-"`
-}
-
-type metadataStack struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1869,11 +1717,7 @@ type StackEvent struct {
 	// Time the status was updated.
 	Timestamp *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	metadataStackEvent `json:"-" xml:"-"`
-}
-
-type metadataStackEvent struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1918,11 +1762,7 @@ type StackResource struct {
 	// Time the status was updated.
 	Timestamp *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	metadataStackResource `json:"-" xml:"-"`
-}
-
-type metadataStackResource struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1972,11 +1812,7 @@ type StackResourceDetail struct {
 	// The name associated with the stack.
 	StackName *string `type:"string"`
 
-	metadataStackResourceDetail `json:"-" xml:"-"`
-}
-
-type metadataStackResourceDetail struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2012,11 +1848,7 @@ type StackResourceSummary struct {
 	// in the AWS CloudFormation User Guide.)
 	ResourceType *string `type:"string" required:"true"`
 
-	metadataStackResourceSummary `json:"-" xml:"-"`
-}
-
-type metadataStackResourceSummary struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2056,11 +1888,7 @@ type StackSummary struct {
 	// The template description of the template used to create the stack.
 	TemplateDescription *string `type:"string"`
 
-	metadataStackSummary `json:"-" xml:"-"`
-}
-
-type metadataStackSummary struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2086,11 +1914,7 @@ type Tag struct {
 	// of 256 characters for a tag value.
 	Value *string `type:"string"`
 
-	metadataTag `json:"-" xml:"-"`
-}
-
-type metadataTag struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2118,11 +1942,7 @@ type TemplateParameter struct {
 	// The name associated with the parameter.
 	ParameterKey *string `type:"string"`
 
-	metadataTemplateParameter `json:"-" xml:"-"`
-}
-
-type metadataTemplateParameter struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2235,11 +2055,7 @@ type UpdateStackInput struct {
 	// updating.
 	UsePreviousTemplate *bool `type:"boolean"`
 
-	metadataUpdateStackInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateStackInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2257,11 +2073,7 @@ type UpdateStackOutput struct {
 	// Unique identifier of the stack.
 	StackId *string `type:"string"`
 
-	metadataUpdateStackOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateStackOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2294,11 +2106,7 @@ type ValidateTemplateInput struct {
 	// only TemplateBody is used.
 	TemplateURL *string `min:"1" type:"string"`
 
-	metadataValidateTemplateInput `json:"-" xml:"-"`
-}
-
-type metadataValidateTemplateInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2330,11 +2138,7 @@ type ValidateTemplateOutput struct {
 	// A list of TemplateParameter structures.
 	Parameters []*TemplateParameter `type:"list"`
 
-	metadataValidateTemplateOutput `json:"-" xml:"-"`
-}
-
-type metadataValidateTemplateOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

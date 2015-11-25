@@ -825,11 +825,7 @@ type AddTagsToStreamInput struct {
 	// The set of key-value pairs to use to create the tags.
 	Tags map[string]*string `min:"1" type:"map" required:"true"`
 
-	metadataAddTagsToStreamInput `json:"-" xml:"-"`
-}
-
-type metadataAddTagsToStreamInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -843,11 +839,7 @@ func (s AddTagsToStreamInput) GoString() string {
 }
 
 type AddTagsToStreamOutput struct {
-	metadataAddTagsToStreamOutput `json:"-" xml:"-"`
-}
-
-type metadataAddTagsToStreamOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -876,11 +868,7 @@ type CreateStreamInput struct {
 	// have the same name.
 	StreamName *string `min:"1" type:"string" required:"true"`
 
-	metadataCreateStreamInput `json:"-" xml:"-"`
-}
-
-type metadataCreateStreamInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -894,11 +882,7 @@ func (s CreateStreamInput) GoString() string {
 }
 
 type CreateStreamOutput struct {
-	metadataCreateStreamOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateStreamOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -920,11 +904,7 @@ type DecreaseStreamRetentionPeriodInput struct {
 	// The name of the stream to modify.
 	StreamName *string `min:"1" type:"string" required:"true"`
 
-	metadataDecreaseStreamRetentionPeriodInput `json:"-" xml:"-"`
-}
-
-type metadataDecreaseStreamRetentionPeriodInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -938,11 +918,7 @@ func (s DecreaseStreamRetentionPeriodInput) GoString() string {
 }
 
 type DecreaseStreamRetentionPeriodOutput struct {
-	metadataDecreaseStreamRetentionPeriodOutput `json:"-" xml:"-"`
-}
-
-type metadataDecreaseStreamRetentionPeriodOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -960,11 +936,7 @@ type DeleteStreamInput struct {
 	// The name of the stream to delete.
 	StreamName *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteStreamInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteStreamInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -978,11 +950,7 @@ func (s DeleteStreamInput) GoString() string {
 }
 
 type DeleteStreamOutput struct {
-	metadataDeleteStreamOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteStreamOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1006,11 +974,7 @@ type DescribeStreamInput struct {
 	// The name of the stream to describe.
 	StreamName *string `min:"1" type:"string" required:"true"`
 
-	metadataDescribeStreamInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeStreamInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1029,11 +993,7 @@ type DescribeStreamOutput struct {
 	// that comprise the stream, and states whether there are more shards available.
 	StreamDescription *StreamDescription `type:"structure" required:"true"`
 
-	metadataDescribeStreamOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeStreamOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1057,11 +1017,7 @@ type GetRecordsInput struct {
 	// number of a data record in the shard.
 	ShardIterator *string `min:"1" type:"string" required:"true"`
 
-	metadataGetRecordsInput `json:"-" xml:"-"`
-}
-
-type metadataGetRecordsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1090,11 +1046,7 @@ type GetRecordsOutput struct {
 	// The data records retrieved from the shard.
 	Records []*Record `type:"list" required:"true"`
 
-	metadataGetRecordsOutput `json:"-" xml:"-"`
-}
-
-type metadataGetRecordsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1133,11 +1085,7 @@ type GetShardIteratorInput struct {
 	// The name of the stream.
 	StreamName *string `min:"1" type:"string" required:"true"`
 
-	metadataGetShardIteratorInput `json:"-" xml:"-"`
-}
-
-type metadataGetShardIteratorInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1157,11 +1105,7 @@ type GetShardIteratorOutput struct {
 	// record in a shard.
 	ShardIterator *string `min:"1" type:"string"`
 
-	metadataGetShardIteratorOutput `json:"-" xml:"-"`
-}
-
-type metadataGetShardIteratorOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1183,11 +1127,7 @@ type HashKeyRange struct {
 	// The starting hash key of the hash key range.
 	StartingHashKey *string `type:"string" required:"true"`
 
-	metadataHashKeyRange `json:"-" xml:"-"`
-}
-
-type metadataHashKeyRange struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1209,11 +1149,7 @@ type IncreaseStreamRetentionPeriodInput struct {
 	// The name of the stream to modify.
 	StreamName *string `min:"1" type:"string" required:"true"`
 
-	metadataIncreaseStreamRetentionPeriodInput `json:"-" xml:"-"`
-}
-
-type metadataIncreaseStreamRetentionPeriodInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1227,11 +1163,7 @@ func (s IncreaseStreamRetentionPeriodInput) GoString() string {
 }
 
 type IncreaseStreamRetentionPeriodOutput struct {
-	metadataIncreaseStreamRetentionPeriodOutput `json:"-" xml:"-"`
-}
-
-type metadataIncreaseStreamRetentionPeriodOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1252,11 +1184,7 @@ type ListStreamsInput struct {
 	// The maximum number of streams to list.
 	Limit *int64 `min:"1" type:"integer"`
 
-	metadataListStreamsInput `json:"-" xml:"-"`
-}
-
-type metadataListStreamsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1278,11 +1206,7 @@ type ListStreamsOutput struct {
 	// the ListStreams request.
 	StreamNames []*string `type:"list" required:"true"`
 
-	metadataListStreamsOutput `json:"-" xml:"-"`
-}
-
-type metadataListStreamsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1309,11 +1233,7 @@ type ListTagsForStreamInput struct {
 	// The name of the stream.
 	StreamName *string `min:"1" type:"string" required:"true"`
 
-	metadataListTagsForStreamInput `json:"-" xml:"-"`
-}
-
-type metadataListTagsForStreamInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1336,11 +1256,7 @@ type ListTagsForStreamOutput struct {
 	// ExclusiveStartTagKey and up to the specified Limit.
 	Tags []*Tag `type:"list" required:"true"`
 
-	metadataListTagsForStreamOutput `json:"-" xml:"-"`
-}
-
-type metadataListTagsForStreamOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1364,11 +1280,7 @@ type MergeShardsInput struct {
 	// The name of the stream for the merge.
 	StreamName *string `min:"1" type:"string" required:"true"`
 
-	metadataMergeShardsInput `json:"-" xml:"-"`
-}
-
-type metadataMergeShardsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1382,11 +1294,7 @@ func (s MergeShardsInput) GoString() string {
 }
 
 type MergeShardsOutput struct {
-	metadataMergeShardsOutput `json:"-" xml:"-"`
-}
-
-type metadataMergeShardsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1431,11 +1339,7 @@ type PutRecordInput struct {
 	// The name of the stream to put the data record into.
 	StreamName *string `min:"1" type:"string" required:"true"`
 
-	metadataPutRecordInput `json:"-" xml:"-"`
-}
-
-type metadataPutRecordInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1459,11 +1363,7 @@ type PutRecordOutput struct {
 	// The shard ID of the shard where the data record was placed.
 	ShardId *string `min:"1" type:"string" required:"true"`
 
-	metadataPutRecordOutput `json:"-" xml:"-"`
-}
-
-type metadataPutRecordOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1484,11 +1384,7 @@ type PutRecordsInput struct {
 	// The stream name associated with the request.
 	StreamName *string `min:"1" type:"string" required:"true"`
 
-	metadataPutRecordsInput `json:"-" xml:"-"`
-}
-
-type metadataPutRecordsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1513,11 +1409,7 @@ type PutRecordsOutput struct {
 	// ErrorCode and ErrorMessage in the result.
 	Records []*PutRecordsResultEntry `min:"1" type:"list" required:"true"`
 
-	metadataPutRecordsOutput `json:"-" xml:"-"`
-}
-
-type metadataPutRecordsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1552,11 +1444,7 @@ type PutRecordsRequestEntry struct {
 	// within the stream.
 	PartitionKey *string `min:"1" type:"string" required:"true"`
 
-	metadataPutRecordsRequestEntry `json:"-" xml:"-"`
-}
-
-type metadataPutRecordsRequestEntry struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1591,11 +1479,7 @@ type PutRecordsResultEntry struct {
 	// The shard ID for an individual record result.
 	ShardId *string `min:"1" type:"string"`
 
-	metadataPutRecordsResultEntry `json:"-" xml:"-"`
-}
-
-type metadataPutRecordsResultEntry struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1627,11 +1511,7 @@ type Record struct {
 	// The unique identifier of the record in the stream.
 	SequenceNumber *string `type:"string" required:"true"`
 
-	metadataRecord `json:"-" xml:"-"`
-}
-
-type metadataRecord struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1652,11 +1532,7 @@ type RemoveTagsFromStreamInput struct {
 	// A list of tag keys. Each corresponding tag is removed from the stream.
 	TagKeys []*string `min:"1" type:"list" required:"true"`
 
-	metadataRemoveTagsFromStreamInput `json:"-" xml:"-"`
-}
-
-type metadataRemoveTagsFromStreamInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1670,11 +1546,7 @@ func (s RemoveTagsFromStreamInput) GoString() string {
 }
 
 type RemoveTagsFromStreamOutput struct {
-	metadataRemoveTagsFromStreamOutput `json:"-" xml:"-"`
-}
-
-type metadataRemoveTagsFromStreamOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1696,11 +1568,7 @@ type SequenceNumberRange struct {
 	// The starting sequence number for the range.
 	StartingSequenceNumber *string `type:"string" required:"true"`
 
-	metadataSequenceNumberRange `json:"-" xml:"-"`
-}
-
-type metadataSequenceNumberRange struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1731,11 +1599,7 @@ type Shard struct {
 	// The unique identifier of the shard within the Amazon Kinesis stream.
 	ShardId *string `min:"1" type:"string" required:"true"`
 
-	metadataShard `json:"-" xml:"-"`
-}
-
-type metadataShard struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1765,11 +1629,7 @@ type SplitShardInput struct {
 	// The name of the stream for the shard split.
 	StreamName *string `min:"1" type:"string" required:"true"`
 
-	metadataSplitShardInput `json:"-" xml:"-"`
-}
-
-type metadataSplitShardInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1783,11 +1643,7 @@ func (s SplitShardInput) GoString() string {
 }
 
 type SplitShardOutput struct {
-	metadataSplitShardOutput `json:"-" xml:"-"`
-}
-
-type metadataSplitShardOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1831,11 +1687,7 @@ type StreamDescription struct {
 	// the UPDATING state.
 	StreamStatus *string `type:"string" required:"true" enum:"StreamStatus"`
 
-	metadataStreamDescription `json:"-" xml:"-"`
-}
-
-type metadataStreamDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1859,11 +1711,7 @@ type Tag struct {
 	// space, _ . / = + - % @
 	Value *string `type:"string"`
 
-	metadataTag `json:"-" xml:"-"`
-}
-
-type metadataTag struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

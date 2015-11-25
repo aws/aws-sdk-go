@@ -1643,11 +1643,7 @@ type AbortMultipartUploadInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataAbortMultipartUploadInput `json:"-" xml:"-"`
-}
-
-type metadataAbortMultipartUploadInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1661,11 +1657,7 @@ func (s AbortMultipartUploadInput) GoString() string {
 }
 
 type AbortMultipartUploadOutput struct {
-	metadataAbortMultipartUploadOutput `json:"-" xml:"-"`
-}
-
-type metadataAbortMultipartUploadOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1691,11 +1683,7 @@ type AbortVaultLockInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataAbortVaultLockInput `json:"-" xml:"-"`
-}
-
-type metadataAbortVaultLockInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1709,11 +1697,7 @@ func (s AbortVaultLockInput) GoString() string {
 }
 
 type AbortVaultLockOutput struct {
-	metadataAbortVaultLockOutput `json:"-" xml:"-"`
-}
-
-type metadataAbortVaultLockOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1742,11 +1726,7 @@ type AddTagsToVaultInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataAddTagsToVaultInput `json:"-" xml:"-"`
-}
-
-type metadataAddTagsToVaultInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1760,11 +1740,7 @@ func (s AddTagsToVaultInput) GoString() string {
 }
 
 type AddTagsToVaultOutput struct {
-	metadataAddTagsToVaultOutput `json:"-" xml:"-"`
-}
-
-type metadataAddTagsToVaultOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1792,11 +1768,7 @@ type ArchiveCreationOutput struct {
 	// The relative URI path of the newly added archive resource.
 	Location *string `location:"header" locationName:"Location" type:"string"`
 
-	metadataArchiveCreationOutput `json:"-" xml:"-"`
-}
-
-type metadataArchiveCreationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1838,11 +1810,7 @@ type CompleteMultipartUploadInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataCompleteMultipartUploadInput `json:"-" xml:"-"`
-}
-
-type metadataCompleteMultipartUploadInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1871,11 +1839,7 @@ type CompleteVaultLockInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataCompleteVaultLockInput `json:"-" xml:"-"`
-}
-
-type metadataCompleteVaultLockInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1889,11 +1853,7 @@ func (s CompleteVaultLockInput) GoString() string {
 }
 
 type CompleteVaultLockOutput struct {
-	metadataCompleteVaultLockOutput `json:"-" xml:"-"`
-}
-
-type metadataCompleteVaultLockOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1919,11 +1879,7 @@ type CreateVaultInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataCreateVaultInput `json:"-" xml:"-"`
-}
-
-type metadataCreateVaultInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1941,11 +1897,7 @@ type CreateVaultOutput struct {
 	// The URI of the vault that was created.
 	Location *string `location:"header" locationName:"Location" type:"string"`
 
-	metadataCreateVaultOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateVaultOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1964,11 +1916,7 @@ type DataRetrievalPolicy struct {
 	// one rule, which contains a Strategy field and optionally a BytesPerHour field.
 	Rules []*DataRetrievalRule `type:"list"`
 
-	metadataDataRetrievalPolicy `json:"-" xml:"-"`
-}
-
-type metadataDataRetrievalPolicy struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1995,11 +1943,7 @@ type DataRetrievalRule struct {
 	// Valid values: BytesPerHour|FreeTier|None
 	Strategy *string `type:"string"`
 
-	metadataDataRetrievalRule `json:"-" xml:"-"`
-}
-
-type metadataDataRetrievalRule struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2027,11 +1971,7 @@ type DeleteArchiveInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataDeleteArchiveInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteArchiveInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2045,11 +1985,7 @@ func (s DeleteArchiveInput) GoString() string {
 }
 
 type DeleteArchiveOutput struct {
-	metadataDeleteArchiveOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteArchiveOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2074,11 +2010,7 @@ type DeleteVaultAccessPolicyInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataDeleteVaultAccessPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteVaultAccessPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2092,11 +2024,7 @@ func (s DeleteVaultAccessPolicyInput) GoString() string {
 }
 
 type DeleteVaultAccessPolicyOutput struct {
-	metadataDeleteVaultAccessPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteVaultAccessPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2121,11 +2049,7 @@ type DeleteVaultInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataDeleteVaultInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteVaultInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2151,11 +2075,7 @@ type DeleteVaultNotificationsInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataDeleteVaultNotificationsInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteVaultNotificationsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2169,11 +2089,7 @@ func (s DeleteVaultNotificationsInput) GoString() string {
 }
 
 type DeleteVaultNotificationsOutput struct {
-	metadataDeleteVaultNotificationsOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteVaultNotificationsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2187,11 +2103,7 @@ func (s DeleteVaultNotificationsOutput) GoString() string {
 }
 
 type DeleteVaultOutput struct {
-	metadataDeleteVaultOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteVaultOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2219,11 +2131,7 @@ type DescribeJobInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataDescribeJobInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeJobInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2248,11 +2156,7 @@ type DescribeVaultInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataDescribeVaultInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeVaultInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2291,11 +2195,7 @@ type DescribeVaultOutput struct {
 	// The name of the vault.
 	VaultName *string `type:"string"`
 
-	metadataDescribeVaultOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeVaultOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2318,11 +2218,7 @@ type GetDataRetrievalPolicyInput struct {
 	// not include any hyphens (apos-apos) in the ID.
 	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
-	metadataGetDataRetrievalPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataGetDataRetrievalPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2340,11 +2236,7 @@ type GetDataRetrievalPolicyOutput struct {
 	// Contains the returned data retrieval policy in JSON format.
 	Policy *DataRetrievalPolicy `type:"structure"`
 
-	metadataGetDataRetrievalPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataGetDataRetrievalPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2377,11 +2269,7 @@ type GetJobOutputInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataGetJobOutputInput `json:"-" xml:"-"`
-}
-
-type metadataGetJobOutputInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2434,11 +2322,7 @@ type GetJobOutputOutput struct {
 	// a range was specified in the request.
 	Status *int64 `location:"statusCode" locationName:"status" type:"integer"`
 
-	metadataGetJobOutputOutput `json:"-" xml:"-"`
-}
-
-type metadataGetJobOutputOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Body"`
+	_ struct{} `type:"structure" payload:"Body"`
 }
 
 // String returns the string representation
@@ -2463,11 +2347,7 @@ type GetVaultAccessPolicyInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataGetVaultAccessPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataGetVaultAccessPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2485,11 +2365,7 @@ type GetVaultAccessPolicyOutput struct {
 	// Contains the returned vault access policy as a JSON string.
 	Policy *VaultAccessPolicy `locationName:"policy" type:"structure"`
 
-	metadataGetVaultAccessPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataGetVaultAccessPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Policy"`
+	_ struct{} `type:"structure" payload:"Policy"`
 }
 
 // String returns the string representation
@@ -2514,11 +2390,7 @@ type GetVaultLockInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataGetVaultLockInput `json:"-" xml:"-"`
-}
-
-type metadataGetVaultLockInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2547,11 +2419,7 @@ type GetVaultLockOutput struct {
 	// The state of the vault lock. InProgress or Locked.
 	State *string `type:"string"`
 
-	metadataGetVaultLockOutput `json:"-" xml:"-"`
-}
-
-type metadataGetVaultLockOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2577,11 +2445,7 @@ type GetVaultNotificationsInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataGetVaultNotificationsInput `json:"-" xml:"-"`
-}
-
-type metadataGetVaultNotificationsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2599,11 +2463,7 @@ type GetVaultNotificationsOutput struct {
 	// Returns the notification configuration set on the vault.
 	VaultNotificationConfig *VaultNotificationConfig `locationName:"vaultNotificationConfig" type:"structure"`
 
-	metadataGetVaultNotificationsOutput `json:"-" xml:"-"`
-}
-
-type metadataGetVaultNotificationsOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"VaultNotificationConfig"`
+	_ struct{} `type:"structure" payload:"VaultNotificationConfig"`
 }
 
 // String returns the string representation
@@ -2631,11 +2491,7 @@ type InitiateJobInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataInitiateJobInput `json:"-" xml:"-"`
-}
-
-type metadataInitiateJobInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"JobParameters"`
+	_ struct{} `type:"structure" payload:"JobParameters"`
 }
 
 // String returns the string representation
@@ -2656,11 +2512,7 @@ type InitiateJobOutput struct {
 	// The relative URI path of the job.
 	Location *string `location:"header" locationName:"Location" type:"string"`
 
-	metadataInitiateJobOutput `json:"-" xml:"-"`
-}
-
-type metadataInitiateJobOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2697,11 +2549,7 @@ type InitiateMultipartUploadInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataInitiateMultipartUploadInput `json:"-" xml:"-"`
-}
-
-type metadataInitiateMultipartUploadInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2723,11 +2571,7 @@ type InitiateMultipartUploadOutput struct {
 	// location.
 	UploadId *string `location:"header" locationName:"x-amz-multipart-upload-id" type:"string"`
 
-	metadataInitiateMultipartUploadOutput `json:"-" xml:"-"`
-}
-
-type metadataInitiateMultipartUploadOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2756,11 +2600,7 @@ type InitiateVaultLockInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataInitiateVaultLockInput `json:"-" xml:"-"`
-}
-
-type metadataInitiateVaultLockInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Policy"`
+	_ struct{} `type:"structure" payload:"Policy"`
 }
 
 // String returns the string representation
@@ -2778,11 +2618,7 @@ type InitiateVaultLockOutput struct {
 	// The lock ID, which is used to complete the vault locking process.
 	LockId *string `location:"header" locationName:"x-amz-lock-id" type:"string"`
 
-	metadataInitiateVaultLockOutput `json:"-" xml:"-"`
-}
-
-type metadataInitiateVaultLockOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2824,11 +2660,7 @@ type InventoryRetrievalJobDescription struct {
 	// date format, for example, 2013-03-20T17:03:43Z.
 	StartDate *string `type:"string"`
 
-	metadataInventoryRetrievalJobDescription `json:"-" xml:"-"`
-}
-
-type metadataInventoryRetrievalJobDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2863,11 +2695,7 @@ type InventoryRetrievalJobInput struct {
 	// date format, for example, 2013-03-20T17:03:43Z.
 	StartDate *string `type:"string"`
 
-	metadataInventoryRetrievalJobInput `json:"-" xml:"-"`
-}
-
-type metadataInventoryRetrievalJobInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2960,11 +2788,7 @@ type JobDescription struct {
 	// was requested.
 	VaultARN *string `type:"string"`
 
-	metadataJobDescription `json:"-" xml:"-"`
-}
-
-type metadataJobDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3019,11 +2843,7 @@ type JobParameters struct {
 	// of a vault. Valid values are "archive-retrieval" and "inventory-retrieval".
 	Type *string `type:"string"`
 
-	metadataJobParameters `json:"-" xml:"-"`
-}
-
-type metadataJobParameters struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3065,11 +2885,7 @@ type ListJobsInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataListJobsInput `json:"-" xml:"-"`
-}
-
-type metadataListJobsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3092,11 +2908,7 @@ type ListJobsOutput struct {
 	// list. If there are no more jobs, this value is null.
 	Marker *string `type:"string"`
 
-	metadataListJobsOutput `json:"-" xml:"-"`
-}
-
-type metadataListJobsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3133,11 +2945,7 @@ type ListMultipartUploadsInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataListMultipartUploadsInput `json:"-" xml:"-"`
-}
-
-type metadataListMultipartUploadsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3160,11 +2968,7 @@ type ListMultipartUploadsOutput struct {
 	// A list of in-progress multipart uploads.
 	UploadsList []*UploadListElement `type:"list"`
 
-	metadataListMultipartUploadsOutput `json:"-" xml:"-"`
-}
-
-type metadataListMultipartUploadsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3204,11 +3008,7 @@ type ListPartsInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataListPartsInput `json:"-" xml:"-"`
-}
-
-type metadataListPartsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3248,11 +3048,7 @@ type ListPartsOutput struct {
 	// was initiated.
 	VaultARN *string `type:"string"`
 
-	metadataListPartsOutput `json:"-" xml:"-"`
-}
-
-type metadataListPartsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3277,11 +3073,7 @@ type ListTagsForVaultInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataListTagsForVaultInput `json:"-" xml:"-"`
-}
-
-type metadataListTagsForVaultInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3299,11 +3091,7 @@ type ListTagsForVaultOutput struct {
 	// The tags attached to the vault. Each tag is composed of a key and a value.
 	Tags map[string]*string `type:"map"`
 
-	metadataListTagsForVaultOutput `json:"-" xml:"-"`
-}
-
-type metadataListTagsForVaultOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3335,11 +3123,7 @@ type ListVaultsInput struct {
 	// the listing of vaults should begin.
 	Marker *string `location:"querystring" locationName:"marker" type:"string"`
 
-	metadataListVaultsInput `json:"-" xml:"-"`
-}
-
-type metadataListVaultsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3361,11 +3145,7 @@ type ListVaultsOutput struct {
 	// List of vaults.
 	VaultList []*DescribeVaultOutput `type:"list"`
 
-	metadataListVaultsOutput `json:"-" xml:"-"`
-}
-
-type metadataListVaultsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3387,11 +3167,7 @@ type PartListElement struct {
 	// field is never null.
 	SHA256TreeHash *string `type:"string"`
 
-	metadataPartListElement `json:"-" xml:"-"`
-}
-
-type metadataPartListElement struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3419,11 +3195,7 @@ type RemoveTagsFromVaultInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataRemoveTagsFromVaultInput `json:"-" xml:"-"`
-}
-
-type metadataRemoveTagsFromVaultInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3437,11 +3209,7 @@ func (s RemoveTagsFromVaultInput) GoString() string {
 }
 
 type RemoveTagsFromVaultOutput struct {
-	metadataRemoveTagsFromVaultOutput `json:"-" xml:"-"`
-}
-
-type metadataRemoveTagsFromVaultOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3467,11 +3235,7 @@ type SetDataRetrievalPolicyInput struct {
 	// The data retrieval policy in JSON format.
 	Policy *DataRetrievalPolicy `type:"structure"`
 
-	metadataSetDataRetrievalPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataSetDataRetrievalPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3485,11 +3249,7 @@ func (s SetDataRetrievalPolicyInput) GoString() string {
 }
 
 type SetDataRetrievalPolicyOutput struct {
-	metadataSetDataRetrievalPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataSetDataRetrievalPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3517,11 +3277,7 @@ type SetVaultAccessPolicyInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataSetVaultAccessPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataSetVaultAccessPolicyInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Policy"`
+	_ struct{} `type:"structure" payload:"Policy"`
 }
 
 // String returns the string representation
@@ -3535,11 +3291,7 @@ func (s SetVaultAccessPolicyInput) GoString() string {
 }
 
 type SetVaultAccessPolicyOutput struct {
-	metadataSetVaultAccessPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataSetVaultAccessPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3568,11 +3320,7 @@ type SetVaultNotificationsInput struct {
 	// Provides options for specifying notification configuration.
 	VaultNotificationConfig *VaultNotificationConfig `locationName:"vaultNotificationConfig" type:"structure"`
 
-	metadataSetVaultNotificationsInput `json:"-" xml:"-"`
-}
-
-type metadataSetVaultNotificationsInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"VaultNotificationConfig"`
+	_ struct{} `type:"structure" payload:"VaultNotificationConfig"`
 }
 
 // String returns the string representation
@@ -3586,11 +3334,7 @@ func (s SetVaultNotificationsInput) GoString() string {
 }
 
 type SetVaultNotificationsOutput struct {
-	metadataSetVaultNotificationsOutput `json:"-" xml:"-"`
-}
-
-type metadataSetVaultNotificationsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3624,11 +3368,7 @@ type UploadArchiveInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataUploadArchiveInput `json:"-" xml:"-"`
-}
-
-type metadataUploadArchiveInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Body"`
+	_ struct{} `type:"structure" payload:"Body"`
 }
 
 // String returns the string representation
@@ -3661,11 +3401,7 @@ type UploadListElement struct {
 	// The Amazon Resource Name (ARN) of the vault that contains the archive.
 	VaultARN *string `type:"string"`
 
-	metadataUploadListElement `json:"-" xml:"-"`
-}
-
-type metadataUploadListElement struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3705,11 +3441,7 @@ type UploadMultipartPartInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataUploadMultipartPartInput `json:"-" xml:"-"`
-}
-
-type metadataUploadMultipartPartInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Body"`
+	_ struct{} `type:"structure" payload:"Body"`
 }
 
 // String returns the string representation
@@ -3727,11 +3459,7 @@ type UploadMultipartPartOutput struct {
 	// The SHA256 tree hash that Amazon Glacier computed for the uploaded part.
 	Checksum *string `location:"header" locationName:"x-amz-sha256-tree-hash" type:"string"`
 
-	metadataUploadMultipartPartOutput `json:"-" xml:"-"`
-}
-
-type metadataUploadMultipartPartOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3749,11 +3477,7 @@ type VaultAccessPolicy struct {
 	// The vault access policy.
 	Policy *string `type:"string"`
 
-	metadataVaultAccessPolicy `json:"-" xml:"-"`
-}
-
-type metadataVaultAccessPolicy struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3771,11 +3495,7 @@ type VaultLockPolicy struct {
 	// The vault lock policy.
 	Policy *string `type:"string"`
 
-	metadataVaultLockPolicy `json:"-" xml:"-"`
-}
-
-type metadataVaultLockPolicy struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3798,11 +3518,7 @@ type VaultNotificationConfig struct {
 	// Name (ARN).
 	SNSTopic *string `type:"string"`
 
-	metadataVaultNotificationConfig `json:"-" xml:"-"`
-}
-
-type metadataVaultNotificationConfig struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

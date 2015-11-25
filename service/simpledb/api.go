@@ -460,11 +460,7 @@ type Attribute struct {
 	// The value of the attribute.
 	Value *string `type:"string" required:"true"`
 
-	metadataAttribute `json:"-" xml:"-"`
-}
-
-type metadataAttribute struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -484,11 +480,7 @@ type BatchDeleteAttributesInput struct {
 	// A list of items on which to perform the operation.
 	Items []*DeletableItem `locationNameList:"Item" type:"list" flattened:"true" required:"true"`
 
-	metadataBatchDeleteAttributesInput `json:"-" xml:"-"`
-}
-
-type metadataBatchDeleteAttributesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -502,11 +494,7 @@ func (s BatchDeleteAttributesInput) GoString() string {
 }
 
 type BatchDeleteAttributesOutput struct {
-	metadataBatchDeleteAttributesOutput `json:"-" xml:"-"`
-}
-
-type metadataBatchDeleteAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -526,11 +514,7 @@ type BatchPutAttributesInput struct {
 	// A list of items on which to perform the operation.
 	Items []*ReplaceableItem `locationNameList:"Item" type:"list" flattened:"true" required:"true"`
 
-	metadataBatchPutAttributesInput `json:"-" xml:"-"`
-}
-
-type metadataBatchPutAttributesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -544,11 +528,7 @@ func (s BatchPutAttributesInput) GoString() string {
 }
 
 type BatchPutAttributesOutput struct {
-	metadataBatchPutAttributesOutput `json:"-" xml:"-"`
-}
-
-type metadataBatchPutAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -566,11 +546,7 @@ type CreateDomainInput struct {
 	// and can contain the following characters: a-z, A-Z, 0-9, '_', '-', and '.'.
 	DomainName *string `type:"string" required:"true"`
 
-	metadataCreateDomainInput `json:"-" xml:"-"`
-}
-
-type metadataCreateDomainInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -584,11 +560,7 @@ func (s CreateDomainInput) GoString() string {
 }
 
 type CreateDomainOutput struct {
-	metadataCreateDomainOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateDomainOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -608,11 +580,7 @@ type DeletableAttribute struct {
 	// The value of the attribute.
 	Value *string `type:"string"`
 
-	metadataDeletableAttribute `json:"-" xml:"-"`
-}
-
-type metadataDeletableAttribute struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -630,11 +598,7 @@ type DeletableItem struct {
 
 	Name *string `locationName:"ItemName" type:"string" required:"true"`
 
-	metadataDeletableItem `json:"-" xml:"-"`
-}
-
-type metadataDeletableItem struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -664,11 +628,7 @@ type DeleteAttributesInput struct {
 	// objects that contain one or more value-attribute pairs.
 	ItemName *string `type:"string" required:"true"`
 
-	metadataDeleteAttributesInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteAttributesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -682,11 +642,7 @@ func (s DeleteAttributesInput) GoString() string {
 }
 
 type DeleteAttributesOutput struct {
-	metadataDeleteAttributesOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -703,11 +659,7 @@ type DeleteDomainInput struct {
 	// The name of the domain to delete.
 	DomainName *string `type:"string" required:"true"`
 
-	metadataDeleteDomainInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDomainInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -721,11 +673,7 @@ func (s DeleteDomainInput) GoString() string {
 }
 
 type DeleteDomainOutput struct {
-	metadataDeleteDomainOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDomainOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -742,11 +690,7 @@ type DomainMetadataInput struct {
 	// The name of the domain for which to display the metadata of.
 	DomainName *string `type:"string" required:"true"`
 
-	metadataDomainMetadataInput `json:"-" xml:"-"`
-}
-
-type metadataDomainMetadataInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -781,11 +725,7 @@ type DomainMetadataOutput struct {
 	// The data and time when metadata was calculated, in Epoch (UNIX) seconds.
 	Timestamp *int64 `type:"integer"`
 
-	metadataDomainMetadataOutput `json:"-" xml:"-"`
-}
-
-type metadataDomainMetadataOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -814,11 +754,7 @@ type GetAttributesInput struct {
 	// The name of the item.
 	ItemName *string `type:"string" required:"true"`
 
-	metadataGetAttributesInput `json:"-" xml:"-"`
-}
-
-type metadataGetAttributesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -835,11 +771,7 @@ type GetAttributesOutput struct {
 	// The list of attributes returned by the operation.
 	Attributes []*Attribute `locationNameList:"Attribute" type:"list" flattened:"true"`
 
-	metadataGetAttributesOutput `json:"-" xml:"-"`
-}
-
-type metadataGetAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -861,11 +793,7 @@ type Item struct {
 	// The name of the item.
 	Name *string `type:"string" required:"true"`
 
-	metadataItem `json:"-" xml:"-"`
-}
-
-type metadataItem struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -887,11 +815,7 @@ type ListDomainsInput struct {
 	// names.
 	NextToken *string `type:"string"`
 
-	metadataListDomainsInput `json:"-" xml:"-"`
-}
-
-type metadataListDomainsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -912,11 +836,7 @@ type ListDomainsOutput struct {
 	// MaxNumberOfDomains still available.
 	NextToken *string `type:"string"`
 
-	metadataListDomainsOutput `json:"-" xml:"-"`
-}
-
-type metadataListDomainsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -944,11 +864,7 @@ type PutAttributesInput struct {
 	// The name of the item.
 	ItemName *string `type:"string" required:"true"`
 
-	metadataPutAttributesInput `json:"-" xml:"-"`
-}
-
-type metadataPutAttributesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -962,11 +878,7 @@ func (s PutAttributesInput) GoString() string {
 }
 
 type PutAttributesOutput struct {
-	metadataPutAttributesOutput `json:"-" xml:"-"`
-}
-
-type metadataPutAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -990,11 +902,7 @@ type ReplaceableAttribute struct {
 	// The value of the replaceable attribute.
 	Value *string `type:"string" required:"true"`
 
-	metadataReplaceableAttribute `json:"-" xml:"-"`
-}
-
-type metadataReplaceableAttribute struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1014,11 +922,7 @@ type ReplaceableItem struct {
 	// The name of the replaceable item.
 	Name *string `locationName:"ItemName" type:"string" required:"true"`
 
-	metadataReplaceableItem `json:"-" xml:"-"`
-}
-
-type metadataReplaceableItem struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1044,11 +948,7 @@ type SelectInput struct {
 	// The expression used to query the domain.
 	SelectExpression *string `type:"string" required:"true"`
 
-	metadataSelectInput `json:"-" xml:"-"`
-}
-
-type metadataSelectInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1069,11 +969,7 @@ type SelectOutput struct {
 	// the response size exceeded 1 megabyte, or the execution time exceeded 5 seconds.
 	NextToken *string `type:"string"`
 
-	metadataSelectOutput `json:"-" xml:"-"`
-}
-
-type metadataSelectOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1105,11 +1001,7 @@ type UpdateCondition struct {
 	// parameter is equal to true.
 	Value *string `type:"string"`
 
-	metadataUpdateCondition `json:"-" xml:"-"`
-}
-
-type metadataUpdateCondition struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

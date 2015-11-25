@@ -305,11 +305,7 @@ type AccessPoliciesStatus struct {
 	// for the status information that's included.
 	Status *OptionStatus `type:"structure" required:"true"`
 
-	metadataAccessPoliciesStatus `json:"-" xml:"-"`
-}
-
-type metadataAccessPoliciesStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -331,11 +327,7 @@ type AddTagsInput struct {
 	// List of Tag that need to be added for the Elasticsearch domain.
 	TagList []*Tag `type:"list" required:"true"`
 
-	metadataAddTagsInput `json:"-" xml:"-"`
-}
-
-type metadataAddTagsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -349,11 +341,7 @@ func (s AddTagsInput) GoString() string {
 }
 
 type AddTagsOutput struct {
-	metadataAddTagsOutput `json:"-" xml:"-"`
-}
-
-type metadataAddTagsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -384,11 +372,7 @@ type AdvancedOptionsStatus struct {
 	// Elasticsearch domain.
 	Status *OptionStatus `type:"structure" required:"true"`
 
-	metadataAdvancedOptionsStatus `json:"-" xml:"-"`
-}
-
-type metadataAdvancedOptionsStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -428,11 +412,7 @@ type CreateElasticsearchDomainInput struct {
 	// value is 0 hours.
 	SnapshotOptions *SnapshotOptions `type:"structure"`
 
-	metadataCreateElasticsearchDomainInput `json:"-" xml:"-"`
-}
-
-type metadataCreateElasticsearchDomainInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -451,11 +431,7 @@ type CreateElasticsearchDomainOutput struct {
 	// The status of the newly created Elasticsearch domain.
 	DomainStatus *ElasticsearchDomainStatus `type:"structure"`
 
-	metadataCreateElasticsearchDomainOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateElasticsearchDomainOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -474,11 +450,7 @@ type DeleteElasticsearchDomainInput struct {
 	// The name of the Elasticsearch domain that you want to permanently delete.
 	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
 
-	metadataDeleteElasticsearchDomainInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteElasticsearchDomainInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -498,11 +470,7 @@ type DeleteElasticsearchDomainOutput struct {
 	// The status of the Elasticsearch domain being deleted.
 	DomainStatus *ElasticsearchDomainStatus `type:"structure"`
 
-	metadataDeleteElasticsearchDomainOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteElasticsearchDomainOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -521,11 +489,7 @@ type DescribeElasticsearchDomainConfigInput struct {
 	// The Elasticsearch domain that you want to get information about.
 	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
 
-	metadataDescribeElasticsearchDomainConfigInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeElasticsearchDomainConfigInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -545,11 +509,7 @@ type DescribeElasticsearchDomainConfigOutput struct {
 	// request.
 	DomainConfig *ElasticsearchDomainConfig `type:"structure" required:"true"`
 
-	metadataDescribeElasticsearchDomainConfigOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeElasticsearchDomainConfigOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -567,11 +527,7 @@ type DescribeElasticsearchDomainInput struct {
 	// The name of the Elasticsearch domain for which you want information.
 	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
 
-	metadataDescribeElasticsearchDomainInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeElasticsearchDomainInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -590,11 +546,7 @@ type DescribeElasticsearchDomainOutput struct {
 	// The current status of the Elasticsearch domain.
 	DomainStatus *ElasticsearchDomainStatus `type:"structure" required:"true"`
 
-	metadataDescribeElasticsearchDomainOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeElasticsearchDomainOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -613,11 +565,7 @@ type DescribeElasticsearchDomainsInput struct {
 	// The Elasticsearch domains for which you want information.
 	DomainNames []*string `type:"list" required:"true"`
 
-	metadataDescribeElasticsearchDomainsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeElasticsearchDomainsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -636,11 +584,7 @@ type DescribeElasticsearchDomainsOutput struct {
 	// The status of the domains requested in the DescribeElasticsearchDomains request.
 	DomainStatusList []*ElasticsearchDomainStatus `type:"list" required:"true"`
 
-	metadataDescribeElasticsearchDomainsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeElasticsearchDomainsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -657,11 +601,7 @@ type DomainInfo struct {
 	// Specifies the DomainName.
 	DomainName *string `min:"3" type:"string"`
 
-	metadataDomainInfo `json:"-" xml:"-"`
-}
-
-type metadataDomainInfo struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -690,11 +630,7 @@ type EBSOptions struct {
 	// Specifies the volume type for EBS-based storage.
 	VolumeType *string `type:"string" enum:"VolumeType"`
 
-	metadataEBSOptions `json:"-" xml:"-"`
-}
-
-type metadataEBSOptions struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -715,11 +651,7 @@ type EBSOptionsStatus struct {
 	// Specifies the status of the EBS options for the specified Elasticsearch domain.
 	Status *OptionStatus `type:"structure" required:"true"`
 
-	metadataEBSOptionsStatus `json:"-" xml:"-"`
-}
-
-type metadataEBSOptionsStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -757,11 +689,7 @@ type ElasticsearchClusterConfig struct {
 	// target="_blank) for more information.
 	ZoneAwarenessEnabled *bool `type:"boolean"`
 
-	metadataElasticsearchClusterConfig `json:"-" xml:"-"`
-}
-
-type metadataElasticsearchClusterConfig struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -783,11 +711,7 @@ type ElasticsearchClusterConfigStatus struct {
 	// domain.
 	Status *OptionStatus `type:"structure" required:"true"`
 
-	metadataElasticsearchClusterConfigStatus `json:"-" xml:"-"`
-}
-
-type metadataElasticsearchClusterConfigStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -819,11 +743,7 @@ type ElasticsearchDomainConfig struct {
 	// Specifies the SnapshotOptions for the Elasticsearch domain.
 	SnapshotOptions *SnapshotOptionsStatus `type:"structure"`
 
-	metadataElasticsearchDomainConfig `json:"-" xml:"-"`
-}
-
-type metadataElasticsearchDomainConfig struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -888,11 +808,7 @@ type ElasticsearchDomainStatus struct {
 	// Specifies the status of the SnapshotOptions
 	SnapshotOptions *SnapshotOptions `type:"structure"`
 
-	metadataElasticsearchDomainStatus `json:"-" xml:"-"`
-}
-
-type metadataElasticsearchDomainStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -906,11 +822,7 @@ func (s ElasticsearchDomainStatus) GoString() string {
 }
 
 type ListDomainNamesInput struct {
-	metadataListDomainNamesInput `json:"-" xml:"-"`
-}
-
-type metadataListDomainNamesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -929,11 +841,7 @@ type ListDomainNamesOutput struct {
 	// List of Elasticsearch domain names.
 	DomainNames []*DomainInfo `type:"list"`
 
-	metadataListDomainNamesOutput `json:"-" xml:"-"`
-}
-
-type metadataListDomainNamesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -954,11 +862,7 @@ type ListTagsInput struct {
 	// that you want to view.
 	ARN *string `location:"querystring" locationName:"arn" type:"string" required:"true"`
 
-	metadataListTagsInput `json:"-" xml:"-"`
-}
-
-type metadataListTagsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -977,11 +881,7 @@ type ListTagsOutput struct {
 	// List of Tag for the requested Elasticsearch domain.
 	TagList []*Tag `type:"list"`
 
-	metadataListTagsOutput `json:"-" xml:"-"`
-}
-
-type metadataListTagsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1011,11 +911,7 @@ type OptionStatus struct {
 	// Specifies the latest version for the entity.
 	UpdateVersion *int64 `type:"integer"`
 
-	metadataOptionStatus `json:"-" xml:"-"`
-}
-
-type metadataOptionStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1040,11 +936,7 @@ type RemoveTagsInput struct {
 	// domain.
 	TagKeys []*string `type:"list" required:"true"`
 
-	metadataRemoveTagsInput `json:"-" xml:"-"`
-}
-
-type metadataRemoveTagsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1058,11 +950,7 @@ func (s RemoveTagsInput) GoString() string {
 }
 
 type RemoveTagsOutput struct {
-	metadataRemoveTagsOutput `json:"-" xml:"-"`
-}
-
-type metadataRemoveTagsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1082,11 +970,7 @@ type SnapshotOptions struct {
 	// snapshot of the specified Elasticsearch domain. Default value is 0 hours.
 	AutomatedSnapshotStartHour *int64 `type:"integer"`
 
-	metadataSnapshotOptions `json:"-" xml:"-"`
-}
-
-type metadataSnapshotOptions struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1107,11 +991,7 @@ type SnapshotOptionsStatus struct {
 	// Specifies the status of a daily automated snapshot.
 	Status *OptionStatus `type:"structure" required:"true"`
 
-	metadataSnapshotOptionsStatus `json:"-" xml:"-"`
-}
-
-type metadataSnapshotOptionsStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1136,11 +1016,7 @@ type Tag struct {
 	// : Trinity
 	Value *string `type:"string" required:"true"`
 
-	metadataTag `json:"-" xml:"-"`
-}
-
-type metadataTag struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1178,11 +1054,7 @@ type UpdateElasticsearchDomainConfigInput struct {
 	// Default value is 0 hours.
 	SnapshotOptions *SnapshotOptions `type:"structure"`
 
-	metadataUpdateElasticsearchDomainConfigInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateElasticsearchDomainConfigInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1201,11 +1073,7 @@ type UpdateElasticsearchDomainConfigOutput struct {
 	// The status of the updated Elasticsearch domain.
 	DomainConfig *ElasticsearchDomainConfig `type:"structure" required:"true"`
 
-	metadataUpdateElasticsearchDomainConfigOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateElasticsearchDomainConfigOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

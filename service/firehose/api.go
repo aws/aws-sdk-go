@@ -399,11 +399,7 @@ type BufferingHints struct {
 	// if you typically ingest data at 1 MB/sec set SizeInMBs to be 10 MB or higher.
 	SizeInMBs *int64 `min:"1" type:"integer"`
 
-	metadataBufferingHints `json:"-" xml:"-"`
-}
-
-type metadataBufferingHints struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -446,11 +442,7 @@ type CopyCommand struct {
 	// The name of the target table. The table must already exist in the database.
 	DataTableName *string `min:"1" type:"string" required:"true"`
 
-	metadataCopyCommand `json:"-" xml:"-"`
-}
-
-type metadataCopyCommand struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -476,11 +468,7 @@ type CreateDeliveryStreamInput struct {
 	// is specified (see restrictions listed above).
 	S3DestinationConfiguration *S3DestinationConfiguration `type:"structure"`
 
-	metadataCreateDeliveryStreamInput `json:"-" xml:"-"`
-}
-
-type metadataCreateDeliveryStreamInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -498,11 +486,7 @@ type CreateDeliveryStreamOutput struct {
 	// The ARN of the delivery stream.
 	DeliveryStreamARN *string `type:"string"`
 
-	metadataCreateDeliveryStreamOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateDeliveryStreamOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -520,11 +504,7 @@ type DeleteDeliveryStreamInput struct {
 	// The name of the delivery stream.
 	DeliveryStreamName *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteDeliveryStreamInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDeliveryStreamInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -539,11 +519,7 @@ func (s DeleteDeliveryStreamInput) GoString() string {
 
 // Contains the output of DeleteDeliveryStream.
 type DeleteDeliveryStreamOutput struct {
-	metadataDeleteDeliveryStreamOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDeliveryStreamOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -586,11 +562,7 @@ type DeliveryStreamDescription struct {
 	// stream.
 	VersionId *string `min:"1" type:"string" required:"true"`
 
-	metadataDeliveryStreamDescription `json:"-" xml:"-"`
-}
-
-type metadataDeliveryStreamDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -616,11 +588,7 @@ type DescribeDeliveryStreamInput struct {
 	// one destination per delivery stream.
 	Limit *int64 `min:"1" type:"integer"`
 
-	metadataDescribeDeliveryStreamInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDeliveryStreamInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -638,11 +606,7 @@ type DescribeDeliveryStreamOutput struct {
 	// Information about the delivery stream.
 	DeliveryStreamDescription *DeliveryStreamDescription `type:"structure" required:"true"`
 
-	metadataDescribeDeliveryStreamOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDeliveryStreamOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -666,11 +630,7 @@ type DestinationDescription struct {
 	// The Amazon S3 destination.
 	S3DestinationDescription *S3DestinationDescription `type:"structure"`
 
-	metadataDestinationDescription `json:"-" xml:"-"`
-}
-
-type metadataDestinationDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -692,11 +652,7 @@ type EncryptionConfiguration struct {
 	// is used.
 	NoEncryptionConfig *string `type:"string" enum:"NoEncryptionConfig"`
 
-	metadataEncryptionConfiguration `json:"-" xml:"-"`
-}
-
-type metadataEncryptionConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -715,11 +671,7 @@ type KMSEncryptionConfig struct {
 	// Amazon S3 bucket.
 	AWSKMSKeyARN *string `min:"1" type:"string" required:"true"`
 
-	metadataKMSEncryptionConfig `json:"-" xml:"-"`
-}
-
-type metadataKMSEncryptionConfig struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -740,11 +692,7 @@ type ListDeliveryStreamsInput struct {
 	// The maximum number of delivery streams to list.
 	Limit *int64 `min:"1" type:"integer"`
 
-	metadataListDeliveryStreamsInput `json:"-" xml:"-"`
-}
-
-type metadataListDeliveryStreamsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -765,11 +713,7 @@ type ListDeliveryStreamsOutput struct {
 	// Indicates whether there are more delivery streams available to list.
 	HasMoreDeliveryStreams *bool `type:"boolean" required:"true"`
 
-	metadataListDeliveryStreamsOutput `json:"-" xml:"-"`
-}
-
-type metadataListDeliveryStreamsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -790,11 +734,7 @@ type PutRecordBatchInput struct {
 	// One or more records.
 	Records []*Record `min:"1" type:"list" required:"true"`
 
-	metadataPutRecordBatchInput `json:"-" xml:"-"`
-}
-
-type metadataPutRecordBatchInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -816,11 +756,7 @@ type PutRecordBatchOutput struct {
 	// the same index in which records were sent.
 	RequestResponses []*PutRecordBatchResponseEntry `min:"1" type:"list" required:"true"`
 
-	metadataPutRecordBatchOutput `json:"-" xml:"-"`
-}
-
-type metadataPutRecordBatchOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -847,11 +783,7 @@ type PutRecordBatchResponseEntry struct {
 	// The ID of the record.
 	RecordId *string `min:"1" type:"string"`
 
-	metadataPutRecordBatchResponseEntry `json:"-" xml:"-"`
-}
-
-type metadataPutRecordBatchResponseEntry struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -872,11 +804,7 @@ type PutRecordInput struct {
 	// The record.
 	Record *Record `type:"structure" required:"true"`
 
-	metadataPutRecordInput `json:"-" xml:"-"`
-}
-
-type metadataPutRecordInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -894,11 +822,7 @@ type PutRecordOutput struct {
 	// The ID of the record.
 	RecordId *string `min:"1" type:"string" required:"true"`
 
-	metadataPutRecordOutput `json:"-" xml:"-"`
-}
-
-type metadataPutRecordOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -917,11 +841,7 @@ type Record struct {
 	// size of the data blob, before base64-encoding, is 1,000 KB.
 	Data []byte `type:"blob" required:"true"`
 
-	metadataRecord `json:"-" xml:"-"`
-}
-
-type metadataRecord struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -959,11 +879,7 @@ type RedshiftDestinationConfiguration struct {
 	// The name of the user.
 	Username *string `min:"1" type:"string" required:"true"`
 
-	metadataRedshiftDestinationConfiguration `json:"-" xml:"-"`
-}
-
-type metadataRedshiftDestinationConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -993,11 +909,7 @@ type RedshiftDestinationDescription struct {
 	// The name of the user.
 	Username *string `min:"1" type:"string" required:"true"`
 
-	metadataRedshiftDestinationDescription `json:"-" xml:"-"`
-}
-
-type metadataRedshiftDestinationDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1034,11 +946,7 @@ type RedshiftDestinationUpdate struct {
 	// The name of the user.
 	Username *string `min:"1" type:"string"`
 
-	metadataRedshiftDestinationUpdate `json:"-" xml:"-"`
-}
-
-type metadataRedshiftDestinationUpdate struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1082,11 +990,7 @@ type S3DestinationConfiguration struct {
 	// The ARN of the AWS credentials.
 	RoleARN *string `min:"1" type:"string" required:"true"`
 
-	metadataS3DestinationConfiguration `json:"-" xml:"-"`
-}
-
-type metadataS3DestinationConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1126,11 +1030,7 @@ type S3DestinationDescription struct {
 	// The ARN of the AWS credentials.
 	RoleARN *string `min:"1" type:"string" required:"true"`
 
-	metadataS3DestinationDescription `json:"-" xml:"-"`
-}
-
-type metadataS3DestinationDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1174,11 +1074,7 @@ type S3DestinationUpdate struct {
 	// The ARN of the AWS credentials.
 	RoleARN *string `min:"1" type:"string"`
 
-	metadataS3DestinationUpdate `json:"-" xml:"-"`
-}
-
-type metadataS3DestinationUpdate struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1213,11 +1109,7 @@ type UpdateDestinationInput struct {
 	// Describes an update for a destination in Amazon S3.
 	S3DestinationUpdate *S3DestinationUpdate `type:"structure"`
 
-	metadataUpdateDestinationInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateDestinationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1232,11 +1124,7 @@ func (s UpdateDestinationInput) GoString() string {
 
 // Contains the output of UpdateDestination.
 type UpdateDestinationOutput struct {
-	metadataUpdateDestinationOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateDestinationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

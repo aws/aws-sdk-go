@@ -2358,11 +2358,7 @@ type AgentVersion struct {
 	// The agent version.
 	Version *string `type:"string"`
 
-	metadataAgentVersion `json:"-" xml:"-"`
-}
-
-type metadataAgentVersion struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2430,11 +2426,7 @@ type App struct {
 	// The app type.
 	Type *string `type:"string" enum:"AppType"`
 
-	metadataApp `json:"-" xml:"-"`
-}
-
-type metadataApp struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2455,11 +2447,7 @@ type AssignInstanceInput struct {
 	// a registered instance to a built-in layer.
 	LayerIds []*string `type:"list" required:"true"`
 
-	metadataAssignInstanceInput `json:"-" xml:"-"`
-}
-
-type metadataAssignInstanceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2473,11 +2461,7 @@ func (s AssignInstanceInput) GoString() string {
 }
 
 type AssignInstanceOutput struct {
-	metadataAssignInstanceOutput `json:"-" xml:"-"`
-}
-
-type metadataAssignInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2497,11 +2481,7 @@ type AssignVolumeInput struct {
 	// The volume ID.
 	VolumeId *string `type:"string" required:"true"`
 
-	metadataAssignVolumeInput `json:"-" xml:"-"`
-}
-
-type metadataAssignVolumeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2515,11 +2495,7 @@ func (s AssignVolumeInput) GoString() string {
 }
 
 type AssignVolumeOutput struct {
-	metadataAssignVolumeOutput `json:"-" xml:"-"`
-}
-
-type metadataAssignVolumeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2539,11 +2515,7 @@ type AssociateElasticIpInput struct {
 	// The instance ID.
 	InstanceId *string `type:"string"`
 
-	metadataAssociateElasticIpInput `json:"-" xml:"-"`
-}
-
-type metadataAssociateElasticIpInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2557,11 +2529,7 @@ func (s AssociateElasticIpInput) GoString() string {
 }
 
 type AssociateElasticIpOutput struct {
-	metadataAssociateElasticIpOutput `json:"-" xml:"-"`
-}
-
-type metadataAssociateElasticIpOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2582,11 +2550,7 @@ type AttachElasticLoadBalancerInput struct {
 	// to.
 	LayerId *string `type:"string" required:"true"`
 
-	metadataAttachElasticLoadBalancerInput `json:"-" xml:"-"`
-}
-
-type metadataAttachElasticLoadBalancerInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2600,11 +2564,7 @@ func (s AttachElasticLoadBalancerInput) GoString() string {
 }
 
 type AttachElasticLoadBalancerOutput struct {
-	metadataAttachElasticLoadBalancerOutput `json:"-" xml:"-"`
-}
-
-type metadataAttachElasticLoadBalancerOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2657,11 +2617,7 @@ type AutoScalingThresholds struct {
 	// more instances are added or removed.
 	ThresholdsWaitTime *int64 `min:"1" type:"integer"`
 
-	metadataAutoScalingThresholds `json:"-" xml:"-"`
-}
-
-type metadataAutoScalingThresholds struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2693,11 +2649,7 @@ type BlockDeviceMapping struct {
 	// The virtual device name. For more information, see BlockDeviceMapping (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_BlockDeviceMapping.html).
 	VirtualName *string `type:"string"`
 
-	metadataBlockDeviceMapping `json:"-" xml:"-"`
-}
-
-type metadataBlockDeviceMapping struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2718,11 +2670,7 @@ type ChefConfiguration struct {
 	// Whether to enable Berkshelf.
 	ManageBerkshelf *bool `type:"boolean"`
 
-	metadataChefConfiguration `json:"-" xml:"-"`
-}
-
-type metadataChefConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2911,11 +2859,7 @@ type CloneStackInput struct {
 	// (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html).
 	VpcId *string `type:"string"`
 
-	metadataCloneStackInput `json:"-" xml:"-"`
-}
-
-type metadataCloneStackInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2933,11 +2877,7 @@ type CloneStackOutput struct {
 	// The cloned stack ID.
 	StackId *string `type:"string"`
 
-	metadataCloneStackOutput `json:"-" xml:"-"`
-}
-
-type metadataCloneStackOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2987,11 +2927,7 @@ type Command struct {
 	//   install_dependencies   update_custom_cookbooks   execute_recipes
 	Type *string `type:"string"`
 
-	metadataCommand `json:"-" xml:"-"`
-}
-
-type metadataCommand struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3059,11 +2995,7 @@ type CreateAppInput struct {
 	// your own Deploy recipes, specify other.
 	Type *string `type:"string" required:"true" enum:"AppType"`
 
-	metadataCreateAppInput `json:"-" xml:"-"`
-}
-
-type metadataCreateAppInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3081,11 +3013,7 @@ type CreateAppOutput struct {
 	// The app ID.
 	AppId *string `type:"string"`
 
-	metadataCreateAppOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateAppOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3126,11 +3054,7 @@ type CreateDeploymentInput struct {
 	// The stack ID.
 	StackId *string `type:"string" required:"true"`
 
-	metadataCreateDeploymentInput `json:"-" xml:"-"`
-}
-
-type metadataCreateDeploymentInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3149,11 +3073,7 @@ type CreateDeploymentOutput struct {
 	// deployment.
 	DeploymentId *string `type:"string"`
 
-	metadataCreateDeploymentOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateDeploymentOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3264,11 +3184,7 @@ type CreateInstanceInput struct {
 	// The instance's virtualization type, paravirtual or hvm.
 	VirtualizationType *string `type:"string"`
 
-	metadataCreateInstanceInput `json:"-" xml:"-"`
-}
-
-type metadataCreateInstanceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3286,11 +3202,7 @@ type CreateInstanceOutput struct {
 	// The instance ID.
 	InstanceId *string `type:"string"`
 
-	metadataCreateInstanceOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3381,11 +3293,7 @@ type CreateLayerInput struct {
 	// A VolumeConfigurations object that describes the layer's Amazon EBS volumes.
 	VolumeConfigurations []*VolumeConfiguration `type:"list"`
 
-	metadataCreateLayerInput `json:"-" xml:"-"`
-}
-
-type metadataCreateLayerInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3403,11 +3311,7 @@ type CreateLayerOutput struct {
 	// The layer ID.
 	LayerId *string `type:"string"`
 
-	metadataCreateLayerOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateLayerOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3580,11 +3484,7 @@ type CreateStackInput struct {
 	// (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html).
 	VpcId *string `type:"string"`
 
-	metadataCreateStackInput `json:"-" xml:"-"`
-}
-
-type metadataCreateStackInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3603,11 +3503,7 @@ type CreateStackOutput struct {
 	// when performing actions such as DescribeStacks.
 	StackId *string `type:"string"`
 
-	metadataCreateStackOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateStackOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3638,11 +3534,7 @@ type CreateUserProfileInput struct {
 	// IAM user name.
 	SshUsername *string `type:"string"`
 
-	metadataCreateUserProfileInput `json:"-" xml:"-"`
-}
-
-type metadataCreateUserProfileInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3660,11 +3552,7 @@ type CreateUserProfileOutput struct {
 	// The user's IAM ARN.
 	IamUserArn *string `type:"string"`
 
-	metadataCreateUserProfileOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateUserProfileOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3689,11 +3577,7 @@ type DataSource struct {
 	// or RdsDbInstance.
 	Type *string `type:"string"`
 
-	metadataDataSource `json:"-" xml:"-"`
-}
-
-type metadataDataSource struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3710,11 +3594,7 @@ type DeleteAppInput struct {
 	// The app ID.
 	AppId *string `type:"string" required:"true"`
 
-	metadataDeleteAppInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteAppInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3728,11 +3608,7 @@ func (s DeleteAppInput) GoString() string {
 }
 
 type DeleteAppOutput struct {
-	metadataDeleteAppOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteAppOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3755,11 +3631,7 @@ type DeleteInstanceInput struct {
 	// The instance ID.
 	InstanceId *string `type:"string" required:"true"`
 
-	metadataDeleteInstanceInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteInstanceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3773,11 +3645,7 @@ func (s DeleteInstanceInput) GoString() string {
 }
 
 type DeleteInstanceOutput struct {
-	metadataDeleteInstanceOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3794,11 +3662,7 @@ type DeleteLayerInput struct {
 	// The layer ID.
 	LayerId *string `type:"string" required:"true"`
 
-	metadataDeleteLayerInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteLayerInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3812,11 +3676,7 @@ func (s DeleteLayerInput) GoString() string {
 }
 
 type DeleteLayerOutput struct {
-	metadataDeleteLayerOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteLayerOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3833,11 +3693,7 @@ type DeleteStackInput struct {
 	// The stack ID.
 	StackId *string `type:"string" required:"true"`
 
-	metadataDeleteStackInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteStackInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3851,11 +3707,7 @@ func (s DeleteStackInput) GoString() string {
 }
 
 type DeleteStackOutput struct {
-	metadataDeleteStackOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteStackOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3872,11 +3724,7 @@ type DeleteUserProfileInput struct {
 	// The user's IAM ARN.
 	IamUserArn *string `type:"string" required:"true"`
 
-	metadataDeleteUserProfileInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteUserProfileInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3890,11 +3738,7 @@ func (s DeleteUserProfileInput) GoString() string {
 }
 
 type DeleteUserProfileOutput struct {
-	metadataDeleteUserProfileOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteUserProfileOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3955,11 +3799,7 @@ type Deployment struct {
 	//  running successful failed
 	Status *string `type:"string"`
 
-	metadataDeployment `json:"-" xml:"-"`
-}
-
-type metadataDeployment struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4018,11 +3858,7 @@ type DeploymentCommand struct {
 	// the app.
 	Name *string `type:"string" required:"true" enum:"DeploymentCommandName"`
 
-	metadataDeploymentCommand `json:"-" xml:"-"`
-}
-
-type metadataDeploymentCommand struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4039,11 +3875,7 @@ type DeregisterEcsClusterInput struct {
 	// The cluster's ARN.
 	EcsClusterArn *string `type:"string" required:"true"`
 
-	metadataDeregisterEcsClusterInput `json:"-" xml:"-"`
-}
-
-type metadataDeregisterEcsClusterInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4057,11 +3889,7 @@ func (s DeregisterEcsClusterInput) GoString() string {
 }
 
 type DeregisterEcsClusterOutput struct {
-	metadataDeregisterEcsClusterOutput `json:"-" xml:"-"`
-}
-
-type metadataDeregisterEcsClusterOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4078,11 +3906,7 @@ type DeregisterElasticIpInput struct {
 	// The Elastic IP address.
 	ElasticIp *string `type:"string" required:"true"`
 
-	metadataDeregisterElasticIpInput `json:"-" xml:"-"`
-}
-
-type metadataDeregisterElasticIpInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4096,11 +3920,7 @@ func (s DeregisterElasticIpInput) GoString() string {
 }
 
 type DeregisterElasticIpOutput struct {
-	metadataDeregisterElasticIpOutput `json:"-" xml:"-"`
-}
-
-type metadataDeregisterElasticIpOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4117,11 +3937,7 @@ type DeregisterInstanceInput struct {
 	// The instance ID.
 	InstanceId *string `type:"string" required:"true"`
 
-	metadataDeregisterInstanceInput `json:"-" xml:"-"`
-}
-
-type metadataDeregisterInstanceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4135,11 +3951,7 @@ func (s DeregisterInstanceInput) GoString() string {
 }
 
 type DeregisterInstanceOutput struct {
-	metadataDeregisterInstanceOutput `json:"-" xml:"-"`
-}
-
-type metadataDeregisterInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4156,11 +3968,7 @@ type DeregisterRdsDbInstanceInput struct {
 	// The Amazon RDS instance's ARN.
 	RdsDbInstanceArn *string `type:"string" required:"true"`
 
-	metadataDeregisterRdsDbInstanceInput `json:"-" xml:"-"`
-}
-
-type metadataDeregisterRdsDbInstanceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4174,11 +3982,7 @@ func (s DeregisterRdsDbInstanceInput) GoString() string {
 }
 
 type DeregisterRdsDbInstanceOutput struct {
-	metadataDeregisterRdsDbInstanceOutput `json:"-" xml:"-"`
-}
-
-type metadataDeregisterRdsDbInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4197,11 +4001,7 @@ type DeregisterVolumeInput struct {
 	// EC2 volume ID.
 	VolumeId *string `type:"string" required:"true"`
 
-	metadataDeregisterVolumeInput `json:"-" xml:"-"`
-}
-
-type metadataDeregisterVolumeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4215,11 +4015,7 @@ func (s DeregisterVolumeInput) GoString() string {
 }
 
 type DeregisterVolumeOutput struct {
-	metadataDeregisterVolumeOutput `json:"-" xml:"-"`
-}
-
-type metadataDeregisterVolumeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4239,11 +4035,7 @@ type DescribeAgentVersionsInput struct {
 	// The stack ID.
 	StackId *string `type:"string"`
 
-	metadataDescribeAgentVersionsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAgentVersionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4263,11 +4055,7 @@ type DescribeAgentVersionsOutput struct {
 	// used by the console.
 	AgentVersions []*AgentVersion `type:"list"`
 
-	metadataDescribeAgentVersionsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAgentVersionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4290,11 +4078,7 @@ type DescribeAppsInput struct {
 	// of the apps in the specified stack.
 	StackId *string `type:"string"`
 
-	metadataDescribeAppsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAppsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4312,11 +4096,7 @@ type DescribeAppsOutput struct {
 	// An array of App objects that describe the specified apps.
 	Apps []*App `type:"list"`
 
-	metadataDescribeAppsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAppsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4343,11 +4123,7 @@ type DescribeCommandsInput struct {
 	// a description of the commands associated with the specified instance.
 	InstanceId *string `type:"string"`
 
-	metadataDescribeCommandsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeCommandsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4365,11 +4141,7 @@ type DescribeCommandsOutput struct {
 	// An array of Command objects that describe each of the specified commands.
 	Commands []*Command `type:"list"`
 
-	metadataDescribeCommandsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeCommandsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4396,11 +4168,7 @@ type DescribeDeploymentsInput struct {
 	// a description of the commands associated with the specified stack.
 	StackId *string `type:"string"`
 
-	metadataDescribeDeploymentsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDeploymentsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4418,11 +4186,7 @@ type DescribeDeploymentsOutput struct {
 	// An array of Deployment objects that describe the deployments.
 	Deployments []*Deployment `type:"list"`
 
-	metadataDescribeDeploymentsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDeploymentsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4457,11 +4221,7 @@ type DescribeEcsClustersInput struct {
 	// is registered with the stack.
 	StackId *string `type:"string"`
 
-	metadataDescribeEcsClustersInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEcsClustersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4485,11 +4245,7 @@ type DescribeEcsClustersOutput struct {
 	// request returned all of the remaining results, this parameter is set to null.
 	NextToken *string `type:"string"`
 
-	metadataDescribeEcsClustersOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEcsClustersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4516,11 +4272,7 @@ type DescribeElasticIpsInput struct {
 	// of the Elastic IP addresses that are registered with the specified stack.
 	StackId *string `type:"string"`
 
-	metadataDescribeElasticIpsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeElasticIpsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4538,11 +4290,7 @@ type DescribeElasticIpsOutput struct {
 	// An ElasticIps object that describes the specified Elastic IP addresses.
 	ElasticIps []*ElasticIp `type:"list"`
 
-	metadataDescribeElasticIpsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeElasticIpsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4563,11 +4311,7 @@ type DescribeElasticLoadBalancersInput struct {
 	// A stack ID. The action describes the stack's Elastic Load Balancing instances.
 	StackId *string `type:"string"`
 
-	metadataDescribeElasticLoadBalancersInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeElasticLoadBalancersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4586,11 +4330,7 @@ type DescribeElasticLoadBalancersOutput struct {
 	// Load Balancing instances.
 	ElasticLoadBalancers []*ElasticLoadBalancer `type:"list"`
 
-	metadataDescribeElasticLoadBalancersOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeElasticLoadBalancersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4617,11 +4357,7 @@ type DescribeInstancesInput struct {
 	// of the instances associated with the specified stack.
 	StackId *string `type:"string"`
 
-	metadataDescribeInstancesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeInstancesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4639,11 +4375,7 @@ type DescribeInstancesOutput struct {
 	// An array of Instance objects that describe the instances.
 	Instances []*Instance `type:"list"`
 
-	metadataDescribeInstancesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4665,11 +4397,7 @@ type DescribeLayersInput struct {
 	// The stack ID.
 	StackId *string `type:"string"`
 
-	metadataDescribeLayersInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeLayersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4687,11 +4415,7 @@ type DescribeLayersOutput struct {
 	// An array of Layer objects that describe the layers.
 	Layers []*Layer `type:"list"`
 
-	metadataDescribeLayersOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeLayersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4708,11 +4432,7 @@ type DescribeLoadBasedAutoScalingInput struct {
 	// An array of layer IDs.
 	LayerIds []*string `type:"list" required:"true"`
 
-	metadataDescribeLoadBasedAutoScalingInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeLoadBasedAutoScalingInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4731,11 +4451,7 @@ type DescribeLoadBasedAutoScalingOutput struct {
 	// layer's configuration.
 	LoadBasedAutoScalingConfigurations []*LoadBasedAutoScalingConfiguration `type:"list"`
 
-	metadataDescribeLoadBasedAutoScalingOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeLoadBasedAutoScalingOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4749,11 +4465,7 @@ func (s DescribeLoadBasedAutoScalingOutput) GoString() string {
 }
 
 type DescribeMyUserProfileInput struct {
-	metadataDescribeMyUserProfileInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeMyUserProfileInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4771,11 +4483,7 @@ type DescribeMyUserProfileOutput struct {
 	// A UserProfile object that describes the user's SSH information.
 	UserProfile *SelfUserProfile `type:"structure"`
 
-	metadataDescribeMyUserProfileOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeMyUserProfileOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4796,11 +4504,7 @@ type DescribePermissionsInput struct {
 	// The stack ID.
 	StackId *string `type:"string"`
 
-	metadataDescribePermissionsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribePermissionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4825,11 +4529,7 @@ type DescribePermissionsOutput struct {
 	// for the specified stack and IAM ARN.
 	Permissions []*Permission `type:"list"`
 
-	metadataDescribePermissionsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribePermissionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4855,11 +4555,7 @@ type DescribeRaidArraysInput struct {
 	// The stack ID.
 	StackId *string `type:"string"`
 
-	metadataDescribeRaidArraysInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeRaidArraysInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4877,11 +4573,7 @@ type DescribeRaidArraysOutput struct {
 	// A RaidArrays object that describes the specified RAID arrays.
 	RaidArrays []*RaidArray `type:"list"`
 
-	metadataDescribeRaidArraysOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeRaidArraysOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4902,11 +4594,7 @@ type DescribeRdsDbInstancesInput struct {
 	// descriptions of all registered Amazon RDS instances.
 	StackId *string `type:"string" required:"true"`
 
-	metadataDescribeRdsDbInstancesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeRdsDbInstancesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4924,11 +4612,7 @@ type DescribeRdsDbInstancesOutput struct {
 	// An a array of RdsDbInstance objects that describe the instances.
 	RdsDbInstances []*RdsDbInstance `type:"list"`
 
-	metadataDescribeRdsDbInstancesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeRdsDbInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4955,11 +4639,7 @@ type DescribeServiceErrorsInput struct {
 	// of the errors associated with the specified stack.
 	StackId *string `type:"string"`
 
-	metadataDescribeServiceErrorsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeServiceErrorsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4977,11 +4657,7 @@ type DescribeServiceErrorsOutput struct {
 	// An array of ServiceError objects that describe the specified service errors.
 	ServiceErrors []*ServiceError `type:"list"`
 
-	metadataDescribeServiceErrorsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeServiceErrorsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4998,11 +4674,7 @@ type DescribeStackProvisioningParametersInput struct {
 	// The stack ID
 	StackId *string `type:"string" required:"true"`
 
-	metadataDescribeStackProvisioningParametersInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeStackProvisioningParametersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5023,11 +4695,7 @@ type DescribeStackProvisioningParametersOutput struct {
 	// An embedded object that contains the provisioning parameters.
 	Parameters map[string]*string `type:"map"`
 
-	metadataDescribeStackProvisioningParametersOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeStackProvisioningParametersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5044,11 +4712,7 @@ type DescribeStackSummaryInput struct {
 	// The stack ID.
 	StackId *string `type:"string" required:"true"`
 
-	metadataDescribeStackSummaryInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeStackSummaryInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5066,11 +4730,7 @@ type DescribeStackSummaryOutput struct {
 	// A StackSummary object that contains the results.
 	StackSummary *StackSummary `type:"structure"`
 
-	metadataDescribeStackSummaryOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeStackSummaryOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5088,11 +4748,7 @@ type DescribeStacksInput struct {
 	// this parameter, DescribeStacks returns a description of every stack.
 	StackIds []*string `type:"list"`
 
-	metadataDescribeStacksInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeStacksInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5110,11 +4766,7 @@ type DescribeStacksOutput struct {
 	// An array of Stack objects that describe the stacks.
 	Stacks []*Stack `type:"list"`
 
-	metadataDescribeStacksOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeStacksOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5131,11 +4783,7 @@ type DescribeTimeBasedAutoScalingInput struct {
 	// An array of instance IDs.
 	InstanceIds []*string `type:"list" required:"true"`
 
-	metadataDescribeTimeBasedAutoScalingInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTimeBasedAutoScalingInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5154,11 +4802,7 @@ type DescribeTimeBasedAutoScalingOutput struct {
 	// for the specified instances.
 	TimeBasedAutoScalingConfigurations []*TimeBasedAutoScalingConfiguration `type:"list"`
 
-	metadataDescribeTimeBasedAutoScalingOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTimeBasedAutoScalingOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5175,11 +4819,7 @@ type DescribeUserProfilesInput struct {
 	// An array of IAM user ARNs that identify the users to be described.
 	IamUserArns []*string `type:"list"`
 
-	metadataDescribeUserProfilesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeUserProfilesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5197,11 +4837,7 @@ type DescribeUserProfilesOutput struct {
 	// A Users object that describes the specified users.
 	UserProfiles []*UserProfile `type:"list"`
 
-	metadataDescribeUserProfilesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeUserProfilesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5231,11 +4867,7 @@ type DescribeVolumesInput struct {
 	// of every volume.
 	VolumeIds []*string `type:"list"`
 
-	metadataDescribeVolumesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeVolumesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5253,11 +4885,7 @@ type DescribeVolumesOutput struct {
 	// An array of volume IDs.
 	Volumes []*Volume `type:"list"`
 
-	metadataDescribeVolumesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeVolumesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5278,11 +4906,7 @@ type DetachElasticLoadBalancerInput struct {
 	// to.
 	LayerId *string `type:"string" required:"true"`
 
-	metadataDetachElasticLoadBalancerInput `json:"-" xml:"-"`
-}
-
-type metadataDetachElasticLoadBalancerInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5296,11 +4920,7 @@ func (s DetachElasticLoadBalancerInput) GoString() string {
 }
 
 type DetachElasticLoadBalancerOutput struct {
-	metadataDetachElasticLoadBalancerOutput `json:"-" xml:"-"`
-}
-
-type metadataDetachElasticLoadBalancerOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5317,11 +4937,7 @@ type DisassociateElasticIpInput struct {
 	// The Elastic IP address.
 	ElasticIp *string `type:"string" required:"true"`
 
-	metadataDisassociateElasticIpInput `json:"-" xml:"-"`
-}
-
-type metadataDisassociateElasticIpInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5335,11 +4951,7 @@ func (s DisassociateElasticIpInput) GoString() string {
 }
 
 type DisassociateElasticIpOutput struct {
-	metadataDisassociateElasticIpOutput `json:"-" xml:"-"`
-}
-
-type metadataDisassociateElasticIpOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5373,11 +4985,7 @@ type EbsBlockDevice struct {
 	// IOPS (SSD) volumes, and standard for Magnetic volumes.
 	VolumeType *string `type:"string" enum:"VolumeType"`
 
-	metadataEbsBlockDevice `json:"-" xml:"-"`
-}
-
-type metadataEbsBlockDevice struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5404,11 +5012,7 @@ type EcsCluster struct {
 	// The stack ID.
 	StackId *string `type:"string"`
 
-	metadataEcsCluster `json:"-" xml:"-"`
-}
-
-type metadataEcsCluster struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5438,11 +5042,7 @@ type ElasticIp struct {
 	// The AWS region. For more information, see Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html).
 	Region *string `type:"string"`
 
-	metadataElasticIp `json:"-" xml:"-"`
-}
-
-type metadataElasticIp struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5485,11 +5085,7 @@ type ElasticLoadBalancer struct {
 	// The VPC ID.
 	VpcId *string `type:"string"`
 
-	metadataElasticLoadBalancer `json:"-" xml:"-"`
-}
-
-type metadataElasticLoadBalancer struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5521,11 +5117,7 @@ type EnvironmentVariable struct {
 	// be printable.
 	Value *string `type:"string" required:"true"`
 
-	metadataEnvironmentVariable `json:"-" xml:"-"`
-}
-
-type metadataEnvironmentVariable struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5542,11 +5134,7 @@ type GetHostnameSuggestionInput struct {
 	// The layer ID.
 	LayerId *string `type:"string" required:"true"`
 
-	metadataGetHostnameSuggestionInput `json:"-" xml:"-"`
-}
-
-type metadataGetHostnameSuggestionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5567,11 +5155,7 @@ type GetHostnameSuggestionOutput struct {
 	// The layer ID.
 	LayerId *string `type:"string"`
 
-	metadataGetHostnameSuggestionOutput `json:"-" xml:"-"`
-}
-
-type metadataGetHostnameSuggestionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5594,11 +5178,7 @@ type GrantAccessInput struct {
 	// will be logged out.
 	ValidForInMinutes *int64 `min:"60" type:"integer"`
 
-	metadataGrantAccessInput `json:"-" xml:"-"`
-}
-
-type metadataGrantAccessInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5617,11 +5197,7 @@ type GrantAccessOutput struct {
 	// instance by RDP clients, such as the Microsoft Remote Desktop Connection.
 	TemporaryCredential *TemporaryCredential `type:"structure"`
 
-	metadataGrantAccessOutput `json:"-" xml:"-"`
-}
-
-type metadataGrantAccessOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5770,11 +5346,7 @@ type Instance struct {
 	// The instance's virtualization type: paravirtual or hvm.
 	VirtualizationType *string `type:"string" enum:"VirtualizationType"`
 
-	metadataInstance `json:"-" xml:"-"`
-}
-
-type metadataInstance struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5796,11 +5368,7 @@ type InstanceIdentity struct {
 	// A signature that can be used to verify the document's accuracy and authenticity.
 	Signature *string `type:"string"`
 
-	metadataInstanceIdentity `json:"-" xml:"-"`
-}
-
-type metadataInstanceIdentity struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5872,11 +5440,7 @@ type InstancesCount struct {
 	// The number of instances in the Unassigning state.
 	Unassigning *int64 `type:"integer"`
 
-	metadataInstancesCount `json:"-" xml:"-"`
-}
-
-type metadataInstancesCount struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5982,11 +5546,7 @@ type Layer struct {
 	// A VolumeConfigurations object that describes the layer's Amazon EBS volumes.
 	VolumeConfigurations []*VolumeConfiguration `type:"list"`
 
-	metadataLayer `json:"-" xml:"-"`
-}
-
-type metadataLayer struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6004,11 +5564,7 @@ type LifecycleEventConfiguration struct {
 	// A ShutdownEventConfiguration object that specifies the Shutdown event configuration.
 	Shutdown *ShutdownEventConfiguration `type:"structure"`
 
-	metadataLifecycleEventConfiguration `json:"-" xml:"-"`
-}
-
-type metadataLifecycleEventConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6037,11 +5593,7 @@ type LoadBasedAutoScalingConfiguration struct {
 	// which defines how and when AWS OpsWorks increases the number of instances.
 	UpScaling *AutoScalingThresholds `type:"structure"`
 
-	metadataLoadBasedAutoScalingConfiguration `json:"-" xml:"-"`
-}
-
-type metadataLoadBasedAutoScalingConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6075,11 +5627,7 @@ type Permission struct {
 	// A stack ID.
 	StackId *string `type:"string"`
 
-	metadataPermission `json:"-" xml:"-"`
-}
-
-type metadataPermission struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6134,11 +5682,7 @@ type RaidArray struct {
 	// The volume type, standard or PIOPS.
 	VolumeType *string `type:"string"`
 
-	metadataRaidArray `json:"-" xml:"-"`
-}
-
-type metadataRaidArray struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6182,11 +5726,7 @@ type RdsDbInstance struct {
 	// The ID of the stack that the instance is registered with.
 	StackId *string `type:"string"`
 
-	metadataRdsDbInstance `json:"-" xml:"-"`
-}
-
-type metadataRdsDbInstance struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6203,11 +5743,7 @@ type RebootInstanceInput struct {
 	// The instance ID.
 	InstanceId *string `type:"string" required:"true"`
 
-	metadataRebootInstanceInput `json:"-" xml:"-"`
-}
-
-type metadataRebootInstanceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6221,11 +5757,7 @@ func (s RebootInstanceInput) GoString() string {
 }
 
 type RebootInstanceOutput struct {
-	metadataRebootInstanceOutput `json:"-" xml:"-"`
-}
-
-type metadataRebootInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6265,11 +5797,7 @@ type Recipes struct {
 	// An array of custom recipe names to be run following a undeploy event.
 	Undeploy []*string `type:"list"`
 
-	metadataRecipes `json:"-" xml:"-"`
-}
-
-type metadataRecipes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6289,11 +5817,7 @@ type RegisterEcsClusterInput struct {
 	// The stack ID.
 	StackId *string `type:"string" required:"true"`
 
-	metadataRegisterEcsClusterInput `json:"-" xml:"-"`
-}
-
-type metadataRegisterEcsClusterInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6311,11 +5835,7 @@ type RegisterEcsClusterOutput struct {
 	// The cluster's ARN.
 	EcsClusterArn *string `type:"string"`
 
-	metadataRegisterEcsClusterOutput `json:"-" xml:"-"`
-}
-
-type metadataRegisterEcsClusterOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6335,11 +5855,7 @@ type RegisterElasticIpInput struct {
 	// The stack ID.
 	StackId *string `type:"string" required:"true"`
 
-	metadataRegisterElasticIpInput `json:"-" xml:"-"`
-}
-
-type metadataRegisterElasticIpInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6357,11 +5873,7 @@ type RegisterElasticIpOutput struct {
 	// The Elastic IP address.
 	ElasticIp *string `type:"string"`
 
-	metadataRegisterElasticIpOutput `json:"-" xml:"-"`
-}
-
-type metadataRegisterElasticIpOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6397,11 +5909,7 @@ type RegisterInstanceInput struct {
 	// The ID of the stack that the instance is to be registered with.
 	StackId *string `type:"string" required:"true"`
 
-	metadataRegisterInstanceInput `json:"-" xml:"-"`
-}
-
-type metadataRegisterInstanceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6419,11 +5927,7 @@ type RegisterInstanceOutput struct {
 	// The registered instance's AWS OpsWorks ID.
 	InstanceId *string `type:"string"`
 
-	metadataRegisterInstanceOutput `json:"-" xml:"-"`
-}
-
-type metadataRegisterInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6449,11 +5953,7 @@ type RegisterRdsDbInstanceInput struct {
 	// The stack ID.
 	StackId *string `type:"string" required:"true"`
 
-	metadataRegisterRdsDbInstanceInput `json:"-" xml:"-"`
-}
-
-type metadataRegisterRdsDbInstanceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6467,11 +5967,7 @@ func (s RegisterRdsDbInstanceInput) GoString() string {
 }
 
 type RegisterRdsDbInstanceOutput struct {
-	metadataRegisterRdsDbInstanceOutput `json:"-" xml:"-"`
-}
-
-type metadataRegisterRdsDbInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6491,11 +5987,7 @@ type RegisterVolumeInput struct {
 	// The stack ID.
 	StackId *string `type:"string" required:"true"`
 
-	metadataRegisterVolumeInput `json:"-" xml:"-"`
-}
-
-type metadataRegisterVolumeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6513,11 +6005,7 @@ type RegisterVolumeOutput struct {
 	// The volume ID.
 	VolumeId *string `type:"string"`
 
-	metadataRegisterVolumeOutput `json:"-" xml:"-"`
-}
-
-type metadataRegisterVolumeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6541,11 +6029,7 @@ type ReportedOs struct {
 	// The operating system version.
 	Version *string `type:"string"`
 
-	metadataReportedOs `json:"-" xml:"-"`
-}
-
-type metadataReportedOs struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6572,11 +6056,7 @@ type SelfUserProfile struct {
 	// The user's SSH user name.
 	SshUsername *string `type:"string"`
 
-	metadataSelfUserProfile `json:"-" xml:"-"`
-}
-
-type metadataSelfUserProfile struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6609,11 +6089,7 @@ type ServiceError struct {
 	// The error type.
 	Type *string `type:"string"`
 
-	metadataServiceError `json:"-" xml:"-"`
-}
-
-type metadataServiceError struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6643,11 +6119,7 @@ type SetLoadBasedAutoScalingInput struct {
 	// OpsWorks starts a specified number of instances.
 	UpScaling *AutoScalingThresholds `type:"structure"`
 
-	metadataSetLoadBasedAutoScalingInput `json:"-" xml:"-"`
-}
-
-type metadataSetLoadBasedAutoScalingInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6661,11 +6133,7 @@ func (s SetLoadBasedAutoScalingInput) GoString() string {
 }
 
 type SetLoadBasedAutoScalingOutput struct {
-	metadataSetLoadBasedAutoScalingOutput `json:"-" xml:"-"`
-}
-
-type metadataSetLoadBasedAutoScalingOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6698,11 +6166,7 @@ type SetPermissionInput struct {
 	// The stack ID.
 	StackId *string `type:"string" required:"true"`
 
-	metadataSetPermissionInput `json:"-" xml:"-"`
-}
-
-type metadataSetPermissionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6716,11 +6180,7 @@ func (s SetPermissionInput) GoString() string {
 }
 
 type SetPermissionOutput struct {
-	metadataSetPermissionOutput `json:"-" xml:"-"`
-}
-
-type metadataSetPermissionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6740,11 +6200,7 @@ type SetTimeBasedAutoScalingInput struct {
 	// The instance ID.
 	InstanceId *string `type:"string" required:"true"`
 
-	metadataSetTimeBasedAutoScalingInput `json:"-" xml:"-"`
-}
-
-type metadataSetTimeBasedAutoScalingInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6758,11 +6214,7 @@ func (s SetTimeBasedAutoScalingInput) GoString() string {
 }
 
 type SetTimeBasedAutoScalingOutput struct {
-	metadataSetTimeBasedAutoScalingOutput `json:"-" xml:"-"`
-}
-
-type metadataSetTimeBasedAutoScalingOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6785,11 +6237,7 @@ type ShutdownEventConfiguration struct {
 	// event before shutting down an instance.
 	ExecutionTimeout *int64 `type:"integer"`
 
-	metadataShutdownEventConfiguration `json:"-" xml:"-"`
-}
-
-type metadataShutdownEventConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6841,11 +6289,7 @@ type Source struct {
 	// to the user name.
 	Username *string `type:"string"`
 
-	metadataSource `json:"-" xml:"-"`
-}
-
-type metadataSource struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6870,11 +6314,7 @@ type SslConfiguration struct {
 	// The private key; the contents of the certificate's domain.kex file.
 	PrivateKey *string `type:"string" required:"true"`
 
-	metadataSslConfiguration `json:"-" xml:"-"`
-}
-
-type metadataSslConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6976,11 +6416,7 @@ type Stack struct {
 	// The VPC ID; applicable only if the stack is running in a VPC.
 	VpcId *string `type:"string"`
 
-	metadataStack `json:"-" xml:"-"`
-}
-
-type metadataStack struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7002,11 +6438,7 @@ type StackConfigurationManager struct {
 	// default value is 11.4.
 	Version *string `type:"string"`
 
-	metadataStackConfigurationManager `json:"-" xml:"-"`
-}
-
-type metadataStackConfigurationManager struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7039,11 +6471,7 @@ type StackSummary struct {
 	// The stack ID.
 	StackId *string `type:"string"`
 
-	metadataStackSummary `json:"-" xml:"-"`
-}
-
-type metadataStackSummary struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7060,11 +6488,7 @@ type StartInstanceInput struct {
 	// The instance ID.
 	InstanceId *string `type:"string" required:"true"`
 
-	metadataStartInstanceInput `json:"-" xml:"-"`
-}
-
-type metadataStartInstanceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7078,11 +6502,7 @@ func (s StartInstanceInput) GoString() string {
 }
 
 type StartInstanceOutput struct {
-	metadataStartInstanceOutput `json:"-" xml:"-"`
-}
-
-type metadataStartInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7099,11 +6519,7 @@ type StartStackInput struct {
 	// The stack ID.
 	StackId *string `type:"string" required:"true"`
 
-	metadataStartStackInput `json:"-" xml:"-"`
-}
-
-type metadataStartStackInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7117,11 +6533,7 @@ func (s StartStackInput) GoString() string {
 }
 
 type StartStackOutput struct {
-	metadataStartStackOutput `json:"-" xml:"-"`
-}
-
-type metadataStartStackOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7138,11 +6550,7 @@ type StopInstanceInput struct {
 	// The instance ID.
 	InstanceId *string `type:"string" required:"true"`
 
-	metadataStopInstanceInput `json:"-" xml:"-"`
-}
-
-type metadataStopInstanceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7156,11 +6564,7 @@ func (s StopInstanceInput) GoString() string {
 }
 
 type StopInstanceOutput struct {
-	metadataStopInstanceOutput `json:"-" xml:"-"`
-}
-
-type metadataStopInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7177,11 +6581,7 @@ type StopStackInput struct {
 	// The stack ID.
 	StackId *string `type:"string" required:"true"`
 
-	metadataStopStackInput `json:"-" xml:"-"`
-}
-
-type metadataStopStackInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7195,11 +6595,7 @@ func (s StopStackInput) GoString() string {
 }
 
 type StopStackOutput struct {
-	metadataStopStackOutput `json:"-" xml:"-"`
-}
-
-type metadataStopStackOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7230,11 +6626,7 @@ type TemporaryCredential struct {
 	// logged out.
 	ValidForInMinutes *int64 `type:"integer"`
 
-	metadataTemporaryCredential `json:"-" xml:"-"`
-}
-
-type metadataTemporaryCredential struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7255,11 +6647,7 @@ type TimeBasedAutoScalingConfiguration struct {
 	// The instance ID.
 	InstanceId *string `type:"string"`
 
-	metadataTimeBasedAutoScalingConfiguration `json:"-" xml:"-"`
-}
-
-type metadataTimeBasedAutoScalingConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7276,11 +6664,7 @@ type UnassignInstanceInput struct {
 	// The instance ID.
 	InstanceId *string `type:"string" required:"true"`
 
-	metadataUnassignInstanceInput `json:"-" xml:"-"`
-}
-
-type metadataUnassignInstanceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7294,11 +6678,7 @@ func (s UnassignInstanceInput) GoString() string {
 }
 
 type UnassignInstanceOutput struct {
-	metadataUnassignInstanceOutput `json:"-" xml:"-"`
-}
-
-type metadataUnassignInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7315,11 +6695,7 @@ type UnassignVolumeInput struct {
 	// The volume ID.
 	VolumeId *string `type:"string" required:"true"`
 
-	metadataUnassignVolumeInput `json:"-" xml:"-"`
-}
-
-type metadataUnassignVolumeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7333,11 +6709,7 @@ func (s UnassignVolumeInput) GoString() string {
 }
 
 type UnassignVolumeOutput struct {
-	metadataUnassignVolumeOutput `json:"-" xml:"-"`
-}
-
-type metadataUnassignVolumeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7398,11 +6770,7 @@ type UpdateAppInput struct {
 	// The app type.
 	Type *string `type:"string" enum:"AppType"`
 
-	metadataUpdateAppInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateAppInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7416,11 +6784,7 @@ func (s UpdateAppInput) GoString() string {
 }
 
 type UpdateAppOutput struct {
-	metadataUpdateAppOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateAppOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7440,11 +6804,7 @@ type UpdateElasticIpInput struct {
 	// The new name.
 	Name *string `type:"string"`
 
-	metadataUpdateElasticIpInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateElasticIpInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7458,11 +6818,7 @@ func (s UpdateElasticIpInput) GoString() string {
 }
 
 type UpdateElasticIpOutput struct {
-	metadataUpdateElasticIpOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateElasticIpOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7556,11 +6912,7 @@ type UpdateInstanceInput struct {
 	// The instance's Amazon EC2 key name.
 	SshKeyName *string `type:"string"`
 
-	metadataUpdateInstanceInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateInstanceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7574,11 +6926,7 @@ func (s UpdateInstanceInput) GoString() string {
 }
 
 type UpdateInstanceOutput struct {
-	metadataUpdateInstanceOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7659,11 +7007,7 @@ type UpdateLayerInput struct {
 	// A VolumeConfigurations object that describes the layer's Amazon EBS volumes.
 	VolumeConfigurations []*VolumeConfiguration `type:"list"`
 
-	metadataUpdateLayerInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateLayerInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7677,11 +7021,7 @@ func (s UpdateLayerInput) GoString() string {
 }
 
 type UpdateLayerOutput struct {
-	metadataUpdateLayerOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateLayerOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7698,11 +7038,7 @@ type UpdateMyUserProfileInput struct {
 	// The user's SSH public key.
 	SshPublicKey *string `type:"string"`
 
-	metadataUpdateMyUserProfileInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateMyUserProfileInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7716,11 +7052,7 @@ func (s UpdateMyUserProfileInput) GoString() string {
 }
 
 type UpdateMyUserProfileOutput struct {
-	metadataUpdateMyUserProfileOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateMyUserProfileOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7743,11 +7075,7 @@ type UpdateRdsDbInstanceInput struct {
 	// The Amazon RDS instance's ARN.
 	RdsDbInstanceArn *string `type:"string" required:"true"`
 
-	metadataUpdateRdsDbInstanceInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateRdsDbInstanceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7761,11 +7089,7 @@ func (s UpdateRdsDbInstanceInput) GoString() string {
 }
 
 type UpdateRdsDbInstanceOutput struct {
-	metadataUpdateRdsDbInstanceOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateRdsDbInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7909,11 +7233,7 @@ type UpdateStackInput struct {
 	// more information, see Create a New Stack (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-creating.html).
 	UseOpsworksSecurityGroups *bool `type:"boolean"`
 
-	metadataUpdateStackInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateStackInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7927,11 +7247,7 @@ func (s UpdateStackInput) GoString() string {
 }
 
 type UpdateStackOutput struct {
-	metadataUpdateStackOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateStackOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7962,11 +7278,7 @@ type UpdateUserProfileInput struct {
 	// IAM user name.
 	SshUsername *string `type:"string"`
 
-	metadataUpdateUserProfileInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateUserProfileInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7980,11 +7292,7 @@ func (s UpdateUserProfileInput) GoString() string {
 }
 
 type UpdateUserProfileOutput struct {
-	metadataUpdateUserProfileOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateUserProfileOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8007,11 +7315,7 @@ type UpdateVolumeInput struct {
 	// The volume ID.
 	VolumeId *string `type:"string" required:"true"`
 
-	metadataUpdateVolumeInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateVolumeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8025,11 +7329,7 @@ func (s UpdateVolumeInput) GoString() string {
 }
 
 type UpdateVolumeOutput struct {
-	metadataUpdateVolumeOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateVolumeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8060,11 +7360,7 @@ type UserProfile struct {
 	// The user's SSH user name.
 	SshUsername *string `type:"string"`
 
-	metadataUserProfile `json:"-" xml:"-"`
-}
-
-type metadataUserProfile struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8120,11 +7416,7 @@ type Volume struct {
 	// The volume type, standard or PIOPS.
 	VolumeType *string `type:"string"`
 
-	metadataVolume `json:"-" xml:"-"`
-}
-
-type metadataVolume struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8160,11 +7452,7 @@ type VolumeConfiguration struct {
 	// (SSD)
 	VolumeType *string `type:"string"`
 
-	metadataVolumeConfiguration `json:"-" xml:"-"`
-}
-
-type metadataVolumeConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8213,11 +7501,7 @@ type WeeklyAutoScalingSchedule struct {
 	// The schedule for Wednesday.
 	Wednesday map[string]*string `type:"map"`
 
-	metadataWeeklyAutoScalingSchedule `json:"-" xml:"-"`
-}
-
-type metadataWeeklyAutoScalingSchedule struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

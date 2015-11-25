@@ -2197,11 +2197,7 @@ type AccountWithRestoreAccess struct {
 	// The identifier of an AWS customer account authorized to restore a snapshot.
 	AccountId *string `type:"string"`
 
-	metadataAccountWithRestoreAccess `json:"-" xml:"-"`
-}
-
-type metadataAccountWithRestoreAccess struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2232,11 +2228,7 @@ type AuthorizeClusterSecurityGroupIngressInput struct {
 	//  Example: 111122223333
 	EC2SecurityGroupOwnerId *string `type:"string"`
 
-	metadataAuthorizeClusterSecurityGroupIngressInput `json:"-" xml:"-"`
-}
-
-type metadataAuthorizeClusterSecurityGroupIngressInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2253,11 +2245,7 @@ type AuthorizeClusterSecurityGroupIngressOutput struct {
 	// Describes a security group.
 	ClusterSecurityGroup *ClusterSecurityGroup `type:"structure"`
 
-	metadataAuthorizeClusterSecurityGroupIngressOutput `json:"-" xml:"-"`
-}
-
-type metadataAuthorizeClusterSecurityGroupIngressOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2283,11 +2271,7 @@ type AuthorizeSnapshotAccessInput struct {
 	// The identifier of the snapshot the account is authorized to restore.
 	SnapshotIdentifier *string `type:"string" required:"true"`
 
-	metadataAuthorizeSnapshotAccessInput `json:"-" xml:"-"`
-}
-
-type metadataAuthorizeSnapshotAccessInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2304,11 +2288,7 @@ type AuthorizeSnapshotAccessOutput struct {
 	// Describes a snapshot.
 	Snapshot *Snapshot `type:"structure"`
 
-	metadataAuthorizeSnapshotAccessOutput `json:"-" xml:"-"`
-}
-
-type metadataAuthorizeSnapshotAccessOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2326,11 +2306,7 @@ type AvailabilityZone struct {
 	// The name of the availability zone.
 	Name *string `type:"string"`
 
-	metadataAvailabilityZone `json:"-" xml:"-"`
-}
-
-type metadataAvailabilityZone struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2460,11 +2436,7 @@ type Cluster struct {
 	// VPC.
 	VpcSecurityGroups []*VpcSecurityGroupMembership `locationNameList:"VpcSecurityGroup" type:"list"`
 
-	metadataCluster `json:"-" xml:"-"`
-}
-
-type metadataCluster struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2488,11 +2460,7 @@ type ClusterNode struct {
 	// The public IP address of a node within a cluster.
 	PublicIPAddress *string `type:"string"`
 
-	metadataClusterNode `json:"-" xml:"-"`
-}
-
-type metadataClusterNode struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2520,11 +2488,7 @@ type ClusterParameterGroup struct {
 	// The list of tags for the cluster parameter group.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataClusterParameterGroup `json:"-" xml:"-"`
-}
-
-type metadataClusterParameterGroup struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2549,11 +2513,7 @@ type ClusterParameterGroupNameMessage struct {
 	// of an associated cluster.
 	ParameterGroupStatus *string `type:"string"`
 
-	metadataClusterParameterGroupNameMessage `json:"-" xml:"-"`
-}
-
-type metadataClusterParameterGroupNameMessage struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2581,11 +2541,7 @@ type ClusterParameterGroupStatus struct {
 	// The name of the cluster parameter group.
 	ParameterGroupName *string `type:"string"`
 
-	metadataClusterParameterGroupStatus `json:"-" xml:"-"`
-}
-
-type metadataClusterParameterGroupStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2622,11 +2578,7 @@ type ClusterParameterStatus struct {
 	// The name of the parameter.
 	ParameterName *string `type:"string"`
 
-	metadataClusterParameterStatus `json:"-" xml:"-"`
-}
-
-type metadataClusterParameterStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2658,11 +2610,7 @@ type ClusterSecurityGroup struct {
 	// The list of tags for the cluster security group.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataClusterSecurityGroup `json:"-" xml:"-"`
-}
-
-type metadataClusterSecurityGroup struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2683,11 +2631,7 @@ type ClusterSecurityGroupMembership struct {
 	// The status of the cluster security group.
 	Status *string `type:"string"`
 
-	metadataClusterSecurityGroupMembership `json:"-" xml:"-"`
-}
-
-type metadataClusterSecurityGroupMembership struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2714,11 +2658,7 @@ type ClusterSnapshotCopyStatus struct {
 	// The name of the snapshot copy grant.
 	SnapshotCopyGrantName *string `type:"string"`
 
-	metadataClusterSnapshotCopyStatus `json:"-" xml:"-"`
-}
-
-type metadataClusterSnapshotCopyStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2752,11 +2692,7 @@ type ClusterSubnetGroup struct {
 	// The VPC ID of the cluster subnet group.
 	VpcId *string `type:"string"`
 
-	metadataClusterSubnetGroup `json:"-" xml:"-"`
-}
-
-type metadataClusterSubnetGroup struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2781,11 +2717,7 @@ type ClusterVersion struct {
 	// The description of the cluster version.
 	Description *string `type:"string"`
 
-	metadataClusterVersion `json:"-" xml:"-"`
-}
-
-type metadataClusterVersion struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2825,11 +2757,7 @@ type CopyClusterSnapshotInput struct {
 	// that is making the request.
 	TargetSnapshotIdentifier *string `type:"string" required:"true"`
 
-	metadataCopyClusterSnapshotInput `json:"-" xml:"-"`
-}
-
-type metadataCopyClusterSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2846,11 +2774,7 @@ type CopyClusterSnapshotOutput struct {
 	// Describes a snapshot.
 	Snapshot *Snapshot `type:"structure"`
 
-	metadataCopyClusterSnapshotOutput `json:"-" xml:"-"`
-}
-
-type metadataCopyClusterSnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3077,11 +3001,7 @@ type CreateClusterInput struct {
 	// Default: The default VPC security group is associated with the cluster.
 	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
 
-	metadataCreateClusterInput `json:"-" xml:"-"`
-}
-
-type metadataCreateClusterInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3098,11 +3018,7 @@ type CreateClusterOutput struct {
 	// Describes a cluster.
 	Cluster *Cluster `type:"structure"`
 
-	metadataCreateClusterOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateClusterOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3143,11 +3059,7 @@ type CreateClusterParameterGroupInput struct {
 	// A list of tag instances.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataCreateClusterParameterGroupInput `json:"-" xml:"-"`
-}
-
-type metadataCreateClusterParameterGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3164,11 +3076,7 @@ type CreateClusterParameterGroupOutput struct {
 	// Describes a parameter group.
 	ClusterParameterGroup *ClusterParameterGroup `type:"structure"`
 
-	metadataCreateClusterParameterGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateClusterParameterGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3199,11 +3107,7 @@ type CreateClusterSecurityGroupInput struct {
 	// A list of tag instances.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataCreateClusterSecurityGroupInput `json:"-" xml:"-"`
-}
-
-type metadataCreateClusterSecurityGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3220,11 +3124,7 @@ type CreateClusterSecurityGroupOutput struct {
 	// Describes a security group.
 	ClusterSecurityGroup *ClusterSecurityGroup `type:"structure"`
 
-	metadataCreateClusterSecurityGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateClusterSecurityGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3254,11 +3154,7 @@ type CreateClusterSnapshotInput struct {
 	// A list of tag instances.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataCreateClusterSnapshotInput `json:"-" xml:"-"`
-}
-
-type metadataCreateClusterSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3275,11 +3171,7 @@ type CreateClusterSnapshotOutput struct {
 	// Describes a snapshot.
 	Snapshot *Snapshot `type:"structure"`
 
-	metadataCreateClusterSnapshotOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateClusterSnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3313,11 +3205,7 @@ type CreateClusterSubnetGroupInput struct {
 	// A list of tag instances.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataCreateClusterSubnetGroupInput `json:"-" xml:"-"`
-}
-
-type metadataCreateClusterSubnetGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3334,11 +3222,7 @@ type CreateClusterSubnetGroupOutput struct {
 	// Describes a subnet group.
 	ClusterSubnetGroup *ClusterSubnetGroup `type:"structure"`
 
-	metadataCreateClusterSubnetGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateClusterSubnetGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3406,11 +3290,7 @@ type CreateEventSubscriptionInput struct {
 	// A list of tag instances.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataCreateEventSubscriptionInput `json:"-" xml:"-"`
-}
-
-type metadataCreateEventSubscriptionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3426,11 +3306,7 @@ func (s CreateEventSubscriptionInput) GoString() string {
 type CreateEventSubscriptionOutput struct {
 	EventSubscription *EventSubscription `type:"structure"`
 
-	metadataCreateEventSubscriptionOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateEventSubscriptionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3451,11 +3327,7 @@ type CreateHsmClientCertificateInput struct {
 	// A list of tag instances.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataCreateHsmClientCertificateInput `json:"-" xml:"-"`
-}
-
-type metadataCreateHsmClientCertificateInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3474,11 +3346,7 @@ type CreateHsmClientCertificateOutput struct {
 	// cluster to encrypt data files.
 	HsmClientCertificate *HsmClientCertificate `type:"structure"`
 
-	metadataCreateHsmClientCertificateOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateHsmClientCertificateOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3515,11 +3383,7 @@ type CreateHsmConfigurationInput struct {
 	// A list of tag instances.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataCreateHsmConfigurationInput `json:"-" xml:"-"`
-}
-
-type metadataCreateHsmConfigurationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3538,11 +3402,7 @@ type CreateHsmConfigurationOutput struct {
 	// HSM where they can store database encryption keys.
 	HsmConfiguration *HsmConfiguration `type:"structure"`
 
-	metadataCreateHsmConfigurationOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateHsmConfigurationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3575,11 +3435,7 @@ type CreateSnapshotCopyGrantInput struct {
 	// A list of tag instances.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataCreateSnapshotCopyGrantInput `json:"-" xml:"-"`
-}
-
-type metadataCreateSnapshotCopyGrantInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3602,11 +3458,7 @@ type CreateSnapshotCopyGrantOutput struct {
 	// in the Amazon Redshift Cluster Management Guide.
 	SnapshotCopyGrant *SnapshotCopyGrant `type:"structure"`
 
-	metadataCreateSnapshotCopyGrantOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateSnapshotCopyGrantOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3632,11 +3484,7 @@ type CreateTagsInput struct {
 	// "Key"="owner","Value"="admin" "Key"="environment","Value"="test" "Key"="version","Value"="1.0".
 	Tags []*Tag `locationNameList:"Tag" type:"list" required:"true"`
 
-	metadataCreateTagsInput `json:"-" xml:"-"`
-}
-
-type metadataCreateTagsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3650,11 +3498,7 @@ func (s CreateTagsInput) GoString() string {
 }
 
 type CreateTagsOutput struct {
-	metadataCreateTagsOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateTagsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3683,11 +3527,7 @@ type DefaultClusterParameters struct {
 	// The list of cluster default parameters.
 	Parameters []*Parameter `locationNameList:"Parameter" type:"list"`
 
-	metadataDefaultClusterParameters `json:"-" xml:"-"`
-}
-
-type metadataDefaultClusterParameters struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3728,11 +3568,7 @@ type DeleteClusterInput struct {
 	// is false. Default: false
 	SkipFinalClusterSnapshot *bool `type:"boolean"`
 
-	metadataDeleteClusterInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteClusterInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3749,11 +3585,7 @@ type DeleteClusterOutput struct {
 	// Describes a cluster.
 	Cluster *Cluster `type:"structure"`
 
-	metadataDeleteClusterOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteClusterOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3775,11 +3607,7 @@ type DeleteClusterParameterGroupInput struct {
 	// a default cluster parameter group.
 	ParameterGroupName *string `type:"string" required:"true"`
 
-	metadataDeleteClusterParameterGroupInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteClusterParameterGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3793,11 +3621,7 @@ func (s DeleteClusterParameterGroupInput) GoString() string {
 }
 
 type DeleteClusterParameterGroupOutput struct {
-	metadataDeleteClusterParameterGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteClusterParameterGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3814,11 +3638,7 @@ type DeleteClusterSecurityGroupInput struct {
 	// The name of the cluster security group to be deleted.
 	ClusterSecurityGroupName *string `type:"string" required:"true"`
 
-	metadataDeleteClusterSecurityGroupInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteClusterSecurityGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3832,11 +3652,7 @@ func (s DeleteClusterSecurityGroupInput) GoString() string {
 }
 
 type DeleteClusterSecurityGroupOutput struct {
-	metadataDeleteClusterSecurityGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteClusterSecurityGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3863,11 +3679,7 @@ type DeleteClusterSnapshotInput struct {
 	// state.
 	SnapshotIdentifier *string `type:"string" required:"true"`
 
-	metadataDeleteClusterSnapshotInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteClusterSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3884,11 +3696,7 @@ type DeleteClusterSnapshotOutput struct {
 	// Describes a snapshot.
 	Snapshot *Snapshot `type:"structure"`
 
-	metadataDeleteClusterSnapshotOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteClusterSnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3905,11 +3713,7 @@ type DeleteClusterSubnetGroupInput struct {
 	// The name of the cluster subnet group name to be deleted.
 	ClusterSubnetGroupName *string `type:"string" required:"true"`
 
-	metadataDeleteClusterSubnetGroupInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteClusterSubnetGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3923,11 +3727,7 @@ func (s DeleteClusterSubnetGroupInput) GoString() string {
 }
 
 type DeleteClusterSubnetGroupOutput struct {
-	metadataDeleteClusterSubnetGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteClusterSubnetGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3944,11 +3744,7 @@ type DeleteEventSubscriptionInput struct {
 	// The name of the Amazon Redshift event notification subscription to be deleted.
 	SubscriptionName *string `type:"string" required:"true"`
 
-	metadataDeleteEventSubscriptionInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteEventSubscriptionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3962,11 +3758,7 @@ func (s DeleteEventSubscriptionInput) GoString() string {
 }
 
 type DeleteEventSubscriptionOutput struct {
-	metadataDeleteEventSubscriptionOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteEventSubscriptionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3983,11 +3775,7 @@ type DeleteHsmClientCertificateInput struct {
 	// The identifier of the HSM client certificate to be deleted.
 	HsmClientCertificateIdentifier *string `type:"string" required:"true"`
 
-	metadataDeleteHsmClientCertificateInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteHsmClientCertificateInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4001,11 +3789,7 @@ func (s DeleteHsmClientCertificateInput) GoString() string {
 }
 
 type DeleteHsmClientCertificateOutput struct {
-	metadataDeleteHsmClientCertificateOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteHsmClientCertificateOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4022,11 +3806,7 @@ type DeleteHsmConfigurationInput struct {
 	// The identifier of the Amazon Redshift HSM configuration to be deleted.
 	HsmConfigurationIdentifier *string `type:"string" required:"true"`
 
-	metadataDeleteHsmConfigurationInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteHsmConfigurationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4040,11 +3820,7 @@ func (s DeleteHsmConfigurationInput) GoString() string {
 }
 
 type DeleteHsmConfigurationOutput struct {
-	metadataDeleteHsmConfigurationOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteHsmConfigurationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4062,11 +3838,7 @@ type DeleteSnapshotCopyGrantInput struct {
 	// The name of the snapshot copy grant to delete.
 	SnapshotCopyGrantName *string `type:"string" required:"true"`
 
-	metadataDeleteSnapshotCopyGrantInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteSnapshotCopyGrantInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4080,11 +3852,7 @@ func (s DeleteSnapshotCopyGrantInput) GoString() string {
 }
 
 type DeleteSnapshotCopyGrantOutput struct {
-	metadataDeleteSnapshotCopyGrantOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteSnapshotCopyGrantOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4106,11 +3874,7 @@ type DeleteTagsInput struct {
 	// The tag key that you want to delete.
 	TagKeys []*string `locationNameList:"TagKey" type:"list" required:"true"`
 
-	metadataDeleteTagsInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteTagsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4124,11 +3888,7 @@ func (s DeleteTagsInput) GoString() string {
 }
 
 type DeleteTagsOutput struct {
-	metadataDeleteTagsOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteTagsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4180,11 +3940,7 @@ type DescribeClusterParameterGroupsInput struct {
 	// both of these tag values associated with them.
 	TagValues []*string `locationNameList:"TagValue" type:"list"`
 
-	metadataDescribeClusterParameterGroupsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeClusterParameterGroupsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4210,11 +3966,7 @@ type DescribeClusterParameterGroupsOutput struct {
 	// parameter group.
 	ParameterGroups []*ClusterParameterGroup `locationNameList:"ClusterParameterGroup" type:"list"`
 
-	metadataDescribeClusterParameterGroupsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeClusterParameterGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4258,11 +4010,7 @@ type DescribeClusterParametersInput struct {
 	// Valid Values: user | engine-default
 	Source *string `type:"string"`
 
-	metadataDescribeClusterParametersInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeClusterParametersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4288,11 +4036,7 @@ type DescribeClusterParametersOutput struct {
 	// cluster parameter group.
 	Parameters []*Parameter `locationNameList:"Parameter" type:"list"`
 
-	metadataDescribeClusterParametersOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeClusterParametersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4351,11 +4095,7 @@ type DescribeClusterSecurityGroupsInput struct {
 	// both of these tag values associated with them.
 	TagValues []*string `locationNameList:"TagValue" type:"list"`
 
-	metadataDescribeClusterSecurityGroupsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeClusterSecurityGroupsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4380,11 +4120,7 @@ type DescribeClusterSecurityGroupsOutput struct {
 	// records have been retrieved for the request.
 	Marker *string `type:"string"`
 
-	metadataDescribeClusterSecurityGroupsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeClusterSecurityGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4464,11 +4200,7 @@ type DescribeClusterSnapshotsInput struct {
 	// these tag values associated with them.
 	TagValues []*string `locationNameList:"TagValue" type:"list"`
 
-	metadataDescribeClusterSnapshotsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeClusterSnapshotsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4493,11 +4225,7 @@ type DescribeClusterSnapshotsOutput struct {
 	// A list of Snapshot instances.
 	Snapshots []*Snapshot `locationNameList:"Snapshot" type:"list"`
 
-	metadataDescribeClusterSnapshotsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeClusterSnapshotsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4548,11 +4276,7 @@ type DescribeClusterSubnetGroupsInput struct {
 	// of these tag values associated with them.
 	TagValues []*string `locationNameList:"TagValue" type:"list"`
 
-	metadataDescribeClusterSubnetGroupsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeClusterSubnetGroupsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4577,11 +4301,7 @@ type DescribeClusterSubnetGroupsOutput struct {
 	// records have been retrieved for the request.
 	Marker *string `type:"string"`
 
-	metadataDescribeClusterSubnetGroupsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeClusterSubnetGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4625,11 +4345,7 @@ type DescribeClusterVersionsInput struct {
 	// Constraints: minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
-	metadataDescribeClusterVersionsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeClusterVersionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4654,11 +4370,7 @@ type DescribeClusterVersionsOutput struct {
 	// records have been retrieved for the request.
 	Marker *string `type:"string"`
 
-	metadataDescribeClusterVersionsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeClusterVersionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4714,11 +4426,7 @@ type DescribeClustersInput struct {
 	// values associated with them.
 	TagValues []*string `locationNameList:"TagValue" type:"list"`
 
-	metadataDescribeClustersInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeClustersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4743,11 +4451,7 @@ type DescribeClustersOutput struct {
 	// records have been retrieved for the request.
 	Marker *string `type:"string"`
 
-	metadataDescribeClustersOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeClustersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4782,11 +4486,7 @@ type DescribeDefaultClusterParametersInput struct {
 	// The name of the cluster parameter group family.
 	ParameterGroupFamily *string `type:"string" required:"true"`
 
-	metadataDescribeDefaultClusterParametersInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDefaultClusterParametersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4803,11 +4503,7 @@ type DescribeDefaultClusterParametersOutput struct {
 	// Describes the default cluster parameters for a parameter group family.
 	DefaultClusterParameters *DefaultClusterParameters `type:"structure"`
 
-	metadataDescribeDefaultClusterParametersOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDefaultClusterParametersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4827,11 +4523,7 @@ type DescribeEventCategoriesInput struct {
 	//  Valid values: cluster, snapshot, parameter group, and security group.
 	SourceType *string `type:"string"`
 
-	metadataDescribeEventCategoriesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEventCategoriesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4848,11 +4540,7 @@ type DescribeEventCategoriesOutput struct {
 	// A list of event categories descriptions.
 	EventCategoriesMapList []*EventCategoriesMap `locationNameList:"EventCategoriesMap" type:"list"`
 
-	metadataDescribeEventCategoriesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEventCategoriesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4887,11 +4575,7 @@ type DescribeEventSubscriptionsInput struct {
 	// The name of the Amazon Redshift event notification subscription to be described.
 	SubscriptionName *string `type:"string"`
 
-	metadataDescribeEventSubscriptionsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEventSubscriptionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4915,11 +4599,7 @@ type DescribeEventSubscriptionsOutput struct {
 	// records have been retrieved for the request.
 	Marker *string `type:"string"`
 
-	metadataDescribeEventSubscriptionsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEventSubscriptionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4998,11 +4678,7 @@ type DescribeEventsInput struct {
 	// Example: 2009-07-08T18:00Z
 	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataDescribeEventsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEventsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5027,11 +4703,7 @@ type DescribeEventsOutput struct {
 	// records have been retrieved for the request.
 	Marker *string `type:"string"`
 
-	metadataDescribeEventsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEventsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5084,11 +4756,7 @@ type DescribeHsmClientCertificatesInput struct {
 	// that have either or both of these tag values associated with them.
 	TagValues []*string `locationNameList:"TagValue" type:"list"`
 
-	metadataDescribeHsmClientCertificatesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeHsmClientCertificatesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5114,11 +4782,7 @@ type DescribeHsmClientCertificatesOutput struct {
 	// records have been retrieved for the request.
 	Marker *string `type:"string"`
 
-	metadataDescribeHsmClientCertificatesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeHsmClientCertificatesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5171,11 +4835,7 @@ type DescribeHsmConfigurationsInput struct {
 	// or both of these tag values associated with them.
 	TagValues []*string `locationNameList:"TagValue" type:"list"`
 
-	metadataDescribeHsmConfigurationsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeHsmConfigurationsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5199,11 +4859,7 @@ type DescribeHsmConfigurationsOutput struct {
 	// records have been retrieved for the request.
 	Marker *string `type:"string"`
 
-	metadataDescribeHsmConfigurationsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeHsmConfigurationsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5222,11 +4878,7 @@ type DescribeLoggingStatusInput struct {
 	// Example: examplecluster
 	ClusterIdentifier *string `type:"string" required:"true"`
 
-	metadataDescribeLoggingStatusInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeLoggingStatusInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5270,11 +4922,7 @@ type DescribeOrderableClusterOptionsInput struct {
 	// offerings matching the specified node type.
 	NodeType *string `type:"string"`
 
-	metadataDescribeOrderableClusterOptionsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeOrderableClusterOptionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5300,11 +4948,7 @@ type DescribeOrderableClusterOptionsOutput struct {
 	// options for the Cluster.
 	OrderableClusterOptions []*OrderableClusterOption `locationNameList:"OrderableClusterOption" type:"list"`
 
-	metadataDescribeOrderableClusterOptionsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeOrderableClusterOptionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5339,11 +4983,7 @@ type DescribeReservedNodeOfferingsInput struct {
 	// The unique identifier for the offering.
 	ReservedNodeOfferingId *string `type:"string"`
 
-	metadataDescribeReservedNodeOfferingsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeReservedNodeOfferingsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5368,11 +5008,7 @@ type DescribeReservedNodeOfferingsOutput struct {
 	// A list of reserved node offerings.
 	ReservedNodeOfferings []*ReservedNodeOffering `locationNameList:"ReservedNodeOffering" type:"list"`
 
-	metadataDescribeReservedNodeOfferingsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeReservedNodeOfferingsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5406,11 +5042,7 @@ type DescribeReservedNodesInput struct {
 	// Identifier for the node reservation.
 	ReservedNodeId *string `type:"string"`
 
-	metadataDescribeReservedNodesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeReservedNodesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5435,11 +5067,7 @@ type DescribeReservedNodesOutput struct {
 	// The list of reserved nodes.
 	ReservedNodes []*ReservedNode `locationNameList:"ReservedNode" type:"list"`
 
-	metadataDescribeReservedNodesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeReservedNodesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5460,11 +5088,7 @@ type DescribeResizeInput struct {
 	// are returned.
 	ClusterIdentifier *string `type:"string" required:"true"`
 
-	metadataDescribeResizeInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeResizeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5538,11 +5162,7 @@ type DescribeResizeOutput struct {
 	// resize operation began.
 	TotalResizeDataInMegaBytes *int64 `type:"long"`
 
-	metadataDescribeResizeOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeResizeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5597,11 +5217,7 @@ type DescribeSnapshotCopyGrantsInput struct {
 	// associated with them.
 	TagValues []*string `locationNameList:"TagValue" type:"list"`
 
-	metadataDescribeSnapshotCopyGrantsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSnapshotCopyGrantsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5630,11 +5246,7 @@ type DescribeSnapshotCopyGrantsOutput struct {
 	// The list of snapshot copy grants.
 	SnapshotCopyGrants []*SnapshotCopyGrant `locationNameList:"SnapshotCopyGrant" type:"list"`
 
-	metadataDescribeSnapshotCopyGrantsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSnapshotCopyGrantsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5692,11 +5304,7 @@ type DescribeTagsInput struct {
 	// associated with them.
 	TagValues []*string `locationNameList:"TagValue" type:"list"`
 
-	metadataDescribeTagsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTagsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5721,11 +5329,7 @@ type DescribeTagsOutput struct {
 	// A list of tags with their associated resources.
 	TaggedResources []*TaggedResource `locationNameList:"TaggedResource" type:"list"`
 
-	metadataDescribeTagsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTagsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5744,11 +5348,7 @@ type DisableLoggingInput struct {
 	// Example: examplecluster
 	ClusterIdentifier *string `type:"string" required:"true"`
 
-	metadataDisableLoggingInput `json:"-" xml:"-"`
-}
-
-type metadataDisableLoggingInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5769,11 +5369,7 @@ type DisableSnapshotCopyInput struct {
 	// snapshot copy enabled.
 	ClusterIdentifier *string `type:"string" required:"true"`
 
-	metadataDisableSnapshotCopyInput `json:"-" xml:"-"`
-}
-
-type metadataDisableSnapshotCopyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5790,11 +5386,7 @@ type DisableSnapshotCopyOutput struct {
 	// Describes a cluster.
 	Cluster *Cluster `type:"structure"`
 
-	metadataDisableSnapshotCopyOutput `json:"-" xml:"-"`
-}
-
-type metadataDisableSnapshotCopyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5822,11 +5414,7 @@ type EC2SecurityGroup struct {
 	// The list of tags for the EC2 security group.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataEC2SecurityGroup `json:"-" xml:"-"`
-}
-
-type metadataEC2SecurityGroup struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5847,11 +5435,7 @@ type ElasticIpStatus struct {
 	// Describes the status of the elastic IP (EIP) address.
 	Status *string `type:"string"`
 
-	metadataElasticIpStatus `json:"-" xml:"-"`
-}
-
-type metadataElasticIpStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5887,11 +5471,7 @@ type EnableLoggingInput struct {
 	// codes for invalid characters are:  x00 to x20 x22 x27 x5c x7f or larger
 	S3KeyPrefix *string `type:"string"`
 
-	metadataEnableLoggingInput `json:"-" xml:"-"`
-}
-
-type metadataEnableLoggingInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5930,11 +5510,7 @@ type EnableSnapshotCopyInput struct {
 	// cluster are copied to the destination region.
 	SnapshotCopyGrantName *string `type:"string"`
 
-	metadataEnableSnapshotCopyInput `json:"-" xml:"-"`
-}
-
-type metadataEnableSnapshotCopyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5951,11 +5527,7 @@ type EnableSnapshotCopyOutput struct {
 	// Describes a cluster.
 	Cluster *Cluster `type:"structure"`
 
-	metadataEnableSnapshotCopyOutput `json:"-" xml:"-"`
-}
-
-type metadataEnableSnapshotCopyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5976,11 +5548,7 @@ type Endpoint struct {
 	// The port that the database engine is listening on.
 	Port *int64 `type:"integer"`
 
-	metadataEndpoint `json:"-" xml:"-"`
-}
-
-type metadataEndpoint struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6020,11 +5588,7 @@ type Event struct {
 	// The source type for this event.
 	SourceType *string `type:"string" enum:"SourceType"`
 
-	metadataEvent `json:"-" xml:"-"`
-}
-
-type metadataEvent struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6045,11 +5609,7 @@ type EventCategoriesMap struct {
 	// the returned categories belong to.
 	SourceType *string `type:"string"`
 
-	metadataEventCategoriesMap `json:"-" xml:"-"`
-}
-
-type metadataEventCategoriesMap struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6077,11 +5637,7 @@ type EventInfoMap struct {
 	// Values: ERROR, INFO
 	Severity *string `type:"string"`
 
-	metadataEventInfoMap `json:"-" xml:"-"`
-}
-
-type metadataEventInfoMap struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6146,11 +5702,7 @@ type EventSubscription struct {
 	// The list of tags for the event subscription.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataEventSubscription `json:"-" xml:"-"`
-}
-
-type metadataEventSubscription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6177,11 +5729,7 @@ type HsmClientCertificate struct {
 	// The list of tags for the HSM client certificate.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataHsmClientCertificate `json:"-" xml:"-"`
-}
-
-type metadataHsmClientCertificate struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6214,11 +5762,7 @@ type HsmConfiguration struct {
 	// The list of tags for the HSM configuration.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataHsmConfiguration `json:"-" xml:"-"`
-}
-
-type metadataHsmConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6246,11 +5790,7 @@ type HsmStatus struct {
 	// Values: active, applying
 	Status *string `type:"string"`
 
-	metadataHsmStatus `json:"-" xml:"-"`
-}
-
-type metadataHsmStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6274,11 +5814,7 @@ type IPRange struct {
 	// The list of tags for the IP range.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataIPRange `json:"-" xml:"-"`
-}
-
-type metadataIPRange struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6311,11 +5847,7 @@ type LoggingStatus struct {
 	// The prefix applied to the log file names.
 	S3KeyPrefix *string `type:"string"`
 
-	metadataLoggingStatus `json:"-" xml:"-"`
-}
-
-type metadataLoggingStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6484,11 +6016,7 @@ type ModifyClusterInput struct {
 	// the cluster.
 	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
 
-	metadataModifyClusterInput `json:"-" xml:"-"`
-}
-
-type metadataModifyClusterInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6505,11 +6033,7 @@ type ModifyClusterOutput struct {
 	// Describes a cluster.
 	Cluster *Cluster `type:"structure"`
 
-	metadataModifyClusterOutput `json:"-" xml:"-"`
-}
-
-type metadataModifyClusterOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6536,11 +6060,7 @@ type ModifyClusterParameterGroupInput struct {
 	// name-value pairs in the wlm_json_configuration parameter.
 	Parameters []*Parameter `locationNameList:"Parameter" type:"list" required:"true"`
 
-	metadataModifyClusterParameterGroupInput `json:"-" xml:"-"`
-}
-
-type metadataModifyClusterParameterGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6564,11 +6084,7 @@ type ModifyClusterSubnetGroupInput struct {
 	// single request.
 	SubnetIds []*string `locationNameList:"SubnetIdentifier" type:"list" required:"true"`
 
-	metadataModifyClusterSubnetGroupInput `json:"-" xml:"-"`
-}
-
-type metadataModifyClusterSubnetGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6585,11 +6101,7 @@ type ModifyClusterSubnetGroupOutput struct {
 	// Describes a subnet group.
 	ClusterSubnetGroup *ClusterSubnetGroup `type:"structure"`
 
-	metadataModifyClusterSubnetGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataModifyClusterSubnetGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6647,11 +6159,7 @@ type ModifyEventSubscriptionInput struct {
 	// The name of the modified Amazon Redshift event notification subscription.
 	SubscriptionName *string `type:"string" required:"true"`
 
-	metadataModifyEventSubscriptionInput `json:"-" xml:"-"`
-}
-
-type metadataModifyEventSubscriptionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6667,11 +6175,7 @@ func (s ModifyEventSubscriptionInput) GoString() string {
 type ModifyEventSubscriptionOutput struct {
 	EventSubscription *EventSubscription `type:"structure"`
 
-	metadataModifyEventSubscriptionOutput `json:"-" xml:"-"`
-}
-
-type metadataModifyEventSubscriptionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6703,11 +6207,7 @@ type ModifySnapshotCopyRetentionPeriodInput struct {
 	//  Constraints: Must be at least 1 and no more than 35.
 	RetentionPeriod *int64 `type:"integer" required:"true"`
 
-	metadataModifySnapshotCopyRetentionPeriodInput `json:"-" xml:"-"`
-}
-
-type metadataModifySnapshotCopyRetentionPeriodInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6724,11 +6224,7 @@ type ModifySnapshotCopyRetentionPeriodOutput struct {
 	// Describes a cluster.
 	Cluster *Cluster `type:"structure"`
 
-	metadataModifySnapshotCopyRetentionPeriodOutput `json:"-" xml:"-"`
-}
-
-type metadataModifySnapshotCopyRetentionPeriodOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6755,11 +6251,7 @@ type OrderableClusterOption struct {
 	// The node type for the orderable cluster.
 	NodeType *string `type:"string"`
 
-	metadataOrderableClusterOption `json:"-" xml:"-"`
-}
-
-type metadataOrderableClusterOption struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6802,11 +6294,7 @@ type Parameter struct {
 	// The source of the parameter value, such as "engine-default" or "user".
 	Source *string `type:"string"`
 
-	metadataParameter `json:"-" xml:"-"`
-}
-
-type metadataParameter struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6843,11 +6331,7 @@ type PendingModifiedValues struct {
 	// The pending or in-progress change of the number of nodes in the cluster.
 	NumberOfNodes *int64 `type:"integer"`
 
-	metadataPendingModifiedValues `json:"-" xml:"-"`
-}
-
-type metadataPendingModifiedValues struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6869,11 +6353,7 @@ type PurchaseReservedNodeOfferingInput struct {
 	// The unique identifier of the reserved node offering you want to purchase.
 	ReservedNodeOfferingId *string `type:"string" required:"true"`
 
-	metadataPurchaseReservedNodeOfferingInput `json:"-" xml:"-"`
-}
-
-type metadataPurchaseReservedNodeOfferingInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6891,11 +6371,7 @@ type PurchaseReservedNodeOfferingOutput struct {
 	// API to obtain the available reserved node offerings.
 	ReservedNode *ReservedNode `type:"structure"`
 
-	metadataPurchaseReservedNodeOfferingOutput `json:"-" xml:"-"`
-}
-
-type metadataPurchaseReservedNodeOfferingOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6912,11 +6388,7 @@ type RebootClusterInput struct {
 	// The cluster identifier.
 	ClusterIdentifier *string `type:"string" required:"true"`
 
-	metadataRebootClusterInput `json:"-" xml:"-"`
-}
-
-type metadataRebootClusterInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6933,11 +6405,7 @@ type RebootClusterOutput struct {
 	// Describes a cluster.
 	Cluster *Cluster `type:"structure"`
 
-	metadataRebootClusterOutput `json:"-" xml:"-"`
-}
-
-type metadataRebootClusterOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6959,11 +6427,7 @@ type RecurringCharge struct {
 	// The frequency at which the recurring charge amount is applied.
 	RecurringChargeFrequency *string `type:"string"`
 
-	metadataRecurringCharge `json:"-" xml:"-"`
-}
-
-type metadataRecurringCharge struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7024,11 +6488,7 @@ type ReservedNode struct {
 	// The hourly rate Amazon Redshift charges you for this reserved node.
 	UsagePrice *float64 `type:"double"`
 
-	metadataReservedNode `json:"-" xml:"-"`
-}
-
-type metadataReservedNode struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7072,11 +6532,7 @@ type ReservedNodeOffering struct {
 	// is running.
 	UsagePrice *float64 `type:"double"`
 
-	metadataReservedNodeOffering `json:"-" xml:"-"`
-}
-
-type metadataReservedNodeOffering struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7105,11 +6561,7 @@ type ResetClusterParameterGroupInput struct {
 	// Default: true
 	ResetAllParameters *bool `type:"boolean"`
 
-	metadataResetClusterParameterGroupInput `json:"-" xml:"-"`
-}
-
-type metadataResetClusterParameterGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7258,11 +6710,7 @@ type RestoreFromClusterSnapshotInput struct {
 	//  VPC security groups only apply to clusters in VPCs.
 	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
 
-	metadataRestoreFromClusterSnapshotInput `json:"-" xml:"-"`
-}
-
-type metadataRestoreFromClusterSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7279,11 +6727,7 @@ type RestoreFromClusterSnapshotOutput struct {
 	// Describes a cluster.
 	Cluster *Cluster `type:"structure"`
 
-	metadataRestoreFromClusterSnapshotOutput `json:"-" xml:"-"`
-}
-
-type metadataRestoreFromClusterSnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7321,11 +6765,7 @@ type RestoreStatus struct {
 	// or failed.
 	Status *string `type:"string"`
 
-	metadataRestoreStatus `json:"-" xml:"-"`
-}
-
-type metadataRestoreStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7361,11 +6801,7 @@ type RevokeClusterSecurityGroupIngressInput struct {
 	// Example: 111122223333
 	EC2SecurityGroupOwnerId *string `type:"string"`
 
-	metadataRevokeClusterSecurityGroupIngressInput `json:"-" xml:"-"`
-}
-
-type metadataRevokeClusterSecurityGroupIngressInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7382,11 +6818,7 @@ type RevokeClusterSecurityGroupIngressOutput struct {
 	// Describes a security group.
 	ClusterSecurityGroup *ClusterSecurityGroup `type:"structure"`
 
-	metadataRevokeClusterSecurityGroupIngressOutput `json:"-" xml:"-"`
-}
-
-type metadataRevokeClusterSecurityGroupIngressOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7412,11 +6844,7 @@ type RevokeSnapshotAccessInput struct {
 	// The identifier of the snapshot that the account can no longer access.
 	SnapshotIdentifier *string `type:"string" required:"true"`
 
-	metadataRevokeSnapshotAccessInput `json:"-" xml:"-"`
-}
-
-type metadataRevokeSnapshotAccessInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7433,11 +6861,7 @@ type RevokeSnapshotAccessOutput struct {
 	// Describes a snapshot.
 	Snapshot *Snapshot `type:"structure"`
 
-	metadataRevokeSnapshotAccessOutput `json:"-" xml:"-"`
-}
-
-type metadataRevokeSnapshotAccessOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7457,11 +6881,7 @@ type RotateEncryptionKeyInput struct {
 	//  Constraints: Must be the name of valid cluster that has encryption enabled.
 	ClusterIdentifier *string `type:"string" required:"true"`
 
-	metadataRotateEncryptionKeyInput `json:"-" xml:"-"`
-}
-
-type metadataRotateEncryptionKeyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7478,11 +6898,7 @@ type RotateEncryptionKeyOutput struct {
 	// Describes a cluster.
 	Cluster *Cluster `type:"structure"`
 
-	metadataRotateEncryptionKeyOutput `json:"-" xml:"-"`
-}
-
-type metadataRotateEncryptionKeyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7597,11 +7013,7 @@ type Snapshot struct {
 	// VPC. Otherwise, this field is not in the output.
 	VpcId *string `type:"string"`
 
-	metadataSnapshot `json:"-" xml:"-"`
-}
-
-type metadataSnapshot struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7632,11 +7044,7 @@ type SnapshotCopyGrant struct {
 	// A list of tag instances.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataSnapshotCopyGrant `json:"-" xml:"-"`
-}
-
-type metadataSnapshotCopyGrant struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7660,11 +7068,7 @@ type Subnet struct {
 	// The status of the subnet.
 	SubnetStatus *string `type:"string"`
 
-	metadataSubnet `json:"-" xml:"-"`
-}
-
-type metadataSubnet struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7685,11 +7089,7 @@ type Tag struct {
 	// The value for the resource tag.
 	Value *string `type:"string"`
 
-	metadataTag `json:"-" xml:"-"`
-}
-
-type metadataTag struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7720,11 +7120,7 @@ type TaggedResource struct {
 	// The tag for the resource.
 	Tag *Tag `type:"structure"`
 
-	metadataTaggedResource `json:"-" xml:"-"`
-}
-
-type metadataTaggedResource struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7743,11 +7139,7 @@ type VpcSecurityGroupMembership struct {
 
 	VpcSecurityGroupId *string `type:"string"`
 
-	metadataVpcSecurityGroupMembership `json:"-" xml:"-"`
-}
-
-type metadataVpcSecurityGroupMembership struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

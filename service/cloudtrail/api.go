@@ -380,11 +380,7 @@ type AddTagsInput struct {
 	// Contains a list of CloudTrail tags, up to a limit of 10.
 	TagsList []*Tag `type:"list"`
 
-	metadataAddTagsInput `json:"-" xml:"-"`
-}
-
-type metadataAddTagsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -400,11 +396,7 @@ func (s AddTagsInput) GoString() string {
 // Returns the objects or data listed below if successful. Otherwise, returns
 // an error.
 type AddTagsOutput struct {
-	metadataAddTagsOutput `json:"-" xml:"-"`
-}
-
-type metadataAddTagsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -479,11 +471,7 @@ type CreateTrailInput struct {
 	// file delivery. The maximum length is 256 characters.
 	SnsTopicName *string `type:"string"`
 
-	metadataCreateTrailInput `json:"-" xml:"-"`
-}
-
-type metadataCreateTrailInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -539,11 +527,7 @@ type CreateTrailOutput struct {
 	// Specifies the ARN of the trail that was created.
 	TrailARN *string `type:"string"`
 
-	metadataCreateTrailOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateTrailOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -562,11 +546,7 @@ type DeleteTrailInput struct {
 	// format of a trail ARN is arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail.
 	Name *string `type:"string" required:"true"`
 
-	metadataDeleteTrailInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteTrailInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -582,11 +562,7 @@ func (s DeleteTrailInput) GoString() string {
 // Returns the objects or data listed below if successful. Otherwise, returns
 // an error.
 type DeleteTrailOutput struct {
-	metadataDeleteTrailOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteTrailOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -607,11 +583,7 @@ type DescribeTrailsInput struct {
 	// is returned.
 	TrailNameList []*string `locationName:"trailNameList" type:"list"`
 
-	metadataDescribeTrailsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTrailsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -630,11 +602,7 @@ type DescribeTrailsOutput struct {
 	// The list of trail objects.
 	TrailList []*Trail `locationName:"trailList" type:"list"`
 
-	metadataDescribeTrailsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTrailsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -669,11 +637,7 @@ type Event struct {
 	// returned.
 	Username *string `type:"string"`
 
-	metadataEvent `json:"-" xml:"-"`
-}
-
-type metadataEvent struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -692,11 +656,7 @@ type GetTrailStatusInput struct {
 	// status. The format of a trail ARN is arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail.
 	Name *string `type:"string" required:"true"`
 
-	metadataGetTrailStatusInput `json:"-" xml:"-"`
-}
-
-type metadataGetTrailStatusInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -788,11 +748,7 @@ type GetTrailStatusOutput struct {
 	// This field is deprecated.
 	TimeLoggingStopped *string `type:"string"`
 
-	metadataGetTrailStatusOutput `json:"-" xml:"-"`
-}
-
-type metadataGetTrailStatusOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -819,11 +775,7 @@ type ListPublicKeysInput struct {
 	// and the current public key is returned.
 	StartTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	metadataListPublicKeysInput `json:"-" xml:"-"`
-}
-
-type metadataListPublicKeysInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -847,11 +799,7 @@ type ListPublicKeysOutput struct {
 	// The returned public keys may have validity time ranges that overlap.
 	PublicKeyList []*PublicKey `type:"list"`
 
-	metadataListPublicKeysOutput `json:"-" xml:"-"`
-}
-
-type metadataListPublicKeysOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -873,11 +821,7 @@ type ListTagsInput struct {
 	// limit of 20 ARNs. The format of a trail ARN is arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail.
 	ResourceIdList []*string `type:"list" required:"true"`
 
-	metadataListTagsInput `json:"-" xml:"-"`
-}
-
-type metadataListTagsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -899,11 +843,7 @@ type ListTagsOutput struct {
 	// A list of resource tags.
 	ResourceTagList []*ResourceTag `type:"list"`
 
-	metadataListTagsOutput `json:"-" xml:"-"`
-}
-
-type metadataListTagsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -924,11 +864,7 @@ type LookupAttribute struct {
 	// Specifies a value for the specified AttributeKey.
 	AttributeValue *string `type:"string" required:"true"`
 
-	metadataLookupAttribute `json:"-" xml:"-"`
-}
-
-type metadataLookupAttribute struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -968,11 +904,7 @@ type LookupEventsInput struct {
 	// error is returned.
 	StartTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	metadataLookupEventsInput `json:"-" xml:"-"`
-}
-
-type metadataLookupEventsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -999,11 +931,7 @@ type LookupEventsOutput struct {
 	// of 'root', the call with NextToken should include those same parameters.
 	NextToken *string `type:"string"`
 
-	metadataLookupEventsOutput `json:"-" xml:"-"`
-}
-
-type metadataLookupEventsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1030,11 +958,7 @@ type PublicKey struct {
 	// The DER encoded public key value in PKCS#1 format.
 	Value []byte `type:"blob"`
 
-	metadataPublicKey `json:"-" xml:"-"`
-}
-
-type metadataPublicKey struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1056,11 +980,7 @@ type RemoveTagsInput struct {
 	// Specifies a list of tags to be removed.
 	TagsList []*Tag `type:"list"`
 
-	metadataRemoveTagsInput `json:"-" xml:"-"`
-}
-
-type metadataRemoveTagsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1076,11 +996,7 @@ func (s RemoveTagsInput) GoString() string {
 // Returns the objects or data listed below if successful. Otherwise, returns
 // an error.
 type RemoveTagsOutput struct {
-	metadataRemoveTagsOutput `json:"-" xml:"-"`
-}
-
-type metadataRemoveTagsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1108,11 +1024,7 @@ type Resource struct {
 	// Types Supported for Event Lookup (http://docs.aws.amazon.com/awscloudtrail/latest/userguide/lookup_supported_resourcetypes.html).
 	ResourceType *string `type:"string"`
 
-	metadataResource `json:"-" xml:"-"`
-}
-
-type metadataResource struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1133,11 +1045,7 @@ type ResourceTag struct {
 	// A list of tags.
 	TagsList []*Tag `type:"list"`
 
-	metadataResourceTag `json:"-" xml:"-"`
-}
-
-type metadataResourceTag struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1156,11 +1064,7 @@ type StartLoggingInput struct {
 	// logs AWS API calls. The format of a trail ARN is arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail.
 	Name *string `type:"string" required:"true"`
 
-	metadataStartLoggingInput `json:"-" xml:"-"`
-}
-
-type metadataStartLoggingInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1176,11 +1080,7 @@ func (s StartLoggingInput) GoString() string {
 // Returns the objects or data listed below if successful. Otherwise, returns
 // an error.
 type StartLoggingOutput struct {
-	metadataStartLoggingOutput `json:"-" xml:"-"`
-}
-
-type metadataStartLoggingOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1200,11 +1100,7 @@ type StopLoggingInput struct {
 	// will stop logging AWS API calls. The format of a trail ARN is arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail.
 	Name *string `type:"string" required:"true"`
 
-	metadataStopLoggingInput `json:"-" xml:"-"`
-}
-
-type metadataStopLoggingInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1220,11 +1116,7 @@ func (s StopLoggingInput) GoString() string {
 // Returns the objects or data listed below if successful. Otherwise, returns
 // an error.
 type StopLoggingOutput struct {
-	metadataStopLoggingOutput `json:"-" xml:"-"`
-}
-
-type metadataStopLoggingOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1247,11 +1139,7 @@ type Tag struct {
 	// 256 Unicode characters.
 	Value *string `type:"string"`
 
-	metadataTag `json:"-" xml:"-"`
-}
-
-type metadataTag struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1308,11 +1196,7 @@ type Trail struct {
 	// The Amazon Resource Name of the trail. The TrailARN format is arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail.
 	TrailARN *string `type:"string"`
 
-	metadataTrail `json:"-" xml:"-"`
-}
-
-type metadataTrail struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1388,11 +1272,7 @@ type UpdateTrailInput struct {
 	// file delivery. The maximum length is 256 characters.
 	SnsTopicName *string `type:"string"`
 
-	metadataUpdateTrailInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateTrailInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1448,11 +1328,7 @@ type UpdateTrailOutput struct {
 	// Specifies the ARN of the trail that was updated.
 	TrailARN *string `type:"string"`
 
-	metadataUpdateTrailOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateTrailOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

@@ -660,11 +660,7 @@ type ActivatePipelineInput struct {
 	// from the last completed execution.
 	StartTimestamp *time.Time `locationName:"startTimestamp" type:"timestamp" timestampFormat:"unix"`
 
-	metadataActivatePipelineInput `json:"-" xml:"-"`
-}
-
-type metadataActivatePipelineInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -679,11 +675,7 @@ func (s ActivatePipelineInput) GoString() string {
 
 // Contains the output of ActivatePipeline.
 type ActivatePipelineOutput struct {
-	metadataActivatePipelineOutput `json:"-" xml:"-"`
-}
-
-type metadataActivatePipelineOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -704,11 +696,7 @@ type AddTagsInput struct {
 	// The tags to add, as key/value pairs.
 	Tags []*Tag `locationName:"tags" type:"list" required:"true"`
 
-	metadataAddTagsInput `json:"-" xml:"-"`
-}
-
-type metadataAddTagsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -723,11 +711,7 @@ func (s AddTagsInput) GoString() string {
 
 // Contains the output of AddTags.
 type AddTagsOutput struct {
-	metadataAddTagsOutput `json:"-" xml:"-"`
-}
-
-type metadataAddTagsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -769,11 +753,7 @@ type CreatePipelineInput struct {
 	// the AWS account or IAM user credentials.
 	UniqueId *string `locationName:"uniqueId" min:"1" type:"string" required:"true"`
 
-	metadataCreatePipelineInput `json:"-" xml:"-"`
-}
-
-type metadataCreatePipelineInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -792,11 +772,7 @@ type CreatePipelineOutput struct {
 	// df-06372391ZG65EXAMPLE.
 	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 
-	metadataCreatePipelineOutput `json:"-" xml:"-"`
-}
-
-type metadataCreatePipelineOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -819,11 +795,7 @@ type DeactivatePipelineInput struct {
 	// The ID of the pipeline.
 	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 
-	metadataDeactivatePipelineInput `json:"-" xml:"-"`
-}
-
-type metadataDeactivatePipelineInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -838,11 +810,7 @@ func (s DeactivatePipelineInput) GoString() string {
 
 // Contains the output of DeactivatePipeline.
 type DeactivatePipelineOutput struct {
-	metadataDeactivatePipelineOutput `json:"-" xml:"-"`
-}
-
-type metadataDeactivatePipelineOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -860,11 +828,7 @@ type DeletePipelineInput struct {
 	// The ID of the pipeline.
 	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 
-	metadataDeletePipelineInput `json:"-" xml:"-"`
-}
-
-type metadataDeletePipelineInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -878,11 +842,7 @@ func (s DeletePipelineInput) GoString() string {
 }
 
 type DeletePipelineOutput struct {
-	metadataDeletePipelineOutput `json:"-" xml:"-"`
-}
-
-type metadataDeletePipelineOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -914,11 +874,7 @@ type DescribeObjectsInput struct {
 	// The ID of the pipeline that contains the object definitions.
 	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 
-	metadataDescribeObjectsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeObjectsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -944,11 +900,7 @@ type DescribeObjectsOutput struct {
 	// An array of object definitions.
 	PipelineObjects []*PipelineObject `locationName:"pipelineObjects" type:"list" required:"true"`
 
-	metadataDescribeObjectsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeObjectsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -967,11 +919,7 @@ type DescribePipelinesInput struct {
 	// in a single call. To obtain pipeline IDs, call ListPipelines.
 	PipelineIds []*string `locationName:"pipelineIds" type:"list" required:"true"`
 
-	metadataDescribePipelinesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribePipelinesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -989,11 +937,7 @@ type DescribePipelinesOutput struct {
 	// An array of descriptions for the specified pipelines.
 	PipelineDescriptionList []*PipelineDescription `locationName:"pipelineDescriptionList" type:"list" required:"true"`
 
-	metadataDescribePipelinesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribePipelinesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1017,11 +961,7 @@ type EvaluateExpressionInput struct {
 	// The ID of the pipeline.
 	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 
-	metadataEvaluateExpressionInput `json:"-" xml:"-"`
-}
-
-type metadataEvaluateExpressionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1039,11 +979,7 @@ type EvaluateExpressionOutput struct {
 	// The evaluated expression.
 	EvaluatedExpression *string `locationName:"evaluatedExpression" type:"string" required:"true"`
 
-	metadataEvaluateExpressionOutput `json:"-" xml:"-"`
-}
-
-type metadataEvaluateExpressionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1069,11 +1005,7 @@ type Field struct {
 	// The field value, expressed as a String.
 	StringValue *string `locationName:"stringValue" type:"string"`
 
-	metadataField `json:"-" xml:"-"`
-}
-
-type metadataField struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1096,11 +1028,7 @@ type GetPipelineDefinitionInput struct {
 	// to use the last definition that was activated.
 	Version *string `locationName:"version" type:"string"`
 
-	metadataGetPipelineDefinitionInput `json:"-" xml:"-"`
-}
-
-type metadataGetPipelineDefinitionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1124,11 +1052,7 @@ type GetPipelineDefinitionOutput struct {
 	// The objects defined in the pipeline.
 	PipelineObjects []*PipelineObject `locationName:"pipelineObjects" type:"list"`
 
-	metadataGetPipelineDefinitionOutput `json:"-" xml:"-"`
-}
-
-type metadataGetPipelineDefinitionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1157,11 +1081,7 @@ type InstanceIdentity struct {
 	// the information provided in the instance identity document.
 	Signature *string `locationName:"signature" type:"string"`
 
-	metadataInstanceIdentity `json:"-" xml:"-"`
-}
-
-type metadataInstanceIdentity struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1182,11 +1102,7 @@ type ListPipelinesInput struct {
 	// next set of results.
 	Marker *string `locationName:"marker" type:"string"`
 
-	metadataListPipelinesInput `json:"-" xml:"-"`
-}
-
-type metadataListPipelinesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1214,11 +1130,7 @@ type ListPipelinesOutput struct {
 	// pipelines, you can use these identifiers to call DescribePipelines and GetPipelineDefinition.
 	PipelineIdList []*PipelineIdName `locationName:"pipelineIdList" type:"list" required:"true"`
 
-	metadataListPipelinesOutput `json:"-" xml:"-"`
-}
-
-type metadataListPipelinesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1257,11 +1169,7 @@ type Operator struct {
 	// The value that the actual field value will be compared with.
 	Values []*string `locationName:"values" type:"list"`
 
-	metadataOperator `json:"-" xml:"-"`
-}
-
-type metadataOperator struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1282,11 +1190,7 @@ type ParameterAttribute struct {
 	// The field value, expressed as a String.
 	StringValue *string `locationName:"stringValue" type:"string" required:"true"`
 
-	metadataParameterAttribute `json:"-" xml:"-"`
-}
-
-type metadataParameterAttribute struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1307,11 +1211,7 @@ type ParameterObject struct {
 	// The ID of the parameter object.
 	Id *string `locationName:"id" min:"1" type:"string" required:"true"`
 
-	metadataParameterObject `json:"-" xml:"-"`
-}
-
-type metadataParameterObject struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1332,11 +1232,7 @@ type ParameterValue struct {
 	// The field value, expressed as a String.
 	StringValue *string `locationName:"stringValue" type:"string" required:"true"`
 
-	metadataParameterValue `json:"-" xml:"-"`
-}
-
-type metadataParameterValue struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1371,11 +1267,7 @@ type PipelineDescription struct {
 	// in the AWS Data Pipeline Developer Guide.
 	Tags []*Tag `locationName:"tags" type:"list"`
 
-	metadataPipelineDescription `json:"-" xml:"-"`
-}
-
-type metadataPipelineDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1397,11 +1289,7 @@ type PipelineIdName struct {
 	// The name of the pipeline.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	metadataPipelineIdName `json:"-" xml:"-"`
-}
-
-type metadataPipelineIdName struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1427,11 +1315,7 @@ type PipelineObject struct {
 	// The name of the object.
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	metadataPipelineObject `json:"-" xml:"-"`
-}
-
-type metadataPipelineObject struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1464,11 +1348,7 @@ type PollForTaskInput struct {
 	// an exact, case-sensitive, match.
 	WorkerGroup *string `locationName:"workerGroup" type:"string" required:"true"`
 
-	metadataPollForTaskInput `json:"-" xml:"-"`
-}
-
-type metadataPollForTaskInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1489,11 +1369,7 @@ type PollForTaskOutput struct {
 	// in subsequent calls to ReportTaskProgress and SetTaskStatus.
 	TaskObject *TaskObject `locationName:"taskObject" type:"structure"`
 
-	metadataPollForTaskOutput `json:"-" xml:"-"`
-}
-
-type metadataPollForTaskOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1521,11 +1397,7 @@ type PutPipelineDefinitionInput struct {
 	// pipeline definition.
 	PipelineObjects []*PipelineObject `locationName:"pipelineObjects" type:"list" required:"true"`
 
-	metadataPutPipelineDefinitionInput `json:"-" xml:"-"`
-}
-
-type metadataPutPipelineDefinitionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1551,11 +1423,7 @@ type PutPipelineDefinitionOutput struct {
 	// The validation warnings that are associated with the objects defined in pipelineObjects.
 	ValidationWarnings []*ValidationWarning `locationName:"validationWarnings" type:"list"`
 
-	metadataPutPipelineDefinitionOutput `json:"-" xml:"-"`
-}
-
-type metadataPutPipelineDefinitionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1574,11 +1442,7 @@ type Query struct {
 	// selectors to match the query.
 	Selectors []*Selector `locationName:"selectors" type:"list"`
 
-	metadataQuery `json:"-" xml:"-"`
-}
-
-type metadataQuery struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1616,11 +1480,7 @@ type QueryObjectsInput struct {
 	// values are: COMPONENT, INSTANCE, and ATTEMPT.
 	Sphere *string `locationName:"sphere" type:"string" required:"true"`
 
-	metadataQueryObjectsInput `json:"-" xml:"-"`
-}
-
-type metadataQueryObjectsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1647,11 +1507,7 @@ type QueryObjectsOutput struct {
 	// null, there are no more results.
 	Marker *string `locationName:"marker" type:"string"`
 
-	metadataQueryObjectsOutput `json:"-" xml:"-"`
-}
-
-type metadataQueryObjectsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1672,11 +1528,7 @@ type RemoveTagsInput struct {
 	// The keys of the tags to remove.
 	TagKeys []*string `locationName:"tagKeys" type:"list" required:"true"`
 
-	metadataRemoveTagsInput `json:"-" xml:"-"`
-}
-
-type metadataRemoveTagsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1691,11 +1543,7 @@ func (s RemoveTagsInput) GoString() string {
 
 // Contains the output of RemoveTags.
 type RemoveTagsOutput struct {
-	metadataRemoveTagsOutput `json:"-" xml:"-"`
-}
-
-type metadataRemoveTagsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1718,11 +1566,7 @@ type ReportTaskProgressInput struct {
 	// the response for PollForTask.
 	TaskId *string `locationName:"taskId" min:"1" type:"string" required:"true"`
 
-	metadataReportTaskProgressInput `json:"-" xml:"-"`
-}
-
-type metadataReportTaskProgressInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1741,11 +1585,7 @@ type ReportTaskProgressOutput struct {
 	// task runner does not need to call SetTaskStatus for canceled tasks.
 	Canceled *bool `locationName:"canceled" type:"boolean" required:"true"`
 
-	metadataReportTaskProgressOutput `json:"-" xml:"-"`
-}
-
-type metadataReportTaskProgressOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1777,11 +1617,7 @@ type ReportTaskRunnerHeartbeatInput struct {
 	// match.
 	WorkerGroup *string `locationName:"workerGroup" type:"string"`
 
-	metadataReportTaskRunnerHeartbeatInput `json:"-" xml:"-"`
-}
-
-type metadataReportTaskRunnerHeartbeatInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1799,11 +1635,7 @@ type ReportTaskRunnerHeartbeatOutput struct {
 	// Indicates whether the calling task runner should terminate.
 	Terminate *bool `locationName:"terminate" type:"boolean" required:"true"`
 
-	metadataReportTaskRunnerHeartbeatOutput `json:"-" xml:"-"`
-}
-
-type metadataReportTaskRunnerHeartbeatOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1829,11 +1661,7 @@ type Selector struct {
 	// value.
 	Operator *Operator `locationName:"operator" type:"structure"`
 
-	metadataSelector `json:"-" xml:"-"`
-}
-
-type metadataSelector struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1859,11 +1687,7 @@ type SetStatusInput struct {
 	// use PAUSE or RESUME. For instances, use TRY_CANCEL, RERUN, or MARK_FINISHED.
 	Status *string `locationName:"status" type:"string" required:"true"`
 
-	metadataSetStatusInput `json:"-" xml:"-"`
-}
-
-type metadataSetStatusInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1877,11 +1701,7 @@ func (s SetStatusInput) GoString() string {
 }
 
 type SetStatusOutput struct {
-	metadataSetStatusOutput `json:"-" xml:"-"`
-}
-
-type metadataSetStatusOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1922,11 +1742,7 @@ type SetTaskStatusInput struct {
 	// Preconditions use false.
 	TaskStatus *string `locationName:"taskStatus" type:"string" required:"true" enum:"TaskStatus"`
 
-	metadataSetTaskStatusInput `json:"-" xml:"-"`
-}
-
-type metadataSetTaskStatusInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1941,11 +1757,7 @@ func (s SetTaskStatusInput) GoString() string {
 
 // Contains the output of SetTaskStatus.
 type SetTaskStatusOutput struct {
-	metadataSetTaskStatusOutput `json:"-" xml:"-"`
-}
-
-type metadataSetTaskStatusOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1974,11 +1786,7 @@ type Tag struct {
 	// in the AWS Data Pipeline Developer Guide.
 	Value *string `locationName:"value" type:"string" required:"true"`
 
-	metadataTag `json:"-" xml:"-"`
-}
-
-type metadataTag struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2008,11 +1816,7 @@ type TaskObject struct {
 	// and ReportTaskProgress actions.
 	TaskId *string `locationName:"taskId" min:"1" type:"string"`
 
-	metadataTaskObject `json:"-" xml:"-"`
-}
-
-type metadataTaskObject struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2039,11 +1843,7 @@ type ValidatePipelineDefinitionInput struct {
 	// The objects that define the pipeline changes to validate against the pipeline.
 	PipelineObjects []*PipelineObject `locationName:"pipelineObjects" type:"list" required:"true"`
 
-	metadataValidatePipelineDefinitionInput `json:"-" xml:"-"`
-}
-
-type metadataValidatePipelineDefinitionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2067,11 +1867,7 @@ type ValidatePipelineDefinitionOutput struct {
 	// Any validation warnings that were found.
 	ValidationWarnings []*ValidationWarning `locationName:"validationWarnings" type:"list"`
 
-	metadataValidatePipelineDefinitionOutput `json:"-" xml:"-"`
-}
-
-type metadataValidatePipelineDefinitionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2094,11 +1890,7 @@ type ValidationError struct {
 	// The identifier of the object that contains the validation error.
 	Id *string `locationName:"id" min:"1" type:"string"`
 
-	metadataValidationError `json:"-" xml:"-"`
-}
-
-type metadataValidationError struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2121,11 +1913,7 @@ type ValidationWarning struct {
 	// A description of the validation warning.
 	Warnings []*string `locationName:"warnings" type:"list"`
 
-	metadataValidationWarning `json:"-" xml:"-"`
-}
-
-type metadataValidationWarning struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

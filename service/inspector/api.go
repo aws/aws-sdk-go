@@ -1013,11 +1013,7 @@ type AddAttributesToFindingsInput struct {
 	// The ARNs specifying the findings that you want to assign attributes to.
 	FindingArns []*string `locationName:"findingArns" type:"list" required:"true"`
 
-	metadataAddAttributesToFindingsInput `json:"-" xml:"-"`
-}
-
-type metadataAddAttributesToFindingsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1034,11 +1030,7 @@ type AddAttributesToFindingsOutput struct {
 	// Confirmation details of the action performed.
 	Message *string `locationName:"message" type:"string"`
 
-	metadataAddAttributesToFindingsOutput `json:"-" xml:"-"`
-}
-
-type metadataAddAttributesToFindingsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1079,11 +1071,7 @@ type Agent struct {
 	// The Inspector application data metrics collected by the agent.
 	Telemetry []*Telemetry `locationName:"telemetry" type:"list"`
 
-	metadataAgent `json:"-" xml:"-"`
-}
-
-type metadataAgent struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1105,11 +1093,7 @@ type AgentPreview struct {
 	// The autoscaling group for the EC2 instance where the agent is installed.
 	AutoScalingGroup *string `locationName:"autoScalingGroup" type:"string"`
 
-	metadataAgentPreview `json:"-" xml:"-"`
-}
-
-type metadataAgentPreview struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1130,11 +1114,7 @@ type AgentsFilter struct {
 	// data type.
 	AgentHealthList []*string `locationName:"agentHealthList" type:"list"`
 
-	metadataAgentsFilter `json:"-" xml:"-"`
-}
-
-type metadataAgentsFilter struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1161,11 +1141,7 @@ type Application struct {
 	// The ARN specifying the resource group that is associated with the application.
 	ResourceGroupArn *string `locationName:"resourceGroupArn" type:"string"`
 
-	metadataApplication `json:"-" xml:"-"`
-}
-
-type metadataApplication struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1185,11 +1161,7 @@ type ApplicationsFilter struct {
 	// the applicationName property of the Application data type.
 	ApplicationNamePatterns []*string `locationName:"applicationNamePatterns" type:"list"`
 
-	metadataApplicationsFilter `json:"-" xml:"-"`
-}
-
-type metadataApplicationsFilter struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1240,11 +1212,7 @@ type Assessment struct {
 	// The user-defined attributes that are assigned to every generated finding.
 	UserAttributesForFindings []*Attribute `locationName:"userAttributesForFindings" type:"list"`
 
-	metadataAssessment `json:"-" xml:"-"`
-}
-
-type metadataAssessment struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1290,11 +1258,7 @@ type AssessmentsFilter struct {
 	// values of the startTime property of the Assessment data type.
 	StartTimeRange *TimestampRange `locationName:"startTimeRange" type:"structure"`
 
-	metadataAssessmentsFilter `json:"-" xml:"-"`
-}
-
-type metadataAssessmentsFilter struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1314,11 +1278,7 @@ type AttachAssessmentAndRulesPackageInput struct {
 	// The ARN specifying the rules package that you want to attach to the assessment.
 	RulesPackageArn *string `locationName:"rulesPackageArn" type:"string" required:"true"`
 
-	metadataAttachAssessmentAndRulesPackageInput `json:"-" xml:"-"`
-}
-
-type metadataAttachAssessmentAndRulesPackageInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1335,11 +1295,7 @@ type AttachAssessmentAndRulesPackageOutput struct {
 	// Confirmation details of the action performed.
 	Message *string `locationName:"message" type:"string"`
 
-	metadataAttachAssessmentAndRulesPackageOutput `json:"-" xml:"-"`
-}
-
-type metadataAttachAssessmentAndRulesPackageOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1361,11 +1317,7 @@ type Attribute struct {
 	// The value assigned to the attribute key.
 	Value *string `locationName:"value" type:"string"`
 
-	metadataAttribute `json:"-" xml:"-"`
-}
-
-type metadataAttribute struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1386,11 +1338,7 @@ type CreateApplicationInput struct {
 	// The ARN specifying the resource group that is used to create the application.
 	ResourceGroupArn *string `locationName:"resourceGroupArn" type:"string" required:"true"`
 
-	metadataCreateApplicationInput `json:"-" xml:"-"`
-}
-
-type metadataCreateApplicationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1407,11 +1355,7 @@ type CreateApplicationOutput struct {
 	// The ARN specifying the application that is created.
 	ApplicationArn *string `locationName:"applicationArn" type:"string"`
 
-	metadataCreateApplicationOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateApplicationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1441,11 +1385,7 @@ type CreateAssessmentInput struct {
 	// by running this assessment.
 	UserAttributesForFindings []*Attribute `locationName:"userAttributesForFindings" type:"list"`
 
-	metadataCreateAssessmentInput `json:"-" xml:"-"`
-}
-
-type metadataCreateAssessmentInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1462,11 +1402,7 @@ type CreateAssessmentOutput struct {
 	// The ARN specifying the assessment that is created.
 	AssessmentArn *string `locationName:"assessmentArn" type:"string"`
 
-	metadataCreateAssessmentOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateAssessmentOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1485,11 +1421,7 @@ type CreateResourceGroupInput struct {
 	// For example, [{ "key1" : ["Value1","Value2"]},{"Key2": ["Value3"]}]
 	ResourceGroupTags *string `locationName:"resourceGroupTags" type:"string" required:"true"`
 
-	metadataCreateResourceGroupInput `json:"-" xml:"-"`
-}
-
-type metadataCreateResourceGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1506,11 +1438,7 @@ type CreateResourceGroupOutput struct {
 	// The ARN specifying the resource group that is created.
 	ResourceGroupArn *string `locationName:"resourceGroupArn" type:"string"`
 
-	metadataCreateResourceGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateResourceGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1527,11 +1455,7 @@ type DeleteApplicationInput struct {
 	// The ARN specifying the application that you want to delete.
 	ApplicationArn *string `locationName:"applicationArn" type:"string" required:"true"`
 
-	metadataDeleteApplicationInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteApplicationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1548,11 +1472,7 @@ type DeleteApplicationOutput struct {
 	// Confirmation details of the action performed.
 	Message *string `locationName:"message" type:"string"`
 
-	metadataDeleteApplicationOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteApplicationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1569,11 +1489,7 @@ type DeleteAssessmentInput struct {
 	// The ARN specifying the assessment that you want to delete.
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
 
-	metadataDeleteAssessmentInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteAssessmentInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1590,11 +1506,7 @@ type DeleteAssessmentOutput struct {
 	// Confirmation details of the action performed.
 	Message *string `locationName:"message" type:"string"`
 
-	metadataDeleteAssessmentOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteAssessmentOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1611,11 +1523,7 @@ type DeleteRunInput struct {
 	// The ARN specifying the assessment run that you want to delete.
 	RunArn *string `locationName:"runArn" type:"string" required:"true"`
 
-	metadataDeleteRunInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteRunInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1632,11 +1540,7 @@ type DeleteRunOutput struct {
 	// Confirmation details of the action performed.
 	Message *string `locationName:"message" type:"string"`
 
-	metadataDeleteRunOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteRunOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1653,11 +1557,7 @@ type DescribeApplicationInput struct {
 	// The ARN specifying the application that you want to describe.
 	ApplicationArn *string `locationName:"applicationArn" type:"string" required:"true"`
 
-	metadataDescribeApplicationInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeApplicationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1674,11 +1574,7 @@ type DescribeApplicationOutput struct {
 	// Information about the application.
 	Application *Application `locationName:"application" type:"structure"`
 
-	metadataDescribeApplicationOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeApplicationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1695,11 +1591,7 @@ type DescribeAssessmentInput struct {
 	// The ARN specifying the assessment that you want to describe.
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
 
-	metadataDescribeAssessmentInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAssessmentInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1716,11 +1608,7 @@ type DescribeAssessmentOutput struct {
 	// Information about the assessment.
 	Assessment *Assessment `locationName:"assessment" type:"structure"`
 
-	metadataDescribeAssessmentOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAssessmentOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1734,11 +1622,7 @@ func (s DescribeAssessmentOutput) GoString() string {
 }
 
 type DescribeCrossAccountAccessRoleInput struct {
-	metadataDescribeCrossAccountAccessRoleInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeCrossAccountAccessRoleInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1759,11 +1643,7 @@ type DescribeCrossAccountAccessRoleOutput struct {
 	// attached to enable Inspector to access your AWS account.
 	Valid *bool `locationName:"valid" type:"boolean"`
 
-	metadataDescribeCrossAccountAccessRoleOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeCrossAccountAccessRoleOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1780,11 +1660,7 @@ type DescribeFindingInput struct {
 	// The ARN specifying the finding that you want to describe.
 	FindingArn *string `locationName:"findingArn" type:"string" required:"true"`
 
-	metadataDescribeFindingInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeFindingInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1801,11 +1677,7 @@ type DescribeFindingOutput struct {
 	// Information about the finding.
 	Finding *Finding `locationName:"finding" type:"structure"`
 
-	metadataDescribeFindingOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeFindingOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1822,11 +1694,7 @@ type DescribeResourceGroupInput struct {
 	// The ARN specifying the resource group that you want to describe.
 	ResourceGroupArn *string `locationName:"resourceGroupArn" type:"string" required:"true"`
 
-	metadataDescribeResourceGroupInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeResourceGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1843,11 +1711,7 @@ type DescribeResourceGroupOutput struct {
 	// Information about the resource group.
 	ResourceGroup *ResourceGroup `locationName:"resourceGroup" type:"structure"`
 
-	metadataDescribeResourceGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeResourceGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1864,11 +1728,7 @@ type DescribeRulesPackageInput struct {
 	// The ARN specifying the rules package that you want to describe.
 	RulesPackageArn *string `locationName:"rulesPackageArn" type:"string" required:"true"`
 
-	metadataDescribeRulesPackageInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeRulesPackageInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1885,11 +1745,7 @@ type DescribeRulesPackageOutput struct {
 	// Information about the rules package.
 	RulesPackage *RulesPackage `locationName:"rulesPackage" type:"structure"`
 
-	metadataDescribeRulesPackageOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeRulesPackageOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1906,11 +1762,7 @@ type DescribeRunInput struct {
 	// The ARN specifying the assessment run that you want to describe.
 	RunArn *string `locationName:"runArn" type:"string" required:"true"`
 
-	metadataDescribeRunInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeRunInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1927,11 +1779,7 @@ type DescribeRunOutput struct {
 	// Information about the assessment run.
 	Run *Run `locationName:"run" type:"structure"`
 
-	metadataDescribeRunOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeRunOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1951,11 +1799,7 @@ type DetachAssessmentAndRulesPackageInput struct {
 	// The ARN specifying the rules package that you want to detach from the assessment.
 	RulesPackageArn *string `locationName:"rulesPackageArn" type:"string" required:"true"`
 
-	metadataDetachAssessmentAndRulesPackageInput `json:"-" xml:"-"`
-}
-
-type metadataDetachAssessmentAndRulesPackageInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1972,11 +1816,7 @@ type DetachAssessmentAndRulesPackageOutput struct {
 	// Confirmation details of the action performed.
 	Message *string `locationName:"message" type:"string"`
 
-	metadataDetachAssessmentAndRulesPackageOutput `json:"-" xml:"-"`
-}
-
-type metadataDetachAssessmentAndRulesPackageOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1998,11 +1838,7 @@ type DurationRange struct {
 	// The minimum value of the duration range. Must be greater than zero.
 	Minimum *int64 `locationName:"minimum" type:"integer"`
 
-	metadataDurationRange `json:"-" xml:"-"`
-}
-
-type metadataDurationRange struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2057,11 +1893,7 @@ type Finding struct {
 	// The user-defined attributes that are assigned to the finding.
 	UserAttributes []*Attribute `locationName:"userAttributes" type:"list"`
 
-	metadataFinding `json:"-" xml:"-"`
-}
-
-type metadataFinding struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2101,11 +1933,7 @@ type FindingsFilter struct {
 	// Finding data type.
 	UserAttributes []*Attribute `locationName:"userAttributes" type:"list"`
 
-	metadataFindingsFilter `json:"-" xml:"-"`
-}
-
-type metadataFindingsFilter struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2122,11 +1950,7 @@ type GetAssessmentTelemetryInput struct {
 	// The ARN specifying the assessment the telemetry of which you want to obtain.
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
 
-	metadataGetAssessmentTelemetryInput `json:"-" xml:"-"`
-}
-
-type metadataGetAssessmentTelemetryInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2143,11 +1967,7 @@ type GetAssessmentTelemetryOutput struct {
 	// Telemetry details.
 	Telemetry []*Telemetry `locationName:"telemetry" type:"list"`
 
-	metadataGetAssessmentTelemetryOutput `json:"-" xml:"-"`
-}
-
-type metadataGetAssessmentTelemetryOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2179,11 +1999,7 @@ type ListApplicationsInput struct {
 	// from previous response to continue listing data.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListApplicationsInput `json:"-" xml:"-"`
-}
-
-type metadataListApplicationsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2206,11 +2022,7 @@ type ListApplicationsOutput struct {
 	// be listed, this parameter is set to 'null'.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListApplicationsOutput `json:"-" xml:"-"`
-}
-
-type metadataListApplicationsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2245,11 +2057,7 @@ type ListAssessmentAgentsInput struct {
 	// of NextToken from previous response to continue listing data.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListAssessmentAgentsInput `json:"-" xml:"-"`
-}
-
-type metadataListAssessmentAgentsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2272,11 +2080,7 @@ type ListAssessmentAgentsOutput struct {
 	// be listed, this parameter is set to 'null'.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListAssessmentAgentsOutput `json:"-" xml:"-"`
-}
-
-type metadataListAssessmentAgentsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2312,11 +2116,7 @@ type ListAssessmentsInput struct {
 	// from previous response to continue listing data.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListAssessmentsInput `json:"-" xml:"-"`
-}
-
-type metadataListAssessmentsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2339,11 +2139,7 @@ type ListAssessmentsOutput struct {
 	// be listed, this parameter is set to 'null'.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListAssessmentsOutput `json:"-" xml:"-"`
-}
-
-type metadataListAssessmentsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2378,11 +2174,7 @@ type ListAttachedAssessmentsInput struct {
 	// The ARN specifying the rules package whose assessments you want to list.
 	RulesPackageArn *string `locationName:"rulesPackageArn" type:"string" required:"true"`
 
-	metadataListAttachedAssessmentsInput `json:"-" xml:"-"`
-}
-
-type metadataListAttachedAssessmentsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2405,11 +2197,7 @@ type ListAttachedAssessmentsOutput struct {
 	// be listed, this parameter is set to 'null'.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListAttachedAssessmentsOutput `json:"-" xml:"-"`
-}
-
-type metadataListAttachedAssessmentsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2436,11 +2224,7 @@ type ListAttachedRulesPackagesInput struct {
 	// of NextToken from previous response to continue listing data.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListAttachedRulesPackagesInput `json:"-" xml:"-"`
-}
-
-type metadataListAttachedRulesPackagesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2463,11 +2247,7 @@ type ListAttachedRulesPackagesOutput struct {
 	// A list of ARNs specifying the rules packages returned by the action.
 	RulesPackageArnList []*string `locationName:"rulesPackageArnList" type:"list"`
 
-	metadataListAttachedRulesPackagesOutput `json:"-" xml:"-"`
-}
-
-type metadataListAttachedRulesPackagesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2503,11 +2283,7 @@ type ListFindingsInput struct {
 	// to list.
 	RunArns []*string `locationName:"runArns" type:"list"`
 
-	metadataListFindingsInput `json:"-" xml:"-"`
-}
-
-type metadataListFindingsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2530,11 +2306,7 @@ type ListFindingsOutput struct {
 	// be listed, this parameter is set to 'null'.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListFindingsOutput `json:"-" xml:"-"`
-}
-
-type metadataListFindingsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2558,11 +2330,7 @@ type ListRulesPackagesInput struct {
 	// from previous response to continue listing data.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListRulesPackagesInput `json:"-" xml:"-"`
-}
-
-type metadataListRulesPackagesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2585,11 +2353,7 @@ type ListRulesPackagesOutput struct {
 	// The list of ARNs specifying the rules packages returned by the action.
 	RulesPackageArnList []*string `locationName:"rulesPackageArnList" type:"list"`
 
-	metadataListRulesPackagesOutput `json:"-" xml:"-"`
-}
-
-type metadataListRulesPackagesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2624,11 +2388,7 @@ type ListRunsInput struct {
 	// from previous response to continue listing data.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListRunsInput `json:"-" xml:"-"`
-}
-
-type metadataListRunsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2651,11 +2411,7 @@ type ListRunsOutput struct {
 	// A list of ARNs specifying the assessment runs returned by the action.
 	RunArnList []*string `locationName:"runArnList" type:"list"`
 
-	metadataListRunsOutput `json:"-" xml:"-"`
-}
-
-type metadataListRunsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2672,11 +2428,7 @@ type ListTagsForResourceInput struct {
 	// The ARN specifying the resource whose tags you want to list.
 	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
 
-	metadataListTagsForResourceInput `json:"-" xml:"-"`
-}
-
-type metadataListTagsForResourceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2693,11 +2445,7 @@ type ListTagsForResourceOutput struct {
 	// A collection of key and value pairs.
 	TagList []*Tag `locationName:"tagList" type:"list"`
 
-	metadataListTagsForResourceOutput `json:"-" xml:"-"`
-}
-
-type metadataListTagsForResourceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2717,11 +2465,7 @@ type LocalizeTextInput struct {
 	// A list of textual identifiers.
 	LocalizedTexts []*LocalizedText `locationName:"localizedTexts" type:"list" required:"true"`
 
-	metadataLocalizeTextInput `json:"-" xml:"-"`
-}
-
-type metadataLocalizeTextInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2741,11 +2485,7 @@ type LocalizeTextOutput struct {
 	// The resulting list of user-readable texts.
 	Results []*string `locationName:"results" type:"list"`
 
-	metadataLocalizeTextOutput `json:"-" xml:"-"`
-}
-
-type metadataLocalizeTextOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2767,11 +2507,7 @@ type LocalizedText struct {
 	// Values for the dynamic elements of the string specified by the textual identifier.
 	Parameters []*Parameter `locationName:"parameters" type:"list"`
 
-	metadataLocalizedText `json:"-" xml:"-"`
-}
-
-type metadataLocalizedText struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2792,11 +2528,7 @@ type LocalizedTextKey struct {
 	// Part of the module response source of the text.
 	Id *string `locationName:"id" type:"string"`
 
-	metadataLocalizedTextKey `json:"-" xml:"-"`
-}
-
-type metadataLocalizedTextKey struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2826,11 +2558,7 @@ type MessageTypeTelemetry struct {
 	// A specific type of behavioral data that is collected by the agent.
 	MessageType *string `locationName:"messageType" type:"string"`
 
-	metadataMessageTypeTelemetry `json:"-" xml:"-"`
-}
-
-type metadataMessageTypeTelemetry struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2851,11 +2579,7 @@ type Parameter struct {
 	// The value assigned to the variable that is being replaced.
 	Value *string `locationName:"value" type:"string"`
 
-	metadataParameter `json:"-" xml:"-"`
-}
-
-type metadataParameter struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2882,11 +2606,7 @@ type PreviewAgentsForResourceGroupInput struct {
 	// The ARN of the resource group that is used to create an application.
 	ResourceGroupArn *string `locationName:"resourceGroupArn" type:"string" required:"true"`
 
-	metadataPreviewAgentsForResourceGroupInput `json:"-" xml:"-"`
-}
-
-type metadataPreviewAgentsForResourceGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2909,11 +2629,7 @@ type PreviewAgentsForResourceGroupOutput struct {
 	// be listed, this parameter is set to 'null'.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataPreviewAgentsForResourceGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataPreviewAgentsForResourceGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2931,11 +2647,7 @@ type RegisterCrossAccountAccessRoleInput struct {
 	// the assessment.
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 
-	metadataRegisterCrossAccountAccessRoleInput `json:"-" xml:"-"`
-}
-
-type metadataRegisterCrossAccountAccessRoleInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2952,11 +2664,7 @@ type RegisterCrossAccountAccessRoleOutput struct {
 	// Confirmation details of the action performed.
 	Message *string `locationName:"message" type:"string"`
 
-	metadataRegisterCrossAccountAccessRoleOutput `json:"-" xml:"-"`
-}
-
-type metadataRegisterCrossAccountAccessRoleOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2976,11 +2684,7 @@ type RemoveAttributesFromFindingsInput struct {
 	// The ARNs specifying the findings that you want to remove attributes from.
 	FindingArns []*string `locationName:"findingArns" type:"list" required:"true"`
 
-	metadataRemoveAttributesFromFindingsInput `json:"-" xml:"-"`
-}
-
-type metadataRemoveAttributesFromFindingsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2997,11 +2701,7 @@ type RemoveAttributesFromFindingsOutput struct {
 	// Confirmation details of the action performed.
 	Message *string `locationName:"message" type:"string"`
 
-	metadataRemoveAttributesFromFindingsOutput `json:"-" xml:"-"`
-}
-
-type metadataRemoveAttributesFromFindingsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3033,11 +2733,7 @@ type ResourceGroup struct {
 	// For example, [{ "key1" : ["Value1","Value2"]},{"Key2": ["Value3"]}]
 	ResourceGroupTags *string `locationName:"resourceGroupTags" type:"string"`
 
-	metadataResourceGroup `json:"-" xml:"-"`
-}
-
-type metadataResourceGroup struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3070,11 +2766,7 @@ type RulesPackage struct {
 	// The version id of the rules package.
 	Version *string `locationName:"version" type:"string"`
 
-	metadataRulesPackage `json:"-" xml:"-"`
-}
-
-type metadataRulesPackage struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3115,11 +2807,7 @@ type Run struct {
 	// EvaluatingPoliciesErrorCanRetry, Completed, Failed, TombStoned.
 	RunState *string `locationName:"runState" type:"string"`
 
-	metadataRun `json:"-" xml:"-"`
-}
-
-type metadataRun struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3139,11 +2827,7 @@ type RunAssessmentInput struct {
 	// A name specifying the run of the assessment.
 	RunName *string `locationName:"runName" type:"string" required:"true"`
 
-	metadataRunAssessmentInput `json:"-" xml:"-"`
-}
-
-type metadataRunAssessmentInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3160,11 +2844,7 @@ type RunAssessmentOutput struct {
 	// The ARN specifying the run of the assessment.
 	RunArn *string `locationName:"runArn" type:"string"`
 
-	metadataRunAssessmentOutput `json:"-" xml:"-"`
-}
-
-type metadataRunAssessmentOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3204,11 +2884,7 @@ type RunsFilter struct {
 	// data type.
 	RunStates []*string `locationName:"runStates" type:"list"`
 
-	metadataRunsFilter `json:"-" xml:"-"`
-}
-
-type metadataRunsFilter struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3228,11 +2904,7 @@ type SetTagsForResourceInput struct {
 	// A collection of key and value pairs that you want to set to an assessment.
 	Tags []*Tag `locationName:"tags" type:"list"`
 
-	metadataSetTagsForResourceInput `json:"-" xml:"-"`
-}
-
-type metadataSetTagsForResourceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3249,11 +2921,7 @@ type SetTagsForResourceOutput struct {
 	// Confirmation details of the action performed.
 	Message *string `locationName:"message" type:"string"`
 
-	metadataSetTagsForResourceOutput `json:"-" xml:"-"`
-}
-
-type metadataSetTagsForResourceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3271,11 +2939,7 @@ type StartDataCollectionInput struct {
 	// process.
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
 
-	metadataStartDataCollectionInput `json:"-" xml:"-"`
-}
-
-type metadataStartDataCollectionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3292,11 +2956,7 @@ type StartDataCollectionOutput struct {
 	// Confirmation details of the action performed.
 	Message *string `locationName:"message" type:"string"`
 
-	metadataStartDataCollectionOutput `json:"-" xml:"-"`
-}
-
-type metadataStartDataCollectionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3314,11 +2974,7 @@ type StopDataCollectionInput struct {
 	// process.
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
 
-	metadataStopDataCollectionInput `json:"-" xml:"-"`
-}
-
-type metadataStopDataCollectionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3335,11 +2991,7 @@ type StopDataCollectionOutput struct {
 	// Confirmation details of the action performed.
 	Message *string `locationName:"message" type:"string"`
 
-	metadataStopDataCollectionOutput `json:"-" xml:"-"`
-}
-
-type metadataStopDataCollectionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3363,11 +3015,7 @@ type Tag struct {
 	// The value assigned to a tag key.
 	Value *string `type:"string"`
 
-	metadataTag `json:"-" xml:"-"`
-}
-
-type metadataTag struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3393,11 +3041,7 @@ type Telemetry struct {
 	// that Inspector received from the agent.
 	Status *string `locationName:"status" type:"string"`
 
-	metadataTelemetry `json:"-" xml:"-"`
-}
-
-type metadataTelemetry struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3418,11 +3062,7 @@ type TimestampRange struct {
 	// The minimum value of the timestamp range.
 	Minimum *time.Time `locationName:"minimum" type:"timestamp" timestampFormat:"unix"`
 
-	metadataTimestampRange `json:"-" xml:"-"`
-}
-
-type metadataTimestampRange struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3445,11 +3085,7 @@ type UpdateApplicationInput struct {
 	// The resource group ARN that you want to update.
 	ResourceGroupArn *string `locationName:"resourceGroupArn" type:"string" required:"true"`
 
-	metadataUpdateApplicationInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateApplicationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3466,11 +3102,7 @@ type UpdateApplicationOutput struct {
 	// Confirmation details of the action performed.
 	Message *string `locationName:"message" type:"string"`
 
-	metadataUpdateApplicationOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateApplicationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3494,11 +3126,7 @@ type UpdateAssessmentInput struct {
 	// is 3600 seconds (one hour). The maximum value is 86400 seconds (one day).
 	DurationInSeconds *int64 `locationName:"durationInSeconds" type:"integer" required:"true"`
 
-	metadataUpdateAssessmentInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateAssessmentInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3515,11 +3143,7 @@ type UpdateAssessmentOutput struct {
 	// Confirmation details of the action performed.
 	Message *string `locationName:"message" type:"string"`
 
-	metadataUpdateAssessmentOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateAssessmentOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

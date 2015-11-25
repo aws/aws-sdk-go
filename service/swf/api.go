@@ -1593,11 +1593,7 @@ type ActivityTaskCancelRequestedEventAttributes struct {
 	// back the chain of events leading up to this event.
 	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
-	metadataActivityTaskCancelRequestedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataActivityTaskCancelRequestedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1630,11 +1626,7 @@ type ActivityTaskCanceledEventAttributes struct {
 	// back the chain of events leading up to this event.
 	StartedEventId *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
-	metadataActivityTaskCanceledEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataActivityTaskCanceledEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1662,11 +1654,7 @@ type ActivityTaskCompletedEventAttributes struct {
 	// back the chain of events leading up to this event.
 	StartedEventId *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
-	metadataActivityTaskCompletedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataActivityTaskCompletedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1697,11 +1685,7 @@ type ActivityTaskFailedEventAttributes struct {
 	// back the chain of events leading up to this event.
 	StartedEventId *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
-	metadataActivityTaskFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataActivityTaskFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1766,11 +1750,7 @@ type ActivityTaskScheduledEventAttributes struct {
 	// in the Amazon Simple Workflow Developer Guide.
 	TaskPriority *string `locationName:"taskPriority" type:"string"`
 
-	metadataActivityTaskScheduledEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataActivityTaskScheduledEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1794,11 +1774,7 @@ type ActivityTaskStartedEventAttributes struct {
 	// by tracing back the chain of events leading up to this event.
 	ScheduledEventId *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
 
-	metadataActivityTaskStartedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataActivityTaskStartedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1830,11 +1806,7 @@ type ActivityTaskTimedOutEventAttributes struct {
 	// The type of the timeout that caused this event.
 	TimeoutType *string `locationName:"timeoutType" type:"string" required:"true" enum:"ActivityTaskTimeoutType"`
 
-	metadataActivityTaskTimedOutEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataActivityTaskTimedOutEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1861,11 +1833,7 @@ type ActivityType struct {
 	// a domain.
 	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
 
-	metadataActivityType `json:"-" xml:"-"`
-}
-
-type metadataActivityType struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1937,11 +1905,7 @@ type ActivityTypeConfiguration struct {
 	// 0. The value "NONE" can be used to specify unlimited duration.
 	DefaultTaskStartToCloseTimeout *string `locationName:"defaultTaskStartToCloseTimeout" type:"string"`
 
-	metadataActivityTypeConfiguration `json:"-" xml:"-"`
-}
-
-type metadataActivityTypeConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1971,11 +1935,7 @@ type ActivityTypeInfo struct {
 	// The current status of the activity type.
 	Status *string `locationName:"status" type:"string" required:"true" enum:"RegistrationStatus"`
 
-	metadataActivityTypeInfo `json:"-" xml:"-"`
-}
-
-type metadataActivityTypeInfo struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2007,11 +1967,7 @@ type CancelTimerDecisionAttributes struct {
 	// Required. The unique ID of the timer to cancel.
 	TimerId *string `locationName:"timerId" min:"1" type:"string" required:"true"`
 
-	metadataCancelTimerDecisionAttributes `json:"-" xml:"-"`
-}
-
-type metadataCancelTimerDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2043,11 +1999,7 @@ type CancelTimerFailedEventAttributes struct {
 	// The timerId provided in the CancelTimer decision that failed.
 	TimerId *string `locationName:"timerId" min:"1" type:"string" required:"true"`
 
-	metadataCancelTimerFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataCancelTimerFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2079,11 +2031,7 @@ type CancelWorkflowExecutionDecisionAttributes struct {
 	// Optional. details of the cancellation.
 	Details *string `locationName:"details" type:"string"`
 
-	metadataCancelWorkflowExecutionDecisionAttributes `json:"-" xml:"-"`
-}
-
-type metadataCancelWorkflowExecutionDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2112,11 +2060,7 @@ type CancelWorkflowExecutionFailedEventAttributes struct {
 	// back the chain of events leading up to this event.
 	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
-	metadataCancelWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataCancelWorkflowExecutionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2151,11 +2095,7 @@ type ChildWorkflowExecutionCanceledEventAttributes struct {
 	// The type of the child workflow execution.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataChildWorkflowExecutionCanceledEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataChildWorkflowExecutionCanceledEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2190,11 +2130,7 @@ type ChildWorkflowExecutionCompletedEventAttributes struct {
 	// The type of the child workflow execution.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataChildWorkflowExecutionCompletedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataChildWorkflowExecutionCompletedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2232,11 +2168,7 @@ type ChildWorkflowExecutionFailedEventAttributes struct {
 	// The type of the child workflow execution.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataChildWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataChildWorkflowExecutionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2263,11 +2195,7 @@ type ChildWorkflowExecutionStartedEventAttributes struct {
 	// The type of the child workflow execution.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataChildWorkflowExecutionStartedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataChildWorkflowExecutionStartedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2299,11 +2227,7 @@ type ChildWorkflowExecutionTerminatedEventAttributes struct {
 	// The type of the child workflow execution.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataChildWorkflowExecutionTerminatedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataChildWorkflowExecutionTerminatedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2339,11 +2263,7 @@ type ChildWorkflowExecutionTimedOutEventAttributes struct {
 	// The type of the child workflow execution.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataChildWorkflowExecutionTimedOutEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataChildWorkflowExecutionTimedOutEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2363,11 +2283,7 @@ type CloseStatusFilter struct {
 	// for it to meet the criteria of this filter.
 	Status *string `locationName:"status" type:"string" required:"true" enum:"CloseStatus"`
 
-	metadataCloseStatusFilter `json:"-" xml:"-"`
-}
-
-type metadataCloseStatusFilter struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2400,11 +2316,7 @@ type CompleteWorkflowExecutionDecisionAttributes struct {
 	// defined.
 	Result *string `locationName:"result" type:"string"`
 
-	metadataCompleteWorkflowExecutionDecisionAttributes `json:"-" xml:"-"`
-}
-
-type metadataCompleteWorkflowExecutionDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2433,11 +2345,7 @@ type CompleteWorkflowExecutionFailedEventAttributes struct {
 	// back the chain of events leading up to this event.
 	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
-	metadataCompleteWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataCompleteWorkflowExecutionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2545,11 +2453,7 @@ type ContinueAsNewWorkflowExecutionDecisionAttributes struct {
 
 	WorkflowTypeVersion *string `locationName:"workflowTypeVersion" min:"1" type:"string"`
 
-	metadataContinueAsNewWorkflowExecutionDecisionAttributes `json:"-" xml:"-"`
-}
-
-type metadataContinueAsNewWorkflowExecutionDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2578,11 +2482,7 @@ type ContinueAsNewWorkflowExecutionFailedEventAttributes struct {
 	// tracing back the chain of events leading up to this event.
 	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
-	metadataContinueAsNewWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataContinueAsNewWorkflowExecutionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2640,11 +2540,7 @@ type CountClosedWorkflowExecutionsInput struct {
 	// exclusive. You can specify at most one of these in a request.
 	TypeFilter *WorkflowTypeFilter `locationName:"typeFilter" type:"structure"`
 
-	metadataCountClosedWorkflowExecutionsInput `json:"-" xml:"-"`
-}
-
-type metadataCountClosedWorkflowExecutionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2685,11 +2581,7 @@ type CountOpenWorkflowExecutionsInput struct {
 	// specify at most one of these in a request.
 	TypeFilter *WorkflowTypeFilter `locationName:"typeFilter" type:"structure"`
 
-	metadataCountOpenWorkflowExecutionsInput `json:"-" xml:"-"`
-}
-
-type metadataCountOpenWorkflowExecutionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2709,11 +2601,7 @@ type CountPendingActivityTasksInput struct {
 	// The name of the task list.
 	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"`
 
-	metadataCountPendingActivityTasksInput `json:"-" xml:"-"`
-}
-
-type metadataCountPendingActivityTasksInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2733,11 +2621,7 @@ type CountPendingDecisionTasksInput struct {
 	// The name of the task list.
 	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"`
 
-	metadataCountPendingDecisionTasksInput `json:"-" xml:"-"`
-}
-
-type metadataCountPendingDecisionTasksInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2929,11 +2813,7 @@ type Decision struct {
 	// types.
 	StartTimerDecisionAttributes *StartTimerDecisionAttributes `locationName:"startTimerDecisionAttributes" type:"structure"`
 
-	metadataDecision `json:"-" xml:"-"`
-}
-
-type metadataDecision struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2961,11 +2841,7 @@ type DecisionTaskCompletedEventAttributes struct {
 	// back the chain of events leading up to this event.
 	StartedEventId *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
-	metadataDecisionTaskCompletedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataDecisionTaskCompletedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3000,11 +2876,7 @@ type DecisionTaskScheduledEventAttributes struct {
 	// in the Amazon Simple Workflow Developer Guide.
 	TaskPriority *string `locationName:"taskPriority" type:"string"`
 
-	metadataDecisionTaskScheduledEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataDecisionTaskScheduledEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3028,11 +2900,7 @@ type DecisionTaskStartedEventAttributes struct {
 	// by tracing back the chain of events leading up to this event.
 	ScheduledEventId *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
 
-	metadataDecisionTaskStartedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataDecisionTaskStartedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3060,11 +2928,7 @@ type DecisionTaskTimedOutEventAttributes struct {
 	// The type of timeout that expired before the decision task could be completed.
 	TimeoutType *string `locationName:"timeoutType" type:"string" required:"true" enum:"DecisionTaskTimeoutType"`
 
-	metadataDecisionTaskTimedOutEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataDecisionTaskTimedOutEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3084,11 +2948,7 @@ type DeprecateActivityTypeInput struct {
 	// The name of the domain in which the activity type is registered.
 	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
-	metadataDeprecateActivityTypeInput `json:"-" xml:"-"`
-}
-
-type metadataDeprecateActivityTypeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3102,11 +2962,7 @@ func (s DeprecateActivityTypeInput) GoString() string {
 }
 
 type DeprecateActivityTypeOutput struct {
-	metadataDeprecateActivityTypeOutput `json:"-" xml:"-"`
-}
-
-type metadataDeprecateActivityTypeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3123,11 +2979,7 @@ type DeprecateDomainInput struct {
 	// The name of the domain to deprecate.
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	metadataDeprecateDomainInput `json:"-" xml:"-"`
-}
-
-type metadataDeprecateDomainInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3141,11 +2993,7 @@ func (s DeprecateDomainInput) GoString() string {
 }
 
 type DeprecateDomainOutput struct {
-	metadataDeprecateDomainOutput `json:"-" xml:"-"`
-}
-
-type metadataDeprecateDomainOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3165,11 +3013,7 @@ type DeprecateWorkflowTypeInput struct {
 	// The workflow type to deprecate.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataDeprecateWorkflowTypeInput `json:"-" xml:"-"`
-}
-
-type metadataDeprecateWorkflowTypeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3183,11 +3027,7 @@ func (s DeprecateWorkflowTypeInput) GoString() string {
 }
 
 type DeprecateWorkflowTypeOutput struct {
-	metadataDeprecateWorkflowTypeOutput `json:"-" xml:"-"`
-}
-
-type metadataDeprecateWorkflowTypeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3208,11 +3048,7 @@ type DescribeActivityTypeInput struct {
 	// The name of the domain in which the activity type is registered.
 	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
-	metadataDescribeActivityTypeInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeActivityTypeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3241,11 +3077,7 @@ type DescribeActivityTypeOutput struct {
 	// You cannot create new tasks of this type.
 	TypeInfo *ActivityTypeInfo `locationName:"typeInfo" type:"structure" required:"true"`
 
-	metadataDescribeActivityTypeOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeActivityTypeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3262,11 +3094,7 @@ type DescribeDomainInput struct {
 	// The name of the domain to describe.
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	metadataDescribeDomainInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDomainInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3287,11 +3115,7 @@ type DescribeDomainOutput struct {
 	// Contains general information about a domain.
 	DomainInfo *DomainInfo `locationName:"domainInfo" type:"structure" required:"true"`
 
-	metadataDescribeDomainOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDomainOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3311,11 +3135,7 @@ type DescribeWorkflowExecutionInput struct {
 	// The workflow execution to describe.
 	Execution *WorkflowExecution `locationName:"execution" type:"structure" required:"true"`
 
-	metadataDescribeWorkflowExecutionInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeWorkflowExecutionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3351,11 +3171,7 @@ type DescribeWorkflowExecutionOutput struct {
 	// tasks of all types.
 	OpenCounts *WorkflowExecutionOpenCounts `locationName:"openCounts" type:"structure" required:"true"`
 
-	metadataDescribeWorkflowExecutionOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeWorkflowExecutionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3375,11 +3191,7 @@ type DescribeWorkflowTypeInput struct {
 	// The workflow type to describe.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataDescribeWorkflowTypeInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeWorkflowTypeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3408,11 +3220,7 @@ type DescribeWorkflowTypeOutput struct {
 	// You cannot create new workflow executions of this type.
 	TypeInfo *WorkflowTypeInfo `locationName:"typeInfo" type:"structure" required:"true"`
 
-	metadataDescribeWorkflowTypeOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeWorkflowTypeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3430,11 +3238,7 @@ type DomainConfiguration struct {
 	// The retention period for workflow executions in this domain.
 	WorkflowExecutionRetentionPeriodInDays *string `locationName:"workflowExecutionRetentionPeriodInDays" min:"1" type:"string" required:"true"`
 
-	metadataDomainConfiguration `json:"-" xml:"-"`
-}
-
-type metadataDomainConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3463,11 +3267,7 @@ type DomainInfo struct {
 	// in use. You should not create new workflow executions in this domain.
 	Status *string `locationName:"status" type:"string" required:"true" enum:"RegistrationStatus"`
 
-	metadataDomainInfo `json:"-" xml:"-"`
-}
-
-type metadataDomainInfo struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3492,11 +3292,7 @@ type ExecutionTimeFilter struct {
 	// Specifies the oldest start or close date and time to return.
 	OldestDate *time.Time `locationName:"oldestDate" type:"timestamp" timestampFormat:"unix" required:"true"`
 
-	metadataExecutionTimeFilter `json:"-" xml:"-"`
-}
-
-type metadataExecutionTimeFilter struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3520,11 +3316,7 @@ type ExternalWorkflowExecutionCancelRequestedEventAttributes struct {
 	// The external workflow execution to which the cancellation request was delivered.
 	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
 
-	metadataExternalWorkflowExecutionCancelRequestedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataExternalWorkflowExecutionCancelRequestedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3548,11 +3340,7 @@ type ExternalWorkflowExecutionSignaledEventAttributes struct {
 	// The external workflow execution that the signal was delivered to.
 	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
 
-	metadataExternalWorkflowExecutionSignaledEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataExternalWorkflowExecutionSignaledEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3587,11 +3375,7 @@ type FailWorkflowExecutionDecisionAttributes struct {
 	// A descriptive reason for the failure that may help in diagnostics.
 	Reason *string `locationName:"reason" type:"string"`
 
-	metadataFailWorkflowExecutionDecisionAttributes `json:"-" xml:"-"`
-}
-
-type metadataFailWorkflowExecutionDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3620,11 +3404,7 @@ type FailWorkflowExecutionFailedEventAttributes struct {
 	// chain of events leading up to this event.
 	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
-	metadataFailWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataFailWorkflowExecutionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3665,11 +3445,7 @@ type GetWorkflowExecutionHistoryInput struct {
 	// are returned in ascending order of the eventTimeStamp of the events.
 	ReverseOrder *bool `locationName:"reverseOrder" type:"boolean"`
 
-	metadataGetWorkflowExecutionHistoryInput `json:"-" xml:"-"`
-}
-
-type metadataGetWorkflowExecutionHistoryInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3697,11 +3473,7 @@ type GetWorkflowExecutionHistoryOutput struct {
 	// in a single call.
 	NextPageToken *string `locationName:"nextPageToken" type:"string"`
 
-	metadataGetWorkflowExecutionHistoryOutput `json:"-" xml:"-"`
-}
-
-type metadataGetWorkflowExecutionHistoryOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4040,11 +3812,7 @@ type HistoryEvent struct {
 	// event types.
 	WorkflowExecutionTimedOutEventAttributes *WorkflowExecutionTimedOutEventAttributes `locationName:"workflowExecutionTimedOutEventAttributes" type:"structure"`
 
-	metadataHistoryEvent `json:"-" xml:"-"`
-}
-
-type metadataHistoryEvent struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4070,11 +3838,7 @@ type LambdaFunctionCompletedEventAttributes struct {
 	// The ID of the LambdaFunctionStarted event recorded in the history.
 	StartedEventId *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
-	metadataLambdaFunctionCompletedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataLambdaFunctionCompletedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4103,11 +3867,7 @@ type LambdaFunctionFailedEventAttributes struct {
 	// The ID of the LambdaFunctionStarted event recorded in the history.
 	StartedEventId *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
-	metadataLambdaFunctionFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataLambdaFunctionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4141,11 +3901,7 @@ type LambdaFunctionScheduledEventAttributes struct {
 	// from start to close before it is marked as failed.
 	StartToCloseTimeout *string `locationName:"startToCloseTimeout" type:"string"`
 
-	metadataLambdaFunctionScheduledEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataLambdaFunctionScheduledEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4165,11 +3921,7 @@ type LambdaFunctionStartedEventAttributes struct {
 	// problems by tracing back the chain of events leading up to this event.
 	ScheduledEventId *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
 
-	metadataLambdaFunctionStartedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataLambdaFunctionStartedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4195,11 +3947,7 @@ type LambdaFunctionTimedOutEventAttributes struct {
 	// The type of the timeout that caused this event.
 	TimeoutType *string `locationName:"timeoutType" type:"string" enum:"LambdaFunctionTimeoutType"`
 
-	metadataLambdaFunctionTimedOutEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataLambdaFunctionTimedOutEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4243,11 +3991,7 @@ type ListActivityTypesInput struct {
 	// are returned in ascending alphabetical order by name of the activity types.
 	ReverseOrder *bool `locationName:"reverseOrder" type:"boolean"`
 
-	metadataListActivityTypesInput `json:"-" xml:"-"`
-}
-
-type metadataListActivityTypesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4273,11 +4017,7 @@ type ListActivityTypesOutput struct {
 	// List of activity type information.
 	TypeInfos []*ActivityTypeInfo `locationName:"typeInfos" type:"list" required:"true"`
 
-	metadataListActivityTypesOutput `json:"-" xml:"-"`
-}
-
-type metadataListActivityTypesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4360,11 +4100,7 @@ type ListClosedWorkflowExecutionsInput struct {
 	// exclusive. You can specify at most one of these in a request.
 	TypeFilter *WorkflowTypeFilter `locationName:"typeFilter" type:"structure"`
 
-	metadataListClosedWorkflowExecutionsInput `json:"-" xml:"-"`
-}
-
-type metadataListClosedWorkflowExecutionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4402,11 +4138,7 @@ type ListDomainsInput struct {
 	// are returned in ascending alphabetical order by name of the domains.
 	ReverseOrder *bool `locationName:"reverseOrder" type:"boolean"`
 
-	metadataListDomainsInput `json:"-" xml:"-"`
-}
-
-type metadataListDomainsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4432,11 +4164,7 @@ type ListDomainsOutput struct {
 	// in a single call.
 	NextPageToken *string `locationName:"nextPageToken" type:"string"`
 
-	metadataListDomainsOutput `json:"-" xml:"-"`
-}
-
-type metadataListDomainsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4497,11 +4225,7 @@ type ListOpenWorkflowExecutionsInput struct {
 	// specify at most one of these in a request.
 	TypeFilter *WorkflowTypeFilter `locationName:"typeFilter" type:"structure"`
 
-	metadataListOpenWorkflowExecutionsInput `json:"-" xml:"-"`
-}
-
-type metadataListOpenWorkflowExecutionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4546,11 +4270,7 @@ type ListWorkflowTypesInput struct {
 	// types.
 	ReverseOrder *bool `locationName:"reverseOrder" type:"boolean"`
 
-	metadataListWorkflowTypesInput `json:"-" xml:"-"`
-}
-
-type metadataListWorkflowTypesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4576,11 +4296,7 @@ type ListWorkflowTypesOutput struct {
 	// The list of workflow type information.
 	TypeInfos []*WorkflowTypeInfo `locationName:"typeInfos" type:"list" required:"true"`
 
-	metadataListWorkflowTypesOutput `json:"-" xml:"-"`
-}
-
-type metadataListWorkflowTypesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4607,11 +4323,7 @@ type MarkerRecordedEventAttributes struct {
 	// The name of the marker.
 	MarkerName *string `locationName:"markerName" min:"1" type:"string" required:"true"`
 
-	metadataMarkerRecordedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataMarkerRecordedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4633,11 +4345,7 @@ type PendingTaskCount struct {
 	// supported by this API and the count returned is the truncated value.
 	Truncated *bool `locationName:"truncated" type:"boolean"`
 
-	metadataPendingTaskCount `json:"-" xml:"-"`
-}
-
-type metadataPendingTaskCount struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4667,11 +4375,7 @@ type PollForActivityTaskInput struct {
 	// string quotarnquot.
 	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"`
 
-	metadataPollForActivityTaskInput `json:"-" xml:"-"`
-}
-
-type metadataPollForActivityTaskInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4707,11 +4411,7 @@ type PollForActivityTaskOutput struct {
 	// The workflow execution that started this activity task.
 	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
 
-	metadataPollForActivityTaskOutput `json:"-" xml:"-"`
-}
-
-type metadataPollForActivityTaskOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4767,11 +4467,7 @@ type PollForDecisionTaskInput struct {
 	// string quotarnquot.
 	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"`
 
-	metadataPollForDecisionTaskInput `json:"-" xml:"-"`
-}
-
-type metadataPollForDecisionTaskInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4819,11 +4515,7 @@ type PollForDecisionTaskOutput struct {
 	// The type of the workflow execution for which this decision task was created.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataPollForDecisionTaskOutput `json:"-" xml:"-"`
-}
-
-type metadataPollForDecisionTaskOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4847,11 +4539,7 @@ type RecordActivityTaskHeartbeatInput struct {
 	// be passed. This enables it to provide its progress and respond with results.
 	TaskToken *string `locationName:"taskToken" min:"1" type:"string" required:"true"`
 
-	metadataRecordActivityTaskHeartbeatInput `json:"-" xml:"-"`
-}
-
-type metadataRecordActivityTaskHeartbeatInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4869,11 +4557,7 @@ type RecordActivityTaskHeartbeatOutput struct {
 	// Set to true if cancellation of the task is requested.
 	CancelRequested *bool `locationName:"cancelRequested" type:"boolean" required:"true"`
 
-	metadataRecordActivityTaskHeartbeatOutput `json:"-" xml:"-"`
-}
-
-type metadataRecordActivityTaskHeartbeatOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4908,11 +4592,7 @@ type RecordMarkerDecisionAttributes struct {
 	// Required. The name of the marker.
 	MarkerName *string `locationName:"markerName" min:"1" type:"string" required:"true"`
 
-	metadataRecordMarkerDecisionAttributes `json:"-" xml:"-"`
-}
-
-type metadataRecordMarkerDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4944,11 +4624,7 @@ type RecordMarkerFailedEventAttributes struct {
 	// The marker's name.
 	MarkerName *string `locationName:"markerName" min:"1" type:"string" required:"true"`
 
-	metadataRecordMarkerFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataRecordMarkerFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5037,11 +4713,7 @@ type RegisterActivityTypeInput struct {
 	// it must not contain the literal string quotarnquot.
 	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
 
-	metadataRegisterActivityTypeInput `json:"-" xml:"-"`
-}
-
-type metadataRegisterActivityTypeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5055,11 +4727,7 @@ func (s RegisterActivityTypeInput) GoString() string {
 }
 
 type RegisterActivityTypeOutput struct {
-	metadataRegisterActivityTypeOutput `json:"-" xml:"-"`
-}
-
-type metadataRegisterActivityTypeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5098,11 +4766,7 @@ type RegisterDomainInput struct {
 	// in the Amazon SWF Developer Guide.
 	WorkflowExecutionRetentionPeriodInDays *string `locationName:"workflowExecutionRetentionPeriodInDays" min:"1" type:"string" required:"true"`
 
-	metadataRegisterDomainInput `json:"-" xml:"-"`
-}
-
-type metadataRegisterDomainInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5116,11 +4780,7 @@ func (s RegisterDomainInput) GoString() string {
 }
 
 type RegisterDomainOutput struct {
-	metadataRegisterDomainOutput `json:"-" xml:"-"`
-}
-
-type metadataRegisterDomainOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5217,11 +4877,7 @@ type RegisterWorkflowTypeInput struct {
 	// Also, it must not contain the literal string quotarnquot.
 	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
 
-	metadataRegisterWorkflowTypeInput `json:"-" xml:"-"`
-}
-
-type metadataRegisterWorkflowTypeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5235,11 +4891,7 @@ func (s RegisterWorkflowTypeInput) GoString() string {
 }
 
 type RegisterWorkflowTypeOutput struct {
-	metadataRegisterWorkflowTypeOutput `json:"-" xml:"-"`
-}
-
-type metadataRegisterWorkflowTypeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5271,11 +4923,7 @@ type RequestCancelActivityTaskDecisionAttributes struct {
 	// The activityId of the activity task to be canceled.
 	ActivityId *string `locationName:"activityId" min:"1" type:"string" required:"true"`
 
-	metadataRequestCancelActivityTaskDecisionAttributes `json:"-" xml:"-"`
-}
-
-type metadataRequestCancelActivityTaskDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5307,11 +4955,7 @@ type RequestCancelActivityTaskFailedEventAttributes struct {
 	// back the chain of events leading up to this event.
 	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
-	metadataRequestCancelActivityTaskFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataRequestCancelActivityTaskFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5350,11 +4994,7 @@ type RequestCancelExternalWorkflowExecutionDecisionAttributes struct {
 	// Required. The workflowId of the external workflow execution to cancel.
 	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
 
-	metadataRequestCancelExternalWorkflowExecutionDecisionAttributes `json:"-" xml:"-"`
-}
-
-type metadataRequestCancelExternalWorkflowExecutionDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5398,11 +5038,7 @@ type RequestCancelExternalWorkflowExecutionFailedEventAttributes struct {
 	// be delivered.
 	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
 
-	metadataRequestCancelExternalWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataRequestCancelExternalWorkflowExecutionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5433,11 +5069,7 @@ type RequestCancelExternalWorkflowExecutionInitiatedEventAttributes struct {
 	// The workflowId of the external workflow execution to be canceled.
 	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
 
-	metadataRequestCancelExternalWorkflowExecutionInitiatedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataRequestCancelExternalWorkflowExecutionInitiatedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5460,11 +5092,7 @@ type RequestCancelWorkflowExecutionInput struct {
 	// The workflowId of the workflow execution to cancel.
 	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
 
-	metadataRequestCancelWorkflowExecutionInput `json:"-" xml:"-"`
-}
-
-type metadataRequestCancelWorkflowExecutionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5478,11 +5106,7 @@ func (s RequestCancelWorkflowExecutionInput) GoString() string {
 }
 
 type RequestCancelWorkflowExecutionOutput struct {
-	metadataRequestCancelWorkflowExecutionOutput `json:"-" xml:"-"`
-}
-
-type metadataRequestCancelWorkflowExecutionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5506,11 +5130,7 @@ type RespondActivityTaskCanceledInput struct {
 	// be passed. This enables it to provide its progress and respond with results.
 	TaskToken *string `locationName:"taskToken" min:"1" type:"string" required:"true"`
 
-	metadataRespondActivityTaskCanceledInput `json:"-" xml:"-"`
-}
-
-type metadataRespondActivityTaskCanceledInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5524,11 +5144,7 @@ func (s RespondActivityTaskCanceledInput) GoString() string {
 }
 
 type RespondActivityTaskCanceledOutput struct {
-	metadataRespondActivityTaskCanceledOutput `json:"-" xml:"-"`
-}
-
-type metadataRespondActivityTaskCanceledOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5553,11 +5169,7 @@ type RespondActivityTaskCompletedInput struct {
 	// be passed. This enables it to provide its progress and respond with results.
 	TaskToken *string `locationName:"taskToken" min:"1" type:"string" required:"true"`
 
-	metadataRespondActivityTaskCompletedInput `json:"-" xml:"-"`
-}
-
-type metadataRespondActivityTaskCompletedInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5571,11 +5183,7 @@ func (s RespondActivityTaskCompletedInput) GoString() string {
 }
 
 type RespondActivityTaskCompletedOutput struct {
-	metadataRespondActivityTaskCompletedOutput `json:"-" xml:"-"`
-}
-
-type metadataRespondActivityTaskCompletedOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5602,11 +5210,7 @@ type RespondActivityTaskFailedInput struct {
 	// be passed. This enables it to provide its progress and respond with results.
 	TaskToken *string `locationName:"taskToken" min:"1" type:"string" required:"true"`
 
-	metadataRespondActivityTaskFailedInput `json:"-" xml:"-"`
-}
-
-type metadataRespondActivityTaskFailedInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5620,11 +5224,7 @@ func (s RespondActivityTaskFailedInput) GoString() string {
 }
 
 type RespondActivityTaskFailedOutput struct {
-	metadataRespondActivityTaskFailedOutput `json:"-" xml:"-"`
-}
-
-type metadataRespondActivityTaskFailedOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5652,11 +5252,7 @@ type RespondDecisionTaskCompletedInput struct {
 	// be passed. This enables it to provide its progress and respond with results.
 	TaskToken *string `locationName:"taskToken" min:"1" type:"string" required:"true"`
 
-	metadataRespondDecisionTaskCompletedInput `json:"-" xml:"-"`
-}
-
-type metadataRespondDecisionTaskCompletedInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5670,11 +5266,7 @@ func (s RespondDecisionTaskCompletedInput) GoString() string {
 }
 
 type RespondDecisionTaskCompletedOutput struct {
-	metadataRespondDecisionTaskCompletedOutput `json:"-" xml:"-"`
-}
-
-type metadataRespondDecisionTaskCompletedOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5796,11 +5388,7 @@ type ScheduleActivityTaskDecisionAttributes struct {
 	// in the Amazon Simple Workflow Developer Guide.
 	TaskPriority *string `locationName:"taskPriority" type:"string"`
 
-	metadataScheduleActivityTaskDecisionAttributes `json:"-" xml:"-"`
-}
-
-type metadataScheduleActivityTaskDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5835,11 +5423,7 @@ type ScheduleActivityTaskFailedEventAttributes struct {
 	// up to this event.
 	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
-	metadataScheduleActivityTaskFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataScheduleActivityTaskFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5888,11 +5472,7 @@ type ScheduleLambdaFunctionDecisionAttributes struct {
 	// If set, specifies the maximum duration the function may take to execute.
 	StartToCloseTimeout *string `locationName:"startToCloseTimeout" type:"string"`
 
-	metadataScheduleLambdaFunctionDecisionAttributes `json:"-" xml:"-"`
-}
-
-type metadataScheduleLambdaFunctionDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5927,11 +5507,7 @@ type ScheduleLambdaFunctionFailedEventAttributes struct {
 	// The name of the scheduled AWS Lambda function.
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	metadataScheduleLambdaFunctionFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataScheduleLambdaFunctionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5978,11 +5554,7 @@ type SignalExternalWorkflowExecutionDecisionAttributes struct {
 	// Required. The workflowId of the workflow execution to be signaled.
 	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
 
-	metadataSignalExternalWorkflowExecutionDecisionAttributes `json:"-" xml:"-"`
-}
-
-type metadataSignalExternalWorkflowExecutionDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6027,11 +5599,7 @@ type SignalExternalWorkflowExecutionFailedEventAttributes struct {
 	// delivered to.
 	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
 
-	metadataSignalExternalWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataSignalExternalWorkflowExecutionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6068,11 +5636,7 @@ type SignalExternalWorkflowExecutionInitiatedEventAttributes struct {
 	// The workflowId of the external workflow execution.
 	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
 
-	metadataSignalExternalWorkflowExecutionInitiatedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataSignalExternalWorkflowExecutionInitiatedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6102,11 +5666,7 @@ type SignalWorkflowExecutionInput struct {
 	// The workflowId of the workflow execution to signal.
 	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
 
-	metadataSignalWorkflowExecutionInput `json:"-" xml:"-"`
-}
-
-type metadataSignalWorkflowExecutionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6120,11 +5680,7 @@ func (s SignalWorkflowExecutionInput) GoString() string {
 }
 
 type SignalWorkflowExecutionOutput struct {
-	metadataSignalWorkflowExecutionOutput `json:"-" xml:"-"`
-}
-
-type metadataSignalWorkflowExecutionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6254,11 +5810,7 @@ type StartChildWorkflowExecutionDecisionAttributes struct {
 	// Required. The type of the workflow execution to be started.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataStartChildWorkflowExecutionDecisionAttributes `json:"-" xml:"-"`
-}
-
-type metadataStartChildWorkflowExecutionDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6302,11 +5854,7 @@ type StartChildWorkflowExecutionFailedEventAttributes struct {
 	// failed.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataStartChildWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataStartChildWorkflowExecutionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6387,11 +5935,7 @@ type StartChildWorkflowExecutionInitiatedEventAttributes struct {
 	// The type of the child workflow execution.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataStartChildWorkflowExecutionInitiatedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataStartChildWorkflowExecutionInitiatedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6422,11 +5966,7 @@ type StartLambdaFunctionFailedEventAttributes struct {
 	// problems by tracing back the chain of events leading up to this event.
 	ScheduledEventId *int64 `locationName:"scheduledEventId" type:"long"`
 
-	metadataStartLambdaFunctionFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataStartLambdaFunctionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6473,11 +6013,7 @@ type StartTimerDecisionAttributes struct {
 	// string quotarnquot.
 	TimerId *string `locationName:"timerId" min:"1" type:"string" required:"true"`
 
-	metadataStartTimerDecisionAttributes `json:"-" xml:"-"`
-}
-
-type metadataStartTimerDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6509,11 +6045,7 @@ type StartTimerFailedEventAttributes struct {
 	// The timerId provided in the StartTimer decision that failed.
 	TimerId *string `locationName:"timerId" min:"1" type:"string" required:"true"`
 
-	metadataStartTimerFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataStartTimerFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6634,11 +6166,7 @@ type StartWorkflowExecutionInput struct {
 	// The type of the workflow to start.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataStartWorkflowExecutionInput `json:"-" xml:"-"`
-}
-
-type metadataStartWorkflowExecutionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6657,11 +6185,7 @@ type StartWorkflowExecutionOutput struct {
 	// can be used to uniquely identify the workflow execution within a domain.
 	RunId *string `locationName:"runId" min:"1" type:"string"`
 
-	metadataStartWorkflowExecutionOutput `json:"-" xml:"-"`
-}
-
-type metadataStartWorkflowExecutionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6680,11 +6204,7 @@ type TagFilter struct {
 	// it to meet the filter criteria.
 	Tag *string `locationName:"tag" min:"1" type:"string" required:"true"`
 
-	metadataTagFilter `json:"-" xml:"-"`
-}
-
-type metadataTagFilter struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6702,11 +6222,7 @@ type TaskList struct {
 	// The name of the task list.
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	metadataTaskList `json:"-" xml:"-"`
-}
-
-type metadataTaskList struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6753,11 +6269,7 @@ type TerminateWorkflowExecutionInput struct {
 	// The workflowId of the workflow execution to terminate.
 	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
 
-	metadataTerminateWorkflowExecutionInput `json:"-" xml:"-"`
-}
-
-type metadataTerminateWorkflowExecutionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6771,11 +6283,7 @@ func (s TerminateWorkflowExecutionInput) GoString() string {
 }
 
 type TerminateWorkflowExecutionOutput struct {
-	metadataTerminateWorkflowExecutionOutput `json:"-" xml:"-"`
-}
-
-type metadataTerminateWorkflowExecutionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6804,11 +6312,7 @@ type TimerCanceledEventAttributes struct {
 	// The unique ID of the timer that was canceled.
 	TimerId *string `locationName:"timerId" min:"1" type:"string" required:"true"`
 
-	metadataTimerCanceledEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataTimerCanceledEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6831,11 +6335,7 @@ type TimerFiredEventAttributes struct {
 	// The unique ID of the timer that fired.
 	TimerId *string `locationName:"timerId" min:"1" type:"string" required:"true"`
 
-	metadataTimerFiredEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataTimerFiredEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6869,11 +6369,7 @@ type TimerStartedEventAttributes struct {
 	// The unique ID of the timer that was started.
 	TimerId *string `locationName:"timerId" min:"1" type:"string" required:"true"`
 
-	metadataTimerStartedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataTimerStartedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6894,11 +6390,7 @@ type WorkflowExecution struct {
 	// The user defined identifier associated with the workflow execution.
 	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
 
-	metadataWorkflowExecution `json:"-" xml:"-"`
-}
-
-type metadataWorkflowExecution struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6928,11 +6420,7 @@ type WorkflowExecutionCancelRequestedEventAttributes struct {
 	// The external workflow execution for which the cancellation was requested.
 	ExternalWorkflowExecution *WorkflowExecution `locationName:"externalWorkflowExecution" type:"structure"`
 
-	metadataWorkflowExecutionCancelRequestedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataWorkflowExecutionCancelRequestedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6956,11 +6444,7 @@ type WorkflowExecutionCanceledEventAttributes struct {
 	// Details for the cancellation (if any).
 	Details *string `locationName:"details" type:"string"`
 
-	metadataWorkflowExecutionCanceledEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataWorkflowExecutionCanceledEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6984,11 +6468,7 @@ type WorkflowExecutionCompletedEventAttributes struct {
 	// The result produced by the workflow execution upon successful completion.
 	Result *string `locationName:"result" type:"string"`
 
-	metadataWorkflowExecutionCompletedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataWorkflowExecutionCompletedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7046,11 +6526,7 @@ type WorkflowExecutionConfiguration struct {
 	// 0. The value "NONE" can be used to specify unlimited duration.
 	TaskStartToCloseTimeout *string `locationName:"taskStartToCloseTimeout" min:"1" type:"string" required:"true"`
 
-	metadataWorkflowExecutionConfiguration `json:"-" xml:"-"`
-}
-
-type metadataWorkflowExecutionConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7117,11 +6593,7 @@ type WorkflowExecutionContinuedAsNewEventAttributes struct {
 	// Represents a workflow type.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataWorkflowExecutionContinuedAsNewEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataWorkflowExecutionContinuedAsNewEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7144,11 +6616,7 @@ type WorkflowExecutionCount struct {
 	// supported by this API and the count returned is the truncated value.
 	Truncated *bool `locationName:"truncated" type:"boolean"`
 
-	metadataWorkflowExecutionCount `json:"-" xml:"-"`
-}
-
-type metadataWorkflowExecutionCount struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7175,11 +6643,7 @@ type WorkflowExecutionFailedEventAttributes struct {
 	// The descriptive reason provided for the failure (if any).
 	Reason *string `locationName:"reason" type:"string"`
 
-	metadataWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataWorkflowExecutionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7197,11 +6661,7 @@ type WorkflowExecutionFilter struct {
 	// The workflowId to pass of match the criteria of this filter.
 	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
 
-	metadataWorkflowExecutionFilter `json:"-" xml:"-"`
-}
-
-type metadataWorkflowExecutionFilter struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7256,11 +6716,7 @@ type WorkflowExecutionInfo struct {
 	// The type of the workflow execution.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataWorkflowExecutionInfo `json:"-" xml:"-"`
-}
-
-type metadataWorkflowExecutionInfo struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7286,11 +6742,7 @@ type WorkflowExecutionInfos struct {
 	// in a single call.
 	NextPageToken *string `locationName:"nextPageToken" type:"string"`
 
-	metadataWorkflowExecutionInfos `json:"-" xml:"-"`
-}
-
-type metadataWorkflowExecutionInfos struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7323,11 +6775,7 @@ type WorkflowExecutionOpenCounts struct {
 	// yet.
 	OpenTimers *int64 `locationName:"openTimers" type:"integer" required:"true"`
 
-	metadataWorkflowExecutionOpenCounts `json:"-" xml:"-"`
-}
-
-type metadataWorkflowExecutionOpenCounts struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7362,11 +6810,7 @@ type WorkflowExecutionSignaledEventAttributes struct {
 	// inputs to determine how to the process the signal.
 	SignalName *string `locationName:"signalName" min:"1" type:"string" required:"true"`
 
-	metadataWorkflowExecutionSignaledEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataWorkflowExecutionSignaledEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7442,11 +6886,7 @@ type WorkflowExecutionStartedEventAttributes struct {
 	// The workflow type of this execution.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataWorkflowExecutionStartedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataWorkflowExecutionStartedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7483,11 +6923,7 @@ type WorkflowExecutionTerminatedEventAttributes struct {
 	// The reason provided for the termination (if any).
 	Reason *string `locationName:"reason" type:"string"`
 
-	metadataWorkflowExecutionTerminatedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataWorkflowExecutionTerminatedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7516,11 +6952,7 @@ type WorkflowExecutionTimedOutEventAttributes struct {
 	// The type of timeout that caused this event.
 	TimeoutType *string `locationName:"timeoutType" type:"string" required:"true" enum:"WorkflowExecutionTimeoutType"`
 
-	metadataWorkflowExecutionTimedOutEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataWorkflowExecutionTimedOutEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7547,11 +6979,7 @@ type WorkflowType struct {
 	// a domain.
 	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
 
-	metadataWorkflowType `json:"-" xml:"-"`
-}
-
-type metadataWorkflowType struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7625,11 +7053,7 @@ type WorkflowTypeConfiguration struct {
 	// 0. The value "NONE" can be used to specify unlimited duration.
 	DefaultTaskStartToCloseTimeout *string `locationName:"defaultTaskStartToCloseTimeout" type:"string"`
 
-	metadataWorkflowTypeConfiguration `json:"-" xml:"-"`
-}
-
-type metadataWorkflowTypeConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7651,11 +7075,7 @@ type WorkflowTypeFilter struct {
 	// Version of the workflow type.
 	Version *string `locationName:"version" type:"string"`
 
-	metadataWorkflowTypeFilter `json:"-" xml:"-"`
-}
-
-type metadataWorkflowTypeFilter struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7686,11 +7106,7 @@ type WorkflowTypeInfo struct {
 	// The workflow type this information is about.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataWorkflowTypeInfo `json:"-" xml:"-"`
-}
-
-type metadataWorkflowTypeInfo struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

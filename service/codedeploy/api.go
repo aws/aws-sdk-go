@@ -979,11 +979,7 @@ type AddTagsToOnPremisesInstancesInput struct {
 	// Value-only tags are not allowed.
 	Tags []*Tag `locationName:"tags" type:"list" required:"true"`
 
-	metadataAddTagsToOnPremisesInstancesInput `json:"-" xml:"-"`
-}
-
-type metadataAddTagsToOnPremisesInstancesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -997,11 +993,7 @@ func (s AddTagsToOnPremisesInstancesInput) GoString() string {
 }
 
 type AddTagsToOnPremisesInstancesOutput struct {
-	metadataAddTagsToOnPremisesInstancesOutput `json:"-" xml:"-"`
-}
-
-type metadataAddTagsToOnPremisesInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1029,11 +1021,7 @@ type ApplicationInfo struct {
 	// otherwise, false.
 	LinkedToGitHub *bool `locationName:"linkedToGitHub" type:"boolean"`
 
-	metadataApplicationInfo `json:"-" xml:"-"`
-}
-
-type metadataApplicationInfo struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1054,11 +1042,7 @@ type AutoScalingGroup struct {
 	// The Auto Scaling group name.
 	Name *string `locationName:"name" type:"string"`
 
-	metadataAutoScalingGroup `json:"-" xml:"-"`
-}
-
-type metadataAutoScalingGroup struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1077,11 +1061,7 @@ type BatchGetApplicationsInput struct {
 	// spaces.
 	ApplicationNames []*string `locationName:"applicationNames" type:"list"`
 
-	metadataBatchGetApplicationsInput `json:"-" xml:"-"`
-}
-
-type metadataBatchGetApplicationsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1099,11 +1079,7 @@ type BatchGetApplicationsOutput struct {
 	// Information about the applications.
 	ApplicationsInfo []*ApplicationInfo `locationName:"applicationsInfo" type:"list"`
 
-	metadataBatchGetApplicationsOutput `json:"-" xml:"-"`
-}
-
-type metadataBatchGetApplicationsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1121,11 +1097,7 @@ type BatchGetDeploymentsInput struct {
 	// A list of deployment IDs, with multiple deployment IDs separated by spaces.
 	DeploymentIds []*string `locationName:"deploymentIds" type:"list"`
 
-	metadataBatchGetDeploymentsInput `json:"-" xml:"-"`
-}
-
-type metadataBatchGetDeploymentsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1143,11 +1115,7 @@ type BatchGetDeploymentsOutput struct {
 	// Information about the deployments.
 	DeploymentsInfo []*DeploymentInfo `locationName:"deploymentsInfo" type:"list"`
 
-	metadataBatchGetDeploymentsOutput `json:"-" xml:"-"`
-}
-
-type metadataBatchGetDeploymentsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1165,11 +1133,7 @@ type BatchGetOnPremisesInstancesInput struct {
 	// The names of the on-premises instances to get information about.
 	InstanceNames []*string `locationName:"instanceNames" type:"list"`
 
-	metadataBatchGetOnPremisesInstancesInput `json:"-" xml:"-"`
-}
-
-type metadataBatchGetOnPremisesInstancesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1187,11 +1151,7 @@ type BatchGetOnPremisesInstancesOutput struct {
 	// Information about the on-premises instances.
 	InstanceInfos []*InstanceInfo `locationName:"instanceInfos" type:"list"`
 
-	metadataBatchGetOnPremisesInstancesOutput `json:"-" xml:"-"`
-}
-
-type metadataBatchGetOnPremisesInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1210,11 +1170,7 @@ type CreateApplicationInput struct {
 	// IAM user or AWS account.
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
-	metadataCreateApplicationInput `json:"-" xml:"-"`
-}
-
-type metadataCreateApplicationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1232,11 +1188,7 @@ type CreateApplicationOutput struct {
 	// A unique application ID.
 	ApplicationId *string `locationName:"applicationId" type:"string"`
 
-	metadataCreateApplicationOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateApplicationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1272,11 +1224,7 @@ type CreateDeploymentConfigInput struct {
 	// FLEET_PERCENT and a value of 95.
 	MinimumHealthyHosts *MinimumHealthyHosts `locationName:"minimumHealthyHosts" type:"structure"`
 
-	metadataCreateDeploymentConfigInput `json:"-" xml:"-"`
-}
-
-type metadataCreateDeploymentConfigInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1294,11 +1242,7 @@ type CreateDeploymentConfigOutput struct {
 	// A unique deployment configuration ID.
 	DeploymentConfigId *string `locationName:"deploymentConfigId" type:"string"`
 
-	metadataCreateDeploymentConfigOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateDeploymentConfigOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1364,11 +1308,7 @@ type CreateDeploymentGroupInput struct {
 	// when interacting with AWS services.
 	ServiceRoleArn *string `locationName:"serviceRoleArn" type:"string" required:"true"`
 
-	metadataCreateDeploymentGroupInput `json:"-" xml:"-"`
-}
-
-type metadataCreateDeploymentGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1386,11 +1326,7 @@ type CreateDeploymentGroupOutput struct {
 	// A unique deployment group ID.
 	DeploymentGroupId *string `locationName:"deploymentGroupId" type:"string"`
 
-	metadataCreateDeploymentGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateDeploymentGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1438,11 +1374,7 @@ type CreateDeploymentInput struct {
 	// location.
 	Revision *RevisionLocation `locationName:"revision" type:"structure"`
 
-	metadataCreateDeploymentInput `json:"-" xml:"-"`
-}
-
-type metadataCreateDeploymentInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1460,11 +1392,7 @@ type CreateDeploymentOutput struct {
 	// A unique deployment ID.
 	DeploymentId *string `locationName:"deploymentId" type:"string"`
 
-	metadataCreateDeploymentOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateDeploymentOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1483,11 +1411,7 @@ type DeleteApplicationInput struct {
 	// IAM user or AWS account.
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
-	metadataDeleteApplicationInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteApplicationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1501,11 +1425,7 @@ func (s DeleteApplicationInput) GoString() string {
 }
 
 type DeleteApplicationOutput struct {
-	metadataDeleteApplicationOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteApplicationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1524,11 +1444,7 @@ type DeleteDeploymentConfigInput struct {
 	// IAM user or AWS account.
 	DeploymentConfigName *string `locationName:"deploymentConfigName" min:"1" type:"string" required:"true"`
 
-	metadataDeleteDeploymentConfigInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDeploymentConfigInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1542,11 +1458,7 @@ func (s DeleteDeploymentConfigInput) GoString() string {
 }
 
 type DeleteDeploymentConfigOutput struct {
-	metadataDeleteDeploymentConfigOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDeploymentConfigOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1568,11 +1480,7 @@ type DeleteDeploymentGroupInput struct {
 	// The name of an existing deployment group for the specified application.
 	DeploymentGroupName *string `locationName:"deploymentGroupName" min:"1" type:"string" required:"true"`
 
-	metadataDeleteDeploymentGroupInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDeploymentGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1595,11 +1503,7 @@ type DeleteDeploymentGroupOutput struct {
 	// in the Auto Scaling group.
 	HooksNotCleanedUp []*AutoScalingGroup `locationName:"hooksNotCleanedUp" type:"list"`
 
-	metadataDeleteDeploymentGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDeploymentGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1626,11 +1530,7 @@ type DeploymentConfigInfo struct {
 	// Information about the number or percentage of minimum healthy instances.
 	MinimumHealthyHosts *MinimumHealthyHosts `locationName:"minimumHealthyHosts" type:"structure"`
 
-	metadataDeploymentConfigInfo `json:"-" xml:"-"`
-}
-
-type metadataDeploymentConfigInfo struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1673,11 +1573,7 @@ type DeploymentGroupInfo struct {
 	// type and its location.
 	TargetRevision *RevisionLocation `locationName:"targetRevision" type:"structure"`
 
-	metadataDeploymentGroupInfo `json:"-" xml:"-"`
-}
-
-type metadataDeploymentGroupInfo struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1751,11 +1647,7 @@ type DeploymentInfo struct {
 	// The current state of the deployment as a whole.
 	Status *string `locationName:"status" type:"string" enum:"DeploymentStatus"`
 
-	metadataDeploymentInfo `json:"-" xml:"-"`
-}
-
-type metadataDeploymentInfo struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1785,11 +1677,7 @@ type DeploymentOverview struct {
 	// The number of instances that have succeeded in the deployment.
 	Succeeded *int64 `type:"long"`
 
-	metadataDeploymentOverview `json:"-" xml:"-"`
-}
-
-type metadataDeploymentOverview struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1807,11 +1695,7 @@ type DeregisterOnPremisesInstanceInput struct {
 	// The name of the on-premises instance to deregister.
 	InstanceName *string `locationName:"instanceName" type:"string" required:"true"`
 
-	metadataDeregisterOnPremisesInstanceInput `json:"-" xml:"-"`
-}
-
-type metadataDeregisterOnPremisesInstanceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1825,11 +1709,7 @@ func (s DeregisterOnPremisesInstanceInput) GoString() string {
 }
 
 type DeregisterOnPremisesInstanceOutput struct {
-	metadataDeregisterOnPremisesInstanceOutput `json:"-" xml:"-"`
-}
-
-type metadataDeregisterOnPremisesInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1863,11 +1743,7 @@ type Diagnostics struct {
 	// The name of the script.
 	ScriptName *string `locationName:"scriptName" type:"string"`
 
-	metadataDiagnostics `json:"-" xml:"-"`
-}
-
-type metadataDiagnostics struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1893,11 +1769,7 @@ type EC2TagFilter struct {
 	// The tag filter value.
 	Value *string `type:"string"`
 
-	metadataEC2TagFilter `json:"-" xml:"-"`
-}
-
-type metadataEC2TagFilter struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1938,11 +1810,7 @@ type ErrorInformation struct {
 	// An accompanying error message.
 	Message *string `locationName:"message" type:"string"`
 
-	metadataErrorInformation `json:"-" xml:"-"`
-}
-
-type metadataErrorInformation struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1972,11 +1840,7 @@ type GenericRevisionInfo struct {
 	// When the revision was registered with AWS CodeDeploy.
 	RegisterTime *time.Time `locationName:"registerTime" type:"timestamp" timestampFormat:"unix"`
 
-	metadataGenericRevisionInfo `json:"-" xml:"-"`
-}
-
-type metadataGenericRevisionInfo struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1995,11 +1859,7 @@ type GetApplicationInput struct {
 	// IAM user or AWS account.
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
-	metadataGetApplicationInput `json:"-" xml:"-"`
-}
-
-type metadataGetApplicationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2017,11 +1877,7 @@ type GetApplicationOutput struct {
 	// Information about the application.
 	Application *ApplicationInfo `locationName:"application" type:"structure"`
 
-	metadataGetApplicationOutput `json:"-" xml:"-"`
-}
-
-type metadataGetApplicationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2043,11 +1899,7 @@ type GetApplicationRevisionInput struct {
 	// type and its location.
 	Revision *RevisionLocation `locationName:"revision" type:"structure" required:"true"`
 
-	metadataGetApplicationRevisionInput `json:"-" xml:"-"`
-}
-
-type metadataGetApplicationRevisionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2072,11 +1924,7 @@ type GetApplicationRevisionOutput struct {
 	// General information about the revision.
 	RevisionInfo *GenericRevisionInfo `locationName:"revisionInfo" type:"structure"`
 
-	metadataGetApplicationRevisionOutput `json:"-" xml:"-"`
-}
-
-type metadataGetApplicationRevisionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2095,11 +1943,7 @@ type GetDeploymentConfigInput struct {
 	// IAM user or AWS account.
 	DeploymentConfigName *string `locationName:"deploymentConfigName" min:"1" type:"string" required:"true"`
 
-	metadataGetDeploymentConfigInput `json:"-" xml:"-"`
-}
-
-type metadataGetDeploymentConfigInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2117,11 +1961,7 @@ type GetDeploymentConfigOutput struct {
 	// Information about the deployment configuration.
 	DeploymentConfigInfo *DeploymentConfigInfo `locationName:"deploymentConfigInfo" type:"structure"`
 
-	metadataGetDeploymentConfigOutput `json:"-" xml:"-"`
-}
-
-type metadataGetDeploymentConfigOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2143,11 +1983,7 @@ type GetDeploymentGroupInput struct {
 	// The name of an existing deployment group for the specified application.
 	DeploymentGroupName *string `locationName:"deploymentGroupName" min:"1" type:"string" required:"true"`
 
-	metadataGetDeploymentGroupInput `json:"-" xml:"-"`
-}
-
-type metadataGetDeploymentGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2165,11 +2001,7 @@ type GetDeploymentGroupOutput struct {
 	// Information about the deployment group.
 	DeploymentGroupInfo *DeploymentGroupInfo `locationName:"deploymentGroupInfo" type:"structure"`
 
-	metadataGetDeploymentGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataGetDeploymentGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2188,11 +2020,7 @@ type GetDeploymentInput struct {
 	// account.
 	DeploymentId *string `locationName:"deploymentId" type:"string" required:"true"`
 
-	metadataGetDeploymentInput `json:"-" xml:"-"`
-}
-
-type metadataGetDeploymentInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2213,11 +2041,7 @@ type GetDeploymentInstanceInput struct {
 	// The unique ID of an instance in the deployment's deployment group.
 	InstanceId *string `locationName:"instanceId" type:"string" required:"true"`
 
-	metadataGetDeploymentInstanceInput `json:"-" xml:"-"`
-}
-
-type metadataGetDeploymentInstanceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2235,11 +2059,7 @@ type GetDeploymentInstanceOutput struct {
 	// Information about the instance.
 	InstanceSummary *InstanceSummary `locationName:"instanceSummary" type:"structure"`
 
-	metadataGetDeploymentInstanceOutput `json:"-" xml:"-"`
-}
-
-type metadataGetDeploymentInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2257,11 +2077,7 @@ type GetDeploymentOutput struct {
 	// Information about the deployment.
 	DeploymentInfo *DeploymentInfo `locationName:"deploymentInfo" type:"structure"`
 
-	metadataGetDeploymentOutput `json:"-" xml:"-"`
-}
-
-type metadataGetDeploymentOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2279,11 +2095,7 @@ type GetOnPremisesInstanceInput struct {
 	// The name of the on-premises instance to get information about
 	InstanceName *string `locationName:"instanceName" type:"string" required:"true"`
 
-	metadataGetOnPremisesInstanceInput `json:"-" xml:"-"`
-}
-
-type metadataGetOnPremisesInstanceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2301,11 +2113,7 @@ type GetOnPremisesInstanceOutput struct {
 	// Information about the on-premises instance.
 	InstanceInfo *InstanceInfo `locationName:"instanceInfo" type:"structure"`
 
-	metadataGetOnPremisesInstanceOutput `json:"-" xml:"-"`
-}
-
-type metadataGetOnPremisesInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2331,11 +2139,7 @@ type GitHubLocation struct {
 	// Specified as account/repository.
 	Repository *string `locationName:"repository" type:"string"`
 
-	metadataGitHubLocation `json:"-" xml:"-"`
-}
-
-type metadataGitHubLocation struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2369,11 +2173,7 @@ type InstanceInfo struct {
 	// The tags that are currently associated with the on-premises instance.
 	Tags []*Tag `locationName:"tags" type:"list"`
 
-	metadataInstanceInfo `json:"-" xml:"-"`
-}
-
-type metadataInstanceInfo struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2409,11 +2209,7 @@ type InstanceSummary struct {
 	// deployment status is unknown for this instance.
 	Status *string `locationName:"status" type:"string" enum:"InstanceStatus"`
 
-	metadataInstanceSummary `json:"-" xml:"-"`
-}
-
-type metadataInstanceSummary struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2450,11 +2246,7 @@ type LifecycleEvent struct {
 	// lifecycle event is unknown.
 	Status *string `locationName:"status" type:"string" enum:"LifecycleEventStatus"`
 
-	metadataLifecycleEvent `json:"-" xml:"-"`
-}
-
-type metadataLifecycleEvent struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2513,11 +2305,7 @@ type ListApplicationRevisionsInput struct {
 	// If set to null, the results will be sorted in an arbitrary order.
 	SortOrder *string `locationName:"sortOrder" type:"string" enum:"SortOrder"`
 
-	metadataListApplicationRevisionsInput `json:"-" xml:"-"`
-}
-
-type metadataListApplicationRevisionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2541,11 +2329,7 @@ type ListApplicationRevisionsOutput struct {
 	// A list of revision locations that contain the matching revisions.
 	Revisions []*RevisionLocation `locationName:"revisions" type:"list"`
 
-	metadataListApplicationRevisionsOutput `json:"-" xml:"-"`
-}
-
-type metadataListApplicationRevisionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2564,11 +2348,7 @@ type ListApplicationsInput struct {
 	// which can be used to return the next set of applications in the list.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListApplicationsInput `json:"-" xml:"-"`
-}
-
-type metadataListApplicationsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2591,11 +2371,7 @@ type ListApplicationsOutput struct {
 	// applications call to return the next set of applications in the list.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListApplicationsOutput `json:"-" xml:"-"`
-}
-
-type metadataListApplicationsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2615,11 +2391,7 @@ type ListDeploymentConfigsInput struct {
 	// in the list.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListDeploymentConfigsInput `json:"-" xml:"-"`
-}
-
-type metadataListDeploymentConfigsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2644,11 +2416,7 @@ type ListDeploymentConfigsOutput struct {
 	// in the list.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListDeploymentConfigsOutput `json:"-" xml:"-"`
-}
-
-type metadataListDeploymentConfigsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2672,11 +2440,7 @@ type ListDeploymentGroupsInput struct {
 	// list.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListDeploymentGroupsInput `json:"-" xml:"-"`
-}
-
-type metadataListDeploymentGroupsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2703,11 +2467,7 @@ type ListDeploymentGroupsOutput struct {
 	// list.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListDeploymentGroupsOutput `json:"-" xml:"-"`
-}
-
-type metadataListDeploymentGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2741,11 +2501,7 @@ type ListDeploymentInstancesInput struct {
 	// the list.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListDeploymentInstancesInput `json:"-" xml:"-"`
-}
-
-type metadataListDeploymentInstancesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2769,11 +2525,7 @@ type ListDeploymentInstancesOutput struct {
 	// in the list.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListDeploymentInstancesOutput `json:"-" xml:"-"`
-}
-
-type metadataListDeploymentInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2812,11 +2564,7 @@ type ListDeploymentsInput struct {
 	// which can be used to return the next set of deployments in the list.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListDeploymentsInput `json:"-" xml:"-"`
-}
-
-type metadataListDeploymentsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2839,11 +2587,7 @@ type ListDeploymentsOutput struct {
 	// deployments call to return the next set of deployments in the list.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListDeploymentsOutput `json:"-" xml:"-"`
-}
-
-type metadataListDeploymentsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2875,11 +2619,7 @@ type ListOnPremisesInstancesInput struct {
 	// on-premises instance names that are returned.
 	TagFilters []*TagFilter `locationName:"tagFilters" type:"list"`
 
-	metadataListOnPremisesInstancesInput `json:"-" xml:"-"`
-}
-
-type metadataListOnPremisesInstancesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2903,11 +2643,7 @@ type ListOnPremisesInstancesOutput struct {
 	// in the list.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListOnPremisesInstancesOutput `json:"-" xml:"-"`
-}
-
-type metadataListOnPremisesInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2942,11 +2678,7 @@ type MinimumHealthyHosts struct {
 	// The minimum healthy instances value.
 	Value *int64 `locationName:"value" type:"integer"`
 
-	metadataMinimumHealthyHosts `json:"-" xml:"-"`
-}
-
-type metadataMinimumHealthyHosts struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2972,11 +2704,7 @@ type RegisterApplicationRevisionInput struct {
 	// type and its location.
 	Revision *RevisionLocation `locationName:"revision" type:"structure" required:"true"`
 
-	metadataRegisterApplicationRevisionInput `json:"-" xml:"-"`
-}
-
-type metadataRegisterApplicationRevisionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2990,11 +2718,7 @@ func (s RegisterApplicationRevisionInput) GoString() string {
 }
 
 type RegisterApplicationRevisionOutput struct {
-	metadataRegisterApplicationRevisionOutput `json:"-" xml:"-"`
-}
-
-type metadataRegisterApplicationRevisionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3015,11 +2739,7 @@ type RegisterOnPremisesInstanceInput struct {
 	// The name of the on-premises instance to register.
 	InstanceName *string `locationName:"instanceName" type:"string" required:"true"`
 
-	metadataRegisterOnPremisesInstanceInput `json:"-" xml:"-"`
-}
-
-type metadataRegisterOnPremisesInstanceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3033,11 +2753,7 @@ func (s RegisterOnPremisesInstanceInput) GoString() string {
 }
 
 type RegisterOnPremisesInstanceOutput struct {
-	metadataRegisterOnPremisesInstanceOutput `json:"-" xml:"-"`
-}
-
-type metadataRegisterOnPremisesInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3058,11 +2774,7 @@ type RemoveTagsFromOnPremisesInstancesInput struct {
 	// The tag key-value pairs to remove from the on-premises instances.
 	Tags []*Tag `locationName:"tags" type:"list" required:"true"`
 
-	metadataRemoveTagsFromOnPremisesInstancesInput `json:"-" xml:"-"`
-}
-
-type metadataRemoveTagsFromOnPremisesInstancesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3076,11 +2788,7 @@ func (s RemoveTagsFromOnPremisesInstancesInput) GoString() string {
 }
 
 type RemoveTagsFromOnPremisesInstancesOutput struct {
-	metadataRemoveTagsFromOnPremisesInstancesOutput `json:"-" xml:"-"`
-}
-
-type metadataRemoveTagsFromOnPremisesInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3109,11 +2817,7 @@ type RevisionLocation struct {
 	// Amazon S3.
 	S3Location *S3Location `locationName:"s3Location" type:"structure"`
 
-	metadataRevisionLocation `json:"-" xml:"-"`
-}
-
-type metadataRevisionLocation struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3156,11 +2860,7 @@ type S3Location struct {
 	// by default.
 	Version *string `locationName:"version" type:"string"`
 
-	metadataS3Location `json:"-" xml:"-"`
-}
-
-type metadataS3Location struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3178,11 +2878,7 @@ type StopDeploymentInput struct {
 	// The unique ID of a deployment.
 	DeploymentId *string `locationName:"deploymentId" type:"string" required:"true"`
 
-	metadataStopDeploymentInput `json:"-" xml:"-"`
-}
-
-type metadataStopDeploymentInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3205,11 +2901,7 @@ type StopDeploymentOutput struct {
 	// An accompanying status message.
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
 
-	metadataStopDeploymentOutput `json:"-" xml:"-"`
-}
-
-type metadataStopDeploymentOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3230,11 +2922,7 @@ type Tag struct {
 	// The tag's value.
 	Value *string `type:"string"`
 
-	metadataTag `json:"-" xml:"-"`
-}
-
-type metadataTag struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3260,11 +2948,7 @@ type TagFilter struct {
 	// The on-premises instance tag filter value.
 	Value *string `type:"string"`
 
-	metadataTagFilter `json:"-" xml:"-"`
-}
-
-type metadataTagFilter struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3289,11 +2973,7 @@ type TimeRange struct {
 	// Specify null to leave the time range's start time open-ended.
 	Start *time.Time `locationName:"start" type:"timestamp" timestampFormat:"unix"`
 
-	metadataTimeRange `json:"-" xml:"-"`
-}
-
-type metadataTimeRange struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3314,11 +2994,7 @@ type UpdateApplicationInput struct {
 	// The new name that you want to change the application to.
 	NewApplicationName *string `locationName:"newApplicationName" min:"1" type:"string"`
 
-	metadataUpdateApplicationInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateApplicationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3332,11 +3008,7 @@ func (s UpdateApplicationInput) GoString() string {
 }
 
 type UpdateApplicationOutput struct {
-	metadataUpdateApplicationOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateApplicationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3379,11 +3051,7 @@ type UpdateDeploymentGroupInput struct {
 	// A replacement service role's ARN, if you want to change it.
 	ServiceRoleArn *string `locationName:"serviceRoleArn" type:"string"`
 
-	metadataUpdateDeploymentGroupInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateDeploymentGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3405,11 +3073,7 @@ type UpdateDeploymentGroupOutput struct {
 	// lifecycle event hooks from the AWS account.
 	HooksNotCleanedUp []*AutoScalingGroup `locationName:"hooksNotCleanedUp" type:"list"`
 
-	metadataUpdateDeploymentGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateDeploymentGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

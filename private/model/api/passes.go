@@ -182,8 +182,8 @@ func (a *API) renameExportable() {
 				}
 			}
 
-			if newName == "SDKShapeTraits" {
-				panic("Shape " + s.ShapeName + " uses reserved member name SDKShapeTraits")
+			if newName == "_" {
+				panic("Shape " + s.ShapeName + " uses reserved member name '_'")
 			}
 		}
 

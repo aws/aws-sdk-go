@@ -56,7 +56,7 @@ func unmarshalAny(value reflect.Value, data interface{}, tag reflect.StructTag) 
 
 	switch t {
 	case "structure":
-		if field, ok := vtype.FieldByName("SDKShapeTraits"); ok {
+		if field, ok := vtype.FieldByName("_"); ok {
 			tag = field.Tag
 		}
 		return unmarshalStruct(value, data, tag)

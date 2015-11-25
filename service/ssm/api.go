@@ -483,11 +483,7 @@ type Association struct {
 	// The name of the SSM document.
 	Name *string `type:"string"`
 
-	metadataAssociation `json:"-" xml:"-"`
-}
-
-type metadataAssociation struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -517,11 +513,7 @@ type AssociationDescription struct {
 	// The association status.
 	Status *AssociationStatus `type:"structure"`
 
-	metadataAssociationDescription `json:"-" xml:"-"`
-}
-
-type metadataAssociationDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -542,11 +534,7 @@ type AssociationFilter struct {
 	// The filter value.
 	Value *string `locationName:"value" min:"1" type:"string" required:"true"`
 
-	metadataAssociationFilter `json:"-" xml:"-"`
-}
-
-type metadataAssociationFilter struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -573,11 +561,7 @@ type AssociationStatus struct {
 	// The status.
 	Name *string `type:"string" required:"true" enum:"AssociationStatusName"`
 
-	metadataAssociationStatus `json:"-" xml:"-"`
-}
-
-type metadataAssociationStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -599,11 +583,7 @@ type CancelCommandInput struct {
 	// requested.
 	InstanceIds []*string `min:"1" type:"list"`
 
-	metadataCancelCommandInput `json:"-" xml:"-"`
-}
-
-type metadataCancelCommandInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -619,11 +599,7 @@ func (s CancelCommandInput) GoString() string {
 // Whether or not the command was successfully canceled. There is no guarantee
 // that a request can be canceled.
 type CancelCommandOutput struct {
-	metadataCancelCommandOutput `json:"-" xml:"-"`
-}
-
-type metadataCancelCommandOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -674,11 +650,7 @@ type Command struct {
 	// The status of the command.
 	Status *string `type:"string" enum:"CommandStatus"`
 
-	metadataCommand `json:"-" xml:"-"`
-}
-
-type metadataCommand struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -699,11 +671,7 @@ type CommandFilter struct {
 	// The filter value. For example: June 30, 2015.
 	Value *string `locationName:"value" min:"1" type:"string" required:"true"`
 
-	metadataCommandFilter `json:"-" xml:"-"`
-}
-
-type metadataCommandFilter struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -746,11 +714,7 @@ type CommandInvocation struct {
 	// Gets the trace output sent by the agent.
 	TraceOutput *string `type:"string"`
 
-	metadataCommandInvocation `json:"-" xml:"-"`
-}
-
-type metadataCommandInvocation struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -794,11 +758,7 @@ type CommandPlugin struct {
 	// The status of this plugin. You can execute a document with multiple plugins.
 	Status *string `type:"string" enum:"CommandPluginStatus"`
 
-	metadataCommandPlugin `json:"-" xml:"-"`
-}
-
-type metadataCommandPlugin struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -815,11 +775,7 @@ type CreateAssociationBatchInput struct {
 	// One or more associations.
 	Entries []*CreateAssociationBatchRequestEntry `locationNameList:"entries" type:"list" required:"true"`
 
-	metadataCreateAssociationBatchInput `json:"-" xml:"-"`
-}
-
-type metadataCreateAssociationBatchInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -839,11 +795,7 @@ type CreateAssociationBatchOutput struct {
 	// Information about the associations that succeeded.
 	Successful []*AssociationDescription `locationNameList:"AssociationDescription" type:"list"`
 
-	metadataCreateAssociationBatchOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateAssociationBatchOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -867,11 +819,7 @@ type CreateAssociationBatchRequestEntry struct {
 	// A description of the parameters for a document.
 	Parameters map[string][]*string `type:"map"`
 
-	metadataCreateAssociationBatchRequestEntry `json:"-" xml:"-"`
-}
-
-type metadataCreateAssociationBatchRequestEntry struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -894,11 +842,7 @@ type CreateAssociationInput struct {
 	// The parameters for the document’s runtime configuration.
 	Parameters map[string][]*string `type:"map"`
 
-	metadataCreateAssociationInput `json:"-" xml:"-"`
-}
-
-type metadataCreateAssociationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -915,11 +859,7 @@ type CreateAssociationOutput struct {
 	// Information about the association.
 	AssociationDescription *AssociationDescription `type:"structure"`
 
-	metadataCreateAssociationOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateAssociationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -940,11 +880,7 @@ type CreateDocumentInput struct {
 	// A name for the SSM document.
 	Name *string `type:"string" required:"true"`
 
-	metadataCreateDocumentInput `json:"-" xml:"-"`
-}
-
-type metadataCreateDocumentInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -961,11 +897,7 @@ type CreateDocumentOutput struct {
 	// Information about the SSM document.
 	DocumentDescription *DocumentDescription `type:"structure"`
 
-	metadataCreateDocumentOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateDocumentOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -985,11 +917,7 @@ type DeleteAssociationInput struct {
 	// The name of the SSM document.
 	Name *string `type:"string" required:"true"`
 
-	metadataDeleteAssociationInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteAssociationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1003,11 +931,7 @@ func (s DeleteAssociationInput) GoString() string {
 }
 
 type DeleteAssociationOutput struct {
-	metadataDeleteAssociationOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteAssociationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1024,11 +948,7 @@ type DeleteDocumentInput struct {
 	// The name of the SSM document.
 	Name *string `type:"string" required:"true"`
 
-	metadataDeleteDocumentInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDocumentInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1042,11 +962,7 @@ func (s DeleteDocumentInput) GoString() string {
 }
 
 type DeleteDocumentOutput struct {
-	metadataDeleteDocumentOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDocumentOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1066,11 +982,7 @@ type DescribeAssociationInput struct {
 	// The name of the SSM document.
 	Name *string `type:"string" required:"true"`
 
-	metadataDescribeAssociationInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAssociationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1087,11 +999,7 @@ type DescribeAssociationOutput struct {
 	// Information about the association.
 	AssociationDescription *AssociationDescription `type:"structure"`
 
-	metadataDescribeAssociationOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAssociationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1108,11 +1016,7 @@ type DescribeDocumentInput struct {
 	// The name of the SSM document.
 	Name *string `type:"string" required:"true"`
 
-	metadataDescribeDocumentInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDocumentInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1129,11 +1033,7 @@ type DescribeDocumentOutput struct {
 	// Information about the SSM document.
 	Document *DocumentDescription `type:"structure"`
 
-	metadataDescribeDocumentOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDocumentOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1159,11 +1059,7 @@ type DescribeInstanceInformationInput struct {
 	// a previous call.)
 	NextToken *string `type:"string"`
 
-	metadataDescribeInstanceInformationInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeInstanceInformationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1184,11 +1080,7 @@ type DescribeInstanceInformationOutput struct {
 	// items to return, the string is empty.
 	NextToken *string `type:"string"`
 
-	metadataDescribeInstanceInformationOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeInstanceInformationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1224,11 +1116,7 @@ type DocumentDescription struct {
 	// The status of the SSM document.
 	Status *string `type:"string" enum:"DocumentStatus"`
 
-	metadataDocumentDescription `json:"-" xml:"-"`
-}
-
-type metadataDocumentDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1249,11 +1137,7 @@ type DocumentFilter struct {
 	// The value of the filter.
 	Value *string `locationName:"value" min:"1" type:"string" required:"true"`
 
-	metadataDocumentFilter `json:"-" xml:"-"`
-}
-
-type metadataDocumentFilter struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1274,11 +1158,7 @@ type DocumentIdentifier struct {
 	// The operating system platform.
 	PlatformTypes []*string `locationNameList:"PlatformType" type:"list"`
 
-	metadataDocumentIdentifier `json:"-" xml:"-"`
-}
-
-type metadataDocumentIdentifier struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1306,11 +1186,7 @@ type DocumentParameter struct {
 	// The type of parameter. The type can be either “String” or “StringList”.
 	Type *string `type:"string" enum:"DocumentParameterType"`
 
-	metadataDocumentParameter `json:"-" xml:"-"`
-}
-
-type metadataDocumentParameter struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1334,11 +1210,7 @@ type FailedCreateAssociation struct {
 	// A description of the failure.
 	Message *string `type:"string"`
 
-	metadataFailedCreateAssociation `json:"-" xml:"-"`
-}
-
-type metadataFailedCreateAssociation struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1355,11 +1227,7 @@ type GetDocumentInput struct {
 	// The name of the SSM document.
 	Name *string `type:"string" required:"true"`
 
-	metadataGetDocumentInput `json:"-" xml:"-"`
-}
-
-type metadataGetDocumentInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1379,11 +1247,7 @@ type GetDocumentOutput struct {
 	// The name of the SSM document.
 	Name *string `type:"string"`
 
-	metadataGetDocumentOutput `json:"-" xml:"-"`
-}
-
-type metadataGetDocumentOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1422,11 +1286,7 @@ type InstanceInformation struct {
 	// The version of the OS platform running on your instance.
 	PlatformVersion *string `type:"string"`
 
-	metadataInstanceInformation `json:"-" xml:"-"`
-}
-
-type metadataInstanceInformation struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1447,11 +1307,7 @@ type InstanceInformationFilter struct {
 	// The filter values.
 	ValueSet []*string `locationName:"valueSet" locationNameList:"InstanceInformationFilterValue" min:"1" type:"list" required:"true"`
 
-	metadataInstanceInformationFilter `json:"-" xml:"-"`
-}
-
-type metadataInstanceInformationFilter struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1477,11 +1333,7 @@ type ListAssociationsInput struct {
 	// a previous call.)
 	NextToken *string `type:"string"`
 
-	metadataListAssociationsInput `json:"-" xml:"-"`
-}
-
-type metadataListAssociationsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1502,11 +1354,7 @@ type ListAssociationsOutput struct {
 	// items to return, the string is empty.
 	NextToken *string `type:"string"`
 
-	metadataListAssociationsOutput `json:"-" xml:"-"`
-}
-
-type metadataListAssociationsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1543,11 +1391,7 @@ type ListCommandInvocationsInput struct {
 	// token from a previous call.)
 	NextToken *string `type:"string"`
 
-	metadataListCommandInvocationsInput `json:"-" xml:"-"`
-}
-
-type metadataListCommandInvocationsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1568,11 +1412,7 @@ type ListCommandInvocationsOutput struct {
 	// token from a previous call.)
 	NextToken *string `type:"string"`
 
-	metadataListCommandInvocationsOutput `json:"-" xml:"-"`
-}
-
-type metadataListCommandInvocationsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1605,11 +1445,7 @@ type ListCommandsInput struct {
 	// token from a previous call.)
 	NextToken *string `type:"string"`
 
-	metadataListCommandsInput `json:"-" xml:"-"`
-}
-
-type metadataListCommandsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1630,11 +1466,7 @@ type ListCommandsOutput struct {
 	// token from a previous call.)
 	NextToken *string `type:"string"`
 
-	metadataListCommandsOutput `json:"-" xml:"-"`
-}
-
-type metadataListCommandsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1660,11 +1492,7 @@ type ListDocumentsInput struct {
 	// a previous call.)
 	NextToken *string `type:"string"`
 
-	metadataListDocumentsInput `json:"-" xml:"-"`
-}
-
-type metadataListDocumentsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1685,11 +1513,7 @@ type ListDocumentsOutput struct {
 	// items to return, the string is empty.
 	NextToken *string `type:"string"`
 
-	metadataListDocumentsOutput `json:"-" xml:"-"`
-}
-
-type metadataListDocumentsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1729,11 +1553,7 @@ type SendCommandInput struct {
 	// it will not execute.
 	TimeoutSeconds *int64 `min:"30" type:"integer"`
 
-	metadataSendCommandInput `json:"-" xml:"-"`
-}
-
-type metadataSendCommandInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1751,11 +1571,7 @@ type SendCommandOutput struct {
 	// can be used future references to this request.
 	Command *Command `type:"structure"`
 
-	metadataSendCommandOutput `json:"-" xml:"-"`
-}
-
-type metadataSendCommandOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1778,11 +1594,7 @@ type UpdateAssociationStatusInput struct {
 	// The name of the SSM document.
 	Name *string `type:"string" required:"true"`
 
-	metadataUpdateAssociationStatusInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateAssociationStatusInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1799,11 +1611,7 @@ type UpdateAssociationStatusOutput struct {
 	// Information about the association.
 	AssociationDescription *AssociationDescription `type:"structure"`
 
-	metadataUpdateAssociationStatusOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateAssociationStatusOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

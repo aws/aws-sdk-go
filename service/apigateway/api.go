@@ -1937,11 +1937,7 @@ type Account struct {
 	// the current Account resource.
 	ThrottleSettings *ThrottleSettings `locationName:"throttleSettings" type:"structure"`
 
-	metadataAccount `json:"-" xml:"-"`
-}
-
-type metadataAccount struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1980,11 +1976,7 @@ type ApiKey struct {
 	// A list of Stage resources that are associated with the ApiKey resource.
 	StageKeys []*string `locationName:"stageKeys" type:"list"`
 
-	metadataApiKey `json:"-" xml:"-"`
-}
-
-type metadataApiKey struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2010,11 +2002,7 @@ type BasePathMapping struct {
 	// The name of the API's stage.
 	Stage *string `locationName:"stage" type:"string"`
 
-	metadataBasePathMapping `json:"-" xml:"-"`
-}
-
-type metadataBasePathMapping struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2038,11 +2026,7 @@ type ClientCertificate struct {
 
 	PemEncodedCertificate *string `locationName:"pemEncodedCertificate" type:"string"`
 
-	metadataClientCertificate `json:"-" xml:"-"`
-}
-
-type metadataClientCertificate struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2068,11 +2052,7 @@ type CreateApiKeyInput struct {
 	// Specifies whether the ApiKey can be used by callers.
 	StageKeys []*StageKey `locationName:"stageKeys" type:"list"`
 
-	metadataCreateApiKeyInput `json:"-" xml:"-"`
-}
-
-type metadataCreateApiKeyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2104,11 +2084,7 @@ type CreateBasePathMappingInput struct {
 	// after any base path name.
 	Stage *string `locationName:"stage" type:"string"`
 
-	metadataCreateBasePathMappingInput `json:"-" xml:"-"`
-}
-
-type metadataCreateBasePathMappingInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2147,11 +2123,7 @@ type CreateDeploymentInput struct {
 	// the values must match [A-Za-z0-9-._~:/?#&=,]+
 	Variables map[string]*string `locationName:"variables" type:"map"`
 
-	metadataCreateDeploymentInput `json:"-" xml:"-"`
-}
-
-type metadataCreateDeploymentInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2186,11 +2158,7 @@ type CreateDomainNameInput struct {
 	// The name of the DomainName resource.
 	DomainName *string `locationName:"domainName" type:"string" required:"true"`
 
-	metadataCreateDomainNameInput `json:"-" xml:"-"`
-}
-
-type metadataCreateDomainNameInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2221,11 +2189,7 @@ type CreateModelInput struct {
 	// draft v4 model.
 	Schema *string `locationName:"schema" type:"string"`
 
-	metadataCreateModelInput `json:"-" xml:"-"`
-}
-
-type metadataCreateModelInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2249,11 +2213,7 @@ type CreateResourceInput struct {
 	// The identifier of the RestApi for the resource.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	metadataCreateResourceInput `json:"-" xml:"-"`
-}
-
-type metadataCreateResourceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2277,11 +2237,7 @@ type CreateRestApiInput struct {
 	// The name of the RestApi.
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	metadataCreateRestApiInput `json:"-" xml:"-"`
-}
-
-type metadataCreateRestApiInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2318,11 +2274,7 @@ type CreateStageInput struct {
 	// names can have alphabetic characters, and the values must match [A-Za-z0-9-._~:/?#&=,]+
 	Variables map[string]*string `locationName:"variables" type:"map"`
 
-	metadataCreateStageInput `json:"-" xml:"-"`
-}
-
-type metadataCreateStageInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2340,11 +2292,7 @@ type DeleteApiKeyInput struct {
 	// The identifier of the ApiKey resource to be deleted.
 	ApiKey *string `location:"uri" locationName:"api_Key" type:"string" required:"true"`
 
-	metadataDeleteApiKeyInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteApiKeyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2358,11 +2306,7 @@ func (s DeleteApiKeyInput) GoString() string {
 }
 
 type DeleteApiKeyOutput struct {
-	metadataDeleteApiKeyOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteApiKeyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2383,11 +2327,7 @@ type DeleteBasePathMappingInput struct {
 	// The domain name of the BasePathMapping resource to delete.
 	DomainName *string `location:"uri" locationName:"domain_name" type:"string" required:"true"`
 
-	metadataDeleteBasePathMappingInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteBasePathMappingInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2401,11 +2341,7 @@ func (s DeleteBasePathMappingInput) GoString() string {
 }
 
 type DeleteBasePathMappingOutput struct {
-	metadataDeleteBasePathMappingOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteBasePathMappingOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2421,11 +2357,7 @@ func (s DeleteBasePathMappingOutput) GoString() string {
 type DeleteClientCertificateInput struct {
 	ClientCertificateId *string `location:"uri" locationName:"clientcertificate_id" type:"string" required:"true"`
 
-	metadataDeleteClientCertificateInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteClientCertificateInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2439,11 +2371,7 @@ func (s DeleteClientCertificateInput) GoString() string {
 }
 
 type DeleteClientCertificateOutput struct {
-	metadataDeleteClientCertificateOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteClientCertificateOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2464,11 +2392,7 @@ type DeleteDeploymentInput struct {
 	// The identifier of the RestApi resource for the Deployment resource to delete.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	metadataDeleteDeploymentInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDeploymentInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2482,11 +2406,7 @@ func (s DeleteDeploymentInput) GoString() string {
 }
 
 type DeleteDeploymentOutput struct {
-	metadataDeleteDeploymentOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDeploymentOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2504,11 +2424,7 @@ type DeleteDomainNameInput struct {
 	// The name of the DomainName resource to be deleted.
 	DomainName *string `location:"uri" locationName:"domain_name" type:"string" required:"true"`
 
-	metadataDeleteDomainNameInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDomainNameInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2522,11 +2438,7 @@ func (s DeleteDomainNameInput) GoString() string {
 }
 
 type DeleteDomainNameOutput struct {
-	metadataDeleteDomainNameOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDomainNameOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2550,11 +2462,7 @@ type DeleteIntegrationInput struct {
 	// Specifies a delete integration request's API identifier.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	metadataDeleteIntegrationInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteIntegrationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2568,11 +2476,7 @@ func (s DeleteIntegrationInput) GoString() string {
 }
 
 type DeleteIntegrationOutput struct {
-	metadataDeleteIntegrationOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteIntegrationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2599,11 +2503,7 @@ type DeleteIntegrationResponseInput struct {
 	// Specifies a delete integration response request's status code.
 	StatusCode *string `location:"uri" locationName:"status_code" type:"string" required:"true"`
 
-	metadataDeleteIntegrationResponseInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteIntegrationResponseInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2617,11 +2517,7 @@ func (s DeleteIntegrationResponseInput) GoString() string {
 }
 
 type DeleteIntegrationResponseOutput struct {
-	metadataDeleteIntegrationResponseOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteIntegrationResponseOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2645,11 +2541,7 @@ type DeleteMethodInput struct {
 	// The RestApi identifier for the Method resource.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	metadataDeleteMethodInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteMethodInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2663,11 +2555,7 @@ func (s DeleteMethodInput) GoString() string {
 }
 
 type DeleteMethodOutput struct {
-	metadataDeleteMethodOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteMethodOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2694,11 +2582,7 @@ type DeleteMethodResponseInput struct {
 	// The status code identifier for the MethodResponse resource.
 	StatusCode *string `location:"uri" locationName:"status_code" type:"string" required:"true"`
 
-	metadataDeleteMethodResponseInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteMethodResponseInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2712,11 +2596,7 @@ func (s DeleteMethodResponseInput) GoString() string {
 }
 
 type DeleteMethodResponseOutput struct {
-	metadataDeleteMethodResponseOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteMethodResponseOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2737,11 +2617,7 @@ type DeleteModelInput struct {
 	// The RestApi under which the model will be deleted.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	metadataDeleteModelInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteModelInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2755,11 +2631,7 @@ func (s DeleteModelInput) GoString() string {
 }
 
 type DeleteModelOutput struct {
-	metadataDeleteModelOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteModelOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2780,11 +2652,7 @@ type DeleteResourceInput struct {
 	// The RestApi identifier for the Resource resource.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	metadataDeleteResourceInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteResourceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2798,11 +2666,7 @@ func (s DeleteResourceInput) GoString() string {
 }
 
 type DeleteResourceOutput struct {
-	metadataDeleteResourceOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteResourceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2820,11 +2684,7 @@ type DeleteRestApiInput struct {
 	// The ID of the RestApi you want to delete.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	metadataDeleteRestApiInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteRestApiInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2838,11 +2698,7 @@ func (s DeleteRestApiInput) GoString() string {
 }
 
 type DeleteRestApiOutput struct {
-	metadataDeleteRestApiOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteRestApiOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2863,11 +2719,7 @@ type DeleteStageInput struct {
 	// The name of the Stage resource to delete.
 	StageName *string `location:"uri" locationName:"stage_name" type:"string" required:"true"`
 
-	metadataDeleteStageInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteStageInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2881,11 +2733,7 @@ func (s DeleteStageInput) GoString() string {
 }
 
 type DeleteStageOutput struct {
-	metadataDeleteStageOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteStageOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2915,11 +2763,7 @@ type Deployment struct {
 	// The identifier for the deployment resource.
 	Id *string `locationName:"id" type:"string"`
 
-	metadataDeployment `json:"-" xml:"-"`
-}
-
-type metadataDeployment struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2948,11 +2792,7 @@ type DomainName struct {
 	// The name of the DomainName resource.
 	DomainName *string `locationName:"domainName" type:"string"`
 
-	metadataDomainName `json:"-" xml:"-"`
-}
-
-type metadataDomainName struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2973,11 +2813,7 @@ type FlushStageCacheInput struct {
 	// The name of the stage to flush its cache.
 	StageName *string `location:"uri" locationName:"stage_name" type:"string" required:"true"`
 
-	metadataFlushStageCacheInput `json:"-" xml:"-"`
-}
-
-type metadataFlushStageCacheInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2991,11 +2827,7 @@ func (s FlushStageCacheInput) GoString() string {
 }
 
 type FlushStageCacheOutput struct {
-	metadataFlushStageCacheOutput `json:"-" xml:"-"`
-}
-
-type metadataFlushStageCacheOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3011,11 +2843,7 @@ func (s FlushStageCacheOutput) GoString() string {
 type GenerateClientCertificateInput struct {
 	Description *string `locationName:"description" type:"string"`
 
-	metadataGenerateClientCertificateInput `json:"-" xml:"-"`
-}
-
-type metadataGenerateClientCertificateInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3031,11 +2859,7 @@ func (s GenerateClientCertificateInput) GoString() string {
 // Requests Amazon API Gateway to get information about the current Account
 // resource.
 type GetAccountInput struct {
-	metadataGetAccountInput `json:"-" xml:"-"`
-}
-
-type metadataGetAccountInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3053,11 +2877,7 @@ type GetApiKeyInput struct {
 	// The identifier of the ApiKey resource.
 	ApiKey *string `location:"uri" locationName:"api_Key" type:"string" required:"true"`
 
-	metadataGetApiKeyInput `json:"-" xml:"-"`
-}
-
-type metadataGetApiKeyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3078,11 +2898,7 @@ type GetApiKeysInput struct {
 	// The position of the current ApiKeys resource to get information about.
 	Position *string `location:"querystring" locationName:"position" type:"string"`
 
-	metadataGetApiKeysInput `json:"-" xml:"-"`
-}
-
-type metadataGetApiKeysInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3102,11 +2918,7 @@ type GetApiKeysOutput struct {
 
 	Position *string `locationName:"position" type:"string"`
 
-	metadataGetApiKeysOutput `json:"-" xml:"-"`
-}
-
-type metadataGetApiKeysOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3130,11 +2942,7 @@ type GetBasePathMappingInput struct {
 	// The domain name of the BasePathMapping resource to be described.
 	DomainName *string `location:"uri" locationName:"domain_name" type:"string" required:"true"`
 
-	metadataGetBasePathMappingInput `json:"-" xml:"-"`
-}
-
-type metadataGetBasePathMappingInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3161,11 +2969,7 @@ type GetBasePathMappingsInput struct {
 	// get information about.
 	Position *string `location:"querystring" locationName:"position" type:"string"`
 
-	metadataGetBasePathMappingsInput `json:"-" xml:"-"`
-}
-
-type metadataGetBasePathMappingsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3186,11 +2990,7 @@ type GetBasePathMappingsOutput struct {
 
 	Position *string `locationName:"position" type:"string"`
 
-	metadataGetBasePathMappingsOutput `json:"-" xml:"-"`
-}
-
-type metadataGetBasePathMappingsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3206,11 +3006,7 @@ func (s GetBasePathMappingsOutput) GoString() string {
 type GetClientCertificateInput struct {
 	ClientCertificateId *string `location:"uri" locationName:"clientcertificate_id" type:"string" required:"true"`
 
-	metadataGetClientCertificateInput `json:"-" xml:"-"`
-}
-
-type metadataGetClientCertificateInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3228,11 +3024,7 @@ type GetClientCertificatesInput struct {
 
 	Position *string `location:"querystring" locationName:"position" type:"string"`
 
-	metadataGetClientCertificatesInput `json:"-" xml:"-"`
-}
-
-type metadataGetClientCertificatesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3250,11 +3042,7 @@ type GetClientCertificatesOutput struct {
 
 	Position *string `locationName:"position" type:"string"`
 
-	metadataGetClientCertificatesOutput `json:"-" xml:"-"`
-}
-
-type metadataGetClientCertificatesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3276,11 +3064,7 @@ type GetDeploymentInput struct {
 	// information about.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	metadataGetDeploymentInput `json:"-" xml:"-"`
-}
-
-type metadataGetDeploymentInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3307,11 +3091,7 @@ type GetDeploymentsInput struct {
 	// to get information about.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	metadataGetDeploymentsInput `json:"-" xml:"-"`
-}
-
-type metadataGetDeploymentsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3335,11 +3115,7 @@ type GetDeploymentsOutput struct {
 
 	Position *string `locationName:"position" type:"string"`
 
-	metadataGetDeploymentsOutput `json:"-" xml:"-"`
-}
-
-type metadataGetDeploymentsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3357,11 +3133,7 @@ type GetDomainNameInput struct {
 	// The name of the DomainName resource.
 	DomainName *string `location:"uri" locationName:"domain_name" type:"string" required:"true"`
 
-	metadataGetDomainNameInput `json:"-" xml:"-"`
-}
-
-type metadataGetDomainNameInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3383,11 +3155,7 @@ type GetDomainNamesInput struct {
 	// The position of the current domain names to get information about.
 	Position *string `location:"querystring" locationName:"position" type:"string"`
 
-	metadataGetDomainNamesInput `json:"-" xml:"-"`
-}
-
-type metadataGetDomainNamesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3408,11 +3176,7 @@ type GetDomainNamesOutput struct {
 
 	Position *string `locationName:"position" type:"string"`
 
-	metadataGetDomainNamesOutput `json:"-" xml:"-"`
-}
-
-type metadataGetDomainNamesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3436,11 +3200,7 @@ type GetIntegrationInput struct {
 	// Specifies a get integration request's API identifier.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	metadataGetIntegrationInput `json:"-" xml:"-"`
-}
-
-type metadataGetIntegrationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3467,11 +3227,7 @@ type GetIntegrationResponseInput struct {
 	// Specifies a get integration response request's status code.
 	StatusCode *string `location:"uri" locationName:"status_code" type:"string" required:"true"`
 
-	metadataGetIntegrationResponseInput `json:"-" xml:"-"`
-}
-
-type metadataGetIntegrationResponseInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3495,11 +3251,7 @@ type GetMethodInput struct {
 	// The RestApi identifier for the Method resource.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	metadataGetMethodInput `json:"-" xml:"-"`
-}
-
-type metadataGetMethodInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3526,11 +3278,7 @@ type GetMethodResponseInput struct {
 	// The status code identifier for the MethodResponse resource.
 	StatusCode *string `location:"uri" locationName:"status_code" type:"string" required:"true"`
 
-	metadataGetMethodResponseInput `json:"-" xml:"-"`
-}
-
-type metadataGetMethodResponseInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3554,11 +3302,7 @@ type GetModelInput struct {
 	// The RestApi identifier under which the Model exists.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	metadataGetModelInput `json:"-" xml:"-"`
-}
-
-type metadataGetModelInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3579,11 +3323,7 @@ type GetModelTemplateInput struct {
 	// The ID of the RestApi under which the model exists.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	metadataGetModelTemplateInput `json:"-" xml:"-"`
-}
-
-type metadataGetModelTemplateInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3602,11 +3342,7 @@ type GetModelTemplateOutput struct {
 	// template resource.
 	Value *string `locationName:"value" type:"string"`
 
-	metadataGetModelTemplateOutput `json:"-" xml:"-"`
-}
-
-type metadataGetModelTemplateOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3632,11 +3368,7 @@ type GetModelsInput struct {
 	// The RestApi identifier.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	metadataGetModelsInput `json:"-" xml:"-"`
-}
-
-type metadataGetModelsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3656,11 +3388,7 @@ type GetModelsOutput struct {
 
 	Position *string `locationName:"position" type:"string"`
 
-	metadataGetModelsOutput `json:"-" xml:"-"`
-}
-
-type metadataGetModelsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3681,11 +3409,7 @@ type GetResourceInput struct {
 	// The RestApi identifier for the resource.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	metadataGetResourceInput `json:"-" xml:"-"`
-}
-
-type metadataGetResourceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3711,11 +3435,7 @@ type GetResourcesInput struct {
 	// The RestApi identifier for the Resource.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	metadataGetResourcesInput `json:"-" xml:"-"`
-}
-
-type metadataGetResourcesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3735,11 +3455,7 @@ type GetResourcesOutput struct {
 
 	Position *string `locationName:"position" type:"string"`
 
-	metadataGetResourcesOutput `json:"-" xml:"-"`
-}
-
-type metadataGetResourcesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3757,11 +3473,7 @@ type GetRestApiInput struct {
 	// The identifier of the RestApi resource.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	metadataGetRestApiInput `json:"-" xml:"-"`
-}
-
-type metadataGetRestApiInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3784,11 +3496,7 @@ type GetRestApisInput struct {
 	// about.
 	Position *string `location:"querystring" locationName:"position" type:"string"`
 
-	metadataGetRestApisInput `json:"-" xml:"-"`
-}
-
-type metadataGetRestApisInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3809,11 +3517,7 @@ type GetRestApisOutput struct {
 
 	Position *string `locationName:"position" type:"string"`
 
-	metadataGetRestApisOutput `json:"-" xml:"-"`
-}
-
-type metadataGetRestApisOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3835,11 +3539,7 @@ type GetSdkInput struct {
 
 	StageName *string `location:"uri" locationName:"stage_name" type:"string" required:"true"`
 
-	metadataGetSdkInput `json:"-" xml:"-"`
-}
-
-type metadataGetSdkInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3859,11 +3559,7 @@ type GetSdkOutput struct {
 
 	ContentType *string `location:"header" locationName:"Content-Type" type:"string"`
 
-	metadataGetSdkOutput `json:"-" xml:"-"`
-}
-
-type metadataGetSdkOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Body"`
+	_ struct{} `type:"structure" payload:"Body"`
 }
 
 // String returns the string representation
@@ -3885,11 +3581,7 @@ type GetStageInput struct {
 	// The name of the Stage resource to get information about.
 	StageName *string `location:"uri" locationName:"stage_name" type:"string" required:"true"`
 
-	metadataGetStageInput `json:"-" xml:"-"`
-}
-
-type metadataGetStageInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3910,11 +3602,7 @@ type GetStagesInput struct {
 	// The stages' API identifiers.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	metadataGetStagesInput `json:"-" xml:"-"`
-}
-
-type metadataGetStagesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3932,11 +3620,7 @@ type GetStagesOutput struct {
 	// An individual Stage resource.
 	Item []*Stage `locationName:"item" type:"list"`
 
-	metadataGetStagesOutput `json:"-" xml:"-"`
-}
-
-type metadataGetStagesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3997,11 +3681,7 @@ type Integration struct {
 	// the path to the resource, including the initial /.
 	Uri *string `locationName:"uri" type:"string"`
 
-	metadataIntegration `json:"-" xml:"-"`
-}
-
-type metadataIntegration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4042,11 +3722,7 @@ type IntegrationResponse struct {
 	// an existing MethodResponse.
 	StatusCode *string `locationName:"statusCode" type:"string"`
 
-	metadataIntegrationResponse `json:"-" xml:"-"`
-}
-
-type metadataIntegrationResponse struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4093,11 +3769,7 @@ type Method struct {
 	// mapping to integration request parameters or templates.
 	RequestParameters map[string]*bool `locationName:"requestParameters" type:"map"`
 
-	metadataMethod `json:"-" xml:"-"`
-}
-
-type metadataMethod struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4131,11 +3803,7 @@ type MethodResponse struct {
 	// The method response's status code.
 	StatusCode *string `locationName:"statusCode" type:"string"`
 
-	metadataMethodResponse `json:"-" xml:"-"`
-}
-
-type metadataMethodResponse struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4191,11 +3859,7 @@ type MethodSetting struct {
 	// and the value is a double.
 	ThrottlingRateLimit *float64 `locationName:"throttlingRateLimit" type:"double"`
 
-	metadataMethodSetting `json:"-" xml:"-"`
-}
-
-type metadataMethodSetting struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4216,11 +3880,7 @@ type MethodSnapshot struct {
 	// Specifies the type of authorization used for the method.
 	AuthorizationType *string `locationName:"authorizationType" type:"string"`
 
-	metadataMethodSnapshot `json:"-" xml:"-"`
-}
-
-type metadataMethodSnapshot struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4251,11 +3911,7 @@ type Model struct {
 	// draft v4 model.
 	Schema *string `locationName:"schema" type:"string"`
 
-	metadataModel `json:"-" xml:"-"`
-}
-
-type metadataModel struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4291,11 +3947,7 @@ type PatchOperation struct {
 	// The actual value content.
 	Value *string `locationName:"value" type:"string"`
 
-	metadataPatchOperation `json:"-" xml:"-"`
-}
-
-type metadataPatchOperation struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4352,11 +4004,7 @@ type PutIntegrationInput struct {
 	// Specifies a put integration input's Uniform Resource Identifier (URI).
 	Uri *string `locationName:"uri" type:"string"`
 
-	metadataPutIntegrationInput `json:"-" xml:"-"`
-}
-
-type metadataPutIntegrationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4399,11 +4047,7 @@ type PutIntegrationResponseInput struct {
 	// an existing MethodResponse.
 	StatusCode *string `location:"uri" locationName:"status_code" type:"string" required:"true"`
 
-	metadataPutIntegrationResponseInput `json:"-" xml:"-"`
-}
-
-type metadataPutIntegrationResponseInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4448,11 +4092,7 @@ type PutMethodInput struct {
 	// The RestApi identifier for the new Method resource.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	metadataPutMethodInput `json:"-" xml:"-"`
-}
-
-type metadataPutMethodInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4493,11 +4133,7 @@ type PutMethodResponseInput struct {
 	// The method response's status code.
 	StatusCode *string `location:"uri" locationName:"status_code" type:"string" required:"true"`
 
-	metadataPutMethodResponseInput `json:"-" xml:"-"`
-}
-
-type metadataPutMethodResponseInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4528,11 +4164,7 @@ type Resource struct {
 	// the embed option.
 	ResourceMethods map[string]*Method `locationName:"resourceMethods" type:"map"`
 
-	metadataResource `json:"-" xml:"-"`
-}
-
-type metadataResource struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4560,11 +4192,7 @@ type RestApi struct {
 	// The API's name.
 	Name *string `locationName:"name" type:"string"`
 
-	metadataRestApi `json:"-" xml:"-"`
-}
-
-type metadataRestApi struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4617,11 +4245,7 @@ type Stage struct {
 	// can have alphabetic characters, and the values must match [A-Za-z0-9-._~:/?#&=,]+
 	Variables map[string]*string `locationName:"variables" type:"map"`
 
-	metadataStage `json:"-" xml:"-"`
-}
-
-type metadataStage struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4642,11 +4266,7 @@ type StageKey struct {
 	// The stage name in the RestApi that the stage key references.
 	StageName *string `locationName:"stageName" type:"string"`
 
-	metadataStageKey `json:"-" xml:"-"`
-}
-
-type metadataStageKey struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4676,11 +4296,7 @@ type TestInvokeMethodInput struct {
 
 	StageVariables map[string]*string `locationName:"stageVariables" type:"map"`
 
-	metadataTestInvokeMethodInput `json:"-" xml:"-"`
-}
-
-type metadataTestInvokeMethodInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4710,11 +4326,7 @@ type TestInvokeMethodOutput struct {
 	// The HTTP status code.
 	Status *int64 `locationName:"status" type:"integer"`
 
-	metadataTestInvokeMethodOutput `json:"-" xml:"-"`
-}
-
-type metadataTestInvokeMethodOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4735,11 +4347,7 @@ type ThrottleSettings struct {
 	// Returns the rateLimit when ThrottleSettings is called.
 	RateLimit *float64 `locationName:"rateLimit" type:"double"`
 
-	metadataThrottleSettings `json:"-" xml:"-"`
-}
-
-type metadataThrottleSettings struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4759,11 +4367,7 @@ type UpdateAccountInput struct {
 	// The patches are applied in the order specified in the list.
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
-	metadataUpdateAccountInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateAccountInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4785,11 +4389,7 @@ type UpdateApiKeyInput struct {
 	// The patches are applied in the order specified in the list.
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
-	metadataUpdateApiKeyInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateApiKeyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4814,11 +4414,7 @@ type UpdateBasePathMappingInput struct {
 	// The patches are applied in the order specified in the list.
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
-	metadataUpdateBasePathMappingInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateBasePathMappingInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4838,11 +4434,7 @@ type UpdateClientCertificateInput struct {
 	// The patches are applied in the order specified in the list.
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
-	metadataUpdateClientCertificateInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateClientCertificateInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4869,11 +4461,7 @@ type UpdateDeploymentInput struct {
 	// to change information about.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	metadataUpdateDeploymentInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateDeploymentInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4895,11 +4483,7 @@ type UpdateDomainNameInput struct {
 	// The patches are applied in the order specified in the list.
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
-	metadataUpdateDomainNameInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateDomainNameInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4927,11 +4511,7 @@ type UpdateIntegrationInput struct {
 	// Represents an update integration request's API identifier.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	metadataUpdateIntegrationInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateIntegrationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4962,11 +4542,7 @@ type UpdateIntegrationResponseInput struct {
 	// Specifies an update integration response request's status code.
 	StatusCode *string `location:"uri" locationName:"status_code" type:"string" required:"true"`
 
-	metadataUpdateIntegrationResponseInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateIntegrationResponseInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4994,11 +4570,7 @@ type UpdateMethodInput struct {
 	// The RestApi identifier for the Method resource.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	metadataUpdateMethodInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateMethodInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5029,11 +4601,7 @@ type UpdateMethodResponseInput struct {
 	// The status code identifier for the MethodResponse resource.
 	StatusCode *string `location:"uri" locationName:"status_code" type:"string" required:"true"`
 
-	metadataUpdateMethodResponseInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateMethodResponseInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5058,11 +4626,7 @@ type UpdateModelInput struct {
 	// The RestApi identifier under which the model exists.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	metadataUpdateModelInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateModelInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5087,11 +4651,7 @@ type UpdateResourceInput struct {
 	// The RestApi identifier for the Resource resource.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	metadataUpdateResourceInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateResourceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5113,11 +4673,7 @@ type UpdateRestApiInput struct {
 	// The ID of the RestApi you want to update.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
-	metadataUpdateRestApiInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateRestApiInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5143,11 +4699,7 @@ type UpdateStageInput struct {
 	// The name of the Stage resource to change information about.
 	StageName *string `location:"uri" locationName:"stage_name" type:"string" required:"true"`
 
-	metadataUpdateStageInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateStageInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

@@ -338,12 +338,8 @@ func (s *Shape) GoCode() string {
 				code += n + " " + m.GoType() + " " + m.GoTags(false, s.IsRequired(n)) + "\n\n"
 			}
 		}
-		metaStruct := "metadata" + s.ShapeName
 		ref := &ShapeRef{ShapeName: s.ShapeName, API: s.API, Shape: s}
-		code += "\n" + metaStruct + "  `json:\"-\" xml:\"-\"`\n"
-		code += "}\n\n"
-		code += "type " + metaStruct + " struct {\n"
-		code += "SDKShapeTraits bool " + ref.GoTags(true, false)
+		code += "_ struct{} " + ref.GoTags(true, false)
 		code += "}"
 
 		if !s.API.NoStringerMethods {

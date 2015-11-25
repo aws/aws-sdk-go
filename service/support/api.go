@@ -535,11 +535,7 @@ type AddAttachmentsToSetInput struct {
 	// set, and the size limit is 5 MB per attachment.
 	Attachments []*Attachment `locationName:"attachments" type:"list" required:"true"`
 
-	metadataAddAttachmentsToSetInput `json:"-" xml:"-"`
-}
-
-type metadataAddAttachmentsToSetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -564,11 +560,7 @@ type AddAttachmentsToSetOutput struct {
 	// The time and date when the attachment set expires.
 	ExpiryTime *string `locationName:"expiryTime" type:"string"`
 
-	metadataAddAttachmentsToSetOutput `json:"-" xml:"-"`
-}
-
-type metadataAddAttachmentsToSetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -598,11 +590,7 @@ type AddCommunicationToCaseInput struct {
 	// The body of an email communication to add to the support case.
 	CommunicationBody *string `locationName:"communicationBody" type:"string" required:"true"`
 
-	metadataAddCommunicationToCaseInput `json:"-" xml:"-"`
-}
-
-type metadataAddCommunicationToCaseInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -620,11 +608,7 @@ type AddCommunicationToCaseOutput struct {
 	// True if AddCommunicationToCase succeeds. Otherwise, returns an error.
 	Result *bool `locationName:"result" type:"boolean"`
 
-	metadataAddCommunicationToCaseOutput `json:"-" xml:"-"`
-}
-
-type metadataAddCommunicationToCaseOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -646,11 +630,7 @@ type Attachment struct {
 	// The name of the attachment file.
 	FileName *string `locationName:"fileName" type:"string"`
 
-	metadataAttachment `json:"-" xml:"-"`
-}
-
-type metadataAttachment struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -672,11 +652,7 @@ type AttachmentDetails struct {
 	// The file name of the attachment.
 	FileName *string `locationName:"fileName" type:"string"`
 
-	metadataAttachmentDetails `json:"-" xml:"-"`
-}
-
-type metadataAttachmentDetails struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -753,11 +729,7 @@ type CaseDetails struct {
 	// The time that the case was case created in the AWS Support Center.
 	TimeCreated *string `locationName:"timeCreated" type:"string"`
 
-	metadataCaseDetails `json:"-" xml:"-"`
-}
-
-type metadataCaseDetails struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -780,11 +752,7 @@ type Category struct {
 	// The category name for the support case.
 	Name *string `locationName:"name" type:"string"`
 
-	metadataCategory `json:"-" xml:"-"`
-}
-
-type metadataCategory struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -817,11 +785,7 @@ type Communication struct {
 	// The time the communication was created.
 	TimeCreated *string `locationName:"timeCreated" type:"string"`
 
-	metadataCommunication `json:"-" xml:"-"`
-}
-
-type metadataCommunication struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -871,11 +835,7 @@ type CreateCaseInput struct {
 	// The title of the AWS Support case.
 	Subject *string `locationName:"subject" type:"string" required:"true"`
 
-	metadataCreateCaseInput `json:"-" xml:"-"`
-}
-
-type metadataCreateCaseInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -895,11 +855,7 @@ type CreateCaseOutput struct {
 	// an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47
 	CaseId *string `locationName:"caseId" type:"string"`
 
-	metadataCreateCaseOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateCaseOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -917,11 +873,7 @@ type DescribeAttachmentInput struct {
 	// operation.
 	AttachmentId *string `locationName:"attachmentId" type:"string" required:"true"`
 
-	metadataDescribeAttachmentInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAttachmentInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -940,11 +892,7 @@ type DescribeAttachmentOutput struct {
 	// The attachment content and file name.
 	Attachment *Attachment `locationName:"attachment" type:"structure"`
 
-	metadataDescribeAttachmentOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAttachmentOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -992,11 +940,7 @@ type DescribeCasesInput struct {
 	// A resumption point for pagination.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataDescribeCasesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeCasesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1018,11 +962,7 @@ type DescribeCasesOutput struct {
 	// A resumption point for pagination.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataDescribeCasesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeCasesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1054,11 +994,7 @@ type DescribeCommunicationsInput struct {
 	// A resumption point for pagination.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataDescribeCommunicationsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeCommunicationsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1079,11 +1015,7 @@ type DescribeCommunicationsOutput struct {
 	// A resumption point for pagination.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataDescribeCommunicationsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeCommunicationsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1105,11 +1037,7 @@ type DescribeServicesInput struct {
 	// A JSON-formatted list of service codes available for AWS services.
 	ServiceCodeList []*string `locationName:"serviceCodeList" type:"list"`
 
-	metadataDescribeServicesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeServicesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1127,11 +1055,7 @@ type DescribeServicesOutput struct {
 	// A JSON-formatted list of AWS services.
 	Services []*Service `locationName:"services" type:"list"`
 
-	metadataDescribeServicesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeServicesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1150,11 +1074,7 @@ type DescribeSeverityLevelsInput struct {
 	// must be passed explicitly for operations that take them.
 	Language *string `locationName:"language" type:"string"`
 
-	metadataDescribeSeverityLevelsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSeverityLevelsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1173,11 +1093,7 @@ type DescribeSeverityLevelsOutput struct {
 	// are defined by your service level agreement with AWS.
 	SeverityLevels []*SeverityLevel `locationName:"severityLevels" type:"list"`
 
-	metadataDescribeSeverityLevelsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSeverityLevelsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1194,11 +1110,7 @@ type DescribeTrustedAdvisorCheckRefreshStatusesInput struct {
 	// The IDs of the Trusted Advisor checks.
 	CheckIds []*string `locationName:"checkIds" type:"list" required:"true"`
 
-	metadataDescribeTrustedAdvisorCheckRefreshStatusesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTrustedAdvisorCheckRefreshStatusesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1217,11 +1129,7 @@ type DescribeTrustedAdvisorCheckRefreshStatusesOutput struct {
 	// The refresh status of the specified Trusted Advisor checks.
 	Statuses []*TrustedAdvisorCheckRefreshStatus `locationName:"statuses" type:"list" required:"true"`
 
-	metadataDescribeTrustedAdvisorCheckRefreshStatusesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTrustedAdvisorCheckRefreshStatusesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1243,11 +1151,7 @@ type DescribeTrustedAdvisorCheckResultInput struct {
 	// must be passed explicitly for operations that take them.
 	Language *string `locationName:"language" type:"string"`
 
-	metadataDescribeTrustedAdvisorCheckResultInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTrustedAdvisorCheckResultInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1266,11 +1170,7 @@ type DescribeTrustedAdvisorCheckResultOutput struct {
 	// The detailed results of the Trusted Advisor check.
 	Result *TrustedAdvisorCheckResult `locationName:"result" type:"structure"`
 
-	metadataDescribeTrustedAdvisorCheckResultOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTrustedAdvisorCheckResultOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1287,11 +1187,7 @@ type DescribeTrustedAdvisorCheckSummariesInput struct {
 	// The IDs of the Trusted Advisor checks.
 	CheckIds []*string `locationName:"checkIds" type:"list" required:"true"`
 
-	metadataDescribeTrustedAdvisorCheckSummariesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTrustedAdvisorCheckSummariesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1310,11 +1206,7 @@ type DescribeTrustedAdvisorCheckSummariesOutput struct {
 	// The summary information for the requested Trusted Advisor checks.
 	Summaries []*TrustedAdvisorCheckSummary `locationName:"summaries" type:"list" required:"true"`
 
-	metadataDescribeTrustedAdvisorCheckSummariesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTrustedAdvisorCheckSummariesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1333,11 +1225,7 @@ type DescribeTrustedAdvisorChecksInput struct {
 	// must be passed explicitly for operations that take them.
 	Language *string `locationName:"language" type:"string" required:"true"`
 
-	metadataDescribeTrustedAdvisorChecksInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTrustedAdvisorChecksInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1356,11 +1244,7 @@ type DescribeTrustedAdvisorChecksOutput struct {
 	// Information about all available Trusted Advisor checks.
 	Checks []*TrustedAdvisorCheckDescription `locationName:"checks" type:"list" required:"true"`
 
-	metadataDescribeTrustedAdvisorChecksOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTrustedAdvisorChecksOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1381,11 +1265,7 @@ type RecentCaseCommunications struct {
 	// A resumption point for pagination.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataRecentCaseCommunications `json:"-" xml:"-"`
-}
-
-type metadataRecentCaseCommunications struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1402,11 +1282,7 @@ type RefreshTrustedAdvisorCheckInput struct {
 	// The unique identifier for the Trusted Advisor check.
 	CheckId *string `locationName:"checkId" type:"string" required:"true"`
 
-	metadataRefreshTrustedAdvisorCheckInput `json:"-" xml:"-"`
-}
-
-type metadataRefreshTrustedAdvisorCheckInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1425,11 +1301,7 @@ type RefreshTrustedAdvisorCheckOutput struct {
 	// the check is eligible for refresh.
 	Status *TrustedAdvisorCheckRefreshStatus `locationName:"status" type:"structure" required:"true"`
 
-	metadataRefreshTrustedAdvisorCheckOutput `json:"-" xml:"-"`
-}
-
-type metadataRefreshTrustedAdvisorCheckOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1447,11 +1319,7 @@ type ResolveCaseInput struct {
 	// an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47
 	CaseId *string `locationName:"caseId" type:"string"`
 
-	metadataResolveCaseInput `json:"-" xml:"-"`
-}
-
-type metadataResolveCaseInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1472,11 +1340,7 @@ type ResolveCaseOutput struct {
 	// The status of the case when the ResolveCase request was sent.
 	InitialCaseStatus *string `locationName:"initialCaseStatus" type:"string"`
 
-	metadataResolveCaseOutput `json:"-" xml:"-"`
-}
-
-type metadataResolveCaseOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1504,11 +1368,7 @@ type Service struct {
 	// code.
 	Name *string `locationName:"name" type:"string"`
 
-	metadataService `json:"-" xml:"-"`
-}
-
-type metadataService struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1531,11 +1391,7 @@ type SeverityLevel struct {
 	// The name of the severity level that corresponds to the severity level code.
 	Name *string `locationName:"name" type:"string"`
 
-	metadataSeverityLevel `json:"-" xml:"-"`
-}
-
-type metadataSeverityLevel struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1555,11 +1411,7 @@ type TrustedAdvisorCategorySpecificSummary struct {
 	// is in the Cost Optimizing category.
 	CostOptimizing *TrustedAdvisorCostOptimizingSummary `locationName:"costOptimizing" type:"structure"`
 
-	metadataTrustedAdvisorCategorySpecificSummary `json:"-" xml:"-"`
-}
-
-type metadataTrustedAdvisorCategorySpecificSummary struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1594,11 +1446,7 @@ type TrustedAdvisorCheckDescription struct {
 	// The display name for the Trusted Advisor check.
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	metadataTrustedAdvisorCheckDescription `json:"-" xml:"-"`
-}
-
-type metadataTrustedAdvisorCheckDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1624,11 +1472,7 @@ type TrustedAdvisorCheckRefreshStatus struct {
 	// "none", "enqueued", "processing", "success", or "abandoned".
 	Status *string `locationName:"status" type:"string" required:"true"`
 
-	metadataTrustedAdvisorCheckRefreshStatus `json:"-" xml:"-"`
-}
-
-type metadataTrustedAdvisorCheckRefreshStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1664,11 +1508,7 @@ type TrustedAdvisorCheckResult struct {
 	// The time of the last refresh of the check.
 	Timestamp *string `locationName:"timestamp" type:"string" required:"true"`
 
-	metadataTrustedAdvisorCheckResult `json:"-" xml:"-"`
-}
-
-type metadataTrustedAdvisorCheckResult struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1705,11 +1545,7 @@ type TrustedAdvisorCheckSummary struct {
 	// The time of the last refresh of the check.
 	Timestamp *string `locationName:"timestamp" type:"string" required:"true"`
 
-	metadataTrustedAdvisorCheckSummary `json:"-" xml:"-"`
-}
-
-type metadataTrustedAdvisorCheckSummary struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1733,11 +1569,7 @@ type TrustedAdvisorCostOptimizingSummary struct {
 	// actions are taken.
 	EstimatedPercentMonthlySavings *float64 `locationName:"estimatedPercentMonthlySavings" type:"double" required:"true"`
 
-	metadataTrustedAdvisorCostOptimizingSummary `json:"-" xml:"-"`
-}
-
-type metadataTrustedAdvisorCostOptimizingSummary struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1772,11 +1604,7 @@ type TrustedAdvisorResourceDetail struct {
 	// The status code for the resource identified in the Trusted Advisor check.
 	Status *string `locationName:"status" type:"string" required:"true"`
 
-	metadataTrustedAdvisorResourceDetail `json:"-" xml:"-"`
-}
-
-type metadataTrustedAdvisorResourceDetail struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1807,11 +1635,7 @@ type TrustedAdvisorResourcesSummary struct {
 	// marked as suppressed by the user.
 	ResourcesSuppressed *int64 `locationName:"resourcesSuppressed" type:"long" required:"true"`
 
-	metadataTrustedAdvisorResourcesSummary `json:"-" xml:"-"`
-}
-
-type metadataTrustedAdvisorResourcesSummary struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

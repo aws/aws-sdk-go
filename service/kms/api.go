@@ -1000,11 +1000,7 @@ type AliasListEntry struct {
 	// String that contains the key identifier pointed to by the alias.
 	TargetKeyId *string `min:"1" type:"string"`
 
-	metadataAliasListEntry `json:"-" xml:"-"`
-}
-
-type metadataAliasListEntry struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1030,11 +1026,7 @@ type CancelKeyDeletionInput struct {
 	// DescribeKey.
 	KeyId *string `min:"1" type:"string" required:"true"`
 
-	metadataCancelKeyDeletionInput `json:"-" xml:"-"`
-}
-
-type metadataCancelKeyDeletionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1051,11 +1043,7 @@ type CancelKeyDeletionOutput struct {
 	// The unique identifier of the master key for which deletion is canceled.
 	KeyId *string `min:"1" type:"string"`
 
-	metadataCancelKeyDeletionOutput `json:"-" xml:"-"`
-}
-
-type metadataCancelKeyDeletionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1080,11 +1068,7 @@ type CreateAliasInput struct {
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	TargetKeyId *string `min:"1" type:"string" required:"true"`
 
-	metadataCreateAliasInput `json:"-" xml:"-"`
-}
-
-type metadataCreateAliasInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1098,11 +1082,7 @@ func (s CreateAliasInput) GoString() string {
 }
 
 type CreateAliasOutput struct {
-	metadataCreateAliasOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateAliasOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1179,11 +1159,7 @@ type CreateGrantInput struct {
 	// in the Example ARNs section of the AWS General Reference.
 	RetiringPrincipal *string `min:"1" type:"string"`
 
-	metadataCreateGrantInput `json:"-" xml:"-"`
-}
-
-type metadataCreateGrantInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1208,11 +1184,7 @@ type CreateGrantOutput struct {
 	// in the AWS Key Management Service Developer Guide.
 	GrantToken *string `min:"1" type:"string"`
 
-	metadataCreateGrantOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateGrantOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1238,11 +1210,7 @@ type CreateKeyInput struct {
 	// The key is the root of trust. The policy size limit is 32 KiB (32768 bytes).
 	Policy *string `min:"1" type:"string"`
 
-	metadataCreateKeyInput `json:"-" xml:"-"`
-}
-
-type metadataCreateKeyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1259,11 +1227,7 @@ type CreateKeyOutput struct {
 	// Metadata associated with the key.
 	KeyMetadata *KeyMetadata `type:"structure"`
 
-	metadataCreateKeyOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateKeyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1291,11 +1255,7 @@ type DecryptInput struct {
 	// in the AWS Key Management Service Developer Guide.
 	GrantTokens []*string `type:"list"`
 
-	metadataDecryptInput `json:"-" xml:"-"`
-}
-
-type metadataDecryptInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1317,11 +1277,7 @@ type DecryptOutput struct {
 	// master key is not available or if you didn't have permission to use it.
 	Plaintext []byte `min:"1" type:"blob"`
 
-	metadataDecryptOutput `json:"-" xml:"-"`
-}
-
-type metadataDecryptOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1339,11 +1295,7 @@ type DeleteAliasInput struct {
 	// by a forward slash (alias/). Aliases that begin with "alias/AWS" are reserved.
 	AliasName *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteAliasInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteAliasInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1357,11 +1309,7 @@ func (s DeleteAliasInput) GoString() string {
 }
 
 type DeleteAliasOutput struct {
-	metadataDeleteAliasOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteAliasOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1389,11 +1337,7 @@ type DescribeKeyInput struct {
 	// Name Example - alias/MyAliasName
 	KeyId *string `min:"1" type:"string" required:"true"`
 
-	metadataDescribeKeyInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeKeyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1410,11 +1354,7 @@ type DescribeKeyOutput struct {
 	// Metadata associated with the key.
 	KeyMetadata *KeyMetadata `type:"structure"`
 
-	metadataDescribeKeyOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeKeyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1434,11 +1374,7 @@ type DisableKeyInput struct {
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	KeyId *string `min:"1" type:"string" required:"true"`
 
-	metadataDisableKeyInput `json:"-" xml:"-"`
-}
-
-type metadataDisableKeyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1452,11 +1388,7 @@ func (s DisableKeyInput) GoString() string {
 }
 
 type DisableKeyOutput struct {
-	metadataDisableKeyOutput `json:"-" xml:"-"`
-}
-
-type metadataDisableKeyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1476,11 +1408,7 @@ type DisableKeyRotationInput struct {
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	KeyId *string `min:"1" type:"string" required:"true"`
 
-	metadataDisableKeyRotationInput `json:"-" xml:"-"`
-}
-
-type metadataDisableKeyRotationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1494,11 +1422,7 @@ func (s DisableKeyRotationInput) GoString() string {
 }
 
 type DisableKeyRotationOutput struct {
-	metadataDisableKeyRotationOutput `json:"-" xml:"-"`
-}
-
-type metadataDisableKeyRotationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1518,11 +1442,7 @@ type EnableKeyInput struct {
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	KeyId *string `min:"1" type:"string" required:"true"`
 
-	metadataEnableKeyInput `json:"-" xml:"-"`
-}
-
-type metadataEnableKeyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1536,11 +1456,7 @@ func (s EnableKeyInput) GoString() string {
 }
 
 type EnableKeyOutput struct {
-	metadataEnableKeyOutput `json:"-" xml:"-"`
-}
-
-type metadataEnableKeyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1560,11 +1476,7 @@ type EnableKeyRotationInput struct {
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	KeyId *string `min:"1" type:"string" required:"true"`
 
-	metadataEnableKeyRotationInput `json:"-" xml:"-"`
-}
-
-type metadataEnableKeyRotationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1578,11 +1490,7 @@ func (s EnableKeyRotationInput) GoString() string {
 }
 
 type EnableKeyRotationOutput struct {
-	metadataEnableKeyRotationOutput `json:"-" xml:"-"`
-}
-
-type metadataEnableKeyRotationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1619,11 +1527,7 @@ type EncryptInput struct {
 	// Data to be encrypted.
 	Plaintext []byte `min:"1" type:"blob" required:"true"`
 
-	metadataEncryptInput `json:"-" xml:"-"`
-}
-
-type metadataEncryptInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1644,11 +1548,7 @@ type EncryptOutput struct {
 	// The ID of the key used during encryption.
 	KeyId *string `min:"1" type:"string"`
 
-	metadataEncryptOutput `json:"-" xml:"-"`
-}
-
-type metadataEncryptOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1690,11 +1590,7 @@ type GenerateDataKeyInput struct {
 	// use the KeySpec parameter instead.
 	NumberOfBytes *int64 `min:"1" type:"integer"`
 
-	metadataGenerateDataKeyInput `json:"-" xml:"-"`
-}
-
-type metadataGenerateDataKeyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1726,11 +1622,7 @@ type GenerateDataKeyOutput struct {
 	// and then remove it from memory as soon as possible.
 	Plaintext []byte `min:"1" type:"blob"`
 
-	metadataGenerateDataKeyOutput `json:"-" xml:"-"`
-}
-
-type metadataGenerateDataKeyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1771,11 +1663,7 @@ type GenerateDataKeyWithoutPlaintextInput struct {
 	// instead.
 	NumberOfBytes *int64 `min:"1" type:"integer"`
 
-	metadataGenerateDataKeyWithoutPlaintextInput `json:"-" xml:"-"`
-}
-
-type metadataGenerateDataKeyWithoutPlaintextInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1800,11 +1688,7 @@ type GenerateDataKeyWithoutPlaintextOutput struct {
 	// copy of the data key.
 	KeyId *string `min:"1" type:"string"`
 
-	metadataGenerateDataKeyWithoutPlaintextOutput `json:"-" xml:"-"`
-}
-
-type metadataGenerateDataKeyWithoutPlaintextOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1822,11 +1706,7 @@ type GenerateRandomInput struct {
 	// 128, 256, 512, 1024 and so on. The current limit is 1024 bytes.
 	NumberOfBytes *int64 `min:"1" type:"integer"`
 
-	metadataGenerateRandomInput `json:"-" xml:"-"`
-}
-
-type metadataGenerateRandomInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1843,11 +1723,7 @@ type GenerateRandomOutput struct {
 	// Plaintext that contains the unpredictable byte string.
 	Plaintext []byte `min:"1" type:"blob"`
 
-	metadataGenerateRandomOutput `json:"-" xml:"-"`
-}
-
-type metadataGenerateRandomOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1871,11 +1747,7 @@ type GetKeyPolicyInput struct {
 	// Policy names can be discovered by calling ListKeyPolicies.
 	PolicyName *string `min:"1" type:"string" required:"true"`
 
-	metadataGetKeyPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataGetKeyPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1892,11 +1764,7 @@ type GetKeyPolicyOutput struct {
 	// A policy document in JSON format.
 	Policy *string `min:"1" type:"string"`
 
-	metadataGetKeyPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataGetKeyPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1916,11 +1784,7 @@ type GetKeyRotationStatusInput struct {
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	KeyId *string `min:"1" type:"string" required:"true"`
 
-	metadataGetKeyRotationStatusInput `json:"-" xml:"-"`
-}
-
-type metadataGetKeyRotationStatusInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1937,11 +1801,7 @@ type GetKeyRotationStatusOutput struct {
 	// A Boolean value that specifies whether key rotation is enabled.
 	KeyRotationEnabled *bool `type:"boolean"`
 
-	metadataGetKeyRotationStatusOutput `json:"-" xml:"-"`
-}
-
-type metadataGetKeyRotationStatusOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1976,11 +1836,7 @@ type GrantConstraints struct {
 	// the operation. Otherwise, the operation is not allowed.
 	EncryptionContextSubset map[string]*string `type:"map"`
 
-	metadataGrantConstraints `json:"-" xml:"-"`
-}
-
-type metadataGrantConstraints struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2024,11 +1880,7 @@ type GrantListEntry struct {
 	// The principal that can retire the grant.
 	RetiringPrincipal *string `min:"1" type:"string"`
 
-	metadataGrantListEntry `json:"-" xml:"-"`
-}
-
-type metadataGrantListEntry struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2049,11 +1901,7 @@ type KeyListEntry struct {
 	// Unique identifier of the key.
 	KeyId *string `min:"1" type:"string"`
 
-	metadataKeyListEntry `json:"-" xml:"-"`
-}
-
-type metadataKeyListEntry struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2109,11 +1957,7 @@ type KeyMetadata struct {
 	// the Encrypt and Decrypt operations.
 	KeyUsage *string `type:"string" enum:"KeyUsageType"`
 
-	metadataKeyMetadata `json:"-" xml:"-"`
-}
-
-type metadataKeyMetadata struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2140,11 +1984,7 @@ type ListAliasesInput struct {
 	// the value of NextMarker from the response you just received.
 	Marker *string `min:"1" type:"string"`
 
-	metadataListAliasesInput `json:"-" xml:"-"`
-}
-
-type metadataListAliasesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2170,11 +2010,7 @@ type ListAliasesOutput struct {
 	// request to retrieve more items in the list.
 	Truncated *bool `type:"boolean"`
 
-	metadataListAliasesOutput `json:"-" xml:"-"`
-}
-
-type metadataListAliasesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2207,11 +2043,7 @@ type ListGrantsInput struct {
 	// the value of NextMarker from the response you just received.
 	Marker *string `min:"1" type:"string"`
 
-	metadataListGrantsInput `json:"-" xml:"-"`
-}
-
-type metadataListGrantsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2237,11 +2069,7 @@ type ListGrantsResponse struct {
 	// request to retrieve more items in the list.
 	Truncated *bool `type:"boolean"`
 
-	metadataListGrantsResponse `json:"-" xml:"-"`
-}
-
-type metadataListGrantsResponse struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2278,11 +2106,7 @@ type ListKeyPoliciesInput struct {
 	// the value of NextMarker from the response you just received.
 	Marker *string `min:"1" type:"string"`
 
-	metadataListKeyPoliciesInput `json:"-" xml:"-"`
-}
-
-type metadataListKeyPoliciesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2309,11 +2133,7 @@ type ListKeyPoliciesOutput struct {
 	// request to retrieve more items in the list.
 	Truncated *bool `type:"boolean"`
 
-	metadataListKeyPoliciesOutput `json:"-" xml:"-"`
-}
-
-type metadataListKeyPoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2340,11 +2160,7 @@ type ListKeysInput struct {
 	// the value of NextMarker from the response you just received.
 	Marker *string `min:"1" type:"string"`
 
-	metadataListKeysInput `json:"-" xml:"-"`
-}
-
-type metadataListKeysInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2370,11 +2186,7 @@ type ListKeysOutput struct {
 	// request to retrieve more items in the list.
 	Truncated *bool `type:"boolean"`
 
-	metadataListKeysOutput `json:"-" xml:"-"`
-}
-
-type metadataListKeysOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2411,11 +2223,7 @@ type ListRetirableGrantsInput struct {
 	// in the Example ARNs section of the Amazon Web Services General Reference.
 	RetiringPrincipal *string `min:"1" type:"string" required:"true"`
 
-	metadataListRetirableGrantsInput `json:"-" xml:"-"`
-}
-
-type metadataListRetirableGrantsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2444,11 +2252,7 @@ type PutKeyPolicyInput struct {
 	// "default".
 	PolicyName *string `min:"1" type:"string" required:"true"`
 
-	metadataPutKeyPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataPutKeyPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2462,11 +2266,7 @@ func (s PutKeyPolicyInput) GoString() string {
 }
 
 type PutKeyPolicyOutput struct {
-	metadataPutKeyPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataPutKeyPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2505,11 +2305,7 @@ type ReEncryptInput struct {
 	// CiphertextBlob parameter.
 	SourceEncryptionContext map[string]*string `type:"map"`
 
-	metadataReEncryptInput `json:"-" xml:"-"`
-}
-
-type metadataReEncryptInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2533,11 +2329,7 @@ type ReEncryptOutput struct {
 	// Unique identifier of the key used to originally encrypt the data.
 	SourceKeyId *string `min:"1" type:"string"`
 
-	metadataReEncryptOutput `json:"-" xml:"-"`
-}
-
-type metadataReEncryptOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2564,11 +2356,7 @@ type RetireGrantInput struct {
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	KeyId *string `min:"1" type:"string"`
 
-	metadataRetireGrantInput `json:"-" xml:"-"`
-}
-
-type metadataRetireGrantInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2582,11 +2370,7 @@ func (s RetireGrantInput) GoString() string {
 }
 
 type RetireGrantOutput struct {
-	metadataRetireGrantOutput `json:"-" xml:"-"`
-}
-
-type metadataRetireGrantOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2609,11 +2393,7 @@ type RevokeGrantInput struct {
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	KeyId *string `min:"1" type:"string" required:"true"`
 
-	metadataRevokeGrantInput `json:"-" xml:"-"`
-}
-
-type metadataRevokeGrantInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2627,11 +2407,7 @@ func (s RevokeGrantInput) GoString() string {
 }
 
 type RevokeGrantOutput struct {
-	metadataRevokeGrantOutput `json:"-" xml:"-"`
-}
-
-type metadataRevokeGrantOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2663,11 +2439,7 @@ type ScheduleKeyDeletionInput struct {
 	// 30, inclusive. If you do not include a value, it defaults to 30.
 	PendingWindowInDays *int64 `min:"1" type:"integer"`
 
-	metadataScheduleKeyDeletionInput `json:"-" xml:"-"`
-}
-
-type metadataScheduleKeyDeletionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2688,11 +2460,7 @@ type ScheduleKeyDeletionOutput struct {
 	// is scheduled.
 	KeyId *string `min:"1" type:"string"`
 
-	metadataScheduleKeyDeletionOutput `json:"-" xml:"-"`
-}
-
-type metadataScheduleKeyDeletionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2720,11 +2488,7 @@ type UpdateAliasInput struct {
 	// TargetKeyId.
 	TargetKeyId *string `min:"1" type:"string" required:"true"`
 
-	metadataUpdateAliasInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateAliasInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2738,11 +2502,7 @@ func (s UpdateAliasInput) GoString() string {
 }
 
 type UpdateAliasOutput struct {
-	metadataUpdateAliasOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateAliasOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2765,11 +2525,7 @@ type UpdateKeyDescriptionInput struct {
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	KeyId *string `min:"1" type:"string" required:"true"`
 
-	metadataUpdateKeyDescriptionInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateKeyDescriptionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2783,11 +2539,7 @@ func (s UpdateKeyDescriptionInput) GoString() string {
 }
 
 type UpdateKeyDescriptionOutput struct {
-	metadataUpdateKeyDescriptionOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateKeyDescriptionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

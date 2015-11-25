@@ -159,11 +159,7 @@ type DescribeStreamInput struct {
 	// The Amazon Resource Name (ARN) for the stream.
 	StreamArn *string `min:"37" type:"string" required:"true"`
 
-	metadataDescribeStreamInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeStreamInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -184,11 +180,7 @@ type DescribeStreamOutput struct {
 	// shards.
 	StreamDescription *StreamDescription `type:"structure"`
 
-	metadataDescribeStreamOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeStreamOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -211,11 +203,7 @@ type GetRecordsInput struct {
 	// This iterator can be used to access the stream records in this shard.
 	ShardIterator *string `min:"1" type:"string" required:"true"`
 
-	metadataGetRecordsInput `json:"-" xml:"-"`
-}
-
-type metadataGetRecordsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -238,11 +226,7 @@ type GetRecordsOutput struct {
 	// The stream records from the shard, which were retrieved using the shard iterator.
 	Records []*Record `type:"list"`
 
-	metadataGetRecordsOutput `json:"-" xml:"-"`
-}
-
-type metadataGetRecordsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -285,11 +269,7 @@ type GetShardIteratorInput struct {
 	// The Amazon Resource Name (ARN) for the stream.
 	StreamArn *string `min:"37" type:"string" required:"true"`
 
-	metadataGetShardIteratorInput `json:"-" xml:"-"`
-}
-
-type metadataGetShardIteratorInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -309,11 +289,7 @@ type GetShardIteratorOutput struct {
 	// record in a shard.
 	ShardIterator *string `min:"1" type:"string"`
 
-	metadataGetShardIteratorOutput `json:"-" xml:"-"`
-}
-
-type metadataGetShardIteratorOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -340,11 +316,7 @@ type ListStreamsInput struct {
 	// table name are returned.
 	TableName *string `min:"3" type:"string"`
 
-	metadataListStreamsInput `json:"-" xml:"-"`
-}
-
-type metadataListStreamsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -374,11 +346,7 @@ type ListStreamsOutput struct {
 	// A list of stream descriptors associated with the current account and endpoint.
 	Streams []*Stream `type:"list"`
 
-	metadataListStreamsOutput `json:"-" xml:"-"`
-}
-
-type metadataListStreamsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -420,11 +388,7 @@ type Record struct {
 	// The version number of the stream record format. Currently, this is 1.0.
 	EventVersion *string `locationName:"eventVersion" type:"string"`
 
-	metadataRecord `json:"-" xml:"-"`
-}
-
-type metadataRecord struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -446,11 +410,7 @@ type SequenceNumberRange struct {
 	// The first sequence number.
 	StartingSequenceNumber *string `min:"21" type:"string"`
 
-	metadataSequenceNumberRange `json:"-" xml:"-"`
-}
-
-type metadataSequenceNumberRange struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -474,11 +434,7 @@ type Shard struct {
 	// The system-generated identifier for this shard.
 	ShardId *string `min:"28" type:"string"`
 
-	metadataShard `json:"-" xml:"-"`
-}
-
-type metadataShard struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -513,11 +469,7 @@ type Stream struct {
 	// The DynamoDB table with which the stream is associated.
 	TableName *string `min:"3" type:"string"`
 
-	metadataStream `json:"-" xml:"-"`
-}
-
-type metadataStream struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -598,11 +550,7 @@ type StreamDescription struct {
 	// The DynamoDB table with which the stream is associated.
 	TableName *string `min:"3" type:"string"`
 
-	metadataStreamDescription `json:"-" xml:"-"`
-}
-
-type metadataStreamDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -645,11 +593,7 @@ type StreamRecord struct {
 	// NEW_AND_OLD_IMAGES — both the new and the old item images of the item.
 	StreamViewType *string `type:"string" enum:"StreamViewType"`
 
-	metadataStreamRecord `json:"-" xml:"-"`
-}
-
-type metadataStreamRecord struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

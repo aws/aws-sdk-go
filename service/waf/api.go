@@ -1093,11 +1093,7 @@ type ActivatedRule struct {
 	// RuleId is returned by CreateRule and by ListRules.
 	RuleId *string `min:"1" type:"string" required:"true"`
 
-	metadataActivatedRule `json:"-" xml:"-"`
-}
-
-type metadataActivatedRule struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1137,11 +1133,7 @@ type ByteMatchSet struct {
 	// after you create a ByteMatchSet.
 	Name *string `min:"1" type:"string"`
 
-	metadataByteMatchSet `json:"-" xml:"-"`
-}
-
-type metadataByteMatchSet struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1168,11 +1160,7 @@ type ByteMatchSetSummary struct {
 	// after you create a ByteMatchSet.
 	Name *string `min:"1" type:"string" required:"true"`
 
-	metadataByteMatchSetSummary `json:"-" xml:"-"`
-}
-
-type metadataByteMatchSetSummary struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1197,11 +1185,7 @@ type ByteMatchSetUpdate struct {
 	// values in the ByteMatchTuple that you want to delete from the ByteMatchSet.
 	ByteMatchTuple *ByteMatchTuple `type:"structure" required:"true"`
 
-	metadataByteMatchSetUpdate `json:"-" xml:"-"`
-}
-
-type metadataByteMatchSetUpdate struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1342,11 +1326,7 @@ type ByteMatchTuple struct {
 	// Specify NONE if you don't want to perform any text transformations.
 	TextTransformation *string `type:"string" required:"true" enum:"TextTransformation"`
 
-	metadataByteMatchTuple `json:"-" xml:"-"`
-}
-
-type metadataByteMatchTuple struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1367,11 +1347,7 @@ type CreateByteMatchSetInput struct {
 	// after you create a ByteMatchSet.
 	Name *string `min:"1" type:"string" required:"true"`
 
-	metadataCreateByteMatchSetInput `json:"-" xml:"-"`
-}
-
-type metadataCreateByteMatchSetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1393,11 +1369,7 @@ type CreateByteMatchSetOutput struct {
 	// see GetChangeTokenStatus.
 	ChangeToken *string `type:"string"`
 
-	metadataCreateByteMatchSetOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateByteMatchSetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1418,11 +1390,7 @@ type CreateIPSetInput struct {
 	// you create the IPSet.
 	Name *string `min:"1" type:"string" required:"true"`
 
-	metadataCreateIPSetInput `json:"-" xml:"-"`
-}
-
-type metadataCreateIPSetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1444,11 +1412,7 @@ type CreateIPSetOutput struct {
 	// The IPSet returned in the CreateIPSet response.
 	IPSet *IPSet `type:"structure"`
 
-	metadataCreateIPSetOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateIPSetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1475,11 +1439,7 @@ type CreateRuleInput struct {
 	// a Rule after you create it.
 	Name *string `min:"1" type:"string" required:"true"`
 
-	metadataCreateRuleInput `json:"-" xml:"-"`
-}
-
-type metadataCreateRuleInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1501,11 +1461,7 @@ type CreateRuleOutput struct {
 	// The Rule returned in the CreateRule response.
 	Rule *Rule `type:"structure"`
 
-	metadataCreateRuleOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateRuleOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1527,11 +1483,7 @@ type CreateSqlInjectionMatchSetInput struct {
 	// You can't change Name after you create the SqlInjectionMatchSet.
 	Name *string `min:"1" type:"string" required:"true"`
 
-	metadataCreateSqlInjectionMatchSetInput `json:"-" xml:"-"`
-}
-
-type metadataCreateSqlInjectionMatchSetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1554,11 +1506,7 @@ type CreateSqlInjectionMatchSetOutput struct {
 	// A SqlInjectionMatchSet.
 	SqlInjectionMatchSet *SqlInjectionMatchSet `type:"structure"`
 
-	metadataCreateSqlInjectionMatchSetOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateSqlInjectionMatchSetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1589,11 +1537,7 @@ type CreateWebACLInput struct {
 	// you create the WebACL.
 	Name *string `min:"1" type:"string" required:"true"`
 
-	metadataCreateWebACLInput `json:"-" xml:"-"`
-}
-
-type metadataCreateWebACLInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1615,11 +1559,7 @@ type CreateWebACLOutput struct {
 	// The WebACL returned in the CreateWebACL response.
 	WebACL *WebACL `type:"structure"`
 
-	metadataCreateWebACLOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateWebACLOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1640,11 +1580,7 @@ type DeleteByteMatchSetInput struct {
 	// The value returned by the most recent call to GetChangeToken.
 	ChangeToken *string `type:"string" required:"true"`
 
-	metadataDeleteByteMatchSetInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteByteMatchSetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1663,11 +1599,7 @@ type DeleteByteMatchSetOutput struct {
 	// see GetChangeTokenStatus.
 	ChangeToken *string `type:"string"`
 
-	metadataDeleteByteMatchSetOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteByteMatchSetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1688,11 +1620,7 @@ type DeleteIPSetInput struct {
 	// CreateIPSet and by ListIPSets.
 	IPSetId *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteIPSetInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteIPSetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1711,11 +1639,7 @@ type DeleteIPSetOutput struct {
 	// see GetChangeTokenStatus.
 	ChangeToken *string `type:"string"`
 
-	metadataDeleteIPSetOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteIPSetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1736,11 +1660,7 @@ type DeleteRuleInput struct {
 	// and by ListRules.
 	RuleId *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteRuleInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteRuleInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1759,11 +1679,7 @@ type DeleteRuleOutput struct {
 	// see GetChangeTokenStatus.
 	ChangeToken *string `type:"string"`
 
-	metadataDeleteRuleOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteRuleOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1785,11 +1701,7 @@ type DeleteSqlInjectionMatchSetInput struct {
 	// SqlInjectionMatchSetId is returned by CreateSqlInjectionMatchSet and by ListSqlInjectionMatchSets.
 	SqlInjectionMatchSetId *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteSqlInjectionMatchSetInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteSqlInjectionMatchSetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1809,11 +1721,7 @@ type DeleteSqlInjectionMatchSetOutput struct {
 	// information, see GetChangeTokenStatus.
 	ChangeToken *string `type:"string"`
 
-	metadataDeleteSqlInjectionMatchSetOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteSqlInjectionMatchSetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1834,11 +1742,7 @@ type DeleteWebACLInput struct {
 	// by CreateWebACL and by ListWebACLs.
 	WebACLId *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteWebACLInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteWebACLInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1857,11 +1761,7 @@ type DeleteWebACLOutput struct {
 	// see GetChangeTokenStatus.
 	ChangeToken *string `type:"string"`
 
-	metadataDeleteWebACLOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteWebACLOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1896,11 +1796,7 @@ type FieldToMatch struct {
 	// a resource, for example, /images/daily-ad.jpg.
 	Type *string `type:"string" required:"true" enum:"MatchFieldType"`
 
-	metadataFieldToMatch `json:"-" xml:"-"`
-}
-
-type metadataFieldToMatch struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1918,11 +1814,7 @@ type GetByteMatchSetInput struct {
 	// is returned by CreateByteMatchSet and by ListByteMatchSets.
 	ByteMatchSetId *string `min:"1" type:"string" required:"true"`
 
-	metadataGetByteMatchSetInput `json:"-" xml:"-"`
-}
-
-type metadataGetByteMatchSetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1945,11 +1837,7 @@ type GetByteMatchSetOutput struct {
 	//   FieldToMatch: Contains Data and Type
 	ByteMatchSet *ByteMatchSet `type:"structure"`
 
-	metadataGetByteMatchSetOutput `json:"-" xml:"-"`
-}
-
-type metadataGetByteMatchSetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1963,11 +1851,7 @@ func (s GetByteMatchSetOutput) GoString() string {
 }
 
 type GetChangeTokenInput struct {
-	metadataGetChangeTokenInput `json:"-" xml:"-"`
-}
-
-type metadataGetChangeTokenInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1985,11 +1869,7 @@ type GetChangeTokenOutput struct {
 	// request to get the current status of the request.
 	ChangeToken *string `type:"string"`
 
-	metadataGetChangeTokenOutput `json:"-" xml:"-"`
-}
-
-type metadataGetChangeTokenOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2007,11 +1887,7 @@ type GetChangeTokenStatusInput struct {
 	// was previously returned in the GetChangeToken response.
 	ChangeToken *string `type:"string" required:"true"`
 
-	metadataGetChangeTokenStatusInput `json:"-" xml:"-"`
-}
-
-type metadataGetChangeTokenStatusInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2028,11 +1904,7 @@ type GetChangeTokenStatusOutput struct {
 	// The status of the change token.
 	ChangeTokenStatus *string `type:"string" enum:"ChangeTokenStatus"`
 
-	metadataGetChangeTokenStatusOutput `json:"-" xml:"-"`
-}
-
-type metadataGetChangeTokenStatusOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2050,11 +1922,7 @@ type GetIPSetInput struct {
 	// and by ListIPSets.
 	IPSetId *string `min:"1" type:"string" required:"true"`
 
-	metadataGetIPSetInput `json:"-" xml:"-"`
-}
-
-type metadataGetIPSetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2076,11 +1944,7 @@ type GetIPSetOutput struct {
 	// contains Type and Value
 	IPSet *IPSet `type:"structure"`
 
-	metadataGetIPSetOutput `json:"-" xml:"-"`
-}
-
-type metadataGetIPSetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2098,11 +1962,7 @@ type GetRuleInput struct {
 	// and by ListRules.
 	RuleId *string `min:"1" type:"string" required:"true"`
 
-	metadataGetRuleInput `json:"-" xml:"-"`
-}
-
-type metadataGetRuleInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2123,11 +1983,7 @@ type GetRuleOutput struct {
 	//   Predicate: Each Predicate object contains DataId, Negated, and Type
 	Rule *Rule `type:"structure"`
 
-	metadataGetRuleOutput `json:"-" xml:"-"`
-}
-
-type metadataGetRuleOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2165,11 +2021,7 @@ type GetSampledRequestsInput struct {
 	// a sample of requests.
 	WebAclId *string `min:"1" type:"string" required:"true"`
 
-	metadataGetSampledRequestsInput `json:"-" xml:"-"`
-}
-
-type metadataGetSampledRequestsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2198,11 +2050,7 @@ type GetSampledRequestsOutput struct {
 	// returns the time range for the first 5,000 requests.
 	TimeWindow *TimeWindow `type:"structure"`
 
-	metadataGetSampledRequestsOutput `json:"-" xml:"-"`
-}
-
-type metadataGetSampledRequestsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2221,11 +2069,7 @@ type GetSqlInjectionMatchSetInput struct {
 	// SqlInjectionMatchSetId is returned by CreateSqlInjectionMatchSet and by ListSqlInjectionMatchSets.
 	SqlInjectionMatchSetId *string `min:"1" type:"string" required:"true"`
 
-	metadataGetSqlInjectionMatchSetInput `json:"-" xml:"-"`
-}
-
-type metadataGetSqlInjectionMatchSetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2249,11 +2093,7 @@ type GetSqlInjectionMatchSetOutput struct {
 	// Data and Type
 	SqlInjectionMatchSet *SqlInjectionMatchSet `type:"structure"`
 
-	metadataGetSqlInjectionMatchSetOutput `json:"-" xml:"-"`
-}
-
-type metadataGetSqlInjectionMatchSetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2271,11 +2111,7 @@ type GetWebACLInput struct {
 	// CreateWebACL and by ListWebACLs.
 	WebACLId *string `min:"1" type:"string" required:"true"`
 
-	metadataGetWebACLInput `json:"-" xml:"-"`
-}
-
-type metadataGetWebACLInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2298,11 +2134,7 @@ type GetWebACLOutput struct {
 	// and RuleId   Action: Contains Type
 	WebACL *WebACL `type:"structure"`
 
-	metadataGetWebACLOutput `json:"-" xml:"-"`
-}
-
-type metadataGetWebACLOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2326,11 +2158,7 @@ type HTTPHeader struct {
 	// The value of one of the headers in the sampled web request.
 	Value *string `type:"string"`
 
-	metadataHTTPHeader `json:"-" xml:"-"`
-}
-
-type metadataHTTPHeader struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2375,11 +2203,7 @@ type HTTPRequest struct {
 	// The part of a web request that identifies the resource, for example, /images/daily-ad.jpg.
 	URI *string `type:"string"`
 
-	metadataHTTPRequest `json:"-" xml:"-"`
-}
-
-type metadataHTTPRequest struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2421,11 +2245,7 @@ type IPSet struct {
 	// an IPSet after you create it.
 	Name *string `min:"1" type:"string"`
 
-	metadataIPSet `json:"-" xml:"-"`
-}
-
-type metadataIPSet struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2456,11 +2276,7 @@ type IPSetDescriptor struct {
 	// Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
 	Value *string `type:"string" required:"true"`
 
-	metadataIPSetDescriptor `json:"-" xml:"-"`
-}
-
-type metadataIPSetDescriptor struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2483,11 +2299,7 @@ type IPSetSummary struct {
 	// an IPSet after you create it.
 	Name *string `min:"1" type:"string" required:"true"`
 
-	metadataIPSetSummary `json:"-" xml:"-"`
-}
-
-type metadataIPSetSummary struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2509,11 +2321,7 @@ type IPSetUpdate struct {
 	// web requests originate from.
 	IPSetDescriptor *IPSetDescriptor `type:"structure" required:"true"`
 
-	metadataIPSetUpdate `json:"-" xml:"-"`
-}
-
-type metadataIPSetUpdate struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2540,11 +2348,7 @@ type ListByteMatchSetsInput struct {
 	// response to get information about another batch of ByteMatchSets.
 	NextMarker *string `min:"1" type:"string"`
 
-	metadataListByteMatchSetsInput `json:"-" xml:"-"`
-}
-
-type metadataListByteMatchSetsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2568,11 +2372,7 @@ type ListByteMatchSetsOutput struct {
 	// the next request.
 	NextMarker *string `min:"1" type:"string"`
 
-	metadataListByteMatchSetsOutput `json:"-" xml:"-"`
-}
-
-type metadataListByteMatchSetsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2599,11 +2399,7 @@ type ListIPSetsInput struct {
 	// information about another batch of ByteMatchSets.
 	NextMarker *string `min:"1" type:"string"`
 
-	metadataListIPSetsInput `json:"-" xml:"-"`
-}
-
-type metadataListIPSetsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2626,11 +2422,7 @@ type ListIPSetsOutput struct {
 	// from the response in the NextMarker value in the next request.
 	NextMarker *string `min:"1" type:"string"`
 
-	metadataListIPSetsOutput `json:"-" xml:"-"`
-}
-
-type metadataListIPSetsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2656,11 +2448,7 @@ type ListRulesInput struct {
 	// about another batch of Rules.
 	NextMarker *string `min:"1" type:"string"`
 
-	metadataListRulesInput `json:"-" xml:"-"`
-}
-
-type metadataListRulesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2683,11 +2471,7 @@ type ListRulesOutput struct {
 	// An array of RuleSummary objects.
 	Rules []*RuleSummary `type:"list"`
 
-	metadataListRulesOutput `json:"-" xml:"-"`
-}
-
-type metadataListRulesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2716,11 +2500,7 @@ type ListSqlInjectionMatchSetsInput struct {
 	// from the previous response to get information about another batch of SqlInjectionMatchSets.
 	NextMarker *string `min:"1" type:"string"`
 
-	metadataListSqlInjectionMatchSetsInput `json:"-" xml:"-"`
-}
-
-type metadataListSqlInjectionMatchSetsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2745,11 +2525,7 @@ type ListSqlInjectionMatchSetsOutput struct {
 	// An array of SqlInjectionMatchSetSummary objects.
 	SqlInjectionMatchSets []*SqlInjectionMatchSetSummary `type:"list"`
 
-	metadataListSqlInjectionMatchSetsOutput `json:"-" xml:"-"`
-}
-
-type metadataListSqlInjectionMatchSetsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2777,11 +2553,7 @@ type ListWebACLsInput struct {
 	// objects.
 	NextMarker *string `min:"1" type:"string"`
 
-	metadataListWebACLsInput `json:"-" xml:"-"`
-}
-
-type metadataListWebACLsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2804,11 +2576,7 @@ type ListWebACLsOutput struct {
 	// An array of WebACLSummary objects.
 	WebACLs []*WebACLSummary `type:"list"`
 
-	metadataListWebACLsOutput `json:"-" xml:"-"`
-}
-
-type metadataListWebACLsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2844,11 +2612,7 @@ type Predicate struct {
 	// The type of predicate in a Rule, such as ByteMatchSet or IPSet.
 	Type *string `type:"string" required:"true" enum:"PredicateType"`
 
-	metadataPredicate `json:"-" xml:"-"`
-}
-
-type metadataPredicate struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2889,11 +2653,7 @@ type Rule struct {
 	// RuleId is returned by CreateRule and by ListRules.
 	RuleId *string `min:"1" type:"string" required:"true"`
 
-	metadataRule `json:"-" xml:"-"`
-}
-
-type metadataRule struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2920,11 +2680,7 @@ type RuleSummary struct {
 	// RuleId is returned by CreateRule and by ListRules.
 	RuleId *string `min:"1" type:"string" required:"true"`
 
-	metadataRuleSummary `json:"-" xml:"-"`
-}
-
-type metadataRuleSummary struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2947,11 +2703,7 @@ type RuleUpdate struct {
 	// The ID of the Predicate (such as an IPSet) that you want to add to a Rule.
 	Predicate *Predicate `type:"structure" required:"true"`
 
-	metadataRuleUpdate `json:"-" xml:"-"`
-}
-
-type metadataRuleUpdate struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2985,11 +2737,7 @@ type SampledHTTPRequest struct {
 	// of 1.
 	Weight *int64 `type:"long" required:"true"`
 
-	metadataSampledHTTPRequest `json:"-" xml:"-"`
-}
-
-type metadataSampledHTTPRequest struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3026,11 +2774,7 @@ type SqlInjectionMatchSet struct {
 	// of malicious SQL code.
 	SqlInjectionMatchTuples []*SqlInjectionMatchTuple `type:"list" required:"true"`
 
-	metadataSqlInjectionMatchSet `json:"-" xml:"-"`
-}
-
-type metadataSqlInjectionMatchSet struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3058,11 +2802,7 @@ type SqlInjectionMatchSetSummary struct {
 	// ListSqlInjectionMatchSets.
 	SqlInjectionMatchSetId *string `min:"1" type:"string" required:"true"`
 
-	metadataSqlInjectionMatchSetSummary `json:"-" xml:"-"`
-}
-
-type metadataSqlInjectionMatchSetSummary struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3088,11 +2828,7 @@ type SqlInjectionMatchSetUpdate struct {
 	// the name of the header.
 	SqlInjectionMatchTuple *SqlInjectionMatchTuple `type:"structure" required:"true"`
 
-	metadataSqlInjectionMatchSetUpdate `json:"-" xml:"-"`
-}
-
-type metadataSqlInjectionMatchSetUpdate struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3159,11 +2895,7 @@ type SqlInjectionMatchTuple struct {
 	// Specify NONE if you don't want to perform any text transformations.
 	TextTransformation *string `type:"string" required:"true" enum:"TextTransformation"`
 
-	metadataSqlInjectionMatchTuple `json:"-" xml:"-"`
-}
-
-type metadataSqlInjectionMatchTuple struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3197,11 +2929,7 @@ type TimeWindow struct {
 	// specify any time range in the previous three hours.
 	StartTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
 
-	metadataTimeWindow `json:"-" xml:"-"`
-}
-
-type metadataTimeWindow struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3230,11 +2958,7 @@ type UpdateByteMatchSetInput struct {
 	//   FieldToMatch: Contains Data and Type
 	Updates []*ByteMatchSetUpdate `type:"list" required:"true"`
 
-	metadataUpdateByteMatchSetInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateByteMatchSetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3253,11 +2977,7 @@ type UpdateByteMatchSetOutput struct {
 	// see GetChangeTokenStatus.
 	ChangeToken *string `type:"string"`
 
-	metadataUpdateByteMatchSetOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateByteMatchSetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3285,11 +3005,7 @@ type UpdateIPSetInput struct {
 	// Type and Value
 	Updates []*IPSetUpdate `type:"list" required:"true"`
 
-	metadataUpdateIPSetInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateIPSetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3308,11 +3024,7 @@ type UpdateIPSetOutput struct {
 	// see GetChangeTokenStatus.
 	ChangeToken *string `type:"string"`
 
-	metadataUpdateIPSetOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateIPSetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3340,11 +3052,7 @@ type UpdateRuleInput struct {
 	// Negated, and Type   FieldToMatch: Contains Data and Type
 	Updates []*RuleUpdate `type:"list" required:"true"`
 
-	metadataUpdateRuleInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateRuleInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3363,11 +3071,7 @@ type UpdateRuleOutput struct {
 	// see GetChangeTokenStatus.
 	ChangeToken *string `type:"string"`
 
-	metadataUpdateRuleOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateRuleOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3398,11 +3102,7 @@ type UpdateSqlInjectionMatchSetInput struct {
 	// FieldToMatch: Contains Data and Type
 	Updates []*SqlInjectionMatchSetUpdate `type:"list" required:"true"`
 
-	metadataUpdateSqlInjectionMatchSetInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateSqlInjectionMatchSetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3422,11 +3122,7 @@ type UpdateSqlInjectionMatchSetOutput struct {
 	// information, see GetChangeTokenStatus.
 	ChangeToken *string `type:"string"`
 
-	metadataUpdateSqlInjectionMatchSetOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateSqlInjectionMatchSetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3463,11 +3159,7 @@ type UpdateWebACLInput struct {
 	// by CreateWebACL and by ListWebACLs.
 	WebACLId *string `min:"1" type:"string" required:"true"`
 
-	metadataUpdateWebACLInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateWebACLInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3486,11 +3178,7 @@ type UpdateWebACLOutput struct {
 	// see GetChangeTokenStatus.
 	ChangeToken *string `type:"string"`
 
-	metadataUpdateWebACLOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateWebACLOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3519,11 +3207,7 @@ type WafAction struct {
 	// for a WebACL.
 	Type *string `type:"string" required:"true" enum:"WafActionType"`
 
-	metadataWafAction `json:"-" xml:"-"`
-}
-
-type metadataWafAction struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3566,11 +3250,7 @@ type WebACL struct {
 	// WebACLId is returned by CreateWebACL and by ListWebACLs.
 	WebACLId *string `min:"1" type:"string" required:"true"`
 
-	metadataWebACL `json:"-" xml:"-"`
-}
-
-type metadataWebACL struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3596,11 +3276,7 @@ type WebACLSummary struct {
 	// WebACLId is returned by CreateWebACL and by ListWebACLs.
 	WebACLId *string `min:"1" type:"string" required:"true"`
 
-	metadataWebACLSummary `json:"-" xml:"-"`
-}
-
-type metadataWebACLSummary struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3627,11 +3303,7 @@ type WebACLUpdate struct {
 	// in the WebACLUpdate data type.
 	ActivatedRule *ActivatedRule `type:"structure" required:"true"`
 
-	metadataWebACLUpdate `json:"-" xml:"-"`
-}
-
-type metadataWebACLUpdate struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

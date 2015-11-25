@@ -343,11 +343,7 @@ type BatchGetRepositoriesInput struct {
 	// The names of the repositories to get information about.
 	RepositoryNames []*string `locationName:"repositoryNames" type:"list" required:"true"`
 
-	metadataBatchGetRepositoriesInput `json:"-" xml:"-"`
-}
-
-type metadataBatchGetRepositoriesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -368,11 +364,7 @@ type BatchGetRepositoriesOutput struct {
 	// Returns a list of repository names for which information could not be found.
 	RepositoriesNotFound []*string `locationName:"repositoriesNotFound" type:"list"`
 
-	metadataBatchGetRepositoriesOutput `json:"-" xml:"-"`
-}
-
-type metadataBatchGetRepositoriesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -393,11 +385,7 @@ type BranchInfo struct {
 	// The ID of the last commit made to the branch.
 	CommitId *string `locationName:"commitId" type:"string"`
 
-	metadataBranchInfo `json:"-" xml:"-"`
-}
-
-type metadataBranchInfo struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -424,11 +412,7 @@ type CreateBranchInput struct {
 	// The name of the repository in which you want to create the new branch.
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 
-	metadataCreateBranchInput `json:"-" xml:"-"`
-}
-
-type metadataCreateBranchInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -442,11 +426,7 @@ func (s CreateBranchInput) GoString() string {
 }
 
 type CreateBranchOutput struct {
-	metadataCreateBranchOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateBranchOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -471,11 +451,7 @@ type CreateRepositoryInput struct {
 	// is prohibited.
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 
-	metadataCreateRepositoryInput `json:"-" xml:"-"`
-}
-
-type metadataCreateRepositoryInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -493,11 +469,7 @@ type CreateRepositoryOutput struct {
 	// Information about the newly created repository.
 	RepositoryMetadata *RepositoryMetadata `locationName:"repositoryMetadata" type:"structure"`
 
-	metadataCreateRepositoryOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateRepositoryOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -515,11 +487,7 @@ type DeleteRepositoryInput struct {
 	// The name of the repository to delete.
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 
-	metadataDeleteRepositoryInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteRepositoryInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -537,11 +505,7 @@ type DeleteRepositoryOutput struct {
 	// The ID of the repository that was deleted.
 	RepositoryId *string `locationName:"repositoryId" type:"string"`
 
-	metadataDeleteRepositoryOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteRepositoryOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -564,11 +528,7 @@ type GetBranchInput struct {
 	// name.
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string"`
 
-	metadataGetBranchInput `json:"-" xml:"-"`
-}
-
-type metadataGetBranchInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -586,11 +546,7 @@ type GetBranchOutput struct {
 	// The name of the branch.
 	Branch *BranchInfo `locationName:"branch" type:"structure"`
 
-	metadataGetBranchOutput `json:"-" xml:"-"`
-}
-
-type metadataGetBranchOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -608,11 +564,7 @@ type GetRepositoryInput struct {
 	// The name of the repository to get information about.
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 
-	metadataGetRepositoryInput `json:"-" xml:"-"`
-}
-
-type metadataGetRepositoryInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -630,11 +582,7 @@ type GetRepositoryOutput struct {
 	// Information about the repository.
 	RepositoryMetadata *RepositoryMetadata `locationName:"repositoryMetadata" type:"structure"`
 
-	metadataGetRepositoryOutput `json:"-" xml:"-"`
-}
-
-type metadataGetRepositoryOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -655,11 +603,7 @@ type ListBranchesInput struct {
 	// The name of the repository that contains the branches.
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 
-	metadataListBranchesInput `json:"-" xml:"-"`
-}
-
-type metadataListBranchesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -680,11 +624,7 @@ type ListBranchesOutput struct {
 	// An enumeration token that returns the batch of the results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListBranchesOutput `json:"-" xml:"-"`
-}
-
-type metadataListBranchesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -711,11 +651,7 @@ type ListRepositoriesInput struct {
 	// The criteria used to sort the results of a list repositories operation.
 	SortBy *string `locationName:"sortBy" type:"string" enum:"SortByEnum"`
 
-	metadataListRepositoriesInput `json:"-" xml:"-"`
-}
-
-type metadataListRepositoriesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -739,11 +675,7 @@ type ListRepositoriesOutput struct {
 	// Lists the repositories called by the list repositories operation.
 	Repositories []*RepositoryNameIdPair `locationName:"repositories" type:"list"`
 
-	metadataListRepositoriesOutput `json:"-" xml:"-"`
-}
-
-type metadataListRepositoriesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -788,11 +720,7 @@ type RepositoryMetadata struct {
 	// The repository's name.
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string"`
 
-	metadataRepositoryMetadata `json:"-" xml:"-"`
-}
-
-type metadataRepositoryMetadata struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -815,11 +743,7 @@ type RepositoryNameIdPair struct {
 	// name.
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string"`
 
-	metadataRepositoryNameIdPair `json:"-" xml:"-"`
-}
-
-type metadataRepositoryNameIdPair struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -840,11 +764,7 @@ type UpdateDefaultBranchInput struct {
 	// The name of the repository to set or change the default branch for.
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 
-	metadataUpdateDefaultBranchInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateDefaultBranchInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -858,11 +778,7 @@ func (s UpdateDefaultBranchInput) GoString() string {
 }
 
 type UpdateDefaultBranchOutput struct {
-	metadataUpdateDefaultBranchOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateDefaultBranchOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -883,11 +799,7 @@ type UpdateRepositoryDescriptionInput struct {
 	// The name of the repository to set or change the comment or description for.
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 
-	metadataUpdateRepositoryDescriptionInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateRepositoryDescriptionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -901,11 +813,7 @@ func (s UpdateRepositoryDescriptionInput) GoString() string {
 }
 
 type UpdateRepositoryDescriptionOutput struct {
-	metadataUpdateRepositoryDescriptionOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateRepositoryDescriptionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -930,11 +838,7 @@ type UpdateRepositoryNameInput struct {
 	// name.
 	OldName *string `locationName:"oldName" min:"1" type:"string" required:"true"`
 
-	metadataUpdateRepositoryNameInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateRepositoryNameInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -948,11 +852,7 @@ func (s UpdateRepositoryNameInput) GoString() string {
 }
 
 type UpdateRepositoryNameOutput struct {
-	metadataUpdateRepositoryNameOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateRepositoryNameOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

@@ -764,11 +764,7 @@ type AddPermissionInput struct {
 	// The URL of the Amazon SQS queue to take action on.
 	QueueUrl *string `type:"string" required:"true"`
 
-	metadataAddPermissionInput `json:"-" xml:"-"`
-}
-
-type metadataAddPermissionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -782,11 +778,7 @@ func (s AddPermissionInput) GoString() string {
 }
 
 type AddPermissionOutput struct {
-	metadataAddPermissionOutput `json:"-" xml:"-"`
-}
-
-type metadataAddPermissionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -814,11 +806,7 @@ type BatchResultErrorEntry struct {
 	// Whether the error happened due to the sender's fault.
 	SenderFault *bool `type:"boolean" required:"true"`
 
-	metadataBatchResultErrorEntry `json:"-" xml:"-"`
-}
-
-type metadataBatchResultErrorEntry struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -839,11 +827,7 @@ type ChangeMessageVisibilityBatchInput struct {
 	// The URL of the Amazon SQS queue to take action on.
 	QueueUrl *string `type:"string" required:"true"`
 
-	metadataChangeMessageVisibilityBatchInput `json:"-" xml:"-"`
-}
-
-type metadataChangeMessageVisibilityBatchInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -866,11 +850,7 @@ type ChangeMessageVisibilityBatchOutput struct {
 	// A list of ChangeMessageVisibilityBatchResultEntry items.
 	Successful []*ChangeMessageVisibilityBatchResultEntry `locationNameList:"ChangeMessageVisibilityBatchResultEntry" type:"list" flattened:"true" required:"true"`
 
-	metadataChangeMessageVisibilityBatchOutput `json:"-" xml:"-"`
-}
-
-type metadataChangeMessageVisibilityBatchOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -907,11 +887,7 @@ type ChangeMessageVisibilityBatchRequestEntry struct {
 	// The new value (in seconds) for the message's visibility timeout.
 	VisibilityTimeout *int64 `type:"integer"`
 
-	metadataChangeMessageVisibilityBatchRequestEntry `json:"-" xml:"-"`
-}
-
-type metadataChangeMessageVisibilityBatchRequestEntry struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -929,11 +905,7 @@ type ChangeMessageVisibilityBatchResultEntry struct {
 	// Represents a message whose visibility timeout has been changed successfully.
 	Id *string `type:"string" required:"true"`
 
-	metadataChangeMessageVisibilityBatchResultEntry `json:"-" xml:"-"`
-}
-
-type metadataChangeMessageVisibilityBatchResultEntry struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -958,11 +930,7 @@ type ChangeMessageVisibilityInput struct {
 	// visibility timeout.
 	VisibilityTimeout *int64 `type:"integer" required:"true"`
 
-	metadataChangeMessageVisibilityInput `json:"-" xml:"-"`
-}
-
-type metadataChangeMessageVisibilityInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -976,11 +944,7 @@ func (s ChangeMessageVisibilityInput) GoString() string {
 }
 
 type ChangeMessageVisibilityOutput struct {
-	metadataChangeMessageVisibilityOutput `json:"-" xml:"-"`
-}
-
-type metadataChangeMessageVisibilityOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1021,11 +985,7 @@ type CreateQueueInput struct {
 	// The name for the queue to be created.
 	QueueName *string `type:"string" required:"true"`
 
-	metadataCreateQueueInput `json:"-" xml:"-"`
-}
-
-type metadataCreateQueueInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1043,11 +1003,7 @@ type CreateQueueOutput struct {
 	// The URL for the created Amazon SQS queue.
 	QueueUrl *string `type:"string"`
 
-	metadataCreateQueueOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateQueueOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1067,11 +1023,7 @@ type DeleteMessageBatchInput struct {
 	// The URL of the Amazon SQS queue to take action on.
 	QueueUrl *string `type:"string" required:"true"`
 
-	metadataDeleteMessageBatchInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteMessageBatchInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1094,11 +1046,7 @@ type DeleteMessageBatchOutput struct {
 	// A list of DeleteMessageBatchResultEntry items.
 	Successful []*DeleteMessageBatchResultEntry `locationNameList:"DeleteMessageBatchResultEntry" type:"list" flattened:"true" required:"true"`
 
-	metadataDeleteMessageBatchOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteMessageBatchOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1121,11 +1069,7 @@ type DeleteMessageBatchRequestEntry struct {
 	// A receipt handle.
 	ReceiptHandle *string `type:"string" required:"true"`
 
-	metadataDeleteMessageBatchRequestEntry `json:"-" xml:"-"`
-}
-
-type metadataDeleteMessageBatchRequestEntry struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1143,11 +1087,7 @@ type DeleteMessageBatchResultEntry struct {
 	// Represents a successfully deleted message.
 	Id *string `type:"string" required:"true"`
 
-	metadataDeleteMessageBatchResultEntry `json:"-" xml:"-"`
-}
-
-type metadataDeleteMessageBatchResultEntry struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1167,11 +1107,7 @@ type DeleteMessageInput struct {
 	// The receipt handle associated with the message to delete.
 	ReceiptHandle *string `type:"string" required:"true"`
 
-	metadataDeleteMessageInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteMessageInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1185,11 +1121,7 @@ func (s DeleteMessageInput) GoString() string {
 }
 
 type DeleteMessageOutput struct {
-	metadataDeleteMessageOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteMessageOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1206,11 +1138,7 @@ type DeleteQueueInput struct {
 	// The URL of the Amazon SQS queue to take action on.
 	QueueUrl *string `type:"string" required:"true"`
 
-	metadataDeleteQueueInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteQueueInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1224,11 +1152,7 @@ func (s DeleteQueueInput) GoString() string {
 }
 
 type DeleteQueueOutput struct {
-	metadataDeleteQueueOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteQueueOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1248,11 +1172,7 @@ type GetQueueAttributesInput struct {
 	// The URL of the Amazon SQS queue to take action on.
 	QueueUrl *string `type:"string" required:"true"`
 
-	metadataGetQueueAttributesInput `json:"-" xml:"-"`
-}
-
-type metadataGetQueueAttributesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1270,11 +1190,7 @@ type GetQueueAttributesOutput struct {
 	// A map of attributes to the respective values.
 	Attributes map[string]*string `locationName:"Attribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
 
-	metadataGetQueueAttributesOutput `json:"-" xml:"-"`
-}
-
-type metadataGetQueueAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1295,11 +1211,7 @@ type GetQueueUrlInput struct {
 	// The AWS account ID of the account that created the queue.
 	QueueOwnerAWSAccountId *string `type:"string"`
 
-	metadataGetQueueUrlInput `json:"-" xml:"-"`
-}
-
-type metadataGetQueueUrlInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1318,11 +1230,7 @@ type GetQueueUrlOutput struct {
 	// The URL for the queue.
 	QueueUrl *string `type:"string"`
 
-	metadataGetQueueUrlOutput `json:"-" xml:"-"`
-}
-
-type metadataGetQueueUrlOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1339,11 +1247,7 @@ type ListDeadLetterSourceQueuesInput struct {
 	// The queue URL of a dead letter queue.
 	QueueUrl *string `type:"string" required:"true"`
 
-	metadataListDeadLetterSourceQueuesInput `json:"-" xml:"-"`
-}
-
-type metadataListDeadLetterSourceQueuesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1362,11 +1266,7 @@ type ListDeadLetterSourceQueuesOutput struct {
 	// with a dead letter queue.
 	QueueUrls []*string `locationName:"queueUrls" locationNameList:"QueueUrl" type:"list" flattened:"true" required:"true"`
 
-	metadataListDeadLetterSourceQueuesOutput `json:"-" xml:"-"`
-}
-
-type metadataListDeadLetterSourceQueuesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1384,11 +1284,7 @@ type ListQueuesInput struct {
 	// begins with the specified string are returned.
 	QueueNamePrefix *string `type:"string"`
 
-	metadataListQueuesInput `json:"-" xml:"-"`
-}
-
-type metadataListQueuesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1406,11 +1302,7 @@ type ListQueuesOutput struct {
 	// A list of queue URLs, up to 1000 entries.
 	QueueUrls []*string `locationNameList:"QueueUrl" type:"list" flattened:"true"`
 
-	metadataListQueuesOutput `json:"-" xml:"-"`
-}
-
-type metadataListQueuesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1456,11 +1348,7 @@ type Message struct {
 	// you provide the last received receipt handle to delete the message.
 	ReceiptHandle *string `type:"string"`
 
-	metadataMessage `json:"-" xml:"-"`
-}
-
-type metadataMessage struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1501,11 +1389,7 @@ type MessageAttributeValue struct {
 	// see http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters (http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters).
 	StringValue *string `type:"string"`
 
-	metadataMessageAttributeValue `json:"-" xml:"-"`
-}
-
-type metadataMessageAttributeValue struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1523,11 +1407,7 @@ type PurgeQueueInput struct {
 	// API.
 	QueueUrl *string `type:"string" required:"true"`
 
-	metadataPurgeQueueInput `json:"-" xml:"-"`
-}
-
-type metadataPurgeQueueInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1541,11 +1421,7 @@ func (s PurgeQueueInput) GoString() string {
 }
 
 type PurgeQueueOutput struct {
-	metadataPurgeQueueOutput `json:"-" xml:"-"`
-}
-
-type metadataPurgeQueueOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1607,11 +1483,7 @@ type ReceiveMessageInput struct {
 	// sooner than WaitTimeSeconds.
 	WaitTimeSeconds *int64 `type:"integer"`
 
-	metadataReceiveMessageInput `json:"-" xml:"-"`
-}
-
-type metadataReceiveMessageInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1629,11 +1501,7 @@ type ReceiveMessageOutput struct {
 	// A list of messages.
 	Messages []*Message `locationNameList:"Message" type:"list" flattened:"true"`
 
-	metadataReceiveMessageOutput `json:"-" xml:"-"`
-}
-
-type metadataReceiveMessageOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1654,11 +1522,7 @@ type RemovePermissionInput struct {
 	// The URL of the Amazon SQS queue to take action on.
 	QueueUrl *string `type:"string" required:"true"`
 
-	metadataRemovePermissionInput `json:"-" xml:"-"`
-}
-
-type metadataRemovePermissionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1672,11 +1536,7 @@ func (s RemovePermissionInput) GoString() string {
 }
 
 type RemovePermissionOutput struct {
-	metadataRemovePermissionOutput `json:"-" xml:"-"`
-}
-
-type metadataRemovePermissionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1696,11 +1556,7 @@ type SendMessageBatchInput struct {
 	// The URL of the Amazon SQS queue to take action on.
 	QueueUrl *string `type:"string" required:"true"`
 
-	metadataSendMessageBatchInput `json:"-" xml:"-"`
-}
-
-type metadataSendMessageBatchInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1724,11 +1580,7 @@ type SendMessageBatchOutput struct {
 	// A list of SendMessageBatchResultEntry items.
 	Successful []*SendMessageBatchResultEntry `locationNameList:"SendMessageBatchResultEntry" type:"list" flattened:"true" required:"true"`
 
-	metadataSendMessageBatchOutput `json:"-" xml:"-"`
-}
-
-type metadataSendMessageBatchOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1758,11 +1610,7 @@ type SendMessageBatchRequestEntry struct {
 	// Body of the message.
 	MessageBody *string `type:"string" required:"true"`
 
-	metadataSendMessageBatchRequestEntry `json:"-" xml:"-"`
-}
-
-type metadataSendMessageBatchRequestEntry struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1795,11 +1643,7 @@ type SendMessageBatchResultEntry struct {
 	// An identifier for the message.
 	MessageId *string `type:"string" required:"true"`
 
-	metadataSendMessageBatchResultEntry `json:"-" xml:"-"`
-}
-
-type metadataSendMessageBatchResultEntry struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1830,11 +1674,7 @@ type SendMessageInput struct {
 	// The URL of the Amazon SQS queue to take action on.
 	QueueUrl *string `type:"string" required:"true"`
 
-	metadataSendMessageInput `json:"-" xml:"-"`
-}
-
-type metadataSendMessageInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1866,11 +1706,7 @@ type SendMessageOutput struct {
 	// in the Amazon SQS Developer Guide.
 	MessageId *string `type:"string"`
 
-	metadataSendMessageOutput `json:"-" xml:"-"`
-}
-
-type metadataSendMessageOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1913,11 +1749,7 @@ type SetQueueAttributesInput struct {
 	// The URL of the Amazon SQS queue to take action on.
 	QueueUrl *string `type:"string" required:"true"`
 
-	metadataSetQueueAttributesInput `json:"-" xml:"-"`
-}
-
-type metadataSetQueueAttributesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1931,11 +1763,7 @@ func (s SetQueueAttributesInput) GoString() string {
 }
 
 type SetQueueAttributesOutput struct {
-	metadataSetQueueAttributesOutput `json:"-" xml:"-"`
-}
-
-type metadataSetQueueAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

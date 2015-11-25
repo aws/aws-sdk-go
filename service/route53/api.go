@@ -1121,11 +1121,7 @@ type AliasTarget struct {
 	// .
 	HostedZoneId *string `type:"string" required:"true"`
 
-	metadataAliasTarget `json:"-" xml:"-"`
-}
-
-type metadataAliasTarget struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1153,11 +1149,7 @@ type AssociateVPCWithHostedZoneInput struct {
 	// The VPC that you want your hosted zone to be associated with.
 	VPC *VPC `type:"structure" required:"true"`
 
-	metadataAssociateVPCWithHostedZoneInput `json:"-" xml:"-"`
-}
-
-type metadataAssociateVPCWithHostedZoneInput struct {
-	SDKShapeTraits bool `locationName:"AssociateVPCWithHostedZoneRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+	_ struct{} `locationName:"AssociateVPCWithHostedZoneRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
 // String returns the string representation
@@ -1176,11 +1168,7 @@ type AssociateVPCWithHostedZoneOutput struct {
 	// your AssociateVPCWithHostedZoneRequest.
 	ChangeInfo *ChangeInfo `type:"structure" required:"true"`
 
-	metadataAssociateVPCWithHostedZoneOutput `json:"-" xml:"-"`
-}
-
-type metadataAssociateVPCWithHostedZoneOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1204,11 +1192,7 @@ type Change struct {
 	// Information about the resource record set to create or delete.
 	ResourceRecordSet *ResourceRecordSet `type:"structure" required:"true"`
 
-	metadataChange `json:"-" xml:"-"`
-}
-
-type metadataChange struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1231,11 +1215,7 @@ type ChangeBatch struct {
 	// Optional: Any comments you want to include about a change batch request.
 	Comment *string `type:"string"`
 
-	metadataChangeBatch `json:"-" xml:"-"`
-}
-
-type metadataChangeBatch struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1277,11 +1257,7 @@ type ChangeInfo struct {
 	// Time (UTC), which is synonymous with Greenwich Mean Time in this context.
 	SubmittedAt *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	metadataChangeInfo `json:"-" xml:"-"`
-}
-
-type metadataChangeInfo struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1303,11 +1279,7 @@ type ChangeResourceRecordSetsInput struct {
 	// want to change.
 	HostedZoneId *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataChangeResourceRecordSetsInput `json:"-" xml:"-"`
-}
-
-type metadataChangeResourceRecordSetsInput struct {
-	SDKShapeTraits bool `locationName:"ChangeResourceRecordSetsRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+	_ struct{} `locationName:"ChangeResourceRecordSetsRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
 // String returns the string representation
@@ -1329,11 +1301,7 @@ type ChangeResourceRecordSetsOutput struct {
 	// to get detailed information about the change.
 	ChangeInfo *ChangeInfo `type:"structure" required:"true"`
 
-	metadataChangeResourceRecordSetsOutput `json:"-" xml:"-"`
-}
-
-type metadataChangeResourceRecordSetsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1366,11 +1334,7 @@ type ChangeTagsForResourceInput struct {
 	// - The resource type for hosted zones is hostedzone.
 	ResourceType *string `location:"uri" locationName:"ResourceType" type:"string" required:"true" enum:"TagResourceType"`
 
-	metadataChangeTagsForResourceInput `json:"-" xml:"-"`
-}
-
-type metadataChangeTagsForResourceInput struct {
-	SDKShapeTraits bool `locationName:"ChangeTagsForResourceRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+	_ struct{} `locationName:"ChangeTagsForResourceRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
 // String returns the string representation
@@ -1385,11 +1349,7 @@ func (s ChangeTagsForResourceInput) GoString() string {
 
 // Empty response for the request.
 type ChangeTagsForResourceOutput struct {
-	metadataChangeTagsForResourceOutput `json:"-" xml:"-"`
-}
-
-type metadataChangeTagsForResourceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1418,11 +1378,7 @@ type CreateHealthCheckInput struct {
 	// A complex type that contains health check configuration.
 	HealthCheckConfig *HealthCheckConfig `type:"structure" required:"true"`
 
-	metadataCreateHealthCheckInput `json:"-" xml:"-"`
-}
-
-type metadataCreateHealthCheckInput struct {
-	SDKShapeTraits bool `locationName:"CreateHealthCheckRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+	_ struct{} `locationName:"CreateHealthCheckRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
 // String returns the string representation
@@ -1443,11 +1399,7 @@ type CreateHealthCheckOutput struct {
 	// The unique URL representing the new health check.
 	Location *string `location:"header" locationName:"Location" type:"string" required:"true"`
 
-	metadataCreateHealthCheckOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateHealthCheckOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1495,11 +1447,7 @@ type CreateHostedZoneInput struct {
 	// than the given VPC.
 	VPC *VPC `type:"structure"`
 
-	metadataCreateHostedZoneInput `json:"-" xml:"-"`
-}
-
-type metadataCreateHostedZoneInput struct {
-	SDKShapeTraits bool `locationName:"CreateHostedZoneRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+	_ struct{} `locationName:"CreateHostedZoneRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
 // String returns the string representation
@@ -1530,11 +1478,7 @@ type CreateHostedZoneOutput struct {
 
 	VPC *VPC `type:"structure"`
 
-	metadataCreateHostedZoneOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateHostedZoneOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1562,11 +1506,7 @@ type CreateReusableDelegationSetInput struct {
 	// It is an optional parameter.
 	HostedZoneId *string `type:"string"`
 
-	metadataCreateReusableDelegationSetInput `json:"-" xml:"-"`
-}
-
-type metadataCreateReusableDelegationSetInput struct {
-	SDKShapeTraits bool `locationName:"CreateReusableDelegationSetRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+	_ struct{} `locationName:"CreateReusableDelegationSetRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
 // String returns the string representation
@@ -1586,11 +1526,7 @@ type CreateReusableDelegationSetOutput struct {
 	// The unique URL representing the new reusbale delegation set.
 	Location *string `location:"header" locationName:"Location" type:"string" required:"true"`
 
-	metadataCreateReusableDelegationSetOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateReusableDelegationSetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1614,11 +1550,7 @@ type DelegationSet struct {
 	// to your domain for each NameServer that is assigned to your hosted zone.
 	NameServers []*string `locationNameList:"NameServer" min:"1" type:"list" required:"true"`
 
-	metadataDelegationSet `json:"-" xml:"-"`
-}
-
-type metadataDelegationSet struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1636,11 +1568,7 @@ type DeleteHealthCheckInput struct {
 	// The ID of the health check to delete.
 	HealthCheckId *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"`
 
-	metadataDeleteHealthCheckInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteHealthCheckInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1655,11 +1583,7 @@ func (s DeleteHealthCheckInput) GoString() string {
 
 // Empty response for the request.
 type DeleteHealthCheckOutput struct {
-	metadataDeleteHealthCheckOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteHealthCheckOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1678,11 +1602,7 @@ type DeleteHostedZoneInput struct {
 	// The ID of the hosted zone you want to delete.
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataDeleteHostedZoneInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteHostedZoneInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1701,11 +1621,7 @@ type DeleteHostedZoneOutput struct {
 	// your delete request.
 	ChangeInfo *ChangeInfo `type:"structure" required:"true"`
 
-	metadataDeleteHostedZoneOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteHostedZoneOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1723,11 +1639,7 @@ type DeleteReusableDelegationSetInput struct {
 	// The ID of the reusable delegation set you want to delete.
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataDeleteReusableDelegationSetInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteReusableDelegationSetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1742,11 +1654,7 @@ func (s DeleteReusableDelegationSetInput) GoString() string {
 
 // Empty response for the request.
 type DeleteReusableDelegationSetOutput struct {
-	metadataDeleteReusableDelegationSetOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteReusableDelegationSetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1773,11 +1681,7 @@ type DisassociateVPCFromHostedZoneInput struct {
 	// The VPC that you want your hosted zone to be disassociated from.
 	VPC *VPC `type:"structure" required:"true"`
 
-	metadataDisassociateVPCFromHostedZoneInput `json:"-" xml:"-"`
-}
-
-type metadataDisassociateVPCFromHostedZoneInput struct {
-	SDKShapeTraits bool `locationName:"DisassociateVPCFromHostedZoneRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+	_ struct{} `locationName:"DisassociateVPCFromHostedZoneRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
 // String returns the string representation
@@ -1796,11 +1700,7 @@ type DisassociateVPCFromHostedZoneOutput struct {
 	// your DisassociateVPCFromHostedZoneRequest.
 	ChangeInfo *ChangeInfo `type:"structure" required:"true"`
 
-	metadataDisassociateVPCFromHostedZoneOutput `json:"-" xml:"-"`
-}
-
-type metadataDisassociateVPCFromHostedZoneOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1838,11 +1738,7 @@ type GeoLocation struct {
 	// error.
 	SubdivisionCode *string `min:"1" type:"string"`
 
-	metadataGeoLocation `json:"-" xml:"-"`
-}
-
-type metadataGeoLocation struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1884,11 +1780,7 @@ type GeoLocationDetails struct {
 	// is also present.
 	SubdivisionName *string `min:"1" type:"string"`
 
-	metadataGeoLocationDetails `json:"-" xml:"-"`
-}
-
-type metadataGeoLocationDetails struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1908,11 +1800,7 @@ type GetChangeInput struct {
 	// the request.
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataGetChangeInput `json:"-" xml:"-"`
-}
-
-type metadataGetChangeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1932,11 +1820,7 @@ type GetChangeOutput struct {
 	// time of the request.
 	ChangeInfo *ChangeInfo `type:"structure" required:"true"`
 
-	metadataGetChangeOutput `json:"-" xml:"-"`
-}
-
-type metadataGetChangeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1951,11 +1835,7 @@ func (s GetChangeOutput) GoString() string {
 
 // Empty request.
 type GetCheckerIpRangesInput struct {
-	metadataGetCheckerIpRangesInput `json:"-" xml:"-"`
-}
-
-type metadataGetCheckerIpRangesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1974,11 +1854,7 @@ type GetCheckerIpRangesOutput struct {
 	// Amazon Route 53 health checkers.
 	CheckerIpRanges []*string `type:"list" required:"true"`
 
-	metadataGetCheckerIpRangesOutput `json:"-" xml:"-"`
-}
-
-type metadataGetCheckerIpRangesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2016,11 +1892,7 @@ type GetGeoLocationInput struct {
 	// error.
 	SubdivisionCode *string `location:"querystring" locationName:"subdivisioncode" min:"1" type:"string"`
 
-	metadataGetGeoLocationInput `json:"-" xml:"-"`
-}
-
-type metadataGetGeoLocationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2038,11 +1910,7 @@ type GetGeoLocationOutput struct {
 	// A complex type that contains the information about the specified geo location.
 	GeoLocationDetails *GeoLocationDetails `type:"structure" required:"true"`
 
-	metadataGetGeoLocationOutput `json:"-" xml:"-"`
-}
-
-type metadataGetGeoLocationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2058,11 +1926,7 @@ func (s GetGeoLocationOutput) GoString() string {
 // To retrieve a count of all your health checks, send a GET request to the
 // 2013-04-01/healthcheckcount resource.
 type GetHealthCheckCountInput struct {
-	metadataGetHealthCheckCountInput `json:"-" xml:"-"`
-}
-
-type metadataGetHealthCheckCountInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2081,11 +1945,7 @@ type GetHealthCheckCountOutput struct {
 	// The number of health checks associated with the current AWS account.
 	HealthCheckCount *int64 `type:"long" required:"true"`
 
-	metadataGetHealthCheckCountOutput `json:"-" xml:"-"`
-}
-
-type metadataGetHealthCheckCountOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2104,11 +1964,7 @@ type GetHealthCheckInput struct {
 	// The ID of the health check to retrieve.
 	HealthCheckId *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"`
 
-	metadataGetHealthCheckInput `json:"-" xml:"-"`
-}
-
-type metadataGetHealthCheckInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2128,11 +1984,7 @@ type GetHealthCheckLastFailureReasonInput struct {
 	// the most recent failure.
 	HealthCheckId *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"`
 
-	metadataGetHealthCheckLastFailureReasonInput `json:"-" xml:"-"`
-}
-
-type metadataGetHealthCheckLastFailureReasonInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2152,11 +2004,7 @@ type GetHealthCheckLastFailureReasonOutput struct {
 	// health checker.
 	HealthCheckObservations []*HealthCheckObservation `locationNameList:"HealthCheckObservation" type:"list" required:"true"`
 
-	metadataGetHealthCheckLastFailureReasonOutput `json:"-" xml:"-"`
-}
-
-type metadataGetHealthCheckLastFailureReasonOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2174,11 +2022,7 @@ type GetHealthCheckOutput struct {
 	// A complex type that contains the information about the specified health check.
 	HealthCheck *HealthCheck `type:"structure" required:"true"`
 
-	metadataGetHealthCheckOutput `json:"-" xml:"-"`
-}
-
-type metadataGetHealthCheckOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2198,11 +2042,7 @@ type GetHealthCheckStatusInput struct {
 	// status.
 	HealthCheckId *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"`
 
-	metadataGetHealthCheckStatusInput `json:"-" xml:"-"`
-}
-
-type metadataGetHealthCheckStatusInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2222,11 +2062,7 @@ type GetHealthCheckStatusOutput struct {
 	// health checker.
 	HealthCheckObservations []*HealthCheckObservation `locationNameList:"HealthCheckObservation" type:"list" required:"true"`
 
-	metadataGetHealthCheckStatusOutput `json:"-" xml:"-"`
-}
-
-type metadataGetHealthCheckStatusOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2242,11 +2078,7 @@ func (s GetHealthCheckStatusOutput) GoString() string {
 // To retrieve a count of all your hosted zones, send a GET request to the 2013-04-01/hostedzonecount
 // resource.
 type GetHostedZoneCountInput struct {
-	metadataGetHostedZoneCountInput `json:"-" xml:"-"`
-}
-
-type metadataGetHostedZoneCountInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2265,11 +2097,7 @@ type GetHostedZoneCountOutput struct {
 	// The number of hosted zones associated with the current AWS account.
 	HostedZoneCount *int64 `type:"long" required:"true"`
 
-	metadataGetHostedZoneCountOutput `json:"-" xml:"-"`
-}
-
-type metadataGetHostedZoneCountOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2288,11 +2116,7 @@ type GetHostedZoneInput struct {
 	// in the delegation set.
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataGetHostedZoneInput `json:"-" xml:"-"`
-}
-
-type metadataGetHostedZoneInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2318,11 +2142,7 @@ type GetHostedZoneOutput struct {
 	// hosted zone.
 	VPCs []*VPC `locationNameList:"VPC" min:"1" type:"list"`
 
-	metadataGetHostedZoneOutput `json:"-" xml:"-"`
-}
-
-type metadataGetHostedZoneOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2341,11 +2161,7 @@ type GetReusableDelegationSetInput struct {
 	// the name server.
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataGetReusableDelegationSetInput `json:"-" xml:"-"`
-}
-
-type metadataGetReusableDelegationSetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2365,11 +2181,7 @@ type GetReusableDelegationSetOutput struct {
 	// specified delegation set ID.
 	DelegationSet *DelegationSet `type:"structure" required:"true"`
 
-	metadataGetReusableDelegationSetOutput `json:"-" xml:"-"`
-}
-
-type metadataGetReusableDelegationSetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2398,11 +2210,7 @@ type HealthCheck struct {
 	// The ID of the specified health check.
 	Id *string `type:"string" required:"true"`
 
-	metadataHealthCheck `json:"-" xml:"-"`
-}
-
-type metadataHealthCheck struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2476,11 +2284,7 @@ type HealthCheckConfig struct {
 	// HTTP, HTTPS, HTTP_STR_MATCH, and HTTPS_STR_MATCH.
 	Type *string `type:"string" required:"true" enum:"HealthCheckType"`
 
-	metadataHealthCheckConfig `json:"-" xml:"-"`
-}
-
-type metadataHealthCheckConfig struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2503,11 +2307,7 @@ type HealthCheckObservation struct {
 	// the current observation.
 	StatusReport *StatusReport `type:"structure"`
 
-	metadataHealthCheckObservation `json:"-" xml:"-"`
-}
-
-type metadataHealthCheckObservation struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2544,11 +2344,7 @@ type HostedZone struct {
 	// Total number of resource record sets in the hosted zone.
 	ResourceRecordSetCount *int64 `type:"long"`
 
-	metadataHostedZone `json:"-" xml:"-"`
-}
-
-type metadataHostedZone struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2574,11 +2370,7 @@ type HostedZoneConfig struct {
 	// returned in the response; do not specify it in the request.
 	PrivateZone *bool `type:"boolean"`
 
-	metadataHostedZoneConfig `json:"-" xml:"-"`
-}
-
-type metadataHostedZoneConfig struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2620,11 +2412,7 @@ type ListGeoLocationsInput struct {
 	// error.
 	StartSubdivisionCode *string `location:"querystring" locationName:"startsubdivisioncode" min:"1" type:"string"`
 
-	metadataListGeoLocationsInput `json:"-" xml:"-"`
-}
-
-type metadataListGeoLocationsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2672,11 +2460,7 @@ type ListGeoLocationsOutput struct {
 	// is true and the next geo location has a subdivision.
 	NextSubdivisionCode *string `min:"1" type:"string"`
 
-	metadataListGeoLocationsOutput `json:"-" xml:"-"`
-}
-
-type metadataListGeoLocationsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2707,11 +2491,7 @@ type ListHealthChecksInput struct {
 	// Specify the maximum number of health checks to return per page of results.
 	MaxItems *string `location:"querystring" locationName:"maxitems" type:"string"`
 
-	metadataListHealthChecksInput `json:"-" xml:"-"`
-}
-
-type metadataListHealthChecksInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2754,11 +2534,7 @@ type ListHealthChecksOutput struct {
 	// the NextMarker element in the Marker element to get the next page of results.
 	NextMarker *string `type:"string"`
 
-	metadataListHealthChecksOutput `json:"-" xml:"-"`
-}
-
-type metadataListHealthChecksOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2800,11 +2576,7 @@ type ListHostedZonesByNameInput struct {
 	// Specify the maximum number of hosted zones to return per page of results.
 	MaxItems *string `location:"querystring" locationName:"maxitems" type:"string"`
 
-	metadataListHostedZonesByNameInput `json:"-" xml:"-"`
-}
-
-type metadataListHostedZonesByNameInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2858,11 +2630,7 @@ type ListHostedZonesByNameOutput struct {
 	// in the ListHostedZonesByNameRequest$HostedZoneId element.
 	NextHostedZoneId *string `type:"string"`
 
-	metadataListHostedZonesByNameOutput `json:"-" xml:"-"`
-}
-
-type metadataListHostedZonesByNameOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2898,11 +2666,7 @@ type ListHostedZonesInput struct {
 	// Specify the maximum number of hosted zones to return per page of results.
 	MaxItems *string `location:"querystring" locationName:"maxitems" type:"string"`
 
-	metadataListHostedZonesInput `json:"-" xml:"-"`
-}
-
-type metadataListHostedZonesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2945,11 +2709,7 @@ type ListHostedZonesOutput struct {
 	// the NextMarker element in the Marker element to get the next page of results.
 	NextMarker *string `type:"string"`
 
-	metadataListHostedZonesOutput `json:"-" xml:"-"`
-}
-
-type metadataListHostedZonesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2995,11 +2755,7 @@ type ListResourceRecordSetsInput struct {
 	// error.
 	StartRecordType *string `location:"querystring" locationName:"type" type:"string" enum:"RRType"`
 
-	metadataListResourceRecordSetsInput `json:"-" xml:"-"`
-}
-
-type metadataListResourceRecordSetsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3046,11 +2802,7 @@ type ListResourceRecordSetsOutput struct {
 	// are returned by the request.
 	ResourceRecordSets []*ResourceRecordSet `locationNameList:"ResourceRecordSet" type:"list" required:"true"`
 
-	metadataListResourceRecordSetsOutput `json:"-" xml:"-"`
-}
-
-type metadataListResourceRecordSetsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3083,11 +2835,7 @@ type ListReusableDelegationSetsInput struct {
 	// of results.
 	MaxItems *string `location:"querystring" locationName:"maxitems" type:"string"`
 
-	metadataListReusableDelegationSetsInput `json:"-" xml:"-"`
-}
-
-type metadataListReusableDelegationSetsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3132,11 +2880,7 @@ type ListReusableDelegationSetsOutput struct {
 	// of results.
 	NextMarker *string `type:"string"`
 
-	metadataListReusableDelegationSetsOutput `json:"-" xml:"-"`
-}
-
-type metadataListReusableDelegationSetsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3162,11 +2906,7 @@ type ListTagsForResourceInput struct {
 	// - The resource type for hosted zones is hostedzone.
 	ResourceType *string `location:"uri" locationName:"ResourceType" type:"string" required:"true" enum:"TagResourceType"`
 
-	metadataListTagsForResourceInput `json:"-" xml:"-"`
-}
-
-type metadataListTagsForResourceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3184,11 +2924,7 @@ type ListTagsForResourceOutput struct {
 	// A ResourceTagSet containing tags associated with the specified resource.
 	ResourceTagSet *ResourceTagSet `type:"structure" required:"true"`
 
-	metadataListTagsForResourceOutput `json:"-" xml:"-"`
-}
-
-type metadataListTagsForResourceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3215,11 +2951,7 @@ type ListTagsForResourcesInput struct {
 	// - The resource type for hosted zones is hostedzone.
 	ResourceType *string `location:"uri" locationName:"ResourceType" type:"string" required:"true" enum:"TagResourceType"`
 
-	metadataListTagsForResourcesInput `json:"-" xml:"-"`
-}
-
-type metadataListTagsForResourcesInput struct {
-	SDKShapeTraits bool `locationName:"ListTagsForResourcesRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+	_ struct{} `locationName:"ListTagsForResourcesRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
 // String returns the string representation
@@ -3237,11 +2969,7 @@ type ListTagsForResourcesOutput struct {
 	// A list of ResourceTagSets containing tags associated with the specified resources.
 	ResourceTagSets []*ResourceTagSet `locationNameList:"ResourceTagSet" type:"list" required:"true"`
 
-	metadataListTagsForResourcesOutput `json:"-" xml:"-"`
-}
-
-type metadataListTagsForResourcesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3260,11 +2988,7 @@ type ResourceRecord struct {
 	// The value of the Value element for the current resource record set.
 	Value *string `type:"string" required:"true"`
 
-	metadataResourceRecord `json:"-" xml:"-"`
-}
-
-type metadataResourceRecord struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3341,11 +3065,7 @@ type ResourceRecordSet struct {
 	// location.
 	Weight *int64 `type:"long"`
 
-	metadataResourceRecordSet `json:"-" xml:"-"`
-}
-
-type metadataResourceRecordSet struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3373,11 +3093,7 @@ type ResourceTagSet struct {
 	// The tags associated with the specified resource.
 	Tags []*Tag `locationNameList:"Tag" min:"1" type:"list"`
 
-	metadataResourceTagSet `json:"-" xml:"-"`
-}
-
-type metadataResourceTagSet struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3402,11 +3118,7 @@ type StatusReport struct {
 	// The observed health check status.
 	Status *string `type:"string"`
 
-	metadataStatusReport `json:"-" xml:"-"`
-}
-
-type metadataStatusReport struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3427,11 +3139,7 @@ type Tag struct {
 	// The value for a Tag.
 	Value *string `type:"string"`
 
-	metadataTag `json:"-" xml:"-"`
-}
-
-type metadataTag struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3519,11 +3227,7 @@ type UpdateHealthCheckInput struct {
 	// Specify this value only if you want to change it.
 	SearchString *string `type:"string"`
 
-	metadataUpdateHealthCheckInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateHealthCheckInput struct {
-	SDKShapeTraits bool `locationName:"UpdateHealthCheckRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+	_ struct{} `locationName:"UpdateHealthCheckRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
 // String returns the string representation
@@ -3540,11 +3244,7 @@ type UpdateHealthCheckOutput struct {
 	// A complex type that contains identifying information about the health check.
 	HealthCheck *HealthCheck `type:"structure" required:"true"`
 
-	metadataUpdateHealthCheckOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateHealthCheckOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3566,11 +3266,7 @@ type UpdateHostedZoneCommentInput struct {
 	// The ID of the hosted zone you want to update.
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataUpdateHostedZoneCommentInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateHostedZoneCommentInput struct {
-	SDKShapeTraits bool `locationName:"UpdateHostedZoneCommentRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+	_ struct{} `locationName:"UpdateHostedZoneCommentRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
 // String returns the string representation
@@ -3589,11 +3285,7 @@ type UpdateHostedZoneCommentOutput struct {
 	// A complex type that contain information about the specified hosted zone.
 	HostedZone *HostedZone `type:"structure" required:"true"`
 
-	metadataUpdateHostedZoneCommentOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateHostedZoneCommentOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3612,11 +3304,7 @@ type VPC struct {
 
 	VPCRegion *string `min:"1" type:"string" enum:"VPCRegion"`
 
-	metadataVPC `json:"-" xml:"-"`
-}
-
-type metadataVPC struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

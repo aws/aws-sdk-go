@@ -65,11 +65,7 @@ type Event struct {
 	// The version of the event.
 	Version *string `locationName:"version" min:"1" type:"string"`
 
-	metadataEvent `json:"-" xml:"-"`
-}
-
-type metadataEvent struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -94,11 +90,7 @@ type PutEventsInput struct {
 	// An array of Event JSON objects
 	Events []*Event `locationName:"events" type:"list" required:"true"`
 
-	metadataPutEventsInput `json:"-" xml:"-"`
-}
-
-type metadataPutEventsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -112,11 +104,7 @@ func (s PutEventsInput) GoString() string {
 }
 
 type PutEventsOutput struct {
-	metadataPutEventsOutput `json:"-" xml:"-"`
-}
-
-type metadataPutEventsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -145,11 +133,7 @@ type Session struct {
 	// example, 2014-06-30T19:07:47.885Z
 	StopTimestamp *string `locationName:"stopTimestamp" type:"string"`
 
-	metadataSession `json:"-" xml:"-"`
-}
-
-type metadataSession struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

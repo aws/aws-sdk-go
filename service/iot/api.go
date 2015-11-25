@@ -1158,11 +1158,7 @@ type AcceptCertificateTransferInput struct {
 	// Specifies whether the certificate is active.
 	SetAsActive *bool `location:"querystring" locationName:"setAsActive" type:"boolean"`
 
-	metadataAcceptCertificateTransferInput `json:"-" xml:"-"`
-}
-
-type metadataAcceptCertificateTransferInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1176,11 +1172,7 @@ func (s AcceptCertificateTransferInput) GoString() string {
 }
 
 type AcceptCertificateTransferOutput struct {
-	metadataAcceptCertificateTransferOutput `json:"-" xml:"-"`
-}
-
-type metadataAcceptCertificateTransferOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1218,11 +1210,7 @@ type Action struct {
 	// Publish to an SQS queue.
 	Sqs *SqsAction `locationName:"sqs" type:"structure"`
 
-	metadataAction `json:"-" xml:"-"`
-}
-
-type metadataAction struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1244,11 +1232,7 @@ type AttachPrincipalPolicyInput struct {
 	// operation) or a Cognito ID.
 	Principal *string `location:"header" locationName:"x-amzn-iot-principal" type:"string" required:"true"`
 
-	metadataAttachPrincipalPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataAttachPrincipalPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1262,11 +1246,7 @@ func (s AttachPrincipalPolicyInput) GoString() string {
 }
 
 type AttachPrincipalPolicyOutput struct {
-	metadataAttachPrincipalPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataAttachPrincipalPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1287,11 +1267,7 @@ type AttachThingPrincipalInput struct {
 	// The name of the thing.
 	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
 
-	metadataAttachThingPrincipalInput `json:"-" xml:"-"`
-}
-
-type metadataAttachThingPrincipalInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1306,11 +1282,7 @@ func (s AttachThingPrincipalInput) GoString() string {
 
 // The output from the AttachThingPrincipal operation.
 type AttachThingPrincipalOutput struct {
-	metadataAttachThingPrincipalOutput `json:"-" xml:"-"`
-}
-
-type metadataAttachThingPrincipalOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1332,11 +1304,7 @@ type AttributePayload struct {
 	// For example: {\"attributes\":{\"string1\":\"string2\”}}
 	Attributes map[string]*string `locationName:"attributes" type:"map"`
 
-	metadataAttributePayload `json:"-" xml:"-"`
-}
-
-type metadataAttributePayload struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1354,11 +1322,7 @@ type CancelCertificateTransferInput struct {
 	// The ID of the certificate.
 	CertificateId *string `location:"uri" locationName:"certificateId" min:"64" type:"string" required:"true"`
 
-	metadataCancelCertificateTransferInput `json:"-" xml:"-"`
-}
-
-type metadataCancelCertificateTransferInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1372,11 +1336,7 @@ func (s CancelCertificateTransferInput) GoString() string {
 }
 
 type CancelCertificateTransferOutput struct {
-	metadataCancelCertificateTransferOutput `json:"-" xml:"-"`
-}
-
-type metadataCancelCertificateTransferOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1403,11 +1363,7 @@ type Certificate struct {
 	// The status of the certificate.
 	Status *string `locationName:"status" type:"string" enum:"CertificateStatus"`
 
-	metadataCertificate `json:"-" xml:"-"`
-}
-
-type metadataCertificate struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1443,11 +1399,7 @@ type CertificateDescription struct {
 	// The status of the certificate.
 	Status *string `locationName:"status" type:"string" enum:"CertificateStatus"`
 
-	metadataCertificateDescription `json:"-" xml:"-"`
-}
-
-type metadataCertificateDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1468,11 +1420,7 @@ type CreateCertificateFromCsrInput struct {
 	// Specifies whether the certificate is active.
 	SetAsActive *bool `location:"querystring" locationName:"setAsActive" type:"boolean"`
 
-	metadataCreateCertificateFromCsrInput `json:"-" xml:"-"`
-}
-
-type metadataCreateCertificateFromCsrInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1498,11 +1446,7 @@ type CreateCertificateFromCsrOutput struct {
 	// The certificate data, in PEM format.
 	CertificatePem *string `locationName:"certificatePem" type:"string"`
 
-	metadataCreateCertificateFromCsrOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateCertificateFromCsrOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1520,11 +1464,7 @@ type CreateKeysAndCertificateInput struct {
 	// Specifies whether the certificate is active.
 	SetAsActive *bool `location:"querystring" locationName:"setAsActive" type:"boolean"`
 
-	metadataCreateKeysAndCertificateInput `json:"-" xml:"-"`
-}
-
-type metadataCreateKeysAndCertificateInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1552,11 +1492,7 @@ type CreateKeysAndCertificateOutput struct {
 	// The generated key pair.
 	KeyPair *KeyPair `locationName:"keyPair" type:"structure"`
 
-	metadataCreateKeysAndCertificateOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateKeysAndCertificateOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1578,11 +1514,7 @@ type CreatePolicyInput struct {
 	// The policy name.
 	PolicyName *string `location:"uri" locationName:"policyName" min:"1" type:"string" required:"true"`
 
-	metadataCreatePolicyInput `json:"-" xml:"-"`
-}
-
-type metadataCreatePolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1609,11 +1541,7 @@ type CreatePolicyOutput struct {
 	// The policy version ID.
 	PolicyVersionId *string `locationName:"policyVersionId" type:"string"`
 
-	metadataCreatePolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataCreatePolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1637,11 +1565,7 @@ type CreatePolicyVersionInput struct {
 	// Specifies whether the policy version is set as the default.
 	SetAsDefault *bool `location:"querystring" locationName:"setAsDefault" type:"boolean"`
 
-	metadataCreatePolicyVersionInput `json:"-" xml:"-"`
-}
-
-type metadataCreatePolicyVersionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1668,11 +1592,7 @@ type CreatePolicyVersionOutput struct {
 	// The policy version ID.
 	PolicyVersionId *string `locationName:"policyVersionId" type:"string"`
 
-	metadataCreatePolicyVersionOutput `json:"-" xml:"-"`
-}
-
-type metadataCreatePolicyVersionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1694,11 +1614,7 @@ type CreateThingInput struct {
 	// The name of the thing.
 	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
 
-	metadataCreateThingInput `json:"-" xml:"-"`
-}
-
-type metadataCreateThingInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1719,11 +1635,7 @@ type CreateThingOutput struct {
 	// The name of the thing.
 	ThingName *string `locationName:"thingName" min:"1" type:"string"`
 
-	metadataCreateThingOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateThingOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1744,11 +1656,7 @@ type CreateTopicRuleInput struct {
 	// The rule payload.
 	TopicRulePayload *TopicRulePayload `locationName:"topicRulePayload" type:"structure" required:"true"`
 
-	metadataCreateTopicRuleInput `json:"-" xml:"-"`
-}
-
-type metadataCreateTopicRuleInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"TopicRulePayload"`
+	_ struct{} `type:"structure" payload:"TopicRulePayload"`
 }
 
 // String returns the string representation
@@ -1762,11 +1670,7 @@ func (s CreateTopicRuleInput) GoString() string {
 }
 
 type CreateTopicRuleOutput struct {
-	metadataCreateTopicRuleOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateTopicRuleOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1784,11 +1688,7 @@ type DeleteCertificateInput struct {
 	// The ID of the certificate.
 	CertificateId *string `location:"uri" locationName:"certificateId" min:"64" type:"string" required:"true"`
 
-	metadataDeleteCertificateInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteCertificateInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1802,11 +1702,7 @@ func (s DeleteCertificateInput) GoString() string {
 }
 
 type DeleteCertificateOutput struct {
-	metadataDeleteCertificateOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteCertificateOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1824,11 +1720,7 @@ type DeletePolicyInput struct {
 	// The name of the policy to delete.
 	PolicyName *string `location:"uri" locationName:"policyName" min:"1" type:"string" required:"true"`
 
-	metadataDeletePolicyInput `json:"-" xml:"-"`
-}
-
-type metadataDeletePolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1842,11 +1734,7 @@ func (s DeletePolicyInput) GoString() string {
 }
 
 type DeletePolicyOutput struct {
-	metadataDeletePolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataDeletePolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1867,11 +1755,7 @@ type DeletePolicyVersionInput struct {
 	// The policy version ID.
 	PolicyVersionId *string `location:"uri" locationName:"policyVersionId" type:"string" required:"true"`
 
-	metadataDeletePolicyVersionInput `json:"-" xml:"-"`
-}
-
-type metadataDeletePolicyVersionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1885,11 +1769,7 @@ func (s DeletePolicyVersionInput) GoString() string {
 }
 
 type DeletePolicyVersionOutput struct {
-	metadataDeletePolicyVersionOutput `json:"-" xml:"-"`
-}
-
-type metadataDeletePolicyVersionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1907,11 +1787,7 @@ type DeleteThingInput struct {
 	// The thing name.
 	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
 
-	metadataDeleteThingInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteThingInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1926,11 +1802,7 @@ func (s DeleteThingInput) GoString() string {
 
 // The output of the DeleteThing operation.
 type DeleteThingOutput struct {
-	metadataDeleteThingOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteThingOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1948,11 +1820,7 @@ type DeleteTopicRuleInput struct {
 	// The name of the rule.
 	RuleName *string `location:"uri" locationName:"ruleName" min:"1" type:"string" required:"true"`
 
-	metadataDeleteTopicRuleInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteTopicRuleInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1966,11 +1834,7 @@ func (s DeleteTopicRuleInput) GoString() string {
 }
 
 type DeleteTopicRuleOutput struct {
-	metadataDeleteTopicRuleOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteTopicRuleOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1988,11 +1852,7 @@ type DescribeCertificateInput struct {
 	// The ID of the certificate.
 	CertificateId *string `location:"uri" locationName:"certificateId" min:"64" type:"string" required:"true"`
 
-	metadataDescribeCertificateInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeCertificateInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2010,11 +1870,7 @@ type DescribeCertificateOutput struct {
 	// The description of the certificate.
 	CertificateDescription *CertificateDescription `locationName:"certificateDescription" type:"structure"`
 
-	metadataDescribeCertificateOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeCertificateOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2029,11 +1885,7 @@ func (s DescribeCertificateOutput) GoString() string {
 
 // The input for the DescribeEndpoint operation.
 type DescribeEndpointInput struct {
-	metadataDescribeEndpointInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEndpointInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2051,11 +1903,7 @@ type DescribeEndpointOutput struct {
 	// The address.
 	EndpointAddress *string `locationName:"endpointAddress" type:"string"`
 
-	metadataDescribeEndpointOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEndpointOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2073,11 +1921,7 @@ type DescribeThingInput struct {
 	// The name of the thing.
 	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
 
-	metadataDescribeThingInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeThingInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2104,11 +1948,7 @@ type DescribeThingOutput struct {
 	// The name of the thing.
 	ThingName *string `locationName:"thingName" min:"1" type:"string"`
 
-	metadataDescribeThingOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeThingOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2132,11 +1972,7 @@ type DetachPrincipalPolicyInput struct {
 	// is a Cognito identity specify the identity ID.
 	Principal *string `location:"header" locationName:"x-amzn-iot-principal" type:"string" required:"true"`
 
-	metadataDetachPrincipalPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataDetachPrincipalPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2150,11 +1986,7 @@ func (s DetachPrincipalPolicyInput) GoString() string {
 }
 
 type DetachPrincipalPolicyOutput struct {
-	metadataDetachPrincipalPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataDetachPrincipalPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2175,11 +2007,7 @@ type DetachThingPrincipalInput struct {
 	// The name of the thing.
 	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
 
-	metadataDetachThingPrincipalInput `json:"-" xml:"-"`
-}
-
-type metadataDetachThingPrincipalInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2194,11 +2022,7 @@ func (s DetachThingPrincipalInput) GoString() string {
 
 // The output from the DetachThingPrincipal operation.
 type DetachThingPrincipalOutput struct {
-	metadataDetachThingPrincipalOutput `json:"-" xml:"-"`
-}
-
-type metadataDetachThingPrincipalOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2250,11 +2074,7 @@ type DynamoDBAction struct {
 	// The name of the DynamoDB table.
 	TableName *string `locationName:"tableName" type:"string" required:"true"`
 
-	metadataDynamoDBAction `json:"-" xml:"-"`
-}
-
-type metadataDynamoDBAction struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2272,11 +2092,7 @@ type FirehoseAction struct {
 
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 
-	metadataFirehoseAction `json:"-" xml:"-"`
-}
-
-type metadataFirehoseAction struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2291,11 +2107,7 @@ func (s FirehoseAction) GoString() string {
 
 // The input for the GetLoggingOptions operation.
 type GetLoggingOptionsInput struct {
-	metadataGetLoggingOptionsInput `json:"-" xml:"-"`
-}
-
-type metadataGetLoggingOptionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2316,11 +2128,7 @@ type GetLoggingOptionsOutput struct {
 	// The ARN of the IAM role that grants access.
 	RoleArn *string `locationName:"roleArn" type:"string"`
 
-	metadataGetLoggingOptionsOutput `json:"-" xml:"-"`
-}
-
-type metadataGetLoggingOptionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2338,11 +2146,7 @@ type GetPolicyInput struct {
 	// The name of the policy.
 	PolicyName *string `location:"uri" locationName:"policyName" min:"1" type:"string" required:"true"`
 
-	metadataGetPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataGetPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2369,11 +2173,7 @@ type GetPolicyOutput struct {
 	// The policy name.
 	PolicyName *string `locationName:"policyName" min:"1" type:"string"`
 
-	metadataGetPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataGetPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2394,11 +2194,7 @@ type GetPolicyVersionInput struct {
 	// The policy version ID.
 	PolicyVersionId *string `location:"uri" locationName:"policyVersionId" type:"string" required:"true"`
 
-	metadataGetPolicyVersionInput `json:"-" xml:"-"`
-}
-
-type metadataGetPolicyVersionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2428,11 +2224,7 @@ type GetPolicyVersionOutput struct {
 	// The policy version ID.
 	PolicyVersionId *string `locationName:"policyVersionId" type:"string"`
 
-	metadataGetPolicyVersionOutput `json:"-" xml:"-"`
-}
-
-type metadataGetPolicyVersionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2450,11 +2242,7 @@ type GetTopicRuleInput struct {
 	// The name of the rule.
 	RuleName *string `location:"uri" locationName:"ruleName" min:"1" type:"string" required:"true"`
 
-	metadataGetTopicRuleInput `json:"-" xml:"-"`
-}
-
-type metadataGetTopicRuleInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2472,11 +2260,7 @@ type GetTopicRuleOutput struct {
 	// The rule.
 	Rule *TopicRule `locationName:"rule" type:"structure"`
 
-	metadataGetTopicRuleOutput `json:"-" xml:"-"`
-}
-
-type metadataGetTopicRuleOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2497,11 +2281,7 @@ type KeyPair struct {
 	// The public key.
 	PublicKey *string `min:"1" type:"string"`
 
-	metadataKeyPair `json:"-" xml:"-"`
-}
-
-type metadataKeyPair struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2525,11 +2305,7 @@ type KinesisAction struct {
 	// The name of the Kinesis stream.
 	StreamName *string `locationName:"streamName" type:"string" required:"true"`
 
-	metadataKinesisAction `json:"-" xml:"-"`
-}
-
-type metadataKinesisAction struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2547,11 +2323,7 @@ type LambdaAction struct {
 	// The ARN of the Lambda function.
 	FunctionArn *string `locationName:"functionArn" type:"string" required:"true"`
 
-	metadataLambdaAction `json:"-" xml:"-"`
-}
-
-type metadataLambdaAction struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2576,11 +2348,7 @@ type ListCertificatesInput struct {
 	// The result page size.
 	PageSize *int64 `location:"querystring" locationName:"pageSize" min:"1" type:"integer"`
 
-	metadataListCertificatesInput `json:"-" xml:"-"`
-}
-
-type metadataListCertificatesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2602,11 +2370,7 @@ type ListCertificatesOutput struct {
 	// results.
 	NextMarker *string `locationName:"nextMarker" type:"string"`
 
-	metadataListCertificatesOutput `json:"-" xml:"-"`
-}
-
-type metadataListCertificatesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2631,11 +2395,7 @@ type ListPoliciesInput struct {
 	// The result page size.
 	PageSize *int64 `location:"querystring" locationName:"pageSize" min:"1" type:"integer"`
 
-	metadataListPoliciesInput `json:"-" xml:"-"`
-}
-
-type metadataListPoliciesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2657,11 +2417,7 @@ type ListPoliciesOutput struct {
 	// The descriptions of the policies.
 	Policies []*Policy `locationName:"policies" type:"list"`
 
-	metadataListPoliciesOutput `json:"-" xml:"-"`
-}
-
-type metadataListPoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2679,11 +2435,7 @@ type ListPolicyVersionsInput struct {
 	// The policy name.
 	PolicyName *string `location:"uri" locationName:"policyName" min:"1" type:"string" required:"true"`
 
-	metadataListPolicyVersionsInput `json:"-" xml:"-"`
-}
-
-type metadataListPolicyVersionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2701,11 +2453,7 @@ type ListPolicyVersionsOutput struct {
 	// The policy versions.
 	PolicyVersions []*PolicyVersion `locationName:"policyVersions" type:"list"`
 
-	metadataListPolicyVersionsOutput `json:"-" xml:"-"`
-}
-
-type metadataListPolicyVersionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2733,11 +2481,7 @@ type ListPrincipalPoliciesInput struct {
 	// The principal.
 	Principal *string `location:"header" locationName:"x-amzn-iot-principal" type:"string" required:"true"`
 
-	metadataListPrincipalPoliciesInput `json:"-" xml:"-"`
-}
-
-type metadataListPrincipalPoliciesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2759,11 +2503,7 @@ type ListPrincipalPoliciesOutput struct {
 	// The policies.
 	Policies []*Policy `locationName:"policies" type:"list"`
 
-	metadataListPrincipalPoliciesOutput `json:"-" xml:"-"`
-}
-
-type metadataListPrincipalPoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2785,11 +2525,7 @@ type ListPrincipalThingsInput struct {
 	// The principal.
 	Principal *string `location:"header" locationName:"x-amzn-principal" type:"string" required:"true"`
 
-	metadataListPrincipalThingsInput `json:"-" xml:"-"`
-}
-
-type metadataListPrincipalThingsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2810,11 +2546,7 @@ type ListPrincipalThingsOutput struct {
 	// The things.
 	Things []*string `locationName:"things" type:"list"`
 
-	metadataListPrincipalThingsOutput `json:"-" xml:"-"`
-}
-
-type metadataListPrincipalThingsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2832,11 +2564,7 @@ type ListThingPrincipalsInput struct {
 	// The name of the thing.
 	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
 
-	metadataListThingPrincipalsInput `json:"-" xml:"-"`
-}
-
-type metadataListThingPrincipalsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2854,11 +2582,7 @@ type ListThingPrincipalsOutput struct {
 	// The principals.
 	Principals []*string `locationName:"principals" type:"list"`
 
-	metadataListThingPrincipalsOutput `json:"-" xml:"-"`
-}
-
-type metadataListThingPrincipalsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2885,11 +2609,7 @@ type ListThingsInput struct {
 	// The token for the next value.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
-	metadataListThingsInput `json:"-" xml:"-"`
-}
-
-type metadataListThingsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2910,11 +2630,7 @@ type ListThingsOutput struct {
 	// The things.
 	Things []*ThingAttribute `locationName:"things" type:"list"`
 
-	metadataListThingsOutput `json:"-" xml:"-"`
-}
-
-type metadataListThingsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2941,11 +2657,7 @@ type ListTopicRulesInput struct {
 	// The topic.
 	Topic *string `location:"querystring" locationName:"topic" type:"string"`
 
-	metadataListTopicRulesInput `json:"-" xml:"-"`
-}
-
-type metadataListTopicRulesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2966,11 +2678,7 @@ type ListTopicRulesOutput struct {
 	// The rules.
 	Rules []*TopicRuleListItem `locationName:"rules" type:"list"`
 
-	metadataListTopicRulesOutput `json:"-" xml:"-"`
-}
-
-type metadataListTopicRulesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2991,11 +2699,7 @@ type LoggingOptionsPayload struct {
 	// The ARN of the IAM role that grants access.
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 
-	metadataLoggingOptionsPayload `json:"-" xml:"-"`
-}
-
-type metadataLoggingOptionsPayload struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3016,11 +2720,7 @@ type Policy struct {
 	// The policy name.
 	PolicyName *string `locationName:"policyName" min:"1" type:"string"`
 
-	metadataPolicy `json:"-" xml:"-"`
-}
-
-type metadataPolicy struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3044,11 +2744,7 @@ type PolicyVersion struct {
 	// The policy version ID.
 	VersionId *string `locationName:"versionId" type:"string"`
 
-	metadataPolicyVersion `json:"-" xml:"-"`
-}
-
-type metadataPolicyVersion struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3066,11 +2762,7 @@ type RejectCertificateTransferInput struct {
 	// The ID of the certificate.
 	CertificateId *string `location:"uri" locationName:"certificateId" min:"64" type:"string" required:"true"`
 
-	metadataRejectCertificateTransferInput `json:"-" xml:"-"`
-}
-
-type metadataRejectCertificateTransferInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3084,11 +2776,7 @@ func (s RejectCertificateTransferInput) GoString() string {
 }
 
 type RejectCertificateTransferOutput struct {
-	metadataRejectCertificateTransferOutput `json:"-" xml:"-"`
-}
-
-type metadataRejectCertificateTransferOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3109,11 +2797,7 @@ type ReplaceTopicRuleInput struct {
 	// The rule payload.
 	TopicRulePayload *TopicRulePayload `locationName:"topicRulePayload" type:"structure" required:"true"`
 
-	metadataReplaceTopicRuleInput `json:"-" xml:"-"`
-}
-
-type metadataReplaceTopicRuleInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"TopicRulePayload"`
+	_ struct{} `type:"structure" payload:"TopicRulePayload"`
 }
 
 // String returns the string representation
@@ -3127,11 +2811,7 @@ func (s ReplaceTopicRuleInput) GoString() string {
 }
 
 type ReplaceTopicRuleOutput struct {
-	metadataReplaceTopicRuleOutput `json:"-" xml:"-"`
-}
-
-type metadataReplaceTopicRuleOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3152,11 +2832,7 @@ type RepublishAction struct {
 	// The name of the MQTT topic.
 	Topic *string `locationName:"topic" type:"string" required:"true"`
 
-	metadataRepublishAction `json:"-" xml:"-"`
-}
-
-type metadataRepublishAction struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3180,11 +2856,7 @@ type S3Action struct {
 	// The ARN of the IAM role that grants access.
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 
-	metadataS3Action `json:"-" xml:"-"`
-}
-
-type metadataS3Action struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3205,11 +2877,7 @@ type SetDefaultPolicyVersionInput struct {
 	// The policy version ID.
 	PolicyVersionId *string `location:"uri" locationName:"policyVersionId" type:"string" required:"true"`
 
-	metadataSetDefaultPolicyVersionInput `json:"-" xml:"-"`
-}
-
-type metadataSetDefaultPolicyVersionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3223,11 +2891,7 @@ func (s SetDefaultPolicyVersionInput) GoString() string {
 }
 
 type SetDefaultPolicyVersionOutput struct {
-	metadataSetDefaultPolicyVersionOutput `json:"-" xml:"-"`
-}
-
-type metadataSetDefaultPolicyVersionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3245,11 +2909,7 @@ type SetLoggingOptionsInput struct {
 	// The logging options payload.
 	LoggingOptionsPayload *LoggingOptionsPayload `locationName:"loggingOptionsPayload" type:"structure"`
 
-	metadataSetLoggingOptionsInput `json:"-" xml:"-"`
-}
-
-type metadataSetLoggingOptionsInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"LoggingOptionsPayload"`
+	_ struct{} `type:"structure" payload:"LoggingOptionsPayload"`
 }
 
 // String returns the string representation
@@ -3263,11 +2923,7 @@ func (s SetLoggingOptionsInput) GoString() string {
 }
 
 type SetLoggingOptionsOutput struct {
-	metadataSetLoggingOptionsOutput `json:"-" xml:"-"`
-}
-
-type metadataSetLoggingOptionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3288,11 +2944,7 @@ type SnsAction struct {
 	// The ARN of the SNS topic.
 	TargetArn *string `locationName:"targetArn" type:"string" required:"true"`
 
-	metadataSnsAction `json:"-" xml:"-"`
-}
-
-type metadataSnsAction struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3316,11 +2968,7 @@ type SqsAction struct {
 	// Specifies whether to use Base64 encoding.
 	UseBase64 *bool `locationName:"useBase64" type:"boolean"`
 
-	metadataSqsAction `json:"-" xml:"-"`
-}
-
-type metadataSqsAction struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3341,11 +2989,7 @@ type ThingAttribute struct {
 	// The name of the thing.
 	ThingName *string `locationName:"thingName" min:"1" type:"string"`
 
-	metadataThingAttribute `json:"-" xml:"-"`
-}
-
-type metadataThingAttribute struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3379,11 +3023,7 @@ type TopicRule struct {
 	// lines, be sure to escape the newline characters properly.
 	Sql *string `locationName:"sql" type:"string"`
 
-	metadataTopicRule `json:"-" xml:"-"`
-}
-
-type metadataTopicRule struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3410,11 +3050,7 @@ type TopicRuleListItem struct {
 	// The pattern for the topic names that apply.
 	TopicPattern *string `locationName:"topicPattern" type:"string"`
 
-	metadataTopicRuleListItem `json:"-" xml:"-"`
-}
-
-type metadataTopicRuleListItem struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3443,11 +3079,7 @@ type TopicRulePayload struct {
 	// in the AWS IoT Developer Guide.
 	Sql *string `locationName:"sql" type:"string" required:"true"`
 
-	metadataTopicRulePayload `json:"-" xml:"-"`
-}
-
-type metadataTopicRulePayload struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3468,11 +3100,7 @@ type TransferCertificateInput struct {
 	// The AWS account.
 	TargetAwsAccount *string `location:"querystring" locationName:"targetAwsAccount" type:"string" required:"true"`
 
-	metadataTransferCertificateInput `json:"-" xml:"-"`
-}
-
-type metadataTransferCertificateInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3490,11 +3118,7 @@ type TransferCertificateOutput struct {
 	// The ARN of the certificate.
 	TransferredCertificateArn *string `locationName:"transferredCertificateArn" type:"string"`
 
-	metadataTransferCertificateOutput `json:"-" xml:"-"`
-}
-
-type metadataTransferCertificateOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3515,11 +3139,7 @@ type UpdateCertificateInput struct {
 	// The new status.
 	NewStatus *string `location:"querystring" locationName:"newStatus" type:"string" required:"true" enum:"CertificateStatus"`
 
-	metadataUpdateCertificateInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateCertificateInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3533,11 +3153,7 @@ func (s UpdateCertificateInput) GoString() string {
 }
 
 type UpdateCertificateOutput struct {
-	metadataUpdateCertificateOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateCertificateOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3560,11 +3176,7 @@ type UpdateThingInput struct {
 	// The thing name.
 	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
 
-	metadataUpdateThingInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateThingInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3579,11 +3191,7 @@ func (s UpdateThingInput) GoString() string {
 
 // The output from the UpdateThing operation.
 type UpdateThingOutput struct {
-	metadataUpdateThingOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateThingOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

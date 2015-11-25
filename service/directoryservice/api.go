@@ -514,11 +514,7 @@ type Attribute struct {
 	// The value of the attribute.
 	Value *string `type:"string"`
 
-	metadataAttribute `json:"-" xml:"-"`
-}
-
-type metadataAttribute struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -543,11 +539,7 @@ type Computer struct {
 	// The computer name.
 	ComputerName *string `min:"1" type:"string"`
 
-	metadataComputer `json:"-" xml:"-"`
-}
-
-type metadataComputer struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -581,11 +573,7 @@ type ConnectDirectoryInput struct {
 	// The size of the directory.
 	Size *string `type:"string" required:"true" enum:"DirectorySize"`
 
-	metadataConnectDirectoryInput `json:"-" xml:"-"`
-}
-
-type metadataConnectDirectoryInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -603,11 +591,7 @@ type ConnectDirectoryOutput struct {
 	// The identifier of the new directory.
 	DirectoryId *string `type:"string"`
 
-	metadataConnectDirectoryOutput `json:"-" xml:"-"`
-}
-
-type metadataConnectDirectoryOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -631,11 +615,7 @@ type CreateAliasInput struct {
 	// The identifier of the directory to create the alias for.
 	DirectoryId *string `type:"string" required:"true"`
 
-	metadataCreateAliasInput `json:"-" xml:"-"`
-}
-
-type metadataCreateAliasInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -656,11 +636,7 @@ type CreateAliasOutput struct {
 	// The identifier of the directory.
 	DirectoryId *string `type:"string"`
 
-	metadataCreateAliasOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateAliasOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -693,11 +669,7 @@ type CreateComputerInput struct {
 	// should generate a random, strong password to use for this parameter.
 	Password *string `min:"8" type:"string" required:"true"`
 
-	metadataCreateComputerInput `json:"-" xml:"-"`
-}
-
-type metadataCreateComputerInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -715,11 +687,7 @@ type CreateComputerOutput struct {
 	// A Computer object the represents the computer account.
 	Computer *Computer `type:"structure"`
 
-	metadataCreateComputerOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateComputerOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -755,11 +723,7 @@ type CreateDirectoryInput struct {
 	// operation.
 	VpcSettings *DirectoryVpcSettings `type:"structure"`
 
-	metadataCreateDirectoryInput `json:"-" xml:"-"`
-}
-
-type metadataCreateDirectoryInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -777,11 +741,7 @@ type CreateDirectoryOutput struct {
 	// The identifier of the directory that was created.
 	DirectoryId *string `type:"string"`
 
-	metadataCreateDirectoryOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateDirectoryOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -802,11 +762,7 @@ type CreateSnapshotInput struct {
 	// The descriptive name to apply to the snapshot.
 	Name *string `type:"string"`
 
-	metadataCreateSnapshotInput `json:"-" xml:"-"`
-}
-
-type metadataCreateSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -824,11 +780,7 @@ type CreateSnapshotOutput struct {
 	// The identifier of the snapshot that was created.
 	SnapshotId *string `type:"string"`
 
-	metadataCreateSnapshotOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateSnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -846,11 +798,7 @@ type DeleteDirectoryInput struct {
 	// The identifier of the directory to delete.
 	DirectoryId *string `type:"string" required:"true"`
 
-	metadataDeleteDirectoryInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDirectoryInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -868,11 +816,7 @@ type DeleteDirectoryOutput struct {
 	// The directory identifier.
 	DirectoryId *string `type:"string"`
 
-	metadataDeleteDirectoryOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDirectoryOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -890,11 +834,7 @@ type DeleteSnapshotInput struct {
 	// The identifier of the directory snapshot to be deleted.
 	SnapshotId *string `type:"string" required:"true"`
 
-	metadataDeleteSnapshotInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -912,11 +852,7 @@ type DeleteSnapshotOutput struct {
 	// The identifier of the directory snapshot that was deleted.
 	SnapshotId *string `type:"string"`
 
-	metadataDeleteSnapshotOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteSnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -946,11 +882,7 @@ type DescribeDirectoriesInput struct {
 	// Pass null if this is the first call.
 	NextToken *string `type:"string"`
 
-	metadataDescribeDirectoriesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDirectoriesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -978,11 +910,7 @@ type DescribeDirectoriesOutput struct {
 	// set of items.
 	NextToken *string `type:"string"`
 
-	metadataDescribeDirectoriesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDirectoriesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1012,11 +940,7 @@ type DescribeSnapshotsInput struct {
 	// and NextToken members.
 	SnapshotIds []*string `type:"list"`
 
-	metadataDescribeSnapshotsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSnapshotsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1043,11 +967,7 @@ type DescribeSnapshotsOutput struct {
 	// operation have been exceeded.
 	Snapshots []*Snapshot `type:"list"`
 
-	metadataDescribeSnapshotsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSnapshotsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1080,11 +1000,7 @@ type DirectoryConnectSettings struct {
 	// The identifier of the VPC that the AD Connector is created in.
 	VpcId *string `type:"string" required:"true"`
 
-	metadataDirectoryConnectSettings `json:"-" xml:"-"`
-}
-
-type metadataDirectoryConnectSettings struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1117,11 +1033,7 @@ type DirectoryConnectSettingsDescription struct {
 	// The identifier of the VPC that the AD Connector is in.
 	VpcId *string `type:"string"`
 
-	metadataDirectoryConnectSettingsDescription `json:"-" xml:"-"`
-}
-
-type metadataDirectoryConnectSettingsDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1200,11 +1112,7 @@ type DirectoryDescription struct {
 	// is a Simple AD directory.
 	VpcSettings *DirectoryVpcSettingsDescription `type:"structure"`
 
-	metadataDirectoryDescription `json:"-" xml:"-"`
-}
-
-type metadataDirectoryDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1237,11 +1145,7 @@ type DirectoryLimits struct {
 	// Indicates if the connected directory limit has been reached.
 	ConnectedDirectoriesLimitReached *bool `type:"boolean"`
 
-	metadataDirectoryLimits `json:"-" xml:"-"`
-}
-
-type metadataDirectoryLimits struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1265,11 +1169,7 @@ type DirectoryVpcSettings struct {
 	// The identifier of the VPC to create the Simple AD directory in.
 	VpcId *string `type:"string" required:"true"`
 
-	metadataDirectoryVpcSettings `json:"-" xml:"-"`
-}
-
-type metadataDirectoryVpcSettings struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1296,11 +1196,7 @@ type DirectoryVpcSettingsDescription struct {
 	// The identifier of the VPC that the directory is in.
 	VpcId *string `type:"string"`
 
-	metadataDirectoryVpcSettingsDescription `json:"-" xml:"-"`
-}
-
-type metadataDirectoryVpcSettingsDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1318,11 +1214,7 @@ type DisableRadiusInput struct {
 	// The identifier of the directory to disable MFA for.
 	DirectoryId *string `type:"string" required:"true"`
 
-	metadataDisableRadiusInput `json:"-" xml:"-"`
-}
-
-type metadataDisableRadiusInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1337,11 +1229,7 @@ func (s DisableRadiusInput) GoString() string {
 
 // Contains the results of the DisableRadius operation.
 type DisableRadiusOutput struct {
-	metadataDisableRadiusOutput `json:"-" xml:"-"`
-}
-
-type metadataDisableRadiusOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1375,11 +1263,7 @@ type DisableSsoInput struct {
 	// is not changed.
 	UserName *string `min:"1" type:"string"`
 
-	metadataDisableSsoInput `json:"-" xml:"-"`
-}
-
-type metadataDisableSsoInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1394,11 +1278,7 @@ func (s DisableSsoInput) GoString() string {
 
 // Contains the results of the DisableSso operation.
 type DisableSsoOutput struct {
-	metadataDisableSsoOutput `json:"-" xml:"-"`
-}
-
-type metadataDisableSsoOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1419,11 +1299,7 @@ type EnableRadiusInput struct {
 	// A RadiusSettings object that contains information about the RADIUS server.
 	RadiusSettings *RadiusSettings `type:"structure" required:"true"`
 
-	metadataEnableRadiusInput `json:"-" xml:"-"`
-}
-
-type metadataEnableRadiusInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1438,11 +1314,7 @@ func (s EnableRadiusInput) GoString() string {
 
 // Contains the results of the EnableRadius operation.
 type EnableRadiusOutput struct {
-	metadataEnableRadiusOutput `json:"-" xml:"-"`
-}
-
-type metadataEnableRadiusOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1476,11 +1348,7 @@ type EnableSsoInput struct {
 	// changed.
 	UserName *string `min:"1" type:"string"`
 
-	metadataEnableSsoInput `json:"-" xml:"-"`
-}
-
-type metadataEnableSsoInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1495,11 +1363,7 @@ func (s EnableSsoInput) GoString() string {
 
 // Contains the results of the EnableSso operation.
 type EnableSsoOutput struct {
-	metadataEnableSsoOutput `json:"-" xml:"-"`
-}
-
-type metadataEnableSsoOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1514,11 +1378,7 @@ func (s EnableSsoOutput) GoString() string {
 
 // Contains the inputs for the GetDirectoryLimits operation.
 type GetDirectoryLimitsInput struct {
-	metadataGetDirectoryLimitsInput `json:"-" xml:"-"`
-}
-
-type metadataGetDirectoryLimitsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1537,11 +1397,7 @@ type GetDirectoryLimitsOutput struct {
 	// region.
 	DirectoryLimits *DirectoryLimits `type:"structure"`
 
-	metadataGetDirectoryLimitsOutput `json:"-" xml:"-"`
-}
-
-type metadataGetDirectoryLimitsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1559,11 +1415,7 @@ type GetSnapshotLimitsInput struct {
 	// Contains the identifier of the directory to obtain the limits for.
 	DirectoryId *string `type:"string" required:"true"`
 
-	metadataGetSnapshotLimitsInput `json:"-" xml:"-"`
-}
-
-type metadataGetSnapshotLimitsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1582,11 +1434,7 @@ type GetSnapshotLimitsOutput struct {
 	// specified directory.
 	SnapshotLimits *SnapshotLimits `type:"structure"`
 
-	metadataGetSnapshotLimitsOutput `json:"-" xml:"-"`
-}
-
-type metadataGetSnapshotLimitsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1631,11 +1479,7 @@ type RadiusSettings struct {
 	// Not currently used.
 	UseSameUsername *bool `type:"boolean"`
 
-	metadataRadiusSettings `json:"-" xml:"-"`
-}
-
-type metadataRadiusSettings struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1653,11 +1497,7 @@ type RestoreFromSnapshotInput struct {
 	// The identifier of the snapshot to restore from.
 	SnapshotId *string `type:"string" required:"true"`
 
-	metadataRestoreFromSnapshotInput `json:"-" xml:"-"`
-}
-
-type metadataRestoreFromSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1672,11 +1512,7 @@ func (s RestoreFromSnapshotInput) GoString() string {
 
 // Contains the results of the RestoreFromSnapshot operation.
 type RestoreFromSnapshotOutput struct {
-	metadataRestoreFromSnapshotOutput `json:"-" xml:"-"`
-}
-
-type metadataRestoreFromSnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1709,11 +1545,7 @@ type Snapshot struct {
 	// The snapshot type.
 	Type *string `type:"string" enum:"SnapshotType"`
 
-	metadataSnapshot `json:"-" xml:"-"`
-}
-
-type metadataSnapshot struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1737,11 +1569,7 @@ type SnapshotLimits struct {
 	// Indicates if the manual snapshot limit has been reached.
 	ManualSnapshotsLimitReached *bool `type:"boolean"`
 
-	metadataSnapshotLimits `json:"-" xml:"-"`
-}
-
-type metadataSnapshotLimits struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1762,11 +1590,7 @@ type UpdateRadiusInput struct {
 	// A RadiusSettings object that contains information about the RADIUS server.
 	RadiusSettings *RadiusSettings `type:"structure" required:"true"`
 
-	metadataUpdateRadiusInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateRadiusInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1781,11 +1605,7 @@ func (s UpdateRadiusInput) GoString() string {
 
 // Contains the results of the UpdateRadius operation.
 type UpdateRadiusOutput struct {
-	metadataUpdateRadiusOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateRadiusOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

@@ -4194,11 +4194,7 @@ type AccessKey struct {
 	// The name of the IAM user that the access key is associated with.
 	UserName *string `min:"1" type:"string" required:"true"`
 
-	metadataAccessKey `json:"-" xml:"-"`
-}
-
-type metadataAccessKey struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4252,11 +4248,7 @@ type AccessKeyLastUsed struct {
 	//   There is no sign-in data associated with the user
 	ServiceName *string `type:"string" required:"true"`
 
-	metadataAccessKeyLastUsed `json:"-" xml:"-"`
-}
-
-type metadataAccessKeyLastUsed struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4286,11 +4278,7 @@ type AccessKeyMetadata struct {
 	// The name of the IAM user that the key is associated with.
 	UserName *string `min:"1" type:"string"`
 
-	metadataAccessKeyMetadata `json:"-" xml:"-"`
-}
-
-type metadataAccessKeyMetadata struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4312,11 +4300,7 @@ type AddClientIDToOpenIDConnectProviderInput struct {
 	// the ListOpenIDConnectProviders action.
 	OpenIDConnectProviderArn *string `min:"20" type:"string" required:"true"`
 
-	metadataAddClientIDToOpenIDConnectProviderInput `json:"-" xml:"-"`
-}
-
-type metadataAddClientIDToOpenIDConnectProviderInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4330,11 +4314,7 @@ func (s AddClientIDToOpenIDConnectProviderInput) GoString() string {
 }
 
 type AddClientIDToOpenIDConnectProviderOutput struct {
-	metadataAddClientIDToOpenIDConnectProviderOutput `json:"-" xml:"-"`
-}
-
-type metadataAddClientIDToOpenIDConnectProviderOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4354,11 +4334,7 @@ type AddRoleToInstanceProfileInput struct {
 	// The name of the role to add.
 	RoleName *string `min:"1" type:"string" required:"true"`
 
-	metadataAddRoleToInstanceProfileInput `json:"-" xml:"-"`
-}
-
-type metadataAddRoleToInstanceProfileInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4372,11 +4348,7 @@ func (s AddRoleToInstanceProfileInput) GoString() string {
 }
 
 type AddRoleToInstanceProfileOutput struct {
-	metadataAddRoleToInstanceProfileOutput `json:"-" xml:"-"`
-}
-
-type metadataAddRoleToInstanceProfileOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4396,11 +4368,7 @@ type AddUserToGroupInput struct {
 	// The name of the user to add.
 	UserName *string `min:"1" type:"string" required:"true"`
 
-	metadataAddUserToGroupInput `json:"-" xml:"-"`
-}
-
-type metadataAddUserToGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4414,11 +4382,7 @@ func (s AddUserToGroupInput) GoString() string {
 }
 
 type AddUserToGroupOutput struct {
-	metadataAddUserToGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataAddUserToGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4442,11 +4406,7 @@ type AttachGroupPolicyInput struct {
 	// in the AWS General Reference.
 	PolicyArn *string `min:"20" type:"string" required:"true"`
 
-	metadataAttachGroupPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataAttachGroupPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4460,11 +4420,7 @@ func (s AttachGroupPolicyInput) GoString() string {
 }
 
 type AttachGroupPolicyOutput struct {
-	metadataAttachGroupPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataAttachGroupPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4488,11 +4444,7 @@ type AttachRolePolicyInput struct {
 	// The name (friendly name, not ARN) of the role to attach the policy to.
 	RoleName *string `min:"1" type:"string" required:"true"`
 
-	metadataAttachRolePolicyInput `json:"-" xml:"-"`
-}
-
-type metadataAttachRolePolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4506,11 +4458,7 @@ func (s AttachRolePolicyInput) GoString() string {
 }
 
 type AttachRolePolicyOutput struct {
-	metadataAttachRolePolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataAttachRolePolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4534,11 +4482,7 @@ type AttachUserPolicyInput struct {
 	// The name (friendly name, not ARN) of the user to attach the policy to.
 	UserName *string `min:"1" type:"string" required:"true"`
 
-	metadataAttachUserPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataAttachUserPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4552,11 +4496,7 @@ func (s AttachUserPolicyInput) GoString() string {
 }
 
 type AttachUserPolicyOutput struct {
-	metadataAttachUserPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataAttachUserPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4590,11 +4530,7 @@ type AttachedPolicy struct {
 	// The friendly name of the attached policy.
 	PolicyName *string `min:"1" type:"string"`
 
-	metadataAttachedPolicy `json:"-" xml:"-"`
-}
-
-type metadataAttachedPolicy struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4615,11 +4551,7 @@ type ChangePasswordInput struct {
 	// The IAM user's current password.
 	OldPassword *string `min:"1" type:"string" required:"true"`
 
-	metadataChangePasswordInput `json:"-" xml:"-"`
-}
-
-type metadataChangePasswordInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4633,11 +4565,7 @@ func (s ChangePasswordInput) GoString() string {
 }
 
 type ChangePasswordOutput struct {
-	metadataChangePasswordOutput `json:"-" xml:"-"`
-}
-
-type metadataChangePasswordOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4670,11 +4598,7 @@ type ContextEntry struct {
 	// element in an input policy.
 	ContextKeyValues []*string `type:"list"`
 
-	metadataContextEntry `json:"-" xml:"-"`
-}
-
-type metadataContextEntry struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4691,11 +4615,7 @@ type CreateAccessKeyInput struct {
 	// The user name that the new key will belong to.
 	UserName *string `min:"1" type:"string"`
 
-	metadataCreateAccessKeyInput `json:"-" xml:"-"`
-}
-
-type metadataCreateAccessKeyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4713,11 +4633,7 @@ type CreateAccessKeyOutput struct {
 	// Information about the access key.
 	AccessKey *AccessKey `type:"structure" required:"true"`
 
-	metadataCreateAccessKeyOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateAccessKeyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4734,11 +4650,7 @@ type CreateAccountAliasInput struct {
 	// The account alias to create.
 	AccountAlias *string `min:"3" type:"string" required:"true"`
 
-	metadataCreateAccountAliasInput `json:"-" xml:"-"`
-}
-
-type metadataCreateAccountAliasInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4752,11 +4664,7 @@ func (s CreateAccountAliasInput) GoString() string {
 }
 
 type CreateAccountAliasOutput struct {
-	metadataCreateAccountAliasOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateAccountAliasOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4781,11 +4689,7 @@ type CreateGroupInput struct {
 	// (/).
 	Path *string `min:"1" type:"string"`
 
-	metadataCreateGroupInput `json:"-" xml:"-"`
-}
-
-type metadataCreateGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4803,11 +4707,7 @@ type CreateGroupOutput struct {
 	// Information about the group.
 	Group *Group `type:"structure" required:"true"`
 
-	metadataCreateGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4832,11 +4732,7 @@ type CreateInstanceProfileInput struct {
 	// (/).
 	Path *string `min:"1" type:"string"`
 
-	metadataCreateInstanceProfileInput `json:"-" xml:"-"`
-}
-
-type metadataCreateInstanceProfileInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4854,11 +4750,7 @@ type CreateInstanceProfileOutput struct {
 	// Information about the instance profile.
 	InstanceProfile *InstanceProfile `type:"structure" required:"true"`
 
-	metadataCreateInstanceProfileOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateInstanceProfileOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4881,11 +4773,7 @@ type CreateLoginProfileInput struct {
 	// The name of the user to create a password for.
 	UserName *string `min:"1" type:"string" required:"true"`
 
-	metadataCreateLoginProfileInput `json:"-" xml:"-"`
-}
-
-type metadataCreateLoginProfileInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4903,11 +4791,7 @@ type CreateLoginProfileOutput struct {
 	// The user name and password create date.
 	LoginProfile *LoginProfile `type:"structure" required:"true"`
 
-	metadataCreateLoginProfileOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateLoginProfileOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4966,11 +4850,7 @@ type CreateOpenIDConnectProviderInput struct {
 	// provider in the AWS account, you will get an error.
 	Url *string `min:"1" type:"string" required:"true"`
 
-	metadataCreateOpenIDConnectProviderInput `json:"-" xml:"-"`
-}
-
-type metadataCreateOpenIDConnectProviderInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4989,11 +4869,7 @@ type CreateOpenIDConnectProviderOutput struct {
 	// created. For more information, see OpenIDConnectProviderListEntry.
 	OpenIDConnectProviderArn *string `min:"20" type:"string"`
 
-	metadataCreateOpenIDConnectProviderOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateOpenIDConnectProviderOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5031,11 +4907,7 @@ type CreatePolicyInput struct {
 	// The name of the policy document.
 	PolicyName *string `min:"1" type:"string" required:"true"`
 
-	metadataCreatePolicyInput `json:"-" xml:"-"`
-}
-
-type metadataCreatePolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5053,11 +4925,7 @@ type CreatePolicyOutput struct {
 	// Information about the policy.
 	Policy *Policy `type:"structure"`
 
-	metadataCreatePolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataCreatePolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5092,11 +4960,7 @@ type CreatePolicyVersionInput struct {
 	// in the IAM User Guide.
 	SetAsDefault *bool `type:"boolean"`
 
-	metadataCreatePolicyVersionInput `json:"-" xml:"-"`
-}
-
-type metadataCreatePolicyVersionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5114,11 +4978,7 @@ type CreatePolicyVersionOutput struct {
 	// Information about the policy version.
 	PolicyVersion *PolicyVersion `type:"structure"`
 
-	metadataCreatePolicyVersionOutput `json:"-" xml:"-"`
-}
-
-type metadataCreatePolicyVersionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5146,11 +5006,7 @@ type CreateRoleInput struct {
 	// The name of the role to create.
 	RoleName *string `min:"1" type:"string" required:"true"`
 
-	metadataCreateRoleInput `json:"-" xml:"-"`
-}
-
-type metadataCreateRoleInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5168,11 +5024,7 @@ type CreateRoleOutput struct {
 	// Information about the role.
 	Role *Role `type:"structure" required:"true"`
 
-	metadataCreateRoleOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateRoleOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5199,11 +5051,7 @@ type CreateSAMLProviderInput struct {
 	// in the IAM User Guide
 	SAMLMetadataDocument *string `min:"1000" type:"string" required:"true"`
 
-	metadataCreateSAMLProviderInput `json:"-" xml:"-"`
-}
-
-type metadataCreateSAMLProviderInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5221,11 +5069,7 @@ type CreateSAMLProviderOutput struct {
 	// The Amazon Resource Name (ARN) of the SAML provider.
 	SAMLProviderArn *string `min:"20" type:"string"`
 
-	metadataCreateSAMLProviderOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateSAMLProviderOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5250,11 +5094,7 @@ type CreateUserInput struct {
 	// The name of the user to create.
 	UserName *string `min:"1" type:"string" required:"true"`
 
-	metadataCreateUserInput `json:"-" xml:"-"`
-}
-
-type metadataCreateUserInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5272,11 +5112,7 @@ type CreateUserOutput struct {
 	// Information about the user.
 	User *User `type:"structure"`
 
-	metadataCreateUserOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateUserOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5302,11 +5138,7 @@ type CreateVirtualMFADeviceInput struct {
 	// virtual MFA device.
 	VirtualMFADeviceName *string `min:"1" type:"string" required:"true"`
 
-	metadataCreateVirtualMFADeviceInput `json:"-" xml:"-"`
-}
-
-type metadataCreateVirtualMFADeviceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5324,11 +5156,7 @@ type CreateVirtualMFADeviceOutput struct {
 	// A newly created virtual MFA device.
 	VirtualMFADevice *VirtualMFADevice `type:"structure" required:"true"`
 
-	metadataCreateVirtualMFADeviceOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateVirtualMFADeviceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5349,11 +5177,7 @@ type DeactivateMFADeviceInput struct {
 	// The name of the user whose MFA device you want to deactivate.
 	UserName *string `min:"1" type:"string" required:"true"`
 
-	metadataDeactivateMFADeviceInput `json:"-" xml:"-"`
-}
-
-type metadataDeactivateMFADeviceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5367,11 +5191,7 @@ func (s DeactivateMFADeviceInput) GoString() string {
 }
 
 type DeactivateMFADeviceOutput struct {
-	metadataDeactivateMFADeviceOutput `json:"-" xml:"-"`
-}
-
-type metadataDeactivateMFADeviceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5392,11 +5212,7 @@ type DeleteAccessKeyInput struct {
 	// The name of the user whose key you want to delete.
 	UserName *string `min:"1" type:"string"`
 
-	metadataDeleteAccessKeyInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteAccessKeyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5410,11 +5226,7 @@ func (s DeleteAccessKeyInput) GoString() string {
 }
 
 type DeleteAccessKeyOutput struct {
-	metadataDeleteAccessKeyOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteAccessKeyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5431,11 +5243,7 @@ type DeleteAccountAliasInput struct {
 	// The name of the account alias to delete.
 	AccountAlias *string `min:"3" type:"string" required:"true"`
 
-	metadataDeleteAccountAliasInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteAccountAliasInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5449,11 +5257,7 @@ func (s DeleteAccountAliasInput) GoString() string {
 }
 
 type DeleteAccountAliasOutput struct {
-	metadataDeleteAccountAliasOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteAccountAliasOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5467,11 +5271,7 @@ func (s DeleteAccountAliasOutput) GoString() string {
 }
 
 type DeleteAccountPasswordPolicyInput struct {
-	metadataDeleteAccountPasswordPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteAccountPasswordPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5485,11 +5285,7 @@ func (s DeleteAccountPasswordPolicyInput) GoString() string {
 }
 
 type DeleteAccountPasswordPolicyOutput struct {
-	metadataDeleteAccountPasswordPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteAccountPasswordPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5506,11 +5302,7 @@ type DeleteGroupInput struct {
 	// The name of the group to delete.
 	GroupName *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteGroupInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5524,11 +5316,7 @@ func (s DeleteGroupInput) GoString() string {
 }
 
 type DeleteGroupOutput struct {
-	metadataDeleteGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5549,11 +5337,7 @@ type DeleteGroupPolicyInput struct {
 	// The name identifying the policy document to delete.
 	PolicyName *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteGroupPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteGroupPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5567,11 +5351,7 @@ func (s DeleteGroupPolicyInput) GoString() string {
 }
 
 type DeleteGroupPolicyOutput struct {
-	metadataDeleteGroupPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteGroupPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5588,11 +5368,7 @@ type DeleteInstanceProfileInput struct {
 	// The name of the instance profile to delete.
 	InstanceProfileName *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteInstanceProfileInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteInstanceProfileInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5606,11 +5382,7 @@ func (s DeleteInstanceProfileInput) GoString() string {
 }
 
 type DeleteInstanceProfileOutput struct {
-	metadataDeleteInstanceProfileOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteInstanceProfileOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5627,11 +5399,7 @@ type DeleteLoginProfileInput struct {
 	// The name of the user whose password you want to delete.
 	UserName *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteLoginProfileInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteLoginProfileInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5645,11 +5413,7 @@ func (s DeleteLoginProfileInput) GoString() string {
 }
 
 type DeleteLoginProfileOutput struct {
-	metadataDeleteLoginProfileOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteLoginProfileOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5668,11 +5432,7 @@ type DeleteOpenIDConnectProviderInput struct {
 	// action.
 	OpenIDConnectProviderArn *string `min:"20" type:"string" required:"true"`
 
-	metadataDeleteOpenIDConnectProviderInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteOpenIDConnectProviderInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5686,11 +5446,7 @@ func (s DeleteOpenIDConnectProviderInput) GoString() string {
 }
 
 type DeleteOpenIDConnectProviderOutput struct {
-	metadataDeleteOpenIDConnectProviderOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteOpenIDConnectProviderOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5711,11 +5467,7 @@ type DeletePolicyInput struct {
 	// in the AWS General Reference.
 	PolicyArn *string `min:"20" type:"string" required:"true"`
 
-	metadataDeletePolicyInput `json:"-" xml:"-"`
-}
-
-type metadataDeletePolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5729,11 +5481,7 @@ func (s DeletePolicyInput) GoString() string {
 }
 
 type DeletePolicyOutput struct {
-	metadataDeletePolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataDeletePolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5761,11 +5509,7 @@ type DeletePolicyVersionInput struct {
 	// in the IAM User Guide.
 	VersionId *string `type:"string" required:"true"`
 
-	metadataDeletePolicyVersionInput `json:"-" xml:"-"`
-}
-
-type metadataDeletePolicyVersionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5779,11 +5523,7 @@ func (s DeletePolicyVersionInput) GoString() string {
 }
 
 type DeletePolicyVersionOutput struct {
-	metadataDeletePolicyVersionOutput `json:"-" xml:"-"`
-}
-
-type metadataDeletePolicyVersionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5800,11 +5540,7 @@ type DeleteRoleInput struct {
 	// The name of the role to delete.
 	RoleName *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteRoleInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteRoleInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5818,11 +5554,7 @@ func (s DeleteRoleInput) GoString() string {
 }
 
 type DeleteRoleOutput struct {
-	metadataDeleteRoleOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteRoleOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5843,11 +5575,7 @@ type DeleteRolePolicyInput struct {
 	// embedded in.
 	RoleName *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteRolePolicyInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteRolePolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5861,11 +5589,7 @@ func (s DeleteRolePolicyInput) GoString() string {
 }
 
 type DeleteRolePolicyOutput struct {
-	metadataDeleteRolePolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteRolePolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5882,11 +5606,7 @@ type DeleteSAMLProviderInput struct {
 	// The Amazon Resource Name (ARN) of the SAML provider to delete.
 	SAMLProviderArn *string `min:"20" type:"string" required:"true"`
 
-	metadataDeleteSAMLProviderInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteSAMLProviderInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5900,11 +5620,7 @@ func (s DeleteSAMLProviderInput) GoString() string {
 }
 
 type DeleteSAMLProviderOutput struct {
-	metadataDeleteSAMLProviderOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteSAMLProviderOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5924,11 +5640,7 @@ type DeleteSSHPublicKeyInput struct {
 	// The name of the IAM user associated with the SSH public key.
 	UserName *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteSSHPublicKeyInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteSSHPublicKeyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5942,11 +5654,7 @@ func (s DeleteSSHPublicKeyInput) GoString() string {
 }
 
 type DeleteSSHPublicKeyOutput struct {
-	metadataDeleteSSHPublicKeyOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteSSHPublicKeyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5963,11 +5671,7 @@ type DeleteServerCertificateInput struct {
 	// The name of the server certificate you want to delete.
 	ServerCertificateName *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteServerCertificateInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteServerCertificateInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5981,11 +5685,7 @@ func (s DeleteServerCertificateInput) GoString() string {
 }
 
 type DeleteServerCertificateOutput struct {
-	metadataDeleteServerCertificateOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteServerCertificateOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6005,11 +5705,7 @@ type DeleteSigningCertificateInput struct {
 	// The name of the user the signing certificate belongs to.
 	UserName *string `min:"1" type:"string"`
 
-	metadataDeleteSigningCertificateInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteSigningCertificateInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6023,11 +5719,7 @@ func (s DeleteSigningCertificateInput) GoString() string {
 }
 
 type DeleteSigningCertificateOutput struct {
-	metadataDeleteSigningCertificateOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteSigningCertificateOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6044,11 +5736,7 @@ type DeleteUserInput struct {
 	// The name of the user to delete.
 	UserName *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteUserInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteUserInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6062,11 +5750,7 @@ func (s DeleteUserInput) GoString() string {
 }
 
 type DeleteUserOutput struct {
-	metadataDeleteUserOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteUserOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6087,11 +5771,7 @@ type DeleteUserPolicyInput struct {
 	// embedded in.
 	UserName *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteUserPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteUserPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6105,11 +5785,7 @@ func (s DeleteUserPolicyInput) GoString() string {
 }
 
 type DeleteUserPolicyOutput struct {
-	metadataDeleteUserPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteUserPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6127,11 +5803,7 @@ type DeleteVirtualMFADeviceInput struct {
 	// devices, the serial number is the same as the ARN.
 	SerialNumber *string `min:"9" type:"string" required:"true"`
 
-	metadataDeleteVirtualMFADeviceInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteVirtualMFADeviceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6145,11 +5817,7 @@ func (s DeleteVirtualMFADeviceInput) GoString() string {
 }
 
 type DeleteVirtualMFADeviceOutput struct {
-	metadataDeleteVirtualMFADeviceOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteVirtualMFADeviceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6173,11 +5841,7 @@ type DetachGroupPolicyInput struct {
 	// in the AWS General Reference.
 	PolicyArn *string `min:"20" type:"string" required:"true"`
 
-	metadataDetachGroupPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataDetachGroupPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6191,11 +5855,7 @@ func (s DetachGroupPolicyInput) GoString() string {
 }
 
 type DetachGroupPolicyOutput struct {
-	metadataDetachGroupPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataDetachGroupPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6219,11 +5879,7 @@ type DetachRolePolicyInput struct {
 	// The name (friendly name, not ARN) of the role to detach the policy from.
 	RoleName *string `min:"1" type:"string" required:"true"`
 
-	metadataDetachRolePolicyInput `json:"-" xml:"-"`
-}
-
-type metadataDetachRolePolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6237,11 +5893,7 @@ func (s DetachRolePolicyInput) GoString() string {
 }
 
 type DetachRolePolicyOutput struct {
-	metadataDetachRolePolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataDetachRolePolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6265,11 +5917,7 @@ type DetachUserPolicyInput struct {
 	// The name (friendly name, not ARN) of the user to detach the policy from.
 	UserName *string `min:"1" type:"string" required:"true"`
 
-	metadataDetachUserPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataDetachUserPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6283,11 +5931,7 @@ func (s DetachUserPolicyInput) GoString() string {
 }
 
 type DetachUserPolicyOutput struct {
-	metadataDetachUserPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataDetachUserPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6314,11 +5958,7 @@ type EnableMFADeviceInput struct {
 	// The name of the user for whom you want to enable the MFA device.
 	UserName *string `min:"1" type:"string" required:"true"`
 
-	metadataEnableMFADeviceInput `json:"-" xml:"-"`
-}
-
-type metadataEnableMFADeviceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6332,11 +5972,7 @@ func (s EnableMFADeviceInput) GoString() string {
 }
 
 type EnableMFADeviceOutput struct {
-	metadataEnableMFADeviceOutput `json:"-" xml:"-"`
-}
-
-type metadataEnableMFADeviceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6392,11 +6028,7 @@ type EvaluationResult struct {
 	// on each resource.
 	ResourceSpecificResults []*ResourceSpecificResult `type:"list"`
 
-	metadataEvaluationResult `json:"-" xml:"-"`
-}
-
-type metadataEvaluationResult struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6410,11 +6042,7 @@ func (s EvaluationResult) GoString() string {
 }
 
 type GenerateCredentialReportInput struct {
-	metadataGenerateCredentialReportInput `json:"-" xml:"-"`
-}
-
-type metadataGenerateCredentialReportInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6435,11 +6063,7 @@ type GenerateCredentialReportOutput struct {
 	// Information about the state of the credential report.
 	State *string `type:"string" enum:"ReportStateType"`
 
-	metadataGenerateCredentialReportOutput `json:"-" xml:"-"`
-}
-
-type metadataGenerateCredentialReportOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6456,11 +6080,7 @@ type GetAccessKeyLastUsedInput struct {
 	// The identifier of an access key.
 	AccessKeyId *string `min:"16" type:"string" required:"true"`
 
-	metadataGetAccessKeyLastUsedInput `json:"-" xml:"-"`
-}
-
-type metadataGetAccessKeyLastUsedInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6483,11 +6103,7 @@ type GetAccessKeyLastUsedOutput struct {
 	// The name of the AWS IAM user that owns this access key.
 	UserName *string `min:"1" type:"string"`
 
-	metadataGetAccessKeyLastUsedOutput `json:"-" xml:"-"`
-}
-
-type metadataGetAccessKeyLastUsedOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6522,11 +6138,7 @@ type GetAccountAuthorizationDetailsInput struct {
 	// service where to continue from.
 	MaxItems *int64 `min:"1" type:"integer"`
 
-	metadataGetAccountAuthorizationDetailsInput `json:"-" xml:"-"`
-}
-
-type metadataGetAccountAuthorizationDetailsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6565,11 +6177,7 @@ type GetAccountAuthorizationDetailsOutput struct {
 	// A list containing information about IAM users.
 	UserDetailList []*UserDetail `type:"list"`
 
-	metadataGetAccountAuthorizationDetailsOutput `json:"-" xml:"-"`
-}
-
-type metadataGetAccountAuthorizationDetailsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6583,11 +6191,7 @@ func (s GetAccountAuthorizationDetailsOutput) GoString() string {
 }
 
 type GetAccountPasswordPolicyInput struct {
-	metadataGetAccountPasswordPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataGetAccountPasswordPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6608,11 +6212,7 @@ type GetAccountPasswordPolicyOutput struct {
 	// action.
 	PasswordPolicy *PasswordPolicy `type:"structure" required:"true"`
 
-	metadataGetAccountPasswordPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataGetAccountPasswordPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6626,11 +6226,7 @@ func (s GetAccountPasswordPolicyOutput) GoString() string {
 }
 
 type GetAccountSummaryInput struct {
-	metadataGetAccountSummaryInput `json:"-" xml:"-"`
-}
-
-type metadataGetAccountSummaryInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6790,11 +6386,7 @@ type GetAccountSummaryOutput struct {
 	// The maximum number of policy versions allowed for each managed policy.
 	SummaryMap map[string]*int64 `type:"map"`
 
-	metadataGetAccountSummaryOutput `json:"-" xml:"-"`
-}
-
-type metadataGetAccountSummaryOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6813,11 +6405,7 @@ type GetContextKeysForCustomPolicyInput struct {
 	// valid JSON text of an IAM policy.
 	PolicyInputList []*string `type:"list" required:"true"`
 
-	metadataGetContextKeysForCustomPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataGetContextKeysForCustomPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6837,11 +6425,7 @@ type GetContextKeysForPolicyResponse struct {
 	// policies.
 	ContextKeyNames []*string `type:"list"`
 
-	metadataGetContextKeysForPolicyResponse `json:"-" xml:"-"`
-}
-
-type metadataGetContextKeysForPolicyResponse struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6868,11 +6452,7 @@ type GetContextKeysForPrincipalPolicyInput struct {
 	// must be URL encoded to be included as a part of a real HTML request.
 	PolicySourceArn *string `min:"20" type:"string" required:"true"`
 
-	metadataGetContextKeysForPrincipalPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataGetContextKeysForPrincipalPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6886,11 +6466,7 @@ func (s GetContextKeysForPrincipalPolicyInput) GoString() string {
 }
 
 type GetCredentialReportInput struct {
-	metadataGetCredentialReportInput `json:"-" xml:"-"`
-}
-
-type metadataGetCredentialReportInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6915,11 +6491,7 @@ type GetCredentialReportOutput struct {
 	// The format (MIME type) of the credential report.
 	ReportFormat *string `type:"string" enum:"ReportFormatType"`
 
-	metadataGetCredentialReportOutput `json:"-" xml:"-"`
-}
-
-type metadataGetCredentialReportOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6953,11 +6525,7 @@ type GetGroupInput struct {
 	// service where to continue from.
 	MaxItems *int64 `min:"1" type:"integer"`
 
-	metadataGetGroupInput `json:"-" xml:"-"`
-}
-
-type metadataGetGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6990,11 +6558,7 @@ type GetGroupOutput struct {
 	// A list of users in the group.
 	Users []*User `type:"list" required:"true"`
 
-	metadataGetGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataGetGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7014,11 +6578,7 @@ type GetGroupPolicyInput struct {
 	// The name of the policy document to get.
 	PolicyName *string `min:"1" type:"string" required:"true"`
 
-	metadataGetGroupPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataGetGroupPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7042,11 +6602,7 @@ type GetGroupPolicyOutput struct {
 	// The name of the policy.
 	PolicyName *string `min:"1" type:"string" required:"true"`
 
-	metadataGetGroupPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataGetGroupPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7063,11 +6619,7 @@ type GetInstanceProfileInput struct {
 	// The name of the instance profile to get information about.
 	InstanceProfileName *string `min:"1" type:"string" required:"true"`
 
-	metadataGetInstanceProfileInput `json:"-" xml:"-"`
-}
-
-type metadataGetInstanceProfileInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7085,11 +6637,7 @@ type GetInstanceProfileOutput struct {
 	// Information about the instance profile.
 	InstanceProfile *InstanceProfile `type:"structure" required:"true"`
 
-	metadataGetInstanceProfileOutput `json:"-" xml:"-"`
-}
-
-type metadataGetInstanceProfileOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7106,11 +6654,7 @@ type GetLoginProfileInput struct {
 	// The name of the user whose login profile you want to retrieve.
 	UserName *string `min:"1" type:"string" required:"true"`
 
-	metadataGetLoginProfileInput `json:"-" xml:"-"`
-}
-
-type metadataGetLoginProfileInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7128,11 +6672,7 @@ type GetLoginProfileOutput struct {
 	// The user name and password create date for the user.
 	LoginProfile *LoginProfile `type:"structure" required:"true"`
 
-	metadataGetLoginProfileOutput `json:"-" xml:"-"`
-}
-
-type metadataGetLoginProfileOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7151,11 +6691,7 @@ type GetOpenIDConnectProviderInput struct {
 	// the ListOpenIDConnectProviders action.
 	OpenIDConnectProviderArn *string `min:"20" type:"string" required:"true"`
 
-	metadataGetOpenIDConnectProviderInput `json:"-" xml:"-"`
-}
-
-type metadataGetOpenIDConnectProviderInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7186,11 +6722,7 @@ type GetOpenIDConnectProviderOutput struct {
 	// information, see CreateOpenIDConnectProvider.
 	Url *string `min:"1" type:"string"`
 
-	metadataGetOpenIDConnectProviderOutput `json:"-" xml:"-"`
-}
-
-type metadataGetOpenIDConnectProviderOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7211,11 +6743,7 @@ type GetPolicyInput struct {
 	// in the AWS General Reference.
 	PolicyArn *string `min:"20" type:"string" required:"true"`
 
-	metadataGetPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataGetPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7233,11 +6761,7 @@ type GetPolicyOutput struct {
 	// Information about the policy.
 	Policy *Policy `type:"structure"`
 
-	metadataGetPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataGetPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7261,11 +6785,7 @@ type GetPolicyVersionInput struct {
 	// Identifies the policy version to retrieve.
 	VersionId *string `type:"string" required:"true"`
 
-	metadataGetPolicyVersionInput `json:"-" xml:"-"`
-}
-
-type metadataGetPolicyVersionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7287,11 +6807,7 @@ type GetPolicyVersionOutput struct {
 	// in the IAM User Guide.
 	PolicyVersion *PolicyVersion `type:"structure"`
 
-	metadataGetPolicyVersionOutput `json:"-" xml:"-"`
-}
-
-type metadataGetPolicyVersionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7308,11 +6824,7 @@ type GetRoleInput struct {
 	// The name of the role to get information about.
 	RoleName *string `min:"1" type:"string" required:"true"`
 
-	metadataGetRoleInput `json:"-" xml:"-"`
-}
-
-type metadataGetRoleInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7330,11 +6842,7 @@ type GetRoleOutput struct {
 	// Information about the role.
 	Role *Role `type:"structure" required:"true"`
 
-	metadataGetRoleOutput `json:"-" xml:"-"`
-}
-
-type metadataGetRoleOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7354,11 +6862,7 @@ type GetRolePolicyInput struct {
 	// The name of the role associated with the policy.
 	RoleName *string `min:"1" type:"string" required:"true"`
 
-	metadataGetRolePolicyInput `json:"-" xml:"-"`
-}
-
-type metadataGetRolePolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7382,11 +6886,7 @@ type GetRolePolicyOutput struct {
 	// The role the policy is associated with.
 	RoleName *string `min:"1" type:"string" required:"true"`
 
-	metadataGetRolePolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataGetRolePolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7403,11 +6903,7 @@ type GetSAMLProviderInput struct {
 	// The Amazon Resource Name (ARN) of the SAML provider to get information about.
 	SAMLProviderArn *string `min:"20" type:"string" required:"true"`
 
-	metadataGetSAMLProviderInput `json:"-" xml:"-"`
-}
-
-type metadataGetSAMLProviderInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7431,11 +6927,7 @@ type GetSAMLProviderOutput struct {
 	// The expiration date and time for the SAML provider.
 	ValidUntil *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataGetSAMLProviderOutput `json:"-" xml:"-"`
-}
-
-type metadataGetSAMLProviderOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7460,11 +6952,7 @@ type GetSSHPublicKeyInput struct {
 	// The name of the IAM user associated with the SSH public key.
 	UserName *string `min:"1" type:"string" required:"true"`
 
-	metadataGetSSHPublicKeyInput `json:"-" xml:"-"`
-}
-
-type metadataGetSSHPublicKeyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7482,11 +6970,7 @@ type GetSSHPublicKeyOutput struct {
 	// Information about the SSH public key.
 	SSHPublicKey *SSHPublicKey `type:"structure"`
 
-	metadataGetSSHPublicKeyOutput `json:"-" xml:"-"`
-}
-
-type metadataGetSSHPublicKeyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7503,11 +6987,7 @@ type GetServerCertificateInput struct {
 	// The name of the server certificate you want to retrieve information about.
 	ServerCertificateName *string `min:"1" type:"string" required:"true"`
 
-	metadataGetServerCertificateInput `json:"-" xml:"-"`
-}
-
-type metadataGetServerCertificateInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7525,11 +7005,7 @@ type GetServerCertificateOutput struct {
 	// Information about the server certificate.
 	ServerCertificate *ServerCertificate `type:"structure" required:"true"`
 
-	metadataGetServerCertificateOutput `json:"-" xml:"-"`
-}
-
-type metadataGetServerCertificateOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7549,11 +7025,7 @@ type GetUserInput struct {
 	// making the request.
 	UserName *string `min:"1" type:"string"`
 
-	metadataGetUserInput `json:"-" xml:"-"`
-}
-
-type metadataGetUserInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7571,11 +7043,7 @@ type GetUserOutput struct {
 	// Information about the user.
 	User *User `type:"structure" required:"true"`
 
-	metadataGetUserOutput `json:"-" xml:"-"`
-}
-
-type metadataGetUserOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7595,11 +7063,7 @@ type GetUserPolicyInput struct {
 	// The name of the user who the policy is associated with.
 	UserName *string `min:"1" type:"string" required:"true"`
 
-	metadataGetUserPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataGetUserPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7623,11 +7087,7 @@ type GetUserPolicyOutput struct {
 	// The user the policy is associated with.
 	UserName *string `min:"1" type:"string" required:"true"`
 
-	metadataGetUserPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataGetUserPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7668,11 +7128,7 @@ type Group struct {
 	// in the Using IAM guide.
 	Path *string `min:"1" type:"string" required:"true"`
 
-	metadataGroup `json:"-" xml:"-"`
-}
-
-type metadataGroup struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7720,11 +7176,7 @@ type GroupDetail struct {
 	// in the Using IAM guide.
 	Path *string `min:"1" type:"string"`
 
-	metadataGroupDetail `json:"-" xml:"-"`
-}
-
-type metadataGroupDetail struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7774,11 +7226,7 @@ type InstanceProfile struct {
 	// The role associated with the instance profile.
 	Roles []*Role `type:"list" required:"true"`
 
-	metadataInstanceProfile `json:"-" xml:"-"`
-}
-
-type metadataInstanceProfile struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7812,11 +7260,7 @@ type ListAccessKeysInput struct {
 	// The name of the user.
 	UserName *string `min:"1" type:"string"`
 
-	metadataListAccessKeysInput `json:"-" xml:"-"`
-}
-
-type metadataListAccessKeysInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7846,11 +7290,7 @@ type ListAccessKeysOutput struct {
 	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `min:"1" type:"string"`
 
-	metadataListAccessKeysOutput `json:"-" xml:"-"`
-}
-
-type metadataListAccessKeysOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7881,11 +7321,7 @@ type ListAccountAliasesInput struct {
 	// service where to continue from.
 	MaxItems *int64 `min:"1" type:"integer"`
 
-	metadataListAccountAliasesInput `json:"-" xml:"-"`
-}
-
-type metadataListAccountAliasesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7916,11 +7352,7 @@ type ListAccountAliasesOutput struct {
 	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `min:"1" type:"string"`
 
-	metadataListAccountAliasesOutput `json:"-" xml:"-"`
-}
-
-type metadataListAccountAliasesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7959,11 +7391,7 @@ type ListAttachedGroupPoliciesInput struct {
 	// it is not included, it defaults to a slash (/), listing all policies.
 	PathPrefix *string `type:"string"`
 
-	metadataListAttachedGroupPoliciesInput `json:"-" xml:"-"`
-}
-
-type metadataListAttachedGroupPoliciesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7993,11 +7421,7 @@ type ListAttachedGroupPoliciesOutput struct {
 	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `min:"1" type:"string"`
 
-	metadataListAttachedGroupPoliciesOutput `json:"-" xml:"-"`
-}
-
-type metadataListAttachedGroupPoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8035,11 +7459,7 @@ type ListAttachedRolePoliciesInput struct {
 	// The name (friendly name, not ARN) of the role to list attached policies for.
 	RoleName *string `min:"1" type:"string" required:"true"`
 
-	metadataListAttachedRolePoliciesInput `json:"-" xml:"-"`
-}
-
-type metadataListAttachedRolePoliciesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8069,11 +7489,7 @@ type ListAttachedRolePoliciesOutput struct {
 	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `min:"1" type:"string"`
 
-	metadataListAttachedRolePoliciesOutput `json:"-" xml:"-"`
-}
-
-type metadataListAttachedRolePoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8111,11 +7527,7 @@ type ListAttachedUserPoliciesInput struct {
 	// The name (friendly name, not ARN) of the user to list attached policies for.
 	UserName *string `min:"1" type:"string" required:"true"`
 
-	metadataListAttachedUserPoliciesInput `json:"-" xml:"-"`
-}
-
-type metadataListAttachedUserPoliciesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8145,11 +7557,7 @@ type ListAttachedUserPoliciesOutput struct {
 	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `min:"1" type:"string"`
 
-	metadataListAttachedUserPoliciesOutput `json:"-" xml:"-"`
-}
-
-type metadataListAttachedUserPoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8198,11 +7606,7 @@ type ListEntitiesForPolicyInput struct {
 	// in the AWS General Reference.
 	PolicyArn *string `min:"20" type:"string" required:"true"`
 
-	metadataListEntitiesForPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataListEntitiesForPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8238,11 +7642,7 @@ type ListEntitiesForPolicyOutput struct {
 	// A list of users that the policy is attached to.
 	PolicyUsers []*PolicyUser `type:"list"`
 
-	metadataListEntitiesForPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataListEntitiesForPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8276,11 +7676,7 @@ type ListGroupPoliciesInput struct {
 	// service where to continue from.
 	MaxItems *int64 `min:"1" type:"integer"`
 
-	metadataListGroupPoliciesInput `json:"-" xml:"-"`
-}
-
-type metadataListGroupPoliciesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8310,11 +7706,7 @@ type ListGroupPoliciesOutput struct {
 	// A list of policy names.
 	PolicyNames []*string `type:"list" required:"true"`
 
-	metadataListGroupPoliciesOutput `json:"-" xml:"-"`
-}
-
-type metadataListGroupPoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8348,11 +7740,7 @@ type ListGroupsForUserInput struct {
 	// The name of the user to list groups for.
 	UserName *string `min:"1" type:"string" required:"true"`
 
-	metadataListGroupsForUserInput `json:"-" xml:"-"`
-}
-
-type metadataListGroupsForUserInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8382,11 +7770,7 @@ type ListGroupsForUserOutput struct {
 	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `min:"1" type:"string"`
 
-	metadataListGroupsForUserOutput `json:"-" xml:"-"`
-}
-
-type metadataListGroupsForUserOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8424,11 +7808,7 @@ type ListGroupsInput struct {
 	// (/), listing all groups.
 	PathPrefix *string `min:"1" type:"string"`
 
-	metadataListGroupsInput `json:"-" xml:"-"`
-}
-
-type metadataListGroupsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8458,11 +7838,7 @@ type ListGroupsOutput struct {
 	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `min:"1" type:"string"`
 
-	metadataListGroupsOutput `json:"-" xml:"-"`
-}
-
-type metadataListGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8496,11 +7872,7 @@ type ListInstanceProfilesForRoleInput struct {
 	// The name of the role to list instance profiles for.
 	RoleName *string `min:"1" type:"string" required:"true"`
 
-	metadataListInstanceProfilesForRoleInput `json:"-" xml:"-"`
-}
-
-type metadataListInstanceProfilesForRoleInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8530,11 +7902,7 @@ type ListInstanceProfilesForRoleOutput struct {
 	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `min:"1" type:"string"`
 
-	metadataListInstanceProfilesForRoleOutput `json:"-" xml:"-"`
-}
-
-type metadataListInstanceProfilesForRoleOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8572,11 +7940,7 @@ type ListInstanceProfilesInput struct {
 	// (/), listing all instance profiles.
 	PathPrefix *string `min:"1" type:"string"`
 
-	metadataListInstanceProfilesInput `json:"-" xml:"-"`
-}
-
-type metadataListInstanceProfilesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8606,11 +7970,7 @@ type ListInstanceProfilesOutput struct {
 	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `min:"1" type:"string"`
 
-	metadataListInstanceProfilesOutput `json:"-" xml:"-"`
-}
-
-type metadataListInstanceProfilesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8644,11 +8004,7 @@ type ListMFADevicesInput struct {
 	// The name of the user whose MFA devices you want to list.
 	UserName *string `min:"1" type:"string"`
 
-	metadataListMFADevicesInput `json:"-" xml:"-"`
-}
-
-type metadataListMFADevicesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8678,11 +8034,7 @@ type ListMFADevicesOutput struct {
 	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `min:"1" type:"string"`
 
-	metadataListMFADevicesOutput `json:"-" xml:"-"`
-}
-
-type metadataListMFADevicesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8696,11 +8048,7 @@ func (s ListMFADevicesOutput) GoString() string {
 }
 
 type ListOpenIDConnectProvidersInput struct {
-	metadataListOpenIDConnectProvidersInput `json:"-" xml:"-"`
-}
-
-type metadataListOpenIDConnectProvidersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8718,11 +8066,7 @@ type ListOpenIDConnectProvidersOutput struct {
 	// The list of IAM OpenID Connect providers in the AWS account.
 	OpenIDConnectProviderList []*OpenIDConnectProviderListEntry `type:"list"`
 
-	metadataListOpenIDConnectProvidersOutput `json:"-" xml:"-"`
-}
-
-type metadataListOpenIDConnectProvidersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8773,11 +8117,7 @@ type ListPoliciesInput struct {
 	// all policies are returned.
 	Scope *string `type:"string" enum:"policyScopeType"`
 
-	metadataListPoliciesInput `json:"-" xml:"-"`
-}
-
-type metadataListPoliciesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8807,11 +8147,7 @@ type ListPoliciesOutput struct {
 	// A list of policies.
 	Policies []*Policy `type:"list"`
 
-	metadataListPoliciesOutput `json:"-" xml:"-"`
-}
-
-type metadataListPoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8849,11 +8185,7 @@ type ListPolicyVersionsInput struct {
 	// in the AWS General Reference.
 	PolicyArn *string `min:"20" type:"string" required:"true"`
 
-	metadataListPolicyVersionsInput `json:"-" xml:"-"`
-}
-
-type metadataListPolicyVersionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8887,11 +8219,7 @@ type ListPolicyVersionsOutput struct {
 	// in the IAM User Guide.
 	Versions []*PolicyVersion `type:"list"`
 
-	metadataListPolicyVersionsOutput `json:"-" xml:"-"`
-}
-
-type metadataListPolicyVersionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8925,11 +8253,7 @@ type ListRolePoliciesInput struct {
 	// The name of the role to list policies for.
 	RoleName *string `min:"1" type:"string" required:"true"`
 
-	metadataListRolePoliciesInput `json:"-" xml:"-"`
-}
-
-type metadataListRolePoliciesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8959,11 +8283,7 @@ type ListRolePoliciesOutput struct {
 	// A list of policy names.
 	PolicyNames []*string `type:"list" required:"true"`
 
-	metadataListRolePoliciesOutput `json:"-" xml:"-"`
-}
-
-type metadataListRolePoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9001,11 +8321,7 @@ type ListRolesInput struct {
 	// (/), listing all roles.
 	PathPrefix *string `min:"1" type:"string"`
 
-	metadataListRolesInput `json:"-" xml:"-"`
-}
-
-type metadataListRolesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9035,11 +8351,7 @@ type ListRolesOutput struct {
 	// A list of roles.
 	Roles []*Role `type:"list" required:"true"`
 
-	metadataListRolesOutput `json:"-" xml:"-"`
-}
-
-type metadataListRolesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9053,11 +8365,7 @@ func (s ListRolesOutput) GoString() string {
 }
 
 type ListSAMLProvidersInput struct {
-	metadataListSAMLProvidersInput `json:"-" xml:"-"`
-}
-
-type metadataListSAMLProvidersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9075,11 +8383,7 @@ type ListSAMLProvidersOutput struct {
 	// The list of SAML providers for this account.
 	SAMLProviderList []*SAMLProviderListEntry `type:"list"`
 
-	metadataListSAMLProvidersOutput `json:"-" xml:"-"`
-}
-
-type metadataListSAMLProvidersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9115,11 +8419,7 @@ type ListSSHPublicKeysInput struct {
 	// to sign the request.
 	UserName *string `min:"1" type:"string"`
 
-	metadataListSSHPublicKeysInput `json:"-" xml:"-"`
-}
-
-type metadataListSSHPublicKeysInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9149,11 +8449,7 @@ type ListSSHPublicKeysOutput struct {
 	// A list of SSH public keys.
 	SSHPublicKeys []*SSHPublicKeyMetadata `type:"list"`
 
-	metadataListSSHPublicKeysOutput `json:"-" xml:"-"`
-}
-
-type metadataListSSHPublicKeysOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9191,11 +8487,7 @@ type ListServerCertificatesInput struct {
 	// (/), listing all server certificates.
 	PathPrefix *string `min:"1" type:"string"`
 
-	metadataListServerCertificatesInput `json:"-" xml:"-"`
-}
-
-type metadataListServerCertificatesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9225,11 +8517,7 @@ type ListServerCertificatesOutput struct {
 	// A list of server certificates.
 	ServerCertificateMetadataList []*ServerCertificateMetadata `type:"list" required:"true"`
 
-	metadataListServerCertificatesOutput `json:"-" xml:"-"`
-}
-
-type metadataListServerCertificatesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9263,11 +8551,7 @@ type ListSigningCertificatesInput struct {
 	// The name of the user.
 	UserName *string `min:"1" type:"string"`
 
-	metadataListSigningCertificatesInput `json:"-" xml:"-"`
-}
-
-type metadataListSigningCertificatesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9297,11 +8581,7 @@ type ListSigningCertificatesOutput struct {
 	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `min:"1" type:"string"`
 
-	metadataListSigningCertificatesOutput `json:"-" xml:"-"`
-}
-
-type metadataListSigningCertificatesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9335,11 +8615,7 @@ type ListUserPoliciesInput struct {
 	// The name of the user to list policies for.
 	UserName *string `min:"1" type:"string" required:"true"`
 
-	metadataListUserPoliciesInput `json:"-" xml:"-"`
-}
-
-type metadataListUserPoliciesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9369,11 +8645,7 @@ type ListUserPoliciesOutput struct {
 	// A list of policy names.
 	PolicyNames []*string `type:"list" required:"true"`
 
-	metadataListUserPoliciesOutput `json:"-" xml:"-"`
-}
-
-type metadataListUserPoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9411,11 +8683,7 @@ type ListUsersInput struct {
 	// (/), listing all user names.
 	PathPrefix *string `min:"1" type:"string"`
 
-	metadataListUsersInput `json:"-" xml:"-"`
-}
-
-type metadataListUsersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9445,11 +8713,7 @@ type ListUsersOutput struct {
 	// A list of users.
 	Users []*User `type:"list" required:"true"`
 
-	metadataListUsersOutput `json:"-" xml:"-"`
-}
-
-type metadataListUsersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9485,11 +8749,7 @@ type ListVirtualMFADevicesInput struct {
 	// service where to continue from.
 	MaxItems *int64 `min:"1" type:"integer"`
 
-	metadataListVirtualMFADevicesInput `json:"-" xml:"-"`
-}
-
-type metadataListVirtualMFADevicesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9520,11 +8780,7 @@ type ListVirtualMFADevicesOutput struct {
 	// value that was passed in the request.
 	VirtualMFADevices []*VirtualMFADevice `type:"list" required:"true"`
 
-	metadataListVirtualMFADevicesOutput `json:"-" xml:"-"`
-}
-
-type metadataListVirtualMFADevicesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9552,11 +8808,7 @@ type LoginProfile struct {
 	// Console.
 	UserName *string `min:"1" type:"string" required:"true"`
 
-	metadataLoginProfile `json:"-" xml:"-"`
-}
-
-type metadataLoginProfile struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9583,11 +8835,7 @@ type MFADevice struct {
 	// The user with whom the MFA device is associated.
 	UserName *string `min:"1" type:"string" required:"true"`
 
-	metadataMFADevice `json:"-" xml:"-"`
-}
-
-type metadataMFADevice struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9667,11 +8915,7 @@ type ManagedPolicyDetail struct {
 	// created.
 	UpdateDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataManagedPolicyDetail `json:"-" xml:"-"`
-}
-
-type metadataManagedPolicyDetail struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9693,11 +8937,7 @@ type OpenIDConnectProviderListEntry struct {
 	// in the AWS General Reference.
 	Arn *string `min:"20" type:"string"`
 
-	metadataOpenIDConnectProviderListEntry `json:"-" xml:"-"`
-}
-
-type metadataOpenIDConnectProviderListEntry struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9749,11 +8989,7 @@ type PasswordPolicy struct {
 	// Specifies whether to require uppercase characters for IAM user passwords.
 	RequireUppercaseCharacters *bool `type:"boolean"`
 
-	metadataPasswordPolicy `json:"-" xml:"-"`
-}
-
-type metadataPasswordPolicy struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9826,11 +9062,7 @@ type Policy struct {
 	// created.
 	UpdateDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataPolicy `json:"-" xml:"-"`
-}
-
-type metadataPolicy struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9854,11 +9086,7 @@ type PolicyDetail struct {
 	// The name of the policy.
 	PolicyName *string `min:"1" type:"string"`
 
-	metadataPolicyDetail `json:"-" xml:"-"`
-}
-
-type metadataPolicyDetail struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9883,11 +9111,7 @@ type PolicyGroup struct {
 	// The name (friendly name, not ARN) identifying the group.
 	GroupName *string `min:"1" type:"string"`
 
-	metadataPolicyGroup `json:"-" xml:"-"`
-}
-
-type metadataPolicyGroup struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9912,11 +9136,7 @@ type PolicyRole struct {
 	// The name (friendly name, not ARN) identifying the role.
 	RoleName *string `min:"1" type:"string"`
 
-	metadataPolicyRole `json:"-" xml:"-"`
-}
-
-type metadataPolicyRole struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9941,11 +9161,7 @@ type PolicyUser struct {
 	// The name (friendly name, not ARN) identifying the user.
 	UserName *string `min:"1" type:"string"`
 
-	metadataPolicyUser `json:"-" xml:"-"`
-}
-
-type metadataPolicyUser struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9988,11 +9204,7 @@ type PolicyVersion struct {
 	// a policy is created, the first policy version is v1.
 	VersionId *string `type:"string"`
 
-	metadataPolicyVersion `json:"-" xml:"-"`
-}
-
-type metadataPolicyVersion struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10016,11 +9228,7 @@ type Position struct {
 	// The line containing the specified position in the document.
 	Line *int64 `type:"integer"`
 
-	metadataPosition `json:"-" xml:"-"`
-}
-
-type metadataPosition struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10043,11 +9251,7 @@ type PutGroupPolicyInput struct {
 	// The name of the policy document.
 	PolicyName *string `min:"1" type:"string" required:"true"`
 
-	metadataPutGroupPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataPutGroupPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10061,11 +9265,7 @@ func (s PutGroupPolicyInput) GoString() string {
 }
 
 type PutGroupPolicyOutput struct {
-	metadataPutGroupPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataPutGroupPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10088,11 +9288,7 @@ type PutRolePolicyInput struct {
 	// The name of the role to associate the policy with.
 	RoleName *string `min:"1" type:"string" required:"true"`
 
-	metadataPutRolePolicyInput `json:"-" xml:"-"`
-}
-
-type metadataPutRolePolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10106,11 +9302,7 @@ func (s PutRolePolicyInput) GoString() string {
 }
 
 type PutRolePolicyOutput struct {
-	metadataPutRolePolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataPutRolePolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10133,11 +9325,7 @@ type PutUserPolicyInput struct {
 	// The name of the user to associate the policy with.
 	UserName *string `min:"1" type:"string" required:"true"`
 
-	metadataPutUserPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataPutUserPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10151,11 +9339,7 @@ func (s PutUserPolicyInput) GoString() string {
 }
 
 type PutUserPolicyOutput struct {
-	metadataPutUserPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataPutUserPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10178,11 +9362,7 @@ type RemoveClientIDFromOpenIDConnectProviderInput struct {
 	// using the ListOpenIDConnectProviders action.
 	OpenIDConnectProviderArn *string `min:"20" type:"string" required:"true"`
 
-	metadataRemoveClientIDFromOpenIDConnectProviderInput `json:"-" xml:"-"`
-}
-
-type metadataRemoveClientIDFromOpenIDConnectProviderInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10196,11 +9376,7 @@ func (s RemoveClientIDFromOpenIDConnectProviderInput) GoString() string {
 }
 
 type RemoveClientIDFromOpenIDConnectProviderOutput struct {
-	metadataRemoveClientIDFromOpenIDConnectProviderOutput `json:"-" xml:"-"`
-}
-
-type metadataRemoveClientIDFromOpenIDConnectProviderOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10220,11 +9396,7 @@ type RemoveRoleFromInstanceProfileInput struct {
 	// The name of the role to remove.
 	RoleName *string `min:"1" type:"string" required:"true"`
 
-	metadataRemoveRoleFromInstanceProfileInput `json:"-" xml:"-"`
-}
-
-type metadataRemoveRoleFromInstanceProfileInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10238,11 +9410,7 @@ func (s RemoveRoleFromInstanceProfileInput) GoString() string {
 }
 
 type RemoveRoleFromInstanceProfileOutput struct {
-	metadataRemoveRoleFromInstanceProfileOutput `json:"-" xml:"-"`
-}
-
-type metadataRemoveRoleFromInstanceProfileOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10262,11 +9430,7 @@ type RemoveUserFromGroupInput struct {
 	// The name of the user to remove.
 	UserName *string `min:"1" type:"string" required:"true"`
 
-	metadataRemoveUserFromGroupInput `json:"-" xml:"-"`
-}
-
-type metadataRemoveUserFromGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10280,11 +9444,7 @@ func (s RemoveUserFromGroupInput) GoString() string {
 }
 
 type RemoveUserFromGroupOutput struct {
-	metadataRemoveUserFromGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataRemoveUserFromGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10329,11 +9489,7 @@ type ResourceSpecificResult struct {
 	// or GetContextKeysForPrincipalPolicy.
 	MissingContextValues []*string `type:"list"`
 
-	metadataResourceSpecificResult `json:"-" xml:"-"`
-}
-
-type metadataResourceSpecificResult struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10359,11 +9515,7 @@ type ResyncMFADeviceInput struct {
 	// The name of the user whose MFA device you want to resynchronize.
 	UserName *string `min:"1" type:"string" required:"true"`
 
-	metadataResyncMFADeviceInput `json:"-" xml:"-"`
-}
-
-type metadataResyncMFADeviceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10377,11 +9529,7 @@ func (s ResyncMFADeviceInput) GoString() string {
 }
 
 type ResyncMFADeviceOutput struct {
-	metadataResyncMFADeviceOutput `json:"-" xml:"-"`
-}
-
-type metadataResyncMFADeviceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10429,11 +9577,7 @@ type Role struct {
 	// The friendly name that identifies the role.
 	RoleName *string `min:"1" type:"string" required:"true"`
 
-	metadataRole `json:"-" xml:"-"`
-}
-
-type metadataRole struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10489,11 +9633,7 @@ type RoleDetail struct {
 	// access (permissions) policies.
 	RolePolicyList []*PolicyDetail `type:"list"`
 
-	metadataRoleDetail `json:"-" xml:"-"`
-}
-
-type metadataRoleDetail struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10517,11 +9657,7 @@ type SAMLProviderListEntry struct {
 	// The expiration date and time for the SAML provider.
 	ValidUntil *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataSAMLProviderListEntry `json:"-" xml:"-"`
-}
-
-type metadataSAMLProviderListEntry struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10559,11 +9695,7 @@ type SSHPublicKey struct {
 	// The name of the IAM user associated with the SSH public key.
 	UserName *string `min:"1" type:"string" required:"true"`
 
-	metadataSSHPublicKey `json:"-" xml:"-"`
-}
-
-type metadataSSHPublicKey struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10594,11 +9726,7 @@ type SSHPublicKeyMetadata struct {
 	// The name of the IAM user associated with the SSH public key.
 	UserName *string `min:"1" type:"string" required:"true"`
 
-	metadataSSHPublicKeyMetadata `json:"-" xml:"-"`
-}
-
-type metadataSSHPublicKeyMetadata struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10626,11 +9754,7 @@ type ServerCertificate struct {
 	// and ARN.
 	ServerCertificateMetadata *ServerCertificateMetadata `type:"structure" required:"true"`
 
-	metadataServerCertificate `json:"-" xml:"-"`
-}
-
-type metadataServerCertificate struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10674,11 +9798,7 @@ type ServerCertificateMetadata struct {
 	// The date when the server certificate was uploaded.
 	UploadDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataServerCertificateMetadata `json:"-" xml:"-"`
-}
-
-type metadataServerCertificateMetadata struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10706,11 +9826,7 @@ type SetDefaultPolicyVersionInput struct {
 	// in the IAM User Guide.
 	VersionId *string `type:"string" required:"true"`
 
-	metadataSetDefaultPolicyVersionInput `json:"-" xml:"-"`
-}
-
-type metadataSetDefaultPolicyVersionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10724,11 +9840,7 @@ func (s SetDefaultPolicyVersionInput) GoString() string {
 }
 
 type SetDefaultPolicyVersionOutput struct {
-	metadataSetDefaultPolicyVersionOutput `json:"-" xml:"-"`
-}
-
-type metadataSetDefaultPolicyVersionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10762,11 +9874,7 @@ type SigningCertificate struct {
 	// The name of the user the signing certificate is associated with.
 	UserName *string `min:"1" type:"string" required:"true"`
 
-	metadataSigningCertificate `json:"-" xml:"-"`
-}
-
-type metadataSigningCertificate struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10896,11 +10004,7 @@ type SimulateCustomPolicyInput struct {
 	// You can include only one resource-based policy in a simulation.
 	ResourcePolicy *string `min:"1" type:"string"`
 
-	metadataSimulateCustomPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataSimulateCustomPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10931,11 +10035,7 @@ type SimulatePolicyResponse struct {
 	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `min:"1" type:"string"`
 
-	metadataSimulatePolicyResponse `json:"-" xml:"-"`
-}
-
-type metadataSimulatePolicyResponse struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11071,11 +10171,7 @@ type SimulatePrincipalPolicyInput struct {
 	// You can include only one resource-based policy in a simulation.
 	ResourcePolicy *string `min:"1" type:"string"`
 
-	metadataSimulatePrincipalPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataSimulatePrincipalPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11106,11 +10202,7 @@ type Statement struct {
 	// The row and column of the beginning of the Statement in an IAM policy.
 	StartPosition *Position `type:"structure"`
 
-	metadataStatement `json:"-" xml:"-"`
-}
-
-type metadataStatement struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11135,11 +10227,7 @@ type UpdateAccessKeyInput struct {
 	// The name of the user whose key you want to update.
 	UserName *string `min:"1" type:"string"`
 
-	metadataUpdateAccessKeyInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateAccessKeyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11153,11 +10241,7 @@ func (s UpdateAccessKeyInput) GoString() string {
 }
 
 type UpdateAccessKeyOutput struct {
-	metadataUpdateAccessKeyOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateAccessKeyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11228,11 +10312,7 @@ type UpdateAccountPasswordPolicyInput struct {
 	// Default value: false
 	RequireUppercaseCharacters *bool `type:"boolean"`
 
-	metadataUpdateAccountPasswordPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateAccountPasswordPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11246,11 +10326,7 @@ func (s UpdateAccountPasswordPolicyInput) GoString() string {
 }
 
 type UpdateAccountPasswordPolicyOutput struct {
-	metadataUpdateAccountPasswordPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateAccountPasswordPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11270,11 +10346,7 @@ type UpdateAssumeRolePolicyInput struct {
 	// The name of the role to update.
 	RoleName *string `min:"1" type:"string" required:"true"`
 
-	metadataUpdateAssumeRolePolicyInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateAssumeRolePolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11288,11 +10360,7 @@ func (s UpdateAssumeRolePolicyInput) GoString() string {
 }
 
 type UpdateAssumeRolePolicyOutput struct {
-	metadataUpdateAssumeRolePolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateAssumeRolePolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11316,11 +10384,7 @@ type UpdateGroupInput struct {
 	// New path for the group. Only include this if changing the group's path.
 	NewPath *string `min:"1" type:"string"`
 
-	metadataUpdateGroupInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11334,11 +10398,7 @@ func (s UpdateGroupInput) GoString() string {
 }
 
 type UpdateGroupOutput struct {
-	metadataUpdateGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11361,11 +10421,7 @@ type UpdateLoginProfileInput struct {
 	// The name of the user whose password you want to update.
 	UserName *string `min:"1" type:"string" required:"true"`
 
-	metadataUpdateLoginProfileInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateLoginProfileInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11379,11 +10435,7 @@ func (s UpdateLoginProfileInput) GoString() string {
 }
 
 type UpdateLoginProfileOutput struct {
-	metadataUpdateLoginProfileOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateLoginProfileOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11406,11 +10458,7 @@ type UpdateOpenIDConnectProviderThumbprintInput struct {
 	// IAM OpenID Connect provider. For more information, see CreateOpenIDConnectProvider.
 	ThumbprintList []*string `type:"list" required:"true"`
 
-	metadataUpdateOpenIDConnectProviderThumbprintInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateOpenIDConnectProviderThumbprintInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11424,11 +10472,7 @@ func (s UpdateOpenIDConnectProviderThumbprintInput) GoString() string {
 }
 
 type UpdateOpenIDConnectProviderThumbprintOutput struct {
-	metadataUpdateOpenIDConnectProviderThumbprintOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateOpenIDConnectProviderThumbprintOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11452,11 +10496,7 @@ type UpdateSAMLProviderInput struct {
 	// The Amazon Resource Name (ARN) of the SAML provider to update.
 	SAMLProviderArn *string `min:"20" type:"string" required:"true"`
 
-	metadataUpdateSAMLProviderInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateSAMLProviderInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11474,11 +10514,7 @@ type UpdateSAMLProviderOutput struct {
 	// The Amazon Resource Name (ARN) of the SAML provider that was updated.
 	SAMLProviderArn *string `min:"20" type:"string"`
 
-	metadataUpdateSAMLProviderOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateSAMLProviderOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11503,11 +10539,7 @@ type UpdateSSHPublicKeyInput struct {
 	// The name of the IAM user associated with the SSH public key.
 	UserName *string `min:"1" type:"string" required:"true"`
 
-	metadataUpdateSSHPublicKeyInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateSSHPublicKeyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11521,11 +10553,7 @@ func (s UpdateSSHPublicKeyInput) GoString() string {
 }
 
 type UpdateSSHPublicKeyOutput struct {
-	metadataUpdateSSHPublicKeyOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateSSHPublicKeyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11551,11 +10579,7 @@ type UpdateServerCertificateInput struct {
 	// The name of the server certificate that you want to update.
 	ServerCertificateName *string `min:"1" type:"string" required:"true"`
 
-	metadataUpdateServerCertificateInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateServerCertificateInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11569,11 +10593,7 @@ func (s UpdateServerCertificateInput) GoString() string {
 }
 
 type UpdateServerCertificateOutput struct {
-	metadataUpdateServerCertificateOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateServerCertificateOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11598,11 +10618,7 @@ type UpdateSigningCertificateInput struct {
 	// The name of the user the signing certificate belongs to.
 	UserName *string `min:"1" type:"string"`
 
-	metadataUpdateSigningCertificateInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateSigningCertificateInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11616,11 +10632,7 @@ func (s UpdateSigningCertificateInput) GoString() string {
 }
 
 type UpdateSigningCertificateOutput struct {
-	metadataUpdateSigningCertificateOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateSigningCertificateOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11646,11 +10658,7 @@ type UpdateUserInput struct {
 	// is the original user name.
 	UserName *string `min:"1" type:"string" required:"true"`
 
-	metadataUpdateUserInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateUserInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11664,11 +10672,7 @@ func (s UpdateUserInput) GoString() string {
 }
 
 type UpdateUserOutput struct {
-	metadataUpdateUserOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateUserOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11689,11 +10693,7 @@ type UploadSSHPublicKeyInput struct {
 	// The name of the IAM user to associate the SSH public key with.
 	UserName *string `min:"1" type:"string" required:"true"`
 
-	metadataUploadSSHPublicKeyInput `json:"-" xml:"-"`
-}
-
-type metadataUploadSSHPublicKeyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11711,11 +10711,7 @@ type UploadSSHPublicKeyOutput struct {
 	// Contains information about the SSH public key.
 	SSHPublicKey *SSHPublicKey `type:"structure"`
 
-	metadataUploadSSHPublicKeyOutput `json:"-" xml:"-"`
-}
-
-type metadataUploadSSHPublicKeyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11756,11 +10752,7 @@ type UploadServerCertificateInput struct {
 	// The name of the certificate cannot contain any spaces.
 	ServerCertificateName *string `min:"1" type:"string" required:"true"`
 
-	metadataUploadServerCertificateInput `json:"-" xml:"-"`
-}
-
-type metadataUploadServerCertificateInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11779,11 +10771,7 @@ type UploadServerCertificateOutput struct {
 	// body, certificate chain, and private key.
 	ServerCertificateMetadata *ServerCertificateMetadata `type:"structure"`
 
-	metadataUploadServerCertificateOutput `json:"-" xml:"-"`
-}
-
-type metadataUploadServerCertificateOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11803,11 +10791,7 @@ type UploadSigningCertificateInput struct {
 	// The name of the user the signing certificate is for.
 	UserName *string `min:"1" type:"string"`
 
-	metadataUploadSigningCertificateInput `json:"-" xml:"-"`
-}
-
-type metadataUploadSigningCertificateInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11825,11 +10809,7 @@ type UploadSigningCertificateOutput struct {
 	// Information about the certificate.
 	Certificate *SigningCertificate `type:"structure" required:"true"`
 
-	metadataUploadSigningCertificateOutput `json:"-" xml:"-"`
-}
-
-type metadataUploadSigningCertificateOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11892,11 +10872,7 @@ type User struct {
 	// The friendly name identifying the user.
 	UserName *string `min:"1" type:"string" required:"true"`
 
-	metadataUser `json:"-" xml:"-"`
-}
-
-type metadataUser struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11948,11 +10924,7 @@ type UserDetail struct {
 	// A list of the inline policies embedded in the user.
 	UserPolicyList []*PolicyDetail `type:"list"`
 
-	metadataUserDetail `json:"-" xml:"-"`
-}
-
-type metadataUserDetail struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11994,11 +10966,7 @@ type VirtualMFADevice struct {
 	//    ListUsers
 	User *User `type:"structure"`
 
-	metadataVirtualMFADevice `json:"-" xml:"-"`
-}
-
-type metadataVirtualMFADevice struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

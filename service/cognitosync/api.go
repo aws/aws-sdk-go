@@ -563,11 +563,7 @@ type BulkPublishInput struct {
 	// created by Amazon Cognito. GUID generation is unique within a region.
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
-	metadataBulkPublishInput `json:"-" xml:"-"`
-}
-
-type metadataBulkPublishInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -586,11 +582,7 @@ type BulkPublishOutput struct {
 	// created by Amazon Cognito. GUID generation is unique within a region.
 	IdentityPoolId *string `min:"1" type:"string"`
 
-	metadataBulkPublishOutput `json:"-" xml:"-"`
-}
-
-type metadataBulkPublishOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -621,11 +613,7 @@ type CognitoStreams struct {
 	// will also fail if StreamingStatus is DISABLED.
 	StreamingStatus *string `type:"string" enum:"StreamingStatus"`
 
-	metadataCognitoStreams `json:"-" xml:"-"`
-}
-
-type metadataCognitoStreams struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -667,11 +655,7 @@ type Dataset struct {
 	// Number of records in this dataset.
 	NumRecords *int64 `type:"long"`
 
-	metadataDataset `json:"-" xml:"-"`
-}
-
-type metadataDataset struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -698,11 +682,7 @@ type DeleteDatasetInput struct {
 	// created by Amazon Cognito. GUID generation is unique within a region.
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
-	metadataDeleteDatasetInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDatasetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -724,11 +704,7 @@ type DeleteDatasetOutput struct {
 	// hold up to 1MB of key-value pairs.
 	Dataset *Dataset `type:"structure"`
 
-	metadataDeleteDatasetOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDatasetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -756,11 +732,7 @@ type DescribeDatasetInput struct {
 	// created by Amazon Cognito. GUID generation is unique within a region.
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
-	metadataDescribeDatasetInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDatasetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -782,11 +754,7 @@ type DescribeDatasetOutput struct {
 	// hold up to 1MB of key-value pairs.
 	Dataset *Dataset `type:"structure"`
 
-	metadataDescribeDatasetOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDatasetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -805,11 +773,7 @@ type DescribeIdentityPoolUsageInput struct {
 	// created by Amazon Cognito. GUID generation is unique within a region.
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
-	metadataDescribeIdentityPoolUsageInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeIdentityPoolUsageInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -827,11 +791,7 @@ type DescribeIdentityPoolUsageOutput struct {
 	// Information about the usage of the identity pool.
 	IdentityPoolUsage *IdentityPoolUsage `type:"structure"`
 
-	metadataDescribeIdentityPoolUsageOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeIdentityPoolUsageOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -854,11 +814,7 @@ type DescribeIdentityUsageInput struct {
 	// created by Amazon Cognito. GUID generation is unique within a region.
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
-	metadataDescribeIdentityUsageInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeIdentityUsageInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -876,11 +832,7 @@ type DescribeIdentityUsageOutput struct {
 	// Usage information for the identity.
 	IdentityUsage *IdentityUsage `type:"structure"`
 
-	metadataDescribeIdentityUsageOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeIdentityUsageOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -899,11 +851,7 @@ type GetBulkPublishDetailsInput struct {
 	// created by Amazon Cognito. GUID generation is unique within a region.
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
-	metadataGetBulkPublishDetailsInput `json:"-" xml:"-"`
-}
-
-type metadataGetBulkPublishDetailsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -945,11 +893,7 @@ type GetBulkPublishDetailsOutput struct {
 	// created by Amazon Cognito. GUID generation is unique within a region.
 	IdentityPoolId *string `min:"1" type:"string"`
 
-	metadataGetBulkPublishDetailsOutput `json:"-" xml:"-"`
-}
-
-type metadataGetBulkPublishDetailsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -967,11 +911,7 @@ type GetCognitoEventsInput struct {
 	// The Cognito Identity Pool ID for the request
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
-	metadataGetCognitoEventsInput `json:"-" xml:"-"`
-}
-
-type metadataGetCognitoEventsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -989,11 +929,7 @@ type GetCognitoEventsOutput struct {
 	// The Cognito Events returned from the GetCognitoEvents request
 	Events map[string]*string `type:"map"`
 
-	metadataGetCognitoEventsOutput `json:"-" xml:"-"`
-}
-
-type metadataGetCognitoEventsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1013,11 +949,7 @@ type GetIdentityPoolConfigurationInput struct {
 	// a configuration.
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
-	metadataGetIdentityPoolConfigurationInput `json:"-" xml:"-"`
-}
-
-type metadataGetIdentityPoolConfigurationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1042,11 +974,7 @@ type GetIdentityPoolConfigurationOutput struct {
 	// Options to apply to this identity pool for push synchronization.
 	PushSync *PushSync `type:"structure"`
 
-	metadataGetIdentityPoolConfigurationOutput `json:"-" xml:"-"`
-}
-
-type metadataGetIdentityPoolConfigurationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1074,11 +1002,7 @@ type IdentityPoolUsage struct {
 	// Number of sync sessions for the identity pool.
 	SyncSessionsCount *int64 `type:"long"`
 
-	metadataIdentityPoolUsage `json:"-" xml:"-"`
-}
-
-type metadataIdentityPoolUsage struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1110,11 +1034,7 @@ type IdentityUsage struct {
 	// Date on which the identity was last modified.
 	LastModifiedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	metadataIdentityUsage `json:"-" xml:"-"`
-}
-
-type metadataIdentityUsage struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1143,11 +1063,7 @@ type ListDatasetsInput struct {
 	// A pagination token for obtaining the next page of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
-	metadataListDatasetsInput `json:"-" xml:"-"`
-}
-
-type metadataListDatasetsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1171,11 +1087,7 @@ type ListDatasetsOutput struct {
 	// A pagination token for obtaining the next page of results.
 	NextToken *string `type:"string"`
 
-	metadataListDatasetsOutput `json:"-" xml:"-"`
-}
-
-type metadataListDatasetsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1196,11 +1108,7 @@ type ListIdentityPoolUsageInput struct {
 	// A pagination token for obtaining the next page of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
-	metadataListIdentityPoolUsageInput `json:"-" xml:"-"`
-}
-
-type metadataListIdentityPoolUsageInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1227,11 +1135,7 @@ type ListIdentityPoolUsageOutput struct {
 	// A pagination token for obtaining the next page of results.
 	NextToken *string `type:"string"`
 
-	metadataListIdentityPoolUsageOutput `json:"-" xml:"-"`
-}
-
-type metadataListIdentityPoolUsageOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1270,11 +1174,7 @@ type ListRecordsInput struct {
 	// A token containing a session ID, identity ID, and expiration.
 	SyncSessionToken *string `location:"querystring" locationName:"syncSessionToken" type:"string"`
 
-	metadataListRecordsInput `json:"-" xml:"-"`
-}
-
-type metadataListRecordsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1316,11 +1216,7 @@ type ListRecordsOutput struct {
 	// A token containing a session ID, identity ID, and expiration.
 	SyncSessionToken *string `type:"string"`
 
-	metadataListRecordsOutput `json:"-" xml:"-"`
-}
-
-type metadataListRecordsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1341,11 +1237,7 @@ type PushSync struct {
 	// A role configured to allow Cognito to call SNS on behalf of the developer.
 	RoleArn *string `min:"20" type:"string"`
 
-	metadataPushSync `json:"-" xml:"-"`
-}
-
-type metadataPushSync struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1378,11 +1270,7 @@ type Record struct {
 	// The value for the record.
 	Value *string `type:"string"`
 
-	metadataRecord `json:"-" xml:"-"`
-}
-
-type metadataRecord struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1412,11 +1300,7 @@ type RecordPatch struct {
 	// The value associated with the record patch.
 	Value *string `type:"string"`
 
-	metadataRecordPatch `json:"-" xml:"-"`
-}
-
-type metadataRecordPatch struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1445,11 +1329,7 @@ type RegisterDeviceInput struct {
 	// The push token.
 	Token *string `type:"string" required:"true"`
 
-	metadataRegisterDeviceInput `json:"-" xml:"-"`
-}
-
-type metadataRegisterDeviceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1467,11 +1347,7 @@ type RegisterDeviceOutput struct {
 	// The unique ID generated for this device by Cognito.
 	DeviceId *string `min:"1" type:"string"`
 
-	metadataRegisterDeviceOutput `json:"-" xml:"-"`
-}
-
-type metadataRegisterDeviceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1494,11 +1370,7 @@ type SetCognitoEventsInput struct {
 	// The Cognito Identity Pool to use when configuring Cognito Events
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
-	metadataSetCognitoEventsInput `json:"-" xml:"-"`
-}
-
-type metadataSetCognitoEventsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1512,11 +1384,7 @@ func (s SetCognitoEventsInput) GoString() string {
 }
 
 type SetCognitoEventsOutput struct {
-	metadataSetCognitoEventsOutput `json:"-" xml:"-"`
-}
-
-type metadataSetCognitoEventsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1541,11 +1409,7 @@ type SetIdentityPoolConfigurationInput struct {
 	// Options to apply to this identity pool for push synchronization.
 	PushSync *PushSync `type:"structure"`
 
-	metadataSetIdentityPoolConfigurationInput `json:"-" xml:"-"`
-}
-
-type metadataSetIdentityPoolConfigurationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1570,11 +1434,7 @@ type SetIdentityPoolConfigurationOutput struct {
 	// Options to apply to this identity pool for push synchronization.
 	PushSync *PushSync `type:"structure"`
 
-	metadataSetIdentityPoolConfigurationOutput `json:"-" xml:"-"`
-}
-
-type metadataSetIdentityPoolConfigurationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1602,11 +1462,7 @@ type SubscribeToDatasetInput struct {
 	// created by Amazon Cognito. The ID of the pool to which the identity belongs.
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
-	metadataSubscribeToDatasetInput `json:"-" xml:"-"`
-}
-
-type metadataSubscribeToDatasetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1621,11 +1477,7 @@ func (s SubscribeToDatasetInput) GoString() string {
 
 // Response to a SubscribeToDataset request.
 type SubscribeToDatasetOutput struct {
-	metadataSubscribeToDatasetOutput `json:"-" xml:"-"`
-}
-
-type metadataSubscribeToDatasetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1653,11 +1505,7 @@ type UnsubscribeFromDatasetInput struct {
 	// created by Amazon Cognito. The ID of the pool to which this identity belongs.
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
-	metadataUnsubscribeFromDatasetInput `json:"-" xml:"-"`
-}
-
-type metadataUnsubscribeFromDatasetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1672,11 +1520,7 @@ func (s UnsubscribeFromDatasetInput) GoString() string {
 
 // Response to an UnsubscribeFromDataset request.
 type UnsubscribeFromDatasetOutput struct {
-	metadataUnsubscribeFromDatasetOutput `json:"-" xml:"-"`
-}
-
-type metadataUnsubscribeFromDatasetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1718,11 +1562,7 @@ type UpdateRecordsInput struct {
 	// dataset and identity.
 	SyncSessionToken *string `type:"string" required:"true"`
 
-	metadataUpdateRecordsInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateRecordsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1740,11 +1580,7 @@ type UpdateRecordsOutput struct {
 	// A list of records that have been updated.
 	Records []*Record `type:"list"`
 
-	metadataUpdateRecordsOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateRecordsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

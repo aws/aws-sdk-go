@@ -133,11 +133,7 @@ type DeleteThingShadowInput struct {
 	// The name of the thing.
 	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
 
-	metadataDeleteThingShadowInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteThingShadowInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -155,11 +151,7 @@ type DeleteThingShadowOutput struct {
 	// The state information, in JSON format.
 	Payload []byte `locationName:"payload" type:"blob" required:"true"`
 
-	metadataDeleteThingShadowOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteThingShadowOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Payload"`
+	_ struct{} `type:"structure" payload:"Payload"`
 }
 
 // String returns the string representation
@@ -177,11 +169,7 @@ type GetThingShadowInput struct {
 	// The name of the thing.
 	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
 
-	metadataGetThingShadowInput `json:"-" xml:"-"`
-}
-
-type metadataGetThingShadowInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -199,11 +187,7 @@ type GetThingShadowOutput struct {
 	// The state information, in JSON format.
 	Payload []byte `locationName:"payload" type:"blob"`
 
-	metadataGetThingShadowOutput `json:"-" xml:"-"`
-}
-
-type metadataGetThingShadowOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Payload"`
+	_ struct{} `type:"structure" payload:"Payload"`
 }
 
 // String returns the string representation
@@ -227,11 +211,7 @@ type PublishInput struct {
 	// The name of the MQTT topic.
 	Topic *string `location:"uri" locationName:"topic" type:"string" required:"true"`
 
-	metadataPublishInput `json:"-" xml:"-"`
-}
-
-type metadataPublishInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Payload"`
+	_ struct{} `type:"structure" payload:"Payload"`
 }
 
 // String returns the string representation
@@ -245,11 +225,7 @@ func (s PublishInput) GoString() string {
 }
 
 type PublishOutput struct {
-	metadataPublishOutput `json:"-" xml:"-"`
-}
-
-type metadataPublishOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -270,11 +246,7 @@ type UpdateThingShadowInput struct {
 	// The name of the thing.
 	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
 
-	metadataUpdateThingShadowInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateThingShadowInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Payload"`
+	_ struct{} `type:"structure" payload:"Payload"`
 }
 
 // String returns the string representation
@@ -292,11 +264,7 @@ type UpdateThingShadowOutput struct {
 	// The state information, in JSON format.
 	Payload []byte `locationName:"payload" type:"blob"`
 
-	metadataUpdateThingShadowOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateThingShadowOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Payload"`
+	_ struct{} `type:"structure" payload:"Payload"`
 }
 
 // String returns the string representation

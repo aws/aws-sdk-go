@@ -1919,11 +1919,7 @@ type ActivateGatewayInput struct {
 	// Valid Values: "IBM-ULT3580-TD5"
 	TapeDriveType *string `min:"2" type:"string"`
 
-	metadataActivateGatewayInput `json:"-" xml:"-"`
-}
-
-type metadataActivateGatewayInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1945,11 +1941,7 @@ type ActivateGatewayOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string"`
 
-	metadataActivateGatewayOutput `json:"-" xml:"-"`
-}
-
-type metadataActivateGatewayOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1969,11 +1961,7 @@ type AddCacheInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
-	metadataAddCacheInput `json:"-" xml:"-"`
-}
-
-type metadataAddCacheInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1991,11 +1979,7 @@ type AddCacheOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string"`
 
-	metadataAddCacheOutput `json:"-" xml:"-"`
-}
-
-type metadataAddCacheOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2020,11 +2004,7 @@ type AddTagsToResourceInput struct {
 	// in UTF-8 format, and the following special characters: + - = . _ : / @.
 	Tags []*Tag `type:"list" required:"true"`
 
-	metadataAddTagsToResourceInput `json:"-" xml:"-"`
-}
-
-type metadataAddTagsToResourceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2042,11 +2022,7 @@ type AddTagsToResourceOutput struct {
 	// The Amazon Resource Name (ARN) of the resource you want to add tags to.
 	ResourceARN *string `min:"50" type:"string"`
 
-	metadataAddTagsToResourceOutput `json:"-" xml:"-"`
-}
-
-type metadataAddTagsToResourceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2066,11 +2042,7 @@ type AddUploadBufferInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
-	metadataAddUploadBufferInput `json:"-" xml:"-"`
-}
-
-type metadataAddUploadBufferInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2088,11 +2060,7 @@ type AddUploadBufferOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string"`
 
-	metadataAddUploadBufferOutput `json:"-" xml:"-"`
-}
-
-type metadataAddUploadBufferOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2118,11 +2086,7 @@ type AddWorkingStorageInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
-	metadataAddWorkingStorageInput `json:"-" xml:"-"`
-}
-
-type metadataAddWorkingStorageInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2142,11 +2106,7 @@ type AddWorkingStorageOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string"`
 
-	metadataAddWorkingStorageOutput `json:"-" xml:"-"`
-}
-
-type metadataAddWorkingStorageOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2177,11 +2137,7 @@ type CachediSCSIVolume struct {
 	// Lists iSCSI information about a volume.
 	VolumeiSCSIAttributes *VolumeiSCSIAttributes `type:"structure"`
 
-	metadataCachediSCSIVolume `json:"-" xml:"-"`
-}
-
-type metadataCachediSCSIVolume struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2204,11 +2160,7 @@ type CancelArchivalInput struct {
 	// for.
 	TapeARN *string `min:"50" type:"string" required:"true"`
 
-	metadataCancelArchivalInput `json:"-" xml:"-"`
-}
-
-type metadataCancelArchivalInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2227,11 +2179,7 @@ type CancelArchivalOutput struct {
 	// canceled.
 	TapeARN *string `min:"50" type:"string"`
 
-	metadataCancelArchivalOutput `json:"-" xml:"-"`
-}
-
-type metadataCancelArchivalOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2254,11 +2202,7 @@ type CancelRetrievalInput struct {
 	// for.
 	TapeARN *string `min:"50" type:"string" required:"true"`
 
-	metadataCancelRetrievalInput `json:"-" xml:"-"`
-}
-
-type metadataCancelRetrievalInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2277,11 +2221,7 @@ type CancelRetrievalOutput struct {
 	// canceled.
 	TapeARN *string `min:"50" type:"string"`
 
-	metadataCancelRetrievalOutput `json:"-" xml:"-"`
-}
-
-type metadataCancelRetrievalOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2314,11 +2254,7 @@ type ChapInfo struct {
 	// (-).
 	TargetARN *string `min:"50" type:"string"`
 
-	metadataChapInfo `json:"-" xml:"-"`
-}
-
-type metadataChapInfo struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2346,11 +2282,7 @@ type CreateCachediSCSIVolumeInput struct {
 
 	VolumeSizeInBytes *int64 `type:"long" required:"true"`
 
-	metadataCreateCachediSCSIVolumeInput `json:"-" xml:"-"`
-}
-
-type metadataCreateCachediSCSIVolumeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2368,11 +2300,7 @@ type CreateCachediSCSIVolumeOutput struct {
 
 	VolumeARN *string `min:"50" type:"string"`
 
-	metadataCreateCachediSCSIVolumeOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateCachediSCSIVolumeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2390,11 +2318,7 @@ type CreateSnapshotFromVolumeRecoveryPointInput struct {
 
 	VolumeARN *string `min:"50" type:"string" required:"true"`
 
-	metadataCreateSnapshotFromVolumeRecoveryPointInput `json:"-" xml:"-"`
-}
-
-type metadataCreateSnapshotFromVolumeRecoveryPointInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2414,11 +2338,7 @@ type CreateSnapshotFromVolumeRecoveryPointOutput struct {
 
 	VolumeRecoveryPointTime *string `type:"string"`
 
-	metadataCreateSnapshotFromVolumeRecoveryPointOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateSnapshotFromVolumeRecoveryPointOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2444,11 +2364,7 @@ type CreateSnapshotInput struct {
 	// to return a list of gateway volumes.
 	VolumeARN *string `min:"50" type:"string" required:"true"`
 
-	metadataCreateSnapshotInput `json:"-" xml:"-"`
-}
-
-type metadataCreateSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2471,11 +2387,7 @@ type CreateSnapshotOutput struct {
 	// The Amazon Resource Name (ARN) of the volume of which the snapshot was taken.
 	VolumeARN *string `min:"50" type:"string"`
 
-	metadataCreateSnapshotOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateSnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2529,11 +2441,7 @@ type CreateStorediSCSIVolumeInput struct {
 	// The target name must be unique across all volumes of a gateway.
 	TargetName *string `min:"1" type:"string" required:"true"`
 
-	metadataCreateStorediSCSIVolumeInput `json:"-" xml:"-"`
-}
-
-type metadataCreateStorediSCSIVolumeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2558,11 +2466,7 @@ type CreateStorediSCSIVolumeOutput struct {
 	// The size of the volume in bytes.
 	VolumeSizeInBytes *int64 `type:"long"`
 
-	metadataCreateStorediSCSIVolumeOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateStorediSCSIVolumeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2603,11 +2507,7 @@ type CreateTapesInput struct {
 	// The size must be gigabyte (1024*1024*1024 byte) aligned.
 	TapeSizeInBytes *int64 `type:"long" required:"true"`
 
-	metadataCreateTapesInput `json:"-" xml:"-"`
-}
-
-type metadataCreateTapesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2626,11 +2526,7 @@ type CreateTapesOutput struct {
 	// tapes that were created.
 	TapeARNs []*string `type:"list"`
 
-	metadataCreateTapesOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateTapesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2650,11 +2546,7 @@ type DeleteBandwidthRateLimitInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
-	metadataDeleteBandwidthRateLimitInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteBandwidthRateLimitInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2674,11 +2566,7 @@ type DeleteBandwidthRateLimitOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string"`
 
-	metadataDeleteBandwidthRateLimitOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteBandwidthRateLimitOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2702,11 +2590,7 @@ type DeleteChapCredentialsInput struct {
 	// operation to return to retrieve the TargetARN for specified VolumeARN.
 	TargetARN *string `min:"50" type:"string" required:"true"`
 
-	metadataDeleteChapCredentialsInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteChapCredentialsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2727,11 +2611,7 @@ type DeleteChapCredentialsOutput struct {
 	// The Amazon Resource Name (ARN) of the target.
 	TargetARN *string `min:"50" type:"string"`
 
-	metadataDeleteChapCredentialsOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteChapCredentialsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2750,11 +2630,7 @@ type DeleteGatewayInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
-	metadataDeleteGatewayInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteGatewayInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2773,11 +2649,7 @@ type DeleteGatewayOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string"`
 
-	metadataDeleteGatewayOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteGatewayOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2793,11 +2665,7 @@ func (s DeleteGatewayOutput) GoString() string {
 type DeleteSnapshotScheduleInput struct {
 	VolumeARN *string `min:"50" type:"string" required:"true"`
 
-	metadataDeleteSnapshotScheduleInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteSnapshotScheduleInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2813,11 +2681,7 @@ func (s DeleteSnapshotScheduleInput) GoString() string {
 type DeleteSnapshotScheduleOutput struct {
 	VolumeARN *string `min:"50" type:"string"`
 
-	metadataDeleteSnapshotScheduleOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteSnapshotScheduleOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2836,11 +2700,7 @@ type DeleteTapeArchiveInput struct {
 	// tape shelf (VTS).
 	TapeARN *string `min:"50" type:"string" required:"true"`
 
-	metadataDeleteTapeArchiveInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteTapeArchiveInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2859,11 +2719,7 @@ type DeleteTapeArchiveOutput struct {
 	// the virtual tape shelf (VTS).
 	TapeARN *string `min:"50" type:"string"`
 
-	metadataDeleteTapeArchiveOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteTapeArchiveOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2886,11 +2742,7 @@ type DeleteTapeInput struct {
 	// The Amazon Resource Name (ARN) of the virtual tape to delete.
 	TapeARN *string `min:"50" type:"string" required:"true"`
 
-	metadataDeleteTapeInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteTapeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2908,11 +2760,7 @@ type DeleteTapeOutput struct {
 	// The Amazon Resource Name (ARN) of the deleted virtual tape.
 	TapeARN *string `min:"50" type:"string"`
 
-	metadataDeleteTapeOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteTapeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2931,11 +2779,7 @@ type DeleteVolumeInput struct {
 	// to return a list of gateway volumes.
 	VolumeARN *string `min:"50" type:"string" required:"true"`
 
-	metadataDeleteVolumeInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteVolumeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2954,11 +2798,7 @@ type DeleteVolumeOutput struct {
 	// is the same ARN you provided in the request.
 	VolumeARN *string `min:"50" type:"string"`
 
-	metadataDeleteVolumeOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteVolumeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2977,11 +2817,7 @@ type DescribeBandwidthRateLimitInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
-	metadataDescribeBandwidthRateLimitInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeBandwidthRateLimitInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3008,11 +2844,7 @@ type DescribeBandwidthRateLimitOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string"`
 
-	metadataDescribeBandwidthRateLimitOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeBandwidthRateLimitOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3030,11 +2862,7 @@ type DescribeCacheInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
-	metadataDescribeCacheInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeCacheInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3064,11 +2892,7 @@ type DescribeCacheOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string"`
 
-	metadataDescribeCacheOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeCacheOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3084,11 +2908,7 @@ func (s DescribeCacheOutput) GoString() string {
 type DescribeCachediSCSIVolumesInput struct {
 	VolumeARNs []*string `type:"list" required:"true"`
 
-	metadataDescribeCachediSCSIVolumesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeCachediSCSIVolumesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3107,11 +2927,7 @@ type DescribeCachediSCSIVolumesOutput struct {
 	// volume.
 	CachediSCSIVolumes []*CachediSCSIVolume `type:"list"`
 
-	metadataDescribeCachediSCSIVolumesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeCachediSCSIVolumesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3131,11 +2947,7 @@ type DescribeChapCredentialsInput struct {
 	// operation to return to retrieve the TargetARN for specified VolumeARN.
 	TargetARN *string `min:"50" type:"string" required:"true"`
 
-	metadataDescribeChapCredentialsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeChapCredentialsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3167,11 +2979,7 @@ type DescribeChapCredentialsOutput struct {
 	//   TargetARN: The Amazon Resource Name (ARN) of the storage volume.
 	ChapCredentials []*ChapInfo `type:"list"`
 
-	metadataDescribeChapCredentialsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeChapCredentialsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3190,11 +2998,7 @@ type DescribeGatewayInformationInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
-	metadataDescribeGatewayInformationInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeGatewayInformationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3242,11 +3046,7 @@ type DescribeGatewayInformationOutput struct {
 	// this field is not returned in the response.
 	NextUpdateAvailabilityDate *string `min:"1" type:"string"`
 
-	metadataDescribeGatewayInformationOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeGatewayInformationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3265,11 +3065,7 @@ type DescribeMaintenanceStartTimeInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
-	metadataDescribeMaintenanceStartTimeInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeMaintenanceStartTimeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3295,11 +3091,7 @@ type DescribeMaintenanceStartTimeOutput struct {
 
 	Timezone *string `min:"3" type:"string"`
 
-	metadataDescribeMaintenanceStartTimeOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeMaintenanceStartTimeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3319,11 +3111,7 @@ type DescribeSnapshotScheduleInput struct {
 	// to return a list of gateway volumes.
 	VolumeARN *string `min:"50" type:"string" required:"true"`
 
-	metadataDescribeSnapshotScheduleInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSnapshotScheduleInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3347,11 +3135,7 @@ type DescribeSnapshotScheduleOutput struct {
 
 	VolumeARN *string `min:"50" type:"string"`
 
-	metadataDescribeSnapshotScheduleOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSnapshotScheduleOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3371,11 +3155,7 @@ type DescribeStorediSCSIVolumesInput struct {
 	// same gateway. Use ListVolumes to get volume ARNs for a gateway.
 	VolumeARNs []*string `type:"list" required:"true"`
 
-	metadataDescribeStorediSCSIVolumesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeStorediSCSIVolumesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3391,11 +3171,7 @@ func (s DescribeStorediSCSIVolumesInput) GoString() string {
 type DescribeStorediSCSIVolumesOutput struct {
 	StorediSCSIVolumes []*StorediSCSIVolume `type:"list"`
 
-	metadataDescribeStorediSCSIVolumesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeStorediSCSIVolumesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3422,11 +3198,7 @@ type DescribeTapeArchivesInput struct {
 	// the virtual tapes you want to describe.
 	TapeARNs []*string `type:"list"`
 
-	metadataDescribeTapeArchivesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTapeArchivesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3454,11 +3226,7 @@ type DescribeTapeArchivesOutput struct {
 	// the tapes, status of the tapes, progress of the description and tape barcode.
 	TapeArchives []*TapeArchive `type:"list"`
 
-	metadataDescribeTapeArchivesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTapeArchivesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3485,11 +3253,7 @@ type DescribeTapeRecoveryPointsInput struct {
 	// the virtual tape recovery points.
 	Marker *string `min:"1" type:"string"`
 
-	metadataDescribeTapeRecoveryPointsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTapeRecoveryPointsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3519,11 +3283,7 @@ type DescribeTapeRecoveryPointsOutput struct {
 	// An array of TapeRecoveryPointInfos that are available for the specified gateway.
 	TapeRecoveryPointInfos []*TapeRecoveryPointInfo `type:"list"`
 
-	metadataDescribeTapeRecoveryPointsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTapeRecoveryPointsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3560,11 +3320,7 @@ type DescribeTapesInput struct {
 	// with the specified gateway.
 	TapeARNs []*string `type:"list"`
 
-	metadataDescribeTapesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTapesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3589,11 +3345,7 @@ type DescribeTapesOutput struct {
 	// An array of virtual tape descriptions.
 	Tapes []*Tape `type:"list"`
 
-	metadataDescribeTapesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTapesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3611,11 +3363,7 @@ type DescribeUploadBufferInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
-	metadataDescribeUploadBufferInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeUploadBufferInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3639,11 +3387,7 @@ type DescribeUploadBufferOutput struct {
 
 	UploadBufferUsedInBytes *int64 `type:"long"`
 
-	metadataDescribeUploadBufferOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeUploadBufferOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3678,11 +3422,7 @@ type DescribeVTLDevicesInput struct {
 	// gateway.
 	VTLDeviceARNs []*string `type:"list"`
 
-	metadataDescribeVTLDevicesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeVTLDevicesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3711,11 +3451,7 @@ type DescribeVTLDevicesOutput struct {
 	// of the VTL devices.
 	VTLDevices []*VTLDevice `type:"list"`
 
-	metadataDescribeVTLDevicesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeVTLDevicesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3734,11 +3470,7 @@ type DescribeWorkingStorageInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
-	metadataDescribeWorkingStorageInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeWorkingStorageInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3771,11 +3503,7 @@ type DescribeWorkingStorageOutput struct {
 	// is configured for the gateway, this field returns 0.
 	WorkingStorageUsedInBytes *int64 `type:"long"`
 
-	metadataDescribeWorkingStorageOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeWorkingStorageOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3803,11 +3531,7 @@ type DeviceiSCSIAttributes struct {
 	// name(iqn) of a tape drive or media changer target.
 	TargetARN *string `min:"50" type:"string"`
 
-	metadataDeviceiSCSIAttributes `json:"-" xml:"-"`
-}
-
-type metadataDeviceiSCSIAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3826,11 +3550,7 @@ type DisableGatewayInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
-	metadataDisableGatewayInput `json:"-" xml:"-"`
-}
-
-type metadataDisableGatewayInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3848,11 +3568,7 @@ type DisableGatewayOutput struct {
 	// The unique Amazon Resource Name of the disabled gateway.
 	GatewayARN *string `min:"50" type:"string"`
 
-	metadataDisableGatewayOutput `json:"-" xml:"-"`
-}
-
-type metadataDisableGatewayOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3880,11 +3596,7 @@ type Disk struct {
 
 	DiskStatus *string `type:"string"`
 
-	metadataDisk `json:"-" xml:"-"`
-}
-
-type metadataDisk struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3907,11 +3619,7 @@ type Error struct {
 	// Human-readable text that provides detail about the error that occurred.
 	ErrorDetails map[string]*string `locationName:"errorDetails" type:"map"`
 
-	metadataError `json:"-" xml:"-"`
-}
-
-type metadataError struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3935,11 +3643,7 @@ type GatewayInfo struct {
 
 	GatewayType *string `min:"2" type:"string"`
 
-	metadataGatewayInfo `json:"-" xml:"-"`
-}
-
-type metadataGatewayInfo struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3964,11 +3668,7 @@ type ListGatewaysInput struct {
 	// list of gateways.
 	Marker *string `min:"1" type:"string"`
 
-	metadataListGatewaysInput `json:"-" xml:"-"`
-}
-
-type metadataListGatewaysInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3986,11 +3686,7 @@ type ListGatewaysOutput struct {
 
 	Marker *string `min:"1" type:"string"`
 
-	metadataListGatewaysOutput `json:"-" xml:"-"`
-}
-
-type metadataListGatewaysOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4009,11 +3705,7 @@ type ListLocalDisksInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
-	metadataListLocalDisksInput `json:"-" xml:"-"`
-}
-
-type metadataListLocalDisksInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4033,11 +3725,7 @@ type ListLocalDisksOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string"`
 
-	metadataListLocalDisksOutput `json:"-" xml:"-"`
-}
-
-type metadataListLocalDisksOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4064,11 +3752,7 @@ type ListTagsForResourceInput struct {
 	// tags.
 	ResourceARN *string `min:"50" type:"string"`
 
-	metadataListTagsForResourceInput `json:"-" xml:"-"`
-}
-
-type metadataListTagsForResourceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4094,11 +3778,7 @@ type ListTagsForResourceOutput struct {
 	// An array that contains the tags for the specified resource.
 	Tags []*Tag `type:"list"`
 
-	metadataListTagsForResourceOutput `json:"-" xml:"-"`
-}
-
-type metadataListTagsForResourceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4117,11 +3797,7 @@ type ListVolumeInitiatorsInput struct {
 	// to return a list of gateway volumes for the gateway.
 	VolumeARN *string `min:"50" type:"string" required:"true"`
 
-	metadataListVolumeInitiatorsInput `json:"-" xml:"-"`
-}
-
-type metadataListVolumeInitiatorsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4140,11 +3816,7 @@ type ListVolumeInitiatorsOutput struct {
 	// to the gateway.
 	Initiators []*string `type:"list"`
 
-	metadataListVolumeInitiatorsOutput `json:"-" xml:"-"`
-}
-
-type metadataListVolumeInitiatorsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4162,11 +3834,7 @@ type ListVolumeRecoveryPointsInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
-	metadataListVolumeRecoveryPointsInput `json:"-" xml:"-"`
-}
-
-type metadataListVolumeRecoveryPointsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4186,11 +3854,7 @@ type ListVolumeRecoveryPointsOutput struct {
 
 	VolumeRecoveryPointInfos []*VolumeRecoveryPointInfo `type:"list"`
 
-	metadataListVolumeRecoveryPointsOutput `json:"-" xml:"-"`
-}
-
-type metadataListVolumeRecoveryPointsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4220,11 +3884,7 @@ type ListVolumesInput struct {
 	// Volumes request.
 	Marker *string `min:"1" type:"string"`
 
-	metadataListVolumesInput `json:"-" xml:"-"`
-}
-
-type metadataListVolumesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4246,11 +3906,7 @@ type ListVolumesOutput struct {
 
 	VolumeInfos []*VolumeInfo `type:"list"`
 
-	metadataListVolumesOutput `json:"-" xml:"-"`
-}
-
-type metadataListVolumesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4277,11 +3933,7 @@ type NetworkInterface struct {
 	// This is currently unsupported and will not be returned in output.
 	MacAddress *string `type:"string"`
 
-	metadataNetworkInterface `json:"-" xml:"-"`
-}
-
-type metadataNetworkInterface struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4304,11 +3956,7 @@ type RemoveTagsFromResourceInput struct {
 	// is composed of a key/value pair.
 	TagKeys []*string `type:"list"`
 
-	metadataRemoveTagsFromResourceInput `json:"-" xml:"-"`
-}
-
-type metadataRemoveTagsFromResourceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4327,11 +3975,7 @@ type RemoveTagsFromResourceOutput struct {
 	// from.
 	ResourceARN *string `min:"50" type:"string"`
 
-	metadataRemoveTagsFromResourceOutput `json:"-" xml:"-"`
-}
-
-type metadataRemoveTagsFromResourceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4349,11 +3993,7 @@ type ResetCacheInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
-	metadataResetCacheInput `json:"-" xml:"-"`
-}
-
-type metadataResetCacheInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4371,11 +4011,7 @@ type ResetCacheOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string"`
 
-	metadataResetCacheOutput `json:"-" xml:"-"`
-}
-
-type metadataResetCacheOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4402,11 +4038,7 @@ type RetrieveTapeArchiveInput struct {
 	// the virtual tape shelf (VTS).
 	TapeARN *string `min:"50" type:"string" required:"true"`
 
-	metadataRetrieveTapeArchiveInput `json:"-" xml:"-"`
-}
-
-type metadataRetrieveTapeArchiveInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4424,11 +4056,7 @@ type RetrieveTapeArchiveOutput struct {
 	// The Amazon Resource Name (ARN) of the retrieved virtual tape.
 	TapeARN *string `min:"50" type:"string"`
 
-	metadataRetrieveTapeArchiveOutput `json:"-" xml:"-"`
-}
-
-type metadataRetrieveTapeArchiveOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4451,11 +4079,7 @@ type RetrieveTapeRecoveryPointInput struct {
 	// retrieve the recovery point.
 	TapeARN *string `min:"50" type:"string" required:"true"`
 
-	metadataRetrieveTapeRecoveryPointInput `json:"-" xml:"-"`
-}
-
-type metadataRetrieveTapeRecoveryPointInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4474,11 +4098,7 @@ type RetrieveTapeRecoveryPointOutput struct {
 	// point was retrieved.
 	TapeARN *string `min:"50" type:"string"`
 
-	metadataRetrieveTapeRecoveryPointOutput `json:"-" xml:"-"`
-}
-
-type metadataRetrieveTapeRecoveryPointOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4497,11 +4117,7 @@ type ShutdownGatewayInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
-	metadataShutdownGatewayInput `json:"-" xml:"-"`
-}
-
-type metadataShutdownGatewayInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4520,11 +4136,7 @@ type ShutdownGatewayOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string"`
 
-	metadataShutdownGatewayOutput `json:"-" xml:"-"`
-}
-
-type metadataShutdownGatewayOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4543,11 +4155,7 @@ type StartGatewayInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
-	metadataStartGatewayInput `json:"-" xml:"-"`
-}
-
-type metadataStartGatewayInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4566,11 +4174,7 @@ type StartGatewayOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string"`
 
-	metadataStartGatewayOutput `json:"-" xml:"-"`
-}
-
-type metadataStartGatewayOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4605,11 +4209,7 @@ type StorediSCSIVolume struct {
 	// Lists iSCSI information about a volume.
 	VolumeiSCSIAttributes *VolumeiSCSIAttributes `type:"structure"`
 
-	metadataStorediSCSIVolume `json:"-" xml:"-"`
-}
-
-type metadataStorediSCSIVolume struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4627,11 +4227,7 @@ type Tag struct {
 
 	Value *string `type:"string" required:"true"`
 
-	metadataTag `json:"-" xml:"-"`
-}
-
-type metadataTag struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4668,11 +4264,7 @@ type Tape struct {
 	// with.
 	VTLDevice *string `min:"50" type:"string"`
 
-	metadataTape `json:"-" xml:"-"`
-}
-
-type metadataTape struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4711,11 +4303,7 @@ type TapeArchive struct {
 	// The current state of the archived virtual tape.
 	TapeStatus *string `type:"string"`
 
-	metadataTapeArchive `json:"-" xml:"-"`
-}
-
-type metadataTapeArchive struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4745,11 +4333,7 @@ type TapeRecoveryPointInfo struct {
 
 	TapeStatus *string `type:"string"`
 
-	metadataTapeRecoveryPointInfo `json:"-" xml:"-"`
-}
-
-type metadataTapeRecoveryPointInfo struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4776,11 +4360,7 @@ type UpdateBandwidthRateLimitInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
-	metadataUpdateBandwidthRateLimitInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateBandwidthRateLimitInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4800,11 +4380,7 @@ type UpdateBandwidthRateLimitOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string"`
 
-	metadataUpdateBandwidthRateLimitOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateBandwidthRateLimitOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4843,11 +4419,7 @@ type UpdateChapCredentialsInput struct {
 	// operation to return the TargetARN for specified VolumeARN.
 	TargetARN *string `min:"50" type:"string" required:"true"`
 
-	metadataUpdateChapCredentialsInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateChapCredentialsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4870,11 +4442,7 @@ type UpdateChapCredentialsOutput struct {
 	// in the request.
 	TargetARN *string `min:"50" type:"string"`
 
-	metadataUpdateChapCredentialsOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateChapCredentialsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4898,11 +4466,7 @@ type UpdateGatewayInformationInput struct {
 
 	GatewayTimezone *string `min:"3" type:"string"`
 
-	metadataUpdateGatewayInformationInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateGatewayInformationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4923,11 +4487,7 @@ type UpdateGatewayInformationOutput struct {
 
 	GatewayName *string `type:"string"`
 
-	metadataUpdateGatewayInformationOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateGatewayInformationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4946,11 +4506,7 @@ type UpdateGatewaySoftwareNowInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
-	metadataUpdateGatewaySoftwareNowInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateGatewaySoftwareNowInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4969,11 +4525,7 @@ type UpdateGatewaySoftwareNowOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string"`
 
-	metadataUpdateGatewaySoftwareNowOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateGatewaySoftwareNowOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5008,11 +4560,7 @@ type UpdateMaintenanceStartTimeInput struct {
 	// the gateway.
 	MinuteOfHour *int64 `type:"integer" required:"true"`
 
-	metadataUpdateMaintenanceStartTimeInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateMaintenanceStartTimeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5032,11 +4580,7 @@ type UpdateMaintenanceStartTimeOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string"`
 
-	metadataUpdateMaintenanceStartTimeOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateMaintenanceStartTimeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5069,11 +4613,7 @@ type UpdateSnapshotScheduleInput struct {
 	// to return a list of gateway volumes.
 	VolumeARN *string `min:"50" type:"string" required:"true"`
 
-	metadataUpdateSnapshotScheduleInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateSnapshotScheduleInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5090,11 +4630,7 @@ func (s UpdateSnapshotScheduleInput) GoString() string {
 type UpdateSnapshotScheduleOutput struct {
 	VolumeARN *string `min:"50" type:"string"`
 
-	metadataUpdateSnapshotScheduleOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateSnapshotScheduleOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5117,11 +4653,7 @@ type UpdateVTLDeviceTypeInput struct {
 	// The Amazon Resource Name (ARN) of the medium changer you want to select.
 	VTLDeviceARN *string `min:"50" type:"string" required:"true"`
 
-	metadataUpdateVTLDeviceTypeInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateVTLDeviceTypeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5139,11 +4671,7 @@ type UpdateVTLDeviceTypeOutput struct {
 	// The Amazon Resource Name (ARN) of the medium changer you have selected.
 	VTLDeviceARN *string `min:"50" type:"string"`
 
-	metadataUpdateVTLDeviceTypeOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateVTLDeviceTypeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5171,11 +4699,7 @@ type VTLDevice struct {
 
 	VTLDeviceVendor *string `type:"string"`
 
-	metadataVTLDevice `json:"-" xml:"-"`
-}
-
-type metadataVTLDevice struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5193,11 +4717,7 @@ type VolumeInfo struct {
 
 	VolumeType *string `min:"3" type:"string"`
 
-	metadataVolumeInfo `json:"-" xml:"-"`
-}
-
-type metadataVolumeInfo struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5219,11 +4739,7 @@ type VolumeRecoveryPointInfo struct {
 
 	VolumeUsageInBytes *int64 `type:"long"`
 
-	metadataVolumeRecoveryPointInfo `json:"-" xml:"-"`
-}
-
-type metadataVolumeRecoveryPointInfo struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5253,11 +4769,7 @@ type VolumeiSCSIAttributes struct {
 	// The Amazon Resource Name (ARN) of the volume target.
 	TargetARN *string `min:"50" type:"string"`
 
-	metadataVolumeiSCSIAttributes `json:"-" xml:"-"`
-}
-
-type metadataVolumeiSCSIAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

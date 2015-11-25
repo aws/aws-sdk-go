@@ -534,11 +534,7 @@ type AssumeRoleInput struct {
 	// is missing or expired, the AssumeRole call returns an "access denied" error.
 	TokenCode *string `min:"6" type:"string"`
 
-	metadataAssumeRoleInput `json:"-" xml:"-"`
-}
-
-type metadataAssumeRoleInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -570,11 +566,7 @@ type AssumeRoleOutput struct {
 	// which means the policy exceeded the allowed space.
 	PackedPolicySize *int64 `type:"integer"`
 
-	metadataAssumeRoleOutput `json:"-" xml:"-"`
-}
-
-type metadataAssumeRoleOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -632,11 +624,7 @@ type AssumeRoleWithSAMLInput struct {
 	// in the Using IAM guide.
 	SAMLAssertion *string `min:"4" type:"string" required:"true"`
 
-	metadataAssumeRoleWithSAMLInput `json:"-" xml:"-"`
-}
-
-type metadataAssumeRoleWithSAMLInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -695,11 +683,7 @@ type AssumeRoleWithSAMLOutput struct {
 	// is returned with no modifications.
 	SubjectType *string `type:"string"`
 
-	metadataAssumeRoleWithSAMLOutput `json:"-" xml:"-"`
-}
-
-type metadataAssumeRoleWithSAMLOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -762,11 +746,7 @@ type AssumeRoleWithWebIdentityInput struct {
 	// the application makes an AssumeRoleWithWebIdentity call.
 	WebIdentityToken *string `min:"4" type:"string" required:"true"`
 
-	metadataAssumeRoleWithWebIdentityInput `json:"-" xml:"-"`
-}
-
-type metadataAssumeRoleWithWebIdentityInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -817,11 +797,7 @@ type AssumeRoleWithWebIdentityOutput struct {
 	// returned by the identity provider as the token's sub (Subject) claim.
 	SubjectFromWebIdentityToken *string `min:"6" type:"string"`
 
-	metadataAssumeRoleWithWebIdentityOutput `json:"-" xml:"-"`
-}
-
-type metadataAssumeRoleWithWebIdentityOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -848,11 +824,7 @@ type AssumedRoleUser struct {
 	// role is created.
 	AssumedRoleId *string `min:"2" type:"string" required:"true"`
 
-	metadataAssumedRoleUser `json:"-" xml:"-"`
-}
-
-type metadataAssumedRoleUser struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -879,11 +851,7 @@ type Credentials struct {
 	// The token that users must pass to the service API to use the temporary credentials.
 	SessionToken *string `type:"string" required:"true"`
 
-	metadataCredentials `json:"-" xml:"-"`
-}
-
-type metadataCredentials struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -900,11 +868,7 @@ type DecodeAuthorizationMessageInput struct {
 	// The encoded message that was returned with the response.
 	EncodedMessage *string `min:"1" type:"string" required:"true"`
 
-	metadataDecodeAuthorizationMessageInput `json:"-" xml:"-"`
-}
-
-type metadataDecodeAuthorizationMessageInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -925,11 +889,7 @@ type DecodeAuthorizationMessageOutput struct {
 	// see DecodeAuthorizationMessage.
 	DecodedMessage *string `type:"string"`
 
-	metadataDecodeAuthorizationMessageOutput `json:"-" xml:"-"`
-}
-
-type metadataDecodeAuthorizationMessageOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -954,11 +914,7 @@ type FederatedUser struct {
 	// similar to the unique ID of an IAM user.
 	FederatedUserId *string `min:"2" type:"string" required:"true"`
 
-	metadataFederatedUser `json:"-" xml:"-"`
-}
-
-type metadataFederatedUser struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1010,11 +966,7 @@ type GetFederationTokenInput struct {
 	// GetFederationToken (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_getfederationtoken.html).
 	Policy *string `min:"1" type:"string"`
 
-	metadataGetFederationTokenInput `json:"-" xml:"-"`
-}
-
-type metadataGetFederationTokenInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1044,11 +996,7 @@ type GetFederationTokenOutput struct {
 	// of the allowed value.
 	PackedPolicySize *int64 `type:"integer"`
 
-	metadataGetFederationTokenOutput `json:"-" xml:"-"`
-}
-
-type metadataGetFederationTokenOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1086,11 +1034,7 @@ type GetSessionTokenInput struct {
 	// response when requesting resources that require MFA authentication.
 	TokenCode *string `min:"6" type:"string"`
 
-	metadataGetSessionTokenInput `json:"-" xml:"-"`
-}
-
-type metadataGetSessionTokenInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1109,11 +1053,7 @@ type GetSessionTokenOutput struct {
 	// The session credentials for API authentication.
 	Credentials *Credentials `type:"structure"`
 
-	metadataGetSessionTokenOutput `json:"-" xml:"-"`
-}
-
-type metadataGetSessionTokenOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

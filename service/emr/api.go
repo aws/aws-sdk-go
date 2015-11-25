@@ -658,11 +658,7 @@ type AddInstanceGroupsInput struct {
 	// Job flow in which to add the instance groups.
 	JobFlowId *string `type:"string" required:"true"`
 
-	metadataAddInstanceGroupsInput `json:"-" xml:"-"`
-}
-
-type metadataAddInstanceGroupsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -683,11 +679,7 @@ type AddInstanceGroupsOutput struct {
 	// The job flow ID in which the instance groups are added.
 	JobFlowId *string `type:"string"`
 
-	metadataAddInstanceGroupsOutput `json:"-" xml:"-"`
-}
-
-type metadataAddInstanceGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -709,11 +701,7 @@ type AddJobFlowStepsInput struct {
 	// A list of StepConfig to be executed by the job flow.
 	Steps []*StepConfig `type:"list" required:"true"`
 
-	metadataAddJobFlowStepsInput `json:"-" xml:"-"`
-}
-
-type metadataAddJobFlowStepsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -731,11 +719,7 @@ type AddJobFlowStepsOutput struct {
 	// The identifiers of the list of steps added to the job flow.
 	StepIds []*string `type:"list"`
 
-	metadataAddJobFlowStepsOutput `json:"-" xml:"-"`
-}
-
-type metadataAddJobFlowStepsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -760,11 +744,7 @@ type AddTagsInput struct {
 	// of 256 characters.
 	Tags []*Tag `type:"list" required:"true"`
 
-	metadataAddTagsInput `json:"-" xml:"-"`
-}
-
-type metadataAddTagsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -779,11 +759,7 @@ func (s AddTagsInput) GoString() string {
 
 // This output indicates the result of adding tags to a resource.
 type AddTagsOutput struct {
-	metadataAddTagsOutput `json:"-" xml:"-"`
-}
-
-type metadataAddTagsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -824,11 +800,7 @@ type Application struct {
 	// The version of the application.
 	Version *string `type:"string"`
 
-	metadataApplication `json:"-" xml:"-"`
-}
-
-type metadataApplication struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -849,11 +821,7 @@ type BootstrapActionConfig struct {
 	// The script run by the bootstrap action.
 	ScriptBootstrapAction *ScriptBootstrapActionConfig `type:"structure" required:"true"`
 
-	metadataBootstrapActionConfig `json:"-" xml:"-"`
-}
-
-type metadataBootstrapActionConfig struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -871,11 +839,7 @@ type BootstrapActionDetail struct {
 	// A description of the bootstrap action.
 	BootstrapActionConfig *BootstrapActionConfig `type:"structure"`
 
-	metadataBootstrapActionDetail `json:"-" xml:"-"`
-}
-
-type metadataBootstrapActionDetail struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -958,11 +922,7 @@ type Cluster struct {
 	// action.
 	VisibleToAllUsers *bool `type:"boolean"`
 
-	metadataCluster `json:"-" xml:"-"`
-}
-
-type metadataCluster struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -983,11 +943,7 @@ type ClusterStateChangeReason struct {
 	// The descriptive message for the state change reason.
 	Message *string `type:"string"`
 
-	metadataClusterStateChangeReason `json:"-" xml:"-"`
-}
-
-type metadataClusterStateChangeReason struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1012,11 +968,7 @@ type ClusterStatus struct {
 	// cluster.
 	Timeline *ClusterTimeline `type:"structure"`
 
-	metadataClusterStatus `json:"-" xml:"-"`
-}
-
-type metadataClusterStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1048,11 +1000,7 @@ type ClusterSummary struct {
 	// The details about the current status of the cluster.
 	Status *ClusterStatus `type:"structure"`
 
-	metadataClusterSummary `json:"-" xml:"-"`
-}
-
-type metadataClusterSummary struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1076,11 +1024,7 @@ type ClusterTimeline struct {
 	// The date and time when the cluster was ready to execute steps.
 	ReadyDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	metadataClusterTimeline `json:"-" xml:"-"`
-}
-
-type metadataClusterTimeline struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1104,11 +1048,7 @@ type Command struct {
 	// The Amazon S3 location of the command script.
 	ScriptPath *string `type:"string"`
 
-	metadataCommand `json:"-" xml:"-"`
-}
-
-type metadataCommand struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1139,11 +1079,7 @@ type Configuration struct {
 	// A set of properties supplied to the Configuration object.
 	Properties map[string]*string `type:"map"`
 
-	metadataConfiguration `json:"-" xml:"-"`
-}
-
-type metadataConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1161,11 +1097,7 @@ type DescribeClusterInput struct {
 	// The identifier of the cluster to describe.
 	ClusterId *string `type:"string" required:"true"`
 
-	metadataDescribeClusterInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeClusterInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1183,11 +1115,7 @@ type DescribeClusterOutput struct {
 	// This output contains the details for the requested cluster.
 	Cluster *Cluster `type:"structure"`
 
-	metadataDescribeClusterOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeClusterOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1214,11 +1142,7 @@ type DescribeJobFlowsInput struct {
 	// Return only job flows whose state is contained in this list.
 	JobFlowStates []*string `type:"list"`
 
-	metadataDescribeJobFlowsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeJobFlowsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1236,11 +1160,7 @@ type DescribeJobFlowsOutput struct {
 	// A list of job flows matching the parameters supplied.
 	JobFlows []*JobFlowDetail `type:"list"`
 
-	metadataDescribeJobFlowsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeJobFlowsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1261,11 +1181,7 @@ type DescribeStepInput struct {
 	// The identifier of the step to describe.
 	StepId *string `type:"string" required:"true"`
 
-	metadataDescribeStepInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeStepInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1283,11 +1199,7 @@ type DescribeStepOutput struct {
 	// The step details for the requested step identifier.
 	Step *Step `type:"structure"`
 
-	metadataDescribeStepOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeStepOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1338,11 +1250,7 @@ type Ec2InstanceAttributes struct {
 	// of the job flow assume this role.
 	IamInstanceProfile *string `type:"string"`
 
-	metadataEc2InstanceAttributes `json:"-" xml:"-"`
-}
-
-type metadataEc2InstanceAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1374,11 +1282,7 @@ type HadoopJarStepConfig struct {
 	// properties to pass key value pairs to your main function.
 	Properties []*KeyValue `type:"list"`
 
-	metadataHadoopJarStepConfig `json:"-" xml:"-"`
-}
-
-type metadataHadoopJarStepConfig struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1410,11 +1314,7 @@ type HadoopStepConfig struct {
 	// these properties to pass key value pairs to your main function.
 	Properties map[string]*string `type:"map"`
 
-	metadataHadoopStepConfig `json:"-" xml:"-"`
-}
-
-type metadataHadoopStepConfig struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1450,11 +1350,7 @@ type Instance struct {
 	// The current status of the instance.
 	Status *InstanceStatus `type:"structure"`
 
-	metadataInstance `json:"-" xml:"-"`
-}
-
-type metadataInstance struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1506,11 +1402,7 @@ type InstanceGroup struct {
 	// The current status of the instance group.
 	Status *InstanceGroupStatus `type:"structure"`
 
-	metadataInstanceGroup `json:"-" xml:"-"`
-}
-
-type metadataInstanceGroup struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1551,11 +1443,7 @@ type InstanceGroupConfig struct {
 	// Friendly name given to the instance group.
 	Name *string `type:"string"`
 
-	metadataInstanceGroupConfig `json:"-" xml:"-"`
-}
-
-type metadataInstanceGroupConfig struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1614,11 +1502,7 @@ type InstanceGroupDetail struct {
 	// and FAILED.
 	State *string `type:"string" required:"true" enum:"InstanceGroupState"`
 
-	metadataInstanceGroupDetail `json:"-" xml:"-"`
-}
-
-type metadataInstanceGroupDetail struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1644,11 +1528,7 @@ type InstanceGroupModifyConfig struct {
 	// Unique ID of the instance group to expand or shrink.
 	InstanceGroupId *string `type:"string" required:"true"`
 
-	metadataInstanceGroupModifyConfig `json:"-" xml:"-"`
-}
-
-type metadataInstanceGroupModifyConfig struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1669,11 +1549,7 @@ type InstanceGroupStateChangeReason struct {
 	// The status change reason description.
 	Message *string `type:"string"`
 
-	metadataInstanceGroupStateChangeReason `json:"-" xml:"-"`
-}
-
-type metadataInstanceGroupStateChangeReason struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1697,11 +1573,7 @@ type InstanceGroupStatus struct {
 	// The timeline of the instance group status over time.
 	Timeline *InstanceGroupTimeline `type:"structure"`
 
-	metadataInstanceGroupStatus `json:"-" xml:"-"`
-}
-
-type metadataInstanceGroupStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1725,11 +1597,7 @@ type InstanceGroupTimeline struct {
 	// The date and time when the instance group became ready to perform tasks.
 	ReadyDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	metadataInstanceGroupTimeline `json:"-" xml:"-"`
-}
-
-type metadataInstanceGroupTimeline struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1750,11 +1618,7 @@ type InstanceStateChangeReason struct {
 	// The status change reason description.
 	Message *string `type:"string"`
 
-	metadataInstanceStateChangeReason `json:"-" xml:"-"`
-}
-
-type metadataInstanceStateChangeReason struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1778,11 +1642,7 @@ type InstanceStatus struct {
 	// The timeline of the instance status over time.
 	Timeline *InstanceTimeline `type:"structure"`
 
-	metadataInstanceStatus `json:"-" xml:"-"`
-}
-
-type metadataInstanceStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1806,11 +1666,7 @@ type InstanceTimeline struct {
 	// The date and time when the instance was ready to perform tasks.
 	ReadyDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	metadataInstanceTimeline `json:"-" xml:"-"`
-}
-
-type metadataInstanceTimeline struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1873,11 +1729,7 @@ type JobFlowDetail struct {
 	// SetVisibleToAllUsers action.
 	VisibleToAllUsers *bool `type:"boolean"`
 
-	metadataJobFlowDetail `json:"-" xml:"-"`
-}
-
-type metadataJobFlowDetail struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1911,11 +1763,7 @@ type JobFlowExecutionStatusDetail struct {
 	// The state of the job flow.
 	State *string `type:"string" required:"true" enum:"JobFlowExecutionState"`
 
-	metadataJobFlowExecutionStatusDetail `json:"-" xml:"-"`
-}
-
-type metadataJobFlowExecutionStatusDetail struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1992,11 +1840,7 @@ type JobFlowInstancesConfig struct {
 	// a job flow error.
 	TerminationProtected *bool `type:"boolean"`
 
-	metadataJobFlowInstancesConfig `json:"-" xml:"-"`
-}
-
-type metadataJobFlowInstancesConfig struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2061,11 +1905,7 @@ type JobFlowInstancesDetail struct {
 	// error.
 	TerminationProtected *bool `type:"boolean"`
 
-	metadataJobFlowInstancesDetail `json:"-" xml:"-"`
-}
-
-type metadataJobFlowInstancesDetail struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2086,11 +1926,7 @@ type KeyValue struct {
 	// The value part of the identified key.
 	Value *string `type:"string"`
 
-	metadataKeyValue `json:"-" xml:"-"`
-}
-
-type metadataKeyValue struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2111,11 +1947,7 @@ type ListBootstrapActionsInput struct {
 	// The pagination token that indicates the next set of results to retrieve .
 	Marker *string `type:"string"`
 
-	metadataListBootstrapActionsInput `json:"-" xml:"-"`
-}
-
-type metadataListBootstrapActionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2136,11 +1968,7 @@ type ListBootstrapActionsOutput struct {
 	// The pagination token that indicates the next set of results to retrieve .
 	Marker *string `type:"string"`
 
-	metadataListBootstrapActionsOutput `json:"-" xml:"-"`
-}
-
-type metadataListBootstrapActionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2168,11 +1996,7 @@ type ListClustersInput struct {
 	// The pagination token that indicates the next set of results to retrieve.
 	Marker *string `type:"string"`
 
-	metadataListClustersInput `json:"-" xml:"-"`
-}
-
-type metadataListClustersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2194,11 +2018,7 @@ type ListClustersOutput struct {
 	// The pagination token that indicates the next set of results to retrieve.
 	Marker *string `type:"string"`
 
-	metadataListClustersOutput `json:"-" xml:"-"`
-}
-
-type metadataListClustersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2219,11 +2039,7 @@ type ListInstanceGroupsInput struct {
 	// The pagination token that indicates the next set of results to retrieve.
 	Marker *string `type:"string"`
 
-	metadataListInstanceGroupsInput `json:"-" xml:"-"`
-}
-
-type metadataListInstanceGroupsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2244,11 +2060,7 @@ type ListInstanceGroupsOutput struct {
 	// The pagination token that indicates the next set of results to retrieve.
 	Marker *string `type:"string"`
 
-	metadataListInstanceGroupsOutput `json:"-" xml:"-"`
-}
-
-type metadataListInstanceGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2275,11 +2087,7 @@ type ListInstancesInput struct {
 	// The pagination token that indicates the next set of results to retrieve.
 	Marker *string `type:"string"`
 
-	metadataListInstancesInput `json:"-" xml:"-"`
-}
-
-type metadataListInstancesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2300,11 +2108,7 @@ type ListInstancesOutput struct {
 	// The pagination token that indicates the next set of results to retrieve.
 	Marker *string `type:"string"`
 
-	metadataListInstancesOutput `json:"-" xml:"-"`
-}
-
-type metadataListInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2331,11 +2135,7 @@ type ListStepsInput struct {
 	// The filter to limit the step list based on certain states.
 	StepStates []*string `type:"list"`
 
-	metadataListStepsInput `json:"-" xml:"-"`
-}
-
-type metadataListStepsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2356,11 +2156,7 @@ type ListStepsOutput struct {
 	// The filtered list of steps for the cluster.
 	Steps []*StepSummary `type:"list"`
 
-	metadataListStepsOutput `json:"-" xml:"-"`
-}
-
-type metadataListStepsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2378,11 +2174,7 @@ type ModifyInstanceGroupsInput struct {
 	// Instance groups to change.
 	InstanceGroups []*InstanceGroupModifyConfig `type:"list"`
 
-	metadataModifyInstanceGroupsInput `json:"-" xml:"-"`
-}
-
-type metadataModifyInstanceGroupsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2396,11 +2188,7 @@ func (s ModifyInstanceGroupsInput) GoString() string {
 }
 
 type ModifyInstanceGroupsOutput struct {
-	metadataModifyInstanceGroupsOutput `json:"-" xml:"-"`
-}
-
-type metadataModifyInstanceGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2418,11 +2206,7 @@ type PlacementType struct {
 	// The Amazon EC2 Availability Zone for the job flow.
 	AvailabilityZone *string `type:"string" required:"true"`
 
-	metadataPlacementType `json:"-" xml:"-"`
-}
-
-type metadataPlacementType struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2444,11 +2228,7 @@ type RemoveTagsInput struct {
 	// A list of tag keys to remove from a resource.
 	TagKeys []*string `type:"list" required:"true"`
 
-	metadataRemoveTagsInput `json:"-" xml:"-"`
-}
-
-type metadataRemoveTagsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2463,11 +2243,7 @@ func (s RemoveTagsInput) GoString() string {
 
 // This output indicates the result of removing tags from a resource.
 type RemoveTagsOutput struct {
-	metadataRemoveTagsOutput `json:"-" xml:"-"`
-}
-
-type metadataRemoveTagsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2587,11 +2363,7 @@ type RunJobFlowInput struct {
 	// flow can view and manage it.
 	VisibleToAllUsers *bool `type:"boolean"`
 
-	metadataRunJobFlowInput `json:"-" xml:"-"`
-}
-
-type metadataRunJobFlowInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2609,11 +2381,7 @@ type RunJobFlowOutput struct {
 	// An unique identifier for the job flow.
 	JobFlowId *string `type:"string"`
 
-	metadataRunJobFlowOutput `json:"-" xml:"-"`
-}
-
-type metadataRunJobFlowOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2635,11 +2403,7 @@ type ScriptBootstrapActionConfig struct {
 	// location in Amazon S3 or on a local file system.
 	Path *string `type:"string" required:"true"`
 
-	metadataScriptBootstrapActionConfig `json:"-" xml:"-"`
-}
-
-type metadataScriptBootstrapActionConfig struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2664,11 +2428,7 @@ type SetTerminationProtectionInput struct {
 	// user intervention, or job-flow error.
 	TerminationProtected *bool `type:"boolean" required:"true"`
 
-	metadataSetTerminationProtectionInput `json:"-" xml:"-"`
-}
-
-type metadataSetTerminationProtectionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2682,11 +2442,7 @@ func (s SetTerminationProtectionInput) GoString() string {
 }
 
 type SetTerminationProtectionOutput struct {
-	metadataSetTerminationProtectionOutput `json:"-" xml:"-"`
-}
-
-type metadataSetTerminationProtectionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2711,11 +2467,7 @@ type SetVisibleToAllUsersInput struct {
 	// created a job flow can view and manage it.
 	VisibleToAllUsers *bool `type:"boolean" required:"true"`
 
-	metadataSetVisibleToAllUsersInput `json:"-" xml:"-"`
-}
-
-type metadataSetVisibleToAllUsersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2729,11 +2481,7 @@ func (s SetVisibleToAllUsersInput) GoString() string {
 }
 
 type SetVisibleToAllUsersOutput struct {
-	metadataSetVisibleToAllUsersOutput `json:"-" xml:"-"`
-}
-
-type metadataSetVisibleToAllUsersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2764,11 +2512,7 @@ type Step struct {
 	// The current execution status details of the cluster step.
 	Status *StepStatus `type:"structure"`
 
-	metadataStep `json:"-" xml:"-"`
-}
-
-type metadataStep struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2792,11 +2536,7 @@ type StepConfig struct {
 	// The name of the job flow step.
 	Name *string `type:"string" required:"true"`
 
-	metadataStepConfig `json:"-" xml:"-"`
-}
-
-type metadataStepConfig struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2817,11 +2557,7 @@ type StepDetail struct {
 	// The step configuration.
 	StepConfig *StepConfig `type:"structure" required:"true"`
 
-	metadataStepDetail `json:"-" xml:"-"`
-}
-
-type metadataStepDetail struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2851,11 +2587,7 @@ type StepExecutionStatusDetail struct {
 	// The state of the job flow step.
 	State *string `type:"string" required:"true" enum:"StepExecutionState"`
 
-	metadataStepExecutionStatusDetail `json:"-" xml:"-"`
-}
-
-type metadataStepExecutionStatusDetail struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2877,11 +2609,7 @@ type StepStateChangeReason struct {
 	// The descriptive message for the state change reason.
 	Message *string `type:"string"`
 
-	metadataStepStateChangeReason `json:"-" xml:"-"`
-}
-
-type metadataStepStateChangeReason struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2905,11 +2633,7 @@ type StepStatus struct {
 	// The timeline of the cluster step status over time.
 	Timeline *StepTimeline `type:"structure"`
 
-	metadataStepStatus `json:"-" xml:"-"`
-}
-
-type metadataStepStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2940,11 +2664,7 @@ type StepSummary struct {
 	// The current execution status details of the cluster step.
 	Status *StepStatus `type:"structure"`
 
-	metadataStepSummary `json:"-" xml:"-"`
-}
-
-type metadataStepSummary struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2968,11 +2688,7 @@ type StepTimeline struct {
 	// The date and time when the cluster step execution started.
 	StartDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	metadataStepTimeline `json:"-" xml:"-"`
-}
-
-type metadataStepTimeline struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2995,11 +2711,7 @@ type SupportedProductConfig struct {
 	// The name of the product configuration.
 	Name *string `type:"string"`
 
-	metadataSupportedProductConfig `json:"-" xml:"-"`
-}
-
-type metadataSupportedProductConfig struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3026,11 +2738,7 @@ type Tag struct {
 	// Tagging Amazon EMR Resources (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-plan-tags.html).
 	Value *string `type:"string"`
 
-	metadataTag `json:"-" xml:"-"`
-}
-
-type metadataTag struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3048,11 +2756,7 @@ type TerminateJobFlowsInput struct {
 	// A list of job flows to be shutdown.
 	JobFlowIds []*string `type:"list" required:"true"`
 
-	metadataTerminateJobFlowsInput `json:"-" xml:"-"`
-}
-
-type metadataTerminateJobFlowsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3066,11 +2770,7 @@ func (s TerminateJobFlowsInput) GoString() string {
 }
 
 type TerminateJobFlowsOutput struct {
-	metadataTerminateJobFlowsOutput `json:"-" xml:"-"`
-}
-
-type metadataTerminateJobFlowsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

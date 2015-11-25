@@ -648,11 +648,7 @@ type CheckDomainAvailabilityInput struct {
 	// Reserved for future use.
 	IdnLangCode *string `type:"string"`
 
-	metadataCheckDomainAvailabilityInput `json:"-" xml:"-"`
-}
-
-type metadataCheckDomainAvailabilityInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -687,11 +683,7 @@ type CheckDomainAvailabilityOutput struct {
 	// later.
 	Availability *string `type:"string" required:"true" enum:"DomainAvailability"`
 
-	metadataCheckDomainAvailabilityOutput `json:"-" xml:"-"`
-}
-
-type metadataCheckDomainAvailabilityOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -896,11 +888,7 @@ type ContactDetail struct {
 	// Required: No
 	ZipCode *string `type:"string"`
 
-	metadataContactDetail `json:"-" xml:"-"`
-}
-
-type metadataContactDetail struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -943,11 +931,7 @@ type DeleteTagsForDomainInput struct {
 	// '>
 	TagsToDelete []*string `type:"list" required:"true"`
 
-	metadataDeleteTagsForDomainInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteTagsForDomainInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -961,11 +945,7 @@ func (s DeleteTagsForDomainInput) GoString() string {
 }
 
 type DeleteTagsForDomainOutput struct {
-	metadataDeleteTagsForDomainOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteTagsForDomainOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -981,11 +961,7 @@ func (s DeleteTagsForDomainOutput) GoString() string {
 type DisableDomainAutoRenewInput struct {
 	DomainName *string `type:"string" required:"true"`
 
-	metadataDisableDomainAutoRenewInput `json:"-" xml:"-"`
-}
-
-type metadataDisableDomainAutoRenewInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -999,11 +975,7 @@ func (s DisableDomainAutoRenewInput) GoString() string {
 }
 
 type DisableDomainAutoRenewOutput struct {
-	metadataDisableDomainAutoRenewOutput `json:"-" xml:"-"`
-}
-
-type metadataDisableDomainAutoRenewOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1031,11 +1003,7 @@ type DisableDomainTransferLockInput struct {
 	// Required: Yes
 	DomainName *string `type:"string" required:"true"`
 
-	metadataDisableDomainTransferLockInput `json:"-" xml:"-"`
-}
-
-type metadataDisableDomainTransferLockInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1060,11 +1028,7 @@ type DisableDomainTransferLockOutput struct {
 	// Constraints: Maximum 255 characters.
 	OperationId *string `type:"string" required:"true"`
 
-	metadataDisableDomainTransferLockOutput `json:"-" xml:"-"`
-}
-
-type metadataDisableDomainTransferLockOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1103,11 +1067,7 @@ type DomainSummary struct {
 	// Valid values: True | False
 	TransferLock *bool `type:"boolean"`
 
-	metadataDomainSummary `json:"-" xml:"-"`
-}
-
-type metadataDomainSummary struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1123,11 +1083,7 @@ func (s DomainSummary) GoString() string {
 type EnableDomainAutoRenewInput struct {
 	DomainName *string `type:"string" required:"true"`
 
-	metadataEnableDomainAutoRenewInput `json:"-" xml:"-"`
-}
-
-type metadataEnableDomainAutoRenewInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1141,11 +1097,7 @@ func (s EnableDomainAutoRenewInput) GoString() string {
 }
 
 type EnableDomainAutoRenewOutput struct {
-	metadataEnableDomainAutoRenewOutput `json:"-" xml:"-"`
-}
-
-type metadataEnableDomainAutoRenewOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1173,11 +1125,7 @@ type EnableDomainTransferLockInput struct {
 	// Required: Yes
 	DomainName *string `type:"string" required:"true"`
 
-	metadataEnableDomainTransferLockInput `json:"-" xml:"-"`
-}
-
-type metadataEnableDomainTransferLockInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1202,11 +1150,7 @@ type EnableDomainTransferLockOutput struct {
 	// Constraints: Maximum 255 characters.
 	OperationId *string `type:"string" required:"true"`
 
-	metadataEnableDomainTransferLockOutput `json:"-" xml:"-"`
-}
-
-type metadataEnableDomainTransferLockOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1252,11 +1196,7 @@ type ExtraParam struct {
 	// Required: Yes
 	Value *string `type:"string" required:"true"`
 
-	metadataExtraParam `json:"-" xml:"-"`
-}
-
-type metadataExtraParam struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1284,11 +1224,7 @@ type GetDomainDetailInput struct {
 	// Required: Yes
 	DomainName *string `type:"string" required:"true"`
 
-	metadataGetDomainDetailInput `json:"-" xml:"-"`
-}
-
-type metadataGetDomainDetailInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1440,11 +1376,7 @@ type GetDomainDetailOutput struct {
 	// Type: String
 	WhoIsServer *string `type:"string"`
 
-	metadataGetDomainDetailOutput `json:"-" xml:"-"`
-}
-
-type metadataGetDomainDetailOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1469,11 +1401,7 @@ type GetOperationDetailInput struct {
 	// Required: Yes
 	OperationId *string `type:"string" required:"true"`
 
-	metadataGetOperationDetailInput `json:"-" xml:"-"`
-}
-
-type metadataGetOperationDetailInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1516,11 +1444,7 @@ type GetOperationDetailOutput struct {
 	// Type: String
 	Type *string `type:"string" enum:"OperationType"`
 
-	metadataGetOperationDetailOutput `json:"-" xml:"-"`
-}
-
-type metadataGetOperationDetailOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1562,11 +1486,7 @@ type ListDomainsInput struct {
 	// Required: No
 	MaxItems *int64 `type:"integer"`
 
-	metadataListDomainsInput `json:"-" xml:"-"`
-}
-
-type metadataListDomainsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1597,11 +1517,7 @@ type ListDomainsOutput struct {
 	// Parent: Operations
 	NextPageMarker *string `type:"string"`
 
-	metadataListDomainsOutput `json:"-" xml:"-"`
-}
-
-type metadataListDomainsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1641,11 +1557,7 @@ type ListOperationsInput struct {
 	// Required: No
 	MaxItems *int64 `type:"integer"`
 
-	metadataListOperationsInput `json:"-" xml:"-"`
-}
-
-type metadataListOperationsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1676,11 +1588,7 @@ type ListOperationsOutput struct {
 	// Children: OperationId, Status, SubmittedDate, Type
 	Operations []*OperationSummary `type:"list" required:"true"`
 
-	metadataListOperationsOutput `json:"-" xml:"-"`
-}
-
-type metadataListOperationsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1698,11 +1606,7 @@ type ListTagsForDomainInput struct {
 	// The domain for which you want to get a list of tags.
 	DomainName *string `type:"string" required:"true"`
 
-	metadataListTagsForDomainInput `json:"-" xml:"-"`
-}
-
-type metadataListTagsForDomainInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1736,11 +1640,7 @@ type ListTagsForDomainOutput struct {
 	// Type: String
 	TagList []*Tag `type:"list" required:"true"`
 
-	metadataListTagsForDomainOutput `json:"-" xml:"-"`
-}
-
-type metadataListTagsForDomainOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1776,11 +1676,7 @@ type Nameserver struct {
 	// Parent: Nameservers
 	Name *string `type:"string" required:"true"`
 
-	metadataNameserver `json:"-" xml:"-"`
-}
-
-type metadataNameserver struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1816,11 +1712,7 @@ type OperationSummary struct {
 	// | UPDATE_NAMESERVER | CHANGE_PRIVACY_PROTECTION | DOMAIN_LOCK
 	Type *string `type:"string" required:"true" enum:"OperationType"`
 
-	metadataOperationSummary `json:"-" xml:"-"`
-}
-
-type metadataOperationSummary struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1950,11 +1842,7 @@ type RegisterDomainInput struct {
 	// Required: Yes
 	TechContact *ContactDetail `type:"structure" required:"true"`
 
-	metadataRegisterDomainInput `json:"-" xml:"-"`
-}
-
-type metadataRegisterDomainInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1979,11 +1867,7 @@ type RegisterDomainOutput struct {
 	// Constraints: Maximum 255 characters.
 	OperationId *string `type:"string" required:"true"`
 
-	metadataRegisterDomainOutput `json:"-" xml:"-"`
-}
-
-type metadataRegisterDomainOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2011,11 +1895,7 @@ type RetrieveDomainAuthCodeInput struct {
 	// Required: Yes
 	DomainName *string `type:"string" required:"true"`
 
-	metadataRetrieveDomainAuthCodeInput `json:"-" xml:"-"`
-}
-
-type metadataRetrieveDomainAuthCodeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2035,11 +1915,7 @@ type RetrieveDomainAuthCodeOutput struct {
 	// Type: String
 	AuthCode *string `type:"string" required:"true"`
 
-	metadataRetrieveDomainAuthCodeOutput `json:"-" xml:"-"`
-}
-
-type metadataRetrieveDomainAuthCodeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2080,11 +1956,7 @@ type Tag struct {
 	// Required: Yes
 	Value *string `type:"string"`
 
-	metadataTag `json:"-" xml:"-"`
-}
-
-type metadataTag struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2231,11 +2103,7 @@ type TransferDomainInput struct {
 	// Required: Yes
 	TechContact *ContactDetail `type:"structure" required:"true"`
 
-	metadataTransferDomainInput `json:"-" xml:"-"`
-}
-
-type metadataTransferDomainInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2260,11 +2128,7 @@ type TransferDomainOutput struct {
 	// Constraints: Maximum 255 characters.
 	OperationId *string `type:"string" required:"true"`
 
-	metadataTransferDomainOutput `json:"-" xml:"-"`
-}
-
-type metadataTransferDomainOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2325,11 +2189,7 @@ type UpdateDomainContactInput struct {
 	// Required: Yes
 	TechContact *ContactDetail `type:"structure"`
 
-	metadataUpdateDomainContactInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateDomainContactInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2354,11 +2214,7 @@ type UpdateDomainContactOutput struct {
 	// Constraints: Maximum 255 characters.
 	OperationId *string `type:"string" required:"true"`
 
-	metadataUpdateDomainContactOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateDomainContactOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2428,11 +2284,7 @@ type UpdateDomainContactPrivacyInput struct {
 	// Required: No
 	TechPrivacy *bool `type:"boolean"`
 
-	metadataUpdateDomainContactPrivacyInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateDomainContactPrivacyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2457,11 +2309,7 @@ type UpdateDomainContactPrivacyOutput struct {
 	// Constraints: Maximum 255 characters.
 	OperationId *string `type:"string" required:"true"`
 
-	metadataUpdateDomainContactPrivacyOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateDomainContactPrivacyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2501,11 +2349,7 @@ type UpdateDomainNameserversInput struct {
 	// Required: Yes
 	Nameservers []*Nameserver `type:"list" required:"true"`
 
-	metadataUpdateDomainNameserversInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateDomainNameserversInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2530,11 +2374,7 @@ type UpdateDomainNameserversOutput struct {
 	// Constraints: Maximum 255 characters.
 	OperationId *string `type:"string" required:"true"`
 
-	metadataUpdateDomainNameserversOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateDomainNameserversOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2606,11 +2446,7 @@ type UpdateTagsForDomainInput struct {
 	// Required: Yes
 	TagsToUpdate []*Tag `type:"list"`
 
-	metadataUpdateTagsForDomainInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateTagsForDomainInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2624,11 +2460,7 @@ func (s UpdateTagsForDomainInput) GoString() string {
 }
 
 type UpdateTagsForDomainOutput struct {
-	metadataUpdateTagsForDomainOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateTagsForDomainOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

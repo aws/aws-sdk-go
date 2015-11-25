@@ -645,11 +645,7 @@ type AllocateConnectionOnInterconnectInput struct {
 	// Default: None
 	Vlan *int64 `locationName:"vlan" type:"integer" required:"true"`
 
-	metadataAllocateConnectionOnInterconnectInput `json:"-" xml:"-"`
-}
-
-type metadataAllocateConnectionOnInterconnectInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -679,11 +675,7 @@ type AllocatePrivateVirtualInterfaceInput struct {
 	// Default: None
 	OwnerAccount *string `locationName:"ownerAccount" type:"string" required:"true"`
 
-	metadataAllocatePrivateVirtualInterfaceInput `json:"-" xml:"-"`
-}
-
-type metadataAllocatePrivateVirtualInterfaceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -713,11 +705,7 @@ type AllocatePublicVirtualInterfaceInput struct {
 	// Default: None
 	OwnerAccount *string `locationName:"ownerAccount" type:"string" required:"true"`
 
-	metadataAllocatePublicVirtualInterfaceInput `json:"-" xml:"-"`
-}
-
-type metadataAllocatePublicVirtualInterfaceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -739,11 +727,7 @@ type ConfirmConnectionInput struct {
 	// Default: None
 	ConnectionId *string `locationName:"connectionId" type:"string" required:"true"`
 
-	metadataConfirmConnectionInput `json:"-" xml:"-"`
-}
-
-type metadataConfirmConnectionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -770,11 +754,7 @@ type ConfirmConnectionOutput struct {
 	// the 'Rejected' state if it is deleted by the end customer.
 	ConnectionState *string `locationName:"connectionState" type:"string" enum:"ConnectionState"`
 
-	metadataConfirmConnectionOutput `json:"-" xml:"-"`
-}
-
-type metadataConfirmConnectionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -805,11 +785,7 @@ type ConfirmPrivateVirtualInterfaceInput struct {
 	// Default: None
 	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string" required:"true"`
 
-	metadataConfirmPrivateVirtualInterfaceInput `json:"-" xml:"-"`
-}
-
-type metadataConfirmPrivateVirtualInterfaceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -842,11 +818,7 @@ type ConfirmPrivateVirtualInterfaceOutput struct {
 	// the 'Rejected' state.
 	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string" enum:"VirtualInterfaceState"`
 
-	metadataConfirmPrivateVirtualInterfaceOutput `json:"-" xml:"-"`
-}
-
-type metadataConfirmPrivateVirtualInterfaceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -868,11 +840,7 @@ type ConfirmPublicVirtualInterfaceInput struct {
 	// Default: None
 	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string" required:"true"`
 
-	metadataConfirmPublicVirtualInterfaceInput `json:"-" xml:"-"`
-}
-
-type metadataConfirmPublicVirtualInterfaceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -905,11 +873,7 @@ type ConfirmPublicVirtualInterfaceOutput struct {
 	// the 'Rejected' state.
 	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string" enum:"VirtualInterfaceState"`
 
-	metadataConfirmPublicVirtualInterfaceOutput `json:"-" xml:"-"`
-}
-
-type metadataConfirmPublicVirtualInterfaceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -981,11 +945,7 @@ type Connection struct {
 	// Example: 101
 	Vlan *int64 `locationName:"vlan" type:"integer"`
 
-	metadataConnection `json:"-" xml:"-"`
-}
-
-type metadataConnection struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1003,11 +963,7 @@ type Connections struct {
 	// A list of connections.
 	Connections []*Connection `locationName:"connections" type:"list"`
 
-	metadataConnections `json:"-" xml:"-"`
-}
-
-type metadataConnections struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1043,11 +999,7 @@ type CreateConnectionInput struct {
 	// Default: None
 	Location *string `locationName:"location" type:"string" required:"true"`
 
-	metadataCreateConnectionInput `json:"-" xml:"-"`
-}
-
-type metadataCreateConnectionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1085,11 +1037,7 @@ type CreateInterconnectInput struct {
 	// Default: None
 	Location *string `locationName:"location" type:"string" required:"true"`
 
-	metadataCreateInterconnectInput `json:"-" xml:"-"`
-}
-
-type metadataCreateInterconnectInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1116,11 +1064,7 @@ type CreatePrivateVirtualInterfaceInput struct {
 	// Default: None
 	NewPrivateVirtualInterface *NewPrivateVirtualInterface `locationName:"newPrivateVirtualInterface" type:"structure" required:"true"`
 
-	metadataCreatePrivateVirtualInterfaceInput `json:"-" xml:"-"`
-}
-
-type metadataCreatePrivateVirtualInterfaceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1147,11 +1091,7 @@ type CreatePublicVirtualInterfaceInput struct {
 	// Default: None
 	NewPublicVirtualInterface *NewPublicVirtualInterface `locationName:"newPublicVirtualInterface" type:"structure" required:"true"`
 
-	metadataCreatePublicVirtualInterfaceInput `json:"-" xml:"-"`
-}
-
-type metadataCreatePublicVirtualInterfaceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1173,11 +1113,7 @@ type DeleteConnectionInput struct {
 	// Default: None
 	ConnectionId *string `locationName:"connectionId" type:"string" required:"true"`
 
-	metadataDeleteConnectionInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteConnectionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1197,11 +1133,7 @@ type DeleteInterconnectInput struct {
 	// Example: dxcon-abc123
 	InterconnectId *string `locationName:"interconnectId" type:"string" required:"true"`
 
-	metadataDeleteInterconnectInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteInterconnectInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1224,11 +1156,7 @@ type DeleteInterconnectOutput struct {
 	// has been deleted.
 	InterconnectState *string `locationName:"interconnectState" type:"string" enum:"InterconnectState"`
 
-	metadataDeleteInterconnectOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteInterconnectOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1250,11 +1178,7 @@ type DeleteVirtualInterfaceInput struct {
 	// Default: None
 	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string" required:"true"`
 
-	metadataDeleteVirtualInterfaceInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteVirtualInterfaceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1287,11 +1211,7 @@ type DeleteVirtualInterfaceOutput struct {
 	// the 'Rejected' state.
 	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string" enum:"VirtualInterfaceState"`
 
-	metadataDeleteVirtualInterfaceOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteVirtualInterfaceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1313,11 +1233,7 @@ type DescribeConnectionsInput struct {
 	// Default: None
 	ConnectionId *string `locationName:"connectionId" type:"string"`
 
-	metadataDescribeConnectionsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeConnectionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1339,11 +1255,7 @@ type DescribeConnectionsOnInterconnectInput struct {
 	// Default: None
 	InterconnectId *string `locationName:"interconnectId" type:"string" required:"true"`
 
-	metadataDescribeConnectionsOnInterconnectInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeConnectionsOnInterconnectInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1363,11 +1275,7 @@ type DescribeInterconnectsInput struct {
 	// Example: dxcon-abc123
 	InterconnectId *string `locationName:"interconnectId" type:"string"`
 
-	metadataDescribeInterconnectsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeInterconnectsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1385,11 +1293,7 @@ type DescribeInterconnectsOutput struct {
 	// A list of interconnects.
 	Interconnects []*Interconnect `locationName:"interconnects" type:"list"`
 
-	metadataDescribeInterconnectsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeInterconnectsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1403,11 +1307,7 @@ func (s DescribeInterconnectsOutput) GoString() string {
 }
 
 type DescribeLocationsInput struct {
-	metadataDescribeLocationsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeLocationsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1423,11 +1323,7 @@ func (s DescribeLocationsInput) GoString() string {
 type DescribeLocationsOutput struct {
 	Locations []*Location `locationName:"locations" type:"list"`
 
-	metadataDescribeLocationsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeLocationsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1441,11 +1337,7 @@ func (s DescribeLocationsOutput) GoString() string {
 }
 
 type DescribeVirtualGatewaysInput struct {
-	metadataDescribeVirtualGatewaysInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeVirtualGatewaysInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1463,11 +1355,7 @@ type DescribeVirtualGatewaysOutput struct {
 	// A list of virtual private gateways.
 	VirtualGateways []*VirtualGateway `locationName:"virtualGateways" type:"list"`
 
-	metadataDescribeVirtualGatewaysOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeVirtualGatewaysOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1496,11 +1384,7 @@ type DescribeVirtualInterfacesInput struct {
 	// Default: None
 	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string"`
 
-	metadataDescribeVirtualInterfacesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeVirtualInterfacesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1518,11 +1402,7 @@ type DescribeVirtualInterfacesOutput struct {
 	// A list of virtual interfaces.
 	VirtualInterfaces []*VirtualInterface `locationName:"virtualInterfaces" type:"list"`
 
-	metadataDescribeVirtualInterfacesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeVirtualInterfacesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1587,11 +1467,7 @@ type Interconnect struct {
 	// Default: None
 	Region *string `locationName:"region" type:"string"`
 
-	metadataInterconnect `json:"-" xml:"-"`
-}
-
-type metadataInterconnect struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1614,11 +1490,7 @@ type Location struct {
 	// partner name and the physical site of the lit building.
 	LocationName *string `locationName:"locationName" type:"string"`
 
-	metadataLocation `json:"-" xml:"-"`
-}
-
-type metadataLocation struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1669,11 +1541,7 @@ type NewPrivateVirtualInterface struct {
 	// Example: 101
 	Vlan *int64 `locationName:"vlan" type:"integer" required:"true"`
 
-	metadataNewPrivateVirtualInterface `json:"-" xml:"-"`
-}
-
-type metadataNewPrivateVirtualInterface struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1719,11 +1587,7 @@ type NewPrivateVirtualInterfaceAllocation struct {
 	// Example: 101
 	Vlan *int64 `locationName:"vlan" type:"integer" required:"true"`
 
-	metadataNewPrivateVirtualInterfaceAllocation `json:"-" xml:"-"`
-}
-
-type metadataNewPrivateVirtualInterfaceAllocation struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1772,11 +1636,7 @@ type NewPublicVirtualInterface struct {
 	// Example: 101
 	Vlan *int64 `locationName:"vlan" type:"integer" required:"true"`
 
-	metadataNewPublicVirtualInterface `json:"-" xml:"-"`
-}
-
-type metadataNewPublicVirtualInterface struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1826,11 +1686,7 @@ type NewPublicVirtualInterfaceAllocation struct {
 	// Example: 101
 	Vlan *int64 `locationName:"vlan" type:"integer" required:"true"`
 
-	metadataNewPublicVirtualInterfaceAllocation `json:"-" xml:"-"`
-}
-
-type metadataNewPublicVirtualInterfaceAllocation struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1852,11 +1708,7 @@ type RouteFilterPrefix struct {
 	// Example: 10.10.10.0/24,10.10.11.0/24
 	Cidr *string `locationName:"cidr" type:"string"`
 
-	metadataRouteFilterPrefix `json:"-" xml:"-"`
-}
-
-type metadataRouteFilterPrefix struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1888,11 +1740,7 @@ type VirtualGateway struct {
 	// over this gateway.
 	VirtualGatewayState *string `locationName:"virtualGatewayState" type:"string"`
 
-	metadataVirtualGateway `json:"-" xml:"-"`
-}
-
-type metadataVirtualGateway struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1998,11 +1846,7 @@ type VirtualInterface struct {
 	// Example: 101
 	Vlan *int64 `locationName:"vlan" type:"integer"`
 
-	metadataVirtualInterface `json:"-" xml:"-"`
-}
-
-type metadataVirtualInterface struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

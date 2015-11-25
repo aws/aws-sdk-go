@@ -511,11 +511,7 @@ type CreateHapgInput struct {
 	// The label of the new high-availability partition group.
 	Label *string `type:"string" required:"true"`
 
-	metadataCreateHapgInput `json:"-" xml:"-"`
-}
-
-type metadataCreateHapgInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -533,11 +529,7 @@ type CreateHapgOutput struct {
 	// The ARN of the high-availability partition group.
 	HapgArn *string `type:"string"`
 
-	metadataCreateHapgOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateHapgOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -585,11 +577,7 @@ type CreateHsmInput struct {
 	// only supports one syslog monitoring server.
 	SyslogIp *string `locationName:"SyslogIp" type:"string"`
 
-	metadataCreateHsmInput `json:"-" xml:"-"`
-}
-
-type metadataCreateHsmInput struct {
-	SDKShapeTraits bool `locationName:"CreateHsmRequest" type:"structure"`
+	_ struct{} `locationName:"CreateHsmRequest" type:"structure"`
 }
 
 // String returns the string representation
@@ -607,11 +595,7 @@ type CreateHsmOutput struct {
 	// The ARN of the HSM.
 	HsmArn *string `type:"string"`
 
-	metadataCreateHsmOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateHsmOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -633,11 +617,7 @@ type CreateLunaClientInput struct {
 	// The label for the client.
 	Label *string `type:"string"`
 
-	metadataCreateLunaClientInput `json:"-" xml:"-"`
-}
-
-type metadataCreateLunaClientInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -655,11 +635,7 @@ type CreateLunaClientOutput struct {
 	// The ARN of the client.
 	ClientArn *string `type:"string"`
 
-	metadataCreateLunaClientOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateLunaClientOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -677,11 +653,7 @@ type DeleteHapgInput struct {
 	// The ARN of the high-availability partition group to delete.
 	HapgArn *string `type:"string" required:"true"`
 
-	metadataDeleteHapgInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteHapgInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -699,11 +671,7 @@ type DeleteHapgOutput struct {
 	// The status of the action.
 	Status *string `type:"string" required:"true"`
 
-	metadataDeleteHapgOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteHapgOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -721,11 +689,7 @@ type DeleteHsmInput struct {
 	// The ARN of the HSM to delete.
 	HsmArn *string `locationName:"HsmArn" type:"string" required:"true"`
 
-	metadataDeleteHsmInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteHsmInput struct {
-	SDKShapeTraits bool `locationName:"DeleteHsmRequest" type:"structure"`
+	_ struct{} `locationName:"DeleteHsmRequest" type:"structure"`
 }
 
 // String returns the string representation
@@ -743,11 +707,7 @@ type DeleteHsmOutput struct {
 	// The status of the operation.
 	Status *string `type:"string" required:"true"`
 
-	metadataDeleteHsmOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteHsmOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -764,11 +724,7 @@ type DeleteLunaClientInput struct {
 	// The ARN of the client to delete.
 	ClientArn *string `type:"string" required:"true"`
 
-	metadataDeleteLunaClientInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteLunaClientInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -785,11 +741,7 @@ type DeleteLunaClientOutput struct {
 	// The status of the action.
 	Status *string `type:"string" required:"true"`
 
-	metadataDeleteLunaClientOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteLunaClientOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -807,11 +759,7 @@ type DescribeHapgInput struct {
 	// The ARN of the high-availability partition group to describe.
 	HapgArn *string `type:"string" required:"true"`
 
-	metadataDescribeHapgInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeHapgInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -854,11 +802,7 @@ type DescribeHapgOutput struct {
 	// The state of the high-availability partition group.
 	State *string `type:"string" enum:"CloudHsmObjectState"`
 
-	metadataDescribeHapgOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeHapgOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -881,11 +825,7 @@ type DescribeHsmInput struct {
 	// must be specified.
 	HsmSerialNumber *string `type:"string"`
 
-	metadataDescribeHsmInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeHsmInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -966,11 +906,7 @@ type DescribeHsmOutput struct {
 	// The identifier of the VPC that the HSM is in.
 	VpcId *string `type:"string"`
 
-	metadataDescribeHsmOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeHsmOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -990,11 +926,7 @@ type DescribeLunaClientInput struct {
 	// The ARN of the client.
 	ClientArn *string `type:"string"`
 
-	metadataDescribeLunaClientInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeLunaClientInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1023,11 +955,7 @@ type DescribeLunaClientOutput struct {
 	// The date and time the client was last modified.
 	LastModifiedTimestamp *string `type:"string"`
 
-	metadataDescribeLunaClientOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeLunaClientOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1051,11 +979,7 @@ type GetConfigInput struct {
 	// are associated with the client.
 	HapgList []*string `type:"list" required:"true"`
 
-	metadataGetConfigInput `json:"-" xml:"-"`
-}
-
-type metadataGetConfigInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1078,11 +1002,7 @@ type GetConfigOutput struct {
 	// The type of credentials.
 	ConfigType *string `type:"string"`
 
-	metadataGetConfigOutput `json:"-" xml:"-"`
-}
-
-type metadataGetConfigOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1097,11 +1017,7 @@ func (s GetConfigOutput) GoString() string {
 
 // Contains the inputs for the ListAvailableZones action.
 type ListAvailableZonesInput struct {
-	metadataListAvailableZonesInput `json:"-" xml:"-"`
-}
-
-type metadataListAvailableZonesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1118,11 +1034,7 @@ type ListAvailableZonesOutput struct {
 	// The list of Availability Zones that have available AWS CloudHSM capacity.
 	AZList []*string `type:"list"`
 
-	metadataListAvailableZonesOutput `json:"-" xml:"-"`
-}
-
-type metadataListAvailableZonesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1140,11 +1052,7 @@ type ListHapgsInput struct {
 	// is the first call.
 	NextToken *string `type:"string"`
 
-	metadataListHapgsInput `json:"-" xml:"-"`
-}
-
-type metadataListHapgsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1165,11 +1073,7 @@ type ListHapgsOutput struct {
 	// retrieve the next set of items.
 	NextToken *string `type:"string"`
 
-	metadataListHapgsOutput `json:"-" xml:"-"`
-}
-
-type metadataListHapgsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1187,11 +1091,7 @@ type ListHsmsInput struct {
 	// the first call.
 	NextToken *string `type:"string"`
 
-	metadataListHsmsInput `json:"-" xml:"-"`
-}
-
-type metadataListHsmsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1213,11 +1113,7 @@ type ListHsmsOutput struct {
 	// the next set of items.
 	NextToken *string `type:"string"`
 
-	metadataListHsmsOutput `json:"-" xml:"-"`
-}
-
-type metadataListHsmsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1235,11 +1131,7 @@ type ListLunaClientsInput struct {
 	// this is the first call.
 	NextToken *string `type:"string"`
 
-	metadataListLunaClientsInput `json:"-" xml:"-"`
-}
-
-type metadataListLunaClientsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1260,11 +1152,7 @@ type ListLunaClientsOutput struct {
 	// retrieve the next set of items.
 	NextToken *string `type:"string"`
 
-	metadataListLunaClientsOutput `json:"-" xml:"-"`
-}
-
-type metadataListLunaClientsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1288,11 +1176,7 @@ type ModifyHapgInput struct {
 	// partition group.
 	PartitionSerialList []*string `type:"list"`
 
-	metadataModifyHapgInput `json:"-" xml:"-"`
-}
-
-type metadataModifyHapgInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1309,11 +1193,7 @@ type ModifyHapgOutput struct {
 	// The ARN of the high-availability partition group.
 	HapgArn *string `type:"string"`
 
-	metadataModifyHapgOutput `json:"-" xml:"-"`
-}
-
-type metadataModifyHapgOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1352,11 +1232,7 @@ type ModifyHsmInput struct {
 	// only supports one syslog monitoring server.
 	SyslogIp *string `locationName:"SyslogIp" type:"string"`
 
-	metadataModifyHsmInput `json:"-" xml:"-"`
-}
-
-type metadataModifyHsmInput struct {
-	SDKShapeTraits bool `locationName:"ModifyHsmRequest" type:"structure"`
+	_ struct{} `locationName:"ModifyHsmRequest" type:"structure"`
 }
 
 // String returns the string representation
@@ -1374,11 +1250,7 @@ type ModifyHsmOutput struct {
 	// The ARN of the HSM.
 	HsmArn *string `type:"string"`
 
-	metadataModifyHsmOutput `json:"-" xml:"-"`
-}
-
-type metadataModifyHsmOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1398,11 +1270,7 @@ type ModifyLunaClientInput struct {
 	// The ARN of the client.
 	ClientArn *string `type:"string" required:"true"`
 
-	metadataModifyLunaClientInput `json:"-" xml:"-"`
-}
-
-type metadataModifyLunaClientInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1419,11 +1287,7 @@ type ModifyLunaClientOutput struct {
 	// The ARN of the client.
 	ClientArn *string `type:"string"`
 
-	metadataModifyLunaClientOutput `json:"-" xml:"-"`
-}
-
-type metadataModifyLunaClientOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

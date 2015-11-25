@@ -916,11 +916,7 @@ type AddPermissionInput struct {
 	// A unique statement identifier.
 	StatementId *string `min:"1" type:"string" required:"true"`
 
-	metadataAddPermissionInput `json:"-" xml:"-"`
-}
-
-type metadataAddPermissionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -938,11 +934,7 @@ type AddPermissionOutput struct {
 	// the same as a string using "\" as an escape character in the JSON.
 	Statement *string `type:"string"`
 
-	metadataAddPermissionOutput `json:"-" xml:"-"`
-}
-
-type metadataAddPermissionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -971,11 +963,7 @@ type AliasConfiguration struct {
 	// Alias name.
 	Name *string `min:"1" type:"string"`
 
-	metadataAliasConfiguration `json:"-" xml:"-"`
-}
-
-type metadataAliasConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1001,11 +989,7 @@ type CreateAliasInput struct {
 	// Name for the alias your creating.
 	Name *string `min:"1" type:"string" required:"true"`
 
-	metadataCreateAliasInput `json:"-" xml:"-"`
-}
-
-type metadataCreateAliasInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1050,11 +1034,7 @@ type CreateEventSourceMappingInput struct {
 	// in the Amazon Kinesis API Reference.
 	StartingPosition *string `type:"string" required:"true" enum:"EventSourcePosition"`
 
-	metadataCreateEventSourceMappingInput `json:"-" xml:"-"`
-}
-
-type metadataCreateEventSourceMappingInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1118,11 +1098,7 @@ type CreateFunctionInput struct {
 	// value based on your expected execution time. The default is 3 seconds.
 	Timeout *int64 `min:"1" type:"integer"`
 
-	metadataCreateFunctionInput `json:"-" xml:"-"`
-}
-
-type metadataCreateFunctionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1142,11 +1118,7 @@ type DeleteAliasInput struct {
 	// Name of the alias to delete.
 	Name *string `location:"uri" locationName:"Name" min:"1" type:"string" required:"true"`
 
-	metadataDeleteAliasInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteAliasInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1160,11 +1132,7 @@ func (s DeleteAliasInput) GoString() string {
 }
 
 type DeleteAliasOutput struct {
-	metadataDeleteAliasOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteAliasOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1181,11 +1149,7 @@ type DeleteEventSourceMappingInput struct {
 	// The event source mapping ID.
 	UUID *string `location:"uri" locationName:"UUID" type:"string" required:"true"`
 
-	metadataDeleteEventSourceMappingInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteEventSourceMappingInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1224,11 +1188,7 @@ type DeleteFunctionInput struct {
 	// including all its versions and aliases.
 	Qualifier *string `location:"querystring" locationName:"Qualifier" min:"1" type:"string"`
 
-	metadataDeleteFunctionInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteFunctionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1242,11 +1202,7 @@ func (s DeleteFunctionInput) GoString() string {
 }
 
 type DeleteFunctionOutput struct {
-	metadataDeleteFunctionOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteFunctionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1290,11 +1246,7 @@ type EventSourceMappingConfiguration struct {
 	// The AWS Lambda assigned opaque identifier for the mapping.
 	UUID *string `type:"string"`
 
-	metadataEventSourceMappingConfiguration `json:"-" xml:"-"`
-}
-
-type metadataEventSourceMappingConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1325,11 +1277,7 @@ type FunctionCode struct {
 	// in the AWS Lambda Developer Guide.
 	ZipFile []byte `type:"blob"`
 
-	metadataFunctionCode `json:"-" xml:"-"`
-}
-
-type metadataFunctionCode struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1351,11 +1299,7 @@ type FunctionCodeLocation struct {
 	// The repository from which you can download the function.
 	RepositoryType *string `type:"string"`
 
-	metadataFunctionCodeLocation `json:"-" xml:"-"`
-}
-
-type metadataFunctionCodeLocation struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1410,11 +1354,7 @@ type FunctionConfiguration struct {
 	// The version of the Lambda function.
 	Version *string `min:"1" type:"string"`
 
-	metadataFunctionConfiguration `json:"-" xml:"-"`
-}
-
-type metadataFunctionConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1436,11 +1376,7 @@ type GetAliasInput struct {
 	// Name of the alias for which you want to retrieve information.
 	Name *string `location:"uri" locationName:"Name" min:"1" type:"string" required:"true"`
 
-	metadataGetAliasInput `json:"-" xml:"-"`
-}
-
-type metadataGetAliasInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1457,11 +1393,7 @@ type GetEventSourceMappingInput struct {
 	// The AWS Lambda assigned ID of the event source mapping.
 	UUID *string `location:"uri" locationName:"UUID" type:"string" required:"true"`
 
-	metadataGetEventSourceMappingInput `json:"-" xml:"-"`
-}
-
-type metadataGetEventSourceMappingInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1496,11 +1428,7 @@ type GetFunctionConfigurationInput struct {
 	// and returns information about the $LATEST function version.
 	Qualifier *string `location:"querystring" locationName:"Qualifier" min:"1" type:"string"`
 
-	metadataGetFunctionConfigurationInput `json:"-" xml:"-"`
-}
-
-type metadataGetFunctionConfigurationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1533,11 +1461,7 @@ type GetFunctionInput struct {
 	// about the $LATEST version of the Lambda function.
 	Qualifier *string `location:"querystring" locationName:"Qualifier" min:"1" type:"string"`
 
-	metadataGetFunctionInput `json:"-" xml:"-"`
-}
-
-type metadataGetFunctionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1558,11 +1482,7 @@ type GetFunctionOutput struct {
 	// A complex type that describes function metadata.
 	Configuration *FunctionConfiguration `type:"structure"`
 
-	metadataGetFunctionOutput `json:"-" xml:"-"`
-}
-
-type metadataGetFunctionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1592,11 +1512,7 @@ type GetPolicyInput struct {
 	// return permissions that apply to the unqualified function ARN.
 	Qualifier *string `min:"1" type:"string"`
 
-	metadataGetPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataGetPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1614,11 +1530,7 @@ type GetPolicyOutput struct {
 	// returns the same as a string using "\" as an escape character in the JSON.
 	Policy *string `type:"string"`
 
-	metadataGetPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataGetPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1638,11 +1550,7 @@ type InvokeAsyncInput struct {
 	// JSON that you want to provide to your Lambda function as input.
 	InvokeArgs io.ReadSeeker `type:"blob" required:"true"`
 
-	metadataInvokeAsyncInput `json:"-" xml:"-"`
-}
-
-type metadataInvokeAsyncInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"InvokeArgs"`
+	_ struct{} `type:"structure" payload:"InvokeArgs"`
 }
 
 // String returns the string representation
@@ -1660,11 +1568,7 @@ type InvokeAsyncOutput struct {
 	// It will be 202 upon success.
 	Status *int64 `location:"statusCode" type:"integer"`
 
-	metadataInvokeAsyncOutput `json:"-" xml:"-"`
-}
-
-type metadataInvokeAsyncOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1725,11 +1629,7 @@ type InvokeInput struct {
 	// ARN which results in invocation of the $LATEST version.
 	Qualifier *string `location:"querystring" locationName:"Qualifier" min:"1" type:"string"`
 
-	metadataInvokeInput `json:"-" xml:"-"`
-}
-
-type metadataInvokeInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Payload"`
+	_ struct{} `type:"structure" payload:"Payload"`
 }
 
 // String returns the string representation
@@ -1771,11 +1671,7 @@ type InvokeOutput struct {
 	// type the status code will be 204.
 	StatusCode *int64 `location:"statusCode" type:"integer"`
 
-	metadataInvokeOutput `json:"-" xml:"-"`
-}
-
-type metadataInvokeOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Payload"`
+	_ struct{} `type:"structure" payload:"Payload"`
 }
 
 // String returns the string representation
@@ -1805,11 +1701,7 @@ type ListAliasesInput struct {
 	// This parameter value must be greater than 0.
 	MaxItems *int64 `location:"querystring" locationName:"MaxItems" min:"1" type:"integer"`
 
-	metadataListAliasesInput `json:"-" xml:"-"`
-}
-
-type metadataListAliasesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1829,11 +1721,7 @@ type ListAliasesOutput struct {
 	// A string, present if there are more aliases.
 	NextMarker *string `type:"string"`
 
-	metadataListAliasesOutput `json:"-" xml:"-"`
-}
-
-type metadataListAliasesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1869,11 +1757,7 @@ type ListEventSourceMappingsInput struct {
 	// in response. This value must be greater than 0.
 	MaxItems *int64 `location:"querystring" locationName:"MaxItems" min:"1" type:"integer"`
 
-	metadataListEventSourceMappingsInput `json:"-" xml:"-"`
-}
-
-type metadataListEventSourceMappingsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1894,11 +1778,7 @@ type ListEventSourceMappingsOutput struct {
 	// A string, present if there are more event source mappings.
 	NextMarker *string `type:"string"`
 
-	metadataListEventSourceMappingsOutput `json:"-" xml:"-"`
-}
-
-type metadataListEventSourceMappingsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1920,11 +1800,7 @@ type ListFunctionsInput struct {
 	// return in response. This parameter value must be greater than 0.
 	MaxItems *int64 `location:"querystring" locationName:"MaxItems" min:"1" type:"integer"`
 
-	metadataListFunctionsInput `json:"-" xml:"-"`
-}
-
-type metadataListFunctionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1945,11 +1821,7 @@ type ListFunctionsOutput struct {
 	// A string, present if there are more functions.
 	NextMarker *string `type:"string"`
 
-	metadataListFunctionsOutput `json:"-" xml:"-"`
-}
-
-type metadataListFunctionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1980,11 +1852,7 @@ type ListVersionsByFunctionInput struct {
 	// to return in response. This parameter value must be greater than 0.
 	MaxItems *int64 `location:"querystring" locationName:"MaxItems" min:"1" type:"integer"`
 
-	metadataListVersionsByFunctionInput `json:"-" xml:"-"`
-}
-
-type metadataListVersionsByFunctionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2004,11 +1872,7 @@ type ListVersionsByFunctionOutput struct {
 	// A list of Lambda function versions.
 	Versions []*FunctionConfiguration `type:"list"`
 
-	metadataListVersionsByFunctionOutput `json:"-" xml:"-"`
-}
-
-type metadataListVersionsByFunctionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2040,11 +1904,7 @@ type PublishVersionInput struct {
 	// 64 character in length.
 	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
 
-	metadataPublishVersionInput `json:"-" xml:"-"`
-}
-
-type metadataPublishVersionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2077,11 +1937,7 @@ type RemovePermissionInput struct {
 	// Statement ID of the permission to remove.
 	StatementId *string `location:"uri" locationName:"StatementId" min:"1" type:"string" required:"true"`
 
-	metadataRemovePermissionInput `json:"-" xml:"-"`
-}
-
-type metadataRemovePermissionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2095,11 +1951,7 @@ func (s RemovePermissionInput) GoString() string {
 }
 
 type RemovePermissionOutput struct {
-	metadataRemovePermissionOutput `json:"-" xml:"-"`
-}
-
-type metadataRemovePermissionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2126,11 +1978,7 @@ type UpdateAliasInput struct {
 	// The alias name.
 	Name *string `location:"uri" locationName:"Name" min:"1" type:"string" required:"true"`
 
-	metadataUpdateAliasInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateAliasInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2165,11 +2013,7 @@ type UpdateEventSourceMappingInput struct {
 	// The event source mapping identifier.
 	UUID *string `location:"uri" locationName:"UUID" type:"string" required:"true"`
 
-	metadataUpdateEventSourceMappingInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateEventSourceMappingInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2211,11 +2055,7 @@ type UpdateFunctionCodeInput struct {
 	// Based64-encoded .zip file containing your packaged source code.
 	ZipFile []byte `type:"blob"`
 
-	metadataUpdateFunctionCodeInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateFunctionCodeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2264,11 +2104,7 @@ type UpdateFunctionConfigurationInput struct {
 	// value based on your expected execution time. The default is 3 seconds.
 	Timeout *int64 `min:"1" type:"integer"`
 
-	metadataUpdateFunctionConfigurationInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateFunctionConfigurationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

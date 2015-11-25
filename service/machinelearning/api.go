@@ -960,11 +960,7 @@ type BatchPrediction struct {
 	//  DELETED - The BatchPrediction is marked as deleted. It is not usable.
 	Status *string `type:"string" enum:"EntityStatus"`
 
-	metadataBatchPrediction `json:"-" xml:"-"`
-}
-
-type metadataBatchPrediction struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1000,11 +996,7 @@ type CreateBatchPredictionInput struct {
 	// Developer Guide (http://docs.aws.amazon.com/machine-learning/latest/dg).
 	OutputUri *string `type:"string" required:"true"`
 
-	metadataCreateBatchPredictionInput `json:"-" xml:"-"`
-}
-
-type metadataCreateBatchPredictionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1028,11 +1020,7 @@ type CreateBatchPredictionOutput struct {
 	// is identical to the value of the BatchPredictionId in the request.
 	BatchPredictionId *string `min:"1" type:"string"`
 
-	metadataCreateBatchPredictionOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateBatchPredictionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1105,11 +1093,7 @@ type CreateDataSourceFromRDSInput struct {
 	// query from Amazon RDS to Amazon S3.
 	RoleARN *string `min:"1" type:"string" required:"true"`
 
-	metadataCreateDataSourceFromRDSInput `json:"-" xml:"-"`
-}
-
-type metadataCreateDataSourceFromRDSInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1136,11 +1120,7 @@ type CreateDataSourceFromRDSOutput struct {
 	// be identical to the value of the DataSourceID in the request.
 	DataSourceId *string `min:"1" type:"string"`
 
-	metadataCreateDataSourceFromRDSOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateDataSourceFromRDSOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1202,11 +1182,7 @@ type CreateDataSourceFromRedshiftInput struct {
 	// the S3StagingLocation
 	RoleARN *string `min:"1" type:"string" required:"true"`
 
-	metadataCreateDataSourceFromRedshiftInput `json:"-" xml:"-"`
-}
-
-type metadataCreateDataSourceFromRedshiftInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1230,11 +1206,7 @@ type CreateDataSourceFromRedshiftOutput struct {
 	// be identical to the value of the DataSourceID in the request.
 	DataSourceId *string `min:"1" type:"string"`
 
-	metadataCreateDataSourceFromRedshiftOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateDataSourceFromRedshiftOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1276,11 +1248,7 @@ type CreateDataSourceFromS3Input struct {
 	//   Sample -  "{\"splitting\":{\"percentBegin\":10,\"percentEnd\":60}}"
 	DataSpec *S3DataSpec `type:"structure" required:"true"`
 
-	metadataCreateDataSourceFromS3Input `json:"-" xml:"-"`
-}
-
-type metadataCreateDataSourceFromS3Input struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1303,11 +1271,7 @@ type CreateDataSourceFromS3Output struct {
 	// be identical to the value of the DataSourceID in the request.
 	DataSourceId *string `min:"1" type:"string"`
 
-	metadataCreateDataSourceFromS3Output `json:"-" xml:"-"`
-}
-
-type metadataCreateDataSourceFromS3Output struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1337,11 +1301,7 @@ type CreateEvaluationInput struct {
 	// used in the Evaluation.
 	MLModelId *string `min:"1" type:"string" required:"true"`
 
-	metadataCreateEvaluationInput `json:"-" xml:"-"`
-}
-
-type metadataCreateEvaluationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1364,11 +1324,7 @@ type CreateEvaluationOutput struct {
 	// should be identical to the value of the EvaluationId in the request.
 	EvaluationId *string `min:"1" type:"string"`
 
-	metadataCreateEvaluationOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateEvaluationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1444,11 +1400,7 @@ type CreateMLModelInput struct {
 	// The DataSource that points to the training data.
 	TrainingDataSourceId *string `min:"1" type:"string" required:"true"`
 
-	metadataCreateMLModelInput `json:"-" xml:"-"`
-}
-
-type metadataCreateMLModelInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1471,11 +1423,7 @@ type CreateMLModelOutput struct {
 	// be identical to the value of the MLModelId in the request.
 	MLModelId *string `min:"1" type:"string"`
 
-	metadataCreateMLModelOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateMLModelOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1492,11 +1440,7 @@ type CreateRealtimeEndpointInput struct {
 	// The ID assigned to the MLModel during creation.
 	MLModelId *string `min:"1" type:"string" required:"true"`
 
-	metadataCreateRealtimeEndpointInput `json:"-" xml:"-"`
-}
-
-type metadataCreateRealtimeEndpointInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1523,11 +1467,7 @@ type CreateRealtimeEndpointOutput struct {
 	// The endpoint information of the MLModel
 	RealtimeEndpointInfo *RealtimeEndpointInfo `type:"structure"`
 
-	metadataCreateRealtimeEndpointOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateRealtimeEndpointOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1605,11 +1545,7 @@ type DataSource struct {
 	// is marked as deleted. It is not usable.
 	Status *string `type:"string" enum:"EntityStatus"`
 
-	metadataDataSource `json:"-" xml:"-"`
-}
-
-type metadataDataSource struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1626,11 +1562,7 @@ type DeleteBatchPredictionInput struct {
 	// A user-supplied ID that uniquely identifies the BatchPrediction.
 	BatchPredictionId *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteBatchPredictionInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteBatchPredictionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1652,11 +1584,7 @@ type DeleteBatchPredictionOutput struct {
 	// should be identical to the value of the BatchPredictionID in the request.
 	BatchPredictionId *string `min:"1" type:"string"`
 
-	metadataDeleteBatchPredictionOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteBatchPredictionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1673,11 +1601,7 @@ type DeleteDataSourceInput struct {
 	// A user-supplied ID that uniquely identifies the DataSource.
 	DataSourceId *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteDataSourceInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDataSourceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1696,11 +1620,7 @@ type DeleteDataSourceOutput struct {
 	// be identical to the value of the DataSourceID in the request.
 	DataSourceId *string `min:"1" type:"string"`
 
-	metadataDeleteDataSourceOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDataSourceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1717,11 +1637,7 @@ type DeleteEvaluationInput struct {
 	// A user-supplied ID that uniquely identifies the Evaluation to delete.
 	EvaluationId *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteEvaluationInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteEvaluationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1744,11 +1660,7 @@ type DeleteEvaluationOutput struct {
 	// be identical to the value of the EvaluationId in the request.
 	EvaluationId *string `min:"1" type:"string"`
 
-	metadataDeleteEvaluationOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteEvaluationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1765,11 +1677,7 @@ type DeleteMLModelInput struct {
 	// A user-supplied ID that uniquely identifies the MLModel.
 	MLModelId *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteMLModelInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteMLModelInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1791,11 +1699,7 @@ type DeleteMLModelOutput struct {
 	// be identical to the value of the MLModelID in the request.
 	MLModelId *string `min:"1" type:"string"`
 
-	metadataDeleteMLModelOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteMLModelOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1812,11 +1716,7 @@ type DeleteRealtimeEndpointInput struct {
 	// The ID assigned to the MLModel during creation.
 	MLModelId *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteRealtimeEndpointInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteRealtimeEndpointInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1840,11 +1740,7 @@ type DeleteRealtimeEndpointOutput struct {
 	// The endpoint information of the MLModel
 	RealtimeEndpointInfo *RealtimeEndpointInfo `type:"structure"`
 
-	metadataDeleteRealtimeEndpointOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteRealtimeEndpointOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1924,11 +1820,7 @@ type DescribeBatchPredictionsInput struct {
 	// the list in descending order (Z-A, 9-0).  Results are sorted by FilterVariable.
 	SortOrder *string `type:"string" enum:"SortOrder"`
 
-	metadataDescribeBatchPredictionsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeBatchPredictionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1951,11 +1843,7 @@ type DescribeBatchPredictionsOutput struct {
 	// A list of BatchPrediction objects that meet the search criteria.
 	Results []*BatchPrediction `type:"list"`
 
-	metadataDescribeBatchPredictionsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeBatchPredictionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2030,11 +1918,7 @@ type DescribeDataSourcesInput struct {
 	// the list in descending order (Z-A, 9-0).  Results are sorted by FilterVariable.
 	SortOrder *string `type:"string" enum:"SortOrder"`
 
-	metadataDescribeDataSourcesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDataSourcesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2057,11 +1941,7 @@ type DescribeDataSourcesOutput struct {
 	// A list of DataSource that meet the search criteria.
 	Results []*DataSource `type:"list"`
 
-	metadataDescribeDataSourcesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDataSourcesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2138,11 +2018,7 @@ type DescribeEvaluationsInput struct {
 	// the list in descending order (Z-A, 9-0).  Results are sorted by FilterVariable.
 	SortOrder *string `type:"string" enum:"SortOrder"`
 
-	metadataDescribeEvaluationsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEvaluationsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2165,11 +2041,7 @@ type DescribeEvaluationsOutput struct {
 	// A list of Evaluation that meet the search criteria.
 	Results []*Evaluation `type:"list"`
 
-	metadataDescribeEvaluationsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEvaluationsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2249,11 +2121,7 @@ type DescribeMLModelsInput struct {
 	// the list in descending order (Z-A, 9-0).  Results are sorted by FilterVariable.
 	SortOrder *string `type:"string" enum:"SortOrder"`
 
-	metadataDescribeMLModelsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeMLModelsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2276,11 +2144,7 @@ type DescribeMLModelsOutput struct {
 	// A list of MLModel that meet the search criteria.
 	Results []*MLModel `type:"list"`
 
-	metadataDescribeMLModelsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeMLModelsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2358,11 +2222,7 @@ type Evaluation struct {
 	// is marked as deleted. It is not usable.
 	Status *string `type:"string" enum:"EntityStatus"`
 
-	metadataEvaluation `json:"-" xml:"-"`
-}
-
-type metadataEvaluation struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2379,11 +2239,7 @@ type GetBatchPredictionInput struct {
 	// An ID assigned to the BatchPrediction at creation.
 	BatchPredictionId *string `min:"1" type:"string" required:"true"`
 
-	metadataGetBatchPredictionInput `json:"-" xml:"-"`
-}
-
-type metadataGetBatchPredictionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2449,11 +2305,7 @@ type GetBatchPredictionOutput struct {
 	//  DELETED - The BatchPrediction is marked as deleted. It is not usable.
 	Status *string `type:"string" enum:"EntityStatus"`
 
-	metadataGetBatchPredictionOutput `json:"-" xml:"-"`
-}
-
-type metadataGetBatchPredictionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2477,11 +2329,7 @@ type GetDataSourceInput struct {
 	// If false, DataSourceSchema is not returned.
 	Verbose *bool `type:"boolean"`
 
-	metadataGetDataSourceInput `json:"-" xml:"-"`
-}
-
-type metadataGetDataSourceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2565,11 +2413,7 @@ type GetDataSourceOutput struct {
 	// DataSource is marked as deleted. It is not usable.
 	Status *string `type:"string" enum:"EntityStatus"`
 
-	metadataGetDataSourceOutput `json:"-" xml:"-"`
-}
-
-type metadataGetDataSourceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2587,11 +2431,7 @@ type GetEvaluationInput struct {
 	// and cataloged. The ID provides the means to access the information.
 	EvaluationId *string `min:"1" type:"string" required:"true"`
 
-	metadataGetEvaluationInput `json:"-" xml:"-"`
-}
-
-type metadataGetEvaluationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2669,11 +2509,7 @@ type GetEvaluationOutput struct {
 	// is marked as deleted. It is not usable.
 	Status *string `type:"string" enum:"EntityStatus"`
 
-	metadataGetEvaluationOutput `json:"-" xml:"-"`
-}
-
-type metadataGetEvaluationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2697,11 +2533,7 @@ type GetMLModelInput struct {
 	// If false, Recipe is not returned.
 	Verbose *bool `type:"boolean"`
 
-	metadataGetMLModelInput `json:"-" xml:"-"`
-}
-
-type metadataGetMLModelInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2829,11 +2661,7 @@ type GetMLModelOutput struct {
 	// value is 33554432.
 	TrainingParameters map[string]*string `type:"map"`
 
-	metadataGetMLModelOutput `json:"-" xml:"-"`
-}
-
-type metadataGetMLModelOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2950,11 +2778,7 @@ type MLModel struct {
 	// value is 33554432.
 	TrainingParameters map[string]*string `type:"map"`
 
-	metadataMLModel `json:"-" xml:"-"`
-}
-
-type metadataMLModel struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2985,11 +2809,7 @@ func (s MLModel) GoString() string {
 type PerformanceMetrics struct {
 	Properties map[string]*string `type:"map"`
 
-	metadataPerformanceMetrics `json:"-" xml:"-"`
-}
-
-type metadataPerformanceMetrics struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3011,11 +2831,7 @@ type PredictInput struct {
 	// A map of variable name-value pairs that represent an observation.
 	Record map[string]*string `type:"map" required:"true"`
 
-	metadataPredictInput `json:"-" xml:"-"`
-}
-
-type metadataPredictInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3042,11 +2858,7 @@ type PredictOutput struct {
 	//    PredictedValue - Present for a REGRESSION MLModel request.
 	Prediction *Prediction `type:"structure"`
 
-	metadataPredictOutput `json:"-" xml:"-"`
-}
-
-type metadataPredictOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3083,11 +2895,7 @@ type Prediction struct {
 	// The prediction value for REGRESSION MLModel.
 	PredictedValue *float64 `locationName:"predictedValue" type:"float"`
 
-	metadataPrediction `json:"-" xml:"-"`
-}
-
-type metadataPrediction struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3183,11 +2991,7 @@ type RDSDataSpec struct {
 	// S3.
 	SubnetId *string `min:"1" type:"string" required:"true"`
 
-	metadataRDSDataSpec `json:"-" xml:"-"`
-}
-
-type metadataRDSDataSpec struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3208,11 +3012,7 @@ type RDSDatabase struct {
 	// The ID of an RDS DB instance.
 	InstanceIdentifier *string `min:"1" type:"string" required:"true"`
 
-	metadataRDSDatabase `json:"-" xml:"-"`
-}
-
-type metadataRDSDatabase struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3237,11 +3037,7 @@ type RDSDatabaseCredentials struct {
 	// an RDSSelectSqlQuery query.
 	Username *string `min:"1" type:"string" required:"true"`
 
-	metadataRDSDatabaseCredentials `json:"-" xml:"-"`
-}
-
-type metadataRDSDatabaseCredentials struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3285,11 +3081,7 @@ type RDSMetadata struct {
 	// for data pipelines.
 	ServiceRole *string `min:"1" type:"string"`
 
-	metadataRDSMetadata `json:"-" xml:"-"`
-}
-
-type metadataRDSMetadata struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3327,11 +3119,7 @@ type RealtimeEndpointInfo struct {
 	// in incoming requests per second.
 	PeakRequestsPerSecond *int64 `type:"integer"`
 
-	metadataRealtimeEndpointInfo `json:"-" xml:"-"`
-}
-
-type metadataRealtimeEndpointInfo struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3401,11 +3189,7 @@ type RedshiftDataSpec struct {
 	// Amazon Redshift DataSource.
 	SelectSqlQuery *string `min:"1" type:"string" required:"true"`
 
-	metadataRedshiftDataSpec `json:"-" xml:"-"`
-}
-
-type metadataRedshiftDataSpec struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3427,11 +3211,7 @@ type RedshiftDatabase struct {
 	// The name of a database hosted on an Amazon Redshift cluster.
 	DatabaseName *string `min:"1" type:"string" required:"true"`
 
-	metadataRedshiftDatabase `json:"-" xml:"-"`
-}
-
-type metadataRedshiftDatabase struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3459,11 +3239,7 @@ type RedshiftDatabaseCredentials struct {
 	// be valid for an Amazon Redshift USER (http://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_USER.html).
 	Username *string `min:"1" type:"string" required:"true"`
 
-	metadataRedshiftDatabaseCredentials `json:"-" xml:"-"`
-}
-
-type metadataRedshiftDatabaseCredentials struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3492,11 +3268,7 @@ type RedshiftMetadata struct {
 	// only if Verbose is true in GetDataSourceInput.
 	SelectSqlQuery *string `min:"1" type:"string"`
 
-	metadataRedshiftMetadata `json:"-" xml:"-"`
-}
-
-type metadataRedshiftMetadata struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3554,11 +3326,7 @@ type S3DataSpec struct {
 	// Describes the schema Location in Amazon S3.
 	DataSchemaLocationS3 *string `type:"string"`
 
-	metadataS3DataSpec `json:"-" xml:"-"`
-}
-
-type metadataS3DataSpec struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3578,11 +3346,7 @@ type UpdateBatchPredictionInput struct {
 	// A new user-supplied name or description of the BatchPrediction.
 	BatchPredictionName *string `type:"string" required:"true"`
 
-	metadataUpdateBatchPredictionInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateBatchPredictionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3603,11 +3367,7 @@ type UpdateBatchPredictionOutput struct {
 	// be identical to the value of the BatchPredictionId in the request.
 	BatchPredictionId *string `min:"1" type:"string"`
 
-	metadataUpdateBatchPredictionOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateBatchPredictionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3628,11 +3388,7 @@ type UpdateDataSourceInput struct {
 	// the current description.
 	DataSourceName *string `type:"string" required:"true"`
 
-	metadataUpdateDataSourceInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateDataSourceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3653,11 +3409,7 @@ type UpdateDataSourceOutput struct {
 	// to the value of the DataSourceID in the request.
 	DataSourceId *string `min:"1" type:"string"`
 
-	metadataUpdateDataSourceOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateDataSourceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3678,11 +3430,7 @@ type UpdateEvaluationInput struct {
 	// the current content.
 	EvaluationName *string `type:"string" required:"true"`
 
-	metadataUpdateEvaluationInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateEvaluationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3703,11 +3451,7 @@ type UpdateEvaluationOutput struct {
 	// to the value of the Evaluation in the request.
 	EvaluationId *string `min:"1" type:"string"`
 
-	metadataUpdateEvaluationOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateEvaluationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3735,11 +3479,7 @@ type UpdateMLModelInput struct {
 	// receive a negative response from the MLModel, such as false.
 	ScoreThreshold *float64 `type:"float"`
 
-	metadataUpdateMLModelInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateMLModelInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3760,11 +3500,7 @@ type UpdateMLModelOutput struct {
 	// to the value of the MLModelID in the request.
 	MLModelId *string `min:"1" type:"string"`
 
-	metadataUpdateMLModelOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateMLModelOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

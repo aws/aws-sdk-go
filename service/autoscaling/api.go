@@ -1667,11 +1667,7 @@ type Activity struct {
 	// A friendly, more verbose description of the activity status.
 	StatusMessage *string `min:"1" type:"string"`
 
-	metadataActivity `json:"-" xml:"-"`
-}
-
-type metadataActivity struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1693,11 +1689,7 @@ type AdjustmentType struct {
 	// and PercentChangeInCapacity.
 	AdjustmentType *string `min:"1" type:"string"`
 
-	metadataAdjustmentType `json:"-" xml:"-"`
-}
-
-type metadataAdjustmentType struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1718,11 +1710,7 @@ type Alarm struct {
 	// The name of the alarm.
 	AlarmName *string `min:"1" type:"string"`
 
-	metadataAlarm `json:"-" xml:"-"`
-}
-
-type metadataAlarm struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1742,11 +1730,7 @@ type AttachInstancesInput struct {
 	// One or more EC2 instance IDs.
 	InstanceIds []*string `type:"list"`
 
-	metadataAttachInstancesInput `json:"-" xml:"-"`
-}
-
-type metadataAttachInstancesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1760,11 +1744,7 @@ func (s AttachInstancesInput) GoString() string {
 }
 
 type AttachInstancesOutput struct {
-	metadataAttachInstancesOutput `json:"-" xml:"-"`
-}
-
-type metadataAttachInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1784,11 +1764,7 @@ type AttachLoadBalancersInput struct {
 	// One or more load balancer names.
 	LoadBalancerNames []*string `type:"list"`
 
-	metadataAttachLoadBalancersInput `json:"-" xml:"-"`
-}
-
-type metadataAttachLoadBalancersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1802,11 +1778,7 @@ func (s AttachLoadBalancersInput) GoString() string {
 }
 
 type AttachLoadBalancersOutput struct {
-	metadataAttachLoadBalancersOutput `json:"-" xml:"-"`
-}
-
-type metadataAttachLoadBalancersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1837,11 +1809,7 @@ type BlockDeviceMapping struct {
 	// The name of the virtual device (for example, ephemeral0).
 	VirtualName *string `min:"1" type:"string"`
 
-	metadataBlockDeviceMapping `json:"-" xml:"-"`
-}
-
-type metadataBlockDeviceMapping struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1870,11 +1838,7 @@ type CompleteLifecycleActionInput struct {
 	// The name of the lifecycle hook.
 	LifecycleHookName *string `min:"1" type:"string" required:"true"`
 
-	metadataCompleteLifecycleActionInput `json:"-" xml:"-"`
-}
-
-type metadataCompleteLifecycleActionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1888,11 +1852,7 @@ func (s CompleteLifecycleActionInput) GoString() string {
 }
 
 type CompleteLifecycleActionOutput struct {
-	metadataCompleteLifecycleActionOutput `json:"-" xml:"-"`
-}
-
-type metadataCompleteLifecycleActionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2010,11 +1970,7 @@ type CreateAutoScalingGroupInput struct {
 	// in the Auto Scaling Developer Guide.
 	VPCZoneIdentifier *string `min:"1" type:"string"`
 
-	metadataCreateAutoScalingGroupInput `json:"-" xml:"-"`
-}
-
-type metadataCreateAutoScalingGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2028,11 +1984,7 @@ func (s CreateAutoScalingGroupInput) GoString() string {
 }
 
 type CreateAutoScalingGroupOutput struct {
-	metadataCreateAutoScalingGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateAutoScalingGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2189,11 +2141,7 @@ type CreateLaunchConfigurationInput struct {
 	// data files.
 	UserData *string `type:"string"`
 
-	metadataCreateLaunchConfigurationInput `json:"-" xml:"-"`
-}
-
-type metadataCreateLaunchConfigurationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2207,11 +2155,7 @@ func (s CreateLaunchConfigurationInput) GoString() string {
 }
 
 type CreateLaunchConfigurationOutput struct {
-	metadataCreateLaunchConfigurationOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateLaunchConfigurationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2228,11 +2172,7 @@ type CreateOrUpdateTagsInput struct {
 	// One or more tags.
 	Tags []*Tag `type:"list" required:"true"`
 
-	metadataCreateOrUpdateTagsInput `json:"-" xml:"-"`
-}
-
-type metadataCreateOrUpdateTagsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2246,11 +2186,7 @@ func (s CreateOrUpdateTagsInput) GoString() string {
 }
 
 type CreateOrUpdateTagsOutput struct {
-	metadataCreateOrUpdateTagsOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateOrUpdateTagsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2272,11 +2208,7 @@ type DeleteAutoScalingGroupInput struct {
 	// parameter also deletes any lifecycle actions associated with the group.
 	ForceDelete *bool `type:"boolean"`
 
-	metadataDeleteAutoScalingGroupInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteAutoScalingGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2290,11 +2222,7 @@ func (s DeleteAutoScalingGroupInput) GoString() string {
 }
 
 type DeleteAutoScalingGroupOutput struct {
-	metadataDeleteAutoScalingGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteAutoScalingGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2311,11 +2239,7 @@ type DeleteLaunchConfigurationInput struct {
 	// The name of the launch configuration.
 	LaunchConfigurationName *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteLaunchConfigurationInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteLaunchConfigurationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2329,11 +2253,7 @@ func (s DeleteLaunchConfigurationInput) GoString() string {
 }
 
 type DeleteLaunchConfigurationOutput struct {
-	metadataDeleteLaunchConfigurationOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteLaunchConfigurationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2353,11 +2273,7 @@ type DeleteLifecycleHookInput struct {
 	// The name of the lifecycle hook.
 	LifecycleHookName *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteLifecycleHookInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteLifecycleHookInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2371,11 +2287,7 @@ func (s DeleteLifecycleHookInput) GoString() string {
 }
 
 type DeleteLifecycleHookOutput struct {
-	metadataDeleteLifecycleHookOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteLifecycleHookOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2396,11 +2308,7 @@ type DeleteNotificationConfigurationInput struct {
 	// (SNS) topic.
 	TopicARN *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteNotificationConfigurationInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteNotificationConfigurationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2414,11 +2322,7 @@ func (s DeleteNotificationConfigurationInput) GoString() string {
 }
 
 type DeleteNotificationConfigurationOutput struct {
-	metadataDeleteNotificationConfigurationOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteNotificationConfigurationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2438,11 +2342,7 @@ type DeletePolicyInput struct {
 	// The name or Amazon Resource Name (ARN) of the policy.
 	PolicyName *string `min:"1" type:"string" required:"true"`
 
-	metadataDeletePolicyInput `json:"-" xml:"-"`
-}
-
-type metadataDeletePolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2456,11 +2356,7 @@ func (s DeletePolicyInput) GoString() string {
 }
 
 type DeletePolicyOutput struct {
-	metadataDeletePolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataDeletePolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2480,11 +2376,7 @@ type DeleteScheduledActionInput struct {
 	// The name of the action to delete.
 	ScheduledActionName *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteScheduledActionInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteScheduledActionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2498,11 +2390,7 @@ func (s DeleteScheduledActionInput) GoString() string {
 }
 
 type DeleteScheduledActionOutput struct {
-	metadataDeleteScheduledActionOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteScheduledActionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2522,11 +2410,7 @@ type DeleteTagsInput struct {
 	// or false.
 	Tags []*Tag `type:"list" required:"true"`
 
-	metadataDeleteTagsInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteTagsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2540,11 +2424,7 @@ func (s DeleteTagsInput) GoString() string {
 }
 
 type DeleteTagsOutput struct {
-	metadataDeleteTagsOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteTagsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2558,11 +2438,7 @@ func (s DeleteTagsOutput) GoString() string {
 }
 
 type DescribeAccountLimitsInput struct {
-	metadataDescribeAccountLimitsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAccountLimitsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2584,11 +2460,7 @@ type DescribeAccountLimitsOutput struct {
 	// The default limit is 100 per region.
 	MaxNumberOfLaunchConfigurations *int64 `type:"integer"`
 
-	metadataDescribeAccountLimitsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAccountLimitsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2602,11 +2474,7 @@ func (s DescribeAccountLimitsOutput) GoString() string {
 }
 
 type DescribeAdjustmentTypesInput struct {
-	metadataDescribeAdjustmentTypesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAdjustmentTypesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2623,11 +2491,7 @@ type DescribeAdjustmentTypesOutput struct {
 	// The policy adjustment types.
 	AdjustmentTypes []*AdjustmentType `type:"list"`
 
-	metadataDescribeAdjustmentTypesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAdjustmentTypesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2651,11 +2515,7 @@ type DescribeAutoScalingGroupsInput struct {
 	// a previous call.)
 	NextToken *string `type:"string"`
 
-	metadataDescribeAutoScalingGroupsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAutoScalingGroupsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2676,11 +2536,7 @@ type DescribeAutoScalingGroupsOutput struct {
 	// items to return, the string is empty.
 	NextToken *string `type:"string"`
 
-	metadataDescribeAutoScalingGroupsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAutoScalingGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2706,11 +2562,7 @@ type DescribeAutoScalingInstancesInput struct {
 	// a previous call.)
 	NextToken *string `type:"string"`
 
-	metadataDescribeAutoScalingInstancesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAutoScalingInstancesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2731,11 +2583,7 @@ type DescribeAutoScalingInstancesOutput struct {
 	// items to return, the string is empty.
 	NextToken *string `type:"string"`
 
-	metadataDescribeAutoScalingInstancesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAutoScalingInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2749,11 +2597,7 @@ func (s DescribeAutoScalingInstancesOutput) GoString() string {
 }
 
 type DescribeAutoScalingNotificationTypesInput struct {
-	metadataDescribeAutoScalingNotificationTypesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAutoScalingNotificationTypesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2780,11 +2624,7 @@ type DescribeAutoScalingNotificationTypesOutput struct {
 	// autoscaling:TEST_NOTIFICATION
 	AutoScalingNotificationTypes []*string `type:"list"`
 
-	metadataDescribeAutoScalingNotificationTypesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAutoScalingNotificationTypesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2808,11 +2648,7 @@ type DescribeLaunchConfigurationsInput struct {
 	// a previous call.)
 	NextToken *string `type:"string"`
 
-	metadataDescribeLaunchConfigurationsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeLaunchConfigurationsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2833,11 +2669,7 @@ type DescribeLaunchConfigurationsOutput struct {
 	// items to return, the string is empty.
 	NextToken *string `type:"string"`
 
-	metadataDescribeLaunchConfigurationsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeLaunchConfigurationsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2851,11 +2683,7 @@ func (s DescribeLaunchConfigurationsOutput) GoString() string {
 }
 
 type DescribeLifecycleHookTypesInput struct {
-	metadataDescribeLifecycleHookTypesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeLifecycleHookTypesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2876,11 +2704,7 @@ type DescribeLifecycleHookTypesOutput struct {
 	// autoscaling:EC2_INSTANCE_TERMINATING
 	LifecycleHookTypes []*string `type:"list"`
 
-	metadataDescribeLifecycleHookTypesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeLifecycleHookTypesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2900,11 +2724,7 @@ type DescribeLifecycleHooksInput struct {
 	// The names of one or more lifecycle hooks.
 	LifecycleHookNames []*string `type:"list"`
 
-	metadataDescribeLifecycleHooksInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeLifecycleHooksInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2921,11 +2741,7 @@ type DescribeLifecycleHooksOutput struct {
 	// The lifecycle hooks for the specified group.
 	LifecycleHooks []*LifecycleHook `type:"list"`
 
-	metadataDescribeLifecycleHooksOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeLifecycleHooksOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2949,11 +2765,7 @@ type DescribeLoadBalancersInput struct {
 	// a previous call.)
 	NextToken *string `type:"string"`
 
-	metadataDescribeLoadBalancersInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeLoadBalancersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2974,11 +2786,7 @@ type DescribeLoadBalancersOutput struct {
 	// items to return, the string is empty.
 	NextToken *string `type:"string"`
 
-	metadataDescribeLoadBalancersOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeLoadBalancersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2992,11 +2800,7 @@ func (s DescribeLoadBalancersOutput) GoString() string {
 }
 
 type DescribeMetricCollectionTypesInput struct {
-	metadataDescribeMetricCollectionTypesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeMetricCollectionTypesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3016,11 +2820,7 @@ type DescribeMetricCollectionTypesOutput struct {
 	// One or more metrics.
 	Metrics []*MetricCollectionType `type:"list"`
 
-	metadataDescribeMetricCollectionTypesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeMetricCollectionTypesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3044,11 +2844,7 @@ type DescribeNotificationConfigurationsInput struct {
 	// a previous call.)
 	NextToken *string `type:"string"`
 
-	metadataDescribeNotificationConfigurationsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeNotificationConfigurationsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3069,11 +2865,7 @@ type DescribeNotificationConfigurationsOutput struct {
 	// The notification configurations.
 	NotificationConfigurations []*NotificationConfiguration `type:"list" required:"true"`
 
-	metadataDescribeNotificationConfigurationsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeNotificationConfigurationsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3106,11 +2898,7 @@ type DescribePoliciesInput struct {
 	// One or more policy types. Valid values are SimpleScaling and StepScaling.
 	PolicyTypes []*string `type:"list"`
 
-	metadataDescribePoliciesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribePoliciesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3131,11 +2919,7 @@ type DescribePoliciesOutput struct {
 	// The scaling policies.
 	ScalingPolicies []*ScalingPolicy `type:"list"`
 
-	metadataDescribePoliciesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribePoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3166,11 +2950,7 @@ type DescribeScalingActivitiesInput struct {
 	// a previous call.)
 	NextToken *string `type:"string"`
 
-	metadataDescribeScalingActivitiesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeScalingActivitiesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3191,11 +2971,7 @@ type DescribeScalingActivitiesOutput struct {
 	// items to return, the string is empty.
 	NextToken *string `type:"string"`
 
-	metadataDescribeScalingActivitiesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeScalingActivitiesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3209,11 +2985,7 @@ func (s DescribeScalingActivitiesOutput) GoString() string {
 }
 
 type DescribeScalingProcessTypesInput struct {
-	metadataDescribeScalingProcessTypesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeScalingProcessTypesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3230,11 +3002,7 @@ type DescribeScalingProcessTypesOutput struct {
 	// The names of the process types.
 	Processes []*ProcessType `type:"list"`
 
-	metadataDescribeScalingProcessTypesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeScalingProcessTypesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3275,11 +3043,7 @@ type DescribeScheduledActionsInput struct {
 	// provided, this parameter is ignored.
 	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataDescribeScheduledActionsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeScheduledActionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3300,11 +3064,7 @@ type DescribeScheduledActionsOutput struct {
 	// The scheduled actions.
 	ScheduledUpdateGroupActions []*ScheduledUpdateGroupAction `type:"list"`
 
-	metadataDescribeScheduledActionsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeScheduledActionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3328,11 +3088,7 @@ type DescribeTagsInput struct {
 	// a previous call.)
 	NextToken *string `type:"string"`
 
-	metadataDescribeTagsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTagsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3353,11 +3109,7 @@ type DescribeTagsOutput struct {
 	// The tags.
 	Tags []*TagDescription `type:"list"`
 
-	metadataDescribeTagsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTagsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3371,11 +3123,7 @@ func (s DescribeTagsOutput) GoString() string {
 }
 
 type DescribeTerminationPolicyTypesInput struct {
-	metadataDescribeTerminationPolicyTypesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTerminationPolicyTypesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3393,11 +3141,7 @@ type DescribeTerminationPolicyTypesOutput struct {
 	// NewestInstance, ClosestToNextInstanceHour, and Default).
 	TerminationPolicyTypes []*string `type:"list"`
 
-	metadataDescribeTerminationPolicyTypesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTerminationPolicyTypesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3421,11 +3165,7 @@ type DetachInstancesInput struct {
 	// the number of instances detached.
 	ShouldDecrementDesiredCapacity *bool `type:"boolean" required:"true"`
 
-	metadataDetachInstancesInput `json:"-" xml:"-"`
-}
-
-type metadataDetachInstancesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3442,11 +3182,7 @@ type DetachInstancesOutput struct {
 	// The activities related to detaching the instances from the Auto Scaling group.
 	Activities []*Activity `type:"list"`
 
-	metadataDetachInstancesOutput `json:"-" xml:"-"`
-}
-
-type metadataDetachInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3466,11 +3202,7 @@ type DetachLoadBalancersInput struct {
 	// One or more load balancer names.
 	LoadBalancerNames []*string `type:"list"`
 
-	metadataDetachLoadBalancersInput `json:"-" xml:"-"`
-}
-
-type metadataDetachLoadBalancersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3484,11 +3216,7 @@ func (s DetachLoadBalancersInput) GoString() string {
 }
 
 type DetachLoadBalancersOutput struct {
-	metadataDetachLoadBalancersOutput `json:"-" xml:"-"`
-}
-
-type metadataDetachLoadBalancersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3525,11 +3253,7 @@ type DisableMetricsCollectionInput struct {
 	// GroupTotalInstances
 	Metrics []*string `type:"list"`
 
-	metadataDisableMetricsCollectionInput `json:"-" xml:"-"`
-}
-
-type metadataDisableMetricsCollectionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3543,11 +3267,7 @@ func (s DisableMetricsCollectionInput) GoString() string {
 }
 
 type DisableMetricsCollectionOutput struct {
-	metadataDisableMetricsCollectionOutput `json:"-" xml:"-"`
-}
-
-type metadataDisableMetricsCollectionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3604,11 +3324,7 @@ type Ebs struct {
 	// Default: standard
 	VolumeType *string `min:"1" type:"string"`
 
-	metadataEbs `json:"-" xml:"-"`
-}
-
-type metadataEbs struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3652,11 +3368,7 @@ type EnableMetricsCollectionInput struct {
 	// must explicitly request this metric.
 	Metrics []*string `type:"list"`
 
-	metadataEnableMetricsCollectionInput `json:"-" xml:"-"`
-}
-
-type metadataEnableMetricsCollectionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3670,11 +3382,7 @@ func (s EnableMetricsCollectionInput) GoString() string {
 }
 
 type EnableMetricsCollectionOutput struct {
-	metadataEnableMetricsCollectionOutput `json:"-" xml:"-"`
-}
-
-type metadataEnableMetricsCollectionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3711,11 +3419,7 @@ type EnabledMetric struct {
 	// GroupTotalInstances
 	Metric *string `min:"1" type:"string"`
 
-	metadataEnabledMetric `json:"-" xml:"-"`
-}
-
-type metadataEnabledMetric struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3742,11 +3446,7 @@ type EnterStandbyInput struct {
 	// mode.
 	ShouldDecrementDesiredCapacity *bool `type:"boolean" required:"true"`
 
-	metadataEnterStandbyInput `json:"-" xml:"-"`
-}
-
-type metadataEnterStandbyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3763,11 +3463,7 @@ type EnterStandbyOutput struct {
 	// The activities related to moving instances into Standby mode.
 	Activities []*Activity `type:"list"`
 
-	metadataEnterStandbyOutput `json:"-" xml:"-"`
-}
-
-type metadataEnterStandbyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3816,11 +3512,7 @@ type ExecutePolicyInput struct {
 	// The name or ARN of the policy.
 	PolicyName *string `min:"1" type:"string" required:"true"`
 
-	metadataExecutePolicyInput `json:"-" xml:"-"`
-}
-
-type metadataExecutePolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3834,11 +3526,7 @@ func (s ExecutePolicyInput) GoString() string {
 }
 
 type ExecutePolicyOutput struct {
-	metadataExecutePolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataExecutePolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3858,11 +3546,7 @@ type ExitStandbyInput struct {
 	// One or more instance IDs. You must specify at least one instance ID.
 	InstanceIds []*string `type:"list"`
 
-	metadataExitStandbyInput `json:"-" xml:"-"`
-}
-
-type metadataExitStandbyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3879,11 +3563,7 @@ type ExitStandbyOutput struct {
 	// The activities related to moving instances out of Standby mode.
 	Activities []*Activity `type:"list"`
 
-	metadataExitStandbyOutput `json:"-" xml:"-"`
-}
-
-type metadataExitStandbyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3905,11 +3585,7 @@ type Filter struct {
 	// The value of the filter.
 	Values []*string `type:"list"`
 
-	metadataFilter `json:"-" xml:"-"`
-}
-
-type metadataFilter struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3992,11 +3668,7 @@ type Group struct {
 	// Availability Zones of the subnets match the values for AvailabilityZones.
 	VPCZoneIdentifier *string `min:"1" type:"string"`
 
-	metadataGroup `json:"-" xml:"-"`
-}
-
-type metadataGroup struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4027,11 +3699,7 @@ type Instance struct {
 	// is not used.
 	LifecycleState *string `type:"string" required:"true" enum:"LifecycleState"`
 
-	metadataInstance `json:"-" xml:"-"`
-}
-
-type metadataInstance struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4068,11 +3736,7 @@ type InstanceDetails struct {
 	// in the Auto Scaling Developer Guide.
 	LifecycleState *string `min:"1" type:"string" required:"true"`
 
-	metadataInstanceDetails `json:"-" xml:"-"`
-}
-
-type metadataInstanceDetails struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4090,11 +3754,7 @@ type InstanceMonitoring struct {
 	// If True, instance monitoring is enabled.
 	Enabled *bool `type:"boolean"`
 
-	metadataInstanceMonitoring `json:"-" xml:"-"`
-}
-
-type metadataInstanceMonitoring struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4175,11 +3835,7 @@ type LaunchConfiguration struct {
 	// The user data available to the instances.
 	UserData *string `type:"string"`
 
-	metadataLaunchConfiguration `json:"-" xml:"-"`
-}
-
-type metadataLaunchConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4244,11 +3900,7 @@ type LifecycleHook struct {
 	// the specified notification target.
 	RoleARN *string `min:"1" type:"string"`
 
-	metadataLifecycleHook `json:"-" xml:"-"`
-}
-
-type metadataLifecycleHook struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4280,11 +3932,7 @@ type LoadBalancerState struct {
 	// requests to complete before deregistering the instances.
 	State *string `min:"1" type:"string"`
 
-	metadataLoadBalancerState `json:"-" xml:"-"`
-}
-
-type metadataLoadBalancerState struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4318,11 +3966,7 @@ type MetricCollectionType struct {
 	// GroupTotalInstances
 	Metric *string `min:"1" type:"string"`
 
-	metadataMetricCollectionType `json:"-" xml:"-"`
-}
-
-type metadataMetricCollectionType struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4340,11 +3984,7 @@ type MetricGranularityType struct {
 	// The granularity. The only valid value is 1Minute.
 	Granularity *string `min:"1" type:"string"`
 
-	metadataMetricGranularityType `json:"-" xml:"-"`
-}
-
-type metadataMetricGranularityType struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4379,11 +4019,7 @@ type NotificationConfiguration struct {
 	// (SNS) topic.
 	TopicARN *string `min:"1" type:"string"`
 
-	metadataNotificationConfiguration `json:"-" xml:"-"`
-}
-
-type metadataNotificationConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4420,11 +4056,7 @@ type ProcessType struct {
 	// ScheduledActions
 	ProcessName *string `min:"1" type:"string" required:"true"`
 
-	metadataProcessType `json:"-" xml:"-"`
-}
-
-type metadataProcessType struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4497,11 +4129,7 @@ type PutLifecycleHookInput struct {
 	// existing hooks.
 	RoleARN *string `min:"1" type:"string"`
 
-	metadataPutLifecycleHookInput `json:"-" xml:"-"`
-}
-
-type metadataPutLifecycleHookInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4515,11 +4143,7 @@ func (s PutLifecycleHookInput) GoString() string {
 }
 
 type PutLifecycleHookOutput struct {
-	metadataPutLifecycleHookOutput `json:"-" xml:"-"`
-}
-
-type metadataPutLifecycleHookOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4544,11 +4168,7 @@ type PutNotificationConfigurationInput struct {
 	// (SNS) topic.
 	TopicARN *string `min:"1" type:"string" required:"true"`
 
-	metadataPutNotificationConfigurationInput `json:"-" xml:"-"`
-}
-
-type metadataPutNotificationConfigurationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4562,11 +4182,7 @@ func (s PutNotificationConfigurationInput) GoString() string {
 }
 
 type PutNotificationConfigurationOutput struct {
-	metadataPutNotificationConfigurationOutput `json:"-" xml:"-"`
-}
-
-type metadataPutNotificationConfigurationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4645,11 +4261,7 @@ type PutScalingPolicyInput struct {
 	// otherwise.
 	StepAdjustments []*StepAdjustment `type:"list"`
 
-	metadataPutScalingPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataPutScalingPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4666,11 +4278,7 @@ type PutScalingPolicyOutput struct {
 	// The Amazon Resource Name (ARN) of the policy.
 	PolicyARN *string `min:"1" type:"string"`
 
-	metadataPutScalingPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataPutScalingPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4726,11 +4334,7 @@ type PutScheduledUpdateGroupActionInput struct {
 	// their values must be identical.
 	Time *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataPutScheduledUpdateGroupActionInput `json:"-" xml:"-"`
-}
-
-type metadataPutScheduledUpdateGroupActionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4744,11 +4348,7 @@ func (s PutScheduledUpdateGroupActionInput) GoString() string {
 }
 
 type PutScheduledUpdateGroupActionOutput struct {
-	metadataPutScheduledUpdateGroupActionOutput `json:"-" xml:"-"`
-}
-
-type metadataPutScheduledUpdateGroupActionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4773,11 +4373,7 @@ type RecordLifecycleActionHeartbeatInput struct {
 	// The name of the lifecycle hook.
 	LifecycleHookName *string `min:"1" type:"string" required:"true"`
 
-	metadataRecordLifecycleActionHeartbeatInput `json:"-" xml:"-"`
-}
-
-type metadataRecordLifecycleActionHeartbeatInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4791,11 +4387,7 @@ func (s RecordLifecycleActionHeartbeatInput) GoString() string {
 }
 
 type RecordLifecycleActionHeartbeatOutput struct {
-	metadataRecordLifecycleActionHeartbeatOutput `json:"-" xml:"-"`
-}
-
-type metadataRecordLifecycleActionHeartbeatOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4809,11 +4401,7 @@ func (s RecordLifecycleActionHeartbeatOutput) GoString() string {
 }
 
 type ResumeProcessesOutput struct {
-	metadataResumeProcessesOutput `json:"-" xml:"-"`
-}
-
-type metadataResumeProcessesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4877,11 +4465,7 @@ type ScalingPolicy struct {
 	// breach.
 	StepAdjustments []*StepAdjustment `type:"list"`
 
-	metadataScalingPolicy `json:"-" xml:"-"`
-}
-
-type metadataScalingPolicy struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4917,11 +4501,7 @@ type ScalingProcessQuery struct {
 	// AddToLoadBalancer
 	ScalingProcesses []*string `type:"list"`
 
-	metadataScalingProcessQuery `json:"-" xml:"-"`
-}
-
-type metadataScalingProcessQuery struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4971,11 +4551,7 @@ type ScheduledUpdateGroupAction struct {
 	// This parameter is deprecated; use StartTime instead.
 	Time *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataScheduledUpdateGroupAction `json:"-" xml:"-"`
-}
-
-type metadataScheduledUpdateGroupAction struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5001,11 +4577,7 @@ type SetDesiredCapacityInput struct {
 	// initiating a scaling activity to set your Auto Scaling group to its new capacity.
 	HonorCooldown *bool `type:"boolean"`
 
-	metadataSetDesiredCapacityInput `json:"-" xml:"-"`
-}
-
-type metadataSetDesiredCapacityInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5019,11 +4591,7 @@ func (s SetDesiredCapacityInput) GoString() string {
 }
 
 type SetDesiredCapacityOutput struct {
-	metadataSetDesiredCapacityOutput `json:"-" xml:"-"`
-}
-
-type metadataSetDesiredCapacityOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5054,11 +4622,7 @@ type SetInstanceHealthInput struct {
 	// for CreateAutoScalingGroup.
 	ShouldRespectGracePeriod *bool `type:"boolean"`
 
-	metadataSetInstanceHealthInput `json:"-" xml:"-"`
-}
-
-type metadataSetInstanceHealthInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5072,11 +4636,7 @@ func (s SetInstanceHealthInput) GoString() string {
 }
 
 type SetInstanceHealthOutput struct {
-	metadataSetInstanceHealthOutput `json:"-" xml:"-"`
-}
-
-type metadataSetInstanceHealthOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5140,11 +4700,7 @@ type StepAdjustment struct {
 	// current capacity.
 	ScalingAdjustment *int64 `type:"integer" required:"true"`
 
-	metadataStepAdjustment `json:"-" xml:"-"`
-}
-
-type metadataStepAdjustment struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5158,11 +4714,7 @@ func (s StepAdjustment) GoString() string {
 }
 
 type SuspendProcessesOutput struct {
-	metadataSuspendProcessesOutput `json:"-" xml:"-"`
-}
-
-type metadataSuspendProcessesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5184,11 +4736,7 @@ type SuspendedProcess struct {
 	// The reason that the process was suspended.
 	SuspensionReason *string `min:"1" type:"string"`
 
-	metadataSuspendedProcess `json:"-" xml:"-"`
-}
-
-type metadataSuspendedProcess struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5219,11 +4767,7 @@ type Tag struct {
 	// The tag value.
 	Value *string `type:"string"`
 
-	metadataTag `json:"-" xml:"-"`
-}
-
-type metadataTag struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5254,11 +4798,7 @@ type TagDescription struct {
 	// The tag value.
 	Value *string `type:"string"`
 
-	metadataTagDescription `json:"-" xml:"-"`
-}
-
-type metadataTagDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5279,11 +4819,7 @@ type TerminateInstanceInAutoScalingGroupInput struct {
 	// group.
 	ShouldDecrementDesiredCapacity *bool `type:"boolean" required:"true"`
 
-	metadataTerminateInstanceInAutoScalingGroupInput `json:"-" xml:"-"`
-}
-
-type metadataTerminateInstanceInAutoScalingGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5300,11 +4836,7 @@ type TerminateInstanceInAutoScalingGroupOutput struct {
 	// A scaling activity.
 	Activity *Activity `type:"structure"`
 
-	metadataTerminateInstanceInAutoScalingGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataTerminateInstanceInAutoScalingGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5381,11 +4913,7 @@ type UpdateAutoScalingGroupInput struct {
 	// in the Auto Scaling Developer Guide.
 	VPCZoneIdentifier *string `min:"1" type:"string"`
 
-	metadataUpdateAutoScalingGroupInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateAutoScalingGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5399,11 +4927,7 @@ func (s UpdateAutoScalingGroupInput) GoString() string {
 }
 
 type UpdateAutoScalingGroupOutput struct {
-	metadataUpdateAutoScalingGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateAutoScalingGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

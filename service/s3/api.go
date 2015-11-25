@@ -1627,11 +1627,7 @@ type AbortMultipartUploadInput struct {
 
 	UploadId *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
 
-	metadataAbortMultipartUploadInput `json:"-" xml:"-"`
-}
-
-type metadataAbortMultipartUploadInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1649,11 +1645,7 @@ type AbortMultipartUploadOutput struct {
 	// request.
 	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
 
-	metadataAbortMultipartUploadOutput `json:"-" xml:"-"`
-}
-
-type metadataAbortMultipartUploadOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1672,11 +1664,7 @@ type AccessControlPolicy struct {
 
 	Owner *Owner `type:"structure"`
 
-	metadataAccessControlPolicy `json:"-" xml:"-"`
-}
-
-type metadataAccessControlPolicy struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1696,11 +1684,7 @@ type Bucket struct {
 	// The name of the bucket.
 	Name *string `type:"string"`
 
-	metadataBucket `json:"-" xml:"-"`
-}
-
-type metadataBucket struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1716,11 +1700,7 @@ func (s Bucket) GoString() string {
 type BucketLifecycleConfiguration struct {
 	Rules []*LifecycleRule `locationName:"Rule" type:"list" flattened:"true" required:"true"`
 
-	metadataBucketLifecycleConfiguration `json:"-" xml:"-"`
-}
-
-type metadataBucketLifecycleConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1736,11 +1716,7 @@ func (s BucketLifecycleConfiguration) GoString() string {
 type BucketLoggingStatus struct {
 	LoggingEnabled *LoggingEnabled `type:"structure"`
 
-	metadataBucketLoggingStatus `json:"-" xml:"-"`
-}
-
-type metadataBucketLoggingStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1756,11 +1732,7 @@ func (s BucketLoggingStatus) GoString() string {
 type CORSConfiguration struct {
 	CORSRules []*CORSRule `locationName:"CORSRule" type:"list" flattened:"true" required:"true"`
 
-	metadataCORSConfiguration `json:"-" xml:"-"`
-}
-
-type metadataCORSConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1793,11 +1765,7 @@ type CORSRule struct {
 	// for the specified resource.
 	MaxAgeSeconds *int64 `type:"integer"`
 
-	metadataCORSRule `json:"-" xml:"-"`
-}
-
-type metadataCORSRule struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1824,11 +1792,7 @@ type CloudFunctionConfiguration struct {
 
 	InvocationRole *string `type:"string"`
 
-	metadataCloudFunctionConfiguration `json:"-" xml:"-"`
-}
-
-type metadataCloudFunctionConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1844,11 +1808,7 @@ func (s CloudFunctionConfiguration) GoString() string {
 type CommonPrefix struct {
 	Prefix *string `type:"string"`
 
-	metadataCommonPrefix `json:"-" xml:"-"`
-}
-
-type metadataCommonPrefix struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1876,11 +1836,7 @@ type CompleteMultipartUploadInput struct {
 
 	UploadId *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
 
-	metadataCompleteMultipartUploadInput `json:"-" xml:"-"`
-}
-
-type metadataCompleteMultipartUploadInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"MultipartUpload"`
+	_ struct{} `type:"structure" payload:"MultipartUpload"`
 }
 
 // String returns the string representation
@@ -1922,11 +1878,7 @@ type CompleteMultipartUploadOutput struct {
 	// Version of the object.
 	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 
-	metadataCompleteMultipartUploadOutput `json:"-" xml:"-"`
-}
-
-type metadataCompleteMultipartUploadOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1942,11 +1894,7 @@ func (s CompleteMultipartUploadOutput) GoString() string {
 type CompletedMultipartUpload struct {
 	Parts []*CompletedPart `locationName:"Part" type:"list" flattened:"true"`
 
-	metadataCompletedMultipartUpload `json:"-" xml:"-"`
-}
-
-type metadataCompletedMultipartUpload struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1967,11 +1915,7 @@ type CompletedPart struct {
 	// 1 and 10,000.
 	PartNumber *int64 `type:"integer"`
 
-	metadataCompletedPart `json:"-" xml:"-"`
-}
-
-type metadataCompletedPart struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2001,11 +1945,7 @@ type Condition struct {
 	// the redirect to be applied.
 	KeyPrefixEquals *string `type:"string"`
 
-	metadataCondition `json:"-" xml:"-"`
-}
-
-type metadataCondition struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2134,11 +2074,7 @@ type CopyObjectInput struct {
 	// the value of this header in the object metadata.
 	WebsiteRedirectLocation *string `location:"header" locationName:"x-amz-website-redirect-location" type:"string"`
 
-	metadataCopyObjectInput `json:"-" xml:"-"`
-}
-
-type metadataCopyObjectInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2184,11 +2120,7 @@ type CopyObjectOutput struct {
 	// Version ID of the newly created copy.
 	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 
-	metadataCopyObjectOutput `json:"-" xml:"-"`
-}
-
-type metadataCopyObjectOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"CopyObjectResult"`
+	_ struct{} `type:"structure" payload:"CopyObjectResult"`
 }
 
 // String returns the string representation
@@ -2206,11 +2138,7 @@ type CopyObjectResult struct {
 
 	LastModified *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataCopyObjectResult `json:"-" xml:"-"`
-}
-
-type metadataCopyObjectResult struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2230,11 +2158,7 @@ type CopyPartResult struct {
 	// Date and time at which the object was uploaded.
 	LastModified *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataCopyPartResult `json:"-" xml:"-"`
-}
-
-type metadataCopyPartResult struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2252,11 +2176,7 @@ type CreateBucketConfiguration struct {
 	// a region, the bucket will be created in US Standard.
 	LocationConstraint *string `type:"string" enum:"BucketLocationConstraint"`
 
-	metadataCreateBucketConfiguration `json:"-" xml:"-"`
-}
-
-type metadataCreateBucketConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2293,11 +2213,7 @@ type CreateBucketInput struct {
 	// Allows grantee to write the ACL for the applicable bucket.
 	GrantWriteACP *string `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
 
-	metadataCreateBucketInput `json:"-" xml:"-"`
-}
-
-type metadataCreateBucketInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"CreateBucketConfiguration"`
+	_ struct{} `type:"structure" payload:"CreateBucketConfiguration"`
 }
 
 // String returns the string representation
@@ -2313,11 +2229,7 @@ func (s CreateBucketInput) GoString() string {
 type CreateBucketOutput struct {
 	Location *string `location:"header" locationName:"Location" type:"string"`
 
-	metadataCreateBucketOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateBucketOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2412,11 +2324,7 @@ type CreateMultipartUploadInput struct {
 	// the value of this header in the object metadata.
 	WebsiteRedirectLocation *string `location:"header" locationName:"x-amz-website-redirect-location" type:"string"`
 
-	metadataCreateMultipartUploadInput `json:"-" xml:"-"`
-}
-
-type metadataCreateMultipartUploadInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2461,11 +2369,7 @@ type CreateMultipartUploadOutput struct {
 	// ID for the initiated multipart upload.
 	UploadId *string `type:"string"`
 
-	metadataCreateMultipartUploadOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateMultipartUploadOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2485,11 +2389,7 @@ type Delete struct {
 	// you must set its value to true.
 	Quiet *bool `type:"boolean"`
 
-	metadataDelete `json:"-" xml:"-"`
-}
-
-type metadataDelete struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2505,11 +2405,7 @@ func (s Delete) GoString() string {
 type DeleteBucketCorsInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataDeleteBucketCorsInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteBucketCorsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2523,11 +2419,7 @@ func (s DeleteBucketCorsInput) GoString() string {
 }
 
 type DeleteBucketCorsOutput struct {
-	metadataDeleteBucketCorsOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteBucketCorsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2543,11 +2435,7 @@ func (s DeleteBucketCorsOutput) GoString() string {
 type DeleteBucketInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataDeleteBucketInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteBucketInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2563,11 +2451,7 @@ func (s DeleteBucketInput) GoString() string {
 type DeleteBucketLifecycleInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataDeleteBucketLifecycleInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteBucketLifecycleInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2581,11 +2465,7 @@ func (s DeleteBucketLifecycleInput) GoString() string {
 }
 
 type DeleteBucketLifecycleOutput struct {
-	metadataDeleteBucketLifecycleOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteBucketLifecycleOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2599,11 +2479,7 @@ func (s DeleteBucketLifecycleOutput) GoString() string {
 }
 
 type DeleteBucketOutput struct {
-	metadataDeleteBucketOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteBucketOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2619,11 +2495,7 @@ func (s DeleteBucketOutput) GoString() string {
 type DeleteBucketPolicyInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataDeleteBucketPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteBucketPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2637,11 +2509,7 @@ func (s DeleteBucketPolicyInput) GoString() string {
 }
 
 type DeleteBucketPolicyOutput struct {
-	metadataDeleteBucketPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteBucketPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2657,11 +2525,7 @@ func (s DeleteBucketPolicyOutput) GoString() string {
 type DeleteBucketReplicationInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataDeleteBucketReplicationInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteBucketReplicationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2675,11 +2539,7 @@ func (s DeleteBucketReplicationInput) GoString() string {
 }
 
 type DeleteBucketReplicationOutput struct {
-	metadataDeleteBucketReplicationOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteBucketReplicationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2695,11 +2555,7 @@ func (s DeleteBucketReplicationOutput) GoString() string {
 type DeleteBucketTaggingInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataDeleteBucketTaggingInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteBucketTaggingInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2713,11 +2569,7 @@ func (s DeleteBucketTaggingInput) GoString() string {
 }
 
 type DeleteBucketTaggingOutput struct {
-	metadataDeleteBucketTaggingOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteBucketTaggingOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2733,11 +2585,7 @@ func (s DeleteBucketTaggingOutput) GoString() string {
 type DeleteBucketWebsiteInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataDeleteBucketWebsiteInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteBucketWebsiteInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2751,11 +2599,7 @@ func (s DeleteBucketWebsiteInput) GoString() string {
 }
 
 type DeleteBucketWebsiteOutput struct {
-	metadataDeleteBucketWebsiteOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteBucketWebsiteOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2784,11 +2628,7 @@ type DeleteMarkerEntry struct {
 	// Version ID of an object.
 	VersionId *string `type:"string"`
 
-	metadataDeleteMarkerEntry `json:"-" xml:"-"`
-}
-
-type metadataDeleteMarkerEntry struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2819,11 +2659,7 @@ type DeleteObjectInput struct {
 	// VersionId used to reference a specific version of the object.
 	VersionId *string `location:"querystring" locationName:"versionId" type:"string"`
 
-	metadataDeleteObjectInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteObjectInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2849,11 +2685,7 @@ type DeleteObjectOutput struct {
 	// operation.
 	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 
-	metadataDeleteObjectOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteObjectOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2881,11 +2713,7 @@ type DeleteObjectsInput struct {
 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
 	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string" enum:"RequestPayer"`
 
-	metadataDeleteObjectsInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteObjectsInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Delete"`
+	_ struct{} `type:"structure" payload:"Delete"`
 }
 
 // String returns the string representation
@@ -2907,11 +2735,7 @@ type DeleteObjectsOutput struct {
 	// request.
 	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
 
-	metadataDeleteObjectsOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteObjectsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2933,11 +2757,7 @@ type DeletedObject struct {
 
 	VersionId *string `type:"string"`
 
-	metadataDeletedObject `json:"-" xml:"-"`
-}
-
-type metadataDeletedObject struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2958,11 +2778,7 @@ type Destination struct {
 	// The class of storage used to store the object.
 	StorageClass *string `type:"string" enum:"StorageClass"`
 
-	metadataDestination `json:"-" xml:"-"`
-}
-
-type metadataDestination struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2984,11 +2800,7 @@ type Error struct {
 
 	VersionId *string `type:"string"`
 
-	metadataError `json:"-" xml:"-"`
-}
-
-type metadataError struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3005,11 +2817,7 @@ type ErrorDocument struct {
 	// The object key name to use when a 4XX class error occurs.
 	Key *string `min:"1" type:"string" required:"true"`
 
-	metadataErrorDocument `json:"-" xml:"-"`
-}
-
-type metadataErrorDocument struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3033,11 +2841,7 @@ type FilterRule struct {
 
 	Value *string `type:"string"`
 
-	metadataFilterRule `json:"-" xml:"-"`
-}
-
-type metadataFilterRule struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3053,11 +2857,7 @@ func (s FilterRule) GoString() string {
 type GetBucketAclInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataGetBucketAclInput `json:"-" xml:"-"`
-}
-
-type metadataGetBucketAclInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3076,11 +2876,7 @@ type GetBucketAclOutput struct {
 
 	Owner *Owner `type:"structure"`
 
-	metadataGetBucketAclOutput `json:"-" xml:"-"`
-}
-
-type metadataGetBucketAclOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3096,11 +2892,7 @@ func (s GetBucketAclOutput) GoString() string {
 type GetBucketCorsInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataGetBucketCorsInput `json:"-" xml:"-"`
-}
-
-type metadataGetBucketCorsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3116,11 +2908,7 @@ func (s GetBucketCorsInput) GoString() string {
 type GetBucketCorsOutput struct {
 	CORSRules []*CORSRule `locationName:"CORSRule" type:"list" flattened:"true"`
 
-	metadataGetBucketCorsOutput `json:"-" xml:"-"`
-}
-
-type metadataGetBucketCorsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3136,11 +2924,7 @@ func (s GetBucketCorsOutput) GoString() string {
 type GetBucketLifecycleConfigurationInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataGetBucketLifecycleConfigurationInput `json:"-" xml:"-"`
-}
-
-type metadataGetBucketLifecycleConfigurationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3156,11 +2940,7 @@ func (s GetBucketLifecycleConfigurationInput) GoString() string {
 type GetBucketLifecycleConfigurationOutput struct {
 	Rules []*LifecycleRule `locationName:"Rule" type:"list" flattened:"true"`
 
-	metadataGetBucketLifecycleConfigurationOutput `json:"-" xml:"-"`
-}
-
-type metadataGetBucketLifecycleConfigurationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3176,11 +2956,7 @@ func (s GetBucketLifecycleConfigurationOutput) GoString() string {
 type GetBucketLifecycleInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataGetBucketLifecycleInput `json:"-" xml:"-"`
-}
-
-type metadataGetBucketLifecycleInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3196,11 +2972,7 @@ func (s GetBucketLifecycleInput) GoString() string {
 type GetBucketLifecycleOutput struct {
 	Rules []*Rule `locationName:"Rule" type:"list" flattened:"true"`
 
-	metadataGetBucketLifecycleOutput `json:"-" xml:"-"`
-}
-
-type metadataGetBucketLifecycleOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3216,11 +2988,7 @@ func (s GetBucketLifecycleOutput) GoString() string {
 type GetBucketLocationInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataGetBucketLocationInput `json:"-" xml:"-"`
-}
-
-type metadataGetBucketLocationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3236,11 +3004,7 @@ func (s GetBucketLocationInput) GoString() string {
 type GetBucketLocationOutput struct {
 	LocationConstraint *string `type:"string" enum:"BucketLocationConstraint"`
 
-	metadataGetBucketLocationOutput `json:"-" xml:"-"`
-}
-
-type metadataGetBucketLocationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3256,11 +3020,7 @@ func (s GetBucketLocationOutput) GoString() string {
 type GetBucketLoggingInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataGetBucketLoggingInput `json:"-" xml:"-"`
-}
-
-type metadataGetBucketLoggingInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3276,11 +3036,7 @@ func (s GetBucketLoggingInput) GoString() string {
 type GetBucketLoggingOutput struct {
 	LoggingEnabled *LoggingEnabled `type:"structure"`
 
-	metadataGetBucketLoggingOutput `json:"-" xml:"-"`
-}
-
-type metadataGetBucketLoggingOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3297,11 +3053,7 @@ type GetBucketNotificationConfigurationRequest struct {
 	// Name of the buket to get the notification configuration for.
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataGetBucketNotificationConfigurationRequest `json:"-" xml:"-"`
-}
-
-type metadataGetBucketNotificationConfigurationRequest struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3317,11 +3069,7 @@ func (s GetBucketNotificationConfigurationRequest) GoString() string {
 type GetBucketPolicyInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataGetBucketPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataGetBucketPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3338,11 +3086,7 @@ type GetBucketPolicyOutput struct {
 	// The bucket policy as a JSON document.
 	Policy *string `type:"string"`
 
-	metadataGetBucketPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataGetBucketPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Policy"`
+	_ struct{} `type:"structure" payload:"Policy"`
 }
 
 // String returns the string representation
@@ -3358,11 +3102,7 @@ func (s GetBucketPolicyOutput) GoString() string {
 type GetBucketReplicationInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataGetBucketReplicationInput `json:"-" xml:"-"`
-}
-
-type metadataGetBucketReplicationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3380,11 +3120,7 @@ type GetBucketReplicationOutput struct {
 	// replication configuration size can be up to 2 MB.
 	ReplicationConfiguration *ReplicationConfiguration `type:"structure"`
 
-	metadataGetBucketReplicationOutput `json:"-" xml:"-"`
-}
-
-type metadataGetBucketReplicationOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"ReplicationConfiguration"`
+	_ struct{} `type:"structure" payload:"ReplicationConfiguration"`
 }
 
 // String returns the string representation
@@ -3400,11 +3136,7 @@ func (s GetBucketReplicationOutput) GoString() string {
 type GetBucketRequestPaymentInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataGetBucketRequestPaymentInput `json:"-" xml:"-"`
-}
-
-type metadataGetBucketRequestPaymentInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3421,11 +3153,7 @@ type GetBucketRequestPaymentOutput struct {
 	// Specifies who pays for the download and request fees.
 	Payer *string `type:"string" enum:"Payer"`
 
-	metadataGetBucketRequestPaymentOutput `json:"-" xml:"-"`
-}
-
-type metadataGetBucketRequestPaymentOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3441,11 +3169,7 @@ func (s GetBucketRequestPaymentOutput) GoString() string {
 type GetBucketTaggingInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataGetBucketTaggingInput `json:"-" xml:"-"`
-}
-
-type metadataGetBucketTaggingInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3461,11 +3185,7 @@ func (s GetBucketTaggingInput) GoString() string {
 type GetBucketTaggingOutput struct {
 	TagSet []*Tag `locationNameList:"Tag" type:"list" required:"true"`
 
-	metadataGetBucketTaggingOutput `json:"-" xml:"-"`
-}
-
-type metadataGetBucketTaggingOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3481,11 +3201,7 @@ func (s GetBucketTaggingOutput) GoString() string {
 type GetBucketVersioningInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataGetBucketVersioningInput `json:"-" xml:"-"`
-}
-
-type metadataGetBucketVersioningInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3507,11 +3223,7 @@ type GetBucketVersioningOutput struct {
 	// The versioning state of the bucket.
 	Status *string `type:"string" enum:"BucketVersioningStatus"`
 
-	metadataGetBucketVersioningOutput `json:"-" xml:"-"`
-}
-
-type metadataGetBucketVersioningOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3527,11 +3239,7 @@ func (s GetBucketVersioningOutput) GoString() string {
 type GetBucketWebsiteInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataGetBucketWebsiteInput `json:"-" xml:"-"`
-}
-
-type metadataGetBucketWebsiteInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3553,11 +3261,7 @@ type GetBucketWebsiteOutput struct {
 
 	RoutingRules []*RoutingRule `locationNameList:"RoutingRule" type:"list"`
 
-	metadataGetBucketWebsiteOutput `json:"-" xml:"-"`
-}
-
-type metadataGetBucketWebsiteOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3584,11 +3288,7 @@ type GetObjectAclInput struct {
 	// VersionId used to reference a specific version of the object.
 	VersionId *string `location:"querystring" locationName:"versionId" type:"string"`
 
-	metadataGetObjectAclInput `json:"-" xml:"-"`
-}
-
-type metadataGetObjectAclInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3611,11 +3311,7 @@ type GetObjectAclOutput struct {
 	// request.
 	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
 
-	metadataGetObjectAclOutput `json:"-" xml:"-"`
-}
-
-type metadataGetObjectAclOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3695,11 +3391,7 @@ type GetObjectInput struct {
 	// VersionId used to reference a specific version of the object.
 	VersionId *string `location:"querystring" locationName:"versionId" type:"string"`
 
-	metadataGetObjectInput `json:"-" xml:"-"`
-}
-
-type metadataGetObjectInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3808,11 +3500,7 @@ type GetObjectOutput struct {
 	// the value of this header in the object metadata.
 	WebsiteRedirectLocation *string `location:"header" locationName:"x-amz-website-redirect-location" type:"string"`
 
-	metadataGetObjectOutput `json:"-" xml:"-"`
-}
-
-type metadataGetObjectOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Body"`
+	_ struct{} `type:"structure" payload:"Body"`
 }
 
 // String returns the string representation
@@ -3836,11 +3524,7 @@ type GetObjectTorrentInput struct {
 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
 	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string" enum:"RequestPayer"`
 
-	metadataGetObjectTorrentInput `json:"-" xml:"-"`
-}
-
-type metadataGetObjectTorrentInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3860,11 +3544,7 @@ type GetObjectTorrentOutput struct {
 	// request.
 	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
 
-	metadataGetObjectTorrentOutput `json:"-" xml:"-"`
-}
-
-type metadataGetObjectTorrentOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Body"`
+	_ struct{} `type:"structure" payload:"Body"`
 }
 
 // String returns the string representation
@@ -3883,11 +3563,7 @@ type Grant struct {
 	// Specifies the permission given to the grantee.
 	Permission *string `type:"string" enum:"Permission"`
 
-	metadataGrant `json:"-" xml:"-"`
-}
-
-type metadataGrant struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3916,11 +3592,7 @@ type Grantee struct {
 	// URI of the grantee group.
 	URI *string `type:"string"`
 
-	metadataGrantee `json:"-" xml:"-"`
-}
-
-type metadataGrantee struct {
-	SDKShapeTraits bool `type:"structure" xmlPrefix:"xsi" xmlURI:"http://www.w3.org/2001/XMLSchema-instance"`
+	_ struct{} `type:"structure" xmlPrefix:"xsi" xmlURI:"http://www.w3.org/2001/XMLSchema-instance"`
 }
 
 // String returns the string representation
@@ -3936,11 +3608,7 @@ func (s Grantee) GoString() string {
 type HeadBucketInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataHeadBucketInput `json:"-" xml:"-"`
-}
-
-type metadataHeadBucketInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3954,11 +3622,7 @@ func (s HeadBucketInput) GoString() string {
 }
 
 type HeadBucketOutput struct {
-	metadataHeadBucketOutput `json:"-" xml:"-"`
-}
-
-type metadataHeadBucketOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4020,11 +3684,7 @@ type HeadObjectInput struct {
 	// VersionId used to reference a specific version of the object.
 	VersionId *string `location:"querystring" locationName:"versionId" type:"string"`
 
-	metadataHeadObjectInput `json:"-" xml:"-"`
-}
-
-type metadataHeadObjectInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4127,11 +3787,7 @@ type HeadObjectOutput struct {
 	// the value of this header in the object metadata.
 	WebsiteRedirectLocation *string `location:"header" locationName:"x-amz-website-redirect-location" type:"string"`
 
-	metadataHeadObjectOutput `json:"-" xml:"-"`
-}
-
-type metadataHeadObjectOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4151,11 +3807,7 @@ type IndexDocument struct {
 	// The suffix must not be empty and must not include a slash character.
 	Suffix *string `type:"string" required:"true"`
 
-	metadataIndexDocument `json:"-" xml:"-"`
-}
-
-type metadataIndexDocument struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4176,11 +3828,7 @@ type Initiator struct {
 	// the principal is an IAM User, it provides a user ARN value.
 	ID *string `type:"string"`
 
-	metadataInitiator `json:"-" xml:"-"`
-}
-
-type metadataInitiator struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4199,11 +3847,7 @@ type KeyFilter struct {
 	// filter rule.
 	FilterRules []*FilterRule `locationName:"FilterRule" type:"list" flattened:"true"`
 
-	metadataKeyFilter `json:"-" xml:"-"`
-}
-
-type metadataKeyFilter struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4233,11 +3877,7 @@ type LambdaFunctionConfiguration struct {
 	// of the specified type.
 	LambdaFunctionArn *string `locationName:"CloudFunction" type:"string" required:"true"`
 
-	metadataLambdaFunctionConfiguration `json:"-" xml:"-"`
-}
-
-type metadataLambdaFunctionConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4253,11 +3893,7 @@ func (s LambdaFunctionConfiguration) GoString() string {
 type LifecycleConfiguration struct {
 	Rules []*Rule `locationName:"Rule" type:"list" flattened:"true" required:"true"`
 
-	metadataLifecycleConfiguration `json:"-" xml:"-"`
-}
-
-type metadataLifecycleConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4279,11 +3915,7 @@ type LifecycleExpiration struct {
 	// The value must be a non-zero positive integer.
 	Days *int64 `type:"integer"`
 
-	metadataLifecycleExpiration `json:"-" xml:"-"`
-}
-
-type metadataLifecycleExpiration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4320,11 +3952,7 @@ type LifecycleRule struct {
 
 	Transitions []*Transition `locationName:"Transition" type:"list" flattened:"true"`
 
-	metadataLifecycleRule `json:"-" xml:"-"`
-}
-
-type metadataLifecycleRule struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4338,11 +3966,7 @@ func (s LifecycleRule) GoString() string {
 }
 
 type ListBucketsInput struct {
-	metadataListBucketsInput `json:"-" xml:"-"`
-}
-
-type metadataListBucketsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4360,11 +3984,7 @@ type ListBucketsOutput struct {
 
 	Owner *Owner `type:"structure"`
 
-	metadataListBucketsOutput `json:"-" xml:"-"`
-}
-
-type metadataListBucketsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4409,11 +4029,7 @@ type ListMultipartUploadsInput struct {
 	// is ignored.
 	UploadIdMarker *string `location:"querystring" locationName:"upload-id-marker" type:"string"`
 
-	metadataListMultipartUploadsInput `json:"-" xml:"-"`
-}
-
-type metadataListMultipartUploadsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4467,11 +4083,7 @@ type ListMultipartUploadsOutput struct {
 
 	Uploads []*MultipartUpload `locationName:"Upload" type:"list" flattened:"true"`
 
-	metadataListMultipartUploadsOutput `json:"-" xml:"-"`
-}
-
-type metadataListMultipartUploadsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4511,11 +4123,7 @@ type ListObjectVersionsInput struct {
 	// Specifies the object version you want to start listing from.
 	VersionIdMarker *string `location:"querystring" locationName:"version-id-marker" type:"string"`
 
-	metadataListObjectVersionsInput `json:"-" xml:"-"`
-}
-
-type metadataListObjectVersionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4564,11 +4172,7 @@ type ListObjectVersionsOutput struct {
 
 	Versions []*ObjectVersion `locationName:"Version" type:"list" flattened:"true"`
 
-	metadataListObjectVersionsOutput `json:"-" xml:"-"`
-}
-
-type metadataListObjectVersionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4605,11 +4209,7 @@ type ListObjectsInput struct {
 	// Limits the response to keys that begin with the specified prefix.
 	Prefix *string `location:"querystring" locationName:"prefix" type:"string"`
 
-	metadataListObjectsInput `json:"-" xml:"-"`
-}
-
-type metadataListObjectsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4653,11 +4253,7 @@ type ListObjectsOutput struct {
 
 	Prefix *string `type:"string"`
 
-	metadataListObjectsOutput `json:"-" xml:"-"`
-}
-
-type metadataListObjectsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4691,11 +4287,7 @@ type ListPartsInput struct {
 	// Upload ID identifying the multipart upload whose parts are being listed.
 	UploadId *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
 
-	metadataListPartsInput `json:"-" xml:"-"`
-}
-
-type metadataListPartsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4746,11 +4338,7 @@ type ListPartsOutput struct {
 	// Upload ID identifying the multipart upload whose parts are being listed.
 	UploadId *string `type:"string"`
 
-	metadataListPartsOutput `json:"-" xml:"-"`
-}
-
-type metadataListPartsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4778,11 +4366,7 @@ type LoggingEnabled struct {
 	// be stored under.
 	TargetPrefix *string `type:"string"`
 
-	metadataLoggingEnabled `json:"-" xml:"-"`
-}
-
-type metadataLoggingEnabled struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4813,11 +4397,7 @@ type MultipartUpload struct {
 	// Upload ID that identifies the multipart upload.
 	UploadId *string `type:"string"`
 
-	metadataMultipartUpload `json:"-" xml:"-"`
-}
-
-type metadataMultipartUpload struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4843,11 +4423,7 @@ type NoncurrentVersionExpiration struct {
 	// Service Developer Guide.
 	NoncurrentDays *int64 `type:"integer"`
 
-	metadataNoncurrentVersionExpiration `json:"-" xml:"-"`
-}
-
-type metadataNoncurrentVersionExpiration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4876,11 +4452,7 @@ type NoncurrentVersionTransition struct {
 	// The class of storage used to store the object.
 	StorageClass *string `type:"string" enum:"TransitionStorageClass"`
 
-	metadataNoncurrentVersionTransition `json:"-" xml:"-"`
-}
-
-type metadataNoncurrentVersionTransition struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4902,11 +4474,7 @@ type NotificationConfiguration struct {
 
 	TopicConfigurations []*TopicConfiguration `locationName:"TopicConfiguration" type:"list" flattened:"true"`
 
-	metadataNotificationConfiguration `json:"-" xml:"-"`
-}
-
-type metadataNotificationConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4926,11 +4494,7 @@ type NotificationConfigurationDeprecated struct {
 
 	TopicConfiguration *TopicConfigurationDeprecated `type:"structure"`
 
-	metadataNotificationConfigurationDeprecated `json:"-" xml:"-"`
-}
-
-type metadataNotificationConfigurationDeprecated struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4950,11 +4514,7 @@ type NotificationConfigurationFilter struct {
 	// Container for object key name prefix and suffix filtering rules.
 	Key *KeyFilter `locationName:"S3Key" type:"structure"`
 
-	metadataNotificationConfigurationFilter `json:"-" xml:"-"`
-}
-
-type metadataNotificationConfigurationFilter struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4981,11 +4541,7 @@ type Object struct {
 	// The class of storage used to store the object.
 	StorageClass *string `type:"string" enum:"ObjectStorageClass"`
 
-	metadataObject `json:"-" xml:"-"`
-}
-
-type metadataObject struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5005,11 +4561,7 @@ type ObjectIdentifier struct {
 	// VersionId for the specific version of the object to delete.
 	VersionId *string `type:"string"`
 
-	metadataObjectIdentifier `json:"-" xml:"-"`
-}
-
-type metadataObjectIdentifier struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5046,11 +4598,7 @@ type ObjectVersion struct {
 	// Version ID of an object.
 	VersionId *string `type:"string"`
 
-	metadataObjectVersion `json:"-" xml:"-"`
-}
-
-type metadataObjectVersion struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5068,11 +4616,7 @@ type Owner struct {
 
 	ID *string `type:"string"`
 
-	metadataOwner `json:"-" xml:"-"`
-}
-
-type metadataOwner struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5099,11 +4643,7 @@ type Part struct {
 	// Size of the uploaded part data.
 	Size *int64 `type:"integer"`
 
-	metadataPart `json:"-" xml:"-"`
-}
-
-type metadataPart struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5140,11 +4680,7 @@ type PutBucketAclInput struct {
 	// Allows grantee to write the ACL for the applicable bucket.
 	GrantWriteACP *string `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
 
-	metadataPutBucketAclInput `json:"-" xml:"-"`
-}
-
-type metadataPutBucketAclInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"AccessControlPolicy"`
+	_ struct{} `type:"structure" payload:"AccessControlPolicy"`
 }
 
 // String returns the string representation
@@ -5158,11 +4694,7 @@ func (s PutBucketAclInput) GoString() string {
 }
 
 type PutBucketAclOutput struct {
-	metadataPutBucketAclOutput `json:"-" xml:"-"`
-}
-
-type metadataPutBucketAclOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5180,11 +4712,7 @@ type PutBucketCorsInput struct {
 
 	CORSConfiguration *CORSConfiguration `locationName:"CORSConfiguration" type:"structure" required:"true"`
 
-	metadataPutBucketCorsInput `json:"-" xml:"-"`
-}
-
-type metadataPutBucketCorsInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"CORSConfiguration"`
+	_ struct{} `type:"structure" payload:"CORSConfiguration"`
 }
 
 // String returns the string representation
@@ -5198,11 +4726,7 @@ func (s PutBucketCorsInput) GoString() string {
 }
 
 type PutBucketCorsOutput struct {
-	metadataPutBucketCorsOutput `json:"-" xml:"-"`
-}
-
-type metadataPutBucketCorsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5220,11 +4744,7 @@ type PutBucketLifecycleConfigurationInput struct {
 
 	LifecycleConfiguration *BucketLifecycleConfiguration `locationName:"LifecycleConfiguration" type:"structure"`
 
-	metadataPutBucketLifecycleConfigurationInput `json:"-" xml:"-"`
-}
-
-type metadataPutBucketLifecycleConfigurationInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"LifecycleConfiguration"`
+	_ struct{} `type:"structure" payload:"LifecycleConfiguration"`
 }
 
 // String returns the string representation
@@ -5238,11 +4758,7 @@ func (s PutBucketLifecycleConfigurationInput) GoString() string {
 }
 
 type PutBucketLifecycleConfigurationOutput struct {
-	metadataPutBucketLifecycleConfigurationOutput `json:"-" xml:"-"`
-}
-
-type metadataPutBucketLifecycleConfigurationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5260,11 +4776,7 @@ type PutBucketLifecycleInput struct {
 
 	LifecycleConfiguration *LifecycleConfiguration `locationName:"LifecycleConfiguration" type:"structure"`
 
-	metadataPutBucketLifecycleInput `json:"-" xml:"-"`
-}
-
-type metadataPutBucketLifecycleInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"LifecycleConfiguration"`
+	_ struct{} `type:"structure" payload:"LifecycleConfiguration"`
 }
 
 // String returns the string representation
@@ -5278,11 +4790,7 @@ func (s PutBucketLifecycleInput) GoString() string {
 }
 
 type PutBucketLifecycleOutput struct {
-	metadataPutBucketLifecycleOutput `json:"-" xml:"-"`
-}
-
-type metadataPutBucketLifecycleOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5300,11 +4808,7 @@ type PutBucketLoggingInput struct {
 
 	BucketLoggingStatus *BucketLoggingStatus `locationName:"BucketLoggingStatus" type:"structure" required:"true"`
 
-	metadataPutBucketLoggingInput `json:"-" xml:"-"`
-}
-
-type metadataPutBucketLoggingInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"BucketLoggingStatus"`
+	_ struct{} `type:"structure" payload:"BucketLoggingStatus"`
 }
 
 // String returns the string representation
@@ -5318,11 +4822,7 @@ func (s PutBucketLoggingInput) GoString() string {
 }
 
 type PutBucketLoggingOutput struct {
-	metadataPutBucketLoggingOutput `json:"-" xml:"-"`
-}
-
-type metadataPutBucketLoggingOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5342,11 +4842,7 @@ type PutBucketNotificationConfigurationInput struct {
 	// this element is empty, notifications are turned off on the bucket.
 	NotificationConfiguration *NotificationConfiguration `locationName:"NotificationConfiguration" type:"structure" required:"true"`
 
-	metadataPutBucketNotificationConfigurationInput `json:"-" xml:"-"`
-}
-
-type metadataPutBucketNotificationConfigurationInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"NotificationConfiguration"`
+	_ struct{} `type:"structure" payload:"NotificationConfiguration"`
 }
 
 // String returns the string representation
@@ -5360,11 +4856,7 @@ func (s PutBucketNotificationConfigurationInput) GoString() string {
 }
 
 type PutBucketNotificationConfigurationOutput struct {
-	metadataPutBucketNotificationConfigurationOutput `json:"-" xml:"-"`
-}
-
-type metadataPutBucketNotificationConfigurationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5382,11 +4874,7 @@ type PutBucketNotificationInput struct {
 
 	NotificationConfiguration *NotificationConfigurationDeprecated `locationName:"NotificationConfiguration" type:"structure" required:"true"`
 
-	metadataPutBucketNotificationInput `json:"-" xml:"-"`
-}
-
-type metadataPutBucketNotificationInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"NotificationConfiguration"`
+	_ struct{} `type:"structure" payload:"NotificationConfiguration"`
 }
 
 // String returns the string representation
@@ -5400,11 +4888,7 @@ func (s PutBucketNotificationInput) GoString() string {
 }
 
 type PutBucketNotificationOutput struct {
-	metadataPutBucketNotificationOutput `json:"-" xml:"-"`
-}
-
-type metadataPutBucketNotificationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5423,11 +4907,7 @@ type PutBucketPolicyInput struct {
 	// The bucket policy as a JSON document.
 	Policy *string `type:"string" required:"true"`
 
-	metadataPutBucketPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataPutBucketPolicyInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Policy"`
+	_ struct{} `type:"structure" payload:"Policy"`
 }
 
 // String returns the string representation
@@ -5441,11 +4921,7 @@ func (s PutBucketPolicyInput) GoString() string {
 }
 
 type PutBucketPolicyOutput struct {
-	metadataPutBucketPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataPutBucketPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5465,11 +4941,7 @@ type PutBucketReplicationInput struct {
 	// replication configuration size can be up to 2 MB.
 	ReplicationConfiguration *ReplicationConfiguration `locationName:"ReplicationConfiguration" type:"structure" required:"true"`
 
-	metadataPutBucketReplicationInput `json:"-" xml:"-"`
-}
-
-type metadataPutBucketReplicationInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"ReplicationConfiguration"`
+	_ struct{} `type:"structure" payload:"ReplicationConfiguration"`
 }
 
 // String returns the string representation
@@ -5483,11 +4955,7 @@ func (s PutBucketReplicationInput) GoString() string {
 }
 
 type PutBucketReplicationOutput struct {
-	metadataPutBucketReplicationOutput `json:"-" xml:"-"`
-}
-
-type metadataPutBucketReplicationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5505,11 +4973,7 @@ type PutBucketRequestPaymentInput struct {
 
 	RequestPaymentConfiguration *RequestPaymentConfiguration `locationName:"RequestPaymentConfiguration" type:"structure" required:"true"`
 
-	metadataPutBucketRequestPaymentInput `json:"-" xml:"-"`
-}
-
-type metadataPutBucketRequestPaymentInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"RequestPaymentConfiguration"`
+	_ struct{} `type:"structure" payload:"RequestPaymentConfiguration"`
 }
 
 // String returns the string representation
@@ -5523,11 +4987,7 @@ func (s PutBucketRequestPaymentInput) GoString() string {
 }
 
 type PutBucketRequestPaymentOutput struct {
-	metadataPutBucketRequestPaymentOutput `json:"-" xml:"-"`
-}
-
-type metadataPutBucketRequestPaymentOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5545,11 +5005,7 @@ type PutBucketTaggingInput struct {
 
 	Tagging *Tagging `locationName:"Tagging" type:"structure" required:"true"`
 
-	metadataPutBucketTaggingInput `json:"-" xml:"-"`
-}
-
-type metadataPutBucketTaggingInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Tagging"`
+	_ struct{} `type:"structure" payload:"Tagging"`
 }
 
 // String returns the string representation
@@ -5563,11 +5019,7 @@ func (s PutBucketTaggingInput) GoString() string {
 }
 
 type PutBucketTaggingOutput struct {
-	metadataPutBucketTaggingOutput `json:"-" xml:"-"`
-}
-
-type metadataPutBucketTaggingOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5589,11 +5041,7 @@ type PutBucketVersioningInput struct {
 
 	VersioningConfiguration *VersioningConfiguration `locationName:"VersioningConfiguration" type:"structure" required:"true"`
 
-	metadataPutBucketVersioningInput `json:"-" xml:"-"`
-}
-
-type metadataPutBucketVersioningInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"VersioningConfiguration"`
+	_ struct{} `type:"structure" payload:"VersioningConfiguration"`
 }
 
 // String returns the string representation
@@ -5607,11 +5055,7 @@ func (s PutBucketVersioningInput) GoString() string {
 }
 
 type PutBucketVersioningOutput struct {
-	metadataPutBucketVersioningOutput `json:"-" xml:"-"`
-}
-
-type metadataPutBucketVersioningOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5629,11 +5073,7 @@ type PutBucketWebsiteInput struct {
 
 	WebsiteConfiguration *WebsiteConfiguration `locationName:"WebsiteConfiguration" type:"structure" required:"true"`
 
-	metadataPutBucketWebsiteInput `json:"-" xml:"-"`
-}
-
-type metadataPutBucketWebsiteInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"WebsiteConfiguration"`
+	_ struct{} `type:"structure" payload:"WebsiteConfiguration"`
 }
 
 // String returns the string representation
@@ -5647,11 +5087,7 @@ func (s PutBucketWebsiteInput) GoString() string {
 }
 
 type PutBucketWebsiteOutput struct {
-	metadataPutBucketWebsiteOutput `json:"-" xml:"-"`
-}
-
-type metadataPutBucketWebsiteOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5696,11 +5132,7 @@ type PutObjectAclInput struct {
 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
 	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string" enum:"RequestPayer"`
 
-	metadataPutObjectAclInput `json:"-" xml:"-"`
-}
-
-type metadataPutObjectAclInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"AccessControlPolicy"`
+	_ struct{} `type:"structure" payload:"AccessControlPolicy"`
 }
 
 // String returns the string representation
@@ -5718,11 +5150,7 @@ type PutObjectAclOutput struct {
 	// request.
 	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
 
-	metadataPutObjectAclOutput `json:"-" xml:"-"`
-}
-
-type metadataPutObjectAclOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5824,11 +5252,7 @@ type PutObjectInput struct {
 	// the value of this header in the object metadata.
 	WebsiteRedirectLocation *string `location:"header" locationName:"x-amz-website-redirect-location" type:"string"`
 
-	metadataPutObjectInput `json:"-" xml:"-"`
-}
-
-type metadataPutObjectInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Body"`
+	_ struct{} `type:"structure" payload:"Body"`
 }
 
 // String returns the string representation
@@ -5874,11 +5298,7 @@ type PutObjectOutput struct {
 	// Version of the object.
 	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 
-	metadataPutObjectOutput `json:"-" xml:"-"`
-}
-
-type metadataPutObjectOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5909,11 +5329,7 @@ type QueueConfiguration struct {
 	// events of specified type.
 	QueueArn *string `locationName:"Queue" type:"string" required:"true"`
 
-	metadataQueueConfiguration `json:"-" xml:"-"`
-}
-
-type metadataQueueConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5938,11 +5354,7 @@ type QueueConfigurationDeprecated struct {
 
 	Queue *string `type:"string"`
 
-	metadataQueueConfigurationDeprecated `json:"-" xml:"-"`
-}
-
-type metadataQueueConfigurationDeprecated struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5980,11 +5392,7 @@ type Redirect struct {
 	// be present only if ReplaceKeyPrefixWith is not provided.
 	ReplaceKeyWith *string `type:"string"`
 
-	metadataRedirect `json:"-" xml:"-"`
-}
-
-type metadataRedirect struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6005,11 +5413,7 @@ type RedirectAllRequestsTo struct {
 	// protocol that is used in the original request.
 	Protocol *string `type:"string" enum:"Protocol"`
 
-	metadataRedirectAllRequestsTo `json:"-" xml:"-"`
-}
-
-type metadataRedirectAllRequestsTo struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6033,11 +5437,7 @@ type ReplicationConfiguration struct {
 	// configuration must have at least one rule and can contain up to 1,000 rules.
 	Rules []*ReplicationRule `locationName:"Rule" type:"list" flattened:"true" required:"true"`
 
-	metadataReplicationConfiguration `json:"-" xml:"-"`
-}
-
-type metadataReplicationConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6064,11 +5464,7 @@ type ReplicationRule struct {
 	// The rule is ignored if status is not Enabled.
 	Status *string `type:"string" required:"true" enum:"ReplicationRuleStatus"`
 
-	metadataReplicationRule `json:"-" xml:"-"`
-}
-
-type metadataReplicationRule struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6085,11 +5481,7 @@ type RequestPaymentConfiguration struct {
 	// Specifies who pays for the download and request fees.
 	Payer *string `type:"string" required:"true" enum:"Payer"`
 
-	metadataRequestPaymentConfiguration `json:"-" xml:"-"`
-}
-
-type metadataRequestPaymentConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6117,11 +5509,7 @@ type RestoreObjectInput struct {
 
 	VersionId *string `location:"querystring" locationName:"versionId" type:"string"`
 
-	metadataRestoreObjectInput `json:"-" xml:"-"`
-}
-
-type metadataRestoreObjectInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"RestoreRequest"`
+	_ struct{} `type:"structure" payload:"RestoreRequest"`
 }
 
 // String returns the string representation
@@ -6139,11 +5527,7 @@ type RestoreObjectOutput struct {
 	// request.
 	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
 
-	metadataRestoreObjectOutput `json:"-" xml:"-"`
-}
-
-type metadataRestoreObjectOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6160,11 +5544,7 @@ type RestoreRequest struct {
 	// Lifetime of the active copy in days
 	Days *int64 `type:"integer" required:"true"`
 
-	metadataRestoreRequest `json:"-" xml:"-"`
-}
-
-type metadataRestoreRequest struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6189,11 +5569,7 @@ type RoutingRule struct {
 	// you can can specify a different error code to return.
 	Redirect *Redirect `type:"structure" required:"true"`
 
-	metadataRoutingRule `json:"-" xml:"-"`
-}
-
-type metadataRoutingRule struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6235,11 +5611,7 @@ type Rule struct {
 
 	Transition *Transition `type:"structure"`
 
-	metadataRule `json:"-" xml:"-"`
-}
-
-type metadataRule struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6259,11 +5631,7 @@ type Tag struct {
 	// Value of the tag.
 	Value *string `type:"string" required:"true"`
 
-	metadataTag `json:"-" xml:"-"`
-}
-
-type metadataTag struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6279,11 +5647,7 @@ func (s Tag) GoString() string {
 type Tagging struct {
 	TagSet []*Tag `locationNameList:"Tag" type:"list" required:"true"`
 
-	metadataTagging `json:"-" xml:"-"`
-}
-
-type metadataTagging struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6302,11 +5666,7 @@ type TargetGrant struct {
 	// Logging permissions assigned to the Grantee for the bucket.
 	Permission *string `type:"string" enum:"BucketLogsPermission"`
 
-	metadataTargetGrant `json:"-" xml:"-"`
-}
-
-type metadataTargetGrant struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6337,11 +5697,7 @@ type TopicConfiguration struct {
 	// events of specified type.
 	TopicArn *string `locationName:"Topic" type:"string" required:"true"`
 
-	metadataTopicConfiguration `json:"-" xml:"-"`
-}
-
-type metadataTopicConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6368,11 +5724,7 @@ type TopicConfigurationDeprecated struct {
 	// specified events for the bucket.
 	Topic *string `type:"string"`
 
-	metadataTopicConfigurationDeprecated `json:"-" xml:"-"`
-}
-
-type metadataTopicConfigurationDeprecated struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6397,11 +5749,7 @@ type Transition struct {
 	// The class of storage used to store the object.
 	StorageClass *string `type:"string" enum:"TransitionStorageClass"`
 
-	metadataTransition `json:"-" xml:"-"`
-}
-
-type metadataTransition struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6485,11 +5833,7 @@ type UploadPartCopyInput struct {
 	// Upload ID identifying the multipart upload whose part is being copied.
 	UploadId *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
 
-	metadataUploadPartCopyInput `json:"-" xml:"-"`
-}
-
-type metadataUploadPartCopyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6531,11 +5875,7 @@ type UploadPartCopyOutput struct {
 	// (e.g., AES256, aws:kms).
 	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
 
-	metadataUploadPartCopyOutput `json:"-" xml:"-"`
-}
-
-type metadataUploadPartCopyOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"CopyPartResult"`
+	_ struct{} `type:"structure" payload:"CopyPartResult"`
 }
 
 // String returns the string representation
@@ -6588,11 +5928,7 @@ type UploadPartInput struct {
 	// Upload ID identifying the multipart upload whose part is being uploaded.
 	UploadId *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
 
-	metadataUploadPartInput `json:"-" xml:"-"`
-}
-
-type metadataUploadPartInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Body"`
+	_ struct{} `type:"structure" payload:"Body"`
 }
 
 // String returns the string representation
@@ -6631,11 +5967,7 @@ type UploadPartOutput struct {
 	// (e.g., AES256, aws:kms).
 	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
 
-	metadataUploadPartOutput `json:"-" xml:"-"`
-}
-
-type metadataUploadPartOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6657,11 +5989,7 @@ type VersioningConfiguration struct {
 	// The versioning state of the bucket.
 	Status *string `type:"string" enum:"BucketVersioningStatus"`
 
-	metadataVersioningConfiguration `json:"-" xml:"-"`
-}
-
-type metadataVersioningConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6683,11 +6011,7 @@ type WebsiteConfiguration struct {
 
 	RoutingRules []*RoutingRule `locationNameList:"RoutingRule" type:"list"`
 
-	metadataWebsiteConfiguration `json:"-" xml:"-"`
-}
-
-type metadataWebsiteConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

@@ -1017,11 +1017,7 @@ type AccountSettings struct {
 	// Returns the unmetered devices you have purchased.
 	UnmeteredDevices map[string]*int64 `locationName:"unmeteredDevices" type:"map"`
 
-	metadataAccountSettings `json:"-" xml:"-"`
-}
-
-type metadataAccountSettings struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1087,11 +1083,7 @@ type Artifact struct {
 	// to download the artifact's file.
 	Url *string `locationName:"url" type:"string"`
 
-	metadataArtifact `json:"-" xml:"-"`
-}
-
-type metadataArtifact struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1118,11 +1110,7 @@ type CPU struct {
 	// The CPU's frequency.
 	Frequency *string `locationName:"frequency" type:"string"`
 
-	metadataCPU `json:"-" xml:"-"`
-}
-
-type metadataCPU struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1158,11 +1146,7 @@ type Counters struct {
 	// The number of warned entities.
 	Warned *int64 `locationName:"warned" type:"integer"`
 
-	metadataCounters `json:"-" xml:"-"`
-}
-
-type metadataCounters struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1189,11 +1173,7 @@ type CreateDevicePoolInput struct {
 	// The device pool's rules.
 	Rules []*Rule `locationName:"rules" type:"list" required:"true"`
 
-	metadataCreateDevicePoolInput `json:"-" xml:"-"`
-}
-
-type metadataCreateDevicePoolInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1211,11 +1191,7 @@ type CreateDevicePoolOutput struct {
 	// The newly created device pool.
 	DevicePool *DevicePool `locationName:"devicePool" type:"structure"`
 
-	metadataCreateDevicePoolOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateDevicePoolOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1233,11 +1209,7 @@ type CreateProjectInput struct {
 	// The project's name.
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	metadataCreateProjectInput `json:"-" xml:"-"`
-}
-
-type metadataCreateProjectInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1255,11 +1227,7 @@ type CreateProjectOutput struct {
 	// The newly created project.
 	Project *Project `locationName:"project" type:"structure"`
 
-	metadataCreateProjectOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateProjectOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1314,11 +1282,7 @@ type CreateUploadInput struct {
 	// an ArgumentException error.
 	Type *string `locationName:"type" type:"string" required:"true" enum:"UploadType"`
 
-	metadataCreateUploadInput `json:"-" xml:"-"`
-}
-
-type metadataCreateUploadInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1336,11 +1300,7 @@ type CreateUploadOutput struct {
 	// The newly created upload.
 	Upload *Upload `locationName:"upload" type:"structure"`
 
-	metadataCreateUploadOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateUploadOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1359,11 +1319,7 @@ type DeleteDevicePoolInput struct {
 	// you wish to delete.
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
-	metadataDeleteDevicePoolInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDevicePoolInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1378,11 +1334,7 @@ func (s DeleteDevicePoolInput) GoString() string {
 
 // Represents the result of a delete device pool request.
 type DeleteDevicePoolOutput struct {
-	metadataDeleteDevicePoolOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDevicePoolOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1401,11 +1353,7 @@ type DeleteProjectInput struct {
 	// wish to delete.
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
-	metadataDeleteProjectInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteProjectInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1420,11 +1368,7 @@ func (s DeleteProjectInput) GoString() string {
 
 // Represents the result of a delete project request.
 type DeleteProjectOutput struct {
-	metadataDeleteProjectOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteProjectOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1442,11 +1386,7 @@ type DeleteRunInput struct {
 	// The Amazon Resource Name (ARN) for the run you wish to delete.
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
-	metadataDeleteRunInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteRunInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1461,11 +1401,7 @@ func (s DeleteRunInput) GoString() string {
 
 // Represents the result of a delete run request.
 type DeleteRunOutput struct {
-	metadataDeleteRunOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteRunOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1484,11 +1420,7 @@ type DeleteUploadInput struct {
 	// to delete.
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
-	metadataDeleteUploadInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteUploadInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1503,11 +1435,7 @@ func (s DeleteUploadInput) GoString() string {
 
 // Represents the result of a delete upload request.
 type DeleteUploadOutput struct {
-	metadataDeleteUploadOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteUploadOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1577,11 +1505,7 @@ type Device struct {
 	// in pixels.
 	Resolution *Resolution `locationName:"resolution" type:"structure"`
 
-	metadataDevice `json:"-" xml:"-"`
-}
-
-type metadataDevice struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1609,11 +1533,7 @@ type DeviceMinutes struct {
 	// resource to run tests.
 	Unmetered *float64 `locationName:"unmetered" type:"double"`
 
-	metadataDeviceMinutes `json:"-" xml:"-"`
-}
-
-type metadataDeviceMinutes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1649,11 +1569,7 @@ type DevicePool struct {
 	// PRIVATE: A device pool that is created and managed by the device pool developer.
 	Type *string `locationName:"type" type:"string" enum:"DevicePoolType"`
 
-	metadataDevicePool `json:"-" xml:"-"`
-}
-
-type metadataDevicePool struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1677,11 +1593,7 @@ type DevicePoolCompatibilityResult struct {
 	// Information about the compatibility.
 	IncompatibilityMessages []*IncompatibilityMessage `locationName:"incompatibilityMessages" type:"list"`
 
-	metadataDevicePoolCompatibilityResult `json:"-" xml:"-"`
-}
-
-type metadataDevicePoolCompatibilityResult struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1695,11 +1607,7 @@ func (s DevicePoolCompatibilityResult) GoString() string {
 }
 
 type GetAccountSettingsInput struct {
-	metadataGetAccountSettingsInput `json:"-" xml:"-"`
-}
-
-type metadataGetAccountSettingsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1716,11 +1624,7 @@ type GetAccountSettingsOutput struct {
 	// A container for account-level settings within AWS Device Farm.
 	AccountSettings *AccountSettings `locationName:"accountSettings" type:"structure"`
 
-	metadataGetAccountSettingsOutput `json:"-" xml:"-"`
-}
-
-type metadataGetAccountSettingsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1738,11 +1642,7 @@ type GetDeviceInput struct {
 	// The device type's ARN.
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
-	metadataGetDeviceInput `json:"-" xml:"-"`
-}
-
-type metadataGetDeviceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1760,11 +1660,7 @@ type GetDeviceOutput struct {
 	// Represents a device type that an app is tested against.
 	Device *Device `locationName:"device" type:"structure"`
 
-	metadataGetDeviceOutput `json:"-" xml:"-"`
-}
-
-type metadataGetDeviceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1809,11 +1705,7 @@ type GetDevicePoolCompatibilityInput struct {
 	// XCTEST: The XCode test type.
 	TestType *string `locationName:"testType" type:"string" enum:"TestType"`
 
-	metadataGetDevicePoolCompatibilityInput `json:"-" xml:"-"`
-}
-
-type metadataGetDevicePoolCompatibilityInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1834,11 +1726,7 @@ type GetDevicePoolCompatibilityOutput struct {
 	// Information about incompatible devices.
 	IncompatibleDevices []*DevicePoolCompatibilityResult `locationName:"incompatibleDevices" type:"list"`
 
-	metadataGetDevicePoolCompatibilityOutput `json:"-" xml:"-"`
-}
-
-type metadataGetDevicePoolCompatibilityOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1856,11 +1744,7 @@ type GetDevicePoolInput struct {
 	// The device pool's ARN.
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
-	metadataGetDevicePoolInput `json:"-" xml:"-"`
-}
-
-type metadataGetDevicePoolInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1878,11 +1762,7 @@ type GetDevicePoolOutput struct {
 	// Represents a collection of device types.
 	DevicePool *DevicePool `locationName:"devicePool" type:"structure"`
 
-	metadataGetDevicePoolOutput `json:"-" xml:"-"`
-}
-
-type metadataGetDevicePoolOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1900,11 +1780,7 @@ type GetJobInput struct {
 	// The job's ARN.
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
-	metadataGetJobInput `json:"-" xml:"-"`
-}
-
-type metadataGetJobInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1922,11 +1798,7 @@ type GetJobOutput struct {
 	// Represents a device.
 	Job *Job `locationName:"job" type:"structure"`
 
-	metadataGetJobOutput `json:"-" xml:"-"`
-}
-
-type metadataGetJobOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1944,11 +1816,7 @@ type GetProjectInput struct {
 	// The project's ARN.
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
-	metadataGetProjectInput `json:"-" xml:"-"`
-}
-
-type metadataGetProjectInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1967,11 +1835,7 @@ type GetProjectOutput struct {
 	// tests.
 	Project *Project `locationName:"project" type:"structure"`
 
-	metadataGetProjectOutput `json:"-" xml:"-"`
-}
-
-type metadataGetProjectOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1989,11 +1853,7 @@ type GetRunInput struct {
 	// The run's ARN.
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
-	metadataGetRunInput `json:"-" xml:"-"`
-}
-
-type metadataGetRunInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2011,11 +1871,7 @@ type GetRunOutput struct {
 	// Represents an app on a set of devices with a specific test and configuration.
 	Run *Run `locationName:"run" type:"structure"`
 
-	metadataGetRunOutput `json:"-" xml:"-"`
-}
-
-type metadataGetRunOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2033,11 +1889,7 @@ type GetSuiteInput struct {
 	// The suite's ARN.
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
-	metadataGetSuiteInput `json:"-" xml:"-"`
-}
-
-type metadataGetSuiteInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2055,11 +1907,7 @@ type GetSuiteOutput struct {
 	// Represents a collection of one or more tests.
 	Suite *Suite `locationName:"suite" type:"structure"`
 
-	metadataGetSuiteOutput `json:"-" xml:"-"`
-}
-
-type metadataGetSuiteOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2077,11 +1925,7 @@ type GetTestInput struct {
 	// The test's ARN.
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
-	metadataGetTestInput `json:"-" xml:"-"`
-}
-
-type metadataGetTestInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2099,11 +1943,7 @@ type GetTestOutput struct {
 	// Represents a condition that is evaluated.
 	Test *Test `locationName:"test" type:"structure"`
 
-	metadataGetTestOutput `json:"-" xml:"-"`
-}
-
-type metadataGetTestOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2121,11 +1961,7 @@ type GetUploadInput struct {
 	// The upload's ARN.
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
-	metadataGetUploadInput `json:"-" xml:"-"`
-}
-
-type metadataGetUploadInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2143,11 +1979,7 @@ type GetUploadOutput struct {
 	// An app or a set of one or more tests to upload or that have been uploaded.
 	Upload *Upload `locationName:"upload" type:"structure"`
 
-	metadataGetUploadOutput `json:"-" xml:"-"`
-}
-
-type metadataGetUploadOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2178,11 +2010,7 @@ type IncompatibilityMessage struct {
 	// PLATFORM: The platform (for example, Android or iOS).
 	Type *string `locationName:"type" type:"string" enum:"DeviceAttribute"`
 
-	metadataIncompatibilityMessage `json:"-" xml:"-"`
-}
-
-type metadataIncompatibilityMessage struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2282,11 +2110,7 @@ type Job struct {
 	// XCTEST: The XCode test type.
 	Type *string `locationName:"type" type:"string" enum:"TestType"`
 
-	metadataJob `json:"-" xml:"-"`
-}
-
-type metadataJob struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2316,11 +2140,7 @@ type ListArtifactsInput struct {
 	// The artifacts are screenshots.
 	Type *string `locationName:"type" type:"string" required:"true" enum:"ArtifactCategory"`
 
-	metadataListArtifactsInput `json:"-" xml:"-"`
-}
-
-type metadataListArtifactsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2343,11 +2163,7 @@ type ListArtifactsOutput struct {
 	// to this operation to return the next set of items in the list.
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
-	metadataListArtifactsOutput `json:"-" xml:"-"`
-}
-
-type metadataListArtifactsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2378,11 +2194,7 @@ type ListDevicePoolsInput struct {
 	// PRIVATE: A device pool that is created and managed by the device pool developer.
 	Type *string `locationName:"type" type:"string" enum:"DevicePoolType"`
 
-	metadataListDevicePoolsInput `json:"-" xml:"-"`
-}
-
-type metadataListDevicePoolsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2405,11 +2217,7 @@ type ListDevicePoolsOutput struct {
 	// to this operation to return the next set of items in the list.
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
-	metadataListDevicePoolsOutput `json:"-" xml:"-"`
-}
-
-type metadataListDevicePoolsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2431,11 +2239,7 @@ type ListDevicesInput struct {
 	// which can be used to return the next set of items in the list.
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
-	metadataListDevicesInput `json:"-" xml:"-"`
-}
-
-type metadataListDevicesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2458,11 +2262,7 @@ type ListDevicesOutput struct {
 	// to this operation to return the next set of items in the list.
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
-	metadataListDevicesOutput `json:"-" xml:"-"`
-}
-
-type metadataListDevicesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2484,11 +2284,7 @@ type ListJobsInput struct {
 	// which can be used to return the next set of items in the list.
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
-	metadataListJobsInput `json:"-" xml:"-"`
-}
-
-type metadataListJobsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2511,11 +2307,7 @@ type ListJobsOutput struct {
 	// to this operation to return the next set of items in the list.
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
-	metadataListJobsOutput `json:"-" xml:"-"`
-}
-
-type metadataListJobsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2537,11 +2329,7 @@ type ListProjectsInput struct {
 	// which can be used to return the next set of items in the list.
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
-	metadataListProjectsInput `json:"-" xml:"-"`
-}
-
-type metadataListProjectsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2564,11 +2352,7 @@ type ListProjectsOutput struct {
 	// Information about the projects.
 	Projects []*Project `locationName:"projects" type:"list"`
 
-	metadataListProjectsOutput `json:"-" xml:"-"`
-}
-
-type metadataListProjectsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2590,11 +2374,7 @@ type ListRunsInput struct {
 	// which can be used to return the next set of items in the list.
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
-	metadataListRunsInput `json:"-" xml:"-"`
-}
-
-type metadataListRunsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2617,11 +2397,7 @@ type ListRunsOutput struct {
 	// Information about the runs.
 	Runs []*Run `locationName:"runs" type:"list"`
 
-	metadataListRunsOutput `json:"-" xml:"-"`
-}
-
-type metadataListRunsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2643,11 +2419,7 @@ type ListSamplesInput struct {
 	// which can be used to return the next set of items in the list.
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
-	metadataListSamplesInput `json:"-" xml:"-"`
-}
-
-type metadataListSamplesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2670,11 +2442,7 @@ type ListSamplesOutput struct {
 	// Information about the samples.
 	Samples []*Sample `locationName:"samples" type:"list"`
 
-	metadataListSamplesOutput `json:"-" xml:"-"`
-}
-
-type metadataListSamplesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2696,11 +2464,7 @@ type ListSuitesInput struct {
 	// which can be used to return the next set of items in the list.
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
-	metadataListSuitesInput `json:"-" xml:"-"`
-}
-
-type metadataListSuitesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2723,11 +2487,7 @@ type ListSuitesOutput struct {
 	// Information about the suites.
 	Suites []*Suite `locationName:"suites" type:"list"`
 
-	metadataListSuitesOutput `json:"-" xml:"-"`
-}
-
-type metadataListSuitesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2749,11 +2509,7 @@ type ListTestsInput struct {
 	// which can be used to return the next set of items in the list.
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
-	metadataListTestsInput `json:"-" xml:"-"`
-}
-
-type metadataListTestsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2776,11 +2532,7 @@ type ListTestsOutput struct {
 	// Information about the tests.
 	Tests []*Test `locationName:"tests" type:"list"`
 
-	metadataListTestsOutput `json:"-" xml:"-"`
-}
-
-type metadataListTestsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2802,11 +2554,7 @@ type ListUniqueProblemsInput struct {
 	// which can be used to return the next set of items in the list.
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
-	metadataListUniqueProblemsInput `json:"-" xml:"-"`
-}
-
-type metadataListUniqueProblemsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2845,11 +2593,7 @@ type ListUniqueProblemsOutput struct {
 	// WARNED: A warning condition.
 	UniqueProblems map[string][]*UniqueProblem `locationName:"uniqueProblems" type:"map"`
 
-	metadataListUniqueProblemsOutput `json:"-" xml:"-"`
-}
-
-type metadataListUniqueProblemsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2871,11 +2615,7 @@ type ListUploadsInput struct {
 	// which can be used to return the next set of items in the list.
 	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
-	metadataListUploadsInput `json:"-" xml:"-"`
-}
-
-type metadataListUploadsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2898,11 +2638,7 @@ type ListUploadsOutput struct {
 	// Information about the uploads.
 	Uploads []*Upload `locationName:"uploads" type:"list"`
 
-	metadataListUploadsOutput `json:"-" xml:"-"`
-}
-
-type metadataListUploadsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2926,11 +2662,7 @@ type Location struct {
 	// The longitude.
 	Longitude *float64 `locationName:"longitude" type:"double" required:"true"`
 
-	metadataLocation `json:"-" xml:"-"`
-}
-
-type metadataLocation struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2982,11 +2714,7 @@ type Problem struct {
 	// Information about the associated test.
 	Test *ProblemDetail `locationName:"test" type:"structure"`
 
-	metadataProblem `json:"-" xml:"-"`
-}
-
-type metadataProblem struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3007,11 +2735,7 @@ type ProblemDetail struct {
 	// The problem detail's name.
 	Name *string `locationName:"name" type:"string"`
 
-	metadataProblemDetail `json:"-" xml:"-"`
-}
-
-type metadataProblemDetail struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3036,11 +2760,7 @@ type Project struct {
 	// The project's name.
 	Name *string `locationName:"name" type:"string"`
 
-	metadataProject `json:"-" xml:"-"`
-}
-
-type metadataProject struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3068,11 +2788,7 @@ type Radios struct {
 	// True if Wi-Fi is enabled at the beginning of the test; otherwise, false.
 	Wifi *bool `locationName:"wifi" type:"boolean"`
 
-	metadataRadios `json:"-" xml:"-"`
-}
-
-type metadataRadios struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3094,11 +2810,7 @@ type Resolution struct {
 	// The screen resolution's width, expressed in pixels.
 	Width *int64 `locationName:"width" type:"integer"`
 
-	metadataResolution `json:"-" xml:"-"`
-}
-
-type metadataResolution struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3142,11 +2854,7 @@ type Rule struct {
 	// The rule's value.
 	Value *string `locationName:"value" type:"string"`
 
-	metadataRule `json:"-" xml:"-"`
-}
-
-type metadataRule struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3262,11 +2970,7 @@ type Run struct {
 	// XCTEST: The XCode test type.
 	Type *string `locationName:"type" type:"string" enum:"TestType"`
 
-	metadataRun `json:"-" xml:"-"`
-}
-
-type metadataRun struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3332,11 +3036,7 @@ type Sample struct {
 	// to download the sample's file.
 	Url *string `locationName:"url" type:"string"`
 
-	metadataSample `json:"-" xml:"-"`
-}
-
-type metadataSample struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3376,11 +3076,7 @@ type ScheduleRunConfiguration struct {
 	// Information about the radio states for the run.
 	Radios *Radios `locationName:"radios" type:"structure"`
 
-	metadataScheduleRunConfiguration `json:"-" xml:"-"`
-}
-
-type metadataScheduleRunConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3413,11 +3109,7 @@ type ScheduleRunInput struct {
 	// Information about the test for the run to be scheduled.
 	Test *ScheduleRunTest `locationName:"test" type:"structure" required:"true"`
 
-	metadataScheduleRunInput `json:"-" xml:"-"`
-}
-
-type metadataScheduleRunInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3435,11 +3127,7 @@ type ScheduleRunOutput struct {
 	// Information about the scheduled run.
 	Run *Run `locationName:"run" type:"structure"`
 
-	metadataScheduleRunOutput `json:"-" xml:"-"`
-}
-
-type metadataScheduleRunOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3487,11 +3175,7 @@ type ScheduleRunTest struct {
 	// XCTEST: The XCode test type.
 	Type *string `locationName:"type" type:"string" required:"true" enum:"TestType"`
 
-	metadataScheduleRunTest `json:"-" xml:"-"`
-}
-
-type metadataScheduleRunTest struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3588,11 +3272,7 @@ type Suite struct {
 	// XCTEST: The XCode test type.
 	Type *string `locationName:"type" type:"string" enum:"TestType"`
 
-	metadataSuite `json:"-" xml:"-"`
-}
-
-type metadataSuite struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3689,11 +3369,7 @@ type Test struct {
 	// XCTEST: The XCode test type.
 	Type *string `locationName:"type" type:"string" enum:"TestType"`
 
-	metadataTest `json:"-" xml:"-"`
-}
-
-type metadataTest struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3714,11 +3390,7 @@ type UniqueProblem struct {
 	// Information about the problems.
 	Problems []*Problem `locationName:"problems" type:"list"`
 
-	metadataUniqueProblem `json:"-" xml:"-"`
-}
-
-type metadataUniqueProblem struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3748,11 +3420,7 @@ type UpdateDevicePoolInput struct {
 	// update will replace the existing rules.
 	Rules []*Rule `locationName:"rules" type:"list"`
 
-	metadataUpdateDevicePoolInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateDevicePoolInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3770,11 +3438,7 @@ type UpdateDevicePoolOutput struct {
 	// Represents a collection of device types.
 	DevicePool *DevicePool `locationName:"devicePool" type:"structure"`
 
-	metadataUpdateDevicePoolOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateDevicePoolOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3795,11 +3459,7 @@ type UpdateProjectInput struct {
 	// A string representing the new name of the project that you are updating.
 	Name *string `locationName:"name" type:"string"`
 
-	metadataUpdateProjectInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateProjectInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3818,11 +3478,7 @@ type UpdateProjectOutput struct {
 	// tests.
 	Project *Project `locationName:"project" type:"structure"`
 
-	metadataUpdateProjectOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateProjectOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3902,11 +3558,7 @@ type Upload struct {
 	// PUT request.
 	Url *string `locationName:"url" type:"string"`
 
-	metadataUpload `json:"-" xml:"-"`
-}
-
-type metadataUpload struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

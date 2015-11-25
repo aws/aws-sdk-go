@@ -1385,11 +1385,7 @@ type AddHeaderAction struct {
 	// ("\r" or "\n").
 	HeaderValue *string `type:"string" required:"true"`
 
-	metadataAddHeaderAction `json:"-" xml:"-"`
-}
-
-type metadataAddHeaderAction struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1415,11 +1411,7 @@ type Body struct {
 	// clients, or clients on high-latency networks (such as mobile devices).
 	Text *Content `type:"structure"`
 
-	metadataBody `json:"-" xml:"-"`
-}
-
-type metadataBody struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1458,11 +1450,7 @@ type BounceAction struct {
 	// Guide (http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html).
 	TopicArn *string `type:"string"`
 
-	metadataBounceAction `json:"-" xml:"-"`
-}
-
-type metadataBounceAction struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1498,11 +1486,7 @@ type BouncedRecipientInfo struct {
 	// BounceType.
 	RecipientDsnFields *RecipientDsnFields `type:"structure"`
 
-	metadataBouncedRecipientInfo `json:"-" xml:"-"`
-}
-
-type metadataBouncedRecipientInfo struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1526,11 +1510,7 @@ type CloneReceiptRuleSetInput struct {
 	// 64 characters.
 	RuleSetName *string `type:"string" required:"true"`
 
-	metadataCloneReceiptRuleSetInput `json:"-" xml:"-"`
-}
-
-type metadataCloneReceiptRuleSetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1544,11 +1524,7 @@ func (s CloneReceiptRuleSetInput) GoString() string {
 }
 
 type CloneReceiptRuleSetOutput struct {
-	metadataCloneReceiptRuleSetOutput `json:"-" xml:"-"`
-}
-
-type metadataCloneReceiptRuleSetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1573,11 +1549,7 @@ type Content struct {
 	// The textual data of the content.
 	Data *string `type:"string" required:"true"`
 
-	metadataContent `json:"-" xml:"-"`
-}
-
-type metadataContent struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1595,11 +1567,7 @@ type CreateReceiptFilterInput struct {
 	// of a name, an IP address range, and whether to allow or block mail from it.
 	Filter *ReceiptFilter `type:"structure" required:"true"`
 
-	metadataCreateReceiptFilterInput `json:"-" xml:"-"`
-}
-
-type metadataCreateReceiptFilterInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1613,11 +1581,7 @@ func (s CreateReceiptFilterInput) GoString() string {
 }
 
 type CreateReceiptFilterOutput struct {
-	metadataCreateReceiptFilterOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateReceiptFilterOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1643,11 +1607,7 @@ type CreateReceiptRuleInput struct {
 	// The name of the rule set to which to add the rule.
 	RuleSetName *string `type:"string" required:"true"`
 
-	metadataCreateReceiptRuleInput `json:"-" xml:"-"`
-}
-
-type metadataCreateReceiptRuleInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1661,11 +1621,7 @@ func (s CreateReceiptRuleInput) GoString() string {
 }
 
 type CreateReceiptRuleOutput struct {
-	metadataCreateReceiptRuleOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateReceiptRuleOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1686,11 +1642,7 @@ type CreateReceiptRuleSetInput struct {
 	// 64 characters.
 	RuleSetName *string `type:"string" required:"true"`
 
-	metadataCreateReceiptRuleSetInput `json:"-" xml:"-"`
-}
-
-type metadataCreateReceiptRuleSetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1704,11 +1656,7 @@ func (s CreateReceiptRuleSetInput) GoString() string {
 }
 
 type CreateReceiptRuleSetOutput struct {
-	metadataCreateReceiptRuleSetOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateReceiptRuleSetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1727,11 +1675,7 @@ type DeleteIdentityInput struct {
 	// The identity to be removed from the list of identities for the AWS Account.
 	Identity *string `type:"string" required:"true"`
 
-	metadataDeleteIdentityInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteIdentityInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1747,11 +1691,7 @@ func (s DeleteIdentityInput) GoString() string {
 // An empty element. Receiving this element indicates that the request completed
 // successfully.
 type DeleteIdentityOutput struct {
-	metadataDeleteIdentityOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteIdentityOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1779,11 +1719,7 @@ type DeleteIdentityPolicyInput struct {
 	// The name of the policy to be deleted.
 	PolicyName *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteIdentityPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteIdentityPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1799,11 +1735,7 @@ func (s DeleteIdentityPolicyInput) GoString() string {
 // An empty element. Receiving this element indicates that the request completed
 // successfully.
 type DeleteIdentityPolicyOutput struct {
-	metadataDeleteIdentityPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteIdentityPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1820,11 +1752,7 @@ type DeleteReceiptFilterInput struct {
 	// The name of the IP address filter to delete.
 	FilterName *string `type:"string" required:"true"`
 
-	metadataDeleteReceiptFilterInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteReceiptFilterInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1838,11 +1766,7 @@ func (s DeleteReceiptFilterInput) GoString() string {
 }
 
 type DeleteReceiptFilterOutput struct {
-	metadataDeleteReceiptFilterOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteReceiptFilterOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1862,11 +1786,7 @@ type DeleteReceiptRuleInput struct {
 	// The name of the receipt rule set that contains the receipt rule to delete.
 	RuleSetName *string `type:"string" required:"true"`
 
-	metadataDeleteReceiptRuleInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteReceiptRuleInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1880,11 +1800,7 @@ func (s DeleteReceiptRuleInput) GoString() string {
 }
 
 type DeleteReceiptRuleOutput struct {
-	metadataDeleteReceiptRuleOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteReceiptRuleOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1901,11 +1817,7 @@ type DeleteReceiptRuleSetInput struct {
 	// The name of the receipt rule set to delete.
 	RuleSetName *string `type:"string" required:"true"`
 
-	metadataDeleteReceiptRuleSetInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteReceiptRuleSetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1919,11 +1831,7 @@ func (s DeleteReceiptRuleSetInput) GoString() string {
 }
 
 type DeleteReceiptRuleSetOutput struct {
-	metadataDeleteReceiptRuleSetOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteReceiptRuleSetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1942,11 +1850,7 @@ type DeleteVerifiedEmailAddressInput struct {
 	// An email address to be removed from the list of verified addresses.
 	EmailAddress *string `type:"string" required:"true"`
 
-	metadataDeleteVerifiedEmailAddressInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteVerifiedEmailAddressInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1960,11 +1864,7 @@ func (s DeleteVerifiedEmailAddressInput) GoString() string {
 }
 
 type DeleteVerifiedEmailAddressOutput struct {
-	metadataDeleteVerifiedEmailAddressOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteVerifiedEmailAddressOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1978,11 +1878,7 @@ func (s DeleteVerifiedEmailAddressOutput) GoString() string {
 }
 
 type DescribeActiveReceiptRuleSetInput struct {
-	metadataDescribeActiveReceiptRuleSetInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeActiveReceiptRuleSetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2003,11 +1899,7 @@ type DescribeActiveReceiptRuleSetOutput struct {
 	// The receipt rules that belong to the active rule set.
 	Rules []*ReceiptRule `type:"list"`
 
-	metadataDescribeActiveReceiptRuleSetOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeActiveReceiptRuleSetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2027,11 +1919,7 @@ type DescribeReceiptRuleInput struct {
 	// The name of the receipt rule set to which the receipt rule belongs.
 	RuleSetName *string `type:"string" required:"true"`
 
-	metadataDescribeReceiptRuleInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeReceiptRuleInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2050,11 +1938,7 @@ type DescribeReceiptRuleOutput struct {
 	// (TLS) policy.
 	Rule *ReceiptRule `type:"structure"`
 
-	metadataDescribeReceiptRuleOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeReceiptRuleOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2071,11 +1955,7 @@ type DescribeReceiptRuleSetInput struct {
 	// The name of the receipt rule set to describe.
 	RuleSetName *string `type:"string" required:"true"`
 
-	metadataDescribeReceiptRuleSetInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeReceiptRuleSetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2096,11 +1976,7 @@ type DescribeReceiptRuleSetOutput struct {
 	// A list of the receipt rules that belong to the specified receipt rule set.
 	Rules []*ReceiptRule `type:"list"`
 
-	metadataDescribeReceiptRuleSetOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeReceiptRuleSetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2130,11 +2006,7 @@ type Destination struct {
 	// The To: field(s) of the message.
 	ToAddresses []*string `type:"list"`
 
-	metadataDestination `json:"-" xml:"-"`
-}
-
-type metadataDestination struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2161,11 +2033,7 @@ type ExtensionField struct {
 	// not contain newline characters ("\r" or "\n").
 	Value *string `type:"string" required:"true"`
 
-	metadataExtensionField `json:"-" xml:"-"`
-}
-
-type metadataExtensionField struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2189,11 +2057,7 @@ type GetIdentityDkimAttributesInput struct {
 	// both.
 	Identities []*string `type:"list" required:"true"`
 
-	metadataGetIdentityDkimAttributesInput `json:"-" xml:"-"`
-}
-
-type metadataGetIdentityDkimAttributesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2211,11 +2075,7 @@ type GetIdentityDkimAttributesOutput struct {
 	// The DKIM attributes for an email address or a domain.
 	DkimAttributes map[string]*IdentityDkimAttributes `type:"map" required:"true"`
 
-	metadataGetIdentityDkimAttributesOutput `json:"-" xml:"-"`
-}
-
-type metadataGetIdentityDkimAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2234,11 +2094,7 @@ type GetIdentityNotificationAttributesInput struct {
 	// example.com, arn:aws:ses:us-east-1:123456789012:identity/example.com.
 	Identities []*string `type:"list" required:"true"`
 
-	metadataGetIdentityNotificationAttributesInput `json:"-" xml:"-"`
-}
-
-type metadataGetIdentityNotificationAttributesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2259,11 +2115,7 @@ type GetIdentityNotificationAttributesOutput struct {
 	// A map of Identity to IdentityNotificationAttributes.
 	NotificationAttributes map[string]*IdentityNotificationAttributes `type:"map" required:"true"`
 
-	metadataGetIdentityNotificationAttributesOutput `json:"-" xml:"-"`
-}
-
-type metadataGetIdentityNotificationAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2291,11 +2143,7 @@ type GetIdentityPoliciesInput struct {
 	// are attached to the identity, you can use ListIdentityPolicies.
 	PolicyNames []*string `type:"list" required:"true"`
 
-	metadataGetIdentityPoliciesInput `json:"-" xml:"-"`
-}
-
-type metadataGetIdentityPoliciesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2314,11 +2162,7 @@ type GetIdentityPoliciesOutput struct {
 	// A map of policy names to policies.
 	Policies map[string]*string `type:"map" required:"true"`
 
-	metadataGetIdentityPoliciesOutput `json:"-" xml:"-"`
-}
-
-type metadataGetIdentityPoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2337,11 +2181,7 @@ type GetIdentityVerificationAttributesInput struct {
 	// A list of identities.
 	Identities []*string `type:"list" required:"true"`
 
-	metadataGetIdentityVerificationAttributesInput `json:"-" xml:"-"`
-}
-
-type metadataGetIdentityVerificationAttributesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2359,11 +2199,7 @@ type GetIdentityVerificationAttributesOutput struct {
 	// A map of Identities to IdentityVerificationAttributes objects.
 	VerificationAttributes map[string]*IdentityVerificationAttributes `type:"map" required:"true"`
 
-	metadataGetIdentityVerificationAttributesOutput `json:"-" xml:"-"`
-}
-
-type metadataGetIdentityVerificationAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2377,11 +2213,7 @@ func (s GetIdentityVerificationAttributesOutput) GoString() string {
 }
 
 type GetSendQuotaInput struct {
-	metadataGetSendQuotaInput `json:"-" xml:"-"`
-}
-
-type metadataGetSendQuotaInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2411,11 +2243,7 @@ type GetSendQuotaOutput struct {
 	// The number of emails sent during the previous 24 hours.
 	SentLast24Hours *float64 `type:"double"`
 
-	metadataGetSendQuotaOutput `json:"-" xml:"-"`
-}
-
-type metadataGetSendQuotaOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2429,11 +2257,7 @@ func (s GetSendQuotaOutput) GoString() string {
 }
 
 type GetSendStatisticsInput struct {
-	metadataGetSendStatisticsInput `json:"-" xml:"-"`
-}
-
-type metadataGetSendStatisticsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2453,11 +2277,7 @@ type GetSendStatisticsOutput struct {
 	// A list of data points, each of which represents 15 minutes of activity.
 	SendDataPoints []*SendDataPoint `type:"list"`
 
-	metadataGetSendStatisticsOutput `json:"-" xml:"-"`
-}
-
-type metadataGetSendStatisticsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2492,11 +2312,7 @@ type IdentityDkimAttributes struct {
 	// identities, not email address identities.)
 	DkimVerificationStatus *string `type:"string" required:"true" enum:"VerificationStatus"`
 
-	metadataIdentityDkimAttributes `json:"-" xml:"-"`
-}
-
-type metadataIdentityDkimAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2532,11 +2348,7 @@ type IdentityNotificationAttributes struct {
 	// will be published only to the specified bounce and complaint Amazon SNS topics.
 	ForwardingEnabled *bool `type:"boolean" required:"true"`
 
-	metadataIdentityNotificationAttributes `json:"-" xml:"-"`
-}
-
-type metadataIdentityNotificationAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2558,11 +2370,7 @@ type IdentityVerificationAttributes struct {
 	// The verification token for a domain identity. Null for email address identities.
 	VerificationToken *string `type:"string"`
 
-	metadataIdentityVerificationAttributes `json:"-" xml:"-"`
-}
-
-type metadataIdentityVerificationAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2611,11 +2419,7 @@ type LambdaAction struct {
 	// Guide (http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html).
 	TopicArn *string `type:"string"`
 
-	metadataLambdaAction `json:"-" xml:"-"`
-}
-
-type metadataLambdaAction struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2641,11 +2445,7 @@ type ListIdentitiesInput struct {
 	// The token to use for pagination.
 	NextToken *string `type:"string"`
 
-	metadataListIdentitiesInput `json:"-" xml:"-"`
-}
-
-type metadataListIdentitiesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2666,11 +2466,7 @@ type ListIdentitiesOutput struct {
 	// The token used for pagination.
 	NextToken *string `type:"string"`
 
-	metadataListIdentitiesOutput `json:"-" xml:"-"`
-}
-
-type metadataListIdentitiesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2693,11 +2489,7 @@ type ListIdentityPoliciesInput struct {
 	// To successfully call this API, you must own the identity.
 	Identity *string `type:"string" required:"true"`
 
-	metadataListIdentityPoliciesInput `json:"-" xml:"-"`
-}
-
-type metadataListIdentityPoliciesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2716,11 +2508,7 @@ type ListIdentityPoliciesOutput struct {
 	// A list of names of policies that apply to the specified identity.
 	PolicyNames []*string `type:"list" required:"true"`
 
-	metadataListIdentityPoliciesOutput `json:"-" xml:"-"`
-}
-
-type metadataListIdentityPoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2734,11 +2522,7 @@ func (s ListIdentityPoliciesOutput) GoString() string {
 }
 
 type ListReceiptFiltersInput struct {
-	metadataListReceiptFiltersInput `json:"-" xml:"-"`
-}
-
-type metadataListReceiptFiltersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2756,11 +2540,7 @@ type ListReceiptFiltersOutput struct {
 	// an IP address range, and whether to allow or block mail from it.
 	Filters []*ReceiptFilter `type:"list"`
 
-	metadataListReceiptFiltersOutput `json:"-" xml:"-"`
-}
-
-type metadataListReceiptFiltersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2778,11 +2558,7 @@ type ListReceiptRuleSetsInput struct {
 	// the position in the receipt rule set list.
 	NextToken *string `type:"string"`
 
-	metadataListReceiptRuleSetsInput `json:"-" xml:"-"`
-}
-
-type metadataListReceiptRuleSetsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2805,11 +2581,7 @@ type ListReceiptRuleSetsOutput struct {
 	// of the rule set name and the timestamp of when the rule set was created.
 	RuleSets []*ReceiptRuleSetMetadata `type:"list"`
 
-	metadataListReceiptRuleSetsOutput `json:"-" xml:"-"`
-}
-
-type metadataListReceiptRuleSetsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2823,11 +2595,7 @@ func (s ListReceiptRuleSetsOutput) GoString() string {
 }
 
 type ListVerifiedEmailAddressesInput struct {
-	metadataListVerifiedEmailAddressesInput `json:"-" xml:"-"`
-}
-
-type metadataListVerifiedEmailAddressesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2845,11 +2613,7 @@ type ListVerifiedEmailAddressesOutput struct {
 	// A list of email addresses that have been verified.
 	VerifiedEmailAddresses []*string `type:"list"`
 
-	metadataListVerifiedEmailAddressesOutput `json:"-" xml:"-"`
-}
-
-type metadataListVerifiedEmailAddressesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2871,11 +2635,7 @@ type Message struct {
 	// in the recipient's inbox.
 	Subject *Content `type:"structure" required:"true"`
 
-	metadataMessage `json:"-" xml:"-"`
-}
-
-type metadataMessage struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2906,11 +2666,7 @@ type MessageDsn struct {
 	// The default value is dns; inbound-smtp.[region].amazonaws.com.
 	ReportingMta *string `type:"string" required:"true"`
 
-	metadataMessageDsn `json:"-" xml:"-"`
-}
-
-type metadataMessageDsn struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2945,11 +2701,7 @@ type PutIdentityPolicyInput struct {
 	// characters, dashes, and underscores.
 	PolicyName *string `min:"1" type:"string" required:"true"`
 
-	metadataPutIdentityPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataPutIdentityPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2965,11 +2717,7 @@ func (s PutIdentityPolicyInput) GoString() string {
 // An empty element. Receiving this element indicates that the request completed
 // successfully.
 type PutIdentityPolicyOutput struct {
-	metadataPutIdentityPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataPutIdentityPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2999,11 +2747,7 @@ type RawMessage struct {
 	// SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html).
 	Data []byte `type:"blob" required:"true"`
 
-	metadataRawMessage `json:"-" xml:"-"`
-}
-
-type metadataRawMessage struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3050,11 +2794,7 @@ type ReceiptAction struct {
 	// SNS.
 	WorkmailAction *WorkmailAction `type:"structure"`
 
-	metadataReceiptAction `json:"-" xml:"-"`
-}
-
-type metadataReceiptAction struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3084,11 +2824,7 @@ type ReceiptFilter struct {
 	// 64 characters.
 	Name *string `type:"string" required:"true"`
 
-	metadataReceiptFilter `json:"-" xml:"-"`
-}
-
-type metadataReceiptFilter struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3116,11 +2852,7 @@ type ReceiptIpFilter struct {
 	// Indicates whether to block or allow incoming mail from the specified IP addresses.
 	Policy *string `type:"string" required:"true" enum:"ReceiptFilterPolicy"`
 
-	metadataReceiptIpFilter `json:"-" xml:"-"`
-}
-
-type metadataReceiptIpFilter struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3174,11 +2906,7 @@ type ReceiptRule struct {
 	// over TLS. The default is Optional.
 	TlsPolicy *string `type:"string" enum:"TlsPolicy"`
 
-	metadataReceiptRule `json:"-" xml:"-"`
-}
-
-type metadataReceiptRule struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3209,11 +2937,7 @@ type ReceiptRuleSetMetadata struct {
 	// 64 characters.
 	Name *string `type:"string"`
 
-	metadataReceiptRuleSetMetadata `json:"-" xml:"-"`
-}
-
-type metadataReceiptRuleSetMetadata struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3269,11 +2993,7 @@ type RecipientDsnFields struct {
 	// (https://tools.ietf.org/html/rfc3464).
 	Status *string `type:"string" required:"true"`
 
-	metadataRecipientDsnFields `json:"-" xml:"-"`
-}
-
-type metadataRecipientDsnFields struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3294,11 +3014,7 @@ type ReorderReceiptRuleSetInput struct {
 	// The name of the receipt rule set to reorder.
 	RuleSetName *string `type:"string" required:"true"`
 
-	metadataReorderReceiptRuleSetInput `json:"-" xml:"-"`
-}
-
-type metadataReorderReceiptRuleSetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3312,11 +3028,7 @@ func (s ReorderReceiptRuleSetInput) GoString() string {
 }
 
 type ReorderReceiptRuleSetOutput struct {
-	metadataReorderReceiptRuleSetOutput `json:"-" xml:"-"`
-}
-
-type metadataReorderReceiptRuleSetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3386,11 +3098,7 @@ type S3Action struct {
 	// Guide (http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html).
 	TopicArn *string `type:"string"`
 
-	metadataS3Action `json:"-" xml:"-"`
-}
-
-type metadataS3Action struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3427,11 +3135,7 @@ type SNSAction struct {
 	// Guide (http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html).
 	TopicArn *string `type:"string" required:"true"`
 
-	metadataSNSAction `json:"-" xml:"-"`
-}
-
-type metadataSNSAction struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3474,11 +3178,7 @@ type SendBounceInput struct {
 	// The message ID of the message to be bounced.
 	OriginalMessageId *string `type:"string" required:"true"`
 
-	metadataSendBounceInput `json:"-" xml:"-"`
-}
-
-type metadataSendBounceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3495,11 +3195,7 @@ type SendBounceOutput struct {
 	// The message ID of the bounce message.
 	MessageId *string `type:"string"`
 
-	metadataSendBounceOutput `json:"-" xml:"-"`
-}
-
-type metadataSendBounceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3530,11 +3226,7 @@ type SendDataPoint struct {
 	// Time of the data point.
 	Timestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataSendDataPoint `json:"-" xml:"-"`
-}
-
-type metadataSendDataPoint struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3615,11 +3307,7 @@ type SendEmailInput struct {
 	// Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html).
 	SourceArn *string `type:"string"`
 
-	metadataSendEmailInput `json:"-" xml:"-"`
-}
-
-type metadataSendEmailInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3637,11 +3325,7 @@ type SendEmailOutput struct {
 	// The unique message identifier returned from the SendEmail action.
 	MessageId *string `type:"string" required:"true"`
 
-	metadataSendEmailOutput `json:"-" xml:"-"`
-}
-
-type metadataSendEmailOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3737,11 +3421,7 @@ type SendRawEmailInput struct {
 	// SendRawEmail in this guide, or see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-delegate-sender-tasks-email.html).
 	SourceArn *string `type:"string"`
 
-	metadataSendRawEmailInput `json:"-" xml:"-"`
-}
-
-type metadataSendRawEmailInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3759,11 +3439,7 @@ type SendRawEmailOutput struct {
 	// The unique message identifier returned from the SendRawEmail action.
 	MessageId *string `type:"string" required:"true"`
 
-	metadataSendRawEmailOutput `json:"-" xml:"-"`
-}
-
-type metadataSendRawEmailOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3781,11 +3457,7 @@ type SetActiveReceiptRuleSetInput struct {
 	// disables all email receiving.
 	RuleSetName *string `type:"string"`
 
-	metadataSetActiveReceiptRuleSetInput `json:"-" xml:"-"`
-}
-
-type metadataSetActiveReceiptRuleSetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3799,11 +3471,7 @@ func (s SetActiveReceiptRuleSetInput) GoString() string {
 }
 
 type SetActiveReceiptRuleSetOutput struct {
-	metadataSetActiveReceiptRuleSetOutput `json:"-" xml:"-"`
-}
-
-type metadataSetActiveReceiptRuleSetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3826,11 +3494,7 @@ type SetIdentityDkimEnabledInput struct {
 	// The identity for which DKIM signing should be enabled or disabled.
 	Identity *string `type:"string" required:"true"`
 
-	metadataSetIdentityDkimEnabledInput `json:"-" xml:"-"`
-}
-
-type metadataSetIdentityDkimEnabledInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3846,11 +3510,7 @@ func (s SetIdentityDkimEnabledInput) GoString() string {
 // An empty element. Receiving this element indicates that the request completed
 // successfully.
 type SetIdentityDkimEnabledOutput struct {
-	metadataSetIdentityDkimEnabledOutput `json:"-" xml:"-"`
-}
-
-type metadataSetIdentityDkimEnabledOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3876,11 +3536,7 @@ type SetIdentityFeedbackForwardingEnabledInput struct {
 	// Examples: user@example.com, example.com.
 	Identity *string `type:"string" required:"true"`
 
-	metadataSetIdentityFeedbackForwardingEnabledInput `json:"-" xml:"-"`
-}
-
-type metadataSetIdentityFeedbackForwardingEnabledInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3896,11 +3552,7 @@ func (s SetIdentityFeedbackForwardingEnabledInput) GoString() string {
 // An empty element. Receiving this element indicates that the request completed
 // successfully.
 type SetIdentityFeedbackForwardingEnabledOutput struct {
-	metadataSetIdentityFeedbackForwardingEnabledOutput `json:"-" xml:"-"`
-}
-
-type metadataSetIdentityFeedbackForwardingEnabledOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3929,11 +3581,7 @@ type SetIdentityNotificationTopicInput struct {
 	// and publishing is disabled.
 	SnsTopic *string `type:"string"`
 
-	metadataSetIdentityNotificationTopicInput `json:"-" xml:"-"`
-}
-
-type metadataSetIdentityNotificationTopicInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3949,11 +3597,7 @@ func (s SetIdentityNotificationTopicInput) GoString() string {
 // An empty element. Receiving this element indicates that the request completed
 // successfully.
 type SetIdentityNotificationTopicOutput struct {
-	metadataSetIdentityNotificationTopicOutput `json:"-" xml:"-"`
-}
-
-type metadataSetIdentityNotificationTopicOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3976,11 +3620,7 @@ type SetReceiptRulePositionInput struct {
 	// The name of the receipt rule set that contains the receipt rule to reposition.
 	RuleSetName *string `type:"string" required:"true"`
 
-	metadataSetReceiptRulePositionInput `json:"-" xml:"-"`
-}
-
-type metadataSetReceiptRulePositionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3994,11 +3634,7 @@ func (s SetReceiptRulePositionInput) GoString() string {
 }
 
 type SetReceiptRulePositionOutput struct {
-	metadataSetReceiptRulePositionOutput `json:"-" xml:"-"`
-}
-
-type metadataSetReceiptRulePositionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4027,11 +3663,7 @@ type StopAction struct {
 	// Guide (http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html).
 	TopicArn *string `type:"string"`
 
-	metadataStopAction `json:"-" xml:"-"`
-}
-
-type metadataStopAction struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4051,11 +3683,7 @@ type UpdateReceiptRuleInput struct {
 	// The name of the receipt rule set to which the receipt rule belongs.
 	RuleSetName *string `type:"string" required:"true"`
 
-	metadataUpdateReceiptRuleInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateReceiptRuleInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4069,11 +3697,7 @@ func (s UpdateReceiptRuleInput) GoString() string {
 }
 
 type UpdateReceiptRuleOutput struct {
-	metadataUpdateReceiptRuleOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateReceiptRuleOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4092,11 +3716,7 @@ type VerifyDomainDkimInput struct {
 	// The name of the domain to be verified for Easy DKIM signing.
 	Domain *string `type:"string" required:"true"`
 
-	metadataVerifyDomainDkimInput `json:"-" xml:"-"`
-}
-
-type metadataVerifyDomainDkimInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4125,11 +3745,7 @@ type VerifyDomainDkimOutput struct {
 	// the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html).
 	DkimTokens []*string `type:"list" required:"true"`
 
-	metadataVerifyDomainDkimOutput `json:"-" xml:"-"`
-}
-
-type metadataVerifyDomainDkimOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4147,11 +3763,7 @@ type VerifyDomainIdentityInput struct {
 	// The domain to be verified.
 	Domain *string `type:"string" required:"true"`
 
-	metadataVerifyDomainIdentityInput `json:"-" xml:"-"`
-}
-
-type metadataVerifyDomainIdentityInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4170,11 +3782,7 @@ type VerifyDomainIdentityOutput struct {
 	// to complete domain verification.
 	VerificationToken *string `type:"string" required:"true"`
 
-	metadataVerifyDomainIdentityOutput `json:"-" xml:"-"`
-}
-
-type metadataVerifyDomainIdentityOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4192,11 +3800,7 @@ type VerifyEmailAddressInput struct {
 	// The email address to be verified.
 	EmailAddress *string `type:"string" required:"true"`
 
-	metadataVerifyEmailAddressInput `json:"-" xml:"-"`
-}
-
-type metadataVerifyEmailAddressInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4210,11 +3814,7 @@ func (s VerifyEmailAddressInput) GoString() string {
 }
 
 type VerifyEmailAddressOutput struct {
-	metadataVerifyEmailAddressOutput `json:"-" xml:"-"`
-}
-
-type metadataVerifyEmailAddressOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4232,11 +3832,7 @@ type VerifyEmailIdentityInput struct {
 	// The email address to be verified.
 	EmailAddress *string `type:"string" required:"true"`
 
-	metadataVerifyEmailIdentityInput `json:"-" xml:"-"`
-}
-
-type metadataVerifyEmailIdentityInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4252,11 +3848,7 @@ func (s VerifyEmailIdentityInput) GoString() string {
 // An empty element. Receiving this element indicates that the request completed
 // successfully.
 type VerifyEmailIdentityOutput struct {
-	metadataVerifyEmailIdentityOutput `json:"-" xml:"-"`
-}
-
-type metadataVerifyEmailIdentityOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4289,11 +3881,7 @@ type WorkmailAction struct {
 	// Guide (http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html).
 	TopicArn *string `type:"string"`
 
-	metadataWorkmailAction `json:"-" xml:"-"`
-}
-
-type metadataWorkmailAction struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

@@ -693,11 +693,7 @@ type AttributeDefinition struct {
 	// The data type for the attribute.
 	AttributeType *string `type:"string" required:"true" enum:"ScalarAttributeType"`
 
-	metadataAttributeDefinition `json:"-" xml:"-"`
-}
-
-type metadataAttributeDefinition struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -748,11 +744,7 @@ type AttributeValue struct {
 	// A String Set data type.
 	SS []*string `type:"list"`
 
-	metadataAttributeValue `json:"-" xml:"-"`
-}
-
-type metadataAttributeValue struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -849,11 +841,7 @@ type AttributeValueUpdate struct {
 	// attribute is a set; duplicate values are not allowed.
 	Value *AttributeValue `type:"structure"`
 
-	metadataAttributeValueUpdate `json:"-" xml:"-"`
-}
-
-type metadataAttributeValueUpdate struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -967,11 +955,7 @@ type BatchGetItemInput struct {
 	// NONE - No ConsumedCapacity details are included in the response.
 	ReturnConsumedCapacity *string `type:"string" enum:"ReturnConsumedCapacity"`
 
-	metadataBatchGetItemInput `json:"-" xml:"-"`
-}
-
-type metadataBatchGetItemInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1022,11 +1006,7 @@ type BatchGetItemOutput struct {
 	// UnprocessedKeys map.
 	UnprocessedKeys map[string]*KeysAndAttributes `min:"1" type:"map"`
 
-	metadataBatchGetItemOutput `json:"-" xml:"-"`
-}
-
-type metadataBatchGetItemOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1092,11 +1072,7 @@ type BatchWriteItemInput struct {
 	// (the default), no statistics are returned.
 	ReturnItemCollectionMetrics *string `type:"string" enum:"ReturnItemCollectionMetrics"`
 
-	metadataBatchWriteItemInput `json:"-" xml:"-"`
-}
-
-type metadataBatchWriteItemInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1172,11 +1148,7 @@ type BatchWriteItemOutput struct {
 	// empty UnprocessedItems map.
 	UnprocessedItems map[string][]*WriteRequest `min:"1" type:"map"`
 
-	metadataBatchWriteItemOutput `json:"-" xml:"-"`
-}
-
-type metadataBatchWriteItemOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1195,11 +1167,7 @@ type Capacity struct {
 	// The total number of capacity units consumed on a table or an index.
 	CapacityUnits *float64 `type:"double"`
 
-	metadataCapacity `json:"-" xml:"-"`
-}
-
-type metadataCapacity struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1373,11 +1341,7 @@ type Condition struct {
 	// in the Amazon DynamoDB Developer Guide.
 	ComparisonOperator *string `type:"string" required:"true" enum:"ComparisonOperator"`
 
-	metadataCondition `json:"-" xml:"-"`
-}
-
-type metadataCondition struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1412,11 +1376,7 @@ type ConsumedCapacity struct {
 	// The name of the table that was affected by the operation.
 	TableName *string `min:"3" type:"string"`
 
-	metadataConsumedCapacity `json:"-" xml:"-"`
-}
-
-type metadataConsumedCapacity struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1450,11 +1410,7 @@ type CreateGlobalSecondaryIndexAction struct {
 	// in the Amazon DynamoDB Developer Guide.
 	ProvisionedThroughput *ProvisionedThroughput `type:"structure" required:"true"`
 
-	metadataCreateGlobalSecondaryIndexAction `json:"-" xml:"-"`
-}
-
-type metadataCreateGlobalSecondaryIndexAction struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1593,11 +1549,7 @@ type CreateTableInput struct {
 	// The name of the table to create.
 	TableName *string `min:"3" type:"string" required:"true"`
 
-	metadataCreateTableInput `json:"-" xml:"-"`
-}
-
-type metadataCreateTableInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1615,11 +1567,7 @@ type CreateTableOutput struct {
 	// Represents the properties of a table.
 	TableDescription *TableDescription `type:"structure"`
 
-	metadataCreateTableOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateTableOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1637,11 +1585,7 @@ type DeleteGlobalSecondaryIndexAction struct {
 	// The name of the global secondary index to be deleted.
 	IndexName *string `min:"3" type:"string" required:"true"`
 
-	metadataDeleteGlobalSecondaryIndexAction `json:"-" xml:"-"`
-}
-
-type metadataDeleteGlobalSecondaryIndexAction struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1995,11 +1939,7 @@ type DeleteItemInput struct {
 	// The name of the table from which to delete the item.
 	TableName *string `min:"3" type:"string" required:"true"`
 
-	metadataDeleteItemInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteItemInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2048,11 +1988,7 @@ type DeleteItemOutput struct {
 	// precision or accuracy of the estimate.
 	ItemCollectionMetrics *ItemCollectionMetrics `type:"structure"`
 
-	metadataDeleteItemOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteItemOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2072,11 +2008,7 @@ type DeleteRequest struct {
 	// specified, and their data types must match those of the table's key schema.
 	Key map[string]*AttributeValue `type:"map" required:"true"`
 
-	metadataDeleteRequest `json:"-" xml:"-"`
-}
-
-type metadataDeleteRequest struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2094,11 +2026,7 @@ type DeleteTableInput struct {
 	// The name of the table to delete.
 	TableName *string `min:"3" type:"string" required:"true"`
 
-	metadataDeleteTableInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteTableInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2116,11 +2044,7 @@ type DeleteTableOutput struct {
 	// Represents the properties of a table.
 	TableDescription *TableDescription `type:"structure"`
 
-	metadataDeleteTableOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteTableOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2138,11 +2062,7 @@ type DescribeTableInput struct {
 	// The name of the table to describe.
 	TableName *string `min:"3" type:"string" required:"true"`
 
-	metadataDescribeTableInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTableInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2160,11 +2080,7 @@ type DescribeTableOutput struct {
 	// Represents the properties of a table.
 	Table *TableDescription `type:"structure"`
 
-	metadataDescribeTableOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTableOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2377,11 +2293,7 @@ type ExpectedAttributeValue struct {
 	// attribute is a set; duplicate values are not allowed.
 	Value *AttributeValue `type:"structure"`
 
-	metadataExpectedAttributeValue `json:"-" xml:"-"`
-}
-
-type metadataExpectedAttributeValue struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2497,11 +2409,7 @@ type GetItemInput struct {
 	// The name of the table containing the requested item.
 	TableName *string `min:"3" type:"string" required:"true"`
 
-	metadataGetItemInput `json:"-" xml:"-"`
-}
-
-type metadataGetItemInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2527,11 +2435,7 @@ type GetItemOutput struct {
 	// A map of attribute names to AttributeValue objects, as specified by AttributesToGet.
 	Item map[string]*AttributeValue `type:"map"`
 
-	metadataGetItemOutput `json:"-" xml:"-"`
-}
-
-type metadataGetItemOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2567,11 +2471,7 @@ type GlobalSecondaryIndex struct {
 	// in the Amazon DynamoDB Developer Guide.
 	ProvisionedThroughput *ProvisionedThroughput `type:"structure" required:"true"`
 
-	metadataGlobalSecondaryIndex `json:"-" xml:"-"`
-}
-
-type metadataGlobalSecondaryIndex struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2636,11 +2536,7 @@ type GlobalSecondaryIndexDescription struct {
 	// of read and write capacity units, along with data about increases and decreases.
 	ProvisionedThroughput *ProvisionedThroughputDescription `type:"structure"`
 
-	metadataGlobalSecondaryIndexDescription `json:"-" xml:"-"`
-}
-
-type metadataGlobalSecondaryIndexDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2682,11 +2578,7 @@ type GlobalSecondaryIndexUpdate struct {
 	// throughput settings to be applied to that index.
 	Update *UpdateGlobalSecondaryIndexAction `type:"structure"`
 
-	metadataGlobalSecondaryIndexUpdate `json:"-" xml:"-"`
-}
-
-type metadataGlobalSecondaryIndexUpdate struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2719,11 +2611,7 @@ type ItemCollectionMetrics struct {
 	// precision or accuracy of the estimate.
 	SizeEstimateRangeGB []*float64 `type:"list"`
 
-	metadataItemCollectionMetrics `json:"-" xml:"-"`
-}
-
-type metadataItemCollectionMetrics struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2750,11 +2638,7 @@ type KeySchemaElement struct {
 	// The attribute data, consisting of the data type and the attribute value itself.
 	KeyType *string `type:"string" required:"true" enum:"KeyType"`
 
-	metadataKeySchemaElement `json:"-" xml:"-"`
-}
-
-type metadataKeySchemaElement struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2838,11 +2722,7 @@ type KeysAndAttributes struct {
 	// ProjectionExpression replaces the legacy AttributesToGet parameter.
 	ProjectionExpression *string `type:"string"`
 
-	metadataKeysAndAttributes `json:"-" xml:"-"`
-}
-
-type metadataKeysAndAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2866,11 +2746,7 @@ type ListTablesInput struct {
 	// the limit is 100.
 	Limit *int64 `min:"1" type:"integer"`
 
-	metadataListTablesInput `json:"-" xml:"-"`
-}
-
-type metadataListTablesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2901,11 +2777,7 @@ type ListTablesOutput struct {
 	// and obtain the next page of results.
 	TableNames []*string `type:"list"`
 
-	metadataListTablesOutput `json:"-" xml:"-"`
-}
-
-type metadataListTablesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2933,11 +2805,7 @@ type LocalSecondaryIndex struct {
 	// attributes, which are automatically projected.
 	Projection *Projection `type:"structure" required:"true"`
 
-	metadataLocalSecondaryIndex `json:"-" xml:"-"`
-}
-
-type metadataLocalSecondaryIndex struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2976,11 +2844,7 @@ type LocalSecondaryIndexDescription struct {
 	// attributes, which are automatically projected.
 	Projection *Projection `type:"structure"`
 
-	metadataLocalSecondaryIndexDescription `json:"-" xml:"-"`
-}
-
-type metadataLocalSecondaryIndexDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3015,11 +2879,7 @@ type Projection struct {
 	//   ALL - All of the table attributes are projected into the index.
 	ProjectionType *string `type:"string" enum:"ProjectionType"`
 
-	metadataProjection `json:"-" xml:"-"`
-}
-
-type metadataProjection struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3051,11 +2911,7 @@ type ProvisionedThroughput struct {
 	// in the Amazon DynamoDB Developer Guide.
 	WriteCapacityUnits *int64 `min:"1" type:"long" required:"true"`
 
-	metadataProvisionedThroughput `json:"-" xml:"-"`
-}
-
-type metadataProvisionedThroughput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3093,11 +2949,7 @@ type ProvisionedThroughputDescription struct {
 	// a ThrottlingException.
 	WriteCapacityUnits *int64 `min:"1" type:"long"`
 
-	metadataProvisionedThroughputDescription `json:"-" xml:"-"`
-}
-
-type metadataProvisionedThroughputDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3465,11 +3317,7 @@ type PutItemInput struct {
 	// The name of the table to contain the item.
 	TableName *string `min:"3" type:"string" required:"true"`
 
-	metadataPutItemInput `json:"-" xml:"-"`
-}
-
-type metadataPutItemInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3518,11 +3366,7 @@ type PutItemOutput struct {
 	// precision or accuracy of the estimate.
 	ItemCollectionMetrics *ItemCollectionMetrics `type:"structure"`
 
-	metadataPutItemOutput `json:"-" xml:"-"`
-}
-
-type metadataPutItemOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3544,11 +3388,7 @@ type PutRequest struct {
 	// key schema for the table, their types must match the index key schema.
 	Item map[string]*AttributeValue `type:"map" required:"true"`
 
-	metadataPutRequest `json:"-" xml:"-"`
-}
-
-type metadataPutRequest struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4040,11 +3880,7 @@ type QueryInput struct {
 	// The name of the table containing the requested items.
 	TableName *string `min:"3" type:"string" required:"true"`
 
-	metadataQueryInput `json:"-" xml:"-"`
-}
-
-type metadataQueryInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4102,11 +3938,7 @@ type QueryOutput struct {
 	// as Count.
 	ScannedCount *int64 `type:"integer"`
 
-	metadataQueryOutput `json:"-" xml:"-"`
-}
-
-type metadataQueryOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4408,11 +4240,7 @@ type ScanInput struct {
 	// If you specify TotalSegments, you must also specify Segment.
 	TotalSegments *int64 `min:"1" type:"integer"`
 
-	metadataScanInput `json:"-" xml:"-"`
-}
-
-type metadataScanInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4469,11 +4297,7 @@ type ScanOutput struct {
 	// as Count.
 	ScannedCount *int64 `type:"integer"`
 
-	metadataScanOutput `json:"-" xml:"-"`
-}
-
-type metadataScanOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4514,11 +4338,7 @@ type StreamSpecification struct {
 	// written to the stream.
 	StreamViewType *string `type:"string" enum:"StreamViewType"`
 
-	metadataStreamSpecification `json:"-" xml:"-"`
-}
-
-type metadataStreamSpecification struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4713,11 +4533,7 @@ type TableDescription struct {
 	//   ACTIVE - The table is ready for use.
 	TableStatus *string `type:"string" enum:"TableStatus"`
 
-	metadataTableDescription `json:"-" xml:"-"`
-}
-
-type metadataTableDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4744,11 +4560,7 @@ type UpdateGlobalSecondaryIndexAction struct {
 	// in the Amazon DynamoDB Developer Guide.
 	ProvisionedThroughput *ProvisionedThroughput `type:"structure" required:"true"`
 
-	metadataUpdateGlobalSecondaryIndexAction `json:"-" xml:"-"`
-}
-
-type metadataUpdateGlobalSecondaryIndexAction struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5275,11 +5087,7 @@ type UpdateItemInput struct {
 	// UpdateExpression replaces the legacy AttributeUpdates parameter.
 	UpdateExpression *string `type:"string"`
 
-	metadataUpdateItemInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateItemInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5313,11 +5121,7 @@ type UpdateItemOutput struct {
 	// returned in the response.
 	ItemCollectionMetrics *ItemCollectionMetrics `type:"structure"`
 
-	metadataUpdateItemOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateItemOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5369,11 +5173,7 @@ type UpdateTableInput struct {
 	// The name of the table to be updated.
 	TableName *string `min:"3" type:"string" required:"true"`
 
-	metadataUpdateTableInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateTableInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5391,11 +5191,7 @@ type UpdateTableOutput struct {
 	// Represents the properties of a table.
 	TableDescription *TableDescription `type:"structure"`
 
-	metadataUpdateTableOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateTableOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5419,11 +5215,7 @@ type WriteRequest struct {
 	// A request to perform a PutItem operation.
 	PutRequest *PutRequest `type:"structure"`
 
-	metadataWriteRequest `json:"-" xml:"-"`
-}
-
-type metadataWriteRequest struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

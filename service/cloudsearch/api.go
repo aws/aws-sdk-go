@@ -759,11 +759,7 @@ type AccessPoliciesStatus struct {
 	// The status of domain configuration option.
 	Status *OptionStatus `type:"structure" required:"true"`
 
-	metadataAccessPoliciesStatus `json:"-" xml:"-"`
-}
-
-type metadataAccessPoliciesStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -815,11 +811,7 @@ type AnalysisOptions struct {
 	// in the Amazon CloudSearch Developer Guide.
 	Synonyms *string `type:"string"`
 
-	metadataAnalysisOptions `json:"-" xml:"-"`
-}
-
-type metadataAnalysisOptions struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -849,11 +841,7 @@ type AnalysisScheme struct {
 	// a-z (lowercase), 0-9, and _ (underscore).
 	AnalysisSchemeName *string `min:"1" type:"string" required:"true"`
 
-	metadataAnalysisScheme `json:"-" xml:"-"`
-}
-
-type metadataAnalysisScheme struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -877,11 +865,7 @@ type AnalysisSchemeStatus struct {
 	// The status of domain configuration option.
 	Status *OptionStatus `type:"structure" required:"true"`
 
-	metadataAnalysisSchemeStatus `json:"-" xml:"-"`
-}
-
-type metadataAnalysisSchemeStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -902,11 +886,7 @@ type AvailabilityOptionsStatus struct {
 	// The status of domain configuration option.
 	Status *OptionStatus `type:"structure" required:"true"`
 
-	metadataAvailabilityOptionsStatus `json:"-" xml:"-"`
-}
-
-type metadataAvailabilityOptionsStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -928,11 +908,7 @@ type BuildSuggestersInput struct {
 	// 0-9, and - (hyphen).
 	DomainName *string `min:"3" type:"string" required:"true"`
 
-	metadataBuildSuggestersInput `json:"-" xml:"-"`
-}
-
-type metadataBuildSuggestersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -951,11 +927,7 @@ type BuildSuggestersOutput struct {
 	// A list of field names.
 	FieldNames []*string `type:"list"`
 
-	metadataBuildSuggestersOutput `json:"-" xml:"-"`
-}
-
-type metadataBuildSuggestersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -976,11 +948,7 @@ type CreateDomainInput struct {
 	// and be at least 3 and no more than 28 characters long.
 	DomainName *string `min:"3" type:"string" required:"true"`
 
-	metadataCreateDomainInput `json:"-" xml:"-"`
-}
-
-type metadataCreateDomainInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -999,11 +967,7 @@ type CreateDomainOutput struct {
 	// The current status of the search domain.
 	DomainStatus *DomainStatus `type:"structure"`
 
-	metadataCreateDomainOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateDomainOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1034,11 +998,7 @@ type DateArrayOptions struct {
 	// A list of source fields to map to the field.
 	SourceFields *string `type:"string"`
 
-	metadataDateArrayOptions `json:"-" xml:"-"`
-}
-
-type metadataDateArrayOptions struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1087,11 +1047,7 @@ type DateOptions struct {
 	// a document's ID, you can use the name _id.
 	SourceField *string `min:"1" type:"string"`
 
-	metadataDateOptions `json:"-" xml:"-"`
-}
-
-type metadataDateOptions struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1119,11 +1075,7 @@ type DefineAnalysisSchemeInput struct {
 	// 0-9, and - (hyphen).
 	DomainName *string `min:"3" type:"string" required:"true"`
 
-	metadataDefineAnalysisSchemeInput `json:"-" xml:"-"`
-}
-
-type metadataDefineAnalysisSchemeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1142,11 +1094,7 @@ type DefineAnalysisSchemeOutput struct {
 	// The status and configuration of an AnalysisScheme.
 	AnalysisScheme *AnalysisSchemeStatus `type:"structure" required:"true"`
 
-	metadataDefineAnalysisSchemeOutput `json:"-" xml:"-"`
-}
-
-type metadataDefineAnalysisSchemeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1174,11 +1122,7 @@ type DefineExpressionInput struct {
 	// in the search results.
 	Expression *Expression `type:"structure" required:"true"`
 
-	metadataDefineExpressionInput `json:"-" xml:"-"`
-}
-
-type metadataDefineExpressionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1197,11 +1141,7 @@ type DefineExpressionOutput struct {
 	// The value of an Expression and its current status.
 	Expression *ExpressionStatus `type:"structure" required:"true"`
 
-	metadataDefineExpressionOutput `json:"-" xml:"-"`
-}
-
-type metadataDefineExpressionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1226,11 +1166,7 @@ type DefineIndexFieldInput struct {
 	// The index field and field options you want to configure.
 	IndexField *IndexField `type:"structure" required:"true"`
 
-	metadataDefineIndexFieldInput `json:"-" xml:"-"`
-}
-
-type metadataDefineIndexFieldInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1249,11 +1185,7 @@ type DefineIndexFieldOutput struct {
 	// The value of an IndexField and its current status.
 	IndexField *IndexFieldStatus `type:"structure" required:"true"`
 
-	metadataDefineIndexFieldOutput `json:"-" xml:"-"`
-}
-
-type metadataDefineIndexFieldOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1280,11 +1212,7 @@ type DefineSuggesterInput struct {
 	// options can be configured for a suggester: FuzzyMatching, SortExpression.
 	Suggester *Suggester `type:"structure" required:"true"`
 
-	metadataDefineSuggesterInput `json:"-" xml:"-"`
-}
-
-type metadataDefineSuggesterInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1303,11 +1231,7 @@ type DefineSuggesterOutput struct {
 	// The value of a Suggester and its current status.
 	Suggester *SuggesterStatus `type:"structure" required:"true"`
 
-	metadataDefineSuggesterOutput `json:"-" xml:"-"`
-}
-
-type metadataDefineSuggesterOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1333,11 +1257,7 @@ type DeleteAnalysisSchemeInput struct {
 	// 0-9, and - (hyphen).
 	DomainName *string `min:"3" type:"string" required:"true"`
 
-	metadataDeleteAnalysisSchemeInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteAnalysisSchemeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1356,11 +1276,7 @@ type DeleteAnalysisSchemeOutput struct {
 	// The status of the analysis scheme being deleted.
 	AnalysisScheme *AnalysisSchemeStatus `type:"structure" required:"true"`
 
-	metadataDeleteAnalysisSchemeOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteAnalysisSchemeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1379,11 +1295,7 @@ type DeleteDomainInput struct {
 	// The name of the domain you want to permanently delete.
 	DomainName *string `min:"3" type:"string" required:"true"`
 
-	metadataDeleteDomainInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDomainInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1402,11 +1314,7 @@ type DeleteDomainOutput struct {
 	// The current status of the search domain.
 	DomainStatus *DomainStatus `type:"structure"`
 
-	metadataDeleteDomainOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDomainOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1432,11 +1340,7 @@ type DeleteExpressionInput struct {
 	// The name of the Expression to delete.
 	ExpressionName *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteExpressionInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteExpressionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1455,11 +1359,7 @@ type DeleteExpressionOutput struct {
 	// The status of the expression being deleted.
 	Expression *ExpressionStatus `type:"structure" required:"true"`
 
-	metadataDeleteExpressionOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteExpressionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1486,11 +1386,7 @@ type DeleteIndexFieldInput struct {
 	// options.
 	IndexFieldName *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteIndexFieldInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteIndexFieldInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1508,11 +1404,7 @@ type DeleteIndexFieldOutput struct {
 	// The status of the index field being deleted.
 	IndexField *IndexFieldStatus `type:"structure" required:"true"`
 
-	metadataDeleteIndexFieldOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteIndexFieldOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1538,11 +1430,7 @@ type DeleteSuggesterInput struct {
 	// Specifies the name of the suggester you want to delete.
 	SuggesterName *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteSuggesterInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteSuggesterInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1561,11 +1449,7 @@ type DeleteSuggesterOutput struct {
 	// The status of the suggester being deleted.
 	Suggester *SuggesterStatus `type:"structure" required:"true"`
 
-	metadataDeleteSuggesterOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteSuggesterOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1594,11 +1478,7 @@ type DescribeAnalysisSchemesInput struct {
 	// The name of the domain you want to describe.
 	DomainName *string `min:"3" type:"string" required:"true"`
 
-	metadataDescribeAnalysisSchemesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAnalysisSchemesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1617,11 +1497,7 @@ type DescribeAnalysisSchemesOutput struct {
 	// The analysis scheme descriptions.
 	AnalysisSchemes []*AnalysisSchemeStatus `type:"list" required:"true"`
 
-	metadataDescribeAnalysisSchemesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAnalysisSchemesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1646,11 +1522,7 @@ type DescribeAvailabilityOptionsInput struct {
 	// The name of the domain you want to describe.
 	DomainName *string `min:"3" type:"string" required:"true"`
 
-	metadataDescribeAvailabilityOptionsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAvailabilityOptionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1670,11 +1542,7 @@ type DescribeAvailabilityOptionsOutput struct {
 	// is enabled for the domain.
 	AvailabilityOptions *AvailabilityOptionsStatus `type:"structure"`
 
-	metadataDescribeAvailabilityOptionsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAvailabilityOptionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1694,11 +1562,7 @@ type DescribeDomainsInput struct {
 	// The names of the domains you want to include in the response.
 	DomainNames []*string `type:"list"`
 
-	metadataDescribeDomainsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDomainsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1717,11 +1581,7 @@ type DescribeDomainsOutput struct {
 	// A list that contains the status of each requested domain.
 	DomainStatusList []*DomainStatus `type:"list" required:"true"`
 
-	metadataDescribeDomainsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDomainsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1751,11 +1611,7 @@ type DescribeExpressionsInput struct {
 	// not specified, all expressions are shown.
 	ExpressionNames []*string `type:"list"`
 
-	metadataDescribeExpressionsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeExpressionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1774,11 +1630,7 @@ type DescribeExpressionsOutput struct {
 	// The expressions configured for the domain.
 	Expressions []*ExpressionStatus `type:"list" required:"true"`
 
-	metadataDescribeExpressionsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeExpressionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1808,11 +1660,7 @@ type DescribeIndexFieldsInput struct {
 	// is returned for all configured index fields.
 	FieldNames []*string `type:"list"`
 
-	metadataDescribeIndexFieldsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeIndexFieldsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1831,11 +1679,7 @@ type DescribeIndexFieldsOutput struct {
 	// The index fields configured for the domain.
 	IndexFields []*IndexFieldStatus `type:"list" required:"true"`
 
-	metadataDescribeIndexFieldsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeIndexFieldsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1857,11 +1701,7 @@ type DescribeScalingParametersInput struct {
 	// 0-9, and - (hyphen).
 	DomainName *string `min:"3" type:"string" required:"true"`
 
-	metadataDescribeScalingParametersInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeScalingParametersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1880,11 +1720,7 @@ type DescribeScalingParametersOutput struct {
 	// The status and configuration of a search domain's scaling parameters.
 	ScalingParameters *ScalingParametersStatus `type:"structure" required:"true"`
 
-	metadataDescribeScalingParametersOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeScalingParametersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1909,11 +1745,7 @@ type DescribeServiceAccessPoliciesInput struct {
 	// The name of the domain you want to describe.
 	DomainName *string `min:"3" type:"string" required:"true"`
 
-	metadataDescribeServiceAccessPoliciesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeServiceAccessPoliciesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1931,11 +1763,7 @@ type DescribeServiceAccessPoliciesOutput struct {
 	// The access rules configured for the domain specified in the request.
 	AccessPolicies *AccessPoliciesStatus `type:"structure" required:"true"`
 
-	metadataDescribeServiceAccessPoliciesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeServiceAccessPoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1964,11 +1792,7 @@ type DescribeSuggestersInput struct {
 	// The suggesters you want to describe.
 	SuggesterNames []*string `type:"list"`
 
-	metadataDescribeSuggestersInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSuggestersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1986,11 +1810,7 @@ type DescribeSuggestersOutput struct {
 	// The suggesters configured for the domain specified in the request.
 	Suggesters []*SuggesterStatus `type:"list" required:"true"`
 
-	metadataDescribeSuggestersOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSuggestersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2024,11 +1844,7 @@ type DocumentSuggesterOptions struct {
 	// The name of the index field you want to use for suggestions.
 	SourceField *string `min:"1" type:"string" required:"true"`
 
-	metadataDocumentSuggesterOptions `json:"-" xml:"-"`
-}
-
-type metadataDocumentSuggesterOptions struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2093,11 +1909,7 @@ type DomainStatus struct {
 	// The service endpoint for requesting search results from a search domain.
 	SearchService *ServiceEndpoint `type:"structure"`
 
-	metadataDomainStatus `json:"-" xml:"-"`
-}
-
-type metadataDomainStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2129,11 +1941,7 @@ type DoubleArrayOptions struct {
 	// A list of source fields to map to the field.
 	SourceFields *string `type:"string"`
 
-	metadataDoubleArrayOptions `json:"-" xml:"-"`
-}
-
-type metadataDoubleArrayOptions struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2169,11 +1977,7 @@ type DoubleOptions struct {
 	// The name of the source field to map to the field.
 	SourceField *string `min:"1" type:"string"`
 
-	metadataDoubleOptions `json:"-" xml:"-"`
-}
-
-type metadataDoubleOptions struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2200,11 +2004,7 @@ type Expression struct {
 	// target="_blank) in the Amazon CloudSearch Developer Guide.
 	ExpressionValue *string `min:"1" type:"string" required:"true"`
 
-	metadataExpression `json:"-" xml:"-"`
-}
-
-type metadataExpression struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2225,11 +2025,7 @@ type ExpressionStatus struct {
 	// The status of domain configuration option.
 	Status *OptionStatus `type:"structure" required:"true"`
 
-	metadataExpressionStatus `json:"-" xml:"-"`
-}
-
-type metadataExpressionStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2251,11 +2047,7 @@ type IndexDocumentsInput struct {
 	// 0-9, and - (hyphen).
 	DomainName *string `min:"3" type:"string" required:"true"`
 
-	metadataIndexDocumentsInput `json:"-" xml:"-"`
-}
-
-type metadataIndexDocumentsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2274,11 +2066,7 @@ type IndexDocumentsOutput struct {
 	// The names of the fields that are currently being indexed.
 	FieldNames []*string `type:"list"`
 
-	metadataIndexDocumentsOutput `json:"-" xml:"-"`
-}
-
-type metadataIndexDocumentsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2368,11 +2156,7 @@ type IndexField struct {
 	// by default.
 	TextOptions *TextOptions `type:"structure"`
 
-	metadataIndexField `json:"-" xml:"-"`
-}
-
-type metadataIndexField struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2394,11 +2178,7 @@ type IndexFieldStatus struct {
 	// The status of domain configuration option.
 	Status *OptionStatus `type:"structure" required:"true"`
 
-	metadataIndexFieldStatus `json:"-" xml:"-"`
-}
-
-type metadataIndexFieldStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2430,11 +2210,7 @@ type IntArrayOptions struct {
 	// A list of source fields to map to the field.
 	SourceFields *string `type:"string"`
 
-	metadataIntArrayOptions `json:"-" xml:"-"`
-}
-
-type metadataIntArrayOptions struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2470,11 +2246,7 @@ type IntOptions struct {
 	// The name of the source field to map to the field.
 	SourceField *string `min:"1" type:"string"`
 
-	metadataIntOptions `json:"-" xml:"-"`
-}
-
-type metadataIntOptions struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2522,11 +2294,7 @@ type LatLonOptions struct {
 	// a document's ID, you can use the name _id.
 	SourceField *string `min:"1" type:"string"`
 
-	metadataLatLonOptions `json:"-" xml:"-"`
-}
-
-type metadataLatLonOptions struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2544,11 +2312,7 @@ type Limits struct {
 
 	MaximumReplicationCount *int64 `min:"1" type:"integer" required:"true"`
 
-	metadataLimits `json:"-" xml:"-"`
-}
-
-type metadataLimits struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2562,11 +2326,7 @@ func (s Limits) GoString() string {
 }
 
 type ListDomainNamesInput struct {
-	metadataListDomainNamesInput `json:"-" xml:"-"`
-}
-
-type metadataListDomainNamesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2585,11 +2345,7 @@ type ListDomainNamesOutput struct {
 	// The names of the search domains owned by an account.
 	DomainNames map[string]*string `type:"map"`
 
-	metadataListDomainNamesOutput `json:"-" xml:"-"`
-}
-
-type metadataListDomainNamesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2621,11 +2377,7 @@ type LiteralArrayOptions struct {
 	// A list of source fields to map to the field.
 	SourceFields *string `type:"string"`
 
-	metadataLiteralArrayOptions `json:"-" xml:"-"`
-}
-
-type metadataLiteralArrayOptions struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2672,11 +2424,7 @@ type LiteralOptions struct {
 	// a document's ID, you can use the name _id.
 	SourceField *string `min:"1" type:"string"`
 
-	metadataLiteralOptions `json:"-" xml:"-"`
-}
-
-type metadataLiteralOptions struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2714,11 +2462,7 @@ type OptionStatus struct {
 	// A unique integer that indicates when this option was last updated.
 	UpdateVersion *int64 `type:"integer"`
 
-	metadataOptionStatus `json:"-" xml:"-"`
-}
-
-type metadataOptionStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2744,11 +2488,7 @@ type ScalingParameters struct {
 	// The number of replicas you want to preconfigure for each index partition.
 	DesiredReplicationCount *int64 `type:"integer"`
 
-	metadataScalingParameters `json:"-" xml:"-"`
-}
-
-type metadataScalingParameters struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2769,11 +2509,7 @@ type ScalingParametersStatus struct {
 	// The status of domain configuration option.
 	Status *OptionStatus `type:"structure" required:"true"`
 
-	metadataScalingParametersStatus `json:"-" xml:"-"`
-}
-
-type metadataScalingParametersStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2792,11 +2528,7 @@ type ServiceEndpoint struct {
 	// or doc-imdb-movies-oopcnjfn6ugofer3zx5iadxxca.eu-west-1.cloudsearch.amazonaws.com.
 	Endpoint *string `type:"string"`
 
-	metadataServiceEndpoint `json:"-" xml:"-"`
-}
-
-type metadataServiceEndpoint struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2820,11 +2552,7 @@ type Suggester struct {
 	// a-z (lowercase), 0-9, and _ (underscore).
 	SuggesterName *string `min:"1" type:"string" required:"true"`
 
-	metadataSuggester `json:"-" xml:"-"`
-}
-
-type metadataSuggester struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2847,11 +2575,7 @@ type SuggesterStatus struct {
 	// The status of domain configuration option.
 	Status *OptionStatus `type:"structure" required:"true"`
 
-	metadataSuggesterStatus `json:"-" xml:"-"`
-}
-
-type metadataSuggesterStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2883,11 +2607,7 @@ type TextArrayOptions struct {
 	// A list of source fields to map to the field.
 	SourceFields *string `type:"string"`
 
-	metadataTextArrayOptions `json:"-" xml:"-"`
-}
-
-type metadataTextArrayOptions struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2935,11 +2655,7 @@ type TextOptions struct {
 	// a document's ID, you can use the name _id.
 	SourceField *string `min:"1" type:"string"`
 
-	metadataTextOptions `json:"-" xml:"-"`
-}
-
-type metadataTextOptions struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2968,11 +2684,7 @@ type UpdateAvailabilityOptionsInput struct {
 	// option to false.
 	MultiAZ *bool `type:"boolean" required:"true"`
 
-	metadataUpdateAvailabilityOptionsInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateAvailabilityOptionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2992,11 +2704,7 @@ type UpdateAvailabilityOptionsOutput struct {
 	// enabled for the domain.
 	AvailabilityOptions *AvailabilityOptionsStatus `type:"structure"`
 
-	metadataUpdateAvailabilityOptionsOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateAvailabilityOptionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3022,11 +2730,7 @@ type UpdateScalingParametersInput struct {
 	// The desired instance type and desired number of replicas of each index partition.
 	ScalingParameters *ScalingParameters `type:"structure" required:"true"`
 
-	metadataUpdateScalingParametersInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateScalingParametersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3045,11 +2749,7 @@ type UpdateScalingParametersOutput struct {
 	// The status and configuration of a search domain's scaling parameters.
 	ScalingParameters *ScalingParametersStatus `type:"structure" required:"true"`
 
-	metadataUpdateScalingParametersOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateScalingParametersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3076,11 +2776,7 @@ type UpdateServiceAccessPoliciesInput struct {
 	// 0-9, and - (hyphen).
 	DomainName *string `min:"3" type:"string" required:"true"`
 
-	metadataUpdateServiceAccessPoliciesInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateServiceAccessPoliciesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3099,11 +2795,7 @@ type UpdateServiceAccessPoliciesOutput struct {
 	// The access rules configured for the domain.
 	AccessPolicies *AccessPoliciesStatus `type:"structure" required:"true"`
 
-	metadataUpdateServiceAccessPoliciesOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateServiceAccessPoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

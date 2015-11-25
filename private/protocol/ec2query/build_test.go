@@ -120,19 +120,11 @@ type InputService1TestShapeInputService1TestCaseOperation1Input struct {
 
 	Foo *string `type:"string"`
 
-	metadataInputService1TestShapeInputService1TestCaseOperation1Input `json:"-" xml:"-"`
-}
-
-type metadataInputService1TestShapeInputService1TestCaseOperation1Input struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService1TestShapeInputService1TestCaseOperation1Output struct {
-	metadataInputService1TestShapeInputService1TestCaseOperation1Output `json:"-" xml:"-"`
-}
-
-type metadataInputService1TestShapeInputService1TestCaseOperation1Output struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -220,19 +212,11 @@ type InputService2TestShapeInputService2TestCaseOperation1Input struct {
 
 	Yuck *string `locationName:"yuckLocationName" queryName:"yuckQueryName" type:"string"`
 
-	metadataInputService2TestShapeInputService2TestCaseOperation1Input `json:"-" xml:"-"`
-}
-
-type metadataInputService2TestShapeInputService2TestCaseOperation1Input struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService2TestShapeInputService2TestCaseOperation1Output struct {
-	metadataInputService2TestShapeInputService2TestCaseOperation1Output `json:"-" xml:"-"`
-}
-
-type metadataInputService2TestShapeInputService2TestCaseOperation1Output struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -316,29 +300,17 @@ func (c *InputService3ProtocolTest) InputService3TestCaseOperation1(input *Input
 type InputService3TestShapeInputService3TestCaseOperation1Input struct {
 	StructArg *InputService3TestShapeStructType `locationName:"Struct" type:"structure"`
 
-	metadataInputService3TestShapeInputService3TestCaseOperation1Input `json:"-" xml:"-"`
-}
-
-type metadataInputService3TestShapeInputService3TestCaseOperation1Input struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService3TestShapeInputService3TestCaseOperation1Output struct {
-	metadataInputService3TestShapeInputService3TestCaseOperation1Output `json:"-" xml:"-"`
-}
-
-type metadataInputService3TestShapeInputService3TestCaseOperation1Output struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService3TestShapeStructType struct {
 	ScalarArg *string `locationName:"Scalar" type:"string"`
 
-	metadataInputService3TestShapeStructType `json:"-" xml:"-"`
-}
-
-type metadataInputService3TestShapeStructType struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -422,19 +394,11 @@ func (c *InputService4ProtocolTest) InputService4TestCaseOperation1(input *Input
 type InputService4TestShapeInputService4TestCaseOperation1Input struct {
 	ListArg []*string `type:"list"`
 
-	metadataInputService4TestShapeInputService4TestCaseOperation1Input `json:"-" xml:"-"`
-}
-
-type metadataInputService4TestShapeInputService4TestCaseOperation1Input struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService4TestShapeInputService4TestCaseOperation1Output struct {
-	metadataInputService4TestShapeInputService4TestCaseOperation1Output `json:"-" xml:"-"`
-}
-
-type metadataInputService4TestShapeInputService4TestCaseOperation1Output struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -518,19 +482,11 @@ func (c *InputService5ProtocolTest) InputService5TestCaseOperation1(input *Input
 type InputService5TestShapeInputService5TestCaseOperation1Input struct {
 	ListArg []*string `locationName:"ListMemberName" locationNameList:"item" type:"list"`
 
-	metadataInputService5TestShapeInputService5TestCaseOperation1Input `json:"-" xml:"-"`
-}
-
-type metadataInputService5TestShapeInputService5TestCaseOperation1Input struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService5TestShapeInputService5TestCaseOperation1Output struct {
-	metadataInputService5TestShapeInputService5TestCaseOperation1Output `json:"-" xml:"-"`
-}
-
-type metadataInputService5TestShapeInputService5TestCaseOperation1Output struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -614,19 +570,11 @@ func (c *InputService6ProtocolTest) InputService6TestCaseOperation1(input *Input
 type InputService6TestShapeInputService6TestCaseOperation1Input struct {
 	ListArg []*string `locationName:"ListMemberName" queryName:"ListQueryName" locationNameList:"item" type:"list"`
 
-	metadataInputService6TestShapeInputService6TestCaseOperation1Input `json:"-" xml:"-"`
-}
-
-type metadataInputService6TestShapeInputService6TestCaseOperation1Input struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService6TestShapeInputService6TestCaseOperation1Output struct {
-	metadataInputService6TestShapeInputService6TestCaseOperation1Output `json:"-" xml:"-"`
-}
-
-type metadataInputService6TestShapeInputService6TestCaseOperation1Output struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -710,19 +658,11 @@ func (c *InputService7ProtocolTest) InputService7TestCaseOperation1(input *Input
 type InputService7TestShapeInputService7TestCaseOperation1Input struct {
 	BlobArg []byte `type:"blob"`
 
-	metadataInputService7TestShapeInputService7TestCaseOperation1Input `json:"-" xml:"-"`
-}
-
-type metadataInputService7TestShapeInputService7TestCaseOperation1Input struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService7TestShapeInputService7TestCaseOperation1Output struct {
-	metadataInputService7TestShapeInputService7TestCaseOperation1Output `json:"-" xml:"-"`
-}
-
-type metadataInputService7TestShapeInputService7TestCaseOperation1Output struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -806,19 +746,11 @@ func (c *InputService8ProtocolTest) InputService8TestCaseOperation1(input *Input
 type InputService8TestShapeInputService8TestCaseOperation1Input struct {
 	TimeArg *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataInputService8TestShapeInputService8TestCaseOperation1Input `json:"-" xml:"-"`
-}
-
-type metadataInputService8TestShapeInputService8TestCaseOperation1Input struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService8TestShapeInputService8TestCaseOperation1Output struct {
-	metadataInputService8TestShapeInputService8TestCaseOperation1Output `json:"-" xml:"-"`
-}
-
-type metadataInputService8TestShapeInputService8TestCaseOperation1Output struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 //

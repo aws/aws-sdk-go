@@ -678,11 +678,7 @@ type ActiveTrustedSigners struct {
 	// value of Quantity for ActiveTrustedSigners will be 3.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataActiveTrustedSigners `json:"-" xml:"-"`
-}
-
-type metadataActiveTrustedSigners struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -705,11 +701,7 @@ type Aliases struct {
 	// The number of CNAMEs, if any, for this distribution.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataAliases `json:"-" xml:"-"`
-}
-
-type metadataAliases struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -748,11 +740,7 @@ type AllowedMethods struct {
 	// requests) and 7 (for GET, HEAD, OPTIONS, PUT, PATCH, POST, and DELETE requests).
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataAllowedMethods `json:"-" xml:"-"`
-}
-
-type metadataAllowedMethods struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -859,11 +847,7 @@ type CacheBehavior struct {
 	// the HTTPS URL.
 	ViewerProtocolPolicy *string `type:"string" required:"true" enum:"ViewerProtocolPolicy"`
 
-	metadataCacheBehavior `json:"-" xml:"-"`
-}
-
-type metadataCacheBehavior struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -885,11 +869,7 @@ type CacheBehaviors struct {
 	// The number of cache behaviors for this distribution.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataCacheBehaviors `json:"-" xml:"-"`
-}
-
-type metadataCacheBehaviors struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -918,11 +898,7 @@ type CachedMethods struct {
 	// (for caching responses to GET, HEAD, and OPTIONS requests).
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataCachedMethods `json:"-" xml:"-"`
-}
-
-type metadataCachedMethods struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -945,11 +921,7 @@ type CookieNames struct {
 	// The number of whitelisted cookies for this cache behavior.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataCookieNames `json:"-" xml:"-"`
-}
-
-type metadataCookieNames struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -975,11 +947,7 @@ type CookiePreference struct {
 	// CloudFront to forward to your origin that is associated with this cache behavior.
 	WhitelistedNames *CookieNames `type:"structure"`
 
-	metadataCookiePreference `json:"-" xml:"-"`
-}
-
-type metadataCookiePreference struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -997,11 +965,7 @@ type CreateCloudFrontOriginAccessIdentityInput struct {
 	// The origin access identity's configuration information.
 	CloudFrontOriginAccessIdentityConfig *OriginAccessIdentityConfig `locationName:"CloudFrontOriginAccessIdentityConfig" type:"structure" required:"true"`
 
-	metadataCreateCloudFrontOriginAccessIdentityInput `json:"-" xml:"-"`
-}
-
-type metadataCreateCloudFrontOriginAccessIdentityInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"CloudFrontOriginAccessIdentityConfig"`
+	_ struct{} `type:"structure" payload:"CloudFrontOriginAccessIdentityConfig"`
 }
 
 // String returns the string representation
@@ -1026,11 +990,7 @@ type CreateCloudFrontOriginAccessIdentityOutput struct {
 	// example: https://cloudfront.amazonaws.com/2010-11-01/origin-access-identity/cloudfront/E74FTE3AJFJ256A.
 	Location *string `location:"header" locationName:"Location" type:"string"`
 
-	metadataCreateCloudFrontOriginAccessIdentityOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateCloudFrontOriginAccessIdentityOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"CloudFrontOriginAccessIdentity"`
+	_ struct{} `type:"structure" payload:"CloudFrontOriginAccessIdentity"`
 }
 
 // String returns the string representation
@@ -1048,11 +1008,7 @@ type CreateDistributionInput struct {
 	// The distribution's configuration information.
 	DistributionConfig *DistributionConfig `locationName:"DistributionConfig" type:"structure" required:"true"`
 
-	metadataCreateDistributionInput `json:"-" xml:"-"`
-}
-
-type metadataCreateDistributionInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"DistributionConfig"`
+	_ struct{} `type:"structure" payload:"DistributionConfig"`
 }
 
 // String returns the string representation
@@ -1077,11 +1033,7 @@ type CreateDistributionOutput struct {
 	// example: https://cloudfront.amazonaws.com/2010-11-01/distribution/EDFDVBD632BHDS5.
 	Location *string `location:"header" locationName:"Location" type:"string"`
 
-	metadataCreateDistributionOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateDistributionOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Distribution"`
+	_ struct{} `type:"structure" payload:"Distribution"`
 }
 
 // String returns the string representation
@@ -1102,11 +1054,7 @@ type CreateInvalidationInput struct {
 	// The batch information for the invalidation.
 	InvalidationBatch *InvalidationBatch `locationName:"InvalidationBatch" type:"structure" required:"true"`
 
-	metadataCreateInvalidationInput `json:"-" xml:"-"`
-}
-
-type metadataCreateInvalidationInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"InvalidationBatch"`
+	_ struct{} `type:"structure" payload:"InvalidationBatch"`
 }
 
 // String returns the string representation
@@ -1128,11 +1076,7 @@ type CreateInvalidationOutput struct {
 	// including the Invalidation ID.
 	Location *string `location:"header" locationName:"Location" type:"string"`
 
-	metadataCreateInvalidationOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateInvalidationOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Invalidation"`
+	_ struct{} `type:"structure" payload:"Invalidation"`
 }
 
 // String returns the string representation
@@ -1150,11 +1094,7 @@ type CreateStreamingDistributionInput struct {
 	// The streaming distribution's configuration information.
 	StreamingDistributionConfig *StreamingDistributionConfig `locationName:"StreamingDistributionConfig" type:"structure" required:"true"`
 
-	metadataCreateStreamingDistributionInput `json:"-" xml:"-"`
-}
-
-type metadataCreateStreamingDistributionInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"StreamingDistributionConfig"`
+	_ struct{} `type:"structure" payload:"StreamingDistributionConfig"`
 }
 
 // String returns the string representation
@@ -1179,11 +1119,7 @@ type CreateStreamingDistributionOutput struct {
 	// The streaming distribution's information.
 	StreamingDistribution *StreamingDistribution `type:"structure"`
 
-	metadataCreateStreamingDistributionOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateStreamingDistributionOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"StreamingDistribution"`
+	_ struct{} `type:"structure" payload:"StreamingDistribution"`
 }
 
 // String returns the string representation
@@ -1230,11 +1166,7 @@ type CustomErrorResponse struct {
 	// return the custom error page to the viewer.
 	ResponsePagePath *string `type:"string"`
 
-	metadataCustomErrorResponse `json:"-" xml:"-"`
-}
-
-type metadataCustomErrorResponse struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1256,11 +1188,7 @@ type CustomErrorResponses struct {
 	// The number of custom error responses for this distribution.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataCustomErrorResponses `json:"-" xml:"-"`
-}
-
-type metadataCustomErrorResponses struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1284,11 +1212,7 @@ type CustomOriginConfig struct {
 	// The origin protocol policy to apply to your origin.
 	OriginProtocolPolicy *string `type:"string" required:"true" enum:"OriginProtocolPolicy"`
 
-	metadataCustomOriginConfig `json:"-" xml:"-"`
-}
-
-type metadataCustomOriginConfig struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1375,11 +1299,7 @@ type DefaultCacheBehavior struct {
 	// the HTTPS URL.
 	ViewerProtocolPolicy *string `type:"string" required:"true" enum:"ViewerProtocolPolicy"`
 
-	metadataDefaultCacheBehavior `json:"-" xml:"-"`
-}
-
-type metadataDefaultCacheBehavior struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1401,11 +1321,7 @@ type DeleteCloudFrontOriginAccessIdentityInput struct {
 	// For example: E2QWRUHAPOMQZL.
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
 
-	metadataDeleteCloudFrontOriginAccessIdentityInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteCloudFrontOriginAccessIdentityInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1419,11 +1335,7 @@ func (s DeleteCloudFrontOriginAccessIdentityInput) GoString() string {
 }
 
 type DeleteCloudFrontOriginAccessIdentityOutput struct {
-	metadataDeleteCloudFrontOriginAccessIdentityOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteCloudFrontOriginAccessIdentityOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1445,11 +1357,7 @@ type DeleteDistributionInput struct {
 	// For example: E2QWRUHAPOMQZL.
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
 
-	metadataDeleteDistributionInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDistributionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1463,11 +1371,7 @@ func (s DeleteDistributionInput) GoString() string {
 }
 
 type DeleteDistributionOutput struct {
-	metadataDeleteDistributionOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDistributionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1489,11 +1393,7 @@ type DeleteStreamingDistributionInput struct {
 	// distribution. For example: E2QWRUHAPOMQZL.
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
 
-	metadataDeleteStreamingDistributionInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteStreamingDistributionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1507,11 +1407,7 @@ func (s DeleteStreamingDistributionInput) GoString() string {
 }
 
 type DeleteStreamingDistributionOutput struct {
-	metadataDeleteStreamingDistributionOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteStreamingDistributionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1556,11 +1452,7 @@ type Distribution struct {
 	// throughout the Amazon CloudFront system.
 	Status *string `type:"string" required:"true"`
 
-	metadataDistribution `json:"-" xml:"-"`
-}
-
-type metadataDistribution struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1639,11 +1531,7 @@ type DistributionConfig struct {
 	// of the AWS WAF web ACL that is associated with the distribution.
 	WebACLId *string `type:"string"`
 
-	metadataDistributionConfig `json:"-" xml:"-"`
-}
-
-type metadataDistributionConfig struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1682,11 +1570,7 @@ type DistributionList struct {
 	// The number of distributions that were created by the current AWS account.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataDistributionList `json:"-" xml:"-"`
-}
-
-type metadataDistributionList struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1752,11 +1636,7 @@ type DistributionSummary struct {
 	// The Web ACL Id (if any) associated with the distribution.
 	WebACLId *string `type:"string" required:"true"`
 
-	metadataDistributionSummary `json:"-" xml:"-"`
-}
-
-type metadataDistributionSummary struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1784,11 +1664,7 @@ type ForwardedValues struct {
 	// specify false.
 	QueryString *bool `type:"boolean" required:"true"`
 
-	metadataForwardedValues `json:"-" xml:"-"`
-}
-
-type metadataForwardedValues struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1832,11 +1708,7 @@ type GeoRestriction struct {
 	// you want CloudFront to distribute your content.
 	RestrictionType *string `type:"string" required:"true" enum:"GeoRestrictionType"`
 
-	metadataGeoRestriction `json:"-" xml:"-"`
-}
-
-type metadataGeoRestriction struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1854,11 +1726,7 @@ type GetCloudFrontOriginAccessIdentityConfigInput struct {
 	// The identity's id.
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataGetCloudFrontOriginAccessIdentityConfigInput `json:"-" xml:"-"`
-}
-
-type metadataGetCloudFrontOriginAccessIdentityConfigInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1879,11 +1747,7 @@ type GetCloudFrontOriginAccessIdentityConfigOutput struct {
 	// The current version of the configuration. For example: E2QWRUHAPOMQZL.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
-	metadataGetCloudFrontOriginAccessIdentityConfigOutput `json:"-" xml:"-"`
-}
-
-type metadataGetCloudFrontOriginAccessIdentityConfigOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"CloudFrontOriginAccessIdentityConfig"`
+	_ struct{} `type:"structure" payload:"CloudFrontOriginAccessIdentityConfig"`
 }
 
 // String returns the string representation
@@ -1901,11 +1765,7 @@ type GetCloudFrontOriginAccessIdentityInput struct {
 	// The identity's id.
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataGetCloudFrontOriginAccessIdentityInput `json:"-" xml:"-"`
-}
-
-type metadataGetCloudFrontOriginAccessIdentityInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1927,11 +1787,7 @@ type GetCloudFrontOriginAccessIdentityOutput struct {
 	// E2QWRUHAPOMQZL.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
-	metadataGetCloudFrontOriginAccessIdentityOutput `json:"-" xml:"-"`
-}
-
-type metadataGetCloudFrontOriginAccessIdentityOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"CloudFrontOriginAccessIdentity"`
+	_ struct{} `type:"structure" payload:"CloudFrontOriginAccessIdentity"`
 }
 
 // String returns the string representation
@@ -1949,11 +1805,7 @@ type GetDistributionConfigInput struct {
 	// The distribution's id.
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataGetDistributionConfigInput `json:"-" xml:"-"`
-}
-
-type metadataGetDistributionConfigInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1974,11 +1826,7 @@ type GetDistributionConfigOutput struct {
 	// The current version of the configuration. For example: E2QWRUHAPOMQZL.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
-	metadataGetDistributionConfigOutput `json:"-" xml:"-"`
-}
-
-type metadataGetDistributionConfigOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"DistributionConfig"`
+	_ struct{} `type:"structure" payload:"DistributionConfig"`
 }
 
 // String returns the string representation
@@ -1996,11 +1844,7 @@ type GetDistributionInput struct {
 	// The distribution's id.
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataGetDistributionInput `json:"-" xml:"-"`
-}
-
-type metadataGetDistributionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2021,11 +1865,7 @@ type GetDistributionOutput struct {
 	// The current version of the distribution's information. For example: E2QWRUHAPOMQZL.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
-	metadataGetDistributionOutput `json:"-" xml:"-"`
-}
-
-type metadataGetDistributionOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Distribution"`
+	_ struct{} `type:"structure" payload:"Distribution"`
 }
 
 // String returns the string representation
@@ -2046,11 +1886,7 @@ type GetInvalidationInput struct {
 	// The invalidation's id.
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataGetInvalidationInput `json:"-" xml:"-"`
-}
-
-type metadataGetInvalidationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2068,11 +1904,7 @@ type GetInvalidationOutput struct {
 	// The invalidation's information.
 	Invalidation *Invalidation `type:"structure"`
 
-	metadataGetInvalidationOutput `json:"-" xml:"-"`
-}
-
-type metadataGetInvalidationOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Invalidation"`
+	_ struct{} `type:"structure" payload:"Invalidation"`
 }
 
 // String returns the string representation
@@ -2090,11 +1922,7 @@ type GetStreamingDistributionConfigInput struct {
 	// The streaming distribution's id.
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataGetStreamingDistributionConfigInput `json:"-" xml:"-"`
-}
-
-type metadataGetStreamingDistributionConfigInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2115,11 +1943,7 @@ type GetStreamingDistributionConfigOutput struct {
 	// The streaming distribution's configuration information.
 	StreamingDistributionConfig *StreamingDistributionConfig `type:"structure"`
 
-	metadataGetStreamingDistributionConfigOutput `json:"-" xml:"-"`
-}
-
-type metadataGetStreamingDistributionConfigOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"StreamingDistributionConfig"`
+	_ struct{} `type:"structure" payload:"StreamingDistributionConfig"`
 }
 
 // String returns the string representation
@@ -2137,11 +1961,7 @@ type GetStreamingDistributionInput struct {
 	// The streaming distribution's id.
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataGetStreamingDistributionInput `json:"-" xml:"-"`
-}
-
-type metadataGetStreamingDistributionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2163,11 +1983,7 @@ type GetStreamingDistributionOutput struct {
 	// The streaming distribution's information.
 	StreamingDistribution *StreamingDistribution `type:"structure"`
 
-	metadataGetStreamingDistributionOutput `json:"-" xml:"-"`
-}
-
-type metadataGetStreamingDistributionOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"StreamingDistribution"`
+	_ struct{} `type:"structure" payload:"StreamingDistribution"`
 }
 
 // String returns the string representation
@@ -2203,11 +2019,7 @@ type Headers struct {
 	// Items.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataHeaders `json:"-" xml:"-"`
-}
-
-type metadataHeaders struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2235,11 +2047,7 @@ type Invalidation struct {
 	// the status is Completed.
 	Status *string `type:"string" required:"true"`
 
-	metadataInvalidation `json:"-" xml:"-"`
-}
-
-type metadataInvalidation struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2273,11 +2081,7 @@ type InvalidationBatch struct {
 	// path, or CloudFront will not invalidate the old version of the updated object.
 	Paths *Paths `type:"structure" required:"true"`
 
-	metadataInvalidationBatch `json:"-" xml:"-"`
-}
-
-type metadataInvalidationBatch struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2316,11 +2120,7 @@ type InvalidationList struct {
 	// The number of invalidation batches that were created by the current AWS account.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataInvalidationList `json:"-" xml:"-"`
-}
-
-type metadataInvalidationList struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2343,11 +2143,7 @@ type InvalidationSummary struct {
 	// The status of an invalidation request.
 	Status *string `type:"string" required:"true"`
 
-	metadataInvalidationSummary `json:"-" xml:"-"`
-}
-
-type metadataInvalidationSummary struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2370,11 +2166,7 @@ type KeyPairIds struct {
 	// The number of active CloudFront key pairs for AwsAccountNumber.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataKeyPairIds `json:"-" xml:"-"`
-}
-
-type metadataKeyPairIds struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2399,11 +2191,7 @@ type ListCloudFrontOriginAccessIdentitiesInput struct {
 	// The maximum number of origin access identities you want in the response body.
 	MaxItems *int64 `location:"querystring" locationName:"MaxItems" type:"integer"`
 
-	metadataListCloudFrontOriginAccessIdentitiesInput `json:"-" xml:"-"`
-}
-
-type metadataListCloudFrontOriginAccessIdentitiesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2421,11 +2209,7 @@ type ListCloudFrontOriginAccessIdentitiesOutput struct {
 	// The CloudFrontOriginAccessIdentityList type.
 	CloudFrontOriginAccessIdentityList *OriginAccessIdentityList `type:"structure"`
 
-	metadataListCloudFrontOriginAccessIdentitiesOutput `json:"-" xml:"-"`
-}
-
-type metadataListCloudFrontOriginAccessIdentitiesOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"CloudFrontOriginAccessIdentityList"`
+	_ struct{} `type:"structure" payload:"CloudFrontOriginAccessIdentityList"`
 }
 
 // String returns the string representation
@@ -2457,11 +2241,7 @@ type ListDistributionsByWebACLIdInput struct {
 	// that aren't associated with a web ACL.
 	WebACLId *string `location:"uri" locationName:"WebACLId" type:"string" required:"true"`
 
-	metadataListDistributionsByWebACLIdInput `json:"-" xml:"-"`
-}
-
-type metadataListDistributionsByWebACLIdInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2480,11 +2260,7 @@ type ListDistributionsByWebACLIdOutput struct {
 	// The DistributionList type.
 	DistributionList *DistributionList `type:"structure"`
 
-	metadataListDistributionsByWebACLIdOutput `json:"-" xml:"-"`
-}
-
-type metadataListDistributionsByWebACLIdOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"DistributionList"`
+	_ struct{} `type:"structure" payload:"DistributionList"`
 }
 
 // String returns the string representation
@@ -2510,11 +2286,7 @@ type ListDistributionsInput struct {
 	// the response body. The maximum and default values are both 100.
 	MaxItems *int64 `location:"querystring" locationName:"MaxItems" type:"integer"`
 
-	metadataListDistributionsInput `json:"-" xml:"-"`
-}
-
-type metadataListDistributionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2532,11 +2304,7 @@ type ListDistributionsOutput struct {
 	// The DistributionList type.
 	DistributionList *DistributionList `type:"structure"`
 
-	metadataListDistributionsOutput `json:"-" xml:"-"`
-}
-
-type metadataListDistributionsOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"DistributionList"`
+	_ struct{} `type:"structure" payload:"DistributionList"`
 }
 
 // String returns the string representation
@@ -2566,11 +2334,7 @@ type ListInvalidationsInput struct {
 	// The maximum number of invalidation batches you want in the response body.
 	MaxItems *int64 `location:"querystring" locationName:"MaxItems" type:"integer"`
 
-	metadataListInvalidationsInput `json:"-" xml:"-"`
-}
-
-type metadataListInvalidationsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2588,11 +2352,7 @@ type ListInvalidationsOutput struct {
 	// Information about invalidation batches.
 	InvalidationList *InvalidationList `type:"structure"`
 
-	metadataListInvalidationsOutput `json:"-" xml:"-"`
-}
-
-type metadataListInvalidationsOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"InvalidationList"`
+	_ struct{} `type:"structure" payload:"InvalidationList"`
 }
 
 // String returns the string representation
@@ -2617,11 +2377,7 @@ type ListStreamingDistributionsInput struct {
 	// The maximum number of streaming distributions you want in the response body.
 	MaxItems *int64 `location:"querystring" locationName:"MaxItems" type:"integer"`
 
-	metadataListStreamingDistributionsInput `json:"-" xml:"-"`
-}
-
-type metadataListStreamingDistributionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2639,11 +2395,7 @@ type ListStreamingDistributionsOutput struct {
 	// The StreamingDistributionList type.
 	StreamingDistributionList *StreamingDistributionList `type:"structure"`
 
-	metadataListStreamingDistributionsOutput `json:"-" xml:"-"`
-}
-
-type metadataListStreamingDistributionsOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"StreamingDistributionList"`
+	_ struct{} `type:"structure" payload:"StreamingDistributionList"`
 }
 
 // String returns the string representation
@@ -2683,11 +2435,7 @@ type LoggingConfig struct {
 	// Prefix element in the Logging element.
 	Prefix *string `type:"string" required:"true"`
 
-	metadataLoggingConfig `json:"-" xml:"-"`
-}
-
-type metadataLoggingConfig struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2730,11 +2478,7 @@ type Origin struct {
 	// origin is a custom origin, use the CustomOriginConfig element instead.
 	S3OriginConfig *S3OriginConfig `type:"structure"`
 
-	metadataOrigin `json:"-" xml:"-"`
-}
-
-type metadataOrigin struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2760,11 +2504,7 @@ type OriginAccessIdentity struct {
 	// Amazon S3.
 	S3CanonicalUserId *string `type:"string" required:"true"`
 
-	metadataOriginAccessIdentity `json:"-" xml:"-"`
-}
-
-type metadataOriginAccessIdentity struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2795,11 +2535,7 @@ type OriginAccessIdentityConfig struct {
 	// Any comments you want to include about the origin access identity.
 	Comment *string `type:"string" required:"true"`
 
-	metadataOriginAccessIdentityConfig `json:"-" xml:"-"`
-}
-
-type metadataOriginAccessIdentityConfig struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2839,11 +2575,7 @@ type OriginAccessIdentityList struct {
 	// current AWS account.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataOriginAccessIdentityList `json:"-" xml:"-"`
-}
-
-type metadataOriginAccessIdentityList struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2870,11 +2602,7 @@ type OriginAccessIdentitySummary struct {
 	// Amazon S3.
 	S3CanonicalUserId *string `type:"string" required:"true"`
 
-	metadataOriginAccessIdentitySummary `json:"-" xml:"-"`
-}
-
-type metadataOriginAccessIdentitySummary struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2895,11 +2623,7 @@ type Origins struct {
 	// The number of origins for this distribution.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataOrigins `json:"-" xml:"-"`
-}
-
-type metadataOrigins struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2921,11 +2645,7 @@ type Paths struct {
 	// The number of objects that you want to invalidate.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataPaths `json:"-" xml:"-"`
-}
-
-type metadataPaths struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2949,11 +2669,7 @@ type Restrictions struct {
 	// website.
 	GeoRestriction *GeoRestriction `type:"structure" required:"true"`
 
-	metadataRestrictions `json:"-" xml:"-"`
-}
-
-type metadataRestrictions struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2975,11 +2691,7 @@ type S3Origin struct {
 	// Your S3 origin's origin access identity.
 	OriginAccessIdentity *string `type:"string" required:"true"`
 
-	metadataS3Origin `json:"-" xml:"-"`
-}
-
-type metadataS3Origin struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3008,11 +2720,7 @@ type S3OriginConfig struct {
 	// created the origin access identity.
 	OriginAccessIdentity *string `type:"string" required:"true"`
 
-	metadataS3OriginConfig `json:"-" xml:"-"`
-}
-
-type metadataS3OriginConfig struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3038,11 +2746,7 @@ type Signer struct {
 	// associated with AwsAccountNumber.
 	KeyPairIds *KeyPairIds `type:"structure"`
 
-	metadataSigner `json:"-" xml:"-"`
-}
-
-type metadataSigner struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3085,11 +2789,7 @@ type StreamingDistribution struct {
 	// The current configuration information for the streaming distribution.
 	StreamingDistributionConfig *StreamingDistributionConfig `type:"structure" required:"true"`
 
-	metadataStreamingDistribution `json:"-" xml:"-"`
-}
-
-type metadataStreamingDistribution struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3152,11 +2852,7 @@ type StreamingDistributionConfig struct {
 	// of the trusted signers that you want to include in the updated distribution.
 	TrustedSigners *TrustedSigners `type:"structure" required:"true"`
 
-	metadataStreamingDistributionConfig `json:"-" xml:"-"`
-}
-
-type metadataStreamingDistributionConfig struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3196,11 +2892,7 @@ type StreamingDistributionList struct {
 	// account.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataStreamingDistributionList `json:"-" xml:"-"`
-}
-
-type metadataStreamingDistributionList struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3258,11 +2950,7 @@ type StreamingDistributionSummary struct {
 	// of the trusted signers that you want to include in the updated distribution.
 	TrustedSigners *TrustedSigners `type:"structure" required:"true"`
 
-	metadataStreamingDistributionSummary `json:"-" xml:"-"`
-}
-
-type metadataStreamingDistributionSummary struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3295,11 +2983,7 @@ type StreamingLoggingConfig struct {
 	// an empty Prefix element in the Logging element.
 	Prefix *string `type:"string" required:"true"`
 
-	metadataStreamingLoggingConfig `json:"-" xml:"-"`
-}
-
-type metadataStreamingLoggingConfig struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3335,11 +3019,7 @@ type TrustedSigners struct {
 	// The number of trusted signers for this cache behavior.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataTrustedSigners `json:"-" xml:"-"`
-}
-
-type metadataTrustedSigners struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3364,11 +3044,7 @@ type UpdateCloudFrontOriginAccessIdentityInput struct {
 	// configuration. For example: E2QWRUHAPOMQZL.
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
 
-	metadataUpdateCloudFrontOriginAccessIdentityInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateCloudFrontOriginAccessIdentityInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"CloudFrontOriginAccessIdentityConfig"`
+	_ struct{} `type:"structure" payload:"CloudFrontOriginAccessIdentityConfig"`
 }
 
 // String returns the string representation
@@ -3389,11 +3065,7 @@ type UpdateCloudFrontOriginAccessIdentityOutput struct {
 	// The current version of the configuration. For example: E2QWRUHAPOMQZL.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
-	metadataUpdateCloudFrontOriginAccessIdentityOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateCloudFrontOriginAccessIdentityOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"CloudFrontOriginAccessIdentity"`
+	_ struct{} `type:"structure" payload:"CloudFrontOriginAccessIdentity"`
 }
 
 // String returns the string representation
@@ -3418,11 +3090,7 @@ type UpdateDistributionInput struct {
 	// configuration. For example: E2QWRUHAPOMQZL.
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
 
-	metadataUpdateDistributionInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateDistributionInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"DistributionConfig"`
+	_ struct{} `type:"structure" payload:"DistributionConfig"`
 }
 
 // String returns the string representation
@@ -3443,11 +3111,7 @@ type UpdateDistributionOutput struct {
 	// The current version of the configuration. For example: E2QWRUHAPOMQZL.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
-	metadataUpdateDistributionOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateDistributionOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Distribution"`
+	_ struct{} `type:"structure" payload:"Distribution"`
 }
 
 // String returns the string representation
@@ -3472,11 +3136,7 @@ type UpdateStreamingDistributionInput struct {
 	// The streaming distribution's configuration information.
 	StreamingDistributionConfig *StreamingDistributionConfig `locationName:"StreamingDistributionConfig" type:"structure" required:"true"`
 
-	metadataUpdateStreamingDistributionInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateStreamingDistributionInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"StreamingDistributionConfig"`
+	_ struct{} `type:"structure" payload:"StreamingDistributionConfig"`
 }
 
 // String returns the string representation
@@ -3497,11 +3157,7 @@ type UpdateStreamingDistributionOutput struct {
 	// The streaming distribution's information.
 	StreamingDistribution *StreamingDistribution `type:"structure"`
 
-	metadataUpdateStreamingDistributionOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateStreamingDistributionOutput struct {
-	SDKShapeTraits bool `type:"structure" payload:"StreamingDistribution"`
+	_ struct{} `type:"structure" payload:"StreamingDistribution"`
 }
 
 // String returns the string representation
@@ -3553,11 +3209,7 @@ type ViewerCertificate struct {
 	// for SSLSupportMethod if you specified true for CloudFrontDefaultCertificate.
 	SSLSupportMethod *string `type:"string" enum:"SSLSupportMethod"`
 
-	metadataViewerCertificate `json:"-" xml:"-"`
-}
-
-type metadataViewerCertificate struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

@@ -1320,11 +1320,7 @@ type AddTagsToResourceInput struct {
 	// pair. A tag key must be accompanied by a tag value.
 	Tags []*Tag `locationNameList:"Tag" type:"list" required:"true"`
 
-	metadataAddTagsToResourceInput `json:"-" xml:"-"`
-}
-
-type metadataAddTagsToResourceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1351,11 +1347,7 @@ type AuthorizeCacheSecurityGroupIngressInput struct {
 	// AWS account number for this parameter.
 	EC2SecurityGroupOwnerId *string `type:"string" required:"true"`
 
-	metadataAuthorizeCacheSecurityGroupIngressInput `json:"-" xml:"-"`
-}
-
-type metadataAuthorizeCacheSecurityGroupIngressInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1374,11 +1366,7 @@ type AuthorizeCacheSecurityGroupIngressOutput struct {
 	//   AuthorizeCacheSecurityGroupIngress   CreateCacheSecurityGroup   RevokeCacheSecurityGroupIngress
 	CacheSecurityGroup *CacheSecurityGroup `type:"structure"`
 
-	metadataAuthorizeCacheSecurityGroupIngressOutput `json:"-" xml:"-"`
-}
-
-type metadataAuthorizeCacheSecurityGroupIngressOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1396,11 +1384,7 @@ type AvailabilityZone struct {
 	// The name of the Availability Zone.
 	Name *string `type:"string"`
 
-	metadataAvailabilityZone `json:"-" xml:"-"`
-}
-
-type metadataAvailabilityZone struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1527,11 +1511,7 @@ type CacheCluster struct {
 	// Example: 05:00-09:00
 	SnapshotWindow *string `type:"string"`
 
-	metadataCacheCluster `json:"-" xml:"-"`
-}
-
-type metadataCacheCluster struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1561,11 +1541,7 @@ type CacheEngineVersion struct {
 	// The version number of the cache engine.
 	EngineVersion *string `type:"string"`
 
-	metadataCacheEngineVersion `json:"-" xml:"-"`
-}
-
-type metadataCacheEngineVersion struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1625,11 +1601,7 @@ type CacheNode struct {
 	// cluster.
 	SourceCacheNodeId *string `type:"string"`
 
-	metadataCacheNode `json:"-" xml:"-"`
-}
-
-type metadataCacheNode struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1672,11 +1644,7 @@ type CacheNodeTypeSpecificParameter struct {
 	// The source of the parameter value.
 	Source *string `type:"string"`
 
-	metadataCacheNodeTypeSpecificParameter `json:"-" xml:"-"`
-}
-
-type metadataCacheNodeTypeSpecificParameter struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1697,11 +1665,7 @@ type CacheNodeTypeSpecificValue struct {
 	// The value for the cache node type.
 	Value *string `type:"string"`
 
-	metadataCacheNodeTypeSpecificValue `json:"-" xml:"-"`
-}
-
-type metadataCacheNodeTypeSpecificValue struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1726,11 +1690,7 @@ type CacheParameterGroup struct {
 	// The description for this cache parameter group.
 	Description *string `type:"string"`
 
-	metadataCacheParameterGroup `json:"-" xml:"-"`
-}
-
-type metadataCacheParameterGroup struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1750,11 +1710,7 @@ type CacheParameterGroupNameMessage struct {
 	// The name of the cache parameter group.
 	CacheParameterGroupName *string `type:"string"`
 
-	metadataCacheParameterGroupNameMessage `json:"-" xml:"-"`
-}
-
-type metadataCacheParameterGroupNameMessage struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1779,11 +1735,7 @@ type CacheParameterGroupStatus struct {
 	// The status of parameter updates.
 	ParameterApplyStatus *string `type:"string"`
 
-	metadataCacheParameterGroupStatus `json:"-" xml:"-"`
-}
-
-type metadataCacheParameterGroupStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1813,11 +1765,7 @@ type CacheSecurityGroup struct {
 	// The AWS account ID of the cache security group owner.
 	OwnerId *string `type:"string"`
 
-	metadataCacheSecurityGroup `json:"-" xml:"-"`
-}
-
-type metadataCacheSecurityGroup struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1840,11 +1788,7 @@ type CacheSecurityGroupMembership struct {
 	// to a cache cluster are modified.
 	Status *string `type:"string"`
 
-	metadataCacheSecurityGroupMembership `json:"-" xml:"-"`
-}
-
-type metadataCacheSecurityGroupMembership struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1874,11 +1818,7 @@ type CacheSubnetGroup struct {
 	// group.
 	VpcId *string `type:"string"`
 
-	metadataCacheSubnetGroup `json:"-" xml:"-"`
-}
-
-type metadataCacheSubnetGroup struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1899,11 +1839,7 @@ type CopySnapshotInput struct {
 	// A name for the copied snapshot.
 	TargetSnapshotName *string `type:"string" required:"true"`
 
-	metadataCopySnapshotInput `json:"-" xml:"-"`
-}
-
-type metadataCopySnapshotInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1921,11 +1857,7 @@ type CopySnapshotOutput struct {
 	// was taken.
 	Snapshot *Snapshot `type:"structure"`
 
-	metadataCopySnapshotOutput `json:"-" xml:"-"`
-}
-
-type metadataCopySnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2130,11 +2062,7 @@ type CreateCacheClusterInput struct {
 	// pair. A tag key must be accompanied by a tag value.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataCreateCacheClusterInput `json:"-" xml:"-"`
-}
-
-type metadataCreateCacheClusterInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2151,11 +2079,7 @@ type CreateCacheClusterOutput struct {
 	// Contains all of the attributes of a specific cache cluster.
 	CacheCluster *CacheCluster `type:"structure"`
 
-	metadataCreateCacheClusterOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateCacheClusterOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2182,11 +2106,7 @@ type CreateCacheParameterGroupInput struct {
 	// A user-specified description for the cache parameter group.
 	Description *string `type:"string" required:"true"`
 
-	metadataCreateCacheParameterGroupInput `json:"-" xml:"-"`
-}
-
-type metadataCreateCacheParameterGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2203,11 +2123,7 @@ type CreateCacheParameterGroupOutput struct {
 	// Represents the output of a CreateCacheParameterGroup action.
 	CacheParameterGroup *CacheParameterGroup `type:"structure"`
 
-	metadataCreateCacheParameterGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateCacheParameterGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2234,11 +2150,7 @@ type CreateCacheSecurityGroupInput struct {
 	// A description for the cache security group.
 	Description *string `type:"string" required:"true"`
 
-	metadataCreateCacheSecurityGroupInput `json:"-" xml:"-"`
-}
-
-type metadataCreateCacheSecurityGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2257,11 +2169,7 @@ type CreateCacheSecurityGroupOutput struct {
 	//   AuthorizeCacheSecurityGroupIngress   CreateCacheSecurityGroup   RevokeCacheSecurityGroupIngress
 	CacheSecurityGroup *CacheSecurityGroup `type:"structure"`
 
-	metadataCreateCacheSecurityGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateCacheSecurityGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2289,11 +2197,7 @@ type CreateCacheSubnetGroupInput struct {
 	// A list of VPC subnet IDs for the cache subnet group.
 	SubnetIds []*string `locationNameList:"SubnetIdentifier" type:"list" required:"true"`
 
-	metadataCreateCacheSubnetGroupInput `json:"-" xml:"-"`
-}
-
-type metadataCreateCacheSubnetGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2312,11 +2216,7 @@ type CreateCacheSubnetGroupOutput struct {
 	//   CreateCacheSubnetGroup   ModifyCacheSubnetGroup
 	CacheSubnetGroup *CacheSubnetGroup `type:"structure"`
 
-	metadataCreateCacheSubnetGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateCacheSubnetGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2500,11 +2400,7 @@ type CreateReplicationGroupInput struct {
 	// pair. A tag key must be accompanied by a tag value.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataCreateReplicationGroupInput `json:"-" xml:"-"`
-}
-
-type metadataCreateReplicationGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2521,11 +2417,7 @@ type CreateReplicationGroupOutput struct {
 	// Contains all of the attributes of a specific replication group.
 	ReplicationGroup *ReplicationGroup `type:"structure"`
 
-	metadataCreateReplicationGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateReplicationGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2547,11 +2439,7 @@ type CreateSnapshotInput struct {
 	// A name for the snapshot being created.
 	SnapshotName *string `type:"string" required:"true"`
 
-	metadataCreateSnapshotInput `json:"-" xml:"-"`
-}
-
-type metadataCreateSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2569,11 +2457,7 @@ type CreateSnapshotOutput struct {
 	// was taken.
 	Snapshot *Snapshot `type:"structure"`
 
-	metadataCreateSnapshotOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateSnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2597,11 +2481,7 @@ type DeleteCacheClusterInput struct {
 	// then deletes the cache cluster immediately afterward.
 	FinalSnapshotIdentifier *string `type:"string"`
 
-	metadataDeleteCacheClusterInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteCacheClusterInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2618,11 +2498,7 @@ type DeleteCacheClusterOutput struct {
 	// Contains all of the attributes of a specific cache cluster.
 	CacheCluster *CacheCluster `type:"structure"`
 
-	metadataDeleteCacheClusterOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteCacheClusterOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2643,11 +2519,7 @@ type DeleteCacheParameterGroupInput struct {
 	// clusters.
 	CacheParameterGroupName *string `type:"string" required:"true"`
 
-	metadataDeleteCacheParameterGroupInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteCacheParameterGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2661,11 +2533,7 @@ func (s DeleteCacheParameterGroupInput) GoString() string {
 }
 
 type DeleteCacheParameterGroupOutput struct {
-	metadataDeleteCacheParameterGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteCacheParameterGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2685,11 +2553,7 @@ type DeleteCacheSecurityGroupInput struct {
 	// You cannot delete the default security group.
 	CacheSecurityGroupName *string `type:"string" required:"true"`
 
-	metadataDeleteCacheSecurityGroupInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteCacheSecurityGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2703,11 +2567,7 @@ func (s DeleteCacheSecurityGroupInput) GoString() string {
 }
 
 type DeleteCacheSecurityGroupOutput struct {
-	metadataDeleteCacheSecurityGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteCacheSecurityGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2727,11 +2587,7 @@ type DeleteCacheSubnetGroupInput struct {
 	// Constraints: Must contain no more than 255 alphanumeric characters or hyphens.
 	CacheSubnetGroupName *string `type:"string" required:"true"`
 
-	metadataDeleteCacheSubnetGroupInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteCacheSubnetGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2745,11 +2601,7 @@ func (s DeleteCacheSubnetGroupInput) GoString() string {
 }
 
 type DeleteCacheSubnetGroupOutput struct {
-	metadataDeleteCacheSubnetGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteCacheSubnetGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2778,11 +2630,7 @@ type DeleteReplicationGroupInput struct {
 	// node will be retained.
 	RetainPrimaryCluster *bool `type:"boolean"`
 
-	metadataDeleteReplicationGroupInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteReplicationGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2799,11 +2647,7 @@ type DeleteReplicationGroupOutput struct {
 	// Contains all of the attributes of a specific replication group.
 	ReplicationGroup *ReplicationGroup `type:"structure"`
 
-	metadataDeleteReplicationGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteReplicationGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2821,11 +2665,7 @@ type DeleteSnapshotInput struct {
 	// The name of the snapshot to be deleted.
 	SnapshotName *string `type:"string" required:"true"`
 
-	metadataDeleteSnapshotInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2843,11 +2683,7 @@ type DeleteSnapshotOutput struct {
 	// was taken.
 	Snapshot *Snapshot `type:"structure"`
 
-	metadataDeleteSnapshotOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteSnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2885,11 +2721,7 @@ type DescribeCacheClustersInput struct {
 	// to retrieve information about the individual cache nodes.
 	ShowCacheNodeInfo *bool `type:"boolean"`
 
-	metadataDescribeCacheClustersInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeCacheClustersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2911,11 +2743,7 @@ type DescribeCacheClustersOutput struct {
 	// Provides an identifier to allow retrieval of paginated results.
 	Marker *string `type:"string"`
 
-	metadataDescribeCacheClustersOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeCacheClustersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2964,11 +2792,7 @@ type DescribeCacheEngineVersionsInput struct {
 	// Constraints: minimum 20; maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
-	metadataDescribeCacheEngineVersionsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeCacheEngineVersionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2990,11 +2814,7 @@ type DescribeCacheEngineVersionsOutput struct {
 	// Provides an identifier to allow retrieval of paginated results.
 	Marker *string `type:"string"`
 
-	metadataDescribeCacheEngineVersionsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeCacheEngineVersionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3026,11 +2846,7 @@ type DescribeCacheParameterGroupsInput struct {
 	// Constraints: minimum 20; maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
-	metadataDescribeCacheParameterGroupsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeCacheParameterGroupsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3052,11 +2868,7 @@ type DescribeCacheParameterGroupsOutput struct {
 	// Provides an identifier to allow retrieval of paginated results.
 	Marker *string `type:"string"`
 
-	metadataDescribeCacheParameterGroupsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeCacheParameterGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3093,11 +2905,7 @@ type DescribeCacheParametersInput struct {
 	// Valid values: user | system | engine-default
 	Source *string `type:"string"`
 
-	metadataDescribeCacheParametersInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeCacheParametersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3122,11 +2930,7 @@ type DescribeCacheParametersOutput struct {
 	// A list of Parameter instances.
 	Parameters []*Parameter `locationNameList:"Parameter" type:"list"`
 
-	metadataDescribeCacheParametersOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeCacheParametersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3158,11 +2962,7 @@ type DescribeCacheSecurityGroupsInput struct {
 	// Constraints: minimum 20; maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
-	metadataDescribeCacheSecurityGroupsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeCacheSecurityGroupsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3184,11 +2984,7 @@ type DescribeCacheSecurityGroupsOutput struct {
 	// Provides an identifier to allow retrieval of paginated results.
 	Marker *string `type:"string"`
 
-	metadataDescribeCacheSecurityGroupsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeCacheSecurityGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3220,11 +3016,7 @@ type DescribeCacheSubnetGroupsInput struct {
 	// Constraints: minimum 20; maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
-	metadataDescribeCacheSubnetGroupsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeCacheSubnetGroupsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3246,11 +3038,7 @@ type DescribeCacheSubnetGroupsOutput struct {
 	// Provides an identifier to allow retrieval of paginated results.
 	Marker *string `type:"string"`
 
-	metadataDescribeCacheSubnetGroupsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeCacheSubnetGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3283,11 +3071,7 @@ type DescribeEngineDefaultParametersInput struct {
 	// Constraints: minimum 20; maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
-	metadataDescribeEngineDefaultParametersInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEngineDefaultParametersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3304,11 +3088,7 @@ type DescribeEngineDefaultParametersOutput struct {
 	// Represents the output of a DescribeEngineDefaultParameters action.
 	EngineDefaults *EngineDefaults `type:"structure"`
 
-	metadataDescribeEngineDefaultParametersOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEngineDefaultParametersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3359,11 +3139,7 @@ type DescribeEventsInput struct {
 	// 8601 format.
 	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataDescribeEventsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEventsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3385,11 +3161,7 @@ type DescribeEventsOutput struct {
 	// Provides an identifier to allow retrieval of paginated results.
 	Marker *string `type:"string"`
 
-	metadataDescribeEventsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEventsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3425,11 +3197,7 @@ type DescribeReplicationGroupsInput struct {
 	// groups is returned.
 	ReplicationGroupId *string `type:"string"`
 
-	metadataDescribeReplicationGroupsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeReplicationGroupsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3451,11 +3219,7 @@ type DescribeReplicationGroupsOutput struct {
 	// about one replication group.
 	ReplicationGroups []*ReplicationGroup `locationNameList:"ReplicationGroup" type:"list"`
 
-	metadataDescribeReplicationGroupsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeReplicationGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3530,11 +3294,7 @@ type DescribeReservedCacheNodesInput struct {
 	// reservations matching the specified offering identifier.
 	ReservedCacheNodesOfferingId *string `type:"string"`
 
-	metadataDescribeReservedCacheNodesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeReservedCacheNodesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3607,11 +3367,7 @@ type DescribeReservedCacheNodesOfferingsInput struct {
 	// Example: 438012d3-4052-4cc7-b2e3-8d3372e0e706
 	ReservedCacheNodesOfferingId *string `type:"string"`
 
-	metadataDescribeReservedCacheNodesOfferingsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeReservedCacheNodesOfferingsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3633,11 +3389,7 @@ type DescribeReservedCacheNodesOfferingsOutput struct {
 	// detailed information about one offering.
 	ReservedCacheNodesOfferings []*ReservedCacheNodesOffering `locationNameList:"ReservedCacheNodesOffering" type:"list"`
 
-	metadataDescribeReservedCacheNodesOfferingsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeReservedCacheNodesOfferingsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3659,11 +3411,7 @@ type DescribeReservedCacheNodesOutput struct {
 	// information about one node.
 	ReservedCacheNodes []*ReservedCacheNode `locationNameList:"ReservedCacheNode" type:"list"`
 
-	metadataDescribeReservedCacheNodesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeReservedCacheNodesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3706,11 +3454,7 @@ type DescribeSnapshotsInput struct {
 	// snapshots.
 	SnapshotSource *string `type:"string"`
 
-	metadataDescribeSnapshotsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSnapshotsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3734,11 +3478,7 @@ type DescribeSnapshotsOutput struct {
 	// about one snapshot.
 	Snapshots []*Snapshot `locationNameList:"Snapshot" type:"list"`
 
-	metadataDescribeSnapshotsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSnapshotsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3762,11 +3502,7 @@ type EC2SecurityGroup struct {
 	// The status of the Amazon EC2 security group.
 	Status *string `type:"string"`
 
-	metadataEC2SecurityGroup `json:"-" xml:"-"`
-}
-
-type metadataEC2SecurityGroup struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3788,11 +3524,7 @@ type Endpoint struct {
 	// The port number that the cache engine is listening on.
 	Port *int64 `type:"integer"`
 
-	metadataEndpoint `json:"-" xml:"-"`
-}
-
-type metadataEndpoint struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3821,11 +3553,7 @@ type EngineDefaults struct {
 	// Contains a list of engine default parameters.
 	Parameters []*Parameter `locationNameList:"Parameter" type:"list"`
 
-	metadataEngineDefaults `json:"-" xml:"-"`
-}
-
-type metadataEngineDefaults struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3857,11 +3585,7 @@ type Event struct {
 	// a security group, etc.
 	SourceType *string `type:"string" enum:"SourceType"`
 
-	metadataEvent `json:"-" xml:"-"`
-}
-
-type metadataEvent struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3880,11 +3604,7 @@ type ListTagsForResourceInput struct {
 	// arn:aws:elasticache:us-west-2:0123456789:cluster:myCluster.
 	ResourceName *string `type:"string" required:"true"`
 
-	metadataListTagsForResourceInput `json:"-" xml:"-"`
-}
-
-type metadataListTagsForResourceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4077,11 +3797,7 @@ type ModifyCacheClusterInput struct {
 	// a daily snapshot of your cache cluster.
 	SnapshotWindow *string `type:"string"`
 
-	metadataModifyCacheClusterInput `json:"-" xml:"-"`
-}
-
-type metadataModifyCacheClusterInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4098,11 +3814,7 @@ type ModifyCacheClusterOutput struct {
 	// Contains all of the attributes of a specific cache cluster.
 	CacheCluster *CacheCluster `type:"structure"`
 
-	metadataModifyCacheClusterOutput `json:"-" xml:"-"`
-}
-
-type metadataModifyCacheClusterOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4125,11 +3837,7 @@ type ModifyCacheParameterGroupInput struct {
 	// A maximum of 20 parameters may be modified per request.
 	ParameterNameValues []*ParameterNameValue `locationNameList:"ParameterNameValue" type:"list" required:"true"`
 
-	metadataModifyCacheParameterGroupInput `json:"-" xml:"-"`
-}
-
-type metadataModifyCacheParameterGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4158,11 +3866,7 @@ type ModifyCacheSubnetGroupInput struct {
 	// The EC2 subnet IDs for the cache subnet group.
 	SubnetIds []*string `locationNameList:"SubnetIdentifier" type:"list"`
 
-	metadataModifyCacheSubnetGroupInput `json:"-" xml:"-"`
-}
-
-type metadataModifyCacheSubnetGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4181,11 +3885,7 @@ type ModifyCacheSubnetGroupOutput struct {
 	//   CreateCacheSubnetGroup   ModifyCacheSubnetGroup
 	CacheSubnetGroup *CacheSubnetGroup `type:"structure"`
 
-	metadataModifyCacheSubnetGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataModifyCacheSubnetGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4307,11 +4007,7 @@ type ModifyReplicationGroupInput struct {
 	// replication group.
 	SnapshottingClusterId *string `type:"string"`
 
-	metadataModifyReplicationGroupInput `json:"-" xml:"-"`
-}
-
-type metadataModifyReplicationGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4328,11 +4024,7 @@ type ModifyReplicationGroupOutput struct {
 	// Contains all of the attributes of a specific replication group.
 	ReplicationGroup *ReplicationGroup `type:"structure"`
 
-	metadataModifyReplicationGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataModifyReplicationGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4361,11 +4053,7 @@ type NodeGroup struct {
 	// The current state of this replication group - creating, available, etc.
 	Status *string `type:"string"`
 
-	metadataNodeGroup `json:"-" xml:"-"`
-}
-
-type metadataNodeGroup struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4397,11 +4085,7 @@ type NodeGroupMember struct {
 	// node.
 	ReadEndpoint *Endpoint `type:"structure"`
 
-	metadataNodeGroupMember `json:"-" xml:"-"`
-}
-
-type metadataNodeGroupMember struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4429,11 +4113,7 @@ type NodeSnapshot struct {
 	// obtained for the snapshot.
 	SnapshotCreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataNodeSnapshot `json:"-" xml:"-"`
-}
-
-type metadataNodeSnapshot struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4456,11 +4136,7 @@ type NotificationConfiguration struct {
 	// The current state of the topic.
 	TopicStatus *string `type:"string"`
 
-	metadataNotificationConfiguration `json:"-" xml:"-"`
-}
-
-type metadataNotificationConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4502,11 +4178,7 @@ type Parameter struct {
 	// The source of the parameter.
 	Source *string `type:"string"`
 
-	metadataParameter `json:"-" xml:"-"`
-}
-
-type metadataParameter struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4527,11 +4199,7 @@ type ParameterNameValue struct {
 	// The value of the parameter.
 	ParameterValue *string `type:"string"`
 
-	metadataParameterNameValue `json:"-" xml:"-"`
-}
-
-type metadataParameterNameValue struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4560,11 +4228,7 @@ type PendingModifiedValues struct {
 	// this value must be between 1 and 20.
 	NumCacheNodes *int64 `type:"integer"`
 
-	metadataPendingModifiedValues `json:"-" xml:"-"`
-}
-
-type metadataPendingModifiedValues struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4594,11 +4258,7 @@ type PurchaseReservedCacheNodesOfferingInput struct {
 	// Example: 438012d3-4052-4cc7-b2e3-8d3372e0e706
 	ReservedCacheNodesOfferingId *string `type:"string" required:"true"`
 
-	metadataPurchaseReservedCacheNodesOfferingInput `json:"-" xml:"-"`
-}
-
-type metadataPurchaseReservedCacheNodesOfferingInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4615,11 +4275,7 @@ type PurchaseReservedCacheNodesOfferingOutput struct {
 	// Represents the output of a PurchaseReservedCacheNodesOffering action.
 	ReservedCacheNode *ReservedCacheNode `type:"structure"`
 
-	metadataPurchaseReservedCacheNodesOfferingOutput `json:"-" xml:"-"`
-}
-
-type metadataPurchaseReservedCacheNodesOfferingOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4642,11 +4298,7 @@ type RebootCacheClusterInput struct {
 	// node IDs.
 	CacheNodeIdsToReboot []*string `locationNameList:"CacheNodeId" type:"list" required:"true"`
 
-	metadataRebootCacheClusterInput `json:"-" xml:"-"`
-}
-
-type metadataRebootCacheClusterInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4663,11 +4315,7 @@ type RebootCacheClusterOutput struct {
 	// Contains all of the attributes of a specific cache cluster.
 	CacheCluster *CacheCluster `type:"structure"`
 
-	metadataRebootCacheClusterOutput `json:"-" xml:"-"`
-}
-
-type metadataRebootCacheClusterOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4689,11 +4337,7 @@ type RecurringCharge struct {
 	// The frequency of the recurring charge.
 	RecurringChargeFrequency *string `type:"string"`
 
-	metadataRecurringCharge `json:"-" xml:"-"`
-}
-
-type metadataRecurringCharge struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4717,11 +4361,7 @@ type RemoveTagsFromResourceInput struct {
 	// the key name Region from the resource named by the ResourceName parameter.
 	TagKeys []*string `type:"list" required:"true"`
 
-	metadataRemoveTagsFromResourceInput `json:"-" xml:"-"`
-}
-
-type metadataRemoveTagsFromResourceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4767,11 +4407,7 @@ type ReplicationGroup struct {
 	// The current state of this replication group - creating, available, etc.
 	Status *string `type:"string"`
 
-	metadataReplicationGroup `json:"-" xml:"-"`
-}
-
-type metadataReplicationGroup struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4798,11 +4434,7 @@ type ReplicationGroupPendingModifiedValues struct {
 	// was specified), or during the next maintenance window.
 	PrimaryClusterId *string `type:"string"`
 
-	metadataReplicationGroupPendingModifiedValues `json:"-" xml:"-"`
-}
-
-type metadataReplicationGroupPendingModifiedValues struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4871,11 +4503,7 @@ type ReservedCacheNode struct {
 	// The hourly price charged for this reserved cache node.
 	UsagePrice *float64 `type:"double"`
 
-	metadataReservedCacheNode `json:"-" xml:"-"`
-}
-
-type metadataReservedCacheNode struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4932,11 +4560,7 @@ type ReservedCacheNodesOffering struct {
 	// The hourly price charged for this offering.
 	UsagePrice *float64 `type:"double"`
 
-	metadataReservedCacheNodesOffering `json:"-" xml:"-"`
-}
-
-type metadataReservedCacheNodesOffering struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4964,11 +4588,7 @@ type ResetCacheParameterGroupInput struct {
 	// Valid values: true | false
 	ResetAllParameters *bool `type:"boolean"`
 
-	metadataResetCacheParameterGroupInput `json:"-" xml:"-"`
-}
-
-type metadataResetCacheParameterGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4994,11 +4614,7 @@ type RevokeCacheSecurityGroupIngressInput struct {
 	// AWS account number for this parameter.
 	EC2SecurityGroupOwnerId *string `type:"string" required:"true"`
 
-	metadataRevokeCacheSecurityGroupIngressInput `json:"-" xml:"-"`
-}
-
-type metadataRevokeCacheSecurityGroupIngressInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5017,11 +4633,7 @@ type RevokeCacheSecurityGroupIngressOutput struct {
 	//   AuthorizeCacheSecurityGroupIngress   CreateCacheSecurityGroup   RevokeCacheSecurityGroupIngress
 	CacheSecurityGroup *CacheSecurityGroup `type:"structure"`
 
-	metadataRevokeCacheSecurityGroupIngressOutput `json:"-" xml:"-"`
-}
-
-type metadataRevokeCacheSecurityGroupIngressOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5044,11 +4656,7 @@ type SecurityGroupMembership struct {
 	// to a cache cluster are modified.
 	Status *string `type:"string"`
 
-	metadataSecurityGroupMembership `json:"-" xml:"-"`
-}
-
-type metadataSecurityGroupMembership struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5168,11 +4776,7 @@ type Snapshot struct {
 	// group for the source cache cluster.
 	VpcId *string `type:"string"`
 
-	metadataSnapshot `json:"-" xml:"-"`
-}
-
-type metadataSnapshot struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5195,11 +4799,7 @@ type Subnet struct {
 	// The unique identifier for the subnet.
 	SubnetIdentifier *string `type:"string"`
 
-	metadataSubnet `json:"-" xml:"-"`
-}
-
-type metadataSubnet struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5222,11 +4822,7 @@ type Tag struct {
 	// The tag's value. May not be null.
 	Value *string `type:"string"`
 
-	metadataTag `json:"-" xml:"-"`
-}
-
-type metadataTag struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5245,11 +4841,7 @@ type TagListMessage struct {
 	// A list of cost allocation tags as key-value pairs.
 	TagList []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataTagListMessage `json:"-" xml:"-"`
-}
-
-type metadataTagListMessage struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

@@ -6630,11 +6630,7 @@ type AcceptVpcPeeringConnectionInput struct {
 	// The ID of the VPC peering connection.
 	VpcPeeringConnectionId *string `locationName:"vpcPeeringConnectionId" type:"string"`
 
-	metadataAcceptVpcPeeringConnectionInput `json:"-" xml:"-"`
-}
-
-type metadataAcceptVpcPeeringConnectionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6651,11 +6647,7 @@ type AcceptVpcPeeringConnectionOutput struct {
 	// Information about the VPC peering connection.
 	VpcPeeringConnection *VpcPeeringConnection `locationName:"vpcPeeringConnection" type:"structure"`
 
-	metadataAcceptVpcPeeringConnectionOutput `json:"-" xml:"-"`
-}
-
-type metadataAcceptVpcPeeringConnectionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6676,11 +6668,7 @@ type AccountAttribute struct {
 	// One or more values for the account attribute.
 	AttributeValues []*AccountAttributeValue `locationName:"attributeValueSet" locationNameList:"item" type:"list"`
 
-	metadataAccountAttribute `json:"-" xml:"-"`
-}
-
-type metadataAccountAttribute struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6698,11 +6686,7 @@ type AccountAttributeValue struct {
 	// The value of the attribute.
 	AttributeValue *string `locationName:"attributeValue" type:"string"`
 
-	metadataAccountAttributeValue `json:"-" xml:"-"`
-}
-
-type metadataAccountAttributeValue struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6726,11 +6710,7 @@ type ActiveInstance struct {
 	// The ID of the Spot instance request.
 	SpotInstanceRequestId *string `locationName:"spotInstanceRequestId" type:"string"`
 
-	metadataActiveInstance `json:"-" xml:"-"`
-}
-
-type metadataActiveInstance struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6771,11 +6751,7 @@ type Address struct {
 	// The Elastic IP address.
 	PublicIp *string `locationName:"publicIp" type:"string"`
 
-	metadataAddress `json:"-" xml:"-"`
-}
-
-type metadataAddress struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6800,11 +6776,7 @@ type AllocateAddressInput struct {
 	// it is UnauthorizedOperation.
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
-	metadataAllocateAddressInput `json:"-" xml:"-"`
-}
-
-type metadataAllocateAddressInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6829,11 +6801,7 @@ type AllocateAddressOutput struct {
 	// The Elastic IP address.
 	PublicIp *string `locationName:"publicIp" type:"string"`
 
-	metadataAllocateAddressOutput `json:"-" xml:"-"`
-}
-
-type metadataAllocateAddressOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6871,11 +6839,7 @@ type AllocateHostsInput struct {
 	// parameters.
 	Quantity *int64 `locationName:"quantity" type:"integer" required:"true"`
 
-	metadataAllocateHostsInput `json:"-" xml:"-"`
-}
-
-type metadataAllocateHostsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6893,11 +6857,7 @@ type AllocateHostsOutput struct {
 	// an instance onto a specific host.
 	HostIds []*string `locationName:"hostIdSet" locationNameList:"item" type:"list"`
 
-	metadataAllocateHostsOutput `json:"-" xml:"-"`
-}
-
-type metadataAllocateHostsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6930,11 +6890,7 @@ type AssignPrivateIpAddressesInput struct {
 	// You can't specify this parameter when also specifying private IP addresses.
 	SecondaryPrivateIpAddressCount *int64 `locationName:"secondaryPrivateIpAddressCount" type:"integer"`
 
-	metadataAssignPrivateIpAddressesInput `json:"-" xml:"-"`
-}
-
-type metadataAssignPrivateIpAddressesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6948,11 +6904,7 @@ func (s AssignPrivateIpAddressesInput) GoString() string {
 }
 
 type AssignPrivateIpAddressesOutput struct {
-	metadataAssignPrivateIpAddressesOutput `json:"-" xml:"-"`
-}
-
-type metadataAssignPrivateIpAddressesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7001,11 +6953,7 @@ type AssociateAddressInput struct {
 	// The Elastic IP address. This is required for EC2-Classic.
 	PublicIp *string `type:"string"`
 
-	metadataAssociateAddressInput `json:"-" xml:"-"`
-}
-
-type metadataAssociateAddressInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7023,11 +6971,7 @@ type AssociateAddressOutput struct {
 	// with an instance.
 	AssociationId *string `locationName:"associationId" type:"string"`
 
-	metadataAssociateAddressOutput `json:"-" xml:"-"`
-}
-
-type metadataAssociateAddressOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7054,11 +6998,7 @@ type AssociateDhcpOptionsInput struct {
 	// The ID of the VPC.
 	VpcId *string `type:"string" required:"true"`
 
-	metadataAssociateDhcpOptionsInput `json:"-" xml:"-"`
-}
-
-type metadataAssociateDhcpOptionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7072,11 +7012,7 @@ func (s AssociateDhcpOptionsInput) GoString() string {
 }
 
 type AssociateDhcpOptionsOutput struct {
-	metadataAssociateDhcpOptionsOutput `json:"-" xml:"-"`
-}
-
-type metadataAssociateDhcpOptionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7102,11 +7038,7 @@ type AssociateRouteTableInput struct {
 	// The ID of the subnet.
 	SubnetId *string `locationName:"subnetId" type:"string" required:"true"`
 
-	metadataAssociateRouteTableInput `json:"-" xml:"-"`
-}
-
-type metadataAssociateRouteTableInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7123,11 +7055,7 @@ type AssociateRouteTableOutput struct {
 	// The route table association ID (needed to disassociate the route table).
 	AssociationId *string `locationName:"associationId" type:"string"`
 
-	metadataAssociateRouteTableOutput `json:"-" xml:"-"`
-}
-
-type metadataAssociateRouteTableOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7157,11 +7085,7 @@ type AttachClassicLinkVpcInput struct {
 	// The ID of a ClassicLink-enabled VPC.
 	VpcId *string `locationName:"vpcId" type:"string" required:"true"`
 
-	metadataAttachClassicLinkVpcInput `json:"-" xml:"-"`
-}
-
-type metadataAttachClassicLinkVpcInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7178,11 +7102,7 @@ type AttachClassicLinkVpcOutput struct {
 	// Returns true if the request succeeds; otherwise, it returns an error.
 	Return *bool `locationName:"return" type:"boolean"`
 
-	metadataAttachClassicLinkVpcOutput `json:"-" xml:"-"`
-}
-
-type metadataAttachClassicLinkVpcOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7208,11 +7128,7 @@ type AttachInternetGatewayInput struct {
 	// The ID of the VPC.
 	VpcId *string `locationName:"vpcId" type:"string" required:"true"`
 
-	metadataAttachInternetGatewayInput `json:"-" xml:"-"`
-}
-
-type metadataAttachInternetGatewayInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7226,11 +7142,7 @@ func (s AttachInternetGatewayInput) GoString() string {
 }
 
 type AttachInternetGatewayOutput struct {
-	metadataAttachInternetGatewayOutput `json:"-" xml:"-"`
-}
-
-type metadataAttachInternetGatewayOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7259,11 +7171,7 @@ type AttachNetworkInterfaceInput struct {
 	// The ID of the network interface.
 	NetworkInterfaceId *string `locationName:"networkInterfaceId" type:"string" required:"true"`
 
-	metadataAttachNetworkInterfaceInput `json:"-" xml:"-"`
-}
-
-type metadataAttachNetworkInterfaceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7280,11 +7188,7 @@ type AttachNetworkInterfaceOutput struct {
 	// The ID of the network interface attachment.
 	AttachmentId *string `locationName:"attachmentId" type:"string"`
 
-	metadataAttachNetworkInterfaceOutput `json:"-" xml:"-"`
-}
-
-type metadataAttachNetworkInterfaceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7314,11 +7218,7 @@ type AttachVolumeInput struct {
 	// Availability Zone.
 	VolumeId *string `type:"string" required:"true"`
 
-	metadataAttachVolumeInput `json:"-" xml:"-"`
-}
-
-type metadataAttachVolumeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7344,11 +7244,7 @@ type AttachVpnGatewayInput struct {
 	// The ID of the virtual private gateway.
 	VpnGatewayId *string `type:"string" required:"true"`
 
-	metadataAttachVpnGatewayInput `json:"-" xml:"-"`
-}
-
-type metadataAttachVpnGatewayInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7365,11 +7261,7 @@ type AttachVpnGatewayOutput struct {
 	// Information about the attachment.
 	VpcAttachment *VpcAttachment `locationName:"attachment" type:"structure"`
 
-	metadataAttachVpnGatewayOutput `json:"-" xml:"-"`
-}
-
-type metadataAttachVpnGatewayOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7387,11 +7279,7 @@ type AttributeBooleanValue struct {
 	// Valid values are true or false.
 	Value *bool `locationName:"value" type:"boolean"`
 
-	metadataAttributeBooleanValue `json:"-" xml:"-"`
-}
-
-type metadataAttributeBooleanValue struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7409,11 +7297,7 @@ type AttributeValue struct {
 	// Valid values are case-sensitive and vary by action.
 	Value *string `locationName:"value" type:"string"`
 
-	metadataAttributeValue `json:"-" xml:"-"`
-}
-
-type metadataAttributeValue struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7466,11 +7350,7 @@ type AuthorizeSecurityGroupEgressInput struct {
 	// For the ICMP code number, use -1 to specify all ICMP codes for the ICMP type.
 	ToPort *int64 `locationName:"toPort" type:"integer"`
 
-	metadataAuthorizeSecurityGroupEgressInput `json:"-" xml:"-"`
-}
-
-type metadataAuthorizeSecurityGroupEgressInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7484,11 +7364,7 @@ func (s AuthorizeSecurityGroupEgressInput) GoString() string {
 }
 
 type AuthorizeSecurityGroupEgressOutput struct {
-	metadataAuthorizeSecurityGroupEgressOutput `json:"-" xml:"-"`
-}
-
-type metadataAuthorizeSecurityGroupEgressOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7550,11 +7426,7 @@ type AuthorizeSecurityGroupIngressInput struct {
 	// For the ICMP code number, use -1 to specify all ICMP codes for the ICMP type.
 	ToPort *int64 `type:"integer"`
 
-	metadataAuthorizeSecurityGroupIngressInput `json:"-" xml:"-"`
-}
-
-type metadataAuthorizeSecurityGroupIngressInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7568,11 +7440,7 @@ func (s AuthorizeSecurityGroupIngressInput) GoString() string {
 }
 
 type AuthorizeSecurityGroupIngressOutput struct {
-	metadataAuthorizeSecurityGroupIngressOutput `json:"-" xml:"-"`
-}
-
-type metadataAuthorizeSecurityGroupIngressOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7599,11 +7467,7 @@ type AvailabilityZone struct {
 	// The name of the Availability Zone.
 	ZoneName *string `locationName:"zoneName" type:"string"`
 
-	metadataAvailabilityZone `json:"-" xml:"-"`
-}
-
-type metadataAvailabilityZone struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7621,11 +7485,7 @@ type AvailabilityZoneMessage struct {
 	// The message about the Availability Zone.
 	Message *string `locationName:"message" type:"string"`
 
-	metadataAvailabilityZoneMessage `json:"-" xml:"-"`
-}
-
-type metadataAvailabilityZoneMessage struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7645,11 +7505,7 @@ type AvailableCapacity struct {
 	// The number of vCPUs available on the Dedicated host.
 	AvailableVCpus *int64 `locationName:"availableVCpus" type:"integer"`
 
-	metadataAvailableCapacity `json:"-" xml:"-"`
-}
-
-type metadataAvailableCapacity struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7665,11 +7521,7 @@ func (s AvailableCapacity) GoString() string {
 type BlobAttributeValue struct {
 	Value []byte `locationName:"value" type:"blob"`
 
-	metadataBlobAttributeValue `json:"-" xml:"-"`
-}
-
-type metadataBlobAttributeValue struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7707,11 +7559,7 @@ type BlockDeviceMapping struct {
 	// for the AMI.
 	VirtualName *string `locationName:"virtualName" type:"string"`
 
-	metadataBlockDeviceMapping `json:"-" xml:"-"`
-}
-
-type metadataBlockDeviceMapping struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7745,11 +7593,7 @@ type BundleInstanceInput struct {
 	// a bucket that belongs to someone else, Amazon EC2 returns an error.
 	Storage *Storage `type:"structure" required:"true"`
 
-	metadataBundleInstanceInput `json:"-" xml:"-"`
-}
-
-type metadataBundleInstanceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7766,11 +7610,7 @@ type BundleInstanceOutput struct {
 	// Information about the bundle task.
 	BundleTask *BundleTask `locationName:"bundleInstanceTask" type:"structure"`
 
-	metadataBundleInstanceOutput `json:"-" xml:"-"`
-}
-
-type metadataBundleInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7809,11 +7649,7 @@ type BundleTask struct {
 	// The time of the most recent update for the task.
 	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataBundleTask `json:"-" xml:"-"`
-}
-
-type metadataBundleTask struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7834,11 +7670,7 @@ type BundleTaskError struct {
 	// The error message.
 	Message *string `locationName:"message" type:"string"`
 
-	metadataBundleTaskError `json:"-" xml:"-"`
-}
-
-type metadataBundleTaskError struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7861,11 +7693,7 @@ type CancelBundleTaskInput struct {
 	// it is UnauthorizedOperation.
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
-	metadataCancelBundleTaskInput `json:"-" xml:"-"`
-}
-
-type metadataCancelBundleTaskInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7882,11 +7710,7 @@ type CancelBundleTaskOutput struct {
 	// Information about the bundle task.
 	BundleTask *BundleTask `locationName:"bundleInstanceTask" type:"structure"`
 
-	metadataCancelBundleTaskOutput `json:"-" xml:"-"`
-}
-
-type metadataCancelBundleTaskOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7912,11 +7736,7 @@ type CancelConversionTaskInput struct {
 	// The reason for canceling the conversion task.
 	ReasonMessage *string `locationName:"reasonMessage" type:"string"`
 
-	metadataCancelConversionTaskInput `json:"-" xml:"-"`
-}
-
-type metadataCancelConversionTaskInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7930,11 +7750,7 @@ func (s CancelConversionTaskInput) GoString() string {
 }
 
 type CancelConversionTaskOutput struct {
-	metadataCancelConversionTaskOutput `json:"-" xml:"-"`
-}
-
-type metadataCancelConversionTaskOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7951,11 +7767,7 @@ type CancelExportTaskInput struct {
 	// The ID of the export task. This is the ID returned by CreateInstanceExportTask.
 	ExportTaskId *string `locationName:"exportTaskId" type:"string" required:"true"`
 
-	metadataCancelExportTaskInput `json:"-" xml:"-"`
-}
-
-type metadataCancelExportTaskInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7969,11 +7781,7 @@ func (s CancelExportTaskInput) GoString() string {
 }
 
 type CancelExportTaskOutput struct {
-	metadataCancelExportTaskOutput `json:"-" xml:"-"`
-}
-
-type metadataCancelExportTaskOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7999,11 +7807,7 @@ type CancelImportTaskInput struct {
 	// The ID of the import image or import snapshot task to be canceled.
 	ImportTaskId *string `type:"string"`
 
-	metadataCancelImportTaskInput `json:"-" xml:"-"`
-}
-
-type metadataCancelImportTaskInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8026,11 +7830,7 @@ type CancelImportTaskOutput struct {
 	// The current state of the task being canceled.
 	State *string `locationName:"state" type:"string"`
 
-	metadataCancelImportTaskOutput `json:"-" xml:"-"`
-}
-
-type metadataCancelImportTaskOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8047,11 +7847,7 @@ type CancelReservedInstancesListingInput struct {
 	// The ID of the Reserved instance listing.
 	ReservedInstancesListingId *string `locationName:"reservedInstancesListingId" type:"string" required:"true"`
 
-	metadataCancelReservedInstancesListingInput `json:"-" xml:"-"`
-}
-
-type metadataCancelReservedInstancesListingInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8068,11 +7864,7 @@ type CancelReservedInstancesListingOutput struct {
 	// The Reserved instance listing.
 	ReservedInstancesListings []*ReservedInstancesListing `locationName:"reservedInstancesListingsSet" locationNameList:"item" type:"list"`
 
-	metadataCancelReservedInstancesListingOutput `json:"-" xml:"-"`
-}
-
-type metadataCancelReservedInstancesListingOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8093,11 +7885,7 @@ type CancelSpotFleetRequestsError struct {
 	// The description for the error code.
 	Message *string `locationName:"message" type:"string" required:"true"`
 
-	metadataCancelSpotFleetRequestsError `json:"-" xml:"-"`
-}
-
-type metadataCancelSpotFleetRequestsError struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8118,11 +7906,7 @@ type CancelSpotFleetRequestsErrorItem struct {
 	// The ID of the Spot fleet request.
 	SpotFleetRequestId *string `locationName:"spotFleetRequestId" type:"string" required:"true"`
 
-	metadataCancelSpotFleetRequestsErrorItem `json:"-" xml:"-"`
-}
-
-type metadataCancelSpotFleetRequestsErrorItem struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8150,11 +7934,7 @@ type CancelSpotFleetRequestsInput struct {
 	// canceled successfully.
 	TerminateInstances *bool `locationName:"terminateInstances" type:"boolean" required:"true"`
 
-	metadataCancelSpotFleetRequestsInput `json:"-" xml:"-"`
-}
-
-type metadataCancelSpotFleetRequestsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8175,11 +7955,7 @@ type CancelSpotFleetRequestsOutput struct {
 	// Information about the Spot fleet requests that are not successfully canceled.
 	UnsuccessfulFleetRequests []*CancelSpotFleetRequestsErrorItem `locationName:"unsuccessfulFleetRequestSet" locationNameList:"item" type:"list"`
 
-	metadataCancelSpotFleetRequestsOutput `json:"-" xml:"-"`
-}
-
-type metadataCancelSpotFleetRequestsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8203,11 +7979,7 @@ type CancelSpotFleetRequestsSuccessItem struct {
 	// The ID of the Spot fleet request.
 	SpotFleetRequestId *string `locationName:"spotFleetRequestId" type:"string" required:"true"`
 
-	metadataCancelSpotFleetRequestsSuccessItem `json:"-" xml:"-"`
-}
-
-type metadataCancelSpotFleetRequestsSuccessItem struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8231,11 +8003,7 @@ type CancelSpotInstanceRequestsInput struct {
 	// One or more Spot instance request IDs.
 	SpotInstanceRequestIds []*string `locationName:"SpotInstanceRequestId" locationNameList:"SpotInstanceRequestId" type:"list" required:"true"`
 
-	metadataCancelSpotInstanceRequestsInput `json:"-" xml:"-"`
-}
-
-type metadataCancelSpotInstanceRequestsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8253,11 +8021,7 @@ type CancelSpotInstanceRequestsOutput struct {
 	// One or more Spot instance requests.
 	CancelledSpotInstanceRequests []*CancelledSpotInstanceRequest `locationName:"spotInstanceRequestSet" locationNameList:"item" type:"list"`
 
-	metadataCancelSpotInstanceRequestsOutput `json:"-" xml:"-"`
-}
-
-type metadataCancelSpotInstanceRequestsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8278,11 +8042,7 @@ type CancelledSpotInstanceRequest struct {
 	// The state of the Spot instance request.
 	State *string `locationName:"state" type:"string" enum:"CancelSpotInstanceRequestState"`
 
-	metadataCancelledSpotInstanceRequest `json:"-" xml:"-"`
-}
-
-type metadataCancelledSpotInstanceRequest struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8309,11 +8069,7 @@ type ClassicLinkInstance struct {
 	// The ID of the VPC.
 	VpcId *string `locationName:"vpcId" type:"string"`
 
-	metadataClassicLinkInstance `json:"-" xml:"-"`
-}
-
-type metadataClassicLinkInstance struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8340,11 +8096,7 @@ type ClientData struct {
 	// The time that the disk upload starts.
 	UploadStart *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataClientData `json:"-" xml:"-"`
-}
-
-type metadataClientData struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8370,11 +8122,7 @@ type ConfirmProductInstanceInput struct {
 	// The product code. This must be a product code that you own.
 	ProductCode *string `type:"string" required:"true"`
 
-	metadataConfirmProductInstanceInput `json:"-" xml:"-"`
-}
-
-type metadataConfirmProductInstanceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8396,11 +8144,7 @@ type ConfirmProductInstanceOutput struct {
 	// is owned by the requester and associated with the specified instance.
 	Return *bool `locationName:"return" type:"boolean"`
 
-	metadataConfirmProductInstanceOutput `json:"-" xml:"-"`
-}
-
-type metadataConfirmProductInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8439,11 +8183,7 @@ type ConversionTask struct {
 	// Any tags assigned to the task.
 	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
 
-	metadataConversionTask `json:"-" xml:"-"`
-}
-
-type metadataConversionTask struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8480,11 +8220,7 @@ type CopyImageInput struct {
 	// The name of the region that contains the AMI to copy.
 	SourceRegion *string `type:"string" required:"true"`
 
-	metadataCopyImageInput `json:"-" xml:"-"`
-}
-
-type metadataCopyImageInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8501,11 +8237,7 @@ type CopyImageOutput struct {
 	// The ID of the new AMI.
 	ImageId *string `locationName:"imageId" type:"string"`
 
-	metadataCopyImageOutput `json:"-" xml:"-"`
-}
-
-type metadataCopyImageOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8577,11 +8309,7 @@ type CopySnapshotInput struct {
 	// The ID of the EBS snapshot to copy.
 	SourceSnapshotId *string `type:"string" required:"true"`
 
-	metadataCopySnapshotInput `json:"-" xml:"-"`
-}
-
-type metadataCopySnapshotInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8598,11 +8326,7 @@ type CopySnapshotOutput struct {
 	// The ID of the new snapshot.
 	SnapshotId *string `locationName:"snapshotId" type:"string"`
 
-	metadataCopySnapshotOutput `json:"-" xml:"-"`
-}
-
-type metadataCopySnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8634,11 +8358,7 @@ type CreateCustomerGatewayInput struct {
 	// The type of VPN connection that this customer gateway supports (ipsec.1).
 	Type *string `type:"string" required:"true" enum:"GatewayType"`
 
-	metadataCreateCustomerGatewayInput `json:"-" xml:"-"`
-}
-
-type metadataCreateCustomerGatewayInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8655,11 +8375,7 @@ type CreateCustomerGatewayOutput struct {
 	// Information about the customer gateway.
 	CustomerGateway *CustomerGateway `locationName:"customerGateway" type:"structure"`
 
-	metadataCreateCustomerGatewayOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateCustomerGatewayOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8682,11 +8398,7 @@ type CreateDhcpOptionsInput struct {
 	// it is UnauthorizedOperation.
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
-	metadataCreateDhcpOptionsInput `json:"-" xml:"-"`
-}
-
-type metadataCreateDhcpOptionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8703,11 +8415,7 @@ type CreateDhcpOptionsOutput struct {
 	// A set of DHCP options.
 	DhcpOptions *DhcpOptions `locationName:"dhcpOptions" type:"structure"`
 
-	metadataCreateDhcpOptionsOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateDhcpOptionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8741,11 +8449,7 @@ type CreateFlowLogsInput struct {
 	// The type of traffic to log.
 	TrafficType *string `type:"string" required:"true" enum:"TrafficType"`
 
-	metadataCreateFlowLogsInput `json:"-" xml:"-"`
-}
-
-type metadataCreateFlowLogsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8769,11 +8473,7 @@ type CreateFlowLogsOutput struct {
 	// Information about the flow logs that could not be created successfully.
 	Unsuccessful []*UnsuccessfulItem `locationName:"unsuccessful" locationNameList:"item" type:"list"`
 
-	metadataCreateFlowLogsOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateFlowLogsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8816,11 +8516,7 @@ type CreateImageInput struct {
 	// system integrity on the created image can't be guaranteed.
 	NoReboot *bool `locationName:"noReboot" type:"boolean"`
 
-	metadataCreateImageInput `json:"-" xml:"-"`
-}
-
-type metadataCreateImageInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8837,11 +8533,7 @@ type CreateImageOutput struct {
 	// The ID of the new AMI.
 	ImageId *string `locationName:"imageId" type:"string"`
 
-	metadataCreateImageOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateImageOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8868,11 +8560,7 @@ type CreateInstanceExportTaskInput struct {
 	// The target virtualization environment.
 	TargetEnvironment *string `locationName:"targetEnvironment" type:"string" enum:"ExportEnvironment"`
 
-	metadataCreateInstanceExportTaskInput `json:"-" xml:"-"`
-}
-
-type metadataCreateInstanceExportTaskInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8889,11 +8577,7 @@ type CreateInstanceExportTaskOutput struct {
 	// Information about the instance export task.
 	ExportTask *ExportTask `locationName:"exportTask" type:"structure"`
 
-	metadataCreateInstanceExportTaskOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateInstanceExportTaskOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8913,11 +8597,7 @@ type CreateInternetGatewayInput struct {
 	// it is UnauthorizedOperation.
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
-	metadataCreateInternetGatewayInput `json:"-" xml:"-"`
-}
-
-type metadataCreateInternetGatewayInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8934,11 +8614,7 @@ type CreateInternetGatewayOutput struct {
 	// Information about the Internet gateway.
 	InternetGateway *InternetGateway `locationName:"internetGateway" type:"structure"`
 
-	metadataCreateInternetGatewayOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateInternetGatewayOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8963,11 +8639,7 @@ type CreateKeyPairInput struct {
 	// Constraints: Up to 255 ASCII characters
 	KeyName *string `type:"string" required:"true"`
 
-	metadataCreateKeyPairInput `json:"-" xml:"-"`
-}
-
-type metadataCreateKeyPairInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -8991,11 +8663,7 @@ type CreateKeyPairOutput struct {
 	// The name of the key pair.
 	KeyName *string `locationName:"keyName" type:"string"`
 
-	metadataCreateKeyPairOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateKeyPairOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9044,11 +8712,7 @@ type CreateNetworkAclEntryInput struct {
 	// Constraints: Positive integer from 1 to 32766
 	RuleNumber *int64 `locationName:"ruleNumber" type:"integer" required:"true"`
 
-	metadataCreateNetworkAclEntryInput `json:"-" xml:"-"`
-}
-
-type metadataCreateNetworkAclEntryInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9062,11 +8726,7 @@ func (s CreateNetworkAclEntryInput) GoString() string {
 }
 
 type CreateNetworkAclEntryOutput struct {
-	metadataCreateNetworkAclEntryOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateNetworkAclEntryOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9089,11 +8749,7 @@ type CreateNetworkAclInput struct {
 	// The ID of the VPC.
 	VpcId *string `locationName:"vpcId" type:"string" required:"true"`
 
-	metadataCreateNetworkAclInput `json:"-" xml:"-"`
-}
-
-type metadataCreateNetworkAclInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9110,11 +8766,7 @@ type CreateNetworkAclOutput struct {
 	// Information about the network ACL.
 	NetworkAcl *NetworkAcl `locationName:"networkAcl" type:"structure"`
 
-	metadataCreateNetworkAclOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateNetworkAclOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9163,11 +8815,7 @@ type CreateNetworkInterfaceInput struct {
 	// The ID of the subnet to associate with the network interface.
 	SubnetId *string `locationName:"subnetId" type:"string" required:"true"`
 
-	metadataCreateNetworkInterfaceInput `json:"-" xml:"-"`
-}
-
-type metadataCreateNetworkInterfaceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9184,11 +8832,7 @@ type CreateNetworkInterfaceOutput struct {
 	// Information about the network interface.
 	NetworkInterface *NetworkInterface `locationName:"networkInterface" type:"structure"`
 
-	metadataCreateNetworkInterfaceOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateNetworkInterfaceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9216,11 +8860,7 @@ type CreatePlacementGroupInput struct {
 	// The placement strategy.
 	Strategy *string `locationName:"strategy" type:"string" required:"true" enum:"PlacementStrategy"`
 
-	metadataCreatePlacementGroupInput `json:"-" xml:"-"`
-}
-
-type metadataCreatePlacementGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9234,11 +8874,7 @@ func (s CreatePlacementGroupInput) GoString() string {
 }
 
 type CreatePlacementGroupOutput struct {
-	metadataCreatePlacementGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataCreatePlacementGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9270,11 +8906,7 @@ type CreateReservedInstancesListingInput struct {
 	// The ID of the active Reserved instance.
 	ReservedInstancesId *string `locationName:"reservedInstancesId" type:"string" required:"true"`
 
-	metadataCreateReservedInstancesListingInput `json:"-" xml:"-"`
-}
-
-type metadataCreateReservedInstancesListingInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9291,11 +8923,7 @@ type CreateReservedInstancesListingOutput struct {
 	// Information about the Reserved instance listing.
 	ReservedInstancesListings []*ReservedInstancesListing `locationName:"reservedInstancesListingsSet" locationNameList:"item" type:"list"`
 
-	metadataCreateReservedInstancesListingOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateReservedInstancesListingOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9336,11 +8964,7 @@ type CreateRouteInput struct {
 	// The ID of a VPC peering connection.
 	VpcPeeringConnectionId *string `locationName:"vpcPeeringConnectionId" type:"string"`
 
-	metadataCreateRouteInput `json:"-" xml:"-"`
-}
-
-type metadataCreateRouteInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9357,11 +8981,7 @@ type CreateRouteOutput struct {
 	// Returns true if the request succeeds; otherwise, it returns an error.
 	Return *bool `locationName:"return" type:"boolean"`
 
-	metadataCreateRouteOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateRouteOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9384,11 +9004,7 @@ type CreateRouteTableInput struct {
 	// The ID of the VPC.
 	VpcId *string `locationName:"vpcId" type:"string" required:"true"`
 
-	metadataCreateRouteTableInput `json:"-" xml:"-"`
-}
-
-type metadataCreateRouteTableInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9405,11 +9021,7 @@ type CreateRouteTableOutput struct {
 	// Information about the route table.
 	RouteTable *RouteTable `locationName:"routeTable" type:"structure"`
 
-	metadataCreateRouteTableOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateRouteTableOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9450,11 +9062,7 @@ type CreateSecurityGroupInput struct {
 	// [EC2-VPC] The ID of the VPC. Required for EC2-VPC.
 	VpcId *string `type:"string"`
 
-	metadataCreateSecurityGroupInput `json:"-" xml:"-"`
-}
-
-type metadataCreateSecurityGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9471,11 +9079,7 @@ type CreateSecurityGroupOutput struct {
 	// The ID of the security group.
 	GroupId *string `locationName:"groupId" type:"string"`
 
-	metadataCreateSecurityGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateSecurityGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9501,11 +9105,7 @@ type CreateSnapshotInput struct {
 	// The ID of the EBS volume.
 	VolumeId *string `type:"string" required:"true"`
 
-	metadataCreateSnapshotInput `json:"-" xml:"-"`
-}
-
-type metadataCreateSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9532,11 +9132,7 @@ type CreateSpotDatafeedSubscriptionInput struct {
 	// A prefix for the data feed file names.
 	Prefix *string `locationName:"prefix" type:"string"`
 
-	metadataCreateSpotDatafeedSubscriptionInput `json:"-" xml:"-"`
-}
-
-type metadataCreateSpotDatafeedSubscriptionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9554,11 +9150,7 @@ type CreateSpotDatafeedSubscriptionOutput struct {
 	// The Spot instance data feed subscription.
 	SpotDatafeedSubscription *SpotDatafeedSubscription `locationName:"spotDatafeedSubscription" type:"structure"`
 
-	metadataCreateSpotDatafeedSubscriptionOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateSpotDatafeedSubscriptionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9590,11 +9182,7 @@ type CreateSubnetInput struct {
 	// The ID of the VPC.
 	VpcId *string `type:"string" required:"true"`
 
-	metadataCreateSubnetInput `json:"-" xml:"-"`
-}
-
-type metadataCreateSubnetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9611,11 +9199,7 @@ type CreateSubnetOutput struct {
 	// Information about the subnet.
 	Subnet *Subnet `locationName:"subnet" type:"structure"`
 
-	metadataCreateSubnetOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateSubnetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9643,11 +9227,7 @@ type CreateTagsInput struct {
 	// the value to an empty string.
 	Tags []*Tag `locationName:"Tag" locationNameList:"item" type:"list" required:"true"`
 
-	metadataCreateTagsInput `json:"-" xml:"-"`
-}
-
-type metadataCreateTagsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9661,11 +9241,7 @@ func (s CreateTagsInput) GoString() string {
 }
 
 type CreateTagsOutput struct {
-	metadataCreateTagsOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateTagsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9733,11 +9309,7 @@ type CreateVolumeInput struct {
 	// Default: standard
 	VolumeType *string `type:"string" enum:"VolumeType"`
 
-	metadataCreateVolumeInput `json:"-" xml:"-"`
-}
-
-type metadataCreateVolumeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9761,11 +9333,7 @@ type CreateVolumePermission struct {
 	// list of create volume permissions.
 	UserId *string `locationName:"userId" type:"string"`
 
-	metadataCreateVolumePermission `json:"-" xml:"-"`
-}
-
-type metadataCreateVolumePermission struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9788,11 +9356,7 @@ type CreateVolumePermissionModifications struct {
 	// volume permissions.
 	Remove []*CreateVolumePermission `locationNameList:"item" type:"list"`
 
-	metadataCreateVolumePermissionModifications `json:"-" xml:"-"`
-}
-
-type metadataCreateVolumePermissionModifications struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9831,11 +9395,7 @@ type CreateVpcEndpointInput struct {
 	// The ID of the VPC in which the endpoint will be used.
 	VpcId *string `type:"string" required:"true"`
 
-	metadataCreateVpcEndpointInput `json:"-" xml:"-"`
-}
-
-type metadataCreateVpcEndpointInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9856,11 +9416,7 @@ type CreateVpcEndpointOutput struct {
 	// Information about the endpoint.
 	VpcEndpoint *VpcEndpoint `locationName:"vpcEndpoint" type:"structure"`
 
-	metadataCreateVpcEndpointOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateVpcEndpointOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9895,11 +9451,7 @@ type CreateVpcInput struct {
 	// Default: default
 	InstanceTenancy *string `locationName:"instanceTenancy" type:"string" enum:"Tenancy"`
 
-	metadataCreateVpcInput `json:"-" xml:"-"`
-}
-
-type metadataCreateVpcInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9916,11 +9468,7 @@ type CreateVpcOutput struct {
 	// Information about the VPC.
 	Vpc *Vpc `locationName:"vpc" type:"structure"`
 
-	metadataCreateVpcOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateVpcOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9951,11 +9499,7 @@ type CreateVpcPeeringConnectionInput struct {
 	// The ID of the requester VPC.
 	VpcId *string `locationName:"vpcId" type:"string"`
 
-	metadataCreateVpcPeeringConnectionInput `json:"-" xml:"-"`
-}
-
-type metadataCreateVpcPeeringConnectionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -9972,11 +9516,7 @@ type CreateVpcPeeringConnectionOutput struct {
 	// Information about the VPC peering connection.
 	VpcPeeringConnection *VpcPeeringConnection `locationName:"vpcPeeringConnection" type:"structure"`
 
-	metadataCreateVpcPeeringConnectionOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateVpcPeeringConnectionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10012,11 +9552,7 @@ type CreateVpnConnectionInput struct {
 	// The ID of the virtual private gateway.
 	VpnGatewayId *string `type:"string" required:"true"`
 
-	metadataCreateVpnConnectionInput `json:"-" xml:"-"`
-}
-
-type metadataCreateVpnConnectionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10033,11 +9569,7 @@ type CreateVpnConnectionOutput struct {
 	// Information about the VPN connection.
 	VpnConnection *VpnConnection `locationName:"vpnConnection" type:"structure"`
 
-	metadataCreateVpnConnectionOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateVpnConnectionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10057,11 +9589,7 @@ type CreateVpnConnectionRouteInput struct {
 	// The ID of the VPN connection.
 	VpnConnectionId *string `type:"string" required:"true"`
 
-	metadataCreateVpnConnectionRouteInput `json:"-" xml:"-"`
-}
-
-type metadataCreateVpnConnectionRouteInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10075,11 +9603,7 @@ func (s CreateVpnConnectionRouteInput) GoString() string {
 }
 
 type CreateVpnConnectionRouteOutput struct {
-	metadataCreateVpnConnectionRouteOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateVpnConnectionRouteOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10105,11 +9629,7 @@ type CreateVpnGatewayInput struct {
 	// The type of VPN connection this virtual private gateway supports.
 	Type *string `type:"string" required:"true" enum:"GatewayType"`
 
-	metadataCreateVpnGatewayInput `json:"-" xml:"-"`
-}
-
-type metadataCreateVpnGatewayInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10126,11 +9646,7 @@ type CreateVpnGatewayOutput struct {
 	// Information about the virtual private gateway.
 	VpnGateway *VpnGateway `locationName:"vpnGateway" type:"structure"`
 
-	metadataCreateVpnGatewayOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateVpnGatewayOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10165,11 +9681,7 @@ type CustomerGateway struct {
 	// The type of VPN connection the customer gateway supports (ipsec.1).
 	Type *string `locationName:"type" type:"string"`
 
-	metadataCustomerGateway `json:"-" xml:"-"`
-}
-
-type metadataCustomerGateway struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10192,11 +9704,7 @@ type DeleteCustomerGatewayInput struct {
 	// it is UnauthorizedOperation.
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
-	metadataDeleteCustomerGatewayInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteCustomerGatewayInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10210,11 +9718,7 @@ func (s DeleteCustomerGatewayInput) GoString() string {
 }
 
 type DeleteCustomerGatewayOutput struct {
-	metadataDeleteCustomerGatewayOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteCustomerGatewayOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10237,11 +9741,7 @@ type DeleteDhcpOptionsInput struct {
 	// it is UnauthorizedOperation.
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
-	metadataDeleteDhcpOptionsInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDhcpOptionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10255,11 +9755,7 @@ func (s DeleteDhcpOptionsInput) GoString() string {
 }
 
 type DeleteDhcpOptionsOutput struct {
-	metadataDeleteDhcpOptionsOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDhcpOptionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10276,11 +9772,7 @@ type DeleteFlowLogsInput struct {
 	// One or more flow log IDs.
 	FlowLogIds []*string `locationName:"FlowLogId" locationNameList:"item" type:"list" required:"true"`
 
-	metadataDeleteFlowLogsInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteFlowLogsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10297,11 +9789,7 @@ type DeleteFlowLogsOutput struct {
 	// Information about the flow logs that could not be deleted successfully.
 	Unsuccessful []*UnsuccessfulItem `locationName:"unsuccessful" locationNameList:"item" type:"list"`
 
-	metadataDeleteFlowLogsOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteFlowLogsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10324,11 +9812,7 @@ type DeleteInternetGatewayInput struct {
 	// The ID of the Internet gateway.
 	InternetGatewayId *string `locationName:"internetGatewayId" type:"string" required:"true"`
 
-	metadataDeleteInternetGatewayInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteInternetGatewayInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10342,11 +9826,7 @@ func (s DeleteInternetGatewayInput) GoString() string {
 }
 
 type DeleteInternetGatewayOutput struct {
-	metadataDeleteInternetGatewayOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteInternetGatewayOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10369,11 +9849,7 @@ type DeleteKeyPairInput struct {
 	// The name of the key pair.
 	KeyName *string `type:"string" required:"true"`
 
-	metadataDeleteKeyPairInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteKeyPairInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10387,11 +9863,7 @@ func (s DeleteKeyPairInput) GoString() string {
 }
 
 type DeleteKeyPairOutput struct {
-	metadataDeleteKeyPairOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteKeyPairOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10420,11 +9892,7 @@ type DeleteNetworkAclEntryInput struct {
 	// The rule number of the entry to delete.
 	RuleNumber *int64 `locationName:"ruleNumber" type:"integer" required:"true"`
 
-	metadataDeleteNetworkAclEntryInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteNetworkAclEntryInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10438,11 +9906,7 @@ func (s DeleteNetworkAclEntryInput) GoString() string {
 }
 
 type DeleteNetworkAclEntryOutput struct {
-	metadataDeleteNetworkAclEntryOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteNetworkAclEntryOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10465,11 +9929,7 @@ type DeleteNetworkAclInput struct {
 	// The ID of the network ACL.
 	NetworkAclId *string `locationName:"networkAclId" type:"string" required:"true"`
 
-	metadataDeleteNetworkAclInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteNetworkAclInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10483,11 +9943,7 @@ func (s DeleteNetworkAclInput) GoString() string {
 }
 
 type DeleteNetworkAclOutput struct {
-	metadataDeleteNetworkAclOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteNetworkAclOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10510,11 +9966,7 @@ type DeleteNetworkInterfaceInput struct {
 	// The ID of the network interface.
 	NetworkInterfaceId *string `locationName:"networkInterfaceId" type:"string" required:"true"`
 
-	metadataDeleteNetworkInterfaceInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteNetworkInterfaceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10528,11 +9980,7 @@ func (s DeleteNetworkInterfaceInput) GoString() string {
 }
 
 type DeleteNetworkInterfaceOutput struct {
-	metadataDeleteNetworkInterfaceOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteNetworkInterfaceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10555,11 +10003,7 @@ type DeletePlacementGroupInput struct {
 	// The name of the placement group.
 	GroupName *string `locationName:"groupName" type:"string" required:"true"`
 
-	metadataDeletePlacementGroupInput `json:"-" xml:"-"`
-}
-
-type metadataDeletePlacementGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10573,11 +10017,7 @@ func (s DeletePlacementGroupInput) GoString() string {
 }
 
 type DeletePlacementGroupOutput struct {
-	metadataDeletePlacementGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataDeletePlacementGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10604,11 +10044,7 @@ type DeleteRouteInput struct {
 	// The ID of the route table.
 	RouteTableId *string `locationName:"routeTableId" type:"string" required:"true"`
 
-	metadataDeleteRouteInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteRouteInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10622,11 +10058,7 @@ func (s DeleteRouteInput) GoString() string {
 }
 
 type DeleteRouteOutput struct {
-	metadataDeleteRouteOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteRouteOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10649,11 +10081,7 @@ type DeleteRouteTableInput struct {
 	// The ID of the route table.
 	RouteTableId *string `locationName:"routeTableId" type:"string" required:"true"`
 
-	metadataDeleteRouteTableInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteRouteTableInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10667,11 +10095,7 @@ func (s DeleteRouteTableInput) GoString() string {
 }
 
 type DeleteRouteTableOutput struct {
-	metadataDeleteRouteTableOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteRouteTableOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10698,11 +10122,7 @@ type DeleteSecurityGroupInput struct {
 	// either the security group name or the security group ID.
 	GroupName *string `type:"string"`
 
-	metadataDeleteSecurityGroupInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteSecurityGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10716,11 +10136,7 @@ func (s DeleteSecurityGroupInput) GoString() string {
 }
 
 type DeleteSecurityGroupOutput struct {
-	metadataDeleteSecurityGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteSecurityGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10743,11 +10159,7 @@ type DeleteSnapshotInput struct {
 	// The ID of the EBS snapshot.
 	SnapshotId *string `type:"string" required:"true"`
 
-	metadataDeleteSnapshotInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10761,11 +10173,7 @@ func (s DeleteSnapshotInput) GoString() string {
 }
 
 type DeleteSnapshotOutput struct {
-	metadataDeleteSnapshotOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteSnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10786,11 +10194,7 @@ type DeleteSpotDatafeedSubscriptionInput struct {
 	// it is UnauthorizedOperation.
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
-	metadataDeleteSpotDatafeedSubscriptionInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteSpotDatafeedSubscriptionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10804,11 +10208,7 @@ func (s DeleteSpotDatafeedSubscriptionInput) GoString() string {
 }
 
 type DeleteSpotDatafeedSubscriptionOutput struct {
-	metadataDeleteSpotDatafeedSubscriptionOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteSpotDatafeedSubscriptionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10831,11 +10231,7 @@ type DeleteSubnetInput struct {
 	// The ID of the subnet.
 	SubnetId *string `type:"string" required:"true"`
 
-	metadataDeleteSubnetInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteSubnetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10849,11 +10245,7 @@ func (s DeleteSubnetInput) GoString() string {
 }
 
 type DeleteSubnetOutput struct {
-	metadataDeleteSubnetOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteSubnetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10882,11 +10274,7 @@ type DeleteTagsInput struct {
 	// string as the value, we delete the key only if its value is an empty string.
 	Tags []*Tag `locationName:"tag" locationNameList:"item" type:"list"`
 
-	metadataDeleteTagsInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteTagsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10900,11 +10288,7 @@ func (s DeleteTagsInput) GoString() string {
 }
 
 type DeleteTagsOutput struct {
-	metadataDeleteTagsOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteTagsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10927,11 +10311,7 @@ type DeleteVolumeInput struct {
 	// The ID of the volume.
 	VolumeId *string `type:"string" required:"true"`
 
-	metadataDeleteVolumeInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteVolumeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10945,11 +10325,7 @@ func (s DeleteVolumeInput) GoString() string {
 }
 
 type DeleteVolumeOutput struct {
-	metadataDeleteVolumeOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteVolumeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10972,11 +10348,7 @@ type DeleteVpcEndpointsInput struct {
 	// One or more endpoint IDs.
 	VpcEndpointIds []*string `locationName:"VpcEndpointId" locationNameList:"item" type:"list" required:"true"`
 
-	metadataDeleteVpcEndpointsInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteVpcEndpointsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -10993,11 +10365,7 @@ type DeleteVpcEndpointsOutput struct {
 	// Information about the endpoints that were not successfully deleted.
 	Unsuccessful []*UnsuccessfulItem `locationName:"unsuccessful" locationNameList:"item" type:"list"`
 
-	metadataDeleteVpcEndpointsOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteVpcEndpointsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11020,11 +10388,7 @@ type DeleteVpcInput struct {
 	// The ID of the VPC.
 	VpcId *string `type:"string" required:"true"`
 
-	metadataDeleteVpcInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteVpcInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11038,11 +10402,7 @@ func (s DeleteVpcInput) GoString() string {
 }
 
 type DeleteVpcOutput struct {
-	metadataDeleteVpcOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteVpcOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11065,11 +10425,7 @@ type DeleteVpcPeeringConnectionInput struct {
 	// The ID of the VPC peering connection.
 	VpcPeeringConnectionId *string `locationName:"vpcPeeringConnectionId" type:"string" required:"true"`
 
-	metadataDeleteVpcPeeringConnectionInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteVpcPeeringConnectionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11086,11 +10442,7 @@ type DeleteVpcPeeringConnectionOutput struct {
 	// Returns true if the request succeeds; otherwise, it returns an error.
 	Return *bool `locationName:"return" type:"boolean"`
 
-	metadataDeleteVpcPeeringConnectionOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteVpcPeeringConnectionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11113,11 +10465,7 @@ type DeleteVpnConnectionInput struct {
 	// The ID of the VPN connection.
 	VpnConnectionId *string `type:"string" required:"true"`
 
-	metadataDeleteVpnConnectionInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteVpnConnectionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11131,11 +10479,7 @@ func (s DeleteVpnConnectionInput) GoString() string {
 }
 
 type DeleteVpnConnectionOutput struct {
-	metadataDeleteVpnConnectionOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteVpnConnectionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11155,11 +10499,7 @@ type DeleteVpnConnectionRouteInput struct {
 	// The ID of the VPN connection.
 	VpnConnectionId *string `type:"string" required:"true"`
 
-	metadataDeleteVpnConnectionRouteInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteVpnConnectionRouteInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11173,11 +10513,7 @@ func (s DeleteVpnConnectionRouteInput) GoString() string {
 }
 
 type DeleteVpnConnectionRouteOutput struct {
-	metadataDeleteVpnConnectionRouteOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteVpnConnectionRouteOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11200,11 +10536,7 @@ type DeleteVpnGatewayInput struct {
 	// The ID of the virtual private gateway.
 	VpnGatewayId *string `type:"string" required:"true"`
 
-	metadataDeleteVpnGatewayInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteVpnGatewayInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11218,11 +10550,7 @@ func (s DeleteVpnGatewayInput) GoString() string {
 }
 
 type DeleteVpnGatewayOutput struct {
-	metadataDeleteVpnGatewayOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteVpnGatewayOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11245,11 +10573,7 @@ type DeregisterImageInput struct {
 	// The ID of the AMI.
 	ImageId *string `type:"string" required:"true"`
 
-	metadataDeregisterImageInput `json:"-" xml:"-"`
-}
-
-type metadataDeregisterImageInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11263,11 +10587,7 @@ func (s DeregisterImageInput) GoString() string {
 }
 
 type DeregisterImageOutput struct {
-	metadataDeregisterImageOutput `json:"-" xml:"-"`
-}
-
-type metadataDeregisterImageOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11290,11 +10610,7 @@ type DescribeAccountAttributesInput struct {
 	// it is UnauthorizedOperation.
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
-	metadataDescribeAccountAttributesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAccountAttributesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11311,11 +10627,7 @@ type DescribeAccountAttributesOutput struct {
 	// Information about one or more account attributes.
 	AccountAttributes []*AccountAttribute `locationName:"accountAttributeSet" locationNameList:"item" type:"list"`
 
-	metadataDescribeAccountAttributesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAccountAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11368,11 +10680,7 @@ type DescribeAddressesInput struct {
 	// Default: Describes all your Elastic IP addresses.
 	PublicIps []*string `locationName:"PublicIp" locationNameList:"PublicIp" type:"list"`
 
-	metadataDescribeAddressesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAddressesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11389,11 +10697,7 @@ type DescribeAddressesOutput struct {
 	// Information about one or more Elastic IP addresses.
 	Addresses []*Address `locationName:"addressesSet" locationNameList:"item" type:"list"`
 
-	metadataDescribeAddressesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAddressesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11429,11 +10733,7 @@ type DescribeAvailabilityZonesInput struct {
 	// The names of one or more Availability Zones.
 	ZoneNames []*string `locationName:"ZoneName" locationNameList:"ZoneName" type:"list"`
 
-	metadataDescribeAvailabilityZonesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAvailabilityZonesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11450,11 +10750,7 @@ type DescribeAvailabilityZonesOutput struct {
 	// Information about one or more Availability Zones.
 	AvailabilityZones []*AvailabilityZone `locationName:"availabilityZoneInfo" locationNameList:"item" type:"list"`
 
-	metadataDescribeAvailabilityZonesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAvailabilityZonesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11504,11 +10800,7 @@ type DescribeBundleTasksInput struct {
 	//   update-time - The time of the most recent update for the task.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
-	metadataDescribeBundleTasksInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeBundleTasksInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11525,11 +10817,7 @@ type DescribeBundleTasksOutput struct {
 	// Information about one or more bundle tasks.
 	BundleTasks []*BundleTask `locationName:"bundleInstanceTasksSet" locationNameList:"item" type:"list"`
 
-	metadataDescribeBundleTasksOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeBundleTasksOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11586,11 +10874,7 @@ type DescribeClassicLinkInstancesInput struct {
 	// The token to retrieve the next page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataDescribeClassicLinkInstancesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeClassicLinkInstancesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11611,11 +10895,7 @@ type DescribeClassicLinkInstancesOutput struct {
 	// when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataDescribeClassicLinkInstancesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeClassicLinkInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11641,11 +10921,7 @@ type DescribeConversionTasksInput struct {
 	// One or more filters.
 	Filters []*Filter `locationName:"filter" locationNameList:"Filter" type:"list"`
 
-	metadataDescribeConversionTasksInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeConversionTasksInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11662,11 +10938,7 @@ type DescribeConversionTasksOutput struct {
 	// Information about the conversion tasks.
 	ConversionTasks []*ConversionTask `locationName:"conversionTasks" locationNameList:"item" type:"list"`
 
-	metadataDescribeConversionTasksOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeConversionTasksOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11720,11 +10992,7 @@ type DescribeCustomerGatewaysInput struct {
 	// independent of the tag-key filter.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
-	metadataDescribeCustomerGatewaysInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeCustomerGatewaysInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11741,11 +11009,7 @@ type DescribeCustomerGatewaysOutput struct {
 	// Information about one or more customer gateways.
 	CustomerGateways []*CustomerGateway `locationName:"customerGatewaySet" locationNameList:"item" type:"list"`
 
-	metadataDescribeCustomerGatewaysOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeCustomerGatewaysOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11791,11 +11055,7 @@ type DescribeDhcpOptionsInput struct {
 	// independent of the tag-key filter.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
-	metadataDescribeDhcpOptionsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDhcpOptionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11812,11 +11072,7 @@ type DescribeDhcpOptionsOutput struct {
 	// Information about one or more DHCP options sets.
 	DhcpOptions []*DhcpOptions `locationName:"dhcpOptionsSet" locationNameList:"item" type:"list"`
 
-	metadataDescribeDhcpOptionsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDhcpOptionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11833,11 +11089,7 @@ type DescribeExportTasksInput struct {
 	// One or more export task IDs.
 	ExportTaskIds []*string `locationName:"exportTaskId" locationNameList:"ExportTaskId" type:"list"`
 
-	metadataDescribeExportTasksInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeExportTasksInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11854,11 +11106,7 @@ type DescribeExportTasksOutput struct {
 	// Information about the export tasks.
 	ExportTasks []*ExportTask `locationName:"exportTaskSet" locationNameList:"item" type:"list"`
 
-	metadataDescribeExportTasksOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeExportTasksOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11898,11 +11146,7 @@ type DescribeFlowLogsInput struct {
 	// The token to retrieve the next page of results.
 	NextToken *string `type:"string"`
 
-	metadataDescribeFlowLogsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeFlowLogsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11923,11 +11167,7 @@ type DescribeFlowLogsOutput struct {
 	// when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataDescribeFlowLogsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeFlowLogsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11972,11 +11212,7 @@ type DescribeHostsInput struct {
 	// The token to retrieve the next page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataDescribeHostsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeHostsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -11997,11 +11233,7 @@ type DescribeHostsOutput struct {
 	// when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataDescribeHostsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeHostsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -12018,11 +11250,7 @@ type DescribeIdFormatInput struct {
 	// The type of resource.
 	Resource *string `type:"string"`
 
-	metadataDescribeIdFormatInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeIdFormatInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -12039,11 +11267,7 @@ type DescribeIdFormatOutput struct {
 	// Information about the ID format for the resource.
 	Statuses []*IdFormat `locationName:"statusSet" locationNameList:"item" type:"list"`
 
-	metadataDescribeIdFormatOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeIdFormatOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -12073,11 +11297,7 @@ type DescribeImageAttributeInput struct {
 	// The ID of the AMI.
 	ImageId *string `type:"string" required:"true"`
 
-	metadataDescribeImageAttributeInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeImageAttributeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -12116,11 +11336,7 @@ type DescribeImageAttributeOutput struct {
 	// The value to use for a resource attribute.
 	SriovNetSupport *AttributeValue `locationName:"sriovNetSupport" type:"structure"`
 
-	metadataDescribeImageAttributeOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeImageAttributeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -12227,11 +11443,7 @@ type DescribeImagesInput struct {
 	// you have launch permissions, regardless of ownership.
 	Owners []*string `locationName:"Owner" locationNameList:"Owner" type:"list"`
 
-	metadataDescribeImagesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeImagesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -12248,11 +11460,7 @@ type DescribeImagesOutput struct {
 	// Information about one or more images.
 	Images []*Image `locationName:"imagesSet" locationNameList:"item" type:"list"`
 
-	metadataDescribeImagesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeImagesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -12284,11 +11492,7 @@ type DescribeImportImageTasksInput struct {
 	// A token that indicates the next page of results.
 	NextToken *string `type:"string"`
 
-	metadataDescribeImportImageTasksInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeImportImageTasksInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -12310,11 +11514,7 @@ type DescribeImportImageTasksOutput struct {
 	// there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataDescribeImportImageTasksOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeImportImageTasksOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -12346,11 +11546,7 @@ type DescribeImportSnapshotTasksInput struct {
 	// A token that indicates the next page of results.
 	NextToken *string `type:"string"`
 
-	metadataDescribeImportSnapshotTasksInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeImportSnapshotTasksInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -12372,11 +11568,7 @@ type DescribeImportSnapshotTasksOutput struct {
 	// there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataDescribeImportSnapshotTasksOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeImportSnapshotTasksOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -12402,11 +11594,7 @@ type DescribeInstanceAttributeInput struct {
 	// The ID of the instance.
 	InstanceId *string `locationName:"instanceId" type:"string" required:"true"`
 
-	metadataDescribeInstanceAttributeInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeInstanceAttributeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -12467,11 +11655,7 @@ type DescribeInstanceAttributeOutput struct {
 	// The Base64-encoded MIME user data.
 	UserData *AttributeValue `locationName:"userData" type:"structure"`
 
-	metadataDescribeInstanceAttributeOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeInstanceAttributeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -12552,11 +11736,7 @@ type DescribeInstanceStatusInput struct {
 	// The token to retrieve the next page of results.
 	NextToken *string `type:"string"`
 
-	metadataDescribeInstanceStatusInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeInstanceStatusInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -12577,11 +11757,7 @@ type DescribeInstanceStatusOutput struct {
 	// when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataDescribeInstanceStatusOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeInstanceStatusOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -12842,11 +12018,7 @@ type DescribeInstancesInput struct {
 	// The token to request the next page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataDescribeInstancesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeInstancesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -12867,11 +12039,7 @@ type DescribeInstancesOutput struct {
 	// Zero or more reservations.
 	Reservations []*Reservation `locationName:"reservationSet" locationNameList:"item" type:"list"`
 
-	metadataDescribeInstancesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -12918,11 +12086,7 @@ type DescribeInternetGatewaysInput struct {
 	// Default: Describes all your Internet gateways.
 	InternetGatewayIds []*string `locationName:"internetGatewayId" locationNameList:"item" type:"list"`
 
-	metadataDescribeInternetGatewaysInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeInternetGatewaysInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -12939,11 +12103,7 @@ type DescribeInternetGatewaysOutput struct {
 	// Information about one or more Internet gateways.
 	InternetGateways []*InternetGateway `locationName:"internetGatewaySet" locationNameList:"item" type:"list"`
 
-	metadataDescribeInternetGatewaysOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeInternetGatewaysOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -12975,11 +12135,7 @@ type DescribeKeyPairsInput struct {
 	// Default: Describes all your key pairs.
 	KeyNames []*string `locationName:"KeyName" locationNameList:"KeyName" type:"list"`
 
-	metadataDescribeKeyPairsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeKeyPairsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -12996,11 +12152,7 @@ type DescribeKeyPairsOutput struct {
 	// Information about one or more key pairs.
 	KeyPairs []*KeyPairInfo `locationName:"keySet" locationNameList:"item" type:"list"`
 
-	metadataDescribeKeyPairsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeKeyPairsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -13039,11 +12191,7 @@ type DescribeMovingAddressesInput struct {
 	// One or more Elastic IP addresses.
 	PublicIps []*string `locationName:"publicIp" locationNameList:"item" type:"list"`
 
-	metadataDescribeMovingAddressesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeMovingAddressesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -13064,11 +12212,7 @@ type DescribeMovingAddressesOutput struct {
 	// when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataDescribeMovingAddressesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeMovingAddressesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -13142,11 +12286,7 @@ type DescribeNetworkAclsInput struct {
 	// Default: Describes all your network ACLs.
 	NetworkAclIds []*string `locationName:"NetworkAclId" locationNameList:"item" type:"list"`
 
-	metadataDescribeNetworkAclsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeNetworkAclsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -13163,11 +12303,7 @@ type DescribeNetworkAclsOutput struct {
 	// Information about one or more network ACLs.
 	NetworkAcls []*NetworkAcl `locationName:"networkAclSet" locationNameList:"item" type:"list"`
 
-	metadataDescribeNetworkAclsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeNetworkAclsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -13193,11 +12329,7 @@ type DescribeNetworkInterfaceAttributeInput struct {
 	// The ID of the network interface.
 	NetworkInterfaceId *string `locationName:"networkInterfaceId" type:"string" required:"true"`
 
-	metadataDescribeNetworkInterfaceAttributeInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeNetworkInterfaceAttributeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -13226,11 +12358,7 @@ type DescribeNetworkInterfaceAttributeOutput struct {
 	// Indicates whether source/destination checking is enabled.
 	SourceDestCheck *AttributeBooleanValue `locationName:"sourceDestCheck" type:"structure"`
 
-	metadataDescribeNetworkInterfaceAttributeOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeNetworkInterfaceAttributeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -13356,11 +12484,7 @@ type DescribeNetworkInterfacesInput struct {
 	// Default: Describes all your network interfaces.
 	NetworkInterfaceIds []*string `locationName:"NetworkInterfaceId" locationNameList:"item" type:"list"`
 
-	metadataDescribeNetworkInterfacesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeNetworkInterfacesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -13377,11 +12501,7 @@ type DescribeNetworkInterfacesOutput struct {
 	// Information about one or more network interfaces.
 	NetworkInterfaces []*NetworkInterface `locationName:"networkInterfaceSet" locationNameList:"item" type:"list"`
 
-	metadataDescribeNetworkInterfacesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeNetworkInterfacesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -13416,11 +12536,7 @@ type DescribePlacementGroupsInput struct {
 	// Default: Describes all your placement groups, or only those otherwise specified.
 	GroupNames []*string `locationName:"groupName" type:"list"`
 
-	metadataDescribePlacementGroupsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribePlacementGroupsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -13437,11 +12553,7 @@ type DescribePlacementGroupsOutput struct {
 	// One or more placement groups.
 	PlacementGroups []*PlacementGroup `locationName:"placementGroupSet" locationNameList:"item" type:"list"`
 
-	metadataDescribePlacementGroupsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribePlacementGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -13483,11 +12595,7 @@ type DescribePrefixListsInput struct {
 	// One or more prefix list IDs.
 	PrefixListIds []*string `locationName:"PrefixListId" locationNameList:"item" type:"list"`
 
-	metadataDescribePrefixListsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribePrefixListsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -13508,11 +12616,7 @@ type DescribePrefixListsOutput struct {
 	// All available prefix lists.
 	PrefixLists []*PrefixList `locationName:"prefixListSet" locationNameList:"item" type:"list"`
 
-	metadataDescribePrefixListsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribePrefixListsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -13542,11 +12646,7 @@ type DescribeRegionsInput struct {
 	// The names of one or more regions.
 	RegionNames []*string `locationName:"RegionName" locationNameList:"RegionName" type:"list"`
 
-	metadataDescribeRegionsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeRegionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -13563,11 +12663,7 @@ type DescribeRegionsOutput struct {
 	// Information about one or more regions.
 	Regions []*Region `locationName:"regionInfo" locationNameList:"item" type:"list"`
 
-	metadataDescribeRegionsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeRegionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -13648,11 +12744,7 @@ type DescribeReservedInstancesInput struct {
 	// specified.
 	ReservedInstancesIds []*string `locationName:"ReservedInstancesId" locationNameList:"ReservedInstancesId" type:"list"`
 
-	metadataDescribeReservedInstancesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeReservedInstancesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -13684,11 +12776,7 @@ type DescribeReservedInstancesListingsInput struct {
 	// One or more Reserved instance Listing IDs.
 	ReservedInstancesListingId *string `locationName:"reservedInstancesListingId" type:"string"`
 
-	metadataDescribeReservedInstancesListingsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeReservedInstancesListingsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -13705,11 +12793,7 @@ type DescribeReservedInstancesListingsOutput struct {
 	// Information about the Reserved instance listing.
 	ReservedInstancesListings []*ReservedInstancesListing `locationName:"reservedInstancesListingsSet" locationNameList:"item" type:"list"`
 
-	metadataDescribeReservedInstancesListingsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeReservedInstancesListingsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -13765,11 +12849,7 @@ type DescribeReservedInstancesModificationsInput struct {
 	// IDs for the submitted modification request.
 	ReservedInstancesModificationIds []*string `locationName:"ReservedInstancesModificationId" locationNameList:"ReservedInstancesModificationId" type:"list"`
 
-	metadataDescribeReservedInstancesModificationsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeReservedInstancesModificationsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -13790,11 +12870,7 @@ type DescribeReservedInstancesModificationsOutput struct {
 	// The Reserved instance modification information.
 	ReservedInstancesModifications []*ReservedInstancesModification `locationName:"reservedInstancesModificationsSet" locationNameList:"item" type:"list"`
 
-	metadataDescribeReservedInstancesModificationsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeReservedInstancesModificationsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -13903,11 +12979,7 @@ type DescribeReservedInstancesOfferingsInput struct {
 	// One or more Reserved instances offering IDs.
 	ReservedInstancesOfferingIds []*string `locationName:"ReservedInstancesOfferingId" type:"list"`
 
-	metadataDescribeReservedInstancesOfferingsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeReservedInstancesOfferingsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -13928,11 +13000,7 @@ type DescribeReservedInstancesOfferingsOutput struct {
 	// A list of Reserved instances offerings.
 	ReservedInstancesOfferings []*ReservedInstancesOffering `locationName:"reservedInstancesOfferingsSet" locationNameList:"item" type:"list"`
 
-	metadataDescribeReservedInstancesOfferingsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeReservedInstancesOfferingsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -13949,11 +13017,7 @@ type DescribeReservedInstancesOutput struct {
 	// A list of Reserved instances.
 	ReservedInstances []*ReservedInstances `locationName:"reservedInstancesSet" locationNameList:"item" type:"list"`
 
-	metadataDescribeReservedInstancesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeReservedInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -14033,11 +13097,7 @@ type DescribeRouteTablesInput struct {
 	// Default: Describes all your route tables.
 	RouteTableIds []*string `locationName:"RouteTableId" locationNameList:"item" type:"list"`
 
-	metadataDescribeRouteTablesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeRouteTablesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -14054,11 +13114,7 @@ type DescribeRouteTablesOutput struct {
 	// Information about one or more route tables.
 	RouteTables []*RouteTable `locationName:"routeTableSet" locationNameList:"item" type:"list"`
 
-	metadataDescribeRouteTablesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeRouteTablesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -14134,11 +13190,7 @@ type DescribeSecurityGroupsInput struct {
 	// Default: Describes all your security groups.
 	GroupNames []*string `locationName:"GroupName" locationNameList:"GroupName" type:"list"`
 
-	metadataDescribeSecurityGroupsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSecurityGroupsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -14155,11 +13207,7 @@ type DescribeSecurityGroupsOutput struct {
 	// Information about one or more security groups.
 	SecurityGroups []*SecurityGroup `locationName:"securityGroupInfo" locationNameList:"item" type:"list"`
 
-	metadataDescribeSecurityGroupsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSecurityGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -14185,11 +13233,7 @@ type DescribeSnapshotAttributeInput struct {
 	// The ID of the EBS snapshot.
 	SnapshotId *string `type:"string" required:"true"`
 
-	metadataDescribeSnapshotAttributeInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSnapshotAttributeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -14212,11 +13256,7 @@ type DescribeSnapshotAttributeOutput struct {
 	// The ID of the EBS snapshot.
 	SnapshotId *string `locationName:"snapshotId" type:"string"`
 
-	metadataDescribeSnapshotAttributeOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSnapshotAttributeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -14301,11 +13341,7 @@ type DescribeSnapshotsInput struct {
 	// Default: Describes snapshots for which you have launch permissions.
 	SnapshotIds []*string `locationName:"SnapshotId" locationNameList:"SnapshotId" type:"list"`
 
-	metadataDescribeSnapshotsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSnapshotsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -14328,11 +13364,7 @@ type DescribeSnapshotsOutput struct {
 	// Information about the snapshots.
 	Snapshots []*Snapshot `locationName:"snapshotSet" locationNameList:"item" type:"list"`
 
-	metadataDescribeSnapshotsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSnapshotsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -14353,11 +13385,7 @@ type DescribeSpotDatafeedSubscriptionInput struct {
 	// it is UnauthorizedOperation.
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
-	metadataDescribeSpotDatafeedSubscriptionInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSpotDatafeedSubscriptionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -14375,11 +13403,7 @@ type DescribeSpotDatafeedSubscriptionOutput struct {
 	// The Spot instance data feed subscription.
 	SpotDatafeedSubscription *SpotDatafeedSubscription `locationName:"spotDatafeedSubscription" type:"structure"`
 
-	metadataDescribeSpotDatafeedSubscriptionOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSpotDatafeedSubscriptionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -14411,11 +13435,7 @@ type DescribeSpotFleetInstancesInput struct {
 	// The ID of the Spot fleet request.
 	SpotFleetRequestId *string `locationName:"spotFleetRequestId" type:"string" required:"true"`
 
-	metadataDescribeSpotFleetInstancesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSpotFleetInstancesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -14441,11 +13461,7 @@ type DescribeSpotFleetInstancesOutput struct {
 	// The ID of the Spot fleet request.
 	SpotFleetRequestId *string `locationName:"spotFleetRequestId" type:"string" required:"true"`
 
-	metadataDescribeSpotFleetInstancesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSpotFleetInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -14483,11 +13499,7 @@ type DescribeSpotFleetRequestHistoryInput struct {
 	// The starting date and time for the events, in UTC format (for example, YYYY-MM-DDTHH:MM:SSZ).
 	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	metadataDescribeSpotFleetRequestHistoryInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSpotFleetRequestHistoryInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -14521,11 +13533,7 @@ type DescribeSpotFleetRequestHistoryOutput struct {
 	// The starting date and time for the events, in UTC format (for example, YYYY-MM-DDTHH:MM:SSZ).
 	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	metadataDescribeSpotFleetRequestHistoryOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSpotFleetRequestHistoryOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -14557,11 +13565,7 @@ type DescribeSpotFleetRequestsInput struct {
 	// The IDs of the Spot fleet requests.
 	SpotFleetRequestIds []*string `locationName:"spotFleetRequestId" locationNameList:"item" type:"list"`
 
-	metadataDescribeSpotFleetRequestsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSpotFleetRequestsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -14583,11 +13587,7 @@ type DescribeSpotFleetRequestsOutput struct {
 	// Information about the configuration of your Spot fleet.
 	SpotFleetRequestConfigs []*SpotFleetRequestConfig `locationName:"spotFleetRequestConfigSet" locationNameList:"item" type:"list" required:"true"`
 
-	metadataDescribeSpotFleetRequestsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSpotFleetRequestsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -14721,11 +13721,7 @@ type DescribeSpotInstanceRequestsInput struct {
 	// One or more Spot instance request IDs.
 	SpotInstanceRequestIds []*string `locationName:"SpotInstanceRequestId" locationNameList:"SpotInstanceRequestId" type:"list"`
 
-	metadataDescribeSpotInstanceRequestsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSpotInstanceRequestsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -14743,11 +13739,7 @@ type DescribeSpotInstanceRequestsOutput struct {
 	// One or more Spot instance requests.
 	SpotInstanceRequests []*SpotInstanceRequest `locationName:"spotInstanceRequestSet" locationNameList:"item" type:"list"`
 
-	metadataDescribeSpotInstanceRequestsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSpotInstanceRequestsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -14811,11 +13803,7 @@ type DescribeSpotPriceHistoryInput struct {
 	// the price history data, in UTC format (for example, YYYY-MM-DDTHH:MM:SSZ).
 	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataDescribeSpotPriceHistoryInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSpotPriceHistoryInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -14837,11 +13825,7 @@ type DescribeSpotPriceHistoryOutput struct {
 	// The historical Spot prices.
 	SpotPriceHistory []*SpotPrice `locationName:"spotPriceHistorySet" locationNameList:"item" type:"list"`
 
-	metadataDescribeSpotPriceHistoryOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSpotPriceHistoryOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -14900,11 +13884,7 @@ type DescribeSubnetsInput struct {
 	// Default: Describes all your subnets.
 	SubnetIds []*string `locationName:"SubnetId" locationNameList:"SubnetId" type:"list"`
 
-	metadataDescribeSubnetsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSubnetsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -14921,11 +13901,7 @@ type DescribeSubnetsOutput struct {
 	// Information about one or more subnets.
 	Subnets []*Subnet `locationName:"subnetSet" locationNameList:"item" type:"list"`
 
-	metadataDescribeSubnetsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSubnetsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -14969,11 +13945,7 @@ type DescribeTagsInput struct {
 	// The token to retrieve the next page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataDescribeTagsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTagsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -14994,11 +13966,7 @@ type DescribeTagsOutput struct {
 	// A list of tags.
 	Tags []*TagDescription `locationName:"tagSet" locationNameList:"item" type:"list"`
 
-	metadataDescribeTagsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTagsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -15024,11 +13992,7 @@ type DescribeVolumeAttributeInput struct {
 	// The ID of the volume.
 	VolumeId *string `type:"string" required:"true"`
 
-	metadataDescribeVolumeAttributeInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeVolumeAttributeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -15051,11 +14015,7 @@ type DescribeVolumeAttributeOutput struct {
 	// The ID of the volume.
 	VolumeId *string `locationName:"volumeId" type:"string"`
 
-	metadataDescribeVolumeAttributeOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeVolumeAttributeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -15129,11 +14089,7 @@ type DescribeVolumeStatusInput struct {
 	// Default: Describes all your volumes.
 	VolumeIds []*string `locationName:"VolumeId" locationNameList:"VolumeId" type:"list"`
 
-	metadataDescribeVolumeStatusInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeVolumeStatusInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -15154,11 +14110,7 @@ type DescribeVolumeStatusOutput struct {
 	// A list of volumes.
 	VolumeStatuses []*VolumeStatusItem `locationName:"volumeStatusSet" locationNameList:"item" type:"list"`
 
-	metadataDescribeVolumeStatusOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeVolumeStatusOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -15246,11 +14198,7 @@ type DescribeVolumesInput struct {
 	// One or more volume IDs.
 	VolumeIds []*string `locationName:"VolumeId" locationNameList:"VolumeId" type:"list"`
 
-	metadataDescribeVolumesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeVolumesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -15273,11 +14221,7 @@ type DescribeVolumesOutput struct {
 	// Information about the volumes.
 	Volumes []*Volume `locationName:"volumeSet" locationNameList:"item" type:"list"`
 
-	metadataDescribeVolumesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeVolumesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -15303,11 +14247,7 @@ type DescribeVpcAttributeInput struct {
 	// The ID of the VPC.
 	VpcId *string `type:"string" required:"true"`
 
-	metadataDescribeVpcAttributeInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeVpcAttributeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -15334,11 +14274,7 @@ type DescribeVpcAttributeOutput struct {
 	// The ID of the VPC.
 	VpcId *string `locationName:"vpcId" type:"string"`
 
-	metadataDescribeVpcAttributeOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeVpcAttributeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -15379,11 +14315,7 @@ type DescribeVpcClassicLinkInput struct {
 	// One or more VPCs for which you want to describe the ClassicLink status.
 	VpcIds []*string `locationName:"VpcId" locationNameList:"VpcId" type:"list"`
 
-	metadataDescribeVpcClassicLinkInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeVpcClassicLinkInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -15400,11 +14332,7 @@ type DescribeVpcClassicLinkOutput struct {
 	// The ClassicLink status of one or more VPCs.
 	Vpcs []*VpcClassicLink `locationName:"vpcSet" locationNameList:"item" type:"list"`
 
-	metadataDescribeVpcClassicLinkOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeVpcClassicLinkOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -15435,11 +14363,7 @@ type DescribeVpcEndpointServicesInput struct {
 	// a prior call.)
 	NextToken *string `type:"string"`
 
-	metadataDescribeVpcEndpointServicesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeVpcEndpointServicesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -15460,11 +14384,7 @@ type DescribeVpcEndpointServicesOutput struct {
 	// A list of supported AWS services.
 	ServiceNames []*string `locationName:"serviceNameSet" locationNameList:"item" type:"list"`
 
-	metadataDescribeVpcEndpointServicesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeVpcEndpointServicesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -15510,11 +14430,7 @@ type DescribeVpcEndpointsInput struct {
 	// One or more endpoint IDs.
 	VpcEndpointIds []*string `locationName:"VpcEndpointId" locationNameList:"item" type:"list"`
 
-	metadataDescribeVpcEndpointsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeVpcEndpointsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -15535,11 +14451,7 @@ type DescribeVpcEndpointsOutput struct {
 	// Information about the endpoints.
 	VpcEndpoints []*VpcEndpoint `locationName:"vpcEndpointSet" locationNameList:"item" type:"list"`
 
-	metadataDescribeVpcEndpointsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeVpcEndpointsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -15603,11 +14515,7 @@ type DescribeVpcPeeringConnectionsInput struct {
 	// Default: Describes all your VPC peering connections.
 	VpcPeeringConnectionIds []*string `locationName:"VpcPeeringConnectionId" locationNameList:"item" type:"list"`
 
-	metadataDescribeVpcPeeringConnectionsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeVpcPeeringConnectionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -15624,11 +14532,7 @@ type DescribeVpcPeeringConnectionsOutput struct {
 	// Information about the VPC peering connections.
 	VpcPeeringConnections []*VpcPeeringConnection `locationName:"vpcPeeringConnectionSet" locationNameList:"item" type:"list"`
 
-	metadataDescribeVpcPeeringConnectionsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeVpcPeeringConnectionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -15680,11 +14584,7 @@ type DescribeVpcsInput struct {
 	// Default: Describes all your VPCs.
 	VpcIds []*string `locationName:"VpcId" locationNameList:"VpcId" type:"list"`
 
-	metadataDescribeVpcsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeVpcsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -15701,11 +14601,7 @@ type DescribeVpcsOutput struct {
 	// Information about one or more VPCs.
 	Vpcs []*Vpc `locationName:"vpcSet" locationNameList:"item" type:"list"`
 
-	metadataDescribeVpcsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeVpcsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -15772,11 +14668,7 @@ type DescribeVpnConnectionsInput struct {
 	// Default: Describes your VPN connections.
 	VpnConnectionIds []*string `locationName:"VpnConnectionId" locationNameList:"VpnConnectionId" type:"list"`
 
-	metadataDescribeVpnConnectionsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeVpnConnectionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -15793,11 +14685,7 @@ type DescribeVpnConnectionsOutput struct {
 	// Information about one or more VPN connections.
 	VpnConnections []*VpnConnection `locationName:"vpnConnectionSet" locationNameList:"item" type:"list"`
 
-	metadataDescribeVpnConnectionsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeVpnConnectionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -15852,11 +14740,7 @@ type DescribeVpnGatewaysInput struct {
 	// Default: Describes all your virtual private gateways.
 	VpnGatewayIds []*string `locationName:"VpnGatewayId" locationNameList:"VpnGatewayId" type:"list"`
 
-	metadataDescribeVpnGatewaysInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeVpnGatewaysInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -15873,11 +14757,7 @@ type DescribeVpnGatewaysOutput struct {
 	// Information about one or more virtual private gateways.
 	VpnGateways []*VpnGateway `locationName:"vpnGatewaySet" locationNameList:"item" type:"list"`
 
-	metadataDescribeVpnGatewaysOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeVpnGatewaysOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -15903,11 +14783,7 @@ type DetachClassicLinkVpcInput struct {
 	// The ID of the VPC to which the instance is linked.
 	VpcId *string `locationName:"vpcId" type:"string" required:"true"`
 
-	metadataDetachClassicLinkVpcInput `json:"-" xml:"-"`
-}
-
-type metadataDetachClassicLinkVpcInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -15924,11 +14800,7 @@ type DetachClassicLinkVpcOutput struct {
 	// Returns true if the request succeeds; otherwise, it returns an error.
 	Return *bool `locationName:"return" type:"boolean"`
 
-	metadataDetachClassicLinkVpcOutput `json:"-" xml:"-"`
-}
-
-type metadataDetachClassicLinkVpcOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -15954,11 +14826,7 @@ type DetachInternetGatewayInput struct {
 	// The ID of the VPC.
 	VpcId *string `locationName:"vpcId" type:"string" required:"true"`
 
-	metadataDetachInternetGatewayInput `json:"-" xml:"-"`
-}
-
-type metadataDetachInternetGatewayInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -15972,11 +14840,7 @@ func (s DetachInternetGatewayInput) GoString() string {
 }
 
 type DetachInternetGatewayOutput struct {
-	metadataDetachInternetGatewayOutput `json:"-" xml:"-"`
-}
-
-type metadataDetachInternetGatewayOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16002,11 +14866,7 @@ type DetachNetworkInterfaceInput struct {
 	// Specifies whether to force a detachment.
 	Force *bool `locationName:"force" type:"boolean"`
 
-	metadataDetachNetworkInterfaceInput `json:"-" xml:"-"`
-}
-
-type metadataDetachNetworkInterfaceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16020,11 +14880,7 @@ func (s DetachNetworkInterfaceInput) GoString() string {
 }
 
 type DetachNetworkInterfaceOutput struct {
-	metadataDetachNetworkInterfaceOutput `json:"-" xml:"-"`
-}
-
-type metadataDetachNetworkInterfaceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16062,11 +14918,7 @@ type DetachVolumeInput struct {
 	// The ID of the volume.
 	VolumeId *string `type:"string" required:"true"`
 
-	metadataDetachVolumeInput `json:"-" xml:"-"`
-}
-
-type metadataDetachVolumeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16092,11 +14944,7 @@ type DetachVpnGatewayInput struct {
 	// The ID of the virtual private gateway.
 	VpnGatewayId *string `type:"string" required:"true"`
 
-	metadataDetachVpnGatewayInput `json:"-" xml:"-"`
-}
-
-type metadataDetachVpnGatewayInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16110,11 +14958,7 @@ func (s DetachVpnGatewayInput) GoString() string {
 }
 
 type DetachVpnGatewayOutput struct {
-	metadataDetachVpnGatewayOutput `json:"-" xml:"-"`
-}
-
-type metadataDetachVpnGatewayOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16135,11 +14979,7 @@ type DhcpConfiguration struct {
 	// One or more values for the DHCP option.
 	Values []*AttributeValue `locationName:"valueSet" locationNameList:"item" type:"list"`
 
-	metadataDhcpConfiguration `json:"-" xml:"-"`
-}
-
-type metadataDhcpConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16163,11 +15003,7 @@ type DhcpOptions struct {
 	// Any tags assigned to the DHCP options set.
 	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
 
-	metadataDhcpOptions `json:"-" xml:"-"`
-}
-
-type metadataDhcpOptions struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16187,11 +15023,7 @@ type DisableVgwRoutePropagationInput struct {
 	// The ID of the route table.
 	RouteTableId *string `type:"string" required:"true"`
 
-	metadataDisableVgwRoutePropagationInput `json:"-" xml:"-"`
-}
-
-type metadataDisableVgwRoutePropagationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16205,11 +15037,7 @@ func (s DisableVgwRoutePropagationInput) GoString() string {
 }
 
 type DisableVgwRoutePropagationOutput struct {
-	metadataDisableVgwRoutePropagationOutput `json:"-" xml:"-"`
-}
-
-type metadataDisableVgwRoutePropagationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16232,11 +15060,7 @@ type DisableVpcClassicLinkInput struct {
 	// The ID of the VPC.
 	VpcId *string `locationName:"vpcId" type:"string" required:"true"`
 
-	metadataDisableVpcClassicLinkInput `json:"-" xml:"-"`
-}
-
-type metadataDisableVpcClassicLinkInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16253,11 +15077,7 @@ type DisableVpcClassicLinkOutput struct {
 	// Returns true if the request succeeds; otherwise, it returns an error.
 	Return *bool `locationName:"return" type:"boolean"`
 
-	metadataDisableVpcClassicLinkOutput `json:"-" xml:"-"`
-}
-
-type metadataDisableVpcClassicLinkOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16283,11 +15103,7 @@ type DisassociateAddressInput struct {
 	// [EC2-Classic] The Elastic IP address. Required for EC2-Classic.
 	PublicIp *string `type:"string"`
 
-	metadataDisassociateAddressInput `json:"-" xml:"-"`
-}
-
-type metadataDisassociateAddressInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16301,11 +15117,7 @@ func (s DisassociateAddressInput) GoString() string {
 }
 
 type DisassociateAddressOutput struct {
-	metadataDisassociateAddressOutput `json:"-" xml:"-"`
-}
-
-type metadataDisassociateAddressOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16329,11 +15141,7 @@ type DisassociateRouteTableInput struct {
 	// it is UnauthorizedOperation.
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
-	metadataDisassociateRouteTableInput `json:"-" xml:"-"`
-}
-
-type metadataDisassociateRouteTableInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16347,11 +15155,7 @@ func (s DisassociateRouteTableInput) GoString() string {
 }
 
 type DisassociateRouteTableOutput struct {
-	metadataDisassociateRouteTableOutput `json:"-" xml:"-"`
-}
-
-type metadataDisassociateRouteTableOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16375,11 +15179,7 @@ type DiskImage struct {
 	// Information about the volume.
 	Volume *VolumeDetail `type:"structure"`
 
-	metadataDiskImage `json:"-" xml:"-"`
-}
-
-type metadataDiskImage struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16410,11 +15210,7 @@ type DiskImageDescription struct {
 	// The size of the disk image, in GiB.
 	Size *int64 `locationName:"size" type:"long" required:"true"`
 
-	metadataDiskImageDescription `json:"-" xml:"-"`
-}
-
-type metadataDiskImageDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16442,11 +15238,7 @@ type DiskImageDetail struct {
 	// topic in the Amazon Simple Storage Service Developer Guide.
 	ImportManifestUrl *string `locationName:"importManifestUrl" type:"string" required:"true"`
 
-	metadataDiskImageDetail `json:"-" xml:"-"`
-}
-
-type metadataDiskImageDetail struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16467,11 +15259,7 @@ type DiskImageVolumeDescription struct {
 	// The size of the volume, in GiB.
 	Size *int64 `locationName:"size" type:"long"`
 
-	metadataDiskImageVolumeDescription `json:"-" xml:"-"`
-}
-
-type metadataDiskImageVolumeDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16527,11 +15315,7 @@ type EbsBlockDevice struct {
 	// Default: standard
 	VolumeType *string `locationName:"volumeType" type:"string" enum:"VolumeType"`
 
-	metadataEbsBlockDevice `json:"-" xml:"-"`
-}
-
-type metadataEbsBlockDevice struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16558,11 +15342,7 @@ type EbsInstanceBlockDevice struct {
 	// The ID of the EBS volume.
 	VolumeId *string `locationName:"volumeId" type:"string"`
 
-	metadataEbsInstanceBlockDevice `json:"-" xml:"-"`
-}
-
-type metadataEbsInstanceBlockDevice struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16582,11 +15362,7 @@ type EbsInstanceBlockDeviceSpecification struct {
 	// The ID of the EBS volume.
 	VolumeId *string `locationName:"volumeId" type:"string"`
 
-	metadataEbsInstanceBlockDeviceSpecification `json:"-" xml:"-"`
-}
-
-type metadataEbsInstanceBlockDeviceSpecification struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16606,11 +15382,7 @@ type EnableVgwRoutePropagationInput struct {
 	// The ID of the route table.
 	RouteTableId *string `type:"string" required:"true"`
 
-	metadataEnableVgwRoutePropagationInput `json:"-" xml:"-"`
-}
-
-type metadataEnableVgwRoutePropagationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16624,11 +15396,7 @@ func (s EnableVgwRoutePropagationInput) GoString() string {
 }
 
 type EnableVgwRoutePropagationOutput struct {
-	metadataEnableVgwRoutePropagationOutput `json:"-" xml:"-"`
-}
-
-type metadataEnableVgwRoutePropagationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16651,11 +15419,7 @@ type EnableVolumeIOInput struct {
 	// The ID of the volume.
 	VolumeId *string `locationName:"volumeId" type:"string" required:"true"`
 
-	metadataEnableVolumeIOInput `json:"-" xml:"-"`
-}
-
-type metadataEnableVolumeIOInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16669,11 +15433,7 @@ func (s EnableVolumeIOInput) GoString() string {
 }
 
 type EnableVolumeIOOutput struct {
-	metadataEnableVolumeIOOutput `json:"-" xml:"-"`
-}
-
-type metadataEnableVolumeIOOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16696,11 +15456,7 @@ type EnableVpcClassicLinkInput struct {
 	// The ID of the VPC.
 	VpcId *string `locationName:"vpcId" type:"string" required:"true"`
 
-	metadataEnableVpcClassicLinkInput `json:"-" xml:"-"`
-}
-
-type metadataEnableVpcClassicLinkInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16717,11 +15473,7 @@ type EnableVpcClassicLinkOutput struct {
 	// Returns true if the request succeeds; otherwise, it returns an error.
 	Return *bool `locationName:"return" type:"boolean"`
 
-	metadataEnableVpcClassicLinkOutput `json:"-" xml:"-"`
-}
-
-type metadataEnableVpcClassicLinkOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16797,11 +15549,7 @@ type EventInformation struct {
 	// events.
 	InstanceId *string `locationName:"instanceId" type:"string"`
 
-	metadataEventInformation `json:"-" xml:"-"`
-}
-
-type metadataEventInformation struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16834,11 +15582,7 @@ type ExportTask struct {
 	// The status message related to the export task.
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
 
-	metadataExportTask `json:"-" xml:"-"`
-}
-
-type metadataExportTask struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16867,11 +15611,7 @@ type ExportToS3Task struct {
 	// The encryption key for your S3 bucket.
 	S3Key *string `locationName:"s3Key" type:"string"`
 
-	metadataExportToS3Task `json:"-" xml:"-"`
-}
-
-type metadataExportToS3Task struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16901,11 +15641,7 @@ type ExportToS3TaskSpecification struct {
 	// + exportTaskId + '.' + diskImageFormat.
 	S3Prefix *string `locationName:"s3Prefix" type:"string"`
 
-	metadataExportToS3TaskSpecification `json:"-" xml:"-"`
-}
-
-type metadataExportToS3TaskSpecification struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16928,11 +15664,7 @@ type Filter struct {
 	// One or more filter values. Filter values are case-sensitive.
 	Values []*string `locationName:"Value" locationNameList:"item" type:"list"`
 
-	metadataFilter `json:"-" xml:"-"`
-}
-
-type metadataFilter struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -16978,11 +15710,7 @@ type FlowLog struct {
 	// The type of traffic captured for the flow log.
 	TrafficType *string `locationName:"trafficType" type:"string" enum:"TrafficType"`
 
-	metadataFlowLog `json:"-" xml:"-"`
-}
-
-type metadataFlowLog struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -17005,11 +15733,7 @@ type GetConsoleOutputInput struct {
 	// The ID of the instance.
 	InstanceId *string `type:"string" required:"true"`
 
-	metadataGetConsoleOutputInput `json:"-" xml:"-"`
-}
-
-type metadataGetConsoleOutputInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -17032,11 +15756,7 @@ type GetConsoleOutputOutput struct {
 	// The time the output was last updated.
 	Timestamp *time.Time `locationName:"timestamp" type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataGetConsoleOutputOutput `json:"-" xml:"-"`
-}
-
-type metadataGetConsoleOutputOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -17059,11 +15779,7 @@ type GetPasswordDataInput struct {
 	// The ID of the Windows instance.
 	InstanceId *string `type:"string" required:"true"`
 
-	metadataGetPasswordDataInput `json:"-" xml:"-"`
-}
-
-type metadataGetPasswordDataInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -17086,11 +15802,7 @@ type GetPasswordDataOutput struct {
 	// The time the data was last updated.
 	Timestamp *time.Time `locationName:"timestamp" type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataGetPasswordDataOutput `json:"-" xml:"-"`
-}
-
-type metadataGetPasswordDataOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -17111,11 +15823,7 @@ type GroupIdentifier struct {
 	// The name of the security group.
 	GroupName *string `locationName:"groupName" type:"string"`
 
-	metadataGroupIdentifier `json:"-" xml:"-"`
-}
-
-type metadataGroupIdentifier struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -17146,11 +15854,7 @@ type HistoryRecord struct {
 	// The date and time of the event, in UTC format (for example, YYYY-MM-DDTHH:MM:SSZ).
 	Timestamp *time.Time `locationName:"timestamp" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	metadataHistoryRecord `json:"-" xml:"-"`
-}
-
-type metadataHistoryRecord struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -17194,11 +15898,7 @@ type Host struct {
 	// The Dedicated host's state. Can be "available", "under assessment, or "released".
 	State *string `locationName:"state" type:"string" enum:"AllocationState"`
 
-	metadataHost `json:"-" xml:"-"`
-}
-
-type metadataHost struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -17218,11 +15918,7 @@ type HostInstance struct {
 	// The instance type size (e.g., m3.medium) of the running instance.
 	InstanceType *string `locationName:"instanceType" type:"string"`
 
-	metadataHostInstance `json:"-" xml:"-"`
-}
-
-type metadataHostInstance struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -17248,11 +15944,7 @@ type HostProperties struct {
 	// The number of vCPUs on the Dedicated host.
 	TotalVCpus *int64 `locationName:"totalVCpus" type:"integer"`
 
-	metadataHostProperties `json:"-" xml:"-"`
-}
-
-type metadataHostProperties struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -17273,11 +15965,7 @@ type IamInstanceProfile struct {
 	// The ID of the instance profile.
 	Id *string `locationName:"id" type:"string"`
 
-	metadataIamInstanceProfile `json:"-" xml:"-"`
-}
-
-type metadataIamInstanceProfile struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -17298,11 +15986,7 @@ type IamInstanceProfileSpecification struct {
 	// The name of the instance profile.
 	Name *string `locationName:"name" type:"string"`
 
-	metadataIamInstanceProfileSpecification `json:"-" xml:"-"`
-}
-
-type metadataIamInstanceProfileSpecification struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -17323,11 +16007,7 @@ type IcmpTypeCode struct {
 	// The ICMP code. A value of -1 means all codes for the specified ICMP type.
 	Type *int64 `locationName:"type" type:"integer"`
 
-	metadataIcmpTypeCode `json:"-" xml:"-"`
-}
-
-type metadataIcmpTypeCode struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -17352,11 +16032,7 @@ type IdFormat struct {
 	// Indicates whether longer IDs (17-character IDs) are enabled for the resource.
 	UseLongIds *bool `locationName:"useLongIds" type:"boolean"`
 
-	metadataIdFormat `json:"-" xml:"-"`
-}
-
-type metadataIdFormat struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -17447,11 +16123,7 @@ type Image struct {
 	// The type of virtualization of the AMI.
 	VirtualizationType *string `locationName:"virtualizationType" type:"string" enum:"VirtualizationType"`
 
-	metadataImage `json:"-" xml:"-"`
-}
-
-type metadataImage struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -17487,11 +16159,7 @@ type ImageDiskContainer struct {
 	// The S3 bucket for the disk image.
 	UserBucket *UserBucket `type:"structure"`
 
-	metadataImageDiskContainer `json:"-" xml:"-"`
-}
-
-type metadataImageDiskContainer struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -17551,11 +16219,7 @@ type ImportImageInput struct {
 	// The name of the role to use when not using the default role, 'vmimport'.
 	RoleName *string `type:"string"`
 
-	metadataImportImageInput `json:"-" xml:"-"`
-}
-
-type metadataImportImageInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -17602,11 +16266,7 @@ type ImportImageOutput struct {
 	// A detailed status message of the import task.
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
 
-	metadataImportImageOutput `json:"-" xml:"-"`
-}
-
-type metadataImportImageOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -17658,11 +16318,7 @@ type ImportImageTask struct {
 	// A descriptive status message for the import image task.
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
 
-	metadataImportImageTask `json:"-" xml:"-"`
-}
-
-type metadataImportImageTask struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -17694,11 +16350,7 @@ type ImportInstanceInput struct {
 	// The instance operating system.
 	Platform *string `locationName:"platform" type:"string" required:"true" enum:"PlatformValues"`
 
-	metadataImportInstanceInput `json:"-" xml:"-"`
-}
-
-type metadataImportInstanceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -17749,11 +16401,7 @@ type ImportInstanceLaunchSpecification struct {
 	// The Base64-encoded MIME user data to be made available to the instance.
 	UserData *UserData `locationName:"userData" type:"structure"`
 
-	metadataImportInstanceLaunchSpecification `json:"-" xml:"-"`
-}
-
-type metadataImportInstanceLaunchSpecification struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -17770,11 +16418,7 @@ type ImportInstanceOutput struct {
 	// Information about the conversion task.
 	ConversionTask *ConversionTask `locationName:"conversionTask" type:"structure"`
 
-	metadataImportInstanceOutput `json:"-" xml:"-"`
-}
-
-type metadataImportInstanceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -17801,11 +16445,7 @@ type ImportInstanceTaskDetails struct {
 	// One or more volumes.
 	Volumes []*ImportInstanceVolumeDetailItem `locationName:"volumes" locationNameList:"item" type:"list" required:"true"`
 
-	metadataImportInstanceTaskDetails `json:"-" xml:"-"`
-}
-
-type metadataImportInstanceTaskDetails struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -17841,11 +16481,7 @@ type ImportInstanceVolumeDetailItem struct {
 	// The volume.
 	Volume *DiskImageVolumeDescription `locationName:"volume" type:"structure" required:"true"`
 
-	metadataImportInstanceVolumeDetailItem `json:"-" xml:"-"`
-}
-
-type metadataImportInstanceVolumeDetailItem struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -17872,11 +16508,7 @@ type ImportKeyPairInput struct {
 	// it to AWS.
 	PublicKeyMaterial []byte `locationName:"publicKeyMaterial" type:"blob" required:"true"`
 
-	metadataImportKeyPairInput `json:"-" xml:"-"`
-}
-
-type metadataImportKeyPairInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -17896,11 +16528,7 @@ type ImportKeyPairOutput struct {
 	// The key pair name you provided.
 	KeyName *string `locationName:"keyName" type:"string"`
 
-	metadataImportKeyPairOutput `json:"-" xml:"-"`
-}
-
-type metadataImportKeyPairOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -17935,11 +16563,7 @@ type ImportSnapshotInput struct {
 	// The name of the role to use when not using the default role, 'vmimport'.
 	RoleName *string `type:"string"`
 
-	metadataImportSnapshotInput `json:"-" xml:"-"`
-}
-
-type metadataImportSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -17962,11 +16586,7 @@ type ImportSnapshotOutput struct {
 	// Information about the import snapshot task.
 	SnapshotTaskDetail *SnapshotTaskDetail `locationName:"snapshotTaskDetail" type:"structure"`
 
-	metadataImportSnapshotOutput `json:"-" xml:"-"`
-}
-
-type metadataImportSnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -17990,11 +16610,7 @@ type ImportSnapshotTask struct {
 	// Describes an import snapshot task.
 	SnapshotTaskDetail *SnapshotTaskDetail `locationName:"snapshotTaskDetail" type:"structure"`
 
-	metadataImportSnapshotTask `json:"-" xml:"-"`
-}
-
-type metadataImportSnapshotTask struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -18026,11 +16642,7 @@ type ImportVolumeInput struct {
 	// The volume size.
 	Volume *VolumeDetail `locationName:"volume" type:"structure" required:"true"`
 
-	metadataImportVolumeInput `json:"-" xml:"-"`
-}
-
-type metadataImportVolumeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -18047,11 +16659,7 @@ type ImportVolumeOutput struct {
 	// Information about the conversion task.
 	ConversionTask *ConversionTask `locationName:"conversionTask" type:"structure"`
 
-	metadataImportVolumeOutput `json:"-" xml:"-"`
-}
-
-type metadataImportVolumeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -18081,11 +16689,7 @@ type ImportVolumeTaskDetails struct {
 	// The volume.
 	Volume *DiskImageVolumeDescription `locationName:"volume" type:"structure" required:"true"`
 
-	metadataImportVolumeTaskDetails `json:"-" xml:"-"`
-}
-
-type metadataImportVolumeTaskDetails struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -18228,11 +16832,7 @@ type Instance struct {
 	// [EC2-VPC] The ID of the VPC in which the instance is running.
 	VpcId *string `locationName:"vpcId" type:"string"`
 
-	metadataInstance `json:"-" xml:"-"`
-}
-
-type metadataInstance struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -18254,11 +16854,7 @@ type InstanceBlockDeviceMapping struct {
 	// launched.
 	Ebs *EbsInstanceBlockDevice `locationName:"ebs" type:"structure"`
 
-	metadataInstanceBlockDeviceMapping `json:"-" xml:"-"`
-}
-
-type metadataInstanceBlockDeviceMapping struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -18286,11 +16882,7 @@ type InstanceBlockDeviceMappingSpecification struct {
 	// The virtual device name.
 	VirtualName *string `locationName:"virtualName" type:"string"`
 
-	metadataInstanceBlockDeviceMappingSpecification `json:"-" xml:"-"`
-}
-
-type metadataInstanceBlockDeviceMappingSpecification struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -18313,11 +16905,7 @@ type InstanceCapacity struct {
 	// The total number of instances that can be launched onto the Dedicated host.
 	TotalCapacity *int64 `locationName:"totalCapacity" type:"integer"`
 
-	metadataInstanceCapacity `json:"-" xml:"-"`
-}
-
-type metadataInstanceCapacity struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -18338,11 +16926,7 @@ type InstanceCount struct {
 	// The states of the listed Reserved instances.
 	State *string `locationName:"state" type:"string" enum:"ListingState"`
 
-	metadataInstanceCount `json:"-" xml:"-"`
-}
-
-type metadataInstanceCount struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -18363,11 +16947,7 @@ type InstanceExportDetails struct {
 	// The target virtualization environment.
 	TargetEnvironment *string `locationName:"targetEnvironment" type:"string" enum:"ExportEnvironment"`
 
-	metadataInstanceExportDetails `json:"-" xml:"-"`
-}
-
-type metadataInstanceExportDetails struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -18388,11 +16968,7 @@ type InstanceMonitoring struct {
 	// The monitoring information.
 	Monitoring *Monitoring `locationName:"monitoring" type:"structure"`
 
-	metadataInstanceMonitoring `json:"-" xml:"-"`
-}
-
-type metadataInstanceMonitoring struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -18450,11 +17026,7 @@ type InstanceNetworkInterface struct {
 	// The ID of the VPC.
 	VpcId *string `locationName:"vpcId" type:"string"`
 
-	metadataInstanceNetworkInterface `json:"-" xml:"-"`
-}
-
-type metadataInstanceNetworkInterface struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -18478,11 +17050,7 @@ type InstanceNetworkInterfaceAssociation struct {
 	// The public IP address or Elastic IP address bound to the network interface.
 	PublicIp *string `locationName:"publicIp" type:"string"`
 
-	metadataInstanceNetworkInterfaceAssociation `json:"-" xml:"-"`
-}
-
-type metadataInstanceNetworkInterfaceAssociation struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -18512,11 +17080,7 @@ type InstanceNetworkInterfaceAttachment struct {
 	// The attachment state.
 	Status *string `locationName:"status" type:"string" enum:"AttachmentStatus"`
 
-	metadataInstanceNetworkInterfaceAttachment `json:"-" xml:"-"`
-}
-
-type metadataInstanceNetworkInterfaceAttachment struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -18576,11 +17140,7 @@ type InstanceNetworkInterfaceSpecification struct {
 	// creating a network interface when launching an instance.
 	SubnetId *string `locationName:"subnetId" type:"string"`
 
-	metadataInstanceNetworkInterfaceSpecification `json:"-" xml:"-"`
-}
-
-type metadataInstanceNetworkInterfaceSpecification struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -18608,11 +17168,7 @@ type InstancePrivateIpAddress struct {
 	// The private IP address of the network interface.
 	PrivateIpAddress *string `locationName:"privateIpAddress" type:"string"`
 
-	metadataInstancePrivateIpAddress `json:"-" xml:"-"`
-}
-
-type metadataInstancePrivateIpAddress struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -18646,11 +17202,7 @@ type InstanceState struct {
 	// The current state of the instance.
 	Name *string `locationName:"name" type:"string" enum:"InstanceStateName"`
 
-	metadataInstanceState `json:"-" xml:"-"`
-}
-
-type metadataInstanceState struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -18674,11 +17226,7 @@ type InstanceStateChange struct {
 	// The previous state of the instance.
 	PreviousState *InstanceState `locationName:"previousState" type:"structure"`
 
-	metadataInstanceStateChange `json:"-" xml:"-"`
-}
-
-type metadataInstanceStateChange struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -18715,11 +17263,7 @@ type InstanceStatus struct {
 	// problems.
 	SystemStatus *InstanceStatusSummary `locationName:"systemStatus" type:"structure"`
 
-	metadataInstanceStatus `json:"-" xml:"-"`
-}
-
-type metadataInstanceStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -18744,11 +17288,7 @@ type InstanceStatusDetails struct {
 	// The status.
 	Status *string `locationName:"status" type:"string" enum:"StatusType"`
 
-	metadataInstanceStatusDetails `json:"-" xml:"-"`
-}
-
-type metadataInstanceStatusDetails struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -18779,11 +17319,7 @@ type InstanceStatusEvent struct {
 	// The earliest scheduled start time for the event.
 	NotBefore *time.Time `locationName:"notBefore" type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataInstanceStatusEvent `json:"-" xml:"-"`
-}
-
-type metadataInstanceStatusEvent struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -18804,11 +17340,7 @@ type InstanceStatusSummary struct {
 	// The status.
 	Status *string `locationName:"status" type:"string" enum:"SummaryStatus"`
 
-	metadataInstanceStatusSummary `json:"-" xml:"-"`
-}
-
-type metadataInstanceStatusSummary struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -18832,11 +17364,7 @@ type InternetGateway struct {
 	// Any tags assigned to the Internet gateway.
 	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
 
-	metadataInternetGateway `json:"-" xml:"-"`
-}
-
-type metadataInternetGateway struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -18857,11 +17385,7 @@ type InternetGatewayAttachment struct {
 	// The ID of the VPC.
 	VpcId *string `locationName:"vpcId" type:"string"`
 
-	metadataInternetGatewayAttachment `json:"-" xml:"-"`
-}
-
-type metadataInternetGatewayAttachment struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -18906,11 +17430,7 @@ type IpPermission struct {
 	// One or more security group and AWS account ID pairs.
 	UserIdGroupPairs []*UserIdGroupPair `locationName:"groups" locationNameList:"item" type:"list"`
 
-	metadataIpPermission `json:"-" xml:"-"`
-}
-
-type metadataIpPermission struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -18929,11 +17449,7 @@ type IpRange struct {
 	// group, not both.
 	CidrIp *string `locationName:"cidrIp" type:"string"`
 
-	metadataIpRange `json:"-" xml:"-"`
-}
-
-type metadataIpRange struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -18957,11 +17473,7 @@ type KeyPairInfo struct {
 	// The name of the key pair.
 	KeyName *string `locationName:"keyName" type:"string"`
 
-	metadataKeyPairInfo `json:"-" xml:"-"`
-}
-
-type metadataKeyPairInfo struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -18982,11 +17494,7 @@ type LaunchPermission struct {
 	// The AWS account ID.
 	UserId *string `locationName:"userId" type:"string"`
 
-	metadataLaunchPermission `json:"-" xml:"-"`
-}
-
-type metadataLaunchPermission struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19008,11 +17516,7 @@ type LaunchPermissionModifications struct {
 	// AMI.
 	Remove []*LaunchPermission `locationNameList:"item" type:"list"`
 
-	metadataLaunchPermissionModifications `json:"-" xml:"-"`
-}
-
-type metadataLaunchPermissionModifications struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19080,11 +17584,7 @@ type LaunchSpecification struct {
 	// The Base64-encoded MIME user data to make available to the instances.
 	UserData *string `locationName:"userData" type:"string"`
 
-	metadataLaunchSpecification `json:"-" xml:"-"`
-}
-
-type metadataLaunchSpecification struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19104,11 +17604,7 @@ type ModifyHostsInput struct {
 	// The host IDs of the Dedicated hosts you want to modify.
 	HostIds []*string `locationName:"hostId" locationNameList:"item" type:"list" required:"true"`
 
-	metadataModifyHostsInput `json:"-" xml:"-"`
-}
-
-type metadataModifyHostsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19129,11 +17625,7 @@ type ModifyHostsOutput struct {
 	// the setting you requested can be used.
 	Unsuccessful []*UnsuccessfulItem `locationName:"unsuccessful" locationNameList:"item" type:"list"`
 
-	metadataModifyHostsOutput `json:"-" xml:"-"`
-}
-
-type metadataModifyHostsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19153,11 +17645,7 @@ type ModifyIdFormatInput struct {
 	// Indicate whether the resource should use longer IDs (17-character IDs).
 	UseLongIds *bool `type:"boolean" required:"true"`
 
-	metadataModifyIdFormatInput `json:"-" xml:"-"`
-}
-
-type metadataModifyIdFormatInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19171,11 +17659,7 @@ func (s ModifyIdFormatInput) GoString() string {
 }
 
 type ModifyIdFormatOutput struct {
-	metadataModifyIdFormatOutput `json:"-" xml:"-"`
-}
-
-type metadataModifyIdFormatOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19226,11 +17710,7 @@ type ModifyImageAttributeInput struct {
 	// the description attribute.
 	Value *string `type:"string"`
 
-	metadataModifyImageAttributeInput `json:"-" xml:"-"`
-}
-
-type metadataModifyImageAttributeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19244,11 +17724,7 @@ func (s ModifyImageAttributeInput) GoString() string {
 }
 
 type ModifyImageAttributeOutput struct {
-	metadataModifyImageAttributeOutput `json:"-" xml:"-"`
-}
-
-type metadataModifyImageAttributeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19341,11 +17817,7 @@ type ModifyInstanceAttributeInput struct {
 	// disableApiTermination, or instanceInitiatedShutdownBehavior attribute.
 	Value *string `locationName:"value" type:"string"`
 
-	metadataModifyInstanceAttributeInput `json:"-" xml:"-"`
-}
-
-type metadataModifyInstanceAttributeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19359,11 +17831,7 @@ func (s ModifyInstanceAttributeInput) GoString() string {
 }
 
 type ModifyInstanceAttributeOutput struct {
-	metadataModifyInstanceAttributeOutput `json:"-" xml:"-"`
-}
-
-type metadataModifyInstanceAttributeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19389,11 +17857,7 @@ type ModifyInstancePlacementInput struct {
 	// The tenancy of the instance that you are modifying.
 	Tenancy *string `locationName:"tenancy" type:"string" enum:"HostTenancy"`
 
-	metadataModifyInstancePlacementInput `json:"-" xml:"-"`
-}
-
-type metadataModifyInstancePlacementInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19410,11 +17874,7 @@ type ModifyInstancePlacementOutput struct {
 	// Is true if the request succeeds, and an error otherwise.
 	Return *bool `locationName:"return" type:"boolean"`
 
-	metadataModifyInstancePlacementOutput `json:"-" xml:"-"`
-}
-
-type metadataModifyInstancePlacementOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19457,11 +17917,7 @@ type ModifyNetworkInterfaceAttributeInput struct {
 	// in the Amazon Virtual Private Cloud User Guide.
 	SourceDestCheck *AttributeBooleanValue `locationName:"sourceDestCheck" type:"structure"`
 
-	metadataModifyNetworkInterfaceAttributeInput `json:"-" xml:"-"`
-}
-
-type metadataModifyNetworkInterfaceAttributeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19475,11 +17931,7 @@ func (s ModifyNetworkInterfaceAttributeInput) GoString() string {
 }
 
 type ModifyNetworkInterfaceAttributeOutput struct {
-	metadataModifyNetworkInterfaceAttributeOutput `json:"-" xml:"-"`
-}
-
-type metadataModifyNetworkInterfaceAttributeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19503,11 +17955,7 @@ type ModifyReservedInstancesInput struct {
 	// The configuration settings for the Reserved instances to modify.
 	TargetConfigurations []*ReservedInstancesConfiguration `locationName:"ReservedInstancesConfigurationSetItemType" locationNameList:"item" type:"list" required:"true"`
 
-	metadataModifyReservedInstancesInput `json:"-" xml:"-"`
-}
-
-type metadataModifyReservedInstancesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19524,11 +17972,7 @@ type ModifyReservedInstancesOutput struct {
 	// The ID for the modification.
 	ReservedInstancesModificationId *string `locationName:"reservedInstancesModificationId" type:"string"`
 
-	metadataModifyReservedInstancesOutput `json:"-" xml:"-"`
-}
-
-type metadataModifyReservedInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19568,11 +18012,7 @@ type ModifySnapshotAttributeInput struct {
 	// The account ID to modify for the snapshot.
 	UserIds []*string `locationName:"UserId" locationNameList:"UserId" type:"list"`
 
-	metadataModifySnapshotAttributeInput `json:"-" xml:"-"`
-}
-
-type metadataModifySnapshotAttributeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19586,11 +18026,7 @@ func (s ModifySnapshotAttributeInput) GoString() string {
 }
 
 type ModifySnapshotAttributeOutput struct {
-	metadataModifySnapshotAttributeOutput `json:"-" xml:"-"`
-}
-
-type metadataModifySnapshotAttributeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19616,11 +18052,7 @@ type ModifySpotFleetRequestInput struct {
 	// The size of the fleet.
 	TargetCapacity *int64 `locationName:"targetCapacity" type:"integer"`
 
-	metadataModifySpotFleetRequestInput `json:"-" xml:"-"`
-}
-
-type metadataModifySpotFleetRequestInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19638,11 +18070,7 @@ type ModifySpotFleetRequestOutput struct {
 	// Is true if the request succeeds, and an error otherwise.
 	Return *bool `locationName:"return" type:"boolean"`
 
-	metadataModifySpotFleetRequestOutput `json:"-" xml:"-"`
-}
-
-type metadataModifySpotFleetRequestOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19663,11 +18091,7 @@ type ModifySubnetAttributeInput struct {
 	// The ID of the subnet.
 	SubnetId *string `locationName:"subnetId" type:"string" required:"true"`
 
-	metadataModifySubnetAttributeInput `json:"-" xml:"-"`
-}
-
-type metadataModifySubnetAttributeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19681,11 +18105,7 @@ func (s ModifySubnetAttributeInput) GoString() string {
 }
 
 type ModifySubnetAttributeOutput struct {
-	metadataModifySubnetAttributeOutput `json:"-" xml:"-"`
-}
-
-type metadataModifySubnetAttributeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19711,11 +18131,7 @@ type ModifyVolumeAttributeInput struct {
 	// The ID of the volume.
 	VolumeId *string `type:"string" required:"true"`
 
-	metadataModifyVolumeAttributeInput `json:"-" xml:"-"`
-}
-
-type metadataModifyVolumeAttributeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19729,11 +18145,7 @@ func (s ModifyVolumeAttributeInput) GoString() string {
 }
 
 type ModifyVolumeAttributeOutput struct {
-	metadataModifyVolumeAttributeOutput `json:"-" xml:"-"`
-}
-
-type metadataModifyVolumeAttributeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19768,11 +18180,7 @@ type ModifyVpcAttributeInput struct {
 	// The ID of the VPC.
 	VpcId *string `locationName:"vpcId" type:"string" required:"true"`
 
-	metadataModifyVpcAttributeInput `json:"-" xml:"-"`
-}
-
-type metadataModifyVpcAttributeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19786,11 +18194,7 @@ func (s ModifyVpcAttributeInput) GoString() string {
 }
 
 type ModifyVpcAttributeOutput struct {
-	metadataModifyVpcAttributeOutput `json:"-" xml:"-"`
-}
-
-type metadataModifyVpcAttributeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19827,11 +18231,7 @@ type ModifyVpcEndpointInput struct {
 	// The ID of the endpoint.
 	VpcEndpointId *string `type:"string" required:"true"`
 
-	metadataModifyVpcEndpointInput `json:"-" xml:"-"`
-}
-
-type metadataModifyVpcEndpointInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19848,11 +18248,7 @@ type ModifyVpcEndpointOutput struct {
 	// Returns true if the request succeeds; otherwise, it returns an error.
 	Return *bool `locationName:"return" type:"boolean"`
 
-	metadataModifyVpcEndpointOutput `json:"-" xml:"-"`
-}
-
-type metadataModifyVpcEndpointOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19875,11 +18271,7 @@ type MonitorInstancesInput struct {
 	// One or more instance IDs.
 	InstanceIds []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list" required:"true"`
 
-	metadataMonitorInstancesInput `json:"-" xml:"-"`
-}
-
-type metadataMonitorInstancesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19896,11 +18288,7 @@ type MonitorInstancesOutput struct {
 	// Monitoring information for one or more instances.
 	InstanceMonitorings []*InstanceMonitoring `locationName:"instancesSet" locationNameList:"item" type:"list"`
 
-	metadataMonitorInstancesOutput `json:"-" xml:"-"`
-}
-
-type metadataMonitorInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19918,11 +18306,7 @@ type Monitoring struct {
 	// Indicates whether monitoring is enabled for the instance.
 	State *string `locationName:"state" type:"string" enum:"MonitoringState"`
 
-	metadataMonitoring `json:"-" xml:"-"`
-}
-
-type metadataMonitoring struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19945,11 +18329,7 @@ type MoveAddressToVpcInput struct {
 	// The Elastic IP address.
 	PublicIp *string `locationName:"publicIp" type:"string" required:"true"`
 
-	metadataMoveAddressToVpcInput `json:"-" xml:"-"`
-}
-
-type metadataMoveAddressToVpcInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19969,11 +18349,7 @@ type MoveAddressToVpcOutput struct {
 	// The status of the move of the IP address.
 	Status *string `locationName:"status" type:"string" enum:"Status"`
 
-	metadataMoveAddressToVpcOutput `json:"-" xml:"-"`
-}
-
-type metadataMoveAddressToVpcOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -19995,11 +18371,7 @@ type MovingAddressStatus struct {
 	// The Elastic IP address.
 	PublicIp *string `locationName:"publicIp" type:"string"`
 
-	metadataMovingAddressStatus `json:"-" xml:"-"`
-}
-
-type metadataMovingAddressStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -20032,11 +18404,7 @@ type NetworkAcl struct {
 	// The ID of the VPC for the network ACL.
 	VpcId *string `locationName:"vpcId" type:"string"`
 
-	metadataNetworkAcl `json:"-" xml:"-"`
-}
-
-type metadataNetworkAcl struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -20060,11 +18428,7 @@ type NetworkAclAssociation struct {
 	// The ID of the subnet.
 	SubnetId *string `locationName:"subnetId" type:"string"`
 
-	metadataNetworkAclAssociation `json:"-" xml:"-"`
-}
-
-type metadataNetworkAclAssociation struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -20102,11 +18466,7 @@ type NetworkAclEntry struct {
 	// by rule number.
 	RuleNumber *int64 `locationName:"ruleNumber" type:"integer"`
 
-	metadataNetworkAclEntry `json:"-" xml:"-"`
-}
-
-type metadataNetworkAclEntry struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -20177,11 +18537,7 @@ type NetworkInterface struct {
 	// The ID of the VPC.
 	VpcId *string `locationName:"vpcId" type:"string"`
 
-	metadataNetworkInterface `json:"-" xml:"-"`
-}
-
-type metadataNetworkInterface struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -20211,11 +18567,7 @@ type NetworkInterfaceAssociation struct {
 	// The address of the Elastic IP address bound to the network interface.
 	PublicIp *string `locationName:"publicIp" type:"string"`
 
-	metadataNetworkInterfaceAssociation `json:"-" xml:"-"`
-}
-
-type metadataNetworkInterfaceAssociation struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -20251,11 +18603,7 @@ type NetworkInterfaceAttachment struct {
 	// The attachment state.
 	Status *string `locationName:"status" type:"string" enum:"AttachmentStatus"`
 
-	metadataNetworkInterfaceAttachment `json:"-" xml:"-"`
-}
-
-type metadataNetworkInterfaceAttachment struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -20276,11 +18624,7 @@ type NetworkInterfaceAttachmentChanges struct {
 	// Indicates whether the network interface is deleted when the instance is terminated.
 	DeleteOnTermination *bool `locationName:"deleteOnTermination" type:"boolean"`
 
-	metadataNetworkInterfaceAttachmentChanges `json:"-" xml:"-"`
-}
-
-type metadataNetworkInterfaceAttachmentChanges struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -20309,11 +18653,7 @@ type NetworkInterfacePrivateIpAddress struct {
 	// The private IP address.
 	PrivateIpAddress *string `locationName:"privateIpAddress" type:"string"`
 
-	metadataNetworkInterfacePrivateIpAddress `json:"-" xml:"-"`
-}
-
-type metadataNetworkInterfacePrivateIpAddress struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -20331,11 +18671,7 @@ type NewDhcpConfiguration struct {
 
 	Values []*string `locationName:"Value" locationNameList:"item" type:"list"`
 
-	metadataNewDhcpConfiguration `json:"-" xml:"-"`
-}
-
-type metadataNewDhcpConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -20369,11 +18705,7 @@ type Placement struct {
 	// is not supported for the ImportInstance command.
 	Tenancy *string `locationName:"tenancy" type:"string" enum:"Tenancy"`
 
-	metadataPlacement `json:"-" xml:"-"`
-}
-
-type metadataPlacement struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -20397,11 +18729,7 @@ type PlacementGroup struct {
 	// The placement strategy.
 	Strategy *string `locationName:"strategy" type:"string" enum:"PlacementStrategy"`
 
-	metadataPlacementGroup `json:"-" xml:"-"`
-}
-
-type metadataPlacementGroup struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -20422,11 +18750,7 @@ type PortRange struct {
 	// The last port in the range.
 	To *int64 `locationName:"to" type:"integer"`
 
-	metadataPortRange `json:"-" xml:"-"`
-}
-
-type metadataPortRange struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -20450,11 +18774,7 @@ type PrefixList struct {
 	// The name of the prefix.
 	PrefixListName *string `locationName:"prefixListName" type:"string"`
 
-	metadataPrefixList `json:"-" xml:"-"`
-}
-
-type metadataPrefixList struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -20472,11 +18792,7 @@ type PrefixListId struct {
 	// The ID of the prefix.
 	PrefixListId *string `locationName:"prefixListId" type:"string"`
 
-	metadataPrefixListId `json:"-" xml:"-"`
-}
-
-type metadataPrefixListId struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -20514,11 +18830,7 @@ type PriceSchedule struct {
 	// second to the last month before the capacity reservation expires.
 	Term *int64 `locationName:"term" type:"long"`
 
-	metadataPriceSchedule `json:"-" xml:"-"`
-}
-
-type metadataPriceSchedule struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -20544,11 +18856,7 @@ type PriceScheduleSpecification struct {
 	// second to the last month before the capacity reservation expires.
 	Term *int64 `locationName:"term" type:"long"`
 
-	metadataPriceScheduleSpecification `json:"-" xml:"-"`
-}
-
-type metadataPriceScheduleSpecification struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -20569,11 +18877,7 @@ type PricingDetail struct {
 	// The price per instance.
 	Price *float64 `locationName:"price" type:"double"`
 
-	metadataPricingDetail `json:"-" xml:"-"`
-}
-
-type metadataPricingDetail struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -20595,11 +18899,7 @@ type PrivateIpAddressSpecification struct {
 	// The private IP addresses.
 	PrivateIpAddress *string `locationName:"privateIpAddress" type:"string" required:"true"`
 
-	metadataPrivateIpAddressSpecification `json:"-" xml:"-"`
-}
-
-type metadataPrivateIpAddressSpecification struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -20620,11 +18920,7 @@ type ProductCode struct {
 	// The type of product code.
 	ProductCodeType *string `locationName:"type" type:"string" enum:"ProductCodeValues"`
 
-	metadataProductCode `json:"-" xml:"-"`
-}
-
-type metadataProductCode struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -20642,11 +18938,7 @@ type PropagatingVgw struct {
 	// The ID of the virtual private gateway (VGW).
 	GatewayId *string `locationName:"gatewayId" type:"string"`
 
-	metadataPropagatingVgw `json:"-" xml:"-"`
-}
-
-type metadataPropagatingVgw struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -20677,11 +18969,7 @@ type PurchaseReservedInstancesOfferingInput struct {
 	// The ID of the Reserved instance offering to purchase.
 	ReservedInstancesOfferingId *string `type:"string" required:"true"`
 
-	metadataPurchaseReservedInstancesOfferingInput `json:"-" xml:"-"`
-}
-
-type metadataPurchaseReservedInstancesOfferingInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -20698,11 +18986,7 @@ type PurchaseReservedInstancesOfferingOutput struct {
 	// The IDs of the purchased Reserved instances.
 	ReservedInstancesId *string `locationName:"reservedInstancesId" type:"string"`
 
-	metadataPurchaseReservedInstancesOfferingOutput `json:"-" xml:"-"`
-}
-
-type metadataPurchaseReservedInstancesOfferingOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -20725,11 +19009,7 @@ type RebootInstancesInput struct {
 	// One or more instance IDs.
 	InstanceIds []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list" required:"true"`
 
-	metadataRebootInstancesInput `json:"-" xml:"-"`
-}
-
-type metadataRebootInstancesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -20743,11 +19023,7 @@ func (s RebootInstancesInput) GoString() string {
 }
 
 type RebootInstancesOutput struct {
-	metadataRebootInstancesOutput `json:"-" xml:"-"`
-}
-
-type metadataRebootInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -20768,11 +19044,7 @@ type RecurringCharge struct {
 	// The frequency of the recurring charge.
 	Frequency *string `locationName:"frequency" type:"string" enum:"RecurringChargeFrequency"`
 
-	metadataRecurringCharge `json:"-" xml:"-"`
-}
-
-type metadataRecurringCharge struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -20793,11 +19065,7 @@ type Region struct {
 	// The name of the region.
 	RegionName *string `locationName:"regionName" type:"string"`
 
-	metadataRegion `json:"-" xml:"-"`
-}
-
-type metadataRegion struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -20862,11 +19130,7 @@ type RegisterImageInput struct {
 	// Default: paravirtual
 	VirtualizationType *string `locationName:"virtualizationType" type:"string"`
 
-	metadataRegisterImageInput `json:"-" xml:"-"`
-}
-
-type metadataRegisterImageInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -20883,11 +19147,7 @@ type RegisterImageOutput struct {
 	// The ID of the newly registered AMI.
 	ImageId *string `locationName:"imageId" type:"string"`
 
-	metadataRegisterImageOutput `json:"-" xml:"-"`
-}
-
-type metadataRegisterImageOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -20910,11 +19170,7 @@ type RejectVpcPeeringConnectionInput struct {
 	// The ID of the VPC peering connection.
 	VpcPeeringConnectionId *string `locationName:"vpcPeeringConnectionId" type:"string" required:"true"`
 
-	metadataRejectVpcPeeringConnectionInput `json:"-" xml:"-"`
-}
-
-type metadataRejectVpcPeeringConnectionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -20931,11 +19187,7 @@ type RejectVpcPeeringConnectionOutput struct {
 	// Returns true if the request succeeds; otherwise, it returns an error.
 	Return *bool `locationName:"return" type:"boolean"`
 
-	metadataRejectVpcPeeringConnectionOutput `json:"-" xml:"-"`
-}
-
-type metadataRejectVpcPeeringConnectionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -20961,11 +19213,7 @@ type ReleaseAddressInput struct {
 	// [EC2-Classic] The Elastic IP address. Required for EC2-Classic.
 	PublicIp *string `type:"string"`
 
-	metadataReleaseAddressInput `json:"-" xml:"-"`
-}
-
-type metadataReleaseAddressInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -20979,11 +19227,7 @@ func (s ReleaseAddressInput) GoString() string {
 }
 
 type ReleaseAddressOutput struct {
-	metadataReleaseAddressOutput `json:"-" xml:"-"`
-}
-
-type metadataReleaseAddressOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -21000,11 +19244,7 @@ type ReleaseHostsInput struct {
 	// The IDs of the Dedicated hosts you want to release.
 	HostIds []*string `locationName:"hostId" locationNameList:"item" type:"list" required:"true"`
 
-	metadataReleaseHostsInput `json:"-" xml:"-"`
-}
-
-type metadataReleaseHostsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -21025,11 +19265,7 @@ type ReleaseHostsOutput struct {
 	// message.
 	Unsuccessful []*UnsuccessfulItem `locationName:"unsuccessful" locationNameList:"item" type:"list"`
 
-	metadataReleaseHostsOutput `json:"-" xml:"-"`
-}
-
-type metadataReleaseHostsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -21056,11 +19292,7 @@ type ReplaceNetworkAclAssociationInput struct {
 	// The ID of the new network ACL to associate with the subnet.
 	NetworkAclId *string `locationName:"networkAclId" type:"string" required:"true"`
 
-	metadataReplaceNetworkAclAssociationInput `json:"-" xml:"-"`
-}
-
-type metadataReplaceNetworkAclAssociationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -21077,11 +19309,7 @@ type ReplaceNetworkAclAssociationOutput struct {
 	// The ID of the new association.
 	NewAssociationId *string `locationName:"newAssociationId" type:"string"`
 
-	metadataReplaceNetworkAclAssociationOutput `json:"-" xml:"-"`
-}
-
-type metadataReplaceNetworkAclAssociationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -21129,11 +19357,7 @@ type ReplaceNetworkAclEntryInput struct {
 	// The rule number of the entry to replace.
 	RuleNumber *int64 `locationName:"ruleNumber" type:"integer" required:"true"`
 
-	metadataReplaceNetworkAclEntryInput `json:"-" xml:"-"`
-}
-
-type metadataReplaceNetworkAclEntryInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -21147,11 +19371,7 @@ func (s ReplaceNetworkAclEntryInput) GoString() string {
 }
 
 type ReplaceNetworkAclEntryOutput struct {
-	metadataReplaceNetworkAclEntryOutput `json:"-" xml:"-"`
-}
-
-type metadataReplaceNetworkAclEntryOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -21190,11 +19410,7 @@ type ReplaceRouteInput struct {
 	// The ID of a VPC peering connection.
 	VpcPeeringConnectionId *string `locationName:"vpcPeeringConnectionId" type:"string"`
 
-	metadataReplaceRouteInput `json:"-" xml:"-"`
-}
-
-type metadataReplaceRouteInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -21208,11 +19424,7 @@ func (s ReplaceRouteInput) GoString() string {
 }
 
 type ReplaceRouteOutput struct {
-	metadataReplaceRouteOutput `json:"-" xml:"-"`
-}
-
-type metadataReplaceRouteOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -21238,11 +19450,7 @@ type ReplaceRouteTableAssociationInput struct {
 	// The ID of the new route table to associate with the subnet.
 	RouteTableId *string `locationName:"routeTableId" type:"string" required:"true"`
 
-	metadataReplaceRouteTableAssociationInput `json:"-" xml:"-"`
-}
-
-type metadataReplaceRouteTableAssociationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -21259,11 +19467,7 @@ type ReplaceRouteTableAssociationOutput struct {
 	// The ID of the new association.
 	NewAssociationId *string `locationName:"newAssociationId" type:"string"`
 
-	metadataReplaceRouteTableAssociationOutput `json:"-" xml:"-"`
-}
-
-type metadataReplaceRouteTableAssociationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -21322,11 +19526,7 @@ type ReportInstanceStatusInput struct {
 	// The status of all instances listed.
 	Status *string `locationName:"status" type:"string" required:"true" enum:"ReportStatusType"`
 
-	metadataReportInstanceStatusInput `json:"-" xml:"-"`
-}
-
-type metadataReportInstanceStatusInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -21340,11 +19540,7 @@ func (s ReportInstanceStatusInput) GoString() string {
 }
 
 type ReportInstanceStatusOutput struct {
-	metadataReportInstanceStatusOutput `json:"-" xml:"-"`
-}
-
-type metadataReportInstanceStatusOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -21368,11 +19564,7 @@ type RequestSpotFleetInput struct {
 	// The configuration for the Spot fleet request.
 	SpotFleetRequestConfig *SpotFleetRequestConfigData `locationName:"spotFleetRequestConfig" type:"structure" required:"true"`
 
-	metadataRequestSpotFleetInput `json:"-" xml:"-"`
-}
-
-type metadataRequestSpotFleetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -21390,11 +19582,7 @@ type RequestSpotFleetOutput struct {
 	// The ID of the Spot fleet request.
 	SpotFleetRequestId *string `locationName:"spotFleetRequestId" type:"string" required:"true"`
 
-	metadataRequestSpotFleetOutput `json:"-" xml:"-"`
-}
-
-type metadataRequestSpotFleetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -21493,11 +19681,7 @@ type RequestSpotInstancesInput struct {
 	// Default: The request is effective indefinitely.
 	ValidUntil *time.Time `locationName:"validUntil" type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataRequestSpotInstancesInput `json:"-" xml:"-"`
-}
-
-type metadataRequestSpotInstancesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -21515,11 +19699,7 @@ type RequestSpotInstancesOutput struct {
 	// One or more Spot instance requests.
 	SpotInstanceRequests []*SpotInstanceRequest `locationName:"spotInstanceRequestSet" locationNameList:"item" type:"list"`
 
-	metadataRequestSpotInstancesOutput `json:"-" xml:"-"`
-}
-
-type metadataRequestSpotInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -21586,11 +19766,7 @@ type RequestSpotLaunchSpecification struct {
 	// The Base64-encoded MIME user data to make available to the instances.
 	UserData *string `locationName:"userData" type:"string"`
 
-	metadataRequestSpotLaunchSpecification `json:"-" xml:"-"`
-}
-
-type metadataRequestSpotLaunchSpecification struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -21621,11 +19797,7 @@ type Reservation struct {
 	// The ID of the reservation.
 	ReservationId *string `locationName:"reservationId" type:"string"`
 
-	metadataReservation `json:"-" xml:"-"`
-}
-
-type metadataReservation struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -21648,11 +19820,7 @@ type ReservedInstanceLimitPrice struct {
 	// only supported currency is USD.
 	CurrencyCode *string `locationName:"currencyCode" type:"string" enum:"CurrencyCodeValues"`
 
-	metadataReservedInstanceLimitPrice `json:"-" xml:"-"`
-}
-
-type metadataReservedInstanceLimitPrice struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -21716,11 +19884,7 @@ type ReservedInstances struct {
 	// The usage price of the Reserved instance, per hour.
 	UsagePrice *float64 `locationName:"usagePrice" type:"float"`
 
-	metadataReservedInstances `json:"-" xml:"-"`
-}
-
-type metadataReservedInstances struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -21748,11 +19912,7 @@ type ReservedInstancesConfiguration struct {
 	// EC2-Classic or EC2-VPC.
 	Platform *string `locationName:"platform" type:"string"`
 
-	metadataReservedInstancesConfiguration `json:"-" xml:"-"`
-}
-
-type metadataReservedInstancesConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -21770,11 +19930,7 @@ type ReservedInstancesId struct {
 	// The ID of the Reserved instance.
 	ReservedInstancesId *string `locationName:"reservedInstancesId" type:"string"`
 
-	metadataReservedInstancesId `json:"-" xml:"-"`
-}
-
-type metadataReservedInstancesId struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -21821,11 +19977,7 @@ type ReservedInstancesListing struct {
 	// The last modified timestamp of the listing.
 	UpdateDate *time.Time `locationName:"updateDate" type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataReservedInstancesListing `json:"-" xml:"-"`
-}
-
-type metadataReservedInstancesListing struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -21869,11 +20021,7 @@ type ReservedInstancesModification struct {
 	// The time when the modification request was last updated.
 	UpdateDate *time.Time `locationName:"updateDate" type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataReservedInstancesModification `json:"-" xml:"-"`
-}
-
-type metadataReservedInstancesModification struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -21895,11 +20043,7 @@ type ReservedInstancesModificationResult struct {
 	// request.
 	TargetConfiguration *ReservedInstancesConfiguration `locationName:"targetConfiguration" type:"structure"`
 
-	metadataReservedInstancesModificationResult `json:"-" xml:"-"`
-}
-
-type metadataReservedInstancesModificationResult struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -21957,11 +20101,7 @@ type ReservedInstancesOffering struct {
 	// The usage price of the Reserved instance, per hour.
 	UsagePrice *float64 `locationName:"usagePrice" type:"float"`
 
-	metadataReservedInstancesOffering `json:"-" xml:"-"`
-}
-
-type metadataReservedInstancesOffering struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -21988,11 +20128,7 @@ type ResetImageAttributeInput struct {
 	// The ID of the AMI.
 	ImageId *string `type:"string" required:"true"`
 
-	metadataResetImageAttributeInput `json:"-" xml:"-"`
-}
-
-type metadataResetImageAttributeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -22006,11 +20142,7 @@ func (s ResetImageAttributeInput) GoString() string {
 }
 
 type ResetImageAttributeOutput struct {
-	metadataResetImageAttributeOutput `json:"-" xml:"-"`
-}
-
-type metadataResetImageAttributeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -22036,11 +20168,7 @@ type ResetInstanceAttributeInput struct {
 	// The ID of the instance.
 	InstanceId *string `locationName:"instanceId" type:"string" required:"true"`
 
-	metadataResetInstanceAttributeInput `json:"-" xml:"-"`
-}
-
-type metadataResetInstanceAttributeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -22054,11 +20182,7 @@ func (s ResetInstanceAttributeInput) GoString() string {
 }
 
 type ResetInstanceAttributeOutput struct {
-	metadataResetInstanceAttributeOutput `json:"-" xml:"-"`
-}
-
-type metadataResetInstanceAttributeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -22084,11 +20208,7 @@ type ResetNetworkInterfaceAttributeInput struct {
 	// The source/destination checking attribute. Resets the value to true.
 	SourceDestCheck *string `locationName:"sourceDestCheck" type:"string"`
 
-	metadataResetNetworkInterfaceAttributeInput `json:"-" xml:"-"`
-}
-
-type metadataResetNetworkInterfaceAttributeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -22102,11 +20222,7 @@ func (s ResetNetworkInterfaceAttributeInput) GoString() string {
 }
 
 type ResetNetworkInterfaceAttributeOutput struct {
-	metadataResetNetworkInterfaceAttributeOutput `json:"-" xml:"-"`
-}
-
-type metadataResetNetworkInterfaceAttributeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -22133,11 +20249,7 @@ type ResetSnapshotAttributeInput struct {
 	// The ID of the snapshot.
 	SnapshotId *string `type:"string" required:"true"`
 
-	metadataResetSnapshotAttributeInput `json:"-" xml:"-"`
-}
-
-type metadataResetSnapshotAttributeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -22151,11 +20263,7 @@ func (s ResetSnapshotAttributeInput) GoString() string {
 }
 
 type ResetSnapshotAttributeOutput struct {
-	metadataResetSnapshotAttributeOutput `json:"-" xml:"-"`
-}
-
-type metadataResetSnapshotAttributeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -22178,11 +20286,7 @@ type RestoreAddressToClassicInput struct {
 	// The Elastic IP address.
 	PublicIp *string `locationName:"publicIp" type:"string" required:"true"`
 
-	metadataRestoreAddressToClassicInput `json:"-" xml:"-"`
-}
-
-type metadataRestoreAddressToClassicInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -22202,11 +20306,7 @@ type RestoreAddressToClassicOutput struct {
 	// The move status for the IP address.
 	Status *string `locationName:"status" type:"string" enum:"Status"`
 
-	metadataRestoreAddressToClassicOutput `json:"-" xml:"-"`
-}
-
-type metadataRestoreAddressToClassicOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -22259,11 +20359,7 @@ type RevokeSecurityGroupEgressInput struct {
 	// For the ICMP code number, use -1 to specify all ICMP codes for the ICMP type.
 	ToPort *int64 `locationName:"toPort" type:"integer"`
 
-	metadataRevokeSecurityGroupEgressInput `json:"-" xml:"-"`
-}
-
-type metadataRevokeSecurityGroupEgressInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -22277,11 +20373,7 @@ func (s RevokeSecurityGroupEgressInput) GoString() string {
 }
 
 type RevokeSecurityGroupEgressOutput struct {
-	metadataRevokeSecurityGroupEgressOutput `json:"-" xml:"-"`
-}
-
-type metadataRevokeSecurityGroupEgressOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -22343,11 +20435,7 @@ type RevokeSecurityGroupIngressInput struct {
 	// For the ICMP code number, use -1 to specify all ICMP codes for the ICMP type.
 	ToPort *int64 `type:"integer"`
 
-	metadataRevokeSecurityGroupIngressInput `json:"-" xml:"-"`
-}
-
-type metadataRevokeSecurityGroupIngressInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -22361,11 +20449,7 @@ func (s RevokeSecurityGroupIngressInput) GoString() string {
 }
 
 type RevokeSecurityGroupIngressOutput struct {
-	metadataRevokeSecurityGroupIngressOutput `json:"-" xml:"-"`
-}
-
-type metadataRevokeSecurityGroupIngressOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -22414,11 +20498,7 @@ type Route struct {
 	// The ID of the VPC peering connection.
 	VpcPeeringConnectionId *string `locationName:"vpcPeeringConnectionId" type:"string"`
 
-	metadataRoute `json:"-" xml:"-"`
-}
-
-type metadataRoute struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -22451,11 +20531,7 @@ type RouteTable struct {
 	// The ID of the VPC.
 	VpcId *string `locationName:"vpcId" type:"string"`
 
-	metadataRouteTable `json:"-" xml:"-"`
-}
-
-type metadataRouteTable struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -22482,11 +20558,7 @@ type RouteTableAssociation struct {
 	// The ID of the subnet. A subnet ID is not returned for an implicit association.
 	SubnetId *string `locationName:"subnetId" type:"string"`
 
-	metadataRouteTableAssociation `json:"-" xml:"-"`
-}
-
-type metadataRouteTableAssociation struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -22633,11 +20705,7 @@ type RunInstancesInput struct {
 	// The Base64-encoded MIME user data for the instances.
 	UserData *string `type:"string"`
 
-	metadataRunInstancesInput `json:"-" xml:"-"`
-}
-
-type metadataRunInstancesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -22655,11 +20723,7 @@ type RunInstancesMonitoringEnabled struct {
 	// Indicates whether monitoring is enabled for the instance.
 	Enabled *bool `locationName:"enabled" type:"boolean" required:"true"`
 
-	metadataRunInstancesMonitoringEnabled `json:"-" xml:"-"`
-}
-
-type metadataRunInstancesMonitoringEnabled struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -22695,11 +20759,7 @@ type S3Storage struct {
 	// The signature of the Base64 encoded JSON document.
 	UploadPolicySignature *string `locationName:"uploadPolicySignature" type:"string"`
 
-	metadataS3Storage `json:"-" xml:"-"`
-}
-
-type metadataS3Storage struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -22738,11 +20798,7 @@ type SecurityGroup struct {
 	// [EC2-VPC] The ID of the VPC for the security group.
 	VpcId *string `locationName:"vpcId" type:"string"`
 
-	metadataSecurityGroup `json:"-" xml:"-"`
-}
-
-type metadataSecurityGroup struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -22812,11 +20868,7 @@ type Snapshot struct {
 	// The size of the volume, in GiB.
 	VolumeSize *int64 `locationName:"volumeSize" type:"integer"`
 
-	metadataSnapshot `json:"-" xml:"-"`
-}
-
-type metadataSnapshot struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -22861,11 +20913,7 @@ type SnapshotDetail struct {
 	// Describes the S3 bucket for the disk image.
 	UserBucket *UserBucketDetails `locationName:"userBucket" type:"structure"`
 
-	metadataSnapshotDetail `json:"-" xml:"-"`
-}
-
-type metadataSnapshotDetail struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -22895,11 +20943,7 @@ type SnapshotDiskContainer struct {
 	// Describes the S3 bucket for the disk image.
 	UserBucket *UserBucket `type:"structure"`
 
-	metadataSnapshotDiskContainer `json:"-" xml:"-"`
-}
-
-type metadataSnapshotDiskContainer struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -22941,11 +20985,7 @@ type SnapshotTaskDetail struct {
 	// The S3 bucket for the disk image.
 	UserBucket *UserBucketDetails `locationName:"userBucket" type:"structure"`
 
-	metadataSnapshotTaskDetail `json:"-" xml:"-"`
-}
-
-type metadataSnapshotTaskDetail struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -22975,11 +21015,7 @@ type SpotDatafeedSubscription struct {
 	// The state of the Spot instance data feed subscription.
 	State *string `locationName:"state" type:"string" enum:"DatafeedSubscriptionState"`
 
-	metadataSpotDatafeedSubscription `json:"-" xml:"-"`
-}
-
-type metadataSpotDatafeedSubscription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -23062,11 +21098,7 @@ type SpotFleetLaunchSpecification struct {
 	// the default is 1.
 	WeightedCapacity *float64 `locationName:"weightedCapacity" type:"double"`
 
-	metadataSpotFleetLaunchSpecification `json:"-" xml:"-"`
-}
-
-type metadataSpotFleetLaunchSpecification struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -23086,11 +21118,7 @@ type SpotFleetMonitoring struct {
 	// Default: false
 	Enabled *bool `locationName:"enabled" type:"boolean"`
 
-	metadataSpotFleetMonitoring `json:"-" xml:"-"`
-}
-
-type metadataSpotFleetMonitoring struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -23117,11 +21145,7 @@ type SpotFleetRequestConfig struct {
 	// The state of the Spot fleet request.
 	SpotFleetRequestState *string `locationName:"spotFleetRequestState" type:"string" required:"true" enum:"BatchState"`
 
-	metadataSpotFleetRequestConfig `json:"-" xml:"-"`
-}
-
-type metadataSpotFleetRequestConfig struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -23179,11 +21203,7 @@ type SpotFleetRequestConfigData struct {
 	// the request.
 	ValidUntil *time.Time `locationName:"validUntil" type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataSpotFleetRequestConfigData `json:"-" xml:"-"`
-}
-
-type metadataSpotFleetRequestConfigData struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -23266,11 +21286,7 @@ type SpotInstanceRequest struct {
 	// it remains active until it is canceled or this date is reached.
 	ValidUntil *time.Time `locationName:"validUntil" type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataSpotInstanceRequest `json:"-" xml:"-"`
-}
-
-type metadataSpotInstanceRequest struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -23291,11 +21307,7 @@ type SpotInstanceStateFault struct {
 	// The message for the Spot instance state change.
 	Message *string `locationName:"message" type:"string"`
 
-	metadataSpotInstanceStateFault `json:"-" xml:"-"`
-}
-
-type metadataSpotInstanceStateFault struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -23321,11 +21333,7 @@ type SpotInstanceStatus struct {
 	// YYYY-MM-DDTHH:MM:SSZ).
 	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataSpotInstanceStatus `json:"-" xml:"-"`
-}
-
-type metadataSpotInstanceStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -23346,11 +21354,7 @@ type SpotPlacement struct {
 	// The name of the placement group (for cluster instances).
 	GroupName *string `locationName:"groupName" type:"string"`
 
-	metadataSpotPlacement `json:"-" xml:"-"`
-}
-
-type metadataSpotPlacement struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -23381,11 +21385,7 @@ type SpotPrice struct {
 	// The date and time the request was created, in UTC format (for example, YYYY-MM-DDTHH:MM:SSZ).
 	Timestamp *time.Time `locationName:"timestamp" type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataSpotPrice `json:"-" xml:"-"`
-}
-
-type metadataSpotPrice struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -23411,11 +21411,7 @@ type StartInstancesInput struct {
 	// One or more instance IDs.
 	InstanceIds []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list" required:"true"`
 
-	metadataStartInstancesInput `json:"-" xml:"-"`
-}
-
-type metadataStartInstancesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -23432,11 +21428,7 @@ type StartInstancesOutput struct {
 	// Information about one or more started instances.
 	StartingInstances []*InstanceStateChange `locationName:"instancesSet" locationNameList:"item" type:"list"`
 
-	metadataStartInstancesOutput `json:"-" xml:"-"`
-}
-
-type metadataStartInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -23479,11 +21471,7 @@ type StateReason struct {
 	// Client.InvalidSnapshot.NotFound: The specified snapshot was not found.
 	Message *string `locationName:"message" type:"string"`
 
-	metadataStateReason `json:"-" xml:"-"`
-}
-
-type metadataStateReason struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -23514,11 +21502,7 @@ type StopInstancesInput struct {
 	// One or more instance IDs.
 	InstanceIds []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list" required:"true"`
 
-	metadataStopInstancesInput `json:"-" xml:"-"`
-}
-
-type metadataStopInstancesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -23535,11 +21519,7 @@ type StopInstancesOutput struct {
 	// Information about one or more stopped instances.
 	StoppingInstances []*InstanceStateChange `locationName:"instancesSet" locationNameList:"item" type:"list"`
 
-	metadataStopInstancesOutput `json:"-" xml:"-"`
-}
-
-type metadataStopInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -23557,11 +21537,7 @@ type Storage struct {
 	// An Amazon S3 storage location.
 	S3 *S3Storage `type:"structure"`
 
-	metadataStorage `json:"-" xml:"-"`
-}
-
-type metadataStorage struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -23604,11 +21580,7 @@ type Subnet struct {
 	// The ID of the VPC the subnet is in.
 	VpcId *string `locationName:"vpcId" type:"string"`
 
-	metadataSubnet `json:"-" xml:"-"`
-}
-
-type metadataSubnet struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -23635,11 +21607,7 @@ type Tag struct {
 	// characters.
 	Value *string `locationName:"value" type:"string"`
 
-	metadataTag `json:"-" xml:"-"`
-}
-
-type metadataTag struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -23666,11 +21634,7 @@ type TagDescription struct {
 	// The tag value.
 	Value *string `locationName:"value" type:"string"`
 
-	metadataTagDescription `json:"-" xml:"-"`
-}
-
-type metadataTagDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -23693,11 +21657,7 @@ type TerminateInstancesInput struct {
 	// One or more instance IDs.
 	InstanceIds []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list" required:"true"`
 
-	metadataTerminateInstancesInput `json:"-" xml:"-"`
-}
-
-type metadataTerminateInstancesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -23714,11 +21674,7 @@ type TerminateInstancesOutput struct {
 	// Information about one or more terminated instances.
 	TerminatingInstances []*InstanceStateChange `locationName:"instancesSet" locationNameList:"item" type:"list"`
 
-	metadataTerminateInstancesOutput `json:"-" xml:"-"`
-}
-
-type metadataTerminateInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -23739,11 +21695,7 @@ type UnassignPrivateIpAddressesInput struct {
 	// You can specify this option multiple times to unassign more than one IP address.
 	PrivateIpAddresses []*string `locationName:"privateIpAddress" locationNameList:"PrivateIpAddress" type:"list" required:"true"`
 
-	metadataUnassignPrivateIpAddressesInput `json:"-" xml:"-"`
-}
-
-type metadataUnassignPrivateIpAddressesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -23757,11 +21709,7 @@ func (s UnassignPrivateIpAddressesInput) GoString() string {
 }
 
 type UnassignPrivateIpAddressesOutput struct {
-	metadataUnassignPrivateIpAddressesOutput `json:"-" xml:"-"`
-}
-
-type metadataUnassignPrivateIpAddressesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -23784,11 +21732,7 @@ type UnmonitorInstancesInput struct {
 	// One or more instance IDs.
 	InstanceIds []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list" required:"true"`
 
-	metadataUnmonitorInstancesInput `json:"-" xml:"-"`
-}
-
-type metadataUnmonitorInstancesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -23805,11 +21749,7 @@ type UnmonitorInstancesOutput struct {
 	// Monitoring information for one or more instances.
 	InstanceMonitorings []*InstanceMonitoring `locationName:"instancesSet" locationNameList:"item" type:"list"`
 
-	metadataUnmonitorInstancesOutput `json:"-" xml:"-"`
-}
-
-type metadataUnmonitorInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -23830,11 +21770,7 @@ type UnsuccessfulItem struct {
 	// The ID of the resource.
 	ResourceId *string `locationName:"resourceId" type:"string"`
 
-	metadataUnsuccessfulItem `json:"-" xml:"-"`
-}
-
-type metadataUnsuccessfulItem struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -23856,11 +21792,7 @@ type UnsuccessfulItemError struct {
 	// The error message accompanying the error code.
 	Message *string `locationName:"message" type:"string" required:"true"`
 
-	metadataUnsuccessfulItemError `json:"-" xml:"-"`
-}
-
-type metadataUnsuccessfulItemError struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -23881,11 +21813,7 @@ type UserBucket struct {
 	// The key for the disk image.
 	S3Key *string `type:"string"`
 
-	metadataUserBucket `json:"-" xml:"-"`
-}
-
-type metadataUserBucket struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -23906,11 +21834,7 @@ type UserBucketDetails struct {
 	// The key from which the disk image was created.
 	S3Key *string `locationName:"s3Key" type:"string"`
 
-	metadataUserBucketDetails `json:"-" xml:"-"`
-}
-
-type metadataUserBucketDetails struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -23928,11 +21852,7 @@ type UserData struct {
 	// The Base64-encoded MIME user data for the instance.
 	Data *string `locationName:"data" type:"string"`
 
-	metadataUserData `json:"-" xml:"-"`
-}
-
-type metadataUserData struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -23958,11 +21878,7 @@ type UserIdGroupPair struct {
 	// The ID of an AWS account. EC2-Classic only.
 	UserId *string `locationName:"userId" type:"string"`
 
-	metadataUserIdGroupPair `json:"-" xml:"-"`
-}
-
-type metadataUserIdGroupPair struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -23993,11 +21909,7 @@ type VgwTelemetry struct {
 	// If an error occurs, a description of the error.
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
 
-	metadataVgwTelemetry `json:"-" xml:"-"`
-}
-
-type metadataVgwTelemetry struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -24062,11 +21974,7 @@ type Volume struct {
 	// Provisioned IOPS (SSD) volumes, or standard for Magnetic volumes.
 	VolumeType *string `locationName:"volumeType" type:"string" enum:"VolumeType"`
 
-	metadataVolume `json:"-" xml:"-"`
-}
-
-type metadataVolume struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -24099,11 +22007,7 @@ type VolumeAttachment struct {
 	// The ID of the volume.
 	VolumeId *string `locationName:"volumeId" type:"string"`
 
-	metadataVolumeAttachment `json:"-" xml:"-"`
-}
-
-type metadataVolumeAttachment struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -24121,11 +22025,7 @@ type VolumeDetail struct {
 	// The size of the volume, in GiB.
 	Size *int64 `locationName:"size" type:"long" required:"true"`
 
-	metadataVolumeDetail `json:"-" xml:"-"`
-}
-
-type metadataVolumeDetail struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -24152,11 +22052,7 @@ type VolumeStatusAction struct {
 	// The event type associated with this operation.
 	EventType *string `locationName:"eventType" type:"string"`
 
-	metadataVolumeStatusAction `json:"-" xml:"-"`
-}
-
-type metadataVolumeStatusAction struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -24177,11 +22073,7 @@ type VolumeStatusDetails struct {
 	// The intended status of the volume status.
 	Status *string `locationName:"status" type:"string"`
 
-	metadataVolumeStatusDetails `json:"-" xml:"-"`
-}
-
-type metadataVolumeStatusDetails struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -24211,11 +22103,7 @@ type VolumeStatusEvent struct {
 	// The earliest start time of the event.
 	NotBefore *time.Time `locationName:"notBefore" type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataVolumeStatusEvent `json:"-" xml:"-"`
-}
-
-type metadataVolumeStatusEvent struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -24236,11 +22124,7 @@ type VolumeStatusInfo struct {
 	// The status of the volume.
 	Status *string `locationName:"status" type:"string" enum:"VolumeStatusInfoStatus"`
 
-	metadataVolumeStatusInfo `json:"-" xml:"-"`
-}
-
-type metadataVolumeStatusInfo struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -24270,11 +22154,7 @@ type VolumeStatusItem struct {
 	// The volume status.
 	VolumeStatus *VolumeStatusInfo `locationName:"volumeStatus" type:"structure"`
 
-	metadataVolumeStatusItem `json:"-" xml:"-"`
-}
-
-type metadataVolumeStatusItem struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -24311,11 +22191,7 @@ type Vpc struct {
 	// The ID of the VPC.
 	VpcId *string `locationName:"vpcId" type:"string"`
 
-	metadataVpc `json:"-" xml:"-"`
-}
-
-type metadataVpc struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -24336,11 +22212,7 @@ type VpcAttachment struct {
 	// The ID of the VPC.
 	VpcId *string `locationName:"vpcId" type:"string"`
 
-	metadataVpcAttachment `json:"-" xml:"-"`
-}
-
-type metadataVpcAttachment struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -24364,11 +22236,7 @@ type VpcClassicLink struct {
 	// The ID of the VPC.
 	VpcId *string `locationName:"vpcId" type:"string"`
 
-	metadataVpcClassicLink `json:"-" xml:"-"`
-}
-
-type metadataVpcClassicLink struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -24404,11 +22272,7 @@ type VpcEndpoint struct {
 	// The ID of the VPC to which the endpoint is associated.
 	VpcId *string `locationName:"vpcId" type:"string"`
 
-	metadataVpcEndpoint `json:"-" xml:"-"`
-}
-
-type metadataVpcEndpoint struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -24441,11 +22305,7 @@ type VpcPeeringConnection struct {
 	// The ID of the VPC peering connection.
 	VpcPeeringConnectionId *string `locationName:"vpcPeeringConnectionId" type:"string"`
 
-	metadataVpcPeeringConnection `json:"-" xml:"-"`
-}
-
-type metadataVpcPeeringConnection struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -24466,11 +22326,7 @@ type VpcPeeringConnectionStateReason struct {
 	// A message that provides more information about the status, if applicable.
 	Message *string `locationName:"message" type:"string"`
 
-	metadataVpcPeeringConnectionStateReason `json:"-" xml:"-"`
-}
-
-type metadataVpcPeeringConnectionStateReason struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -24494,11 +22350,7 @@ type VpcPeeringConnectionVpcInfo struct {
 	// The ID of the VPC.
 	VpcId *string `locationName:"vpcId" type:"string"`
 
-	metadataVpcPeeringConnectionVpcInfo `json:"-" xml:"-"`
-}
-
-type metadataVpcPeeringConnectionVpcInfo struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -24546,11 +22398,7 @@ type VpnConnection struct {
 	// The ID of the virtual private gateway at the AWS side of the VPN connection.
 	VpnGatewayId *string `locationName:"vpnGatewayId" type:"string"`
 
-	metadataVpnConnection `json:"-" xml:"-"`
-}
-
-type metadataVpnConnection struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -24569,11 +22417,7 @@ type VpnConnectionOptions struct {
 	// must be used for devices that don't support BGP.
 	StaticRoutesOnly *bool `locationName:"staticRoutesOnly" type:"boolean"`
 
-	metadataVpnConnectionOptions `json:"-" xml:"-"`
-}
-
-type metadataVpnConnectionOptions struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -24592,11 +22436,7 @@ type VpnConnectionOptionsSpecification struct {
 	// must be used for devices that don't support BGP.
 	StaticRoutesOnly *bool `locationName:"staticRoutesOnly" type:"boolean"`
 
-	metadataVpnConnectionOptionsSpecification `json:"-" xml:"-"`
-}
-
-type metadataVpnConnectionOptionsSpecification struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -24629,11 +22469,7 @@ type VpnGateway struct {
 	// The ID of the virtual private gateway.
 	VpnGatewayId *string `locationName:"vpnGatewayId" type:"string"`
 
-	metadataVpnGateway `json:"-" xml:"-"`
-}
-
-type metadataVpnGateway struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -24657,11 +22493,7 @@ type VpnStaticRoute struct {
 	// The current state of the static route.
 	State *string `locationName:"state" type:"string" enum:"VpnState"`
 
-	metadataVpnStaticRoute `json:"-" xml:"-"`
-}
-
-type metadataVpnStaticRoute struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

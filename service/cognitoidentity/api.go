@@ -601,11 +601,7 @@ type CreateIdentityPoolInput struct {
 	// Optional key:value pairs mapping provider names to provider app IDs.
 	SupportedLoginProviders map[string]*string `type:"map"`
 
-	metadataCreateIdentityPoolInput `json:"-" xml:"-"`
-}
-
-type metadataCreateIdentityPoolInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -632,11 +628,7 @@ type Credentials struct {
 	// The Session Token portion of the credentials
 	SessionToken *string `type:"string"`
 
-	metadataCredentials `json:"-" xml:"-"`
-}
-
-type metadataCredentials struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -654,11 +646,7 @@ type DeleteIdentitiesInput struct {
 	// A list of 1-60 identities that you want to delete.
 	IdentityIdsToDelete []*string `min:"1" type:"list" required:"true"`
 
-	metadataDeleteIdentitiesInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteIdentitiesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -677,11 +665,7 @@ type DeleteIdentitiesOutput struct {
 	// and IdentityId.
 	UnprocessedIdentityIds []*UnprocessedIdentityId `type:"list"`
 
-	metadataDeleteIdentitiesOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteIdentitiesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -699,11 +683,7 @@ type DeleteIdentityPoolInput struct {
 	// An identity pool ID in the format REGION:GUID.
 	IdentityPoolId *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteIdentityPoolInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteIdentityPoolInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -717,11 +697,7 @@ func (s DeleteIdentityPoolInput) GoString() string {
 }
 
 type DeleteIdentityPoolOutput struct {
-	metadataDeleteIdentityPoolOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteIdentityPoolOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -739,11 +715,7 @@ type DescribeIdentityInput struct {
 	// A unique identifier in the format REGION:GUID.
 	IdentityId *string `min:"1" type:"string" required:"true"`
 
-	metadataDescribeIdentityInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeIdentityInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -761,11 +733,7 @@ type DescribeIdentityPoolInput struct {
 	// An identity pool ID in the format REGION:GUID.
 	IdentityPoolId *string `min:"1" type:"string" required:"true"`
 
-	metadataDescribeIdentityPoolInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeIdentityPoolInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -786,11 +754,7 @@ type GetCredentialsForIdentityInput struct {
 	// A set of optional name-value pairs that map provider names to provider tokens.
 	Logins map[string]*string `type:"map"`
 
-	metadataGetCredentialsForIdentityInput `json:"-" xml:"-"`
-}
-
-type metadataGetCredentialsForIdentityInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -811,11 +775,7 @@ type GetCredentialsForIdentityOutput struct {
 	// A unique identifier in the format REGION:GUID.
 	IdentityId *string `min:"1" type:"string"`
 
-	metadataGetCredentialsForIdentityOutput `json:"-" xml:"-"`
-}
-
-type metadataGetCredentialsForIdentityOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -843,11 +803,7 @@ type GetIdInput struct {
 	//  Digits: www.digits.com
 	Logins map[string]*string `type:"map"`
 
-	metadataGetIdInput `json:"-" xml:"-"`
-}
-
-type metadataGetIdInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -865,11 +821,7 @@ type GetIdOutput struct {
 	// A unique identifier in the format REGION:GUID.
 	IdentityId *string `min:"1" type:"string"`
 
-	metadataGetIdOutput `json:"-" xml:"-"`
-}
-
-type metadataGetIdOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -887,11 +839,7 @@ type GetIdentityPoolRolesInput struct {
 	// An identity pool ID in the format REGION:GUID.
 	IdentityPoolId *string `min:"1" type:"string" required:"true"`
 
-	metadataGetIdentityPoolRolesInput `json:"-" xml:"-"`
-}
-
-type metadataGetIdentityPoolRolesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -913,11 +861,7 @@ type GetIdentityPoolRolesOutput struct {
 	// and unauthenticated roles are supported.
 	Roles map[string]*string `type:"map"`
 
-	metadataGetIdentityPoolRolesOutput `json:"-" xml:"-"`
-}
-
-type metadataGetIdentityPoolRolesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -959,11 +903,7 @@ type GetOpenIdTokenForDeveloperIdentityInput struct {
 	// AWS resources for the token's duration.
 	TokenDuration *int64 `min:"1" type:"long"`
 
-	metadataGetOpenIdTokenForDeveloperIdentityInput `json:"-" xml:"-"`
-}
-
-type metadataGetOpenIdTokenForDeveloperIdentityInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -984,11 +924,7 @@ type GetOpenIdTokenForDeveloperIdentityOutput struct {
 	// An OpenID token.
 	Token *string `type:"string"`
 
-	metadataGetOpenIdTokenForDeveloperIdentityOutput `json:"-" xml:"-"`
-}
-
-type metadataGetOpenIdTokenForDeveloperIdentityOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1012,11 +948,7 @@ type GetOpenIdTokenInput struct {
 	// OpenId Connect provider, always include the id_token.
 	Logins map[string]*string `type:"map"`
 
-	metadataGetOpenIdTokenInput `json:"-" xml:"-"`
-}
-
-type metadataGetOpenIdTokenInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1038,11 +970,7 @@ type GetOpenIdTokenOutput struct {
 	// An OpenID token, valid for 15 minutes.
 	Token *string `type:"string"`
 
-	metadataGetOpenIdTokenOutput `json:"-" xml:"-"`
-}
-
-type metadataGetOpenIdTokenOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1069,11 +997,7 @@ type IdentityDescription struct {
 	// A set of optional name-value pairs that map provider names to provider tokens.
 	Logins []*string `type:"list"`
 
-	metadataIdentityDescription `json:"-" xml:"-"`
-}
-
-type metadataIdentityDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1106,11 +1030,7 @@ type IdentityPool struct {
 	// Optional key:value pairs mapping provider names to provider app IDs.
 	SupportedLoginProviders map[string]*string `type:"map"`
 
-	metadataIdentityPool `json:"-" xml:"-"`
-}
-
-type metadataIdentityPool struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1131,11 +1051,7 @@ type IdentityPoolShortDescription struct {
 	// A string that you provide.
 	IdentityPoolName *string `min:"1" type:"string"`
 
-	metadataIdentityPoolShortDescription `json:"-" xml:"-"`
-}
-
-type metadataIdentityPoolShortDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1164,11 +1080,7 @@ type ListIdentitiesInput struct {
 	// A pagination token.
 	NextToken *string `min:"1" type:"string"`
 
-	metadataListIdentitiesInput `json:"-" xml:"-"`
-}
-
-type metadataListIdentitiesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1192,11 +1104,7 @@ type ListIdentitiesOutput struct {
 	// A pagination token.
 	NextToken *string `min:"1" type:"string"`
 
-	metadataListIdentitiesOutput `json:"-" xml:"-"`
-}
-
-type metadataListIdentitiesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1217,11 +1125,7 @@ type ListIdentityPoolsInput struct {
 	// A pagination token.
 	NextToken *string `min:"1" type:"string"`
 
-	metadataListIdentityPoolsInput `json:"-" xml:"-"`
-}
-
-type metadataListIdentityPoolsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1242,11 +1146,7 @@ type ListIdentityPoolsOutput struct {
 	// A pagination token.
 	NextToken *string `min:"1" type:"string"`
 
-	metadataListIdentityPoolsOutput `json:"-" xml:"-"`
-}
-
-type metadataListIdentityPoolsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1283,11 +1183,7 @@ type LookupDeveloperIdentityInput struct {
 	// results starting from the 11th match.
 	NextToken *string `min:"1" type:"string"`
 
-	metadataLookupDeveloperIdentityInput `json:"-" xml:"-"`
-}
-
-type metadataLookupDeveloperIdentityInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1318,11 +1214,7 @@ type LookupDeveloperIdentityOutput struct {
 	// results starting from the 11th match.
 	NextToken *string `min:"1" type:"string"`
 
-	metadataLookupDeveloperIdentityOutput `json:"-" xml:"-"`
-}
-
-type metadataLookupDeveloperIdentityOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1353,11 +1245,7 @@ type MergeDeveloperIdentitiesInput struct {
 	// User identifier for the source user. The value should be a DeveloperUserIdentifier.
 	SourceUserIdentifier *string `min:"1" type:"string" required:"true"`
 
-	metadataMergeDeveloperIdentitiesInput `json:"-" xml:"-"`
-}
-
-type metadataMergeDeveloperIdentitiesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1375,11 +1263,7 @@ type MergeDeveloperIdentitiesOutput struct {
 	// A unique identifier in the format REGION:GUID.
 	IdentityId *string `min:"1" type:"string"`
 
-	metadataMergeDeveloperIdentitiesOutput `json:"-" xml:"-"`
-}
-
-type metadataMergeDeveloperIdentitiesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1402,11 +1286,7 @@ type SetIdentityPoolRolesInput struct {
 	// Role ARN.
 	Roles map[string]*string `type:"map" required:"true"`
 
-	metadataSetIdentityPoolRolesInput `json:"-" xml:"-"`
-}
-
-type metadataSetIdentityPoolRolesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1420,11 +1300,7 @@ func (s SetIdentityPoolRolesInput) GoString() string {
 }
 
 type SetIdentityPoolRolesOutput struct {
-	metadataSetIdentityPoolRolesOutput `json:"-" xml:"-"`
-}
-
-type metadataSetIdentityPoolRolesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1451,11 +1327,7 @@ type UnlinkDeveloperIdentityInput struct {
 	// An identity pool ID in the format REGION:GUID.
 	IdentityPoolId *string `min:"1" type:"string" required:"true"`
 
-	metadataUnlinkDeveloperIdentityInput `json:"-" xml:"-"`
-}
-
-type metadataUnlinkDeveloperIdentityInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1469,11 +1341,7 @@ func (s UnlinkDeveloperIdentityInput) GoString() string {
 }
 
 type UnlinkDeveloperIdentityOutput struct {
-	metadataUnlinkDeveloperIdentityOutput `json:"-" xml:"-"`
-}
-
-type metadataUnlinkDeveloperIdentityOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1497,11 +1365,7 @@ type UnlinkIdentityInput struct {
 	// Provider names to unlink from this identity.
 	LoginsToRemove []*string `type:"list" required:"true"`
 
-	metadataUnlinkIdentityInput `json:"-" xml:"-"`
-}
-
-type metadataUnlinkIdentityInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1515,11 +1379,7 @@ func (s UnlinkIdentityInput) GoString() string {
 }
 
 type UnlinkIdentityOutput struct {
-	metadataUnlinkIdentityOutput `json:"-" xml:"-"`
-}
-
-type metadataUnlinkIdentityOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1541,11 +1401,7 @@ type UnprocessedIdentityId struct {
 	// A unique identifier in the format REGION:GUID.
 	IdentityId *string `min:"1" type:"string"`
 
-	metadataUnprocessedIdentityId `json:"-" xml:"-"`
-}
-
-type metadataUnprocessedIdentityId struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

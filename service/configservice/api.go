@@ -822,11 +822,7 @@ type Compliance struct {
 	// with it, and it is noncompliant if any of these resources do not comply.
 	ComplianceType *string `type:"string" enum:"ComplianceType"`
 
-	metadataCompliance `json:"-" xml:"-"`
-}
-
-type metadataCompliance struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -849,11 +845,7 @@ type ComplianceByConfigRule struct {
 	// The name of the AWS Config rule.
 	ConfigRuleName *string `min:"1" type:"string"`
 
-	metadataComplianceByConfigRule `json:"-" xml:"-"`
-}
-
-type metadataComplianceByConfigRule struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -881,11 +873,7 @@ type ComplianceByResource struct {
 	// The type of the AWS resource that was evaluated.
 	ResourceType *string `min:"1" type:"string"`
 
-	metadataComplianceByResource `json:"-" xml:"-"`
-}
-
-type metadataComplianceByResource struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -908,11 +896,7 @@ type ComplianceContributorCount struct {
 	// compliance of the item.
 	CappedCount *int64 `type:"integer"`
 
-	metadataComplianceContributorCount `json:"-" xml:"-"`
-}
-
-type metadataComplianceContributorCount struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -939,11 +923,7 @@ type ComplianceSummary struct {
 	// to a maximum of 25 for rules and 100 for resources.
 	NonCompliantResourceCount *ComplianceContributorCount `type:"structure"`
 
-	metadataComplianceSummary `json:"-" xml:"-"`
-}
-
-type metadataComplianceSummary struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -966,11 +946,7 @@ type ComplianceSummaryByResourceType struct {
 	// The type of AWS resource.
 	ResourceType *string `min:"1" type:"string"`
 
-	metadataComplianceSummaryByResourceType `json:"-" xml:"-"`
-}
-
-type metadataComplianceSummaryByResourceType struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1004,11 +980,7 @@ type ConfigExportDeliveryInfo struct {
 	// The time that the next delivery occurs.
 	NextDeliveryTime *time.Time `locationName:"nextDeliveryTime" type:"timestamp" timestampFormat:"unix"`
 
-	metadataConfigExportDeliveryInfo `json:"-" xml:"-"`
-}
-
-type metadataConfigExportDeliveryInfo struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1081,11 +1053,7 @@ type ConfigRule struct {
 	// that cause the function to evaluate your AWS resources.
 	Source *Source `type:"structure" required:"true"`
 
-	metadataConfigRule `json:"-" xml:"-"`
-}
-
-type metadataConfigRule struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1131,11 +1099,7 @@ type ConfigRuleEvaluationStatus struct {
 	// evaluate your AWS resources.
 	LastSuccessfulInvocationTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	metadataConfigRuleEvaluationStatus `json:"-" xml:"-"`
-}
-
-type metadataConfigRuleEvaluationStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1155,11 +1119,7 @@ type ConfigSnapshotDeliveryProperties struct {
 	// snapshots.
 	DeliveryFrequency *string `locationName:"deliveryFrequency" type:"string" enum:"MaximumExecutionFrequency"`
 
-	metadataConfigSnapshotDeliveryProperties `json:"-" xml:"-"`
-}
-
-type metadataConfigSnapshotDeliveryProperties struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1191,11 +1151,7 @@ type ConfigStreamDeliveryInfo struct {
 	// The time from the last status change.
 	LastStatusChangeTime *time.Time `locationName:"lastStatusChangeTime" type:"timestamp" timestampFormat:"unix"`
 
-	metadataConfigStreamDeliveryInfo `json:"-" xml:"-"`
-}
-
-type metadataConfigStreamDeliveryInfo struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1275,11 +1231,7 @@ type ConfigurationItem struct {
 	// The version number of the resource configuration.
 	Version *string `locationName:"version" type:"string"`
 
-	metadataConfigurationItem `json:"-" xml:"-"`
-}
-
-type metadataConfigurationItem struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1309,11 +1261,7 @@ type ConfigurationRecorder struct {
 	// associated with the account.
 	RoleARN *string `locationName:"roleARN" type:"string"`
 
-	metadataConfigurationRecorder `json:"-" xml:"-"`
-}
-
-type metadataConfigurationRecorder struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1352,11 +1300,7 @@ type ConfigurationRecorderStatus struct {
 	// Specifies whether the recorder is currently recording or not.
 	Recording *bool `locationName:"recording" type:"boolean"`
 
-	metadataConfigurationRecorderStatus `json:"-" xml:"-"`
-}
-
-type metadataConfigurationRecorderStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1373,11 +1317,7 @@ type DeleteConfigRuleInput struct {
 	// The name of the AWS Config rule that you want to delete.
 	ConfigRuleName *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteConfigRuleInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteConfigRuleInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1391,11 +1331,7 @@ func (s DeleteConfigRuleInput) GoString() string {
 }
 
 type DeleteConfigRuleOutput struct {
-	metadataDeleteConfigRuleOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteConfigRuleOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1414,11 +1350,7 @@ type DeleteDeliveryChannelInput struct {
 	// The name of the delivery channel to delete.
 	DeliveryChannelName *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteDeliveryChannelInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDeliveryChannelInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1432,11 +1364,7 @@ func (s DeleteDeliveryChannelInput) GoString() string {
 }
 
 type DeleteDeliveryChannelOutput struct {
-	metadataDeleteDeliveryChannelOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDeliveryChannelOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1454,11 +1382,7 @@ type DeliverConfigSnapshotInput struct {
 	// The name of the delivery channel through which the snapshot is delivered.
 	DeliveryChannelName *string `locationName:"deliveryChannelName" min:"1" type:"string" required:"true"`
 
-	metadataDeliverConfigSnapshotInput `json:"-" xml:"-"`
-}
-
-type metadataDeliverConfigSnapshotInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1476,11 +1400,7 @@ type DeliverConfigSnapshotOutput struct {
 	// The ID of the snapshot that is being created.
 	ConfigSnapshotId *string `locationName:"configSnapshotId" type:"string"`
 
-	metadataDeliverConfigSnapshotOutput `json:"-" xml:"-"`
-}
-
-type metadataDeliverConfigSnapshotOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1516,11 +1436,7 @@ type DeliveryChannel struct {
 	// notifications to.
 	SnsTopicARN *string `locationName:"snsTopicARN" type:"string"`
 
-	metadataDeliveryChannel `json:"-" xml:"-"`
-}
-
-type metadataDeliveryChannel struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1552,11 +1468,7 @@ type DeliveryChannelStatus struct {
 	// The name of the delivery channel.
 	Name *string `locationName:"name" type:"string"`
 
-	metadataDeliveryChannelStatus `json:"-" xml:"-"`
-}
-
-type metadataDeliveryChannelStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1580,11 +1492,7 @@ type DescribeComplianceByConfigRuleInput struct {
 	// next page of results in a paginated response.
 	NextToken *string `type:"string"`
 
-	metadataDescribeComplianceByConfigRuleInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeComplianceByConfigRuleInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1605,11 +1513,7 @@ type DescribeComplianceByConfigRuleOutput struct {
 	// in a paginated response.
 	NextToken *string `type:"string"`
 
-	metadataDescribeComplianceByConfigRuleOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeComplianceByConfigRuleOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1645,11 +1549,7 @@ type DescribeComplianceByResourceInput struct {
 	// type is an AWS account by specifying AWS::::Account.
 	ResourceType *string `min:"1" type:"string"`
 
-	metadataDescribeComplianceByResourceInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeComplianceByResourceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1671,11 +1571,7 @@ type DescribeComplianceByResourceOutput struct {
 	// in a paginated response.
 	NextToken *string `type:"string"`
 
-	metadataDescribeComplianceByResourceOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeComplianceByResourceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1694,11 +1590,7 @@ type DescribeConfigRuleEvaluationStatusInput struct {
 	// all AWS managed Config rules that you use.
 	ConfigRuleNames []*string `type:"list"`
 
-	metadataDescribeConfigRuleEvaluationStatusInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeConfigRuleEvaluationStatusInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1715,11 +1607,7 @@ type DescribeConfigRuleEvaluationStatusOutput struct {
 	// Status information about your AWS managed Config rules.
 	ConfigRulesEvaluationStatus []*ConfigRuleEvaluationStatus `type:"list"`
 
-	metadataDescribeConfigRuleEvaluationStatusOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeConfigRuleEvaluationStatusOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1741,11 +1629,7 @@ type DescribeConfigRulesInput struct {
 	// next page of results in a paginated response.
 	NextToken *string `type:"string"`
 
-	metadataDescribeConfigRulesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeConfigRulesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1766,11 +1650,7 @@ type DescribeConfigRulesOutput struct {
 	// in a paginated response.
 	NextToken *string `type:"string"`
 
-	metadataDescribeConfigRulesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeConfigRulesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1790,11 +1670,7 @@ type DescribeConfigurationRecorderStatusInput struct {
 	// associated with the account.
 	ConfigurationRecorderNames []*string `type:"list"`
 
-	metadataDescribeConfigurationRecorderStatusInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeConfigurationRecorderStatusInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1812,11 +1688,7 @@ type DescribeConfigurationRecorderStatusOutput struct {
 	// A list that contains status of the specified recorders.
 	ConfigurationRecordersStatus []*ConfigurationRecorderStatus `type:"list"`
 
-	metadataDescribeConfigurationRecorderStatusOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeConfigurationRecorderStatusOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1834,11 +1706,7 @@ type DescribeConfigurationRecordersInput struct {
 	// A list of configuration recorder names.
 	ConfigurationRecorderNames []*string `type:"list"`
 
-	metadataDescribeConfigurationRecordersInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeConfigurationRecordersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1856,11 +1724,7 @@ type DescribeConfigurationRecordersOutput struct {
 	// A list that contains the descriptions of the specified configuration recorders.
 	ConfigurationRecorders []*ConfigurationRecorder `type:"list"`
 
-	metadataDescribeConfigurationRecordersOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeConfigurationRecordersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1878,11 +1742,7 @@ type DescribeDeliveryChannelStatusInput struct {
 	// A list of delivery channel names.
 	DeliveryChannelNames []*string `type:"list"`
 
-	metadataDescribeDeliveryChannelStatusInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDeliveryChannelStatusInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1900,11 +1760,7 @@ type DescribeDeliveryChannelStatusOutput struct {
 	// A list that contains the status of a specified delivery channel.
 	DeliveryChannelsStatus []*DeliveryChannelStatus `type:"list"`
 
-	metadataDescribeDeliveryChannelStatusOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDeliveryChannelStatusOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1922,11 +1778,7 @@ type DescribeDeliveryChannelsInput struct {
 	// A list of delivery channel names.
 	DeliveryChannelNames []*string `type:"list"`
 
-	metadataDescribeDeliveryChannelsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDeliveryChannelsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1944,11 +1796,7 @@ type DescribeDeliveryChannelsOutput struct {
 	// A list that contains the descriptions of the specified delivery channel.
 	DeliveryChannels []*DeliveryChannel `type:"list"`
 
-	metadataDescribeDeliveryChannelsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDeliveryChannelsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1983,11 +1831,7 @@ type Evaluation struct {
 	// when AWS Config delivered the configuration snapshot that triggered the evaluation.
 	OrderingTimestamp *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
 
-	metadataEvaluation `json:"-" xml:"-"`
-}
-
-type metadataEvaluation struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2025,11 +1869,7 @@ type EvaluationResult struct {
 	// event that triggered the evaluation.
 	ResultToken *string `type:"string"`
 
-	metadataEvaluationResult `json:"-" xml:"-"`
-}
-
-type metadataEvaluationResult struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2054,11 +1894,7 @@ type EvaluationResultIdentifier struct {
 	// snapshot, depending on which event triggered the evaluation.
 	OrderingTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	metadataEvaluationResultIdentifier `json:"-" xml:"-"`
-}
-
-type metadataEvaluationResultIdentifier struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2083,11 +1919,7 @@ type EvaluationResultQualifier struct {
 	// The type of AWS resource that was evaluated.
 	ResourceType *string `min:"1" type:"string"`
 
-	metadataEvaluationResultQualifier `json:"-" xml:"-"`
-}
-
-type metadataEvaluationResultQualifier struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2117,11 +1949,7 @@ type GetComplianceDetailsByConfigRuleInput struct {
 	// next page of results in a paginated response.
 	NextToken *string `type:"string"`
 
-	metadataGetComplianceDetailsByConfigRuleInput `json:"-" xml:"-"`
-}
-
-type metadataGetComplianceDetailsByConfigRuleInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2143,11 +1971,7 @@ type GetComplianceDetailsByConfigRuleOutput struct {
 	// in a paginated response.
 	NextToken *string `type:"string"`
 
-	metadataGetComplianceDetailsByConfigRuleOutput `json:"-" xml:"-"`
-}
-
-type metadataGetComplianceDetailsByConfigRuleOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2175,11 +1999,7 @@ type GetComplianceDetailsByResourceInput struct {
 	// The type of the AWS resource for which you want compliance information.
 	ResourceType *string `min:"1" type:"string" required:"true"`
 
-	metadataGetComplianceDetailsByResourceInput `json:"-" xml:"-"`
-}
-
-type metadataGetComplianceDetailsByResourceInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2200,11 +2020,7 @@ type GetComplianceDetailsByResourceOutput struct {
 	// in a paginated response.
 	NextToken *string `type:"string"`
 
-	metadataGetComplianceDetailsByResourceOutput `json:"-" xml:"-"`
-}
-
-type metadataGetComplianceDetailsByResourceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2218,11 +2034,7 @@ func (s GetComplianceDetailsByResourceOutput) GoString() string {
 }
 
 type GetComplianceSummaryByConfigRuleInput struct {
-	metadataGetComplianceSummaryByConfigRuleInput `json:"-" xml:"-"`
-}
-
-type metadataGetComplianceSummaryByConfigRuleInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2240,11 +2052,7 @@ type GetComplianceSummaryByConfigRuleOutput struct {
 	// noncompliant, up to a maximum of 25 for each.
 	ComplianceSummary *ComplianceSummary `type:"structure"`
 
-	metadataGetComplianceSummaryByConfigRuleOutput `json:"-" xml:"-"`
-}
-
-type metadataGetComplianceSummaryByConfigRuleOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2266,11 +2074,7 @@ type GetComplianceSummaryByResourceTypeInput struct {
 	// AWS::::Account.
 	ResourceTypes []*string `type:"list"`
 
-	metadataGetComplianceSummaryByResourceTypeInput `json:"-" xml:"-"`
-}
-
-type metadataGetComplianceSummaryByResourceTypeInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2289,11 +2093,7 @@ type GetComplianceSummaryByResourceTypeOutput struct {
 	// are returned for each resource type. The maximum number returned is 100.
 	ComplianceSummariesByResourceType []*ComplianceSummaryByResourceType `type:"list"`
 
-	metadataGetComplianceSummaryByResourceTypeOutput `json:"-" xml:"-"`
-}
-
-type metadataGetComplianceSummaryByResourceTypeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2336,11 +2136,7 @@ type GetResourceConfigHistoryInput struct {
 	// The resource type.
 	ResourceType *string `locationName:"resourceType" type:"string" required:"true" enum:"ResourceType"`
 
-	metadataGetResourceConfigHistoryInput `json:"-" xml:"-"`
-}
-
-type metadataGetResourceConfigHistoryInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2362,11 +2158,7 @@ type GetResourceConfigHistoryOutput struct {
 	// in a paginated response.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataGetResourceConfigHistoryOutput `json:"-" xml:"-"`
-}
-
-type metadataGetResourceConfigHistoryOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2406,11 +2198,7 @@ type ListDiscoveredResourcesInput struct {
 	// The type of resources that you want AWS Config to list in the response.
 	ResourceType *string `locationName:"resourceType" type:"string" required:"true" enum:"ResourceType"`
 
-	metadataListDiscoveredResourcesInput `json:"-" xml:"-"`
-}
-
-type metadataListDiscoveredResourcesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2432,11 +2220,7 @@ type ListDiscoveredResourcesOutput struct {
 	// the resource type, ID, and (if available) the custom resource name.
 	ResourceIdentifiers []*ResourceIdentifier `locationName:"resourceIdentifiers" type:"list"`
 
-	metadataListDiscoveredResourcesOutput `json:"-" xml:"-"`
-}
-
-type metadataListDiscoveredResourcesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2461,11 +2245,7 @@ type PutConfigRuleInput struct {
 	// in the AWS Config Developer Guide.
 	ConfigRule *ConfigRule `type:"structure" required:"true"`
 
-	metadataPutConfigRuleInput `json:"-" xml:"-"`
-}
-
-type metadataPutConfigRuleInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2479,11 +2259,7 @@ func (s PutConfigRuleInput) GoString() string {
 }
 
 type PutConfigRuleOutput struct {
-	metadataPutConfigRuleOutput `json:"-" xml:"-"`
-}
-
-type metadataPutConfigRuleOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2502,11 +2278,7 @@ type PutConfigurationRecorderInput struct {
 	// made to the resources.
 	ConfigurationRecorder *ConfigurationRecorder `type:"structure" required:"true"`
 
-	metadataPutConfigurationRecorderInput `json:"-" xml:"-"`
-}
-
-type metadataPutConfigurationRecorderInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2520,11 +2292,7 @@ func (s PutConfigurationRecorderInput) GoString() string {
 }
 
 type PutConfigurationRecorderOutput struct {
-	metadataPutConfigurationRecorderOutput `json:"-" xml:"-"`
-}
-
-type metadataPutConfigurationRecorderOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2543,11 +2311,7 @@ type PutDeliveryChannelInput struct {
 	// information to an Amazon S3 bucket, and to an Amazon SNS topic.
 	DeliveryChannel *DeliveryChannel `type:"structure" required:"true"`
 
-	metadataPutDeliveryChannelInput `json:"-" xml:"-"`
-}
-
-type metadataPutDeliveryChannelInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2561,11 +2325,7 @@ func (s PutDeliveryChannelInput) GoString() string {
 }
 
 type PutDeliveryChannelOutput struct {
-	metadataPutDeliveryChannelOutput `json:"-" xml:"-"`
-}
-
-type metadataPutDeliveryChannelOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2588,11 +2348,7 @@ type PutEvaluationsInput struct {
 	// Identifies the rule and the event that triggered the evaluation
 	ResultToken *string `type:"string" required:"true"`
 
-	metadataPutEvaluationsInput `json:"-" xml:"-"`
-}
-
-type metadataPutEvaluationsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2609,11 +2365,7 @@ type PutEvaluationsOutput struct {
 	// Requests that failed because of a client or server error.
 	FailedEvaluations []*Evaluation `type:"list"`
 
-	metadataPutEvaluationsOutput `json:"-" xml:"-"`
-}
-
-type metadataPutEvaluationsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2644,11 +2396,7 @@ type RecordingGroup struct {
 	// topic: Supported AWS Resource Types (http://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html#supported-resources).
 	ResourceTypes []*string `locationName:"resourceTypes" type:"list"`
 
-	metadataRecordingGroup `json:"-" xml:"-"`
-}
-
-type metadataRecordingGroup struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2675,11 +2423,7 @@ type Relationship struct {
 	// The resource type of the related resource.
 	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
 
-	metadataRelationship `json:"-" xml:"-"`
-}
-
-type metadataRelationship struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2707,11 +2451,7 @@ type ResourceIdentifier struct {
 	// The type of resource.
 	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
 
-	metadataResourceIdentifier `json:"-" xml:"-"`
-}
-
-type metadataResourceIdentifier struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2750,11 +2490,7 @@ type Scope struct {
 	// also specify a value for TagKey.
 	TagValue *string `min:"1" type:"string"`
 
-	metadataScope `json:"-" xml:"-"`
-}
-
-type metadataScope struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2784,11 +2520,7 @@ type Source struct {
 	// Name (ARN) of the rule's AWS Lambda function.
 	SourceIdentifier *string `min:"1" type:"string"`
 
-	metadataSource `json:"-" xml:"-"`
-}
-
-type metadataSource struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2815,11 +2547,7 @@ type SourceDetail struct {
 	// you must use ConfigurationSnapshotDeliveryCompleted.
 	MessageType *string `type:"string" enum:"MessageType"`
 
-	metadataSourceDetail `json:"-" xml:"-"`
-}
-
-type metadataSourceDetail struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2838,11 +2566,7 @@ type StartConfigurationRecorderInput struct {
 	// to the resources.
 	ConfigurationRecorderName *string `min:"1" type:"string" required:"true"`
 
-	metadataStartConfigurationRecorderInput `json:"-" xml:"-"`
-}
-
-type metadataStartConfigurationRecorderInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2856,11 +2580,7 @@ func (s StartConfigurationRecorderInput) GoString() string {
 }
 
 type StartConfigurationRecorderOutput struct {
-	metadataStartConfigurationRecorderOutput `json:"-" xml:"-"`
-}
-
-type metadataStartConfigurationRecorderOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2879,11 +2599,7 @@ type StopConfigurationRecorderInput struct {
 	// to the resources.
 	ConfigurationRecorderName *string `min:"1" type:"string" required:"true"`
 
-	metadataStopConfigurationRecorderInput `json:"-" xml:"-"`
-}
-
-type metadataStopConfigurationRecorderInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2897,11 +2613,7 @@ func (s StopConfigurationRecorderInput) GoString() string {
 }
 
 type StopConfigurationRecorderOutput struct {
-	metadataStopConfigurationRecorderOutput `json:"-" xml:"-"`
-}
-
-type metadataStopConfigurationRecorderOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

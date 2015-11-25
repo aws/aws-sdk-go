@@ -986,11 +986,7 @@ type AccessLog struct {
 	// the root level of the bucket.
 	S3BucketPrefix *string `type:"string"`
 
-	metadataAccessLog `json:"-" xml:"-"`
-}
-
-type metadataAccessLog struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1010,11 +1006,7 @@ type AddTagsInput struct {
 	// The tags.
 	Tags []*Tag `min:"1" type:"list" required:"true"`
 
-	metadataAddTagsInput `json:"-" xml:"-"`
-}
-
-type metadataAddTagsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1028,11 +1020,7 @@ func (s AddTagsInput) GoString() string {
 }
 
 type AddTagsOutput struct {
-	metadataAddTagsOutput `json:"-" xml:"-"`
-}
-
-type metadataAddTagsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1053,11 +1041,7 @@ type AdditionalAttribute struct {
 	// This parameter is reserved.
 	Value *string `type:"string"`
 
-	metadataAdditionalAttribute `json:"-" xml:"-"`
-}
-
-type metadataAdditionalAttribute struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1079,11 +1063,7 @@ type AppCookieStickinessPolicy struct {
 	// a set of policies for this load balancer.
 	PolicyName *string `type:"string"`
 
-	metadataAppCookieStickinessPolicy `json:"-" xml:"-"`
-}
-
-type metadataAppCookieStickinessPolicy struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1104,11 +1084,7 @@ type ApplySecurityGroupsToLoadBalancerInput struct {
 	// that you cannot specify the name of the security group.
 	SecurityGroups []*string `type:"list" required:"true"`
 
-	metadataApplySecurityGroupsToLoadBalancerInput `json:"-" xml:"-"`
-}
-
-type metadataApplySecurityGroupsToLoadBalancerInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1125,11 +1101,7 @@ type ApplySecurityGroupsToLoadBalancerOutput struct {
 	// The IDs of the security groups associated with the load balancer.
 	SecurityGroups []*string `type:"list"`
 
-	metadataApplySecurityGroupsToLoadBalancerOutput `json:"-" xml:"-"`
-}
-
-type metadataApplySecurityGroupsToLoadBalancerOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1150,11 +1122,7 @@ type AttachLoadBalancerToSubnetsInput struct {
 	// subnet per Availability Zone.
 	Subnets []*string `type:"list" required:"true"`
 
-	metadataAttachLoadBalancerToSubnetsInput `json:"-" xml:"-"`
-}
-
-type metadataAttachLoadBalancerToSubnetsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1171,11 +1139,7 @@ type AttachLoadBalancerToSubnetsOutput struct {
 	// The IDs of the subnets attached to the load balancer.
 	Subnets []*string `type:"list"`
 
-	metadataAttachLoadBalancerToSubnetsOutput `json:"-" xml:"-"`
-}
-
-type metadataAttachLoadBalancerToSubnetsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1196,11 +1160,7 @@ type BackendServerDescription struct {
 	// The names of the policies enabled for the back-end server.
 	PolicyNames []*string `type:"list"`
 
-	metadataBackendServerDescription `json:"-" xml:"-"`
-}
-
-type metadataBackendServerDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1220,11 +1180,7 @@ type ConfigureHealthCheckInput struct {
 	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
-	metadataConfigureHealthCheckInput `json:"-" xml:"-"`
-}
-
-type metadataConfigureHealthCheckInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1241,11 +1197,7 @@ type ConfigureHealthCheckOutput struct {
 	// The updated health check.
 	HealthCheck *HealthCheck `type:"structure"`
 
-	metadataConfigureHealthCheckOutput `json:"-" xml:"-"`
-}
-
-type metadataConfigureHealthCheckOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1267,11 +1219,7 @@ type ConnectionDraining struct {
 	// deregistering the instances.
 	Timeout *int64 `type:"integer"`
 
-	metadataConnectionDraining `json:"-" xml:"-"`
-}
-
-type metadataConnectionDraining struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1290,11 +1238,7 @@ type ConnectionSettings struct {
 	// has been sent over the connection) before it is closed by the load balancer.
 	IdleTimeout *int64 `min:"1" type:"integer" required:"true"`
 
-	metadataConnectionSettings `json:"-" xml:"-"`
-}
-
-type metadataConnectionSettings struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1319,11 +1263,7 @@ type CreateAppCookieStickinessPolicyInput struct {
 	// for this load balancer.
 	PolicyName *string `type:"string" required:"true"`
 
-	metadataCreateAppCookieStickinessPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataCreateAppCookieStickinessPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1337,11 +1277,7 @@ func (s CreateAppCookieStickinessPolicyInput) GoString() string {
 }
 
 type CreateAppCookieStickinessPolicyOutput struct {
-	metadataCreateAppCookieStickinessPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateAppCookieStickinessPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1368,11 +1304,7 @@ type CreateLBCookieStickinessPolicyInput struct {
 	// for this load balancer.
 	PolicyName *string `type:"string" required:"true"`
 
-	metadataCreateLBCookieStickinessPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataCreateLBCookieStickinessPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1386,11 +1318,7 @@ func (s CreateLBCookieStickinessPolicyInput) GoString() string {
 }
 
 type CreateLBCookieStickinessPolicyOutput struct {
-	metadataCreateLBCookieStickinessPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateLBCookieStickinessPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1451,11 +1379,7 @@ type CreateLoadBalancerInput struct {
 	// in the Elastic Load Balancing Developer Guide.
 	Tags []*Tag `min:"1" type:"list"`
 
-	metadataCreateLoadBalancerInput `json:"-" xml:"-"`
-}
-
-type metadataCreateLoadBalancerInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1475,11 +1399,7 @@ type CreateLoadBalancerListenersInput struct {
 	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
-	metadataCreateLoadBalancerListenersInput `json:"-" xml:"-"`
-}
-
-type metadataCreateLoadBalancerListenersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1493,11 +1413,7 @@ func (s CreateLoadBalancerListenersInput) GoString() string {
 }
 
 type CreateLoadBalancerListenersOutput struct {
-	metadataCreateLoadBalancerListenersOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateLoadBalancerListenersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1514,11 +1430,7 @@ type CreateLoadBalancerOutput struct {
 	// The DNS name of the load balancer.
 	DNSName *string `type:"string"`
 
-	metadataCreateLoadBalancerOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateLoadBalancerOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1545,11 +1457,7 @@ type CreateLoadBalancerPolicyInput struct {
 	// The name of the base policy type. To get the list of policy types, use DescribeLoadBalancerPolicyTypes.
 	PolicyTypeName *string `type:"string" required:"true"`
 
-	metadataCreateLoadBalancerPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataCreateLoadBalancerPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1563,11 +1471,7 @@ func (s CreateLoadBalancerPolicyInput) GoString() string {
 }
 
 type CreateLoadBalancerPolicyOutput struct {
-	metadataCreateLoadBalancerPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateLoadBalancerPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1585,11 +1489,7 @@ type CrossZoneLoadBalancing struct {
 	// Specifies whether cross-zone load balancing is enabled for the load balancer.
 	Enabled *bool `type:"boolean" required:"true"`
 
-	metadataCrossZoneLoadBalancing `json:"-" xml:"-"`
-}
-
-type metadataCrossZoneLoadBalancing struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1606,11 +1506,7 @@ type DeleteLoadBalancerInput struct {
 	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
-	metadataDeleteLoadBalancerInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteLoadBalancerInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1630,11 +1526,7 @@ type DeleteLoadBalancerListenersInput struct {
 	// The client port numbers of the listeners.
 	LoadBalancerPorts []*int64 `type:"list" required:"true"`
 
-	metadataDeleteLoadBalancerListenersInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteLoadBalancerListenersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1648,11 +1540,7 @@ func (s DeleteLoadBalancerListenersInput) GoString() string {
 }
 
 type DeleteLoadBalancerListenersOutput struct {
-	metadataDeleteLoadBalancerListenersOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteLoadBalancerListenersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1666,11 +1554,7 @@ func (s DeleteLoadBalancerListenersOutput) GoString() string {
 }
 
 type DeleteLoadBalancerOutput struct {
-	metadataDeleteLoadBalancerOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteLoadBalancerOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1691,11 +1575,7 @@ type DeleteLoadBalancerPolicyInput struct {
 	// The name of the policy.
 	PolicyName *string `type:"string" required:"true"`
 
-	metadataDeleteLoadBalancerPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteLoadBalancerPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1709,11 +1589,7 @@ func (s DeleteLoadBalancerPolicyInput) GoString() string {
 }
 
 type DeleteLoadBalancerPolicyOutput struct {
-	metadataDeleteLoadBalancerPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteLoadBalancerPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1733,11 +1609,7 @@ type DeregisterInstancesFromLoadBalancerInput struct {
 	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
-	metadataDeregisterInstancesFromLoadBalancerInput `json:"-" xml:"-"`
-}
-
-type metadataDeregisterInstancesFromLoadBalancerInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1754,11 +1626,7 @@ type DeregisterInstancesFromLoadBalancerOutput struct {
 	// The remaining instances registered with the load balancer.
 	Instances []*Instance `type:"list"`
 
-	metadataDeregisterInstancesFromLoadBalancerOutput `json:"-" xml:"-"`
-}
-
-type metadataDeregisterInstancesFromLoadBalancerOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1778,11 +1646,7 @@ type DescribeInstanceHealthInput struct {
 	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
-	metadataDescribeInstanceHealthInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeInstanceHealthInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1799,11 +1663,7 @@ type DescribeInstanceHealthOutput struct {
 	// Information about the health of the instances.
 	InstanceStates []*InstanceState `type:"list"`
 
-	metadataDescribeInstanceHealthOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeInstanceHealthOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1820,11 +1680,7 @@ type DescribeLoadBalancerAttributesInput struct {
 	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
-	metadataDescribeLoadBalancerAttributesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeLoadBalancerAttributesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1841,11 +1697,7 @@ type DescribeLoadBalancerAttributesOutput struct {
 	// Information about the load balancer attributes.
 	LoadBalancerAttributes *LoadBalancerAttributes `type:"structure"`
 
-	metadataDescribeLoadBalancerAttributesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeLoadBalancerAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1865,11 +1717,7 @@ type DescribeLoadBalancerPoliciesInput struct {
 	// The names of the policies.
 	PolicyNames []*string `type:"list"`
 
-	metadataDescribeLoadBalancerPoliciesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeLoadBalancerPoliciesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1886,11 +1734,7 @@ type DescribeLoadBalancerPoliciesOutput struct {
 	// Information about the policies.
 	PolicyDescriptions []*PolicyDescription `type:"list"`
 
-	metadataDescribeLoadBalancerPoliciesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeLoadBalancerPoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1908,11 +1752,7 @@ type DescribeLoadBalancerPolicyTypesInput struct {
 	// types defined by Elastic Load Balancing.
 	PolicyTypeNames []*string `type:"list"`
 
-	metadataDescribeLoadBalancerPolicyTypesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeLoadBalancerPolicyTypesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1929,11 +1769,7 @@ type DescribeLoadBalancerPolicyTypesOutput struct {
 	// Information about the policy types.
 	PolicyTypeDescriptions []*PolicyTypeDescription `type:"list"`
 
-	metadataDescribeLoadBalancerPolicyTypesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeLoadBalancerPolicyTypesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1958,11 +1794,7 @@ type DescribeLoadBalancersInput struct {
 	// 400). The default is 400.
 	PageSize *int64 `min:"1" type:"integer"`
 
-	metadataDescribeLoadBalancersInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeLoadBalancersInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1983,11 +1815,7 @@ type DescribeLoadBalancersOutput struct {
 	// additional results, the string is empty.
 	NextMarker *string `type:"string"`
 
-	metadataDescribeLoadBalancersOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeLoadBalancersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2004,11 +1832,7 @@ type DescribeTagsInput struct {
 	// The names of the load balancers.
 	LoadBalancerNames []*string `min:"1" type:"list" required:"true"`
 
-	metadataDescribeTagsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTagsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2025,11 +1849,7 @@ type DescribeTagsOutput struct {
 	// Information about the tags.
 	TagDescriptions []*TagDescription `type:"list"`
 
-	metadataDescribeTagsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeTagsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2049,11 +1869,7 @@ type DetachLoadBalancerFromSubnetsInput struct {
 	// The IDs of the subnets.
 	Subnets []*string `type:"list" required:"true"`
 
-	metadataDetachLoadBalancerFromSubnetsInput `json:"-" xml:"-"`
-}
-
-type metadataDetachLoadBalancerFromSubnetsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2070,11 +1886,7 @@ type DetachLoadBalancerFromSubnetsOutput struct {
 	// The IDs of the remaining subnets for the load balancer.
 	Subnets []*string `type:"list"`
 
-	metadataDetachLoadBalancerFromSubnetsOutput `json:"-" xml:"-"`
-}
-
-type metadataDetachLoadBalancerFromSubnetsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2094,11 +1906,7 @@ type DisableAvailabilityZonesForLoadBalancerInput struct {
 	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
-	metadataDisableAvailabilityZonesForLoadBalancerInput `json:"-" xml:"-"`
-}
-
-type metadataDisableAvailabilityZonesForLoadBalancerInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2115,11 +1923,7 @@ type DisableAvailabilityZonesForLoadBalancerOutput struct {
 	// The remaining Availability Zones for the load balancer.
 	AvailabilityZones []*string `type:"list"`
 
-	metadataDisableAvailabilityZonesForLoadBalancerOutput `json:"-" xml:"-"`
-}
-
-type metadataDisableAvailabilityZonesForLoadBalancerOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2139,11 +1943,7 @@ type EnableAvailabilityZonesForLoadBalancerInput struct {
 	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
-	metadataEnableAvailabilityZonesForLoadBalancerInput `json:"-" xml:"-"`
-}
-
-type metadataEnableAvailabilityZonesForLoadBalancerInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2160,11 +1960,7 @@ type EnableAvailabilityZonesForLoadBalancerOutput struct {
 	// The updated list of Availability Zones for the load balancer.
 	AvailabilityZones []*string `type:"list"`
 
-	metadataEnableAvailabilityZonesForLoadBalancerOutput `json:"-" xml:"-"`
-}
-
-type metadataEnableAvailabilityZonesForLoadBalancerOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2217,11 +2013,7 @@ type HealthCheck struct {
 	// instance to the Unhealthy state.
 	UnhealthyThreshold *int64 `min:"2" type:"integer" required:"true"`
 
-	metadataHealthCheck `json:"-" xml:"-"`
-}
-
-type metadataHealthCheck struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2239,11 +2031,7 @@ type Instance struct {
 	// The ID of the instance.
 	InstanceId *string `type:"string"`
 
-	metadataInstance `json:"-" xml:"-"`
-}
-
-type metadataInstance struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2303,11 +2091,7 @@ type InstanceState struct {
 	// Valid values: InService | OutOfService | Unknown
 	State *string `type:"string"`
 
-	metadataInstanceState `json:"-" xml:"-"`
-}
-
-type metadataInstanceState struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2331,11 +2115,7 @@ type LBCookieStickinessPolicy struct {
 	// set of policies for this load balancer.
 	PolicyName *string `type:"string"`
 
-	metadataLBCookieStickinessPolicy `json:"-" xml:"-"`
-}
-
-type metadataLBCookieStickinessPolicy struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2382,11 +2162,7 @@ type Listener struct {
 	// The Amazon Resource Name (ARN) of the server certificate.
 	SSLCertificateId *string `type:"string"`
 
-	metadataListener `json:"-" xml:"-"`
-}
-
-type metadataListener struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2411,11 +2187,7 @@ type ListenerDescription struct {
 	// The policies. If there are no policies enabled, the list is empty.
 	PolicyNames []*string `type:"list"`
 
-	metadataListenerDescription `json:"-" xml:"-"`
-}
-
-type metadataListenerDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2464,11 +2236,7 @@ type LoadBalancerAttributes struct {
 	// in the Elastic Load Balancing Developer Guide.
 	CrossZoneLoadBalancing *CrossZoneLoadBalancing `type:"structure"`
 
-	metadataLoadBalancerAttributes `json:"-" xml:"-"`
-}
-
-type metadataLoadBalancerAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2545,11 +2313,7 @@ type LoadBalancerDescription struct {
 	// The ID of the VPC for the load balancer.
 	VPCId *string `type:"string"`
 
-	metadataLoadBalancerDescription `json:"-" xml:"-"`
-}
-
-type metadataLoadBalancerDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2569,11 +2333,7 @@ type ModifyLoadBalancerAttributesInput struct {
 	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
-	metadataModifyLoadBalancerAttributesInput `json:"-" xml:"-"`
-}
-
-type metadataModifyLoadBalancerAttributesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2593,11 +2353,7 @@ type ModifyLoadBalancerAttributesOutput struct {
 	// The name of the load balancer.
 	LoadBalancerName *string `type:"string"`
 
-	metadataModifyLoadBalancerAttributesOutput `json:"-" xml:"-"`
-}
-
-type metadataModifyLoadBalancerAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2621,11 +2377,7 @@ type Policies struct {
 	// The policies other than the stickiness policies.
 	OtherPolicies []*string `type:"list"`
 
-	metadataPolicies `json:"-" xml:"-"`
-}
-
-type metadataPolicies struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2646,11 +2398,7 @@ type PolicyAttribute struct {
 	// The value of the attribute.
 	AttributeValue *string `type:"string"`
 
-	metadataPolicyAttribute `json:"-" xml:"-"`
-}
-
-type metadataPolicyAttribute struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2671,11 +2419,7 @@ type PolicyAttributeDescription struct {
 	// The value of the attribute.
 	AttributeValue *string `type:"string"`
 
-	metadataPolicyAttributeDescription `json:"-" xml:"-"`
-}
-
-type metadataPolicyAttributeDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2711,11 +2455,7 @@ type PolicyAttributeTypeDescription struct {
 	// A description of the attribute.
 	Description *string `type:"string"`
 
-	metadataPolicyAttributeTypeDescription `json:"-" xml:"-"`
-}
-
-type metadataPolicyAttributeTypeDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2739,11 +2479,7 @@ type PolicyDescription struct {
 	// The name of the policy type.
 	PolicyTypeName *string `type:"string"`
 
-	metadataPolicyDescription `json:"-" xml:"-"`
-}
-
-type metadataPolicyDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2768,11 +2504,7 @@ type PolicyTypeDescription struct {
 	// The name of the policy type.
 	PolicyTypeName *string `type:"string"`
 
-	metadataPolicyTypeDescription `json:"-" xml:"-"`
-}
-
-type metadataPolicyTypeDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2792,11 +2524,7 @@ type RegisterInstancesWithLoadBalancerInput struct {
 	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
-	metadataRegisterInstancesWithLoadBalancerInput `json:"-" xml:"-"`
-}
-
-type metadataRegisterInstancesWithLoadBalancerInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2813,11 +2541,7 @@ type RegisterInstancesWithLoadBalancerOutput struct {
 	// The updated list of instances for the load balancer.
 	Instances []*Instance `type:"list"`
 
-	metadataRegisterInstancesWithLoadBalancerOutput `json:"-" xml:"-"`
-}
-
-type metadataRegisterInstancesWithLoadBalancerOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2838,11 +2562,7 @@ type RemoveTagsInput struct {
 	// The list of tag keys to remove.
 	Tags []*TagKeyOnly `min:"1" type:"list" required:"true"`
 
-	metadataRemoveTagsInput `json:"-" xml:"-"`
-}
-
-type metadataRemoveTagsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2856,11 +2576,7 @@ func (s RemoveTagsInput) GoString() string {
 }
 
 type RemoveTagsOutput struct {
-	metadataRemoveTagsOutput `json:"-" xml:"-"`
-}
-
-type metadataRemoveTagsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2883,11 +2599,7 @@ type SetLoadBalancerListenerSSLCertificateInput struct {
 	// The Amazon Resource Name (ARN) of the SSL certificate.
 	SSLCertificateId *string `type:"string" required:"true"`
 
-	metadataSetLoadBalancerListenerSSLCertificateInput `json:"-" xml:"-"`
-}
-
-type metadataSetLoadBalancerListenerSSLCertificateInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2901,11 +2613,7 @@ func (s SetLoadBalancerListenerSSLCertificateInput) GoString() string {
 }
 
 type SetLoadBalancerListenerSSLCertificateOutput struct {
-	metadataSetLoadBalancerListenerSSLCertificateOutput `json:"-" xml:"-"`
-}
-
-type metadataSetLoadBalancerListenerSSLCertificateOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2929,11 +2637,7 @@ type SetLoadBalancerPoliciesForBackendServerInput struct {
 	// are removed from the back-end server.
 	PolicyNames []*string `type:"list" required:"true"`
 
-	metadataSetLoadBalancerPoliciesForBackendServerInput `json:"-" xml:"-"`
-}
-
-type metadataSetLoadBalancerPoliciesForBackendServerInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2947,11 +2651,7 @@ func (s SetLoadBalancerPoliciesForBackendServerInput) GoString() string {
 }
 
 type SetLoadBalancerPoliciesForBackendServerOutput struct {
-	metadataSetLoadBalancerPoliciesForBackendServerOutput `json:"-" xml:"-"`
-}
-
-type metadataSetLoadBalancerPoliciesForBackendServerOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2975,11 +2675,7 @@ type SetLoadBalancerPoliciesOfListenerInput struct {
 	// from the listener.
 	PolicyNames []*string `type:"list" required:"true"`
 
-	metadataSetLoadBalancerPoliciesOfListenerInput `json:"-" xml:"-"`
-}
-
-type metadataSetLoadBalancerPoliciesOfListenerInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2993,11 +2689,7 @@ func (s SetLoadBalancerPoliciesOfListenerInput) GoString() string {
 }
 
 type SetLoadBalancerPoliciesOfListenerOutput struct {
-	metadataSetLoadBalancerPoliciesOfListenerOutput `json:"-" xml:"-"`
-}
-
-type metadataSetLoadBalancerPoliciesOfListenerOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3018,11 +2710,7 @@ type SourceSecurityGroup struct {
 	// The owner of the security group.
 	OwnerAlias *string `type:"string"`
 
-	metadataSourceSecurityGroup `json:"-" xml:"-"`
-}
-
-type metadataSourceSecurityGroup struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3043,11 +2731,7 @@ type Tag struct {
 	// The value of the tag.
 	Value *string `type:"string"`
 
-	metadataTag `json:"-" xml:"-"`
-}
-
-type metadataTag struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3068,11 +2752,7 @@ type TagDescription struct {
 	// The tags.
 	Tags []*Tag `min:"1" type:"list"`
 
-	metadataTagDescription `json:"-" xml:"-"`
-}
-
-type metadataTagDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3090,11 +2770,7 @@ type TagKeyOnly struct {
 	// The name of the key.
 	Key *string `min:"1" type:"string"`
 
-	metadataTagKeyOnly `json:"-" xml:"-"`
-}
-
-type metadataTagKeyOnly struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

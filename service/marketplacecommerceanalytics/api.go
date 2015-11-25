@@ -77,11 +77,7 @@ type GenerateDataSetInput struct {
 	// data set has been published or if an error has occurred.
 	SnsTopicArn *string `locationName:"snsTopicArn" min:"1" type:"string" required:"true"`
 
-	metadataGenerateDataSetInput `json:"-" xml:"-"`
-}
-
-type metadataGenerateDataSetInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -101,11 +97,7 @@ type GenerateDataSetOutput struct {
 	// from the SNS topic.
 	DataSetRequestId *string `locationName:"dataSetRequestId" type:"string"`
 
-	metadataGenerateDataSetOutput `json:"-" xml:"-"`
-}
-
-type metadataGenerateDataSetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

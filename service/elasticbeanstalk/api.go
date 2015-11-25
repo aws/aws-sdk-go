@@ -1034,11 +1034,7 @@ type AbortEnvironmentUpdateInput struct {
 	// you want to cancel.
 	EnvironmentName *string `min:"4" type:"string"`
 
-	metadataAbortEnvironmentUpdateInput `json:"-" xml:"-"`
-}
-
-type metadataAbortEnvironmentUpdateInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1052,11 +1048,7 @@ func (s AbortEnvironmentUpdateInput) GoString() string {
 }
 
 type AbortEnvironmentUpdateOutput struct {
-	metadataAbortEnvironmentUpdateOutput `json:"-" xml:"-"`
-}
-
-type metadataAbortEnvironmentUpdateOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1089,11 +1081,7 @@ type ApplicationDescription struct {
 	// The names of the versions for this application.
 	Versions []*string `type:"list"`
 
-	metadataApplicationDescription `json:"-" xml:"-"`
-}
-
-type metadataApplicationDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1111,11 +1099,7 @@ type ApplicationDescriptionMessage struct {
 	// The ApplicationDescription of the application.
 	Application *ApplicationDescription `type:"structure"`
 
-	metadataApplicationDescriptionMessage `json:"-" xml:"-"`
-}
-
-type metadataApplicationDescriptionMessage struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1147,11 +1131,7 @@ type ApplicationMetrics struct {
 	// in each type of status code response.
 	StatusCodes *StatusCodes `type:"structure"`
 
-	metadataApplicationMetrics `json:"-" xml:"-"`
-}
-
-type metadataApplicationMetrics struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1187,11 +1167,7 @@ type ApplicationVersionDescription struct {
 	// A label uniquely identifying the version for the associated application.
 	VersionLabel *string `min:"1" type:"string"`
 
-	metadataApplicationVersionDescription `json:"-" xml:"-"`
-}
-
-type metadataApplicationVersionDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1209,11 +1185,7 @@ type ApplicationVersionDescriptionMessage struct {
 	// The ApplicationVersionDescription of the application version.
 	ApplicationVersion *ApplicationVersionDescription `type:"structure"`
 
-	metadataApplicationVersionDescriptionMessage `json:"-" xml:"-"`
-}
-
-type metadataApplicationVersionDescriptionMessage struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1231,11 +1203,7 @@ type AutoScalingGroup struct {
 	// The name of the AutoScalingGroup .
 	Name *string `type:"string"`
 
-	metadataAutoScalingGroup `json:"-" xml:"-"`
-}
-
-type metadataAutoScalingGroup struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1280,11 +1248,7 @@ type CPUUtilization struct {
 	// 10 seconds.
 	User *float64 `type:"double"`
 
-	metadataCPUUtilization `json:"-" xml:"-"`
-}
-
-type metadataCPUUtilization struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1302,11 +1266,7 @@ type CheckDNSAvailabilityInput struct {
 	// The prefix used when this CNAME is reserved.
 	CNAMEPrefix *string `min:"4" type:"string" required:"true"`
 
-	metadataCheckDNSAvailabilityInput `json:"-" xml:"-"`
-}
-
-type metadataCheckDNSAvailabilityInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1330,11 +1290,7 @@ type CheckDNSAvailabilityOutput struct {
 	// the provided prefix.
 	FullyQualifiedCNAME *string `min:"1" type:"string"`
 
-	metadataCheckDNSAvailabilityOutput `json:"-" xml:"-"`
-}
-
-type metadataCheckDNSAvailabilityOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1365,11 +1321,7 @@ type ComposeEnvironmentsInput struct {
 	// to create.
 	VersionLabels []*string `type:"list"`
 
-	metadataComposeEnvironmentsInput `json:"-" xml:"-"`
-}
-
-type metadataComposeEnvironmentsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1446,11 +1398,7 @@ type ConfigurationOptionDescription struct {
 	// false .   Json : Values for this option are a JSON representation of a ConfigDocument.
 	ValueType *string `type:"string" enum:"ConfigurationOptionValueType"`
 
-	metadataConfigurationOptionDescription `json:"-" xml:"-"`
-}
-
-type metadataConfigurationOptionDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1480,11 +1428,7 @@ type ConfigurationOptionSetting struct {
 	// The current value for the configuration option.
 	Value *string `type:"string"`
 
-	metadataConfigurationOptionSetting `json:"-" xml:"-"`
-}
-
-type metadataConfigurationOptionSetting struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1535,11 +1479,7 @@ type ConfigurationSettingsDescription struct {
 	// set.
 	TemplateName *string `min:"1" type:"string"`
 
-	metadataConfigurationSettingsDescription `json:"-" xml:"-"`
-}
-
-type metadataConfigurationSettingsDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1562,11 +1502,7 @@ type CreateApplicationInput struct {
 	// Describes the application.
 	Description *string `type:"string"`
 
-	metadataCreateApplicationInput `json:"-" xml:"-"`
-}
-
-type metadataCreateApplicationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1623,11 +1559,7 @@ type CreateApplicationVersionInput struct {
 	// returns an InvalidParameterValue error.
 	VersionLabel *string `min:"1" type:"string" required:"true"`
 
-	metadataCreateApplicationVersionInput `json:"-" xml:"-"`
-}
-
-type metadataCreateApplicationVersionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1696,11 +1628,7 @@ type CreateConfigurationTemplateInput struct {
 	// Elastic Beanstalk returns an InvalidParameterValue error.
 	TemplateName *string `min:"1" type:"string" required:"true"`
 
-	metadataCreateConfigurationTemplateInput `json:"-" xml:"-"`
-}
-
-type metadataCreateConfigurationTemplateInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1791,11 +1719,7 @@ type CreateEnvironmentInput struct {
 	// sample application in the container.
 	VersionLabel *string `min:"1" type:"string"`
 
-	metadataCreateEnvironmentInput `json:"-" xml:"-"`
-}
-
-type metadataCreateEnvironmentInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1809,11 +1733,7 @@ func (s CreateEnvironmentInput) GoString() string {
 }
 
 type CreateStorageLocationInput struct {
-	metadataCreateStorageLocationInput `json:"-" xml:"-"`
-}
-
-type metadataCreateStorageLocationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1831,11 +1751,7 @@ type CreateStorageLocationOutput struct {
 	// The name of the Amazon S3 bucket created.
 	S3Bucket *string `type:"string"`
 
-	metadataCreateStorageLocationOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateStorageLocationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1856,11 +1772,7 @@ type DeleteApplicationInput struct {
 	// the application.
 	TerminateEnvByForce *bool `type:"boolean"`
 
-	metadataDeleteApplicationInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteApplicationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1874,11 +1786,7 @@ func (s DeleteApplicationInput) GoString() string {
 }
 
 type DeleteApplicationOutput struct {
-	metadataDeleteApplicationOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteApplicationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1905,11 +1813,7 @@ type DeleteApplicationVersionInput struct {
 	// The label of the version to delete.
 	VersionLabel *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteApplicationVersionInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteApplicationVersionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1923,11 +1827,7 @@ func (s DeleteApplicationVersionInput) GoString() string {
 }
 
 type DeleteApplicationVersionOutput struct {
-	metadataDeleteApplicationVersionOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteApplicationVersionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1947,11 +1847,7 @@ type DeleteConfigurationTemplateInput struct {
 	// The name of the configuration template to delete.
 	TemplateName *string `min:"1" type:"string" required:"true"`
 
-	metadataDeleteConfigurationTemplateInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteConfigurationTemplateInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1965,11 +1861,7 @@ func (s DeleteConfigurationTemplateInput) GoString() string {
 }
 
 type DeleteConfigurationTemplateOutput struct {
-	metadataDeleteConfigurationTemplateOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteConfigurationTemplateOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1989,11 +1881,7 @@ type DeleteEnvironmentConfigurationInput struct {
 	// The name of the environment to delete the draft configuration from.
 	EnvironmentName *string `min:"4" type:"string" required:"true"`
 
-	metadataDeleteEnvironmentConfigurationInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteEnvironmentConfigurationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2007,11 +1895,7 @@ func (s DeleteEnvironmentConfigurationInput) GoString() string {
 }
 
 type DeleteEnvironmentConfigurationOutput struct {
-	metadataDeleteEnvironmentConfigurationOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteEnvironmentConfigurationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2034,11 +1918,7 @@ type DescribeApplicationVersionsInput struct {
 	// have the specified version labels.
 	VersionLabels []*string `type:"list"`
 
-	metadataDescribeApplicationVersionsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeApplicationVersionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2056,11 +1936,7 @@ type DescribeApplicationVersionsOutput struct {
 	// List of ApplicationVersionDescription objects sorted by order of creation.
 	ApplicationVersions []*ApplicationVersionDescription `type:"list"`
 
-	metadataDescribeApplicationVersionsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeApplicationVersionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2078,11 +1954,7 @@ type DescribeApplicationsInput struct {
 	// only include those with the specified names.
 	ApplicationNames []*string `type:"list"`
 
-	metadataDescribeApplicationsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeApplicationsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2100,11 +1972,7 @@ type DescribeApplicationsOutput struct {
 	// This parameter contains a list of ApplicationDescription.
 	Applications []*ApplicationDescription `type:"list"`
 
-	metadataDescribeApplicationsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeApplicationsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2137,11 +2005,7 @@ type DescribeConfigurationOptionsInput struct {
 	// to describe.
 	TemplateName *string `min:"1" type:"string"`
 
-	metadataDescribeConfigurationOptionsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeConfigurationOptionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2162,11 +2026,7 @@ type DescribeConfigurationOptionsOutput struct {
 	// The name of the solution stack these configuration options belong to.
 	SolutionStackName *string `type:"string"`
 
-	metadataDescribeConfigurationOptionsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeConfigurationOptionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2201,11 +2061,7 @@ type DescribeConfigurationSettingsInput struct {
 	// error.
 	TemplateName *string `min:"1" type:"string"`
 
-	metadataDescribeConfigurationSettingsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeConfigurationSettingsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2223,11 +2079,7 @@ type DescribeConfigurationSettingsOutput struct {
 	// A list of ConfigurationSettingsDescription.
 	ConfigurationSettings []*ConfigurationSettingsDescription `type:"list"`
 
-	metadataDescribeConfigurationSettingsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeConfigurationSettingsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2260,11 +2112,7 @@ type DescribeEnvironmentHealthInput struct {
 	// error.
 	EnvironmentName *string `min:"4" type:"string"`
 
-	metadataDescribeEnvironmentHealthInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEnvironmentHealthInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2306,11 +2154,7 @@ type DescribeEnvironmentHealthOutput struct {
 	// see Health Colors and Statuses (http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html).
 	Status *string `type:"string" enum:"EnvironmentHealth"`
 
-	metadataDescribeEnvironmentHealthOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEnvironmentHealthOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2338,11 +2182,7 @@ type DescribeEnvironmentResourcesInput struct {
 	// error.
 	EnvironmentName *string `min:"4" type:"string"`
 
-	metadataDescribeEnvironmentResourcesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEnvironmentResourcesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2360,11 +2200,7 @@ type DescribeEnvironmentResourcesOutput struct {
 	// A list of EnvironmentResourceDescription.
 	EnvironmentResources *EnvironmentResourceDescription `type:"structure"`
 
-	metadataDescribeEnvironmentResourcesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEnvironmentResourcesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2406,11 +2242,7 @@ type DescribeEnvironmentsInput struct {
 	// include only those that are associated with this application version.
 	VersionLabel *string `min:"1" type:"string"`
 
-	metadataDescribeEnvironmentsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEnvironmentsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2467,11 +2299,7 @@ type DescribeEventsInput struct {
 	// those associated with this application version.
 	VersionLabel *string `min:"1" type:"string"`
 
-	metadataDescribeEventsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEventsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2493,11 +2321,7 @@ type DescribeEventsOutput struct {
 	// token in the next DescribeEvents call to get the next batch of events.
 	NextToken *string `type:"string"`
 
-	metadataDescribeEventsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEventsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2525,11 +2349,7 @@ type DescribeInstancesHealthInput struct {
 	// Specifies the next token of the request.
 	NextToken *string `min:"1" type:"string"`
 
-	metadataDescribeInstancesHealthInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeInstancesHealthInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2553,11 +2373,7 @@ type DescribeInstancesHealthOutput struct {
 	// The date and time the information was last refreshed.
 	RefreshedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataDescribeInstancesHealthOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeInstancesHealthOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2648,11 +2464,7 @@ type EnvironmentDescription struct {
 	// The application version deployed in this environment.
 	VersionLabel *string `min:"1" type:"string"`
 
-	metadataEnvironmentDescription `json:"-" xml:"-"`
-}
-
-type metadataEnvironmentDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2670,11 +2482,7 @@ type EnvironmentDescriptionsMessage struct {
 	// Returns an EnvironmentDescription list.
 	Environments []*EnvironmentDescription `type:"list"`
 
-	metadataEnvironmentDescriptionsMessage `json:"-" xml:"-"`
-}
-
-type metadataEnvironmentDescriptionsMessage struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2701,11 +2509,7 @@ type EnvironmentInfoDescription struct {
 	// The time stamp when this information was retrieved.
 	SampleTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataEnvironmentInfoDescription `json:"-" xml:"-"`
-}
-
-type metadataEnvironmentInfoDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2730,11 +2534,7 @@ type EnvironmentLink struct {
 	// The name of the link.
 	LinkName *string `type:"string"`
 
-	metadataEnvironmentLink `json:"-" xml:"-"`
-}
-
-type metadataEnvironmentLink struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2770,11 +2570,7 @@ type EnvironmentResourceDescription struct {
 	// The AutoScaling triggers in use by this environment.
 	Triggers []*Trigger `type:"list"`
 
-	metadataEnvironmentResourceDescription `json:"-" xml:"-"`
-}
-
-type metadataEnvironmentResourceDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2793,11 +2589,7 @@ type EnvironmentResourcesDescription struct {
 	// Describes the LoadBalancer.
 	LoadBalancer *LoadBalancerDescription `type:"structure"`
 
-	metadataEnvironmentResourcesDescription `json:"-" xml:"-"`
-}
-
-type metadataEnvironmentResourcesDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2821,11 +2613,7 @@ type EnvironmentTier struct {
 	// The version of this environment tier.
 	Version *string `type:"string"`
 
-	metadataEnvironmentTier `json:"-" xml:"-"`
-}
-
-type metadataEnvironmentTier struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2864,11 +2652,7 @@ type EventDescription struct {
 	// The release label for the application version associated with this event.
 	VersionLabel *string `min:"1" type:"string"`
 
-	metadataEventDescription `json:"-" xml:"-"`
-}
-
-type metadataEventDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2886,11 +2670,7 @@ type Instance struct {
 	// The ID of the Amazon EC2 instance.
 	Id *string `type:"string"`
 
-	metadataInstance `json:"-" xml:"-"`
-}
-
-type metadataInstance struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2936,11 +2716,7 @@ type InstanceHealthSummary struct {
 	// or other issues for an instance or environment.
 	Warning *int64 `type:"integer"`
 
-	metadataInstanceHealthSummary `json:"-" xml:"-"`
-}
-
-type metadataInstanceHealthSummary struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2988,11 +2764,7 @@ type Latency struct {
 	// 10 seconds.
 	P999 *float64 `type:"double"`
 
-	metadataLatency `json:"-" xml:"-"`
-}
-
-type metadataLatency struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3010,11 +2782,7 @@ type LaunchConfiguration struct {
 	// The name of the launch configuration.
 	Name *string `type:"string"`
 
-	metadataLaunchConfiguration `json:"-" xml:"-"`
-}
-
-type metadataLaunchConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3028,11 +2796,7 @@ func (s LaunchConfiguration) GoString() string {
 }
 
 type ListAvailableSolutionStacksInput struct {
-	metadataListAvailableSolutionStacksInput `json:"-" xml:"-"`
-}
-
-type metadataListAvailableSolutionStacksInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3053,11 +2817,7 @@ type ListAvailableSolutionStacksOutput struct {
 	// A list of available solution stacks.
 	SolutionStacks []*string `type:"list"`
 
-	metadataListAvailableSolutionStacksOutput `json:"-" xml:"-"`
-}
-
-type metadataListAvailableSolutionStacksOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3078,11 +2838,7 @@ type Listener struct {
 	// The protocol that is used by the Listener.
 	Protocol *string `type:"string"`
 
-	metadataListener `json:"-" xml:"-"`
-}
-
-type metadataListener struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3100,11 +2856,7 @@ type LoadBalancer struct {
 	// The name of the LoadBalancer.
 	Name *string `type:"string"`
 
-	metadataLoadBalancer `json:"-" xml:"-"`
-}
-
-type metadataLoadBalancer struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3128,11 +2880,7 @@ type LoadBalancerDescription struct {
 	// The name of the LoadBalancer.
 	LoadBalancerName *string `type:"string"`
 
-	metadataLoadBalancerDescription `json:"-" xml:"-"`
-}
-
-type metadataLoadBalancerDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3155,11 +2903,7 @@ type OptionRestrictionRegex struct {
 	// this restriction must match.
 	Pattern *string `type:"string"`
 
-	metadataOptionRestrictionRegex `json:"-" xml:"-"`
-}
-
-type metadataOptionRestrictionRegex struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3183,11 +2927,7 @@ type OptionSpecification struct {
 	// A unique resource name for a time-based scaling configuration option.
 	ResourceName *string `min:"1" type:"string"`
 
-	metadataOptionSpecification `json:"-" xml:"-"`
-}
-
-type metadataOptionSpecification struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3208,11 +2948,7 @@ type Queue struct {
 	// The URL of the queue.
 	URL *string `type:"string"`
 
-	metadataQueue `json:"-" xml:"-"`
-}
-
-type metadataQueue struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3240,11 +2976,7 @@ type RebuildEnvironmentInput struct {
 	// error.
 	EnvironmentName *string `min:"4" type:"string"`
 
-	metadataRebuildEnvironmentInput `json:"-" xml:"-"`
-}
-
-type metadataRebuildEnvironmentInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3258,11 +2990,7 @@ func (s RebuildEnvironmentInput) GoString() string {
 }
 
 type RebuildEnvironmentOutput struct {
-	metadataRebuildEnvironmentOutput `json:"-" xml:"-"`
-}
-
-type metadataRebuildEnvironmentOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3299,11 +3027,7 @@ type RequestEnvironmentInfoInput struct {
 	// The type of information to request.
 	InfoType *string `type:"string" required:"true" enum:"EnvironmentInfoType"`
 
-	metadataRequestEnvironmentInfoInput `json:"-" xml:"-"`
-}
-
-type metadataRequestEnvironmentInfoInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3317,11 +3041,7 @@ func (s RequestEnvironmentInfoInput) GoString() string {
 }
 
 type RequestEnvironmentInfoOutput struct {
-	metadataRequestEnvironmentInfoOutput `json:"-" xml:"-"`
-}
-
-type metadataRequestEnvironmentInfoOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3349,11 +3069,7 @@ type RestartAppServerInput struct {
 	// error.
 	EnvironmentName *string `min:"4" type:"string"`
 
-	metadataRestartAppServerInput `json:"-" xml:"-"`
-}
-
-type metadataRestartAppServerInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3367,11 +3083,7 @@ func (s RestartAppServerInput) GoString() string {
 }
 
 type RestartAppServerOutput struct {
-	metadataRestartAppServerOutput `json:"-" xml:"-"`
-}
-
-type metadataRestartAppServerOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3406,11 +3118,7 @@ type RetrieveEnvironmentInfoInput struct {
 	// The type of information to retrieve.
 	InfoType *string `type:"string" required:"true" enum:"EnvironmentInfoType"`
 
-	metadataRetrieveEnvironmentInfoInput `json:"-" xml:"-"`
-}
-
-type metadataRetrieveEnvironmentInfoInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3428,11 +3136,7 @@ type RetrieveEnvironmentInfoOutput struct {
 	// The EnvironmentInfoDescription of the environment.
 	EnvironmentInfo []*EnvironmentInfoDescription `type:"list"`
 
-	metadataRetrieveEnvironmentInfoOutput `json:"-" xml:"-"`
-}
-
-type metadataRetrieveEnvironmentInfoOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3453,11 +3157,7 @@ type S3Location struct {
 	// The Amazon S3 key where the data is located.
 	S3Key *string `type:"string"`
 
-	metadataS3Location `json:"-" xml:"-"`
-}
-
-type metadataS3Location struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3500,11 +3200,7 @@ type SingleInstanceHealth struct {
 	// running in the specified environment.
 	System *SystemStatus `type:"structure"`
 
-	metadataSingleInstanceHealth `json:"-" xml:"-"`
-}
-
-type metadataSingleInstanceHealth struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3525,11 +3221,7 @@ type SolutionStackDescription struct {
 	// The name of the solution stack.
 	SolutionStackName *string `type:"string"`
 
-	metadataSolutionStackDescription `json:"-" xml:"-"`
-}
-
-type metadataSolutionStackDescription struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3550,11 +3242,7 @@ type SourceConfiguration struct {
 	// The name of the configuration template.
 	TemplateName *string `min:"1" type:"string"`
 
-	metadataSourceConfiguration `json:"-" xml:"-"`
-}
-
-type metadataSourceConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3587,11 +3275,7 @@ type StatusCodes struct {
 	// (500, 501, etc.) status code.
 	Status5xx *int64 `type:"integer"`
 
-	metadataStatusCodes `json:"-" xml:"-"`
-}
-
-type metadataStatusCodes struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3634,11 +3318,7 @@ type SwapEnvironmentCNAMEsInput struct {
 	// must specify the DestinationEnvironmentName.
 	SourceEnvironmentName *string `min:"4" type:"string"`
 
-	metadataSwapEnvironmentCNAMEsInput `json:"-" xml:"-"`
-}
-
-type metadataSwapEnvironmentCNAMEsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3652,11 +3332,7 @@ func (s SwapEnvironmentCNAMEsInput) GoString() string {
 }
 
 type SwapEnvironmentCNAMEsOutput struct {
-	metadataSwapEnvironmentCNAMEsOutput `json:"-" xml:"-"`
-}
-
-type metadataSwapEnvironmentCNAMEsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3681,11 +3357,7 @@ type SystemStatus struct {
 	// see Operating System Metrics (http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-metrics.html#health-enhanced-metrics-os).
 	LoadAverage []*float64 `type:"list"`
 
-	metadataSystemStatus `json:"-" xml:"-"`
-}
-
-type metadataSystemStatus struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3706,11 +3378,7 @@ type Tag struct {
 	// The value of the tag.
 	Value *string `min:"1" type:"string"`
 
-	metadataTag `json:"-" xml:"-"`
-}
-
-type metadataTag struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3756,11 +3424,7 @@ type TerminateEnvironmentInput struct {
 	//  Valid Values: true | false
 	TerminateResources *bool `type:"boolean"`
 
-	metadataTerminateEnvironmentInput `json:"-" xml:"-"`
-}
-
-type metadataTerminateEnvironmentInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3778,11 +3442,7 @@ type Trigger struct {
 	// The name of the trigger.
 	Name *string `type:"string"`
 
-	metadataTrigger `json:"-" xml:"-"`
-}
-
-type metadataTrigger struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3805,11 +3465,7 @@ type UpdateApplicationInput struct {
 	// Default: If not specified, AWS Elastic Beanstalk does not update the description.
 	Description *string `type:"string"`
 
-	metadataUpdateApplicationInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateApplicationInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3838,11 +3494,7 @@ type UpdateApplicationVersionInput struct {
 	// an InvalidParameterValue error.
 	VersionLabel *string `min:"1" type:"string" required:"true"`
 
-	metadataUpdateApplicationVersionInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateApplicationVersionInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3882,11 +3534,7 @@ type UpdateConfigurationTemplateInput struct {
 	// returns an InvalidParameterValue error.
 	TemplateName *string `min:"1" type:"string" required:"true"`
 
-	metadataUpdateConfigurationTemplateInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateConfigurationTemplateInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3961,11 +3609,7 @@ type UpdateEnvironmentInput struct {
 	// an InvalidParameterValue error.
 	VersionLabel *string `min:"1" type:"string"`
 
-	metadataUpdateEnvironmentInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateEnvironmentInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3997,11 +3641,7 @@ type ValidateConfigurationSettingsInput struct {
 	//  Condition: You cannot specify both this and an environment name.
 	TemplateName *string `min:"1" type:"string"`
 
-	metadataValidateConfigurationSettingsInput `json:"-" xml:"-"`
-}
-
-type metadataValidateConfigurationSettingsInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4019,11 +3659,7 @@ type ValidateConfigurationSettingsOutput struct {
 	// A list of ValidationMessage.
 	Messages []*ValidationMessage `type:"list"`
 
-	metadataValidateConfigurationSettingsOutput `json:"-" xml:"-"`
-}
-
-type metadataValidateConfigurationSettingsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4052,11 +3688,7 @@ type ValidationMessage struct {
 	// into account.
 	Severity *string `type:"string" enum:"ValidationSeverity"`
 
-	metadataValidationMessage `json:"-" xml:"-"`
-}
-
-type metadataValidationMessage struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
