@@ -1007,13 +1007,13 @@ func (c *Inspector) UpdateAssessment(input *UpdateAssessmentInput) (*UpdateAsses
 }
 
 type AddAttributesToFindingsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The array of attributes that you want to assign to specified findings.
 	Attributes []*Attribute `locationName:"attributes" type:"list" required:"true"`
 
 	// The ARNs specifying the findings that you want to assign attributes to.
 	FindingArns []*string `locationName:"findingArns" type:"list" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1027,10 +1027,10 @@ func (s AddAttributesToFindingsInput) GoString() string {
 }
 
 type AddAttributesToFindingsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Confirmation details of the action performed.
 	Message *string `locationName:"message" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1046,6 +1046,8 @@ func (s AddAttributesToFindingsOutput) GoString() string {
 // Contains information about an Inspector agent. This data type is used as
 // a response element in the ListAssessmentAgents action.
 type Agent struct {
+	_ struct{} `type:"structure"`
+
 	// AWS account of the EC2 instance where the agent is installed.
 	AccountId *string `locationName:"accountId" type:"string"`
 
@@ -1070,8 +1072,6 @@ type Agent struct {
 
 	// The Inspector application data metrics collected by the agent.
 	Telemetry []*Telemetry `locationName:"telemetry" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1087,13 +1087,13 @@ func (s Agent) GoString() string {
 // This data type is used as a response element in the PreviewAgentsForResourceGroup
 // action.
 type AgentPreview struct {
+	_ struct{} `type:"structure"`
+
 	// The id of the EC2 instance where the agent is intalled.
 	AgentId *string `locationName:"agentId" type:"string"`
 
 	// The autoscaling group for the EC2 instance where the agent is installed.
 	AutoScalingGroup *string `locationName:"autoScalingGroup" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1109,12 +1109,12 @@ func (s AgentPreview) GoString() string {
 // This data type is used as a response element in the ListAssessmentAgents
 // action.
 type AgentsFilter struct {
+	_ struct{} `type:"structure"`
+
 	// For a record to match a filter, the value specified for this data type property
 	// must be the exact match of the value of the agentHealth property of the Agent
 	// data type.
 	AgentHealthList []*string `locationName:"agentHealthList" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1132,6 +1132,8 @@ func (s AgentsFilter) GoString() string {
 // This data type is used as the response element in the DescribeApplication
 // action.
 type Application struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN specifying the Inspector application.
 	ApplicationArn *string `locationName:"applicationArn" type:"string"`
 
@@ -1140,8 +1142,6 @@ type Application struct {
 
 	// The ARN specifying the resource group that is associated with the application.
 	ResourceGroupArn *string `locationName:"resourceGroupArn" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1156,12 +1156,12 @@ func (s Application) GoString() string {
 
 // This data type is used as the request parameter in the ListApplications action.
 type ApplicationsFilter struct {
+	_ struct{} `type:"structure"`
+
 	// For a record to match a filter, an explicit value or a string containing
 	// a wildcard specified for this data type property must match the value of
 	// the applicationName property of the Application data type.
 	ApplicationNamePatterns []*string `locationName:"applicationNamePatterns" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1179,6 +1179,8 @@ func (s ApplicationsFilter) GoString() string {
 // This data type is used as the response element in the DescribeAssessment
 // action.
 type Assessment struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN of the application that corresponds to this assessment.
 	ApplicationArn *string `locationName:"applicationArn" type:"string"`
 
@@ -1211,8 +1213,6 @@ type Assessment struct {
 
 	// The user-defined attributes that are assigned to every generated finding.
 	UserAttributesForFindings []*Attribute `locationName:"userAttributesForFindings" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1228,6 +1228,8 @@ func (s Assessment) GoString() string {
 // This data type is used as the request parameter in the ListAssessments and
 // ListAttachedAssessments actions.
 type AssessmentsFilter struct {
+	_ struct{} `type:"structure"`
+
 	// For a record to match a filter, an explicit value or a string containing
 	// a wildcard specified for this data type property must match the value of
 	// the assessmentName property of the Assessment data type.
@@ -1257,8 +1259,6 @@ type AssessmentsFilter struct {
 	// must inclusively match any value between the specified minimum and maximum
 	// values of the startTime property of the Assessment data type.
 	StartTimeRange *TimestampRange `locationName:"startTimeRange" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1272,13 +1272,13 @@ func (s AssessmentsFilter) GoString() string {
 }
 
 type AttachAssessmentAndRulesPackageInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN specifying the assessment to which you want to attach a rules package.
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
 
 	// The ARN specifying the rules package that you want to attach to the assessment.
 	RulesPackageArn *string `locationName:"rulesPackageArn" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1292,10 +1292,10 @@ func (s AttachAssessmentAndRulesPackageInput) GoString() string {
 }
 
 type AttachAssessmentAndRulesPackageOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Confirmation details of the action performed.
 	Message *string `locationName:"message" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1311,13 +1311,13 @@ func (s AttachAssessmentAndRulesPackageOutput) GoString() string {
 // This data type is used as a response element in the AddAttributesToFindings
 // action and a request parameter in the CreateAssessment action.
 type Attribute struct {
+	_ struct{} `type:"structure"`
+
 	// The attribute key.
 	Key *string `locationName:"key" type:"string"`
 
 	// The value assigned to the attribute key.
 	Value *string `locationName:"value" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1331,14 +1331,14 @@ func (s Attribute) GoString() string {
 }
 
 type CreateApplicationInput struct {
+	_ struct{} `type:"structure"`
+
 	// The user-defined name identifying the application that you want to create.
 	// The name must be unique within the AWS account.
 	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
 
 	// The ARN specifying the resource group that is used to create the application.
 	ResourceGroupArn *string `locationName:"resourceGroupArn" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1352,10 +1352,10 @@ func (s CreateApplicationInput) GoString() string {
 }
 
 type CreateApplicationOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN specifying the application that is created.
 	ApplicationArn *string `locationName:"applicationArn" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1369,6 +1369,8 @@ func (s CreateApplicationOutput) GoString() string {
 }
 
 type CreateAssessmentInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN specifying the application for which you want to create an assessment.
 	ApplicationArn *string `locationName:"applicationArn" type:"string" required:"true"`
 
@@ -1384,8 +1386,6 @@ type CreateAssessmentInput struct {
 	// The user-defined attributes that are assigned to every finding generated
 	// by running this assessment.
 	UserAttributesForFindings []*Attribute `locationName:"userAttributesForFindings" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1399,10 +1399,10 @@ func (s CreateAssessmentInput) GoString() string {
 }
 
 type CreateAssessmentOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN specifying the assessment that is created.
 	AssessmentArn *string `locationName:"assessmentArn" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1416,12 +1416,12 @@ func (s CreateAssessmentOutput) GoString() string {
 }
 
 type CreateResourceGroupInput struct {
+	_ struct{} `type:"structure"`
+
 	// A collection of keys and an array of possible values in JSON format.
 	//
 	// For example, [{ "key1" : ["Value1","Value2"]},{"Key2": ["Value3"]}]
 	ResourceGroupTags *string `locationName:"resourceGroupTags" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1435,10 +1435,10 @@ func (s CreateResourceGroupInput) GoString() string {
 }
 
 type CreateResourceGroupOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN specifying the resource group that is created.
 	ResourceGroupArn *string `locationName:"resourceGroupArn" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1452,10 +1452,10 @@ func (s CreateResourceGroupOutput) GoString() string {
 }
 
 type DeleteApplicationInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN specifying the application that you want to delete.
 	ApplicationArn *string `locationName:"applicationArn" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1469,10 +1469,10 @@ func (s DeleteApplicationInput) GoString() string {
 }
 
 type DeleteApplicationOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Confirmation details of the action performed.
 	Message *string `locationName:"message" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1486,10 +1486,10 @@ func (s DeleteApplicationOutput) GoString() string {
 }
 
 type DeleteAssessmentInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN specifying the assessment that you want to delete.
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1503,10 +1503,10 @@ func (s DeleteAssessmentInput) GoString() string {
 }
 
 type DeleteAssessmentOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Confirmation details of the action performed.
 	Message *string `locationName:"message" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1520,10 +1520,10 @@ func (s DeleteAssessmentOutput) GoString() string {
 }
 
 type DeleteRunInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN specifying the assessment run that you want to delete.
 	RunArn *string `locationName:"runArn" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1537,10 +1537,10 @@ func (s DeleteRunInput) GoString() string {
 }
 
 type DeleteRunOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Confirmation details of the action performed.
 	Message *string `locationName:"message" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1554,10 +1554,10 @@ func (s DeleteRunOutput) GoString() string {
 }
 
 type DescribeApplicationInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN specifying the application that you want to describe.
 	ApplicationArn *string `locationName:"applicationArn" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1571,10 +1571,10 @@ func (s DescribeApplicationInput) GoString() string {
 }
 
 type DescribeApplicationOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Information about the application.
 	Application *Application `locationName:"application" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1588,10 +1588,10 @@ func (s DescribeApplicationOutput) GoString() string {
 }
 
 type DescribeAssessmentInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN specifying the assessment that you want to describe.
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1605,10 +1605,10 @@ func (s DescribeAssessmentInput) GoString() string {
 }
 
 type DescribeAssessmentOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Information about the assessment.
 	Assessment *Assessment `locationName:"assessment" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1636,14 +1636,14 @@ func (s DescribeCrossAccountAccessRoleInput) GoString() string {
 }
 
 type DescribeCrossAccountAccessRoleOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN specifying the IAM role that Inspector uses to access your AWS account.
 	RoleArn *string `locationName:"roleArn" type:"string"`
 
 	// A Boolean value that specifies whether the IAM role has the necessary policies
 	// attached to enable Inspector to access your AWS account.
 	Valid *bool `locationName:"valid" type:"boolean"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1657,10 +1657,10 @@ func (s DescribeCrossAccountAccessRoleOutput) GoString() string {
 }
 
 type DescribeFindingInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN specifying the finding that you want to describe.
 	FindingArn *string `locationName:"findingArn" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1674,10 +1674,10 @@ func (s DescribeFindingInput) GoString() string {
 }
 
 type DescribeFindingOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Information about the finding.
 	Finding *Finding `locationName:"finding" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1691,10 +1691,10 @@ func (s DescribeFindingOutput) GoString() string {
 }
 
 type DescribeResourceGroupInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN specifying the resource group that you want to describe.
 	ResourceGroupArn *string `locationName:"resourceGroupArn" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1708,10 +1708,10 @@ func (s DescribeResourceGroupInput) GoString() string {
 }
 
 type DescribeResourceGroupOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Information about the resource group.
 	ResourceGroup *ResourceGroup `locationName:"resourceGroup" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1725,10 +1725,10 @@ func (s DescribeResourceGroupOutput) GoString() string {
 }
 
 type DescribeRulesPackageInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN specifying the rules package that you want to describe.
 	RulesPackageArn *string `locationName:"rulesPackageArn" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1742,10 +1742,10 @@ func (s DescribeRulesPackageInput) GoString() string {
 }
 
 type DescribeRulesPackageOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Information about the rules package.
 	RulesPackage *RulesPackage `locationName:"rulesPackage" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1759,10 +1759,10 @@ func (s DescribeRulesPackageOutput) GoString() string {
 }
 
 type DescribeRunInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN specifying the assessment run that you want to describe.
 	RunArn *string `locationName:"runArn" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1776,10 +1776,10 @@ func (s DescribeRunInput) GoString() string {
 }
 
 type DescribeRunOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Information about the assessment run.
 	Run *Run `locationName:"run" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1793,13 +1793,13 @@ func (s DescribeRunOutput) GoString() string {
 }
 
 type DetachAssessmentAndRulesPackageInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN specifying the assessment from which you want to detach a rules package.
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
 
 	// The ARN specifying the rules package that you want to detach from the assessment.
 	RulesPackageArn *string `locationName:"rulesPackageArn" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1813,10 +1813,10 @@ func (s DetachAssessmentAndRulesPackageInput) GoString() string {
 }
 
 type DetachAssessmentAndRulesPackageOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Confirmation details of the action performed.
 	Message *string `locationName:"message" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1831,14 +1831,14 @@ func (s DetachAssessmentAndRulesPackageOutput) GoString() string {
 
 // This data type is used in the AssessmentsFilter data type.
 type DurationRange struct {
+	_ struct{} `type:"structure"`
+
 	// The maximum value of the duration range. Must be less than or equal to 604800
 	// seconds (1 week).
 	Maximum *int64 `locationName:"maximum" type:"integer"`
 
 	// The minimum value of the duration range. Must be greater than zero.
 	Minimum *int64 `locationName:"minimum" type:"integer"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1855,6 +1855,8 @@ func (s DurationRange) GoString() string {
 //
 // This data type is used as the response element in the DescribeFinding action.
 type Finding struct {
+	_ struct{} `type:"structure"`
+
 	// The EC2 instance ID where the agent is installed that is used during the
 	// assessment that generates the finding.
 	AgentId *string `locationName:"agentId" type:"string"`
@@ -1892,8 +1894,6 @@ type Finding struct {
 
 	// The user-defined attributes that are assigned to the finding.
 	UserAttributes []*Attribute `locationName:"userAttributes" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1908,6 +1908,8 @@ func (s Finding) GoString() string {
 
 // This data type is used as a request parameter in the ListFindings action.
 type FindingsFilter struct {
+	_ struct{} `type:"structure"`
+
 	// For a record to match a filter, the value specified for this data type property
 	// must be the exact match of the value of the attributes property of the Finding
 	// data type.
@@ -1932,8 +1934,6 @@ type FindingsFilter struct {
 	// must be the exact match of the value of the userAttributes property of the
 	// Finding data type.
 	UserAttributes []*Attribute `locationName:"userAttributes" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1947,10 +1947,10 @@ func (s FindingsFilter) GoString() string {
 }
 
 type GetAssessmentTelemetryInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN specifying the assessment the telemetry of which you want to obtain.
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1964,10 +1964,10 @@ func (s GetAssessmentTelemetryInput) GoString() string {
 }
 
 type GetAssessmentTelemetryOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Telemetry details.
 	Telemetry []*Telemetry `locationName:"telemetry" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1981,6 +1981,8 @@ func (s GetAssessmentTelemetryOutput) GoString() string {
 }
 
 type ListApplicationsInput struct {
+	_ struct{} `type:"structure"`
+
 	// You can use this parameter to specify a subset of data to be included in
 	// the action's response.
 	//
@@ -1998,8 +2000,6 @@ type ListApplicationsInput struct {
 	// calls to the action fill nextToken in the request with the value of NextToken
 	// from previous response to continue listing data.
 	NextToken *string `locationName:"nextToken" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2013,6 +2013,8 @@ func (s ListApplicationsInput) GoString() string {
 }
 
 type ListApplicationsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of ARNs specifying the applications returned by the action.
 	ApplicationArnList []*string `locationName:"applicationArnList" type:"list"`
 
@@ -2021,8 +2023,6 @@ type ListApplicationsOutput struct {
 	// parameter in a subsequent pagination request. If there is no more data to
 	// be listed, this parameter is set to 'null'.
 	NextToken *string `locationName:"nextToken" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2036,6 +2036,8 @@ func (s ListApplicationsOutput) GoString() string {
 }
 
 type ListAssessmentAgentsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN specifying the assessment whose agents you want to list.
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
 
@@ -2056,8 +2058,6 @@ type ListAssessmentAgentsInput struct {
 	// Subsequent calls to the action fill nextToken in the request with the value
 	// of NextToken from previous response to continue listing data.
 	NextToken *string `locationName:"nextToken" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2071,6 +2071,8 @@ func (s ListAssessmentAgentsInput) GoString() string {
 }
 
 type ListAssessmentAgentsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of ARNs specifying the agents returned by the action.
 	AgentList []*Agent `locationName:"agentList" type:"list"`
 
@@ -2079,8 +2081,6 @@ type ListAssessmentAgentsOutput struct {
 	// parameter in a subsequent pagination request. If there is no more data to
 	// be listed, this parameter is set to 'null'.
 	NextToken *string `locationName:"nextToken" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2094,6 +2094,8 @@ func (s ListAssessmentAgentsOutput) GoString() string {
 }
 
 type ListAssessmentsInput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of ARNs specifying the applications the assessments of which you want
 	// to list.
 	ApplicationArns []*string `locationName:"applicationArns" type:"list"`
@@ -2115,8 +2117,6 @@ type ListAssessmentsInput struct {
 	// calls to the action fill nextToken in the request with the value of NextToken
 	// from previous response to continue listing data.
 	NextToken *string `locationName:"nextToken" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2130,6 +2130,8 @@ func (s ListAssessmentsInput) GoString() string {
 }
 
 type ListAssessmentsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of ARNs specifying the assessments returned by the action.
 	AssessmentArnList []*string `locationName:"assessmentArnList" type:"list"`
 
@@ -2138,8 +2140,6 @@ type ListAssessmentsOutput struct {
 	// parameter in a subsequent pagination request. If there is no more data to
 	// be listed, this parameter is set to 'null'.
 	NextToken *string `locationName:"nextToken" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2153,6 +2153,8 @@ func (s ListAssessmentsOutput) GoString() string {
 }
 
 type ListAttachedAssessmentsInput struct {
+	_ struct{} `type:"structure"`
+
 	// You can use this parameter to specify a subset of data to be included in
 	// the action's response.
 	//
@@ -2173,8 +2175,6 @@ type ListAttachedAssessmentsInput struct {
 
 	// The ARN specifying the rules package whose assessments you want to list.
 	RulesPackageArn *string `locationName:"rulesPackageArn" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2188,6 +2188,8 @@ func (s ListAttachedAssessmentsInput) GoString() string {
 }
 
 type ListAttachedAssessmentsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of ARNs specifying the assessments returned by the action.
 	AssessmentArnList []*string `locationName:"assessmentArnList" type:"list"`
 
@@ -2196,8 +2198,6 @@ type ListAttachedAssessmentsOutput struct {
 	// parameter in a subsequent pagination request. If there is no more data to
 	// be listed, this parameter is set to 'null'.
 	NextToken *string `locationName:"nextToken" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2211,6 +2211,8 @@ func (s ListAttachedAssessmentsOutput) GoString() string {
 }
 
 type ListAttachedRulesPackagesInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN specifying the assessment whose rules packages you want to list.
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
 
@@ -2223,8 +2225,6 @@ type ListAttachedRulesPackagesInput struct {
 	// Subsequent calls to the action fill nextToken in the request with the value
 	// of NextToken from previous response to continue listing data.
 	NextToken *string `locationName:"nextToken" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2238,6 +2238,8 @@ func (s ListAttachedRulesPackagesInput) GoString() string {
 }
 
 type ListAttachedRulesPackagesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// When a response is generated, if there is more data to be listed, this parameter
 	// is present in the response and contains the value to use for the nextToken
 	// parameter in a subsequent pagination request. If there is no more data to
@@ -2246,8 +2248,6 @@ type ListAttachedRulesPackagesOutput struct {
 
 	// A list of ARNs specifying the rules packages returned by the action.
 	RulesPackageArnList []*string `locationName:"rulesPackageArnList" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2261,6 +2261,8 @@ func (s ListAttachedRulesPackagesOutput) GoString() string {
 }
 
 type ListFindingsInput struct {
+	_ struct{} `type:"structure"`
+
 	// You can use this parameter to specify a subset of data to be included in
 	// the action's response.
 	//
@@ -2282,8 +2284,6 @@ type ListFindingsInput struct {
 	// The ARNs of the assessment runs that generate the findings that you want
 	// to list.
 	RunArns []*string `locationName:"runArns" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2297,6 +2297,8 @@ func (s ListFindingsInput) GoString() string {
 }
 
 type ListFindingsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of ARNs specifying the findings returned by the action.
 	FindingArnList []*string `locationName:"findingArnList" type:"list"`
 
@@ -2305,8 +2307,6 @@ type ListFindingsOutput struct {
 	// parameter in a subsequent pagination request. If there is no more data to
 	// be listed, this parameter is set to 'null'.
 	NextToken *string `locationName:"nextToken" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2320,6 +2320,8 @@ func (s ListFindingsOutput) GoString() string {
 }
 
 type ListRulesPackagesInput struct {
+	_ struct{} `type:"structure"`
+
 	// You can use this parameter to indicate the maximum number of items you want
 	// in the response. The default value is 10. The maximum value is 500.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
@@ -2329,8 +2331,6 @@ type ListRulesPackagesInput struct {
 	// calls to the action fill nextToken in the request with the value of NextToken
 	// from previous response to continue listing data.
 	NextToken *string `locationName:"nextToken" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2344,6 +2344,8 @@ func (s ListRulesPackagesInput) GoString() string {
 }
 
 type ListRulesPackagesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// When a response is generated, if there is more data to be listed, this parameter
 	// is present in the response and contains the value to use for the nextToken
 	// parameter in a subsequent pagination request. If there is no more data to
@@ -2352,8 +2354,6 @@ type ListRulesPackagesOutput struct {
 
 	// The list of ARNs specifying the rules packages returned by the action.
 	RulesPackageArnList []*string `locationName:"rulesPackageArnList" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2367,6 +2367,8 @@ func (s ListRulesPackagesOutput) GoString() string {
 }
 
 type ListRunsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARNs specifying the assessments whose runs you want to list.
 	AssessmentArns []*string `locationName:"assessmentArns" type:"list"`
 
@@ -2387,8 +2389,6 @@ type ListRunsInput struct {
 	// calls to the action fill nextToken in the request with the value of NextToken
 	// from previous response to continue listing data.
 	NextToken *string `locationName:"nextToken" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2402,6 +2402,8 @@ func (s ListRunsInput) GoString() string {
 }
 
 type ListRunsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// When a response is generated, if there is more data to be listed, this parameter
 	// is present in the response and contains the value to use for the nextToken
 	// parameter in a subsequent pagination request. If there is no more data to
@@ -2410,8 +2412,6 @@ type ListRunsOutput struct {
 
 	// A list of ARNs specifying the assessment runs returned by the action.
 	RunArnList []*string `locationName:"runArnList" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2425,10 +2425,10 @@ func (s ListRunsOutput) GoString() string {
 }
 
 type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN specifying the resource whose tags you want to list.
 	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2442,10 +2442,10 @@ func (s ListTagsForResourceInput) GoString() string {
 }
 
 type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A collection of key and value pairs.
 	TagList []*Tag `locationName:"tagList" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2459,13 +2459,13 @@ func (s ListTagsForResourceOutput) GoString() string {
 }
 
 type LocalizeTextInput struct {
+	_ struct{} `type:"structure"`
+
 	// The locale that you want to translate a textual identifier into.
 	Locale *string `locationName:"locale" type:"string" required:"true"`
 
 	// A list of textual identifiers.
 	LocalizedTexts []*LocalizedText `locationName:"localizedTexts" type:"list" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2479,13 +2479,13 @@ func (s LocalizeTextInput) GoString() string {
 }
 
 type LocalizeTextOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Confirmation details of the action performed.
 	Message *string `locationName:"message" type:"string"`
 
 	// The resulting list of user-readable texts.
 	Results []*string `locationName:"results" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2501,13 +2501,13 @@ func (s LocalizeTextOutput) GoString() string {
 // The textual identifier. This data type is used as the request parameter in
 // the LocalizeText action.
 type LocalizedText struct {
+	_ struct{} `type:"structure"`
+
 	// The facility and id properties of the LocalizedTextKey data type.
 	Key *LocalizedTextKey `locationName:"key" type:"structure"`
 
 	// Values for the dynamic elements of the string specified by the textual identifier.
 	Parameters []*Parameter `locationName:"parameters" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2522,13 +2522,13 @@ func (s LocalizedText) GoString() string {
 
 // This data type is used in the LocalizedText data type.
 type LocalizedTextKey struct {
+	_ struct{} `type:"structure"`
+
 	// The module response source of the text.
 	Facility *string `locationName:"facility" type:"string"`
 
 	// Part of the module response source of the text.
 	Id *string `locationName:"id" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2547,6 +2547,8 @@ func (s LocalizedTextKey) GoString() string {
 // on your EC2 instances during an assessment and passed to the Inspector service
 // for analysis.
 type MessageTypeTelemetry struct {
+	_ struct{} `type:"structure"`
+
 	// The number of times that the behavioral data is collected by the agent during
 	// an assessment.
 	Count *int64 `locationName:"count" type:"long"`
@@ -2557,8 +2559,6 @@ type MessageTypeTelemetry struct {
 
 	// A specific type of behavioral data that is collected by the agent.
 	MessageType *string `locationName:"messageType" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2573,13 +2573,13 @@ func (s MessageTypeTelemetry) GoString() string {
 
 // This data type is used in the LocalizedText data type.
 type Parameter struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the variable that is being replaced.
 	Name *string `locationName:"name" type:"string"`
 
 	// The value assigned to the variable that is being replaced.
 	Value *string `locationName:"value" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2593,6 +2593,8 @@ func (s Parameter) GoString() string {
 }
 
 type PreviewAgentsForResourceGroupInput struct {
+	_ struct{} `type:"structure"`
+
 	// You can use this parameter to indicate the maximum number of items you want
 	// in the response. The default value is 10. The maximum value is 500.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
@@ -2605,8 +2607,6 @@ type PreviewAgentsForResourceGroupInput struct {
 
 	// The ARN of the resource group that is used to create an application.
 	ResourceGroupArn *string `locationName:"resourceGroupArn" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2620,6 +2620,8 @@ func (s PreviewAgentsForResourceGroupInput) GoString() string {
 }
 
 type PreviewAgentsForResourceGroupOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The resulting list of agents.
 	AgentPreviewList []*AgentPreview `locationName:"agentPreviewList" type:"list"`
 
@@ -2628,8 +2630,6 @@ type PreviewAgentsForResourceGroupOutput struct {
 	// parameter in a subsequent pagination request. If there is no more data to
 	// be listed, this parameter is set to 'null'.
 	NextToken *string `locationName:"nextToken" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2643,11 +2643,11 @@ func (s PreviewAgentsForResourceGroupOutput) GoString() string {
 }
 
 type RegisterCrossAccountAccessRoleInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN of the IAM role that Inspector uses to list your EC2 instances during
 	// the assessment.
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2661,10 +2661,10 @@ func (s RegisterCrossAccountAccessRoleInput) GoString() string {
 }
 
 type RegisterCrossAccountAccessRoleOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Confirmation details of the action performed.
 	Message *string `locationName:"message" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2678,13 +2678,13 @@ func (s RegisterCrossAccountAccessRoleOutput) GoString() string {
 }
 
 type RemoveAttributesFromFindingsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The array of attribute keys that you want to remove from specified findings.
 	AttributeKeys []*string `locationName:"attributeKeys" type:"list" required:"true"`
 
 	// The ARNs specifying the findings that you want to remove attributes from.
 	FindingArns []*string `locationName:"findingArns" type:"list" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2698,10 +2698,10 @@ func (s RemoveAttributesFromFindingsInput) GoString() string {
 }
 
 type RemoveAttributesFromFindingsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Confirmation details of the action performed.
 	Message *string `locationName:"message" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2721,6 +2721,8 @@ func (s RemoveAttributesFromFindingsOutput) GoString() string {
 // This data type is used as the response element in the DescribeResourceGroup
 // action.
 type ResourceGroup struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN of the resource group.
 	ResourceGroupArn *string `locationName:"resourceGroupArn" type:"string"`
 
@@ -2732,8 +2734,6 @@ type ResourceGroup struct {
 	//
 	// For example, [{ "key1" : ["Value1","Value2"]},{"Key2": ["Value3"]}]
 	ResourceGroupTags *string `locationName:"resourceGroupTags" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2751,6 +2751,8 @@ func (s ResourceGroup) GoString() string {
 // This data type is used as the response element in the DescribeRulesPackage
 // action.
 type RulesPackage struct {
+	_ struct{} `type:"structure"`
+
 	// The description of the rules package.
 	Description *LocalizedText `locationName:"description" type:"structure"`
 
@@ -2765,8 +2767,6 @@ type RulesPackage struct {
 
 	// The version id of the rules package.
 	Version *string `locationName:"version" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2783,6 +2783,8 @@ func (s RulesPackage) GoString() string {
 //
 // This data type is used as the response element in the DescribeRun action.
 type Run struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN of the assessment that is associated with the run.
 	AssessmentArn *string `locationName:"assessmentArn" type:"string"`
 
@@ -2806,8 +2808,6 @@ type Run struct {
 	// The state of the run. Values can be set to DataCollectionComplete, EvaluatingPolicies,
 	// EvaluatingPoliciesErrorCanRetry, Completed, Failed, TombStoned.
 	RunState *string `locationName:"runState" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2821,13 +2821,13 @@ func (s Run) GoString() string {
 }
 
 type RunAssessmentInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN of the assessment that you want to run.
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
 
 	// A name specifying the run of the assessment.
 	RunName *string `locationName:"runName" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2841,10 +2841,10 @@ func (s RunAssessmentInput) GoString() string {
 }
 
 type RunAssessmentOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN specifying the run of the assessment.
 	RunArn *string `locationName:"runArn" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2859,6 +2859,8 @@ func (s RunAssessmentOutput) GoString() string {
 
 // This data type is used as the request parameter in the ListRuns action.
 type RunsFilter struct {
+	_ struct{} `type:"structure"`
+
 	// For a record to match a filter, the value specified for this data type property
 	// must inclusively match any value between the specified minimum and maximum
 	// values of the completionTime property of the Run data type.
@@ -2883,8 +2885,6 @@ type RunsFilter struct {
 	// must be the exact match of the value of the runState property of the Run
 	// data type.
 	RunStates []*string `locationName:"runStates" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2898,13 +2898,13 @@ func (s RunsFilter) GoString() string {
 }
 
 type SetTagsForResourceInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN of the assessment that you want to set tags to.
 	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
 
 	// A collection of key and value pairs that you want to set to an assessment.
 	Tags []*Tag `locationName:"tags" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2918,10 +2918,10 @@ func (s SetTagsForResourceInput) GoString() string {
 }
 
 type SetTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Confirmation details of the action performed.
 	Message *string `locationName:"message" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2935,11 +2935,11 @@ func (s SetTagsForResourceOutput) GoString() string {
 }
 
 type StartDataCollectionInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN of the assessment for which you want to start the data collection
 	// process.
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2953,10 +2953,10 @@ func (s StartDataCollectionInput) GoString() string {
 }
 
 type StartDataCollectionOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Confirmation details of the action performed.
 	Message *string `locationName:"message" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2970,11 +2970,11 @@ func (s StartDataCollectionOutput) GoString() string {
 }
 
 type StopDataCollectionInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN of the assessment for which you want to stop the data collection
 	// process.
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2988,10 +2988,10 @@ func (s StopDataCollectionInput) GoString() string {
 }
 
 type StopDataCollectionOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Confirmation details of the action performed.
 	Message *string `locationName:"message" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3009,13 +3009,13 @@ func (s StopDataCollectionOutput) GoString() string {
 // This data type is used as a request parameter in the SetTagsForResource
 // action and a response element in the ListTagsForResource action.
 type Tag struct {
+	_ struct{} `type:"structure"`
+
 	// The tag key.
 	Key *string `type:"string"`
 
 	// The value assigned to a tag key.
 	Value *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3034,14 +3034,14 @@ func (s Tag) GoString() string {
 // This data type is used as the response element in the GetAssessmentTelemetry
 // action.
 type Telemetry struct {
+	_ struct{} `type:"structure"`
+
 	// Counts of individual metrics received by Inspector from the agent.
 	MessageTypeTelemetries []*MessageTypeTelemetry `locationName:"messageTypeTelemetries" type:"list"`
 
 	// The category of the individual metrics that together constitute the telemetry
 	// that Inspector received from the agent.
 	Status *string `locationName:"status" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3056,13 +3056,13 @@ func (s Telemetry) GoString() string {
 
 // This data type is used in the AssessmentsFilter and RunsFilter data types.
 type TimestampRange struct {
+	_ struct{} `type:"structure"`
+
 	// The maximum value of the timestamp range.
 	Maximum *time.Time `locationName:"maximum" type:"timestamp" timestampFormat:"unix"`
 
 	// The minimum value of the timestamp range.
 	Minimum *time.Time `locationName:"minimum" type:"timestamp" timestampFormat:"unix"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3076,6 +3076,8 @@ func (s TimestampRange) GoString() string {
 }
 
 type UpdateApplicationInput struct {
+	_ struct{} `type:"structure"`
+
 	// Application ARN that you want to update.
 	ApplicationArn *string `locationName:"applicationArn" type:"string" required:"true"`
 
@@ -3084,8 +3086,6 @@ type UpdateApplicationInput struct {
 
 	// The resource group ARN that you want to update.
 	ResourceGroupArn *string `locationName:"resourceGroupArn" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3099,10 +3099,10 @@ func (s UpdateApplicationInput) GoString() string {
 }
 
 type UpdateApplicationOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Confirmation details of the action performed.
 	Message *string `locationName:"message" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3116,6 +3116,8 @@ func (s UpdateApplicationOutput) GoString() string {
 }
 
 type UpdateAssessmentInput struct {
+	_ struct{} `type:"structure"`
+
 	// Asessment ARN that you want to update.
 	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
 
@@ -3125,8 +3127,6 @@ type UpdateAssessmentInput struct {
 	// Assessment duration in seconds that you want to update. The default value
 	// is 3600 seconds (one hour). The maximum value is 86400 seconds (one day).
 	DurationInSeconds *int64 `locationName:"durationInSeconds" type:"integer" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3140,10 +3140,10 @@ func (s UpdateAssessmentInput) GoString() string {
 }
 
 type UpdateAssessmentOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Confirmation details of the action performed.
 	Message *string `locationName:"message" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

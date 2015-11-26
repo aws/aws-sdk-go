@@ -149,6 +149,8 @@ func (c *DynamoDBStreams) ListStreams(input *ListStreamsInput) (*ListStreamsOutp
 
 // Represents the input of a DescribeStream operation.
 type DescribeStreamInput struct {
+	_ struct{} `type:"structure"`
+
 	// The shard ID of the first item that this operation will evaluate. Use the
 	// value that was returned for LastEvaluatedShardId in the previous operation.
 	ExclusiveStartShardId *string `min:"28" type:"string"`
@@ -158,8 +160,6 @@ type DescribeStreamInput struct {
 
 	// The Amazon Resource Name (ARN) for the stream.
 	StreamArn *string `min:"37" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -174,13 +174,13 @@ func (s DescribeStreamInput) GoString() string {
 
 // Represents the output of a DescribeStream operation.
 type DescribeStreamOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A complete description of the stream, including its creation date and time,
 	// the DynamoDB table associated with the stream, the shard IDs within the stream,
 	// and the beginning and ending sequence numbers of stream records within the
 	// shards.
 	StreamDescription *StreamDescription `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -195,6 +195,8 @@ func (s DescribeStreamOutput) GoString() string {
 
 // Represents the input of a GetRecords operation.
 type GetRecordsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The maximum number of records to return from the shard. The upper limit is
 	// 1000.
 	Limit *int64 `min:"1" type:"integer"`
@@ -202,8 +204,6 @@ type GetRecordsInput struct {
 	// A shard iterator that was retrieved from a previous GetShardIterator operation.
 	// This iterator can be used to access the stream records in this shard.
 	ShardIterator *string `min:"1" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -218,6 +218,8 @@ func (s GetRecordsInput) GoString() string {
 
 // Represents the output of a GetRecords operation.
 type GetRecordsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The next position in the shard from which to start sequentially reading stream
 	// records. If set to null, the shard has been closed and the requested iterator
 	// will not return any more data.
@@ -225,8 +227,6 @@ type GetRecordsOutput struct {
 
 	// The stream records from the shard, which were retrieved using the shard iterator.
 	Records []*Record `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -241,6 +241,8 @@ func (s GetRecordsOutput) GoString() string {
 
 // Represents the input of a GetShardIterator operation.
 type GetShardIteratorInput struct {
+	_ struct{} `type:"structure"`
+
 	// The sequence number of a stream record in the shard from which to start reading.
 	SequenceNumber *string `min:"21" type:"string"`
 
@@ -268,8 +270,6 @@ type GetShardIteratorInput struct {
 
 	// The Amazon Resource Name (ARN) for the stream.
 	StreamArn *string `min:"37" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -284,12 +284,12 @@ func (s GetShardIteratorInput) GoString() string {
 
 // Represents the output of a GetShardIterator operation.
 type GetShardIteratorOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The position in the shard from which to start reading stream records sequentially.
 	// A shard iterator specifies this position using the sequence number of a stream
 	// record in a shard.
 	ShardIterator *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -304,6 +304,8 @@ func (s GetShardIteratorOutput) GoString() string {
 
 // Represents the input of a ListStreams operation.
 type ListStreamsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN (Amazon Resource Name) of the first item that this operation will
 	// evaluate. Use the value that was returned for LastEvaluatedStreamArn in the
 	// previous operation.
@@ -315,8 +317,6 @@ type ListStreamsInput struct {
 	// If this parameter is provided, then only the streams associated with this
 	// table name are returned.
 	TableName *string `min:"3" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -331,6 +331,8 @@ func (s ListStreamsInput) GoString() string {
 
 // Represents the output of a ListStreams operation.
 type ListStreamsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The stream ARN of the item where the operation stopped, inclusive of the
 	// previous result set. Use this value to start a new operation, excluding this
 	// value in the new request.
@@ -345,8 +347,6 @@ type ListStreamsOutput struct {
 
 	// A list of stream descriptors associated with the current account and endpoint.
 	Streams []*Stream `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -361,6 +361,8 @@ func (s ListStreamsOutput) GoString() string {
 
 // A description of a unique event within a stream.
 type Record struct {
+	_ struct{} `type:"structure"`
+
 	// The region in which the GetRecords request was received.
 	AwsRegion *string `locationName:"awsRegion" type:"string"`
 
@@ -387,8 +389,6 @@ type Record struct {
 
 	// The version number of the stream record format. Currently, this is 1.0.
 	EventVersion *string `locationName:"eventVersion" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -404,13 +404,13 @@ func (s Record) GoString() string {
 // The beginning and ending sequence numbers for the stream records contained
 // within a shard.
 type SequenceNumberRange struct {
+	_ struct{} `type:"structure"`
+
 	// The last sequence number.
 	EndingSequenceNumber *string `min:"21" type:"string"`
 
 	// The first sequence number.
 	StartingSequenceNumber *string `min:"21" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -425,6 +425,8 @@ func (s SequenceNumberRange) GoString() string {
 
 // A uniquely identified group of stream records within a stream.
 type Shard struct {
+	_ struct{} `type:"structure"`
+
 	// The shard ID of the current shard's parent.
 	ParentShardId *string `min:"28" type:"string"`
 
@@ -433,8 +435,6 @@ type Shard struct {
 
 	// The system-generated identifier for this shard.
 	ShardId *string `min:"28" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -449,6 +449,8 @@ func (s Shard) GoString() string {
 
 // Represents all of the data describing a particular stream.
 type Stream struct {
+	_ struct{} `type:"structure"`
+
 	// The Amazon Resource Name (ARN) for the stream.
 	StreamArn *string `min:"37" type:"string"`
 
@@ -468,8 +470,6 @@ type Stream struct {
 
 	// The DynamoDB table with which the stream is associated.
 	TableName *string `min:"3" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -484,6 +484,8 @@ func (s Stream) GoString() string {
 
 // Represents all of the data describing a particular stream.
 type StreamDescription struct {
+	_ struct{} `type:"structure"`
+
 	// The date and time when the request to create this stream was issued.
 	CreationRequestDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
@@ -549,8 +551,6 @@ type StreamDescription struct {
 
 	// The DynamoDB table with which the stream is associated.
 	TableName *string `min:"3" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -566,6 +566,8 @@ func (s StreamDescription) GoString() string {
 // A description of a single data modification that was performed on an item
 // in a DynamoDB table.
 type StreamRecord struct {
+	_ struct{} `type:"structure"`
+
 	// The primary key attribute(s) for the DynamoDB item that was modified.
 	Keys map[string]*dynamodb.AttributeValue `type:"map"`
 
@@ -592,8 +594,6 @@ type StreamRecord struct {
 	//
 	// NEW_AND_OLD_IMAGES — both the new and the old item images of the item.
 	StreamViewType *string `type:"string" enum:"StreamViewType"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

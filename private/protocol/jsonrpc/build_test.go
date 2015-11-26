@@ -119,9 +119,9 @@ func (c *InputService1ProtocolTest) InputService1TestCaseOperation1(input *Input
 }
 
 type InputService1TestShapeInputService1TestCaseOperation1Input struct {
-	Name *string `type:"string"`
-
 	_ struct{} `type:"structure"`
+
+	Name *string `type:"string"`
 }
 
 type InputService1TestShapeInputService1TestCaseOperation1Output struct {
@@ -209,9 +209,9 @@ func (c *InputService2ProtocolTest) InputService2TestCaseOperation1(input *Input
 }
 
 type InputService2TestShapeInputService2TestCaseOperation1Input struct {
-	TimeArg *time.Time `type:"timestamp" timestampFormat:"unix"`
-
 	_ struct{} `type:"structure"`
+
+	TimeArg *time.Time `type:"timestamp" timestampFormat:"unix"`
 }
 
 type InputService2TestShapeInputService2TestCaseOperation1Output struct {
@@ -331,11 +331,11 @@ type InputService3TestShapeInputService3TestCaseOperation2Output struct {
 }
 
 type InputService3TestShapeInputShape struct {
+	_ struct{} `type:"structure"`
+
 	BlobArg []byte `type:"blob"`
 
 	BlobMap map[string][]byte `type:"map"`
-
-	_ struct{} `type:"structure"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -420,9 +420,9 @@ func (c *InputService4ProtocolTest) InputService4TestCaseOperation1(input *Input
 }
 
 type InputService4TestShapeInputService4TestCaseOperation1Input struct {
-	ListParam [][]byte `type:"list"`
-
 	_ struct{} `type:"structure"`
+
+	ListParam [][]byte `type:"list"`
 }
 
 type InputService4TestShapeInputService4TestCaseOperation1Output struct {
@@ -654,12 +654,14 @@ type InputService5TestShapeInputService5TestCaseOperation6Output struct {
 }
 
 type InputService5TestShapeInputShape struct {
-	RecursiveStruct *InputService5TestShapeRecursiveStructType `type:"structure"`
-
 	_ struct{} `type:"structure"`
+
+	RecursiveStruct *InputService5TestShapeRecursiveStructType `type:"structure"`
 }
 
 type InputService5TestShapeRecursiveStructType struct {
+	_ struct{} `type:"structure"`
+
 	NoRecurse *string `type:"string"`
 
 	RecursiveList []*InputService5TestShapeRecursiveStructType `type:"list"`
@@ -667,8 +669,6 @@ type InputService5TestShapeRecursiveStructType struct {
 	RecursiveMap map[string]*InputService5TestShapeRecursiveStructType `type:"map"`
 
 	RecursiveStruct *InputService5TestShapeRecursiveStructType `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -753,9 +753,9 @@ func (c *InputService6ProtocolTest) InputService6TestCaseOperation1(input *Input
 }
 
 type InputService6TestShapeInputService6TestCaseOperation1Input struct {
-	Map map[string]*string `type:"map"`
-
 	_ struct{} `type:"structure"`
+
+	Map map[string]*string `type:"map"`
 }
 
 type InputService6TestShapeInputService6TestCaseOperation1Output struct {

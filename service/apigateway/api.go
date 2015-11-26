@@ -1929,6 +1929,8 @@ func (c *APIGateway) UpdateStage(input *UpdateStageInput) (*Stage, error) {
 
 // Represents an AWS account that is associated with Amazon API Gateway.
 type Account struct {
+	_ struct{} `type:"structure"`
+
 	// Specifies the Amazon resource name (ARN) of an Amazon CloudWatch role for
 	// the current Account resource.
 	CloudwatchRoleArn *string `locationName:"cloudwatchRoleArn" type:"string"`
@@ -1936,8 +1938,6 @@ type Account struct {
 	// Specifies the application programming interface (API) throttle settings for
 	// the current Account resource.
 	ThrottleSettings *ThrottleSettings `locationName:"throttleSettings" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1955,6 +1955,8 @@ func (s Account) GoString() string {
 // which indicates that the callers with the API key can make requests to that
 // stage.
 type ApiKey struct {
+	_ struct{} `type:"structure"`
+
 	// The date when the API Key was created, in ISO 8601 format.
 	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp" timestampFormat:"unix"`
 
@@ -1975,8 +1977,6 @@ type ApiKey struct {
 
 	// A list of Stage resources that are associated with the ApiKey resource.
 	StageKeys []*string `locationName:"stageKeys" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1992,6 +1992,8 @@ func (s ApiKey) GoString() string {
 // Represents the base path that callers of the API that must provide as part
 // of the URL after the domain name.
 type BasePathMapping struct {
+	_ struct{} `type:"structure"`
+
 	// The base path name that callers of the API must provide as part of the URL
 	// after the domain name.
 	BasePath *string `locationName:"basePath" type:"string"`
@@ -2001,8 +2003,6 @@ type BasePathMapping struct {
 
 	// The name of the API's stage.
 	Stage *string `locationName:"stage" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2016,6 +2016,8 @@ func (s BasePathMapping) GoString() string {
 }
 
 type ClientCertificate struct {
+	_ struct{} `type:"structure"`
+
 	ClientCertificateId *string `locationName:"clientCertificateId" type:"string"`
 
 	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp" timestampFormat:"unix"`
@@ -2025,8 +2027,6 @@ type ClientCertificate struct {
 	ExpirationDate *time.Time `locationName:"expirationDate" type:"timestamp" timestampFormat:"unix"`
 
 	PemEncodedCertificate *string `locationName:"pemEncodedCertificate" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2040,6 +2040,8 @@ func (s ClientCertificate) GoString() string {
 }
 
 type CreateApiKeyInput struct {
+	_ struct{} `type:"structure"`
+
 	// The description of the ApiKey.
 	Description *string `locationName:"description" type:"string"`
 
@@ -2051,8 +2053,6 @@ type CreateApiKeyInput struct {
 
 	// Specifies whether the ApiKey can be used by callers.
 	StageKeys []*StageKey `locationName:"stageKeys" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2067,6 +2067,8 @@ func (s CreateApiKeyInput) GoString() string {
 
 // Requests Amazon API Gateway to create a new BasePathMapping resource.
 type CreateBasePathMappingInput struct {
+	_ struct{} `type:"structure"`
+
 	// The base path name that callers of the API must provide as part of the URL
 	// after the domain name. This value must be unique for all of the mappings
 	// across a single API. Leave this blank if you do not want callers to specify
@@ -2083,8 +2085,6 @@ type CreateBasePathMappingInput struct {
 	// this blank if you do not want callers to explicitly specify the stage name
 	// after any base path name.
 	Stage *string `locationName:"stage" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2099,6 +2099,8 @@ func (s CreateBasePathMappingInput) GoString() string {
 
 // Requests Amazon API Gateway to create a Deployment resource.
 type CreateDeploymentInput struct {
+	_ struct{} `type:"structure"`
+
 	// Enables a cache cluster for the Stage resource specified in the input.
 	CacheClusterEnabled *bool `locationName:"cacheClusterEnabled" type:"boolean"`
 
@@ -2122,8 +2124,6 @@ type CreateDeploymentInput struct {
 	// with the new deployment. Variable names can have alphabetic characters, and
 	// the values must match [A-Za-z0-9-._~:/?#&=,]+
 	Variables map[string]*string `locationName:"variables" type:"map"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2138,6 +2138,8 @@ func (s CreateDeploymentInput) GoString() string {
 
 // A request to create a new domain name.
 type CreateDomainNameInput struct {
+	_ struct{} `type:"structure"`
+
 	// The body of the server certificate provided by your certificate authority.
 	CertificateBody *string `locationName:"certificateBody" type:"string" required:"true"`
 
@@ -2157,8 +2159,6 @@ type CreateDomainNameInput struct {
 
 	// The name of the DomainName resource.
 	DomainName *string `locationName:"domainName" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2173,6 +2173,8 @@ func (s CreateDomainNameInput) GoString() string {
 
 // Request to add a new Model to an existing RestApi resource.
 type CreateModelInput struct {
+	_ struct{} `type:"structure"`
+
 	// The content-type for the model.
 	ContentType *string `locationName:"contentType" type:"string" required:"true"`
 
@@ -2188,8 +2190,6 @@ type CreateModelInput struct {
 	// The schema for the model. For application/json models, this should be JSON-schema
 	// draft v4 model.
 	Schema *string `locationName:"schema" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2204,6 +2204,8 @@ func (s CreateModelInput) GoString() string {
 
 // Requests Amazon API Gateway to create a Resource resource.
 type CreateResourceInput struct {
+	_ struct{} `type:"structure"`
+
 	// The parent resource's identifier.
 	ParentId *string `location:"uri" locationName:"parent_id" type:"string" required:"true"`
 
@@ -2212,8 +2214,6 @@ type CreateResourceInput struct {
 
 	// The identifier of the RestApi for the resource.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2228,6 +2228,8 @@ func (s CreateResourceInput) GoString() string {
 
 // Request to add a new RestApi resource to your collection.
 type CreateRestApiInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the RestApi that you want to clone from.
 	CloneFrom *string `locationName:"cloneFrom" type:"string"`
 
@@ -2236,8 +2238,6 @@ type CreateRestApiInput struct {
 
 	// The name of the RestApi.
 	Name *string `locationName:"name" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2252,6 +2252,8 @@ func (s CreateRestApiInput) GoString() string {
 
 // Requests Amazon API Gateway to create a Stage resource.
 type CreateStageInput struct {
+	_ struct{} `type:"structure"`
+
 	// Whether cache clustering is enabled for the stage.
 	CacheClusterEnabled *bool `locationName:"cacheClusterEnabled" type:"boolean"`
 
@@ -2273,8 +2275,6 @@ type CreateStageInput struct {
 	// A map that defines the stage variables for the new Stage resource. Variable
 	// names can have alphabetic characters, and the values must match [A-Za-z0-9-._~:/?#&=,]+
 	Variables map[string]*string `locationName:"variables" type:"map"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2289,10 +2289,10 @@ func (s CreateStageInput) GoString() string {
 
 // A request to delete the ApiKey resource.
 type DeleteApiKeyInput struct {
+	_ struct{} `type:"structure"`
+
 	// The identifier of the ApiKey resource to be deleted.
 	ApiKey *string `location:"uri" locationName:"api_Key" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2321,13 +2321,13 @@ func (s DeleteApiKeyOutput) GoString() string {
 
 // A request to delete the BasePathMapping resource.
 type DeleteBasePathMappingInput struct {
+	_ struct{} `type:"structure"`
+
 	// The base path name of the BasePathMapping resource to delete.
 	BasePath *string `location:"uri" locationName:"base_path" type:"string" required:"true"`
 
 	// The domain name of the BasePathMapping resource to delete.
 	DomainName *string `location:"uri" locationName:"domain_name" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2355,9 +2355,9 @@ func (s DeleteBasePathMappingOutput) GoString() string {
 }
 
 type DeleteClientCertificateInput struct {
-	ClientCertificateId *string `location:"uri" locationName:"clientcertificate_id" type:"string" required:"true"`
-
 	_ struct{} `type:"structure"`
+
+	ClientCertificateId *string `location:"uri" locationName:"clientcertificate_id" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -2386,13 +2386,13 @@ func (s DeleteClientCertificateOutput) GoString() string {
 
 // Requests Amazon API Gateway to delete a Deployment resource.
 type DeleteDeploymentInput struct {
+	_ struct{} `type:"structure"`
+
 	// The identifier of the Deployment resource to delete.
 	DeploymentId *string `location:"uri" locationName:"deployment_id" type:"string" required:"true"`
 
 	// The identifier of the RestApi resource for the Deployment resource to delete.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2421,10 +2421,10 @@ func (s DeleteDeploymentOutput) GoString() string {
 
 // A request to delete the DomainName resource.
 type DeleteDomainNameInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the DomainName resource to be deleted.
 	DomainName *string `location:"uri" locationName:"domain_name" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2453,6 +2453,8 @@ func (s DeleteDomainNameOutput) GoString() string {
 
 // Represents a delete integration request.
 type DeleteIntegrationInput struct {
+	_ struct{} `type:"structure"`
+
 	// Specifies a delete integration request's HTTP method.
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
@@ -2461,8 +2463,6 @@ type DeleteIntegrationInput struct {
 
 	// Specifies a delete integration request's API identifier.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2491,6 +2491,8 @@ func (s DeleteIntegrationOutput) GoString() string {
 
 // Represents a delete integration response request.
 type DeleteIntegrationResponseInput struct {
+	_ struct{} `type:"structure"`
+
 	// Specifies a delete integration response request's HTTP method.
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
@@ -2502,8 +2504,6 @@ type DeleteIntegrationResponseInput struct {
 
 	// Specifies a delete integration response request's status code.
 	StatusCode *string `location:"uri" locationName:"status_code" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2532,6 +2532,8 @@ func (s DeleteIntegrationResponseOutput) GoString() string {
 
 // Request to delete an existing Method resource.
 type DeleteMethodInput struct {
+	_ struct{} `type:"structure"`
+
 	// The HTTP verb that identifies the Method resource.
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
@@ -2540,8 +2542,6 @@ type DeleteMethodInput struct {
 
 	// The RestApi identifier for the Method resource.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2570,6 +2570,8 @@ func (s DeleteMethodOutput) GoString() string {
 
 // A request to delete an existing MethodResponse resource.
 type DeleteMethodResponseInput struct {
+	_ struct{} `type:"structure"`
+
 	// The HTTP verb identifier for the parent Method resource.
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
@@ -2581,8 +2583,6 @@ type DeleteMethodResponseInput struct {
 
 	// The status code identifier for the MethodResponse resource.
 	StatusCode *string `location:"uri" locationName:"status_code" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2611,13 +2611,13 @@ func (s DeleteMethodResponseOutput) GoString() string {
 
 // Request to delete an existing model in an existing RestApi resource.
 type DeleteModelInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the model to delete.
 	ModelName *string `location:"uri" locationName:"model_name" type:"string" required:"true"`
 
 	// The RestApi under which the model will be deleted.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2646,13 +2646,13 @@ func (s DeleteModelOutput) GoString() string {
 
 // Request to delete a Resource.
 type DeleteResourceInput struct {
+	_ struct{} `type:"structure"`
+
 	// The identifier of the Resource resource.
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
 	// The RestApi identifier for the Resource resource.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2681,10 +2681,10 @@ func (s DeleteResourceOutput) GoString() string {
 
 // Request to delete the specified API from your collection.
 type DeleteRestApiInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the RestApi you want to delete.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2713,13 +2713,13 @@ func (s DeleteRestApiOutput) GoString() string {
 
 // Requests Amazon API Gateway to delete a Stage resource.
 type DeleteStageInput struct {
+	_ struct{} `type:"structure"`
+
 	// The identifier of the RestApi resource for the Stage resource to delete.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
 	// The name of the Stage resource to delete.
 	StageName *string `location:"uri" locationName:"stage_name" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2750,6 +2750,8 @@ func (s DeleteStageOutput) GoString() string {
 // using Stages. A deployment must be associated with a Stage for it to be callable
 // over the Internet.
 type Deployment struct {
+	_ struct{} `type:"structure"`
+
 	// Gets a summary of the RestApi at the date and time that the deployment resource
 	// was created.
 	ApiSummary map[string]map[string]*MethodSnapshot `locationName:"apiSummary" type:"map"`
@@ -2762,8 +2764,6 @@ type Deployment struct {
 
 	// The identifier for the deployment resource.
 	Id *string `locationName:"id" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2779,6 +2779,8 @@ func (s Deployment) GoString() string {
 // Represents a domain name that is contained in a simpler, more intuitive URL
 // that can be called.
 type DomainName struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the certificate.
 	CertificateName *string `locationName:"certificateName" type:"string"`
 
@@ -2791,8 +2793,6 @@ type DomainName struct {
 
 	// The name of the DomainName resource.
 	DomainName *string `locationName:"domainName" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2807,13 +2807,13 @@ func (s DomainName) GoString() string {
 
 // Requests Amazon API Gateway to flush a stage's cache.
 type FlushStageCacheInput struct {
+	_ struct{} `type:"structure"`
+
 	// The API identifier of the stage to flush its cache.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
 	// The name of the stage to flush its cache.
 	StageName *string `location:"uri" locationName:"stage_name" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2841,9 +2841,9 @@ func (s FlushStageCacheOutput) GoString() string {
 }
 
 type GenerateClientCertificateInput struct {
-	Description *string `locationName:"description" type:"string"`
-
 	_ struct{} `type:"structure"`
+
+	Description *string `locationName:"description" type:"string"`
 }
 
 // String returns the string representation
@@ -2874,10 +2874,10 @@ func (s GetAccountInput) GoString() string {
 
 // A request to get information about the current ApiKey resource.
 type GetApiKeyInput struct {
+	_ struct{} `type:"structure"`
+
 	// The identifier of the ApiKey resource.
 	ApiKey *string `location:"uri" locationName:"api_Key" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2892,13 +2892,13 @@ func (s GetApiKeyInput) GoString() string {
 
 // A request to get information about the current ApiKeys resource.
 type GetApiKeysInput struct {
+	_ struct{} `type:"structure"`
+
 	// The maximum number of ApiKeys to get information about.
 	Limit *int64 `location:"querystring" locationName:"limit" type:"integer"`
 
 	// The position of the current ApiKeys resource to get information about.
 	Position *string `location:"querystring" locationName:"position" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2913,12 +2913,12 @@ func (s GetApiKeysInput) GoString() string {
 
 // Represents a collection of ApiKey resources.
 type GetApiKeysOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The current page of any ApiKey resources in the collection of ApiKey resources.
 	Items []*ApiKey `locationName:"item" type:"list"`
 
 	Position *string `locationName:"position" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2933,6 +2933,8 @@ func (s GetApiKeysOutput) GoString() string {
 
 // Request to describe a BasePathMapping resource.
 type GetBasePathMappingInput struct {
+	_ struct{} `type:"structure"`
+
 	// The base path name that callers of the API must provide as part of the URL
 	// after the domain name. This value must be unique for all of the mappings
 	// across a single API. Leave this blank if you do not want callers to specify
@@ -2941,8 +2943,6 @@ type GetBasePathMappingInput struct {
 
 	// The domain name of the BasePathMapping resource to be described.
 	DomainName *string `location:"uri" locationName:"domain_name" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2957,6 +2957,8 @@ func (s GetBasePathMappingInput) GoString() string {
 
 // A request to get information about a collection of BasePathMapping resources.
 type GetBasePathMappingsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The domain name of a BasePathMapping resource.
 	DomainName *string `location:"uri" locationName:"domain_name" type:"string" required:"true"`
 
@@ -2968,8 +2970,6 @@ type GetBasePathMappingsInput struct {
 	// The position of the current BasePathMapping resource in the collection to
 	// get information about.
 	Position *string `location:"querystring" locationName:"position" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2984,13 +2984,13 @@ func (s GetBasePathMappingsInput) GoString() string {
 
 // Represents a collection of BasePathMapping resources.
 type GetBasePathMappingsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The current page of any BasePathMapping resources in the collection of base
 	// path mapping resources.
 	Items []*BasePathMapping `locationName:"item" type:"list"`
 
 	Position *string `locationName:"position" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3004,9 +3004,9 @@ func (s GetBasePathMappingsOutput) GoString() string {
 }
 
 type GetClientCertificateInput struct {
-	ClientCertificateId *string `location:"uri" locationName:"clientcertificate_id" type:"string" required:"true"`
-
 	_ struct{} `type:"structure"`
+
+	ClientCertificateId *string `location:"uri" locationName:"clientcertificate_id" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -3020,11 +3020,11 @@ func (s GetClientCertificateInput) GoString() string {
 }
 
 type GetClientCertificatesInput struct {
+	_ struct{} `type:"structure"`
+
 	Limit *int64 `location:"querystring" locationName:"limit" type:"integer"`
 
 	Position *string `location:"querystring" locationName:"position" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3038,11 +3038,11 @@ func (s GetClientCertificatesInput) GoString() string {
 }
 
 type GetClientCertificatesOutput struct {
+	_ struct{} `type:"structure"`
+
 	Items []*ClientCertificate `locationName:"item" type:"list"`
 
 	Position *string `locationName:"position" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3057,14 +3057,14 @@ func (s GetClientCertificatesOutput) GoString() string {
 
 // Requests Amazon API Gateway to get information about a Deployment resource.
 type GetDeploymentInput struct {
+	_ struct{} `type:"structure"`
+
 	// The identifier of the Deployment resource to get information about.
 	DeploymentId *string `location:"uri" locationName:"deployment_id" type:"string" required:"true"`
 
 	// The identifier of the RestApi resource for the Deployment resource to get
 	// information about.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3079,6 +3079,8 @@ func (s GetDeploymentInput) GoString() string {
 
 // Requests Amazon API Gateway to get information about a Deployments collection.
 type GetDeploymentsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The maximum number of Deployment resources in the collection to get information
 	// about. The default limit is 25. It should be an integer between 1 - 500.
 	Limit *int64 `location:"querystring" locationName:"limit" type:"integer"`
@@ -3090,8 +3092,6 @@ type GetDeploymentsInput struct {
 	// The identifier of the RestApi resource for the collection of Deployment resources
 	// to get information about.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3109,13 +3109,13 @@ func (s GetDeploymentsInput) GoString() string {
 // your collection. The collection offers a paginated view of the contained
 // deployments.
 type GetDeploymentsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The current page of any Deployment resources in the collection of deployment
 	// resources.
 	Items []*Deployment `locationName:"item" type:"list"`
 
 	Position *string `locationName:"position" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3130,10 +3130,10 @@ func (s GetDeploymentsOutput) GoString() string {
 
 // Request to get the name of a DomainName resource.
 type GetDomainNameInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the DomainName resource.
 	DomainName *string `location:"uri" locationName:"domain_name" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3148,14 +3148,14 @@ func (s GetDomainNameInput) GoString() string {
 
 // Request to describe a collection of DomainName resources.
 type GetDomainNamesInput struct {
+	_ struct{} `type:"structure"`
+
 	// The maximum number of DomainName resources in the collection to get information
 	// about. The default limit is 25. It should be an integer between 1 - 500.
 	Limit *int64 `location:"querystring" locationName:"limit" type:"integer"`
 
 	// The position of the current domain names to get information about.
 	Position *string `location:"querystring" locationName:"position" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3170,13 +3170,13 @@ func (s GetDomainNamesInput) GoString() string {
 
 // Represents a collection of DomainName resources.
 type GetDomainNamesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The current page of any DomainName resources in the collection of DomainName
 	// resources.
 	Items []*DomainName `locationName:"item" type:"list"`
 
 	Position *string `locationName:"position" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3191,6 +3191,8 @@ func (s GetDomainNamesOutput) GoString() string {
 
 // Represents a get integration request.
 type GetIntegrationInput struct {
+	_ struct{} `type:"structure"`
+
 	// Specifies a get integration request's HTTP method.
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
@@ -3199,8 +3201,6 @@ type GetIntegrationInput struct {
 
 	// Specifies a get integration request's API identifier.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3215,6 +3215,8 @@ func (s GetIntegrationInput) GoString() string {
 
 // Represents a get integration response request.
 type GetIntegrationResponseInput struct {
+	_ struct{} `type:"structure"`
+
 	// Specifies a get integration response request's HTTP method.
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
@@ -3226,8 +3228,6 @@ type GetIntegrationResponseInput struct {
 
 	// Specifies a get integration response request's status code.
 	StatusCode *string `location:"uri" locationName:"status_code" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3242,6 +3242,8 @@ func (s GetIntegrationResponseInput) GoString() string {
 
 // Request to describe an existing Method resource.
 type GetMethodInput struct {
+	_ struct{} `type:"structure"`
+
 	// Specifies the put method request's HTTP method type.
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
@@ -3250,8 +3252,6 @@ type GetMethodInput struct {
 
 	// The RestApi identifier for the Method resource.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3266,6 +3266,8 @@ func (s GetMethodInput) GoString() string {
 
 // Request to describe a MethodResponse resource.
 type GetMethodResponseInput struct {
+	_ struct{} `type:"structure"`
+
 	// The HTTP verb identifier for the parent Method resource.
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
@@ -3277,8 +3279,6 @@ type GetMethodResponseInput struct {
 
 	// The status code identifier for the MethodResponse resource.
 	StatusCode *string `location:"uri" locationName:"status_code" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3293,6 +3293,8 @@ func (s GetMethodResponseInput) GoString() string {
 
 // Request to list information about a model in an existing RestApi resource.
 type GetModelInput struct {
+	_ struct{} `type:"structure"`
+
 	// Resolves all external model references and returns a flattened model schema.
 	Flatten *bool `location:"querystring" locationName:"flatten" type:"boolean"`
 
@@ -3301,8 +3303,6 @@ type GetModelInput struct {
 
 	// The RestApi identifier under which the Model exists.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3317,13 +3317,13 @@ func (s GetModelInput) GoString() string {
 
 // Request to generate a sample mapping template used to transform the payload.
 type GetModelTemplateInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the model for which to generate a template.
 	ModelName *string `location:"uri" locationName:"model_name" type:"string" required:"true"`
 
 	// The ID of the RestApi under which the model exists.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3338,11 +3338,11 @@ func (s GetModelTemplateInput) GoString() string {
 
 // Represents a mapping template used to transform a payload.
 type GetModelTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The Apache Velocity Template Language (VTL) template content used for the
 	// template resource.
 	Value *string `locationName:"value" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3357,6 +3357,8 @@ func (s GetModelTemplateOutput) GoString() string {
 
 // Request to list existing Models defined for a RestApi resource.
 type GetModelsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The maximum number of models in the collection to get information about.
 	// The default limit is 25. It should be an integer between 1 - 500.
 	Limit *int64 `location:"querystring" locationName:"limit" type:"integer"`
@@ -3367,8 +3369,6 @@ type GetModelsInput struct {
 
 	// The RestApi identifier.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3383,12 +3383,12 @@ func (s GetModelsInput) GoString() string {
 
 // Represents a collection of Model resources.
 type GetModelsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Gets the current Model resource in the collection.
 	Items []*Model `locationName:"item" type:"list"`
 
 	Position *string `locationName:"position" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3403,13 +3403,13 @@ func (s GetModelsOutput) GoString() string {
 
 // Request to list information about a resource.
 type GetResourceInput struct {
+	_ struct{} `type:"structure"`
+
 	// The identifier for the Resource resource.
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
 	// The RestApi identifier for the resource.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3424,6 +3424,8 @@ func (s GetResourceInput) GoString() string {
 
 // Request to list information about a collection of resources.
 type GetResourcesInput struct {
+	_ struct{} `type:"structure"`
+
 	// The maximum number of Resource resources in the collection to get information
 	// about. The default limit is 25. It should be an integer between 1 - 500.
 	Limit *int64 `location:"querystring" locationName:"limit" type:"integer"`
@@ -3434,8 +3436,6 @@ type GetResourcesInput struct {
 
 	// The RestApi identifier for the Resource.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3450,12 +3450,12 @@ func (s GetResourcesInput) GoString() string {
 
 // Represents a collection of Resource resources.
 type GetResourcesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Gets the current Resource resource in the collection.
 	Items []*Resource `locationName:"item" type:"list"`
 
 	Position *string `locationName:"position" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3470,10 +3470,10 @@ func (s GetResourcesOutput) GoString() string {
 
 // Request to list an existing RestApi defined for your collection.
 type GetRestApiInput struct {
+	_ struct{} `type:"structure"`
+
 	// The identifier of the RestApi resource.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3488,6 +3488,8 @@ func (s GetRestApiInput) GoString() string {
 
 // Request to list existing RestApis defined for your collection.
 type GetRestApisInput struct {
+	_ struct{} `type:"structure"`
+
 	// The maximum number of RestApi resources in the collection to get information
 	// about. The default limit is 25. It should be an integer between 1 - 500.
 	Limit *int64 `location:"querystring" locationName:"limit" type:"integer"`
@@ -3495,8 +3497,6 @@ type GetRestApisInput struct {
 	// The position of the current RestApis resource in the collection to get information
 	// about.
 	Position *string `location:"querystring" locationName:"position" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3512,12 +3512,12 @@ func (s GetRestApisInput) GoString() string {
 // Contains references to your APIs and links that guide you in ways to interact
 // with your collection. A collection offers a paginated view of your APIs.
 type GetRestApisOutput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of links to the current page of RestApi resources.
 	Items []*RestApi `locationName:"item" type:"list"`
 
 	Position *string `locationName:"position" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3531,6 +3531,8 @@ func (s GetRestApisOutput) GoString() string {
 }
 
 type GetSdkInput struct {
+	_ struct{} `type:"structure"`
+
 	Parameters map[string]*string `location:"querystring" locationName:"parameters" type:"map"`
 
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
@@ -3538,8 +3540,6 @@ type GetSdkInput struct {
 	SdkType *string `location:"uri" locationName:"sdk_type" type:"string" required:"true"`
 
 	StageName *string `location:"uri" locationName:"stage_name" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3553,13 +3553,13 @@ func (s GetSdkInput) GoString() string {
 }
 
 type GetSdkOutput struct {
+	_ struct{} `type:"structure" payload:"Body"`
+
 	Body []byte `locationName:"body" type:"blob"`
 
 	ContentDisposition *string `location:"header" locationName:"Content-Disposition" type:"string"`
 
 	ContentType *string `location:"header" locationName:"Content-Type" type:"string"`
-
-	_ struct{} `type:"structure" payload:"Body"`
 }
 
 // String returns the string representation
@@ -3574,14 +3574,14 @@ func (s GetSdkOutput) GoString() string {
 
 // Requests Amazon API Gateway to get information about a Stage resource.
 type GetStageInput struct {
+	_ struct{} `type:"structure"`
+
 	// The identifier of the RestApi resource for the Stage resource to get information
 	// about.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
 	// The name of the Stage resource to get information about.
 	StageName *string `location:"uri" locationName:"stage_name" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3596,13 +3596,13 @@ func (s GetStageInput) GoString() string {
 
 // Requests Amazon API Gateway to get information about one or more Stage resources.
 type GetStagesInput struct {
+	_ struct{} `type:"structure"`
+
 	// The stages' deployment identifiers.
 	DeploymentId *string `location:"querystring" locationName:"deploymentId" type:"string"`
 
 	// The stages' API identifiers.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3617,10 +3617,10 @@ func (s GetStagesInput) GoString() string {
 
 // A list of Stage resource that are associated with the ApiKey resource.
 type GetStagesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// An individual Stage resource.
 	Item []*Stage `locationName:"item" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3635,6 +3635,8 @@ func (s GetStagesOutput) GoString() string {
 
 // Represents a HTTP, AWS, or Mock integration.
 type Integration struct {
+	_ struct{} `type:"structure"`
+
 	// Specifies the integration's cache key parameters.
 	CacheKeyParameters []*string `locationName:"cacheKeyParameters" type:"list"`
 
@@ -3680,8 +3682,6 @@ type Integration struct {
 	// to indicate that the remaining substring in the URI should be treated as
 	// the path to the resource, including the initial /.
 	Uri *string `locationName:"uri" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3698,6 +3698,8 @@ func (s Integration) GoString() string {
 // MethodResponse, and parameters and templates can be used to transform the
 // backend response.
 type IntegrationResponse struct {
+	_ struct{} `type:"structure"`
+
 	// Represents response parameters that can be read from the backend response.
 	// Response parameters are represented as a key/value map, with a destination
 	// as the key and a source as the value. A destination must match an existing
@@ -3721,8 +3723,6 @@ type IntegrationResponse struct {
 	// Specifies the status code that is used to map the integration response to
 	// an existing MethodResponse.
 	StatusCode *string `locationName:"statusCode" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3737,6 +3737,8 @@ func (s IntegrationResponse) GoString() string {
 
 // Represents a method.
 type Method struct {
+	_ struct{} `type:"structure"`
+
 	// Specifies whether the method requires a valid ApiKey.
 	ApiKeyRequired *bool `locationName:"apiKeyRequired" type:"boolean"`
 
@@ -3768,8 +3770,6 @@ type Method struct {
 	// parameter name. Sources specified here are available to the integration for
 	// mapping to integration request parameters or templates.
 	RequestParameters map[string]*bool `locationName:"requestParameters" type:"map"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3786,6 +3786,8 @@ func (s Method) GoString() string {
 // to the caller as the HTTP status code. Parameters and models can be used
 // to transform the response from the method's integration.
 type MethodResponse struct {
+	_ struct{} `type:"structure"`
+
 	// Specifies the Model resources used for the response's content-type. Response
 	// models are represented as a key/value map, with a content-type as the key
 	// and a Model name as the value.
@@ -3802,8 +3804,6 @@ type MethodResponse struct {
 
 	// The method response's status code.
 	StatusCode *string `locationName:"statusCode" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3818,6 +3818,8 @@ func (s MethodResponse) GoString() string {
 
 // Specifies the method setting properties.
 type MethodSetting struct {
+	_ struct{} `type:"structure"`
+
 	// Specifies whether the cached responses are encrypted. The PATCH path for
 	// this setting is /{method_setting_key}/caching/dataEncrypted, and the value
 	// is a Boolean.
@@ -3858,8 +3860,6 @@ type MethodSetting struct {
 	// Specifies the throttling rate limit. The PATCH path for this setting is /{method_setting_key}/throttling/rateLimit,
 	// and the value is a double.
 	ThrottlingRateLimit *float64 `locationName:"throttlingRateLimit" type:"double"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3874,13 +3874,13 @@ func (s MethodSetting) GoString() string {
 
 // Represents a summary of a Method resource, given a particular date and time.
 type MethodSnapshot struct {
+	_ struct{} `type:"structure"`
+
 	// Specifies whether the method requires a valid ApiKey.
 	ApiKeyRequired *bool `locationName:"apiKeyRequired" type:"boolean"`
 
 	// Specifies the type of authorization used for the method.
 	AuthorizationType *string `locationName:"authorizationType" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3895,6 +3895,8 @@ func (s MethodSnapshot) GoString() string {
 
 // Represents the structure of a request or response payload for a method.
 type Model struct {
+	_ struct{} `type:"structure"`
+
 	// The content-type for the model.
 	ContentType *string `locationName:"contentType" type:"string"`
 
@@ -3910,8 +3912,6 @@ type Model struct {
 	// The schema for the model. For application/json models, this should be JSON-schema
 	// draft v4 model.
 	Schema *string `locationName:"schema" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3928,6 +3928,8 @@ func (s Model) GoString() string {
 // to http://tools.ietf.org/html/rfc6902#section-4 for an explanation of how
 // each operation is used.
 type PatchOperation struct {
+	_ struct{} `type:"structure"`
+
 	// The "move" and "copy" operation object MUST contain a "from" member, which
 	// is a string containing a JSON Pointer value that references the location
 	// in the target document to move the value from.
@@ -3946,8 +3948,6 @@ type PatchOperation struct {
 
 	// The actual value content.
 	Value *string `locationName:"value" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3962,6 +3962,8 @@ func (s PatchOperation) GoString() string {
 
 // Represents a put integration request.
 type PutIntegrationInput struct {
+	_ struct{} `type:"structure"`
+
 	// Specifies a put integration input's cache key parameters.
 	CacheKeyParameters []*string `locationName:"cacheKeyParameters" type:"list"`
 
@@ -4003,8 +4005,6 @@ type PutIntegrationInput struct {
 
 	// Specifies a put integration input's Uniform Resource Identifier (URI).
 	Uri *string `locationName:"uri" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4019,6 +4019,8 @@ func (s PutIntegrationInput) GoString() string {
 
 // Represents a put integration response request.
 type PutIntegrationResponseInput struct {
+	_ struct{} `type:"structure"`
+
 	// Specifies a put integration response request's HTTP method.
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
@@ -4046,8 +4048,6 @@ type PutIntegrationResponseInput struct {
 	// Specifies the status code that is used to map the integration response to
 	// an existing MethodResponse.
 	StatusCode *string `location:"uri" locationName:"status_code" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4062,6 +4062,8 @@ func (s PutIntegrationResponseInput) GoString() string {
 
 // Request to add a method to an existing Resource resource.
 type PutMethodInput struct {
+	_ struct{} `type:"structure"`
+
 	// Specifies whether the method required a valid ApiKey.
 	ApiKeyRequired *bool `locationName:"apiKeyRequired" type:"boolean"`
 
@@ -4091,8 +4093,6 @@ type PutMethodInput struct {
 
 	// The RestApi identifier for the new Method resource.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4107,6 +4107,8 @@ func (s PutMethodInput) GoString() string {
 
 // Request to add a MethodResponse to an existing Method resource.
 type PutMethodResponseInput struct {
+	_ struct{} `type:"structure"`
+
 	// The HTTP verb that identifies the Method resource.
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
@@ -4132,8 +4134,6 @@ type PutMethodResponseInput struct {
 
 	// The method response's status code.
 	StatusCode *string `location:"uri" locationName:"status_code" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4148,6 +4148,8 @@ func (s PutMethodResponseInput) GoString() string {
 
 // Represents a resource.
 type Resource struct {
+	_ struct{} `type:"structure"`
+
 	// The resource's identifier.
 	Id *string `locationName:"id" type:"string"`
 
@@ -4163,8 +4165,6 @@ type Resource struct {
 	// Map of methods for this resource, which is included only if requested using
 	// the embed option.
 	ResourceMethods map[string]*Method `locationName:"resourceMethods" type:"map"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4179,6 +4179,8 @@ func (s Resource) GoString() string {
 
 // Represents a REST API.
 type RestApi struct {
+	_ struct{} `type:"structure"`
+
 	// The date when the API was created, in ISO 8601 format.
 	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp" timestampFormat:"unix"`
 
@@ -4191,8 +4193,6 @@ type RestApi struct {
 
 	// The API's name.
 	Name *string `locationName:"name" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4208,6 +4208,8 @@ func (s RestApi) GoString() string {
 // Represents a unique identifier for a version of a deployed RestApi that is
 // callable by users.
 type Stage struct {
+	_ struct{} `type:"structure"`
+
 	// Specifies whether a cache cluster is enabled for the stage.
 	CacheClusterEnabled *bool `locationName:"cacheClusterEnabled" type:"boolean"`
 
@@ -4244,8 +4246,6 @@ type Stage struct {
 	// A map that defines the stage variables for a Stage resource. Variable names
 	// can have alphabetic characters, and the values must match [A-Za-z0-9-._~:/?#&=,]+
 	Variables map[string]*string `locationName:"variables" type:"map"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4260,13 +4260,13 @@ func (s Stage) GoString() string {
 
 // A reference to a unique stage identified in the format {restApiId}/{stage}.
 type StageKey struct {
+	_ struct{} `type:"structure"`
+
 	// A list of Stage resources that are associated with the ApiKey resource.
 	RestApiId *string `locationName:"restApiId" type:"string"`
 
 	// The stage name in the RestApi that the stage key references.
 	StageName *string `locationName:"stageName" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4280,6 +4280,8 @@ func (s StageKey) GoString() string {
 }
 
 type TestInvokeMethodInput struct {
+	_ struct{} `type:"structure"`
+
 	Body *string `locationName:"body" type:"string"`
 
 	ClientCertificateId *string `locationName:"clientCertificateId" type:"string"`
@@ -4295,8 +4297,6 @@ type TestInvokeMethodInput struct {
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
 	StageVariables map[string]*string `locationName:"stageVariables" type:"map"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4311,6 +4311,8 @@ func (s TestInvokeMethodInput) GoString() string {
 
 // Represents the response of the test invoke request in HTTP method.
 type TestInvokeMethodOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The body of HTTP response.
 	Body *string `locationName:"body" type:"string"`
 
@@ -4325,8 +4327,6 @@ type TestInvokeMethodOutput struct {
 
 	// The HTTP status code.
 	Status *int64 `locationName:"status" type:"integer"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4341,13 +4341,13 @@ func (s TestInvokeMethodOutput) GoString() string {
 
 // Returns the throttle settings.
 type ThrottleSettings struct {
+	_ struct{} `type:"structure"`
+
 	// Returns the burstLimit when ThrottleSettings is called.
 	BurstLimit *int64 `locationName:"burstLimit" type:"integer"`
 
 	// Returns the rateLimit when ThrottleSettings is called.
 	RateLimit *float64 `locationName:"rateLimit" type:"double"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4363,11 +4363,11 @@ func (s ThrottleSettings) GoString() string {
 // Requests Amazon API Gateway to change information about the current Account
 // resource.
 type UpdateAccountInput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of operations describing the updates to apply to the specified resource.
 	// The patches are applied in the order specified in the list.
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4382,14 +4382,14 @@ func (s UpdateAccountInput) GoString() string {
 
 // A request to change information about an ApiKey resource.
 type UpdateApiKeyInput struct {
+	_ struct{} `type:"structure"`
+
 	// The identifier of the ApiKey resource to be updated.
 	ApiKey *string `location:"uri" locationName:"api_Key" type:"string" required:"true"`
 
 	// A list of operations describing the updates to apply to the specified resource.
 	// The patches are applied in the order specified in the list.
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4404,6 +4404,8 @@ func (s UpdateApiKeyInput) GoString() string {
 
 // A request to change information about the BasePathMapping resource.
 type UpdateBasePathMappingInput struct {
+	_ struct{} `type:"structure"`
+
 	// The base path of the BasePathMapping resource to change.
 	BasePath *string `location:"uri" locationName:"base_path" type:"string" required:"true"`
 
@@ -4413,8 +4415,6 @@ type UpdateBasePathMappingInput struct {
 	// A list of operations describing the updates to apply to the specified resource.
 	// The patches are applied in the order specified in the list.
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4428,13 +4428,13 @@ func (s UpdateBasePathMappingInput) GoString() string {
 }
 
 type UpdateClientCertificateInput struct {
+	_ struct{} `type:"structure"`
+
 	ClientCertificateId *string `location:"uri" locationName:"clientcertificate_id" type:"string" required:"true"`
 
 	// A list of operations describing the updates to apply to the specified resource.
 	// The patches are applied in the order specified in the list.
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4449,6 +4449,8 @@ func (s UpdateClientCertificateInput) GoString() string {
 
 // Requests Amazon API Gateway to change information about a Deployment resource.
 type UpdateDeploymentInput struct {
+	_ struct{} `type:"structure"`
+
 	// The replacment identifier for the Deployment resource to change information
 	// about.
 	DeploymentId *string `location:"uri" locationName:"deployment_id" type:"string" required:"true"`
@@ -4460,8 +4462,6 @@ type UpdateDeploymentInput struct {
 	// The replacement identifier of the RestApi resource for the Deployment resource
 	// to change information about.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4476,14 +4476,14 @@ func (s UpdateDeploymentInput) GoString() string {
 
 // A request to change information about the DomainName resource.
 type UpdateDomainNameInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the DomainName resource to be changed.
 	DomainName *string `location:"uri" locationName:"domain_name" type:"string" required:"true"`
 
 	// A list of operations describing the updates to apply to the specified resource.
 	// The patches are applied in the order specified in the list.
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4498,6 +4498,8 @@ func (s UpdateDomainNameInput) GoString() string {
 
 // Represents an update integration request.
 type UpdateIntegrationInput struct {
+	_ struct{} `type:"structure"`
+
 	// Represents an update integration request's HTTP method.
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
@@ -4510,8 +4512,6 @@ type UpdateIntegrationInput struct {
 
 	// Represents an update integration request's API identifier.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4526,6 +4526,8 @@ func (s UpdateIntegrationInput) GoString() string {
 
 // Represents an update integration response request.
 type UpdateIntegrationResponseInput struct {
+	_ struct{} `type:"structure"`
+
 	// Specifies an update integration response request's HTTP method.
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
@@ -4541,8 +4543,6 @@ type UpdateIntegrationResponseInput struct {
 
 	// Specifies an update integration response request's status code.
 	StatusCode *string `location:"uri" locationName:"status_code" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4557,6 +4557,8 @@ func (s UpdateIntegrationResponseInput) GoString() string {
 
 // Request to update an existing Method resource.
 type UpdateMethodInput struct {
+	_ struct{} `type:"structure"`
+
 	// The HTTP verb that identifies the Method resource.
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
@@ -4569,8 +4571,6 @@ type UpdateMethodInput struct {
 
 	// The RestApi identifier for the Method resource.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4585,6 +4585,8 @@ func (s UpdateMethodInput) GoString() string {
 
 // A request to update an existing MethodResponse resource.
 type UpdateMethodResponseInput struct {
+	_ struct{} `type:"structure"`
+
 	// The HTTP verb identifier for the parent Method resource.
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
@@ -4600,8 +4602,6 @@ type UpdateMethodResponseInput struct {
 
 	// The status code identifier for the MethodResponse resource.
 	StatusCode *string `location:"uri" locationName:"status_code" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4616,6 +4616,8 @@ func (s UpdateMethodResponseInput) GoString() string {
 
 // Request to update an existing model in an existing RestApi resource.
 type UpdateModelInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the model to update.
 	ModelName *string `location:"uri" locationName:"model_name" type:"string" required:"true"`
 
@@ -4625,8 +4627,6 @@ type UpdateModelInput struct {
 
 	// The RestApi identifier under which the model exists.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4641,6 +4641,8 @@ func (s UpdateModelInput) GoString() string {
 
 // Request to change information about a Resource resource.
 type UpdateResourceInput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of operations describing the updates to apply to the specified resource.
 	// The patches are applied in the order specified in the list.
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
@@ -4650,8 +4652,6 @@ type UpdateResourceInput struct {
 
 	// The RestApi identifier for the Resource resource.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4666,14 +4666,14 @@ func (s UpdateResourceInput) GoString() string {
 
 // Request to update an existing RestApi resource in your collection.
 type UpdateRestApiInput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of operations describing the updates to apply to the specified resource.
 	// The patches are applied in the order specified in the list.
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
 	// The ID of the RestApi you want to update.
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4688,6 +4688,8 @@ func (s UpdateRestApiInput) GoString() string {
 
 // Requests Amazon API Gateway to change information about a Stage resource.
 type UpdateStageInput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of operations describing the updates to apply to the specified resource.
 	// The patches are applied in the order specified in the list.
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
@@ -4698,8 +4700,6 @@ type UpdateStageInput struct {
 
 	// The name of the Stage resource to change information about.
 	StageName *string `location:"uri" locationName:"stage_name" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

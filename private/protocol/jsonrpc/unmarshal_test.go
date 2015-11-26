@@ -122,6 +122,8 @@ type OutputService1TestShapeOutputService1TestCaseOperation1Input struct {
 }
 
 type OutputService1TestShapeOutputService1TestCaseOperation1Output struct {
+	_ struct{} `type:"structure"`
+
 	Char *string `type:"character"`
 
 	Double *float64 `type:"double"`
@@ -137,8 +139,6 @@ type OutputService1TestShapeOutputService1TestCaseOperation1Output struct {
 	Str *string `type:"string"`
 
 	TrueBool *bool `type:"boolean"`
-
-	_ struct{} `type:"structure"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -222,9 +222,9 @@ func (c *OutputService2ProtocolTest) OutputService2TestCaseOperation1(input *Out
 }
 
 type OutputService2TestShapeBlobContainer struct {
-	Foo []byte `locationName:"foo" type:"blob"`
-
 	_ struct{} `type:"structure"`
+
+	Foo []byte `locationName:"foo" type:"blob"`
 }
 
 type OutputService2TestShapeOutputService2TestCaseOperation1Input struct {
@@ -232,11 +232,11 @@ type OutputService2TestShapeOutputService2TestCaseOperation1Input struct {
 }
 
 type OutputService2TestShapeOutputService2TestCaseOperation1Output struct {
+	_ struct{} `type:"structure"`
+
 	BlobMember []byte `type:"blob"`
 
 	StructMember *OutputService2TestShapeBlobContainer `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -324,17 +324,17 @@ type OutputService3TestShapeOutputService3TestCaseOperation1Input struct {
 }
 
 type OutputService3TestShapeOutputService3TestCaseOperation1Output struct {
+	_ struct{} `type:"structure"`
+
 	StructMember *OutputService3TestShapeTimeContainer `type:"structure"`
 
 	TimeMember *time.Time `type:"timestamp" timestampFormat:"unix"`
-
-	_ struct{} `type:"structure"`
 }
 
 type OutputService3TestShapeTimeContainer struct {
-	Foo *time.Time `locationName:"foo" type:"timestamp" timestampFormat:"unix"`
-
 	_ struct{} `type:"structure"`
+
+	Foo *time.Time `locationName:"foo" type:"timestamp" timestampFormat:"unix"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -450,13 +450,13 @@ type OutputService4TestShapeOutputService4TestCaseOperation2Input struct {
 }
 
 type OutputService4TestShapeOutputShape struct {
+	_ struct{} `type:"structure"`
+
 	ListMember []*string `type:"list"`
 
 	ListMemberMap []map[string]*string `type:"list"`
 
 	ListMemberStruct []*OutputService4TestShapeStructType `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 type OutputService4TestShapeStructType struct {
@@ -548,9 +548,9 @@ type OutputService5TestShapeOutputService5TestCaseOperation1Input struct {
 }
 
 type OutputService5TestShapeOutputService5TestCaseOperation1Output struct {
-	MapMember map[string][]*int64 `type:"map"`
-
 	_ struct{} `type:"structure"`
+
+	MapMember map[string][]*int64 `type:"map"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -638,9 +638,9 @@ type OutputService6TestShapeOutputService6TestCaseOperation1Input struct {
 }
 
 type OutputService6TestShapeOutputService6TestCaseOperation1Output struct {
-	StrType *string `type:"string"`
-
 	_ struct{} `type:"structure"`
+
+	StrType *string `type:"string"`
 }
 
 //

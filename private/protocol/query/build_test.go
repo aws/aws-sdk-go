@@ -176,13 +176,13 @@ type InputService1TestShapeInputService1TestCaseOperation3Output struct {
 }
 
 type InputService1TestShapeInputShape struct {
+	_ struct{} `type:"structure"`
+
 	Bar *string `type:"string"`
 
 	Baz *bool `type:"boolean"`
 
 	Foo *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -264,9 +264,9 @@ func (c *InputService2ProtocolTest) InputService2TestCaseOperation1(input *Input
 }
 
 type InputService2TestShapeInputService2TestCaseOperation1Input struct {
-	StructArg *InputService2TestShapeStructType `type:"structure"`
-
 	_ struct{} `type:"structure"`
+
+	StructArg *InputService2TestShapeStructType `type:"structure"`
 }
 
 type InputService2TestShapeInputService2TestCaseOperation1Output struct {
@@ -274,9 +274,9 @@ type InputService2TestShapeInputService2TestCaseOperation1Output struct {
 }
 
 type InputService2TestShapeStructType struct {
-	ScalarArg *string `type:"string"`
-
 	_ struct{} `type:"structure"`
+
+	ScalarArg *string `type:"string"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -390,9 +390,9 @@ type InputService3TestShapeInputService3TestCaseOperation2Output struct {
 }
 
 type InputService3TestShapeInputShape struct {
-	ListArg []*string `type:"list"`
-
 	_ struct{} `type:"structure"`
+
+	ListArg []*string `type:"list"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -506,13 +506,13 @@ type InputService4TestShapeInputService4TestCaseOperation2Output struct {
 }
 
 type InputService4TestShapeInputShape struct {
+	_ struct{} `type:"structure"`
+
 	ListArg []*string `type:"list" flattened:"true"`
 
 	NamedListArg []*string `locationNameList:"Foo" type:"list" flattened:"true"`
 
 	ScalarArg *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -594,9 +594,9 @@ func (c *InputService5ProtocolTest) InputService5TestCaseOperation1(input *Input
 }
 
 type InputService5TestShapeInputService5TestCaseOperation1Input struct {
-	MapArg map[string]*string `type:"map" flattened:"true"`
-
 	_ struct{} `type:"structure"`
+
+	MapArg map[string]*string `type:"map" flattened:"true"`
 }
 
 type InputService5TestShapeInputService5TestCaseOperation1Output struct {
@@ -682,9 +682,9 @@ func (c *InputService6ProtocolTest) InputService6TestCaseOperation1(input *Input
 }
 
 type InputService6TestShapeInputService6TestCaseOperation1Input struct {
-	ListArg []*string `locationNameList:"item" type:"list"`
-
 	_ struct{} `type:"structure"`
+
+	ListArg []*string `locationNameList:"item" type:"list"`
 }
 
 type InputService6TestShapeInputService6TestCaseOperation1Output struct {
@@ -770,11 +770,11 @@ func (c *InputService7ProtocolTest) InputService7TestCaseOperation1(input *Input
 }
 
 type InputService7TestShapeInputService7TestCaseOperation1Input struct {
+	_ struct{} `type:"structure"`
+
 	ListArg []*string `locationNameList:"ListArgLocation" type:"list" flattened:"true"`
 
 	ScalarArg *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 type InputService7TestShapeInputService7TestCaseOperation1Output struct {
@@ -860,9 +860,9 @@ func (c *InputService8ProtocolTest) InputService8TestCaseOperation1(input *Input
 }
 
 type InputService8TestShapeInputService8TestCaseOperation1Input struct {
-	MapArg map[string]*string `type:"map"`
-
 	_ struct{} `type:"structure"`
+
+	MapArg map[string]*string `type:"map"`
 }
 
 type InputService8TestShapeInputService8TestCaseOperation1Output struct {
@@ -948,9 +948,9 @@ func (c *InputService9ProtocolTest) InputService9TestCaseOperation1(input *Input
 }
 
 type InputService9TestShapeInputService9TestCaseOperation1Input struct {
-	MapArg map[string]*string `locationNameKey:"TheKey" locationNameValue:"TheValue" type:"map"`
-
 	_ struct{} `type:"structure"`
+
+	MapArg map[string]*string `locationNameKey:"TheKey" locationNameValue:"TheValue" type:"map"`
 }
 
 type InputService9TestShapeInputService9TestCaseOperation1Output struct {
@@ -1036,9 +1036,9 @@ func (c *InputService10ProtocolTest) InputService10TestCaseOperation1(input *Inp
 }
 
 type InputService10TestShapeInputService10TestCaseOperation1Input struct {
-	BlobArg []byte `type:"blob"`
-
 	_ struct{} `type:"structure"`
+
+	BlobArg []byte `type:"blob"`
 }
 
 type InputService10TestShapeInputService10TestCaseOperation1Output struct {
@@ -1124,9 +1124,9 @@ func (c *InputService11ProtocolTest) InputService11TestCaseOperation1(input *Inp
 }
 
 type InputService11TestShapeInputService11TestCaseOperation1Input struct {
-	TimeArg *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-
 	_ struct{} `type:"structure"`
+
+	TimeArg *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
 type InputService11TestShapeInputService11TestCaseOperation1Output struct {
@@ -1356,12 +1356,14 @@ type InputService12TestShapeInputService12TestCaseOperation6Output struct {
 }
 
 type InputService12TestShapeInputShape struct {
-	RecursiveStruct *InputService12TestShapeRecursiveStructType `type:"structure"`
-
 	_ struct{} `type:"structure"`
+
+	RecursiveStruct *InputService12TestShapeRecursiveStructType `type:"structure"`
 }
 
 type InputService12TestShapeRecursiveStructType struct {
+	_ struct{} `type:"structure"`
+
 	NoRecurse *string `type:"string"`
 
 	RecursiveList []*InputService12TestShapeRecursiveStructType `type:"list"`
@@ -1369,8 +1371,6 @@ type InputService12TestShapeRecursiveStructType struct {
 	RecursiveMap map[string]*InputService12TestShapeRecursiveStructType `type:"map"`
 
 	RecursiveStruct *InputService12TestShapeRecursiveStructType `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 //

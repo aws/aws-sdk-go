@@ -2352,13 +2352,13 @@ func (c *OpsWorks) UpdateVolume(input *UpdateVolumeInput) (*UpdateVolumeOutput, 
 
 // Describes an agent version.
 type AgentVersion struct {
+	_ struct{} `type:"structure"`
+
 	// The configuration manager.
 	ConfigurationManager *StackConfigurationManager `type:"structure"`
 
 	// The agent version.
 	Version *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2373,6 +2373,8 @@ func (s AgentVersion) GoString() string {
 
 // A description of the app.
 type App struct {
+	_ struct{} `type:"structure"`
+
 	// The app ID.
 	AppId *string `type:"string"`
 
@@ -2425,8 +2427,6 @@ type App struct {
 
 	// The app type.
 	Type *string `type:"string" enum:"AppType"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2440,14 +2440,14 @@ func (s App) GoString() string {
 }
 
 type AssignInstanceInput struct {
+	_ struct{} `type:"structure"`
+
 	// The instance ID.
 	InstanceId *string `type:"string" required:"true"`
 
 	// The layer ID, which must correspond to a custom layer. You cannot assign
 	// a registered instance to a built-in layer.
 	LayerIds []*string `type:"list" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2475,13 +2475,13 @@ func (s AssignInstanceOutput) GoString() string {
 }
 
 type AssignVolumeInput struct {
+	_ struct{} `type:"structure"`
+
 	// The instance ID.
 	InstanceId *string `type:"string"`
 
 	// The volume ID.
 	VolumeId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2509,13 +2509,13 @@ func (s AssignVolumeOutput) GoString() string {
 }
 
 type AssociateElasticIpInput struct {
+	_ struct{} `type:"structure"`
+
 	// The Elastic IP address.
 	ElasticIp *string `type:"string" required:"true"`
 
 	// The instance ID.
 	InstanceId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2543,14 +2543,14 @@ func (s AssociateElasticIpOutput) GoString() string {
 }
 
 type AttachElasticLoadBalancerInput struct {
+	_ struct{} `type:"structure"`
+
 	// The Elastic Load Balancing instance's name.
 	ElasticLoadBalancerName *string `type:"string" required:"true"`
 
 	// The ID of the layer that the Elastic Load Balancing instance is to be attached
 	// to.
 	LayerId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2580,6 +2580,8 @@ func (s AttachElasticLoadBalancerOutput) GoString() string {
 // Describes a load-based auto scaling upscaling or downscaling threshold configuration,
 // which specifies when AWS OpsWorks starts or stops load-based instances.
 type AutoScalingThresholds struct {
+	_ struct{} `type:"structure"`
+
 	// Custom Cloudwatch auto scaling alarms, to be used as thresholds. This parameter
 	// takes a list of up to five alarm names, which are case sensitive and must
 	// be in the same region as the stack.
@@ -2616,8 +2618,6 @@ type AutoScalingThresholds struct {
 	// The amount of time, in minutes, that the load must exceed a threshold before
 	// more instances are added or removed.
 	ThresholdsWaitTime *int64 `min:"1" type:"integer"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2634,6 +2634,8 @@ func (s AutoScalingThresholds) GoString() string {
 // EC2 BlockDeviceMapping (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_BlockDeviceMapping.html)
 // data type.
 type BlockDeviceMapping struct {
+	_ struct{} `type:"structure"`
+
 	// The device name that is exposed to the instance, such as /dev/sdh. For the
 	// root device, you can use the explicit device name or you can set this parameter
 	// to ROOT_DEVICE and AWS OpsWorks will provide the correct device name.
@@ -2648,8 +2650,6 @@ type BlockDeviceMapping struct {
 
 	// The virtual device name. For more information, see BlockDeviceMapping (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_BlockDeviceMapping.html).
 	VirtualName *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2664,13 +2664,13 @@ func (s BlockDeviceMapping) GoString() string {
 
 // Describes the Chef configuration.
 type ChefConfiguration struct {
+	_ struct{} `type:"structure"`
+
 	// The Berkshelf version.
 	BerkshelfVersion *string `type:"string"`
 
 	// Whether to enable Berkshelf.
 	ManageBerkshelf *bool `type:"boolean"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2684,6 +2684,8 @@ func (s ChefConfiguration) GoString() string {
 }
 
 type CloneStackInput struct {
+	_ struct{} `type:"structure"`
+
 	// The default AWS OpsWorks agent version. You have the following options:
 	//
 	//  Auto-update - Set this parameter to LATEST. AWS OpsWorks automatically
@@ -2858,8 +2860,6 @@ type CloneStackInput struct {
 	// For more information on default VPC and EC2 Classic, see Supported Platforms
 	// (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html).
 	VpcId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2874,10 +2874,10 @@ func (s CloneStackInput) GoString() string {
 
 // Contains the response to a CloneStack request.
 type CloneStackOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The cloned stack ID.
 	StackId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2892,6 +2892,8 @@ func (s CloneStackOutput) GoString() string {
 
 // Describes a command.
 type Command struct {
+	_ struct{} `type:"structure"`
+
 	// Date and time when the command was acknowledged.
 	AcknowledgedAt *string `type:"string"`
 
@@ -2926,8 +2928,6 @@ type Command struct {
 	//   deploy   rollback   start   stop   restart   undeploy   update_dependencies
 	//   install_dependencies   update_custom_cookbooks   execute_recipes
 	Type *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2941,6 +2941,8 @@ func (s Command) GoString() string {
 }
 
 type CreateAppInput struct {
+	_ struct{} `type:"structure"`
+
 	// A Source object that specifies the app repository.
 	AppSource *Source `type:"structure"`
 
@@ -2994,8 +2996,6 @@ type CreateAppInput struct {
 	// layer. If your app isn't one of the standard types, or you prefer to implement
 	// your own Deploy recipes, specify other.
 	Type *string `type:"string" required:"true" enum:"AppType"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3010,10 +3010,10 @@ func (s CreateAppInput) GoString() string {
 
 // Contains the response to a CreateApp request.
 type CreateAppOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The app ID.
 	AppId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3027,6 +3027,8 @@ func (s CreateAppOutput) GoString() string {
 }
 
 type CreateDeploymentInput struct {
+	_ struct{} `type:"structure"`
+
 	// The app ID. This parameter is required for app deployments, but not for other
 	// deployment commands.
 	AppId *string `type:"string"`
@@ -3053,8 +3055,6 @@ type CreateDeploymentInput struct {
 
 	// The stack ID.
 	StackId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3069,11 +3069,11 @@ func (s CreateDeploymentInput) GoString() string {
 
 // Contains the response to a CreateDeployment request.
 type CreateDeploymentOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The deployment ID, which can be used with other requests to identify the
 	// deployment.
 	DeploymentId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3087,6 +3087,8 @@ func (s CreateDeploymentOutput) GoString() string {
 }
 
 type CreateInstanceInput struct {
+	_ struct{} `type:"structure"`
+
 	// The default AWS OpsWorks agent version. You have the following options:
 	//
 	//   INHERIT - Use the stack's default agent version setting.  version_number
@@ -3183,8 +3185,6 @@ type CreateInstanceInput struct {
 
 	// The instance's virtualization type, paravirtual or hvm.
 	VirtualizationType *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3199,10 +3199,10 @@ func (s CreateInstanceInput) GoString() string {
 
 // Contains the response to a CreateInstance request.
 type CreateInstanceOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The instance ID.
 	InstanceId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3216,6 +3216,8 @@ func (s CreateInstanceOutput) GoString() string {
 }
 
 type CreateLayerInput struct {
+	_ struct{} `type:"structure"`
+
 	// One or more user-defined key-value pairs to be added to the stack attributes.
 	//
 	// To create a cluster layer, set the EcsClusterArn attribute to the cluster's
@@ -3292,8 +3294,6 @@ type CreateLayerInput struct {
 
 	// A VolumeConfigurations object that describes the layer's Amazon EBS volumes.
 	VolumeConfigurations []*VolumeConfiguration `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3308,10 +3308,10 @@ func (s CreateLayerInput) GoString() string {
 
 // Contains the response to a CreateLayer request.
 type CreateLayerOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The layer ID.
 	LayerId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3325,6 +3325,8 @@ func (s CreateLayerOutput) GoString() string {
 }
 
 type CreateStackInput struct {
+	_ struct{} `type:"structure"`
+
 	// The default AWS OpsWorks agent version. You have the following options:
 	//
 	//  Auto-update - Set this parameter to LATEST. AWS OpsWorks automatically
@@ -3483,8 +3485,6 @@ type CreateStackInput struct {
 	// For more information on default VPC and EC2-Classic, see Supported Platforms
 	// (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html).
 	VpcId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3499,11 +3499,11 @@ func (s CreateStackInput) GoString() string {
 
 // Contains the response to a CreateStack request.
 type CreateStackOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The stack ID, which is an opaque string that you use to identify the stack
 	// when performing actions such as DescribeStacks.
 	StackId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3517,6 +3517,8 @@ func (s CreateStackOutput) GoString() string {
 }
 
 type CreateUserProfileInput struct {
+	_ struct{} `type:"structure"`
+
 	// Whether users can specify their own SSH public key through the My Settings
 	// page. For more information, see Setting an IAM User's Public SSH Key (http://docs.aws.amazon.com/opsworks/latest/userguide/security-settingsshkey.html).
 	AllowSelfManagement *bool `type:"boolean"`
@@ -3533,8 +3535,6 @@ type CreateUserProfileInput struct {
 	// you do not specify an SSH user name, AWS OpsWorks generates one from the
 	// IAM user name.
 	SshUsername *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3549,10 +3549,10 @@ func (s CreateUserProfileInput) GoString() string {
 
 // Contains the response to a CreateUserProfile request.
 type CreateUserProfileOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The user's IAM ARN.
 	IamUserArn *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3567,6 +3567,8 @@ func (s CreateUserProfileOutput) GoString() string {
 
 // Describes an app's data source.
 type DataSource struct {
+	_ struct{} `type:"structure"`
+
 	// The data source's ARN.
 	Arn *string `type:"string"`
 
@@ -3576,8 +3578,6 @@ type DataSource struct {
 	// The data source's type, AutoSelectOpsworksMysqlInstance, OpsworksMysqlInstance,
 	// or RdsDbInstance.
 	Type *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3591,10 +3591,10 @@ func (s DataSource) GoString() string {
 }
 
 type DeleteAppInput struct {
+	_ struct{} `type:"structure"`
+
 	// The app ID.
 	AppId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3622,6 +3622,8 @@ func (s DeleteAppOutput) GoString() string {
 }
 
 type DeleteInstanceInput struct {
+	_ struct{} `type:"structure"`
+
 	// Whether to delete the instance Elastic IP address.
 	DeleteElasticIp *bool `type:"boolean"`
 
@@ -3630,8 +3632,6 @@ type DeleteInstanceInput struct {
 
 	// The instance ID.
 	InstanceId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3659,10 +3659,10 @@ func (s DeleteInstanceOutput) GoString() string {
 }
 
 type DeleteLayerInput struct {
+	_ struct{} `type:"structure"`
+
 	// The layer ID.
 	LayerId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3690,10 +3690,10 @@ func (s DeleteLayerOutput) GoString() string {
 }
 
 type DeleteStackInput struct {
+	_ struct{} `type:"structure"`
+
 	// The stack ID.
 	StackId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3721,10 +3721,10 @@ func (s DeleteStackOutput) GoString() string {
 }
 
 type DeleteUserProfileInput struct {
+	_ struct{} `type:"structure"`
+
 	// The user's IAM ARN.
 	IamUserArn *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3753,6 +3753,8 @@ func (s DeleteUserProfileOutput) GoString() string {
 
 // Describes a deployment of a stack or app.
 type Deployment struct {
+	_ struct{} `type:"structure"`
+
 	// The app ID.
 	AppId *string `type:"string"`
 
@@ -3798,8 +3800,6 @@ type Deployment struct {
 	//
 	//  running successful failed
 	Status *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3814,6 +3814,8 @@ func (s Deployment) GoString() string {
 
 // Used to specify a stack or deployment command.
 type DeploymentCommand struct {
+	_ struct{} `type:"structure"`
+
 	// The arguments of those commands that take arguments. It should be set to
 	// a JSON object with the following format:
 	//
@@ -3857,8 +3859,6 @@ type DeploymentCommand struct {
 	// restart: Restart the app's web or application server.  undeploy: Undeploy
 	// the app.
 	Name *string `type:"string" required:"true" enum:"DeploymentCommandName"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3872,10 +3872,10 @@ func (s DeploymentCommand) GoString() string {
 }
 
 type DeregisterEcsClusterInput struct {
+	_ struct{} `type:"structure"`
+
 	// The cluster's ARN.
 	EcsClusterArn *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3903,10 +3903,10 @@ func (s DeregisterEcsClusterOutput) GoString() string {
 }
 
 type DeregisterElasticIpInput struct {
+	_ struct{} `type:"structure"`
+
 	// The Elastic IP address.
 	ElasticIp *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3934,10 +3934,10 @@ func (s DeregisterElasticIpOutput) GoString() string {
 }
 
 type DeregisterInstanceInput struct {
+	_ struct{} `type:"structure"`
+
 	// The instance ID.
 	InstanceId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3965,10 +3965,10 @@ func (s DeregisterInstanceOutput) GoString() string {
 }
 
 type DeregisterRdsDbInstanceInput struct {
+	_ struct{} `type:"structure"`
+
 	// The Amazon RDS instance's ARN.
 	RdsDbInstanceArn *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3996,12 +3996,12 @@ func (s DeregisterRdsDbInstanceOutput) GoString() string {
 }
 
 type DeregisterVolumeInput struct {
+	_ struct{} `type:"structure"`
+
 	// The AWS OpsWorks volume ID, which is the GUID that AWS OpsWorks assigned
 	// to the instance when you registered the volume with the stack, not the Amazon
 	// EC2 volume ID.
 	VolumeId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4029,13 +4029,13 @@ func (s DeregisterVolumeOutput) GoString() string {
 }
 
 type DescribeAgentVersionsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The configuration manager.
 	ConfigurationManager *StackConfigurationManager `type:"structure"`
 
 	// The stack ID.
 	StackId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4050,12 +4050,12 @@ func (s DescribeAgentVersionsInput) GoString() string {
 
 // Contains the response to a DescribeAgentVersions request.
 type DescribeAgentVersionsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The agent versions for the specified stack or configuration manager. Note
 	// that this value is the complete version number, not the abbreviated number
 	// used by the console.
 	AgentVersions []*AgentVersion `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4069,6 +4069,8 @@ func (s DescribeAgentVersionsOutput) GoString() string {
 }
 
 type DescribeAppsInput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of app IDs for the apps to be described. If you use this parameter,
 	// DescribeApps returns a description of the specified apps. Otherwise, it returns
 	// a description of every app.
@@ -4077,8 +4079,6 @@ type DescribeAppsInput struct {
 	// The app stack ID. If you use this parameter, DescribeApps returns a description
 	// of the apps in the specified stack.
 	StackId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4093,10 +4093,10 @@ func (s DescribeAppsInput) GoString() string {
 
 // Contains the response to a DescribeApps request.
 type DescribeAppsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of App objects that describe the specified apps.
 	Apps []*App `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4110,6 +4110,8 @@ func (s DescribeAppsOutput) GoString() string {
 }
 
 type DescribeCommandsInput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of command IDs. If you include this parameter, DescribeCommands
 	// returns a description of the specified commands. Otherwise, it returns a
 	// description of every command.
@@ -4122,8 +4124,6 @@ type DescribeCommandsInput struct {
 	// The instance ID. If you include this parameter, DescribeCommands returns
 	// a description of the commands associated with the specified instance.
 	InstanceId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4138,10 +4138,10 @@ func (s DescribeCommandsInput) GoString() string {
 
 // Contains the response to a DescribeCommands request.
 type DescribeCommandsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of Command objects that describe each of the specified commands.
 	Commands []*Command `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4155,6 +4155,8 @@ func (s DescribeCommandsOutput) GoString() string {
 }
 
 type DescribeDeploymentsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The app ID. If you include this parameter, DescribeDeployments returns a
 	// description of the commands associated with the specified app.
 	AppId *string `type:"string"`
@@ -4167,8 +4169,6 @@ type DescribeDeploymentsInput struct {
 	// The stack ID. If you include this parameter, DescribeDeployments returns
 	// a description of the commands associated with the specified stack.
 	StackId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4183,10 +4183,10 @@ func (s DescribeDeploymentsInput) GoString() string {
 
 // Contains the response to a DescribeDeployments request.
 type DescribeDeploymentsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of Deployment objects that describe the deployments.
 	Deployments []*Deployment `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4200,6 +4200,8 @@ func (s DescribeDeploymentsOutput) GoString() string {
 }
 
 type DescribeEcsClustersInput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of ARNs, one for each cluster to be described.
 	EcsClusterArns []*string `type:"list"`
 
@@ -4220,8 +4222,6 @@ type DescribeEcsClustersInput struct {
 	// A stack ID. DescribeEcsClusters returns a description of the cluster that
 	// is registered with the stack.
 	StackId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4236,6 +4236,8 @@ func (s DescribeEcsClustersInput) GoString() string {
 
 // Contains the response to a DescribeEcsClusters request.
 type DescribeEcsClustersOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of EcsCluster objects containing the cluster descriptions.
 	EcsClusters []*EcsCluster `type:"list"`
 
@@ -4244,8 +4246,6 @@ type DescribeEcsClustersOutput struct {
 	// parameter to retrieve the next set of results. If the previous paginated
 	// request returned all of the remaining results, this parameter is set to null.
 	NextToken *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4259,6 +4259,8 @@ func (s DescribeEcsClustersOutput) GoString() string {
 }
 
 type DescribeElasticIpsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The instance ID. If you include this parameter, DescribeElasticIps returns
 	// a description of the Elastic IP addresses associated with the specified instance.
 	InstanceId *string `type:"string"`
@@ -4271,8 +4273,6 @@ type DescribeElasticIpsInput struct {
 	// A stack ID. If you include this parameter, DescribeElasticIps returns a description
 	// of the Elastic IP addresses that are registered with the specified stack.
 	StackId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4287,10 +4287,10 @@ func (s DescribeElasticIpsInput) GoString() string {
 
 // Contains the response to a DescribeElasticIps request.
 type DescribeElasticIpsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// An ElasticIps object that describes the specified Elastic IP addresses.
 	ElasticIps []*ElasticIp `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4304,14 +4304,14 @@ func (s DescribeElasticIpsOutput) GoString() string {
 }
 
 type DescribeElasticLoadBalancersInput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of layer IDs. The action describes the Elastic Load Balancing instances
 	// for the specified layers.
 	LayerIds []*string `type:"list"`
 
 	// A stack ID. The action describes the stack's Elastic Load Balancing instances.
 	StackId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4326,11 +4326,11 @@ func (s DescribeElasticLoadBalancersInput) GoString() string {
 
 // Contains the response to a DescribeElasticLoadBalancers request.
 type DescribeElasticLoadBalancersOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of ElasticLoadBalancer objects that describe the specified Elastic
 	// Load Balancing instances.
 	ElasticLoadBalancers []*ElasticLoadBalancer `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4344,6 +4344,8 @@ func (s DescribeElasticLoadBalancersOutput) GoString() string {
 }
 
 type DescribeInstancesInput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of instance IDs to be described. If you use this parameter, DescribeInstances
 	// returns a description of the specified instances. Otherwise, it returns a
 	// description of every instance.
@@ -4356,8 +4358,6 @@ type DescribeInstancesInput struct {
 	// A stack ID. If you use this parameter, DescribeInstances returns descriptions
 	// of the instances associated with the specified stack.
 	StackId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4372,10 +4372,10 @@ func (s DescribeInstancesInput) GoString() string {
 
 // Contains the response to a DescribeInstances request.
 type DescribeInstancesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of Instance objects that describe the instances.
 	Instances []*Instance `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4389,6 +4389,8 @@ func (s DescribeInstancesOutput) GoString() string {
 }
 
 type DescribeLayersInput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of layer IDs that specify the layers to be described. If you omit
 	// this parameter, DescribeLayers returns a description of every layer in the
 	// specified stack.
@@ -4396,8 +4398,6 @@ type DescribeLayersInput struct {
 
 	// The stack ID.
 	StackId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4412,10 +4412,10 @@ func (s DescribeLayersInput) GoString() string {
 
 // Contains the response to a DescribeLayers request.
 type DescribeLayersOutput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of Layer objects that describe the layers.
 	Layers []*Layer `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4429,10 +4429,10 @@ func (s DescribeLayersOutput) GoString() string {
 }
 
 type DescribeLoadBasedAutoScalingInput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of layer IDs.
 	LayerIds []*string `type:"list" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4447,11 +4447,11 @@ func (s DescribeLoadBasedAutoScalingInput) GoString() string {
 
 // Contains the response to a DescribeLoadBasedAutoScaling request.
 type DescribeLoadBasedAutoScalingOutput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of LoadBasedAutoScalingConfiguration objects that describe each
 	// layer's configuration.
 	LoadBasedAutoScalingConfigurations []*LoadBasedAutoScalingConfiguration `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4480,10 +4480,10 @@ func (s DescribeMyUserProfileInput) GoString() string {
 
 // Contains the response to a DescribeMyUserProfile request.
 type DescribeMyUserProfileOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A UserProfile object that describes the user's SSH information.
 	UserProfile *SelfUserProfile `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4497,14 +4497,14 @@ func (s DescribeMyUserProfileOutput) GoString() string {
 }
 
 type DescribePermissionsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The user's IAM ARN. For more information about IAM ARNs, see Using Identifiers
 	// (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
 	IamUserArn *string `type:"string"`
 
 	// The stack ID.
 	StackId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4519,6 +4519,8 @@ func (s DescribePermissionsInput) GoString() string {
 
 // Contains the response to a DescribePermissions request.
 type DescribePermissionsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of Permission objects that describe the stack permissions.
 	//
 	//  If the request object contains only a stack ID, the array contains a Permission
@@ -4528,8 +4530,6 @@ type DescribePermissionsOutput struct {
 	// an IAM ARN, the array contains a single Permission object with permissions
 	// for the specified stack and IAM ARN.
 	Permissions []*Permission `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4543,6 +4543,8 @@ func (s DescribePermissionsOutput) GoString() string {
 }
 
 type DescribeRaidArraysInput struct {
+	_ struct{} `type:"structure"`
+
 	// The instance ID. If you use this parameter, DescribeRaidArrays returns descriptions
 	// of the RAID arrays associated with the specified instance.
 	InstanceId *string `type:"string"`
@@ -4554,8 +4556,6 @@ type DescribeRaidArraysInput struct {
 
 	// The stack ID.
 	StackId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4570,10 +4570,10 @@ func (s DescribeRaidArraysInput) GoString() string {
 
 // Contains the response to a DescribeRaidArrays request.
 type DescribeRaidArraysOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A RaidArrays object that describes the specified RAID arrays.
 	RaidArrays []*RaidArray `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4587,14 +4587,14 @@ func (s DescribeRaidArraysOutput) GoString() string {
 }
 
 type DescribeRdsDbInstancesInput struct {
+	_ struct{} `type:"structure"`
+
 	// An array containing the ARNs of the instances to be described.
 	RdsDbInstanceArns []*string `type:"list"`
 
 	// The stack ID that the instances are registered with. The operation returns
 	// descriptions of all registered Amazon RDS instances.
 	StackId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4609,10 +4609,10 @@ func (s DescribeRdsDbInstancesInput) GoString() string {
 
 // Contains the response to a DescribeRdsDbInstances request.
 type DescribeRdsDbInstancesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// An a array of RdsDbInstance objects that describe the instances.
 	RdsDbInstances []*RdsDbInstance `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4626,6 +4626,8 @@ func (s DescribeRdsDbInstancesOutput) GoString() string {
 }
 
 type DescribeServiceErrorsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The instance ID. If you use this parameter, DescribeServiceErrors returns
 	// descriptions of the errors associated with the specified instance.
 	InstanceId *string `type:"string"`
@@ -4638,8 +4640,6 @@ type DescribeServiceErrorsInput struct {
 	// The stack ID. If you use this parameter, DescribeServiceErrors returns descriptions
 	// of the errors associated with the specified stack.
 	StackId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4654,10 +4654,10 @@ func (s DescribeServiceErrorsInput) GoString() string {
 
 // Contains the response to a DescribeServiceErrors request.
 type DescribeServiceErrorsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of ServiceError objects that describe the specified service errors.
 	ServiceErrors []*ServiceError `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4671,10 +4671,10 @@ func (s DescribeServiceErrorsOutput) GoString() string {
 }
 
 type DescribeStackProvisioningParametersInput struct {
+	_ struct{} `type:"structure"`
+
 	// The stack ID
 	StackId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4689,13 +4689,13 @@ func (s DescribeStackProvisioningParametersInput) GoString() string {
 
 // Contains the response to a DescribeStackProvisioningParameters request.
 type DescribeStackProvisioningParametersOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The AWS OpsWorks agent installer's URL.
 	AgentInstallerUrl *string `type:"string"`
 
 	// An embedded object that contains the provisioning parameters.
 	Parameters map[string]*string `type:"map"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4709,10 +4709,10 @@ func (s DescribeStackProvisioningParametersOutput) GoString() string {
 }
 
 type DescribeStackSummaryInput struct {
+	_ struct{} `type:"structure"`
+
 	// The stack ID.
 	StackId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4727,10 +4727,10 @@ func (s DescribeStackSummaryInput) GoString() string {
 
 // Contains the response to a DescribeStackSummary request.
 type DescribeStackSummaryOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A StackSummary object that contains the results.
 	StackSummary *StackSummary `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4744,11 +4744,11 @@ func (s DescribeStackSummaryOutput) GoString() string {
 }
 
 type DescribeStacksInput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of stack IDs that specify the stacks to be described. If you omit
 	// this parameter, DescribeStacks returns a description of every stack.
 	StackIds []*string `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4763,10 +4763,10 @@ func (s DescribeStacksInput) GoString() string {
 
 // Contains the response to a DescribeStacks request.
 type DescribeStacksOutput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of Stack objects that describe the stacks.
 	Stacks []*Stack `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4780,10 +4780,10 @@ func (s DescribeStacksOutput) GoString() string {
 }
 
 type DescribeTimeBasedAutoScalingInput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of instance IDs.
 	InstanceIds []*string `type:"list" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4798,11 +4798,11 @@ func (s DescribeTimeBasedAutoScalingInput) GoString() string {
 
 // Contains the response to a DescribeTimeBasedAutoScaling request.
 type DescribeTimeBasedAutoScalingOutput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of TimeBasedAutoScalingConfiguration objects that describe the configuration
 	// for the specified instances.
 	TimeBasedAutoScalingConfigurations []*TimeBasedAutoScalingConfiguration `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4816,10 +4816,10 @@ func (s DescribeTimeBasedAutoScalingOutput) GoString() string {
 }
 
 type DescribeUserProfilesInput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of IAM user ARNs that identify the users to be described.
 	IamUserArns []*string `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4834,10 +4834,10 @@ func (s DescribeUserProfilesInput) GoString() string {
 
 // Contains the response to a DescribeUserProfiles request.
 type DescribeUserProfilesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A Users object that describes the specified users.
 	UserProfiles []*UserProfile `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4851,6 +4851,8 @@ func (s DescribeUserProfilesOutput) GoString() string {
 }
 
 type DescribeVolumesInput struct {
+	_ struct{} `type:"structure"`
+
 	// The instance ID. If you use this parameter, DescribeVolumes returns descriptions
 	// of the volumes associated with the specified instance.
 	InstanceId *string `type:"string"`
@@ -4866,8 +4868,6 @@ type DescribeVolumesInput struct {
 	// descriptions of the specified volumes. Otherwise, it returns a description
 	// of every volume.
 	VolumeIds []*string `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4882,10 +4882,10 @@ func (s DescribeVolumesInput) GoString() string {
 
 // Contains the response to a DescribeVolumes request.
 type DescribeVolumesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of volume IDs.
 	Volumes []*Volume `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4899,14 +4899,14 @@ func (s DescribeVolumesOutput) GoString() string {
 }
 
 type DetachElasticLoadBalancerInput struct {
+	_ struct{} `type:"structure"`
+
 	// The Elastic Load Balancing instance's name.
 	ElasticLoadBalancerName *string `type:"string" required:"true"`
 
 	// The ID of the layer that the Elastic Load Balancing instance is attached
 	// to.
 	LayerId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4934,10 +4934,10 @@ func (s DetachElasticLoadBalancerOutput) GoString() string {
 }
 
 type DisassociateElasticIpInput struct {
+	_ struct{} `type:"structure"`
+
 	// The Elastic IP address.
 	ElasticIp *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4968,6 +4968,8 @@ func (s DisassociateElasticIpOutput) GoString() string {
 // EC2 EbsBlockDevice (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_EbsBlockDevice.html)
 // data type.
 type EbsBlockDevice struct {
+	_ struct{} `type:"structure"`
+
 	// Whether the volume is deleted on instance termination.
 	DeleteOnTermination *bool `type:"boolean"`
 
@@ -4984,8 +4986,6 @@ type EbsBlockDevice struct {
 	// The volume type. gp2 for General Purpose (SSD) volumes, io1 for Provisioned
 	// IOPS (SSD) volumes, and standard for Magnetic volumes.
 	VolumeType *string `type:"string" enum:"VolumeType"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5000,6 +5000,8 @@ func (s EbsBlockDevice) GoString() string {
 
 // Describes a registered Amazon ECS cluster.
 type EcsCluster struct {
+	_ struct{} `type:"structure"`
+
 	// The cluster's ARN.
 	EcsClusterArn *string `type:"string"`
 
@@ -5011,8 +5013,6 @@ type EcsCluster struct {
 
 	// The stack ID.
 	StackId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5027,6 +5027,8 @@ func (s EcsCluster) GoString() string {
 
 // Describes an Elastic IP address.
 type ElasticIp struct {
+	_ struct{} `type:"structure"`
+
 	// The domain.
 	Domain *string `type:"string"`
 
@@ -5041,8 +5043,6 @@ type ElasticIp struct {
 
 	// The AWS region. For more information, see Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html).
 	Region *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5057,6 +5057,8 @@ func (s ElasticIp) GoString() string {
 
 // Describes an Elastic Load Balancing instance.
 type ElasticLoadBalancer struct {
+	_ struct{} `type:"structure"`
+
 	// A list of Availability Zones.
 	AvailabilityZones []*string `type:"list"`
 
@@ -5084,8 +5086,6 @@ type ElasticLoadBalancer struct {
 
 	// The VPC ID.
 	VpcId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5100,6 +5100,8 @@ func (s ElasticLoadBalancer) GoString() string {
 
 // Represents an app's environment variable.
 type EnvironmentVariable struct {
+	_ struct{} `type:"structure"`
+
 	// (Required) The environment variable's name, which can consist of up to 64
 	// characters and must be specified. The name can contain upper- and lowercase
 	// letters, numbers, and underscores (_), but it must start with a letter or
@@ -5116,8 +5118,6 @@ type EnvironmentVariable struct {
 	// you specify a value, it can contain up to 256 characters, which must all
 	// be printable.
 	Value *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5131,10 +5131,10 @@ func (s EnvironmentVariable) GoString() string {
 }
 
 type GetHostnameSuggestionInput struct {
+	_ struct{} `type:"structure"`
+
 	// The layer ID.
 	LayerId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5149,13 +5149,13 @@ func (s GetHostnameSuggestionInput) GoString() string {
 
 // Contains the response to a GetHostnameSuggestion request.
 type GetHostnameSuggestionOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The generated host name.
 	Hostname *string `type:"string"`
 
 	// The layer ID.
 	LayerId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5169,6 +5169,8 @@ func (s GetHostnameSuggestionOutput) GoString() string {
 }
 
 type GrantAccessInput struct {
+	_ struct{} `type:"structure"`
+
 	// The instance's AWS OpsWorks ID.
 	InstanceId *string `type:"string" required:"true"`
 
@@ -5177,8 +5179,6 @@ type GrantAccessInput struct {
 	// to log in. If the user is logged in at the time, he or she automatically
 	// will be logged out.
 	ValidForInMinutes *int64 `min:"60" type:"integer"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5193,11 +5193,11 @@ func (s GrantAccessInput) GoString() string {
 
 // Contains the response to a GrantAccess request.
 type GrantAccessOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A TemporaryCredential object that contains the data needed to log in to the
 	// instance by RDP clients, such as the Microsoft Remote Desktop Connection.
 	TemporaryCredential *TemporaryCredential `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5212,6 +5212,8 @@ func (s GrantAccessOutput) GoString() string {
 
 // Describes an instance.
 type Instance struct {
+	_ struct{} `type:"structure"`
+
 	// The agent version. This parameter is set to INHERIT if the instance inherits
 	// the default stack setting or to a a version number for a fixed agent version.
 	AgentVersion *string `type:"string"`
@@ -5345,8 +5347,6 @@ type Instance struct {
 
 	// The instance's virtualization type: paravirtual or hvm.
 	VirtualizationType *string `type:"string" enum:"VirtualizationType"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5362,13 +5362,13 @@ func (s Instance) GoString() string {
 // Contains a description of an Amazon EC2 instance from the Amazon EC2 metadata
 // service. For more information, see Instance Metadata and User Data (http://docs.aws.amazon.com/sdkfornet/latest/apidocs/Index.html).
 type InstanceIdentity struct {
+	_ struct{} `type:"structure"`
+
 	// A JSON document that contains the metadata.
 	Document *string `type:"string"`
 
 	// A signature that can be used to verify the document's accuracy and authenticity.
 	Signature *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5383,6 +5383,8 @@ func (s InstanceIdentity) GoString() string {
 
 // Describes how many instances a stack has for each status.
 type InstancesCount struct {
+	_ struct{} `type:"structure"`
+
 	// The number of instances in the Assigning state.
 	Assigning *int64 `type:"integer"`
 
@@ -5439,8 +5441,6 @@ type InstancesCount struct {
 
 	// The number of instances in the Unassigning state.
 	Unassigning *int64 `type:"integer"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5455,6 +5455,8 @@ func (s InstancesCount) GoString() string {
 
 // Describes a layer.
 type Layer struct {
+	_ struct{} `type:"structure"`
+
 	// The layer attributes.
 	//
 	// For the HaproxyStatsPassword, MysqlRootPassword, and GangliaPassword attributes,
@@ -5545,8 +5547,6 @@ type Layer struct {
 
 	// A VolumeConfigurations object that describes the layer's Amazon EBS volumes.
 	VolumeConfigurations []*VolumeConfiguration `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5561,10 +5561,10 @@ func (s Layer) GoString() string {
 
 // Specifies the lifecycle event configuration
 type LifecycleEventConfiguration struct {
+	_ struct{} `type:"structure"`
+
 	// A ShutdownEventConfiguration object that specifies the Shutdown event configuration.
 	Shutdown *ShutdownEventConfiguration `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5579,6 +5579,8 @@ func (s LifecycleEventConfiguration) GoString() string {
 
 // Describes a layer's load-based auto scaling configuration.
 type LoadBasedAutoScalingConfiguration struct {
+	_ struct{} `type:"structure"`
+
 	// An AutoScalingThresholds object that describes the downscaling configuration,
 	// which defines how and when AWS OpsWorks reduces the number of instances.
 	DownScaling *AutoScalingThresholds `type:"structure"`
@@ -5592,8 +5594,6 @@ type LoadBasedAutoScalingConfiguration struct {
 	// An AutoScalingThresholds object that describes the upscaling configuration,
 	// which defines how and when AWS OpsWorks increases the number of instances.
 	UpScaling *AutoScalingThresholds `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5608,6 +5608,8 @@ func (s LoadBasedAutoScalingConfiguration) GoString() string {
 
 // Describes stack or user permissions.
 type Permission struct {
+	_ struct{} `type:"structure"`
+
 	// Whether the user can use SSH.
 	AllowSsh *bool `type:"boolean"`
 
@@ -5626,8 +5628,6 @@ type Permission struct {
 
 	// A stack ID.
 	StackId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5642,6 +5642,8 @@ func (s Permission) GoString() string {
 
 // Describes an instance's RAID array.
 type RaidArray struct {
+	_ struct{} `type:"structure"`
+
 	// The array's Availability Zone. For more information, see Regions and Endpoints
 	// (http://docs.aws.amazon.com/general/latest/gr/rande.html).
 	AvailabilityZone *string `type:"string"`
@@ -5681,8 +5683,6 @@ type RaidArray struct {
 
 	// The volume type, standard or PIOPS.
 	VolumeType *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5697,6 +5697,8 @@ func (s RaidArray) GoString() string {
 
 // Describes an Amazon RDS instance.
 type RdsDbInstance struct {
+	_ struct{} `type:"structure"`
+
 	// The instance's address.
 	Address *string `type:"string"`
 
@@ -5725,8 +5727,6 @@ type RdsDbInstance struct {
 
 	// The ID of the stack that the instance is registered with.
 	StackId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5740,10 +5740,10 @@ func (s RdsDbInstance) GoString() string {
 }
 
 type RebootInstanceInput struct {
+	_ struct{} `type:"structure"`
+
 	// The instance ID.
 	InstanceId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5782,6 +5782,8 @@ func (s RebootInstanceOutput) GoString() string {
 // without the .rb extension. For example: phpapp2::dbsetup specifies the dbsetup.rb
 // recipe in the repository's phpapp2 folder.
 type Recipes struct {
+	_ struct{} `type:"structure"`
+
 	// An array of custom recipe names to be run following a configure event.
 	Configure []*string `type:"list"`
 
@@ -5796,8 +5798,6 @@ type Recipes struct {
 
 	// An array of custom recipe names to be run following a undeploy event.
 	Undeploy []*string `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5811,13 +5811,13 @@ func (s Recipes) GoString() string {
 }
 
 type RegisterEcsClusterInput struct {
+	_ struct{} `type:"structure"`
+
 	// The cluster's ARN.
 	EcsClusterArn *string `type:"string" required:"true"`
 
 	// The stack ID.
 	StackId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5832,10 +5832,10 @@ func (s RegisterEcsClusterInput) GoString() string {
 
 // Contains the response to a RegisterEcsCluster request.
 type RegisterEcsClusterOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The cluster's ARN.
 	EcsClusterArn *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5849,13 +5849,13 @@ func (s RegisterEcsClusterOutput) GoString() string {
 }
 
 type RegisterElasticIpInput struct {
+	_ struct{} `type:"structure"`
+
 	// The Elastic IP address.
 	ElasticIp *string `type:"string" required:"true"`
 
 	// The stack ID.
 	StackId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5870,10 +5870,10 @@ func (s RegisterElasticIpInput) GoString() string {
 
 // Contains the response to a RegisterElasticIp request.
 type RegisterElasticIpOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The Elastic IP address.
 	ElasticIp *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5887,6 +5887,8 @@ func (s RegisterElasticIpOutput) GoString() string {
 }
 
 type RegisterInstanceInput struct {
+	_ struct{} `type:"structure"`
+
 	// The instance's hostname.
 	Hostname *string `type:"string"`
 
@@ -5908,8 +5910,6 @@ type RegisterInstanceInput struct {
 
 	// The ID of the stack that the instance is to be registered with.
 	StackId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5924,10 +5924,10 @@ func (s RegisterInstanceInput) GoString() string {
 
 // Contains the response to a RegisterInstanceResult request.
 type RegisterInstanceOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The registered instance's AWS OpsWorks ID.
 	InstanceId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5941,6 +5941,8 @@ func (s RegisterInstanceOutput) GoString() string {
 }
 
 type RegisterRdsDbInstanceInput struct {
+	_ struct{} `type:"structure"`
+
 	// The database password.
 	DbPassword *string `type:"string" required:"true"`
 
@@ -5952,8 +5954,6 @@ type RegisterRdsDbInstanceInput struct {
 
 	// The stack ID.
 	StackId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5981,13 +5981,13 @@ func (s RegisterRdsDbInstanceOutput) GoString() string {
 }
 
 type RegisterVolumeInput struct {
+	_ struct{} `type:"structure"`
+
 	// The Amazon EBS volume ID.
 	Ec2VolumeId *string `type:"string"`
 
 	// The stack ID.
 	StackId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6002,10 +6002,10 @@ func (s RegisterVolumeInput) GoString() string {
 
 // Contains the response to a RegisterVolume request.
 type RegisterVolumeOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The volume ID.
 	VolumeId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6020,6 +6020,8 @@ func (s RegisterVolumeOutput) GoString() string {
 
 // A registered instance's reported operating system.
 type ReportedOs struct {
+	_ struct{} `type:"structure"`
+
 	// The operating system family.
 	Family *string `type:"string"`
 
@@ -6028,8 +6030,6 @@ type ReportedOs struct {
 
 	// The operating system version.
 	Version *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6044,6 +6044,8 @@ func (s ReportedOs) GoString() string {
 
 // Describes a user's SSH information.
 type SelfUserProfile struct {
+	_ struct{} `type:"structure"`
+
 	// The user's IAM ARN.
 	IamUserArn *string `type:"string"`
 
@@ -6055,8 +6057,6 @@ type SelfUserProfile struct {
 
 	// The user's SSH user name.
 	SshUsername *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6071,6 +6071,8 @@ func (s SelfUserProfile) GoString() string {
 
 // Describes an AWS OpsWorks service error.
 type ServiceError struct {
+	_ struct{} `type:"structure"`
+
 	// When the error occurred.
 	CreatedAt *string `type:"string"`
 
@@ -6088,8 +6090,6 @@ type ServiceError struct {
 
 	// The error type.
 	Type *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6103,6 +6103,8 @@ func (s ServiceError) GoString() string {
 }
 
 type SetLoadBasedAutoScalingInput struct {
+	_ struct{} `type:"structure"`
+
 	// An AutoScalingThresholds object with the downscaling threshold configuration.
 	// If the load falls below these thresholds for a specified amount of time,
 	// AWS OpsWorks stops a specified number of instances.
@@ -6118,8 +6120,6 @@ type SetLoadBasedAutoScalingInput struct {
 	// If the load exceeds these thresholds for a specified amount of time, AWS
 	// OpsWorks starts a specified number of instances.
 	UpScaling *AutoScalingThresholds `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6147,6 +6147,8 @@ func (s SetLoadBasedAutoScalingOutput) GoString() string {
 }
 
 type SetPermissionInput struct {
+	_ struct{} `type:"structure"`
+
 	// The user is allowed to use SSH to communicate with the instance.
 	AllowSsh *bool `type:"boolean"`
 
@@ -6165,8 +6167,6 @@ type SetPermissionInput struct {
 
 	// The stack ID.
 	StackId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6194,13 +6194,13 @@ func (s SetPermissionOutput) GoString() string {
 }
 
 type SetTimeBasedAutoScalingInput struct {
+	_ struct{} `type:"structure"`
+
 	// An AutoScalingSchedule with the instance schedule.
 	AutoScalingSchedule *WeeklyAutoScalingSchedule `type:"structure"`
 
 	// The instance ID.
 	InstanceId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6229,6 +6229,8 @@ func (s SetTimeBasedAutoScalingOutput) GoString() string {
 
 // The Shutdown event configuration.
 type ShutdownEventConfiguration struct {
+	_ struct{} `type:"structure"`
+
 	// Whether to enable Elastic Load Balancing connection draining. For more information,
 	// see Connection Draining (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#conn-drain)
 	DelayUntilElbConnectionsDrained *bool `type:"boolean"`
@@ -6236,8 +6238,6 @@ type ShutdownEventConfiguration struct {
 	// The time, in seconds, that AWS OpsWorks will wait after triggering a Shutdown
 	// event before shutting down an instance.
 	ExecutionTimeout *int64 `type:"integer"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6254,6 +6254,8 @@ func (s ShutdownEventConfiguration) GoString() string {
 // For more information, see Creating Apps (http://docs.aws.amazon.com/opsworks/latest/userguide/workingapps-creating.html)
 // or Custom Recipes and Cookbooks (http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook.html).
 type Source struct {
+	_ struct{} `type:"structure"`
+
 	// When included in a request, the parameter depends on the repository type.
 	//
 	//  For Amazon S3 bundles, set Password to the appropriate IAM secret access
@@ -6288,8 +6290,6 @@ type Source struct {
 	// For HTTP bundles, Git repositories, and Subversion repositories, set Username
 	// to the user name.
 	Username *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6304,6 +6304,8 @@ func (s Source) GoString() string {
 
 // Describes an app's SSL configuration.
 type SslConfiguration struct {
+	_ struct{} `type:"structure"`
+
 	// The contents of the certificate's domain.crt file.
 	Certificate *string `type:"string" required:"true"`
 
@@ -6313,8 +6315,6 @@ type SslConfiguration struct {
 
 	// The private key; the contents of the certificate's domain.kex file.
 	PrivateKey *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6329,6 +6329,8 @@ func (s SslConfiguration) GoString() string {
 
 // Describes a stack.
 type Stack struct {
+	_ struct{} `type:"structure"`
+
 	// The agent version. This parameter is set to LATEST for auto-update. or a
 	// version number for a fixed agent version.
 	AgentVersion *string `type:"string"`
@@ -6415,8 +6417,6 @@ type Stack struct {
 
 	// The VPC ID; applicable only if the stack is running in a VPC.
 	VpcId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6431,14 +6431,14 @@ func (s Stack) GoString() string {
 
 // Describes the configuration manager.
 type StackConfigurationManager struct {
+	_ struct{} `type:"structure"`
+
 	// The name. This parameter must be set to "Chef".
 	Name *string `type:"string"`
 
 	// The Chef version. This parameter must be set to 0.9, 11.4, or 11.10. The
 	// default value is 11.4.
 	Version *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6453,6 +6453,8 @@ func (s StackConfigurationManager) GoString() string {
 
 // Summarizes the number of layers, instances, and apps in a stack.
 type StackSummary struct {
+	_ struct{} `type:"structure"`
+
 	// The number of apps.
 	AppsCount *int64 `type:"integer"`
 
@@ -6470,8 +6472,6 @@ type StackSummary struct {
 
 	// The stack ID.
 	StackId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6485,10 +6485,10 @@ func (s StackSummary) GoString() string {
 }
 
 type StartInstanceInput struct {
+	_ struct{} `type:"structure"`
+
 	// The instance ID.
 	InstanceId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6516,10 +6516,10 @@ func (s StartInstanceOutput) GoString() string {
 }
 
 type StartStackInput struct {
+	_ struct{} `type:"structure"`
+
 	// The stack ID.
 	StackId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6547,10 +6547,10 @@ func (s StartStackOutput) GoString() string {
 }
 
 type StopInstanceInput struct {
+	_ struct{} `type:"structure"`
+
 	// The instance ID.
 	InstanceId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6578,10 +6578,10 @@ func (s StopInstanceOutput) GoString() string {
 }
 
 type StopStackInput struct {
+	_ struct{} `type:"structure"`
+
 	// The stack ID.
 	StackId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6611,6 +6611,8 @@ func (s StopStackOutput) GoString() string {
 // Contains the data needed by RDP clients such as the Microsoft Remote Desktop
 // Connection to log in to the instance.
 type TemporaryCredential struct {
+	_ struct{} `type:"structure"`
+
 	// The instance's AWS OpsWorks ID.
 	InstanceId *string `type:"string"`
 
@@ -6625,8 +6627,6 @@ type TemporaryCredential struct {
 	// to log in. If they are logged in at the time, they will be automatically
 	// logged out.
 	ValidForInMinutes *int64 `type:"integer"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6641,13 +6641,13 @@ func (s TemporaryCredential) GoString() string {
 
 // Describes an instance's time-based auto scaling configuration.
 type TimeBasedAutoScalingConfiguration struct {
+	_ struct{} `type:"structure"`
+
 	// A WeeklyAutoScalingSchedule object with the instance schedule.
 	AutoScalingSchedule *WeeklyAutoScalingSchedule `type:"structure"`
 
 	// The instance ID.
 	InstanceId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6661,10 +6661,10 @@ func (s TimeBasedAutoScalingConfiguration) GoString() string {
 }
 
 type UnassignInstanceInput struct {
+	_ struct{} `type:"structure"`
+
 	// The instance ID.
 	InstanceId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6692,10 +6692,10 @@ func (s UnassignInstanceOutput) GoString() string {
 }
 
 type UnassignVolumeInput struct {
+	_ struct{} `type:"structure"`
+
 	// The volume ID.
 	VolumeId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6723,6 +6723,8 @@ func (s UnassignVolumeOutput) GoString() string {
 }
 
 type UpdateAppInput struct {
+	_ struct{} `type:"structure"`
+
 	// The app ID.
 	AppId *string `type:"string" required:"true"`
 
@@ -6769,8 +6771,6 @@ type UpdateAppInput struct {
 
 	// The app type.
 	Type *string `type:"string" enum:"AppType"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6798,13 +6798,13 @@ func (s UpdateAppOutput) GoString() string {
 }
 
 type UpdateElasticIpInput struct {
+	_ struct{} `type:"structure"`
+
 	// The address.
 	ElasticIp *string `type:"string" required:"true"`
 
 	// The new name.
 	Name *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6832,6 +6832,8 @@ func (s UpdateElasticIpOutput) GoString() string {
 }
 
 type UpdateInstanceInput struct {
+	_ struct{} `type:"structure"`
+
 	// The default AWS OpsWorks agent version. You have the following options:
 	//
 	//   INHERIT - Use the stack's default agent version setting.  version_number
@@ -6911,8 +6913,6 @@ type UpdateInstanceInput struct {
 
 	// The instance's Amazon EC2 key name.
 	SshKeyName *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6940,6 +6940,8 @@ func (s UpdateInstanceOutput) GoString() string {
 }
 
 type UpdateLayerInput struct {
+	_ struct{} `type:"structure"`
+
 	// One or more user-defined key/value pairs to be added to the stack attributes.
 	Attributes map[string]*string `type:"map"`
 
@@ -7006,8 +7008,6 @@ type UpdateLayerInput struct {
 
 	// A VolumeConfigurations object that describes the layer's Amazon EBS volumes.
 	VolumeConfigurations []*VolumeConfiguration `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7035,10 +7035,10 @@ func (s UpdateLayerOutput) GoString() string {
 }
 
 type UpdateMyUserProfileInput struct {
+	_ struct{} `type:"structure"`
+
 	// The user's SSH public key.
 	SshPublicKey *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7066,6 +7066,8 @@ func (s UpdateMyUserProfileOutput) GoString() string {
 }
 
 type UpdateRdsDbInstanceInput struct {
+	_ struct{} `type:"structure"`
+
 	// The database password.
 	DbPassword *string `type:"string"`
 
@@ -7074,8 +7076,6 @@ type UpdateRdsDbInstanceInput struct {
 
 	// The Amazon RDS instance's ARN.
 	RdsDbInstanceArn *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7103,6 +7103,8 @@ func (s UpdateRdsDbInstanceOutput) GoString() string {
 }
 
 type UpdateStackInput struct {
+	_ struct{} `type:"structure"`
+
 	// The default AWS OpsWorks agent version. You have the following options:
 	//
 	//  Auto-update - Set this parameter to LATEST. AWS OpsWorks automatically
@@ -7232,8 +7234,6 @@ type UpdateStackInput struct {
 	// groups are required only for those layers that need custom settings.   For
 	// more information, see Create a New Stack (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-creating.html).
 	UseOpsworksSecurityGroups *bool `type:"boolean"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7261,6 +7261,8 @@ func (s UpdateStackOutput) GoString() string {
 }
 
 type UpdateUserProfileInput struct {
+	_ struct{} `type:"structure"`
+
 	// Whether users can specify their own SSH public key through the My Settings
 	// page. For more information, see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/security-settingsshkey.html).
 	AllowSelfManagement *bool `type:"boolean"`
@@ -7277,8 +7279,6 @@ type UpdateUserProfileInput struct {
 	// you do not specify an SSH user name, AWS OpsWorks generates one from the
 	// IAM user name.
 	SshUsername *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7306,6 +7306,8 @@ func (s UpdateUserProfileOutput) GoString() string {
 }
 
 type UpdateVolumeInput struct {
+	_ struct{} `type:"structure"`
+
 	// The new mount point.
 	MountPoint *string `type:"string"`
 
@@ -7314,8 +7316,6 @@ type UpdateVolumeInput struct {
 
 	// The volume ID.
 	VolumeId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7344,6 +7344,8 @@ func (s UpdateVolumeOutput) GoString() string {
 
 // Describes a user's SSH information.
 type UserProfile struct {
+	_ struct{} `type:"structure"`
+
 	// Whether users can specify their own SSH public key through the My Settings
 	// page. For more information, see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/security-settingsshkey.html).
 	AllowSelfManagement *bool `type:"boolean"`
@@ -7359,8 +7361,6 @@ type UserProfile struct {
 
 	// The user's SSH user name.
 	SshUsername *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7375,6 +7375,8 @@ func (s UserProfile) GoString() string {
 
 // Describes an instance's Amazon EBS volume.
 type Volume struct {
+	_ struct{} `type:"structure"`
+
 	// The volume Availability Zone. For more information, see Regions and Endpoints
 	// (http://docs.aws.amazon.com/general/latest/gr/rande.html).
 	AvailabilityZone *string `type:"string"`
@@ -7415,8 +7417,6 @@ type Volume struct {
 
 	// The volume type, standard or PIOPS.
 	VolumeType *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7431,6 +7431,8 @@ func (s Volume) GoString() string {
 
 // Describes an Amazon EBS volume configuration.
 type VolumeConfiguration struct {
+	_ struct{} `type:"structure"`
+
 	// For PIOPS volumes, the IOPS per disk.
 	Iops *int64 `type:"integer"`
 
@@ -7451,8 +7453,6 @@ type VolumeConfiguration struct {
 	//   standard - Magnetic  io1 - Provisioned IOPS (SSD)  gp2 - General Purpose
 	// (SSD)
 	VolumeType *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -7480,6 +7480,8 @@ func (s VolumeConfiguration) GoString() string {
 //
 //   { "12":"on", "13":"on", "14":"on", "15":"on" }
 type WeeklyAutoScalingSchedule struct {
+	_ struct{} `type:"structure"`
+
 	// The schedule for Friday.
 	Friday map[string]*string `type:"map"`
 
@@ -7500,8 +7502,6 @@ type WeeklyAutoScalingSchedule struct {
 
 	// The schedule for Wednesday.
 	Wednesday map[string]*string `type:"map"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

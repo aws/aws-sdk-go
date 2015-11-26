@@ -295,6 +295,8 @@ func (c *ElasticsearchService) UpdateElasticsearchDomainConfig(input *UpdateElas
 // The configured access rules for the domain's document and search endpoints,
 // and the current status of those rules.
 type AccessPoliciesStatus struct {
+	_ struct{} `type:"structure"`
+
 	// The access policy configured for the Elasticsearch domain. Access policies
 	// may be resource-based, IP-based, or IAM-based. See  Configuring Access Policies
 	// (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-access-policies"
@@ -304,8 +306,6 @@ type AccessPoliciesStatus struct {
 	// The status of the access policy for the Elasticsearch domain. See OptionStatus
 	// for the status information that's included.
 	Status *OptionStatus `type:"structure" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -321,13 +321,13 @@ func (s AccessPoliciesStatus) GoString() string {
 // Container for the parameters to the AddTags operation. Specify the tags that
 // you want to attach to the Elasticsearch domain.
 type AddTagsInput struct {
+	_ struct{} `type:"structure"`
+
 	// Specify the ARN for which you want to add the tags.
 	ARN *string `type:"string" required:"true"`
 
 	// List of Tag that need to be added for the Elasticsearch domain.
 	TagList []*Tag `type:"list" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -364,6 +364,8 @@ func (s AddTagsOutput) GoString() string {
 // heap space that is allocated to field data. By default, this setting is unbounded.
 //  For more information, see Configuring Advanced Options (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-advanced-options).
 type AdvancedOptionsStatus struct {
+	_ struct{} `type:"structure"`
+
 	// Specifies the status of advanced options for the specified Elasticsearch
 	// domain.
 	Options map[string]*string `type:"map" required:"true"`
@@ -371,8 +373,6 @@ type AdvancedOptionsStatus struct {
 	// Specifies the status of OptionStatus for advanced options for the specified
 	// Elasticsearch domain.
 	Status *OptionStatus `type:"structure" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -386,6 +386,8 @@ func (s AdvancedOptionsStatus) GoString() string {
 }
 
 type CreateElasticsearchDomainInput struct {
+	_ struct{} `type:"structure"`
+
 	// IAM access policy as a JSON-formatted string.
 	AccessPolicies *string `type:"string"`
 
@@ -411,8 +413,6 @@ type CreateElasticsearchDomainInput struct {
 	// Option to set time, in UTC format, of the daily automated snapshot. Default
 	// value is 0 hours.
 	SnapshotOptions *SnapshotOptions `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -428,10 +428,10 @@ func (s CreateElasticsearchDomainInput) GoString() string {
 // The result of a CreateElasticsearchDomain operation. Contains the status
 // of the newly created Elasticsearch domain.
 type CreateElasticsearchDomainOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The status of the newly created Elasticsearch domain.
 	DomainStatus *ElasticsearchDomainStatus `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -447,10 +447,10 @@ func (s CreateElasticsearchDomainOutput) GoString() string {
 // Container for the parameters to the DeleteElasticsearchDomain operation.
 // Specifies the name of the Elasticsearch domain that you want to delete.
 type DeleteElasticsearchDomainInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the Elasticsearch domain that you want to permanently delete.
 	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -467,10 +467,10 @@ func (s DeleteElasticsearchDomainInput) GoString() string {
 // the pending deletion, or no status if the domain and all of its resources
 // have been deleted.
 type DeleteElasticsearchDomainOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The status of the Elasticsearch domain being deleted.
 	DomainStatus *ElasticsearchDomainStatus `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -486,10 +486,10 @@ func (s DeleteElasticsearchDomainOutput) GoString() string {
 // Container for the parameters to the DescribeElasticsearchDomainConfig operation.
 // Specifies the domain name for which you want configuration information.
 type DescribeElasticsearchDomainConfigInput struct {
+	_ struct{} `type:"structure"`
+
 	// The Elasticsearch domain that you want to get information about.
 	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -505,11 +505,11 @@ func (s DescribeElasticsearchDomainConfigInput) GoString() string {
 // The result of a DescribeElasticsearchDomainConfig request. Contains the configuration
 // information of the requested domain.
 type DescribeElasticsearchDomainConfigOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The configuration information of the domain requested in the DescribeElasticsearchDomainConfig
 	// request.
 	DomainConfig *ElasticsearchDomainConfig `type:"structure" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -524,10 +524,10 @@ func (s DescribeElasticsearchDomainConfigOutput) GoString() string {
 
 // Container for the parameters to the DescribeElasticsearchDomain operation.
 type DescribeElasticsearchDomainInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the Elasticsearch domain for which you want information.
 	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -543,10 +543,10 @@ func (s DescribeElasticsearchDomainInput) GoString() string {
 // The result of a DescribeElasticsearchDomain request. Contains the status
 // of the domain specified in the request.
 type DescribeElasticsearchDomainOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The current status of the Elasticsearch domain.
 	DomainStatus *ElasticsearchDomainStatus `type:"structure" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -562,10 +562,10 @@ func (s DescribeElasticsearchDomainOutput) GoString() string {
 // Container for the parameters to the DescribeElasticsearchDomains operation.
 // By default, the API returns the status of all Elasticsearch domains.
 type DescribeElasticsearchDomainsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The Elasticsearch domains for which you want information.
 	DomainNames []*string `type:"list" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -581,10 +581,10 @@ func (s DescribeElasticsearchDomainsInput) GoString() string {
 // The result of a DescribeElasticsearchDomains request. Contains the status
 // of the specified domains or all domains owned by the account.
 type DescribeElasticsearchDomainsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The status of the domains requested in the DescribeElasticsearchDomains request.
 	DomainStatusList []*ElasticsearchDomainStatus `type:"list" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -598,10 +598,10 @@ func (s DescribeElasticsearchDomainsOutput) GoString() string {
 }
 
 type DomainInfo struct {
+	_ struct{} `type:"structure"`
+
 	// Specifies the DomainName.
 	DomainName *string `min:"3" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -618,6 +618,8 @@ func (s DomainInfo) GoString() string {
 // For more information, see  Configuring EBS-based Storage (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-ebs"
 // target="_blank).
 type EBSOptions struct {
+	_ struct{} `type:"structure"`
+
 	// Specifies whether EBS-based storage is enabled.
 	EBSEnabled *bool `type:"boolean"`
 
@@ -629,8 +631,6 @@ type EBSOptions struct {
 
 	// Specifies the volume type for EBS-based storage.
 	VolumeType *string `type:"string" enum:"VolumeType"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -645,13 +645,13 @@ func (s EBSOptions) GoString() string {
 
 // Status of the EBS options for the specified Elasticsearch domain.
 type EBSOptionsStatus struct {
+	_ struct{} `type:"structure"`
+
 	// Specifies the EBS options for the specified Elasticsearch domain.
 	Options *EBSOptions `type:"structure" required:"true"`
 
 	// Specifies the status of the EBS options for the specified Elasticsearch domain.
 	Status *OptionStatus `type:"structure" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -667,6 +667,8 @@ func (s EBSOptionsStatus) GoString() string {
 // Specifies the configuration for the domain cluster, such as the type and
 // number of instances.
 type ElasticsearchClusterConfig struct {
+	_ struct{} `type:"structure"`
+
 	// Total number of dedicated master nodes, active and on standby, for the cluster.
 	DedicatedMasterCount *int64 `type:"integer"`
 
@@ -688,8 +690,6 @@ type ElasticsearchClusterConfig struct {
 	// Zone Awareness (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains.html#es-managedomains-zoneawareness"
 	// target="_blank) for more information.
 	ZoneAwarenessEnabled *bool `type:"boolean"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -704,14 +704,14 @@ func (s ElasticsearchClusterConfig) GoString() string {
 
 // Specifies the configuration status for the specified Elasticsearch domain.
 type ElasticsearchClusterConfigStatus struct {
+	_ struct{} `type:"structure"`
+
 	// Specifies the cluster configuration for the specified Elasticsearch domain.
 	Options *ElasticsearchClusterConfig `type:"structure" required:"true"`
 
 	// Specifies the status of the configuration for the specified Elasticsearch
 	// domain.
 	Status *OptionStatus `type:"structure" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -726,6 +726,8 @@ func (s ElasticsearchClusterConfigStatus) GoString() string {
 
 // The configuration of an Elasticsearch domain.
 type ElasticsearchDomainConfig struct {
+	_ struct{} `type:"structure"`
+
 	// IAM access policy as a JSON-formatted string.
 	AccessPolicies *AccessPoliciesStatus `type:"structure"`
 
@@ -742,8 +744,6 @@ type ElasticsearchDomainConfig struct {
 
 	// Specifies the SnapshotOptions for the Elasticsearch domain.
 	SnapshotOptions *SnapshotOptionsStatus `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -758,6 +758,8 @@ func (s ElasticsearchDomainConfig) GoString() string {
 
 // The current status of an Elasticsearch domain.
 type ElasticsearchDomainStatus struct {
+	_ struct{} `type:"structure"`
+
 	// The Amazon resource name (ARN) of an Elasticsearch domain. See Identifiers
 	// for IAM Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/index.html?Using_Identifiers.html"
 	// target="_blank) in Using AWS Identity and Access Management for more information.
@@ -807,8 +809,6 @@ type ElasticsearchDomainStatus struct {
 
 	// Specifies the status of the SnapshotOptions
 	SnapshotOptions *SnapshotOptions `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -838,10 +838,10 @@ func (s ListDomainNamesInput) GoString() string {
 // The result of a ListDomainNames operation. Contains the names of all Elasticsearch
 // domains owned by this account.
 type ListDomainNamesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// List of Elasticsearch domain names.
 	DomainNames []*DomainInfo `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -858,11 +858,11 @@ func (s ListDomainNamesOutput) GoString() string {
 // the Elasticsearch domain to which the tags are attached that you want to
 // view are attached.
 type ListTagsInput struct {
+	_ struct{} `type:"structure"`
+
 	// Specify the ARN for the Elasticsearch domain to which the tags are attached
 	// that you want to view.
 	ARN *string `location:"querystring" locationName:"arn" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -878,10 +878,10 @@ func (s ListTagsInput) GoString() string {
 // The result of a ListTags operation. Contains tags for all requested Elasticsearch
 // domains.
 type ListTagsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// List of Tag for the requested Elasticsearch domain.
 	TagList []*Tag `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -896,6 +896,8 @@ func (s ListTagsOutput) GoString() string {
 
 // Provides the current status of the entity.
 type OptionStatus struct {
+	_ struct{} `type:"structure"`
+
 	// Timestamp which tells the creation date for the entity.
 	CreationDate *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
 
@@ -910,8 +912,6 @@ type OptionStatus struct {
 
 	// Specifies the latest version for the entity.
 	UpdateVersion *int64 `type:"integer"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -928,6 +928,8 @@ func (s OptionStatus) GoString() string {
 // for the Elasticsearch domain from which you want to remove the specified
 // TagKey.
 type RemoveTagsInput struct {
+	_ struct{} `type:"structure"`
+
 	// Specifies the ARN for the Elasticsearch domain from which you want to delete
 	// the specified tags.
 	ARN *string `type:"string" required:"true"`
@@ -935,8 +937,6 @@ type RemoveTagsInput struct {
 	// Specifies the TagKey list which you want to remove from the Elasticsearch
 	// domain.
 	TagKeys []*string `type:"list" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -966,11 +966,11 @@ func (s RemoveTagsOutput) GoString() string {
 // Specifies the time, in UTC format, when the service takes a daily automated
 // snapshot of the specified Elasticsearch domain. Default value is 0 hours.
 type SnapshotOptions struct {
+	_ struct{} `type:"structure"`
+
 	// Specifies the time, in UTC format, when the service takes a daily automated
 	// snapshot of the specified Elasticsearch domain. Default value is 0 hours.
 	AutomatedSnapshotStartHour *int64 `type:"integer"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -985,13 +985,13 @@ func (s SnapshotOptions) GoString() string {
 
 // Status of a daily automated snapshot.
 type SnapshotOptionsStatus struct {
+	_ struct{} `type:"structure"`
+
 	// Specifies the daily snapshot options specified for the Elasticsearch domain.
 	Options *SnapshotOptions `type:"structure" required:"true"`
 
 	// Specifies the status of a daily automated snapshot.
 	Status *OptionStatus `type:"structure" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1006,6 +1006,8 @@ func (s SnapshotOptionsStatus) GoString() string {
 
 // Specifies a key value pair for a resource tag.
 type Tag struct {
+	_ struct{} `type:"structure"`
+
 	// Specifies the TagKey, the name of the tag. Tag keys must be unique for the
 	// Elasticsearch domain to which they are attached.
 	Key *string `min:"1" type:"string" required:"true"`
@@ -1015,8 +1017,6 @@ type Tag struct {
 	// you can have a key value pair in a tag set of project : Trinity and cost-center
 	// : Trinity
 	Value *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1032,6 +1032,8 @@ func (s Tag) GoString() string {
 // Container for the parameters to the UpdateElasticsearchDomain operation.
 // Specifies the type and number of instances in the domain cluster.
 type UpdateElasticsearchDomainConfigInput struct {
+	_ struct{} `type:"structure"`
+
 	// IAM access policy as a JSON-formatted string.
 	AccessPolicies *string `type:"string"`
 
@@ -1053,8 +1055,6 @@ type UpdateElasticsearchDomainConfigInput struct {
 	// Option to set the time, in UTC format, for the daily automated snapshot.
 	// Default value is 0 hours.
 	SnapshotOptions *SnapshotOptions `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1070,10 +1070,10 @@ func (s UpdateElasticsearchDomainConfigInput) GoString() string {
 // The result of an UpdateElasticsearchDomain request. Contains the status of
 // the Elasticsearch domain being updated.
 type UpdateElasticsearchDomainConfigOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The status of the updated Elasticsearch domain.
 	DomainConfig *ElasticsearchDomainConfig `type:"structure" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

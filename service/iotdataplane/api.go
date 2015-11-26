@@ -130,10 +130,10 @@ func (c *IoTDataPlane) UpdateThingShadow(input *UpdateThingShadowInput) (*Update
 
 // The input for the DeleteThingShadow operation.
 type DeleteThingShadowInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the thing.
 	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -148,10 +148,10 @@ func (s DeleteThingShadowInput) GoString() string {
 
 // The output from the DeleteThingShadow operation.
 type DeleteThingShadowOutput struct {
+	_ struct{} `type:"structure" payload:"Payload"`
+
 	// The state information, in JSON format.
 	Payload []byte `locationName:"payload" type:"blob" required:"true"`
-
-	_ struct{} `type:"structure" payload:"Payload"`
 }
 
 // String returns the string representation
@@ -166,10 +166,10 @@ func (s DeleteThingShadowOutput) GoString() string {
 
 // The input for the GetThingShadow operation.
 type GetThingShadowInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the thing.
 	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -184,10 +184,10 @@ func (s GetThingShadowInput) GoString() string {
 
 // The output from the GetThingShadow operation.
 type GetThingShadowOutput struct {
+	_ struct{} `type:"structure" payload:"Payload"`
+
 	// The state information, in JSON format.
 	Payload []byte `locationName:"payload" type:"blob"`
-
-	_ struct{} `type:"structure" payload:"Payload"`
 }
 
 // String returns the string representation
@@ -202,6 +202,8 @@ func (s GetThingShadowOutput) GoString() string {
 
 // The input for the Publish operation.
 type PublishInput struct {
+	_ struct{} `type:"structure" payload:"Payload"`
+
 	// The state information, in JSON format.
 	Payload []byte `locationName:"payload" type:"blob"`
 
@@ -210,8 +212,6 @@ type PublishInput struct {
 
 	// The name of the MQTT topic.
 	Topic *string `location:"uri" locationName:"topic" type:"string" required:"true"`
-
-	_ struct{} `type:"structure" payload:"Payload"`
 }
 
 // String returns the string representation
@@ -240,13 +240,13 @@ func (s PublishOutput) GoString() string {
 
 // The input for the UpdateThingShadow operation.
 type UpdateThingShadowInput struct {
+	_ struct{} `type:"structure" payload:"Payload"`
+
 	// The state information, in JSON format.
 	Payload []byte `locationName:"payload" type:"blob" required:"true"`
 
 	// The name of the thing.
 	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
-
-	_ struct{} `type:"structure" payload:"Payload"`
 }
 
 // String returns the string representation
@@ -261,10 +261,10 @@ func (s UpdateThingShadowInput) GoString() string {
 
 // The output from the UpdateThingShadow operation.
 type UpdateThingShadowOutput struct {
+	_ struct{} `type:"structure" payload:"Payload"`
+
 	// The state information, in JSON format.
 	Payload []byte `locationName:"payload" type:"blob"`
-
-	_ struct{} `type:"structure" payload:"Payload"`
 }
 
 // String returns the string representation

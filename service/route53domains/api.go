@@ -632,6 +632,8 @@ func (c *Route53Domains) UpdateTagsForDomain(input *UpdateTagsForDomainInput) (*
 
 // The CheckDomainAvailability request contains the following elements.
 type CheckDomainAvailabilityInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of a domain.
 	//
 	// Type: String
@@ -647,8 +649,6 @@ type CheckDomainAvailabilityInput struct {
 
 	// Reserved for future use.
 	IdnLangCode *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -663,6 +663,8 @@ func (s CheckDomainAvailabilityInput) GoString() string {
 
 // The CheckDomainAvailability response includes the following elements.
 type CheckDomainAvailabilityOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Whether the domain name is available for registering.
 	//
 	//  You can only register domains designated as AVAILABLE.
@@ -682,8 +684,6 @@ type CheckDomainAvailabilityOutput struct {
 	// of reasons, for example, the registry is performing maintenance. Try again
 	// later.
 	Availability *string `type:"string" required:"true" enum:"DomainAvailability"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -698,6 +698,8 @@ func (s CheckDomainAvailabilityOutput) GoString() string {
 
 // ContactDetail includes the following elements.
 type ContactDetail struct {
+	_ struct{} `type:"structure"`
+
 	// First line of the contact's address.
 	//
 	// Type: String
@@ -887,8 +889,6 @@ type ContactDetail struct {
 	//
 	// Required: No
 	ZipCode *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -903,6 +903,8 @@ func (s ContactDetail) GoString() string {
 
 // The DeleteTagsForDomainRequest includes the following elements.
 type DeleteTagsForDomainInput struct {
+	_ struct{} `type:"structure"`
+
 	// The domain for which you want to delete one or more tags.
 	//
 	// The name of a domain.
@@ -930,8 +932,6 @@ type DeleteTagsForDomainInput struct {
 	//
 	// '>
 	TagsToDelete []*string `type:"list" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -959,9 +959,9 @@ func (s DeleteTagsForDomainOutput) GoString() string {
 }
 
 type DisableDomainAutoRenewInput struct {
-	DomainName *string `type:"string" required:"true"`
-
 	_ struct{} `type:"structure"`
+
+	DomainName *string `type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -990,6 +990,8 @@ func (s DisableDomainAutoRenewOutput) GoString() string {
 
 // The DisableDomainTransferLock request includes the following element.
 type DisableDomainTransferLockInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of a domain.
 	//
 	// Type: String
@@ -1002,8 +1004,6 @@ type DisableDomainTransferLockInput struct {
 	//
 	// Required: Yes
 	DomainName *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1018,6 +1018,8 @@ func (s DisableDomainTransferLockInput) GoString() string {
 
 // The DisableDomainTransferLock response includes the following element.
 type DisableDomainTransferLockOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Identifier for tracking the progress of the request. To use this ID to query
 	// the operation status, use GetOperationDetail.
 	//
@@ -1027,8 +1029,6 @@ type DisableDomainTransferLockOutput struct {
 	//
 	// Constraints: Maximum 255 characters.
 	OperationId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1042,6 +1042,8 @@ func (s DisableDomainTransferLockOutput) GoString() string {
 }
 
 type DomainSummary struct {
+	_ struct{} `type:"structure"`
+
 	// Indicates whether the domain is automatically renewed upon expiration.
 	//
 	// Type: Boolean
@@ -1066,8 +1068,6 @@ type DomainSummary struct {
 	//
 	// Valid values: True | False
 	TransferLock *bool `type:"boolean"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1081,9 +1081,9 @@ func (s DomainSummary) GoString() string {
 }
 
 type EnableDomainAutoRenewInput struct {
-	DomainName *string `type:"string" required:"true"`
-
 	_ struct{} `type:"structure"`
+
+	DomainName *string `type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -1112,6 +1112,8 @@ func (s EnableDomainAutoRenewOutput) GoString() string {
 
 // The EnableDomainTransferLock request includes the following element.
 type EnableDomainTransferLockInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of a domain.
 	//
 	// Type: String
@@ -1124,8 +1126,6 @@ type EnableDomainTransferLockInput struct {
 	//
 	// Required: Yes
 	DomainName *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1140,6 +1140,8 @@ func (s EnableDomainTransferLockInput) GoString() string {
 
 // The EnableDomainTransferLock response includes the following elements.
 type EnableDomainTransferLockOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Identifier for tracking the progress of the request. To use this ID to query
 	// the operation status, use GetOperationDetail.
 	//
@@ -1149,8 +1151,6 @@ type EnableDomainTransferLockOutput struct {
 	//
 	// Constraints: Maximum 255 characters.
 	OperationId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1165,6 +1165,8 @@ func (s EnableDomainTransferLockOutput) GoString() string {
 
 // ExtraParam includes the following elements.
 type ExtraParam struct {
+	_ struct{} `type:"structure"`
+
 	// Name of the additional parameter required by the top-level domain.
 	//
 	// Type: String
@@ -1195,8 +1197,6 @@ type ExtraParam struct {
 	//
 	// Required: Yes
 	Value *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1211,6 +1211,8 @@ func (s ExtraParam) GoString() string {
 
 // The GetDomainDetail request includes the following element.
 type GetDomainDetailInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of a domain.
 	//
 	// Type: String
@@ -1223,8 +1225,6 @@ type GetDomainDetailInput struct {
 	//
 	// Required: Yes
 	DomainName *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1239,6 +1239,8 @@ func (s GetDomainDetailInput) GoString() string {
 
 // The GetDomainDetail response includes the following elements.
 type GetDomainDetailOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Email address to contact to report incorrect contact information for a domain,
 	// to report that the domain is being used to send spam, to report that someone
 	// is cybersquatting on a domain name, or report some other type of abuse.
@@ -1375,8 +1377,6 @@ type GetDomainDetailOutput struct {
 	//
 	// Type: String
 	WhoIsServer *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1391,6 +1391,8 @@ func (s GetDomainDetailOutput) GoString() string {
 
 // The GetOperationDetail request includes the following element.
 type GetOperationDetailInput struct {
+	_ struct{} `type:"structure"`
+
 	// The identifier for the operation for which you want to get the status. Amazon
 	// Route 53 returned the identifier in the response to the original request.
 	//
@@ -1400,8 +1402,6 @@ type GetOperationDetailInput struct {
 	//
 	// Required: Yes
 	OperationId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1416,6 +1416,8 @@ func (s GetOperationDetailInput) GoString() string {
 
 // The GetOperationDetail response includes the following elements.
 type GetOperationDetailOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of a domain.
 	//
 	// Type: String
@@ -1443,8 +1445,6 @@ type GetOperationDetailOutput struct {
 	//
 	// Type: String
 	Type *string `type:"string" enum:"OperationType"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1459,6 +1459,8 @@ func (s GetOperationDetailOutput) GoString() string {
 
 // The ListDomains request includes the following elements.
 type ListDomainsInput struct {
+	_ struct{} `type:"structure"`
+
 	// For an initial request for a list of domains, omit this element. If the number
 	// of domains that are associated with the current AWS account is greater than
 	// the value that you specified for MaxItems, you can use Marker to return additional
@@ -1485,8 +1487,6 @@ type ListDomainsInput struct {
 	//
 	// Required: No
 	MaxItems *int64 `type:"integer"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1501,6 +1501,8 @@ func (s ListDomainsInput) GoString() string {
 
 // The ListDomains response includes the following elements.
 type ListDomainsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A summary of domains.
 	//
 	// Type: Complex type containing a list of domain summaries.
@@ -1516,8 +1518,6 @@ type ListDomainsOutput struct {
 	//
 	// Parent: Operations
 	NextPageMarker *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1532,6 +1532,8 @@ func (s ListDomainsOutput) GoString() string {
 
 // The ListOperations request includes the following elements.
 type ListOperationsInput struct {
+	_ struct{} `type:"structure"`
+
 	// For an initial request for a list of operations, omit this element. If the
 	// number of operations that are not yet complete is greater than the value
 	// that you specified for MaxItems, you can use Marker to return additional
@@ -1556,8 +1558,6 @@ type ListOperationsInput struct {
 	//
 	// Required: No
 	MaxItems *int64 `type:"integer"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1572,6 +1572,8 @@ func (s ListOperationsInput) GoString() string {
 
 // The ListOperations response includes the following elements.
 type ListOperationsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// If there are more operations than you specified for MaxItems in the request,
 	// submit another request and include the value of NextPageMarker in the value
 	// of Marker.
@@ -1587,8 +1589,6 @@ type ListOperationsOutput struct {
 	//
 	// Children: OperationId, Status, SubmittedDate, Type
 	Operations []*OperationSummary `type:"list" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1603,10 +1603,10 @@ func (s ListOperationsOutput) GoString() string {
 
 // The ListTagsForDomainRequest includes the following elements.
 type ListTagsForDomainInput struct {
+	_ struct{} `type:"structure"`
+
 	// The domain for which you want to get a list of tags.
 	DomainName *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1621,6 +1621,8 @@ func (s ListTagsForDomainInput) GoString() string {
 
 // The ListTagsForDomain response includes the following elements.
 type ListTagsForDomainOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of the tags that are associated with the specified domain.
 	//
 	// Type: A complex type containing a list of tags
@@ -1639,8 +1641,6 @@ type ListTagsForDomainOutput struct {
 	//
 	// Type: String
 	TagList []*Tag `type:"list" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1655,6 +1655,8 @@ func (s ListTagsForDomainOutput) GoString() string {
 
 // Nameserver includes the following elements.
 type Nameserver struct {
+	_ struct{} `type:"structure"`
+
 	// Glue IP address of a name server entry. Glue IP addresses are required only
 	// when the name of the name server is a subdomain of the domain. For example,
 	// if your domain is example.com and the name server for the domain is ns.example.com,
@@ -1675,8 +1677,6 @@ type Nameserver struct {
 	//
 	// Parent: Nameservers
 	Name *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1691,6 +1691,8 @@ func (s Nameserver) GoString() string {
 
 // OperationSummary includes the following elements.
 type OperationSummary struct {
+	_ struct{} `type:"structure"`
+
 	// Identifier returned to track the requested action.
 	//
 	// Type: String
@@ -1711,8 +1713,6 @@ type OperationSummary struct {
 	// Valid values: REGISTER_DOMAIN | DELETE_DOMAIN | TRANSFER_IN_DOMAIN | UPDATE_DOMAIN_CONTACT
 	// | UPDATE_NAMESERVER | CHANGE_PRIVACY_PROTECTION | DOMAIN_LOCK
 	Type *string `type:"string" required:"true" enum:"OperationType"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1727,6 +1727,8 @@ func (s OperationSummary) GoString() string {
 
 // The RegisterDomain request includes the following elements.
 type RegisterDomainInput struct {
+	_ struct{} `type:"structure"`
+
 	// Provides detailed contact information.
 	//
 	// Type: Complex
@@ -1841,8 +1843,6 @@ type RegisterDomainInput struct {
 	//
 	// Required: Yes
 	TechContact *ContactDetail `type:"structure" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1857,6 +1857,8 @@ func (s RegisterDomainInput) GoString() string {
 
 // The RegisterDomain response includes the following element.
 type RegisterDomainOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Identifier for tracking the progress of the request. To use this ID to query
 	// the operation status, use GetOperationDetail.
 	//
@@ -1866,8 +1868,6 @@ type RegisterDomainOutput struct {
 	//
 	// Constraints: Maximum 255 characters.
 	OperationId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1882,6 +1882,8 @@ func (s RegisterDomainOutput) GoString() string {
 
 // The RetrieveDomainAuthCode request includes the following element.
 type RetrieveDomainAuthCodeInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of a domain.
 	//
 	// Type: String
@@ -1894,8 +1896,6 @@ type RetrieveDomainAuthCodeInput struct {
 	//
 	// Required: Yes
 	DomainName *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1910,12 +1910,12 @@ func (s RetrieveDomainAuthCodeInput) GoString() string {
 
 // The RetrieveDomainAuthCode response includes the following element.
 type RetrieveDomainAuthCodeOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The authorization code for the domain.
 	//
 	// Type: String
 	AuthCode *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1930,6 +1930,8 @@ func (s RetrieveDomainAuthCodeOutput) GoString() string {
 
 // Each tag includes the following elements.
 type Tag struct {
+	_ struct{} `type:"structure"`
+
 	// The key (name) of a tag.
 	//
 	// Type: String
@@ -1955,8 +1957,6 @@ type Tag struct {
 	//
 	// Required: Yes
 	Value *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1971,6 +1971,8 @@ func (s Tag) GoString() string {
 
 // The TransferDomain request includes the following elements.
 type TransferDomainInput struct {
+	_ struct{} `type:"structure"`
+
 	// Provides detailed contact information.
 	//
 	// Type: Complex
@@ -2102,8 +2104,6 @@ type TransferDomainInput struct {
 	//
 	// Required: Yes
 	TechContact *ContactDetail `type:"structure" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2118,6 +2118,8 @@ func (s TransferDomainInput) GoString() string {
 
 // The TranserDomain response includes the following element.
 type TransferDomainOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Identifier for tracking the progress of the request. To use this ID to query
 	// the operation status, use GetOperationDetail.
 	//
@@ -2127,8 +2129,6 @@ type TransferDomainOutput struct {
 	//
 	// Constraints: Maximum 255 characters.
 	OperationId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2143,6 +2143,8 @@ func (s TransferDomainOutput) GoString() string {
 
 // The UpdateDomainContact request includes the following elements.
 type UpdateDomainContactInput struct {
+	_ struct{} `type:"structure"`
+
 	// Provides detailed contact information.
 	//
 	// Type: Complex
@@ -2188,8 +2190,6 @@ type UpdateDomainContactInput struct {
 	//
 	// Required: Yes
 	TechContact *ContactDetail `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2204,6 +2204,8 @@ func (s UpdateDomainContactInput) GoString() string {
 
 // The UpdateDomainContact response includes the following element.
 type UpdateDomainContactOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Identifier for tracking the progress of the request. To use this ID to query
 	// the operation status, use GetOperationDetail.
 	//
@@ -2213,8 +2215,6 @@ type UpdateDomainContactOutput struct {
 	//
 	// Constraints: Maximum 255 characters.
 	OperationId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2229,6 +2229,8 @@ func (s UpdateDomainContactOutput) GoString() string {
 
 // The UpdateDomainContactPrivacy request includes the following elements.
 type UpdateDomainContactPrivacyInput struct {
+	_ struct{} `type:"structure"`
+
 	// Whether you want to conceal contact information from WHOIS queries. If you
 	// specify true, WHOIS ("who is") queries will return contact information for
 	// our registrar partner, Gandi, instead of the contact information that you
@@ -2283,8 +2285,6 @@ type UpdateDomainContactPrivacyInput struct {
 	//
 	// Required: No
 	TechPrivacy *bool `type:"boolean"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2299,6 +2299,8 @@ func (s UpdateDomainContactPrivacyInput) GoString() string {
 
 // The UpdateDomainContactPrivacy response includes the following element.
 type UpdateDomainContactPrivacyOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Identifier for tracking the progress of the request. To use this ID to query
 	// the operation status, use GetOperationDetail.
 	//
@@ -2308,8 +2310,6 @@ type UpdateDomainContactPrivacyOutput struct {
 	//
 	// Constraints: Maximum 255 characters.
 	OperationId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2324,6 +2324,8 @@ func (s UpdateDomainContactPrivacyOutput) GoString() string {
 
 // The UpdateDomainNameserver request includes the following elements.
 type UpdateDomainNameserversInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of a domain.
 	//
 	// Type: String
@@ -2348,8 +2350,6 @@ type UpdateDomainNameserversInput struct {
 	//
 	// Required: Yes
 	Nameservers []*Nameserver `type:"list" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2364,6 +2364,8 @@ func (s UpdateDomainNameserversInput) GoString() string {
 
 // The UpdateDomainNameservers response includes the following element.
 type UpdateDomainNameserversOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Identifier for tracking the progress of the request. To use this ID to query
 	// the operation status, use GetOperationDetail.
 	//
@@ -2373,8 +2375,6 @@ type UpdateDomainNameserversOutput struct {
 	//
 	// Constraints: Maximum 255 characters.
 	OperationId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2389,6 +2389,8 @@ func (s UpdateDomainNameserversOutput) GoString() string {
 
 // The UpdateTagsForDomainRequest includes the following elements.
 type UpdateTagsForDomainInput struct {
+	_ struct{} `type:"structure"`
+
 	// The domain for which you want to add or update tags.
 	//
 	// The name of a domain.
@@ -2445,8 +2447,6 @@ type UpdateTagsForDomainInput struct {
 	//
 	// Required: Yes
 	TagsToUpdate []*Tag `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

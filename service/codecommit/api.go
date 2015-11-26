@@ -340,10 +340,10 @@ func (c *CodeCommit) UpdateRepositoryName(input *UpdateRepositoryNameInput) (*Up
 
 // Represents the input of a batch get repositories operation.
 type BatchGetRepositoriesInput struct {
+	_ struct{} `type:"structure"`
+
 	// The names of the repositories to get information about.
 	RepositoryNames []*string `locationName:"repositoryNames" type:"list" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -358,13 +358,13 @@ func (s BatchGetRepositoriesInput) GoString() string {
 
 // Represents the output of a batch get repositories operation.
 type BatchGetRepositoriesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of repositories returned by the batch get repositories operation.
 	Repositories []*RepositoryMetadata `locationName:"repositories" type:"list"`
 
 	// Returns a list of repository names for which information could not be found.
 	RepositoriesNotFound []*string `locationName:"repositoriesNotFound" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -379,13 +379,13 @@ func (s BatchGetRepositoriesOutput) GoString() string {
 
 // Returns information about a branch.
 type BranchInfo struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the branch.
 	BranchName *string `locationName:"branchName" min:"1" type:"string"`
 
 	// The ID of the last commit made to the branch.
 	CommitId *string `locationName:"commitId" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -400,6 +400,8 @@ func (s BranchInfo) GoString() string {
 
 // Represents the input of a create branch operation.
 type CreateBranchInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the new branch to create.
 	BranchName *string `locationName:"branchName" min:"1" type:"string" required:"true"`
 
@@ -411,8 +413,6 @@ type CreateBranchInput struct {
 
 	// The name of the repository in which you want to create the new branch.
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -441,6 +441,8 @@ func (s CreateBranchOutput) GoString() string {
 
 // Represents the input of a create repository operation.
 type CreateRepositoryInput struct {
+	_ struct{} `type:"structure"`
+
 	// A comment or description about the new repository.
 	RepositoryDescription *string `locationName:"repositoryDescription" type:"string"`
 
@@ -450,8 +452,6 @@ type CreateRepositoryInput struct {
 	// repository names are restricted to alphanumeric characters. The suffix ".git"
 	// is prohibited.
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -466,10 +466,10 @@ func (s CreateRepositoryInput) GoString() string {
 
 // Represents the output of a create repository operation.
 type CreateRepositoryOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Information about the newly created repository.
 	RepositoryMetadata *RepositoryMetadata `locationName:"repositoryMetadata" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -484,10 +484,10 @@ func (s CreateRepositoryOutput) GoString() string {
 
 // Represents the input of a delete repository operation.
 type DeleteRepositoryInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the repository to delete.
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -502,10 +502,10 @@ func (s DeleteRepositoryInput) GoString() string {
 
 // Represents the output of a delete repository operation.
 type DeleteRepositoryOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the repository that was deleted.
 	RepositoryId *string `locationName:"repositoryId" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -520,6 +520,8 @@ func (s DeleteRepositoryOutput) GoString() string {
 
 // Represents the input of a get branch operation.
 type GetBranchInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the branch for which you want to retrieve information.
 	BranchName *string `locationName:"branchName" min:"1" type:"string"`
 
@@ -527,8 +529,6 @@ type GetBranchInput struct {
 	// ".", "_", and "-". Additionally, the suffix ".git" is prohibited in a repository
 	// name.
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -543,10 +543,10 @@ func (s GetBranchInput) GoString() string {
 
 // Represents the output of a get branch operation.
 type GetBranchOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the branch.
 	Branch *BranchInfo `locationName:"branch" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -561,10 +561,10 @@ func (s GetBranchOutput) GoString() string {
 
 // Represents the input of a get repository operation.
 type GetRepositoryInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the repository to get information about.
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -579,10 +579,10 @@ func (s GetRepositoryInput) GoString() string {
 
 // Represents the output of a get repository operation.
 type GetRepositoryOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Information about the repository.
 	RepositoryMetadata *RepositoryMetadata `locationName:"repositoryMetadata" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -597,13 +597,13 @@ func (s GetRepositoryOutput) GoString() string {
 
 // Represents the input of a list branches operation.
 type ListBranchesInput struct {
+	_ struct{} `type:"structure"`
+
 	// An enumeration token that allows the operation to batch the results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The name of the repository that contains the branches.
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -618,13 +618,13 @@ func (s ListBranchesInput) GoString() string {
 
 // Represents the output of a list branches operation.
 type ListBranchesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The list of branch names.
 	Branches []*string `locationName:"branches" type:"list"`
 
 	// An enumeration token that returns the batch of the results.
 	NextToken *string `locationName:"nextToken" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -639,6 +639,8 @@ func (s ListBranchesOutput) GoString() string {
 
 // Represents the input of a list repositories operation.
 type ListRepositoriesInput struct {
+	_ struct{} `type:"structure"`
+
 	// An enumeration token that allows the operation to batch the results of the
 	// operation. Batch sizes are 1,000 for list repository operations. When the
 	// client sends the token back to AWS CodeCommit, another page of 1,000 records
@@ -650,8 +652,6 @@ type ListRepositoriesInput struct {
 
 	// The criteria used to sort the results of a list repositories operation.
 	SortBy *string `locationName:"sortBy" type:"string" enum:"SortByEnum"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -666,6 +666,8 @@ func (s ListRepositoriesInput) GoString() string {
 
 // Represents the output of a list repositories operation.
 type ListRepositoriesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// An enumeration token that allows the operation to batch the results of the
 	// operation. Batch sizes are 1,000 for list repository operations. When the
 	// client sends the token back to AWS CodeCommit, another page of 1,000 records
@@ -674,8 +676,6 @@ type ListRepositoriesOutput struct {
 
 	// Lists the repositories called by the list repositories operation.
 	Repositories []*RepositoryNameIdPair `locationName:"repositories" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -690,6 +690,8 @@ func (s ListRepositoriesOutput) GoString() string {
 
 // Information about a repository.
 type RepositoryMetadata struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the AWS account associated with the repository.
 	AccountId *string `locationName:"accountId" type:"string"`
 
@@ -719,8 +721,6 @@ type RepositoryMetadata struct {
 
 	// The repository's name.
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -735,6 +735,8 @@ func (s RepositoryMetadata) GoString() string {
 
 // Information about a repository name and ID.
 type RepositoryNameIdPair struct {
+	_ struct{} `type:"structure"`
+
 	// The ID associated with the repository name.
 	RepositoryId *string `locationName:"repositoryId" type:"string"`
 
@@ -742,8 +744,6 @@ type RepositoryNameIdPair struct {
 	// ".", "_", and "-". Additionally, the suffix ".git" is prohibited in a repository
 	// name.
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -758,13 +758,13 @@ func (s RepositoryNameIdPair) GoString() string {
 
 // Represents the input of an update default branch operation.
 type UpdateDefaultBranchInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the branch to set as the default.
 	DefaultBranchName *string `locationName:"defaultBranchName" min:"1" type:"string" required:"true"`
 
 	// The name of the repository to set or change the default branch for.
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -793,13 +793,13 @@ func (s UpdateDefaultBranchOutput) GoString() string {
 
 // Represents the input of an update repository description operation.
 type UpdateRepositoryDescriptionInput struct {
+	_ struct{} `type:"structure"`
+
 	// The new comment or description for the specified repository.
 	RepositoryDescription *string `locationName:"repositoryDescription" type:"string"`
 
 	// The name of the repository to set or change the comment or description for.
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -828,6 +828,8 @@ func (s UpdateRepositoryDescriptionOutput) GoString() string {
 
 // Represents the input of an update repository description operation.
 type UpdateRepositoryNameInput struct {
+	_ struct{} `type:"structure"`
+
 	// Repository name is restricted to alphanumeric characters (a-z, A-Z, 0-9),
 	// ".", "_", and "-". Additionally, the suffix ".git" is prohibited in a repository
 	// name.
@@ -837,8 +839,6 @@ type UpdateRepositoryNameInput struct {
 	// ".", "_", and "-". Additionally, the suffix ".git" is prohibited in a repository
 	// name.
 	OldName *string `locationName:"oldName" min:"1" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

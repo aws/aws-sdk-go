@@ -580,6 +580,8 @@ func (c *CognitoIdentity) UpdateIdentityPool(input *IdentityPool) (*IdentityPool
 
 // Input to the CreateIdentityPool action.
 type CreateIdentityPoolInput struct {
+	_ struct{} `type:"structure"`
+
 	// TRUE if the identity pool supports unauthenticated logins.
 	AllowUnauthenticatedIdentities *bool `type:"boolean" required:"true"`
 
@@ -600,8 +602,6 @@ type CreateIdentityPoolInput struct {
 
 	// Optional key:value pairs mapping provider names to provider app IDs.
 	SupportedLoginProviders map[string]*string `type:"map"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -616,6 +616,8 @@ func (s CreateIdentityPoolInput) GoString() string {
 
 // Credentials for the the provided identity ID.
 type Credentials struct {
+	_ struct{} `type:"structure"`
+
 	// The Access Key portion of the credentials.
 	AccessKeyId *string `type:"string"`
 
@@ -627,8 +629,6 @@ type Credentials struct {
 
 	// The Session Token portion of the credentials
 	SessionToken *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -643,10 +643,10 @@ func (s Credentials) GoString() string {
 
 // Input to the DeleteIdentities action.
 type DeleteIdentitiesInput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of 1-60 identities that you want to delete.
 	IdentityIdsToDelete []*string `min:"1" type:"list" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -661,11 +661,11 @@ func (s DeleteIdentitiesInput) GoString() string {
 
 // Returned in response to a successful DeleteIdentities operation.
 type DeleteIdentitiesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of UnprocessedIdentityId objects, each of which contains an ErrorCode
 	// and IdentityId.
 	UnprocessedIdentityIds []*UnprocessedIdentityId `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -680,10 +680,10 @@ func (s DeleteIdentitiesOutput) GoString() string {
 
 // Input to the DeleteIdentityPool action.
 type DeleteIdentityPoolInput struct {
+	_ struct{} `type:"structure"`
+
 	// An identity pool ID in the format REGION:GUID.
 	IdentityPoolId *string `min:"1" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -712,10 +712,10 @@ func (s DeleteIdentityPoolOutput) GoString() string {
 
 // Input to the DescribeIdentity action.
 type DescribeIdentityInput struct {
+	_ struct{} `type:"structure"`
+
 	// A unique identifier in the format REGION:GUID.
 	IdentityId *string `min:"1" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -730,10 +730,10 @@ func (s DescribeIdentityInput) GoString() string {
 
 // Input to the DescribeIdentityPool action.
 type DescribeIdentityPoolInput struct {
+	_ struct{} `type:"structure"`
+
 	// An identity pool ID in the format REGION:GUID.
 	IdentityPoolId *string `min:"1" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -748,13 +748,13 @@ func (s DescribeIdentityPoolInput) GoString() string {
 
 // Input to the GetCredentialsForIdentity action.
 type GetCredentialsForIdentityInput struct {
+	_ struct{} `type:"structure"`
+
 	// A unique identifier in the format REGION:GUID.
 	IdentityId *string `min:"1" type:"string" required:"true"`
 
 	// A set of optional name-value pairs that map provider names to provider tokens.
 	Logins map[string]*string `type:"map"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -769,13 +769,13 @@ func (s GetCredentialsForIdentityInput) GoString() string {
 
 // Returned in response to a successful GetCredentialsForIdentity operation.
 type GetCredentialsForIdentityOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Credentials for the the provided identity ID.
 	Credentials *Credentials `type:"structure"`
 
 	// A unique identifier in the format REGION:GUID.
 	IdentityId *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -790,6 +790,8 @@ func (s GetCredentialsForIdentityOutput) GoString() string {
 
 // Input to the GetId action.
 type GetIdInput struct {
+	_ struct{} `type:"structure"`
+
 	// A standard AWS account ID (9+ digits).
 	AccountId *string `min:"1" type:"string"`
 
@@ -802,8 +804,6 @@ type GetIdInput struct {
 	//  Google: accounts.google.com  Amazon: www.amazon.com  Twitter: www.twitter.com
 	//  Digits: www.digits.com
 	Logins map[string]*string `type:"map"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -818,10 +818,10 @@ func (s GetIdInput) GoString() string {
 
 // Returned in response to a GetId request.
 type GetIdOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A unique identifier in the format REGION:GUID.
 	IdentityId *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -836,10 +836,10 @@ func (s GetIdOutput) GoString() string {
 
 // Input to the GetIdentityPoolRoles action.
 type GetIdentityPoolRolesInput struct {
+	_ struct{} `type:"structure"`
+
 	// An identity pool ID in the format REGION:GUID.
 	IdentityPoolId *string `min:"1" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -854,14 +854,14 @@ func (s GetIdentityPoolRolesInput) GoString() string {
 
 // Returned in response to a successful GetIdentityPoolRoles operation.
 type GetIdentityPoolRolesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// An identity pool ID in the format REGION:GUID.
 	IdentityPoolId *string `min:"1" type:"string"`
 
 	// The map of roles associated with this pool. Currently only authenticated
 	// and unauthenticated roles are supported.
 	Roles map[string]*string `type:"map"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -876,6 +876,8 @@ func (s GetIdentityPoolRolesOutput) GoString() string {
 
 // Input to the GetOpenIdTokenForDeveloperIdentity action.
 type GetOpenIdTokenForDeveloperIdentityInput struct {
+	_ struct{} `type:"structure"`
+
 	// A unique identifier in the format REGION:GUID.
 	IdentityId *string `min:"1" type:"string"`
 
@@ -902,8 +904,6 @@ type GetOpenIdTokenForDeveloperIdentityInput struct {
 	// security implications: an attacker could use a leaked token to access your
 	// AWS resources for the token's duration.
 	TokenDuration *int64 `min:"1" type:"long"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -918,13 +918,13 @@ func (s GetOpenIdTokenForDeveloperIdentityInput) GoString() string {
 
 // Returned in response to a successful GetOpenIdTokenForDeveloperIdentity request.
 type GetOpenIdTokenForDeveloperIdentityOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A unique identifier in the format REGION:GUID.
 	IdentityId *string `min:"1" type:"string"`
 
 	// An OpenID token.
 	Token *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -939,6 +939,8 @@ func (s GetOpenIdTokenForDeveloperIdentityOutput) GoString() string {
 
 // Input to the GetOpenIdToken action.
 type GetOpenIdTokenInput struct {
+	_ struct{} `type:"structure"`
+
 	// A unique identifier in the format REGION:GUID.
 	IdentityId *string `min:"1" type:"string" required:"true"`
 
@@ -947,8 +949,6 @@ type GetOpenIdTokenInput struct {
 	// returned from the provider's authflow. For accounts.google.com or any other
 	// OpenId Connect provider, always include the id_token.
 	Logins map[string]*string `type:"map"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -963,14 +963,14 @@ func (s GetOpenIdTokenInput) GoString() string {
 
 // Returned in response to a successful GetOpenIdToken request.
 type GetOpenIdTokenOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A unique identifier in the format REGION:GUID. Note that the IdentityId returned
 	// may not match the one passed on input.
 	IdentityId *string `min:"1" type:"string"`
 
 	// An OpenID token, valid for 15 minutes.
 	Token *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -985,6 +985,8 @@ func (s GetOpenIdTokenOutput) GoString() string {
 
 // A description of the identity.
 type IdentityDescription struct {
+	_ struct{} `type:"structure"`
+
 	// Date on which the identity was created.
 	CreationDate *time.Time `type:"timestamp" timestampFormat:"unix"`
 
@@ -996,8 +998,6 @@ type IdentityDescription struct {
 
 	// A set of optional name-value pairs that map provider names to provider tokens.
 	Logins []*string `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1012,6 +1012,8 @@ func (s IdentityDescription) GoString() string {
 
 // An object representing a Cognito identity pool.
 type IdentityPool struct {
+	_ struct{} `type:"structure"`
+
 	// TRUE if the identity pool supports unauthenticated logins.
 	AllowUnauthenticatedIdentities *bool `type:"boolean" required:"true"`
 
@@ -1029,8 +1031,6 @@ type IdentityPool struct {
 
 	// Optional key:value pairs mapping provider names to provider app IDs.
 	SupportedLoginProviders map[string]*string `type:"map"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1045,13 +1045,13 @@ func (s IdentityPool) GoString() string {
 
 // A description of the identity pool.
 type IdentityPoolShortDescription struct {
+	_ struct{} `type:"structure"`
+
 	// An identity pool ID in the format REGION:GUID.
 	IdentityPoolId *string `min:"1" type:"string"`
 
 	// A string that you provide.
 	IdentityPoolName *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1066,6 +1066,8 @@ func (s IdentityPoolShortDescription) GoString() string {
 
 // Input to the ListIdentities action.
 type ListIdentitiesInput struct {
+	_ struct{} `type:"structure"`
+
 	// An optional boolean parameter that allows you to hide disabled identities.
 	// If omitted, the ListIdentities API will include disabled identities in the
 	// response.
@@ -1079,8 +1081,6 @@ type ListIdentitiesInput struct {
 
 	// A pagination token.
 	NextToken *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1095,6 +1095,8 @@ func (s ListIdentitiesInput) GoString() string {
 
 // The response to a ListIdentities request.
 type ListIdentitiesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// An object containing a set of identities and associated mappings.
 	Identities []*IdentityDescription `type:"list"`
 
@@ -1103,8 +1105,6 @@ type ListIdentitiesOutput struct {
 
 	// A pagination token.
 	NextToken *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1119,13 +1119,13 @@ func (s ListIdentitiesOutput) GoString() string {
 
 // Input to the ListIdentityPools action.
 type ListIdentityPoolsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The maximum number of identities to return.
 	MaxResults *int64 `min:"1" type:"integer" required:"true"`
 
 	// A pagination token.
 	NextToken *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1140,13 +1140,13 @@ func (s ListIdentityPoolsInput) GoString() string {
 
 // The result of a successful ListIdentityPools action.
 type ListIdentityPoolsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The identity pools returned by the ListIdentityPools action.
 	IdentityPools []*IdentityPoolShortDescription `type:"list"`
 
 	// A pagination token.
 	NextToken *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1161,6 +1161,8 @@ func (s ListIdentityPoolsOutput) GoString() string {
 
 // Input to the LookupDeveloperIdentityInput action.
 type LookupDeveloperIdentityInput struct {
+	_ struct{} `type:"structure"`
+
 	// A unique ID used by your backend authentication process to identify a user.
 	// Typically, a developer identity provider would issue many developer user
 	// identifiers, in keeping with the number of users.
@@ -1182,8 +1184,6 @@ type LookupDeveloperIdentityInput struct {
 	// part of the response. This token can be used to call the API again and get
 	// results starting from the 11th match.
 	NextToken *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1198,6 +1198,8 @@ func (s LookupDeveloperIdentityInput) GoString() string {
 
 // Returned in response to a successful LookupDeveloperIdentity action.
 type LookupDeveloperIdentityOutput struct {
+	_ struct{} `type:"structure"`
+
 	// This is the list of developer user identifiers associated with an identity
 	// ID. Cognito supports the association of multiple developer user identifiers
 	// with an identity ID.
@@ -1213,8 +1215,6 @@ type LookupDeveloperIdentityOutput struct {
 	// part of the response. This token can be used to call the API again and get
 	// results starting from the 11th match.
 	NextToken *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1229,6 +1229,8 @@ func (s LookupDeveloperIdentityOutput) GoString() string {
 
 // Input to the MergeDeveloperIdentities action.
 type MergeDeveloperIdentitiesInput struct {
+	_ struct{} `type:"structure"`
+
 	// User identifier for the destination user. The value should be a DeveloperUserIdentifier.
 	DestinationUserIdentifier *string `min:"1" type:"string" required:"true"`
 
@@ -1244,8 +1246,6 @@ type MergeDeveloperIdentitiesInput struct {
 
 	// User identifier for the source user. The value should be a DeveloperUserIdentifier.
 	SourceUserIdentifier *string `min:"1" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1260,10 +1260,10 @@ func (s MergeDeveloperIdentitiesInput) GoString() string {
 
 // Returned in response to a successful MergeDeveloperIdentities action.
 type MergeDeveloperIdentitiesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A unique identifier in the format REGION:GUID.
 	IdentityId *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1278,6 +1278,8 @@ func (s MergeDeveloperIdentitiesOutput) GoString() string {
 
 // Input to the SetIdentityPoolRoles action.
 type SetIdentityPoolRolesInput struct {
+	_ struct{} `type:"structure"`
+
 	// An identity pool ID in the format REGION:GUID.
 	IdentityPoolId *string `min:"1" type:"string" required:"true"`
 
@@ -1285,8 +1287,6 @@ type SetIdentityPoolRolesInput struct {
 	// be either "authenticated" or "unauthenticated" and the value will be the
 	// Role ARN.
 	Roles map[string]*string `type:"map" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1315,6 +1315,8 @@ func (s SetIdentityPoolRolesOutput) GoString() string {
 
 // Input to the UnlinkDeveloperIdentity action.
 type UnlinkDeveloperIdentityInput struct {
+	_ struct{} `type:"structure"`
+
 	// The "domain" by which Cognito will refer to your users.
 	DeveloperProviderName *string `min:"1" type:"string" required:"true"`
 
@@ -1326,8 +1328,6 @@ type UnlinkDeveloperIdentityInput struct {
 
 	// An identity pool ID in the format REGION:GUID.
 	IdentityPoolId *string `min:"1" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1356,6 +1356,8 @@ func (s UnlinkDeveloperIdentityOutput) GoString() string {
 
 // Input to the UnlinkIdentity action.
 type UnlinkIdentityInput struct {
+	_ struct{} `type:"structure"`
+
 	// A unique identifier in the format REGION:GUID.
 	IdentityId *string `min:"1" type:"string" required:"true"`
 
@@ -1364,8 +1366,6 @@ type UnlinkIdentityInput struct {
 
 	// Provider names to unlink from this identity.
 	LoginsToRemove []*string `type:"list" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1395,13 +1395,13 @@ func (s UnlinkIdentityOutput) GoString() string {
 // An array of UnprocessedIdentityId objects, each of which contains an ErrorCode
 // and IdentityId.
 type UnprocessedIdentityId struct {
+	_ struct{} `type:"structure"`
+
 	// The error code indicating the type of error that occurred.
 	ErrorCode *string `type:"string" enum:"ErrorCode"`
 
 	// A unique identifier in the format REGION:GUID.
 	IdentityId *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

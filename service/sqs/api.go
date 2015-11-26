@@ -738,6 +738,8 @@ func (c *SQS) SetQueueAttributes(input *SetQueueAttributesInput) (*SetQueueAttri
 }
 
 type AddPermissionInput struct {
+	_ struct{} `type:"structure"`
+
 	// The AWS account number of the principal (http://docs.aws.amazon.com/general/latest/gr/glos-chap.html#P)
 	// who will be given permission. The principal must have an AWS account, but
 	// does not need to be signed up for Amazon SQS. For information about locating
@@ -763,8 +765,6 @@ type AddPermissionInput struct {
 
 	// The URL of the Amazon SQS queue to take action on.
 	QueueUrl *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -794,6 +794,8 @@ func (s AddPermissionOutput) GoString() string {
 // This is used in the responses of batch API to give a detailed description
 // of the result of an action on each entry in the request.
 type BatchResultErrorEntry struct {
+	_ struct{} `type:"structure"`
+
 	// An error code representing why the action failed on this entry.
 	Code *string `type:"string" required:"true"`
 
@@ -805,8 +807,6 @@ type BatchResultErrorEntry struct {
 
 	// Whether the error happened due to the sender's fault.
 	SenderFault *bool `type:"boolean" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -820,14 +820,14 @@ func (s BatchResultErrorEntry) GoString() string {
 }
 
 type ChangeMessageVisibilityBatchInput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of receipt handles of the messages for which the visibility timeout
 	// must be changed.
 	Entries []*ChangeMessageVisibilityBatchRequestEntry `locationNameList:"ChangeMessageVisibilityBatchRequestEntry" type:"list" flattened:"true" required:"true"`
 
 	// The URL of the Amazon SQS queue to take action on.
 	QueueUrl *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -844,13 +844,13 @@ func (s ChangeMessageVisibilityBatchInput) GoString() string {
 // tag if the message succeeds or a BatchResultErrorEntry tag if the message
 // fails.
 type ChangeMessageVisibilityBatchOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of BatchResultErrorEntry items.
 	Failed []*BatchResultErrorEntry `locationNameList:"BatchResultErrorEntry" type:"list" flattened:"true" required:"true"`
 
 	// A list of ChangeMessageVisibilityBatchResultEntry items.
 	Successful []*ChangeMessageVisibilityBatchResultEntry `locationNameList:"ChangeMessageVisibilityBatchResultEntry" type:"list" flattened:"true" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -876,6 +876,8 @@ func (s ChangeMessageVisibilityBatchOutput) GoString() string {
 //
 // &ChangeMessageVisibilityBatchRequestEntry.1.VisibilityTimeout=45
 type ChangeMessageVisibilityBatchRequestEntry struct {
+	_ struct{} `type:"structure"`
+
 	// An identifier for this particular receipt handle. This is used to communicate
 	// the result. Note that the Ids of a batch request need to be unique within
 	// the request.
@@ -886,8 +888,6 @@ type ChangeMessageVisibilityBatchRequestEntry struct {
 
 	// The new value (in seconds) for the message's visibility timeout.
 	VisibilityTimeout *int64 `type:"integer"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -902,10 +902,10 @@ func (s ChangeMessageVisibilityBatchRequestEntry) GoString() string {
 
 // Encloses the id of an entry in ChangeMessageVisibilityBatch.
 type ChangeMessageVisibilityBatchResultEntry struct {
+	_ struct{} `type:"structure"`
+
 	// Represents a message whose visibility timeout has been changed successfully.
 	Id *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -919,6 +919,8 @@ func (s ChangeMessageVisibilityBatchResultEntry) GoString() string {
 }
 
 type ChangeMessageVisibilityInput struct {
+	_ struct{} `type:"structure"`
+
 	// The URL of the Amazon SQS queue to take action on.
 	QueueUrl *string `type:"string" required:"true"`
 
@@ -929,8 +931,6 @@ type ChangeMessageVisibilityInput struct {
 	// The new value (in seconds - from 0 to 43200 - maximum 12 hours) for the message's
 	// visibility timeout.
 	VisibilityTimeout *int64 `type:"integer" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -958,6 +958,8 @@ func (s ChangeMessageVisibilityOutput) GoString() string {
 }
 
 type CreateQueueInput struct {
+	_ struct{} `type:"structure"`
+
 	// A map of attributes with their corresponding values.
 	//
 	// The following lists the names, descriptions, and values of the special request
@@ -984,8 +986,6 @@ type CreateQueueInput struct {
 
 	// The name for the queue to be created.
 	QueueName *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1000,10 +1000,10 @@ func (s CreateQueueInput) GoString() string {
 
 // Returns the QueueUrl element of the created queue.
 type CreateQueueOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The URL for the created Amazon SQS queue.
 	QueueUrl *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1017,13 +1017,13 @@ func (s CreateQueueOutput) GoString() string {
 }
 
 type DeleteMessageBatchInput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of receipt handles for the messages to be deleted.
 	Entries []*DeleteMessageBatchRequestEntry `locationNameList:"DeleteMessageBatchRequestEntry" type:"list" flattened:"true" required:"true"`
 
 	// The URL of the Amazon SQS queue to take action on.
 	QueueUrl *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1040,13 +1040,13 @@ func (s DeleteMessageBatchInput) GoString() string {
 // tag if the message is deleted or a BatchResultErrorEntry tag if the message
 // cannot be deleted.
 type DeleteMessageBatchOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of BatchResultErrorEntry items.
 	Failed []*BatchResultErrorEntry `locationNameList:"BatchResultErrorEntry" type:"list" flattened:"true" required:"true"`
 
 	// A list of DeleteMessageBatchResultEntry items.
 	Successful []*DeleteMessageBatchResultEntry `locationNameList:"DeleteMessageBatchResultEntry" type:"list" flattened:"true" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1061,6 +1061,8 @@ func (s DeleteMessageBatchOutput) GoString() string {
 
 // Encloses a receipt handle and an identifier for it.
 type DeleteMessageBatchRequestEntry struct {
+	_ struct{} `type:"structure"`
+
 	// An identifier for this particular receipt handle. This is used to communicate
 	// the result. Note that the Ids of a batch request need to be unique within
 	// the request.
@@ -1068,8 +1070,6 @@ type DeleteMessageBatchRequestEntry struct {
 
 	// A receipt handle.
 	ReceiptHandle *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1084,10 +1084,10 @@ func (s DeleteMessageBatchRequestEntry) GoString() string {
 
 // Encloses the id an entry in DeleteMessageBatch.
 type DeleteMessageBatchResultEntry struct {
+	_ struct{} `type:"structure"`
+
 	// Represents a successfully deleted message.
 	Id *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1101,13 +1101,13 @@ func (s DeleteMessageBatchResultEntry) GoString() string {
 }
 
 type DeleteMessageInput struct {
+	_ struct{} `type:"structure"`
+
 	// The URL of the Amazon SQS queue to take action on.
 	QueueUrl *string `type:"string" required:"true"`
 
 	// The receipt handle associated with the message to delete.
 	ReceiptHandle *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1135,10 +1135,10 @@ func (s DeleteMessageOutput) GoString() string {
 }
 
 type DeleteQueueInput struct {
+	_ struct{} `type:"structure"`
+
 	// The URL of the Amazon SQS queue to take action on.
 	QueueUrl *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1166,13 +1166,13 @@ func (s DeleteQueueOutput) GoString() string {
 }
 
 type GetQueueAttributesInput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of attributes to retrieve information for.
 	AttributeNames []*string `locationNameList:"AttributeName" type:"list" flattened:"true"`
 
 	// The URL of the Amazon SQS queue to take action on.
 	QueueUrl *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1187,10 +1187,10 @@ func (s GetQueueAttributesInput) GoString() string {
 
 // A list of returned queue attributes.
 type GetQueueAttributesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A map of attributes to the respective values.
 	Attributes map[string]*string `locationName:"Attribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1204,14 +1204,14 @@ func (s GetQueueAttributesOutput) GoString() string {
 }
 
 type GetQueueUrlInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the queue whose URL must be fetched. Maximum 80 characters; alphanumeric
 	// characters, hyphens (-), and underscores (_) are allowed.
 	QueueName *string `type:"string" required:"true"`
 
 	// The AWS account ID of the account that created the queue.
 	QueueOwnerAWSAccountId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1227,10 +1227,10 @@ func (s GetQueueUrlInput) GoString() string {
 // For more information, see Responses (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/UnderstandingResponses.html)
 // in the Amazon SQS Developer Guide.
 type GetQueueUrlOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The URL for the queue.
 	QueueUrl *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1244,10 +1244,10 @@ func (s GetQueueUrlOutput) GoString() string {
 }
 
 type ListDeadLetterSourceQueuesInput struct {
+	_ struct{} `type:"structure"`
+
 	// The queue URL of a dead letter queue.
 	QueueUrl *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1262,11 +1262,11 @@ func (s ListDeadLetterSourceQueuesInput) GoString() string {
 
 // A list of your dead letter source queues.
 type ListDeadLetterSourceQueuesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of source queue URLs that have the RedrivePolicy queue attribute configured
 	// with a dead letter queue.
 	QueueUrls []*string `locationName:"queueUrls" locationNameList:"QueueUrl" type:"list" flattened:"true" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1280,11 +1280,11 @@ func (s ListDeadLetterSourceQueuesOutput) GoString() string {
 }
 
 type ListQueuesInput struct {
+	_ struct{} `type:"structure"`
+
 	// A string to use for filtering the list results. Only those queues whose name
 	// begins with the specified string are returned.
 	QueueNamePrefix *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1299,10 +1299,10 @@ func (s ListQueuesInput) GoString() string {
 
 // A list of your queues.
 type ListQueuesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of queue URLs, up to 1000 entries.
 	QueueUrls []*string `locationNameList:"QueueUrl" type:"list" flattened:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1317,6 +1317,8 @@ func (s ListQueuesOutput) GoString() string {
 
 // An Amazon SQS message.
 type Message struct {
+	_ struct{} `type:"structure"`
+
 	// SenderId, SentTimestamp, ApproximateReceiveCount, and/or ApproximateFirstReceiveTimestamp.
 	// SentTimestamp and ApproximateFirstReceiveTimestamp are each returned as an
 	// integer representing the epoch time (http://en.wikipedia.org/wiki/Unix_time)
@@ -1347,8 +1349,6 @@ type Message struct {
 	// handle is returned every time you receive a message. When deleting a message,
 	// you provide the last received receipt handle to delete the message.
 	ReceiptHandle *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1370,6 +1370,8 @@ func (s Message) GoString() string {
 // name, type, and value, are included in the message size restriction, which
 // is currently 256 KB (262,144 bytes).
 type MessageAttributeValue struct {
+	_ struct{} `type:"structure"`
+
 	// Not implemented. Reserved for future use.
 	BinaryListValues [][]byte `locationName:"BinaryListValue" locationNameList:"BinaryListValue" type:"list" flattened:"true"`
 
@@ -1388,8 +1390,6 @@ type MessageAttributeValue struct {
 	// Strings are Unicode with UTF8 binary encoding. For a list of code values,
 	// see http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters (http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters).
 	StringValue *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1403,11 +1403,11 @@ func (s MessageAttributeValue) GoString() string {
 }
 
 type PurgeQueueInput struct {
+	_ struct{} `type:"structure"`
+
 	// The queue URL of the queue to delete the messages from when using the PurgeQueue
 	// API.
 	QueueUrl *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1435,6 +1435,8 @@ func (s PurgeQueueOutput) GoString() string {
 }
 
 type ReceiveMessageInput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of attributes that need to be returned along with each message.
 	//
 	//  The following lists the names and descriptions of the attributes that can
@@ -1482,8 +1484,6 @@ type ReceiveMessageInput struct {
 	// in the queue before returning. If a message is available, the call will return
 	// sooner than WaitTimeSeconds.
 	WaitTimeSeconds *int64 `type:"integer"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1498,10 +1498,10 @@ func (s ReceiveMessageInput) GoString() string {
 
 // A list of received messages.
 type ReceiveMessageOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of messages.
 	Messages []*Message `locationNameList:"Message" type:"list" flattened:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1515,14 +1515,14 @@ func (s ReceiveMessageOutput) GoString() string {
 }
 
 type RemovePermissionInput struct {
+	_ struct{} `type:"structure"`
+
 	// The identification of the permission to remove. This is the label added with
 	// the AddPermission action.
 	Label *string `type:"string" required:"true"`
 
 	// The URL of the Amazon SQS queue to take action on.
 	QueueUrl *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1550,13 +1550,13 @@ func (s RemovePermissionOutput) GoString() string {
 }
 
 type SendMessageBatchInput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of SendMessageBatchRequestEntry items.
 	Entries []*SendMessageBatchRequestEntry `locationNameList:"SendMessageBatchRequestEntry" type:"list" flattened:"true" required:"true"`
 
 	// The URL of the Amazon SQS queue to take action on.
 	QueueUrl *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1573,14 +1573,14 @@ func (s SendMessageBatchInput) GoString() string {
 // tag if the message succeeds or a BatchResultErrorEntry tag if the message
 // fails.
 type SendMessageBatchOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of BatchResultErrorEntry items with the error detail about each message
 	// that could not be enqueued.
 	Failed []*BatchResultErrorEntry `locationNameList:"BatchResultErrorEntry" type:"list" flattened:"true" required:"true"`
 
 	// A list of SendMessageBatchResultEntry items.
 	Successful []*SendMessageBatchResultEntry `locationNameList:"SendMessageBatchResultEntry" type:"list" flattened:"true" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1595,6 +1595,8 @@ func (s SendMessageBatchOutput) GoString() string {
 
 // Contains the details of a single Amazon SQS message along with a Id.
 type SendMessageBatchRequestEntry struct {
+	_ struct{} `type:"structure"`
+
 	// The number of seconds for which the message has to be delayed.
 	DelaySeconds *int64 `type:"integer"`
 
@@ -1609,8 +1611,6 @@ type SendMessageBatchRequestEntry struct {
 
 	// Body of the message.
 	MessageBody *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1625,6 +1625,8 @@ func (s SendMessageBatchRequestEntry) GoString() string {
 
 // Encloses a message ID for successfully enqueued message of a SendMessageBatch.
 type SendMessageBatchResultEntry struct {
+	_ struct{} `type:"structure"`
+
 	// An identifier for the message in this batch.
 	Id *string `type:"string" required:"true"`
 
@@ -1642,8 +1644,6 @@ type SendMessageBatchResultEntry struct {
 
 	// An identifier for the message.
 	MessageId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1657,6 +1657,8 @@ func (s SendMessageBatchResultEntry) GoString() string {
 }
 
 type SendMessageInput struct {
+	_ struct{} `type:"structure"`
+
 	// The number of seconds (0 to 900 - 15 minutes) to delay a specific message.
 	// Messages with a positive DelaySeconds value become available for processing
 	// after the delay time is finished. If you don't specify a value, the default
@@ -1673,8 +1675,6 @@ type SendMessageInput struct {
 
 	// The URL of the Amazon SQS queue to take action on.
 	QueueUrl *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1689,6 +1689,8 @@ func (s SendMessageInput) GoString() string {
 
 // The MD5OfMessageBody and MessageId elements.
 type SendMessageOutput struct {
+	_ struct{} `type:"structure"`
+
 	// An MD5 digest of the non-URL-encoded message attribute string. This can be
 	// used to verify that Amazon SQS received the message correctly. Amazon SQS
 	// first URL decodes the message before creating the MD5 digest. For information
@@ -1705,8 +1707,6 @@ type SendMessageOutput struct {
 	// more information, see Queue and Message Identifiers (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ImportantIdentifiers.html)
 	// in the Amazon SQS Developer Guide.
 	MessageId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1720,6 +1720,8 @@ func (s SendMessageOutput) GoString() string {
 }
 
 type SetQueueAttributesInput struct {
+	_ struct{} `type:"structure"`
+
 	// A map of attributes to set.
 	//
 	// The following lists the names, descriptions, and values of the special request
@@ -1748,8 +1750,6 @@ type SetQueueAttributesInput struct {
 
 	// The URL of the Amazon SQS queue to take action on.
 	QueueUrl *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

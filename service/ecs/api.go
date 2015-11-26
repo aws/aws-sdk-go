@@ -975,13 +975,13 @@ func (c *ECS) UpdateService(input *UpdateServiceInput) (*UpdateServiceOutput, er
 
 // The attributes applicable to a container instance when it is registered.
 type Attribute struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the container instance attribute.
 	Name *string `locationName:"name" type:"string" required:"true"`
 
 	// The value of the container instance attribute.
 	Value *string `locationName:"value" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -999,6 +999,8 @@ func (s Attribute) GoString() string {
 // use the Amazon ECS service, but you may also create other clusters. Clusters
 // may contain more than one instance type simultaneously.
 type Cluster struct {
+	_ struct{} `type:"structure"`
+
 	// The number of services that are running on the cluster in an ACTIVE state.
 	// You can view these services with ListServices.
 	ActiveServicesCount *int64 `locationName:"activeServicesCount" type:"integer"`
@@ -1025,8 +1027,6 @@ type Cluster struct {
 	// indicates that you can register container instances with the cluster and
 	// the associated instances can accept tasks.
 	Status *string `locationName:"status" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1041,6 +1041,8 @@ func (s Cluster) GoString() string {
 
 // A Docker container that is part of a task.
 type Container struct {
+	_ struct{} `type:"structure"`
+
 	// The Amazon Resource Name (ARN) of the container.
 	ContainerArn *string `locationName:"containerArn" type:"string"`
 
@@ -1062,8 +1064,6 @@ type Container struct {
 
 	// The Amazon Resource Name (ARN) of the task.
 	TaskArn *string `locationName:"taskArn" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1079,6 +1079,8 @@ func (s Container) GoString() string {
 // Container definitions are used in task definitions to describe the different
 // containers that are launched as part of a task.
 type ContainerDefinition struct {
+	_ struct{} `type:"structure"`
+
 	// The command that is passed to the container. This parameter maps to Cmd in
 	// the Create a container (https://docs.docker.com/reference/api/docker_remote_api_v1.19/#create-a-container)
 	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.19/)
@@ -1327,8 +1329,6 @@ type ContainerDefinition struct {
 	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.19/)
 	// and the --workdir option to docker run (https://docs.docker.com/reference/commandline/run/).
 	WorkingDirectory *string `locationName:"workingDirectory" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1344,6 +1344,8 @@ func (s ContainerDefinition) GoString() string {
 // An EC2 instance that is running the Amazon ECS agent and has been registered
 // with a cluster.
 type ContainerInstance struct {
+	_ struct{} `type:"structure"`
+
 	// This parameter returns true if the agent is actually connected to Amazon
 	// ECS. Registered instances with an agent that may be unhealthy or stopped
 	// return false, and instances without a connected agent cannot accept placement
@@ -1388,8 +1390,6 @@ type ContainerInstance struct {
 	// The version information for the Amazon ECS container agent and Docker daemon
 	// running on the container instance.
 	VersionInfo *VersionInfo `locationName:"versionInfo" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1404,6 +1404,8 @@ func (s ContainerInstance) GoString() string {
 
 // The overrides that should be sent to a container.
 type ContainerOverride struct {
+	_ struct{} `type:"structure"`
+
 	// The command to send to the container that overrides the default command from
 	// the Docker image or the task definition.
 	Command []*string `locationName:"command" type:"list"`
@@ -1415,8 +1417,6 @@ type ContainerOverride struct {
 
 	// The name of the container that receives the override.
 	Name *string `locationName:"name" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1430,12 +1430,12 @@ func (s ContainerOverride) GoString() string {
 }
 
 type CreateClusterInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of your cluster. If you do not specify a name for your cluster,
 	// you create a cluster named default. Up to 255 letters (uppercase and lowercase),
 	// numbers, hyphens, and underscores are allowed.
 	ClusterName *string `locationName:"clusterName" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1449,10 +1449,10 @@ func (s CreateClusterInput) GoString() string {
 }
 
 type CreateClusterOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The full description of your new cluster.
 	Cluster *Cluster `locationName:"cluster" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1466,6 +1466,8 @@ func (s CreateClusterOutput) GoString() string {
 }
 
 type CreateServiceInput struct {
+	_ struct{} `type:"structure"`
+
 	// Unique, case-sensitive identifier you provide to ensure the idempotency of
 	// the request. Up to 32 ASCII characters are allowed.
 	ClientToken *string `locationName:"clientToken" type:"string"`
@@ -1500,8 +1502,6 @@ type CreateServiceInput struct {
 	// of the task definition to run in your service. If a revision is not specified,
 	// the latest ACTIVE revision is used.
 	TaskDefinition *string `locationName:"taskDefinition" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1515,10 +1515,10 @@ func (s CreateServiceInput) GoString() string {
 }
 
 type CreateServiceOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The full description of your service following the create call.
 	Service *Service `locationName:"service" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1532,10 +1532,10 @@ func (s CreateServiceOutput) GoString() string {
 }
 
 type DeleteClusterInput struct {
+	_ struct{} `type:"structure"`
+
 	// The short name or full Amazon Resource Name (ARN) of the cluster to delete.
 	Cluster *string `locationName:"cluster" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1549,10 +1549,10 @@ func (s DeleteClusterInput) GoString() string {
 }
 
 type DeleteClusterOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The full description of the deleted cluster.
 	Cluster *Cluster `locationName:"cluster" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1566,14 +1566,14 @@ func (s DeleteClusterOutput) GoString() string {
 }
 
 type DeleteServiceInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the cluster that hosts the service to delete. If you do not specify
 	// a cluster, the default cluster is assumed.
 	Cluster *string `locationName:"cluster" type:"string"`
 
 	// The name of the service to delete.
 	Service *string `locationName:"service" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1587,10 +1587,10 @@ func (s DeleteServiceInput) GoString() string {
 }
 
 type DeleteServiceOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The full description of the deleted service.
 	Service *Service `locationName:"service" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1605,6 +1605,8 @@ func (s DeleteServiceOutput) GoString() string {
 
 // The details of an Amazon ECS service deployment.
 type Deployment struct {
+	_ struct{} `type:"structure"`
+
 	// The Unix time in seconds and milliseconds when the service was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"unix"`
 
@@ -1632,8 +1634,6 @@ type Deployment struct {
 
 	// The Unix time in seconds and milliseconds when the service was last updated.
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"unix"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1647,6 +1647,8 @@ func (s Deployment) GoString() string {
 }
 
 type DeregisterContainerInstanceInput struct {
+	_ struct{} `type:"structure"`
+
 	// The short name or full Amazon Resource Name (ARN) of the cluster that hosts
 	// the container instance to deregister. If you do not specify a cluster, the
 	// default cluster is assumed.
@@ -1668,8 +1670,6 @@ type DeregisterContainerInstanceInput struct {
 	// of an Amazon ECS service, then the service scheduler starts another copy
 	// of that task, on a different container instance if possible.
 	Force *bool `locationName:"force" type:"boolean"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1683,11 +1683,11 @@ func (s DeregisterContainerInstanceInput) GoString() string {
 }
 
 type DeregisterContainerInstanceOutput struct {
+	_ struct{} `type:"structure"`
+
 	// An EC2 instance that is running the Amazon ECS agent and has been registered
 	// with a cluster.
 	ContainerInstance *ContainerInstance `locationName:"containerInstance" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1701,11 +1701,11 @@ func (s DeregisterContainerInstanceOutput) GoString() string {
 }
 
 type DeregisterTaskDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
 	// The family and revision (family:revision) or full Amazon Resource Name (ARN)
 	// of the task definition to deregister. You must specify a revision.
 	TaskDefinition *string `locationName:"taskDefinition" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1719,10 +1719,10 @@ func (s DeregisterTaskDefinitionInput) GoString() string {
 }
 
 type DeregisterTaskDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The full description of the deregistered task.
 	TaskDefinition *TaskDefinition `locationName:"taskDefinition" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1736,11 +1736,11 @@ func (s DeregisterTaskDefinitionOutput) GoString() string {
 }
 
 type DescribeClustersInput struct {
+	_ struct{} `type:"structure"`
+
 	// A space-separated list of cluster names or full cluster Amazon Resource Name
 	// (ARN) entries. If you do not specify a cluster, the default cluster is assumed.
 	Clusters []*string `locationName:"clusters" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1754,13 +1754,13 @@ func (s DescribeClustersInput) GoString() string {
 }
 
 type DescribeClustersOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The list of clusters.
 	Clusters []*Cluster `locationName:"clusters" type:"list"`
 
 	// Any failures associated with the call.
 	Failures []*Failure `locationName:"failures" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1774,6 +1774,8 @@ func (s DescribeClustersOutput) GoString() string {
 }
 
 type DescribeContainerInstancesInput struct {
+	_ struct{} `type:"structure"`
+
 	// The short name or full Amazon Resource Name (ARN) of the cluster that hosts
 	// the container instances to describe. If you do not specify a cluster, the
 	// default cluster is assumed.
@@ -1782,8 +1784,6 @@ type DescribeContainerInstancesInput struct {
 	// A space-separated list of container instance IDs or full Amazon Resource
 	// Name (ARN) entries.
 	ContainerInstances []*string `locationName:"containerInstances" type:"list" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1797,13 +1797,13 @@ func (s DescribeContainerInstancesInput) GoString() string {
 }
 
 type DescribeContainerInstancesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The list of container instances.
 	ContainerInstances []*ContainerInstance `locationName:"containerInstances" type:"list"`
 
 	// Any failures associated with the call.
 	Failures []*Failure `locationName:"failures" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1817,14 +1817,14 @@ func (s DescribeContainerInstancesOutput) GoString() string {
 }
 
 type DescribeServicesInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the cluster that hosts the service to describe. If you do not
 	// specify a cluster, the default cluster is assumed.
 	Cluster *string `locationName:"cluster" type:"string"`
 
 	// A list of services to describe.
 	Services []*string `locationName:"services" type:"list" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1838,13 +1838,13 @@ func (s DescribeServicesInput) GoString() string {
 }
 
 type DescribeServicesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Any failures associated with the call.
 	Failures []*Failure `locationName:"failures" type:"list"`
 
 	// The list of services described.
 	Services []*Service `locationName:"services" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1858,12 +1858,12 @@ func (s DescribeServicesOutput) GoString() string {
 }
 
 type DescribeTaskDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
 	// The family for the latest ACTIVE revision, family and revision (family:revision)
 	// for a specific revision in the family, or full Amazon Resource Name (ARN)
 	// of the task definition to describe.
 	TaskDefinition *string `locationName:"taskDefinition" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1877,10 +1877,10 @@ func (s DescribeTaskDefinitionInput) GoString() string {
 }
 
 type DescribeTaskDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The full task definition description.
 	TaskDefinition *TaskDefinition `locationName:"taskDefinition" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1894,6 +1894,8 @@ func (s DescribeTaskDefinitionOutput) GoString() string {
 }
 
 type DescribeTasksInput struct {
+	_ struct{} `type:"structure"`
+
 	// The short name or full Amazon Resource Name (ARN) of the cluster that hosts
 	// the task to describe. If you do not specify a cluster, the default cluster
 	// is assumed.
@@ -1901,8 +1903,6 @@ type DescribeTasksInput struct {
 
 	// A space-separated list of task IDs or full Amazon Resource Name (ARN) entries.
 	Tasks []*string `locationName:"tasks" type:"list" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1916,13 +1916,13 @@ func (s DescribeTasksInput) GoString() string {
 }
 
 type DescribeTasksOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Any failures associated with the call.
 	Failures []*Failure `locationName:"failures" type:"list"`
 
 	// The list of tasks.
 	Tasks []*Task `locationName:"tasks" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1936,6 +1936,8 @@ func (s DescribeTasksOutput) GoString() string {
 }
 
 type DiscoverPollEndpointInput struct {
+	_ struct{} `type:"structure"`
+
 	// The cluster that the container instance belongs to.
 	Cluster *string `locationName:"cluster" type:"string"`
 
@@ -1945,8 +1947,6 @@ type DiscoverPollEndpointInput struct {
 	// the container-instance namespace, and then the container instance ID. For
 	// example, arn:aws:ecs:region:aws_account_id:container-instance/container_instance_ID.
 	ContainerInstance *string `locationName:"containerInstance" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1960,13 +1960,13 @@ func (s DiscoverPollEndpointInput) GoString() string {
 }
 
 type DiscoverPollEndpointOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The endpoint for the Amazon ECS agent to poll.
 	Endpoint *string `locationName:"endpoint" type:"string"`
 
 	// The telemetry endpoint for the Amazon ECS agent.
 	TelemetryEndpoint *string `locationName:"telemetryEndpoint" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1981,13 +1981,13 @@ func (s DiscoverPollEndpointOutput) GoString() string {
 
 // A failed resource.
 type Failure struct {
+	_ struct{} `type:"structure"`
+
 	// The Amazon Resource Name (ARN) of the failed resource.
 	Arn *string `locationName:"arn" type:"string"`
 
 	// The reason for the failure.
 	Reason *string `locationName:"reason" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2003,13 +2003,13 @@ func (s Failure) GoString() string {
 // Hostnames and IP address entries that are added to the /etc/hosts file of
 // a container via the extraHosts parameter of its ContainerDefinition.
 type HostEntry struct {
+	_ struct{} `type:"structure"`
+
 	// The hostname to use in the /etc/hosts entry.
 	Hostname *string `locationName:"hostname" type:"string" required:"true"`
 
 	// The IP address to use in the /etc/hosts entry.
 	IpAddress *string `locationName:"ipAddress" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2024,12 +2024,12 @@ func (s HostEntry) GoString() string {
 
 // Details on a container instance host volume.
 type HostVolumeProperties struct {
+	_ struct{} `type:"structure"`
+
 	// The path on the host container instance that is presented to the container.
 	// If this parameter is empty, then the Docker daemon has assigned a host path
 	// for you.
 	SourcePath *string `locationName:"sourcePath" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2044,6 +2044,8 @@ func (s HostVolumeProperties) GoString() string {
 
 // A key and value pair object.
 type KeyValuePair struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the key value pair. For environment variables, this is the name
 	// of the environment variable.
 	Name *string `locationName:"name" type:"string"`
@@ -2051,8 +2053,6 @@ type KeyValuePair struct {
 	// The value of the key value pair. For environment variables, this is the value
 	// of the environment variable.
 	Value *string `locationName:"value" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2066,6 +2066,8 @@ func (s KeyValuePair) GoString() string {
 }
 
 type ListClustersInput struct {
+	_ struct{} `type:"structure"`
+
 	// The maximum number of cluster results returned by ListClusters in paginated
 	// output. When this parameter is used, ListClusters only returns maxResults
 	// results in a single page along with a nextToken response element. The remaining
@@ -2080,8 +2082,6 @@ type ListClustersInput struct {
 	// Pagination continues from the end of the previous results that returned the
 	// nextToken value. This value is null when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2095,6 +2095,8 @@ func (s ListClustersInput) GoString() string {
 }
 
 type ListClustersOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The list of full Amazon Resource Name (ARN) entries for each cluster associated
 	// with your account.
 	ClusterArns []*string `locationName:"clusterArns" type:"list"`
@@ -2104,8 +2106,6 @@ type ListClustersOutput struct {
 	// to retrieve the next page of results. This value is null when there are no
 	// more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2119,6 +2119,8 @@ func (s ListClustersOutput) GoString() string {
 }
 
 type ListContainerInstancesInput struct {
+	_ struct{} `type:"structure"`
+
 	// The short name or full Amazon Resource Name (ARN) of the cluster that hosts
 	// the container instances to list. If you do not specify a cluster, the default
 	// cluster is assumed..
@@ -2140,8 +2142,6 @@ type ListContainerInstancesInput struct {
 	// returned the nextToken value. This value is null when there are no more results
 	// to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2155,6 +2155,8 @@ func (s ListContainerInstancesInput) GoString() string {
 }
 
 type ListContainerInstancesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The list of container instances with full Amazon Resource Name (ARN) entries
 	// for each container instance associated with the specified cluster.
 	ContainerInstanceArns []*string `locationName:"containerInstanceArns" type:"list"`
@@ -2164,8 +2166,6 @@ type ListContainerInstancesOutput struct {
 	// value can be used to retrieve the next page of results. This value is null
 	// when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2179,6 +2179,8 @@ func (s ListContainerInstancesOutput) GoString() string {
 }
 
 type ListServicesInput struct {
+	_ struct{} `type:"structure"`
+
 	// The short name or full Amazon Resource Name (ARN) of the cluster that hosts
 	// the services to list. If you do not specify a cluster, the default cluster
 	// is assumed..
@@ -2198,8 +2200,6 @@ type ListServicesInput struct {
 	// Pagination continues from the end of the previous results that returned the
 	// nextToken value. This value is null when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2213,6 +2213,8 @@ func (s ListServicesInput) GoString() string {
 }
 
 type ListServicesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The nextToken value to include in a future ListServices request. When the
 	// results of a ListServices request exceed maxResults, this value can be used
 	// to retrieve the next page of results. This value is null when there are no
@@ -2222,8 +2224,6 @@ type ListServicesOutput struct {
 	// The list of full Amazon Resource Name (ARN) entries for each service associated
 	// with the specified cluster.
 	ServiceArns []*string `locationName:"serviceArns" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2237,6 +2237,8 @@ func (s ListServicesOutput) GoString() string {
 }
 
 type ListTaskDefinitionFamiliesInput struct {
+	_ struct{} `type:"structure"`
+
 	// The familyPrefix is a string that is used to filter the results of ListTaskDefinitionFamilies.
 	// If you specify a familyPrefix, only task definition family names that begin
 	// with the familyPrefix string are returned.
@@ -2258,8 +2260,6 @@ type ListTaskDefinitionFamiliesInput struct {
 	// returned the nextToken value. This value is null when there are no more results
 	// to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2273,6 +2273,8 @@ func (s ListTaskDefinitionFamiliesInput) GoString() string {
 }
 
 type ListTaskDefinitionFamiliesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The list of task definition family names that match the ListTaskDefinitionFamilies
 	// request.
 	Families []*string `locationName:"families" type:"list"`
@@ -2282,8 +2284,6 @@ type ListTaskDefinitionFamiliesOutput struct {
 	// this value can be used to retrieve the next page of results. This value is
 	// null when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2297,6 +2297,8 @@ func (s ListTaskDefinitionFamiliesOutput) GoString() string {
 }
 
 type ListTaskDefinitionsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The full family name with which to filter the ListTaskDefinitions results.
 	// Specifying a familyPrefix limits the listed task definitions to task definition
 	// revisions that belong to that family.
@@ -2332,8 +2334,6 @@ type ListTaskDefinitionsInput struct {
 	// active task or service still references them. If you paginate the resulting
 	// output, be sure to keep the status value constant in each subsequent request.
 	Status *string `locationName:"status" type:"string" enum:"TaskDefinitionStatus"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2347,6 +2347,8 @@ func (s ListTaskDefinitionsInput) GoString() string {
 }
 
 type ListTaskDefinitionsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The nextToken value to include in a future ListTaskDefinitions request. When
 	// the results of a ListTaskDefinitions request exceed maxResults, this value
 	// can be used to retrieve the next page of results. This value is null when
@@ -2356,8 +2358,6 @@ type ListTaskDefinitionsOutput struct {
 	// The list of task definition Amazon Resource Name (ARN) entries for the ListTaskDefinitions
 	// request.
 	TaskDefinitionArns []*string `locationName:"taskDefinitionArns" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2371,6 +2371,8 @@ func (s ListTaskDefinitionsOutput) GoString() string {
 }
 
 type ListTasksInput struct {
+	_ struct{} `type:"structure"`
+
 	// The short name or full Amazon Resource Name (ARN) of the cluster that hosts
 	// the tasks to list. If you do not specify a cluster, the default cluster is
 	// assumed..
@@ -2413,8 +2415,6 @@ type ListTasksInput struct {
 	// The startedBy value with which to filter the task results. Specifying a startedBy
 	// value limits the results to tasks that were started with that value.
 	StartedBy *string `locationName:"startedBy" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2428,6 +2428,8 @@ func (s ListTasksInput) GoString() string {
 }
 
 type ListTasksOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The nextToken value to include in a future ListTasks request. When the results
 	// of a ListTasks request exceed maxResults, this value can be used to retrieve
 	// the next page of results. This value is null when there are no more results
@@ -2436,8 +2438,6 @@ type ListTasksOutput struct {
 
 	// The list of task Amazon Resource Name (ARN) entries for the ListTasks request.
 	TaskArns []*string `locationName:"taskArns" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2452,6 +2452,8 @@ func (s ListTasksOutput) GoString() string {
 
 // Details on a load balancer that is used with a service.
 type LoadBalancer struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the container to associate with the load balancer.
 	ContainerName *string `locationName:"containerName" type:"string"`
 
@@ -2463,8 +2465,6 @@ type LoadBalancer struct {
 
 	// The name of the load balancer.
 	LoadBalancerName *string `locationName:"loadBalancerName" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2479,6 +2479,8 @@ func (s LoadBalancer) GoString() string {
 
 // Log configuration options to send to a custom log driver for the container.
 type LogConfiguration struct {
+	_ struct{} `type:"structure"`
+
 	// The log driver to use for the container. This parameter requires version
 	// 1.18 of the Docker Remote API or greater on your container instance. To check
 	// the Docker Remote API version on your container instance, log into your container
@@ -2492,8 +2494,6 @@ type LogConfiguration struct {
 	// your container instance and run the following command: sudo docker version
 	// | grep "Server API version"
 	Options map[string]*string `locationName:"options" type:"map"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2508,6 +2508,8 @@ func (s LogConfiguration) GoString() string {
 
 // Details on a volume mount point that is used in a container definition.
 type MountPoint struct {
+	_ struct{} `type:"structure"`
+
 	// The path on the container to mount the host volume at.
 	ContainerPath *string `locationName:"containerPath" type:"string"`
 
@@ -2518,8 +2520,6 @@ type MountPoint struct {
 
 	// The name of the volume to mount.
 	SourceVolume *string `locationName:"sourceVolume" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2537,6 +2537,8 @@ func (s MountPoint) GoString() string {
 // and container port assignments are visible in the networkBindings section
 // of DescribeTasks API responses.
 type NetworkBinding struct {
+	_ struct{} `type:"structure"`
+
 	// The IP address that the container is bound to on the container instance.
 	BindIP *string `locationName:"bindIP" type:"string"`
 
@@ -2548,8 +2550,6 @@ type NetworkBinding struct {
 
 	// The protocol used for the network binding.
 	Protocol *string `locationName:"protocol" type:"string" enum:"TransportProtocol"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2568,6 +2568,8 @@ func (s NetworkBinding) GoString() string {
 // host and container port assignments are visible in the networkBindings section
 // of DescribeTasks API responses.
 type PortMapping struct {
+	_ struct{} `type:"structure"`
+
 	// The port number on the container that is bound to the user-specified or automatically
 	// assigned host port. If you specify a container port and not a host port,
 	// your container automatically receives a host port in the ephemeral port range
@@ -2600,8 +2602,6 @@ type PortMapping struct {
 	// The protocol used for the port mapping. Valid values are tcp and udp. The
 	// default is tcp.
 	Protocol *string `locationName:"protocol" type:"string" enum:"TransportProtocol"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2615,6 +2615,8 @@ func (s PortMapping) GoString() string {
 }
 
 type RegisterContainerInstanceInput struct {
+	_ struct{} `type:"structure"`
+
 	// The container instance attributes that this container instance supports.
 	Attributes []*Attribute `locationName:"attributes" type:"list"`
 
@@ -2642,8 +2644,6 @@ type RegisterContainerInstanceInput struct {
 	// The version information for the Amazon ECS container agent and Docker daemon
 	// running on the container instance.
 	VersionInfo *VersionInfo `locationName:"versionInfo" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2657,11 +2657,11 @@ func (s RegisterContainerInstanceInput) GoString() string {
 }
 
 type RegisterContainerInstanceOutput struct {
+	_ struct{} `type:"structure"`
+
 	// An EC2 instance that is running the Amazon ECS agent and has been registered
 	// with a cluster.
 	ContainerInstance *ContainerInstance `locationName:"containerInstance" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2675,6 +2675,8 @@ func (s RegisterContainerInstanceOutput) GoString() string {
 }
 
 type RegisterTaskDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of container definitions in JSON format that describe the different
 	// containers that make up your task.
 	ContainerDefinitions []*ContainerDefinition `locationName:"containerDefinitions" type:"list" required:"true"`
@@ -2688,8 +2690,6 @@ type RegisterTaskDefinitionInput struct {
 	// A list of volume definitions in JSON format that containers in your task
 	// may use.
 	Volumes []*Volume `locationName:"volumes" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2703,10 +2703,10 @@ func (s RegisterTaskDefinitionInput) GoString() string {
 }
 
 type RegisterTaskDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The full description of the registered task definition.
 	TaskDefinition *TaskDefinition `locationName:"taskDefinition" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2721,6 +2721,8 @@ func (s RegisterTaskDefinitionOutput) GoString() string {
 
 // Describes the resources available for a container instance.
 type Resource struct {
+	_ struct{} `type:"structure"`
+
 	// When the doubleValue type is set, the value of the resource must be a double
 	// precision floating-point type.
 	DoubleValue *float64 `locationName:"doubleValue" type:"double"`
@@ -2741,8 +2743,6 @@ type Resource struct {
 
 	// The type of the resource, such as INTEGER, DOUBLE, LONG, or STRINGSET.
 	Type *string `locationName:"type" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2756,6 +2756,8 @@ func (s Resource) GoString() string {
 }
 
 type RunTaskInput struct {
+	_ struct{} `type:"structure"`
+
 	// The short name or full Amazon Resource Name (ARN) of the cluster on which
 	// to run your task. If you do not specify a cluster, the default cluster is
 	// assumed..
@@ -2792,8 +2794,6 @@ type RunTaskInput struct {
 	// of the task definition to run. If a revision is not specified, the latest
 	// ACTIVE revision is used.
 	TaskDefinition *string `locationName:"taskDefinition" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2807,14 +2807,14 @@ func (s RunTaskInput) GoString() string {
 }
 
 type RunTaskOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Any failures associated with the call.
 	Failures []*Failure `locationName:"failures" type:"list"`
 
 	// A full description of the tasks that were run. Each task that was successfully
 	// placed on your cluster are described here.
 	Tasks []*Task `locationName:"tasks" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2829,6 +2829,8 @@ func (s RunTaskOutput) GoString() string {
 
 // Details on a service within a cluster
 type Service struct {
+	_ struct{} `type:"structure"`
+
 	// The Amazon Resource Name (ARN) of the of the cluster that hosts the service.
 	ClusterArn *string `locationName:"clusterArn" type:"string"`
 
@@ -2876,8 +2878,6 @@ type Service struct {
 	// when the service is created with CreateService, and it can be modified with
 	// UpdateService.
 	TaskDefinition *string `locationName:"taskDefinition" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2892,6 +2892,8 @@ func (s Service) GoString() string {
 
 // Details on an event associated with a service.
 type ServiceEvent struct {
+	_ struct{} `type:"structure"`
+
 	// The Unix time in seconds and milliseconds when the event was triggered.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"unix"`
 
@@ -2900,8 +2902,6 @@ type ServiceEvent struct {
 
 	// The event message.
 	Message *string `locationName:"message" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2915,6 +2915,8 @@ func (s ServiceEvent) GoString() string {
 }
 
 type StartTaskInput struct {
+	_ struct{} `type:"structure"`
+
 	// The short name or full Amazon Resource Name (ARN) of the cluster on which
 	// to start your task. If you do not specify a cluster, the default cluster
 	// is assumed..
@@ -2952,8 +2954,6 @@ type StartTaskInput struct {
 	// of the task definition to start. If a revision is not specified, the latest
 	// ACTIVE revision is used.
 	TaskDefinition *string `locationName:"taskDefinition" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2967,14 +2967,14 @@ func (s StartTaskInput) GoString() string {
 }
 
 type StartTaskOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Any failures associated with the call.
 	Failures []*Failure `locationName:"failures" type:"list"`
 
 	// A full description of the tasks that were started. Each task that was successfully
 	// placed on your container instances are described here.
 	Tasks []*Task `locationName:"tasks" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2988,6 +2988,8 @@ func (s StartTaskOutput) GoString() string {
 }
 
 type StopTaskInput struct {
+	_ struct{} `type:"structure"`
+
 	// The short name or full Amazon Resource Name (ARN) of the cluster that hosts
 	// the task to stop. If you do not specify a cluster, the default cluster is
 	// assumed..
@@ -3001,8 +3003,6 @@ type StopTaskInput struct {
 
 	// The task ID or full Amazon Resource Name (ARN) entry of the task to stop.
 	Task *string `locationName:"task" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3016,10 +3016,10 @@ func (s StopTaskInput) GoString() string {
 }
 
 type StopTaskOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Details on a task in a cluster.
 	Task *Task `locationName:"task" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3033,6 +3033,8 @@ func (s StopTaskOutput) GoString() string {
 }
 
 type SubmitContainerStateChangeInput struct {
+	_ struct{} `type:"structure"`
+
 	// The short name or full Amazon Resource Name (ARN) of the cluster that hosts
 	// the container.
 	Cluster *string `locationName:"cluster" type:"string"`
@@ -3055,8 +3057,6 @@ type SubmitContainerStateChangeInput struct {
 	// The task ID or full Amazon Resource Name (ARN) of the task that hosts the
 	// container.
 	Task *string `locationName:"task" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3070,10 +3070,10 @@ func (s SubmitContainerStateChangeInput) GoString() string {
 }
 
 type SubmitContainerStateChangeOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Acknowledgement of the state change.
 	Acknowledgment *string `locationName:"acknowledgment" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3087,6 +3087,8 @@ func (s SubmitContainerStateChangeOutput) GoString() string {
 }
 
 type SubmitTaskStateChangeInput struct {
+	_ struct{} `type:"structure"`
+
 	// The short name or full Amazon Resource Name (ARN) of the cluster that hosts
 	// the task.
 	Cluster *string `locationName:"cluster" type:"string"`
@@ -3100,8 +3102,6 @@ type SubmitTaskStateChangeInput struct {
 	// The task ID or full Amazon Resource Name (ARN) of the task in the state change
 	// request.
 	Task *string `locationName:"task" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3115,10 +3115,10 @@ func (s SubmitTaskStateChangeInput) GoString() string {
 }
 
 type SubmitTaskStateChangeOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Acknowledgement of the state change.
 	Acknowledgment *string `locationName:"acknowledgment" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3133,6 +3133,8 @@ func (s SubmitTaskStateChangeOutput) GoString() string {
 
 // Details on a task in a cluster.
 type Task struct {
+	_ struct{} `type:"structure"`
+
 	// The Amazon Resource Name (ARN) of the of the cluster that hosts the task.
 	ClusterArn *string `locationName:"clusterArn" type:"string"`
 
@@ -3177,8 +3179,6 @@ type Task struct {
 	// The Amazon Resource Name (ARN) of the of the task definition that creates
 	// the task.
 	TaskDefinitionArn *string `locationName:"taskDefinitionArn" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3193,6 +3193,8 @@ func (s Task) GoString() string {
 
 // Details of a task definition.
 type TaskDefinition struct {
+	_ struct{} `type:"structure"`
+
 	// A list of container definitions in JSON format that describe the different
 	// containers that make up your task. For more information about container definition
 	// parameters and defaults, see Amazon ECS Task Definitions (http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_defintions.html)
@@ -3222,8 +3224,6 @@ type TaskDefinition struct {
 	// parameters and defaults, see Amazon ECS Task Definitions (http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_defintions.html)
 	// in the Amazon EC2 Container Service Developer Guide.
 	Volumes []*Volume `locationName:"volumes" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3238,10 +3238,10 @@ func (s TaskDefinition) GoString() string {
 
 // The overrides associated with a task.
 type TaskOverride struct {
+	_ struct{} `type:"structure"`
+
 	// One or more container overrides sent to a task.
 	ContainerOverrides []*ContainerOverride `locationName:"containerOverrides" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3256,6 +3256,8 @@ func (s TaskOverride) GoString() string {
 
 // The ulimit settings to pass to the container.
 type Ulimit struct {
+	_ struct{} `type:"structure"`
+
 	// The hard limit for the ulimit type.
 	HardLimit *int64 `locationName:"hardLimit" type:"integer" required:"true"`
 
@@ -3264,8 +3266,6 @@ type Ulimit struct {
 
 	// The soft limit for the ulimit type.
 	SoftLimit *int64 `locationName:"softLimit" type:"integer" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3279,6 +3279,8 @@ func (s Ulimit) GoString() string {
 }
 
 type UpdateContainerAgentInput struct {
+	_ struct{} `type:"structure"`
+
 	// The short name or full Amazon Resource Name (ARN) of the cluster that your
 	// container instance is running on. If you do not specify a cluster, the default
 	// cluster is assumed.
@@ -3288,8 +3290,6 @@ type UpdateContainerAgentInput struct {
 	// the container instance on which you would like to update the Amazon ECS container
 	// agent.
 	ContainerInstance *string `locationName:"containerInstance" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3303,11 +3303,11 @@ func (s UpdateContainerAgentInput) GoString() string {
 }
 
 type UpdateContainerAgentOutput struct {
+	_ struct{} `type:"structure"`
+
 	// An EC2 instance that is running the Amazon ECS agent and has been registered
 	// with a cluster.
 	ContainerInstance *ContainerInstance `locationName:"containerInstance" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3321,6 +3321,8 @@ func (s UpdateContainerAgentOutput) GoString() string {
 }
 
 type UpdateServiceInput struct {
+	_ struct{} `type:"structure"`
+
 	// The short name or full Amazon Resource Name (ARN) of the cluster that your
 	// service is running on. If you do not specify a cluster, the default cluster
 	// is assumed.
@@ -3339,8 +3341,6 @@ type UpdateServiceInput struct {
 	// UpdateService, Amazon ECS spawns a task with the new version of the task
 	// definition and then stops an old task after the new version is running.
 	TaskDefinition *string `locationName:"taskDefinition" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3354,10 +3354,10 @@ func (s UpdateServiceInput) GoString() string {
 }
 
 type UpdateServiceOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The full description of your service following the update call.
 	Service *Service `locationName:"service" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3373,6 +3373,8 @@ func (s UpdateServiceOutput) GoString() string {
 // The Docker and Amazon ECS container agent version information about a container
 // instance.
 type VersionInfo struct {
+	_ struct{} `type:"structure"`
+
 	// The Git commit hash for the Amazon ECS container agent build on the amazon-ecs-agent
 	//  (https://github.com/aws/amazon-ecs-agent/commits/master) GitHub repository.
 	AgentHash *string `locationName:"agentHash" type:"string"`
@@ -3382,8 +3384,6 @@ type VersionInfo struct {
 
 	// The Docker version running on the container instance.
 	DockerVersion *string `locationName:"dockerVersion" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3398,6 +3398,8 @@ func (s VersionInfo) GoString() string {
 
 // A data volume used in a task definition.
 type Volume struct {
+	_ struct{} `type:"structure"`
+
 	// The path on the host container instance that is presented to the containers
 	// which access the volume. If this parameter is empty, then the Docker daemon
 	// assigns a host path for you.
@@ -3406,8 +3408,6 @@ type Volume struct {
 	// The name of the volume. This name is referenced in the sourceVolume parameter
 	// of container definition mountPoints.
 	Name *string `locationName:"name" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3422,6 +3422,8 @@ func (s Volume) GoString() string {
 
 // Details on a data volume from another container.
 type VolumeFrom struct {
+	_ struct{} `type:"structure"`
+
 	// If this value is true, the container has read-only access to the volume.
 	// If this value is false, then the container can write to the volume. The default
 	// value is false.
@@ -3429,8 +3431,6 @@ type VolumeFrom struct {
 
 	// The name of the container to mount volumes from.
 	SourceContainer *string `locationName:"sourceContainer" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

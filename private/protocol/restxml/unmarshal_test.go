@@ -148,6 +148,8 @@ type OutputService1TestShapeOutputService1TestCaseOperation2Input struct {
 }
 
 type OutputService1TestShapeOutputShape struct {
+	_ struct{} `type:"structure"`
+
 	Char *string `type:"character"`
 
 	Double *float64 `type:"double"`
@@ -169,8 +171,6 @@ type OutputService1TestShapeOutputShape struct {
 	Timestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	TrueBool *bool `type:"boolean"`
-
-	_ struct{} `type:"structure"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -256,9 +256,9 @@ type OutputService2TestShapeOutputService2TestCaseOperation1Input struct {
 }
 
 type OutputService2TestShapeOutputService2TestCaseOperation1Output struct {
-	Blob []byte `type:"blob"`
-
 	_ struct{} `type:"structure"`
+
+	Blob []byte `type:"blob"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -344,9 +344,9 @@ type OutputService3TestShapeOutputService3TestCaseOperation1Input struct {
 }
 
 type OutputService3TestShapeOutputService3TestCaseOperation1Output struct {
-	ListMember []*string `type:"list"`
-
 	_ struct{} `type:"structure"`
+
+	ListMember []*string `type:"list"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -432,9 +432,9 @@ type OutputService4TestShapeOutputService4TestCaseOperation1Input struct {
 }
 
 type OutputService4TestShapeOutputService4TestCaseOperation1Output struct {
-	ListMember []*string `locationNameList:"item" type:"list"`
-
 	_ struct{} `type:"structure"`
+
+	ListMember []*string `locationNameList:"item" type:"list"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -520,9 +520,9 @@ type OutputService5TestShapeOutputService5TestCaseOperation1Input struct {
 }
 
 type OutputService5TestShapeOutputService5TestCaseOperation1Output struct {
-	ListMember []*string `type:"list" flattened:"true"`
-
 	_ struct{} `type:"structure"`
+
+	ListMember []*string `type:"list" flattened:"true"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -608,15 +608,15 @@ type OutputService6TestShapeOutputService6TestCaseOperation1Input struct {
 }
 
 type OutputService6TestShapeOutputService6TestCaseOperation1Output struct {
-	Map map[string]*OutputService6TestShapeSingleStructure `type:"map"`
-
 	_ struct{} `type:"structure"`
+
+	Map map[string]*OutputService6TestShapeSingleStructure `type:"map"`
 }
 
 type OutputService6TestShapeSingleStructure struct {
-	Foo *string `locationName:"foo" type:"string"`
-
 	_ struct{} `type:"structure"`
+
+	Foo *string `locationName:"foo" type:"string"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -702,9 +702,9 @@ type OutputService7TestShapeOutputService7TestCaseOperation1Input struct {
 }
 
 type OutputService7TestShapeOutputService7TestCaseOperation1Output struct {
-	Map map[string]*string `type:"map" flattened:"true"`
-
 	_ struct{} `type:"structure"`
+
+	Map map[string]*string `type:"map" flattened:"true"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -790,9 +790,9 @@ type OutputService8TestShapeOutputService8TestCaseOperation1Input struct {
 }
 
 type OutputService8TestShapeOutputService8TestCaseOperation1Output struct {
-	Map map[string]*string `locationNameKey:"foo" locationNameValue:"bar" type:"map"`
-
 	_ struct{} `type:"structure"`
+
+	Map map[string]*string `locationNameKey:"foo" locationNameValue:"bar" type:"map"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -878,17 +878,17 @@ type OutputService9TestShapeOutputService9TestCaseOperation1Input struct {
 }
 
 type OutputService9TestShapeOutputService9TestCaseOperation1Output struct {
+	_ struct{} `type:"structure" payload:"Data"`
+
 	Data *OutputService9TestShapeSingleStructure `type:"structure"`
 
 	Header *string `location:"header" locationName:"X-Foo" type:"string"`
-
-	_ struct{} `type:"structure" payload:"Data"`
 }
 
 type OutputService9TestShapeSingleStructure struct {
-	Foo *string `type:"string"`
-
 	_ struct{} `type:"structure"`
+
+	Foo *string `type:"string"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -974,9 +974,9 @@ type OutputService10TestShapeOutputService10TestCaseOperation1Input struct {
 }
 
 type OutputService10TestShapeOutputService10TestCaseOperation1Output struct {
-	Stream []byte `type:"blob"`
-
 	_ struct{} `type:"structure" payload:"Stream"`
+
+	Stream []byte `type:"blob"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -1062,6 +1062,8 @@ type OutputService11TestShapeOutputService11TestCaseOperation1Input struct {
 }
 
 type OutputService11TestShapeOutputService11TestCaseOperation1Output struct {
+	_ struct{} `type:"structure"`
+
 	Char *string `location:"header" locationName:"x-char" type:"character"`
 
 	Double *float64 `location:"header" locationName:"x-double" type:"double"`
@@ -1079,8 +1081,6 @@ type OutputService11TestShapeOutputService11TestCaseOperation1Output struct {
 	Timestamp *time.Time `location:"header" locationName:"x-timestamp" type:"timestamp" timestampFormat:"iso8601"`
 
 	TrueBool *bool `location:"header" locationName:"x-true-bool" type:"boolean"`
-
-	_ struct{} `type:"structure"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -1166,9 +1166,9 @@ type OutputService12TestShapeOutputService12TestCaseOperation1Input struct {
 }
 
 type OutputService12TestShapeOutputService12TestCaseOperation1Output struct {
-	Foo *string `type:"string"`
-
 	_ struct{} `type:"structure"`
+
+	Foo *string `type:"string"`
 }
 
 //

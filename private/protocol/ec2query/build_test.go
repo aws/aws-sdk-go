@@ -116,11 +116,11 @@ func (c *InputService1ProtocolTest) InputService1TestCaseOperation1(input *Input
 }
 
 type InputService1TestShapeInputService1TestCaseOperation1Input struct {
+	_ struct{} `type:"structure"`
+
 	Bar *string `type:"string"`
 
 	Foo *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 type InputService1TestShapeInputService1TestCaseOperation1Output struct {
@@ -206,13 +206,13 @@ func (c *InputService2ProtocolTest) InputService2TestCaseOperation1(input *Input
 }
 
 type InputService2TestShapeInputService2TestCaseOperation1Input struct {
+	_ struct{} `type:"structure"`
+
 	Bar *string `locationName:"barLocationName" type:"string"`
 
 	Foo *string `type:"string"`
 
 	Yuck *string `locationName:"yuckLocationName" queryName:"yuckQueryName" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 type InputService2TestShapeInputService2TestCaseOperation1Output struct {
@@ -298,9 +298,9 @@ func (c *InputService3ProtocolTest) InputService3TestCaseOperation1(input *Input
 }
 
 type InputService3TestShapeInputService3TestCaseOperation1Input struct {
-	StructArg *InputService3TestShapeStructType `locationName:"Struct" type:"structure"`
-
 	_ struct{} `type:"structure"`
+
+	StructArg *InputService3TestShapeStructType `locationName:"Struct" type:"structure"`
 }
 
 type InputService3TestShapeInputService3TestCaseOperation1Output struct {
@@ -308,9 +308,9 @@ type InputService3TestShapeInputService3TestCaseOperation1Output struct {
 }
 
 type InputService3TestShapeStructType struct {
-	ScalarArg *string `locationName:"Scalar" type:"string"`
-
 	_ struct{} `type:"structure"`
+
+	ScalarArg *string `locationName:"Scalar" type:"string"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -392,9 +392,9 @@ func (c *InputService4ProtocolTest) InputService4TestCaseOperation1(input *Input
 }
 
 type InputService4TestShapeInputService4TestCaseOperation1Input struct {
-	ListArg []*string `type:"list"`
-
 	_ struct{} `type:"structure"`
+
+	ListArg []*string `type:"list"`
 }
 
 type InputService4TestShapeInputService4TestCaseOperation1Output struct {
@@ -480,9 +480,9 @@ func (c *InputService5ProtocolTest) InputService5TestCaseOperation1(input *Input
 }
 
 type InputService5TestShapeInputService5TestCaseOperation1Input struct {
-	ListArg []*string `locationName:"ListMemberName" locationNameList:"item" type:"list"`
-
 	_ struct{} `type:"structure"`
+
+	ListArg []*string `locationName:"ListMemberName" locationNameList:"item" type:"list"`
 }
 
 type InputService5TestShapeInputService5TestCaseOperation1Output struct {
@@ -568,9 +568,9 @@ func (c *InputService6ProtocolTest) InputService6TestCaseOperation1(input *Input
 }
 
 type InputService6TestShapeInputService6TestCaseOperation1Input struct {
-	ListArg []*string `locationName:"ListMemberName" queryName:"ListQueryName" locationNameList:"item" type:"list"`
-
 	_ struct{} `type:"structure"`
+
+	ListArg []*string `locationName:"ListMemberName" queryName:"ListQueryName" locationNameList:"item" type:"list"`
 }
 
 type InputService6TestShapeInputService6TestCaseOperation1Output struct {
@@ -656,9 +656,9 @@ func (c *InputService7ProtocolTest) InputService7TestCaseOperation1(input *Input
 }
 
 type InputService7TestShapeInputService7TestCaseOperation1Input struct {
-	BlobArg []byte `type:"blob"`
-
 	_ struct{} `type:"structure"`
+
+	BlobArg []byte `type:"blob"`
 }
 
 type InputService7TestShapeInputService7TestCaseOperation1Output struct {
@@ -744,9 +744,9 @@ func (c *InputService8ProtocolTest) InputService8TestCaseOperation1(input *Input
 }
 
 type InputService8TestShapeInputService8TestCaseOperation1Input struct {
-	TimeArg *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-
 	_ struct{} `type:"structure"`
+
+	TimeArg *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
 type InputService8TestShapeInputService8TestCaseOperation1Output struct {

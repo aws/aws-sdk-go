@@ -508,13 +508,13 @@ func (c *DirectoryService) UpdateRadius(input *UpdateRadiusInput) (*UpdateRadius
 
 // Represents a named directory attribute.
 type Attribute struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the attribute.
 	Name *string `min:"1" type:"string"`
 
 	// The value of the attribute.
 	Value *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -529,6 +529,8 @@ func (s Attribute) GoString() string {
 
 // Contains information about a computer account in a directory.
 type Computer struct {
+	_ struct{} `type:"structure"`
+
 	// An array of Attribute objects that contain the LDAP attributes that belong
 	// to the computer account.
 	ComputerAttributes []*Attribute `type:"list"`
@@ -538,8 +540,6 @@ type Computer struct {
 
 	// The computer name.
 	ComputerName *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -554,6 +554,8 @@ func (s Computer) GoString() string {
 
 // Contains the inputs for the ConnectDirectory operation.
 type ConnectDirectoryInput struct {
+	_ struct{} `type:"structure"`
+
 	// A DirectoryConnectSettings object that contains additional information for
 	// the operation.
 	ConnectSettings *DirectoryConnectSettings `type:"structure" required:"true"`
@@ -572,8 +574,6 @@ type ConnectDirectoryInput struct {
 
 	// The size of the directory.
 	Size *string `type:"string" required:"true" enum:"DirectorySize"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -588,10 +588,10 @@ func (s ConnectDirectoryInput) GoString() string {
 
 // Contains the results of the ConnectDirectory operation.
 type ConnectDirectoryOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The identifier of the new directory.
 	DirectoryId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -606,6 +606,8 @@ func (s ConnectDirectoryOutput) GoString() string {
 
 // Contains the inputs for the CreateAlias operation.
 type CreateAliasInput struct {
+	_ struct{} `type:"structure"`
+
 	// The requested alias.
 	//
 	// The alias must be unique amongst all aliases in AWS. This operation will
@@ -614,8 +616,6 @@ type CreateAliasInput struct {
 
 	// The identifier of the directory to create the alias for.
 	DirectoryId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -630,13 +630,13 @@ func (s CreateAliasInput) GoString() string {
 
 // Contains the results of the CreateAlias operation.
 type CreateAliasOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The alias for the directory.
 	Alias *string `min:"1" type:"string"`
 
 	// The identifier of the directory.
 	DirectoryId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -651,6 +651,8 @@ func (s CreateAliasOutput) GoString() string {
 
 // Contains the inputs for the CreateComputer operation.
 type CreateComputerInput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of Attribute objects that contain any LDAP attributes to apply to
 	// the computer account.
 	ComputerAttributes []*Attribute `type:"list"`
@@ -668,8 +670,6 @@ type CreateComputerInput struct {
 	// A one-time password that is used to join the computer to the directory. You
 	// should generate a random, strong password to use for this parameter.
 	Password *string `min:"8" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -684,10 +684,10 @@ func (s CreateComputerInput) GoString() string {
 
 // Contains the results for the CreateComputer operation.
 type CreateComputerOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A Computer object the represents the computer account.
 	Computer *Computer `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -702,6 +702,8 @@ func (s CreateComputerOutput) GoString() string {
 
 // Contains the inputs for the CreateDirectory operation.
 type CreateDirectoryInput struct {
+	_ struct{} `type:"structure"`
+
 	// A textual description for the directory.
 	Description *string `type:"string"`
 
@@ -722,8 +724,6 @@ type CreateDirectoryInput struct {
 	// A DirectoryVpcSettings object that contains additional information for the
 	// operation.
 	VpcSettings *DirectoryVpcSettings `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -738,10 +738,10 @@ func (s CreateDirectoryInput) GoString() string {
 
 // Contains the results of the CreateDirectory operation.
 type CreateDirectoryOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The identifier of the directory that was created.
 	DirectoryId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -756,13 +756,13 @@ func (s CreateDirectoryOutput) GoString() string {
 
 // Contains the inputs for the CreateSnapshot operation.
 type CreateSnapshotInput struct {
+	_ struct{} `type:"structure"`
+
 	// The identifier of the directory to take a snapshot of.
 	DirectoryId *string `type:"string" required:"true"`
 
 	// The descriptive name to apply to the snapshot.
 	Name *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -777,10 +777,10 @@ func (s CreateSnapshotInput) GoString() string {
 
 // Contains the results of the CreateSnapshot operation.
 type CreateSnapshotOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The identifier of the snapshot that was created.
 	SnapshotId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -795,10 +795,10 @@ func (s CreateSnapshotOutput) GoString() string {
 
 // Contains the inputs for the DeleteDirectory operation.
 type DeleteDirectoryInput struct {
+	_ struct{} `type:"structure"`
+
 	// The identifier of the directory to delete.
 	DirectoryId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -813,10 +813,10 @@ func (s DeleteDirectoryInput) GoString() string {
 
 // Contains the results of the DeleteDirectory operation.
 type DeleteDirectoryOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The directory identifier.
 	DirectoryId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -831,10 +831,10 @@ func (s DeleteDirectoryOutput) GoString() string {
 
 // Contains the inputs for the DeleteSnapshot operation.
 type DeleteSnapshotInput struct {
+	_ struct{} `type:"structure"`
+
 	// The identifier of the directory snapshot to be deleted.
 	SnapshotId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -849,10 +849,10 @@ func (s DeleteSnapshotInput) GoString() string {
 
 // Contains the results of the DeleteSnapshot operation.
 type DeleteSnapshotOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The identifier of the directory snapshot that was deleted.
 	SnapshotId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -867,6 +867,8 @@ func (s DeleteSnapshotOutput) GoString() string {
 
 // Contains the inputs for the DescribeDirectories operation.
 type DescribeDirectoriesInput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of identifiers of the directories to obtain the information for. If
 	// this member is null, all directories that belong to the current account are
 	// returned.
@@ -881,8 +883,6 @@ type DescribeDirectoriesInput struct {
 	// The DescribeDirectoriesResult.NextToken value from a previous call to DescribeDirectories.
 	// Pass null if this is the first call.
 	NextToken *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -897,6 +897,8 @@ func (s DescribeDirectoriesInput) GoString() string {
 
 // Contains the results of the DescribeDirectories operation.
 type DescribeDirectoriesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The list of DirectoryDescription objects that were retrieved.
 	//
 	// It is possible that this list contains less than the number of items specified
@@ -909,8 +911,6 @@ type DescribeDirectoriesOutput struct {
 	// parameter in a subsequent call to DescribeDirectories to retrieve the next
 	// set of items.
 	NextToken *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -925,6 +925,8 @@ func (s DescribeDirectoriesOutput) GoString() string {
 
 // Contains the inputs for the DescribeSnapshots operation.
 type DescribeSnapshotsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The identifier of the directory to retrieve snapshot information for.
 	DirectoryId *string `type:"string"`
 
@@ -939,8 +941,6 @@ type DescribeSnapshotsInput struct {
 	// this member is null or empty, all snapshots are returned using the Limit
 	// and NextToken members.
 	SnapshotIds []*string `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -955,6 +955,8 @@ func (s DescribeSnapshotsInput) GoString() string {
 
 // Contains the results of the DescribeSnapshots operation.
 type DescribeSnapshotsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// If not null, more results are available. Pass this value in the NextToken
 	// member of a subsequent call to DescribeSnapshots.
 	NextToken *string `type:"string"`
@@ -966,8 +968,6 @@ type DescribeSnapshotsOutput struct {
 	// requested number of items left to retrieve, or if the limitations of the
 	// operation have been exceeded.
 	Snapshots []*Snapshot `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -983,6 +983,8 @@ func (s DescribeSnapshotsOutput) GoString() string {
 // Contains information for the ConnectDirectory operation when an AD Connector
 // directory is being created.
 type DirectoryConnectSettings struct {
+	_ struct{} `type:"structure"`
+
 	// A list of one or more IP addresses of DNS servers or domain controllers in
 	// the on-premises directory.
 	CustomerDnsIps []*string `type:"list" required:"true"`
@@ -999,8 +1001,6 @@ type DirectoryConnectSettings struct {
 
 	// The identifier of the VPC that the AD Connector is created in.
 	VpcId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1015,6 +1015,8 @@ func (s DirectoryConnectSettings) GoString() string {
 
 // Contains information about an AD Connector directory.
 type DirectoryConnectSettingsDescription struct {
+	_ struct{} `type:"structure"`
+
 	// A list of the Availability Zones that the directory is in.
 	AvailabilityZones []*string `type:"list"`
 
@@ -1032,8 +1034,6 @@ type DirectoryConnectSettingsDescription struct {
 
 	// The identifier of the VPC that the AD Connector is in.
 	VpcId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1048,6 +1048,8 @@ func (s DirectoryConnectSettingsDescription) GoString() string {
 
 // Contains information about an AWS Directory Service directory.
 type DirectoryDescription struct {
+	_ struct{} `type:"structure"`
+
 	// The access URL for the directory, such as http://<alias>.awsapps.com.
 	AccessUrl *string `min:"1" type:"string"`
 
@@ -1111,8 +1113,6 @@ type DirectoryDescription struct {
 	// about a Simple AD directory. This member is only present if the directory
 	// is a Simple AD directory.
 	VpcSettings *DirectoryVpcSettingsDescription `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1127,6 +1127,8 @@ func (s DirectoryDescription) GoString() string {
 
 // Contains directory limit information for a region.
 type DirectoryLimits struct {
+	_ struct{} `type:"structure"`
+
 	// The current number of cloud directories in the region.
 	CloudOnlyDirectoriesCurrentCount *int64 `type:"integer"`
 
@@ -1144,8 +1146,6 @@ type DirectoryLimits struct {
 
 	// Indicates if the connected directory limit has been reached.
 	ConnectedDirectoriesLimitReached *bool `type:"boolean"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1161,6 +1161,8 @@ func (s DirectoryLimits) GoString() string {
 // Contains information for the CreateDirectory operation when a Simple AD directory
 // is being created.
 type DirectoryVpcSettings struct {
+	_ struct{} `type:"structure"`
+
 	// The identifiers of the subnets for the directory servers. The two subnets
 	// must be in different Availability Zones. AWS Directory Service creates a
 	// directory server and a DNS server in each of these subnets.
@@ -1168,8 +1170,6 @@ type DirectoryVpcSettings struct {
 
 	// The identifier of the VPC to create the Simple AD directory in.
 	VpcId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1184,6 +1184,8 @@ func (s DirectoryVpcSettings) GoString() string {
 
 // Contains information about a Simple AD directory.
 type DirectoryVpcSettingsDescription struct {
+	_ struct{} `type:"structure"`
+
 	// The list of Availability Zones that the directory is in.
 	AvailabilityZones []*string `type:"list"`
 
@@ -1195,8 +1197,6 @@ type DirectoryVpcSettingsDescription struct {
 
 	// The identifier of the VPC that the directory is in.
 	VpcId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1211,10 +1211,10 @@ func (s DirectoryVpcSettingsDescription) GoString() string {
 
 // Contains the inputs for the DisableRadius operation.
 type DisableRadiusInput struct {
+	_ struct{} `type:"structure"`
+
 	// The identifier of the directory to disable MFA for.
 	DirectoryId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1244,6 +1244,8 @@ func (s DisableRadiusOutput) GoString() string {
 
 // Contains the inputs for the DisableSso operation.
 type DisableSsoInput struct {
+	_ struct{} `type:"structure"`
+
 	// The identifier of the directory to disable single-sign on for.
 	DirectoryId *string `type:"string" required:"true"`
 
@@ -1262,8 +1264,6 @@ type DisableSsoInput struct {
 	// sign-on and are not stored by the service. The AD Connector service account
 	// is not changed.
 	UserName *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1293,13 +1293,13 @@ func (s DisableSsoOutput) GoString() string {
 
 // Contains the inputs for the EnableRadius operation.
 type EnableRadiusInput struct {
+	_ struct{} `type:"structure"`
+
 	// The identifier of the directory to enable MFA for.
 	DirectoryId *string `type:"string" required:"true"`
 
 	// A RadiusSettings object that contains information about the RADIUS server.
 	RadiusSettings *RadiusSettings `type:"structure" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1329,6 +1329,8 @@ func (s EnableRadiusOutput) GoString() string {
 
 // Contains the inputs for the EnableSso operation.
 type EnableSsoInput struct {
+	_ struct{} `type:"structure"`
+
 	// The identifier of the directory to enable single-sign on for.
 	DirectoryId *string `type:"string" required:"true"`
 
@@ -1347,8 +1349,6 @@ type EnableSsoInput struct {
 	// and are not stored by the service. The AD Connector service account is not
 	// changed.
 	UserName *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1393,11 +1393,11 @@ func (s GetDirectoryLimitsInput) GoString() string {
 
 // Contains the results of the GetDirectoryLimits operation.
 type GetDirectoryLimitsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A DirectoryLimits object that contains the directory limits for the current
 	// region.
 	DirectoryLimits *DirectoryLimits `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1412,10 +1412,10 @@ func (s GetDirectoryLimitsOutput) GoString() string {
 
 // Contains the inputs for the GetSnapshotLimits operation.
 type GetSnapshotLimitsInput struct {
+	_ struct{} `type:"structure"`
+
 	// Contains the identifier of the directory to obtain the limits for.
 	DirectoryId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1430,11 +1430,11 @@ func (s GetSnapshotLimitsInput) GoString() string {
 
 // Contains the results of the GetSnapshotLimits operation.
 type GetSnapshotLimitsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A SnapshotLimits object that contains the manual snapshot limits for the
 	// specified directory.
 	SnapshotLimits *SnapshotLimits `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1450,6 +1450,8 @@ func (s GetSnapshotLimitsOutput) GoString() string {
 // Contains information about a Remote Authentication Dial In User Service (RADIUS)
 // server.
 type RadiusSettings struct {
+	_ struct{} `type:"structure"`
+
 	// The protocol specified for your RADIUS endpoints.
 	AuthenticationProtocol *string `type:"string" enum:"RadiusAuthenticationProtocol"`
 
@@ -1478,8 +1480,6 @@ type RadiusSettings struct {
 
 	// Not currently used.
 	UseSameUsername *bool `type:"boolean"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1494,10 +1494,10 @@ func (s RadiusSettings) GoString() string {
 
 // An object representing the inputs for the RestoreFromSnapshot operation.
 type RestoreFromSnapshotInput struct {
+	_ struct{} `type:"structure"`
+
 	// The identifier of the snapshot to restore from.
 	SnapshotId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1527,6 +1527,8 @@ func (s RestoreFromSnapshotOutput) GoString() string {
 
 // Describes a directory snapshot.
 type Snapshot struct {
+	_ struct{} `type:"structure"`
+
 	// The directory identifier.
 	DirectoryId *string `type:"string"`
 
@@ -1544,8 +1546,6 @@ type Snapshot struct {
 
 	// The snapshot type.
 	Type *string `type:"string" enum:"SnapshotType"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1560,6 +1560,8 @@ func (s Snapshot) GoString() string {
 
 // Contains manual snapshot limit information for a directory.
 type SnapshotLimits struct {
+	_ struct{} `type:"structure"`
+
 	// The current number of manual snapshots of the directory.
 	ManualSnapshotsCurrentCount *int64 `type:"integer"`
 
@@ -1568,8 +1570,6 @@ type SnapshotLimits struct {
 
 	// Indicates if the manual snapshot limit has been reached.
 	ManualSnapshotsLimitReached *bool `type:"boolean"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1584,13 +1584,13 @@ func (s SnapshotLimits) GoString() string {
 
 // Contains the inputs for the UpdateRadius operation.
 type UpdateRadiusInput struct {
+	_ struct{} `type:"structure"`
+
 	// The identifier of the directory to update the RADIUS server information for.
 	DirectoryId *string `type:"string" required:"true"`
 
 	// A RadiusSettings object that contains information about the RADIUS server.
 	RadiusSettings *RadiusSettings `type:"structure" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

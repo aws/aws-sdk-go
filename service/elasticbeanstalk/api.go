@@ -1026,6 +1026,8 @@ func (c *ElasticBeanstalk) ValidateConfigurationSettings(input *ValidateConfigur
 }
 
 type AbortEnvironmentUpdateInput struct {
+	_ struct{} `type:"structure"`
+
 	// This specifies the ID of the environment with the in-progress update that
 	// you want to cancel.
 	EnvironmentId *string `type:"string"`
@@ -1033,8 +1035,6 @@ type AbortEnvironmentUpdateInput struct {
 	// This specifies the name of the environment with the in-progress update that
 	// you want to cancel.
 	EnvironmentName *string `min:"4" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1063,6 +1063,8 @@ func (s AbortEnvironmentUpdateOutput) GoString() string {
 
 // Describes the properties of an application.
 type ApplicationDescription struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the application.
 	ApplicationName *string `min:"1" type:"string"`
 
@@ -1080,8 +1082,6 @@ type ApplicationDescription struct {
 
 	// The names of the versions for this application.
 	Versions []*string `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1096,10 +1096,10 @@ func (s ApplicationDescription) GoString() string {
 
 // Result message containing a single description of an application.
 type ApplicationDescriptionMessage struct {
+	_ struct{} `type:"structure"`
+
 	// The ApplicationDescription of the application.
 	Application *ApplicationDescription `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1114,6 +1114,8 @@ func (s ApplicationDescriptionMessage) GoString() string {
 
 // Represents the application metrics for a specified environment.
 type ApplicationMetrics struct {
+	_ struct{} `type:"structure"`
+
 	// The amount of time that the metrics cover (usually 10 seconds). For example,
 	// you might have 5 requests (request_count) within the most recent time slice
 	// of 10 seconds (duration).
@@ -1130,8 +1132,6 @@ type ApplicationMetrics struct {
 	// Represents the percentage of requests over the last 10 seconds that resulted
 	// in each type of status code response.
 	StatusCodes *StatusCodes `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1146,6 +1146,8 @@ func (s ApplicationMetrics) GoString() string {
 
 // Describes the properties of an application version.
 type ApplicationVersionDescription struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the application associated with this release.
 	ApplicationName *string `min:"1" type:"string"`
 
@@ -1166,8 +1168,6 @@ type ApplicationVersionDescription struct {
 
 	// A label uniquely identifying the version for the associated application.
 	VersionLabel *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1182,10 +1182,10 @@ func (s ApplicationVersionDescription) GoString() string {
 
 // Result message wrapping a single description of an application version.
 type ApplicationVersionDescriptionMessage struct {
+	_ struct{} `type:"structure"`
+
 	// The ApplicationVersionDescription of the application version.
 	ApplicationVersion *ApplicationVersionDescription `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1200,10 +1200,10 @@ func (s ApplicationVersionDescriptionMessage) GoString() string {
 
 // Describes an Auto Scaling launch configuration.
 type AutoScalingGroup struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the AutoScalingGroup .
 	Name *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1220,6 +1220,8 @@ func (s AutoScalingGroup) GoString() string {
 // to the AWS Elastic Beanstalk environment. Use the instanceId property to
 // specify the application instance for which you'd like to return data.
 type CPUUtilization struct {
+	_ struct{} `type:"structure"`
+
 	// Percentage of time that the CPU has spent in the I/O Wait state over the
 	// last 10 seconds.
 	IOWait *float64 `type:"double"`
@@ -1247,8 +1249,6 @@ type CPUUtilization struct {
 	// Percentage of time that the CPU has spent in the User state over the last
 	// 10 seconds.
 	User *float64 `type:"double"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1263,10 +1263,10 @@ func (s CPUUtilization) GoString() string {
 
 // Results message indicating whether a CNAME is available.
 type CheckDNSAvailabilityInput struct {
+	_ struct{} `type:"structure"`
+
 	// The prefix used when this CNAME is reserved.
 	CNAMEPrefix *string `min:"4" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1281,6 +1281,8 @@ func (s CheckDNSAvailabilityInput) GoString() string {
 
 // Indicates if the specified CNAME is available.
 type CheckDNSAvailabilityOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Indicates if the specified CNAME is available:
 	//
 	//   true : The CNAME is available.   false : The CNAME is not available.
@@ -1289,8 +1291,6 @@ type CheckDNSAvailabilityOutput struct {
 	// The fully qualified CNAME to reserve when CreateEnvironment is called with
 	// the provided prefix.
 	FullyQualifiedCNAME *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1304,6 +1304,8 @@ func (s CheckDNSAvailabilityOutput) GoString() string {
 }
 
 type ComposeEnvironmentsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the application to which the specified source bundles belong.
 	ApplicationName *string `min:"1" type:"string"`
 
@@ -1320,8 +1322,6 @@ type ComposeEnvironmentsInput struct {
 	// of the solution stack to use, and optionally can specify environment links
 	// to create.
 	VersionLabels []*string `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1336,6 +1336,8 @@ func (s ComposeEnvironmentsInput) GoString() string {
 
 // Describes the possible values for a configuration option.
 type ConfigurationOptionDescription struct {
+	_ struct{} `type:"structure"`
+
 	// An indication of which action is required if the value for this configuration
 	// option changes:
 	//
@@ -1397,8 +1399,6 @@ type ConfigurationOptionDescription struct {
 	// the possible values.   Boolean : Values for this option are either true or
 	// false .   Json : Values for this option are a JSON representation of a ConfigDocument.
 	ValueType *string `type:"string" enum:"ConfigurationOptionValueType"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1416,6 +1416,8 @@ func (s ConfigurationOptionDescription) GoString() string {
 // (http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options.html)
 // in the AWS Elastic Beanstalk Developer Guide.
 type ConfigurationOptionSetting struct {
+	_ struct{} `type:"structure"`
+
 	// A unique namespace identifying the option's associated AWS resource.
 	Namespace *string `type:"string"`
 
@@ -1427,8 +1429,6 @@ type ConfigurationOptionSetting struct {
 
 	// The current value for the configuration option.
 	Value *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1443,6 +1443,8 @@ func (s ConfigurationOptionSetting) GoString() string {
 
 // Describes the settings for a configuration set.
 type ConfigurationSettingsDescription struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the application associated with this configuration set.
 	ApplicationName *string `min:"1" type:"string"`
 
@@ -1478,8 +1480,6 @@ type ConfigurationSettingsDescription struct {
 	// If not null, the name of the configuration template for this configuration
 	// set.
 	TemplateName *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1493,6 +1493,8 @@ func (s ConfigurationSettingsDescription) GoString() string {
 }
 
 type CreateApplicationInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the application.
 	//
 	//  Constraint: This name must be unique within your account. If the specified
@@ -1501,8 +1503,6 @@ type CreateApplicationInput struct {
 
 	// Describes the application.
 	Description *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1516,6 +1516,8 @@ func (s CreateApplicationInput) GoString() string {
 }
 
 type CreateApplicationVersionInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the application. If no application is found with this name, and
 	// AutoCreateApplication is false, returns an InvalidParameterValue error.
 	ApplicationName *string `min:"1" type:"string" required:"true"`
@@ -1558,8 +1560,6 @@ type CreateApplicationVersionInput struct {
 	// exists with this label for the specified application, AWS Elastic Beanstalk
 	// returns an InvalidParameterValue error.
 	VersionLabel *string `min:"1" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1573,6 +1573,8 @@ func (s CreateApplicationVersionInput) GoString() string {
 }
 
 type CreateConfigurationTemplateInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the application to associate with this configuration template.
 	// If no application is found with this name, AWS Elastic Beanstalk returns
 	// an InvalidParameterValue error.
@@ -1627,8 +1629,6 @@ type CreateConfigurationTemplateInput struct {
 	// Default: If a configuration template already exists with this name, AWS
 	// Elastic Beanstalk returns an InvalidParameterValue error.
 	TemplateName *string `min:"1" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1642,6 +1642,8 @@ func (s CreateConfigurationTemplateInput) GoString() string {
 }
 
 type CreateEnvironmentInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the application that contains the version to be deployed.
 	//
 	//  If no application is found with this name, CreateEnvironment returns an
@@ -1718,8 +1720,6 @@ type CreateEnvironmentInput struct {
 	//  Default: If not specified, AWS Elastic Beanstalk attempts to launch the
 	// sample application in the container.
 	VersionLabel *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1748,10 +1748,10 @@ func (s CreateStorageLocationInput) GoString() string {
 
 // Results of a CreateStorageLocationResult call.
 type CreateStorageLocationOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the Amazon S3 bucket created.
 	S3Bucket *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1765,14 +1765,14 @@ func (s CreateStorageLocationOutput) GoString() string {
 }
 
 type DeleteApplicationInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the application to delete.
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// When set to true, running environments will be terminated before deleting
 	// the application.
 	TerminateEnvByForce *bool `type:"boolean"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1800,6 +1800,8 @@ func (s DeleteApplicationOutput) GoString() string {
 }
 
 type DeleteApplicationVersionInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the application to delete releases from.
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
@@ -1812,8 +1814,6 @@ type DeleteApplicationVersionInput struct {
 
 	// The label of the version to delete.
 	VersionLabel *string `min:"1" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1841,13 +1841,13 @@ func (s DeleteApplicationVersionOutput) GoString() string {
 }
 
 type DeleteConfigurationTemplateInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the application to delete the configuration template from.
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// The name of the configuration template to delete.
 	TemplateName *string `min:"1" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1875,13 +1875,13 @@ func (s DeleteConfigurationTemplateOutput) GoString() string {
 }
 
 type DeleteEnvironmentConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the application the environment is associated with.
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// The name of the environment to delete the draft configuration from.
 	EnvironmentName *string `min:"4" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1910,6 +1910,8 @@ func (s DeleteEnvironmentConfigurationOutput) GoString() string {
 
 // Result message containing a list of configuration descriptions.
 type DescribeApplicationVersionsInput struct {
+	_ struct{} `type:"structure"`
+
 	// If specified, AWS Elastic Beanstalk restricts the returned descriptions to
 	// only include ones that are associated with the specified application.
 	ApplicationName *string `min:"1" type:"string"`
@@ -1917,8 +1919,6 @@ type DescribeApplicationVersionsInput struct {
 	// If specified, restricts the returned descriptions to only include ones that
 	// have the specified version labels.
 	VersionLabels []*string `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1933,10 +1933,10 @@ func (s DescribeApplicationVersionsInput) GoString() string {
 
 // Result message wrapping a list of application version descriptions.
 type DescribeApplicationVersionsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// List of ApplicationVersionDescription objects sorted by order of creation.
 	ApplicationVersions []*ApplicationVersionDescription `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1950,11 +1950,11 @@ func (s DescribeApplicationVersionsOutput) GoString() string {
 }
 
 type DescribeApplicationsInput struct {
+	_ struct{} `type:"structure"`
+
 	// If specified, AWS Elastic Beanstalk restricts the returned descriptions to
 	// only include those with the specified names.
 	ApplicationNames []*string `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1969,10 +1969,10 @@ func (s DescribeApplicationsInput) GoString() string {
 
 // Result message containing a list of application descriptions.
 type DescribeApplicationsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// This parameter contains a list of ApplicationDescription.
 	Applications []*ApplicationDescription `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1987,6 +1987,8 @@ func (s DescribeApplicationsOutput) GoString() string {
 
 // Result message containig a list of application version descriptions.
 type DescribeConfigurationOptionsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the application associated with the configuration template or
 	// environment. Only needed if you want to describe the configuration options
 	// associated with either the configuration template or environment.
@@ -2004,8 +2006,6 @@ type DescribeConfigurationOptionsInput struct {
 	// The name of the configuration template whose configuration options you want
 	// to describe.
 	TemplateName *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2020,13 +2020,13 @@ func (s DescribeConfigurationOptionsInput) GoString() string {
 
 // Describes the settings for a specified configuration set.
 type DescribeConfigurationOptionsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of ConfigurationOptionDescription.
 	Options []*ConfigurationOptionDescription `type:"list"`
 
 	// The name of the solution stack these configuration options belong to.
 	SolutionStackName *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2042,6 +2042,8 @@ func (s DescribeConfigurationOptionsOutput) GoString() string {
 // Result message containing all of the configuration settings for a specified
 // solution stack or configuration template.
 type DescribeConfigurationSettingsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The application for the environment or configuration template.
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
@@ -2060,8 +2062,6 @@ type DescribeConfigurationSettingsInput struct {
 	// error. If you do not specify either, AWS Elastic Beanstalk returns a MissingRequiredParameter
 	// error.
 	TemplateName *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2076,10 +2076,10 @@ func (s DescribeConfigurationSettingsInput) GoString() string {
 
 // The results from a request to change the configuration settings of an environment.
 type DescribeConfigurationSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of ConfigurationSettingsDescription.
 	ConfigurationSettings []*ConfigurationSettingsDescription `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2094,6 +2094,8 @@ func (s DescribeConfigurationSettingsOutput) GoString() string {
 
 // See the example below to learn how to create a request body.
 type DescribeEnvironmentHealthInput struct {
+	_ struct{} `type:"structure"`
+
 	// Specifies the response elements you wish to receive. If no attribute names
 	// are specified, AWS Elastic Beanstalk only returns the name of the environment.
 	AttributeNames []*string `type:"list"`
@@ -2111,8 +2113,6 @@ type DescribeEnvironmentHealthInput struct {
 	// you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
 	// error.
 	EnvironmentName *string `min:"4" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2127,6 +2127,8 @@ func (s DescribeEnvironmentHealthInput) GoString() string {
 
 // See the example below for a sample response.
 type DescribeEnvironmentHealthOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Represents the application metrics for a specified environment.
 	ApplicationMetrics *ApplicationMetrics `type:"structure"`
 
@@ -2153,8 +2155,6 @@ type DescribeEnvironmentHealthOutput struct {
 	// Returns the health status value of the environment. For more information,
 	// see Health Colors and Statuses (http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html).
 	Status *string `type:"string" enum:"EnvironmentHealth"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2168,6 +2168,8 @@ func (s DescribeEnvironmentHealthOutput) GoString() string {
 }
 
 type DescribeEnvironmentResourcesInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the environment to retrieve AWS resource usage data.
 	//
 	//  Condition: You must specify either this or an EnvironmentName, or both.
@@ -2181,8 +2183,6 @@ type DescribeEnvironmentResourcesInput struct {
 	// you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
 	// error.
 	EnvironmentName *string `min:"4" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2197,10 +2197,10 @@ func (s DescribeEnvironmentResourcesInput) GoString() string {
 
 // Result message containing a list of environment resource descriptions.
 type DescribeEnvironmentResourcesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of EnvironmentResourceDescription.
 	EnvironmentResources *EnvironmentResourceDescription `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2214,6 +2214,8 @@ func (s DescribeEnvironmentResourcesOutput) GoString() string {
 }
 
 type DescribeEnvironmentsInput struct {
+	_ struct{} `type:"structure"`
+
 	// If specified, AWS Elastic Beanstalk restricts the returned descriptions to
 	// include only those that are associated with this application.
 	ApplicationName *string `min:"1" type:"string"`
@@ -2241,8 +2243,6 @@ type DescribeEnvironmentsInput struct {
 	// If specified, AWS Elastic Beanstalk restricts the returned descriptions to
 	// include only those that are associated with this application version.
 	VersionLabel *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2256,6 +2256,8 @@ func (s DescribeEnvironmentsInput) GoString() string {
 }
 
 type DescribeEventsInput struct {
+	_ struct{} `type:"structure"`
+
 	// If specified, AWS Elastic Beanstalk restricts the returned descriptions to
 	// include only those associated with this application.
 	ApplicationName *string `min:"1" type:"string"`
@@ -2298,8 +2300,6 @@ type DescribeEventsInput struct {
 	// If specified, AWS Elastic Beanstalk restricts the returned descriptions to
 	// those associated with this application version.
 	VersionLabel *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2314,14 +2314,14 @@ func (s DescribeEventsInput) GoString() string {
 
 // Result message wrapping a list of event descriptions.
 type DescribeEventsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of EventDescription.
 	Events []*EventDescription `type:"list"`
 
 	// If returned, this indicates that there are more results to obtain. Use this
 	// token in the next DescribeEvents call to get the next batch of events.
 	NextToken *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2336,6 +2336,8 @@ func (s DescribeEventsOutput) GoString() string {
 
 // See the example below to learn how to create a request body.
 type DescribeInstancesHealthInput struct {
+	_ struct{} `type:"structure"`
+
 	// Specifies the response elements you wish to receive. If no attribute names
 	// are specified, AWS Elastic Beanstalk only returns a list of instances.
 	AttributeNames []*string `type:"list"`
@@ -2348,8 +2350,6 @@ type DescribeInstancesHealthInput struct {
 
 	// Specifies the next token of the request.
 	NextToken *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2364,6 +2364,8 @@ func (s DescribeInstancesHealthInput) GoString() string {
 
 // See the example below for a sample response.
 type DescribeInstancesHealthOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Contains the response body with information about the health of the instance.
 	InstanceHealthList []*SingleInstanceHealth `type:"list"`
 
@@ -2372,8 +2374,6 @@ type DescribeInstancesHealthOutput struct {
 
 	// The date and time the information was last refreshed.
 	RefreshedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2388,6 +2388,8 @@ func (s DescribeInstancesHealthOutput) GoString() string {
 
 // Describes the properties of an environment.
 type EnvironmentDescription struct {
+	_ struct{} `type:"structure"`
+
 	// Indicates if there is an in-progress environment configuration update or
 	// application version deployment that you can cancel.
 	//
@@ -2463,8 +2465,6 @@ type EnvironmentDescription struct {
 
 	// The application version deployed in this environment.
 	VersionLabel *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2479,10 +2479,10 @@ func (s EnvironmentDescription) GoString() string {
 
 // Result message containing a list of environment descriptions.
 type EnvironmentDescriptionsMessage struct {
+	_ struct{} `type:"structure"`
+
 	// Returns an EnvironmentDescription list.
 	Environments []*EnvironmentDescription `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2497,6 +2497,8 @@ func (s EnvironmentDescriptionsMessage) GoString() string {
 
 // The information retrieved from the Amazon EC2 instances.
 type EnvironmentInfoDescription struct {
+	_ struct{} `type:"structure"`
+
 	// The Amazon EC2 Instance ID for this information.
 	Ec2InstanceId *string `type:"string"`
 
@@ -2508,8 +2510,6 @@ type EnvironmentInfoDescription struct {
 
 	// The time stamp when this information was retrieved.
 	SampleTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2528,13 +2528,13 @@ func (s EnvironmentInfoDescription) GoString() string {
 // (http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environment-mgmt-compose.html#environment-mgmt-compose-envyaml)
 // for details.
 type EnvironmentLink struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the linked environment (the dependency).
 	EnvironmentName *string `type:"string"`
 
 	// The name of the link.
 	LinkName *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2549,6 +2549,8 @@ func (s EnvironmentLink) GoString() string {
 
 // Describes the AWS resources in use by this environment. This data is live.
 type EnvironmentResourceDescription struct {
+	_ struct{} `type:"structure"`
+
 	// The AutoScalingGroups used by this environment.
 	AutoScalingGroups []*AutoScalingGroup `type:"list"`
 
@@ -2569,8 +2571,6 @@ type EnvironmentResourceDescription struct {
 
 	// The AutoScaling triggers in use by this environment.
 	Triggers []*Trigger `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2586,10 +2586,10 @@ func (s EnvironmentResourceDescription) GoString() string {
 // Describes the AWS resources in use by this environment. This data is not
 // live data.
 type EnvironmentResourcesDescription struct {
+	_ struct{} `type:"structure"`
+
 	// Describes the LoadBalancer.
 	LoadBalancer *LoadBalancerDescription `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2604,6 +2604,8 @@ func (s EnvironmentResourcesDescription) GoString() string {
 
 // Describes the properties of an environment tier
 type EnvironmentTier struct {
+	_ struct{} `type:"structure"`
+
 	// The name of this environment tier.
 	Name *string `type:"string"`
 
@@ -2612,8 +2614,6 @@ type EnvironmentTier struct {
 
 	// The version of this environment tier.
 	Version *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2628,6 +2628,8 @@ func (s EnvironmentTier) GoString() string {
 
 // Describes an event.
 type EventDescription struct {
+	_ struct{} `type:"structure"`
+
 	// The application associated with the event.
 	ApplicationName *string `min:"1" type:"string"`
 
@@ -2651,8 +2653,6 @@ type EventDescription struct {
 
 	// The release label for the application version associated with this event.
 	VersionLabel *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2667,10 +2667,10 @@ func (s EventDescription) GoString() string {
 
 // The description of an Amazon EC2 instance.
 type Instance struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the Amazon EC2 instance.
 	Id *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2686,6 +2686,8 @@ func (s Instance) GoString() string {
 // Represents summary information about the health of an instance. For more
 // information, see Health Colors and Statuses (http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html).
 type InstanceHealthSummary struct {
+	_ struct{} `type:"structure"`
+
 	// Red. The health agent is reporting a high number of request failures or other
 	// issues for an instance or environment.
 	Degraded *int64 `type:"integer"`
@@ -2715,8 +2717,6 @@ type InstanceHealthSummary struct {
 	// Yellow. The health agent is reporting a moderate number of request failures
 	// or other issues for an instance or environment.
 	Warning *int64 `type:"integer"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2732,6 +2732,8 @@ func (s InstanceHealthSummary) GoString() string {
 // Represents the average latency for the slowest X percent of requests over
 // the last 10 seconds.
 type Latency struct {
+	_ struct{} `type:"structure"`
+
 	// The average latency for the slowest 90 percent of requests over the last
 	// 10 seconds.
 	P10 *float64 `type:"double"`
@@ -2763,8 +2765,6 @@ type Latency struct {
 	// The average latency for the slowest 0.1 percent of requests over the last
 	// 10 seconds.
 	P999 *float64 `type:"double"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2779,10 +2779,10 @@ func (s Latency) GoString() string {
 
 // Describes an Auto Scaling launch configuration.
 type LaunchConfiguration struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the launch configuration.
 	Name *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2811,13 +2811,13 @@ func (s ListAvailableSolutionStacksInput) GoString() string {
 
 // A list of available AWS Elastic Beanstalk solution stacks.
 type ListAvailableSolutionStacksOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of available solution stacks and their SolutionStackDescription.
 	SolutionStackDetails []*SolutionStackDescription `type:"list"`
 
 	// A list of available solution stacks.
 	SolutionStacks []*string `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2832,13 +2832,13 @@ func (s ListAvailableSolutionStacksOutput) GoString() string {
 
 // Describes the properties of a Listener for the LoadBalancer.
 type Listener struct {
+	_ struct{} `type:"structure"`
+
 	// The port that is used by the Listener.
 	Port *int64 `type:"integer"`
 
 	// The protocol that is used by the Listener.
 	Protocol *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2853,10 +2853,10 @@ func (s Listener) GoString() string {
 
 // Describes a LoadBalancer.
 type LoadBalancer struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the LoadBalancer.
 	Name *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2871,6 +2871,8 @@ func (s LoadBalancer) GoString() string {
 
 // Describes the details of a LoadBalancer.
 type LoadBalancerDescription struct {
+	_ struct{} `type:"structure"`
+
 	// The domain name of the LoadBalancer.
 	Domain *string `type:"string"`
 
@@ -2879,8 +2881,6 @@ type LoadBalancerDescription struct {
 
 	// The name of the LoadBalancer.
 	LoadBalancerName *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2896,14 +2896,14 @@ func (s LoadBalancerDescription) GoString() string {
 // A regular expression representing a restriction on a string configuration
 // option value.
 type OptionRestrictionRegex struct {
+	_ struct{} `type:"structure"`
+
 	// A unique name representing this regular expression.
 	Label *string `type:"string"`
 
 	// The regular expression pattern that a string configuration option value with
 	// this restriction must match.
 	Pattern *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2918,6 +2918,8 @@ func (s OptionRestrictionRegex) GoString() string {
 
 // A specification identifying an individual configuration option.
 type OptionSpecification struct {
+	_ struct{} `type:"structure"`
+
 	// A unique namespace identifying the option's associated AWS resource.
 	Namespace *string `type:"string"`
 
@@ -2926,8 +2928,6 @@ type OptionSpecification struct {
 
 	// A unique resource name for a time-based scaling configuration option.
 	ResourceName *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2942,13 +2942,13 @@ func (s OptionSpecification) GoString() string {
 
 // Describes a queue.
 type Queue struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the queue.
 	Name *string `type:"string"`
 
 	// The URL of the queue.
 	URL *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2962,6 +2962,8 @@ func (s Queue) GoString() string {
 }
 
 type RebuildEnvironmentInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the environment to rebuild.
 	//
 	//  Condition: You must specify either this or an EnvironmentName, or both.
@@ -2975,8 +2977,6 @@ type RebuildEnvironmentInput struct {
 	// you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
 	// error.
 	EnvironmentName *string `min:"4" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3004,6 +3004,8 @@ func (s RebuildEnvironmentOutput) GoString() string {
 }
 
 type RequestEnvironmentInfoInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the environment of the requested data.
 	//
 	//  If no such environment is found, RequestEnvironmentInfo returns an InvalidParameterValue
@@ -3026,8 +3028,6 @@ type RequestEnvironmentInfoInput struct {
 
 	// The type of information to request.
 	InfoType *string `type:"string" required:"true" enum:"EnvironmentInfoType"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3055,6 +3055,8 @@ func (s RequestEnvironmentInfoOutput) GoString() string {
 }
 
 type RestartAppServerInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the environment to restart the server for.
 	//
 	//  Condition: You must specify either this or an EnvironmentName, or both.
@@ -3068,8 +3070,6 @@ type RestartAppServerInput struct {
 	// you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
 	// error.
 	EnvironmentName *string `min:"4" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3097,6 +3097,8 @@ func (s RestartAppServerOutput) GoString() string {
 }
 
 type RetrieveEnvironmentInfoInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the data's environment.
 	//
 	//  If no such environment is found, returns an InvalidParameterValue error.
@@ -3117,8 +3119,6 @@ type RetrieveEnvironmentInfoInput struct {
 
 	// The type of information to retrieve.
 	InfoType *string `type:"string" required:"true" enum:"EnvironmentInfoType"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3133,10 +3133,10 @@ func (s RetrieveEnvironmentInfoInput) GoString() string {
 
 // Result message containing a description of the requested environment info.
 type RetrieveEnvironmentInfoOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The EnvironmentInfoDescription of the environment.
 	EnvironmentInfo []*EnvironmentInfoDescription `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3151,13 +3151,13 @@ func (s RetrieveEnvironmentInfoOutput) GoString() string {
 
 // A specification of a location in Amazon S3.
 type S3Location struct {
+	_ struct{} `type:"structure"`
+
 	// The Amazon S3 bucket where the data is located.
 	S3Bucket *string `type:"string"`
 
 	// The Amazon S3 key where the data is located.
 	S3Key *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3174,6 +3174,8 @@ func (s S3Location) GoString() string {
 // the AWS Elastic Beanstalk environment. Use the InstanceId property to specify
 // the application instance for which you'd like to return data.
 type SingleInstanceHealth struct {
+	_ struct{} `type:"structure"`
+
 	// Represents the application metrics for a specified environment.
 	ApplicationMetrics *ApplicationMetrics `type:"structure"`
 
@@ -3199,8 +3201,6 @@ type SingleInstanceHealth struct {
 	// Represents CPU utilization and load average information for applications
 	// running in the specified environment.
 	System *SystemStatus `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3215,13 +3215,13 @@ func (s SingleInstanceHealth) GoString() string {
 
 // Describes the solution stack.
 type SolutionStackDescription struct {
+	_ struct{} `type:"structure"`
+
 	// The permitted file types allowed for a solution stack.
 	PermittedFileTypes []*string `type:"list"`
 
 	// The name of the solution stack.
 	SolutionStackName *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3236,13 +3236,13 @@ func (s SolutionStackDescription) GoString() string {
 
 // A specification for an environment configuration
 type SourceConfiguration struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the application associated with the configuration.
 	ApplicationName *string `min:"1" type:"string"`
 
 	// The name of the configuration template.
 	TemplateName *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3259,6 +3259,8 @@ func (s SourceConfiguration) GoString() string {
 // in each type of status code response. For more information, see Status Code
 // Definitions (http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
 type StatusCodes struct {
+	_ struct{} `type:"structure"`
+
 	// The percentage of requests over the last 10 seconds that resulted in a 2xx
 	// (200, 201, etc.) status code.
 	Status2xx *int64 `type:"integer"`
@@ -3274,8 +3276,6 @@ type StatusCodes struct {
 	// The percentage of requests over the last 10 seconds that resulted in a 5xx
 	// (500, 501, etc.) status code.
 	Status5xx *int64 `type:"integer"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3290,6 +3290,8 @@ func (s StatusCodes) GoString() string {
 
 // Swaps the CNAMEs of two environments.
 type SwapEnvironmentCNAMEsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the destination environment.
 	//
 	//  Condition: You must specify at least the DestinationEnvironmentID or the
@@ -3317,8 +3319,6 @@ type SwapEnvironmentCNAMEsInput struct {
 	// You may also specify both. If you specify the SourceEnvironmentName, you
 	// must specify the DestinationEnvironmentName.
 	SourceEnvironmentName *string `min:"4" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3348,6 +3348,8 @@ func (s SwapEnvironmentCNAMEsOutput) GoString() string {
 // Represents CPU utilization and load average information for applications
 // running in the specified environment.
 type SystemStatus struct {
+	_ struct{} `type:"structure"`
+
 	// Represents CPU utilization information from the specified instance that belongs
 	// to the AWS Elastic Beanstalk environment. Use the instanceId property to
 	// specify the application instance for which you'd like to return data.
@@ -3356,8 +3358,6 @@ type SystemStatus struct {
 	// Load average in the last 1-minute and 5-minute periods. For more information,
 	// see Operating System Metrics (http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-metrics.html#health-enhanced-metrics-os).
 	LoadAverage []*float64 `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3372,13 +3372,13 @@ func (s SystemStatus) GoString() string {
 
 // Describes a tag applied to a resource in an environment.
 type Tag struct {
+	_ struct{} `type:"structure"`
+
 	// The key of the tag.
 	Key *string `min:"1" type:"string"`
 
 	// The value of the tag.
 	Value *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3392,6 +3392,8 @@ func (s Tag) GoString() string {
 }
 
 type TerminateEnvironmentInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the environment to terminate.
 	//
 	//  Condition: You must specify either this or an EnvironmentName, or both.
@@ -3423,8 +3425,6 @@ type TerminateEnvironmentInput struct {
 	//
 	//  Valid Values: true | false
 	TerminateResources *bool `type:"boolean"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3439,10 +3439,10 @@ func (s TerminateEnvironmentInput) GoString() string {
 
 // Describes a trigger.
 type Trigger struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the trigger.
 	Name *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3456,6 +3456,8 @@ func (s Trigger) GoString() string {
 }
 
 type UpdateApplicationInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the application to update. If no such application is found, UpdateApplication
 	// returns an InvalidParameterValue error.
 	ApplicationName *string `min:"1" type:"string" required:"true"`
@@ -3464,8 +3466,6 @@ type UpdateApplicationInput struct {
 	//
 	// Default: If not specified, AWS Elastic Beanstalk does not update the description.
 	Description *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3479,6 +3479,8 @@ func (s UpdateApplicationInput) GoString() string {
 }
 
 type UpdateApplicationVersionInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the application associated with this version.
 	//
 	//  If no application is found with this name, UpdateApplication returns an
@@ -3493,8 +3495,6 @@ type UpdateApplicationVersionInput struct {
 	//  If no application version is found with this label, UpdateApplication returns
 	// an InvalidParameterValue error.
 	VersionLabel *string `min:"1" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3509,6 +3509,8 @@ func (s UpdateApplicationVersionInput) GoString() string {
 
 // The result message containing the options for the specified solution stack.
 type UpdateConfigurationTemplateInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the application associated with the configuration template to
 	// update.
 	//
@@ -3533,8 +3535,6 @@ type UpdateConfigurationTemplateInput struct {
 	//  If no configuration template is found with this name, UpdateConfigurationTemplate
 	// returns an InvalidParameterValue error.
 	TemplateName *string `min:"1" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3548,6 +3548,8 @@ func (s UpdateConfigurationTemplateInput) GoString() string {
 }
 
 type UpdateEnvironmentInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the application with which the environment is associated.
 	ApplicationName *string `min:"1" type:"string"`
 
@@ -3608,8 +3610,6 @@ type UpdateEnvironmentInput struct {
 	// version to the environment. If no such application version is found, returns
 	// an InvalidParameterValue error.
 	VersionLabel *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3624,6 +3624,8 @@ func (s UpdateEnvironmentInput) GoString() string {
 
 // A list of validation messages for a specified configuration template.
 type ValidateConfigurationSettingsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the application that the configuration template or environment
 	// belongs to.
 	ApplicationName *string `min:"1" type:"string" required:"true"`
@@ -3640,8 +3642,6 @@ type ValidateConfigurationSettingsInput struct {
 	//
 	//  Condition: You cannot specify both this and an environment name.
 	TemplateName *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3656,10 +3656,10 @@ func (s ValidateConfigurationSettingsInput) GoString() string {
 
 // Provides a list of validation messages.
 type ValidateConfigurationSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of ValidationMessage.
 	Messages []*ValidationMessage `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3674,6 +3674,8 @@ func (s ValidateConfigurationSettingsOutput) GoString() string {
 
 // An error or warning for a desired configuration option value.
 type ValidationMessage struct {
+	_ struct{} `type:"structure"`
+
 	// A message describing the error or warning.
 	Message *string `type:"string"`
 
@@ -3687,8 +3689,6 @@ type ValidationMessage struct {
 	// option.   warning: This message is providing information you should take
 	// into account.
 	Severity *string `type:"string" enum:"ValidationSeverity"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

@@ -318,9 +318,13 @@ func (s *Shape) GoCode() string {
 	if !s.IsEnum() {
 		code += "type " + s.ShapeName + " "
 	}
+
 	switch {
 	case s.Type == "structure":
+		ref := &ShapeRef{ShapeName: s.ShapeName, API: s.API, Shape: s}
+
 		code += "struct {\n"
+		code += "_ struct{} " + ref.GoTags(true, false) + "\n\n"
 		for _, n := range s.MemberNames() {
 			m := s.MemberRefs[n]
 			code += m.Docstring()
@@ -338,8 +342,6 @@ func (s *Shape) GoCode() string {
 				code += n + " " + m.GoType() + " " + m.GoTags(false, s.IsRequired(n)) + "\n\n"
 			}
 		}
-		ref := &ShapeRef{ShapeName: s.ShapeName, API: s.API, Shape: s}
-		code += "_ struct{} " + ref.GoTags(true, false)
 		code += "}"
 
 		if !s.API.NoStringerMethods {

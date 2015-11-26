@@ -970,6 +970,8 @@ func (c *CodeDeploy) UpdateDeploymentGroup(input *UpdateDeploymentGroupInput) (*
 
 // Represents the input of an adds tags to on-premises instance operation.
 type AddTagsToOnPremisesInstancesInput struct {
+	_ struct{} `type:"structure"`
+
 	// The names of the on-premises instances to add tags to.
 	InstanceNames []*string `locationName:"instanceNames" type:"list" required:"true"`
 
@@ -978,8 +980,6 @@ type AddTagsToOnPremisesInstancesInput struct {
 	// Keys and values are both required. Keys cannot be nulls or empty strings.
 	// Value-only tags are not allowed.
 	Tags []*Tag `locationName:"tags" type:"list" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1008,6 +1008,8 @@ func (s AddTagsToOnPremisesInstancesOutput) GoString() string {
 
 // Information about an application.
 type ApplicationInfo struct {
+	_ struct{} `type:"structure"`
+
 	// The application ID.
 	ApplicationId *string `locationName:"applicationId" type:"string"`
 
@@ -1020,8 +1022,6 @@ type ApplicationInfo struct {
 	// True if the user has authenticated with GitHub for the specified application;
 	// otherwise, false.
 	LinkedToGitHub *bool `locationName:"linkedToGitHub" type:"boolean"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1036,13 +1036,13 @@ func (s ApplicationInfo) GoString() string {
 
 // Information about an Auto Scaling group.
 type AutoScalingGroup struct {
+	_ struct{} `type:"structure"`
+
 	// An Auto Scaling lifecycle event hook name.
 	Hook *string `locationName:"hook" type:"string"`
 
 	// The Auto Scaling group name.
 	Name *string `locationName:"name" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1057,11 +1057,11 @@ func (s AutoScalingGroup) GoString() string {
 
 // Represents the input of a batch get applications operation.
 type BatchGetApplicationsInput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of application names, with multiple application names separated by
 	// spaces.
 	ApplicationNames []*string `locationName:"applicationNames" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1076,10 +1076,10 @@ func (s BatchGetApplicationsInput) GoString() string {
 
 // Represents the output of a batch get applications operation.
 type BatchGetApplicationsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Information about the applications.
 	ApplicationsInfo []*ApplicationInfo `locationName:"applicationsInfo" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1094,10 +1094,10 @@ func (s BatchGetApplicationsOutput) GoString() string {
 
 // Represents the input of a batch get deployments operation.
 type BatchGetDeploymentsInput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of deployment IDs, with multiple deployment IDs separated by spaces.
 	DeploymentIds []*string `locationName:"deploymentIds" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1112,10 +1112,10 @@ func (s BatchGetDeploymentsInput) GoString() string {
 
 // Represents the output of a batch get deployments operation.
 type BatchGetDeploymentsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Information about the deployments.
 	DeploymentsInfo []*DeploymentInfo `locationName:"deploymentsInfo" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1130,10 +1130,10 @@ func (s BatchGetDeploymentsOutput) GoString() string {
 
 // Represents the input of a batch get on-premises instances operation.
 type BatchGetOnPremisesInstancesInput struct {
+	_ struct{} `type:"structure"`
+
 	// The names of the on-premises instances to get information about.
 	InstanceNames []*string `locationName:"instanceNames" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1148,10 +1148,10 @@ func (s BatchGetOnPremisesInstancesInput) GoString() string {
 
 // Represents the output of a batch get on-premises instances operation.
 type BatchGetOnPremisesInstancesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Information about the on-premises instances.
 	InstanceInfos []*InstanceInfo `locationName:"instanceInfos" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1166,11 +1166,11 @@ func (s BatchGetOnPremisesInstancesOutput) GoString() string {
 
 // Represents the input of a create application operation.
 type CreateApplicationInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the application. This name must be unique with the applicable
 	// IAM user or AWS account.
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1185,10 +1185,10 @@ func (s CreateApplicationInput) GoString() string {
 
 // Represents the output of a create application operation.
 type CreateApplicationOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A unique application ID.
 	ApplicationId *string `locationName:"applicationId" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1203,6 +1203,8 @@ func (s CreateApplicationOutput) GoString() string {
 
 // Represents the input of a create deployment configuration operation.
 type CreateDeploymentConfigInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the deployment configuration to create.
 	DeploymentConfigName *string `locationName:"deploymentConfigName" min:"1" type:"string" required:"true"`
 
@@ -1223,8 +1225,6 @@ type CreateDeploymentConfigInput struct {
 	// For example, to set a minimum of 95% healthy instances, specify a type of
 	// FLEET_PERCENT and a value of 95.
 	MinimumHealthyHosts *MinimumHealthyHosts `locationName:"minimumHealthyHosts" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1239,10 +1239,10 @@ func (s CreateDeploymentConfigInput) GoString() string {
 
 // Represents the output of a create deployment configuration operation.
 type CreateDeploymentConfigOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A unique deployment configuration ID.
 	DeploymentConfigId *string `locationName:"deploymentConfigId" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1257,6 +1257,8 @@ func (s CreateDeploymentConfigOutput) GoString() string {
 
 // Represents the input of a create deployment group operation.
 type CreateDeploymentGroupInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of an existing AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
@@ -1307,8 +1309,6 @@ type CreateDeploymentGroupInput struct {
 	// A service role ARN that allows AWS CodeDeploy to act on the user's behalf
 	// when interacting with AWS services.
 	ServiceRoleArn *string `locationName:"serviceRoleArn" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1323,10 +1323,10 @@ func (s CreateDeploymentGroupInput) GoString() string {
 
 // Represents the output of a create deployment group operation.
 type CreateDeploymentGroupOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A unique deployment group ID.
 	DeploymentGroupId *string `locationName:"deploymentGroupId" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1341,6 +1341,8 @@ func (s CreateDeploymentGroupOutput) GoString() string {
 
 // Represents the input of a create deployment operation.
 type CreateDeploymentInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of an existing AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
@@ -1373,8 +1375,6 @@ type CreateDeploymentInput struct {
 	// The type of revision to deploy, along with information about the revision's
 	// location.
 	Revision *RevisionLocation `locationName:"revision" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1389,10 +1389,10 @@ func (s CreateDeploymentInput) GoString() string {
 
 // Represents the output of a create deployment operation.
 type CreateDeploymentOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A unique deployment ID.
 	DeploymentId *string `locationName:"deploymentId" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1407,11 +1407,11 @@ func (s CreateDeploymentOutput) GoString() string {
 
 // Represents the input of a delete application operation.
 type DeleteApplicationInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of an existing AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1440,11 +1440,11 @@ func (s DeleteApplicationOutput) GoString() string {
 
 // Represents the input of a delete deployment configuration operation.
 type DeleteDeploymentConfigInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of an existing deployment configuration associated with the applicable
 	// IAM user or AWS account.
 	DeploymentConfigName *string `locationName:"deploymentConfigName" min:"1" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1473,14 +1473,14 @@ func (s DeleteDeploymentConfigOutput) GoString() string {
 
 // Represents the input of a delete deployment group operation.
 type DeleteDeploymentGroupInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of an existing AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	// The name of an existing deployment group for the specified application.
 	DeploymentGroupName *string `locationName:"deploymentGroupName" min:"1" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1495,6 +1495,8 @@ func (s DeleteDeploymentGroupInput) GoString() string {
 
 // Represents the output of a delete deployment group operation.
 type DeleteDeploymentGroupOutput struct {
+	_ struct{} `type:"structure"`
+
 	// If the output contains no data, and the corresponding deployment group contained
 	// at least one Auto Scaling group, AWS CodeDeploy successfully removed all
 	// corresponding Auto Scaling lifecycle event hooks from the Amazon EC2 instances
@@ -1502,8 +1504,6 @@ type DeleteDeploymentGroupOutput struct {
 	// not remove some Auto Scaling lifecycle event hooks from the Amazon EC2 instances
 	// in the Auto Scaling group.
 	HooksNotCleanedUp []*AutoScalingGroup `locationName:"hooksNotCleanedUp" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1518,6 +1518,8 @@ func (s DeleteDeploymentGroupOutput) GoString() string {
 
 // Information about a deployment configuration.
 type DeploymentConfigInfo struct {
+	_ struct{} `type:"structure"`
+
 	// The time that the deployment configuration was created.
 	CreateTime *time.Time `locationName:"createTime" type:"timestamp" timestampFormat:"unix"`
 
@@ -1529,8 +1531,6 @@ type DeploymentConfigInfo struct {
 
 	// Information about the number or percentage of minimum healthy instances.
 	MinimumHealthyHosts *MinimumHealthyHosts `locationName:"minimumHealthyHosts" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1545,6 +1545,8 @@ func (s DeploymentConfigInfo) GoString() string {
 
 // Information about a deployment group.
 type DeploymentGroupInfo struct {
+	_ struct{} `type:"structure"`
+
 	// The application name.
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string"`
 
@@ -1572,8 +1574,6 @@ type DeploymentGroupInfo struct {
 	// Information about the deployment group's target revision, including the revision's
 	// type and its location.
 	TargetRevision *RevisionLocation `locationName:"targetRevision" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1588,6 +1588,8 @@ func (s DeploymentGroupInfo) GoString() string {
 
 // Information about a deployment.
 type DeploymentInfo struct {
+	_ struct{} `type:"structure"`
+
 	// The application name.
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string"`
 
@@ -1646,8 +1648,6 @@ type DeploymentInfo struct {
 
 	// The current state of the deployment as a whole.
 	Status *string `locationName:"status" type:"string" enum:"DeploymentStatus"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1662,6 +1662,8 @@ func (s DeploymentInfo) GoString() string {
 
 // Information about the deployment status of the instances in the deployment.
 type DeploymentOverview struct {
+	_ struct{} `type:"structure"`
+
 	// The number of instances that have failed in the deployment.
 	Failed *int64 `type:"long"`
 
@@ -1676,8 +1678,6 @@ type DeploymentOverview struct {
 
 	// The number of instances that have succeeded in the deployment.
 	Succeeded *int64 `type:"long"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1692,10 +1692,10 @@ func (s DeploymentOverview) GoString() string {
 
 // Represents the input of a deregister on-premises instance operation.
 type DeregisterOnPremisesInstanceInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the on-premises instance to deregister.
 	InstanceName *string `locationName:"instanceName" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1724,6 +1724,8 @@ func (s DeregisterOnPremisesInstanceOutput) GoString() string {
 
 // Diagnostic information about executable scripts that are part of a deployment.
 type Diagnostics struct {
+	_ struct{} `type:"structure"`
+
 	// The associated error code:
 	//
 	//  Success: The specified script ran. ScriptMissing: The specified script
@@ -1742,8 +1744,6 @@ type Diagnostics struct {
 
 	// The name of the script.
 	ScriptName *string `locationName:"scriptName" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1758,6 +1758,8 @@ func (s Diagnostics) GoString() string {
 
 // Information about a tag filter.
 type EC2TagFilter struct {
+	_ struct{} `type:"structure"`
+
 	// The tag filter key.
 	Key *string `type:"string"`
 
@@ -1768,8 +1770,6 @@ type EC2TagFilter struct {
 
 	// The tag filter value.
 	Value *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1784,6 +1784,8 @@ func (s EC2TagFilter) GoString() string {
 
 // Information about a deployment error.
 type ErrorInformation struct {
+	_ struct{} `type:"structure"`
+
 	// The error code:
 	//
 	//  APPLICATION_MISSING: The application was missing. Note that this error
@@ -1809,8 +1811,6 @@ type ErrorInformation struct {
 
 	// An accompanying error message.
 	Message *string `locationName:"message" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1825,6 +1825,8 @@ func (s ErrorInformation) GoString() string {
 
 // Information about an application revision.
 type GenericRevisionInfo struct {
+	_ struct{} `type:"structure"`
+
 	// A list of deployment groups that use this revision.
 	DeploymentGroups []*string `locationName:"deploymentGroups" type:"list"`
 
@@ -1839,8 +1841,6 @@ type GenericRevisionInfo struct {
 
 	// When the revision was registered with AWS CodeDeploy.
 	RegisterTime *time.Time `locationName:"registerTime" type:"timestamp" timestampFormat:"unix"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1855,11 +1855,11 @@ func (s GenericRevisionInfo) GoString() string {
 
 // Represents the input of a get application operation.
 type GetApplicationInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of an existing AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1874,10 +1874,10 @@ func (s GetApplicationInput) GoString() string {
 
 // Represents the output of a get application operation.
 type GetApplicationOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Information about the application.
 	Application *ApplicationInfo `locationName:"application" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1892,14 +1892,14 @@ func (s GetApplicationOutput) GoString() string {
 
 // Represents the input of a get application revision operation.
 type GetApplicationRevisionInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the application that corresponds to the revision.
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	// Information about the application revision to get, including the revision's
 	// type and its location.
 	Revision *RevisionLocation `locationName:"revision" type:"structure" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1914,6 +1914,8 @@ func (s GetApplicationRevisionInput) GoString() string {
 
 // Represents the output of a get application revision operation.
 type GetApplicationRevisionOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the application that corresponds to the revision.
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string"`
 
@@ -1923,8 +1925,6 @@ type GetApplicationRevisionOutput struct {
 
 	// General information about the revision.
 	RevisionInfo *GenericRevisionInfo `locationName:"revisionInfo" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1939,11 +1939,11 @@ func (s GetApplicationRevisionOutput) GoString() string {
 
 // Represents the input of a get deployment configuration operation.
 type GetDeploymentConfigInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of an existing deployment configuration associated with the applicable
 	// IAM user or AWS account.
 	DeploymentConfigName *string `locationName:"deploymentConfigName" min:"1" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1958,10 +1958,10 @@ func (s GetDeploymentConfigInput) GoString() string {
 
 // Represents the output of a get deployment configuration operation.
 type GetDeploymentConfigOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Information about the deployment configuration.
 	DeploymentConfigInfo *DeploymentConfigInfo `locationName:"deploymentConfigInfo" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1976,14 +1976,14 @@ func (s GetDeploymentConfigOutput) GoString() string {
 
 // Represents the input of a get deployment group operation.
 type GetDeploymentGroupInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of an existing AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	// The name of an existing deployment group for the specified application.
 	DeploymentGroupName *string `locationName:"deploymentGroupName" min:"1" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1998,10 +1998,10 @@ func (s GetDeploymentGroupInput) GoString() string {
 
 // Represents the output of a get deployment group operation.
 type GetDeploymentGroupOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Information about the deployment group.
 	DeploymentGroupInfo *DeploymentGroupInfo `locationName:"deploymentGroupInfo" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2016,11 +2016,11 @@ func (s GetDeploymentGroupOutput) GoString() string {
 
 // Represents the input of a get deployment operation.
 type GetDeploymentInput struct {
+	_ struct{} `type:"structure"`
+
 	// An existing deployment ID associated with the applicable IAM user or AWS
 	// account.
 	DeploymentId *string `locationName:"deploymentId" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2035,13 +2035,13 @@ func (s GetDeploymentInput) GoString() string {
 
 // Represents the input of a get deployment instance operation.
 type GetDeploymentInstanceInput struct {
+	_ struct{} `type:"structure"`
+
 	// The unique ID of a deployment.
 	DeploymentId *string `locationName:"deploymentId" type:"string" required:"true"`
 
 	// The unique ID of an instance in the deployment's deployment group.
 	InstanceId *string `locationName:"instanceId" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2056,10 +2056,10 @@ func (s GetDeploymentInstanceInput) GoString() string {
 
 // Represents the output of a get deployment instance operation.
 type GetDeploymentInstanceOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Information about the instance.
 	InstanceSummary *InstanceSummary `locationName:"instanceSummary" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2074,10 +2074,10 @@ func (s GetDeploymentInstanceOutput) GoString() string {
 
 // Represents the output of a get deployment operation.
 type GetDeploymentOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Information about the deployment.
 	DeploymentInfo *DeploymentInfo `locationName:"deploymentInfo" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2092,10 +2092,10 @@ func (s GetDeploymentOutput) GoString() string {
 
 // Represents the input of a get on-premises instance operation.
 type GetOnPremisesInstanceInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the on-premises instance to get information about
 	InstanceName *string `locationName:"instanceName" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2110,10 +2110,10 @@ func (s GetOnPremisesInstanceInput) GoString() string {
 
 // Represents the output of a get on-premises instance operation.
 type GetOnPremisesInstanceOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Information about the on-premises instance.
 	InstanceInfo *InstanceInfo `locationName:"instanceInfo" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2129,6 +2129,8 @@ func (s GetOnPremisesInstanceOutput) GoString() string {
 // Information about the location of application artifacts that are stored in
 // GitHub.
 type GitHubLocation struct {
+	_ struct{} `type:"structure"`
+
 	// The SHA1 commit ID of the GitHub commit that references the that represents
 	// the bundled artifacts for the application revision.
 	CommitId *string `locationName:"commitId" type:"string"`
@@ -2138,8 +2140,6 @@ type GitHubLocation struct {
 	//
 	// Specified as account/repository.
 	Repository *string `locationName:"repository" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2154,6 +2154,8 @@ func (s GitHubLocation) GoString() string {
 
 // Information about an on-premises instance.
 type InstanceInfo struct {
+	_ struct{} `type:"structure"`
+
 	// If the on-premises instance was deregistered, the time that the on-premises
 	// instance was deregistered.
 	DeregisterTime *time.Time `locationName:"deregisterTime" type:"timestamp" timestampFormat:"unix"`
@@ -2172,8 +2174,6 @@ type InstanceInfo struct {
 
 	// The tags that are currently associated with the on-premises instance.
 	Tags []*Tag `locationName:"tags" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2188,6 +2188,8 @@ func (s InstanceInfo) GoString() string {
 
 // Information about an instance in a deployment.
 type InstanceSummary struct {
+	_ struct{} `type:"structure"`
+
 	// The deployment ID.
 	DeploymentId *string `locationName:"deploymentId" type:"string"`
 
@@ -2208,8 +2210,6 @@ type InstanceSummary struct {
 	// Skipped: The deployment has been skipped for this instance. Unknown: The
 	// deployment status is unknown for this instance.
 	Status *string `locationName:"status" type:"string" enum:"InstanceStatus"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2224,6 +2224,8 @@ func (s InstanceSummary) GoString() string {
 
 // Information about a deployment lifecycle event.
 type LifecycleEvent struct {
+	_ struct{} `type:"structure"`
+
 	// Diagnostic information about the deployment lifecycle event.
 	Diagnostics *Diagnostics `locationName:"diagnostics" type:"structure"`
 
@@ -2245,8 +2247,6 @@ type LifecycleEvent struct {
 	// The deployment lifecycle event has been skipped. Unknown: The deployment
 	// lifecycle event is unknown.
 	Status *string `locationName:"status" type:"string" enum:"LifecycleEventStatus"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2261,6 +2261,8 @@ func (s LifecycleEvent) GoString() string {
 
 // Represents the input of a list application revisions operation.
 type ListApplicationRevisionsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of an existing AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
@@ -2304,8 +2306,6 @@ type ListApplicationRevisionsInput struct {
 	//
 	// If set to null, the results will be sorted in an arbitrary order.
 	SortOrder *string `locationName:"sortOrder" type:"string" enum:"SortOrder"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2320,6 +2320,8 @@ func (s ListApplicationRevisionsInput) GoString() string {
 
 // Represents the output of a list application revisions operation.
 type ListApplicationRevisionsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// If the amount of information that is returned is significantly large, an
 	// identifier will also be returned, which can be used in a subsequent list
 	// application revisions call to return the next set of application revisions
@@ -2328,8 +2330,6 @@ type ListApplicationRevisionsOutput struct {
 
 	// A list of revision locations that contain the matching revisions.
 	Revisions []*RevisionLocation `locationName:"revisions" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2344,11 +2344,11 @@ func (s ListApplicationRevisionsOutput) GoString() string {
 
 // Represents the input of a list applications operation.
 type ListApplicationsInput struct {
+	_ struct{} `type:"structure"`
+
 	// An identifier that was returned from the previous list applications call,
 	// which can be used to return the next set of applications in the list.
 	NextToken *string `locationName:"nextToken" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2363,6 +2363,8 @@ func (s ListApplicationsInput) GoString() string {
 
 // Represents the output of a list applications operation.
 type ListApplicationsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of application names.
 	Applications []*string `locationName:"applications" type:"list"`
 
@@ -2370,8 +2372,6 @@ type ListApplicationsOutput struct {
 	// identifier will also be returned, which can be used in a subsequent list
 	// applications call to return the next set of applications in the list.
 	NextToken *string `locationName:"nextToken" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2386,12 +2386,12 @@ func (s ListApplicationsOutput) GoString() string {
 
 // Represents the input of a list deployment configurations operation.
 type ListDeploymentConfigsInput struct {
+	_ struct{} `type:"structure"`
+
 	// An identifier that was returned from the previous list deployment configurations
 	// call, which can be used to return the next set of deployment configurations
 	// in the list.
 	NextToken *string `locationName:"nextToken" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2406,6 +2406,8 @@ func (s ListDeploymentConfigsInput) GoString() string {
 
 // Represents the output of a list deployment configurations operation.
 type ListDeploymentConfigsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of deployment configurations, including the built-in configurations
 	// such as CodeDeployDefault.OneAtATime.
 	DeploymentConfigsList []*string `locationName:"deploymentConfigsList" type:"list"`
@@ -2415,8 +2417,6 @@ type ListDeploymentConfigsOutput struct {
 	// deployment configurations call to return the next set of deployment configurations
 	// in the list.
 	NextToken *string `locationName:"nextToken" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2431,6 +2431,8 @@ func (s ListDeploymentConfigsOutput) GoString() string {
 
 // Represents the input of a list deployment groups operation.
 type ListDeploymentGroupsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of an existing AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
@@ -2439,8 +2441,6 @@ type ListDeploymentGroupsInput struct {
 	// call, which can be used to return the next set of deployment groups in the
 	// list.
 	NextToken *string `locationName:"nextToken" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2455,6 +2455,8 @@ func (s ListDeploymentGroupsInput) GoString() string {
 
 // Represents the output of a list deployment groups operation.
 type ListDeploymentGroupsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The application name.
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string"`
 
@@ -2466,8 +2468,6 @@ type ListDeploymentGroupsOutput struct {
 	// deployment groups call to return the next set of deployment groups in the
 	// list.
 	NextToken *string `locationName:"nextToken" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2482,6 +2482,8 @@ func (s ListDeploymentGroupsOutput) GoString() string {
 
 // Represents the input of a list deployment instances operation.
 type ListDeploymentInstancesInput struct {
+	_ struct{} `type:"structure"`
+
 	// The unique ID of a deployment.
 	DeploymentId *string `locationName:"deploymentId" type:"string" required:"true"`
 
@@ -2500,8 +2502,6 @@ type ListDeploymentInstancesInput struct {
 	// call, which can be used to return the next set of deployment instances in
 	// the list.
 	NextToken *string `locationName:"nextToken" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2516,6 +2516,8 @@ func (s ListDeploymentInstancesInput) GoString() string {
 
 // Represents the output of a list deployment instances operation.
 type ListDeploymentInstancesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of instances IDs.
 	InstancesList []*string `locationName:"instancesList" type:"list"`
 
@@ -2524,8 +2526,6 @@ type ListDeploymentInstancesOutput struct {
 	// deployment instances call to return the next set of deployment instances
 	// in the list.
 	NextToken *string `locationName:"nextToken" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2540,6 +2540,8 @@ func (s ListDeploymentInstancesOutput) GoString() string {
 
 // Represents the input of a list deployments operation.
 type ListDeploymentsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of an existing AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string"`
@@ -2563,8 +2565,6 @@ type ListDeploymentsInput struct {
 	// An identifier that was returned from the previous list deployments call,
 	// which can be used to return the next set of deployments in the list.
 	NextToken *string `locationName:"nextToken" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2579,6 +2579,8 @@ func (s ListDeploymentsInput) GoString() string {
 
 // Represents the output of a list deployments operation.
 type ListDeploymentsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of deployment IDs.
 	Deployments []*string `locationName:"deployments" type:"list"`
 
@@ -2586,8 +2588,6 @@ type ListDeploymentsOutput struct {
 	// identifier will also be returned, which can be used in a subsequent list
 	// deployments call to return the next set of deployments in the list.
 	NextToken *string `locationName:"nextToken" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2604,6 +2604,8 @@ func (s ListDeploymentsOutput) GoString() string {
 //
 // .
 type ListOnPremisesInstancesInput struct {
+	_ struct{} `type:"structure"`
+
 	// An identifier that was returned from the previous list on-premises instances
 	// call, which can be used to return the next set of on-premises instances in
 	// the list.
@@ -2618,8 +2620,6 @@ type ListOnPremisesInstancesInput struct {
 	// The on-premises instance tags that will be used to restrict the corresponding
 	// on-premises instance names that are returned.
 	TagFilters []*TagFilter `locationName:"tagFilters" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2634,6 +2634,8 @@ func (s ListOnPremisesInstancesInput) GoString() string {
 
 // Represents the output of list on-premises instances operation.
 type ListOnPremisesInstancesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The list of matching on-premises instance names.
 	InstanceNames []*string `locationName:"instanceNames" type:"list"`
 
@@ -2642,8 +2644,6 @@ type ListOnPremisesInstancesOutput struct {
 	// on-premises instances call to return the next set of on-premises instances
 	// in the list.
 	NextToken *string `locationName:"nextToken" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2658,6 +2658,8 @@ func (s ListOnPremisesInstancesOutput) GoString() string {
 
 // Information about minimum healthy instances.
 type MinimumHealthyHosts struct {
+	_ struct{} `type:"structure"`
+
 	// The minimum healthy instances type:
 	//
 	//  HOST_COUNT: The minimum number of healthy instances, as an absolute value.
@@ -2677,8 +2679,6 @@ type MinimumHealthyHosts struct {
 
 	// The minimum healthy instances value.
 	Value *int64 `locationName:"value" type:"integer"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2693,6 +2693,8 @@ func (s MinimumHealthyHosts) GoString() string {
 
 // Represents the input of a register application revision operation.
 type RegisterApplicationRevisionInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of an existing AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
@@ -2703,8 +2705,6 @@ type RegisterApplicationRevisionInput struct {
 	// Information about the application revision to register, including the revision's
 	// type and its location.
 	Revision *RevisionLocation `locationName:"revision" type:"structure" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2733,13 +2733,13 @@ func (s RegisterApplicationRevisionOutput) GoString() string {
 
 // Represents the input of register on-premises instance operation.
 type RegisterOnPremisesInstanceInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN of the IAM user to associate with the on-premises instance.
 	IamUserArn *string `locationName:"iamUserArn" type:"string" required:"true"`
 
 	// The name of the on-premises instance to register.
 	InstanceName *string `locationName:"instanceName" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2768,13 +2768,13 @@ func (s RegisterOnPremisesInstanceOutput) GoString() string {
 
 // Represents the input of a remove tags from on-premises instances operation.
 type RemoveTagsFromOnPremisesInstancesInput struct {
+	_ struct{} `type:"structure"`
+
 	// The names of the on-premises instances to remove tags from.
 	InstanceNames []*string `locationName:"instanceNames" type:"list" required:"true"`
 
 	// The tag key-value pairs to remove from the on-premises instances.
 	Tags []*Tag `locationName:"tags" type:"list" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2803,6 +2803,8 @@ func (s RemoveTagsFromOnPremisesInstancesOutput) GoString() string {
 
 // Information about an application revision's location.
 type RevisionLocation struct {
+	_ struct{} `type:"structure"`
+
 	// Information about the location of application artifacts that are stored in
 	// GitHub.
 	GitHubLocation *GitHubLocation `locationName:"gitHubLocation" type:"structure"`
@@ -2816,8 +2818,6 @@ type RevisionLocation struct {
 	// Information about the location of application artifacts that are stored in
 	// Amazon S3.
 	S3Location *S3Location `locationName:"s3Location" type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2833,6 +2833,8 @@ func (s RevisionLocation) GoString() string {
 // Information about the location of application artifacts that are stored in
 // Amazon S3.
 type S3Location struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the Amazon S3 bucket where the application revision is stored.
 	Bucket *string `locationName:"bucket" type:"string"`
 
@@ -2859,8 +2861,6 @@ type S3Location struct {
 	// If the version is not specified, the system will use the most recent version
 	// by default.
 	Version *string `locationName:"version" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2875,10 +2875,10 @@ func (s S3Location) GoString() string {
 
 // Represents the input of a stop deployment operation.
 type StopDeploymentInput struct {
+	_ struct{} `type:"structure"`
+
 	// The unique ID of a deployment.
 	DeploymentId *string `locationName:"deploymentId" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2893,6 +2893,8 @@ func (s StopDeploymentInput) GoString() string {
 
 // Represents the output of a stop deployment operation.
 type StopDeploymentOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The status of the stop deployment operation:
 	//
 	//  Pending: The stop operation is pending. Succeeded: The stop operation succeeded.
@@ -2900,8 +2902,6 @@ type StopDeploymentOutput struct {
 
 	// An accompanying status message.
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2916,13 +2916,13 @@ func (s StopDeploymentOutput) GoString() string {
 
 // Information about a tag.
 type Tag struct {
+	_ struct{} `type:"structure"`
+
 	// The tag's key.
 	Key *string `type:"string"`
 
 	// The tag's value.
 	Value *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2937,6 +2937,8 @@ func (s Tag) GoString() string {
 
 // Information about an on-premises instance tag filter.
 type TagFilter struct {
+	_ struct{} `type:"structure"`
+
 	// The on-premises instance tag filter key.
 	Key *string `type:"string"`
 
@@ -2947,8 +2949,6 @@ type TagFilter struct {
 
 	// The on-premises instance tag filter value.
 	Value *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2963,6 +2963,8 @@ func (s TagFilter) GoString() string {
 
 // Information about a time range.
 type TimeRange struct {
+	_ struct{} `type:"structure"`
+
 	// The time range's end time.
 	//
 	// Specify null to leave the time range's end time open-ended.
@@ -2972,8 +2974,6 @@ type TimeRange struct {
 	//
 	// Specify null to leave the time range's start time open-ended.
 	Start *time.Time `locationName:"start" type:"timestamp" timestampFormat:"unix"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2988,13 +2988,13 @@ func (s TimeRange) GoString() string {
 
 // Represents the input of an update application operation.
 type UpdateApplicationInput struct {
+	_ struct{} `type:"structure"`
+
 	// The current name of the application that you want to change.
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string"`
 
 	// The new name that you want to change the application to.
 	NewApplicationName *string `locationName:"newApplicationName" min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3023,6 +3023,8 @@ func (s UpdateApplicationOutput) GoString() string {
 
 // Represents the input of an update deployment group operation.
 type UpdateDeploymentGroupInput struct {
+	_ struct{} `type:"structure"`
+
 	// The application name corresponding to the deployment group to update.
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
@@ -3050,8 +3052,6 @@ type UpdateDeploymentGroupInput struct {
 
 	// A replacement service role's ARN, if you want to change it.
 	ServiceRoleArn *string `locationName:"serviceRoleArn" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3066,14 +3066,14 @@ func (s UpdateDeploymentGroupInput) GoString() string {
 
 // Represents the output of an update deployment group operation.
 type UpdateDeploymentGroupOutput struct {
+	_ struct{} `type:"structure"`
+
 	// If the output contains no data, and the corresponding deployment group contained
 	// at least one Auto Scaling group, AWS CodeDeploy successfully removed all
 	// corresponding Auto Scaling lifecycle event hooks from the AWS account. If
 	// the output does contain data, AWS CodeDeploy could not remove some Auto Scaling
 	// lifecycle event hooks from the AWS account.
 	HooksNotCleanedUp []*AutoScalingGroup `locationName:"hooksNotCleanedUp" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

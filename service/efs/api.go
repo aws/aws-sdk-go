@@ -519,11 +519,11 @@ func (c *EFS) ModifyMountTargetSecurityGroups(input *ModifyMountTargetSecurityGr
 }
 
 type CreateFileSystemInput struct {
+	_ struct{} `type:"structure"`
+
 	// String of up to 64 ASCII characters. Amazon EFS uses this to ensure idempotent
 	// creation.
 	CreationToken *string `min:"1" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -537,6 +537,8 @@ func (s CreateFileSystemInput) GoString() string {
 }
 
 type CreateMountTargetInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the file system for which to create the mount target.
 	FileSystemId *string `type:"string" required:"true"`
 
@@ -549,8 +551,6 @@ type CreateMountTargetInput struct {
 
 	// The ID of the subnet to add the mount target in.
 	SubnetId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -564,14 +564,14 @@ func (s CreateMountTargetInput) GoString() string {
 }
 
 type CreateTagsInput struct {
+	_ struct{} `type:"structure"`
+
 	// String. The ID of the file system whose tags you want to modify. This operation
 	// modifies only the tags and not the file system.
 	FileSystemId *string `location:"uri" locationName:"FileSystemId" type:"string" required:"true"`
 
 	// An array of Tag objects to add. Each Tag object is a key-value pair.
 	Tags []*Tag `type:"list" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -599,10 +599,10 @@ func (s CreateTagsOutput) GoString() string {
 }
 
 type DeleteFileSystemInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the file system you want to delete.
 	FileSystemId *string `location:"uri" locationName:"FileSystemId" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -630,10 +630,10 @@ func (s DeleteFileSystemOutput) GoString() string {
 }
 
 type DeleteMountTargetInput struct {
+	_ struct{} `type:"structure"`
+
 	// String. The ID of the mount target to delete.
 	MountTargetId *string `location:"uri" locationName:"MountTargetId" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -661,13 +661,13 @@ func (s DeleteMountTargetOutput) GoString() string {
 }
 
 type DeleteTagsInput struct {
+	_ struct{} `type:"structure"`
+
 	// String. The ID of the file system whose tags you want to delete.
 	FileSystemId *string `location:"uri" locationName:"FileSystemId" type:"string" required:"true"`
 
 	// A list of tag keys to delete.
 	TagKeys []*string `type:"list" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -695,6 +695,8 @@ func (s DeleteTagsOutput) GoString() string {
 }
 
 type DescribeFileSystemsInput struct {
+	_ struct{} `type:"structure"`
+
 	// Optional string. Restricts the list to the file system with this creation
 	// token (you specify a creation token at the time of creating an Amazon EFS
 	// file system).
@@ -714,8 +716,6 @@ type DescribeFileSystemsInput struct {
 	// specified in the request and the service's internal maximum number of items
 	// per page.
 	MaxItems *int64 `location:"querystring" locationName:"MaxItems" min:"1" type:"integer"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -729,6 +729,8 @@ func (s DescribeFileSystemsInput) GoString() string {
 }
 
 type DescribeFileSystemsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of file system descriptions.
 	FileSystems []*FileSystemDescription `type:"list"`
 
@@ -738,8 +740,6 @@ type DescribeFileSystemsOutput struct {
 	// A string, present if there are more file systems than returned in the response.
 	// You can use the NextMarker in the subsequent request to fetch the descriptions.
 	NextMarker *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -753,10 +753,10 @@ func (s DescribeFileSystemsOutput) GoString() string {
 }
 
 type DescribeMountTargetSecurityGroupsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the mount target whose security groups you want to retrieve.
 	MountTargetId *string `location:"uri" locationName:"MountTargetId" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -770,10 +770,10 @@ func (s DescribeMountTargetSecurityGroupsInput) GoString() string {
 }
 
 type DescribeMountTargetSecurityGroupsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of security groups.
 	SecurityGroups []*string `type:"list" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -787,6 +787,8 @@ func (s DescribeMountTargetSecurityGroupsOutput) GoString() string {
 }
 
 type DescribeMountTargetsInput struct {
+	_ struct{} `type:"structure"`
+
 	// Optional. String. The ID of the file system whose mount targets you want
 	// to list. It must be included in your request if MountTargetId is not included.
 	FileSystemId *string `location:"querystring" locationName:"FileSystemId" type:"string"`
@@ -803,8 +805,6 @@ type DescribeMountTargetsInput struct {
 	// Optional. String. The ID of the mount target that you want to have described.
 	// It must be included in your request if FileSystemId is not included.
 	MountTargetId *string `location:"querystring" locationName:"MountTargetId" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -818,6 +818,8 @@ func (s DescribeMountTargetsInput) GoString() string {
 }
 
 type DescribeMountTargetsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// If the request included the Marker, the response returns that value in this
 	// field.
 	Marker *string `type:"string"`
@@ -830,8 +832,6 @@ type DescribeMountTargetsOutput struct {
 	// request, you can provide Marker in your request with this value to retrieve
 	// the next set of mount targets.
 	NextMarker *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -845,6 +845,8 @@ func (s DescribeMountTargetsOutput) GoString() string {
 }
 
 type DescribeTagsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the file system whose tag set you want to retrieve.
 	FileSystemId *string `location:"uri" locationName:"FileSystemId" type:"string" required:"true"`
 
@@ -856,8 +858,6 @@ type DescribeTagsInput struct {
 	// Optional. Maximum number of file system tags to return in the response. It
 	// must be an integer with a value greater than zero.
 	MaxItems *int64 `location:"querystring" locationName:"MaxItems" min:"1" type:"integer"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -871,6 +871,8 @@ func (s DescribeTagsInput) GoString() string {
 }
 
 type DescribeTagsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// If the request included a Marker, the response returns that value in this
 	// field.
 	Marker *string `type:"string"`
@@ -882,8 +884,6 @@ type DescribeTagsOutput struct {
 
 	// Returns tags associated with the file system as an array of Tag objects.
 	Tags []*Tag `type:"list" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -898,6 +898,8 @@ func (s DescribeTagsOutput) GoString() string {
 
 // This object provides description of a file system.
 type FileSystemDescription struct {
+	_ struct{} `type:"structure"`
+
 	// The time at which the file system was created, in seconds, since 1970-01-01T00:00:00Z.
 	CreationTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
 
@@ -934,8 +936,6 @@ type FileSystemDescription struct {
 	// for a period longer than a couple of hours. Otherwise, the value is not the
 	// exact size the file system was at any instant in time.
 	SizeInBytes *FileSystemSize `type:"structure" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -957,14 +957,14 @@ func (s FileSystemDescription) GoString() string {
 // a period longer than a couple of hours. Otherwise, the value is not necessarily
 // the exact size the file system was at any instant in time.
 type FileSystemSize struct {
+	_ struct{} `type:"structure"`
+
 	// The time at which the size of data, returned in the Value field, was determined.
 	// The value is the integer number of seconds since 1970-01-01T00:00:00Z.
 	Timestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The latest known metered size, in bytes, of data stored in the file system.
 	Value *int64 `type:"long" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -978,13 +978,13 @@ func (s FileSystemSize) GoString() string {
 }
 
 type ModifyMountTargetSecurityGroupsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the mount target whose security groups you want to modify.
 	MountTargetId *string `location:"uri" locationName:"MountTargetId" type:"string" required:"true"`
 
 	// An array of up to five VPC security group IDs.
 	SecurityGroups []*string `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1013,6 +1013,8 @@ func (s ModifyMountTargetSecurityGroupsOutput) GoString() string {
 
 // This object provides description of a mount target.
 type MountTargetDescription struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the file system for which the mount target is intended.
 	FileSystemId *string `type:"string" required:"true"`
 
@@ -1034,8 +1036,6 @@ type MountTargetDescription struct {
 
 	// The ID of the subnet that the mount target is in.
 	SubnetId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1052,13 +1052,13 @@ func (s MountTargetDescription) GoString() string {
 // are letters, whitespace, and numbers, representable in UTF-8, and the characters
 // '+', '-', '=', '.', '_', ':', and '/'.
 type Tag struct {
+	_ struct{} `type:"structure"`
+
 	// Tag key, a string. The key must not start with "aws:".
 	Key *string `min:"1" type:"string" required:"true"`
 
 	// Value of the tag key.
 	Value *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

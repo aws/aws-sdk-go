@@ -687,13 +687,13 @@ func (c *DynamoDB) UpdateTable(input *UpdateTableInput) (*UpdateTableOutput, err
 
 // Represents an attribute for describing the key schema for the table and indexes.
 type AttributeDefinition struct {
+	_ struct{} `type:"structure"`
+
 	// A name for the attribute.
 	AttributeName *string `min:"1" type:"string" required:"true"`
 
 	// The data type for the attribute.
 	AttributeType *string `type:"string" required:"true" enum:"ScalarAttributeType"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -714,6 +714,8 @@ func (s AttributeDefinition) GoString() string {
 // attributes. Each book has one title but can have many authors. The multi-valued
 // attribute is a set; duplicate values are not allowed.
 type AttributeValue struct {
+	_ struct{} `type:"structure"`
+
 	// A Binary data type.
 	B []byte `type:"blob"`
 
@@ -743,8 +745,6 @@ type AttributeValue struct {
 
 	// A String Set data type.
 	SS []*string `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -768,6 +768,8 @@ func (s AttributeValue) GoString() string {
 // have lengths greater than zero; and set type attributes must not be empty.
 // Requests with empty values will be rejected with a ValidationException exception.
 type AttributeValueUpdate struct {
+	_ struct{} `type:"structure"`
+
 	// Specifies how to perform the update. Valid values are PUT (default), DELETE,
 	// and ADD. The behavior depends on whether the specified primary key already
 	// exists in the table.
@@ -840,8 +842,6 @@ type AttributeValueUpdate struct {
 	// attributes. Each book has one title but can have many authors. The multi-valued
 	// attribute is a set; duplicate values are not allowed.
 	Value *AttributeValue `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -856,6 +856,8 @@ func (s AttributeValueUpdate) GoString() string {
 
 // Represents the input of a BatchGetItem operation.
 type BatchGetItemInput struct {
+	_ struct{} `type:"structure"`
+
 	// A map of one or more table names and, for each table, a map that describes
 	// one or more items to retrieve from that table. Each table name can be used
 	// only once per BatchGetItem request.
@@ -954,8 +956,6 @@ type BatchGetItemInput struct {
 	//
 	// NONE - No ConsumedCapacity details are included in the response.
 	ReturnConsumedCapacity *string `type:"string" enum:"ReturnConsumedCapacity"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -970,6 +970,8 @@ func (s BatchGetItemInput) GoString() string {
 
 // Represents the output of a BatchGetItem operation.
 type BatchGetItemOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The read capacity units consumed by the operation.
 	//
 	// Each element consists of:
@@ -1005,8 +1007,6 @@ type BatchGetItemOutput struct {
 	//   If there are no unprocessed keys remaining, the response contains an empty
 	// UnprocessedKeys map.
 	UnprocessedKeys map[string]*KeysAndAttributes `min:"1" type:"map"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1021,6 +1021,8 @@ func (s BatchGetItemOutput) GoString() string {
 
 // Represents the input of a BatchWriteItem operation.
 type BatchWriteItemInput struct {
+	_ struct{} `type:"structure"`
+
 	// A map of one or more table names and, for each table, a list of operations
 	// to be performed (DeleteRequest or PutRequest). Each element in the map consists
 	// of the following:
@@ -1071,8 +1073,6 @@ type BatchWriteItemInput struct {
 	// modified during the operation are returned in the response. If set to NONE
 	// (the default), no statistics are returned.
 	ReturnItemCollectionMetrics *string `type:"string" enum:"ReturnItemCollectionMetrics"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1087,6 +1087,8 @@ func (s BatchWriteItemInput) GoString() string {
 
 // Represents the output of a BatchWriteItem operation.
 type BatchWriteItemOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The capacity units consumed by the operation.
 	//
 	// Each element consists of:
@@ -1147,8 +1149,6 @@ type BatchWriteItemOutput struct {
 	//     If there are no unprocessed items remaining, the response contains an
 	// empty UnprocessedItems map.
 	UnprocessedItems map[string][]*WriteRequest `min:"1" type:"map"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1164,10 +1164,10 @@ func (s BatchWriteItemOutput) GoString() string {
 // Represents the amount of provisioned throughput capacity consumed on a table
 // or an index.
 type Capacity struct {
+	_ struct{} `type:"structure"`
+
 	// The total number of capacity units consumed on a table or an index.
 	CapacityUnits *float64 `type:"double"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1194,6 +1194,8 @@ func (s Capacity) GoString() string {
 //   For a Scan operation, Condition is used in a ScanFilter, which evaluates
 // the scan results and returns only the desired values.
 type Condition struct {
+	_ struct{} `type:"structure"`
+
 	// One or more values to evaluate against the supplied attribute. The number
 	// of values in the list depends on the ComparisonOperator being used.
 	//
@@ -1340,8 +1342,6 @@ type Condition struct {
 	// Conditional Parameters (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.html)
 	// in the Amazon DynamoDB Developer Guide.
 	ComparisonOperator *string `type:"string" required:"true" enum:"ComparisonOperator"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1361,6 +1361,8 @@ func (s Condition) GoString() string {
 // (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html)
 // in the Amazon DynamoDB Developer Guide.
 type ConsumedCapacity struct {
+	_ struct{} `type:"structure"`
+
 	// The total number of capacity units consumed by the operation.
 	CapacityUnits *float64 `type:"double"`
 
@@ -1375,8 +1377,6 @@ type ConsumedCapacity struct {
 
 	// The name of the table that was affected by the operation.
 	TableName *string `min:"3" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1391,6 +1391,8 @@ func (s ConsumedCapacity) GoString() string {
 
 // Represents a new global secondary index to be added to an existing table.
 type CreateGlobalSecondaryIndexAction struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the global secondary index to be created.
 	IndexName *string `min:"3" type:"string" required:"true"`
 
@@ -1409,8 +1411,6 @@ type CreateGlobalSecondaryIndexAction struct {
 	// (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html)
 	// in the Amazon DynamoDB Developer Guide.
 	ProvisionedThroughput *ProvisionedThroughput `type:"structure" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1425,6 +1425,8 @@ func (s CreateGlobalSecondaryIndexAction) GoString() string {
 
 // Represents the input of a CreateTable operation.
 type CreateTableInput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of attributes that describe the key schema for the table and indexes.
 	AttributeDefinitions []*AttributeDefinition `type:"list" required:"true"`
 
@@ -1548,8 +1550,6 @@ type CreateTableInput struct {
 
 	// The name of the table to create.
 	TableName *string `min:"3" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1564,10 +1564,10 @@ func (s CreateTableInput) GoString() string {
 
 // Represents the output of a CreateTable operation.
 type CreateTableOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Represents the properties of a table.
 	TableDescription *TableDescription `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1582,10 +1582,10 @@ func (s CreateTableOutput) GoString() string {
 
 // Represents a global secondary index to be deleted from an existing table.
 type DeleteGlobalSecondaryIndexAction struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the global secondary index to be deleted.
 	IndexName *string `min:"3" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1600,6 +1600,8 @@ func (s DeleteGlobalSecondaryIndexAction) GoString() string {
 
 // Represents the input of a DeleteItem operation.
 type DeleteItemInput struct {
+	_ struct{} `type:"structure"`
+
 	// A condition that must be satisfied in order for a conditional DeleteItem
 	// to succeed.
 	//
@@ -1938,8 +1940,6 @@ type DeleteItemInput struct {
 
 	// The name of the table from which to delete the item.
 	TableName *string `min:"3" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1954,6 +1954,8 @@ func (s DeleteItemInput) GoString() string {
 
 // Represents the output of a DeleteItem operation.
 type DeleteItemOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A map of attribute names to AttributeValue objects, representing the item
 	// as it appeared before the DeleteItem operation. This map appears in the response
 	// only if ReturnValues was specified as ALL_OLD in the request.
@@ -1987,8 +1989,6 @@ type DeleteItemOutput struct {
 	// The estimate is subject to change over time; therefore, do not rely on the
 	// precision or accuracy of the estimate.
 	ItemCollectionMetrics *ItemCollectionMetrics `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2003,12 +2003,12 @@ func (s DeleteItemOutput) GoString() string {
 
 // Represents a request to perform a DeleteItem operation on an item.
 type DeleteRequest struct {
+	_ struct{} `type:"structure"`
+
 	// A map of attribute name to attribute values, representing the primary key
 	// of the item to delete. All of the table's primary key attributes must be
 	// specified, and their data types must match those of the table's key schema.
 	Key map[string]*AttributeValue `type:"map" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2023,10 +2023,10 @@ func (s DeleteRequest) GoString() string {
 
 // Represents the input of a DeleteTable operation.
 type DeleteTableInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the table to delete.
 	TableName *string `min:"3" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2041,10 +2041,10 @@ func (s DeleteTableInput) GoString() string {
 
 // Represents the output of a DeleteTable operation.
 type DeleteTableOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Represents the properties of a table.
 	TableDescription *TableDescription `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2059,10 +2059,10 @@ func (s DeleteTableOutput) GoString() string {
 
 // Represents the input of a DescribeTable operation.
 type DescribeTableInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the table to describe.
 	TableName *string `min:"3" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2077,10 +2077,10 @@ func (s DescribeTableInput) GoString() string {
 
 // Represents the output of a DescribeTable operation.
 type DescribeTableOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Represents the properties of a table.
 	Table *TableDescription `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2114,6 +2114,8 @@ func (s DescribeTableOutput) GoString() string {
 // Note that if you use both sets of parameters at once, DynamoDB will return
 // a ValidationException exception.
 type ExpectedAttributeValue struct {
+	_ struct{} `type:"structure"`
+
 	// One or more values to evaluate against the supplied attribute. The number
 	// of values in the list depends on the ComparisonOperator being used.
 	//
@@ -2292,8 +2294,6 @@ type ExpectedAttributeValue struct {
 	// attributes. Each book has one title but can have many authors. The multi-valued
 	// attribute is a set; duplicate values are not allowed.
 	Value *AttributeValue `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2308,6 +2308,8 @@ func (s ExpectedAttributeValue) GoString() string {
 
 // Represents the input of a GetItem operation.
 type GetItemInput struct {
+	_ struct{} `type:"structure"`
+
 	// This is a legacy parameter, for backward compatibility. New applications
 	// should use ProjectionExpression instead. Do not combine legacy parameters
 	// and expression parameters in a single API call; otherwise, DynamoDB will
@@ -2408,8 +2410,6 @@ type GetItemInput struct {
 
 	// The name of the table containing the requested item.
 	TableName *string `min:"3" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2424,6 +2424,8 @@ func (s GetItemInput) GoString() string {
 
 // Represents the output of a GetItem operation.
 type GetItemOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The capacity units consumed by an operation. The data returned includes the
 	// total provisioned throughput consumed, along with statistics for the table
 	// and any indexes involved in the operation. ConsumedCapacity is only returned
@@ -2434,8 +2436,6 @@ type GetItemOutput struct {
 
 	// A map of attribute names to AttributeValue objects, as specified by AttributesToGet.
 	Item map[string]*AttributeValue `type:"map"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2450,6 +2450,8 @@ func (s GetItemOutput) GoString() string {
 
 // Represents the properties of a global secondary index.
 type GlobalSecondaryIndex struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the global secondary index. The name must be unique among all
 	// other indexes on this table.
 	IndexName *string `min:"3" type:"string" required:"true"`
@@ -2470,8 +2472,6 @@ type GlobalSecondaryIndex struct {
 	// (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html)
 	// in the Amazon DynamoDB Developer Guide.
 	ProvisionedThroughput *ProvisionedThroughput `type:"structure" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2486,6 +2486,8 @@ func (s GlobalSecondaryIndex) GoString() string {
 
 // Represents the properties of a global secondary index.
 type GlobalSecondaryIndexDescription struct {
+	_ struct{} `type:"structure"`
+
 	// Indicates whether the index is currently backfilling. Backfilling is the
 	// process of reading items from the table and determining whether they can
 	// be added to the index. (Not all items will qualify: For example, a hash key
@@ -2535,8 +2537,6 @@ type GlobalSecondaryIndexDescription struct {
 	// Represents the provisioned throughput settings for the table, consisting
 	// of read and write capacity units, along with data about increases and decreases.
 	ProvisionedThroughput *ProvisionedThroughputDescription `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2557,6 +2557,8 @@ func (s GlobalSecondaryIndexDescription) GoString() string {
 //
 // An existing global secondary index to be removed from an existing table.
 type GlobalSecondaryIndexUpdate struct {
+	_ struct{} `type:"structure"`
+
 	// The parameters required for creating a global secondary index on an existing
 	// table:
 	//
@@ -2577,8 +2579,6 @@ type GlobalSecondaryIndexUpdate struct {
 	// The name of an existing global secondary index, along with new provisioned
 	// throughput settings to be applied to that index.
 	Update *UpdateGlobalSecondaryIndexAction `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2596,6 +2596,8 @@ func (s GlobalSecondaryIndexUpdate) GoString() string {
 // table does not have any local secondary indexes, this information is not
 // returned in the response.
 type ItemCollectionMetrics struct {
+	_ struct{} `type:"structure"`
+
 	// The hash key value of the item collection. This value is the same as the
 	// hash key of the item.
 	ItemCollectionKey map[string]*AttributeValue `type:"map"`
@@ -2610,8 +2612,6 @@ type ItemCollectionMetrics struct {
 	// The estimate is subject to change over time; therefore, do not rely on the
 	// precision or accuracy of the estimate.
 	SizeEstimateRangeGB []*float64 `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2632,13 +2632,13 @@ func (s ItemCollectionMetrics) GoString() string {
 // A hash-and-range type primary key would require one KeySchemaElement for
 // the hash attribute, and another KeySchemaElement for the range attribute.
 type KeySchemaElement struct {
+	_ struct{} `type:"structure"`
+
 	// The name of a key attribute.
 	AttributeName *string `min:"1" type:"string" required:"true"`
 
 	// The attribute data, consisting of the data type and the attribute value itself.
 	KeyType *string `type:"string" required:"true" enum:"KeyType"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2659,6 +2659,8 @@ func (s KeySchemaElement) GoString() string {
 // For a hash-and-range type primary key, you must provide both the hash attribute
 // and the range attribute.
 type KeysAndAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// One or more attributes to retrieve from the table or index. If no attribute
 	// names are specified then all attributes will be returned. If any of the specified
 	// attributes are not found, they will not appear in the result.
@@ -2721,8 +2723,6 @@ type KeysAndAttributes struct {
 	//
 	// ProjectionExpression replaces the legacy AttributesToGet parameter.
 	ProjectionExpression *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2737,6 +2737,8 @@ func (s KeysAndAttributes) GoString() string {
 
 // Represents the input of a ListTables operation.
 type ListTablesInput struct {
+	_ struct{} `type:"structure"`
+
 	// The first table name that this operation will evaluate. Use the value that
 	// was returned for LastEvaluatedTableName in a previous operation, so that
 	// you can obtain the next page of results.
@@ -2745,8 +2747,6 @@ type ListTablesInput struct {
 	// A maximum number of table names to return. If this parameter is not specified,
 	// the limit is 100.
 	Limit *int64 `min:"1" type:"integer"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2761,6 +2761,8 @@ func (s ListTablesInput) GoString() string {
 
 // Represents the output of a ListTables operation.
 type ListTablesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the last table in the current page of results. Use this value
 	// as the ExclusiveStartTableName in a new request to obtain the next page of
 	// results, until all the table names are returned.
@@ -2776,8 +2778,6 @@ type ListTablesOutput struct {
 	// as the ExclusiveStartTableName parameter in a subsequent ListTables request
 	// and obtain the next page of results.
 	TableNames []*string `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2792,6 +2792,8 @@ func (s ListTablesOutput) GoString() string {
 
 // Represents the properties of a local secondary index.
 type LocalSecondaryIndex struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the local secondary index. The name must be unique among all
 	// other indexes on this table.
 	IndexName *string `min:"3" type:"string" required:"true"`
@@ -2804,8 +2806,6 @@ type LocalSecondaryIndex struct {
 	// index. These are in addition to the primary key attributes and index key
 	// attributes, which are automatically projected.
 	Projection *Projection `type:"structure" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2820,6 +2820,8 @@ func (s LocalSecondaryIndex) GoString() string {
 
 // Represents the properties of a local secondary index.
 type LocalSecondaryIndexDescription struct {
+	_ struct{} `type:"structure"`
+
 	// The Amazon Resource Name (ARN) that uniquely identifies the index.
 	IndexArn *string `type:"string"`
 
@@ -2843,8 +2845,6 @@ type LocalSecondaryIndexDescription struct {
 	// index. These are in addition to the primary key attributes and index key
 	// attributes, which are automatically projected.
 	Projection *Projection `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2861,6 +2861,8 @@ func (s LocalSecondaryIndexDescription) GoString() string {
 // index. These are in addition to the primary key attributes and index key
 // attributes, which are automatically projected.
 type Projection struct {
+	_ struct{} `type:"structure"`
+
 	// Represents the non-key attribute names which will be projected into the index.
 	//
 	// For local secondary indexes, the total count of NonKeyAttributes summed
@@ -2878,8 +2880,6 @@ type Projection struct {
 	//
 	//   ALL - All of the table attributes are projected into the index.
 	ProjectionType *string `type:"string" enum:"ProjectionType"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2899,6 +2899,8 @@ func (s Projection) GoString() string {
 // (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html)
 // in the Amazon DynamoDB Developer Guide.
 type ProvisionedThroughput struct {
+	_ struct{} `type:"structure"`
+
 	// The maximum number of strongly consistent reads consumed per second before
 	// DynamoDB returns a ThrottlingException. For more information, see Specifying
 	// Read and Write Requirements (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput)
@@ -2910,8 +2912,6 @@ type ProvisionedThroughput struct {
 	// Requirements (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput)
 	// in the Amazon DynamoDB Developer Guide.
 	WriteCapacityUnits *int64 `min:"1" type:"long" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2927,6 +2927,8 @@ func (s ProvisionedThroughput) GoString() string {
 // Represents the provisioned throughput settings for the table, consisting
 // of read and write capacity units, along with data about increases and decreases.
 type ProvisionedThroughputDescription struct {
+	_ struct{} `type:"structure"`
+
 	// The date and time of the last provisioned throughput decrease for this table.
 	LastDecreaseDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
@@ -2948,8 +2950,6 @@ type ProvisionedThroughputDescription struct {
 	// The maximum number of writes consumed per second before DynamoDB returns
 	// a ThrottlingException.
 	WriteCapacityUnits *int64 `min:"1" type:"long"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2964,6 +2964,8 @@ func (s ProvisionedThroughputDescription) GoString() string {
 
 // Represents the input of a PutItem operation.
 type PutItemInput struct {
+	_ struct{} `type:"structure"`
+
 	// A condition that must be satisfied in order for a conditional PutItem operation
 	// to succeed.
 	//
@@ -3316,8 +3318,6 @@ type PutItemInput struct {
 
 	// The name of the table to contain the item.
 	TableName *string `min:"3" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3332,6 +3332,8 @@ func (s PutItemInput) GoString() string {
 
 // Represents the output of a PutItem operation.
 type PutItemOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The attribute values as they appeared before the PutItem operation, but only
 	// if ReturnValues is specified as ALL_OLD in the request. Each element consists
 	// of an attribute name and an attribute value.
@@ -3365,8 +3367,6 @@ type PutItemOutput struct {
 	// The estimate is subject to change over time; therefore, do not rely on the
 	// precision or accuracy of the estimate.
 	ItemCollectionMetrics *ItemCollectionMetrics `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3381,14 +3381,14 @@ func (s PutItemOutput) GoString() string {
 
 // Represents a request to perform a PutItem operation on an item.
 type PutRequest struct {
+	_ struct{} `type:"structure"`
+
 	// A map of attribute name to attribute values, representing the primary key
 	// of an item to be processed by PutItem. All of the table's primary key attributes
 	// must be specified, and their data types must match those of the table's key
 	// schema. If any attributes are present in the item which are part of an index
 	// key schema for the table, their types must match the index key schema.
 	Item map[string]*AttributeValue `type:"map" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3403,6 +3403,8 @@ func (s PutRequest) GoString() string {
 
 // Represents the input of a Query operation.
 type QueryInput struct {
+	_ struct{} `type:"structure"`
+
 	// This is a legacy parameter, for backward compatibility. New applications
 	// should use ProjectionExpression instead. Do not combine legacy parameters
 	// and expression parameters in a single API call; otherwise, DynamoDB will
@@ -3879,8 +3881,6 @@ type QueryInput struct {
 
 	// The name of the table containing the requested items.
 	TableName *string `min:"3" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3895,6 +3895,8 @@ func (s QueryInput) GoString() string {
 
 // Represents the output of a Query operation.
 type QueryOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The capacity units consumed by an operation. The data returned includes the
 	// total provisioned throughput consumed, along with statistics for the table
 	// and any indexes involved in the operation. ConsumedCapacity is only returned
@@ -3937,8 +3939,6 @@ type QueryOutput struct {
 	// If you did not use a filter in the request, then ScannedCount is the same
 	// as Count.
 	ScannedCount *int64 `type:"integer"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3953,6 +3953,8 @@ func (s QueryOutput) GoString() string {
 
 // Represents the input of a Scan operation.
 type ScanInput struct {
+	_ struct{} `type:"structure"`
+
 	// This is a legacy parameter, for backward compatibility. New applications
 	// should use ProjectionExpression instead. Do not combine legacy parameters
 	// and expression parameters in a single API call; otherwise, DynamoDB will
@@ -4239,8 +4241,6 @@ type ScanInput struct {
 	//
 	// If you specify TotalSegments, you must also specify Segment.
 	TotalSegments *int64 `min:"1" type:"integer"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4255,6 +4255,8 @@ func (s ScanInput) GoString() string {
 
 // Represents the output of a Scan operation.
 type ScanOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The capacity units consumed by an operation. The data returned includes the
 	// total provisioned throughput consumed, along with statistics for the table
 	// and any indexes involved in the operation. ConsumedCapacity is only returned
@@ -4296,8 +4298,6 @@ type ScanOutput struct {
 	// If you did not use a filter in the request, then ScannedCount is the same
 	// as Count.
 	ScannedCount *int64 `type:"integer"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4312,6 +4312,8 @@ func (s ScanOutput) GoString() string {
 
 // Represents the DynamoDB Streams configuration for a table in DynamoDB.
 type StreamSpecification struct {
+	_ struct{} `type:"structure"`
+
 	// Indicates whether DynamoDB Streams is enabled (true) or disabled (false)
 	// on the table.
 	StreamEnabled *bool `type:"boolean"`
@@ -4337,8 +4339,6 @@ type StreamSpecification struct {
 	// NEW_AND_OLD_IMAGES - Both the new and the old item images of the item are
 	// written to the stream.
 	StreamViewType *string `type:"string" enum:"StreamViewType"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4353,6 +4353,8 @@ func (s StreamSpecification) GoString() string {
 
 // Represents the properties of a table.
 type TableDescription struct {
+	_ struct{} `type:"structure"`
+
 	// An array of AttributeDefinition objects. Each of these objects describes
 	// one attribute in the table and index key schema.
 	//
@@ -4532,8 +4534,6 @@ type TableDescription struct {
 	//
 	//   ACTIVE - The table is ready for use.
 	TableStatus *string `type:"string" enum:"TableStatus"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4549,6 +4549,8 @@ func (s TableDescription) GoString() string {
 // Represents the new provisioned throughput settings to be applied to a global
 // secondary index.
 type UpdateGlobalSecondaryIndexAction struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the global secondary index to be updated.
 	IndexName *string `min:"3" type:"string" required:"true"`
 
@@ -4559,8 +4561,6 @@ type UpdateGlobalSecondaryIndexAction struct {
 	// (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html)
 	// in the Amazon DynamoDB Developer Guide.
 	ProvisionedThroughput *ProvisionedThroughput `type:"structure" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -4575,6 +4575,8 @@ func (s UpdateGlobalSecondaryIndexAction) GoString() string {
 
 // Represents the input of an UpdateItem operation.
 type UpdateItemInput struct {
+	_ struct{} `type:"structure"`
+
 	// This is a legacy parameter, for backward compatibility. New applications
 	// should use UpdateExpression instead. Do not combine legacy parameters and
 	// expression parameters in a single API call; otherwise, DynamoDB will return
@@ -5086,8 +5088,6 @@ type UpdateItemInput struct {
 	//
 	// UpdateExpression replaces the legacy AttributeUpdates parameter.
 	UpdateExpression *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5102,6 +5102,8 @@ func (s UpdateItemInput) GoString() string {
 
 // Represents the output of an UpdateItem operation.
 type UpdateItemOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A map of attribute values as they appeared before the UpdateItem operation.
 	// This map only appears if ReturnValues was specified as something other than
 	// NONE in the request. Each element represents one attribute.
@@ -5120,8 +5122,6 @@ type UpdateItemOutput struct {
 	// table does not have any local secondary indexes, this information is not
 	// returned in the response.
 	ItemCollectionMetrics *ItemCollectionMetrics `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5136,6 +5136,8 @@ func (s UpdateItemOutput) GoString() string {
 
 // Represents the input of an UpdateTable operation.
 type UpdateTableInput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of attributes that describe the key schema for the table and indexes.
 	// If you are adding a new global secondary index to the table, AttributeDefinitions
 	// must include the key element(s) of the new index.
@@ -5172,8 +5174,6 @@ type UpdateTableInput struct {
 
 	// The name of the table to be updated.
 	TableName *string `min:"3" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5188,10 +5188,10 @@ func (s UpdateTableInput) GoString() string {
 
 // Represents the output of an UpdateTable operation.
 type UpdateTableOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Represents the properties of a table.
 	TableDescription *TableDescription `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5209,13 +5209,13 @@ func (s UpdateTableOutput) GoString() string {
 // If you do need to perform both of these operations, you will need to provide
 // two separate WriteRequest objects.
 type WriteRequest struct {
+	_ struct{} `type:"structure"`
+
 	// A request to perform a DeleteItem operation.
 	DeleteRequest *DeleteRequest `type:"structure"`
 
 	// A request to perform a PutItem operation.
 	PutRequest *PutRequest `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

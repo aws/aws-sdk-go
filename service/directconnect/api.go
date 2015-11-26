@@ -610,6 +610,8 @@ func (c *DirectConnect) DescribeVirtualInterfaces(input *DescribeVirtualInterfac
 
 // Container for the parameters to the AllocateConnectionOnInterconnect operation.
 type AllocateConnectionOnInterconnectInput struct {
+	_ struct{} `type:"structure"`
+
 	// Bandwidth of the connection.
 	//
 	// Example: "500Mbps"
@@ -644,8 +646,6 @@ type AllocateConnectionOnInterconnectInput struct {
 	//
 	// Default: None
 	Vlan *int64 `locationName:"vlan" type:"integer" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -660,6 +660,8 @@ func (s AllocateConnectionOnInterconnectInput) GoString() string {
 
 // Container for the parameters to the AllocatePrivateVirtualInterface operation.
 type AllocatePrivateVirtualInterfaceInput struct {
+	_ struct{} `type:"structure"`
+
 	// The connection ID on which the private virtual interface is provisioned.
 	//
 	// Default: None
@@ -674,8 +676,6 @@ type AllocatePrivateVirtualInterfaceInput struct {
 	//
 	// Default: None
 	OwnerAccount *string `locationName:"ownerAccount" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -690,6 +690,8 @@ func (s AllocatePrivateVirtualInterfaceInput) GoString() string {
 
 // Container for the parameters to the AllocatePublicVirtualInterface operation.
 type AllocatePublicVirtualInterfaceInput struct {
+	_ struct{} `type:"structure"`
+
 	// The connection ID on which the public virtual interface is provisioned.
 	//
 	// Default: None
@@ -704,8 +706,6 @@ type AllocatePublicVirtualInterfaceInput struct {
 	//
 	// Default: None
 	OwnerAccount *string `locationName:"ownerAccount" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -720,14 +720,14 @@ func (s AllocatePublicVirtualInterfaceInput) GoString() string {
 
 // Container for the parameters to the ConfirmConnection operation.
 type ConfirmConnectionInput struct {
+	_ struct{} `type:"structure"`
+
 	// ID of the connection.
 	//
 	// Example: dxcon-fg5678gh
 	//
 	// Default: None
 	ConnectionId *string `locationName:"connectionId" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -742,6 +742,8 @@ func (s ConfirmConnectionInput) GoString() string {
 
 // The response received when ConfirmConnection is called.
 type ConfirmConnectionOutput struct {
+	_ struct{} `type:"structure"`
+
 	// State of the connection.   Ordering: The initial state of a hosted connection
 	// provisioned on an interconnect. The connection stays in the ordering state
 	// until the owner of the hosted connection confirms or declines the connection
@@ -753,8 +755,6 @@ type ConfirmConnectionOutput struct {
 	// deleted.  Rejected: A hosted connection in the 'Ordering' state will enter
 	// the 'Rejected' state if it is deleted by the end customer.
 	ConnectionState *string `locationName:"connectionState" type:"string" enum:"ConnectionState"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -769,6 +769,8 @@ func (s ConfirmConnectionOutput) GoString() string {
 
 // Container for the parameters to the ConfirmPrivateVirtualInterface operation.
 type ConfirmPrivateVirtualInterfaceInput struct {
+	_ struct{} `type:"structure"`
+
 	// ID of the virtual private gateway that will be attached to the virtual interface.
 	//
 	//  A virtual private gateway can be managed via the Amazon Virtual Private
@@ -784,8 +786,6 @@ type ConfirmPrivateVirtualInterfaceInput struct {
 	//
 	// Default: None
 	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -800,6 +800,8 @@ func (s ConfirmPrivateVirtualInterfaceInput) GoString() string {
 
 // The response received when ConfirmPrivateVirtualInterface is called.
 type ConfirmPrivateVirtualInterfaceOutput struct {
+	_ struct{} `type:"structure"`
+
 	// State of the virtual interface.   Confirming: The creation of the virtual
 	// interface is pending confirmation from the virtual interface owner. If the
 	// owner of the virtual interface is different from the owner of the connection
@@ -817,8 +819,6 @@ type ConfirmPrivateVirtualInterfaceOutput struct {
 	// is deleted by the virtual interface owner, the virtual interface will enter
 	// the 'Rejected' state.
 	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string" enum:"VirtualInterfaceState"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -833,14 +833,14 @@ func (s ConfirmPrivateVirtualInterfaceOutput) GoString() string {
 
 // Container for the parameters to the ConfirmPublicVirtualInterface operation.
 type ConfirmPublicVirtualInterfaceInput struct {
+	_ struct{} `type:"structure"`
+
 	// ID of the virtual interface.
 	//
 	// Example: dxvif-123dfg56
 	//
 	// Default: None
 	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -855,6 +855,8 @@ func (s ConfirmPublicVirtualInterfaceInput) GoString() string {
 
 // The response received when ConfirmPublicVirtualInterface is called.
 type ConfirmPublicVirtualInterfaceOutput struct {
+	_ struct{} `type:"structure"`
+
 	// State of the virtual interface.   Confirming: The creation of the virtual
 	// interface is pending confirmation from the virtual interface owner. If the
 	// owner of the virtual interface is different from the owner of the connection
@@ -872,8 +874,6 @@ type ConfirmPublicVirtualInterfaceOutput struct {
 	// is deleted by the virtual interface owner, the virtual interface will enter
 	// the 'Rejected' state.
 	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string" enum:"VirtualInterfaceState"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -889,6 +889,8 @@ func (s ConfirmPublicVirtualInterfaceOutput) GoString() string {
 // A connection represents the physical network connection between the AWS Direct
 // Connect location and the customer.
 type Connection struct {
+	_ struct{} `type:"structure"`
+
 	// Bandwidth of the connection.
 	//
 	// Example: 1Gbps (for regular connections), or 500Mbps (for hosted connections)
@@ -944,8 +946,6 @@ type Connection struct {
 	//
 	// Example: 101
 	Vlan *int64 `locationName:"vlan" type:"integer"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -960,10 +960,10 @@ func (s Connection) GoString() string {
 
 // A structure containing a list of connections.
 type Connections struct {
+	_ struct{} `type:"structure"`
+
 	// A list of connections.
 	Connections []*Connection `locationName:"connections" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -978,6 +978,8 @@ func (s Connections) GoString() string {
 
 // Container for the parameters to the CreateConnection operation.
 type CreateConnectionInput struct {
+	_ struct{} `type:"structure"`
+
 	// Bandwidth of the connection.
 	//
 	// Example: 1Gbps
@@ -998,8 +1000,6 @@ type CreateConnectionInput struct {
 	//
 	// Default: None
 	Location *string `locationName:"location" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1014,6 +1014,8 @@ func (s CreateConnectionInput) GoString() string {
 
 // Container for the parameters to the CreateInterconnect operation.
 type CreateInterconnectInput struct {
+	_ struct{} `type:"structure"`
+
 	// The port bandwidth
 	//
 	// Example: 1Gbps
@@ -1036,8 +1038,6 @@ type CreateInterconnectInput struct {
 	//
 	// Default: None
 	Location *string `locationName:"location" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1052,6 +1052,8 @@ func (s CreateInterconnectInput) GoString() string {
 
 // Container for the parameters to the CreatePrivateVirtualInterface operation.
 type CreatePrivateVirtualInterfaceInput struct {
+	_ struct{} `type:"structure"`
+
 	// ID of the connection.
 	//
 	// Example: dxcon-fg5678gh
@@ -1063,8 +1065,6 @@ type CreatePrivateVirtualInterfaceInput struct {
 	//
 	// Default: None
 	NewPrivateVirtualInterface *NewPrivateVirtualInterface `locationName:"newPrivateVirtualInterface" type:"structure" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1079,6 +1079,8 @@ func (s CreatePrivateVirtualInterfaceInput) GoString() string {
 
 // Container for the parameters to the CreatePublicVirtualInterface operation.
 type CreatePublicVirtualInterfaceInput struct {
+	_ struct{} `type:"structure"`
+
 	// ID of the connection.
 	//
 	// Example: dxcon-fg5678gh
@@ -1090,8 +1092,6 @@ type CreatePublicVirtualInterfaceInput struct {
 	//
 	// Default: None
 	NewPublicVirtualInterface *NewPublicVirtualInterface `locationName:"newPublicVirtualInterface" type:"structure" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1106,14 +1106,14 @@ func (s CreatePublicVirtualInterfaceInput) GoString() string {
 
 // Container for the parameters to the DeleteConnection operation.
 type DeleteConnectionInput struct {
+	_ struct{} `type:"structure"`
+
 	// ID of the connection.
 	//
 	// Example: dxcon-fg5678gh
 	//
 	// Default: None
 	ConnectionId *string `locationName:"connectionId" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1128,12 +1128,12 @@ func (s DeleteConnectionInput) GoString() string {
 
 // Container for the parameters to the DeleteInterconnect operation.
 type DeleteInterconnectInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the interconnect.
 	//
 	// Example: dxcon-abc123
 	InterconnectId *string `locationName:"interconnectId" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1148,6 +1148,8 @@ func (s DeleteInterconnectInput) GoString() string {
 
 // The response received when DeleteInterconnect is called.
 type DeleteInterconnectOutput struct {
+	_ struct{} `type:"structure"`
+
 	// State of the interconnect.   Requested: The initial state of an interconnect.
 	// The interconnect stays in the requested state until the Letter of Authorization
 	// (LOA) is sent to the customer.  Pending: The interconnect has been approved,
@@ -1155,8 +1157,6 @@ type DeleteInterconnectOutput struct {
 	// is ready for use.  Down: The network link is down.  Deleted: The interconnect
 	// has been deleted.
 	InterconnectState *string `locationName:"interconnectState" type:"string" enum:"InterconnectState"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1171,14 +1171,14 @@ func (s DeleteInterconnectOutput) GoString() string {
 
 // Container for the parameters to the DeleteVirtualInterface operation.
 type DeleteVirtualInterfaceInput struct {
+	_ struct{} `type:"structure"`
+
 	// ID of the virtual interface.
 	//
 	// Example: dxvif-123dfg56
 	//
 	// Default: None
 	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1193,6 +1193,8 @@ func (s DeleteVirtualInterfaceInput) GoString() string {
 
 // The response received when DeleteVirtualInterface is called.
 type DeleteVirtualInterfaceOutput struct {
+	_ struct{} `type:"structure"`
+
 	// State of the virtual interface.   Confirming: The creation of the virtual
 	// interface is pending confirmation from the virtual interface owner. If the
 	// owner of the virtual interface is different from the owner of the connection
@@ -1210,8 +1212,6 @@ type DeleteVirtualInterfaceOutput struct {
 	// is deleted by the virtual interface owner, the virtual interface will enter
 	// the 'Rejected' state.
 	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string" enum:"VirtualInterfaceState"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1226,14 +1226,14 @@ func (s DeleteVirtualInterfaceOutput) GoString() string {
 
 // Container for the parameters to the DescribeConnections operation.
 type DescribeConnectionsInput struct {
+	_ struct{} `type:"structure"`
+
 	// ID of the connection.
 	//
 	// Example: dxcon-fg5678gh
 	//
 	// Default: None
 	ConnectionId *string `locationName:"connectionId" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1248,14 +1248,14 @@ func (s DescribeConnectionsInput) GoString() string {
 
 // Container for the parameters to the DescribeConnectionsOnInterconnect operation.
 type DescribeConnectionsOnInterconnectInput struct {
+	_ struct{} `type:"structure"`
+
 	// ID of the interconnect on which a list of connection is provisioned.
 	//
 	// Example: dxcon-abc123
 	//
 	// Default: None
 	InterconnectId *string `locationName:"interconnectId" type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1270,12 +1270,12 @@ func (s DescribeConnectionsOnInterconnectInput) GoString() string {
 
 // Container for the parameters to the DescribeInterconnects operation.
 type DescribeInterconnectsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the interconnect.
 	//
 	// Example: dxcon-abc123
 	InterconnectId *string `locationName:"interconnectId" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1290,10 +1290,10 @@ func (s DescribeInterconnectsInput) GoString() string {
 
 // A structure containing a list of interconnects.
 type DescribeInterconnectsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of interconnects.
 	Interconnects []*Interconnect `locationName:"interconnects" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1321,9 +1321,9 @@ func (s DescribeLocationsInput) GoString() string {
 }
 
 type DescribeLocationsOutput struct {
-	Locations []*Location `locationName:"locations" type:"list"`
-
 	_ struct{} `type:"structure"`
+
+	Locations []*Location `locationName:"locations" type:"list"`
 }
 
 // String returns the string representation
@@ -1352,10 +1352,10 @@ func (s DescribeVirtualGatewaysInput) GoString() string {
 
 // A structure containing a list of virtual private gateways.
 type DescribeVirtualGatewaysOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of virtual private gateways.
 	VirtualGateways []*VirtualGateway `locationName:"virtualGateways" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1370,6 +1370,8 @@ func (s DescribeVirtualGatewaysOutput) GoString() string {
 
 // Container for the parameters to the DescribeVirtualInterfaces operation.
 type DescribeVirtualInterfacesInput struct {
+	_ struct{} `type:"structure"`
+
 	// ID of the connection.
 	//
 	// Example: dxcon-fg5678gh
@@ -1383,8 +1385,6 @@ type DescribeVirtualInterfacesInput struct {
 	//
 	// Default: None
 	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1399,10 +1399,10 @@ func (s DescribeVirtualInterfacesInput) GoString() string {
 
 // A structure containing a list of virtual interfaces.
 type DescribeVirtualInterfacesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of virtual interfaces.
 	VirtualInterfaces []*VirtualInterface `locationName:"virtualInterfaces" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1428,6 +1428,8 @@ func (s DescribeVirtualInterfacesOutput) GoString() string {
 // are shared by all of the hosted connections on the interconnect, and the
 // owner of the interconnect determines how these resources are assigned.
 type Interconnect struct {
+	_ struct{} `type:"structure"`
+
 	// Bandwidth of the connection.
 	//
 	// Example: 1Gbps
@@ -1466,8 +1468,6 @@ type Interconnect struct {
 	//
 	// Default: None
 	Region *string `locationName:"region" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1483,14 +1483,14 @@ func (s Interconnect) GoString() string {
 // An AWS Direct Connect location where connections and interconnects can be
 // requested.
 type Location struct {
+	_ struct{} `type:"structure"`
+
 	// The code used to indicate the AWS Direct Connect location.
 	LocationCode *string `locationName:"locationCode" type:"string"`
 
 	// The name of the AWS Direct Connect location. The name includes the colocation
 	// partner name and the physical site of the lit building.
 	LocationName *string `locationName:"locationName" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1505,6 +1505,8 @@ func (s Location) GoString() string {
 
 // A structure containing information about a new private virtual interface.
 type NewPrivateVirtualInterface struct {
+	_ struct{} `type:"structure"`
+
 	// IP address assigned to the Amazon interface.
 	//
 	// Example: 192.168.1.1/30
@@ -1540,8 +1542,6 @@ type NewPrivateVirtualInterface struct {
 	//
 	// Example: 101
 	Vlan *int64 `locationName:"vlan" type:"integer" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1557,6 +1557,8 @@ func (s NewPrivateVirtualInterface) GoString() string {
 // A structure containing information about a private virtual interface that
 // will be provisioned on a connection.
 type NewPrivateVirtualInterfaceAllocation struct {
+	_ struct{} `type:"structure"`
+
 	// IP address assigned to the Amazon interface.
 	//
 	// Example: 192.168.1.1/30
@@ -1586,8 +1588,6 @@ type NewPrivateVirtualInterfaceAllocation struct {
 	//
 	// Example: 101
 	Vlan *int64 `locationName:"vlan" type:"integer" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1602,6 +1602,8 @@ func (s NewPrivateVirtualInterfaceAllocation) GoString() string {
 
 // A structure containing information about a new public virtual interface.
 type NewPublicVirtualInterface struct {
+	_ struct{} `type:"structure"`
+
 	// IP address assigned to the Amazon interface.
 	//
 	// Example: 192.168.1.1/30
@@ -1635,8 +1637,6 @@ type NewPublicVirtualInterface struct {
 	//
 	// Example: 101
 	Vlan *int64 `locationName:"vlan" type:"integer" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1652,6 +1652,8 @@ func (s NewPublicVirtualInterface) GoString() string {
 // A structure containing information about a public virtual interface that
 // will be provisioned on a connection.
 type NewPublicVirtualInterfaceAllocation struct {
+	_ struct{} `type:"structure"`
+
 	// IP address assigned to the Amazon interface.
 	//
 	// Example: 192.168.1.1/30
@@ -1685,8 +1687,6 @@ type NewPublicVirtualInterfaceAllocation struct {
 	//
 	// Example: 101
 	Vlan *int64 `locationName:"vlan" type:"integer" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1702,13 +1702,13 @@ func (s NewPublicVirtualInterfaceAllocation) GoString() string {
 // A route filter prefix that the customer can advertise through Border Gateway
 // Protocol (BGP) over a public virtual interface.
 type RouteFilterPrefix struct {
+	_ struct{} `type:"structure"`
+
 	// CIDR notation for the advertised route. Multiple routes are separated by
 	// commas.
 	//
 	// Example: 10.10.10.0/24,10.10.11.0/24
 	Cidr *string `locationName:"cidr" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1727,6 +1727,8 @@ func (s RouteFilterPrefix) GoString() string {
 // Virtual private gateways can be managed using the Amazon Virtual Private
 // Cloud (Amazon VPC) console or the Amazon EC2 CreateVpnGateway action (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-CreateVpnGateway.html).
 type VirtualGateway struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the virtual private gateway to a VPC. This only applies to private
 	// virtual interfaces.
 	//
@@ -1739,8 +1741,6 @@ type VirtualGateway struct {
 	//  Deleted: In this state, a private virtual interface is unable to send traffic
 	// over this gateway.
 	VirtualGatewayState *string `locationName:"virtualGatewayState" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1756,6 +1756,8 @@ func (s VirtualGateway) GoString() string {
 // A virtual interface (VLAN) transmits the traffic between the AWS Direct Connect
 // location and the customer.
 type VirtualInterface struct {
+	_ struct{} `type:"structure"`
+
 	// IP address assigned to the Amazon interface.
 	//
 	// Example: 192.168.1.1/30
@@ -1845,8 +1847,6 @@ type VirtualInterface struct {
 	//
 	// Example: 101
 	Vlan *int64 `locationName:"vlan" type:"integer"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

@@ -186,11 +186,11 @@ type InputService1TestShapeInputService1TestCaseOperation3Output struct {
 }
 
 type InputService1TestShapeInputShape struct {
+	_ struct{} `locationName:"OperationRequest" type:"structure" xmlURI:"https://foo/"`
+
 	Description *string `type:"string"`
 
 	Name *string `type:"string"`
-
-	_ struct{} `locationName:"OperationRequest" type:"structure" xmlURI:"https://foo/"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -274,6 +274,8 @@ func (c *InputService2ProtocolTest) InputService2TestCaseOperation1(input *Input
 }
 
 type InputService2TestShapeInputService2TestCaseOperation1Input struct {
+	_ struct{} `locationName:"OperationRequest" type:"structure" xmlURI:"https://foo/"`
+
 	First *bool `type:"boolean"`
 
 	Fourth *int64 `type:"integer"`
@@ -281,8 +283,6 @@ type InputService2TestShapeInputService2TestCaseOperation1Input struct {
 	Second *bool `type:"boolean"`
 
 	Third *float64 `type:"float"`
-
-	_ struct{} `locationName:"OperationRequest" type:"structure" xmlURI:"https://foo/"`
 }
 
 type InputService2TestShapeInputService2TestCaseOperation1Output struct {
@@ -404,19 +404,19 @@ type InputService3TestShapeInputService3TestCaseOperation2Output struct {
 }
 
 type InputService3TestShapeInputShape struct {
+	_ struct{} `locationName:"OperationRequest" type:"structure" xmlURI:"https://foo/"`
+
 	Description *string `type:"string"`
 
 	SubStructure *InputService3TestShapeSubStructure `type:"structure"`
-
-	_ struct{} `locationName:"OperationRequest" type:"structure" xmlURI:"https://foo/"`
 }
 
 type InputService3TestShapeSubStructure struct {
+	_ struct{} `type:"structure"`
+
 	Bar *string `type:"string"`
 
 	Foo *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -500,11 +500,11 @@ func (c *InputService4ProtocolTest) InputService4TestCaseOperation1(input *Input
 }
 
 type InputService4TestShapeInputService4TestCaseOperation1Input struct {
+	_ struct{} `locationName:"OperationRequest" type:"structure" xmlURI:"https://foo/"`
+
 	Description *string `type:"string"`
 
 	SubStructure *InputService4TestShapeSubStructure `type:"structure"`
-
-	_ struct{} `locationName:"OperationRequest" type:"structure" xmlURI:"https://foo/"`
 }
 
 type InputService4TestShapeInputService4TestCaseOperation1Output struct {
@@ -512,11 +512,11 @@ type InputService4TestShapeInputService4TestCaseOperation1Output struct {
 }
 
 type InputService4TestShapeSubStructure struct {
+	_ struct{} `type:"structure"`
+
 	Bar *string `type:"string"`
 
 	Foo *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -600,9 +600,9 @@ func (c *InputService5ProtocolTest) InputService5TestCaseOperation1(input *Input
 }
 
 type InputService5TestShapeInputService5TestCaseOperation1Input struct {
-	ListParam []*string `type:"list"`
-
 	_ struct{} `locationName:"OperationRequest" type:"structure" xmlURI:"https://foo/"`
+
+	ListParam []*string `type:"list"`
 }
 
 type InputService5TestShapeInputService5TestCaseOperation1Output struct {
@@ -690,9 +690,9 @@ func (c *InputService6ProtocolTest) InputService6TestCaseOperation1(input *Input
 }
 
 type InputService6TestShapeInputService6TestCaseOperation1Input struct {
-	ListParam []*string `locationName:"AlternateName" locationNameList:"NotMember" type:"list"`
-
 	_ struct{} `locationName:"OperationRequest" type:"structure" xmlURI:"https://foo/"`
+
+	ListParam []*string `locationName:"AlternateName" locationNameList:"NotMember" type:"list"`
 }
 
 type InputService6TestShapeInputService6TestCaseOperation1Output struct {
@@ -780,9 +780,9 @@ func (c *InputService7ProtocolTest) InputService7TestCaseOperation1(input *Input
 }
 
 type InputService7TestShapeInputService7TestCaseOperation1Input struct {
-	ListParam []*string `type:"list" flattened:"true"`
-
 	_ struct{} `locationName:"OperationRequest" type:"structure" xmlURI:"https://foo/"`
+
+	ListParam []*string `type:"list" flattened:"true"`
 }
 
 type InputService7TestShapeInputService7TestCaseOperation1Output struct {
@@ -870,9 +870,9 @@ func (c *InputService8ProtocolTest) InputService8TestCaseOperation1(input *Input
 }
 
 type InputService8TestShapeInputService8TestCaseOperation1Input struct {
-	ListParam []*string `locationName:"item" type:"list" flattened:"true"`
-
 	_ struct{} `locationName:"OperationRequest" type:"structure" xmlURI:"https://foo/"`
+
+	ListParam []*string `locationName:"item" type:"list" flattened:"true"`
 }
 
 type InputService8TestShapeInputService8TestCaseOperation1Output struct {
@@ -960,9 +960,9 @@ func (c *InputService9ProtocolTest) InputService9TestCaseOperation1(input *Input
 }
 
 type InputService9TestShapeInputService9TestCaseOperation1Input struct {
-	ListParam []*InputService9TestShapeSingleFieldStruct `locationName:"item" type:"list" flattened:"true"`
-
 	_ struct{} `locationName:"OperationRequest" type:"structure" xmlURI:"https://foo/"`
+
+	ListParam []*InputService9TestShapeSingleFieldStruct `locationName:"item" type:"list" flattened:"true"`
 }
 
 type InputService9TestShapeInputService9TestCaseOperation1Output struct {
@@ -970,9 +970,9 @@ type InputService9TestShapeInputService9TestCaseOperation1Output struct {
 }
 
 type InputService9TestShapeSingleFieldStruct struct {
-	Element *string `locationName:"value" type:"string"`
-
 	_ struct{} `type:"structure"`
+
+	Element *string `locationName:"value" type:"string"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -1056,9 +1056,9 @@ func (c *InputService10ProtocolTest) InputService10TestCaseOperation1(input *Inp
 }
 
 type InputService10TestShapeInputService10TestCaseOperation1Input struct {
-	StructureParam *InputService10TestShapeStructureShape `type:"structure"`
-
 	_ struct{} `locationName:"OperationRequest" type:"structure" xmlURI:"https://foo/"`
+
+	StructureParam *InputService10TestShapeStructureShape `type:"structure"`
 }
 
 type InputService10TestShapeInputService10TestCaseOperation1Output struct {
@@ -1066,11 +1066,11 @@ type InputService10TestShapeInputService10TestCaseOperation1Output struct {
 }
 
 type InputService10TestShapeStructureShape struct {
+	_ struct{} `type:"structure"`
+
 	B []byte `locationName:"b" type:"blob"`
 
 	T *time.Time `locationName:"t" type:"timestamp" timestampFormat:"iso8601"`
-
-	_ struct{} `type:"structure"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -1154,9 +1154,9 @@ func (c *InputService11ProtocolTest) InputService11TestCaseOperation1(input *Inp
 }
 
 type InputService11TestShapeInputService11TestCaseOperation1Input struct {
-	Foo map[string]*string `location:"headers" locationName:"x-foo-" type:"map"`
-
 	_ struct{} `locationName:"OperationRequest" type:"structure" xmlURI:"https://foo/"`
+
+	Foo map[string]*string `location:"headers" locationName:"x-foo-" type:"map"`
 }
 
 type InputService11TestShapeInputService11TestCaseOperation1Output struct {
@@ -1244,11 +1244,11 @@ func (c *InputService12ProtocolTest) InputService12TestCaseOperation1(input *Inp
 }
 
 type InputService12TestShapeInputService12TestCaseOperation1Input struct {
+	_ struct{} `type:"structure"`
+
 	PipelineId *string `location:"uri" type:"string"`
 
 	QueryDoc map[string]*string `location:"querystring" type:"map"`
-
-	_ struct{} `type:"structure"`
 }
 
 type InputService12TestShapeInputService12TestCaseOperation1Output struct {
@@ -1336,11 +1336,11 @@ func (c *InputService13ProtocolTest) InputService13TestCaseOperation1(input *Inp
 }
 
 type InputService13TestShapeInputService13TestCaseOperation1Input struct {
+	_ struct{} `type:"structure"`
+
 	PipelineId *string `location:"uri" type:"string"`
 
 	QueryDoc map[string][]*string `location:"querystring" type:"map"`
-
-	_ struct{} `type:"structure"`
 }
 
 type InputService13TestShapeInputService13TestCaseOperation1Output struct {
@@ -1428,9 +1428,9 @@ func (c *InputService14ProtocolTest) InputService14TestCaseOperation1(input *Inp
 }
 
 type InputService14TestShapeInputService14TestCaseOperation1Input struct {
-	Foo *string `locationName:"foo" type:"string"`
-
 	_ struct{} `type:"structure" payload:"Foo"`
+
+	Foo *string `locationName:"foo" type:"string"`
 }
 
 type InputService14TestShapeInputService14TestCaseOperation1Output struct {
@@ -1552,9 +1552,9 @@ type InputService15TestShapeInputService15TestCaseOperation2Output struct {
 }
 
 type InputService15TestShapeInputShape struct {
-	Foo []byte `locationName:"foo" type:"blob"`
-
 	_ struct{} `type:"structure" payload:"Foo"`
+
+	Foo []byte `locationName:"foo" type:"blob"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -1716,9 +1716,9 @@ func (c *InputService16ProtocolTest) InputService16TestCaseOperation4(input *Inp
 }
 
 type InputService16TestShapeFooShape struct {
-	Baz *string `locationName:"baz" type:"string"`
-
 	_ struct{} `locationName:"foo" type:"structure"`
+
+	Baz *string `locationName:"baz" type:"string"`
 }
 
 type InputService16TestShapeInputService16TestCaseOperation1Output struct {
@@ -1738,9 +1738,9 @@ type InputService16TestShapeInputService16TestCaseOperation4Output struct {
 }
 
 type InputService16TestShapeInputShape struct {
-	Foo *InputService16TestShapeFooShape `locationName:"foo" type:"structure"`
-
 	_ struct{} `type:"structure" payload:"Foo"`
+
+	Foo *InputService16TestShapeFooShape `locationName:"foo" type:"structure"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -1824,23 +1824,23 @@ func (c *InputService17ProtocolTest) InputService17TestCaseOperation1(input *Inp
 }
 
 type InputService17TestShapeGrant struct {
-	Grantee *InputService17TestShapeGrantee `type:"structure"`
-
 	_ struct{} `locationName:"Grant" type:"structure"`
+
+	Grantee *InputService17TestShapeGrantee `type:"structure"`
 }
 
 type InputService17TestShapeGrantee struct {
+	_ struct{} `type:"structure" xmlPrefix:"xsi" xmlURI:"http://www.w3.org/2001/XMLSchema-instance"`
+
 	EmailAddress *string `type:"string"`
 
 	Type *string `locationName:"xsi:type" type:"string" xmlAttribute:"true"`
-
-	_ struct{} `type:"structure" xmlPrefix:"xsi" xmlURI:"http://www.w3.org/2001/XMLSchema-instance"`
 }
 
 type InputService17TestShapeInputService17TestCaseOperation1Input struct {
-	Grant *InputService17TestShapeGrant `locationName:"Grant" type:"structure"`
-
 	_ struct{} `type:"structure" payload:"Grant"`
+
+	Grant *InputService17TestShapeGrant `locationName:"Grant" type:"structure"`
 }
 
 type InputService17TestShapeInputService17TestCaseOperation1Output struct {
@@ -1928,11 +1928,11 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation1(input *Inp
 }
 
 type InputService18TestShapeInputService18TestCaseOperation1Input struct {
+	_ struct{} `type:"structure"`
+
 	Bucket *string `location:"uri" type:"string"`
 
 	Key *string `location:"uri" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 type InputService18TestShapeInputService18TestCaseOperation1Output struct {
@@ -2054,9 +2054,9 @@ type InputService19TestShapeInputService19TestCaseOperation2Output struct {
 }
 
 type InputService19TestShapeInputShape struct {
-	Foo *string `location:"querystring" locationName:"param-name" type:"string"`
-
 	_ struct{} `type:"structure"`
+
+	Foo *string `location:"querystring" locationName:"param-name" type:"string"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -2294,12 +2294,14 @@ type InputService20TestShapeInputService20TestCaseOperation6Output struct {
 }
 
 type InputService20TestShapeInputShape struct {
-	RecursiveStruct *InputService20TestShapeRecursiveStructType `type:"structure"`
-
 	_ struct{} `locationName:"OperationRequest" type:"structure" xmlURI:"https://foo/"`
+
+	RecursiveStruct *InputService20TestShapeRecursiveStructType `type:"structure"`
 }
 
 type InputService20TestShapeRecursiveStructType struct {
+	_ struct{} `type:"structure"`
+
 	NoRecurse *string `type:"string"`
 
 	RecursiveList []*InputService20TestShapeRecursiveStructType `type:"list"`
@@ -2307,8 +2309,6 @@ type InputService20TestShapeRecursiveStructType struct {
 	RecursiveMap map[string]*InputService20TestShapeRecursiveStructType `type:"map"`
 
 	RecursiveStruct *InputService20TestShapeRecursiveStructType `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -2392,9 +2392,9 @@ func (c *InputService21ProtocolTest) InputService21TestCaseOperation1(input *Inp
 }
 
 type InputService21TestShapeInputService21TestCaseOperation1Input struct {
-	TimeArgInHeader *time.Time `location:"header" locationName:"x-amz-timearg" type:"timestamp" timestampFormat:"rfc822"`
-
 	_ struct{} `type:"structure"`
+
+	TimeArgInHeader *time.Time `location:"header" locationName:"x-amz-timearg" type:"timestamp" timestampFormat:"rfc822"`
 }
 
 type InputService21TestShapeInputService21TestCaseOperation1Output struct {

@@ -118,9 +118,9 @@ func (c *InputService1ProtocolTest) InputService1TestCaseOperation1(input *Input
 }
 
 type InputService1TestShapeInputService1TestCaseOperation1Input struct {
-	PipelineId *string `location:"uri" type:"string"`
-
 	_ struct{} `type:"structure"`
+
+	PipelineId *string `location:"uri" type:"string"`
 }
 
 type InputService1TestShapeInputService1TestCaseOperation1Output struct {
@@ -208,9 +208,9 @@ func (c *InputService2ProtocolTest) InputService2TestCaseOperation1(input *Input
 }
 
 type InputService2TestShapeInputService2TestCaseOperation1Input struct {
-	Foo *string `location:"uri" locationName:"PipelineId" type:"string"`
-
 	_ struct{} `type:"structure"`
+
+	Foo *string `location:"uri" locationName:"PipelineId" type:"string"`
 }
 
 type InputService2TestShapeInputService2TestCaseOperation1Output struct {
@@ -298,11 +298,11 @@ func (c *InputService3ProtocolTest) InputService3TestCaseOperation1(input *Input
 }
 
 type InputService3TestShapeInputService3TestCaseOperation1Input struct {
+	_ struct{} `type:"structure"`
+
 	PipelineId *string `location:"uri" type:"string"`
 
 	QueryDoc map[string]*string `location:"querystring" type:"map"`
-
-	_ struct{} `type:"structure"`
 }
 
 type InputService3TestShapeInputService3TestCaseOperation1Output struct {
@@ -390,11 +390,11 @@ func (c *InputService4ProtocolTest) InputService4TestCaseOperation1(input *Input
 }
 
 type InputService4TestShapeInputService4TestCaseOperation1Input struct {
+	_ struct{} `type:"structure"`
+
 	PipelineId *string `location:"uri" type:"string"`
 
 	QueryDoc map[string][]*string `location:"querystring" type:"map"`
-
-	_ struct{} `type:"structure"`
 }
 
 type InputService4TestShapeInputService4TestCaseOperation1Output struct {
@@ -482,13 +482,13 @@ func (c *InputService5ProtocolTest) InputService5TestCaseOperation1(input *Input
 }
 
 type InputService5TestShapeInputService5TestCaseOperation1Input struct {
+	_ struct{} `type:"structure"`
+
 	Ascending *string `location:"querystring" locationName:"Ascending" type:"string"`
 
 	PageToken *string `location:"querystring" locationName:"PageToken" type:"string"`
 
 	PipelineId *string `location:"uri" locationName:"PipelineId" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 type InputService5TestShapeInputService5TestCaseOperation1Output struct {
@@ -576,6 +576,8 @@ func (c *InputService6ProtocolTest) InputService6TestCaseOperation1(input *Input
 }
 
 type InputService6TestShapeInputService6TestCaseOperation1Input struct {
+	_ struct{} `type:"structure"`
+
 	Ascending *string `location:"querystring" locationName:"Ascending" type:"string"`
 
 	Config *InputService6TestShapeStructType `type:"structure"`
@@ -583,8 +585,6 @@ type InputService6TestShapeInputService6TestCaseOperation1Input struct {
 	PageToken *string `location:"querystring" locationName:"PageToken" type:"string"`
 
 	PipelineId *string `location:"uri" locationName:"PipelineId" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 type InputService6TestShapeInputService6TestCaseOperation1Output struct {
@@ -592,11 +592,11 @@ type InputService6TestShapeInputService6TestCaseOperation1Output struct {
 }
 
 type InputService6TestShapeStructType struct {
+	_ struct{} `type:"structure"`
+
 	A *string `type:"string"`
 
 	B *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -680,6 +680,8 @@ func (c *InputService7ProtocolTest) InputService7TestCaseOperation1(input *Input
 }
 
 type InputService7TestShapeInputService7TestCaseOperation1Input struct {
+	_ struct{} `type:"structure"`
+
 	Ascending *string `location:"querystring" locationName:"Ascending" type:"string"`
 
 	Checksum *string `location:"header" locationName:"x-amz-checksum" type:"string"`
@@ -689,8 +691,6 @@ type InputService7TestShapeInputService7TestCaseOperation1Input struct {
 	PageToken *string `location:"querystring" locationName:"PageToken" type:"string"`
 
 	PipelineId *string `location:"uri" locationName:"PipelineId" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 type InputService7TestShapeInputService7TestCaseOperation1Output struct {
@@ -698,11 +698,11 @@ type InputService7TestShapeInputService7TestCaseOperation1Output struct {
 }
 
 type InputService7TestShapeStructType struct {
+	_ struct{} `type:"structure"`
+
 	A *string `type:"string"`
 
 	B *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -786,13 +786,13 @@ func (c *InputService8ProtocolTest) InputService8TestCaseOperation1(input *Input
 }
 
 type InputService8TestShapeInputService8TestCaseOperation1Input struct {
+	_ struct{} `type:"structure" payload:"Body"`
+
 	Body io.ReadSeeker `locationName:"body" type:"blob"`
 
 	Checksum *string `location:"header" locationName:"x-amz-sha256-tree-hash" type:"string"`
 
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
-
-	_ struct{} `type:"structure" payload:"Body"`
 }
 
 type InputService8TestShapeInputService8TestCaseOperation1Output struct {
@@ -880,9 +880,9 @@ func (c *InputService9ProtocolTest) InputService9TestCaseOperation1(input *Input
 }
 
 type InputService9TestShapeInputService9TestCaseOperation1Input struct {
-	Foo *string `locationName:"foo" type:"string"`
-
 	_ struct{} `type:"structure" payload:"Foo"`
+
+	Foo *string `locationName:"foo" type:"string"`
 }
 
 type InputService9TestShapeInputService9TestCaseOperation1Output struct {
@@ -1004,9 +1004,9 @@ type InputService10TestShapeInputService10TestCaseOperation2Output struct {
 }
 
 type InputService10TestShapeInputShape struct {
-	Foo []byte `locationName:"foo" type:"blob"`
-
 	_ struct{} `type:"structure" payload:"Foo"`
+
+	Foo []byte `locationName:"foo" type:"blob"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -1116,9 +1116,9 @@ func (c *InputService11ProtocolTest) InputService11TestCaseOperation2(input *Inp
 }
 
 type InputService11TestShapeFooShape struct {
-	Baz *string `locationName:"baz" type:"string"`
-
 	_ struct{} `locationName:"foo" type:"structure"`
+
+	Baz *string `locationName:"baz" type:"string"`
 }
 
 type InputService11TestShapeInputService11TestCaseOperation1Output struct {
@@ -1130,9 +1130,9 @@ type InputService11TestShapeInputService11TestCaseOperation2Output struct {
 }
 
 type InputService11TestShapeInputShape struct {
-	Foo *InputService11TestShapeFooShape `locationName:"foo" type:"structure"`
-
 	_ struct{} `type:"structure" payload:"Foo"`
+
+	Foo *InputService11TestShapeFooShape `locationName:"foo" type:"structure"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -1250,9 +1250,9 @@ type InputService12TestShapeInputService12TestCaseOperation2Output struct {
 }
 
 type InputService12TestShapeInputShape struct {
-	Foo *string `location:"querystring" locationName:"param-name" type:"string"`
-
 	_ struct{} `type:"structure"`
+
+	Foo *string `location:"querystring" locationName:"param-name" type:"string"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -1490,12 +1490,14 @@ type InputService13TestShapeInputService13TestCaseOperation6Output struct {
 }
 
 type InputService13TestShapeInputShape struct {
-	RecursiveStruct *InputService13TestShapeRecursiveStructType `type:"structure"`
-
 	_ struct{} `type:"structure"`
+
+	RecursiveStruct *InputService13TestShapeRecursiveStructType `type:"structure"`
 }
 
 type InputService13TestShapeRecursiveStructType struct {
+	_ struct{} `type:"structure"`
+
 	NoRecurse *string `type:"string"`
 
 	RecursiveList []*InputService13TestShapeRecursiveStructType `type:"list"`
@@ -1503,8 +1505,6 @@ type InputService13TestShapeRecursiveStructType struct {
 	RecursiveMap map[string]*InputService13TestShapeRecursiveStructType `type:"map"`
 
 	RecursiveStruct *InputService13TestShapeRecursiveStructType `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -1622,11 +1622,11 @@ type InputService14TestShapeInputService14TestCaseOperation2Output struct {
 }
 
 type InputService14TestShapeInputShape struct {
+	_ struct{} `type:"structure"`
+
 	TimeArg *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	TimeArgInHeader *time.Time `location:"header" locationName:"x-amz-timearg" type:"timestamp" timestampFormat:"rfc822"`
-
-	_ struct{} `type:"structure"`
 }
 
 //

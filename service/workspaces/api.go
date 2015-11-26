@@ -297,10 +297,10 @@ func (c *WorkSpaces) TerminateWorkspaces(input *TerminateWorkspacesInput) (*Term
 
 // Contains information about the compute type of a WorkSpace bundle.
 type ComputeType struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the compute type for the bundle.
 	Name *string `type:"string" enum:"Compute"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -315,10 +315,10 @@ func (s ComputeType) GoString() string {
 
 // Contains the inputs for the CreateWorkspaces operation.
 type CreateWorkspacesInput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of structures that specify the WorkSpaces to create.
 	Workspaces []*WorkspaceRequest `min:"1" type:"list" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -333,6 +333,8 @@ func (s CreateWorkspacesInput) GoString() string {
 
 // Contains the result of the CreateWorkspaces operation.
 type CreateWorkspacesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of structures that represent the WorkSpaces that could not be created.
 	FailedRequests []*FailedCreateWorkspaceRequest `type:"list"`
 
@@ -342,8 +344,6 @@ type CreateWorkspacesOutput struct {
 	// not immediately available. If you immediately call DescribeWorkspaces with
 	// this identifier, no information will be returned.
 	PendingRequests []*Workspace `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -358,6 +358,8 @@ func (s CreateWorkspacesOutput) GoString() string {
 
 // Contains default WorkSpace creation information.
 type DefaultWorkspaceCreationProperties struct {
+	_ struct{} `type:"structure"`
+
 	// The identifier of any custom security groups that are applied to the WorkSpaces
 	// when they are created.
 	CustomSecurityGroupId *string `type:"string"`
@@ -375,8 +377,6 @@ type DefaultWorkspaceCreationProperties struct {
 
 	// The WorkSpace user is an administrator on the WorkSpace.
 	UserEnabledAsLocalAdministrator *bool `type:"boolean"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -391,6 +391,8 @@ func (s DefaultWorkspaceCreationProperties) GoString() string {
 
 // Contains the inputs for the DescribeWorkspaceBundles operation.
 type DescribeWorkspaceBundlesInput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of strings that contains the identifiers of the bundles to retrieve.
 	// This parameter cannot be combined with any other filter parameter.
 	BundleIds []*string `min:"1" type:"list"`
@@ -407,8 +409,6 @@ type DescribeWorkspaceBundlesInput struct {
 	//  null - Retrieves the bundles that belong to the account making the call.
 	//  AMAZON - Retrieves the bundles that are provided by AWS.
 	Owner *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -423,6 +423,8 @@ func (s DescribeWorkspaceBundlesInput) GoString() string {
 
 // Contains the results of the DescribeWorkspaceBundles operation.
 type DescribeWorkspaceBundlesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of structures that contain information about the bundles.
 	Bundles []*WorkspaceBundle `type:"list"`
 
@@ -430,8 +432,6 @@ type DescribeWorkspaceBundlesOutput struct {
 	// parameter in a subsequent call to this operation to retrieve the next set
 	// of items. This token is valid for one day and must be used within that timeframe.
 	NextToken *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -446,6 +446,8 @@ func (s DescribeWorkspaceBundlesOutput) GoString() string {
 
 // Contains the inputs for the DescribeWorkspaceDirectories operation.
 type DescribeWorkspaceDirectoriesInput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of strings that contains the directory identifiers to retrieve information
 	// for. If this member is null, all directories are retrieved.
 	DirectoryIds []*string `min:"1" type:"list"`
@@ -453,8 +455,6 @@ type DescribeWorkspaceDirectoriesInput struct {
 	// The NextToken value from a previous call to this operation. Pass null if
 	// this is the first call.
 	NextToken *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -469,6 +469,8 @@ func (s DescribeWorkspaceDirectoriesInput) GoString() string {
 
 // Contains the results of the DescribeWorkspaceDirectories operation.
 type DescribeWorkspaceDirectoriesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of structures that contain information about the directories.
 	Directories []*WorkspaceDirectory `type:"list"`
 
@@ -476,8 +478,6 @@ type DescribeWorkspaceDirectoriesOutput struct {
 	// parameter in a subsequent call to this operation to retrieve the next set
 	// of items. This token is valid for one day and must be used within that timeframe.
 	NextToken *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -492,6 +492,8 @@ func (s DescribeWorkspaceDirectoriesOutput) GoString() string {
 
 // Contains the inputs for the DescribeWorkspaces operation.
 type DescribeWorkspacesInput struct {
+	_ struct{} `type:"structure"`
+
 	// The identifier of a bundle to obtain the WorkSpaces for. All WorkSpaces that
 	// are created from this bundle will be retrieved. This parameter cannot be
 	// combined with any other filter parameter.
@@ -521,8 +523,6 @@ type DescribeWorkspacesInput struct {
 	// by CreateWorkspaces is not immediately available. If you immediately call
 	// DescribeWorkspaces with this identifier, no information will be returned.
 	WorkspaceIds []*string `min:"1" type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -537,6 +537,8 @@ func (s DescribeWorkspacesInput) GoString() string {
 
 // Contains the results for the DescribeWorkspaces operation.
 type DescribeWorkspacesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// If not null, more results are available. Pass this value for the NextToken
 	// parameter in a subsequent call to this operation to retrieve the next set
 	// of items. This token is valid for one day and must be used within that timeframe.
@@ -547,8 +549,6 @@ type DescribeWorkspacesOutput struct {
 	// Because the CreateWorkspaces operation is asynchronous, some of this information
 	// may be incomplete for a newly-created WorkSpace.
 	Workspaces []*Workspace `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -563,6 +563,8 @@ func (s DescribeWorkspacesOutput) GoString() string {
 
 // Contains information about a WorkSpace that could not be created.
 type FailedCreateWorkspaceRequest struct {
+	_ struct{} `type:"structure"`
+
 	// The error code.
 	ErrorCode *string `type:"string"`
 
@@ -572,8 +574,6 @@ type FailedCreateWorkspaceRequest struct {
 	// A WorkspaceRequest object that contains the information about the WorkSpace
 	// that could not be created.
 	WorkspaceRequest *WorkspaceRequest `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -589,6 +589,8 @@ func (s FailedCreateWorkspaceRequest) GoString() string {
 // Contains information about a WorkSpace that could not be rebooted (RebootWorkspaces),
 // rebuilt (RebuildWorkspaces), or terminated (TerminateWorkspaces).
 type FailedWorkspaceChangeRequest struct {
+	_ struct{} `type:"structure"`
+
 	// The error code.
 	ErrorCode *string `type:"string"`
 
@@ -597,8 +599,6 @@ type FailedWorkspaceChangeRequest struct {
 
 	// The identifier of the WorkSpace.
 	WorkspaceId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -614,10 +614,10 @@ func (s FailedWorkspaceChangeRequest) GoString() string {
 // Contains information used with the RebootWorkspaces operation to reboot a
 // WorkSpace.
 type RebootRequest struct {
+	_ struct{} `type:"structure"`
+
 	// The identifier of the WorkSpace to reboot.
 	WorkspaceId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -632,10 +632,10 @@ func (s RebootRequest) GoString() string {
 
 // Contains the inputs for the RebootWorkspaces operation.
 type RebootWorkspacesInput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of structures that specify the WorkSpaces to reboot.
 	RebootWorkspaceRequests []*RebootRequest `min:"1" type:"list" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -650,10 +650,10 @@ func (s RebootWorkspacesInput) GoString() string {
 
 // Contains the results of the RebootWorkspaces operation.
 type RebootWorkspacesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of structures that represent any WorkSpaces that could not be rebooted.
 	FailedRequests []*FailedWorkspaceChangeRequest `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -669,10 +669,10 @@ func (s RebootWorkspacesOutput) GoString() string {
 // Contains information used with the RebuildWorkspaces operation to rebuild
 // a WorkSpace.
 type RebuildRequest struct {
+	_ struct{} `type:"structure"`
+
 	// The identifier of the WorkSpace to rebuild.
 	WorkspaceId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -687,10 +687,10 @@ func (s RebuildRequest) GoString() string {
 
 // Contains the inputs for the RebuildWorkspaces operation.
 type RebuildWorkspacesInput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of structures that specify the WorkSpaces to rebuild.
 	RebuildWorkspaceRequests []*RebuildRequest `min:"1" type:"list" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -705,10 +705,10 @@ func (s RebuildWorkspacesInput) GoString() string {
 
 // Contains the results of the RebuildWorkspaces operation.
 type RebuildWorkspacesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of structures that represent any WorkSpaces that could not be rebuilt.
 	FailedRequests []*FailedWorkspaceChangeRequest `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -724,10 +724,10 @@ func (s RebuildWorkspacesOutput) GoString() string {
 // Contains information used with the TerminateWorkspaces operation to terminate
 // a WorkSpace.
 type TerminateRequest struct {
+	_ struct{} `type:"structure"`
+
 	// The identifier of the WorkSpace to terminate.
 	WorkspaceId *string `type:"string" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -742,10 +742,10 @@ func (s TerminateRequest) GoString() string {
 
 // Contains the inputs for the TerminateWorkspaces operation.
 type TerminateWorkspacesInput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of structures that specify the WorkSpaces to terminate.
 	TerminateWorkspaceRequests []*TerminateRequest `min:"1" type:"list" required:"true"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -760,10 +760,10 @@ func (s TerminateWorkspacesInput) GoString() string {
 
 // Contains the results of the TerminateWorkspaces operation.
 type TerminateWorkspacesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// An array of structures that represent any WorkSpaces that could not be terminated.
 	FailedRequests []*FailedWorkspaceChangeRequest `type:"list"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -778,10 +778,10 @@ func (s TerminateWorkspacesOutput) GoString() string {
 
 // Contains information about the user storage for a WorkSpace bundle.
 type UserStorage struct {
+	_ struct{} `type:"structure"`
+
 	// The amount of user storage for the bundle.
 	Capacity *string `min:"1" type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -796,6 +796,8 @@ func (s UserStorage) GoString() string {
 
 // Contains information about a WorkSpace.
 type Workspace struct {
+	_ struct{} `type:"structure"`
+
 	// The identifier of the bundle that the WorkSpace was created from.
 	BundleId *string `type:"string"`
 
@@ -836,8 +838,6 @@ type Workspace struct {
 
 	// The identifier of the WorkSpace.
 	WorkspaceId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -852,6 +852,8 @@ func (s Workspace) GoString() string {
 
 // Contains information about a WorkSpace bundle.
 type WorkspaceBundle struct {
+	_ struct{} `type:"structure"`
+
 	// The bundle identifier.
 	BundleId *string `type:"string"`
 
@@ -871,8 +873,6 @@ type WorkspaceBundle struct {
 	// A UserStorage object that specifies the amount of user storage that the bundle
 	// contains.
 	UserStorage *UserStorage `type:"structure"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -888,6 +888,8 @@ func (s WorkspaceBundle) GoString() string {
 // Contains information about an AWS Directory Service directory for use with
 // Amazon WorkSpaces.
 type WorkspaceDirectory struct {
+	_ struct{} `type:"structure"`
+
 	// The directory alias.
 	Alias *string `type:"string"`
 
@@ -928,8 +930,6 @@ type WorkspaceDirectory struct {
 
 	// The identifier of the security group that is assigned to new WorkSpaces.
 	WorkspaceSecurityGroupId *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -944,6 +944,8 @@ func (s WorkspaceDirectory) GoString() string {
 
 // Contains information about a WorkSpace creation request.
 type WorkspaceRequest struct {
+	_ struct{} `type:"structure"`
+
 	// The identifier of the bundle to create the WorkSpace from. You can use the
 	// DescribeWorkspaceBundles operation to obtain a list of the bundles that are
 	// available.
@@ -966,8 +968,6 @@ type WorkspaceRequest struct {
 
 	// The KMS key used to encrypt data stored on your WorkSpace.
 	VolumeEncryptionKey *string `type:"string"`
-
-	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
