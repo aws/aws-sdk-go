@@ -1584,6 +1584,8 @@ func (c *SWF) TerminateWorkflowExecution(input *TerminateWorkflowExecutionInput)
 
 // Provides details of the ActivityTaskCancelRequested event.
 type ActivityTaskCancelRequestedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The unique ID of the task.
 	ActivityId *string `locationName:"activityId" min:"1" type:"string" required:"true"`
 
@@ -1592,12 +1594,6 @@ type ActivityTaskCancelRequestedEventAttributes struct {
 	// request. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
 	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
-
-	metadataActivityTaskCancelRequestedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataActivityTaskCancelRequestedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1612,6 +1608,8 @@ func (s ActivityTaskCancelRequestedEventAttributes) GoString() string {
 
 // Provides details of the ActivityTaskCanceled event.
 type ActivityTaskCanceledEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// Details of the cancellation (if any).
 	Details *string `locationName:"details" type:"string"`
 
@@ -1629,12 +1627,6 @@ type ActivityTaskCanceledEventAttributes struct {
 	// was started. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
 	StartedEventId *int64 `locationName:"startedEventId" type:"long" required:"true"`
-
-	metadataActivityTaskCanceledEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataActivityTaskCanceledEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1649,6 +1641,8 @@ func (s ActivityTaskCanceledEventAttributes) GoString() string {
 
 // Provides details of the ActivityTaskCompleted event.
 type ActivityTaskCompletedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The results of the activity task (if any).
 	Result *string `locationName:"result" type:"string"`
 
@@ -1661,12 +1655,6 @@ type ActivityTaskCompletedEventAttributes struct {
 	// was started. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
 	StartedEventId *int64 `locationName:"startedEventId" type:"long" required:"true"`
-
-	metadataActivityTaskCompletedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataActivityTaskCompletedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1681,6 +1669,8 @@ func (s ActivityTaskCompletedEventAttributes) GoString() string {
 
 // Provides details of the ActivityTaskFailed event.
 type ActivityTaskFailedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The details of the failure (if any).
 	Details *string `locationName:"details" type:"string"`
 
@@ -1696,12 +1686,6 @@ type ActivityTaskFailedEventAttributes struct {
 	// was started. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
 	StartedEventId *int64 `locationName:"startedEventId" type:"long" required:"true"`
-
-	metadataActivityTaskFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataActivityTaskFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1716,6 +1700,8 @@ func (s ActivityTaskFailedEventAttributes) GoString() string {
 
 // Provides details of the ActivityTaskScheduled event.
 type ActivityTaskScheduledEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The unique ID of the activity task.
 	ActivityId *string `locationName:"activityId" min:"1" type:"string" required:"true"`
 
@@ -1765,12 +1751,6 @@ type ActivityTaskScheduledEventAttributes struct {
 	// (http://docs.aws.amazon.com/amazonswf/latest/developerguide/programming-priority.html)
 	// in the Amazon Simple Workflow Developer Guide.
 	TaskPriority *string `locationName:"taskPriority" type:"string"`
-
-	metadataActivityTaskScheduledEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataActivityTaskScheduledEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1785,6 +1765,8 @@ func (s ActivityTaskScheduledEventAttributes) GoString() string {
 
 // Provides details of the ActivityTaskStarted event.
 type ActivityTaskStartedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// Identity of the worker that was assigned this task. This aids diagnostics
 	// when problems arise. The form of this identity is user defined.
 	Identity *string `locationName:"identity" type:"string"`
@@ -1793,12 +1775,6 @@ type ActivityTaskStartedEventAttributes struct {
 	// task was scheduled. This information can be useful for diagnosing problems
 	// by tracing back the chain of events leading up to this event.
 	ScheduledEventId *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
-
-	metadataActivityTaskStartedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataActivityTaskStartedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1813,6 +1789,8 @@ func (s ActivityTaskStartedEventAttributes) GoString() string {
 
 // Provides details of the ActivityTaskTimedOut event.
 type ActivityTaskTimedOutEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// Contains the content of the details parameter for the last call made by the
 	// activity to RecordActivityTaskHeartbeat.
 	Details *string `locationName:"details" type:"string"`
@@ -1829,12 +1807,6 @@ type ActivityTaskTimedOutEventAttributes struct {
 
 	// The type of the timeout that caused this event.
 	TimeoutType *string `locationName:"timeoutType" type:"string" required:"true" enum:"ActivityTaskTimeoutType"`
-
-	metadataActivityTaskTimedOutEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataActivityTaskTimedOutEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1849,6 +1821,8 @@ func (s ActivityTaskTimedOutEventAttributes) GoString() string {
 
 // Represents an activity type.
 type ActivityType struct {
+	_ struct{} `type:"structure"`
+
 	// The name of this activity.
 	//
 	// The combination of activity type name and version must be unique within
@@ -1860,12 +1834,6 @@ type ActivityType struct {
 	// The combination of activity type name and version must be unique with in
 	// a domain.
 	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
-
-	metadataActivityType `json:"-" xml:"-"`
-}
-
-type metadataActivityType struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1880,6 +1848,8 @@ func (s ActivityType) GoString() string {
 
 // Configuration settings registered with the activity type.
 type ActivityTypeConfiguration struct {
+	_ struct{} `type:"structure"`
+
 	// Optional. The default maximum time, in seconds, before which a worker processing
 	// a task must report progress by calling RecordActivityTaskHeartbeat.
 	//
@@ -1936,12 +1906,6 @@ type ActivityTypeConfiguration struct {
 	// The duration is specified in seconds; an integer greater than or equal to
 	// 0. The value "NONE" can be used to specify unlimited duration.
 	DefaultTaskStartToCloseTimeout *string `locationName:"defaultTaskStartToCloseTimeout" type:"string"`
-
-	metadataActivityTypeConfiguration `json:"-" xml:"-"`
-}
-
-type metadataActivityTypeConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1956,6 +1920,8 @@ func (s ActivityTypeConfiguration) GoString() string {
 
 // Detailed information about an activity type.
 type ActivityTypeInfo struct {
+	_ struct{} `type:"structure"`
+
 	// The ActivityType type structure representing the activity type.
 	ActivityType *ActivityType `locationName:"activityType" type:"structure" required:"true"`
 
@@ -1970,12 +1936,6 @@ type ActivityTypeInfo struct {
 
 	// The current status of the activity type.
 	Status *string `locationName:"status" type:"string" required:"true" enum:"RegistrationStatus"`
-
-	metadataActivityTypeInfo `json:"-" xml:"-"`
-}
-
-type metadataActivityTypeInfo struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2004,14 +1964,10 @@ func (s ActivityTypeInfo) GoString() string {
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 type CancelTimerDecisionAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// Required. The unique ID of the timer to cancel.
 	TimerId *string `locationName:"timerId" min:"1" type:"string" required:"true"`
-
-	metadataCancelTimerDecisionAttributes `json:"-" xml:"-"`
-}
-
-type metadataCancelTimerDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2026,6 +1982,8 @@ func (s CancelTimerDecisionAttributes) GoString() string {
 
 // Provides details of the CancelTimerFailed event.
 type CancelTimerFailedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The cause of the failure. This information is generated by the system and
 	// can be useful for diagnostic purposes.
 	//
@@ -2042,12 +2000,6 @@ type CancelTimerFailedEventAttributes struct {
 
 	// The timerId provided in the CancelTimer decision that failed.
 	TimerId *string `locationName:"timerId" min:"1" type:"string" required:"true"`
-
-	metadataCancelTimerFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataCancelTimerFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2076,14 +2028,10 @@ func (s CancelTimerFailedEventAttributes) GoString() string {
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 type CancelWorkflowExecutionDecisionAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// Optional. details of the cancellation.
 	Details *string `locationName:"details" type:"string"`
-
-	metadataCancelWorkflowExecutionDecisionAttributes `json:"-" xml:"-"`
-}
-
-type metadataCancelWorkflowExecutionDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2098,6 +2046,8 @@ func (s CancelWorkflowExecutionDecisionAttributes) GoString() string {
 
 // Provides details of the CancelWorkflowExecutionFailed event.
 type CancelWorkflowExecutionFailedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The cause of the failure. This information is generated by the system and
 	// can be useful for diagnostic purposes.
 	//
@@ -2111,12 +2061,6 @@ type CancelWorkflowExecutionFailedEventAttributes struct {
 	// request. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
 	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
-
-	metadataCancelWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataCancelWorkflowExecutionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2131,6 +2075,8 @@ func (s CancelWorkflowExecutionFailedEventAttributes) GoString() string {
 
 // Provide details of the ChildWorkflowExecutionCanceled event.
 type ChildWorkflowExecutionCanceledEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// Details of the cancellation (if provided).
 	Details *string `locationName:"details" type:"string"`
 
@@ -2150,12 +2096,6 @@ type ChildWorkflowExecutionCanceledEventAttributes struct {
 
 	// The type of the child workflow execution.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
-
-	metadataChildWorkflowExecutionCanceledEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataChildWorkflowExecutionCanceledEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2170,6 +2110,8 @@ func (s ChildWorkflowExecutionCanceledEventAttributes) GoString() string {
 
 // Provides details of the ChildWorkflowExecutionCompleted event.
 type ChildWorkflowExecutionCompletedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the StartChildWorkflowExecutionInitiated event corresponding to
 	// the StartChildWorkflowExecution decision to start this child workflow execution.
 	// This information can be useful for diagnosing problems by tracing back the
@@ -2189,12 +2131,6 @@ type ChildWorkflowExecutionCompletedEventAttributes struct {
 
 	// The type of the child workflow execution.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
-
-	metadataChildWorkflowExecutionCompletedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataChildWorkflowExecutionCompletedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2209,6 +2145,8 @@ func (s ChildWorkflowExecutionCompletedEventAttributes) GoString() string {
 
 // Provides details of the ChildWorkflowExecutionFailed event.
 type ChildWorkflowExecutionFailedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The details of the failure (if provided).
 	Details *string `locationName:"details" type:"string"`
 
@@ -2231,12 +2169,6 @@ type ChildWorkflowExecutionFailedEventAttributes struct {
 
 	// The type of the child workflow execution.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
-
-	metadataChildWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataChildWorkflowExecutionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2251,6 +2183,8 @@ func (s ChildWorkflowExecutionFailedEventAttributes) GoString() string {
 
 // Provides details of the ChildWorkflowExecutionStarted event.
 type ChildWorkflowExecutionStartedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the StartChildWorkflowExecutionInitiated event corresponding to
 	// the StartChildWorkflowExecution decision to start this child workflow execution.
 	// This information can be useful for diagnosing problems by tracing back the
@@ -2262,12 +2196,6 @@ type ChildWorkflowExecutionStartedEventAttributes struct {
 
 	// The type of the child workflow execution.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
-
-	metadataChildWorkflowExecutionStartedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataChildWorkflowExecutionStartedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2282,6 +2210,8 @@ func (s ChildWorkflowExecutionStartedEventAttributes) GoString() string {
 
 // Provides details of the ChildWorkflowExecutionTerminated event.
 type ChildWorkflowExecutionTerminatedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the StartChildWorkflowExecutionInitiated event corresponding to
 	// the StartChildWorkflowExecution decision to start this child workflow execution.
 	// This information can be useful for diagnosing problems by tracing back the
@@ -2298,12 +2228,6 @@ type ChildWorkflowExecutionTerminatedEventAttributes struct {
 
 	// The type of the child workflow execution.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
-
-	metadataChildWorkflowExecutionTerminatedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataChildWorkflowExecutionTerminatedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2318,6 +2242,8 @@ func (s ChildWorkflowExecutionTerminatedEventAttributes) GoString() string {
 
 // Provides details of the ChildWorkflowExecutionTimedOut event.
 type ChildWorkflowExecutionTimedOutEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the StartChildWorkflowExecutionInitiated event corresponding to
 	// the StartChildWorkflowExecution decision to start this child workflow execution.
 	// This information can be useful for diagnosing problems by tracing back the
@@ -2338,12 +2264,6 @@ type ChildWorkflowExecutionTimedOutEventAttributes struct {
 
 	// The type of the child workflow execution.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
-
-	metadataChildWorkflowExecutionTimedOutEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataChildWorkflowExecutionTimedOutEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2359,15 +2279,11 @@ func (s ChildWorkflowExecutionTimedOutEventAttributes) GoString() string {
 // Used to filter the closed workflow executions in visibility APIs by their
 // close status.
 type CloseStatusFilter struct {
+	_ struct{} `type:"structure"`
+
 	// Required. The close status that must match the close status of an execution
 	// for it to meet the criteria of this filter.
 	Status *string `locationName:"status" type:"string" required:"true" enum:"CloseStatus"`
-
-	metadataCloseStatusFilter `json:"-" xml:"-"`
-}
-
-type metadataCloseStatusFilter struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2396,15 +2312,11 @@ func (s CloseStatusFilter) GoString() string {
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 type CompleteWorkflowExecutionDecisionAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The result of the workflow execution. The form of the result is implementation
 	// defined.
 	Result *string `locationName:"result" type:"string"`
-
-	metadataCompleteWorkflowExecutionDecisionAttributes `json:"-" xml:"-"`
-}
-
-type metadataCompleteWorkflowExecutionDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2419,6 +2331,8 @@ func (s CompleteWorkflowExecutionDecisionAttributes) GoString() string {
 
 // Provides details of the CompleteWorkflowExecutionFailed event.
 type CompleteWorkflowExecutionFailedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The cause of the failure. This information is generated by the system and
 	// can be useful for diagnostic purposes.
 	//
@@ -2432,12 +2346,6 @@ type CompleteWorkflowExecutionFailedEventAttributes struct {
 	// execution. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
 	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
-
-	metadataCompleteWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataCompleteWorkflowExecutionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2469,6 +2377,8 @@ func (s CompleteWorkflowExecutionFailedEventAttributes) GoString() string {
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 type ContinueAsNewWorkflowExecutionDecisionAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// If set, specifies the policy to use for the child workflow executions of
 	// the new execution if it is terminated by calling the TerminateWorkflowExecution
 	// action explicitly or due to an expired timeout. This policy overrides the
@@ -2544,12 +2454,6 @@ type ContinueAsNewWorkflowExecutionDecisionAttributes struct {
 	TaskStartToCloseTimeout *string `locationName:"taskStartToCloseTimeout" type:"string"`
 
 	WorkflowTypeVersion *string `locationName:"workflowTypeVersion" min:"1" type:"string"`
-
-	metadataContinueAsNewWorkflowExecutionDecisionAttributes `json:"-" xml:"-"`
-}
-
-type metadataContinueAsNewWorkflowExecutionDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2564,6 +2468,8 @@ func (s ContinueAsNewWorkflowExecutionDecisionAttributes) GoString() string {
 
 // Provides details of the ContinueAsNewWorkflowExecutionFailed event.
 type ContinueAsNewWorkflowExecutionFailedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The cause of the failure. This information is generated by the system and
 	// can be useful for diagnostic purposes.
 	//
@@ -2577,12 +2483,6 @@ type ContinueAsNewWorkflowExecutionFailedEventAttributes struct {
 	// this execution. This information can be useful for diagnosing problems by
 	// tracing back the chain of events leading up to this event.
 	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
-
-	metadataContinueAsNewWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataContinueAsNewWorkflowExecutionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2596,6 +2496,8 @@ func (s ContinueAsNewWorkflowExecutionFailedEventAttributes) GoString() string {
 }
 
 type CountClosedWorkflowExecutionsInput struct {
+	_ struct{} `type:"structure"`
+
 	// If specified, only workflow executions that match this close status are counted.
 	// This filter has an affect only if executionStatus is specified as CLOSED.
 	//
@@ -2639,12 +2541,6 @@ type CountClosedWorkflowExecutionsInput struct {
 	// closeStatusFilter, executionFilter, typeFilter and tagFilter are mutually
 	// exclusive. You can specify at most one of these in a request.
 	TypeFilter *WorkflowTypeFilter `locationName:"typeFilter" type:"structure"`
-
-	metadataCountClosedWorkflowExecutionsInput `json:"-" xml:"-"`
-}
-
-type metadataCountClosedWorkflowExecutionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2658,6 +2554,8 @@ func (s CountClosedWorkflowExecutionsInput) GoString() string {
 }
 
 type CountOpenWorkflowExecutionsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the domain containing the workflow executions to count.
 	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
@@ -2684,12 +2582,6 @@ type CountOpenWorkflowExecutionsInput struct {
 	// executionFilter, typeFilter and tagFilter are mutually exclusive. You can
 	// specify at most one of these in a request.
 	TypeFilter *WorkflowTypeFilter `locationName:"typeFilter" type:"structure"`
-
-	metadataCountOpenWorkflowExecutionsInput `json:"-" xml:"-"`
-}
-
-type metadataCountOpenWorkflowExecutionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2703,17 +2595,13 @@ func (s CountOpenWorkflowExecutionsInput) GoString() string {
 }
 
 type CountPendingActivityTasksInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the domain that contains the task list.
 	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
 	// The name of the task list.
 	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"`
-
-	metadataCountPendingActivityTasksInput `json:"-" xml:"-"`
-}
-
-type metadataCountPendingActivityTasksInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2727,17 +2615,13 @@ func (s CountPendingActivityTasksInput) GoString() string {
 }
 
 type CountPendingDecisionTasksInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the domain that contains the task list.
 	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
 	// The name of the task list.
 	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"`
-
-	metadataCountPendingDecisionTasksInput `json:"-" xml:"-"`
-}
-
-type metadataCountPendingDecisionTasksInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2858,6 +2742,8 @@ func (s CountPendingDecisionTasksInput) GoString() string {
 //   StartTimerDecisionAttributes   CancelTimerDecisionAttributes   SignalExternalWorkflowExecutionDecisionAttributes
 //   RequestCancelExternalWorkflowExecutionDecisionAttributes   StartChildWorkflowExecutionDecisionAttributes
 type Decision struct {
+	_ struct{} `type:"structure"`
+
 	// Provides details of the CancelTimer decision. It is not set for other decision
 	// types.
 	CancelTimerDecisionAttributes *CancelTimerDecisionAttributes `locationName:"cancelTimerDecisionAttributes" type:"structure"`
@@ -2928,12 +2814,6 @@ type Decision struct {
 	// Provides details of the StartTimer decision. It is not set for other decision
 	// types.
 	StartTimerDecisionAttributes *StartTimerDecisionAttributes `locationName:"startTimerDecisionAttributes" type:"structure"`
-
-	metadataDecision `json:"-" xml:"-"`
-}
-
-type metadataDecision struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2948,6 +2828,8 @@ func (s Decision) GoString() string {
 
 // Provides details of the DecisionTaskCompleted event.
 type DecisionTaskCompletedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// User defined context for the workflow execution.
 	ExecutionContext *string `locationName:"executionContext" type:"string"`
 
@@ -2960,12 +2842,6 @@ type DecisionTaskCompletedEventAttributes struct {
 	// was started. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
 	StartedEventId *int64 `locationName:"startedEventId" type:"long" required:"true"`
-
-	metadataDecisionTaskCompletedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataDecisionTaskCompletedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2980,6 +2856,8 @@ func (s DecisionTaskCompletedEventAttributes) GoString() string {
 
 // Provides details about the DecisionTaskScheduled event.
 type DecisionTaskScheduledEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The maximum duration for this decision task. The task is considered timed
 	// out if it does not completed within this duration.
 	//
@@ -2999,12 +2877,6 @@ type DecisionTaskScheduledEventAttributes struct {
 	// (http://docs.aws.amazon.com/amazonswf/latest/developerguide/programming-priority.html)
 	// in the Amazon Simple Workflow Developer Guide.
 	TaskPriority *string `locationName:"taskPriority" type:"string"`
-
-	metadataDecisionTaskScheduledEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataDecisionTaskScheduledEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3019,6 +2891,8 @@ func (s DecisionTaskScheduledEventAttributes) GoString() string {
 
 // Provides details of the DecisionTaskStarted event.
 type DecisionTaskStartedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// Identity of the decider making the request. This enables diagnostic tracing
 	// when problems arise. The form of this identity is user defined.
 	Identity *string `locationName:"identity" type:"string"`
@@ -3027,12 +2901,6 @@ type DecisionTaskStartedEventAttributes struct {
 	// task was scheduled. This information can be useful for diagnosing problems
 	// by tracing back the chain of events leading up to this event.
 	ScheduledEventId *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
-
-	metadataDecisionTaskStartedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataDecisionTaskStartedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3047,6 +2915,8 @@ func (s DecisionTaskStartedEventAttributes) GoString() string {
 
 // Provides details of the DecisionTaskTimedOut event.
 type DecisionTaskTimedOutEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the DecisionTaskScheduled event that was recorded when this decision
 	// task was scheduled. This information can be useful for diagnosing problems
 	// by tracing back the chain of events leading up to this event.
@@ -3059,12 +2929,6 @@ type DecisionTaskTimedOutEventAttributes struct {
 
 	// The type of timeout that expired before the decision task could be completed.
 	TimeoutType *string `locationName:"timeoutType" type:"string" required:"true" enum:"DecisionTaskTimeoutType"`
-
-	metadataDecisionTaskTimedOutEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataDecisionTaskTimedOutEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3078,17 +2942,13 @@ func (s DecisionTaskTimedOutEventAttributes) GoString() string {
 }
 
 type DeprecateActivityTypeInput struct {
+	_ struct{} `type:"structure"`
+
 	// The activity type to deprecate.
 	ActivityType *ActivityType `locationName:"activityType" type:"structure" required:"true"`
 
 	// The name of the domain in which the activity type is registered.
 	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
-
-	metadataDeprecateActivityTypeInput `json:"-" xml:"-"`
-}
-
-type metadataDeprecateActivityTypeInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3102,11 +2962,7 @@ func (s DeprecateActivityTypeInput) GoString() string {
 }
 
 type DeprecateActivityTypeOutput struct {
-	metadataDeprecateActivityTypeOutput `json:"-" xml:"-"`
-}
-
-type metadataDeprecateActivityTypeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3120,14 +2976,10 @@ func (s DeprecateActivityTypeOutput) GoString() string {
 }
 
 type DeprecateDomainInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the domain to deprecate.
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
-
-	metadataDeprecateDomainInput `json:"-" xml:"-"`
-}
-
-type metadataDeprecateDomainInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3141,11 +2993,7 @@ func (s DeprecateDomainInput) GoString() string {
 }
 
 type DeprecateDomainOutput struct {
-	metadataDeprecateDomainOutput `json:"-" xml:"-"`
-}
-
-type metadataDeprecateDomainOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3159,17 +3007,13 @@ func (s DeprecateDomainOutput) GoString() string {
 }
 
 type DeprecateWorkflowTypeInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the domain in which the workflow type is registered.
 	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
 	// The workflow type to deprecate.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
-
-	metadataDeprecateWorkflowTypeInput `json:"-" xml:"-"`
-}
-
-type metadataDeprecateWorkflowTypeInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3183,11 +3027,7 @@ func (s DeprecateWorkflowTypeInput) GoString() string {
 }
 
 type DeprecateWorkflowTypeOutput struct {
-	metadataDeprecateWorkflowTypeOutput `json:"-" xml:"-"`
-}
-
-type metadataDeprecateWorkflowTypeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -3201,18 +3041,14 @@ func (s DeprecateWorkflowTypeOutput) GoString() string {
 }
 
 type DescribeActivityTypeInput struct {
+	_ struct{} `type:"structure"`
+
 	// The activity type to get information about. Activity types are identified
 	// by the name and version that were supplied when the activity was registered.
 	ActivityType *ActivityType `locationName:"activityType" type:"structure" required:"true"`
 
 	// The name of the domain in which the activity type is registered.
 	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
-
-	metadataDescribeActivityTypeInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeActivityTypeInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3227,6 +3063,8 @@ func (s DescribeActivityTypeInput) GoString() string {
 
 // Detailed information about an activity type.
 type DescribeActivityTypeOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The configuration settings registered with the activity type.
 	Configuration *ActivityTypeConfiguration `locationName:"configuration" type:"structure" required:"true"`
 
@@ -3240,12 +3078,6 @@ type DescribeActivityTypeOutput struct {
 	// but is still in use. You should keep workers supporting this type running.
 	// You cannot create new tasks of this type.
 	TypeInfo *ActivityTypeInfo `locationName:"typeInfo" type:"structure" required:"true"`
-
-	metadataDescribeActivityTypeOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeActivityTypeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3259,14 +3091,10 @@ func (s DescribeActivityTypeOutput) GoString() string {
 }
 
 type DescribeDomainInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the domain to describe.
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
-
-	metadataDescribeDomainInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDomainInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3281,17 +3109,13 @@ func (s DescribeDomainInput) GoString() string {
 
 // Contains details of a domain.
 type DescribeDomainOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Contains the configuration settings of a domain.
 	Configuration *DomainConfiguration `locationName:"configuration" type:"structure" required:"true"`
 
 	// Contains general information about a domain.
 	DomainInfo *DomainInfo `locationName:"domainInfo" type:"structure" required:"true"`
-
-	metadataDescribeDomainOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDomainOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3305,17 +3129,13 @@ func (s DescribeDomainOutput) GoString() string {
 }
 
 type DescribeWorkflowExecutionInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the domain containing the workflow execution.
 	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
 	// The workflow execution to describe.
 	Execution *WorkflowExecution `locationName:"execution" type:"structure" required:"true"`
-
-	metadataDescribeWorkflowExecutionInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeWorkflowExecutionInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3330,6 +3150,8 @@ func (s DescribeWorkflowExecutionInput) GoString() string {
 
 // Contains details about a workflow execution.
 type DescribeWorkflowExecutionOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The configuration settings for this workflow execution including timeout
 	// values, tasklist etc.
 	ExecutionConfiguration *WorkflowExecutionConfiguration `locationName:"executionConfiguration" type:"structure" required:"true"`
@@ -3350,12 +3172,6 @@ type DescribeWorkflowExecutionOutput struct {
 	// The number of tasks for this workflow execution. This includes open and closed
 	// tasks of all types.
 	OpenCounts *WorkflowExecutionOpenCounts `locationName:"openCounts" type:"structure" required:"true"`
-
-	metadataDescribeWorkflowExecutionOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeWorkflowExecutionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3369,17 +3185,13 @@ func (s DescribeWorkflowExecutionOutput) GoString() string {
 }
 
 type DescribeWorkflowTypeInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the domain in which this workflow type is registered.
 	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
 	// The workflow type to describe.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
-
-	metadataDescribeWorkflowTypeInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeWorkflowTypeInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3394,6 +3206,8 @@ func (s DescribeWorkflowTypeInput) GoString() string {
 
 // Contains details about a workflow type.
 type DescribeWorkflowTypeOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Configuration settings of the workflow type registered through RegisterWorkflowType
 	Configuration *WorkflowTypeConfiguration `locationName:"configuration" type:"structure" required:"true"`
 
@@ -3407,12 +3221,6 @@ type DescribeWorkflowTypeOutput struct {
 	// but is still in use. You should keep workers supporting this type running.
 	// You cannot create new workflow executions of this type.
 	TypeInfo *WorkflowTypeInfo `locationName:"typeInfo" type:"structure" required:"true"`
-
-	metadataDescribeWorkflowTypeOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeWorkflowTypeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3427,14 +3235,10 @@ func (s DescribeWorkflowTypeOutput) GoString() string {
 
 // Contains the configuration settings of a domain.
 type DomainConfiguration struct {
+	_ struct{} `type:"structure"`
+
 	// The retention period for workflow executions in this domain.
 	WorkflowExecutionRetentionPeriodInDays *string `locationName:"workflowExecutionRetentionPeriodInDays" min:"1" type:"string" required:"true"`
-
-	metadataDomainConfiguration `json:"-" xml:"-"`
-}
-
-type metadataDomainConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3449,6 +3253,8 @@ func (s DomainConfiguration) GoString() string {
 
 // Contains general information about a domain.
 type DomainInfo struct {
+	_ struct{} `type:"structure"`
+
 	// The description of the domain provided through RegisterDomain.
 	Description *string `locationName:"description" type:"string"`
 
@@ -3462,12 +3268,6 @@ type DomainInfo struct {
 	//  DEPRECATED: The domain was deprecated using DeprecateDomain, but is still
 	// in use. You should not create new workflow executions in this domain.
 	Status *string `locationName:"status" type:"string" required:"true" enum:"RegistrationStatus"`
-
-	metadataDomainInfo `json:"-" xml:"-"`
-}
-
-type metadataDomainInfo struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3486,17 +3286,13 @@ func (s DomainInfo) GoString() string {
 // format (https://en.wikipedia.org/wiki/Unix_time). For example: "oldestDate":
 // 1325376070.
 type ExecutionTimeFilter struct {
+	_ struct{} `type:"structure"`
+
 	// Specifies the latest start or close date and time to return.
 	LatestDate *time.Time `locationName:"latestDate" type:"timestamp" timestampFormat:"unix"`
 
 	// Specifies the oldest start or close date and time to return.
 	OldestDate *time.Time `locationName:"oldestDate" type:"timestamp" timestampFormat:"unix" required:"true"`
-
-	metadataExecutionTimeFilter `json:"-" xml:"-"`
-}
-
-type metadataExecutionTimeFilter struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3511,6 +3307,8 @@ func (s ExecutionTimeFilter) GoString() string {
 
 // Provides details of the ExternalWorkflowExecutionCancelRequested event.
 type ExternalWorkflowExecutionCancelRequestedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the RequestCancelExternalWorkflowExecutionInitiated event corresponding
 	// to the RequestCancelExternalWorkflowExecution decision to cancel this external
 	// workflow execution. This information can be useful for diagnosing problems
@@ -3519,12 +3317,6 @@ type ExternalWorkflowExecutionCancelRequestedEventAttributes struct {
 
 	// The external workflow execution to which the cancellation request was delivered.
 	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
-
-	metadataExternalWorkflowExecutionCancelRequestedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataExternalWorkflowExecutionCancelRequestedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3539,6 +3331,8 @@ func (s ExternalWorkflowExecutionCancelRequestedEventAttributes) GoString() stri
 
 // Provides details of the ExternalWorkflowExecutionSignaled event.
 type ExternalWorkflowExecutionSignaledEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the SignalExternalWorkflowExecutionInitiated event corresponding
 	// to the SignalExternalWorkflowExecution decision to request this signal. This
 	// information can be useful for diagnosing problems by tracing back the chain
@@ -3547,12 +3341,6 @@ type ExternalWorkflowExecutionSignaledEventAttributes struct {
 
 	// The external workflow execution that the signal was delivered to.
 	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
-
-	metadataExternalWorkflowExecutionSignaledEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataExternalWorkflowExecutionSignaledEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3581,17 +3369,13 @@ func (s ExternalWorkflowExecutionSignaledEventAttributes) GoString() string {
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 type FailWorkflowExecutionDecisionAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// Optional. Details of the failure.
 	Details *string `locationName:"details" type:"string"`
 
 	// A descriptive reason for the failure that may help in diagnostics.
 	Reason *string `locationName:"reason" type:"string"`
-
-	metadataFailWorkflowExecutionDecisionAttributes `json:"-" xml:"-"`
-}
-
-type metadataFailWorkflowExecutionDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3606,6 +3390,8 @@ func (s FailWorkflowExecutionDecisionAttributes) GoString() string {
 
 // Provides details of the FailWorkflowExecutionFailed event.
 type FailWorkflowExecutionFailedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The cause of the failure. This information is generated by the system and
 	// can be useful for diagnostic purposes.
 	//
@@ -3619,12 +3405,6 @@ type FailWorkflowExecutionFailedEventAttributes struct {
 	// This information can be useful for diagnosing problems by tracing back the
 	// chain of events leading up to this event.
 	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
-
-	metadataFailWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataFailWorkflowExecutionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3638,6 +3418,8 @@ func (s FailWorkflowExecutionFailedEventAttributes) GoString() string {
 }
 
 type GetWorkflowExecutionHistoryInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the domain containing the workflow execution.
 	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
@@ -3664,12 +3446,6 @@ type GetWorkflowExecutionHistoryInput struct {
 	// When set to true, returns the events in reverse order. By default the results
 	// are returned in ascending order of the eventTimeStamp of the events.
 	ReverseOrder *bool `locationName:"reverseOrder" type:"boolean"`
-
-	metadataGetWorkflowExecutionHistoryInput `json:"-" xml:"-"`
-}
-
-type metadataGetWorkflowExecutionHistoryInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3686,6 +3462,8 @@ func (s GetWorkflowExecutionHistoryInput) GoString() string {
 // This is the up to date, complete and authoritative record of the events related
 // to all tasks and events in the life of the workflow execution.
 type GetWorkflowExecutionHistoryOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The list of history events.
 	Events []*HistoryEvent `locationName:"events" type:"list" required:"true"`
 
@@ -3696,12 +3474,6 @@ type GetWorkflowExecutionHistoryOutput struct {
 	// The configured maximumPageSize determines how many results can be returned
 	// in a single call.
 	NextPageToken *string `locationName:"nextPageToken" type:"string"`
-
-	metadataGetWorkflowExecutionHistoryOutput `json:"-" xml:"-"`
-}
-
-type metadataGetWorkflowExecutionHistoryOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3784,6 +3556,8 @@ func (s GetWorkflowExecutionHistoryOutput) GoString() string {
 // AWS Lambda service. This happens when the AWS Lambda service is not available
 // in the current region, or received too many requests.
 type HistoryEvent struct {
+	_ struct{} `type:"structure"`
+
 	// If the event is of type ActivityTaskcancelRequested then this member is set
 	// and provides detailed information about the event. It is not set for other
 	// event types.
@@ -4039,12 +3813,6 @@ type HistoryEvent struct {
 	// and provides detailed information about the event. It is not set for other
 	// event types.
 	WorkflowExecutionTimedOutEventAttributes *WorkflowExecutionTimedOutEventAttributes `locationName:"workflowExecutionTimedOutEventAttributes" type:"structure"`
-
-	metadataHistoryEvent `json:"-" xml:"-"`
-}
-
-type metadataHistoryEvent struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -4059,6 +3827,8 @@ func (s HistoryEvent) GoString() string {
 
 // Provides details for the LambdaFunctionCompleted event.
 type LambdaFunctionCompletedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The result of the function execution (if any).
 	Result *string `locationName:"result" type:"string"`
 
@@ -4069,12 +3839,6 @@ type LambdaFunctionCompletedEventAttributes struct {
 
 	// The ID of the LambdaFunctionStarted event recorded in the history.
 	StartedEventId *int64 `locationName:"startedEventId" type:"long" required:"true"`
-
-	metadataLambdaFunctionCompletedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataLambdaFunctionCompletedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -4089,6 +3853,8 @@ func (s LambdaFunctionCompletedEventAttributes) GoString() string {
 
 // Provides details for the LambdaFunctionFailed event.
 type LambdaFunctionFailedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The details of the failure (if any).
 	Details *string `locationName:"details" type:"string"`
 
@@ -4102,12 +3868,6 @@ type LambdaFunctionFailedEventAttributes struct {
 
 	// The ID of the LambdaFunctionStarted event recorded in the history.
 	StartedEventId *int64 `locationName:"startedEventId" type:"long" required:"true"`
-
-	metadataLambdaFunctionFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataLambdaFunctionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -4122,6 +3882,8 @@ func (s LambdaFunctionFailedEventAttributes) GoString() string {
 
 // Provides details for the LambdaFunctionScheduled event.
 type LambdaFunctionScheduledEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the DecisionTaskCompleted event for the decision that resulted
 	// in the scheduling of this AWS Lambda function. This information can be useful
 	// for diagnosing problems by tracing back the chain of events leading up to
@@ -4140,12 +3902,6 @@ type LambdaFunctionScheduledEventAttributes struct {
 	// The maximum time, in seconds, that the AWS Lambda function can take to execute
 	// from start to close before it is marked as failed.
 	StartToCloseTimeout *string `locationName:"startToCloseTimeout" type:"string"`
-
-	metadataLambdaFunctionScheduledEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataLambdaFunctionScheduledEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -4160,16 +3916,12 @@ func (s LambdaFunctionScheduledEventAttributes) GoString() string {
 
 // Provides details for the LambdaFunctionStarted event.
 type LambdaFunctionStartedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the LambdaFunctionScheduled event that was recorded when this AWS
 	// Lambda function was scheduled. This information can be useful for diagnosing
 	// problems by tracing back the chain of events leading up to this event.
 	ScheduledEventId *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
-
-	metadataLambdaFunctionStartedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataLambdaFunctionStartedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -4184,6 +3936,8 @@ func (s LambdaFunctionStartedEventAttributes) GoString() string {
 
 // Provides details for the LambdaFunctionTimedOut event.
 type LambdaFunctionTimedOutEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the LambdaFunctionScheduled event that was recorded when this AWS
 	// Lambda function was scheduled. This information can be useful for diagnosing
 	// problems by tracing back the chain of events leading up to this event.
@@ -4194,12 +3948,6 @@ type LambdaFunctionTimedOutEventAttributes struct {
 
 	// The type of the timeout that caused this event.
 	TimeoutType *string `locationName:"timeoutType" type:"string" enum:"LambdaFunctionTimeoutType"`
-
-	metadataLambdaFunctionTimedOutEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataLambdaFunctionTimedOutEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -4213,6 +3961,8 @@ func (s LambdaFunctionTimedOutEventAttributes) GoString() string {
 }
 
 type ListActivityTypesInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the domain in which the activity types have been registered.
 	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
@@ -4242,12 +3992,6 @@ type ListActivityTypesInput struct {
 	// When set to true, returns the results in reverse order. By default, the results
 	// are returned in ascending alphabetical order by name of the activity types.
 	ReverseOrder *bool `locationName:"reverseOrder" type:"boolean"`
-
-	metadataListActivityTypesInput `json:"-" xml:"-"`
-}
-
-type metadataListActivityTypesInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -4262,6 +4006,8 @@ func (s ListActivityTypesInput) GoString() string {
 
 // Contains a paginated list of activity type information structures.
 type ListActivityTypesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// If a NextPageToken was returned by a previous call, there are more results
 	// available. To retrieve the next page of results, make the call again using
 	// the returned token in nextPageToken. Keep all other arguments unchanged.
@@ -4272,12 +4018,6 @@ type ListActivityTypesOutput struct {
 
 	// List of activity type information.
 	TypeInfos []*ActivityTypeInfo `locationName:"typeInfos" type:"list" required:"true"`
-
-	metadataListActivityTypesOutput `json:"-" xml:"-"`
-}
-
-type metadataListActivityTypesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -4291,6 +4031,8 @@ func (s ListActivityTypesOutput) GoString() string {
 }
 
 type ListClosedWorkflowExecutionsInput struct {
+	_ struct{} `type:"structure"`
+
 	// If specified, only workflow executions that match this close status are listed.
 	// For example, if TERMINATED is specified, then only TERMINATED workflow executions
 	// are listed.
@@ -4359,12 +4101,6 @@ type ListClosedWorkflowExecutionsInput struct {
 	// closeStatusFilter, executionFilter, typeFilter and tagFilter are mutually
 	// exclusive. You can specify at most one of these in a request.
 	TypeFilter *WorkflowTypeFilter `locationName:"typeFilter" type:"structure"`
-
-	metadataListClosedWorkflowExecutionsInput `json:"-" xml:"-"`
-}
-
-type metadataListClosedWorkflowExecutionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -4378,6 +4114,8 @@ func (s ListClosedWorkflowExecutionsInput) GoString() string {
 }
 
 type ListDomainsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The maximum number of results that will be returned per call. nextPageToken
 	// can be used to obtain futher pages of results. The default is 1000, which
 	// is the maximum allowed page size. You can, however, specify a page size smaller
@@ -4401,12 +4139,6 @@ type ListDomainsInput struct {
 	// When set to true, returns the results in reverse order. By default, the results
 	// are returned in ascending alphabetical order by name of the domains.
 	ReverseOrder *bool `locationName:"reverseOrder" type:"boolean"`
-
-	metadataListDomainsInput `json:"-" xml:"-"`
-}
-
-type metadataListDomainsInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -4421,6 +4153,8 @@ func (s ListDomainsInput) GoString() string {
 
 // Contains a paginated collection of DomainInfo structures.
 type ListDomainsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of DomainInfo structures.
 	DomainInfos []*DomainInfo `locationName:"domainInfos" type:"list" required:"true"`
 
@@ -4431,12 +4165,6 @@ type ListDomainsOutput struct {
 	// The configured maximumPageSize determines how many results can be returned
 	// in a single call.
 	NextPageToken *string `locationName:"nextPageToken" type:"string"`
-
-	metadataListDomainsOutput `json:"-" xml:"-"`
-}
-
-type metadataListDomainsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -4450,6 +4178,8 @@ func (s ListDomainsOutput) GoString() string {
 }
 
 type ListOpenWorkflowExecutionsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the domain that contains the workflow executions to list.
 	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
@@ -4496,12 +4226,6 @@ type ListOpenWorkflowExecutionsInput struct {
 	// executionFilter, typeFilter and tagFilter are mutually exclusive. You can
 	// specify at most one of these in a request.
 	TypeFilter *WorkflowTypeFilter `locationName:"typeFilter" type:"structure"`
-
-	metadataListOpenWorkflowExecutionsInput `json:"-" xml:"-"`
-}
-
-type metadataListOpenWorkflowExecutionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -4515,6 +4239,8 @@ func (s ListOpenWorkflowExecutionsInput) GoString() string {
 }
 
 type ListWorkflowTypesInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the domain in which the workflow types have been registered.
 	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
@@ -4545,12 +4271,6 @@ type ListWorkflowTypesInput struct {
 	// are returned in ascending alphabetical order of the name of the workflow
 	// types.
 	ReverseOrder *bool `locationName:"reverseOrder" type:"boolean"`
-
-	metadataListWorkflowTypesInput `json:"-" xml:"-"`
-}
-
-type metadataListWorkflowTypesInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -4565,6 +4285,8 @@ func (s ListWorkflowTypesInput) GoString() string {
 
 // Contains a paginated list of information structures about workflow types.
 type ListWorkflowTypesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// If a NextPageToken was returned by a previous call, there are more results
 	// available. To retrieve the next page of results, make the call again using
 	// the returned token in nextPageToken. Keep all other arguments unchanged.
@@ -4575,12 +4297,6 @@ type ListWorkflowTypesOutput struct {
 
 	// The list of workflow type information.
 	TypeInfos []*WorkflowTypeInfo `locationName:"typeInfos" type:"list" required:"true"`
-
-	metadataListWorkflowTypesOutput `json:"-" xml:"-"`
-}
-
-type metadataListWorkflowTypesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -4595,6 +4311,8 @@ func (s ListWorkflowTypesOutput) GoString() string {
 
 // Provides details of the MarkerRecorded event.
 type MarkerRecordedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the RecordMarker decision that requested this marker. This
 	// information can be useful for diagnosing problems by tracing back the chain
@@ -4606,12 +4324,6 @@ type MarkerRecordedEventAttributes struct {
 
 	// The name of the marker.
 	MarkerName *string `locationName:"markerName" min:"1" type:"string" required:"true"`
-
-	metadataMarkerRecordedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataMarkerRecordedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -4626,18 +4338,14 @@ func (s MarkerRecordedEventAttributes) GoString() string {
 
 // Contains the count of tasks in a task list.
 type PendingTaskCount struct {
+	_ struct{} `type:"structure"`
+
 	// The number of tasks in the task list.
 	Count *int64 `locationName:"count" type:"integer" required:"true"`
 
 	// If set to true, indicates that the actual count was more than the maximum
 	// supported by this API and the count returned is the truncated value.
 	Truncated *bool `locationName:"truncated" type:"boolean"`
-
-	metadataPendingTaskCount `json:"-" xml:"-"`
-}
-
-type metadataPendingTaskCount struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -4651,6 +4359,8 @@ func (s PendingTaskCount) GoString() string {
 }
 
 type PollForActivityTaskInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the domain that contains the task lists being polled.
 	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
@@ -4666,12 +4376,6 @@ type PollForActivityTaskInput struct {
 	// (\u0000-\u001f | \u007f - \u009f). Also, it must not contain the literal
 	// string quotarnquot.
 	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"`
-
-	metadataPollForActivityTaskInput `json:"-" xml:"-"`
-}
-
-type metadataPollForActivityTaskInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -4686,6 +4390,8 @@ func (s PollForActivityTaskInput) GoString() string {
 
 // Unit of work sent to an activity worker.
 type PollForActivityTaskOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The unique ID of the task.
 	ActivityId *string `locationName:"activityId" min:"1" type:"string" required:"true"`
 
@@ -4706,12 +4412,6 @@ type PollForActivityTaskOutput struct {
 
 	// The workflow execution that started this activity task.
 	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
-
-	metadataPollForActivityTaskOutput `json:"-" xml:"-"`
-}
-
-type metadataPollForActivityTaskOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -4725,6 +4425,8 @@ func (s PollForActivityTaskOutput) GoString() string {
 }
 
 type PollForDecisionTaskInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the domain containing the task lists to poll.
 	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
@@ -4766,12 +4468,6 @@ type PollForDecisionTaskInput struct {
 	// (\u0000-\u001f | \u007f - \u009f). Also, it must not contain the literal
 	// string quotarnquot.
 	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"`
-
-	metadataPollForDecisionTaskInput `json:"-" xml:"-"`
-}
-
-type metadataPollForDecisionTaskInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -4787,6 +4483,8 @@ func (s PollForDecisionTaskInput) GoString() string {
 // A structure that represents a decision task. Decision tasks are sent to deciders
 // in order for them to make decisions.
 type PollForDecisionTaskOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A paginated list of history events of the workflow execution. The decider
 	// uses this during the processing of the decision task.
 	Events []*HistoryEvent `locationName:"events" type:"list" required:"true"`
@@ -4818,12 +4516,6 @@ type PollForDecisionTaskOutput struct {
 
 	// The type of the workflow execution for which this decision task was created.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
-
-	metadataPollForDecisionTaskOutput `json:"-" xml:"-"`
-}
-
-type metadataPollForDecisionTaskOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -4837,6 +4529,8 @@ func (s PollForDecisionTaskOutput) GoString() string {
 }
 
 type RecordActivityTaskHeartbeatInput struct {
+	_ struct{} `type:"structure"`
+
 	// If specified, contains details about the progress of the task.
 	Details *string `locationName:"details" type:"string"`
 
@@ -4846,12 +4540,6 @@ type RecordActivityTaskHeartbeatInput struct {
 	// value. If the task is passed to another process, its taskToken must also
 	// be passed. This enables it to provide its progress and respond with results.
 	TaskToken *string `locationName:"taskToken" min:"1" type:"string" required:"true"`
-
-	metadataRecordActivityTaskHeartbeatInput `json:"-" xml:"-"`
-}
-
-type metadataRecordActivityTaskHeartbeatInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -4866,14 +4554,10 @@ func (s RecordActivityTaskHeartbeatInput) GoString() string {
 
 // Status information about an activity task.
 type RecordActivityTaskHeartbeatOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Set to true if cancellation of the task is requested.
 	CancelRequested *bool `locationName:"cancelRequested" type:"boolean" required:"true"`
-
-	metadataRecordActivityTaskHeartbeatOutput `json:"-" xml:"-"`
-}
-
-type metadataRecordActivityTaskHeartbeatOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -4902,17 +4586,13 @@ func (s RecordActivityTaskHeartbeatOutput) GoString() string {
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 type RecordMarkerDecisionAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// Optional. details of the marker.
 	Details *string `locationName:"details" type:"string"`
 
 	// Required. The name of the marker.
 	MarkerName *string `locationName:"markerName" min:"1" type:"string" required:"true"`
-
-	metadataRecordMarkerDecisionAttributes `json:"-" xml:"-"`
-}
-
-type metadataRecordMarkerDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -4927,6 +4607,8 @@ func (s RecordMarkerDecisionAttributes) GoString() string {
 
 // Provides details of the RecordMarkerFailed event.
 type RecordMarkerFailedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The cause of the failure. This information is generated by the system and
 	// can be useful for diagnostic purposes.
 	//
@@ -4943,12 +4625,6 @@ type RecordMarkerFailedEventAttributes struct {
 
 	// The marker's name.
 	MarkerName *string `locationName:"markerName" min:"1" type:"string" required:"true"`
-
-	metadataRecordMarkerFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataRecordMarkerFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -4962,6 +4638,8 @@ func (s RecordMarkerFailedEventAttributes) GoString() string {
 }
 
 type RegisterActivityTypeInput struct {
+	_ struct{} `type:"structure"`
+
 	// If set, specifies the default maximum time before which a worker processing
 	// a task of this type must report progress by calling RecordActivityTaskHeartbeat.
 	// If the timeout is exceeded, the activity task is automatically timed out.
@@ -5036,12 +4714,6 @@ type RegisterActivityTypeInput struct {
 	// bar), or any control characters (\u0000-\u001f | \u007f - \u009f). Also,
 	// it must not contain the literal string quotarnquot.
 	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
-
-	metadataRegisterActivityTypeInput `json:"-" xml:"-"`
-}
-
-type metadataRegisterActivityTypeInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -5055,11 +4727,7 @@ func (s RegisterActivityTypeInput) GoString() string {
 }
 
 type RegisterActivityTypeOutput struct {
-	metadataRegisterActivityTypeOutput `json:"-" xml:"-"`
-}
-
-type metadataRegisterActivityTypeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5073,6 +4741,8 @@ func (s RegisterActivityTypeOutput) GoString() string {
 }
 
 type RegisterDomainInput struct {
+	_ struct{} `type:"structure"`
+
 	// A text description of the domain.
 	Description *string `locationName:"description" type:"string"`
 
@@ -5097,12 +4767,6 @@ type RegisterDomainInput struct {
 	// about Amazon SWF service limits, see: Amazon SWF Service Limits (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dg-limits.html)
 	// in the Amazon SWF Developer Guide.
 	WorkflowExecutionRetentionPeriodInDays *string `locationName:"workflowExecutionRetentionPeriodInDays" min:"1" type:"string" required:"true"`
-
-	metadataRegisterDomainInput `json:"-" xml:"-"`
-}
-
-type metadataRegisterDomainInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -5116,11 +4780,7 @@ func (s RegisterDomainInput) GoString() string {
 }
 
 type RegisterDomainOutput struct {
-	metadataRegisterDomainOutput `json:"-" xml:"-"`
-}
-
-type metadataRegisterDomainOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5134,6 +4794,8 @@ func (s RegisterDomainOutput) GoString() string {
 }
 
 type RegisterWorkflowTypeInput struct {
+	_ struct{} `type:"structure"`
+
 	// If set, specifies the default policy to use for the child workflow executions
 	// when a workflow execution of this type is terminated, by calling the TerminateWorkflowExecution
 	// action explicitly or due to an expired timeout. This default can be overridden
@@ -5216,12 +4878,6 @@ type RegisterWorkflowTypeInput struct {
 	// | (vertical bar), or any control characters (\u0000-\u001f | \u007f - \u009f).
 	// Also, it must not contain the literal string quotarnquot.
 	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
-
-	metadataRegisterWorkflowTypeInput `json:"-" xml:"-"`
-}
-
-type metadataRegisterWorkflowTypeInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -5235,11 +4891,7 @@ func (s RegisterWorkflowTypeInput) GoString() string {
 }
 
 type RegisterWorkflowTypeOutput struct {
-	metadataRegisterWorkflowTypeOutput `json:"-" xml:"-"`
-}
-
-type metadataRegisterWorkflowTypeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5268,14 +4920,10 @@ func (s RegisterWorkflowTypeOutput) GoString() string {
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 type RequestCancelActivityTaskDecisionAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The activityId of the activity task to be canceled.
 	ActivityId *string `locationName:"activityId" min:"1" type:"string" required:"true"`
-
-	metadataRequestCancelActivityTaskDecisionAttributes `json:"-" xml:"-"`
-}
-
-type metadataRequestCancelActivityTaskDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -5290,6 +4938,8 @@ func (s RequestCancelActivityTaskDecisionAttributes) GoString() string {
 
 // Provides details of the RequestCancelActivityTaskFailed event.
 type RequestCancelActivityTaskFailedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The activityId provided in the RequestCancelActivityTask decision that failed.
 	ActivityId *string `locationName:"activityId" min:"1" type:"string" required:"true"`
 
@@ -5306,12 +4956,6 @@ type RequestCancelActivityTaskFailedEventAttributes struct {
 	// request. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
 	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
-
-	metadataRequestCancelActivityTaskFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataRequestCancelActivityTaskFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -5340,6 +4984,8 @@ func (s RequestCancelActivityTaskFailedEventAttributes) GoString() string {
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 type RequestCancelExternalWorkflowExecutionDecisionAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// Optional. Data attached to the event that can be used by the decider in subsequent
 	// workflow tasks.
 	Control *string `locationName:"control" type:"string"`
@@ -5349,12 +4995,6 @@ type RequestCancelExternalWorkflowExecutionDecisionAttributes struct {
 
 	// Required. The workflowId of the external workflow execution to cancel.
 	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
-
-	metadataRequestCancelExternalWorkflowExecutionDecisionAttributes `json:"-" xml:"-"`
-}
-
-type metadataRequestCancelExternalWorkflowExecutionDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -5369,6 +5009,8 @@ func (s RequestCancelExternalWorkflowExecutionDecisionAttributes) GoString() str
 
 // Provides details of the RequestCancelExternalWorkflowExecutionFailed event.
 type RequestCancelExternalWorkflowExecutionFailedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The cause of the failure. This information is generated by the system and
 	// can be useful for diagnostic purposes.
 	//
@@ -5397,12 +5039,6 @@ type RequestCancelExternalWorkflowExecutionFailedEventAttributes struct {
 	// The workflowId of the external workflow to which the cancel request was to
 	// be delivered.
 	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
-
-	metadataRequestCancelExternalWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataRequestCancelExternalWorkflowExecutionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -5417,6 +5053,8 @@ func (s RequestCancelExternalWorkflowExecutionFailedEventAttributes) GoString() 
 
 // Provides details of the RequestCancelExternalWorkflowExecutionInitiated event.
 type RequestCancelExternalWorkflowExecutionInitiatedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// Optional. Data attached to the event that can be used by the decider in subsequent
 	// workflow tasks.
 	Control *string `locationName:"control" type:"string"`
@@ -5432,12 +5070,6 @@ type RequestCancelExternalWorkflowExecutionInitiatedEventAttributes struct {
 
 	// The workflowId of the external workflow execution to be canceled.
 	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
-
-	metadataRequestCancelExternalWorkflowExecutionInitiatedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataRequestCancelExternalWorkflowExecutionInitiatedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -5451,6 +5083,8 @@ func (s RequestCancelExternalWorkflowExecutionInitiatedEventAttributes) GoString
 }
 
 type RequestCancelWorkflowExecutionInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the domain containing the workflow execution to cancel.
 	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
@@ -5459,12 +5093,6 @@ type RequestCancelWorkflowExecutionInput struct {
 
 	// The workflowId of the workflow execution to cancel.
 	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
-
-	metadataRequestCancelWorkflowExecutionInput `json:"-" xml:"-"`
-}
-
-type metadataRequestCancelWorkflowExecutionInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -5478,11 +5106,7 @@ func (s RequestCancelWorkflowExecutionInput) GoString() string {
 }
 
 type RequestCancelWorkflowExecutionOutput struct {
-	metadataRequestCancelWorkflowExecutionOutput `json:"-" xml:"-"`
-}
-
-type metadataRequestCancelWorkflowExecutionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5496,6 +5120,8 @@ func (s RequestCancelWorkflowExecutionOutput) GoString() string {
 }
 
 type RespondActivityTaskCanceledInput struct {
+	_ struct{} `type:"structure"`
+
 	// Optional. Information about the cancellation.
 	Details *string `locationName:"details" type:"string"`
 
@@ -5505,12 +5131,6 @@ type RespondActivityTaskCanceledInput struct {
 	// value. If the task is passed to another process, its taskToken must also
 	// be passed. This enables it to provide its progress and respond with results.
 	TaskToken *string `locationName:"taskToken" min:"1" type:"string" required:"true"`
-
-	metadataRespondActivityTaskCanceledInput `json:"-" xml:"-"`
-}
-
-type metadataRespondActivityTaskCanceledInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -5524,11 +5144,7 @@ func (s RespondActivityTaskCanceledInput) GoString() string {
 }
 
 type RespondActivityTaskCanceledOutput struct {
-	metadataRespondActivityTaskCanceledOutput `json:"-" xml:"-"`
-}
-
-type metadataRespondActivityTaskCanceledOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5542,6 +5158,8 @@ func (s RespondActivityTaskCanceledOutput) GoString() string {
 }
 
 type RespondActivityTaskCompletedInput struct {
+	_ struct{} `type:"structure"`
+
 	// The result of the activity task. It is a free form string that is implementation
 	// specific.
 	Result *string `locationName:"result" type:"string"`
@@ -5552,12 +5170,6 @@ type RespondActivityTaskCompletedInput struct {
 	// value. If the task is passed to another process, its taskToken must also
 	// be passed. This enables it to provide its progress and respond with results.
 	TaskToken *string `locationName:"taskToken" min:"1" type:"string" required:"true"`
-
-	metadataRespondActivityTaskCompletedInput `json:"-" xml:"-"`
-}
-
-type metadataRespondActivityTaskCompletedInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -5571,11 +5183,7 @@ func (s RespondActivityTaskCompletedInput) GoString() string {
 }
 
 type RespondActivityTaskCompletedOutput struct {
-	metadataRespondActivityTaskCompletedOutput `json:"-" xml:"-"`
-}
-
-type metadataRespondActivityTaskCompletedOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5589,6 +5197,8 @@ func (s RespondActivityTaskCompletedOutput) GoString() string {
 }
 
 type RespondActivityTaskFailedInput struct {
+	_ struct{} `type:"structure"`
+
 	// Optional. Detailed information about the failure.
 	Details *string `locationName:"details" type:"string"`
 
@@ -5601,12 +5211,6 @@ type RespondActivityTaskFailedInput struct {
 	// value. If the task is passed to another process, its taskToken must also
 	// be passed. This enables it to provide its progress and respond with results.
 	TaskToken *string `locationName:"taskToken" min:"1" type:"string" required:"true"`
-
-	metadataRespondActivityTaskFailedInput `json:"-" xml:"-"`
-}
-
-type metadataRespondActivityTaskFailedInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -5620,11 +5224,7 @@ func (s RespondActivityTaskFailedInput) GoString() string {
 }
 
 type RespondActivityTaskFailedOutput struct {
-	metadataRespondActivityTaskFailedOutput `json:"-" xml:"-"`
-}
-
-type metadataRespondActivityTaskFailedOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5638,6 +5238,8 @@ func (s RespondActivityTaskFailedOutput) GoString() string {
 }
 
 type RespondDecisionTaskCompletedInput struct {
+	_ struct{} `type:"structure"`
+
 	// The list of decisions (possibly empty) made by the decider while processing
 	// this decision task. See the docs for the decision structure for details.
 	Decisions []*Decision `locationName:"decisions" type:"list"`
@@ -5651,12 +5253,6 @@ type RespondDecisionTaskCompletedInput struct {
 	// value. If the task is passed to another process, its taskToken must also
 	// be passed. This enables it to provide its progress and respond with results.
 	TaskToken *string `locationName:"taskToken" min:"1" type:"string" required:"true"`
-
-	metadataRespondDecisionTaskCompletedInput `json:"-" xml:"-"`
-}
-
-type metadataRespondDecisionTaskCompletedInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -5670,11 +5266,7 @@ func (s RespondDecisionTaskCompletedInput) GoString() string {
 }
 
 type RespondDecisionTaskCompletedOutput struct {
-	metadataRespondDecisionTaskCompletedOutput `json:"-" xml:"-"`
-}
-
-type metadataRespondDecisionTaskCompletedOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -5706,6 +5298,8 @@ func (s RespondDecisionTaskCompletedOutput) GoString() string {
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 type ScheduleActivityTaskDecisionAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// Required. The activityId of the activity task.
 	//
 	// The specified string must not start or end with whitespace. It must not
@@ -5795,12 +5389,6 @@ type ScheduleActivityTaskDecisionAttributes struct {
 	// (http://docs.aws.amazon.com/amazonswf/latest/developerguide/programming-priority.html)
 	// in the Amazon Simple Workflow Developer Guide.
 	TaskPriority *string `locationName:"taskPriority" type:"string"`
-
-	metadataScheduleActivityTaskDecisionAttributes `json:"-" xml:"-"`
-}
-
-type metadataScheduleActivityTaskDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -5815,6 +5403,8 @@ func (s ScheduleActivityTaskDecisionAttributes) GoString() string {
 
 // Provides details of the ScheduleActivityTaskFailed event.
 type ScheduleActivityTaskFailedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The activityId provided in the ScheduleActivityTask decision that failed.
 	ActivityId *string `locationName:"activityId" min:"1" type:"string" required:"true"`
 
@@ -5834,12 +5424,6 @@ type ScheduleActivityTaskFailedEventAttributes struct {
 	// useful for diagnosing problems by tracing back the chain of events leading
 	// up to this event.
 	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
-
-	metadataScheduleActivityTaskFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataScheduleActivityTaskFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -5871,6 +5455,8 @@ func (s ScheduleActivityTaskFailedEventAttributes) GoString() string {
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 type ScheduleLambdaFunctionDecisionAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// Required. The SWF id of the AWS Lambda task.
 	//
 	// The specified string must not start or end with whitespace. It must not
@@ -5887,12 +5473,6 @@ type ScheduleLambdaFunctionDecisionAttributes struct {
 
 	// If set, specifies the maximum duration the function may take to execute.
 	StartToCloseTimeout *string `locationName:"startToCloseTimeout" type:"string"`
-
-	metadataScheduleLambdaFunctionDecisionAttributes `json:"-" xml:"-"`
-}
-
-type metadataScheduleLambdaFunctionDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -5907,6 +5487,8 @@ func (s ScheduleLambdaFunctionDecisionAttributes) GoString() string {
 
 // Provides details for the ScheduleLambdaFunctionFailed event.
 type ScheduleLambdaFunctionFailedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The cause of the failure. This information is generated by the system and
 	// can be useful for diagnostic purposes.
 	//
@@ -5926,12 +5508,6 @@ type ScheduleLambdaFunctionFailedEventAttributes struct {
 
 	// The name of the scheduled AWS Lambda function.
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
-
-	metadataScheduleLambdaFunctionFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataScheduleLambdaFunctionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -5960,6 +5536,8 @@ func (s ScheduleLambdaFunctionFailedEventAttributes) GoString() string {
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 type SignalExternalWorkflowExecutionDecisionAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// Optional. Data attached to the event that can be used by the decider in subsequent
 	// decision tasks.
 	Control *string `locationName:"control" type:"string"`
@@ -5977,12 +5555,6 @@ type SignalExternalWorkflowExecutionDecisionAttributes struct {
 
 	// Required. The workflowId of the workflow execution to be signaled.
 	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
-
-	metadataSignalExternalWorkflowExecutionDecisionAttributes `json:"-" xml:"-"`
-}
-
-type metadataSignalExternalWorkflowExecutionDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -5997,6 +5569,8 @@ func (s SignalExternalWorkflowExecutionDecisionAttributes) GoString() string {
 
 // Provides details of the SignalExternalWorkflowExecutionFailed event.
 type SignalExternalWorkflowExecutionFailedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The cause of the failure. This information is generated by the system and
 	// can be useful for diagnostic purposes.
 	//
@@ -6026,12 +5600,6 @@ type SignalExternalWorkflowExecutionFailedEventAttributes struct {
 	// The workflowId of the external workflow execution that the signal was being
 	// delivered to.
 	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
-
-	metadataSignalExternalWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataSignalExternalWorkflowExecutionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -6046,6 +5614,8 @@ func (s SignalExternalWorkflowExecutionFailedEventAttributes) GoString() string 
 
 // Provides details of the SignalExternalWorkflowExecutionInitiated event.
 type SignalExternalWorkflowExecutionInitiatedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// Optional. data attached to the event that can be used by the decider in subsequent
 	// decision tasks.
 	Control *string `locationName:"control" type:"string"`
@@ -6067,12 +5637,6 @@ type SignalExternalWorkflowExecutionInitiatedEventAttributes struct {
 
 	// The workflowId of the external workflow execution.
 	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
-
-	metadataSignalExternalWorkflowExecutionInitiatedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataSignalExternalWorkflowExecutionInitiatedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -6086,6 +5650,8 @@ func (s SignalExternalWorkflowExecutionInitiatedEventAttributes) GoString() stri
 }
 
 type SignalWorkflowExecutionInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the domain containing the workflow execution to signal.
 	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
@@ -6101,12 +5667,6 @@ type SignalWorkflowExecutionInput struct {
 
 	// The workflowId of the workflow execution to signal.
 	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
-
-	metadataSignalWorkflowExecutionInput `json:"-" xml:"-"`
-}
-
-type metadataSignalWorkflowExecutionInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -6120,11 +5680,7 @@ func (s SignalWorkflowExecutionInput) GoString() string {
 }
 
 type SignalWorkflowExecutionOutput struct {
-	metadataSignalWorkflowExecutionOutput `json:"-" xml:"-"`
-}
-
-type metadataSignalWorkflowExecutionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6157,6 +5713,8 @@ func (s SignalWorkflowExecutionOutput) GoString() string {
 // will be set to OPERATION_NOT_PERMITTED. For details and example IAM policies,
 // see Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 type StartChildWorkflowExecutionDecisionAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// Optional. If set, specifies the policy to use for the child workflow executions
 	// if the workflow execution being started is terminated by calling the TerminateWorkflowExecution
 	// action explicitly or due to an expired timeout. This policy overrides the
@@ -6253,12 +5811,6 @@ type StartChildWorkflowExecutionDecisionAttributes struct {
 
 	// Required. The type of the workflow execution to be started.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
-
-	metadataStartChildWorkflowExecutionDecisionAttributes `json:"-" xml:"-"`
-}
-
-type metadataStartChildWorkflowExecutionDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -6273,6 +5825,8 @@ func (s StartChildWorkflowExecutionDecisionAttributes) GoString() string {
 
 // Provides details of the StartChildWorkflowExecutionFailed event.
 type StartChildWorkflowExecutionFailedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The cause of the failure. This information is generated by the system and
 	// can be useful for diagnostic purposes.
 	//
@@ -6301,12 +5855,6 @@ type StartChildWorkflowExecutionFailedEventAttributes struct {
 	// The workflow type provided in the StartChildWorkflowExecution decision that
 	// failed.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
-
-	metadataStartChildWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataStartChildWorkflowExecutionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -6321,6 +5869,8 @@ func (s StartChildWorkflowExecutionFailedEventAttributes) GoString() string {
 
 // Provides details of the StartChildWorkflowExecutionInitiated event.
 type StartChildWorkflowExecutionInitiatedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The policy to use for the child workflow executions if this execution gets
 	// terminated by explicitly calling the TerminateWorkflowExecution action or
 	// due to an expired timeout.
@@ -6386,12 +5936,6 @@ type StartChildWorkflowExecutionInitiatedEventAttributes struct {
 
 	// The type of the child workflow execution.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
-
-	metadataStartChildWorkflowExecutionInitiatedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataStartChildWorkflowExecutionInitiatedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -6406,6 +5950,8 @@ func (s StartChildWorkflowExecutionInitiatedEventAttributes) GoString() string {
 
 // Provides details for the StartLambdaFunctionFailed event.
 type StartLambdaFunctionFailedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The cause of the failure. This information is generated by the system and
 	// can be useful for diagnostic purposes.
 	//
@@ -6421,12 +5967,6 @@ type StartLambdaFunctionFailedEventAttributes struct {
 	// Lambda function was scheduled. This information can be useful for diagnosing
 	// problems by tracing back the chain of events leading up to this event.
 	ScheduledEventId *int64 `locationName:"scheduledEventId" type:"long"`
-
-	metadataStartLambdaFunctionFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataStartLambdaFunctionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -6455,6 +5995,8 @@ func (s StartLambdaFunctionFailedEventAttributes) GoString() string {
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 type StartTimerDecisionAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// Optional. Data attached to the event that can be used by the decider in subsequent
 	// workflow tasks.
 	Control *string `locationName:"control" type:"string"`
@@ -6472,12 +6014,6 @@ type StartTimerDecisionAttributes struct {
 	// (\u0000-\u001f | \u007f - \u009f). Also, it must not contain the literal
 	// string quotarnquot.
 	TimerId *string `locationName:"timerId" min:"1" type:"string" required:"true"`
-
-	metadataStartTimerDecisionAttributes `json:"-" xml:"-"`
-}
-
-type metadataStartTimerDecisionAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -6492,6 +6028,8 @@ func (s StartTimerDecisionAttributes) GoString() string {
 
 // Provides details of the StartTimerFailed event.
 type StartTimerFailedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The cause of the failure. This information is generated by the system and
 	// can be useful for diagnostic purposes.
 	//
@@ -6508,12 +6046,6 @@ type StartTimerFailedEventAttributes struct {
 
 	// The timerId provided in the StartTimer decision that failed.
 	TimerId *string `locationName:"timerId" min:"1" type:"string" required:"true"`
-
-	metadataStartTimerFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataStartTimerFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -6527,6 +6059,8 @@ func (s StartTimerFailedEventAttributes) GoString() string {
 }
 
 type StartWorkflowExecutionInput struct {
+	_ struct{} `type:"structure"`
+
 	// If set, specifies the policy to use for the child workflow executions of
 	// this workflow execution if it is terminated, by calling the TerminateWorkflowExecution
 	// action explicitly or due to an expired timeout. This policy overrides the
@@ -6633,12 +6167,6 @@ type StartWorkflowExecutionInput struct {
 
 	// The type of the workflow to start.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
-
-	metadataStartWorkflowExecutionInput `json:"-" xml:"-"`
-}
-
-type metadataStartWorkflowExecutionInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -6653,15 +6181,11 @@ func (s StartWorkflowExecutionInput) GoString() string {
 
 // Specifies the runId of a workflow execution.
 type StartWorkflowExecutionOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The runId of a workflow execution. This ID is generated by the service and
 	// can be used to uniquely identify the workflow execution within a domain.
 	RunId *string `locationName:"runId" min:"1" type:"string"`
-
-	metadataStartWorkflowExecutionOutput `json:"-" xml:"-"`
-}
-
-type metadataStartWorkflowExecutionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -6676,15 +6200,11 @@ func (s StartWorkflowExecutionOutput) GoString() string {
 
 // Used to filter the workflow executions in visibility APIs based on a tag.
 type TagFilter struct {
+	_ struct{} `type:"structure"`
+
 	// Required. Specifies the tag that must be associated with the execution for
 	// it to meet the filter criteria.
 	Tag *string `locationName:"tag" min:"1" type:"string" required:"true"`
-
-	metadataTagFilter `json:"-" xml:"-"`
-}
-
-type metadataTagFilter struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -6699,14 +6219,10 @@ func (s TagFilter) GoString() string {
 
 // Represents a task list.
 type TaskList struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the task list.
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
-
-	metadataTaskList `json:"-" xml:"-"`
-}
-
-type metadataTaskList struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -6720,6 +6236,8 @@ func (s TaskList) GoString() string {
 }
 
 type TerminateWorkflowExecutionInput struct {
+	_ struct{} `type:"structure"`
+
 	// If set, specifies the policy to use for the child workflow executions of
 	// the workflow execution being terminated. This policy overrides the child
 	// policy specified for the workflow execution at registration time or when
@@ -6752,12 +6270,6 @@ type TerminateWorkflowExecutionInput struct {
 
 	// The workflowId of the workflow execution to terminate.
 	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
-
-	metadataTerminateWorkflowExecutionInput `json:"-" xml:"-"`
-}
-
-type metadataTerminateWorkflowExecutionInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -6771,11 +6283,7 @@ func (s TerminateWorkflowExecutionInput) GoString() string {
 }
 
 type TerminateWorkflowExecutionOutput struct {
-	metadataTerminateWorkflowExecutionOutput `json:"-" xml:"-"`
-}
-
-type metadataTerminateWorkflowExecutionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -6790,6 +6298,8 @@ func (s TerminateWorkflowExecutionOutput) GoString() string {
 
 // Provides details of the TimerCanceled event.
 type TimerCanceledEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the CancelTimer decision to cancel this timer. This information
 	// can be useful for diagnosing problems by tracing back the chain of events
@@ -6803,12 +6313,6 @@ type TimerCanceledEventAttributes struct {
 
 	// The unique ID of the timer that was canceled.
 	TimerId *string `locationName:"timerId" min:"1" type:"string" required:"true"`
-
-	metadataTimerCanceledEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataTimerCanceledEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -6823,6 +6327,8 @@ func (s TimerCanceledEventAttributes) GoString() string {
 
 // Provides details of the TimerFired event.
 type TimerFiredEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the TimerStarted event that was recorded when this timer was started.
 	// This information can be useful for diagnosing problems by tracing back the
 	// chain of events leading up to this event.
@@ -6830,12 +6336,6 @@ type TimerFiredEventAttributes struct {
 
 	// The unique ID of the timer that fired.
 	TimerId *string `locationName:"timerId" min:"1" type:"string" required:"true"`
-
-	metadataTimerFiredEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataTimerFiredEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -6850,6 +6350,8 @@ func (s TimerFiredEventAttributes) GoString() string {
 
 // Provides details of the TimerStarted event.
 type TimerStartedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// Optional. Data attached to the event that can be used by the decider in subsequent
 	// workflow tasks.
 	Control *string `locationName:"control" type:"string"`
@@ -6868,12 +6370,6 @@ type TimerStartedEventAttributes struct {
 
 	// The unique ID of the timer that was started.
 	TimerId *string `locationName:"timerId" min:"1" type:"string" required:"true"`
-
-	metadataTimerStartedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataTimerStartedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -6888,17 +6384,13 @@ func (s TimerStartedEventAttributes) GoString() string {
 
 // Represents a workflow execution.
 type WorkflowExecution struct {
+	_ struct{} `type:"structure"`
+
 	// A system-generated unique identifier for the workflow execution.
 	RunId *string `locationName:"runId" min:"1" type:"string" required:"true"`
 
 	// The user defined identifier associated with the workflow execution.
 	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
-
-	metadataWorkflowExecution `json:"-" xml:"-"`
-}
-
-type metadataWorkflowExecution struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -6913,6 +6405,8 @@ func (s WorkflowExecution) GoString() string {
 
 // Provides details of the WorkflowExecutionCancelRequested event.
 type WorkflowExecutionCancelRequestedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// If set, indicates that the request to cancel the workflow execution was automatically
 	// generated, and specifies the cause. This happens if the parent workflow execution
 	// times out or is terminated, and the child policy is set to cancel child executions.
@@ -6927,12 +6421,6 @@ type WorkflowExecutionCancelRequestedEventAttributes struct {
 
 	// The external workflow execution for which the cancellation was requested.
 	ExternalWorkflowExecution *WorkflowExecution `locationName:"externalWorkflowExecution" type:"structure"`
-
-	metadataWorkflowExecutionCancelRequestedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataWorkflowExecutionCancelRequestedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -6947,6 +6435,8 @@ func (s WorkflowExecutionCancelRequestedEventAttributes) GoString() string {
 
 // Provides details of the WorkflowExecutionCanceled event.
 type WorkflowExecutionCanceledEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the CancelWorkflowExecution decision for this cancellation
 	// request. This information can be useful for diagnosing problems by tracing
@@ -6955,12 +6445,6 @@ type WorkflowExecutionCanceledEventAttributes struct {
 
 	// Details for the cancellation (if any).
 	Details *string `locationName:"details" type:"string"`
-
-	metadataWorkflowExecutionCanceledEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataWorkflowExecutionCanceledEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -6975,6 +6459,8 @@ func (s WorkflowExecutionCanceledEventAttributes) GoString() string {
 
 // Provides details of the WorkflowExecutionCompleted event.
 type WorkflowExecutionCompletedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the CompleteWorkflowExecution decision to complete this
 	// execution. This information can be useful for diagnosing problems by tracing
@@ -6983,12 +6469,6 @@ type WorkflowExecutionCompletedEventAttributes struct {
 
 	// The result produced by the workflow execution upon successful completion.
 	Result *string `locationName:"result" type:"string"`
-
-	metadataWorkflowExecutionCompletedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataWorkflowExecutionCompletedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -7006,6 +6486,8 @@ func (s WorkflowExecutionCompletedEventAttributes) GoString() string {
 // specified when registering the workflow type and those specified when starting
 // the workflow execution.
 type WorkflowExecutionConfiguration struct {
+	_ struct{} `type:"structure"`
+
 	// The policy to use for the child workflow executions if this workflow execution
 	// is terminated, by calling the TerminateWorkflowExecution action explicitly
 	// or due to an expired timeout.
@@ -7045,12 +6527,6 @@ type WorkflowExecutionConfiguration struct {
 	// The duration is specified in seconds; an integer greater than or equal to
 	// 0. The value "NONE" can be used to specify unlimited duration.
 	TaskStartToCloseTimeout *string `locationName:"taskStartToCloseTimeout" min:"1" type:"string" required:"true"`
-
-	metadataWorkflowExecutionConfiguration `json:"-" xml:"-"`
-}
-
-type metadataWorkflowExecutionConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -7065,6 +6541,8 @@ func (s WorkflowExecutionConfiguration) GoString() string {
 
 // Provides details of the WorkflowExecutionContinuedAsNew event.
 type WorkflowExecutionContinuedAsNewEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The policy to use for the child workflow executions of the new execution
 	// if it is terminated by calling the TerminateWorkflowExecution action explicitly
 	// or due to an expired timeout.
@@ -7116,12 +6594,6 @@ type WorkflowExecutionContinuedAsNewEventAttributes struct {
 
 	// Represents a workflow type.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
-
-	metadataWorkflowExecutionContinuedAsNewEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataWorkflowExecutionContinuedAsNewEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -7137,18 +6609,14 @@ func (s WorkflowExecutionContinuedAsNewEventAttributes) GoString() string {
 // Contains the count of workflow executions returned from CountOpenWorkflowExecutions
 // or CountClosedWorkflowExecutions
 type WorkflowExecutionCount struct {
+	_ struct{} `type:"structure"`
+
 	// The number of workflow executions.
 	Count *int64 `locationName:"count" type:"integer" required:"true"`
 
 	// If set to true, indicates that the actual count was more than the maximum
 	// supported by this API and the count returned is the truncated value.
 	Truncated *bool `locationName:"truncated" type:"boolean"`
-
-	metadataWorkflowExecutionCount `json:"-" xml:"-"`
-}
-
-type metadataWorkflowExecutionCount struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -7163,6 +6631,8 @@ func (s WorkflowExecutionCount) GoString() string {
 
 // Provides details of the WorkflowExecutionFailed event.
 type WorkflowExecutionFailedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the FailWorkflowExecution decision to fail this execution.
 	// This information can be useful for diagnosing problems by tracing back the
@@ -7174,12 +6644,6 @@ type WorkflowExecutionFailedEventAttributes struct {
 
 	// The descriptive reason provided for the failure (if any).
 	Reason *string `locationName:"reason" type:"string"`
-
-	metadataWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataWorkflowExecutionFailedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -7194,14 +6658,10 @@ func (s WorkflowExecutionFailedEventAttributes) GoString() string {
 
 // Used to filter the workflow executions in visibility APIs by their workflowId.
 type WorkflowExecutionFilter struct {
+	_ struct{} `type:"structure"`
+
 	// The workflowId to pass of match the criteria of this filter.
 	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
-
-	metadataWorkflowExecutionFilter `json:"-" xml:"-"`
-}
-
-type metadataWorkflowExecutionFilter struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -7216,6 +6676,8 @@ func (s WorkflowExecutionFilter) GoString() string {
 
 // Contains information about a workflow execution.
 type WorkflowExecutionInfo struct {
+	_ struct{} `type:"structure"`
+
 	// Set to true if a cancellation is requested for this workflow execution.
 	CancelRequested *bool `locationName:"cancelRequested" type:"boolean"`
 
@@ -7255,12 +6717,6 @@ type WorkflowExecutionInfo struct {
 
 	// The type of the workflow execution.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
-
-	metadataWorkflowExecutionInfo `json:"-" xml:"-"`
-}
-
-type metadataWorkflowExecutionInfo struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -7275,6 +6731,8 @@ func (s WorkflowExecutionInfo) GoString() string {
 
 // Contains a paginated list of information about workflow executions.
 type WorkflowExecutionInfos struct {
+	_ struct{} `type:"structure"`
+
 	// The list of workflow information structures.
 	ExecutionInfos []*WorkflowExecutionInfo `locationName:"executionInfos" type:"list" required:"true"`
 
@@ -7285,12 +6743,6 @@ type WorkflowExecutionInfos struct {
 	// The configured maximumPageSize determines how many results can be returned
 	// in a single call.
 	NextPageToken *string `locationName:"nextPageToken" type:"string"`
-
-	metadataWorkflowExecutionInfos `json:"-" xml:"-"`
-}
-
-type metadataWorkflowExecutionInfos struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -7306,6 +6758,8 @@ func (s WorkflowExecutionInfos) GoString() string {
 // Contains the counts of open tasks, child workflow executions and timers for
 // a workflow execution.
 type WorkflowExecutionOpenCounts struct {
+	_ struct{} `type:"structure"`
+
 	// The count of activity tasks whose status is OPEN.
 	OpenActivityTasks *int64 `locationName:"openActivityTasks" type:"integer" required:"true"`
 
@@ -7322,12 +6776,6 @@ type WorkflowExecutionOpenCounts struct {
 	// The count of timers started by this workflow execution that have not fired
 	// yet.
 	OpenTimers *int64 `locationName:"openTimers" type:"integer" required:"true"`
-
-	metadataWorkflowExecutionOpenCounts `json:"-" xml:"-"`
-}
-
-type metadataWorkflowExecutionOpenCounts struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -7342,6 +6790,8 @@ func (s WorkflowExecutionOpenCounts) GoString() string {
 
 // Provides details of the WorkflowExecutionSignaled event.
 type WorkflowExecutionSignaledEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the SignalExternalWorkflowExecutionInitiated event corresponding
 	// to the SignalExternalWorkflow decision to signal this workflow execution.The
 	// source event with this ID can be found in the history of the source workflow
@@ -7361,12 +6811,6 @@ type WorkflowExecutionSignaledEventAttributes struct {
 	// The name of the signal received. The decider can use the signal name and
 	// inputs to determine how to the process the signal.
 	SignalName *string `locationName:"signalName" min:"1" type:"string" required:"true"`
-
-	metadataWorkflowExecutionSignaledEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataWorkflowExecutionSignaledEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -7381,6 +6825,8 @@ func (s WorkflowExecutionSignaledEventAttributes) GoString() string {
 
 // Provides details of WorkflowExecutionStarted event.
 type WorkflowExecutionStartedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The policy to use for the child workflow executions if this workflow execution
 	// is terminated, by calling the TerminateWorkflowExecution action explicitly
 	// or due to an expired timeout.
@@ -7441,12 +6887,6 @@ type WorkflowExecutionStartedEventAttributes struct {
 
 	// The workflow type of this execution.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
-
-	metadataWorkflowExecutionStartedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataWorkflowExecutionStartedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -7461,6 +6901,8 @@ func (s WorkflowExecutionStartedEventAttributes) GoString() string {
 
 // Provides details of the WorkflowExecutionTerminated event.
 type WorkflowExecutionTerminatedEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// If set, indicates that the workflow execution was automatically terminated,
 	// and specifies the cause. This happens if the parent workflow execution times
 	// out or is terminated and the child policy is set to terminate child executions.
@@ -7482,12 +6924,6 @@ type WorkflowExecutionTerminatedEventAttributes struct {
 
 	// The reason provided for the termination (if any).
 	Reason *string `locationName:"reason" type:"string"`
-
-	metadataWorkflowExecutionTerminatedEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataWorkflowExecutionTerminatedEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -7502,6 +6938,8 @@ func (s WorkflowExecutionTerminatedEventAttributes) GoString() string {
 
 // Provides details of the WorkflowExecutionTimedOut event.
 type WorkflowExecutionTimedOutEventAttributes struct {
+	_ struct{} `type:"structure"`
+
 	// The policy used for the child workflow executions of this workflow execution.
 	//
 	// The supported child policies are:
@@ -7515,12 +6953,6 @@ type WorkflowExecutionTimedOutEventAttributes struct {
 
 	// The type of timeout that caused this event.
 	TimeoutType *string `locationName:"timeoutType" type:"string" required:"true" enum:"WorkflowExecutionTimeoutType"`
-
-	metadataWorkflowExecutionTimedOutEventAttributes `json:"-" xml:"-"`
-}
-
-type metadataWorkflowExecutionTimedOutEventAttributes struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -7535,6 +6967,8 @@ func (s WorkflowExecutionTimedOutEventAttributes) GoString() string {
 
 // Represents a workflow type.
 type WorkflowType struct {
+	_ struct{} `type:"structure"`
+
 	// Required. The name of the workflow type.
 	//
 	// The combination of workflow type name and version must be unique with in
@@ -7546,12 +6980,6 @@ type WorkflowType struct {
 	// The combination of workflow type name and version must be unique with in
 	// a domain.
 	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
-
-	metadataWorkflowType `json:"-" xml:"-"`
-}
-
-type metadataWorkflowType struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -7566,6 +6994,8 @@ func (s WorkflowType) GoString() string {
 
 // The configuration settings of a workflow type.
 type WorkflowTypeConfiguration struct {
+	_ struct{} `type:"structure"`
+
 	// Optional. The default policy to use for the child workflow executions when
 	// a workflow execution of this type is terminated, by calling the TerminateWorkflowExecution
 	// action explicitly or due to an expired timeout. This default can be overridden
@@ -7624,12 +7054,6 @@ type WorkflowTypeConfiguration struct {
 	// The duration is specified in seconds; an integer greater than or equal to
 	// 0. The value "NONE" can be used to specify unlimited duration.
 	DefaultTaskStartToCloseTimeout *string `locationName:"defaultTaskStartToCloseTimeout" type:"string"`
-
-	metadataWorkflowTypeConfiguration `json:"-" xml:"-"`
-}
-
-type metadataWorkflowTypeConfiguration struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -7645,17 +7069,13 @@ func (s WorkflowTypeConfiguration) GoString() string {
 // Used to filter workflow execution query results by type. Each parameter,
 // if specified, defines a rule that must be satisfied by each returned result.
 type WorkflowTypeFilter struct {
+	_ struct{} `type:"structure"`
+
 	// Required. Name of the workflow type.
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// Version of the workflow type.
 	Version *string `locationName:"version" type:"string"`
-
-	metadataWorkflowTypeFilter `json:"-" xml:"-"`
-}
-
-type metadataWorkflowTypeFilter struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -7670,6 +7090,8 @@ func (s WorkflowTypeFilter) GoString() string {
 
 // Contains information about a workflow type.
 type WorkflowTypeInfo struct {
+	_ struct{} `type:"structure"`
+
 	// The date when this type was registered.
 	CreationDate *time.Time `locationName:"creationDate" type:"timestamp" timestampFormat:"unix" required:"true"`
 
@@ -7685,12 +7107,6 @@ type WorkflowTypeInfo struct {
 
 	// The workflow type this information is about.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
-
-	metadataWorkflowTypeInfo `json:"-" xml:"-"`
-}
-
-type metadataWorkflowTypeInfo struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation

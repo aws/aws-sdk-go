@@ -842,6 +842,8 @@ func (c *SNS) Unsubscribe(input *UnsubscribeInput) (*UnsubscribeOutput, error) {
 }
 
 type AddPermissionInput struct {
+	_ struct{} `type:"structure"`
+
 	// The AWS account IDs of the users (principals) who will be given access to
 	// the specified actions. The users must have AWS accounts, but do not need
 	// to be signed up for this service.
@@ -857,12 +859,6 @@ type AddPermissionInput struct {
 
 	// The ARN of the topic whose access control policy you wish to modify.
 	TopicArn *string `type:"string" required:"true"`
-
-	metadataAddPermissionInput `json:"-" xml:"-"`
-}
-
-type metadataAddPermissionInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -876,11 +872,7 @@ func (s AddPermissionInput) GoString() string {
 }
 
 type AddPermissionOutput struct {
-	metadataAddPermissionOutput `json:"-" xml:"-"`
-}
-
-type metadataAddPermissionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -895,6 +887,8 @@ func (s AddPermissionOutput) GoString() string {
 
 // Input for ConfirmSubscription action.
 type ConfirmSubscriptionInput struct {
+	_ struct{} `type:"structure"`
+
 	// Disallows unauthenticated unsubscribes of the subscription. If the value
 	// of this parameter is true and the request has an AWS signature, then only
 	// the topic owner and the subscription owner can unsubscribe the endpoint.
@@ -906,12 +900,6 @@ type ConfirmSubscriptionInput struct {
 
 	// The ARN of the topic for which you wish to confirm a subscription.
 	TopicArn *string `type:"string" required:"true"`
-
-	metadataConfirmSubscriptionInput `json:"-" xml:"-"`
-}
-
-type metadataConfirmSubscriptionInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -926,14 +914,10 @@ func (s ConfirmSubscriptionInput) GoString() string {
 
 // Response for ConfirmSubscriptions action.
 type ConfirmSubscriptionOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN of the created subscription.
 	SubscriptionArn *string `type:"string"`
-
-	metadataConfirmSubscriptionOutput `json:"-" xml:"-"`
-}
-
-type metadataConfirmSubscriptionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -948,6 +932,8 @@ func (s ConfirmSubscriptionOutput) GoString() string {
 
 // Input for CreatePlatformApplication action.
 type CreatePlatformApplicationInput struct {
+	_ struct{} `type:"structure"`
+
 	// For a list of attributes, see SetPlatformApplicationAttributes (http://docs.aws.amazon.com/sns/latest/api/API_SetPlatformApplicationAttributes.html)
 	Attributes map[string]*string `type:"map" required:"true"`
 
@@ -959,12 +945,6 @@ type CreatePlatformApplicationInput struct {
 	// The following platforms are supported: ADM (Amazon Device Messaging), APNS
 	// (Apple Push Notification Service), APNS_SANDBOX, and GCM (Google Cloud Messaging).
 	Platform *string `type:"string" required:"true"`
-
-	metadataCreatePlatformApplicationInput `json:"-" xml:"-"`
-}
-
-type metadataCreatePlatformApplicationInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -979,14 +959,10 @@ func (s CreatePlatformApplicationInput) GoString() string {
 
 // Response from CreatePlatformApplication action.
 type CreatePlatformApplicationOutput struct {
+	_ struct{} `type:"structure"`
+
 	// PlatformApplicationArn is returned.
 	PlatformApplicationArn *string `type:"string"`
-
-	metadataCreatePlatformApplicationOutput `json:"-" xml:"-"`
-}
-
-type metadataCreatePlatformApplicationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1001,6 +977,8 @@ func (s CreatePlatformApplicationOutput) GoString() string {
 
 // Input for CreatePlatformEndpoint action.
 type CreatePlatformEndpointInput struct {
+	_ struct{} `type:"structure"`
+
 	// For a list of attributes, see SetEndpointAttributes (http://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html).
 	Attributes map[string]*string `type:"map"`
 
@@ -1018,12 +996,6 @@ type CreatePlatformEndpointInput struct {
 	// you need the device token. Alternatively, when using GCM or ADM, the device
 	// token equivalent is called the registration ID.
 	Token *string `type:"string" required:"true"`
-
-	metadataCreatePlatformEndpointInput `json:"-" xml:"-"`
-}
-
-type metadataCreatePlatformEndpointInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1038,14 +1010,10 @@ func (s CreatePlatformEndpointInput) GoString() string {
 
 // Response from CreateEndpoint action.
 type CreatePlatformEndpointOutput struct {
+	_ struct{} `type:"structure"`
+
 	// EndpointArn returned from CreateEndpoint action.
 	EndpointArn *string `type:"string"`
-
-	metadataCreatePlatformEndpointOutput `json:"-" xml:"-"`
-}
-
-type metadataCreatePlatformEndpointOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1060,18 +1028,14 @@ func (s CreatePlatformEndpointOutput) GoString() string {
 
 // Input for CreateTopic action.
 type CreateTopicInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the topic you want to create.
 	//
 	// Constraints: Topic names must be made up of only uppercase and lowercase
 	// ASCII letters, numbers, underscores, and hyphens, and must be between 1 and
 	// 256 characters long.
 	Name *string `type:"string" required:"true"`
-
-	metadataCreateTopicInput `json:"-" xml:"-"`
-}
-
-type metadataCreateTopicInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1086,14 +1050,10 @@ func (s CreateTopicInput) GoString() string {
 
 // Response from CreateTopic action.
 type CreateTopicOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The Amazon Resource Name (ARN) assigned to the created topic.
 	TopicArn *string `type:"string"`
-
-	metadataCreateTopicOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateTopicOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1108,14 +1068,10 @@ func (s CreateTopicOutput) GoString() string {
 
 // Input for DeleteEndpoint action.
 type DeleteEndpointInput struct {
+	_ struct{} `type:"structure"`
+
 	// EndpointArn of endpoint to delete.
 	EndpointArn *string `type:"string" required:"true"`
-
-	metadataDeleteEndpointInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteEndpointInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1129,11 +1085,7 @@ func (s DeleteEndpointInput) GoString() string {
 }
 
 type DeleteEndpointOutput struct {
-	metadataDeleteEndpointOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteEndpointOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1148,14 +1100,10 @@ func (s DeleteEndpointOutput) GoString() string {
 
 // Input for DeletePlatformApplication action.
 type DeletePlatformApplicationInput struct {
+	_ struct{} `type:"structure"`
+
 	// PlatformApplicationArn of platform application object to delete.
 	PlatformApplicationArn *string `type:"string" required:"true"`
-
-	metadataDeletePlatformApplicationInput `json:"-" xml:"-"`
-}
-
-type metadataDeletePlatformApplicationInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1169,11 +1117,7 @@ func (s DeletePlatformApplicationInput) GoString() string {
 }
 
 type DeletePlatformApplicationOutput struct {
-	metadataDeletePlatformApplicationOutput `json:"-" xml:"-"`
-}
-
-type metadataDeletePlatformApplicationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1187,14 +1131,10 @@ func (s DeletePlatformApplicationOutput) GoString() string {
 }
 
 type DeleteTopicInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN of the topic you want to delete.
 	TopicArn *string `type:"string" required:"true"`
-
-	metadataDeleteTopicInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteTopicInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1208,11 +1148,7 @@ func (s DeleteTopicInput) GoString() string {
 }
 
 type DeleteTopicOutput struct {
-	metadataDeleteTopicOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteTopicOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1227,17 +1163,13 @@ func (s DeleteTopicOutput) GoString() string {
 
 // Endpoint for mobile app and device.
 type Endpoint struct {
+	_ struct{} `type:"structure"`
+
 	// Attributes for endpoint.
 	Attributes map[string]*string `type:"map"`
 
 	// EndpointArn for mobile app and device.
 	EndpointArn *string `type:"string"`
-
-	metadataEndpoint `json:"-" xml:"-"`
-}
-
-type metadataEndpoint struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1252,14 +1184,10 @@ func (s Endpoint) GoString() string {
 
 // Input for GetEndpointAttributes action.
 type GetEndpointAttributesInput struct {
+	_ struct{} `type:"structure"`
+
 	// EndpointArn for GetEndpointAttributes input.
 	EndpointArn *string `type:"string" required:"true"`
-
-	metadataGetEndpointAttributesInput `json:"-" xml:"-"`
-}
-
-type metadataGetEndpointAttributesInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1274,6 +1202,8 @@ func (s GetEndpointAttributesInput) GoString() string {
 
 // Response from GetEndpointAttributes of the EndpointArn.
 type GetEndpointAttributesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Attributes include the following:
 	//
 	//   CustomUserData -- arbitrary user data to associate with the endpoint.
@@ -1286,12 +1216,6 @@ type GetEndpointAttributesOutput struct {
 	// service when an app and mobile device are registered with the notification
 	// service.
 	Attributes map[string]*string `type:"map"`
-
-	metadataGetEndpointAttributesOutput `json:"-" xml:"-"`
-}
-
-type metadataGetEndpointAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1306,14 +1230,10 @@ func (s GetEndpointAttributesOutput) GoString() string {
 
 // Input for GetPlatformApplicationAttributes action.
 type GetPlatformApplicationAttributesInput struct {
+	_ struct{} `type:"structure"`
+
 	// PlatformApplicationArn for GetPlatformApplicationAttributesInput.
 	PlatformApplicationArn *string `type:"string" required:"true"`
-
-	metadataGetPlatformApplicationAttributesInput `json:"-" xml:"-"`
-}
-
-type metadataGetPlatformApplicationAttributesInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1328,6 +1248,8 @@ func (s GetPlatformApplicationAttributesInput) GoString() string {
 
 // Response for GetPlatformApplicationAttributes action.
 type GetPlatformApplicationAttributesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Attributes include the following:
 	//
 	//   EventEndpointCreated -- Topic ARN to which EndpointCreated event notifications
@@ -1338,12 +1260,6 @@ type GetPlatformApplicationAttributesOutput struct {
 	// upon Direct Publish delivery failure (permanent) to one of the application's
 	// endpoints.
 	Attributes map[string]*string `type:"map"`
-
-	metadataGetPlatformApplicationAttributesOutput `json:"-" xml:"-"`
-}
-
-type metadataGetPlatformApplicationAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1358,14 +1274,10 @@ func (s GetPlatformApplicationAttributesOutput) GoString() string {
 
 // Input for GetSubscriptionAttributes.
 type GetSubscriptionAttributesInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN of the subscription whose properties you want to get.
 	SubscriptionArn *string `type:"string" required:"true"`
-
-	metadataGetSubscriptionAttributesInput `json:"-" xml:"-"`
-}
-
-type metadataGetSubscriptionAttributesInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1380,6 +1292,8 @@ func (s GetSubscriptionAttributesInput) GoString() string {
 
 // Response for GetSubscriptionAttributes action.
 type GetSubscriptionAttributesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A map of the subscription's attributes. Attributes in this map include the
 	// following:
 	//
@@ -1391,12 +1305,6 @@ type GetSubscriptionAttributesOutput struct {
 	// of the effective delivery policy that takes into account the topic delivery
 	// policy and account system defaults
 	Attributes map[string]*string `type:"map"`
-
-	metadataGetSubscriptionAttributesOutput `json:"-" xml:"-"`
-}
-
-type metadataGetSubscriptionAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1411,14 +1319,10 @@ func (s GetSubscriptionAttributesOutput) GoString() string {
 
 // Input for GetTopicAttributes action.
 type GetTopicAttributesInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN of the topic whose properties you want to get.
 	TopicArn *string `type:"string" required:"true"`
-
-	metadataGetTopicAttributesInput `json:"-" xml:"-"`
-}
-
-type metadataGetTopicAttributesInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1433,6 +1337,8 @@ func (s GetTopicAttributesInput) GoString() string {
 
 // Response for GetTopicAttributes action.
 type GetTopicAttributesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A map of the topic's attributes. Attributes in this map include the following:
 	//
 	//   TopicArn -- the topic's ARN  Owner -- the AWS account ID of the topic's
@@ -1446,12 +1352,6 @@ type GetTopicAttributesOutput struct {
 	// -- the JSON serialization of the effective delivery policy that takes into
 	// account system defaults
 	Attributes map[string]*string `type:"map"`
-
-	metadataGetTopicAttributesOutput `json:"-" xml:"-"`
-}
-
-type metadataGetTopicAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1466,6 +1366,8 @@ func (s GetTopicAttributesOutput) GoString() string {
 
 // Input for ListEndpointsByPlatformApplication action.
 type ListEndpointsByPlatformApplicationInput struct {
+	_ struct{} `type:"structure"`
+
 	// NextToken string is used when calling ListEndpointsByPlatformApplication
 	// action to retrieve additional records that are available after the first
 	// page results.
@@ -1473,12 +1375,6 @@ type ListEndpointsByPlatformApplicationInput struct {
 
 	// PlatformApplicationArn for ListEndpointsByPlatformApplicationInput action.
 	PlatformApplicationArn *string `type:"string" required:"true"`
-
-	metadataListEndpointsByPlatformApplicationInput `json:"-" xml:"-"`
-}
-
-type metadataListEndpointsByPlatformApplicationInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1493,18 +1389,14 @@ func (s ListEndpointsByPlatformApplicationInput) GoString() string {
 
 // Response for ListEndpointsByPlatformApplication action.
 type ListEndpointsByPlatformApplicationOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Endpoints returned for ListEndpointsByPlatformApplication action.
 	Endpoints []*Endpoint `type:"list"`
 
 	// NextToken string is returned when calling ListEndpointsByPlatformApplication
 	// action if additional records are available after the first page results.
 	NextToken *string `type:"string"`
-
-	metadataListEndpointsByPlatformApplicationOutput `json:"-" xml:"-"`
-}
-
-type metadataListEndpointsByPlatformApplicationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1519,15 +1411,11 @@ func (s ListEndpointsByPlatformApplicationOutput) GoString() string {
 
 // Input for ListPlatformApplications action.
 type ListPlatformApplicationsInput struct {
+	_ struct{} `type:"structure"`
+
 	// NextToken string is used when calling ListPlatformApplications action to
 	// retrieve additional records that are available after the first page results.
 	NextToken *string `type:"string"`
-
-	metadataListPlatformApplicationsInput `json:"-" xml:"-"`
-}
-
-type metadataListPlatformApplicationsInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1542,18 +1430,14 @@ func (s ListPlatformApplicationsInput) GoString() string {
 
 // Response for ListPlatformApplications action.
 type ListPlatformApplicationsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// NextToken string is returned when calling ListPlatformApplications action
 	// if additional records are available after the first page results.
 	NextToken *string `type:"string"`
 
 	// Platform applications returned when calling ListPlatformApplications action.
 	PlatformApplications []*PlatformApplication `type:"list"`
-
-	metadataListPlatformApplicationsOutput `json:"-" xml:"-"`
-}
-
-type metadataListPlatformApplicationsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1568,17 +1452,13 @@ func (s ListPlatformApplicationsOutput) GoString() string {
 
 // Input for ListSubscriptionsByTopic action.
 type ListSubscriptionsByTopicInput struct {
+	_ struct{} `type:"structure"`
+
 	// Token returned by the previous ListSubscriptionsByTopic request.
 	NextToken *string `type:"string"`
 
 	// The ARN of the topic for which you wish to find subscriptions.
 	TopicArn *string `type:"string" required:"true"`
-
-	metadataListSubscriptionsByTopicInput `json:"-" xml:"-"`
-}
-
-type metadataListSubscriptionsByTopicInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1593,18 +1473,14 @@ func (s ListSubscriptionsByTopicInput) GoString() string {
 
 // Response for ListSubscriptionsByTopic action.
 type ListSubscriptionsByTopicOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Token to pass along to the next ListSubscriptionsByTopic request. This element
 	// is returned if there are more subscriptions to retrieve.
 	NextToken *string `type:"string"`
 
 	// A list of subscriptions.
 	Subscriptions []*Subscription `type:"list"`
-
-	metadataListSubscriptionsByTopicOutput `json:"-" xml:"-"`
-}
-
-type metadataListSubscriptionsByTopicOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1619,14 +1495,10 @@ func (s ListSubscriptionsByTopicOutput) GoString() string {
 
 // Input for ListSubscriptions action.
 type ListSubscriptionsInput struct {
+	_ struct{} `type:"structure"`
+
 	// Token returned by the previous ListSubscriptions request.
 	NextToken *string `type:"string"`
-
-	metadataListSubscriptionsInput `json:"-" xml:"-"`
-}
-
-type metadataListSubscriptionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1641,18 +1513,14 @@ func (s ListSubscriptionsInput) GoString() string {
 
 // Response for ListSubscriptions action
 type ListSubscriptionsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Token to pass along to the next ListSubscriptions request. This element is
 	// returned if there are more subscriptions to retrieve.
 	NextToken *string `type:"string"`
 
 	// A list of subscriptions.
 	Subscriptions []*Subscription `type:"list"`
-
-	metadataListSubscriptionsOutput `json:"-" xml:"-"`
-}
-
-type metadataListSubscriptionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1666,14 +1534,10 @@ func (s ListSubscriptionsOutput) GoString() string {
 }
 
 type ListTopicsInput struct {
+	_ struct{} `type:"structure"`
+
 	// Token returned by the previous ListTopics request.
 	NextToken *string `type:"string"`
-
-	metadataListTopicsInput `json:"-" xml:"-"`
-}
-
-type metadataListTopicsInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1688,18 +1552,14 @@ func (s ListTopicsInput) GoString() string {
 
 // Response for ListTopics action.
 type ListTopicsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Token to pass along to the next ListTopics request. This element is returned
 	// if there are additional topics to retrieve.
 	NextToken *string `type:"string"`
 
 	// A list of topic ARNs.
 	Topics []*Topic `type:"list"`
-
-	metadataListTopicsOutput `json:"-" xml:"-"`
-}
-
-type metadataListTopicsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1722,6 +1582,8 @@ func (s ListTopicsOutput) GoString() string {
 // is currently 256 KB (262,144 bytes). For more information, see Using Amazon
 // SNS Message Attributes (http://docs.aws.amazon.com/sns/latest/dg/SNSMessageAttributes.html).
 type MessageAttributeValue struct {
+	_ struct{} `type:"structure"`
+
 	// Binary type attributes can store any binary data, for example, compressed
 	// data, encrypted data, or images.
 	BinaryValue []byte `type:"blob"`
@@ -1733,12 +1595,6 @@ type MessageAttributeValue struct {
 	// Strings are Unicode with UTF8 binary encoding. For a list of code values,
 	// see http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters (http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters).
 	StringValue *string `type:"string"`
-
-	metadataMessageAttributeValue `json:"-" xml:"-"`
-}
-
-type metadataMessageAttributeValue struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1753,17 +1609,13 @@ func (s MessageAttributeValue) GoString() string {
 
 // Platform application object.
 type PlatformApplication struct {
+	_ struct{} `type:"structure"`
+
 	// Attributes for platform application object.
 	Attributes map[string]*string `type:"map"`
 
 	// PlatformApplicationArn for platform application object.
 	PlatformApplicationArn *string `type:"string"`
-
-	metadataPlatformApplication `json:"-" xml:"-"`
-}
-
-type metadataPlatformApplication struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1778,6 +1630,8 @@ func (s PlatformApplication) GoString() string {
 
 // Input for Publish action.
 type PublishInput struct {
+	_ struct{} `type:"structure"`
+
 	// The message you want to send to the topic.
 	//
 	// If you want to send the same message to all transport protocols, include
@@ -1839,12 +1693,6 @@ type PublishInput struct {
 
 	// The topic you want to publish to.
 	TopicArn *string `type:"string"`
-
-	metadataPublishInput `json:"-" xml:"-"`
-}
-
-type metadataPublishInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1859,16 +1707,12 @@ func (s PublishInput) GoString() string {
 
 // Response for Publish action.
 type PublishOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Unique identifier assigned to the published message.
 	//
 	// Length Constraint: Maximum 100 characters
 	MessageId *string `type:"string"`
-
-	metadataPublishOutput `json:"-" xml:"-"`
-}
-
-type metadataPublishOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1883,17 +1727,13 @@ func (s PublishOutput) GoString() string {
 
 // Input for RemovePermission action.
 type RemovePermissionInput struct {
+	_ struct{} `type:"structure"`
+
 	// The unique label of the statement you want to remove.
 	Label *string `type:"string" required:"true"`
 
 	// The ARN of the topic whose access control policy you wish to modify.
 	TopicArn *string `type:"string" required:"true"`
-
-	metadataRemovePermissionInput `json:"-" xml:"-"`
-}
-
-type metadataRemovePermissionInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1907,11 +1747,7 @@ func (s RemovePermissionInput) GoString() string {
 }
 
 type RemovePermissionOutput struct {
-	metadataRemovePermissionOutput `json:"-" xml:"-"`
-}
-
-type metadataRemovePermissionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1926,6 +1762,8 @@ func (s RemovePermissionOutput) GoString() string {
 
 // Input for SetEndpointAttributes action.
 type SetEndpointAttributesInput struct {
+	_ struct{} `type:"structure"`
+
 	// A map of the endpoint attributes. Attributes in this map include the following:
 	//
 	//   CustomUserData -- arbitrary user data to associate with the endpoint.
@@ -1941,12 +1779,6 @@ type SetEndpointAttributesInput struct {
 
 	// EndpointArn used for SetEndpointAttributes action.
 	EndpointArn *string `type:"string" required:"true"`
-
-	metadataSetEndpointAttributesInput `json:"-" xml:"-"`
-}
-
-type metadataSetEndpointAttributesInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1960,11 +1792,7 @@ func (s SetEndpointAttributesInput) GoString() string {
 }
 
 type SetEndpointAttributesOutput struct {
-	metadataSetEndpointAttributesOutput `json:"-" xml:"-"`
-}
-
-type metadataSetEndpointAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1979,6 +1807,8 @@ func (s SetEndpointAttributesOutput) GoString() string {
 
 // Input for SetPlatformApplicationAttributes action.
 type SetPlatformApplicationAttributesInput struct {
+	_ struct{} `type:"structure"`
+
 	// A map of the platform application attributes. Attributes in this map include
 	// the following:
 	//
@@ -1998,12 +1828,6 @@ type SetPlatformApplicationAttributesInput struct {
 
 	// PlatformApplicationArn for SetPlatformApplicationAttributes action.
 	PlatformApplicationArn *string `type:"string" required:"true"`
-
-	metadataSetPlatformApplicationAttributesInput `json:"-" xml:"-"`
-}
-
-type metadataSetPlatformApplicationAttributesInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2017,11 +1841,7 @@ func (s SetPlatformApplicationAttributesInput) GoString() string {
 }
 
 type SetPlatformApplicationAttributesOutput struct {
-	metadataSetPlatformApplicationAttributesOutput `json:"-" xml:"-"`
-}
-
-type metadataSetPlatformApplicationAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2036,6 +1856,8 @@ func (s SetPlatformApplicationAttributesOutput) GoString() string {
 
 // Input for SetSubscriptionAttributes action.
 type SetSubscriptionAttributesInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the attribute you want to set. Only a subset of the subscriptions
 	// attributes are mutable.
 	//
@@ -2047,12 +1869,6 @@ type SetSubscriptionAttributesInput struct {
 
 	// The ARN of the subscription to modify.
 	SubscriptionArn *string `type:"string" required:"true"`
-
-	metadataSetSubscriptionAttributesInput `json:"-" xml:"-"`
-}
-
-type metadataSetSubscriptionAttributesInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2066,11 +1882,7 @@ func (s SetSubscriptionAttributesInput) GoString() string {
 }
 
 type SetSubscriptionAttributesOutput struct {
-	metadataSetSubscriptionAttributesOutput `json:"-" xml:"-"`
-}
-
-type metadataSetSubscriptionAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2085,6 +1897,8 @@ func (s SetSubscriptionAttributesOutput) GoString() string {
 
 // Input for SetTopicAttributes action.
 type SetTopicAttributesInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the attribute you want to set. Only a subset of the topic's attributes
 	// are mutable.
 	//
@@ -2096,12 +1910,6 @@ type SetTopicAttributesInput struct {
 
 	// The ARN of the topic to modify.
 	TopicArn *string `type:"string" required:"true"`
-
-	metadataSetTopicAttributesInput `json:"-" xml:"-"`
-}
-
-type metadataSetTopicAttributesInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2115,11 +1923,7 @@ func (s SetTopicAttributesInput) GoString() string {
 }
 
 type SetTopicAttributesOutput struct {
-	metadataSetTopicAttributesOutput `json:"-" xml:"-"`
-}
-
-type metadataSetTopicAttributesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2134,6 +1938,8 @@ func (s SetTopicAttributesOutput) GoString() string {
 
 // Input for Subscribe action.
 type SubscribeInput struct {
+	_ struct{} `type:"structure"`
+
 	// The endpoint that you want to receive notifications. Endpoints vary by protocol:
 	//
 	//  For the http protocol, the endpoint is an URL beginning with "http://"
@@ -2157,12 +1963,6 @@ type SubscribeInput struct {
 
 	// The ARN of the topic you want to subscribe to.
 	TopicArn *string `type:"string" required:"true"`
-
-	metadataSubscribeInput `json:"-" xml:"-"`
-}
-
-type metadataSubscribeInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2177,15 +1977,11 @@ func (s SubscribeInput) GoString() string {
 
 // Response for Subscribe action.
 type SubscribeOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN of the subscription, if the service was able to create a subscription
 	// immediately (without requiring endpoint owner confirmation).
 	SubscriptionArn *string `type:"string"`
-
-	metadataSubscribeOutput `json:"-" xml:"-"`
-}
-
-type metadataSubscribeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2200,6 +1996,8 @@ func (s SubscribeOutput) GoString() string {
 
 // A wrapper type for the attributes of an Amazon SNS subscription.
 type Subscription struct {
+	_ struct{} `type:"structure"`
+
 	// The subscription's endpoint (format depends on the protocol).
 	Endpoint *string `type:"string"`
 
@@ -2214,12 +2012,6 @@ type Subscription struct {
 
 	// The ARN of the subscription's topic.
 	TopicArn *string `type:"string"`
-
-	metadataSubscription `json:"-" xml:"-"`
-}
-
-type metadataSubscription struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2235,14 +2027,10 @@ func (s Subscription) GoString() string {
 // A wrapper type for the topic's Amazon Resource Name (ARN). To retrieve a
 // topic's attributes, use GetTopicAttributes.
 type Topic struct {
+	_ struct{} `type:"structure"`
+
 	// The topic's ARN.
 	TopicArn *string `type:"string"`
-
-	metadataTopic `json:"-" xml:"-"`
-}
-
-type metadataTopic struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2257,14 +2045,10 @@ func (s Topic) GoString() string {
 
 // Input for Unsubscribe action.
 type UnsubscribeInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN of the subscription to be deleted.
 	SubscriptionArn *string `type:"string" required:"true"`
-
-	metadataUnsubscribeInput `json:"-" xml:"-"`
-}
-
-type metadataUnsubscribeInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2278,11 +2062,7 @@ func (s UnsubscribeInput) GoString() string {
 }
 
 type UnsubscribeOutput struct {
-	metadataUnsubscribeOutput `json:"-" xml:"-"`
-}
-
-type metadataUnsubscribeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

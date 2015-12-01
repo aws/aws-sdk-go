@@ -750,6 +750,8 @@ func (c *CloudSearch) UpdateServiceAccessPolicies(input *UpdateServiceAccessPoli
 // The configured access rules for the domain's document and search endpoints,
 // and the current status of those rules.
 type AccessPoliciesStatus struct {
+	_ struct{} `type:"structure"`
+
 	// Access rules for a domain's document or search service endpoints. For more
 	// information, see Configuring Access for a Search Domain (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-access.html"
 	// target="_blank) in the Amazon CloudSearch Developer Guide. The maximum size
@@ -758,12 +760,6 @@ type AccessPoliciesStatus struct {
 
 	// The status of domain configuration option.
 	Status *OptionStatus `type:"structure" required:"true"`
-
-	metadataAccessPoliciesStatus `json:"-" xml:"-"`
-}
-
-type metadataAccessPoliciesStatus struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -779,6 +775,8 @@ func (s AccessPoliciesStatus) GoString() string {
 // Synonyms, stopwords, and stemming options for an analysis scheme. Includes
 // tokenization dictionary for Japanese.
 type AnalysisOptions struct {
+	_ struct{} `type:"structure"`
+
 	// The level of algorithmic stemming to perform: none, minimal, light, or full.
 	// The available levels vary depending on the language. For more information,
 	// see Language Specific Text Processing Settings (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/text-processing.html#text-processing-settings"
@@ -814,12 +812,6 @@ type AnalysisOptions struct {
 	// about specifying synonyms, see Synonyms (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-analysis-schemes.html#synonyms)
 	// in the Amazon CloudSearch Developer Guide.
 	Synonyms *string `type:"string"`
-
-	metadataAnalysisOptions `json:"-" xml:"-"`
-}
-
-type metadataAnalysisOptions struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -837,6 +829,8 @@ func (s AnalysisOptions) GoString() string {
 // following options can be configured for an analysis scheme: Synonyms, Stopwords,
 // StemmingDictionary, JapaneseTokenizationDictionary and AlgorithmicStemming.
 type AnalysisScheme struct {
+	_ struct{} `type:"structure"`
+
 	// Synonyms, stopwords, and stemming options for an analysis scheme. Includes
 	// tokenization dictionary for Japanese.
 	AnalysisOptions *AnalysisOptions `type:"structure"`
@@ -848,12 +842,6 @@ type AnalysisScheme struct {
 	// Names must begin with a letter and can contain the following characters:
 	// a-z (lowercase), 0-9, and _ (underscore).
 	AnalysisSchemeName *string `min:"1" type:"string" required:"true"`
-
-	metadataAnalysisScheme `json:"-" xml:"-"`
-}
-
-type metadataAnalysisScheme struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -868,6 +856,8 @@ func (s AnalysisScheme) GoString() string {
 
 // The status and configuration of an AnalysisScheme.
 type AnalysisSchemeStatus struct {
+	_ struct{} `type:"structure"`
+
 	// Configuration information for an analysis scheme. Each analysis scheme has
 	// a unique name and specifies the language of the text to be processed. The
 	// following options can be configured for an analysis scheme: Synonyms, Stopwords,
@@ -876,12 +866,6 @@ type AnalysisSchemeStatus struct {
 
 	// The status of domain configuration option.
 	Status *OptionStatus `type:"structure" required:"true"`
-
-	metadataAnalysisSchemeStatus `json:"-" xml:"-"`
-}
-
-type metadataAnalysisSchemeStatus struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -896,17 +880,13 @@ func (s AnalysisSchemeStatus) GoString() string {
 
 // The status and configuration of the domain's availability options.
 type AvailabilityOptionsStatus struct {
+	_ struct{} `type:"structure"`
+
 	// The availability options configured for the domain.
 	Options *bool `type:"boolean" required:"true"`
 
 	// The status of domain configuration option.
 	Status *OptionStatus `type:"structure" required:"true"`
-
-	metadataAvailabilityOptionsStatus `json:"-" xml:"-"`
-}
-
-type metadataAvailabilityOptionsStatus struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -922,17 +902,13 @@ func (s AvailabilityOptionsStatus) GoString() string {
 // Container for the parameters to the BuildSuggester operation. Specifies the
 // name of the domain you want to update.
 type BuildSuggestersInput struct {
+	_ struct{} `type:"structure"`
+
 	// A string that represents the name of a domain. Domain names are unique across
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
 	DomainName *string `min:"3" type:"string" required:"true"`
-
-	metadataBuildSuggestersInput `json:"-" xml:"-"`
-}
-
-type metadataBuildSuggestersInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -948,14 +924,10 @@ func (s BuildSuggestersInput) GoString() string {
 // The result of a BuildSuggester request. Contains a list of the fields used
 // for suggestions.
 type BuildSuggestersOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of field names.
 	FieldNames []*string `type:"list"`
-
-	metadataBuildSuggestersOutput `json:"-" xml:"-"`
-}
-
-type metadataBuildSuggestersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -971,16 +943,12 @@ func (s BuildSuggestersOutput) GoString() string {
 // Container for the parameters to the CreateDomain operation. Specifies a name
 // for the new search domain.
 type CreateDomainInput struct {
+	_ struct{} `type:"structure"`
+
 	// A name for the domain you are creating. Allowed characters are a-z (lower-case
 	// letters), 0-9, and hyphen (-). Domain names must start with a letter or number
 	// and be at least 3 and no more than 28 characters long.
 	DomainName *string `min:"3" type:"string" required:"true"`
-
-	metadataCreateDomainInput `json:"-" xml:"-"`
-}
-
-type metadataCreateDomainInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -996,14 +964,10 @@ func (s CreateDomainInput) GoString() string {
 // The result of a CreateDomainRequest. Contains the status of a newly created
 // domain.
 type CreateDomainOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The current status of the search domain.
 	DomainStatus *DomainStatus `type:"structure"`
-
-	metadataCreateDomainOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateDomainOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1019,6 +983,8 @@ func (s CreateDomainOutput) GoString() string {
 // Options for a field that contains an array of dates. Present if IndexFieldType
 // specifies the field is of type date-array. All options are enabled by default.
 type DateArrayOptions struct {
+	_ struct{} `type:"structure"`
+
 	// A value to use for the field if the field isn't specified for a document.
 	DefaultValue *string `type:"string"`
 
@@ -1033,12 +999,6 @@ type DateArrayOptions struct {
 
 	// A list of source fields to map to the field.
 	SourceFields *string `type:"string"`
-
-	metadataDateArrayOptions `json:"-" xml:"-"`
-}
-
-type metadataDateArrayOptions struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1056,6 +1016,8 @@ func (s DateArrayOptions) GoString() string {
 // if IndexFieldType specifies the field is of type date. All options are enabled
 // by default.
 type DateOptions struct {
+	_ struct{} `type:"structure"`
+
 	// A value to use for the field if the field isn't specified for a document.
 	DefaultValue *string `type:"string"`
 
@@ -1086,12 +1048,6 @@ type DateOptions struct {
 	// The name score is reserved and cannot be used as a field name. To reference
 	// a document's ID, you can use the name _id.
 	SourceField *string `min:"1" type:"string"`
-
-	metadataDateOptions `json:"-" xml:"-"`
-}
-
-type metadataDateOptions struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1107,6 +1063,8 @@ func (s DateOptions) GoString() string {
 // Container for the parameters to the DefineAnalysisScheme operation. Specifies
 // the name of the domain you want to update and the analysis scheme configuration.
 type DefineAnalysisSchemeInput struct {
+	_ struct{} `type:"structure"`
+
 	// Configuration information for an analysis scheme. Each analysis scheme has
 	// a unique name and specifies the language of the text to be processed. The
 	// following options can be configured for an analysis scheme: Synonyms, Stopwords,
@@ -1118,12 +1076,6 @@ type DefineAnalysisSchemeInput struct {
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
 	DomainName *string `min:"3" type:"string" required:"true"`
-
-	metadataDefineAnalysisSchemeInput `json:"-" xml:"-"`
-}
-
-type metadataDefineAnalysisSchemeInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1139,14 +1091,10 @@ func (s DefineAnalysisSchemeInput) GoString() string {
 // The result of a DefineAnalysisScheme request. Contains the status of the
 // newly-configured analysis scheme.
 type DefineAnalysisSchemeOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The status and configuration of an AnalysisScheme.
 	AnalysisScheme *AnalysisSchemeStatus `type:"structure" required:"true"`
-
-	metadataDefineAnalysisSchemeOutput `json:"-" xml:"-"`
-}
-
-type metadataDefineAnalysisSchemeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1163,6 +1111,8 @@ func (s DefineAnalysisSchemeOutput) GoString() string {
 // the name of the domain you want to update and the expression you want to
 // configure.
 type DefineExpressionInput struct {
+	_ struct{} `type:"structure"`
+
 	// A string that represents the name of a domain. Domain names are unique across
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
@@ -1173,12 +1123,6 @@ type DefineExpressionInput struct {
 	// the search results, define other expressions, or return computed information
 	// in the search results.
 	Expression *Expression `type:"structure" required:"true"`
-
-	metadataDefineExpressionInput `json:"-" xml:"-"`
-}
-
-type metadataDefineExpressionInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1194,14 +1138,10 @@ func (s DefineExpressionInput) GoString() string {
 // The result of a DefineExpression request. Contains the status of the newly-configured
 // expression.
 type DefineExpressionOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The value of an Expression and its current status.
 	Expression *ExpressionStatus `type:"structure" required:"true"`
-
-	metadataDefineExpressionOutput `json:"-" xml:"-"`
-}
-
-type metadataDefineExpressionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1217,6 +1157,8 @@ func (s DefineExpressionOutput) GoString() string {
 // Container for the parameters to the DefineIndexField operation. Specifies
 // the name of the domain you want to update and the index field configuration.
 type DefineIndexFieldInput struct {
+	_ struct{} `type:"structure"`
+
 	// A string that represents the name of a domain. Domain names are unique across
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
@@ -1225,12 +1167,6 @@ type DefineIndexFieldInput struct {
 
 	// The index field and field options you want to configure.
 	IndexField *IndexField `type:"structure" required:"true"`
-
-	metadataDefineIndexFieldInput `json:"-" xml:"-"`
-}
-
-type metadataDefineIndexFieldInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1246,14 +1182,10 @@ func (s DefineIndexFieldInput) GoString() string {
 // The result of a DefineIndexField request. Contains the status of the newly-configured
 // index field.
 type DefineIndexFieldOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The value of an IndexField and its current status.
 	IndexField *IndexFieldStatus `type:"structure" required:"true"`
-
-	metadataDefineIndexFieldOutput `json:"-" xml:"-"`
-}
-
-type metadataDefineIndexFieldOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1269,6 +1201,8 @@ func (s DefineIndexFieldOutput) GoString() string {
 // Container for the parameters to the DefineSuggester operation. Specifies
 // the name of the domain you want to update and the suggester configuration.
 type DefineSuggesterInput struct {
+	_ struct{} `type:"structure"`
+
 	// A string that represents the name of a domain. Domain names are unique across
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
@@ -1279,12 +1213,6 @@ type DefineSuggesterInput struct {
 	// name and specifies the text field you want to use for suggestions. The following
 	// options can be configured for a suggester: FuzzyMatching, SortExpression.
 	Suggester *Suggester `type:"structure" required:"true"`
-
-	metadataDefineSuggesterInput `json:"-" xml:"-"`
-}
-
-type metadataDefineSuggesterInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1300,14 +1228,10 @@ func (s DefineSuggesterInput) GoString() string {
 // The result of a DefineSuggester request. Contains the status of the newly-configured
 // suggester.
 type DefineSuggesterOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The value of a Suggester and its current status.
 	Suggester *SuggesterStatus `type:"structure" required:"true"`
-
-	metadataDefineSuggesterOutput `json:"-" xml:"-"`
-}
-
-type metadataDefineSuggesterOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1324,6 +1248,8 @@ func (s DefineSuggesterOutput) GoString() string {
 // the name of the domain you want to update and the analysis scheme you want
 // to delete.
 type DeleteAnalysisSchemeInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the analysis scheme you want to delete.
 	AnalysisSchemeName *string `min:"1" type:"string" required:"true"`
 
@@ -1332,12 +1258,6 @@ type DeleteAnalysisSchemeInput struct {
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
 	DomainName *string `min:"3" type:"string" required:"true"`
-
-	metadataDeleteAnalysisSchemeInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteAnalysisSchemeInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1353,14 +1273,10 @@ func (s DeleteAnalysisSchemeInput) GoString() string {
 // The result of a DeleteAnalysisScheme request. Contains the status of the
 // deleted analysis scheme.
 type DeleteAnalysisSchemeOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The status of the analysis scheme being deleted.
 	AnalysisScheme *AnalysisSchemeStatus `type:"structure" required:"true"`
-
-	metadataDeleteAnalysisSchemeOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteAnalysisSchemeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1376,14 +1292,10 @@ func (s DeleteAnalysisSchemeOutput) GoString() string {
 // Container for the parameters to the DeleteDomain operation. Specifies the
 // name of the domain you want to delete.
 type DeleteDomainInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the domain you want to permanently delete.
 	DomainName *string `min:"3" type:"string" required:"true"`
-
-	metadataDeleteDomainInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDomainInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1399,14 +1311,10 @@ func (s DeleteDomainInput) GoString() string {
 // The result of a DeleteDomain request. Contains the status of a newly deleted
 // domain, or no status if the domain has already been completely deleted.
 type DeleteDomainOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The current status of the search domain.
 	DomainStatus *DomainStatus `type:"structure"`
-
-	metadataDeleteDomainOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDomainOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1423,6 +1331,8 @@ func (s DeleteDomainOutput) GoString() string {
 // the name of the domain you want to update and the name of the expression
 // you want to delete.
 type DeleteExpressionInput struct {
+	_ struct{} `type:"structure"`
+
 	// A string that represents the name of a domain. Domain names are unique across
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
@@ -1431,12 +1341,6 @@ type DeleteExpressionInput struct {
 
 	// The name of the Expression to delete.
 	ExpressionName *string `min:"1" type:"string" required:"true"`
-
-	metadataDeleteExpressionInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteExpressionInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1452,14 +1356,10 @@ func (s DeleteExpressionInput) GoString() string {
 // The result of a DeleteExpression request. Specifies the expression being
 // deleted.
 type DeleteExpressionOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The status of the expression being deleted.
 	Expression *ExpressionStatus `type:"structure" required:"true"`
-
-	metadataDeleteExpressionOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteExpressionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1476,6 +1376,8 @@ func (s DeleteExpressionOutput) GoString() string {
 // the name of the domain you want to update and the name of the index field
 // you want to delete.
 type DeleteIndexFieldInput struct {
+	_ struct{} `type:"structure"`
+
 	// A string that represents the name of a domain. Domain names are unique across
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
@@ -1485,12 +1387,6 @@ type DeleteIndexFieldInput struct {
 	// The name of the index field your want to remove from the domain's indexing
 	// options.
 	IndexFieldName *string `min:"1" type:"string" required:"true"`
-
-	metadataDeleteIndexFieldInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteIndexFieldInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1505,14 +1401,10 @@ func (s DeleteIndexFieldInput) GoString() string {
 
 // The result of a DeleteIndexField request.
 type DeleteIndexFieldOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The status of the index field being deleted.
 	IndexField *IndexFieldStatus `type:"structure" required:"true"`
-
-	metadataDeleteIndexFieldOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteIndexFieldOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1529,6 +1421,8 @@ func (s DeleteIndexFieldOutput) GoString() string {
 // the name of the domain you want to update and name of the suggester you want
 // to delete.
 type DeleteSuggesterInput struct {
+	_ struct{} `type:"structure"`
+
 	// A string that represents the name of a domain. Domain names are unique across
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
@@ -1537,12 +1431,6 @@ type DeleteSuggesterInput struct {
 
 	// Specifies the name of the suggester you want to delete.
 	SuggesterName *string `min:"1" type:"string" required:"true"`
-
-	metadataDeleteSuggesterInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteSuggesterInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1558,14 +1446,10 @@ func (s DeleteSuggesterInput) GoString() string {
 // The result of a DeleteSuggester request. Contains the status of the deleted
 // suggester.
 type DeleteSuggesterOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The status of the suggester being deleted.
 	Suggester *SuggesterStatus `type:"structure" required:"true"`
-
-	metadataDeleteSuggesterOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteSuggesterOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1584,6 +1468,8 @@ func (s DeleteSuggesterOutput) GoString() string {
 // To show the active configuration and exclude any pending changes, set the
 // Deployed option to true.
 type DescribeAnalysisSchemesInput struct {
+	_ struct{} `type:"structure"`
+
 	// The analysis schemes you want to describe.
 	AnalysisSchemeNames []*string `type:"list"`
 
@@ -1593,12 +1479,6 @@ type DescribeAnalysisSchemesInput struct {
 
 	// The name of the domain you want to describe.
 	DomainName *string `min:"3" type:"string" required:"true"`
-
-	metadataDescribeAnalysisSchemesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAnalysisSchemesInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1614,14 +1494,10 @@ func (s DescribeAnalysisSchemesInput) GoString() string {
 // The result of a DescribeAnalysisSchemes request. Contains the analysis schemes
 // configured for the domain specified in the request.
 type DescribeAnalysisSchemesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The analysis scheme descriptions.
 	AnalysisSchemes []*AnalysisSchemeStatus `type:"list" required:"true"`
-
-	metadataDescribeAnalysisSchemesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAnalysisSchemesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1639,18 +1515,14 @@ func (s DescribeAnalysisSchemesOutput) GoString() string {
 // configuration and exclude any pending changes, set the Deployed option to
 // true.
 type DescribeAvailabilityOptionsInput struct {
+	_ struct{} `type:"structure"`
+
 	// Whether to display the deployed configuration (true) or include any pending
 	// changes (false). Defaults to false.
 	Deployed *bool `type:"boolean"`
 
 	// The name of the domain you want to describe.
 	DomainName *string `min:"3" type:"string" required:"true"`
-
-	metadataDescribeAvailabilityOptionsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAvailabilityOptionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1666,15 +1538,11 @@ func (s DescribeAvailabilityOptionsInput) GoString() string {
 // The result of a DescribeAvailabilityOptions request. Indicates whether or
 // not the Multi-AZ option is enabled for the domain specified in the request.
 type DescribeAvailabilityOptionsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The availability options configured for the domain. Indicates whether Multi-AZ
 	// is enabled for the domain.
 	AvailabilityOptions *AvailabilityOptionsStatus `type:"structure"`
-
-	metadataDescribeAvailabilityOptionsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeAvailabilityOptionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1691,14 +1559,10 @@ func (s DescribeAvailabilityOptionsOutput) GoString() string {
 // shows the status of all domains. To restrict the response to particular domains,
 // specify the names of the domains you want to describe.
 type DescribeDomainsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The names of the domains you want to include in the response.
 	DomainNames []*string `type:"list"`
-
-	metadataDescribeDomainsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDomainsInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1714,14 +1578,10 @@ func (s DescribeDomainsInput) GoString() string {
 // The result of a DescribeDomains request. Contains the status of the domains
 // specified in the request or all domains owned by the account.
 type DescribeDomainsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list that contains the status of each requested domain.
 	DomainStatusList []*DomainStatus `type:"list" required:"true"`
-
-	metadataDescribeDomainsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDomainsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1740,6 +1600,8 @@ func (s DescribeDomainsOutput) GoString() string {
 // describe. To show the active configuration and exclude any pending changes,
 // set the Deployed option to true.
 type DescribeExpressionsInput struct {
+	_ struct{} `type:"structure"`
+
 	// Whether to display the deployed configuration (true) or include any pending
 	// changes (false). Defaults to false.
 	Deployed *bool `type:"boolean"`
@@ -1750,12 +1612,6 @@ type DescribeExpressionsInput struct {
 	// Limits the DescribeExpressions response to the specified expressions. If
 	// not specified, all expressions are shown.
 	ExpressionNames []*string `type:"list"`
-
-	metadataDescribeExpressionsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeExpressionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1771,14 +1627,10 @@ func (s DescribeExpressionsInput) GoString() string {
 // The result of a DescribeExpressions request. Contains the expressions configured
 // for the domain specified in the request.
 type DescribeExpressionsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The expressions configured for the domain.
 	Expressions []*ExpressionStatus `type:"list" required:"true"`
-
-	metadataDescribeExpressionsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeExpressionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1797,6 +1649,8 @@ func (s DescribeExpressionsOutput) GoString() string {
 // describe. To show the active configuration and exclude any pending changes,
 // set the Deployed option to true.
 type DescribeIndexFieldsInput struct {
+	_ struct{} `type:"structure"`
+
 	// Whether to display the deployed configuration (true) or include any pending
 	// changes (false). Defaults to false.
 	Deployed *bool `type:"boolean"`
@@ -1807,12 +1661,6 @@ type DescribeIndexFieldsInput struct {
 	// A list of the index fields you want to describe. If not specified, information
 	// is returned for all configured index fields.
 	FieldNames []*string `type:"list"`
-
-	metadataDescribeIndexFieldsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeIndexFieldsInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1828,14 +1676,10 @@ func (s DescribeIndexFieldsInput) GoString() string {
 // The result of a DescribeIndexFields request. Contains the index fields configured
 // for the domain specified in the request.
 type DescribeIndexFieldsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The index fields configured for the domain.
 	IndexFields []*IndexFieldStatus `type:"list" required:"true"`
-
-	metadataDescribeIndexFieldsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeIndexFieldsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1851,17 +1695,13 @@ func (s DescribeIndexFieldsOutput) GoString() string {
 // Container for the parameters to the DescribeScalingParameters operation.
 // Specifies the name of the domain you want to describe.
 type DescribeScalingParametersInput struct {
+	_ struct{} `type:"structure"`
+
 	// A string that represents the name of a domain. Domain names are unique across
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
 	DomainName *string `min:"3" type:"string" required:"true"`
-
-	metadataDescribeScalingParametersInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeScalingParametersInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1877,14 +1717,10 @@ func (s DescribeScalingParametersInput) GoString() string {
 // The result of a DescribeScalingParameters request. Contains the scaling parameters
 // configured for the domain specified in the request.
 type DescribeScalingParametersOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The status and configuration of a search domain's scaling parameters.
 	ScalingParameters *ScalingParametersStatus `type:"structure" required:"true"`
-
-	metadataDescribeScalingParametersOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeScalingParametersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1902,18 +1738,14 @@ func (s DescribeScalingParametersOutput) GoString() string {
 // configuration and exclude any pending changes, set the Deployed option to
 // true.
 type DescribeServiceAccessPoliciesInput struct {
+	_ struct{} `type:"structure"`
+
 	// Whether to display the deployed configuration (true) or include any pending
 	// changes (false). Defaults to false.
 	Deployed *bool `type:"boolean"`
 
 	// The name of the domain you want to describe.
 	DomainName *string `min:"3" type:"string" required:"true"`
-
-	metadataDescribeServiceAccessPoliciesInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeServiceAccessPoliciesInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1928,14 +1760,10 @@ func (s DescribeServiceAccessPoliciesInput) GoString() string {
 
 // The result of a DescribeServiceAccessPolicies request.
 type DescribeServiceAccessPoliciesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The access rules configured for the domain specified in the request.
 	AccessPolicies *AccessPoliciesStatus `type:"structure" required:"true"`
-
-	metadataDescribeServiceAccessPoliciesOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeServiceAccessPoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1954,6 +1782,8 @@ func (s DescribeServiceAccessPoliciesOutput) GoString() string {
 // To show the active configuration and exclude any pending changes, set the
 // Deployed option to true.
 type DescribeSuggestersInput struct {
+	_ struct{} `type:"structure"`
+
 	// Whether to display the deployed configuration (true) or include any pending
 	// changes (false). Defaults to false.
 	Deployed *bool `type:"boolean"`
@@ -1963,12 +1793,6 @@ type DescribeSuggestersInput struct {
 
 	// The suggesters you want to describe.
 	SuggesterNames []*string `type:"list"`
-
-	metadataDescribeSuggestersInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSuggestersInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1983,14 +1807,10 @@ func (s DescribeSuggestersInput) GoString() string {
 
 // The result of a DescribeSuggesters request.
 type DescribeSuggestersOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The suggesters configured for the domain specified in the request.
 	Suggesters []*SuggesterStatus `type:"list" required:"true"`
-
-	metadataDescribeSuggestersOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSuggestersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2005,6 +1825,8 @@ func (s DescribeSuggestersOutput) GoString() string {
 
 // Options for a search suggester.
 type DocumentSuggesterOptions struct {
+	_ struct{} `type:"structure"`
+
 	// The level of fuzziness allowed when suggesting matches for a string: none,
 	// low, or high. With none, the specified string is treated as an exact prefix.
 	// With low, suggestions must differ from the specified string by no more than
@@ -2023,12 +1845,6 @@ type DocumentSuggesterOptions struct {
 
 	// The name of the index field you want to use for suggestions.
 	SourceField *string `min:"1" type:"string" required:"true"`
-
-	metadataDocumentSuggesterOptions `json:"-" xml:"-"`
-}
-
-type metadataDocumentSuggesterOptions struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2043,6 +1859,8 @@ func (s DocumentSuggesterOptions) GoString() string {
 
 // The current status of the search domain.
 type DomainStatus struct {
+	_ struct{} `type:"structure"`
+
 	// The Amazon Resource Name (ARN) of the search domain. See Identifiers for
 	// IAM Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/index.html?Using_Identifiers.html"
 	// target="_blank) in Using AWS Identity and Access Management for more information.
@@ -2092,12 +1910,6 @@ type DomainStatus struct {
 
 	// The service endpoint for requesting search results from a search domain.
 	SearchService *ServiceEndpoint `type:"structure"`
-
-	metadataDomainStatus `json:"-" xml:"-"`
-}
-
-type metadataDomainStatus struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2114,6 +1926,8 @@ func (s DomainStatus) GoString() string {
 // point values. Present if IndexFieldType specifies the field is of type double-array.
 // All options are enabled by default.
 type DoubleArrayOptions struct {
+	_ struct{} `type:"structure"`
+
 	// A value to use for the field if the field isn't specified for a document.
 	DefaultValue *float64 `type:"double"`
 
@@ -2128,12 +1942,6 @@ type DoubleArrayOptions struct {
 
 	// A list of source fields to map to the field.
 	SourceFields *string `type:"string"`
-
-	metadataDoubleArrayOptions `json:"-" xml:"-"`
-}
-
-type metadataDoubleArrayOptions struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2149,6 +1957,8 @@ func (s DoubleArrayOptions) GoString() string {
 // Options for a double-precision 64-bit floating point field. Present if IndexFieldType
 // specifies the field is of type double. All options are enabled by default.
 type DoubleOptions struct {
+	_ struct{} `type:"structure"`
+
 	// A value to use for the field if the field isn't specified for a document.
 	// This can be important if you are using the field in an expression and that
 	// field is not present in every document.
@@ -2168,12 +1978,6 @@ type DoubleOptions struct {
 
 	// The name of the source field to map to the field.
 	SourceField *string `min:"1" type:"string"`
-
-	metadataDoubleOptions `json:"-" xml:"-"`
-}
-
-type metadataDoubleOptions struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2190,6 +1994,8 @@ func (s DoubleOptions) GoString() string {
 // the search results, define other expressions, or return computed information
 // in the search results.
 type Expression struct {
+	_ struct{} `type:"structure"`
+
 	// Names must begin with a letter and can contain the following characters:
 	// a-z (lowercase), 0-9, and _ (underscore).
 	ExpressionName *string `min:"1" type:"string" required:"true"`
@@ -2199,12 +2005,6 @@ type Expression struct {
 	// see Configuring Expressions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-expressions.html"
 	// target="_blank) in the Amazon CloudSearch Developer Guide.
 	ExpressionValue *string `min:"1" type:"string" required:"true"`
-
-	metadataExpression `json:"-" xml:"-"`
-}
-
-type metadataExpression struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2219,17 +2019,13 @@ func (s Expression) GoString() string {
 
 // The value of an Expression and its current status.
 type ExpressionStatus struct {
+	_ struct{} `type:"structure"`
+
 	// The expression that is evaluated for sorting while processing a search request.
 	Options *Expression `type:"structure" required:"true"`
 
 	// The status of domain configuration option.
 	Status *OptionStatus `type:"structure" required:"true"`
-
-	metadataExpressionStatus `json:"-" xml:"-"`
-}
-
-type metadataExpressionStatus struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2245,17 +2041,13 @@ func (s ExpressionStatus) GoString() string {
 // Container for the parameters to the IndexDocuments operation. Specifies the
 // name of the domain you want to re-index.
 type IndexDocumentsInput struct {
+	_ struct{} `type:"structure"`
+
 	// A string that represents the name of a domain. Domain names are unique across
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
 	DomainName *string `min:"3" type:"string" required:"true"`
-
-	metadataIndexDocumentsInput `json:"-" xml:"-"`
-}
-
-type metadataIndexDocumentsInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2271,14 +2063,10 @@ func (s IndexDocumentsInput) GoString() string {
 // The result of an IndexDocuments request. Contains the status of the indexing
 // operation, including the fields being indexed.
 type IndexDocumentsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The names of the fields that are currently being indexed.
 	FieldNames []*string `type:"list"`
-
-	metadataIndexDocumentsOutput `json:"-" xml:"-"`
-}
-
-type metadataIndexDocumentsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2294,6 +2082,8 @@ func (s IndexDocumentsOutput) GoString() string {
 // Configuration information for a field in the index, including its name, type,
 // and options. The supported options depend on the IndexFieldType.
 type IndexField struct {
+	_ struct{} `type:"structure"`
+
 	// Options for a field that contains an array of dates. Present if IndexFieldType
 	// specifies the field is of type date-array. All options are enabled by default.
 	DateArrayOptions *DateArrayOptions `type:"structure"`
@@ -2367,12 +2157,6 @@ type IndexField struct {
 	// of type text. A text field is always searchable. All options are enabled
 	// by default.
 	TextOptions *TextOptions `type:"structure"`
-
-	metadataIndexField `json:"-" xml:"-"`
-}
-
-type metadataIndexField struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2387,18 +2171,14 @@ func (s IndexField) GoString() string {
 
 // The value of an IndexField and its current status.
 type IndexFieldStatus struct {
+	_ struct{} `type:"structure"`
+
 	// Configuration information for a field in the index, including its name, type,
 	// and options. The supported options depend on the IndexFieldType.
 	Options *IndexField `type:"structure" required:"true"`
 
 	// The status of domain configuration option.
 	Status *OptionStatus `type:"structure" required:"true"`
-
-	metadataIndexFieldStatus `json:"-" xml:"-"`
-}
-
-type metadataIndexFieldStatus struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2415,6 +2195,8 @@ func (s IndexFieldStatus) GoString() string {
 // if IndexFieldType specifies the field is of type int-array. All options are
 // enabled by default.
 type IntArrayOptions struct {
+	_ struct{} `type:"structure"`
+
 	// A value to use for the field if the field isn't specified for a document.
 	DefaultValue *int64 `type:"long"`
 
@@ -2429,12 +2211,6 @@ type IntArrayOptions struct {
 
 	// A list of source fields to map to the field.
 	SourceFields *string `type:"string"`
-
-	metadataIntArrayOptions `json:"-" xml:"-"`
-}
-
-type metadataIntArrayOptions struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2450,6 +2226,8 @@ func (s IntArrayOptions) GoString() string {
 // Options for a 64-bit signed integer field. Present if IndexFieldType specifies
 // the field is of type int. All options are enabled by default.
 type IntOptions struct {
+	_ struct{} `type:"structure"`
+
 	// A value to use for the field if the field isn't specified for a document.
 	// This can be important if you are using the field in an expression and that
 	// field is not present in every document.
@@ -2469,12 +2247,6 @@ type IntOptions struct {
 
 	// The name of the source field to map to the field.
 	SourceField *string `min:"1" type:"string"`
-
-	metadataIntOptions `json:"-" xml:"-"`
-}
-
-type metadataIntOptions struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2491,6 +2263,8 @@ func (s IntOptions) GoString() string {
 // a latitude and longitude value pair. Present if IndexFieldType specifies
 // the field is of type latlon. All options are enabled by default.
 type LatLonOptions struct {
+	_ struct{} `type:"structure"`
+
 	// A value to use for the field if the field isn't specified for a document.
 	DefaultValue *string `type:"string"`
 
@@ -2521,12 +2295,6 @@ type LatLonOptions struct {
 	// The name score is reserved and cannot be used as a field name. To reference
 	// a document's ID, you can use the name _id.
 	SourceField *string `min:"1" type:"string"`
-
-	metadataLatLonOptions `json:"-" xml:"-"`
-}
-
-type metadataLatLonOptions struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2540,15 +2308,11 @@ func (s LatLonOptions) GoString() string {
 }
 
 type Limits struct {
+	_ struct{} `type:"structure"`
+
 	MaximumPartitionCount *int64 `min:"1" type:"integer" required:"true"`
 
 	MaximumReplicationCount *int64 `min:"1" type:"integer" required:"true"`
-
-	metadataLimits `json:"-" xml:"-"`
-}
-
-type metadataLimits struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2562,11 +2326,7 @@ func (s Limits) GoString() string {
 }
 
 type ListDomainNamesInput struct {
-	metadataListDomainNamesInput `json:"-" xml:"-"`
-}
-
-type metadataListDomainNamesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2582,14 +2342,10 @@ func (s ListDomainNamesInput) GoString() string {
 // The result of a ListDomainNames request. Contains a list of the domains owned
 // by an account.
 type ListDomainNamesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The names of the search domains owned by an account.
 	DomainNames map[string]*string `type:"map"`
-
-	metadataListDomainNamesOutput `json:"-" xml:"-"`
-}
-
-type metadataListDomainNamesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2606,6 +2362,8 @@ func (s ListDomainNamesOutput) GoString() string {
 // IndexFieldType specifies the field is of type literal-array. All options
 // are enabled by default.
 type LiteralArrayOptions struct {
+	_ struct{} `type:"structure"`
+
 	// A value to use for the field if the field isn't specified for a document.
 	DefaultValue *string `type:"string"`
 
@@ -2620,12 +2378,6 @@ type LiteralArrayOptions struct {
 
 	// A list of source fields to map to the field.
 	SourceFields *string `type:"string"`
-
-	metadataLiteralArrayOptions `json:"-" xml:"-"`
-}
-
-type metadataLiteralArrayOptions struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2641,6 +2393,8 @@ func (s LiteralArrayOptions) GoString() string {
 // Options for literal field. Present if IndexFieldType specifies the field
 // is of type literal. All options are enabled by default.
 type LiteralOptions struct {
+	_ struct{} `type:"structure"`
+
 	// A value to use for the field if the field isn't specified for a document.
 	DefaultValue *string `type:"string"`
 
@@ -2671,12 +2425,6 @@ type LiteralOptions struct {
 	// The name score is reserved and cannot be used as a field name. To reference
 	// a document's ID, you can use the name _id.
 	SourceField *string `min:"1" type:"string"`
-
-	metadataLiteralOptions `json:"-" xml:"-"`
-}
-
-type metadataLiteralOptions struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2691,6 +2439,8 @@ func (s LiteralOptions) GoString() string {
 
 // The status of domain configuration option.
 type OptionStatus struct {
+	_ struct{} `type:"structure"`
+
 	// A timestamp for when this option was created.
 	CreationDate *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
@@ -2713,12 +2463,6 @@ type OptionStatus struct {
 
 	// A unique integer that indicates when this option was last updated.
 	UpdateVersion *int64 `type:"integer"`
-
-	metadataOptionStatus `json:"-" xml:"-"`
-}
-
-type metadataOptionStatus struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2733,6 +2477,8 @@ func (s OptionStatus) GoString() string {
 
 // The desired instance type and desired number of replicas of each index partition.
 type ScalingParameters struct {
+	_ struct{} `type:"structure"`
+
 	// The instance type that you want to preconfigure for your domain. For example,
 	// search.m1.small.
 	DesiredInstanceType *string `type:"string" enum:"PartitionInstanceType"`
@@ -2743,12 +2489,6 @@ type ScalingParameters struct {
 
 	// The number of replicas you want to preconfigure for each index partition.
 	DesiredReplicationCount *int64 `type:"integer"`
-
-	metadataScalingParameters `json:"-" xml:"-"`
-}
-
-type metadataScalingParameters struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2763,17 +2503,13 @@ func (s ScalingParameters) GoString() string {
 
 // The status and configuration of a search domain's scaling parameters.
 type ScalingParametersStatus struct {
+	_ struct{} `type:"structure"`
+
 	// The desired instance type and desired number of replicas of each index partition.
 	Options *ScalingParameters `type:"structure" required:"true"`
 
 	// The status of domain configuration option.
 	Status *OptionStatus `type:"structure" required:"true"`
-
-	metadataScalingParametersStatus `json:"-" xml:"-"`
-}
-
-type metadataScalingParametersStatus struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2788,15 +2524,11 @@ func (s ScalingParametersStatus) GoString() string {
 
 // The endpoint to which service requests can be submitted.
 type ServiceEndpoint struct {
+	_ struct{} `type:"structure"`
+
 	// The endpoint to which service requests can be submitted. For example, search-imdb-movies-oopcnjfn6ugofer3zx5iadxxca.eu-west-1.cloudsearch.amazonaws.com
 	// or doc-imdb-movies-oopcnjfn6ugofer3zx5iadxxca.eu-west-1.cloudsearch.amazonaws.com.
 	Endpoint *string `type:"string"`
-
-	metadataServiceEndpoint `json:"-" xml:"-"`
-}
-
-type metadataServiceEndpoint struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2813,18 +2545,14 @@ func (s ServiceEndpoint) GoString() string {
 // name and specifies the text field you want to use for suggestions. The following
 // options can be configured for a suggester: FuzzyMatching, SortExpression.
 type Suggester struct {
+	_ struct{} `type:"structure"`
+
 	// Options for a search suggester.
 	DocumentSuggesterOptions *DocumentSuggesterOptions `type:"structure" required:"true"`
 
 	// Names must begin with a letter and can contain the following characters:
 	// a-z (lowercase), 0-9, and _ (underscore).
 	SuggesterName *string `min:"1" type:"string" required:"true"`
-
-	metadataSuggester `json:"-" xml:"-"`
-}
-
-type metadataSuggester struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2839,6 +2567,8 @@ func (s Suggester) GoString() string {
 
 // The value of a Suggester and its current status.
 type SuggesterStatus struct {
+	_ struct{} `type:"structure"`
+
 	// Configuration information for a search suggester. Each suggester has a unique
 	// name and specifies the text field you want to use for suggestions. The following
 	// options can be configured for a suggester: FuzzyMatching, SortExpression.
@@ -2846,12 +2576,6 @@ type SuggesterStatus struct {
 
 	// The status of domain configuration option.
 	Status *OptionStatus `type:"structure" required:"true"`
-
-	metadataSuggesterStatus `json:"-" xml:"-"`
-}
-
-type metadataSuggesterStatus struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2868,6 +2592,8 @@ func (s SuggesterStatus) GoString() string {
 // specifies the field is of type text-array. A text-array field is always searchable.
 // All options are enabled by default.
 type TextArrayOptions struct {
+	_ struct{} `type:"structure"`
+
 	// The name of an analysis scheme for a text-array field.
 	AnalysisScheme *string `type:"string"`
 
@@ -2882,12 +2608,6 @@ type TextArrayOptions struct {
 
 	// A list of source fields to map to the field.
 	SourceFields *string `type:"string"`
-
-	metadataTextArrayOptions `json:"-" xml:"-"`
-}
-
-type metadataTextArrayOptions struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2904,6 +2624,8 @@ func (s TextArrayOptions) GoString() string {
 // of type text. A text field is always searchable. All options are enabled
 // by default.
 type TextOptions struct {
+	_ struct{} `type:"structure"`
+
 	// The name of an analysis scheme for a text field.
 	AnalysisScheme *string `type:"string"`
 
@@ -2934,12 +2656,6 @@ type TextOptions struct {
 	// The name score is reserved and cannot be used as a field name. To reference
 	// a document's ID, you can use the name _id.
 	SourceField *string `min:"1" type:"string"`
-
-	metadataTextOptions `json:"-" xml:"-"`
-}
-
-type metadataTextOptions struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2956,6 +2672,8 @@ func (s TextOptions) GoString() string {
 // Specifies the name of the domain you want to update and the Multi-AZ availability
 // option.
 type UpdateAvailabilityOptionsInput struct {
+	_ struct{} `type:"structure"`
+
 	// A string that represents the name of a domain. Domain names are unique across
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
@@ -2967,12 +2685,6 @@ type UpdateAvailabilityOptionsInput struct {
 	// to downgrade the domain to a single Availability Zone by setting the Multi-AZ
 	// option to false.
 	MultiAZ *bool `type:"boolean" required:"true"`
-
-	metadataUpdateAvailabilityOptionsInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateAvailabilityOptionsInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2988,15 +2700,11 @@ func (s UpdateAvailabilityOptionsInput) GoString() string {
 // The result of a UpdateAvailabilityOptions request. Contains the status of
 // the domain's availability options.
 type UpdateAvailabilityOptionsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The newly-configured availability options. Indicates whether Multi-AZ is
 	// enabled for the domain.
 	AvailabilityOptions *AvailabilityOptionsStatus `type:"structure"`
-
-	metadataUpdateAvailabilityOptionsOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateAvailabilityOptionsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3013,6 +2721,8 @@ func (s UpdateAvailabilityOptionsOutput) GoString() string {
 // the name of the domain you want to update and the scaling parameters you
 // want to configure.
 type UpdateScalingParametersInput struct {
+	_ struct{} `type:"structure"`
+
 	// A string that represents the name of a domain. Domain names are unique across
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
@@ -3021,12 +2731,6 @@ type UpdateScalingParametersInput struct {
 
 	// The desired instance type and desired number of replicas of each index partition.
 	ScalingParameters *ScalingParameters `type:"structure" required:"true"`
-
-	metadataUpdateScalingParametersInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateScalingParametersInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3042,14 +2746,10 @@ func (s UpdateScalingParametersInput) GoString() string {
 // The result of a UpdateScalingParameters request. Contains the status of the
 // newly-configured scaling parameters.
 type UpdateScalingParametersOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The status and configuration of a search domain's scaling parameters.
 	ScalingParameters *ScalingParametersStatus `type:"structure" required:"true"`
-
-	metadataUpdateScalingParametersOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateScalingParametersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3066,6 +2766,8 @@ func (s UpdateScalingParametersOutput) GoString() string {
 // Specifies the name of the domain you want to update and the access rules
 // you want to configure.
 type UpdateServiceAccessPoliciesInput struct {
+	_ struct{} `type:"structure"`
+
 	// The access rules you want to configure. These rules replace any existing
 	// rules.
 	AccessPolicies *string `type:"string" required:"true"`
@@ -3075,12 +2777,6 @@ type UpdateServiceAccessPoliciesInput struct {
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
 	DomainName *string `min:"3" type:"string" required:"true"`
-
-	metadataUpdateServiceAccessPoliciesInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateServiceAccessPoliciesInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3096,14 +2792,10 @@ func (s UpdateServiceAccessPoliciesInput) GoString() string {
 // The result of an UpdateServiceAccessPolicies request. Contains the new access
 // policies.
 type UpdateServiceAccessPoliciesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The access rules configured for the domain.
 	AccessPolicies *AccessPoliciesStatus `type:"structure" required:"true"`
-
-	metadataUpdateServiceAccessPoliciesOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateServiceAccessPoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation

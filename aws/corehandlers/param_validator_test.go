@@ -32,17 +32,12 @@ type StructShape struct {
 	OptionalStruct *ConditionalStructShape
 
 	hiddenParameter *string
-
-	metadataStructureShape
-}
-
-type metadataStructureShape struct {
-	SDKShapeTraits bool
+	_               struct{}
 }
 
 type ConditionalStructShape struct {
-	Name           *string `required:"true"`
-	SDKShapeTraits bool
+	Name *string `required:"true"`
+	_    struct{}
 }
 
 func TestNoErrors(t *testing.T) {

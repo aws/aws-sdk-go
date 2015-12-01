@@ -991,6 +991,8 @@ func (c *KMS) UpdateKeyDescription(input *UpdateKeyDescriptionInput) (*UpdateKey
 
 // Contains information about an alias.
 type AliasListEntry struct {
+	_ struct{} `type:"structure"`
+
 	// String that contains the key ARN.
 	AliasArn *string `min:"20" type:"string"`
 
@@ -999,12 +1001,6 @@ type AliasListEntry struct {
 
 	// String that contains the key identifier pointed to by the alias.
 	TargetKeyId *string `min:"1" type:"string"`
-
-	metadataAliasListEntry `json:"-" xml:"-"`
-}
-
-type metadataAliasListEntry struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1018,6 +1014,8 @@ func (s AliasListEntry) GoString() string {
 }
 
 type CancelKeyDeletionInput struct {
+	_ struct{} `type:"structure"`
+
 	// The unique identifier for the customer master key (CMK) for which to cancel
 	// deletion.
 	//
@@ -1029,12 +1027,6 @@ type CancelKeyDeletionInput struct {
 	// To obtain the unique key ID and key ARN for a given CMK, use ListKeys or
 	// DescribeKey.
 	KeyId *string `min:"1" type:"string" required:"true"`
-
-	metadataCancelKeyDeletionInput `json:"-" xml:"-"`
-}
-
-type metadataCancelKeyDeletionInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1048,14 +1040,10 @@ func (s CancelKeyDeletionInput) GoString() string {
 }
 
 type CancelKeyDeletionOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The unique identifier of the master key for which deletion is canceled.
 	KeyId *string `min:"1" type:"string"`
-
-	metadataCancelKeyDeletionOutput `json:"-" xml:"-"`
-}
-
-type metadataCancelKeyDeletionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1069,6 +1057,8 @@ func (s CancelKeyDeletionOutput) GoString() string {
 }
 
 type CreateAliasInput struct {
+	_ struct{} `type:"structure"`
+
 	// String that contains the display name. The name must start with the word
 	// "alias" followed by a forward slash (alias/). Aliases that begin with "alias/AWS"
 	// are reserved.
@@ -1079,12 +1069,6 @@ type CreateAliasInput struct {
 	// specified ARN to a key.  Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	TargetKeyId *string `min:"1" type:"string" required:"true"`
-
-	metadataCreateAliasInput `json:"-" xml:"-"`
-}
-
-type metadataCreateAliasInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1098,11 +1082,7 @@ func (s CreateAliasInput) GoString() string {
 }
 
 type CreateAliasOutput struct {
-	metadataCreateAliasOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateAliasOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1116,6 +1096,8 @@ func (s CreateAliasOutput) GoString() string {
 }
 
 type CreateGrantInput struct {
+	_ struct{} `type:"structure"`
+
 	// The conditions under which the operations permitted by the grant are allowed.
 	//
 	// You can use this value to allow the operations permitted by the grant only
@@ -1178,12 +1160,6 @@ type CreateGrantInput struct {
 	// (IAM) (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam)
 	// in the Example ARNs section of the AWS General Reference.
 	RetiringPrincipal *string `min:"1" type:"string"`
-
-	metadataCreateGrantInput `json:"-" xml:"-"`
-}
-
-type metadataCreateGrantInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1197,6 +1173,8 @@ func (s CreateGrantInput) GoString() string {
 }
 
 type CreateGrantOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The unique identifier for the grant.
 	//
 	// You can use the GrantId in a subsequent RetireGrant or RevokeGrant operation.
@@ -1207,12 +1185,6 @@ type CreateGrantOutput struct {
 	// For more information about using grant tokens, see Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token)
 	// in the AWS Key Management Service Developer Guide.
 	GrantToken *string `min:"1" type:"string"`
-
-	metadataCreateGrantOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateGrantOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1226,6 +1198,8 @@ func (s CreateGrantOutput) GoString() string {
 }
 
 type CreateKeyInput struct {
+	_ struct{} `type:"structure"`
+
 	// Description of the key. We recommend that you choose a description that helps
 	// your customer decide whether the key is appropriate for a task.
 	Description *string `type:"string"`
@@ -1237,12 +1211,6 @@ type CreateKeyInput struct {
 	// Policy to attach to the key. This is required and delegates back to the account.
 	// The key is the root of trust. The policy size limit is 32 KiB (32768 bytes).
 	Policy *string `min:"1" type:"string"`
-
-	metadataCreateKeyInput `json:"-" xml:"-"`
-}
-
-type metadataCreateKeyInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1256,14 +1224,10 @@ func (s CreateKeyInput) GoString() string {
 }
 
 type CreateKeyOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Metadata associated with the key.
 	KeyMetadata *KeyMetadata `type:"structure"`
-
-	metadataCreateKeyOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateKeyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1277,6 +1241,8 @@ func (s CreateKeyOutput) GoString() string {
 }
 
 type DecryptInput struct {
+	_ struct{} `type:"structure"`
+
 	// Ciphertext to be decrypted. The blob includes metadata.
 	CiphertextBlob []byte `min:"1" type:"blob" required:"true"`
 
@@ -1290,12 +1256,6 @@ type DecryptInput struct {
 	// For more information, go to Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token)
 	// in the AWS Key Management Service Developer Guide.
 	GrantTokens []*string `type:"list"`
-
-	metadataDecryptInput `json:"-" xml:"-"`
-}
-
-type metadataDecryptInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1309,6 +1269,8 @@ func (s DecryptInput) GoString() string {
 }
 
 type DecryptOutput struct {
+	_ struct{} `type:"structure"`
+
 	// ARN of the key used to perform the decryption. This value is returned if
 	// no errors are encountered during the operation.
 	KeyId *string `min:"1" type:"string"`
@@ -1316,12 +1278,6 @@ type DecryptOutput struct {
 	// Decrypted plaintext data. This value may not be returned if the customer
 	// master key is not available or if you didn't have permission to use it.
 	Plaintext []byte `min:"1" type:"blob"`
-
-	metadataDecryptOutput `json:"-" xml:"-"`
-}
-
-type metadataDecryptOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1335,15 +1291,11 @@ func (s DecryptOutput) GoString() string {
 }
 
 type DeleteAliasInput struct {
+	_ struct{} `type:"structure"`
+
 	// The alias to be deleted. The name must start with the word "alias" followed
 	// by a forward slash (alias/). Aliases that begin with "alias/AWS" are reserved.
 	AliasName *string `min:"1" type:"string" required:"true"`
-
-	metadataDeleteAliasInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteAliasInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1357,11 +1309,7 @@ func (s DeleteAliasInput) GoString() string {
 }
 
 type DeleteAliasOutput struct {
-	metadataDeleteAliasOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteAliasOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1375,6 +1323,8 @@ func (s DeleteAliasOutput) GoString() string {
 }
 
 type DescribeKeyInput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of grant tokens.
 	//
 	// For more information, go to Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token)
@@ -1388,12 +1338,6 @@ type DescribeKeyInput struct {
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012 Alias
 	// Name Example - alias/MyAliasName
 	KeyId *string `min:"1" type:"string" required:"true"`
-
-	metadataDescribeKeyInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeKeyInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1407,14 +1351,10 @@ func (s DescribeKeyInput) GoString() string {
 }
 
 type DescribeKeyOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Metadata associated with the key.
 	KeyMetadata *KeyMetadata `type:"structure"`
-
-	metadataDescribeKeyOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeKeyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1428,17 +1368,13 @@ func (s DescribeKeyOutput) GoString() string {
 }
 
 type DisableKeyInput struct {
+	_ struct{} `type:"structure"`
+
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
 	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	KeyId *string `min:"1" type:"string" required:"true"`
-
-	metadataDisableKeyInput `json:"-" xml:"-"`
-}
-
-type metadataDisableKeyInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1452,11 +1388,7 @@ func (s DisableKeyInput) GoString() string {
 }
 
 type DisableKeyOutput struct {
-	metadataDisableKeyOutput `json:"-" xml:"-"`
-}
-
-type metadataDisableKeyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1470,17 +1402,13 @@ func (s DisableKeyOutput) GoString() string {
 }
 
 type DisableKeyRotationInput struct {
+	_ struct{} `type:"structure"`
+
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
 	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	KeyId *string `min:"1" type:"string" required:"true"`
-
-	metadataDisableKeyRotationInput `json:"-" xml:"-"`
-}
-
-type metadataDisableKeyRotationInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1494,11 +1422,7 @@ func (s DisableKeyRotationInput) GoString() string {
 }
 
 type DisableKeyRotationOutput struct {
-	metadataDisableKeyRotationOutput `json:"-" xml:"-"`
-}
-
-type metadataDisableKeyRotationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1512,17 +1436,13 @@ func (s DisableKeyRotationOutput) GoString() string {
 }
 
 type EnableKeyInput struct {
+	_ struct{} `type:"structure"`
+
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
 	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	KeyId *string `min:"1" type:"string" required:"true"`
-
-	metadataEnableKeyInput `json:"-" xml:"-"`
-}
-
-type metadataEnableKeyInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1536,11 +1456,7 @@ func (s EnableKeyInput) GoString() string {
 }
 
 type EnableKeyOutput struct {
-	metadataEnableKeyOutput `json:"-" xml:"-"`
-}
-
-type metadataEnableKeyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1554,17 +1470,13 @@ func (s EnableKeyOutput) GoString() string {
 }
 
 type EnableKeyRotationInput struct {
+	_ struct{} `type:"structure"`
+
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
 	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	KeyId *string `min:"1" type:"string" required:"true"`
-
-	metadataEnableKeyRotationInput `json:"-" xml:"-"`
-}
-
-type metadataEnableKeyRotationInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1578,11 +1490,7 @@ func (s EnableKeyRotationInput) GoString() string {
 }
 
 type EnableKeyRotationOutput struct {
-	metadataEnableKeyRotationOutput `json:"-" xml:"-"`
-}
-
-type metadataEnableKeyRotationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1596,6 +1504,8 @@ func (s EnableKeyRotationOutput) GoString() string {
 }
 
 type EncryptInput struct {
+	_ struct{} `type:"structure"`
+
 	// Name/value pair that specifies the encryption context to be used for authenticated
 	// encryption. If used here, the same value must be supplied to the Decrypt
 	// API or decryption will fail. For more information, see Encryption Context
@@ -1618,12 +1528,6 @@ type EncryptInput struct {
 
 	// Data to be encrypted.
 	Plaintext []byte `min:"1" type:"blob" required:"true"`
-
-	metadataEncryptInput `json:"-" xml:"-"`
-}
-
-type metadataEncryptInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1637,18 +1541,14 @@ func (s EncryptInput) GoString() string {
 }
 
 type EncryptOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The encrypted plaintext. If you are using the CLI, the value is Base64 encoded.
 	// Otherwise, it is not encoded.
 	CiphertextBlob []byte `min:"1" type:"blob"`
 
 	// The ID of the key used during encryption.
 	KeyId *string `min:"1" type:"string"`
-
-	metadataEncryptOutput `json:"-" xml:"-"`
-}
-
-type metadataEncryptOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1662,6 +1562,8 @@ func (s EncryptOutput) GoString() string {
 }
 
 type GenerateDataKeyInput struct {
+	_ struct{} `type:"structure"`
+
 	// Name/value pair that contains additional data to be authenticated during
 	// the encryption and decryption processes that use the key. This value is logged
 	// by AWS CloudTrail to provide context around the data encrypted by the key.
@@ -1689,12 +1591,6 @@ type GenerateDataKeyInput struct {
 	// 128, 256, 512, and 1024. 1024 is the current limit. We recommend that you
 	// use the KeySpec parameter instead.
 	NumberOfBytes *int64 `min:"1" type:"integer"`
-
-	metadataGenerateDataKeyInput `json:"-" xml:"-"`
-}
-
-type metadataGenerateDataKeyInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1708,6 +1604,8 @@ func (s GenerateDataKeyInput) GoString() string {
 }
 
 type GenerateDataKeyOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Ciphertext that contains the encrypted data key. You must store the blob
 	// and enough information to reconstruct the encryption context so that the
 	// data encrypted by using the key can later be decrypted. You must provide
@@ -1725,12 +1623,6 @@ type GenerateDataKeyOutput struct {
 	// Plaintext that contains the data key. Use this for encryption and decryption
 	// and then remove it from memory as soon as possible.
 	Plaintext []byte `min:"1" type:"blob"`
-
-	metadataGenerateDataKeyOutput `json:"-" xml:"-"`
-}
-
-type metadataGenerateDataKeyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1744,6 +1636,8 @@ func (s GenerateDataKeyOutput) GoString() string {
 }
 
 type GenerateDataKeyWithoutPlaintextInput struct {
+	_ struct{} `type:"structure"`
+
 	// Name:value pair that contains additional data to be authenticated during
 	// the encryption and decryption processes.
 	EncryptionContext map[string]*string `type:"map"`
@@ -1770,12 +1664,6 @@ type GenerateDataKeyWithoutPlaintextInput struct {
 	// 128, 256, 512, 1024 and so on. We recommend that you use the KeySpec parameter
 	// instead.
 	NumberOfBytes *int64 `min:"1" type:"integer"`
-
-	metadataGenerateDataKeyWithoutPlaintextInput `json:"-" xml:"-"`
-}
-
-type metadataGenerateDataKeyWithoutPlaintextInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1789,6 +1677,8 @@ func (s GenerateDataKeyWithoutPlaintextInput) GoString() string {
 }
 
 type GenerateDataKeyWithoutPlaintextOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Ciphertext that contains the wrapped data key. You must store the blob and
 	// encryption context so that the key can be used in a future decrypt operation.
 	//
@@ -1799,12 +1689,6 @@ type GenerateDataKeyWithoutPlaintextOutput struct {
 	// System generated unique identifier of the key to be used to decrypt the encrypted
 	// copy of the data key.
 	KeyId *string `min:"1" type:"string"`
-
-	metadataGenerateDataKeyWithoutPlaintextOutput `json:"-" xml:"-"`
-}
-
-type metadataGenerateDataKeyWithoutPlaintextOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1818,15 +1702,11 @@ func (s GenerateDataKeyWithoutPlaintextOutput) GoString() string {
 }
 
 type GenerateRandomInput struct {
+	_ struct{} `type:"structure"`
+
 	// Integer that contains the number of bytes to generate. Common values are
 	// 128, 256, 512, 1024 and so on. The current limit is 1024 bytes.
 	NumberOfBytes *int64 `min:"1" type:"integer"`
-
-	metadataGenerateRandomInput `json:"-" xml:"-"`
-}
-
-type metadataGenerateRandomInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1840,14 +1720,10 @@ func (s GenerateRandomInput) GoString() string {
 }
 
 type GenerateRandomOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Plaintext that contains the unpredictable byte string.
 	Plaintext []byte `min:"1" type:"blob"`
-
-	metadataGenerateRandomOutput `json:"-" xml:"-"`
-}
-
-type metadataGenerateRandomOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1861,6 +1737,8 @@ func (s GenerateRandomOutput) GoString() string {
 }
 
 type GetKeyPolicyInput struct {
+	_ struct{} `type:"structure"`
+
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
 	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
@@ -1870,12 +1748,6 @@ type GetKeyPolicyInput struct {
 	// String that contains the name of the policy. Currently, this must be "default".
 	// Policy names can be discovered by calling ListKeyPolicies.
 	PolicyName *string `min:"1" type:"string" required:"true"`
-
-	metadataGetKeyPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataGetKeyPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1889,14 +1761,10 @@ func (s GetKeyPolicyInput) GoString() string {
 }
 
 type GetKeyPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A policy document in JSON format.
 	Policy *string `min:"1" type:"string"`
-
-	metadataGetKeyPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataGetKeyPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1910,17 +1778,13 @@ func (s GetKeyPolicyOutput) GoString() string {
 }
 
 type GetKeyRotationStatusInput struct {
+	_ struct{} `type:"structure"`
+
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
 	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	KeyId *string `min:"1" type:"string" required:"true"`
-
-	metadataGetKeyRotationStatusInput `json:"-" xml:"-"`
-}
-
-type metadataGetKeyRotationStatusInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1934,14 +1798,10 @@ func (s GetKeyRotationStatusInput) GoString() string {
 }
 
 type GetKeyRotationStatusOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A Boolean value that specifies whether key rotation is enabled.
 	KeyRotationEnabled *bool `type:"boolean"`
-
-	metadataGetKeyRotationStatusOutput `json:"-" xml:"-"`
-}
-
-type metadataGetKeyRotationStatusOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1962,6 +1822,8 @@ func (s GetKeyRotationStatusOutput) GoString() string {
 // about encryption context, see Encryption Context (http://docs.aws.amazon.com/kms/latest/developerguide/encrypt-context.html)
 // in the AWS Key Management Service Developer Guide.
 type GrantConstraints struct {
+	_ struct{} `type:"structure"`
+
 	// Contains a list of key-value pairs that must be present in the encryption
 	// context of a subsequent operation permitted by the grant. When a subsequent
 	// operation permitted by the grant includes an encryption context that matches
@@ -1975,12 +1837,6 @@ type GrantConstraints struct {
 	// context that matches this list or is a subset of this list, the grant allows
 	// the operation. Otherwise, the operation is not allowed.
 	EncryptionContextSubset map[string]*string `type:"map"`
-
-	metadataGrantConstraints `json:"-" xml:"-"`
-}
-
-type metadataGrantConstraints struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1995,6 +1851,8 @@ func (s GrantConstraints) GoString() string {
 
 // Contains information about an entry in a list of grants.
 type GrantListEntry struct {
+	_ struct{} `type:"structure"`
+
 	// The conditions under which the grant's operations are allowed.
 	Constraints *GrantConstraints `type:"structure"`
 
@@ -2023,12 +1881,6 @@ type GrantListEntry struct {
 
 	// The principal that can retire the grant.
 	RetiringPrincipal *string `min:"1" type:"string"`
-
-	metadataGrantListEntry `json:"-" xml:"-"`
-}
-
-type metadataGrantListEntry struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2043,17 +1895,13 @@ func (s GrantListEntry) GoString() string {
 
 // Contains information about each entry in the key list.
 type KeyListEntry struct {
+	_ struct{} `type:"structure"`
+
 	// ARN of the key.
 	KeyArn *string `min:"20" type:"string"`
 
 	// Unique identifier of the key.
 	KeyId *string `min:"1" type:"string"`
-
-	metadataKeyListEntry `json:"-" xml:"-"`
-}
-
-type metadataKeyListEntry struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2071,6 +1919,8 @@ func (s KeyListEntry) GoString() string {
 // This data type is used as a response element for the CreateKey and DescribeKey
 // operations.
 type KeyMetadata struct {
+	_ struct{} `type:"structure"`
+
 	// The twelve-digit account ID of the AWS account that owns the key.
 	AWSAccountId *string `type:"string"`
 
@@ -2108,12 +1958,6 @@ type KeyMetadata struct {
 	// only allowed value is ENCRYPT_DECRYPT, which means you can use the key for
 	// the Encrypt and Decrypt operations.
 	KeyUsage *string `type:"string" enum:"KeyUsageType"`
-
-	metadataKeyMetadata `json:"-" xml:"-"`
-}
-
-type metadataKeyMetadata struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2127,6 +1971,8 @@ func (s KeyMetadata) GoString() string {
 }
 
 type ListAliasesInput struct {
+	_ struct{} `type:"structure"`
+
 	// When paginating results, specify the maximum number of items to return in
 	// the response. If additional items exist beyond the number you specify, the
 	// Truncated element in the response is set to true.
@@ -2139,12 +1985,6 @@ type ListAliasesInput struct {
 	// request after you've received a response with truncated results. Set it to
 	// the value of NextMarker from the response you just received.
 	Marker *string `min:"1" type:"string"`
-
-	metadataListAliasesInput `json:"-" xml:"-"`
-}
-
-type metadataListAliasesInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2158,6 +1998,8 @@ func (s ListAliasesInput) GoString() string {
 }
 
 type ListAliasesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of key aliases in the user's account.
 	Aliases []*AliasListEntry `type:"list"`
 
@@ -2169,12 +2011,6 @@ type ListAliasesOutput struct {
 	// were truncated, you can use the Marker parameter to make a subsequent pagination
 	// request to retrieve more items in the list.
 	Truncated *bool `type:"boolean"`
-
-	metadataListAliasesOutput `json:"-" xml:"-"`
-}
-
-type metadataListAliasesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2188,6 +2024,8 @@ func (s ListAliasesOutput) GoString() string {
 }
 
 type ListGrantsInput struct {
+	_ struct{} `type:"structure"`
+
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
 	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
@@ -2206,12 +2044,6 @@ type ListGrantsInput struct {
 	// request after you've received a response with truncated results. Set it to
 	// the value of NextMarker from the response you just received.
 	Marker *string `min:"1" type:"string"`
-
-	metadataListGrantsInput `json:"-" xml:"-"`
-}
-
-type metadataListGrantsInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2225,6 +2057,8 @@ func (s ListGrantsInput) GoString() string {
 }
 
 type ListGrantsResponse struct {
+	_ struct{} `type:"structure"`
+
 	// A list of grants.
 	Grants []*GrantListEntry `type:"list"`
 
@@ -2236,12 +2070,6 @@ type ListGrantsResponse struct {
 	// were truncated, you can use the Marker parameter to make a subsequent pagination
 	// request to retrieve more items in the list.
 	Truncated *bool `type:"boolean"`
-
-	metadataListGrantsResponse `json:"-" xml:"-"`
-}
-
-type metadataListGrantsResponse struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2255,6 +2083,8 @@ func (s ListGrantsResponse) GoString() string {
 }
 
 type ListKeyPoliciesInput struct {
+	_ struct{} `type:"structure"`
+
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier, a fully specified ARN to either an alias or a key, or
 	// an alias name prefixed by "alias/".  Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
@@ -2277,12 +2107,6 @@ type ListKeyPoliciesInput struct {
 	// request after you've received a response with truncated results. Set it to
 	// the value of NextMarker from the response you just received.
 	Marker *string `min:"1" type:"string"`
-
-	metadataListKeyPoliciesInput `json:"-" xml:"-"`
-}
-
-type metadataListKeyPoliciesInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2296,6 +2120,8 @@ func (s ListKeyPoliciesInput) GoString() string {
 }
 
 type ListKeyPoliciesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// When Truncated is true, this value is present and contains the value to use
 	// for the Marker parameter in a subsequent pagination request.
 	NextMarker *string `min:"1" type:"string"`
@@ -2308,12 +2134,6 @@ type ListKeyPoliciesOutput struct {
 	// were truncated, you can use the Marker parameter to make a subsequent pagination
 	// request to retrieve more items in the list.
 	Truncated *bool `type:"boolean"`
-
-	metadataListKeyPoliciesOutput `json:"-" xml:"-"`
-}
-
-type metadataListKeyPoliciesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2327,6 +2147,8 @@ func (s ListKeyPoliciesOutput) GoString() string {
 }
 
 type ListKeysInput struct {
+	_ struct{} `type:"structure"`
+
 	// When paginating results, specify the maximum number of items to return in
 	// the response. If additional items exist beyond the number you specify, the
 	// Truncated element in the response is set to true.
@@ -2339,12 +2161,6 @@ type ListKeysInput struct {
 	// request after you've received a response with truncated results. Set it to
 	// the value of NextMarker from the response you just received.
 	Marker *string `min:"1" type:"string"`
-
-	metadataListKeysInput `json:"-" xml:"-"`
-}
-
-type metadataListKeysInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2358,6 +2174,8 @@ func (s ListKeysInput) GoString() string {
 }
 
 type ListKeysOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of keys.
 	Keys []*KeyListEntry `type:"list"`
 
@@ -2369,12 +2187,6 @@ type ListKeysOutput struct {
 	// were truncated, you can use the Marker parameter to make a subsequent pagination
 	// request to retrieve more items in the list.
 	Truncated *bool `type:"boolean"`
-
-	metadataListKeysOutput `json:"-" xml:"-"`
-}
-
-type metadataListKeysOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2388,6 +2200,8 @@ func (s ListKeysOutput) GoString() string {
 }
 
 type ListRetirableGrantsInput struct {
+	_ struct{} `type:"structure"`
+
 	// When paginating results, specify the maximum number of items to return in
 	// the response. If additional items exist beyond the number you specify, the
 	// Truncated element in the response is set to true.
@@ -2410,12 +2224,6 @@ type ListRetirableGrantsInput struct {
 	// (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam)
 	// in the Example ARNs section of the Amazon Web Services General Reference.
 	RetiringPrincipal *string `min:"1" type:"string" required:"true"`
-
-	metadataListRetirableGrantsInput `json:"-" xml:"-"`
-}
-
-type metadataListRetirableGrantsInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2429,6 +2237,8 @@ func (s ListRetirableGrantsInput) GoString() string {
 }
 
 type PutKeyPolicyInput struct {
+	_ struct{} `type:"structure"`
+
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
 	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
@@ -2443,12 +2253,6 @@ type PutKeyPolicyInput struct {
 	// Name of the policy to be attached. Currently, the only supported name is
 	// "default".
 	PolicyName *string `min:"1" type:"string" required:"true"`
-
-	metadataPutKeyPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataPutKeyPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2462,11 +2266,7 @@ func (s PutKeyPolicyInput) GoString() string {
 }
 
 type PutKeyPolicyOutput struct {
-	metadataPutKeyPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataPutKeyPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2480,6 +2280,8 @@ func (s PutKeyPolicyOutput) GoString() string {
 }
 
 type ReEncryptInput struct {
+	_ struct{} `type:"structure"`
+
 	// Ciphertext of the data to re-encrypt.
 	CiphertextBlob []byte `min:"1" type:"blob" required:"true"`
 
@@ -2504,12 +2306,6 @@ type ReEncryptInput struct {
 	// Encryption context used to encrypt and decrypt the data specified in the
 	// CiphertextBlob parameter.
 	SourceEncryptionContext map[string]*string `type:"map"`
-
-	metadataReEncryptInput `json:"-" xml:"-"`
-}
-
-type metadataReEncryptInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2523,6 +2319,8 @@ func (s ReEncryptInput) GoString() string {
 }
 
 type ReEncryptOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The re-encrypted data. If you are using the CLI, the value is Base64 encoded.
 	// Otherwise, it is not encoded.
 	CiphertextBlob []byte `min:"1" type:"blob"`
@@ -2532,12 +2330,6 @@ type ReEncryptOutput struct {
 
 	// Unique identifier of the key used to originally encrypt the data.
 	SourceKeyId *string `min:"1" type:"string"`
-
-	metadataReEncryptOutput `json:"-" xml:"-"`
-}
-
-type metadataReEncryptOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2551,6 +2343,8 @@ func (s ReEncryptOutput) GoString() string {
 }
 
 type RetireGrantInput struct {
+	_ struct{} `type:"structure"`
+
 	// Unique identifier of the grant to be retired. The grant ID is returned by
 	// the CreateGrant function.  Grant ID Example - 0123456789012345678901234567890123456789012345678901234567890123
 	GrantId *string `min:"1" type:"string"`
@@ -2563,12 +2357,6 @@ type RetireGrantInput struct {
 	// the key.  Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	KeyId *string `min:"1" type:"string"`
-
-	metadataRetireGrantInput `json:"-" xml:"-"`
-}
-
-type metadataRetireGrantInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2582,11 +2370,7 @@ func (s RetireGrantInput) GoString() string {
 }
 
 type RetireGrantOutput struct {
-	metadataRetireGrantOutput `json:"-" xml:"-"`
-}
-
-type metadataRetireGrantOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2600,6 +2384,8 @@ func (s RetireGrantOutput) GoString() string {
 }
 
 type RevokeGrantInput struct {
+	_ struct{} `type:"structure"`
+
 	// Identifier of the grant to be revoked.
 	GrantId *string `min:"1" type:"string" required:"true"`
 
@@ -2608,12 +2394,6 @@ type RevokeGrantInput struct {
 	// to a key.  Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	KeyId *string `min:"1" type:"string" required:"true"`
-
-	metadataRevokeGrantInput `json:"-" xml:"-"`
-}
-
-type metadataRevokeGrantInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2627,11 +2407,7 @@ func (s RevokeGrantInput) GoString() string {
 }
 
 type RevokeGrantOutput struct {
-	metadataRevokeGrantOutput `json:"-" xml:"-"`
-}
-
-type metadataRevokeGrantOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2645,6 +2421,8 @@ func (s RevokeGrantOutput) GoString() string {
 }
 
 type ScheduleKeyDeletionInput struct {
+	_ struct{} `type:"structure"`
+
 	// The unique identifier for the customer master key (CMK) to delete.
 	//
 	// To specify this value, use the unique key ID or the Amazon Resource Name
@@ -2662,12 +2440,6 @@ type ScheduleKeyDeletionInput struct {
 	// This value is optional. If you include a value, it must be between 7 and
 	// 30, inclusive. If you do not include a value, it defaults to 30.
 	PendingWindowInDays *int64 `min:"1" type:"integer"`
-
-	metadataScheduleKeyDeletionInput `json:"-" xml:"-"`
-}
-
-type metadataScheduleKeyDeletionInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2681,18 +2453,14 @@ func (s ScheduleKeyDeletionInput) GoString() string {
 }
 
 type ScheduleKeyDeletionOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The date and time after which AWS KMS deletes the customer master key (CMK).
 	DeletionDate *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The unique identifier of the customer master key (CMK) for which deletion
 	// is scheduled.
 	KeyId *string `min:"1" type:"string"`
-
-	metadataScheduleKeyDeletionOutput `json:"-" xml:"-"`
-}
-
-type metadataScheduleKeyDeletionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2706,6 +2474,8 @@ func (s ScheduleKeyDeletionOutput) GoString() string {
 }
 
 type UpdateAliasInput struct {
+	_ struct{} `type:"structure"`
+
 	// String that contains the name of the alias to be modified. The name must
 	// start with the word "alias" followed by a forward slash (alias/). Aliases
 	// that begin with "alias/aws" are reserved.
@@ -2719,12 +2489,6 @@ type UpdateAliasInput struct {
 	// You can call ListAliases to verify that the alias is mapped to the correct
 	// TargetKeyId.
 	TargetKeyId *string `min:"1" type:"string" required:"true"`
-
-	metadataUpdateAliasInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateAliasInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2738,11 +2502,7 @@ func (s UpdateAliasInput) GoString() string {
 }
 
 type UpdateAliasOutput struct {
-	metadataUpdateAliasOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateAliasOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2756,6 +2516,8 @@ func (s UpdateAliasOutput) GoString() string {
 }
 
 type UpdateKeyDescriptionInput struct {
+	_ struct{} `type:"structure"`
+
 	// New description for the key.
 	Description *string `type:"string" required:"true"`
 
@@ -2764,12 +2526,6 @@ type UpdateKeyDescriptionInput struct {
 	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	KeyId *string `min:"1" type:"string" required:"true"`
-
-	metadataUpdateKeyDescriptionInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateKeyDescriptionInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2783,11 +2539,7 @@ func (s UpdateKeyDescriptionInput) GoString() string {
 }
 
 type UpdateKeyDescriptionOutput struct {
-	metadataUpdateKeyDescriptionOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateKeyDescriptionOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation

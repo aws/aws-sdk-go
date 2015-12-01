@@ -911,14 +911,10 @@ func (c *CloudWatchLogs) TestMetricFilter(input *TestMetricFilterInput) (*TestMe
 }
 
 type CancelExportTaskInput struct {
+	_ struct{} `type:"structure"`
+
 	// Id of the export task to cancel.
 	TaskId *string `locationName:"taskId" min:"1" type:"string" required:"true"`
-
-	metadataCancelExportTaskInput `json:"-" xml:"-"`
-}
-
-type metadataCancelExportTaskInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -932,11 +928,7 @@ func (s CancelExportTaskInput) GoString() string {
 }
 
 type CancelExportTaskOutput struct {
-	metadataCancelExportTaskOutput `json:"-" xml:"-"`
-}
-
-type metadataCancelExportTaskOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -950,6 +942,8 @@ func (s CancelExportTaskOutput) GoString() string {
 }
 
 type CreateExportTaskInput struct {
+	_ struct{} `type:"structure"`
+
 	// Name of Amazon S3 bucket to which the log data will be exported. NOTE: Only
 	// buckets in the same AWS region are supported
 	Destination *string `locationName:"destination" min:"1" type:"string" required:"true"`
@@ -975,12 +969,6 @@ type CreateExportTaskInput struct {
 	// A unix timestamp indicating the end time of the range for the request. Events
 	// with a timestamp later than this time will not be exported.
 	To *int64 `locationName:"to" type:"long" required:"true"`
-
-	metadataCreateExportTaskInput `json:"-" xml:"-"`
-}
-
-type metadataCreateExportTaskInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -994,14 +982,10 @@ func (s CreateExportTaskInput) GoString() string {
 }
 
 type CreateExportTaskOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Id of the export task that got created.
 	TaskId *string `locationName:"taskId" min:"1" type:"string"`
-
-	metadataCreateExportTaskOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateExportTaskOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1015,14 +999,10 @@ func (s CreateExportTaskOutput) GoString() string {
 }
 
 type CreateLogGroupInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the log group to create.
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
-
-	metadataCreateLogGroupInput `json:"-" xml:"-"`
-}
-
-type metadataCreateLogGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1036,11 +1016,7 @@ func (s CreateLogGroupInput) GoString() string {
 }
 
 type CreateLogGroupOutput struct {
-	metadataCreateLogGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateLogGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1054,17 +1030,13 @@ func (s CreateLogGroupOutput) GoString() string {
 }
 
 type CreateLogStreamInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the log group under which the log stream is to be created.
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
 	// The name of the log stream to create.
 	LogStreamName *string `locationName:"logStreamName" min:"1" type:"string" required:"true"`
-
-	metadataCreateLogStreamInput `json:"-" xml:"-"`
-}
-
-type metadataCreateLogStreamInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1078,11 +1050,7 @@ func (s CreateLogStreamInput) GoString() string {
 }
 
 type CreateLogStreamOutput struct {
-	metadataCreateLogStreamOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateLogStreamOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1096,14 +1064,10 @@ func (s CreateLogStreamOutput) GoString() string {
 }
 
 type DeleteDestinationInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of destination to delete.
 	DestinationName *string `locationName:"destinationName" min:"1" type:"string" required:"true"`
-
-	metadataDeleteDestinationInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDestinationInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1117,11 +1081,7 @@ func (s DeleteDestinationInput) GoString() string {
 }
 
 type DeleteDestinationOutput struct {
-	metadataDeleteDestinationOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDestinationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1135,14 +1095,10 @@ func (s DeleteDestinationOutput) GoString() string {
 }
 
 type DeleteLogGroupInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the log group to delete.
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
-
-	metadataDeleteLogGroupInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteLogGroupInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1156,11 +1112,7 @@ func (s DeleteLogGroupInput) GoString() string {
 }
 
 type DeleteLogGroupOutput struct {
-	metadataDeleteLogGroupOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteLogGroupOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1174,17 +1126,13 @@ func (s DeleteLogGroupOutput) GoString() string {
 }
 
 type DeleteLogStreamInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the log group under which the log stream to delete belongs.
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
 	// The name of the log stream to delete.
 	LogStreamName *string `locationName:"logStreamName" min:"1" type:"string" required:"true"`
-
-	metadataDeleteLogStreamInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteLogStreamInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1198,11 +1146,7 @@ func (s DeleteLogStreamInput) GoString() string {
 }
 
 type DeleteLogStreamOutput struct {
-	metadataDeleteLogStreamOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteLogStreamOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1216,17 +1160,13 @@ func (s DeleteLogStreamOutput) GoString() string {
 }
 
 type DeleteMetricFilterInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the metric filter to delete.
 	FilterName *string `locationName:"filterName" min:"1" type:"string" required:"true"`
 
 	// The name of the log group that is associated with the metric filter to delete.
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
-
-	metadataDeleteMetricFilterInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteMetricFilterInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1240,11 +1180,7 @@ func (s DeleteMetricFilterInput) GoString() string {
 }
 
 type DeleteMetricFilterOutput struct {
-	metadataDeleteMetricFilterOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteMetricFilterOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1258,15 +1194,11 @@ func (s DeleteMetricFilterOutput) GoString() string {
 }
 
 type DeleteRetentionPolicyInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the log group that is associated with the retention policy to
 	// delete.
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
-
-	metadataDeleteRetentionPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteRetentionPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1280,11 +1212,7 @@ func (s DeleteRetentionPolicyInput) GoString() string {
 }
 
 type DeleteRetentionPolicyOutput struct {
-	metadataDeleteRetentionPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteRetentionPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1298,18 +1226,14 @@ func (s DeleteRetentionPolicyOutput) GoString() string {
 }
 
 type DeleteSubscriptionFilterInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the subscription filter to delete.
 	FilterName *string `locationName:"filterName" min:"1" type:"string" required:"true"`
 
 	// The name of the log group that is associated with the subscription filter
 	// to delete.
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
-
-	metadataDeleteSubscriptionFilterInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteSubscriptionFilterInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1323,11 +1247,7 @@ func (s DeleteSubscriptionFilterInput) GoString() string {
 }
 
 type DeleteSubscriptionFilterOutput struct {
-	metadataDeleteSubscriptionFilterOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteSubscriptionFilterOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1341,6 +1261,8 @@ func (s DeleteSubscriptionFilterOutput) GoString() string {
 }
 
 type DescribeDestinationsInput struct {
+	_ struct{} `type:"structure"`
+
 	// Will only return destinations that match the provided destinationNamePrefix.
 	// If you don't specify a value, no prefix is applied.
 	DestinationNamePrefix *string `min:"1" type:"string"`
@@ -1352,12 +1274,6 @@ type DescribeDestinationsInput struct {
 	// It must be a value obtained from the response of the previous request. The
 	// token expires after 24 hours.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
-
-	metadataDescribeDestinationsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDestinationsInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1371,18 +1287,14 @@ func (s DescribeDestinationsInput) GoString() string {
 }
 
 type DescribeDestinationsOutput struct {
+	_ struct{} `type:"structure"`
+
 	Destinations []*Destination `locationName:"destinations" type:"list"`
 
 	// A string token used for pagination that points to the next page of results.
 	// It must be a value obtained from the response of the previous request. The
 	// token expires after 24 hours.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
-
-	metadataDescribeDestinationsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDestinationsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1396,6 +1308,8 @@ func (s DescribeDestinationsOutput) GoString() string {
 }
 
 type DescribeExportTasksInput struct {
+	_ struct{} `type:"structure"`
+
 	// The maximum number of items returned in the response. If you don't specify
 	// a value, the request would return up to 50 items.
 	Limit *int64 `locationName:"limit" min:"1" type:"integer"`
@@ -1412,12 +1326,6 @@ type DescribeExportTasksInput struct {
 	// Export task that matches the specified task Id will be returned. This can
 	// result in zero or one export task.
 	TaskId *string `locationName:"taskId" min:"1" type:"string"`
-
-	metadataDescribeExportTasksInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeExportTasksInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1431,6 +1339,8 @@ func (s DescribeExportTasksInput) GoString() string {
 }
 
 type DescribeExportTasksOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of export tasks.
 	ExportTasks []*ExportTask `locationName:"exportTasks" type:"list"`
 
@@ -1438,12 +1348,6 @@ type DescribeExportTasksOutput struct {
 	// It must be a value obtained from the response of the previous request. The
 	// token expires after 24 hours.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
-
-	metadataDescribeExportTasksOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeExportTasksOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1457,6 +1361,8 @@ func (s DescribeExportTasksOutput) GoString() string {
 }
 
 type DescribeLogGroupsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The maximum number of items returned in the response. If you don't specify
 	// a value, the request would return up to 50 items.
 	Limit *int64 `locationName:"limit" min:"1" type:"integer"`
@@ -1469,12 +1375,6 @@ type DescribeLogGroupsInput struct {
 	// It must be a value obtained from the response of the previous DescribeLogGroups
 	// request.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
-
-	metadataDescribeLogGroupsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeLogGroupsInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1488,6 +1388,8 @@ func (s DescribeLogGroupsInput) GoString() string {
 }
 
 type DescribeLogGroupsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of log groups.
 	LogGroups []*LogGroup `locationName:"logGroups" type:"list"`
 
@@ -1495,12 +1397,6 @@ type DescribeLogGroupsOutput struct {
 	// It must be a value obtained from the response of the previous request. The
 	// token expires after 24 hours.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
-
-	metadataDescribeLogGroupsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeLogGroupsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1514,6 +1410,8 @@ func (s DescribeLogGroupsOutput) GoString() string {
 }
 
 type DescribeLogStreamsInput struct {
+	_ struct{} `type:"structure"`
+
 	// If set to true, results are returned in descending order. If you don't specify
 	// a value or set it to false, results are returned in ascending order.
 	Descending *bool `locationName:"descending" type:"boolean"`
@@ -1539,12 +1437,6 @@ type DescribeLogStreamsInput struct {
 	// are ordered by LogStreamName. If 'LastEventTime' is chosen, the request cannot
 	// also contain a logStreamNamePrefix.
 	OrderBy *string `locationName:"orderBy" type:"string" enum:"OrderBy"`
-
-	metadataDescribeLogStreamsInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeLogStreamsInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1558,6 +1450,8 @@ func (s DescribeLogStreamsInput) GoString() string {
 }
 
 type DescribeLogStreamsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of log streams.
 	LogStreams []*LogStream `locationName:"logStreams" type:"list"`
 
@@ -1565,12 +1459,6 @@ type DescribeLogStreamsOutput struct {
 	// It must be a value obtained from the response of the previous request. The
 	// token expires after 24 hours.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
-
-	metadataDescribeLogStreamsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeLogStreamsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1584,6 +1472,8 @@ func (s DescribeLogStreamsOutput) GoString() string {
 }
 
 type DescribeMetricFiltersInput struct {
+	_ struct{} `type:"structure"`
+
 	// Will only return metric filters that match the provided filterNamePrefix.
 	// If you don't specify a value, no prefix filter is applied.
 	FilterNamePrefix *string `locationName:"filterNamePrefix" min:"1" type:"string"`
@@ -1599,12 +1489,6 @@ type DescribeMetricFiltersInput struct {
 	// It must be a value obtained from the response of the previous DescribeMetricFilters
 	// request.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
-
-	metadataDescribeMetricFiltersInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeMetricFiltersInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1618,18 +1502,14 @@ func (s DescribeMetricFiltersInput) GoString() string {
 }
 
 type DescribeMetricFiltersOutput struct {
+	_ struct{} `type:"structure"`
+
 	MetricFilters []*MetricFilter `locationName:"metricFilters" type:"list"`
 
 	// A string token used for pagination that points to the next page of results.
 	// It must be a value obtained from the response of the previous request. The
 	// token expires after 24 hours.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
-
-	metadataDescribeMetricFiltersOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeMetricFiltersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1643,6 +1523,8 @@ func (s DescribeMetricFiltersOutput) GoString() string {
 }
 
 type DescribeSubscriptionFiltersInput struct {
+	_ struct{} `type:"structure"`
+
 	// Will only return subscription filters that match the provided filterNamePrefix.
 	// If you don't specify a value, no prefix filter is applied.
 	FilterNamePrefix *string `locationName:"filterNamePrefix" min:"1" type:"string"`
@@ -1657,12 +1539,6 @@ type DescribeSubscriptionFiltersInput struct {
 	// It must be a value obtained from the response of the previous request. The
 	// token expires after 24 hours.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
-
-	metadataDescribeSubscriptionFiltersInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSubscriptionFiltersInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1676,18 +1552,14 @@ func (s DescribeSubscriptionFiltersInput) GoString() string {
 }
 
 type DescribeSubscriptionFiltersOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A string token used for pagination that points to the next page of results.
 	// It must be a value obtained from the response of the previous request. The
 	// token expires after 24 hours.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
 	SubscriptionFilters []*SubscriptionFilter `locationName:"subscriptionFilters" type:"list"`
-
-	metadataDescribeSubscriptionFiltersOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeSubscriptionFiltersOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1702,6 +1574,8 @@ func (s DescribeSubscriptionFiltersOutput) GoString() string {
 
 // A cross account destination that is the recipient of subscription log events.
 type Destination struct {
+	_ struct{} `type:"structure"`
+
 	// An IAM policy document that governs which AWS accounts can create subscription
 	// filters against this destination.
 	AccessPolicy *string `locationName:"accessPolicy" min:"1" type:"string"`
@@ -1722,12 +1596,6 @@ type Destination struct {
 	// ARN of the physical target where the log events will be delivered (eg. ARN
 	// of a Kinesis stream).
 	TargetArn *string `locationName:"targetArn" min:"1" type:"string"`
-
-	metadataDestination `json:"-" xml:"-"`
-}
-
-type metadataDestination struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1742,6 +1610,8 @@ func (s Destination) GoString() string {
 
 // Represents an export task.
 type ExportTask struct {
+	_ struct{} `type:"structure"`
+
 	// Name of Amazon S3 bucket to which the log data was exported.
 	Destination *string `locationName:"destination" min:"1" type:"string"`
 
@@ -1770,12 +1640,6 @@ type ExportTask struct {
 	// A unix timestamp indicating the end time of the range for the request. Events
 	// with a timestamp later than this time were not exported.
 	To *int64 `locationName:"to" type:"long"`
-
-	metadataExportTask `json:"-" xml:"-"`
-}
-
-type metadataExportTask struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1790,17 +1654,13 @@ func (s ExportTask) GoString() string {
 
 // Represents the status of an export task.
 type ExportTaskExecutionInfo struct {
+	_ struct{} `type:"structure"`
+
 	// A point in time when the export task got completed.
 	CompletionTime *int64 `locationName:"completionTime" type:"long"`
 
 	// A point in time when the export task got created.
 	CreationTime *int64 `locationName:"creationTime" type:"long"`
-
-	metadataExportTaskExecutionInfo `json:"-" xml:"-"`
-}
-
-type metadataExportTaskExecutionInfo struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1815,17 +1675,13 @@ func (s ExportTaskExecutionInfo) GoString() string {
 
 // Represents the status of an export task.
 type ExportTaskStatus struct {
+	_ struct{} `type:"structure"`
+
 	// Status code of the export task.
 	Code *string `locationName:"code" type:"string" enum:"ExportTaskStatusCode"`
 
 	// Status message related to the code.
 	Message *string `locationName:"message" type:"string"`
-
-	metadataExportTaskStatus `json:"-" xml:"-"`
-}
-
-type metadataExportTaskStatus struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1839,6 +1695,8 @@ func (s ExportTaskStatus) GoString() string {
 }
 
 type FilterLogEventsInput struct {
+	_ struct{} `type:"structure"`
+
 	// A unix timestamp indicating the end time of the range for the request. If
 	// provided, events with a timestamp later than this time will not be returned.
 	EndTime *int64 `locationName:"endTime" type:"long"`
@@ -1871,12 +1729,6 @@ type FilterLogEventsInput struct {
 	// A unix timestamp indicating the start time of the range for the request.
 	// If provided, events with a timestamp prior to this time will not be returned.
 	StartTime *int64 `locationName:"startTime" type:"long"`
-
-	metadataFilterLogEventsInput `json:"-" xml:"-"`
-}
-
-type metadataFilterLogEventsInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1890,6 +1742,8 @@ func (s FilterLogEventsInput) GoString() string {
 }
 
 type FilterLogEventsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of FilteredLogEvent objects representing the matched events from the
 	// request.
 	Events []*FilteredLogEvent `locationName:"events" type:"list"`
@@ -1902,12 +1756,6 @@ type FilterLogEventsOutput struct {
 	// searched in this request and whether each has been searched completely or
 	// still has more to be paginated.
 	SearchedLogStreams []*SearchedLogStream `locationName:"searchedLogStreams" type:"list"`
-
-	metadataFilterLogEventsOutput `json:"-" xml:"-"`
-}
-
-type metadataFilterLogEventsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1922,6 +1770,8 @@ func (s FilterLogEventsOutput) GoString() string {
 
 // Represents a matched event from a FilterLogEvents request.
 type FilteredLogEvent struct {
+	_ struct{} `type:"structure"`
+
 	// A unique identifier for this event.
 	EventId *string `locationName:"eventId" type:"string"`
 
@@ -1938,12 +1788,6 @@ type FilteredLogEvent struct {
 	// A point in time expressed as the number of milliseconds since Jan 1, 1970
 	// 00:00:00 UTC.
 	Timestamp *int64 `locationName:"timestamp" type:"long"`
-
-	metadataFilteredLogEvent `json:"-" xml:"-"`
-}
-
-type metadataFilteredLogEvent struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1957,6 +1801,8 @@ func (s FilteredLogEvent) GoString() string {
 }
 
 type GetLogEventsInput struct {
+	_ struct{} `type:"structure"`
+
 	// A point in time expressed as the number of milliseconds since Jan 1, 1970
 	// 00:00:00 UTC.
 	EndTime *int64 `locationName:"endTime" type:"long"`
@@ -1984,12 +1830,6 @@ type GetLogEventsInput struct {
 	// A point in time expressed as the number of milliseconds since Jan 1, 1970
 	// 00:00:00 UTC.
 	StartTime *int64 `locationName:"startTime" type:"long"`
-
-	metadataGetLogEventsInput `json:"-" xml:"-"`
-}
-
-type metadataGetLogEventsInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2003,6 +1843,8 @@ func (s GetLogEventsInput) GoString() string {
 }
 
 type GetLogEventsOutput struct {
+	_ struct{} `type:"structure"`
+
 	Events []*OutputLogEvent `locationName:"events" type:"list"`
 
 	// A string token used for pagination that points to the next page of results.
@@ -2014,12 +1856,6 @@ type GetLogEventsOutput struct {
 	// It must be a value obtained from the response of the previous request. The
 	// token expires after 24 hours.
 	NextForwardToken *string `locationName:"nextForwardToken" min:"1" type:"string"`
-
-	metadataGetLogEventsOutput `json:"-" xml:"-"`
-}
-
-type metadataGetLogEventsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2037,17 +1873,13 @@ func (s GetLogEventsOutput) GoString() string {
 // Logs understands contains two properties: the timestamp of when the event
 // occurred, and the raw event message.
 type InputLogEvent struct {
+	_ struct{} `type:"structure"`
+
 	Message *string `locationName:"message" min:"1" type:"string" required:"true"`
 
 	// A point in time expressed as the number of milliseconds since Jan 1, 1970
 	// 00:00:00 UTC.
 	Timestamp *int64 `locationName:"timestamp" type:"long" required:"true"`
-
-	metadataInputLogEvent `json:"-" xml:"-"`
-}
-
-type metadataInputLogEvent struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2061,6 +1893,8 @@ func (s InputLogEvent) GoString() string {
 }
 
 type LogGroup struct {
+	_ struct{} `type:"structure"`
+
 	Arn *string `locationName:"arn" type:"string"`
 
 	// A point in time expressed as the number of milliseconds since Jan 1, 1970
@@ -2078,12 +1912,6 @@ type LogGroup struct {
 	RetentionInDays *int64 `locationName:"retentionInDays" type:"integer"`
 
 	StoredBytes *int64 `locationName:"storedBytes" type:"long"`
-
-	metadataLogGroup `json:"-" xml:"-"`
-}
-
-type metadataLogGroup struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2098,6 +1926,8 @@ func (s LogGroup) GoString() string {
 
 // A log stream is sequence of log events from a single emitter of logs.
 type LogStream struct {
+	_ struct{} `type:"structure"`
+
 	Arn *string `locationName:"arn" type:"string"`
 
 	// A point in time expressed as the number of milliseconds since Jan 1, 1970
@@ -2124,12 +1954,6 @@ type LogStream struct {
 	// only be used once, and PutLogEvents requests must include the sequenceToken
 	// obtained from the response of the previous request.
 	UploadSequenceToken *string `locationName:"uploadSequenceToken" min:"1" type:"string"`
-
-	metadataLogStream `json:"-" xml:"-"`
-}
-
-type metadataLogStream struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2146,6 +1970,8 @@ func (s LogStream) GoString() string {
 // metric observations from ingested log events and transform them to metric
 // data in a CloudWatch metric.
 type MetricFilter struct {
+	_ struct{} `type:"structure"`
+
 	// A point in time expressed as the number of milliseconds since Jan 1, 1970
 	// 00:00:00 UTC.
 	CreationTime *int64 `locationName:"creationTime" type:"long"`
@@ -2160,12 +1986,6 @@ type MetricFilter struct {
 	FilterPattern *string `locationName:"filterPattern" type:"string"`
 
 	MetricTransformations []*MetricTransformation `locationName:"metricTransformations" min:"1" type:"list"`
-
-	metadataMetricFilter `json:"-" xml:"-"`
-}
-
-type metadataMetricFilter struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2179,17 +1999,13 @@ func (s MetricFilter) GoString() string {
 }
 
 type MetricFilterMatchRecord struct {
+	_ struct{} `type:"structure"`
+
 	EventMessage *string `locationName:"eventMessage" min:"1" type:"string"`
 
 	EventNumber *int64 `locationName:"eventNumber" type:"long"`
 
 	ExtractedValues map[string]*string `locationName:"extractedValues" type:"map"`
-
-	metadataMetricFilterMatchRecord `json:"-" xml:"-"`
-}
-
-type metadataMetricFilterMatchRecord struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2203,6 +2019,8 @@ func (s MetricFilterMatchRecord) GoString() string {
 }
 
 type MetricTransformation struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the CloudWatch metric to which the monitored log information
 	// should be published. For example, you may publish to a metric called ErrorCount.
 	MetricName *string `locationName:"metricName" type:"string" required:"true"`
@@ -2215,12 +2033,6 @@ type MetricTransformation struct {
 	// If you're counting the bytes transferred the published value will be the
 	// value in the log event.
 	MetricValue *string `locationName:"metricValue" type:"string" required:"true"`
-
-	metadataMetricTransformation `json:"-" xml:"-"`
-}
-
-type metadataMetricTransformation struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2234,6 +2046,8 @@ func (s MetricTransformation) GoString() string {
 }
 
 type OutputLogEvent struct {
+	_ struct{} `type:"structure"`
+
 	// A point in time expressed as the number of milliseconds since Jan 1, 1970
 	// 00:00:00 UTC.
 	IngestionTime *int64 `locationName:"ingestionTime" type:"long"`
@@ -2243,12 +2057,6 @@ type OutputLogEvent struct {
 	// A point in time expressed as the number of milliseconds since Jan 1, 1970
 	// 00:00:00 UTC.
 	Timestamp *int64 `locationName:"timestamp" type:"long"`
-
-	metadataOutputLogEvent `json:"-" xml:"-"`
-}
-
-type metadataOutputLogEvent struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2262,6 +2070,8 @@ func (s OutputLogEvent) GoString() string {
 }
 
 type PutDestinationInput struct {
+	_ struct{} `type:"structure"`
+
 	// A name for the destination.
 	DestinationName *string `locationName:"destinationName" min:"1" type:"string" required:"true"`
 
@@ -2271,12 +2081,6 @@ type PutDestinationInput struct {
 
 	// The ARN of an Amazon Kinesis stream to deliver matching log events to.
 	TargetArn *string `locationName:"targetArn" min:"1" type:"string" required:"true"`
-
-	metadataPutDestinationInput `json:"-" xml:"-"`
-}
-
-type metadataPutDestinationInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2290,14 +2094,10 @@ func (s PutDestinationInput) GoString() string {
 }
 
 type PutDestinationOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A cross account destination that is the recipient of subscription log events.
 	Destination *Destination `locationName:"destination" type:"structure"`
-
-	metadataPutDestinationOutput `json:"-" xml:"-"`
-}
-
-type metadataPutDestinationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2311,18 +2111,14 @@ func (s PutDestinationOutput) GoString() string {
 }
 
 type PutDestinationPolicyInput struct {
+	_ struct{} `type:"structure"`
+
 	// An IAM policy document that authorizes cross-account users to deliver their
 	// log events to associated destination.
 	AccessPolicy *string `locationName:"accessPolicy" min:"1" type:"string" required:"true"`
 
 	// A name for an existing destination.
 	DestinationName *string `locationName:"destinationName" min:"1" type:"string" required:"true"`
-
-	metadataPutDestinationPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataPutDestinationPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2336,11 +2132,7 @@ func (s PutDestinationPolicyInput) GoString() string {
 }
 
 type PutDestinationPolicyOutput struct {
-	metadataPutDestinationPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataPutDestinationPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2354,6 +2146,8 @@ func (s PutDestinationPolicyOutput) GoString() string {
 }
 
 type PutLogEventsInput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of log events belonging to a log stream.
 	LogEvents []*InputLogEvent `locationName:"logEvents" min:"1" type:"list" required:"true"`
 
@@ -2366,12 +2160,6 @@ type PutLogEventsInput struct {
 	// A string token that must be obtained from the response of the previous PutLogEvents
 	// request.
 	SequenceToken *string `locationName:"sequenceToken" min:"1" type:"string"`
-
-	metadataPutLogEventsInput `json:"-" xml:"-"`
-}
-
-type metadataPutLogEventsInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2385,18 +2173,14 @@ func (s PutLogEventsInput) GoString() string {
 }
 
 type PutLogEventsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A string token used for making PutLogEvents requests. A sequenceToken can
 	// only be used once, and PutLogEvents requests must include the sequenceToken
 	// obtained from the response of the previous request.
 	NextSequenceToken *string `locationName:"nextSequenceToken" min:"1" type:"string"`
 
 	RejectedLogEventsInfo *RejectedLogEventsInfo `locationName:"rejectedLogEventsInfo" type:"structure"`
-
-	metadataPutLogEventsOutput `json:"-" xml:"-"`
-}
-
-type metadataPutLogEventsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2410,6 +2194,8 @@ func (s PutLogEventsOutput) GoString() string {
 }
 
 type PutMetricFilterInput struct {
+	_ struct{} `type:"structure"`
+
 	// A name for the metric filter.
 	FilterName *string `locationName:"filterName" min:"1" type:"string" required:"true"`
 
@@ -2422,12 +2208,6 @@ type PutMetricFilterInput struct {
 
 	// A collection of information needed to define how metric data gets emitted.
 	MetricTransformations []*MetricTransformation `locationName:"metricTransformations" min:"1" type:"list" required:"true"`
-
-	metadataPutMetricFilterInput `json:"-" xml:"-"`
-}
-
-type metadataPutMetricFilterInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2441,11 +2221,7 @@ func (s PutMetricFilterInput) GoString() string {
 }
 
 type PutMetricFilterOutput struct {
-	metadataPutMetricFilterOutput `json:"-" xml:"-"`
-}
-
-type metadataPutMetricFilterOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2459,6 +2235,8 @@ func (s PutMetricFilterOutput) GoString() string {
 }
 
 type PutRetentionPolicyInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the log group to associate the retention policy with.
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
@@ -2466,12 +2244,6 @@ type PutRetentionPolicyInput struct {
 	// log group. Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180,
 	// 365, 400, 545, 731, 1827, 3653.
 	RetentionInDays *int64 `locationName:"retentionInDays" type:"integer" required:"true"`
-
-	metadataPutRetentionPolicyInput `json:"-" xml:"-"`
-}
-
-type metadataPutRetentionPolicyInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2485,11 +2257,7 @@ func (s PutRetentionPolicyInput) GoString() string {
 }
 
 type PutRetentionPolicyOutput struct {
-	metadataPutRetentionPolicyOutput `json:"-" xml:"-"`
-}
-
-type metadataPutRetentionPolicyOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2503,6 +2271,8 @@ func (s PutRetentionPolicyOutput) GoString() string {
 }
 
 type PutSubscriptionFilterInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN of the destination to deliver matching log events to. Currently,
 	// the supported destinations are:   A Amazon Kinesis stream belonging to the
 	// same account as the subscription filter, for same-account delivery.   A logical
@@ -2525,12 +2295,6 @@ type PutSubscriptionFilterInput struct {
 	// provide the ARN when you are working with a logical destination (used via
 	// an ARN of Destination) for cross-account delivery.
 	RoleArn *string `locationName:"roleArn" min:"1" type:"string"`
-
-	metadataPutSubscriptionFilterInput `json:"-" xml:"-"`
-}
-
-type metadataPutSubscriptionFilterInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2544,11 +2308,7 @@ func (s PutSubscriptionFilterInput) GoString() string {
 }
 
 type PutSubscriptionFilterOutput struct {
-	metadataPutSubscriptionFilterOutput `json:"-" xml:"-"`
-}
-
-type metadataPutSubscriptionFilterOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2562,17 +2322,13 @@ func (s PutSubscriptionFilterOutput) GoString() string {
 }
 
 type RejectedLogEventsInfo struct {
+	_ struct{} `type:"structure"`
+
 	ExpiredLogEventEndIndex *int64 `locationName:"expiredLogEventEndIndex" type:"integer"`
 
 	TooNewLogEventStartIndex *int64 `locationName:"tooNewLogEventStartIndex" type:"integer"`
 
 	TooOldLogEventEndIndex *int64 `locationName:"tooOldLogEventEndIndex" type:"integer"`
-
-	metadataRejectedLogEventsInfo `json:"-" xml:"-"`
-}
-
-type metadataRejectedLogEventsInfo struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2588,18 +2344,14 @@ func (s RejectedLogEventsInfo) GoString() string {
 // An object indicating the search status of a log stream in a FilterLogEvents
 // request.
 type SearchedLogStream struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the log stream.
 	LogStreamName *string `locationName:"logStreamName" min:"1" type:"string"`
 
 	// Indicates whether all the events in this log stream were searched or more
 	// data exists to search by paginating further.
 	SearchedCompletely *bool `locationName:"searchedCompletely" type:"boolean"`
-
-	metadataSearchedLogStream `json:"-" xml:"-"`
-}
-
-type metadataSearchedLogStream struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2613,6 +2365,8 @@ func (s SearchedLogStream) GoString() string {
 }
 
 type SubscriptionFilter struct {
+	_ struct{} `type:"structure"`
+
 	// A point in time expressed as the number of milliseconds since Jan 1, 1970
 	// 00:00:00 UTC.
 	CreationTime *int64 `locationName:"creationTime" type:"long"`
@@ -2631,12 +2385,6 @@ type SubscriptionFilter struct {
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string"`
 
 	RoleArn *string `locationName:"roleArn" min:"1" type:"string"`
-
-	metadataSubscriptionFilter `json:"-" xml:"-"`
-}
-
-type metadataSubscriptionFilter struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2650,6 +2398,8 @@ func (s SubscriptionFilter) GoString() string {
 }
 
 type TestMetricFilterInput struct {
+	_ struct{} `type:"structure"`
+
 	// A symbolic description of how Amazon CloudWatch Logs should interpret the
 	// data in each log event. For example, a log event may contain timestamps,
 	// IP addresses, strings, and so on. You use the filter pattern to specify what
@@ -2658,12 +2408,6 @@ type TestMetricFilterInput struct {
 
 	// A list of log event messages to test.
 	LogEventMessages []*string `locationName:"logEventMessages" min:"1" type:"list" required:"true"`
-
-	metadataTestMetricFilterInput `json:"-" xml:"-"`
-}
-
-type metadataTestMetricFilterInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2677,13 +2421,9 @@ func (s TestMetricFilterInput) GoString() string {
 }
 
 type TestMetricFilterOutput struct {
+	_ struct{} `type:"structure"`
+
 	Matches []*MetricFilterMatchRecord `locationName:"matches" type:"list"`
-
-	metadataTestMetricFilterOutput `json:"-" xml:"-"`
-}
-
-type metadataTestMetricFilterOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation

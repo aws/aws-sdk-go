@@ -148,17 +148,13 @@ func (c *CloudSearchDomain) UploadDocuments(input *UploadDocumentsInput) (*Uploa
 
 // A container for facet information.
 type Bucket struct {
+	_ struct{} `type:"structure"`
+
 	// The number of hits that contain the facet value in the specified facet field.
 	Count *int64 `locationName:"count" type:"long"`
 
 	// The facet value being counted.
 	Value *string `locationName:"value" type:"string"`
-
-	metadataBucket `json:"-" xml:"-"`
-}
-
-type metadataBucket struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -173,14 +169,10 @@ func (s Bucket) GoString() string {
 
 // A container for the calculated facet values and counts.
 type BucketInfo struct {
+	_ struct{} `type:"structure"`
+
 	// A list of the calculated facet values and counts.
 	Buckets []*Bucket `locationName:"buckets" type:"list"`
-
-	metadataBucketInfo `json:"-" xml:"-"`
-}
-
-type metadataBucketInfo struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -196,14 +188,10 @@ func (s BucketInfo) GoString() string {
 // A warning returned by the document service when an issue is discovered while
 // processing an upload request.
 type DocumentServiceWarning struct {
+	_ struct{} `type:"structure"`
+
 	// The description for a warning returned by the document service.
 	Message *string `locationName:"message" type:"string"`
-
-	metadataDocumentServiceWarning `json:"-" xml:"-"`
-}
-
-type metadataDocumentServiceWarning struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -218,6 +206,8 @@ func (s DocumentServiceWarning) GoString() string {
 
 // Information about a document that matches the search request.
 type Hit struct {
+	_ struct{} `type:"structure"`
+
 	// The expressions returned from a document that matches the search request.
 	Exprs map[string]*string `locationName:"exprs" type:"map"`
 
@@ -229,12 +219,6 @@ type Hit struct {
 
 	// The document ID of a document that matches the search request.
 	Id *string `locationName:"id" type:"string"`
-
-	metadataHit `json:"-" xml:"-"`
-}
-
-type metadataHit struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -249,6 +233,8 @@ func (s Hit) GoString() string {
 
 // The collection of documents that match the search request.
 type Hits struct {
+	_ struct{} `type:"structure"`
+
 	// A cursor that can be used to retrieve the next set of matching documents
 	// when you want to page through a large result set.
 	Cursor *string `locationName:"cursor" type:"string"`
@@ -261,12 +247,6 @@ type Hits struct {
 
 	// The index of the first matching document.
 	Start *int64 `locationName:"start" type:"long"`
-
-	metadataHits `json:"-" xml:"-"`
-}
-
-type metadataHits struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -281,6 +261,8 @@ func (s Hits) GoString() string {
 
 // Container for the parameters to the Search request.
 type SearchInput struct {
+	_ struct{} `type:"structure"`
+
 	// Retrieves a cursor value you can use to page through large result sets. Use
 	// the size parameter to control the number of hits to include in each response.
 	// You can specify either the cursor or start parameter in a request; they are
@@ -557,12 +539,6 @@ type SearchInput struct {
 	// For more information, see Paginating Results (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/paginating-results.html)
 	// in the Amazon CloudSearch Developer Guide.
 	Start *int64 `location:"querystring" locationName:"start" type:"long"`
-
-	metadataSearchInput `json:"-" xml:"-"`
-}
-
-type metadataSearchInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -578,6 +554,8 @@ func (s SearchInput) GoString() string {
 // The result of a Search request. Contains the documents that match the specified
 // search criteria and any requested fields, highlights, and facet information.
 type SearchOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The requested facet information.
 	Facets map[string]*BucketInfo `locationName:"facets" type:"map"`
 
@@ -586,12 +564,6 @@ type SearchOutput struct {
 
 	// The status information returned for the search request.
 	Status *SearchStatus `locationName:"status" type:"structure"`
-
-	metadataSearchOutput `json:"-" xml:"-"`
-}
-
-type metadataSearchOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -607,17 +579,13 @@ func (s SearchOutput) GoString() string {
 // Contains the resource id (rid) and the time it took to process the request
 // (timems).
 type SearchStatus struct {
+	_ struct{} `type:"structure"`
+
 	// The encrypted resource ID for the request.
 	Rid *string `locationName:"rid" type:"string"`
 
 	// How long it took to process the request, in milliseconds.
 	Timems *int64 `locationName:"timems" type:"long"`
-
-	metadataSearchStatus `json:"-" xml:"-"`
-}
-
-type metadataSearchStatus struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -632,6 +600,8 @@ func (s SearchStatus) GoString() string {
 
 // Container for the parameters to the Suggest request.
 type SuggestInput struct {
+	_ struct{} `type:"structure"`
+
 	// Specifies the string for which you want to get suggestions.
 	Query *string `location:"querystring" locationName:"q" type:"string" required:"true"`
 
@@ -640,12 +610,6 @@ type SuggestInput struct {
 
 	// Specifies the name of the suggester to use to find suggested matches.
 	Suggester *string `location:"querystring" locationName:"suggester" type:"string" required:"true"`
-
-	metadataSuggestInput `json:"-" xml:"-"`
-}
-
-type metadataSuggestInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -660,6 +624,8 @@ func (s SuggestInput) GoString() string {
 
 // Container for the suggestion information returned in a SuggestResponse.
 type SuggestModel struct {
+	_ struct{} `type:"structure"`
+
 	// The number of documents that were found to match the query string.
 	Found *int64 `locationName:"found" type:"long"`
 
@@ -668,12 +634,6 @@ type SuggestModel struct {
 
 	// The documents that match the query string.
 	Suggestions []*SuggestionMatch `locationName:"suggestions" type:"list"`
-
-	metadataSuggestModel `json:"-" xml:"-"`
-}
-
-type metadataSuggestModel struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -688,18 +648,14 @@ func (s SuggestModel) GoString() string {
 
 // Contains the response to a Suggest request.
 type SuggestOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The status of a SuggestRequest. Contains the resource ID (rid) and how long
 	// it took to process the request (timems).
 	Status *SuggestStatus `locationName:"status" type:"structure"`
 
 	// Container for the matching search suggestion information.
 	Suggest *SuggestModel `locationName:"suggest" type:"structure"`
-
-	metadataSuggestOutput `json:"-" xml:"-"`
-}
-
-type metadataSuggestOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -715,17 +671,13 @@ func (s SuggestOutput) GoString() string {
 // Contains the resource id (rid) and the time it took to process the request
 // (timems).
 type SuggestStatus struct {
+	_ struct{} `type:"structure"`
+
 	// The encrypted resource ID for the request.
 	Rid *string `locationName:"rid" type:"string"`
 
 	// How long it took to process the request, in milliseconds.
 	Timems *int64 `locationName:"timems" type:"long"`
-
-	metadataSuggestStatus `json:"-" xml:"-"`
-}
-
-type metadataSuggestStatus struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -740,6 +692,8 @@ func (s SuggestStatus) GoString() string {
 
 // An autocomplete suggestion that matches the query string specified in a SuggestRequest.
 type SuggestionMatch struct {
+	_ struct{} `type:"structure"`
+
 	// The document ID of the suggested document.
 	Id *string `locationName:"id" type:"string"`
 
@@ -748,12 +702,6 @@ type SuggestionMatch struct {
 
 	// The string that matches the query string specified in the SuggestRequest.
 	Suggestion *string `locationName:"suggestion" type:"string"`
-
-	metadataSuggestionMatch `json:"-" xml:"-"`
-}
-
-type metadataSuggestionMatch struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -768,6 +716,8 @@ func (s SuggestionMatch) GoString() string {
 
 // Container for the parameters to the UploadDocuments request.
 type UploadDocumentsInput struct {
+	_ struct{} `type:"structure" payload:"Documents"`
+
 	// The format of the batch you are uploading. Amazon CloudSearch supports two
 	// document batch formats:
 	//
@@ -776,12 +726,6 @@ type UploadDocumentsInput struct {
 
 	// A batch of documents formatted in JSON or HTML.
 	Documents io.ReadSeeker `locationName:"documents" type:"blob" required:"true"`
-
-	metadataUploadDocumentsInput `json:"-" xml:"-"`
-}
-
-type metadataUploadDocumentsInput struct {
-	SDKShapeTraits bool `type:"structure" payload:"Documents"`
 }
 
 // String returns the string representation
@@ -796,6 +740,8 @@ func (s UploadDocumentsInput) GoString() string {
 
 // Contains the response to an UploadDocuments request.
 type UploadDocumentsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The number of documents that were added to the search domain.
 	Adds *int64 `locationName:"adds" type:"long"`
 
@@ -807,12 +753,6 @@ type UploadDocumentsOutput struct {
 
 	// Any warnings returned by the document service about the documents being uploaded.
 	Warnings []*DocumentServiceWarning `locationName:"warnings" type:"list"`
-
-	metadataUploadDocumentsOutput `json:"-" xml:"-"`
-}
-
-type metadataUploadDocumentsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation

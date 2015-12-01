@@ -1090,6 +1090,8 @@ func (c *Route53) UpdateHostedZoneComment(input *UpdateHostedZoneCommentInput) (
 //
 // .
 type AliasTarget struct {
+	_ struct{} `type:"structure"`
+
 	// Alias resource record sets only: The external DNS name associated with the
 	// AWS Resource.
 	//
@@ -1120,12 +1122,6 @@ type AliasTarget struct {
 	//
 	// .
 	HostedZoneId *string `type:"string" required:"true"`
-
-	metadataAliasTarget `json:"-" xml:"-"`
-}
-
-type metadataAliasTarget struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1141,6 +1137,8 @@ func (s AliasTarget) GoString() string {
 // A complex type that contains information about the request to associate a
 // VPC with an hosted zone.
 type AssociateVPCWithHostedZoneInput struct {
+	_ struct{} `locationName:"AssociateVPCWithHostedZoneRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+
 	// Optional: Any comments you want to include about a AssociateVPCWithHostedZoneRequest.
 	Comment *string `type:"string"`
 
@@ -1152,12 +1150,6 @@ type AssociateVPCWithHostedZoneInput struct {
 
 	// The VPC that you want your hosted zone to be associated with.
 	VPC *VPC `type:"structure" required:"true"`
-
-	metadataAssociateVPCWithHostedZoneInput `json:"-" xml:"-"`
-}
-
-type metadataAssociateVPCWithHostedZoneInput struct {
-	SDKShapeTraits bool `locationName:"AssociateVPCWithHostedZoneRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
 // String returns the string representation
@@ -1172,15 +1164,11 @@ func (s AssociateVPCWithHostedZoneInput) GoString() string {
 
 // A complex type containing the response information for the request.
 type AssociateVPCWithHostedZoneOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A complex type that contains the ID, the status, and the date and time of
 	// your AssociateVPCWithHostedZoneRequest.
 	ChangeInfo *ChangeInfo `type:"structure" required:"true"`
-
-	metadataAssociateVPCWithHostedZoneOutput `json:"-" xml:"-"`
-}
-
-type metadataAssociateVPCWithHostedZoneOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1196,6 +1184,8 @@ func (s AssociateVPCWithHostedZoneOutput) GoString() string {
 // A complex type that contains the information for each change in a change
 // batch request.
 type Change struct {
+	_ struct{} `type:"structure"`
+
 	// The action to perform.
 	//
 	// Valid values: CREATE | DELETE | UPSERT
@@ -1203,12 +1193,6 @@ type Change struct {
 
 	// Information about the resource record set to create or delete.
 	ResourceRecordSet *ResourceRecordSet `type:"structure" required:"true"`
-
-	metadataChange `json:"-" xml:"-"`
-}
-
-type metadataChange struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1224,18 +1208,14 @@ func (s Change) GoString() string {
 // A complex type that contains an optional comment and the changes that you
 // want to make with a change batch request.
 type ChangeBatch struct {
+	_ struct{} `type:"structure"`
+
 	// A complex type that contains one Change element for each resource record
 	// set that you want to create or delete.
 	Changes []*Change `locationNameList:"Change" min:"1" type:"list" required:"true"`
 
 	// Optional: Any comments you want to include about a change batch request.
 	Comment *string `type:"string"`
-
-	metadataChangeBatch `json:"-" xml:"-"`
-}
-
-type metadataChangeBatch struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1254,6 +1234,8 @@ func (s ChangeBatch) GoString() string {
 // This element contains an ID that you use when performing a GetChange action
 // to get detailed information about the change.
 type ChangeInfo struct {
+	_ struct{} `type:"structure"`
+
 	// A complex type that describes change information about changes made to your
 	// hosted zone.
 	//
@@ -1276,12 +1258,6 @@ type ChangeInfo struct {
 	// The Z after the time indicates that the time is listed in Coordinated Universal
 	// Time (UTC), which is synonymous with Greenwich Mean Time in this context.
 	SubmittedAt *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
-
-	metadataChangeInfo `json:"-" xml:"-"`
-}
-
-type metadataChangeInfo struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1296,18 +1272,14 @@ func (s ChangeInfo) GoString() string {
 
 // A complex type that contains a change batch.
 type ChangeResourceRecordSetsInput struct {
+	_ struct{} `locationName:"ChangeResourceRecordSetsRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+
 	// A complex type that contains an optional comment and the Changes element.
 	ChangeBatch *ChangeBatch `type:"structure" required:"true"`
 
 	// The ID of the hosted zone that contains the resource record sets that you
 	// want to change.
 	HostedZoneId *string `location:"uri" locationName:"Id" type:"string" required:"true"`
-
-	metadataChangeResourceRecordSetsInput `json:"-" xml:"-"`
-}
-
-type metadataChangeResourceRecordSetsInput struct {
-	SDKShapeTraits bool `locationName:"ChangeResourceRecordSetsRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
 // String returns the string representation
@@ -1322,18 +1294,14 @@ func (s ChangeResourceRecordSetsInput) GoString() string {
 
 // A complex type containing the response for the request.
 type ChangeResourceRecordSetsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A complex type that contains information about changes made to your hosted
 	// zone.
 	//
 	// This element contains an ID that you use when performing a GetChange action
 	// to get detailed information about the change.
 	ChangeInfo *ChangeInfo `type:"structure" required:"true"`
-
-	metadataChangeResourceRecordSetsOutput `json:"-" xml:"-"`
-}
-
-type metadataChangeResourceRecordSetsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1349,6 +1317,8 @@ func (s ChangeResourceRecordSetsOutput) GoString() string {
 // A complex type containing information about a request to add, change, or
 // delete the tags that are associated with a resource.
 type ChangeTagsForResourceInput struct {
+	_ struct{} `locationName:"ChangeTagsForResourceRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+
 	// A complex type that contains a list of Tag elements. Each Tag element identifies
 	// a tag that you want to add or update for the specified resource.
 	AddTags []*Tag `locationNameList:"Tag" min:"1" type:"list"`
@@ -1365,12 +1335,6 @@ type ChangeTagsForResourceInput struct {
 	//
 	// - The resource type for hosted zones is hostedzone.
 	ResourceType *string `location:"uri" locationName:"ResourceType" type:"string" required:"true" enum:"TagResourceType"`
-
-	metadataChangeTagsForResourceInput `json:"-" xml:"-"`
-}
-
-type metadataChangeTagsForResourceInput struct {
-	SDKShapeTraits bool `locationName:"ChangeTagsForResourceRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
 // String returns the string representation
@@ -1385,11 +1349,7 @@ func (s ChangeTagsForResourceInput) GoString() string {
 
 // Empty response for the request.
 type ChangeTagsForResourceOutput struct {
-	metadataChangeTagsForResourceOutput `json:"-" xml:"-"`
-}
-
-type metadataChangeTagsForResourceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1405,6 +1365,8 @@ func (s ChangeTagsForResourceOutput) GoString() string {
 // >A complex type that contains information about the request to create a health
 // check.
 type CreateHealthCheckInput struct {
+	_ struct{} `locationName:"CreateHealthCheckRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+
 	// A unique string that identifies the request and that allows failed CreateHealthCheck
 	// requests to be retried without the risk of executing the operation twice.
 	// You must use a unique CallerReference string every time you create a health
@@ -1417,12 +1379,6 @@ type CreateHealthCheckInput struct {
 
 	// A complex type that contains health check configuration.
 	HealthCheckConfig *HealthCheckConfig `type:"structure" required:"true"`
-
-	metadataCreateHealthCheckInput `json:"-" xml:"-"`
-}
-
-type metadataCreateHealthCheckInput struct {
-	SDKShapeTraits bool `locationName:"CreateHealthCheckRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
 // String returns the string representation
@@ -1437,17 +1393,13 @@ func (s CreateHealthCheckInput) GoString() string {
 
 // A complex type containing the response information for the new health check.
 type CreateHealthCheckOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A complex type that contains identifying information about the health check.
 	HealthCheck *HealthCheck `type:"structure" required:"true"`
 
 	// The unique URL representing the new health check.
 	Location *string `location:"header" locationName:"Location" type:"string" required:"true"`
-
-	metadataCreateHealthCheckOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateHealthCheckOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1463,6 +1415,8 @@ func (s CreateHealthCheckOutput) GoString() string {
 // A complex type that contains information about the request to create a hosted
 // zone.
 type CreateHostedZoneInput struct {
+	_ struct{} `locationName:"CreateHostedZoneRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+
 	// A unique string that identifies the request and that allows failed CreateHostedZone
 	// requests to be retried without the risk of executing the operation twice.
 	// You must use a unique CallerReference string every time you create a hosted
@@ -1494,12 +1448,6 @@ type CreateHostedZoneInput struct {
 	// this parameter, your newly created hosted cannot be resolved anywhere other
 	// than the given VPC.
 	VPC *VPC `type:"structure"`
-
-	metadataCreateHostedZoneInput `json:"-" xml:"-"`
-}
-
-type metadataCreateHostedZoneInput struct {
-	SDKShapeTraits bool `locationName:"CreateHostedZoneRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
 // String returns the string representation
@@ -1514,6 +1462,8 @@ func (s CreateHostedZoneInput) GoString() string {
 
 // A complex type containing the response information for the new hosted zone.
 type CreateHostedZoneOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A complex type that contains information about the request to create a hosted
 	// zone. This includes an ID that you use when you call the GetChange action
 	// to get the current status of the change request.
@@ -1529,12 +1479,6 @@ type CreateHostedZoneOutput struct {
 	Location *string `location:"header" locationName:"Location" type:"string" required:"true"`
 
 	VPC *VPC `type:"structure"`
-
-	metadataCreateHostedZoneOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateHostedZoneOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1548,6 +1492,8 @@ func (s CreateHostedZoneOutput) GoString() string {
 }
 
 type CreateReusableDelegationSetInput struct {
+	_ struct{} `locationName:"CreateReusableDelegationSetRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+
 	// A unique string that identifies the request and that allows failed CreateReusableDelegationSet
 	// requests to be retried without the risk of executing the operation twice.
 	// You must use a unique CallerReference string every time you create a reusable
@@ -1561,12 +1507,6 @@ type CreateReusableDelegationSetInput struct {
 	// The ID of the hosted zone whose delegation set you want to mark as reusable.
 	// It is an optional parameter.
 	HostedZoneId *string `type:"string"`
-
-	metadataCreateReusableDelegationSetInput `json:"-" xml:"-"`
-}
-
-type metadataCreateReusableDelegationSetInput struct {
-	SDKShapeTraits bool `locationName:"CreateReusableDelegationSetRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
 // String returns the string representation
@@ -1580,17 +1520,13 @@ func (s CreateReusableDelegationSetInput) GoString() string {
 }
 
 type CreateReusableDelegationSetOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A complex type that contains name server information.
 	DelegationSet *DelegationSet `type:"structure" required:"true"`
 
 	// The unique URL representing the new reusbale delegation set.
 	Location *string `location:"header" locationName:"Location" type:"string" required:"true"`
-
-	metadataCreateReusableDelegationSetOutput `json:"-" xml:"-"`
-}
-
-type metadataCreateReusableDelegationSetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1605,6 +1541,8 @@ func (s CreateReusableDelegationSetOutput) GoString() string {
 
 // A complex type that contains name server information.
 type DelegationSet struct {
+	_ struct{} `type:"structure"`
+
 	CallerReference *string `min:"1" type:"string"`
 
 	Id *string `type:"string"`
@@ -1613,12 +1551,6 @@ type DelegationSet struct {
 	// zone. Use the method provided by your domain registrar to add an NS record
 	// to your domain for each NameServer that is assigned to your hosted zone.
 	NameServers []*string `locationNameList:"NameServer" min:"1" type:"list" required:"true"`
-
-	metadataDelegationSet `json:"-" xml:"-"`
-}
-
-type metadataDelegationSet struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1633,14 +1565,10 @@ func (s DelegationSet) GoString() string {
 
 // A complex type containing the request information for delete health check.
 type DeleteHealthCheckInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the health check to delete.
 	HealthCheckId *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"`
-
-	metadataDeleteHealthCheckInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteHealthCheckInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1655,11 +1583,7 @@ func (s DeleteHealthCheckInput) GoString() string {
 
 // Empty response for the request.
 type DeleteHealthCheckOutput struct {
-	metadataDeleteHealthCheckOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteHealthCheckOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1675,14 +1599,10 @@ func (s DeleteHealthCheckOutput) GoString() string {
 // A complex type that contains information about the hosted zone that you want
 // to delete.
 type DeleteHostedZoneInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the hosted zone you want to delete.
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
-
-	metadataDeleteHostedZoneInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteHostedZoneInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1697,15 +1617,11 @@ func (s DeleteHostedZoneInput) GoString() string {
 
 // A complex type containing the response information for the request.
 type DeleteHostedZoneOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A complex type that contains the ID, the status, and the date and time of
 	// your delete request.
 	ChangeInfo *ChangeInfo `type:"structure" required:"true"`
-
-	metadataDeleteHostedZoneOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteHostedZoneOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1720,14 +1636,10 @@ func (s DeleteHostedZoneOutput) GoString() string {
 
 // A complex type containing the information for the delete request.
 type DeleteReusableDelegationSetInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the reusable delegation set you want to delete.
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
-
-	metadataDeleteReusableDelegationSetInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteReusableDelegationSetInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1742,11 +1654,7 @@ func (s DeleteReusableDelegationSetInput) GoString() string {
 
 // Empty response for the request.
 type DeleteReusableDelegationSetOutput struct {
-	metadataDeleteReusableDelegationSetOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteReusableDelegationSetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1762,6 +1670,8 @@ func (s DeleteReusableDelegationSetOutput) GoString() string {
 // A complex type that contains information about the request to disassociate
 // a VPC from an hosted zone.
 type DisassociateVPCFromHostedZoneInput struct {
+	_ struct{} `locationName:"DisassociateVPCFromHostedZoneRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+
 	// Optional: Any comments you want to include about a DisassociateVPCFromHostedZoneRequest.
 	Comment *string `type:"string"`
 
@@ -1772,12 +1682,6 @@ type DisassociateVPCFromHostedZoneInput struct {
 
 	// The VPC that you want your hosted zone to be disassociated from.
 	VPC *VPC `type:"structure" required:"true"`
-
-	metadataDisassociateVPCFromHostedZoneInput `json:"-" xml:"-"`
-}
-
-type metadataDisassociateVPCFromHostedZoneInput struct {
-	SDKShapeTraits bool `locationName:"DisassociateVPCFromHostedZoneRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
 // String returns the string representation
@@ -1792,15 +1696,11 @@ func (s DisassociateVPCFromHostedZoneInput) GoString() string {
 
 // A complex type containing the response information for the request.
 type DisassociateVPCFromHostedZoneOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A complex type that contains the ID, the status, and the date and time of
 	// your DisassociateVPCFromHostedZoneRequest.
 	ChangeInfo *ChangeInfo `type:"structure" required:"true"`
-
-	metadataDisassociateVPCFromHostedZoneOutput `json:"-" xml:"-"`
-}
-
-type metadataDisassociateVPCFromHostedZoneOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1815,6 +1715,8 @@ func (s DisassociateVPCFromHostedZoneOutput) GoString() string {
 
 // A complex type that contains information about a geo location.
 type GeoLocation struct {
+	_ struct{} `type:"structure"`
+
 	// The code for a continent geo location. Note: only continent locations have
 	// a continent code.
 	//
@@ -1837,12 +1739,6 @@ type GeoLocation struct {
 	// Constraint: Specifying SubdivisionCode without CountryCode returns an InvalidInput
 	// error.
 	SubdivisionCode *string `min:"1" type:"string"`
-
-	metadataGeoLocation `json:"-" xml:"-"`
-}
-
-type metadataGeoLocation struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1857,6 +1753,8 @@ func (s GeoLocation) GoString() string {
 
 // A complex type that contains information about a GeoLocation.
 type GeoLocationDetails struct {
+	_ struct{} `type:"structure"`
+
 	// The code for a continent geo location. Note: only continent locations have
 	// a continent code.
 	ContinentCode *string `min:"2" type:"string"`
@@ -1883,12 +1781,6 @@ type GeoLocationDetails struct {
 	// The name of the subdivision. This element is only present if SubdivisionCode
 	// is also present.
 	SubdivisionName *string `min:"1" type:"string"`
-
-	metadataGeoLocationDetails `json:"-" xml:"-"`
-}
-
-type metadataGeoLocationDetails struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1903,16 +1795,12 @@ func (s GeoLocationDetails) GoString() string {
 
 // The input for a GetChange request.
 type GetChangeInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the change batch request. The value that you specify here is the
 	// value that ChangeResourceRecordSets returned in the Id element when you submitted
 	// the request.
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
-
-	metadataGetChangeInput `json:"-" xml:"-"`
-}
-
-type metadataGetChangeInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1927,16 +1815,12 @@ func (s GetChangeInput) GoString() string {
 
 // A complex type that contains the ChangeInfo element.
 type GetChangeOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A complex type that contains information about the specified change batch,
 	// including the change batch ID, the status of the change, and the date and
 	// time of the request.
 	ChangeInfo *ChangeInfo `type:"structure" required:"true"`
-
-	metadataGetChangeOutput `json:"-" xml:"-"`
-}
-
-type metadataGetChangeOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1951,11 +1835,7 @@ func (s GetChangeOutput) GoString() string {
 
 // Empty request.
 type GetCheckerIpRangesInput struct {
-	metadataGetCheckerIpRangesInput `json:"-" xml:"-"`
-}
-
-type metadataGetCheckerIpRangesInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1970,15 +1850,11 @@ func (s GetCheckerIpRangesInput) GoString() string {
 
 // A complex type that contains the CheckerIpRanges element.
 type GetCheckerIpRangesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A complex type that contains sorted list of IP ranges in CIDR format for
 	// Amazon Route 53 health checkers.
 	CheckerIpRanges []*string `type:"list" required:"true"`
-
-	metadataGetCheckerIpRangesOutput `json:"-" xml:"-"`
-}
-
-type metadataGetCheckerIpRangesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1993,6 +1869,8 @@ func (s GetCheckerIpRangesOutput) GoString() string {
 
 // A complex type that contains information about the request to get a geo location.
 type GetGeoLocationInput struct {
+	_ struct{} `type:"structure"`
+
 	// The code for a continent geo location. Note: only continent locations have
 	// a continent code.
 	//
@@ -2015,12 +1893,6 @@ type GetGeoLocationInput struct {
 	// Constraint: Specifying SubdivisionCode without CountryCode returns an InvalidInput
 	// error.
 	SubdivisionCode *string `location:"querystring" locationName:"subdivisioncode" min:"1" type:"string"`
-
-	metadataGetGeoLocationInput `json:"-" xml:"-"`
-}
-
-type metadataGetGeoLocationInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2035,14 +1907,10 @@ func (s GetGeoLocationInput) GoString() string {
 
 // A complex type containing information about the specified geo location.
 type GetGeoLocationOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A complex type that contains the information about the specified geo location.
 	GeoLocationDetails *GeoLocationDetails `type:"structure" required:"true"`
-
-	metadataGetGeoLocationOutput `json:"-" xml:"-"`
-}
-
-type metadataGetGeoLocationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2058,11 +1926,7 @@ func (s GetGeoLocationOutput) GoString() string {
 // To retrieve a count of all your health checks, send a GET request to the
 // 2013-04-01/healthcheckcount resource.
 type GetHealthCheckCountInput struct {
-	metadataGetHealthCheckCountInput `json:"-" xml:"-"`
-}
-
-type metadataGetHealthCheckCountInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2078,14 +1942,10 @@ func (s GetHealthCheckCountInput) GoString() string {
 // A complex type that contains the count of health checks associated with the
 // current AWS account.
 type GetHealthCheckCountOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The number of health checks associated with the current AWS account.
 	HealthCheckCount *int64 `type:"long" required:"true"`
-
-	metadataGetHealthCheckCountOutput `json:"-" xml:"-"`
-}
-
-type metadataGetHealthCheckCountOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2101,14 +1961,10 @@ func (s GetHealthCheckCountOutput) GoString() string {
 // A complex type that contains information about the request to get a health
 // check.
 type GetHealthCheckInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the health check to retrieve.
 	HealthCheckId *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"`
-
-	metadataGetHealthCheckInput `json:"-" xml:"-"`
-}
-
-type metadataGetHealthCheckInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2124,15 +1980,11 @@ func (s GetHealthCheckInput) GoString() string {
 // A complex type that contains information about the request to get the most
 // recent failure reason for a health check.
 type GetHealthCheckLastFailureReasonInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the health check for which you want to retrieve the reason for
 	// the most recent failure.
 	HealthCheckId *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"`
-
-	metadataGetHealthCheckLastFailureReasonInput `json:"-" xml:"-"`
-}
-
-type metadataGetHealthCheckLastFailureReasonInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2148,15 +2000,11 @@ func (s GetHealthCheckLastFailureReasonInput) GoString() string {
 // A complex type that contains information about the most recent failure for
 // the specified health check.
 type GetHealthCheckLastFailureReasonOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list that contains one HealthCheckObservation element for each Route 53
 	// health checker.
 	HealthCheckObservations []*HealthCheckObservation `locationNameList:"HealthCheckObservation" type:"list" required:"true"`
-
-	metadataGetHealthCheckLastFailureReasonOutput `json:"-" xml:"-"`
-}
-
-type metadataGetHealthCheckLastFailureReasonOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2171,14 +2019,10 @@ func (s GetHealthCheckLastFailureReasonOutput) GoString() string {
 
 // A complex type containing information about the specified health check.
 type GetHealthCheckOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A complex type that contains the information about the specified health check.
 	HealthCheck *HealthCheck `type:"structure" required:"true"`
-
-	metadataGetHealthCheckOutput `json:"-" xml:"-"`
-}
-
-type metadataGetHealthCheckOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2194,15 +2038,11 @@ func (s GetHealthCheckOutput) GoString() string {
 // A complex type that contains information about the request to get health
 // check status for a health check.
 type GetHealthCheckStatusInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the health check for which you want to retrieve the most recent
 	// status.
 	HealthCheckId *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"`
-
-	metadataGetHealthCheckStatusInput `json:"-" xml:"-"`
-}
-
-type metadataGetHealthCheckStatusInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2218,15 +2058,11 @@ func (s GetHealthCheckStatusInput) GoString() string {
 // A complex type that contains information about the status of the specified
 // health check.
 type GetHealthCheckStatusOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list that contains one HealthCheckObservation element for each Route 53
 	// health checker.
 	HealthCheckObservations []*HealthCheckObservation `locationNameList:"HealthCheckObservation" type:"list" required:"true"`
-
-	metadataGetHealthCheckStatusOutput `json:"-" xml:"-"`
-}
-
-type metadataGetHealthCheckStatusOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2242,11 +2078,7 @@ func (s GetHealthCheckStatusOutput) GoString() string {
 // To retrieve a count of all your hosted zones, send a GET request to the 2013-04-01/hostedzonecount
 // resource.
 type GetHostedZoneCountInput struct {
-	metadataGetHostedZoneCountInput `json:"-" xml:"-"`
-}
-
-type metadataGetHostedZoneCountInput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -2262,14 +2094,10 @@ func (s GetHostedZoneCountInput) GoString() string {
 // A complex type that contains the count of hosted zones associated with the
 // current AWS account.
 type GetHostedZoneCountOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The number of hosted zones associated with the current AWS account.
 	HostedZoneCount *int64 `type:"long" required:"true"`
-
-	metadataGetHostedZoneCountOutput `json:"-" xml:"-"`
-}
-
-type metadataGetHostedZoneCountOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2284,15 +2112,11 @@ func (s GetHostedZoneCountOutput) GoString() string {
 
 // The input for a GetHostedZone request.
 type GetHostedZoneInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the hosted zone for which you want to get a list of the name servers
 	// in the delegation set.
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
-
-	metadataGetHostedZoneInput `json:"-" xml:"-"`
-}
-
-type metadataGetHostedZoneInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2307,6 +2131,8 @@ func (s GetHostedZoneInput) GoString() string {
 
 // A complex type containing information about the specified hosted zone.
 type GetHostedZoneOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A complex type that contains information about the name servers for the specified
 	// hosted zone.
 	DelegationSet *DelegationSet `type:"structure"`
@@ -2317,12 +2143,6 @@ type GetHostedZoneOutput struct {
 	// A complex type that contains information about VPCs associated with the specified
 	// hosted zone.
 	VPCs []*VPC `locationNameList:"VPC" min:"1" type:"list"`
-
-	metadataGetHostedZoneOutput `json:"-" xml:"-"`
-}
-
-type metadataGetHostedZoneOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2337,15 +2157,11 @@ func (s GetHostedZoneOutput) GoString() string {
 
 // The input for a GetReusableDelegationSet request.
 type GetReusableDelegationSetInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the reusable delegation set for which you want to get a list of
 	// the name server.
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
-
-	metadataGetReusableDelegationSetInput `json:"-" xml:"-"`
-}
-
-type metadataGetReusableDelegationSetInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2361,15 +2177,11 @@ func (s GetReusableDelegationSetInput) GoString() string {
 // A complex type containing information about the specified reusable delegation
 // set.
 type GetReusableDelegationSetOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A complex type that contains the information about the nameservers for the
 	// specified delegation set ID.
 	DelegationSet *DelegationSet `type:"structure" required:"true"`
-
-	metadataGetReusableDelegationSetOutput `json:"-" xml:"-"`
-}
-
-type metadataGetReusableDelegationSetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2384,6 +2196,8 @@ func (s GetReusableDelegationSetOutput) GoString() string {
 
 // A complex type that contains identifying information about the health check.
 type HealthCheck struct {
+	_ struct{} `type:"structure"`
+
 	// A unique string that identifies the request to create the health check.
 	CallerReference *string `min:"1" type:"string" required:"true"`
 
@@ -2397,12 +2211,6 @@ type HealthCheck struct {
 
 	// The ID of the specified health check.
 	Id *string `type:"string" required:"true"`
-
-	metadataHealthCheck `json:"-" xml:"-"`
-}
-
-type metadataHealthCheck struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2417,6 +2225,8 @@ func (s HealthCheck) GoString() string {
 
 // A complex type that contains the health check configuration.
 type HealthCheckConfig struct {
+	_ struct{} `type:"structure"`
+
 	// For a specified parent health check, a list of HealthCheckId values for the
 	// associated child health checks.
 	ChildHealthChecks []*string `locationNameList:"ChildHealthCheck" type:"list"`
@@ -2475,12 +2285,6 @@ type HealthCheckConfig struct {
 	// The type of health check to be performed. Currently supported types are TCP,
 	// HTTP, HTTPS, HTTP_STR_MATCH, and HTTPS_STR_MATCH.
 	Type *string `type:"string" required:"true" enum:"HealthCheckType"`
-
-	metadataHealthCheckConfig `json:"-" xml:"-"`
-}
-
-type metadataHealthCheckConfig struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2496,18 +2300,14 @@ func (s HealthCheckConfig) GoString() string {
 // A complex type that contains the IP address of a Route 53 health checker
 // and the reason for the health check status.
 type HealthCheckObservation struct {
+	_ struct{} `type:"structure"`
+
 	// The IP address of the Route 53 health checker that performed the health check.
 	IPAddress *string `type:"string"`
 
 	// A complex type that contains information about the health check status for
 	// the current observation.
 	StatusReport *StatusReport `type:"structure"`
-
-	metadataHealthCheckObservation `json:"-" xml:"-"`
-}
-
-type metadataHealthCheckObservation struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2522,6 +2322,8 @@ func (s HealthCheckObservation) GoString() string {
 
 // A complex type that contain information about the specified hosted zone.
 type HostedZone struct {
+	_ struct{} `type:"structure"`
+
 	// A unique string that identifies the request to create the hosted zone.
 	CallerReference *string `min:"1" type:"string" required:"true"`
 
@@ -2543,12 +2345,6 @@ type HostedZone struct {
 
 	// Total number of resource record sets in the hosted zone.
 	ResourceRecordSetCount *int64 `type:"long"`
-
-	metadataHostedZone `json:"-" xml:"-"`
-}
-
-type metadataHostedZone struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2565,6 +2361,8 @@ func (s HostedZone) GoString() string {
 // If you don't want to specify a comment, you can omit the HostedZoneConfig
 // and Comment elements from the XML document.
 type HostedZoneConfig struct {
+	_ struct{} `type:"structure"`
+
 	// An optional comment about your hosted zone. If you don't want to specify
 	// a comment, you can omit the HostedZoneConfig and Comment elements from the
 	// XML document.
@@ -2573,12 +2371,6 @@ type HostedZoneConfig struct {
 	// A value that indicates whether this is a private hosted zone. The value is
 	// returned in the response; do not specify it in the request.
 	PrivateZone *bool `type:"boolean"`
-
-	metadataHostedZoneConfig `json:"-" xml:"-"`
-}
-
-type metadataHostedZoneConfig struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2593,6 +2385,8 @@ func (s HostedZoneConfig) GoString() string {
 
 // The input for a ListGeoLocations request.
 type ListGeoLocationsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The maximum number of geo locations you want in the response body.
 	MaxItems *string `location:"querystring" locationName:"maxitems" type:"string"`
 
@@ -2619,12 +2413,6 @@ type ListGeoLocationsInput struct {
 	// Constraint: Specifying SubdivisionCode without CountryCode returns an InvalidInput
 	// error.
 	StartSubdivisionCode *string `location:"querystring" locationName:"startsubdivisioncode" min:"1" type:"string"`
-
-	metadataListGeoLocationsInput `json:"-" xml:"-"`
-}
-
-type metadataListGeoLocationsInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2640,6 +2428,8 @@ func (s ListGeoLocationsInput) GoString() string {
 // A complex type that contains information about the geo locations that are
 // returned by the request and information about the response.
 type ListGeoLocationsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A complex type that contains information about the geo locations that are
 	// returned by the request.
 	GeoLocationDetailsList []*GeoLocationDetails `locationNameList:"GeoLocationDetails" type:"list" required:"true"`
@@ -2671,12 +2461,6 @@ type ListGeoLocationsOutput struct {
 	// in the list. This element is present only if ListGeoLocationsResponse$IsTruncated
 	// is true and the next geo location has a subdivision.
 	NextSubdivisionCode *string `min:"1" type:"string"`
-
-	metadataListGeoLocationsOutput `json:"-" xml:"-"`
-}
-
-type metadataListGeoLocationsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2699,6 +2483,8 @@ func (s ListGeoLocationsOutput) GoString() string {
 //  Route 53 returns a maximum of 100 items. If you set MaxItems to a value
 // greater than 100, Route 53 returns only the first 100.
 type ListHealthChecksInput struct {
+	_ struct{} `type:"structure"`
+
 	// If the request returned more than one page of results, submit another request
 	// and specify the value of NextMarker from the last response in the marker
 	// parameter to get the next page of results.
@@ -2706,12 +2492,6 @@ type ListHealthChecksInput struct {
 
 	// Specify the maximum number of health checks to return per page of results.
 	MaxItems *string `location:"querystring" locationName:"maxitems" type:"string"`
-
-	metadataListHealthChecksInput `json:"-" xml:"-"`
-}
-
-type metadataListHealthChecksInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2726,6 +2506,8 @@ func (s ListHealthChecksInput) GoString() string {
 
 // A complex type that contains the response for the request.
 type ListHealthChecksOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A complex type that contains information about the health checks associated
 	// with the current AWS account.
 	HealthChecks []*HealthCheck `locationNameList:"HealthCheck" type:"list" required:"true"`
@@ -2753,12 +2535,6 @@ type ListHealthChecksOutput struct {
 	// is true, make another request to ListHealthChecks and include the value of
 	// the NextMarker element in the Marker element to get the next page of results.
 	NextMarker *string `type:"string"`
-
-	metadataListHealthChecksOutput `json:"-" xml:"-"`
-}
-
-type metadataListHealthChecksOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2784,6 +2560,8 @@ func (s ListHealthChecksOutput) GoString() string {
 // Zones for an AWS Account (http://docs.amazonwebservices.com/Route53/latest/DeveloperGuide/ListInfoOnHostedZone.html)
 // in the Amazon Route 53 Developer Guide.
 type ListHostedZonesByNameInput struct {
+	_ struct{} `type:"structure"`
+
 	// The first name in the lexicographic ordering of domain names that you want
 	// the ListHostedZonesByNameRequest request to list.
 	//
@@ -2799,12 +2577,6 @@ type ListHostedZonesByNameInput struct {
 
 	// Specify the maximum number of hosted zones to return per page of results.
 	MaxItems *string `location:"querystring" locationName:"maxitems" type:"string"`
-
-	metadataListHostedZonesByNameInput `json:"-" xml:"-"`
-}
-
-type metadataListHostedZonesByNameInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2819,6 +2591,8 @@ func (s ListHostedZonesByNameInput) GoString() string {
 
 // A complex type that contains the response for the request.
 type ListHostedZonesByNameOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The DNSName value sent in the request.
 	DNSName *string `type:"string"`
 
@@ -2857,12 +2631,6 @@ type ListHostedZonesByNameOutput struct {
 	// in the ListHostedZonesByNameRequest$DNSName element and ListHostedZonesByNameResponse$NextHostedZoneId
 	// in the ListHostedZonesByNameRequest$HostedZoneId element.
 	NextHostedZoneId *string `type:"string"`
-
-	metadataListHostedZonesByNameOutput `json:"-" xml:"-"`
-}
-
-type metadataListHostedZonesByNameOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2888,6 +2656,8 @@ func (s ListHostedZonesByNameOutput) GoString() string {
 //  Route 53 returns a maximum of 100 items. If you set MaxItems to a value
 // greater than 100, Route 53 returns only the first 100.
 type ListHostedZonesInput struct {
+	_ struct{} `type:"structure"`
+
 	DelegationSetId *string `location:"querystring" locationName:"delegationsetid" type:"string"`
 
 	// If the request returned more than one page of results, submit another request
@@ -2897,12 +2667,6 @@ type ListHostedZonesInput struct {
 
 	// Specify the maximum number of hosted zones to return per page of results.
 	MaxItems *string `location:"querystring" locationName:"maxitems" type:"string"`
-
-	metadataListHostedZonesInput `json:"-" xml:"-"`
-}
-
-type metadataListHostedZonesInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2917,6 +2681,8 @@ func (s ListHostedZonesInput) GoString() string {
 
 // A complex type that contains the response for the request.
 type ListHostedZonesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A complex type that contains information about the hosted zones associated
 	// with the current AWS account.
 	HostedZones []*HostedZone `locationNameList:"HostedZone" type:"list" required:"true"`
@@ -2944,12 +2710,6 @@ type ListHostedZonesOutput struct {
 	// is true, make another request to ListHostedZones and include the value of
 	// the NextMarker element in the Marker element to get the next page of results.
 	NextMarker *string `type:"string"`
-
-	metadataListHostedZonesOutput `json:"-" xml:"-"`
-}
-
-type metadataListHostedZonesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -2964,6 +2724,8 @@ func (s ListHostedZonesOutput) GoString() string {
 
 // The input for a ListResourceRecordSets request.
 type ListResourceRecordSetsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the hosted zone that contains the resource record sets that you
 	// want to get.
 	HostedZoneId *string `location:"uri" locationName:"Id" type:"string" required:"true"`
@@ -2994,12 +2756,6 @@ type ListResourceRecordSetsInput struct {
 	// Constraint: Specifying type without specifying name returns an InvalidInput
 	// error.
 	StartRecordType *string `location:"querystring" locationName:"type" type:"string" enum:"RRType"`
-
-	metadataListResourceRecordSetsInput `json:"-" xml:"-"`
-}
-
-type metadataListResourceRecordSetsInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3015,6 +2771,8 @@ func (s ListResourceRecordSetsInput) GoString() string {
 // A complex type that contains information about the resource record sets that
 // are returned by the request and information about the response.
 type ListResourceRecordSetsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A flag that indicates whether there are more resource record sets to be listed.
 	// If your results were truncated, you can make a follow-up request for the
 	// next page of results by using the ListResourceRecordSetsResponse$NextRecordName
@@ -3045,12 +2803,6 @@ type ListResourceRecordSetsOutput struct {
 	// A complex type that contains information about the resource record sets that
 	// are returned by the request.
 	ResourceRecordSets []*ResourceRecordSet `locationNameList:"ResourceRecordSet" type:"list" required:"true"`
-
-	metadataListResourceRecordSetsOutput `json:"-" xml:"-"`
-}
-
-type metadataListResourceRecordSetsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3074,6 +2826,8 @@ func (s ListResourceRecordSetsOutput) GoString() string {
 //  Route 53 returns a maximum of 100 items. If you set MaxItems to a value
 // greater than 100, Route 53 returns only the first 100.
 type ListReusableDelegationSetsInput struct {
+	_ struct{} `type:"structure"`
+
 	// If the request returned more than one page of results, submit another request
 	// and specify the value of NextMarker from the last response in the marker
 	// parameter to get the next page of results.
@@ -3082,12 +2836,6 @@ type ListReusableDelegationSetsInput struct {
 	// Specify the maximum number of reusable delegation sets to return per page
 	// of results.
 	MaxItems *string `location:"querystring" locationName:"maxitems" type:"string"`
-
-	metadataListReusableDelegationSetsInput `json:"-" xml:"-"`
-}
-
-type metadataListReusableDelegationSetsInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3102,6 +2850,8 @@ func (s ListReusableDelegationSetsInput) GoString() string {
 
 // A complex type that contains the response for the request.
 type ListReusableDelegationSetsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A complex type that contains information about the reusable delegation sets
 	// associated with the current AWS account.
 	DelegationSets []*DelegationSet `locationNameList:"DelegationSet" type:"list" required:"true"`
@@ -3131,12 +2881,6 @@ type ListReusableDelegationSetsOutput struct {
 	// value of the NextMarker element in the Marker element to get the next page
 	// of results.
 	NextMarker *string `type:"string"`
-
-	metadataListReusableDelegationSetsOutput `json:"-" xml:"-"`
-}
-
-type metadataListReusableDelegationSetsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3152,6 +2896,8 @@ func (s ListReusableDelegationSetsOutput) GoString() string {
 // A complex type containing information about a request for a list of the tags
 // that are associated with an individual resource.
 type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure"`
+
 	// The ID of the resource for which you want to retrieve tags.
 	ResourceId *string `location:"uri" locationName:"ResourceId" type:"string" required:"true"`
 
@@ -3161,12 +2907,6 @@ type ListTagsForResourceInput struct {
 	//
 	// - The resource type for hosted zones is hostedzone.
 	ResourceType *string `location:"uri" locationName:"ResourceType" type:"string" required:"true" enum:"TagResourceType"`
-
-	metadataListTagsForResourceInput `json:"-" xml:"-"`
-}
-
-type metadataListTagsForResourceInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3181,14 +2921,10 @@ func (s ListTagsForResourceInput) GoString() string {
 
 // A complex type containing tags for the specified resource.
 type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A ResourceTagSet containing tags associated with the specified resource.
 	ResourceTagSet *ResourceTagSet `type:"structure" required:"true"`
-
-	metadataListTagsForResourceOutput `json:"-" xml:"-"`
-}
-
-type metadataListTagsForResourceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3204,6 +2940,8 @@ func (s ListTagsForResourceOutput) GoString() string {
 // A complex type containing information about a request for a list of the tags
 // that are associated with up to 10 specified resources.
 type ListTagsForResourcesInput struct {
+	_ struct{} `locationName:"ListTagsForResourcesRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+
 	// A complex type that contains the ResourceId element for each resource for
 	// which you want to get a list of tags.
 	ResourceIds []*string `locationNameList:"ResourceId" min:"1" type:"list" required:"true"`
@@ -3214,12 +2952,6 @@ type ListTagsForResourcesInput struct {
 	//
 	// - The resource type for hosted zones is hostedzone.
 	ResourceType *string `location:"uri" locationName:"ResourceType" type:"string" required:"true" enum:"TagResourceType"`
-
-	metadataListTagsForResourcesInput `json:"-" xml:"-"`
-}
-
-type metadataListTagsForResourcesInput struct {
-	SDKShapeTraits bool `locationName:"ListTagsForResourcesRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
 // String returns the string representation
@@ -3234,14 +2966,10 @@ func (s ListTagsForResourcesInput) GoString() string {
 
 // A complex type containing tags for the specified resources.
 type ListTagsForResourcesOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of ResourceTagSets containing tags associated with the specified resources.
 	ResourceTagSets []*ResourceTagSet `locationNameList:"ResourceTagSet" type:"list" required:"true"`
-
-	metadataListTagsForResourcesOutput `json:"-" xml:"-"`
-}
-
-type metadataListTagsForResourcesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3257,14 +2985,10 @@ func (s ListTagsForResourcesOutput) GoString() string {
 // A complex type that contains the value of the Value element for the current
 // resource record set.
 type ResourceRecord struct {
+	_ struct{} `type:"structure"`
+
 	// The value of the Value element for the current resource record set.
 	Value *string `type:"string" required:"true"`
-
-	metadataResourceRecord `json:"-" xml:"-"`
-}
-
-type metadataResourceRecord struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3280,6 +3004,8 @@ func (s ResourceRecord) GoString() string {
 // A complex type that contains information about the current resource record
 // set.
 type ResourceRecordSet struct {
+	_ struct{} `type:"structure"`
+
 	// Alias resource record sets only: Information about the AWS resource to which
 	// you are redirecting traffic.
 	AliasTarget *AliasTarget `type:"structure"`
@@ -3340,12 +3066,6 @@ type ResourceRecordSet struct {
 	// of traffic for the current resource record set is routed to the associated
 	// location.
 	Weight *int64 `type:"long"`
-
-	metadataResourceRecordSet `json:"-" xml:"-"`
-}
-
-type metadataResourceRecordSet struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3360,6 +3080,8 @@ func (s ResourceRecordSet) GoString() string {
 
 // A complex type containing a resource and its associated tags.
 type ResourceTagSet struct {
+	_ struct{} `type:"structure"`
+
 	// The ID for the specified resource.
 	ResourceId *string `type:"string"`
 
@@ -3372,12 +3094,6 @@ type ResourceTagSet struct {
 
 	// The tags associated with the specified resource.
 	Tags []*Tag `locationNameList:"Tag" min:"1" type:"list"`
-
-	metadataResourceTagSet `json:"-" xml:"-"`
-}
-
-type metadataResourceTagSet struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3393,6 +3109,8 @@ func (s ResourceTagSet) GoString() string {
 // A complex type that contains information about the health check status for
 // the current observation.
 type StatusReport struct {
+	_ struct{} `type:"structure"`
+
 	// The date and time the health check status was observed, in the format YYYY-MM-DDThh:mm:ssZ,
 	// as specified in the ISO 8601 standard (for example, 2009-11-19T19:37:58Z).
 	// The Z after the time indicates that the time is listed in Coordinated Universal
@@ -3401,12 +3119,6 @@ type StatusReport struct {
 
 	// The observed health check status.
 	Status *string `type:"string"`
-
-	metadataStatusReport `json:"-" xml:"-"`
-}
-
-type metadataStatusReport struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3421,17 +3133,13 @@ func (s StatusReport) GoString() string {
 
 // A single tag containing a key and value.
 type Tag struct {
+	_ struct{} `type:"structure"`
+
 	// The key for a Tag.
 	Key *string `type:"string"`
 
 	// The value for a Tag.
 	Value *string `type:"string"`
-
-	metadataTag `json:"-" xml:"-"`
-}
-
-type metadataTag struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3447,6 +3155,8 @@ func (s Tag) GoString() string {
 // >A complex type that contains information about the request to update a health
 // check.
 type UpdateHealthCheckInput struct {
+	_ struct{} `locationName:"UpdateHealthCheckRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+
 	// For a specified parent health check, a list of HealthCheckId values for the
 	// associated child health checks.
 	//
@@ -3518,12 +3228,6 @@ type UpdateHealthCheckInput struct {
 	//
 	// Specify this value only if you want to change it.
 	SearchString *string `type:"string"`
-
-	metadataUpdateHealthCheckInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateHealthCheckInput struct {
-	SDKShapeTraits bool `locationName:"UpdateHealthCheckRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
 // String returns the string representation
@@ -3537,14 +3241,10 @@ func (s UpdateHealthCheckInput) GoString() string {
 }
 
 type UpdateHealthCheckOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A complex type that contains identifying information about the health check.
 	HealthCheck *HealthCheck `type:"structure" required:"true"`
-
-	metadataUpdateHealthCheckOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateHealthCheckOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3560,17 +3260,13 @@ func (s UpdateHealthCheckOutput) GoString() string {
 // A complex type that contains information about the request to update a hosted
 // zone comment.
 type UpdateHostedZoneCommentInput struct {
+	_ struct{} `locationName:"UpdateHostedZoneCommentRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+
 	// A comment about your hosted zone.
 	Comment *string `type:"string"`
 
 	// The ID of the hosted zone you want to update.
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
-
-	metadataUpdateHostedZoneCommentInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateHostedZoneCommentInput struct {
-	SDKShapeTraits bool `locationName:"UpdateHostedZoneCommentRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
 // String returns the string representation
@@ -3586,14 +3282,10 @@ func (s UpdateHostedZoneCommentInput) GoString() string {
 // A complex type containing information about the specified hosted zone after
 // the update.
 type UpdateHostedZoneCommentOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A complex type that contain information about the specified hosted zone.
 	HostedZone *HostedZone `type:"structure" required:"true"`
-
-	metadataUpdateHostedZoneCommentOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateHostedZoneCommentOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -3607,16 +3299,12 @@ func (s UpdateHostedZoneCommentOutput) GoString() string {
 }
 
 type VPC struct {
+	_ struct{} `type:"structure"`
+
 	// A VPC ID
 	VPCId *string `type:"string"`
 
 	VPCRegion *string `min:"1" type:"string" enum:"VPCRegion"`
-
-	metadataVPC `json:"-" xml:"-"`
-}
-
-type metadataVPC struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation

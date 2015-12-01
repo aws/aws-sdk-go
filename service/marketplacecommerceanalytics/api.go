@@ -48,6 +48,8 @@ func (c *MarketplaceCommerceAnalytics) GenerateDataSet(input *GenerateDataSetInp
 
 // Container for the parameters to the GenerateDataSet operation.
 type GenerateDataSetInput struct {
+	_ struct{} `type:"structure"`
+
 	// The date a data set was published. For daily data sets, provide a date with
 	// day-level granularity for the desired day. For weekly data sets, provide
 	// a date with day-level granularity within the desired week (the day value
@@ -76,12 +78,6 @@ type GenerateDataSetInput struct {
 	// Amazon Resource Name (ARN) for the SNS Topic that will be notified when the
 	// data set has been published or if an error has occurred.
 	SnsTopicArn *string `locationName:"snsTopicArn" min:"1" type:"string" required:"true"`
-
-	metadataGenerateDataSetInput `json:"-" xml:"-"`
-}
-
-type metadataGenerateDataSetInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -96,16 +92,12 @@ func (s GenerateDataSetInput) GoString() string {
 
 // Container for the result of the GenerateDataSet operation.
 type GenerateDataSetOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A unique identifier representing a specific request to the GenerateDataSet
 	// operation. This identifier can be used to correlate a request with notifications
 	// from the SNS topic.
 	DataSetRequestId *string `locationName:"dataSetRequestId" type:"string"`
-
-	metadataGenerateDataSetOutput `json:"-" xml:"-"`
-}
-
-type metadataGenerateDataSetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation

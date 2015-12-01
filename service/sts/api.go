@@ -471,6 +471,8 @@ func (c *STS) GetSessionToken(input *GetSessionTokenInput) (*GetSessionTokenOutp
 }
 
 type AssumeRoleInput struct {
+	_ struct{} `type:"structure"`
+
 	// The duration, in seconds, of the role session. The value can range from 900
 	// seconds (15 minutes) to 3600 seconds (1 hour). By default, the value is set
 	// to 3600 seconds.
@@ -533,12 +535,6 @@ type AssumeRoleInput struct {
 	// for MFA). If the role being assumed requires MFA and if the TokenCode value
 	// is missing or expired, the AssumeRole call returns an "access denied" error.
 	TokenCode *string `min:"6" type:"string"`
-
-	metadataAssumeRoleInput `json:"-" xml:"-"`
-}
-
-type metadataAssumeRoleInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -554,6 +550,8 @@ func (s AssumeRoleInput) GoString() string {
 // Contains the response to a successful AssumeRole request, including temporary
 // AWS credentials that can be used to make AWS requests.
 type AssumeRoleOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The Amazon Resource Name (ARN) and the assumed role ID, which are identifiers
 	// that you can use to refer to the resulting temporary security credentials.
 	// For example, you can reference these credentials as a principal in a resource-based
@@ -569,12 +567,6 @@ type AssumeRoleOutput struct {
 	// The service rejects any policy with a packed size greater than 100 percent,
 	// which means the policy exceeded the allowed space.
 	PackedPolicySize *int64 `type:"integer"`
-
-	metadataAssumeRoleOutput `json:"-" xml:"-"`
-}
-
-type metadataAssumeRoleOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -588,6 +580,8 @@ func (s AssumeRoleOutput) GoString() string {
 }
 
 type AssumeRoleWithSAMLInput struct {
+	_ struct{} `type:"structure"`
+
 	// The duration, in seconds, of the role session. The value can range from 900
 	// seconds (15 minutes) to 3600 seconds (1 hour). By default, the value is set
 	// to 3600 seconds. An expiration can also be specified in the SAML authentication
@@ -631,12 +625,6 @@ type AssumeRoleWithSAMLInput struct {
 	// (http://docs.aws.amazon.com/IAM/latest/UserGuide/create-role-saml-IdP-tasks.html)
 	// in the Using IAM guide.
 	SAMLAssertion *string `min:"4" type:"string" required:"true"`
-
-	metadataAssumeRoleWithSAMLInput `json:"-" xml:"-"`
-}
-
-type metadataAssumeRoleWithSAMLInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -652,6 +640,8 @@ func (s AssumeRoleWithSAMLInput) GoString() string {
 // Contains the response to a successful AssumeRoleWithSAML request, including
 // temporary AWS credentials that can be used to make AWS requests.
 type AssumeRoleWithSAMLOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The identifiers for the temporary security credentials that the operation
 	// returns.
 	AssumedRoleUser *AssumedRoleUser `type:"structure"`
@@ -694,12 +684,6 @@ type AssumeRoleWithSAMLOutput struct {
 	// is returned as transient. If the format includes any other prefix, the format
 	// is returned with no modifications.
 	SubjectType *string `type:"string"`
-
-	metadataAssumeRoleWithSAMLOutput `json:"-" xml:"-"`
-}
-
-type metadataAssumeRoleWithSAMLOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -713,6 +697,8 @@ func (s AssumeRoleWithSAMLOutput) GoString() string {
 }
 
 type AssumeRoleWithWebIdentityInput struct {
+	_ struct{} `type:"structure"`
+
 	// The duration, in seconds, of the role session. The value can range from 900
 	// seconds (15 minutes) to 3600 seconds (1 hour). By default, the value is set
 	// to 3600 seconds.
@@ -761,12 +747,6 @@ type AssumeRoleWithWebIdentityInput struct {
 	// the user who is using your application with a web identity provider before
 	// the application makes an AssumeRoleWithWebIdentity call.
 	WebIdentityToken *string `min:"4" type:"string" required:"true"`
-
-	metadataAssumeRoleWithWebIdentityInput `json:"-" xml:"-"`
-}
-
-type metadataAssumeRoleWithWebIdentityInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -782,6 +762,8 @@ func (s AssumeRoleWithWebIdentityInput) GoString() string {
 // Contains the response to a successful AssumeRoleWithWebIdentity request,
 // including temporary AWS credentials that can be used to make AWS requests.
 type AssumeRoleWithWebIdentityOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The Amazon Resource Name (ARN) and the assumed role ID, which are identifiers
 	// that you can use to refer to the resulting temporary security credentials.
 	// For example, you can reference these credentials as a principal in a resource-based
@@ -816,12 +798,6 @@ type AssumeRoleWithWebIdentityOutput struct {
 	// identifier). For OpenID Connect ID tokens, this field contains the value
 	// returned by the identity provider as the token's sub (Subject) claim.
 	SubjectFromWebIdentityToken *string `min:"6" type:"string"`
-
-	metadataAssumeRoleWithWebIdentityOutput `json:"-" xml:"-"`
-}
-
-type metadataAssumeRoleWithWebIdentityOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -837,6 +813,8 @@ func (s AssumeRoleWithWebIdentityOutput) GoString() string {
 // The identifiers for the temporary security credentials that the operation
 // returns.
 type AssumedRoleUser struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN of the temporary security credentials that are returned from the
 	// AssumeRole action. For more information about ARNs and how to use them in
 	// policies, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html)
@@ -847,12 +825,6 @@ type AssumedRoleUser struct {
 	// the role that is being assumed. The role ID is generated by AWS when the
 	// role is created.
 	AssumedRoleId *string `min:"2" type:"string" required:"true"`
-
-	metadataAssumedRoleUser `json:"-" xml:"-"`
-}
-
-type metadataAssumedRoleUser struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -867,6 +839,8 @@ func (s AssumedRoleUser) GoString() string {
 
 // AWS credentials for API authentication.
 type Credentials struct {
+	_ struct{} `type:"structure"`
+
 	// The access key ID that identifies the temporary security credentials.
 	AccessKeyId *string `min:"16" type:"string" required:"true"`
 
@@ -878,12 +852,6 @@ type Credentials struct {
 
 	// The token that users must pass to the service API to use the temporary credentials.
 	SessionToken *string `type:"string" required:"true"`
-
-	metadataCredentials `json:"-" xml:"-"`
-}
-
-type metadataCredentials struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -897,14 +865,10 @@ func (s Credentials) GoString() string {
 }
 
 type DecodeAuthorizationMessageInput struct {
+	_ struct{} `type:"structure"`
+
 	// The encoded message that was returned with the response.
 	EncodedMessage *string `min:"1" type:"string" required:"true"`
-
-	metadataDecodeAuthorizationMessageInput `json:"-" xml:"-"`
-}
-
-type metadataDecodeAuthorizationMessageInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -921,15 +885,11 @@ func (s DecodeAuthorizationMessageInput) GoString() string {
 // of a request from an encoded message that is returned in response to an AWS
 // request.
 type DecodeAuthorizationMessageOutput struct {
+	_ struct{} `type:"structure"`
+
 	// An XML document that contains the decoded message. For more information,
 	// see DecodeAuthorizationMessage.
 	DecodedMessage *string `type:"string"`
-
-	metadataDecodeAuthorizationMessageOutput `json:"-" xml:"-"`
-}
-
-type metadataDecodeAuthorizationMessageOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -944,6 +904,8 @@ func (s DecodeAuthorizationMessageOutput) GoString() string {
 
 // Identifiers for the federated user that is associated with the credentials.
 type FederatedUser struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN that specifies the federated user that is associated with the credentials.
 	// For more information about ARNs and how to use them in policies, see IAM
 	// Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html)
@@ -953,12 +915,6 @@ type FederatedUser struct {
 	// The string that identifies the federated user associated with the credentials,
 	// similar to the unique ID of an IAM user.
 	FederatedUserId *string `min:"2" type:"string" required:"true"`
-
-	metadataFederatedUser `json:"-" xml:"-"`
-}
-
-type metadataFederatedUser struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -972,6 +928,8 @@ func (s FederatedUser) GoString() string {
 }
 
 type GetFederationTokenInput struct {
+	_ struct{} `type:"structure"`
+
 	// The duration, in seconds, that the session should last. Acceptable durations
 	// for federation sessions range from 900 seconds (15 minutes) to 129600 seconds
 	// (36 hours), with 43200 seconds (12 hours) as the default. Sessions obtained
@@ -1009,12 +967,6 @@ type GetFederationTokenInput struct {
 	// size.  For more information about how permissions work, see Permissions for
 	// GetFederationToken (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_getfederationtoken.html).
 	Policy *string `min:"1" type:"string"`
-
-	metadataGetFederationTokenInput `json:"-" xml:"-"`
-}
-
-type metadataGetFederationTokenInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1030,6 +982,8 @@ func (s GetFederationTokenInput) GoString() string {
 // Contains the response to a successful GetFederationToken request, including
 // temporary AWS credentials that can be used to make AWS requests.
 type GetFederationTokenOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Credentials for the service API authentication.
 	Credentials *Credentials `type:"structure"`
 
@@ -1043,12 +997,6 @@ type GetFederationTokenOutput struct {
 	// service rejects policies for which the packed size is greater than 100 percent
 	// of the allowed value.
 	PackedPolicySize *int64 `type:"integer"`
-
-	metadataGetFederationTokenOutput `json:"-" xml:"-"`
-}
-
-type metadataGetFederationTokenOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1062,6 +1010,8 @@ func (s GetFederationTokenOutput) GoString() string {
 }
 
 type GetSessionTokenInput struct {
+	_ struct{} `type:"structure"`
+
 	// The duration, in seconds, that the credentials should remain valid. Acceptable
 	// durations for IAM user sessions range from 900 seconds (15 minutes) to 129600
 	// seconds (36 hours), with 43200 seconds (12 hours) as the default. Sessions
@@ -1085,12 +1035,6 @@ type GetSessionTokenInput struct {
 	// temporary security credentials, the user will receive an "access denied"
 	// response when requesting resources that require MFA authentication.
 	TokenCode *string `min:"6" type:"string"`
-
-	metadataGetSessionTokenInput `json:"-" xml:"-"`
-}
-
-type metadataGetSessionTokenInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1106,14 +1050,10 @@ func (s GetSessionTokenInput) GoString() string {
 // Contains the response to a successful GetSessionToken request, including
 // temporary AWS credentials that can be used to make AWS requests.
 type GetSessionTokenOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The session credentials for API authentication.
 	Credentials *Credentials `type:"structure"`
-
-	metadataGetSessionTokenOutput `json:"-" xml:"-"`
-}
-
-type metadataGetSessionTokenOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation

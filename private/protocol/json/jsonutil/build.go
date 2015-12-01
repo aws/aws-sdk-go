@@ -50,7 +50,7 @@ func buildAny(value reflect.Value, buf *bytes.Buffer, tag reflect.StructTag) err
 
 	switch t {
 	case "structure":
-		if field, ok := vtype.FieldByName("SDKShapeTraits"); ok {
+		if field, ok := vtype.FieldByName("_"); ok {
 			tag = field.Tag
 		}
 		return buildStruct(value, buf, tag)

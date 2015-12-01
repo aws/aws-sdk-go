@@ -559,15 +559,11 @@ func (c *CognitoSync) UpdateRecords(input *UpdateRecordsInput) (*UpdateRecordsOu
 
 // The input for the BulkPublish operation.
 type BulkPublishInput struct {
+	_ struct{} `type:"structure"`
+
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
-
-	metadataBulkPublishInput `json:"-" xml:"-"`
-}
-
-type metadataBulkPublishInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -582,15 +578,11 @@ func (s BulkPublishInput) GoString() string {
 
 // The output for the BulkPublish operation.
 type BulkPublishOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
 	IdentityPoolId *string `min:"1" type:"string"`
-
-	metadataBulkPublishOutput `json:"-" xml:"-"`
-}
-
-type metadataBulkPublishOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -605,6 +597,8 @@ func (s BulkPublishOutput) GoString() string {
 
 // Configuration options for configure Cognito streams.
 type CognitoStreams struct {
+	_ struct{} `type:"structure"`
+
 	// The ARN of the role Amazon Cognito can assume in order to publish to the
 	// stream. This role must grant access to Amazon Cognito (cognito-sync) to invoke
 	// PutRecord on your Cognito stream.
@@ -620,12 +614,6 @@ type CognitoStreams struct {
 	// DISABLED - Streaming of updates to identity pool is disabled. Bulk publish
 	// will also fail if StreamingStatus is DISABLED.
 	StreamingStatus *string `type:"string" enum:"StreamingStatus"`
-
-	metadataCognitoStreams `json:"-" xml:"-"`
-}
-
-type metadataCognitoStreams struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -644,6 +632,8 @@ func (s CognitoStreams) GoString() string {
 // created if they don't exist. Data is synced by dataset, and a dataset can
 // hold up to 1MB of key-value pairs.
 type Dataset struct {
+	_ struct{} `type:"structure"`
+
 	// Date on which the dataset was created.
 	CreationDate *time.Time `type:"timestamp" timestampFormat:"unix"`
 
@@ -666,12 +656,6 @@ type Dataset struct {
 
 	// Number of records in this dataset.
 	NumRecords *int64 `type:"long"`
-
-	metadataDataset `json:"-" xml:"-"`
-}
-
-type metadataDataset struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -686,6 +670,8 @@ func (s Dataset) GoString() string {
 
 // A request to delete the specific dataset.
 type DeleteDatasetInput struct {
+	_ struct{} `type:"structure"`
+
 	// A string of up to 128 characters. Allowed characters are a-z, A-Z, 0-9, '_'
 	// (underscore), '-' (dash), and '.' (dot).
 	DatasetName *string `location:"uri" locationName:"DatasetName" min:"1" type:"string" required:"true"`
@@ -697,12 +683,6 @@ type DeleteDatasetInput struct {
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
-
-	metadataDeleteDatasetInput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDatasetInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -717,18 +697,14 @@ func (s DeleteDatasetInput) GoString() string {
 
 // Response to a successful DeleteDataset request.
 type DeleteDatasetOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A collection of data for an identity pool. An identity pool can have multiple
 	// datasets. A dataset is per identity and can be general or associated with
 	// a particular entity in an application (like a saved game). Datasets are automatically
 	// created if they don't exist. Data is synced by dataset, and a dataset can
 	// hold up to 1MB of key-value pairs.
 	Dataset *Dataset `type:"structure"`
-
-	metadataDeleteDatasetOutput `json:"-" xml:"-"`
-}
-
-type metadataDeleteDatasetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -744,6 +720,8 @@ func (s DeleteDatasetOutput) GoString() string {
 // A request for meta data about a dataset (creation date, number of records,
 // size) by owner and dataset name.
 type DescribeDatasetInput struct {
+	_ struct{} `type:"structure"`
+
 	// A string of up to 128 characters. Allowed characters are a-z, A-Z, 0-9, '_'
 	// (underscore), '-' (dash), and '.' (dot).
 	DatasetName *string `location:"uri" locationName:"DatasetName" min:"1" type:"string" required:"true"`
@@ -755,12 +733,6 @@ type DescribeDatasetInput struct {
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
-
-	metadataDescribeDatasetInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDatasetInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -775,18 +747,14 @@ func (s DescribeDatasetInput) GoString() string {
 
 // Response to a successful DescribeDataset request.
 type DescribeDatasetOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Meta data for a collection of data for an identity. An identity can have
 	// multiple datasets. A dataset can be general or associated with a particular
 	// entity in an application (like a saved game). Datasets are automatically
 	// created if they don't exist. Data is synced by dataset, and a dataset can
 	// hold up to 1MB of key-value pairs.
 	Dataset *Dataset `type:"structure"`
-
-	metadataDescribeDatasetOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeDatasetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -801,15 +769,11 @@ func (s DescribeDatasetOutput) GoString() string {
 
 // A request for usage information about the identity pool.
 type DescribeIdentityPoolUsageInput struct {
+	_ struct{} `type:"structure"`
+
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
-
-	metadataDescribeIdentityPoolUsageInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeIdentityPoolUsageInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -824,14 +788,10 @@ func (s DescribeIdentityPoolUsageInput) GoString() string {
 
 // Response to a successful DescribeIdentityPoolUsage request.
 type DescribeIdentityPoolUsageOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Information about the usage of the identity pool.
 	IdentityPoolUsage *IdentityPoolUsage `type:"structure"`
-
-	metadataDescribeIdentityPoolUsageOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeIdentityPoolUsageOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -846,6 +806,8 @@ func (s DescribeIdentityPoolUsageOutput) GoString() string {
 
 // A request for information about the usage of an identity pool.
 type DescribeIdentityUsageInput struct {
+	_ struct{} `type:"structure"`
+
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
 	IdentityId *string `location:"uri" locationName:"IdentityId" min:"1" type:"string" required:"true"`
@@ -853,12 +815,6 @@ type DescribeIdentityUsageInput struct {
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
-
-	metadataDescribeIdentityUsageInput `json:"-" xml:"-"`
-}
-
-type metadataDescribeIdentityUsageInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -873,14 +829,10 @@ func (s DescribeIdentityUsageInput) GoString() string {
 
 // The response to a successful DescribeIdentityUsage request.
 type DescribeIdentityUsageOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Usage information for the identity.
 	IdentityUsage *IdentityUsage `type:"structure"`
-
-	metadataDescribeIdentityUsageOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeIdentityUsageOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -895,15 +847,11 @@ func (s DescribeIdentityUsageOutput) GoString() string {
 
 // The input for the GetBulkPublishDetails operation.
 type GetBulkPublishDetailsInput struct {
+	_ struct{} `type:"structure"`
+
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
-
-	metadataGetBulkPublishDetailsInput `json:"-" xml:"-"`
-}
-
-type metadataGetBulkPublishDetailsInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -918,6 +866,8 @@ func (s GetBulkPublishDetailsInput) GoString() string {
 
 // The output for the GetBulkPublishDetails operation.
 type GetBulkPublishDetailsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// If BulkPublishStatus is SUCCEEDED, the time the last bulk publish operation
 	// completed.
 	BulkPublishCompleteTime *time.Time `type:"timestamp" timestampFormat:"unix"`
@@ -944,12 +894,6 @@ type GetBulkPublishDetailsOutput struct {
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
 	IdentityPoolId *string `min:"1" type:"string"`
-
-	metadataGetBulkPublishDetailsOutput `json:"-" xml:"-"`
-}
-
-type metadataGetBulkPublishDetailsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -964,14 +908,10 @@ func (s GetBulkPublishDetailsOutput) GoString() string {
 
 // A request for a list of the configured Cognito Events
 type GetCognitoEventsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The Cognito Identity Pool ID for the request
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
-
-	metadataGetCognitoEventsInput `json:"-" xml:"-"`
-}
-
-type metadataGetCognitoEventsInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -986,14 +926,10 @@ func (s GetCognitoEventsInput) GoString() string {
 
 // The response from the GetCognitoEvents request
 type GetCognitoEventsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The Cognito Events returned from the GetCognitoEvents request
 	Events map[string]*string `type:"map"`
-
-	metadataGetCognitoEventsOutput `json:"-" xml:"-"`
-}
-
-type metadataGetCognitoEventsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1008,16 +944,12 @@ func (s GetCognitoEventsOutput) GoString() string {
 
 // The input for the GetIdentityPoolConfiguration operation.
 type GetIdentityPoolConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. This is the ID of the pool for which to return
 	// a configuration.
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
-
-	metadataGetIdentityPoolConfigurationInput `json:"-" xml:"-"`
-}
-
-type metadataGetIdentityPoolConfigurationInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1032,6 +964,8 @@ func (s GetIdentityPoolConfigurationInput) GoString() string {
 
 // The output for the GetIdentityPoolConfiguration operation.
 type GetIdentityPoolConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Options to apply to this identity pool for Amazon Cognito streams.
 	CognitoStreams *CognitoStreams `type:"structure"`
 
@@ -1041,12 +975,6 @@ type GetIdentityPoolConfigurationOutput struct {
 
 	// Options to apply to this identity pool for push synchronization.
 	PushSync *PushSync `type:"structure"`
-
-	metadataGetIdentityPoolConfigurationOutput `json:"-" xml:"-"`
-}
-
-type metadataGetIdentityPoolConfigurationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1061,6 +989,8 @@ func (s GetIdentityPoolConfigurationOutput) GoString() string {
 
 // Usage information for the identity pool.
 type IdentityPoolUsage struct {
+	_ struct{} `type:"structure"`
+
 	// Data storage information for the identity pool.
 	DataStorage *int64 `type:"long"`
 
@@ -1073,12 +1003,6 @@ type IdentityPoolUsage struct {
 
 	// Number of sync sessions for the identity pool.
 	SyncSessionsCount *int64 `type:"long"`
-
-	metadataIdentityPoolUsage `json:"-" xml:"-"`
-}
-
-type metadataIdentityPoolUsage struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1093,6 +1017,8 @@ func (s IdentityPoolUsage) GoString() string {
 
 // Usage information for the identity.
 type IdentityUsage struct {
+	_ struct{} `type:"structure"`
+
 	// Total data storage for this identity.
 	DataStorage *int64 `type:"long"`
 
@@ -1109,12 +1035,6 @@ type IdentityUsage struct {
 
 	// Date on which the identity was last modified.
 	LastModifiedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
-
-	metadataIdentityUsage `json:"-" xml:"-"`
-}
-
-type metadataIdentityUsage struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1129,6 +1049,8 @@ func (s IdentityUsage) GoString() string {
 
 // Request for a list of datasets for an identity.
 type ListDatasetsInput struct {
+	_ struct{} `type:"structure"`
+
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
 	IdentityId *string `location:"uri" locationName:"IdentityId" min:"1" type:"string" required:"true"`
@@ -1142,12 +1064,6 @@ type ListDatasetsInput struct {
 
 	// A pagination token for obtaining the next page of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
-
-	metadataListDatasetsInput `json:"-" xml:"-"`
-}
-
-type metadataListDatasetsInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1162,6 +1078,8 @@ func (s ListDatasetsInput) GoString() string {
 
 // Returned for a successful ListDatasets request.
 type ListDatasetsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Number of datasets returned.
 	Count *int64 `type:"integer"`
 
@@ -1170,12 +1088,6 @@ type ListDatasetsOutput struct {
 
 	// A pagination token for obtaining the next page of results.
 	NextToken *string `type:"string"`
-
-	metadataListDatasetsOutput `json:"-" xml:"-"`
-}
-
-type metadataListDatasetsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1190,17 +1102,13 @@ func (s ListDatasetsOutput) GoString() string {
 
 // A request for usage information on an identity pool.
 type ListIdentityPoolUsageInput struct {
+	_ struct{} `type:"structure"`
+
 	// The maximum number of results to be returned.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
 
 	// A pagination token for obtaining the next page of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
-
-	metadataListIdentityPoolUsageInput `json:"-" xml:"-"`
-}
-
-type metadataListIdentityPoolUsageInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1215,6 +1123,8 @@ func (s ListIdentityPoolUsageInput) GoString() string {
 
 // Returned for a successful ListIdentityPoolUsage request.
 type ListIdentityPoolUsageOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Total number of identities for the identity pool.
 	Count *int64 `type:"integer"`
 
@@ -1226,12 +1136,6 @@ type ListIdentityPoolUsageOutput struct {
 
 	// A pagination token for obtaining the next page of results.
 	NextToken *string `type:"string"`
-
-	metadataListIdentityPoolUsageOutput `json:"-" xml:"-"`
-}
-
-type metadataListIdentityPoolUsageOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1246,6 +1150,8 @@ func (s ListIdentityPoolUsageOutput) GoString() string {
 
 // A request for a list of records.
 type ListRecordsInput struct {
+	_ struct{} `type:"structure"`
+
 	// A string of up to 128 characters. Allowed characters are a-z, A-Z, 0-9, '_'
 	// (underscore), '-' (dash), and '.' (dot).
 	DatasetName *string `location:"uri" locationName:"DatasetName" min:"1" type:"string" required:"true"`
@@ -1269,12 +1175,6 @@ type ListRecordsInput struct {
 
 	// A token containing a session ID, identity ID, and expiration.
 	SyncSessionToken *string `location:"querystring" locationName:"syncSessionToken" type:"string"`
-
-	metadataListRecordsInput `json:"-" xml:"-"`
-}
-
-type metadataListRecordsInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1289,6 +1189,8 @@ func (s ListRecordsInput) GoString() string {
 
 // Returned for a successful ListRecordsRequest.
 type ListRecordsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Total number of records.
 	Count *int64 `type:"integer"`
 
@@ -1315,12 +1217,6 @@ type ListRecordsOutput struct {
 
 	// A token containing a session ID, identity ID, and expiration.
 	SyncSessionToken *string `type:"string"`
-
-	metadataListRecordsOutput `json:"-" xml:"-"`
-}
-
-type metadataListRecordsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1335,17 +1231,13 @@ func (s ListRecordsOutput) GoString() string {
 
 // Configuration options to be applied to the identity pool.
 type PushSync struct {
+	_ struct{} `type:"structure"`
+
 	// List of SNS platform application ARNs that could be used by clients.
 	ApplicationArns []*string `type:"list"`
 
 	// A role configured to allow Cognito to call SNS on behalf of the developer.
 	RoleArn *string `min:"20" type:"string"`
-
-	metadataPushSync `json:"-" xml:"-"`
-}
-
-type metadataPushSync struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1360,6 +1252,8 @@ func (s PushSync) GoString() string {
 
 // The basic data structure of a dataset.
 type Record struct {
+	_ struct{} `type:"structure"`
+
 	// The last modified date of the client device.
 	DeviceLastModifiedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
 
@@ -1377,12 +1271,6 @@ type Record struct {
 
 	// The value for the record.
 	Value *string `type:"string"`
-
-	metadataRecord `json:"-" xml:"-"`
-}
-
-type metadataRecord struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1397,6 +1285,8 @@ func (s Record) GoString() string {
 
 // An update operation for a record.
 type RecordPatch struct {
+	_ struct{} `type:"structure"`
+
 	// The last modified date of the client device.
 	DeviceLastModifiedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
 
@@ -1411,12 +1301,6 @@ type RecordPatch struct {
 
 	// The value associated with the record patch.
 	Value *string `type:"string"`
-
-	metadataRecordPatch `json:"-" xml:"-"`
-}
-
-type metadataRecordPatch struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1431,6 +1315,8 @@ func (s RecordPatch) GoString() string {
 
 // A request to RegisterDevice.
 type RegisterDeviceInput struct {
+	_ struct{} `type:"structure"`
+
 	// The unique ID for this identity.
 	IdentityId *string `location:"uri" locationName:"IdentityId" min:"1" type:"string" required:"true"`
 
@@ -1444,12 +1330,6 @@ type RegisterDeviceInput struct {
 
 	// The push token.
 	Token *string `type:"string" required:"true"`
-
-	metadataRegisterDeviceInput `json:"-" xml:"-"`
-}
-
-type metadataRegisterDeviceInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1464,14 +1344,10 @@ func (s RegisterDeviceInput) GoString() string {
 
 // Response to a RegisterDevice request.
 type RegisterDeviceOutput struct {
+	_ struct{} `type:"structure"`
+
 	// The unique ID generated for this device by Cognito.
 	DeviceId *string `min:"1" type:"string"`
-
-	metadataRegisterDeviceOutput `json:"-" xml:"-"`
-}
-
-type metadataRegisterDeviceOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1488,17 +1364,13 @@ func (s RegisterDeviceOutput) GoString() string {
 //
 // "
 type SetCognitoEventsInput struct {
+	_ struct{} `type:"structure"`
+
 	// The events to configure
 	Events map[string]*string `type:"map" required:"true"`
 
 	// The Cognito Identity Pool to use when configuring Cognito Events
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
-
-	metadataSetCognitoEventsInput `json:"-" xml:"-"`
-}
-
-type metadataSetCognitoEventsInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1512,11 +1384,7 @@ func (s SetCognitoEventsInput) GoString() string {
 }
 
 type SetCognitoEventsOutput struct {
-	metadataSetCognitoEventsOutput `json:"-" xml:"-"`
-}
-
-type metadataSetCognitoEventsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1531,6 +1399,8 @@ func (s SetCognitoEventsOutput) GoString() string {
 
 // The input for the SetIdentityPoolConfiguration operation.
 type SetIdentityPoolConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
 	// Options to apply to this identity pool for Amazon Cognito streams.
 	CognitoStreams *CognitoStreams `type:"structure"`
 
@@ -1540,12 +1410,6 @@ type SetIdentityPoolConfigurationInput struct {
 
 	// Options to apply to this identity pool for push synchronization.
 	PushSync *PushSync `type:"structure"`
-
-	metadataSetIdentityPoolConfigurationInput `json:"-" xml:"-"`
-}
-
-type metadataSetIdentityPoolConfigurationInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1560,6 +1424,8 @@ func (s SetIdentityPoolConfigurationInput) GoString() string {
 
 // The output for the SetIdentityPoolConfiguration operation
 type SetIdentityPoolConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
 	// Options to apply to this identity pool for Amazon Cognito streams.
 	CognitoStreams *CognitoStreams `type:"structure"`
 
@@ -1569,12 +1435,6 @@ type SetIdentityPoolConfigurationOutput struct {
 
 	// Options to apply to this identity pool for push synchronization.
 	PushSync *PushSync `type:"structure"`
-
-	metadataSetIdentityPoolConfigurationOutput `json:"-" xml:"-"`
-}
-
-type metadataSetIdentityPoolConfigurationOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1589,6 +1449,8 @@ func (s SetIdentityPoolConfigurationOutput) GoString() string {
 
 // A request to SubscribeToDatasetRequest.
 type SubscribeToDatasetInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the dataset to subcribe to.
 	DatasetName *string `location:"uri" locationName:"DatasetName" min:"1" type:"string" required:"true"`
 
@@ -1601,12 +1463,6 @@ type SubscribeToDatasetInput struct {
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. The ID of the pool to which the identity belongs.
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
-
-	metadataSubscribeToDatasetInput `json:"-" xml:"-"`
-}
-
-type metadataSubscribeToDatasetInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1621,11 +1477,7 @@ func (s SubscribeToDatasetInput) GoString() string {
 
 // Response to a SubscribeToDataset request.
 type SubscribeToDatasetOutput struct {
-	metadataSubscribeToDatasetOutput `json:"-" xml:"-"`
-}
-
-type metadataSubscribeToDatasetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1640,6 +1492,8 @@ func (s SubscribeToDatasetOutput) GoString() string {
 
 // A request to UnsubscribeFromDataset.
 type UnsubscribeFromDatasetInput struct {
+	_ struct{} `type:"structure"`
+
 	// The name of the dataset from which to unsubcribe.
 	DatasetName *string `location:"uri" locationName:"DatasetName" min:"1" type:"string" required:"true"`
 
@@ -1652,12 +1506,6 @@ type UnsubscribeFromDatasetInput struct {
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. The ID of the pool to which this identity belongs.
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
-
-	metadataUnsubscribeFromDatasetInput `json:"-" xml:"-"`
-}
-
-type metadataUnsubscribeFromDatasetInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1672,11 +1520,7 @@ func (s UnsubscribeFromDatasetInput) GoString() string {
 
 // Response to an UnsubscribeFromDataset request.
 type UnsubscribeFromDatasetOutput struct {
-	metadataUnsubscribeFromDatasetOutput `json:"-" xml:"-"`
-}
-
-type metadataUnsubscribeFromDatasetOutput struct {
-	SDKShapeTraits bool `type:"structure"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
@@ -1692,6 +1536,8 @@ func (s UnsubscribeFromDatasetOutput) GoString() string {
 // A request to post updates to records or add and delete records for a dataset
 // and user.
 type UpdateRecordsInput struct {
+	_ struct{} `type:"structure"`
+
 	// Intended to supply a device ID that will populate the lastModifiedBy field
 	// referenced in other methods. The ClientContext field is not yet implemented.
 	ClientContext *string `location:"header" locationName:"x-amz-Client-Context" type:"string"`
@@ -1717,12 +1563,6 @@ type UpdateRecordsInput struct {
 	// The SyncSessionToken returned by a previous call to ListRecords for this
 	// dataset and identity.
 	SyncSessionToken *string `type:"string" required:"true"`
-
-	metadataUpdateRecordsInput `json:"-" xml:"-"`
-}
-
-type metadataUpdateRecordsInput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
@@ -1737,14 +1577,10 @@ func (s UpdateRecordsInput) GoString() string {
 
 // Returned for a successful UpdateRecordsRequest.
 type UpdateRecordsOutput struct {
+	_ struct{} `type:"structure"`
+
 	// A list of records that have been updated.
 	Records []*Record `type:"list"`
-
-	metadataUpdateRecordsOutput `json:"-" xml:"-"`
-}
-
-type metadataUpdateRecordsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
