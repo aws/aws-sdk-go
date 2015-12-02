@@ -103,3 +103,20 @@ type RequestFailure interface {
 func NewRequestFailure(err Error, statusCode int, reqID string) RequestFailure {
 	return newRequestError(err, statusCode, reqID)
 }
+
+// A BatchedErrors is an interface to extract the list of errors that caused a
+// batch call to fail.
+type BatchedErrors interface {
+	Error
+
+	// The status code of the HTTP response.
+	StatusCode() int
+
+	// Errors returns the list of errors that caused the call to fail.
+	Errors() []Error
+}
+
+// NewBatchedErrors returns a new batched errors wrapper for the given errors.
+func NewBatchedErrors(code string, statusCode int, errors []Error) BatchedErrors {
+	return newBatchedErrors(code, statusCode, errors)
+}
