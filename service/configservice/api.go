@@ -2718,6 +2718,8 @@ const (
 	// @enum ResourceType
 	ResourceTypeAwsEc2Eip = "AWS::EC2::EIP"
 	// @enum ResourceType
+	ResourceTypeAwsEc2Host = "AWS::EC2::Host"
+	// @enum ResourceType
 	ResourceTypeAwsEc2Instance = "AWS::EC2::Instance"
 	// @enum ResourceType
 	ResourceTypeAwsEc2InternetGateway = "AWS::EC2::InternetGateway"
