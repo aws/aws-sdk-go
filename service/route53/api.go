@@ -32,7 +32,7 @@ func (c *Route53) AssociateVPCWithHostedZoneRequest(input *AssociateVPCWithHoste
 
 // This action associates a VPC with an hosted zone.
 //
-//  To associate a VPC with an hosted zone, send a POST request to the 2013-04-01/hostedzone/hosted
+// To associate a VPC with an hosted zone, send a POST request to the 2013-04-01/hostedzone/hosted
 // zone ID/associatevpc resource. The request body must include an XML document
 // with a AssociateVPCWithHostedZoneRequest element. The response returns the
 // AssociateVPCWithHostedZoneResponse element that contains ChangeInfo for you
@@ -71,27 +71,24 @@ func (c *Route53) ChangeResourceRecordSetsRequest(input *ChangeResourceRecordSet
 //
 // Changes are a list of change items and are considered transactional. For
 // more information on transactional changes, also known as change batches,
-// see Creating, Changing, and Deleting Resource Record Sets Using the Route
-// 53 API (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/RRSchanges.html#RRSchanges_API)
-// in the Amazon Route 53 Developer Guide.
+// see POST ChangeResourceRecordSets (http://docs.aws.amazon.com/Route53/latest/APIReference/)
+// in the Amazon Route 53 API Reference.
 //
 // Due to the nature of transactional changes, you cannot delete the same resource
 // record set more than once in a single change batch. If you attempt to delete
-// the same change batch more than once, Route 53 returns an InvalidChangeBatch
+// the same change batch more than once, Amazon Route 53 returns an InvalidChangeBatch
 // error. In response to a ChangeResourceRecordSets request, your DNS data is
-// changed on all Route 53 DNS servers. Initially, the status of a change is
-// PENDING. This means the change has not yet propagated to all the authoritative
-// Route 53 DNS servers. When the change is propagated to all hosts, the change
-// returns a status of INSYNC.
+// changed on all Amazon Route 53 DNS servers. Initially, the status of a change
+// is PENDING. This means the change has not yet propagated to all the authoritative
+// Amazon Route 53 DNS servers. When the change is propagated to all hosts,
+// the change returns a status of INSYNC.
 //
 // Note the following limitations on a ChangeResourceRecordSets request:
 //
-// - A request cannot contain more than 100 Change elements.
-//
-// - A request cannot contain more than 1000 ResourceRecord elements.
-//
-// The sum of the number of characters (including spaces) in all Value elements
-// in a request cannot exceed 32,000 characters.
+//  A request cannot contain more than 100 Change elements.  A request cannot
+// contain more than 1000 ResourceRecord elements. The sum of the number of
+// characters (including spaces) in all Value elements in a request cannot exceed
+// 32,000 characters.
 func (c *Route53) ChangeResourceRecordSets(input *ChangeResourceRecordSetsInput) (*ChangeResourceRecordSetsOutput, error) {
 	req, out := c.ChangeResourceRecordSetsRequest(input)
 	err := req.Send()
@@ -146,7 +143,7 @@ func (c *Route53) CreateHealthCheckRequest(input *CreateHealthCheckInput) (req *
 
 // This action creates a new health check.
 //
-//  To create a new health check, send a POST request to the 2013-04-01/healthcheck
+// To create a new health check, send a POST request to the 2013-04-01/healthcheck
 // resource. The request body must include an XML document with a CreateHealthCheckRequest
 // element. The response returns the CreateHealthCheckResponse element that
 // contains metadata about the health check.
@@ -183,16 +180,17 @@ func (c *Route53) CreateHostedZoneRequest(input *CreateHostedZoneInput) (req *re
 // element. The response returns the CreateHostedZoneResponse element that contains
 // metadata about the hosted zone.
 //
-// Route 53 automatically creates a default SOA record and four NS records
+// Amazon Route 53 automatically creates a default SOA record and four NS records
 // for the zone. The NS records in the hosted zone are the name servers you
 // give your registrar to delegate your domain to. For more information about
-// SOA and NS records, see NS and SOA Records that Route 53 Creates for a Hosted
-// Zone (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/SOA-NSrecords.html)
+// SOA and NS records, see NS and SOA Records that Amazon Route 53 Creates for
+// a Hosted Zone (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/SOA-NSrecords.html)
 // in the Amazon Route 53 Developer Guide.
 //
 // When you create a zone, its initial status is PENDING. This means that it
 // is not yet available on all DNS servers. The status of the zone changes to
-// INSYNC when the NS and SOA records are available on all Route 53 DNS servers.
+// INSYNC when the NS and SOA records are available on all Amazon Route 53 DNS
+// servers.
 //
 // When trying to create a hosted zone using a reusable delegation set, you
 // could specify an optional DelegationSetId, and Route53 would assign those
@@ -225,15 +223,123 @@ func (c *Route53) CreateReusableDelegationSetRequest(input *CreateReusableDelega
 
 // This action creates a reusable delegationSet.
 //
-//  To create a new reusable delegationSet, send a POST request to the 2013-04-01/delegationset
+// To create a new reusable delegationSet, send a POST request to the 2013-04-01/delegationset
 // resource. The request body must include an XML document with a CreateReusableDelegationSetRequest
 // element. The response returns the CreateReusableDelegationSetResponse element
 // that contains metadata about the delegationSet.
 //
-//  If the optional parameter HostedZoneId is specified, it marks the delegationSet
+// If the optional parameter HostedZoneId is specified, it marks the delegationSet
 // associated with that particular hosted zone as reusable.
 func (c *Route53) CreateReusableDelegationSet(input *CreateReusableDelegationSetInput) (*CreateReusableDelegationSetOutput, error) {
 	req, out := c.CreateReusableDelegationSetRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opCreateTrafficPolicy = "CreateTrafficPolicy"
+
+// CreateTrafficPolicyRequest generates a request for the CreateTrafficPolicy operation.
+func (c *Route53) CreateTrafficPolicyRequest(input *CreateTrafficPolicyInput) (req *request.Request, output *CreateTrafficPolicyOutput) {
+	op := &request.Operation{
+		Name:       opCreateTrafficPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2013-04-01/trafficpolicy",
+	}
+
+	if input == nil {
+		input = &CreateTrafficPolicyInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &CreateTrafficPolicyOutput{}
+	req.Data = output
+	return
+}
+
+// Creates a traffic policy, which you use to create multiple DNS resource record
+// sets for one domain name (such as example.com) or one subdomain name (such
+// as www.example.com).
+//
+// To create a traffic policy, send a POST request to the 2013-04-01/trafficpolicy
+// resource. The request body must include an XML document with a CreateTrafficPolicyRequest
+// element. The response includes the CreateTrafficPolicyResponse element, which
+// contains information about the new traffic policy.
+func (c *Route53) CreateTrafficPolicy(input *CreateTrafficPolicyInput) (*CreateTrafficPolicyOutput, error) {
+	req, out := c.CreateTrafficPolicyRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opCreateTrafficPolicyInstance = "CreateTrafficPolicyInstance"
+
+// CreateTrafficPolicyInstanceRequest generates a request for the CreateTrafficPolicyInstance operation.
+func (c *Route53) CreateTrafficPolicyInstanceRequest(input *CreateTrafficPolicyInstanceInput) (req *request.Request, output *CreateTrafficPolicyInstanceOutput) {
+	op := &request.Operation{
+		Name:       opCreateTrafficPolicyInstance,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2013-04-01/trafficpolicyinstance",
+	}
+
+	if input == nil {
+		input = &CreateTrafficPolicyInstanceInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &CreateTrafficPolicyInstanceOutput{}
+	req.Data = output
+	return
+}
+
+// Creates resource record sets in a specified hosted zone based on the settings
+// in a specified traffic policy version. In addition, CreateTrafficPolicyInstance
+// associates the resource record sets with a specified domain name (such as
+// example.com) or subdomain name (such as www.example.com). Amazon Route 53
+// responds to DNS queries for the domain or subdomain name by using the resource
+// record sets that CreateTrafficPolicyInstance created.
+//
+// To create a traffic policy instance, send a POST request to the 2013-04-01/trafficpolicyinstance
+// resource. The request body must include an XML document with a CreateTrafficPolicyRequest
+// element. The response returns the CreateTrafficPolicyInstanceResponse element,
+// which contains information about the traffic policy instance.
+func (c *Route53) CreateTrafficPolicyInstance(input *CreateTrafficPolicyInstanceInput) (*CreateTrafficPolicyInstanceOutput, error) {
+	req, out := c.CreateTrafficPolicyInstanceRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opCreateTrafficPolicyVersion = "CreateTrafficPolicyVersion"
+
+// CreateTrafficPolicyVersionRequest generates a request for the CreateTrafficPolicyVersion operation.
+func (c *Route53) CreateTrafficPolicyVersionRequest(input *CreateTrafficPolicyVersionInput) (req *request.Request, output *CreateTrafficPolicyVersionOutput) {
+	op := &request.Operation{
+		Name:       opCreateTrafficPolicyVersion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2013-04-01/trafficpolicy/{Id}",
+	}
+
+	if input == nil {
+		input = &CreateTrafficPolicyVersionInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &CreateTrafficPolicyVersionOutput{}
+	req.Data = output
+	return
+}
+
+// Creates a new version of an existing traffic policy. When you create a new
+// version of a traffic policy, you specify the ID of the traffic policy that
+// you want to update and a JSON-formatted document that describes the new version.
+//
+// You use traffic policies to create multiple DNS resource record sets for
+// one domain name (such as example.com) or one subdomain name (such as www.example.com).
+//
+// To create a new version, send a POST request to the 2013-04-01/trafficpolicy/
+// resource. The request body includes an XML document with a CreateTrafficPolicyVersionRequest
+// element. The response returns the CreateTrafficPolicyVersionResponse element,
+// which contains information about the new version of the traffic policy.
+func (c *Route53) CreateTrafficPolicyVersion(input *CreateTrafficPolicyVersionInput) (*CreateTrafficPolicyVersionOutput, error) {
+	req, out := c.CreateTrafficPolicyVersionRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -265,9 +371,9 @@ func (c *Route53) DeleteHealthCheckRequest(input *DeleteHealthCheckInput) (req *
 // associated with this health check. If resource record sets are associated
 // with this health check, you must disassociate them before you can delete
 // your health check. If you try to delete a health check that is associated
-// with resource record sets, Route 53 will deny your request with a HealthCheckInUse
-// error. For information about disassociating the records from your health
-// check, see ChangeResourceRecordSets.
+// with resource record sets, Amazon Route 53 will deny your request with a
+// HealthCheckInUse error. For information about disassociating the records
+// from your health check, see ChangeResourceRecordSets.
 func (c *Route53) DeleteHealthCheck(input *DeleteHealthCheckInput) (*DeleteHealthCheckOutput, error) {
 	req, out := c.DeleteHealthCheckRequest(input)
 	err := req.Send()
@@ -305,9 +411,9 @@ func (c *Route53) DeleteHostedZoneRequest(input *DeleteHostedZoneInput) (req *re
 // other than the default SOA record and NS resource record sets. If your hosted
 // zone contains other resource record sets, you must delete them before you
 // can delete your hosted zone. If you try to delete a hosted zone that contains
-// other resource record sets, Route 53 will deny your request with a HostedZoneNotEmpty
-// error. For information about deleting records from your hosted zone, see
-// ChangeResourceRecordSets.
+// other resource record sets, Amazon Route 53 will deny your request with a
+// HostedZoneNotEmpty error. For information about deleting records from your
+// hosted zone, see ChangeResourceRecordSets.
 func (c *Route53) DeleteHostedZone(input *DeleteHostedZoneInput) (*DeleteHostedZoneOutput, error) {
 	req, out := c.DeleteHostedZoneRequest(input)
 	err := req.Send()
@@ -342,9 +448,73 @@ func (c *Route53) DeleteReusableDelegationSetRequest(input *DeleteReusableDelega
 // hosted zones. If your reusable delegation set contains associated hosted
 // zones, you must delete them before you can delete your reusable delegation
 // set. If you try to delete a reusable delegation set that contains associated
-// hosted zones, Route 53 will deny your request with a DelegationSetInUse error.
+// hosted zones, Amazon Route 53 will deny your request with a DelegationSetInUse
+// error.
 func (c *Route53) DeleteReusableDelegationSet(input *DeleteReusableDelegationSetInput) (*DeleteReusableDelegationSetOutput, error) {
 	req, out := c.DeleteReusableDelegationSetRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDeleteTrafficPolicy = "DeleteTrafficPolicy"
+
+// DeleteTrafficPolicyRequest generates a request for the DeleteTrafficPolicy operation.
+func (c *Route53) DeleteTrafficPolicyRequest(input *DeleteTrafficPolicyInput) (req *request.Request, output *DeleteTrafficPolicyOutput) {
+	op := &request.Operation{
+		Name:       opDeleteTrafficPolicy,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/2013-04-01/trafficpolicy/{Id}/{Version}",
+	}
+
+	if input == nil {
+		input = &DeleteTrafficPolicyInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DeleteTrafficPolicyOutput{}
+	req.Data = output
+	return
+}
+
+// Deletes a traffic policy. To delete a traffic policy, send a DELETE request
+// to the 2013-04-01/trafficpolicy resource.
+func (c *Route53) DeleteTrafficPolicy(input *DeleteTrafficPolicyInput) (*DeleteTrafficPolicyOutput, error) {
+	req, out := c.DeleteTrafficPolicyRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDeleteTrafficPolicyInstance = "DeleteTrafficPolicyInstance"
+
+// DeleteTrafficPolicyInstanceRequest generates a request for the DeleteTrafficPolicyInstance operation.
+func (c *Route53) DeleteTrafficPolicyInstanceRequest(input *DeleteTrafficPolicyInstanceInput) (req *request.Request, output *DeleteTrafficPolicyInstanceOutput) {
+	op := &request.Operation{
+		Name:       opDeleteTrafficPolicyInstance,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/2013-04-01/trafficpolicyinstance/{Id}",
+	}
+
+	if input == nil {
+		input = &DeleteTrafficPolicyInstanceInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DeleteTrafficPolicyInstanceOutput{}
+	req.Data = output
+	return
+}
+
+// Deletes a traffic policy instance and all of the resource record sets that
+// Amazon Route 53 created when you created the instance.
+//
+// To delete a traffic policy instance, send a DELETE request to the 2013-04-01/trafficpolicy/traffic
+// policy instance ID resource.
+//
+// When you delete a traffic policy instance, Amazon Route 53 also deletes
+// all of the resource record sets that were created when you created the traffic
+// policy instance.
+func (c *Route53) DeleteTrafficPolicyInstance(input *DeleteTrafficPolicyInstanceInput) (*DeleteTrafficPolicyInstanceOutput, error) {
+	req, out := c.DeleteTrafficPolicyInstanceRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -371,7 +541,7 @@ func (c *Route53) DisassociateVPCFromHostedZoneRequest(input *DisassociateVPCFro
 
 // This action disassociates a VPC from an hosted zone.
 //
-//  To disassociate a VPC to a hosted zone, send a POST request to the 2013-04-01/hostedzone/hosted
+// To disassociate a VPC to a hosted zone, send a POST request to the 2013-04-01/hostedzone/hosted
 // zone ID/disassociatevpc resource. The request body must include an XML document
 // with a DisassociateVPCFromHostedZoneRequest element. The response returns
 // the DisassociateVPCFromHostedZoneResponse element that contains ChangeInfo
@@ -407,13 +577,40 @@ func (c *Route53) GetChangeRequest(input *GetChangeInput) (req *request.Request,
 // is one of the following values:
 //
 // - PENDING indicates that the changes in this request have not replicated
-// to all Route 53 DNS servers. This is the initial status of all change batch
-// requests.
+// to all Amazon Route 53 DNS servers. This is the initial status of all change
+// batch requests.
 //
 // - INSYNC indicates that the changes have replicated to all Amazon Route
 // 53 DNS servers.
 func (c *Route53) GetChange(input *GetChangeInput) (*GetChangeOutput, error) {
 	req, out := c.GetChangeRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opGetChangeDetails = "GetChangeDetails"
+
+// GetChangeDetailsRequest generates a request for the GetChangeDetails operation.
+func (c *Route53) GetChangeDetailsRequest(input *GetChangeDetailsInput) (req *request.Request, output *GetChangeDetailsOutput) {
+	op := &request.Operation{
+		Name:       opGetChangeDetails,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2013-04-01/changedetails/{Id}",
+	}
+
+	if input == nil {
+		input = &GetChangeDetailsInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &GetChangeDetailsOutput{}
+	req.Data = output
+	return
+}
+
+// This action returns the status and changes of a change batch request.
+func (c *Route53) GetChangeDetails(input *GetChangeDetailsInput) (*GetChangeDetailsOutput, error) {
+	req, out := c.GetChangeDetailsRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -614,8 +811,8 @@ func (c *Route53) GetHostedZoneRequest(input *GetHostedZoneInput) (req *request.
 
 // To retrieve the delegation set for a hosted zone, send a GET request to the
 // 2013-04-01/hostedzone/hosted zone ID resource. The delegation set is the
-// four Route 53 name servers that were assigned to the hosted zone when you
-// created it.
+// four Amazon Route 53 name servers that were assigned to the hosted zone when
+// you created it.
 func (c *Route53) GetHostedZone(input *GetHostedZoneInput) (*GetHostedZoneOutput, error) {
 	req, out := c.GetHostedZoneRequest(input)
 	err := req.Send()
@@ -678,6 +875,156 @@ func (c *Route53) GetReusableDelegationSet(input *GetReusableDelegationSetInput)
 	return out, err
 }
 
+const opGetTrafficPolicy = "GetTrafficPolicy"
+
+// GetTrafficPolicyRequest generates a request for the GetTrafficPolicy operation.
+func (c *Route53) GetTrafficPolicyRequest(input *GetTrafficPolicyInput) (req *request.Request, output *GetTrafficPolicyOutput) {
+	op := &request.Operation{
+		Name:       opGetTrafficPolicy,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2013-04-01/trafficpolicy/{Id}/{Version}",
+	}
+
+	if input == nil {
+		input = &GetTrafficPolicyInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &GetTrafficPolicyOutput{}
+	req.Data = output
+	return
+}
+
+// Gets information about a specific traffic policy version. To get the information,
+// send a GET request to the 2013-04-01/trafficpolicy resource.
+func (c *Route53) GetTrafficPolicy(input *GetTrafficPolicyInput) (*GetTrafficPolicyOutput, error) {
+	req, out := c.GetTrafficPolicyRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opGetTrafficPolicyInstance = "GetTrafficPolicyInstance"
+
+// GetTrafficPolicyInstanceRequest generates a request for the GetTrafficPolicyInstance operation.
+func (c *Route53) GetTrafficPolicyInstanceRequest(input *GetTrafficPolicyInstanceInput) (req *request.Request, output *GetTrafficPolicyInstanceOutput) {
+	op := &request.Operation{
+		Name:       opGetTrafficPolicyInstance,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2013-04-01/trafficpolicyinstance/{Id}",
+	}
+
+	if input == nil {
+		input = &GetTrafficPolicyInstanceInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &GetTrafficPolicyInstanceOutput{}
+	req.Data = output
+	return
+}
+
+// Gets information about a specified traffic policy instance.
+//
+// To get information about the traffic policy instance, send a GET request
+// to the 2013-04-01/trafficpolicyinstance resource.
+//
+// After you submit a CreateTrafficPolicyInstance or an UpdateTrafficPolicyInstance
+// request, there's a brief delay while Amazon Route 53 creates the resource
+// record sets that are specified in the traffic policy definition. For more
+// information, see the State response element.
+func (c *Route53) GetTrafficPolicyInstance(input *GetTrafficPolicyInstanceInput) (*GetTrafficPolicyInstanceOutput, error) {
+	req, out := c.GetTrafficPolicyInstanceRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opGetTrafficPolicyInstanceCount = "GetTrafficPolicyInstanceCount"
+
+// GetTrafficPolicyInstanceCountRequest generates a request for the GetTrafficPolicyInstanceCount operation.
+func (c *Route53) GetTrafficPolicyInstanceCountRequest(input *GetTrafficPolicyInstanceCountInput) (req *request.Request, output *GetTrafficPolicyInstanceCountOutput) {
+	op := &request.Operation{
+		Name:       opGetTrafficPolicyInstanceCount,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2013-04-01/trafficpolicyinstancecount",
+	}
+
+	if input == nil {
+		input = &GetTrafficPolicyInstanceCountInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &GetTrafficPolicyInstanceCountOutput{}
+	req.Data = output
+	return
+}
+
+// Gets the number of traffic policy instances that are associated with the
+// current AWS account.
+//
+// To get the number of traffic policy instances, send a GET request to the
+// 2013-04-01/trafficpolicyinstancecount resource.
+func (c *Route53) GetTrafficPolicyInstanceCount(input *GetTrafficPolicyInstanceCountInput) (*GetTrafficPolicyInstanceCountOutput, error) {
+	req, out := c.GetTrafficPolicyInstanceCountRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opListChangeBatchesByHostedZone = "ListChangeBatchesByHostedZone"
+
+// ListChangeBatchesByHostedZoneRequest generates a request for the ListChangeBatchesByHostedZone operation.
+func (c *Route53) ListChangeBatchesByHostedZoneRequest(input *ListChangeBatchesByHostedZoneInput) (req *request.Request, output *ListChangeBatchesByHostedZoneOutput) {
+	op := &request.Operation{
+		Name:       opListChangeBatchesByHostedZone,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2013-04-01/hostedzone/{Id}/changes",
+	}
+
+	if input == nil {
+		input = &ListChangeBatchesByHostedZoneInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListChangeBatchesByHostedZoneOutput{}
+	req.Data = output
+	return
+}
+
+// This action gets the list of ChangeBatches in a given time period for a given
+// hosted zone.
+func (c *Route53) ListChangeBatchesByHostedZone(input *ListChangeBatchesByHostedZoneInput) (*ListChangeBatchesByHostedZoneOutput, error) {
+	req, out := c.ListChangeBatchesByHostedZoneRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opListChangeBatchesByRRSet = "ListChangeBatchesByRRSet"
+
+// ListChangeBatchesByRRSetRequest generates a request for the ListChangeBatchesByRRSet operation.
+func (c *Route53) ListChangeBatchesByRRSetRequest(input *ListChangeBatchesByRRSetInput) (req *request.Request, output *ListChangeBatchesByRRSetOutput) {
+	op := &request.Operation{
+		Name:       opListChangeBatchesByRRSet,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2013-04-01/hostedzone/{Id}/rrsChanges",
+	}
+
+	if input == nil {
+		input = &ListChangeBatchesByRRSetInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListChangeBatchesByRRSetOutput{}
+	req.Data = output
+	return
+}
+
+// This action gets the list of ChangeBatches in a given time period for a given
+// hosted zone and RRSet.
+func (c *Route53) ListChangeBatchesByRRSet(input *ListChangeBatchesByRRSetInput) (*ListChangeBatchesByRRSetOutput, error) {
+	req, out := c.ListChangeBatchesByRRSetRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opListGeoLocations = "ListGeoLocations"
 
 // ListGeoLocationsRequest generates a request for the ListGeoLocations operation.
@@ -704,7 +1051,7 @@ func (c *Route53) ListGeoLocationsRequest(input *ListGeoLocationsInput) (req *re
 // child elements. The list is sorted by country code, and then subdivision
 // code, followed by continents at the end of the list.
 //
-//  By default, the list of geo locations is displayed on a single page. You
+// By default, the list of geo locations is displayed on a single page. You
 // can control the length of the page that is displayed by using the MaxItems
 // parameter. If the list is truncated, IsTruncated will be set to true and
 // a combination of NextContinentCode, NextCountryCode, NextSubdivisionCode
@@ -1018,6 +1365,291 @@ func (c *Route53) ListTagsForResources(input *ListTagsForResourcesInput) (*ListT
 	return out, err
 }
 
+const opListTrafficPolicies = "ListTrafficPolicies"
+
+// ListTrafficPoliciesRequest generates a request for the ListTrafficPolicies operation.
+func (c *Route53) ListTrafficPoliciesRequest(input *ListTrafficPoliciesInput) (req *request.Request, output *ListTrafficPoliciesOutput) {
+	op := &request.Operation{
+		Name:       opListTrafficPolicies,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2013-04-01/trafficpolicies",
+	}
+
+	if input == nil {
+		input = &ListTrafficPoliciesInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListTrafficPoliciesOutput{}
+	req.Data = output
+	return
+}
+
+// Gets information about the latest version for every traffic policy that is
+// associated with the current AWS account. To get the information, send a GET
+// request to the 2013-04-01/trafficpolicy resource.
+//
+// Amazon Route 53 returns a maximum of 100 items in each response. If you
+// have a lot of traffic policies, you can use the maxitems parameter to list
+// them in groups of up to 100.
+//
+// The response includes three values that help you navigate from one group
+// of maxitems traffic policies to the next:
+//
+//  IsTruncated If the value of IsTruncated in the response is true, there
+// are more traffic policies associated with the current AWS account.
+//
+// If IsTruncated is false, this response includes the last traffic policy
+// that is associated with the current account.
+//
+// TrafficPolicyIdMarker If IsTruncated is true, TrafficPolicyIdMarker is the
+// ID of the first traffic policy in the next group of MaxItems traffic policies.
+// If you want to list more traffic policies, make another call to ListTrafficPolicies,
+// and specify the value of the TrafficPolicyIdMarker element from the response
+// in the TrafficPolicyIdMarker request parameter.
+//
+// If IsTruncated is false, the TrafficPolicyIdMarker element is omitted from
+// the response.
+//
+// MaxItems The value that you specified for the MaxItems parameter in the
+// request that produced the current response.
+func (c *Route53) ListTrafficPolicies(input *ListTrafficPoliciesInput) (*ListTrafficPoliciesOutput, error) {
+	req, out := c.ListTrafficPoliciesRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opListTrafficPolicyInstances = "ListTrafficPolicyInstances"
+
+// ListTrafficPolicyInstancesRequest generates a request for the ListTrafficPolicyInstances operation.
+func (c *Route53) ListTrafficPolicyInstancesRequest(input *ListTrafficPolicyInstancesInput) (req *request.Request, output *ListTrafficPolicyInstancesOutput) {
+	op := &request.Operation{
+		Name:       opListTrafficPolicyInstances,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2013-04-01/trafficpolicyinstances",
+	}
+
+	if input == nil {
+		input = &ListTrafficPolicyInstancesInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListTrafficPolicyInstancesOutput{}
+	req.Data = output
+	return
+}
+
+// Gets information about the traffic policy instances that you created by using
+// the current AWS account.
+//
+// After you submit an UpdateTrafficPolicyInstance request, there's a brief
+// delay while Amazon Route 53 creates the resource record sets that are specified
+// in the traffic policy definition. For more information, see the State response
+// element. To get information about the traffic policy instances that are associated
+// with the current AWS account, send a GET request to the 2013-04-01/trafficpolicyinstance
+// resource.
+//
+// Amazon Route 53 returns a maximum of 100 items in each response. If you
+// have a lot of traffic policy instances, you can use the MaxItems parameter
+// to list them in groups of up to 100.
+//
+// The response includes five values that help you navigate from one group
+// of MaxItems traffic policy instances to the next:
+//
+//  IsTruncated If the value of IsTruncated in the response is true, there
+// are more traffic policy instances associated with the current AWS account.
+//
+// If IsTruncated is false, this response includes the last traffic policy
+// instance that is associated with the current account.
+//
+// MaxItems The value that you specified for the MaxItems parameter in the
+// request that produced the current response.
+//
+// HostedZoneIdMarker, TrafficPolicyInstanceNameMarker, and TrafficPolicyInstanceTypeMarker
+// If IsTruncated is true, these three values in the response represent the
+// first traffic policy instance in the next group of MaxItems traffic policy
+// instances. To list more traffic policy instances, make another call to ListTrafficPolicyInstances,
+// and specify these values in the corresponding request parameters.
+//
+// If IsTruncated is false, all three elements are omitted from the response.
+func (c *Route53) ListTrafficPolicyInstances(input *ListTrafficPolicyInstancesInput) (*ListTrafficPolicyInstancesOutput, error) {
+	req, out := c.ListTrafficPolicyInstancesRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opListTrafficPolicyInstancesByHostedZone = "ListTrafficPolicyInstancesByHostedZone"
+
+// ListTrafficPolicyInstancesByHostedZoneRequest generates a request for the ListTrafficPolicyInstancesByHostedZone operation.
+func (c *Route53) ListTrafficPolicyInstancesByHostedZoneRequest(input *ListTrafficPolicyInstancesByHostedZoneInput) (req *request.Request, output *ListTrafficPolicyInstancesByHostedZoneOutput) {
+	op := &request.Operation{
+		Name:       opListTrafficPolicyInstancesByHostedZone,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2013-04-01/trafficpolicyinstances/hostedzone",
+	}
+
+	if input == nil {
+		input = &ListTrafficPolicyInstancesByHostedZoneInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListTrafficPolicyInstancesByHostedZoneOutput{}
+	req.Data = output
+	return
+}
+
+// Gets information about the traffic policy instances that you created in a
+// specified hosted zone.
+//
+// After you submit an UpdateTrafficPolicyInstance request, there's a brief
+// delay while Amazon Route 53 creates the resource record sets that are specified
+// in the traffic policy definition. For more information, see the State response
+// element. To get information about the traffic policy instances that you created
+// in a specified hosted zone, send a GET request to the 2013-04-01/trafficpolicyinstance
+// resource and include the ID of the hosted zone.
+//
+// Amazon Route 53 returns a maximum of 100 items in each response. If you
+// have a lot of traffic policy instances, you can use the MaxItems parameter
+// to list them in groups of up to 100.
+//
+// The response includes four values that help you navigate from one group
+// of MaxItems traffic policy instances to the next:
+//
+//  IsTruncated If the value of IsTruncated in the response is true, there
+// are more traffic policy instances associated with the current AWS account.
+//
+// If IsTruncated is false, this response includes the last traffic policy
+// instance that is associated with the current account.
+//
+// MaxItems The value that you specified for the MaxItems parameter in the
+// request that produced the current response.
+//
+// TrafficPolicyInstanceNameMarker and TrafficPolicyInstanceTypeMarker If IsTruncated
+// is true, these two values in the response represent the first traffic policy
+// instance in the next group of MaxItems traffic policy instances. To list
+// more traffic policy instances, make another call to ListTrafficPolicyInstancesByHostedZone,
+// and specify these values in the corresponding request parameters.
+//
+// If IsTruncated is false, all three elements are omitted from the response.
+func (c *Route53) ListTrafficPolicyInstancesByHostedZone(input *ListTrafficPolicyInstancesByHostedZoneInput) (*ListTrafficPolicyInstancesByHostedZoneOutput, error) {
+	req, out := c.ListTrafficPolicyInstancesByHostedZoneRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opListTrafficPolicyInstancesByPolicy = "ListTrafficPolicyInstancesByPolicy"
+
+// ListTrafficPolicyInstancesByPolicyRequest generates a request for the ListTrafficPolicyInstancesByPolicy operation.
+func (c *Route53) ListTrafficPolicyInstancesByPolicyRequest(input *ListTrafficPolicyInstancesByPolicyInput) (req *request.Request, output *ListTrafficPolicyInstancesByPolicyOutput) {
+	op := &request.Operation{
+		Name:       opListTrafficPolicyInstancesByPolicy,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2013-04-01/trafficpolicyinstances/trafficpolicy",
+	}
+
+	if input == nil {
+		input = &ListTrafficPolicyInstancesByPolicyInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListTrafficPolicyInstancesByPolicyOutput{}
+	req.Data = output
+	return
+}
+
+// Gets information about the traffic policy instances that you created by using
+// a specify traffic policy version.
+//
+// After you submit a CreateTrafficPolicyInstance or an UpdateTrafficPolicyInstance
+// request, there's a brief delay while Amazon Route 53 creates the resource
+// record sets that are specified in the traffic policy definition. For more
+// information, see the State response element. To get information about the
+// traffic policy instances that you created by using a specify traffic policy
+// version, send a GET request to the 2013-04-01/trafficpolicyinstance resource
+// and include the ID and version of the traffic policy.
+//
+// Amazon Route 53 returns a maximum of 100 items in each response. If you
+// have a lot of traffic policy instances, you can use the MaxItems parameter
+// to list them in groups of up to 100.
+//
+// The response includes five values that help you navigate from one group
+// of MaxItems traffic policy instances to the next:
+//
+//  IsTruncated If the value of IsTruncated in the response is true, there
+// are more traffic policy instances associated with the specified traffic policy.
+//
+// If IsTruncated is false, this response includes the last traffic policy
+// instance that is associated with the specified traffic policy.
+//
+//  MaxItems The value that you specified for the MaxItems parameter in the
+// request that produced the current response.
+//
+//  HostedZoneIdMarker, TrafficPolicyInstanceNameMarker, and TrafficPolicyInstanceTypeMarker
+// If IsTruncated is true, these values in the response represent the first
+// traffic policy instance in the next group of MaxItems traffic policy instances.
+// To list more traffic policy instances, make another call to ListTrafficPolicyInstancesByPolicy,
+// and specify these values in the corresponding request parameters.
+//
+// If IsTruncated is false, all three elements are omitted from the response.
+func (c *Route53) ListTrafficPolicyInstancesByPolicy(input *ListTrafficPolicyInstancesByPolicyInput) (*ListTrafficPolicyInstancesByPolicyOutput, error) {
+	req, out := c.ListTrafficPolicyInstancesByPolicyRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opListTrafficPolicyVersions = "ListTrafficPolicyVersions"
+
+// ListTrafficPolicyVersionsRequest generates a request for the ListTrafficPolicyVersions operation.
+func (c *Route53) ListTrafficPolicyVersionsRequest(input *ListTrafficPolicyVersionsInput) (req *request.Request, output *ListTrafficPolicyVersionsOutput) {
+	op := &request.Operation{
+		Name:       opListTrafficPolicyVersions,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2013-04-01/trafficpolicies/{Id}/versions",
+	}
+
+	if input == nil {
+		input = &ListTrafficPolicyVersionsInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListTrafficPolicyVersionsOutput{}
+	req.Data = output
+	return
+}
+
+// Gets information about all of the versions for a specified traffic policy.
+// ListTrafficPolicyVersions lists only versions that have not been deleted.
+//
+// Amazon Route 53 returns a maximum of 100 items in each response. If you
+// have a lot of traffic policies, you can use the maxitems parameter to list
+// them in groups of up to 100.
+//
+// The response includes three values that help you navigate from one group
+// of maxitemsmaxitems traffic policies to the next:
+//
+//  IsTruncated If the value of IsTruncated in the response is true, there
+// are more traffic policy versions associated with the specified traffic policy.
+//
+// If IsTruncated is false, this response includes the last traffic policy
+// version that is associated with the specified traffic policy.
+//
+// TrafficPolicyVersionMarker The ID of the next traffic policy version that
+// is associated with the current AWS account. If you want to list more traffic
+// policies, make another call to ListTrafficPolicyVersions, and specify the
+// value of the TrafficPolicyVersionMarker element in the TrafficPolicyVersionMarker
+// request parameter.
+//
+// If IsTruncated is false, Amazon Route 53 omits the TrafficPolicyVersionMarker
+// element from the response.
+//
+// MaxItems The value that you specified for the MaxItems parameter in the
+// request that produced the current response.
+func (c *Route53) ListTrafficPolicyVersions(input *ListTrafficPolicyVersionsInput) (*ListTrafficPolicyVersionsOutput, error) {
+	req, out := c.ListTrafficPolicyVersionsRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opUpdateHealthCheck = "UpdateHealthCheck"
 
 // UpdateHealthCheckRequest generates a request for the UpdateHealthCheck operation.
@@ -1040,7 +1672,7 @@ func (c *Route53) UpdateHealthCheckRequest(input *UpdateHealthCheckInput) (req *
 
 // This action updates an existing health check.
 //
-//  To update a health check, send a POST request to the 2013-04-01/healthcheck/health
+// To update a health check, send a POST request to the 2013-04-01/healthcheck/health
 // check ID resource. The request body must include an XML document with an
 // UpdateHealthCheckRequest element. The response returns an UpdateHealthCheckResponse
 // element, which contains metadata about the health check.
@@ -1081,46 +1713,205 @@ func (c *Route53) UpdateHostedZoneComment(input *UpdateHostedZoneCommentInput) (
 	return out, err
 }
 
-// Alias resource record sets only: Information about the domain to which you
-// are redirecting traffic.
+const opUpdateTrafficPolicyComment = "UpdateTrafficPolicyComment"
+
+// UpdateTrafficPolicyCommentRequest generates a request for the UpdateTrafficPolicyComment operation.
+func (c *Route53) UpdateTrafficPolicyCommentRequest(input *UpdateTrafficPolicyCommentInput) (req *request.Request, output *UpdateTrafficPolicyCommentOutput) {
+	op := &request.Operation{
+		Name:       opUpdateTrafficPolicyComment,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2013-04-01/trafficpolicy/{Id}/{Version}",
+	}
+
+	if input == nil {
+		input = &UpdateTrafficPolicyCommentInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &UpdateTrafficPolicyCommentOutput{}
+	req.Data = output
+	return
+}
+
+// Updates the comment for a specified traffic policy version.
 //
-// For more information and an example, see Creating Alias Resource Record
-// Sets (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingAliasRRSets.html)
-// in the Amazon Route 53 Developer Guide
+// To update the comment, send a POST request to the /2013-04-01/trafficpolicy/
+// resource.
 //
-// .
+// The request body must include an XML document with an UpdateTrafficPolicyCommentRequest
+// element.
+func (c *Route53) UpdateTrafficPolicyComment(input *UpdateTrafficPolicyCommentInput) (*UpdateTrafficPolicyCommentOutput, error) {
+	req, out := c.UpdateTrafficPolicyCommentRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opUpdateTrafficPolicyInstance = "UpdateTrafficPolicyInstance"
+
+// UpdateTrafficPolicyInstanceRequest generates a request for the UpdateTrafficPolicyInstance operation.
+func (c *Route53) UpdateTrafficPolicyInstanceRequest(input *UpdateTrafficPolicyInstanceInput) (req *request.Request, output *UpdateTrafficPolicyInstanceOutput) {
+	op := &request.Operation{
+		Name:       opUpdateTrafficPolicyInstance,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2013-04-01/trafficpolicyinstance/{Id}",
+	}
+
+	if input == nil {
+		input = &UpdateTrafficPolicyInstanceInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &UpdateTrafficPolicyInstanceOutput{}
+	req.Data = output
+	return
+}
+
+// Updates the resource record sets in a specified hosted zone that were created
+// based on the settings in a specified traffic policy version.
+//
+// The DNS type of the resource record sets that you're updating must match
+// the DNS type in the JSON document that is associated with the traffic policy
+// version that you're using to update the traffic policy instance. When you
+// update a traffic policy instance, Amazon Route 53 continues to respond to
+// DNS queries for the root resource record set name (such as example.com) while
+// it replaces one group of resource record sets with another. Amazon Route
+// 53 performs the following operations:
+//
+//  Amazon Route 53 creates a new group of resource record sets based on the
+// specified traffic policy. This is true regardless of how substantial the
+// differences are between the existing resource record sets and the new resource
+// record sets.  When all of the new resource record sets have been created,
+// Amazon Route 53 starts to respond to DNS queries for the root resource record
+// set name (such as example.com) by using the new resource record sets. Amazon
+// Route 53 deletes the old group of resource record sets that are associated
+// with the root resource record set name.  To update a traffic policy instance,
+// send a POST request to the /2013-04-01/trafficpolicyinstance/traffic policy
+// ID resource. The request body must include an XML document with an UpdateTrafficPolicyInstanceRequest
+// element.
+func (c *Route53) UpdateTrafficPolicyInstance(input *UpdateTrafficPolicyInstanceInput) (*UpdateTrafficPolicyInstanceOutput, error) {
+	req, out := c.UpdateTrafficPolicyInstanceRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+// Alias resource record sets only: Information about the CloudFront distribution,
+// ELB load balancer, Amazon S3 bucket, or Amazon Route 53 resource record set
+// to which you are routing traffic.
+//
+// If you're creating resource record sets for a private hosted zone, note
+// the following:
+//
+//  You can create alias resource record sets only for Amazon Route 53 resource
+// record sets in the same private hosted zone. Creating alias resource record
+// sets for CloudFront distributions, ELB load balancers, and Amazon S3 buckets
+// is not supported. You can't create alias resource record sets for failover,
+// geolocation, or latency resource record sets in a private hosted zone.  For
+// more information and an example, see Example: Creating Alias Resource Record
+// Sets (http://docs.aws.amazon.com/Route53/latest/APIReference/CreateAliasRRSAPI.html)
+// in the Amazon Route 53 API Reference.
 type AliasTarget struct {
 	_ struct{} `type:"structure"`
 
 	// Alias resource record sets only: The external DNS name associated with the
-	// AWS Resource.
+	// AWS Resource. The value that you specify depends on where you want to route
+	// queries:
 	//
-	// For more information and an example, see Creating Alias Resource Record
-	// Sets (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingAliasRRSets.html)
-	// in the Amazon Route 53 Developer Guide
-	//
-	// .
+	//  A CloudFront distribution: Specify the domain name that CloudFront assigned
+	// when you created your distribution. Your CloudFront distribution must include
+	// an alternate domain name that matches the name of the resource record set.
+	// For example, if the name of the resource record set is acme.example.com,
+	// your CloudFront distribution must include acme.example.com as one of the
+	// alternate domain names. For more information, see Using Alternate Domain
+	// Names (CNAMEs) (http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/CNAMEs.html)
+	// in the Amazon CloudFront Developer Guide. An ELB load balancer: Specify the
+	// DNS name associated with the load balancer. You can get the DNS name by using
+	// the AWS Management Console, the ELB API, or the AWS CLI. Use the same method
+	// to get values for HostedZoneId and DNSName. If you get one value from the
+	// console and the other value from the API or the CLI, creating the resource
+	// record set will fail. An Amazon S3 bucket that is configured as a static
+	// website: Specify the domain name of the Amazon S3 website endpoint in which
+	// you created the bucket; for example, s3-website-us-east-1.amazonaws.com.
+	// For more information about valid values, see the table Amazon Simple Storage
+	// Service (S3) Website Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region)
+	// in the Amazon Web Services General Reference. For more information about
+	// using Amazon S3 buckets for websites, see Hosting a Static Website on Amazon
+	// S3 (http://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html) in
+	// the Amazon Simple Storage Service Developer Guide.   For more information
+	// and an example, see Example: Creating Alias Resource Record Sets (http://docs.aws.amazon.com/Route53/latest/APIReference/CreateAliasRRSAPI.html)
+	// in the Amazon Route 53 API Reference.
 	DNSName *string `type:"string" required:"true"`
 
-	// Alias resource record sets only: A boolean value that indicates whether this
-	// Resource Record Set should respect the health status of any health checks
-	// associated with the ALIAS target record which it is linked to.
+	// Alias resource record sets only: If you set the value of EvaluateTargetHealth
+	// to true for the resource record set or sets in an alias, weighted alias,
+	// latency alias, or failover alias resource record set, and if you specify
+	// a value for HealthCheckId for every resource record set that is referenced
+	// by these alias resource record sets, the alias resource record sets inherit
+	// the health of the referenced resource record sets.
 	//
-	// For more information and an example, see Creating Alias Resource Record
-	// Sets (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingAliasRRSets.html)
-	// in the Amazon Route 53 Developer Guide
+	// In this configuration, when Amazon Route 53 receives a DNS query for an
+	// alias resource record set:
 	//
-	// .
+	//  Amazon Route 53 looks at the resource record sets that are referenced by
+	// the alias resource record sets to determine which health checks they're using.
+	// Amazon Route 53 checks the current status of each health check. (Amazon Route
+	// 53 periodically checks the health of the endpoint that is specified in a
+	// health check; it doesn't perform the health check when the DNS query arrives.)
+	// Based on the status of the health checks, Amazon Route 53 determines which
+	// resource record sets are healthy. Unhealthy resource record sets are immediately
+	// removed from consideration. In addition, if all of the resource record sets
+	// that are referenced by an alias resource record set are unhealthy, that alias
+	// resource record set also is immediately removed from consideration. Based
+	// on the configuration of the alias resource record sets (weighted alias or
+	// latency alias, for example) and the configuration of the resource record
+	// sets that they reference, Amazon Route 53 chooses a resource record set from
+	// the healthy resource record sets, and responds to the query.  Note the following:
+	//
+	// You cannot set EvaluateTargetHealth to true when the alias target is a CloudFront
+	// distribution. If the AWS resource that you specify in AliasTarget is a resource
+	// record set or a group of resource record sets (for example, a group of weighted
+	// resource record sets), but it is not another alias resource record set, we
+	// recommend that you associate a health check with all of the resource record
+	// sets in the alias target. For more information, see What Happens When You
+	// Omit Health Checks? (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-complex-configs.html#dns-failover-complex-configs-hc-omitting)
+	// in the Amazon Route 53 Developer Guide. If you specify an ELB load balancer
+	// in AliasTarget, Elastic Load Balancing routes queries only to the healthy
+	// Amazon EC2 instances that are registered with the load balancer. If no Amazon
+	// EC2 instances are healthy or if the load balancer itself is unhealthy, and
+	// if EvaluateTargetHealth is true for the corresponding alias resource record
+	// set, Amazon Route 53 routes queries to other resources. When you create a
+	// load balancer, you configure settings for Elastic Load Balancing health checks;
+	// they're not Amazon Route 53 health checks, but they perform a similar function.
+	// Do not create Amazon Route 53 health checks for the Amazon EC2 instances
+	// that you register with an ELB load balancer. For more information, see How
+	// Health Checks Work in More Complex Amazon Route 53 Configurations (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-complex-configs.html)
+	// in the Amazon Route 53 Developer Guide.  We recommend that you set EvaluateTargetHealth
+	// to true only when you have enough idle capacity to handle the failure of
+	// one or more endpoints.
+	//
+	// For more information and examples, see Amazon Route 53 Health Checks and
+	// DNS Failover (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover.html)
+	// in the Amazon Route 53 Developer Guide.
 	EvaluateTargetHealth *bool `type:"boolean" required:"true"`
 
-	// Alias resource record sets only: The value of the hosted zone ID for the
-	// AWS resource.
+	// Alias resource record sets only: The value you use depends on where you want
+	// to route queries:
 	//
-	// For more information and an example, see Creating Alias Resource Record
-	// Sets (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingAliasRRSets.html)
-	// in the Amazon Route 53 Developer Guide
-	//
-	// .
+	//  A CloudFront distribution: Specify Z2FDTNDATAQYW2. An ELB load balancer:
+	// Specify the value of the hosted zone ID for the load balancer. You can get
+	// the hosted zone ID by using the AWS Management Console, the ELB API, or the
+	// AWS CLI. Use the same method to get values for HostedZoneId and DNSName.
+	// If you get one value from the console and the other value from the API or
+	// the CLI, creating the resource record set will fail. An Amazon S3 bucket
+	// that is configured as a static website: Specify the hosted zone ID for the
+	// Amazon S3 website endpoint in which you created the bucket. For more information
+	// about valid values, see the table Amazon Simple Storage Service (S3) Website
+	// Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region)
+	// in the Amazon Web Services General Reference. Another Amazon Route 53 resource
+	// record set in your hosted zone: Specify the hosted zone ID of your hosted
+	// zone. (An alias resource record set cannot reference a resource record set
+	// in a different hosted zone.)  For more information and an example, see Example:
+	// Creating Alias Resource Record Sets (http://docs.aws.amazon.com/Route53/latest/APIReference/CreateAliasRRSAPI.html)
+	// in the Amazon Route 53 API Reference.
 	HostedZoneId *string `type:"string" required:"true"`
 }
 
@@ -1186,9 +1977,19 @@ func (s AssociateVPCWithHostedZoneOutput) GoString() string {
 type Change struct {
 	_ struct{} `type:"structure"`
 
-	// The action to perform.
+	// The action to perform:
 	//
-	// Valid values: CREATE | DELETE | UPSERT
+	//  CREATE: Creates a resource record set that has the specified values. DELETE:
+	// Deletes a existing resource record set that has the specified values for
+	// Name, Type, SetIdentifier (for latency, weighted, geolocation, and failover
+	// resource record sets), and TTL (except alias resource record sets, for which
+	// the TTL is determined by the AWS resource that you're routing DNS queries
+	// to). UPSERT: If a resource record set does not already exist, Amazon Route
+	// 53 creates it. If a resource record set does exist, Amazon Route 53 updates
+	// it with the values in the request. Amazon Route 53 can update an existing
+	// resource record set only when all of the following values match: Name, Type,
+	// and SetIdentifier (for weighted, latency, geolocation, and failover resource
+	// record sets).
 	Action *string `type:"string" required:"true" enum:"ChangeAction"`
 
 	// Information about the resource record set to create or delete.
@@ -1228,6 +2029,50 @@ func (s ChangeBatch) GoString() string {
 	return s.String()
 }
 
+// A complex type that lists the changes and information for a ChangeBatch.
+type ChangeBatchRecord struct {
+	_ struct{} `type:"structure"`
+
+	// A list of changes made in the ChangeBatch.
+	Changes []*Change `locationNameList:"Change" min:"1" type:"list"`
+
+	// A complex type that describes change information about changes made to your
+	// hosted zone.
+	//
+	// This element contains an ID that you use when performing a GetChange action
+	// to get detailed information about the change.
+	Comment *string `type:"string"`
+
+	// The ID of the request. Use this ID to track when the change has completed
+	// across all Amazon Route 53 DNS servers.
+	Id *string `type:"string" required:"true"`
+
+	// The current state of the request. PENDING indicates that this request has
+	// not yet been applied to all Amazon Route 53 DNS servers.
+	//
+	// Valid Values: PENDING | INSYNC
+	Status *string `type:"string" required:"true" enum:"ChangeStatus"`
+
+	// The date and time the change was submitted, in the format YYYY-MM-DDThh:mm:ssZ,
+	// as specified in the ISO 8601 standard (for example, 2009-11-19T19:37:58Z).
+	// The Z after the time indicates that the time is listed in Coordinated Universal
+	// Time (UTC).
+	SubmittedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The AWS account ID attached to the changes.
+	Submitter *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ChangeBatchRecord) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ChangeBatchRecord) GoString() string {
+	return s.String()
+}
+
 // A complex type that describes change information about changes made to your
 // hosted zone.
 //
@@ -1256,7 +2101,7 @@ type ChangeInfo struct {
 	// The date and time the change was submitted, in the format YYYY-MM-DDThh:mm:ssZ,
 	// as specified in the ISO 8601 standard (for example, 2009-11-19T19:37:58Z).
 	// The Z after the time indicates that the time is listed in Coordinated Universal
-	// Time (UTC), which is synonymous with Greenwich Mean Time in this context.
+	// Time (UTC).
 	SubmittedAt *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 }
 
@@ -1435,9 +2280,10 @@ type CreateHostedZoneInput struct {
 	HostedZoneConfig *HostedZoneConfig `type:"structure"`
 
 	// The name of the domain. This must be a fully-specified domain, for example,
-	// www.example.com. The trailing dot is optional; Route 53 assumes that the
-	// domain name is fully qualified. This means that Route 53 treats www.example.com
-	// (without a trailing dot) and www.example.com. (with a trailing dot) as identical.
+	// www.example.com. The trailing dot is optional; Amazon Route 53 assumes that
+	// the domain name is fully qualified. This means that Amazon Route 53 treats
+	// www.example.com (without a trailing dot) and www.example.com. (with a trailing
+	// dot) as identical.
 	//
 	// This is the name you have registered with your DNS registrar. You should
 	// ask your registrar to change the authoritative name servers for your domain
@@ -1536,6 +2382,160 @@ func (s CreateReusableDelegationSetOutput) String() string {
 
 // GoString returns the string representation
 func (s CreateReusableDelegationSetOutput) GoString() string {
+	return s.String()
+}
+
+// A complex type that contains information about the traffic policy that you
+// want to create.
+type CreateTrafficPolicyInput struct {
+	_ struct{} `locationName:"CreateTrafficPolicyRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+
+	// Any comments that you want to include about the traffic policy.
+	Comment *string `type:"string"`
+
+	// The definition of this traffic policy in JSON format.
+	Document *string `type:"string" required:"true"`
+
+	// The name of the traffic policy.
+	Name *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateTrafficPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateTrafficPolicyInput) GoString() string {
+	return s.String()
+}
+
+// A complex type that contains information about the resource record sets that
+// you want to create based on a specified traffic policy.
+type CreateTrafficPolicyInstanceInput struct {
+	_ struct{} `locationName:"CreateTrafficPolicyInstanceRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+
+	// The ID of the hosted zone in which you want Amazon Route 53 to create resource
+	// record sets by using the configuration in a traffic policy.
+	HostedZoneId *string `type:"string" required:"true"`
+
+	// The domain name (such as example.com) or subdomain name (such as www.example.com)
+	// for which Amazon Route 53 responds to DNS queries by using the resource record
+	// sets that Amazon Route 53 creates for this traffic policy instance.
+	Name *string `type:"string" required:"true"`
+
+	// The TTL that you want Amazon Route 53 to assign to all of the resource record
+	// sets that it creates in the specified hosted zone.
+	TTL *int64 `type:"long" required:"true"`
+
+	// The ID of the traffic policy that you want to use to create resource record
+	// sets in the specified hosted zone.
+	TrafficPolicyId *string `type:"string" required:"true"`
+
+	// The version of the traffic policy that you want to use to create resource
+	// record sets in the specified hosted zone.
+	TrafficPolicyVersion *int64 `min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateTrafficPolicyInstanceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateTrafficPolicyInstanceInput) GoString() string {
+	return s.String()
+}
+
+// A complex type that contains the response information for the CreateTrafficPolicyInstance
+// request.
+type CreateTrafficPolicyInstanceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique URL that represents a new traffic policy instance.
+	Location *string `location:"header" locationName:"Location" type:"string" required:"true"`
+
+	// A complex type that contains settings for the new traffic policy instance.
+	TrafficPolicyInstance *TrafficPolicyInstance `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateTrafficPolicyInstanceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateTrafficPolicyInstanceOutput) GoString() string {
+	return s.String()
+}
+
+// A complex type that contains the response information for the CreateTrafficPolicy
+// request.
+type CreateTrafficPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	Location *string `location:"header" locationName:"Location" type:"string" required:"true"`
+
+	// A complex type that contains settings for the new traffic policy.
+	TrafficPolicy *TrafficPolicy `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateTrafficPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateTrafficPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// A complex type that contains information about the traffic policy for which
+// you want to create a new version.
+type CreateTrafficPolicyVersionInput struct {
+	_ struct{} `locationName:"CreateTrafficPolicyVersionRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+
+	// Any comments that you want to include about the new traffic policy version.
+	Comment *string `type:"string"`
+
+	// The definition of a new traffic policy version, in JSON format. You must
+	// specify the full definition of the new traffic policy. You cannot specify
+	// just the differences between the new version and a previous version.
+	Document *string `type:"string" required:"true"`
+
+	// The ID of the traffic policy for which you want to create a new version.
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateTrafficPolicyVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateTrafficPolicyVersionInput) GoString() string {
+	return s.String()
+}
+
+// A complex type that contains the response information for the CreateTrafficPolicyVersion
+// request.
+type CreateTrafficPolicyVersionOutput struct {
+	_ struct{} `type:"structure"`
+
+	Location *string `location:"header" locationName:"Location" type:"string" required:"true"`
+
+	// A complex type that contains settings for the new version of the traffic
+	// policy.
+	TrafficPolicy *TrafficPolicy `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateTrafficPolicyVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateTrafficPolicyVersionOutput) GoString() string {
 	return s.String()
 }
 
@@ -1667,6 +2667,80 @@ func (s DeleteReusableDelegationSetOutput) GoString() string {
 	return s.String()
 }
 
+// A request to delete a specified traffic policy version.
+type DeleteTrafficPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the traffic policy that you want to delete.
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The version number of the traffic policy that you want to delete.
+	Version *int64 `location:"uri" locationName:"Version" min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteTrafficPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteTrafficPolicyInput) GoString() string {
+	return s.String()
+}
+
+// A complex type that contains information about the traffic policy instance
+// that you want to delete.
+type DeleteTrafficPolicyInstanceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the traffic policy instance that you want to delete.
+	//
+	// When you delete a traffic policy instance, Amazon Route 53 also deletes
+	// all of the resource record sets that were created when you created the traffic
+	// policy instance.
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteTrafficPolicyInstanceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteTrafficPolicyInstanceInput) GoString() string {
+	return s.String()
+}
+
+// An empty element.
+type DeleteTrafficPolicyInstanceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteTrafficPolicyInstanceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteTrafficPolicyInstanceOutput) GoString() string {
+	return s.String()
+}
+
+// An empty element.
+type DeleteTrafficPolicyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteTrafficPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteTrafficPolicyOutput) GoString() string {
+	return s.String()
+}
+
 // A complex type that contains information about the request to disassociate
 // a VPC from an hosted zone.
 type DisassociateVPCFromHostedZoneInput struct {
@@ -1790,6 +2864,46 @@ func (s GeoLocationDetails) String() string {
 
 // GoString returns the string representation
 func (s GeoLocationDetails) GoString() string {
+	return s.String()
+}
+
+// The input for a GetChangeDetails request.
+type GetChangeDetailsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the change batch request. The value that you specify here is the
+	// value that ChangeResourceRecordSets returned in the Id element when you submitted
+	// the request.
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetChangeDetailsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetChangeDetailsInput) GoString() string {
+	return s.String()
+}
+
+// A complex type that contains the ChangeBatchRecord element.
+type GetChangeDetailsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A complex type that contains information about the specified change batch,
+	// including the change batch ID, the status of the change, and the contained
+	// changes.
+	ChangeBatchRecord *ChangeBatchRecord `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s GetChangeDetailsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetChangeDetailsOutput) GoString() string {
 	return s.String()
 }
 
@@ -2002,8 +3116,8 @@ func (s GetHealthCheckLastFailureReasonInput) GoString() string {
 type GetHealthCheckLastFailureReasonOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list that contains one HealthCheckObservation element for each Route 53
-	// health checker.
+	// A list that contains one HealthCheckObservation element for each Amazon Route
+	// 53 health checker.
 	HealthCheckObservations []*HealthCheckObservation `locationNameList:"HealthCheckObservation" type:"list" required:"true"`
 }
 
@@ -2040,8 +3154,61 @@ func (s GetHealthCheckOutput) GoString() string {
 type GetHealthCheckStatusInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the health check for which you want to retrieve the most recent
-	// status.
+	// If you want Amazon Route 53 to return this resource record set in response
+	// to a DNS query only when a health check is passing, include the HealthCheckId
+	// element and specify the ID of the applicable health check.
+	//
+	// Amazon Route 53 determines whether a resource record set is healthy by periodically
+	// sending a request to the endpoint that is specified in the health check.
+	// If that endpoint returns an HTTP status code of 2xx or 3xx, the endpoint
+	// is healthy. If the endpoint returns an HTTP status code of 400 or greater,
+	// or if the endpoint doesn't respond for a certain amount of time, Amazon Route
+	// 53 considers the endpoint unhealthy and also considers the resource record
+	// set unhealthy.
+	//
+	// The HealthCheckId element is only useful when Amazon Route 53 is choosing
+	// between two or more resource record sets to respond to a DNS query, and you
+	// want Amazon Route 53 to base the choice in part on the status of a health
+	// check. Configuring health checks only makes sense in the following configurations:
+	//
+	//  You're checking the health of the resource record sets in a weighted, latency,
+	// geolocation, or failover resource record set, and you specify health check
+	// IDs for all of the resource record sets. If the health check for one resource
+	// record set specifies an endpoint that is not healthy, Amazon Route 53 stops
+	// responding to queries using the value for that resource record set. You set
+	// EvaluateTargetHealth to true for the resource record sets in an alias, weighted
+	// alias, latency alias, geolocation alias, or failover alias resource record
+	// set, and you specify health check IDs for all of the resource record sets
+	// that are referenced by the alias resource record sets. For more information
+	// about this configuration, see EvaluateTargetHealth.
+	//
+	// Amazon Route 53 doesn't check the health of the endpoint specified in the
+	// resource record set, for example, the endpoint specified by the IP address
+	// in the Value element. When you add a HealthCheckId element to a resource
+	// record set, Amazon Route 53 checks the health of the endpoint that you specified
+	// in the health check.
+	//
+	//   For geolocation resource record sets, if an endpoint is unhealthy, Amazon
+	// Route 53 looks for a resource record set for the larger, associated geographic
+	// region. For example, suppose you have resource record sets for a state in
+	// the United States, for the United States, for North America, and for all
+	// locations. If the endpoint for the state resource record set is unhealthy,
+	// Amazon Route 53 checks the resource record sets for the United States, for
+	// North America, and for all locations (a resource record set for which the
+	// value of CountryCode is *), in that order, until it finds a resource record
+	// set for which the endpoint is healthy.
+	//
+	// If your health checks specify the endpoint only by domain name, we recommend
+	// that you create a separate health check for each endpoint. For example, create
+	// a health check for each HTTP server that is serving content for www.example.com.
+	// For the value of FullyQualifiedDomainName, specify the domain name of the
+	// server (such as us-east-1-www.example.com), not the name of the resource
+	// record sets (example.com).
+	//
+	// In this configuration, if you create a health check for which the value
+	// of FullyQualifiedDomainName matches the name of the resource record sets
+	// and then associate the health check with those resource record sets, health
+	// check results will be unpredictable.
 	HealthCheckId *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"`
 }
 
@@ -2060,8 +3227,8 @@ func (s GetHealthCheckStatusInput) GoString() string {
 type GetHealthCheckStatusOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list that contains one HealthCheckObservation element for each Route 53
-	// health checker.
+	// A list that contains one HealthCheckObservation element for each Amazon Route
+	// 53 health checker.
 	HealthCheckObservations []*HealthCheckObservation `locationNameList:"HealthCheckObservation" type:"list" required:"true"`
 }
 
@@ -2194,6 +3361,124 @@ func (s GetReusableDelegationSetOutput) GoString() string {
 	return s.String()
 }
 
+// Gets information about a specific traffic policy version. To get the information,
+// send a GET request to the 2013-04-01/trafficpolicy resource, and specify
+// the ID and the version of the traffic policy.
+type GetTrafficPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the traffic policy that you want to get information about.
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The version number of the traffic policy that you want to get information
+	// about.
+	Version *int64 `location:"uri" locationName:"Version" min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s GetTrafficPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetTrafficPolicyInput) GoString() string {
+	return s.String()
+}
+
+// To retrieve a count of all your traffic policy instances, send a GET request
+// to the 2013-04-01/trafficpolicyinstancecount resource.
+type GetTrafficPolicyInstanceCountInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetTrafficPolicyInstanceCountInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetTrafficPolicyInstanceCountInput) GoString() string {
+	return s.String()
+}
+
+// A complex type that contains information about the number of traffic policy
+// instances that are associated with the current AWS account.
+type GetTrafficPolicyInstanceCountOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The number of traffic policy instances that are associated with the current
+	// AWS account.
+	TrafficPolicyInstanceCount *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s GetTrafficPolicyInstanceCountOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetTrafficPolicyInstanceCountOutput) GoString() string {
+	return s.String()
+}
+
+// Gets information about a specified traffic policy instance.
+//
+// To get information about a traffic policy instance, send a GET request to
+// the 2013-04-01/trafficpolicyinstance/Id resource.
+type GetTrafficPolicyInstanceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the traffic policy instance that you want to get information about.
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetTrafficPolicyInstanceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetTrafficPolicyInstanceInput) GoString() string {
+	return s.String()
+}
+
+// A complex type that contains information about the resource record sets that
+// Amazon Route 53 created based on a specified traffic policy.
+type GetTrafficPolicyInstanceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A complex type that contains settings for the traffic policy instance.
+	TrafficPolicyInstance *TrafficPolicyInstance `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s GetTrafficPolicyInstanceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetTrafficPolicyInstanceOutput) GoString() string {
+	return s.String()
+}
+
+// A complex type that contains the response information for the request.
+type GetTrafficPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A complex type that contains settings for the specified traffic policy.
+	TrafficPolicy *TrafficPolicy `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s GetTrafficPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetTrafficPolicyOutput) GoString() string {
+	return s.String()
+}
+
 // A complex type that contains identifying information about the health check.
 type HealthCheck struct {
 	_ struct{} `type:"structure"`
@@ -2232,7 +3517,7 @@ type HealthCheckConfig struct {
 	ChildHealthChecks []*string `locationNameList:"ChildHealthCheck" type:"list"`
 
 	// The number of consecutive health checks that an endpoint must pass or fail
-	// for Route 53 to change the current status of the endpoint from unhealthy
+	// for Amazon Route 53 to change the current status of the endpoint from unhealthy
 	// to healthy or vice versa.
 	//
 	// Valid values are integers between 1 and 10. For more information, see "How
@@ -2243,9 +3528,9 @@ type HealthCheckConfig struct {
 	// Fully qualified domain name of the instance to be health checked.
 	FullyQualifiedDomainName *string `type:"string"`
 
-	// The minimum number of child health checks that must be healthy for Route
-	// 53 to consider the parent health check to be healthy. Valid values are integers
-	// between 0 and 256, inclusive.
+	// The minimum number of child health checks that must be healthy for Amazon
+	// Route 53 to consider the parent health check to be healthy. Valid values
+	// are integers between 0 and 256, inclusive.
 	HealthThreshold *int64 `type:"integer"`
 
 	// IP Address of the instance being checked.
@@ -2253,12 +3538,12 @@ type HealthCheckConfig struct {
 
 	// A boolean value that indicates whether the status of health check should
 	// be inverted. For example, if a health check is healthy but Inverted is True,
-	// then Route 53 considers the health check to be unhealthy.
+	// then Amazon Route 53 considers the health check to be unhealthy.
 	Inverted *bool `type:"boolean"`
 
-	// A Boolean value that indicates whether you want Route 53 to measure the latency
-	// between health checkers in multiple AWS regions and your endpoint and to
-	// display CloudWatch latency graphs in the Route 53 console.
+	// A Boolean value that indicates whether you want Amazon Route 53 to measure
+	// the latency between health checkers in multiple AWS regions and your endpoint
+	// and to display CloudWatch latency graphs in the Amazon Route 53 console.
 	MeasureLatency *bool `type:"boolean"`
 
 	// Port on which connection will be opened to the instance to health check.
@@ -2266,15 +3551,15 @@ type HealthCheckConfig struct {
 	// For HTTPS and HTTPS_STR_MATCH this defaults to 443 if the port is not specified.
 	Port *int64 `min:"1" type:"integer"`
 
-	// The number of seconds between the time that Route 53 gets a response from
-	// your endpoint and the time that it sends the next health-check request.
+	// The number of seconds between the time that Amazon Route 53 gets a response
+	// from your endpoint and the time that it sends the next health-check request.
 	//
-	// Each Route 53 health checker makes requests at this interval. Valid values
-	// are 10 and 30. The default value is 30.
+	// Each Amazon Route 53 health checker makes requests at this interval. Valid
+	// values are 10 and 30. The default value is 30.
 	RequestInterval *int64 `min:"10" type:"integer"`
 
 	// Path to ping on the instance to check the health. Required for HTTP, HTTPS,
-	// HTTP_STR_MATCH, and HTTPS_STR_MATCH health checks, HTTP request is issued
+	// HTTP_STR_MATCH, and HTTPS_STR_MATCH health checks. The HTTP request is issued
 	// to the instance on the given port and path.
 	ResourcePath *string `type:"string"`
 
@@ -2297,12 +3582,13 @@ func (s HealthCheckConfig) GoString() string {
 	return s.String()
 }
 
-// A complex type that contains the IP address of a Route 53 health checker
+// A complex type that contains the IP address of a Amazon Route 53 health checker
 // and the reason for the health check status.
 type HealthCheckObservation struct {
 	_ struct{} `type:"structure"`
 
-	// The IP address of the Route 53 health checker that performed the health check.
+	// The IP address of the Amazon Route 53 health checker that performed the health
+	// check.
 	IPAddress *string `type:"string"`
 
 	// A complex type that contains information about the health check status for
@@ -2334,9 +3620,10 @@ type HostedZone struct {
 	Id *string `type:"string" required:"true"`
 
 	// The name of the domain. This must be a fully-specified domain, for example,
-	// www.example.com. The trailing dot is optional; Route 53 assumes that the
-	// domain name is fully qualified. This means that Route 53 treats www.example.com
-	// (without a trailing dot) and www.example.com. (with a trailing dot) as identical.
+	// www.example.com. The trailing dot is optional; Amazon Route 53 assumes that
+	// the domain name is fully qualified. This means that Amazon Route 53 treats
+	// www.example.com (without a trailing dot) and www.example.com. (with a trailing
+	// dot) as identical.
 	//
 	// This is the name you have registered with your DNS registrar. You should
 	// ask your registrar to change the authoritative name servers for your domain
@@ -2368,8 +3655,6 @@ type HostedZoneConfig struct {
 	// XML document.
 	Comment *string `type:"string"`
 
-	// A value that indicates whether this is a private hosted zone. The value is
-	// returned in the response; do not specify it in the request.
 	PrivateZone *bool `type:"boolean"`
 }
 
@@ -2380,6 +3665,135 @@ func (s HostedZoneConfig) String() string {
 
 // GoString returns the string representation
 func (s HostedZoneConfig) GoString() string {
+	return s.String()
+}
+
+// The input for a ListChangeBatchesByHostedZone request.
+type ListChangeBatchesByHostedZoneInput struct {
+	_ struct{} `type:"structure"`
+
+	// The end of the time period you want to see changes for.
+	EndDate *string `location:"querystring" locationName:"endDate" type:"string" required:"true"`
+
+	// The ID of the hosted zone that you want to see changes for.
+	HostedZoneId *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The page marker.
+	Marker *string `location:"querystring" locationName:"marker" type:"string"`
+
+	// The maximum number of items on a page.
+	MaxItems *string `location:"querystring" locationName:"maxItems" type:"string"`
+
+	// The start of the time period you want to see changes for.
+	StartDate *string `location:"querystring" locationName:"startDate" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListChangeBatchesByHostedZoneInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListChangeBatchesByHostedZoneInput) GoString() string {
+	return s.String()
+}
+
+// The input for a ListChangeBatchesByHostedZone request.
+type ListChangeBatchesByHostedZoneOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The change batches within the given hosted zone and time period.
+	ChangeBatchRecords []*ChangeBatchRecord `locationNameList:"ChangeBatchRecord" min:"1" type:"list" required:"true"`
+
+	// A flag that indicates if there are more change batches to list.
+	IsTruncated *bool `type:"boolean"`
+
+	// The page marker.
+	Marker *string `type:"string" required:"true"`
+
+	// The maximum number of items on a page.
+	MaxItems *string `type:"string" required:"true"`
+
+	// The next page marker.
+	NextMarker *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListChangeBatchesByHostedZoneOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListChangeBatchesByHostedZoneOutput) GoString() string {
+	return s.String()
+}
+
+// The input for a ListChangeBatchesByRRSet request.
+type ListChangeBatchesByRRSetInput struct {
+	_ struct{} `type:"structure"`
+
+	// The end of the time period you want to see changes for.
+	EndDate *string `location:"querystring" locationName:"endDate" type:"string" required:"true"`
+
+	// The ID of the hosted zone that you want to see changes for.
+	HostedZoneId *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The page marker.
+	Marker *string `location:"querystring" locationName:"marker" type:"string"`
+
+	// The maximum number of items on a page.
+	MaxItems *string `location:"querystring" locationName:"maxItems" type:"string"`
+
+	// The name of the RRSet that you want to see changes for.
+	Name *string `location:"querystring" locationName:"rrSet_name" type:"string" required:"true"`
+
+	// The identifier of the RRSet that you want to see changes for.
+	SetIdentifier *string `location:"querystring" locationName:"identifier" min:"1" type:"string"`
+
+	// The start of the time period you want to see changes for.
+	StartDate *string `location:"querystring" locationName:"startDate" type:"string" required:"true"`
+
+	// The type of the RRSet that you want to see changes for.
+	Type *string `location:"querystring" locationName:"type" type:"string" required:"true" enum:"RRType"`
+}
+
+// String returns the string representation
+func (s ListChangeBatchesByRRSetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListChangeBatchesByRRSetInput) GoString() string {
+	return s.String()
+}
+
+// The input for a ListChangeBatchesByRRSet request.
+type ListChangeBatchesByRRSetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The change batches within the given hosted zone and time period.
+	ChangeBatchRecords []*ChangeBatchRecord `locationNameList:"ChangeBatchRecord" min:"1" type:"list" required:"true"`
+
+	// A flag that indicates if there are more change batches to list.
+	IsTruncated *bool `type:"boolean"`
+
+	// The page marker.
+	Marker *string `type:"string" required:"true"`
+
+	// The maximum number of items on a page.
+	MaxItems *string `type:"string" required:"true"`
+
+	// The next page marker.
+	NextMarker *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListChangeBatchesByRRSetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListChangeBatchesByRRSetOutput) GoString() string {
 	return s.String()
 }
 
@@ -2480,8 +3894,8 @@ func (s ListGeoLocationsOutput) GoString() string {
 // is displayed by using the MaxItems parameter. You can use the Marker parameter
 // to control the health check that the list begins with.
 //
-//  Route 53 returns a maximum of 100 items. If you set MaxItems to a value
-// greater than 100, Route 53 returns only the first 100.
+//  Amazon Route 53 returns a maximum of 100 items. If you set MaxItems to
+// a value greater than 100, Amazon Route 53 returns only the first 100.
 type ListHealthChecksInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2557,7 +3971,7 @@ func (s ListHealthChecksOutput) GoString() string {
 // with.
 //
 // For more information about listing hosted zones, see Listing the Hosted
-// Zones for an AWS Account (http://docs.amazonwebservices.com/Route53/latest/DeveloperGuide/ListInfoOnHostedZone.html)
+// Zones for an AWS Account (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ListInfoOnHostedZone.html)
 // in the Amazon Route 53 Developer Guide.
 type ListHostedZonesByNameInput struct {
 	_ struct{} `type:"structure"`
@@ -2650,11 +4064,11 @@ func (s ListHostedZonesByNameOutput) GoString() string {
 // is displayed by using the MaxItems parameter. You can use the Marker parameter
 // to control the hosted zone that the list begins with. For more information
 // about listing hosted zones, see Listing the Hosted Zones for an AWS Account
-// (http://docs.amazonwebservices.com/Route53/latest/DeveloperGuide/ListInfoOnHostedZone.html)
+// (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ListInfoOnHostedZone.html)
 // in the Amazon Route 53 Developer Guide.
 //
-//  Route 53 returns a maximum of 100 items. If you set MaxItems to a value
-// greater than 100, Route 53 returns only the first 100.
+//  Amazon Route 53 returns a maximum of 100 items. If you set MaxItems to
+// a value greater than 100, Amazon Route 53 returns only the first 100.
 type ListHostedZonesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2749,7 +4163,7 @@ type ListResourceRecordSetsInput struct {
 	//
 	// Values for Weighted Resource Record Sets: A | AAAA | CNAME | TXT
 	//
-	//  Values for Regional Resource Record Sets: A | AAAA | CNAME | TXT
+	// Values for Regional Resource Record Sets: A | AAAA | CNAME | TXT
 	//
 	// Values for Alias Resource Record Sets: A | AAAA
 	//
@@ -2823,8 +4237,8 @@ func (s ListResourceRecordSetsOutput) GoString() string {
 // MaxItems parameter. You can use the Marker parameter to control the delegation
 // set that the list begins with.
 //
-//  Route 53 returns a maximum of 100 items. If you set MaxItems to a value
-// greater than 100, Route 53 returns only the first 100.
+//  Amazon Route 53 returns a maximum of 100 items. If you set MaxItems to
+// a value greater than 100, Amazon Route 53 returns only the first 100.
 type ListReusableDelegationSetsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2982,12 +4396,484 @@ func (s ListTagsForResourcesOutput) GoString() string {
 	return s.String()
 }
 
+// A complex type that contains the information about the request to list the
+// traffic policies that are associated with the current AWS account.
+type ListTrafficPoliciesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of traffic policies to be included in the response body
+	// for this request. If you have more than MaxItems traffic policies, the value
+	// of the IsTruncated element in the response is true, and the value of the
+	// TrafficPolicyIdMarker element is the ID of the first traffic policy in the
+	// next group of MaxItems traffic policies.
+	MaxItems *string `location:"querystring" locationName:"maxitems" type:"string"`
+
+	// For your first request to ListTrafficPolicies, do not include the TrafficPolicyIdMarker
+	// parameter.
+	//
+	// If you have more traffic policies than the value of MaxItems, ListTrafficPolicies
+	// returns only the first MaxItems traffic policies. To get the next group of
+	// MaxItems policies, submit another request to ListTrafficPolicies. For the
+	// value of TrafficPolicyIdMarker, specify the value of the TrafficPolicyIdMarker
+	// element that was returned in the previous response.
+	//
+	// Policies are listed in the order in which they were created.
+	TrafficPolicyIdMarker *string `location:"querystring" locationName:"trafficpolicyid" type:"string"`
+}
+
+// String returns the string representation
+func (s ListTrafficPoliciesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTrafficPoliciesInput) GoString() string {
+	return s.String()
+}
+
+// A complex type that contains the response information for the request.
+type ListTrafficPoliciesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A flag that indicates whether there are more traffic policies to be listed.
+	// If the response was truncated, you can get the next group of MaxItems traffic
+	// policies by calling ListTrafficPolicies again and specifying the value of
+	// the TrafficPolicyIdMarker element in the TrafficPolicyIdMarker request parameter.
+	//
+	// Valid Values: true | false
+	IsTruncated *bool `type:"boolean" required:"true"`
+
+	// The value that you specified for the MaxItems parameter in the call to ListTrafficPolicies
+	// that produced the current response.
+	MaxItems *string `type:"string" required:"true"`
+
+	// If the value of IsTruncated is true, TrafficPolicyIdMarker is the ID of the
+	// first traffic policy in the next group of MaxItems traffic policies.
+	TrafficPolicyIdMarker *string `type:"string" required:"true"`
+
+	// A list that contains one TrafficPolicySummary element for each traffic policy
+	// that was created by the current AWS account.
+	TrafficPolicySummaries []*TrafficPolicySummary `locationNameList:"TrafficPolicySummary" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s ListTrafficPoliciesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTrafficPoliciesOutput) GoString() string {
+	return s.String()
+}
+
+// A request for the traffic policy instances that you created in a specified
+// hosted zone.
+type ListTrafficPolicyInstancesByHostedZoneInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the hosted zone for which you want to list traffic policy instances.
+	HostedZoneId *string `location:"querystring" locationName:"id" type:"string" required:"true"`
+
+	// The maximum number of traffic policy instances to be included in the response
+	// body for this request. If you have more than MaxItems traffic policy instances,
+	// the value of the IsTruncated element in the response is true, and the values
+	// of HostedZoneIdMarker, TrafficPolicyInstanceNameMarker, and TrafficPolicyInstanceTypeMarker
+	// represent the first traffic policy instance in the next group of MaxItems
+	// traffic policy instances.
+	MaxItems *string `location:"querystring" locationName:"maxitems" type:"string"`
+
+	// For the first request to ListTrafficPolicyInstancesByHostedZone, omit this
+	// value.
+	//
+	// If the value of IsTruncated in the previous response was true, TrafficPolicyInstanceNameMarker
+	// is the name of the first traffic policy instance in the next group of MaxItems
+	// traffic policy instances.
+	//
+	// If the value of IsTruncated in the previous response was false, there are
+	// no more traffic policy instances to get for this hosted zone.
+	//
+	// If the value of IsTruncated in the previous response was false, omit this
+	// value.
+	TrafficPolicyInstanceNameMarker *string `location:"querystring" locationName:"trafficpolicyinstancename" type:"string"`
+
+	// For the first request to ListTrafficPolicyInstancesByHostedZone, omit this
+	// value.
+	//
+	// If the value of IsTruncated in the previous response was true, TrafficPolicyInstanceTypeMarker
+	// is the DNS type of the first traffic policy instance in the next group of
+	// MaxItems traffic policy instances.
+	//
+	// If the value of IsTruncated in the previous response was false, there are
+	// no more traffic policy instances to get for this hosted zone.
+	TrafficPolicyInstanceTypeMarker *string `location:"querystring" locationName:"trafficpolicyinstancetype" type:"string" enum:"RRType"`
+}
+
+// String returns the string representation
+func (s ListTrafficPolicyInstancesByHostedZoneInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTrafficPolicyInstancesByHostedZoneInput) GoString() string {
+	return s.String()
+}
+
+// A complex type that contains the response information for the request.
+type ListTrafficPolicyInstancesByHostedZoneOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A flag that indicates whether there are more traffic policy instances to
+	// be listed. If the response was truncated, you can get the next group of MaxItems
+	// traffic policy instances by calling ListTrafficPolicyInstancesByHostedZone
+	// again and specifying the values of the HostedZoneIdMarker, TrafficPolicyInstanceNameMarker,
+	// and TrafficPolicyInstanceTypeMarker elements in the corresponding request
+	// parameters.
+	//
+	// Valid Values: true | false
+	IsTruncated *bool `type:"boolean" required:"true"`
+
+	// The value that you specified for the MaxItems parameter in the call to ListTrafficPolicyInstancesByHostedZone
+	// that produced the current response.
+	MaxItems *string `type:"string" required:"true"`
+
+	// If IsTruncated is true, TrafficPolicyInstanceNameMarker is the name of the
+	// first traffic policy instance in the next group of MaxItems traffic policy
+	// instances.
+	TrafficPolicyInstanceNameMarker *string `type:"string"`
+
+	// If IsTruncated is true, TrafficPolicyInstanceTypeMarker is the DNS type of
+	// the resource record sets that are associated with the first traffic policy
+	// instance in the next group of MaxItems traffic policy instances.
+	TrafficPolicyInstanceTypeMarker *string `type:"string" enum:"RRType"`
+
+	// A list that contains one TrafficPolicyInstance element for each traffic policy
+	// instance that matches the elements in the request.
+	TrafficPolicyInstances []*TrafficPolicyInstance `locationNameList:"TrafficPolicyInstance" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s ListTrafficPolicyInstancesByHostedZoneOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTrafficPolicyInstancesByHostedZoneOutput) GoString() string {
+	return s.String()
+}
+
+// A complex type that contains the information about the request to list your
+// traffic policy instances.
+type ListTrafficPolicyInstancesByPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// For the first request to ListTrafficPolicyInstancesByPolicy, omit this value.
+	//
+	// If the value of IsTruncated in the previous response was true, HostedZoneIdMarker
+	// is the ID of the hosted zone for the first traffic policy instance in the
+	// next group of MaxItems traffic policy instances.
+	//
+	// If the value of IsTruncated in the previous response was false, there are
+	// no more traffic policy instances to get for this hosted zone.
+	//
+	// If the value of IsTruncated in the previous response was false, omit this
+	// value.
+	HostedZoneIdMarker *string `location:"querystring" locationName:"hostedzoneid" type:"string"`
+
+	// The maximum number of traffic policy instances to be included in the response
+	// body for this request. If you have more than MaxItems traffic policy instances,
+	// the value of the IsTruncated element in the response is true, and the values
+	// of HostedZoneIdMarker, TrafficPolicyInstanceNameMarker, and TrafficPolicyInstanceTypeMarker
+	// represent the first traffic policy instance in the next group of MaxItems
+	// traffic policy instances.
+	MaxItems *string `location:"querystring" locationName:"maxitems" type:"string"`
+
+	// The ID of the traffic policy for which you want to list traffic policy instances.
+	TrafficPolicyId *string `location:"querystring" locationName:"id" type:"string" required:"true"`
+
+	// For the first request to ListTrafficPolicyInstancesByPolicy, omit this value.
+	//
+	// If the value of IsTruncated in the previous response was true, TrafficPolicyInstanceNameMarker
+	// is the name of the first traffic policy instance in the next group of MaxItems
+	// traffic policy instances.
+	//
+	// If the value of IsTruncated in the previous response was false, there are
+	// no more traffic policy instances to get for this hosted zone.
+	//
+	// If the value of IsTruncated in the previous response was false, omit this
+	// value.
+	TrafficPolicyInstanceNameMarker *string `location:"querystring" locationName:"trafficpolicyinstancename" type:"string"`
+
+	// For the first request to ListTrafficPolicyInstancesByPolicy, omit this value.
+	//
+	// If the value of IsTruncated in the previous response was true, TrafficPolicyInstanceTypeMarker
+	// is the DNS type of the first traffic policy instance in the next group of
+	// MaxItems traffic policy instances.
+	//
+	// If the value of IsTruncated in the previous response was false, there are
+	// no more traffic policy instances to get for this hosted zone.
+	TrafficPolicyInstanceTypeMarker *string `location:"querystring" locationName:"trafficpolicyinstancetype" type:"string" enum:"RRType"`
+
+	// The version of the traffic policy for which you want to list traffic policy
+	// instances. The version must be associated with the traffic policy that is
+	// specified by TrafficPolicyId.
+	TrafficPolicyVersion *int64 `location:"querystring" locationName:"version" min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s ListTrafficPolicyInstancesByPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTrafficPolicyInstancesByPolicyInput) GoString() string {
+	return s.String()
+}
+
+// A complex type that contains the response information for the request.
+type ListTrafficPolicyInstancesByPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If IsTruncated is true, HostedZoneIdMarker is the ID of the hosted zone of
+	// the first traffic policy instance in the next group of MaxItems traffic policy
+	// instances.
+	HostedZoneIdMarker *string `type:"string"`
+
+	// A flag that indicates whether there are more traffic policy instances to
+	// be listed. If the response was truncated, you can get the next group of MaxItems
+	// traffic policy instances by calling ListTrafficPolicyInstancesByPolicy again
+	// and specifying the values of the HostedZoneIdMarker, TrafficPolicyInstanceNameMarker,
+	// and TrafficPolicyInstanceTypeMarker elements in the corresponding request
+	// parameters.
+	//
+	// Valid Values: true | false
+	IsTruncated *bool `type:"boolean" required:"true"`
+
+	// The value that you specified for the MaxItems parameter in the call to ListTrafficPolicyInstancesByPolicy
+	// that produced the current response.
+	MaxItems *string `type:"string" required:"true"`
+
+	// If IsTruncated is true, TrafficPolicyInstanceNameMarker is the name of the
+	// first traffic policy instance in the next group of MaxItems traffic policy
+	// instances.
+	TrafficPolicyInstanceNameMarker *string `type:"string"`
+
+	// If IsTruncated is true, TrafficPolicyInstanceTypeMarker is the DNS type of
+	// the resource record sets that are associated with the first traffic policy
+	// instance in the next group of MaxItems traffic policy instances.
+	TrafficPolicyInstanceTypeMarker *string `type:"string" enum:"RRType"`
+
+	// A list that contains one TrafficPolicyInstance element for each traffic policy
+	// instance that matches the elements in the request.
+	TrafficPolicyInstances []*TrafficPolicyInstance `locationNameList:"TrafficPolicyInstance" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s ListTrafficPolicyInstancesByPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTrafficPolicyInstancesByPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// A complex type that contains the information about the request to list your
+// traffic policy instances.
+type ListTrafficPolicyInstancesInput struct {
+	_ struct{} `type:"structure"`
+
+	// For the first request to ListTrafficPolicyInstances, omit this value.
+	//
+	// If the value of IsTruncated in the previous response was true, you have
+	// more traffic policy instances. To get the next group of MaxItems traffic
+	// policy instances, submit another ListTrafficPolicyInstances request. For
+	// the value of HostedZoneIdMarker, specify the value of HostedZoneIdMarker
+	// from the previous response, which is the hosted zone ID of the first traffic
+	// policy instance in the next group of MaxItems traffic policy instances.
+	//
+	// If the value of IsTruncated in the previous response was false, there are
+	// no more traffic policy instances to get.
+	HostedZoneIdMarker *string `location:"querystring" locationName:"hostedzoneid" type:"string"`
+
+	// The maximum number of traffic policy instances to be included in the response
+	// body for this request. If you have more than MaxItems traffic policy instances,
+	// the value of the IsTruncated element in the response is true, and the values
+	// of HostedZoneIdMarker, TrafficPolicyInstanceNameMarker, and TrafficPolicyInstanceTypeMarker
+	// represent the first traffic policy instance in the next group of MaxItems
+	// traffic policy instances.
+	MaxItems *string `location:"querystring" locationName:"maxitems" type:"string"`
+
+	// For the first request to ListTrafficPolicyInstances, omit this value.
+	//
+	// If the value of IsTruncated in the previous response was true, TrafficPolicyInstanceNameMarker
+	// is the name of the first traffic policy instance in the next group of MaxItems
+	// traffic policy instances.
+	//
+	// If the value of IsTruncated in the previous response was false, there are
+	// no more traffic policy instances to get.
+	TrafficPolicyInstanceNameMarker *string `location:"querystring" locationName:"trafficpolicyinstancename" type:"string"`
+
+	// For the first request to ListTrafficPolicyInstances, omit this value.
+	//
+	// If the value of IsTruncated in the previous response was true, TrafficPolicyInstanceTypeMarker
+	// is the DNS type of the first traffic policy instance in the next group of
+	// MaxItems traffic policy instances.
+	//
+	// If the value of IsTruncated in the previous response was false, there are
+	// no more traffic policy instances to get.
+	TrafficPolicyInstanceTypeMarker *string `location:"querystring" locationName:"trafficpolicyinstancetype" type:"string" enum:"RRType"`
+}
+
+// String returns the string representation
+func (s ListTrafficPolicyInstancesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTrafficPolicyInstancesInput) GoString() string {
+	return s.String()
+}
+
+// A complex type that contains the response information for the request.
+type ListTrafficPolicyInstancesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If IsTruncated is true, HostedZoneIdMarker is the ID of the hosted zone of
+	// the first traffic policy instance in the next group of MaxItems traffic policy
+	// instances.
+	HostedZoneIdMarker *string `type:"string"`
+
+	// A flag that indicates whether there are more traffic policy instances to
+	// be listed. If the response was truncated, you can get the next group of MaxItems
+	// traffic policy instances by calling ListTrafficPolicyInstances again and
+	// specifying the values of the HostedZoneIdMarker, TrafficPolicyInstanceNameMarker,
+	// and TrafficPolicyInstanceTypeMarker elements in the corresponding request
+	// parameters.
+	//
+	// Valid Values: true | false
+	IsTruncated *bool `type:"boolean" required:"true"`
+
+	// The value that you specified for the MaxItems parameter in the call to ListTrafficPolicyInstances
+	// that produced the current response.
+	MaxItems *string `type:"string" required:"true"`
+
+	// If IsTruncated is true, TrafficPolicyInstanceNameMarker is the name of the
+	// first traffic policy instance in the next group of MaxItems traffic policy
+	// instances.
+	TrafficPolicyInstanceNameMarker *string `type:"string"`
+
+	// If IsTruncated is true, TrafficPolicyInstanceTypeMarker is the DNS type of
+	// the resource record sets that are associated with the first traffic policy
+	// instance in the next group of MaxItems traffic policy instances.
+	TrafficPolicyInstanceTypeMarker *string `type:"string" enum:"RRType"`
+
+	// A list that contains one TrafficPolicyInstance element for each traffic policy
+	// instance that matches the elements in the request.
+	TrafficPolicyInstances []*TrafficPolicyInstance `locationNameList:"TrafficPolicyInstance" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s ListTrafficPolicyInstancesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTrafficPolicyInstancesOutput) GoString() string {
+	return s.String()
+}
+
+// A complex type that contains the information about the request to list your
+// traffic policies.
+type ListTrafficPolicyVersionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specify the value of Id of the traffic policy for which you want to list
+	// all versions.
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The maximum number of traffic policy versions that you want Amazon Route
+	// 53 to include in the response body for this request. If the specified traffic
+	// policy has more than MaxItems versions, the value of the IsTruncated element
+	// in the response is true, and the value of the TrafficPolicyVersionMarker
+	// element is the ID of the first version in the next group of MaxItems traffic
+	// policy versions.
+	MaxItems *string `location:"querystring" locationName:"maxitems" type:"string"`
+
+	// For your first request to ListTrafficPolicyVersions, do not include the TrafficPolicyVersionMarker
+	// parameter.
+	//
+	// If you have more traffic policy versions than the value of MaxItems, ListTrafficPolicyVersions
+	// returns only the first group of MaxItems versions. To get the next group
+	// of MaxItems traffic policy versions, submit another request to ListTrafficPolicyVersions.
+	// For the value of TrafficPolicyVersionMarker, specify the value of the TrafficPolicyVersionMarker
+	// element that was returned in the previous response.
+	//
+	// Traffic policy versions are listed in sequential order.
+	TrafficPolicyVersionMarker *string `location:"querystring" locationName:"trafficpolicyversion" type:"string"`
+}
+
+// String returns the string representation
+func (s ListTrafficPolicyVersionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTrafficPolicyVersionsInput) GoString() string {
+	return s.String()
+}
+
+// A complex type that contains the response information for the request.
+type ListTrafficPolicyVersionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A flag that indicates whether there are more traffic policies to be listed.
+	// If the response was truncated, you can get the next group of maxitems traffic
+	// policies by calling ListTrafficPolicyVersions again and specifying the value
+	// of the NextMarker element in the marker parameter.
+	//
+	// Valid Values: true | false
+	IsTruncated *bool `type:"boolean" required:"true"`
+
+	// The value that you specified for the maxitems parameter in the call to ListTrafficPolicyVersions
+	// that produced the current response.
+	MaxItems *string `type:"string" required:"true"`
+
+	// A list that contains one TrafficPolicy element for each traffic policy version
+	// that is associated with the specified traffic policy.
+	TrafficPolicies []*TrafficPolicy `locationNameList:"TrafficPolicy" type:"list" required:"true"`
+
+	// If IsTruncated is true, the value of TrafficPolicyVersionMarker identifies
+	// the first traffic policy in the next group of MaxItems traffic policies.
+	// Call ListTrafficPolicyVersions again and specify the value of TrafficPolicyVersionMarker
+	// in the TrafficPolicyVersionMarker request parameter.
+	//
+	// This element is present only if IsTruncated is true.
+	TrafficPolicyVersionMarker *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListTrafficPolicyVersionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTrafficPolicyVersionsOutput) GoString() string {
+	return s.String()
+}
+
 // A complex type that contains the value of the Value element for the current
 // resource record set.
 type ResourceRecord struct {
 	_ struct{} `type:"structure"`
 
-	// The value of the Value element for the current resource record set.
+	// The current or new DNS record value, not to exceed 4,000 characters. In the
+	// case of a DELETE action, if the current value does not match the actual value,
+	// an error is returned. For descriptions about how to format Value for different
+	// record types, see Supported DNS Resource Record Types (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ResourceRecordTypes.html)
+	// in the Amazon Route 53 Developer Guide.
+	//
+	// You can specify more than one value for all record types except CNAME and
+	// SOA.
 	Value *string `type:"string" required:"true"`
 }
 
@@ -3010,27 +4896,76 @@ type ResourceRecordSet struct {
 	// you are redirecting traffic.
 	AliasTarget *AliasTarget `type:"structure"`
 
-	// Failover resource record sets only: Among resource record sets that have
-	// the same combination of DNS name and type, a value that indicates whether
-	// the current resource record set is a primary or secondary resource record
-	// set. A failover set may contain at most one resource record set marked as
-	// primary and one resource record set marked as secondary. A resource record
-	// set marked as primary will be returned if any of the following are true:
-	// (1) an associated health check is passing, (2) if the resource record set
-	// is an alias with the evaluate target health and at least one target resource
-	// record set is healthy, (3) both the primary and secondary resource record
-	// set are failing health checks or (4) there is no secondary resource record
-	// set. A secondary resource record set will be returned if: (1) the primary
-	// is failing a health check and either the secondary is passing a health check
-	// or has no associated health check, or (2) there is no primary resource record
-	// set.
+	// Failover resource record sets only: To configure failover, you add the Failover
+	// element to two resource record sets. For one resource record set, you specify
+	// PRIMARY as the value for Failover; for the other resource record set, you
+	// specify SECONDARY. In addition, you include the HealthCheckId element and
+	// specify the health check that you want Amazon Route 53 to perform for each
+	// resource record set.
+	//
+	// You can create failover and failover alias resource record sets only in
+	// public hosted zones. Except where noted, the following failover behaviors
+	// assume that you have included the HealthCheckId element in both resource
+	// record sets:
+	//
+	//  When the primary resource record set is healthy, Amazon Route 53 responds
+	// to DNS queries with the applicable value from the primary resource record
+	// set regardless of the health of the secondary resource record set. When the
+	// primary resource record set is unhealthy and the secondary resource record
+	// set is healthy, Amazon Route 53 responds to DNS queries with the applicable
+	// value from the secondary resource record set. When the secondary resource
+	// record set is unhealthy, Amazon Route 53 responds to DNS queries with the
+	// applicable value from the primary resource record set regardless of the health
+	// of the primary resource record set. If you omit the HealthCheckId element
+	// for the secondary resource record set, and if the primary resource record
+	// set is unhealthy, Amazon Route 53 always responds to DNS queries with the
+	// applicable value from the secondary resource record set. This is true regardless
+	// of the health of the associated endpoint.  You cannot create non-failover
+	// resource record sets that have the same values for the Name and Type elements
+	// as failover resource record sets.
+	//
+	// For failover alias resource record sets, you must also include the EvaluateTargetHealth
+	// element and set the value to true.
+	//
+	// For more information about configuring failover for Amazon Route 53, see
+	// Amazon Route 53 Health Checks and DNS Failover (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover.html)
+	// in the Amazon Route 53 Developer Guide.
 	//
 	// Valid values: PRIMARY | SECONDARY
 	Failover *string `type:"string" enum:"ResourceRecordSetFailover"`
 
-	// Geo location resource record sets only: Among resource record sets that have
-	// the same combination of DNS name and type, a value that specifies the geo
-	// location for the current resource record set.
+	// Geo location resource record sets only: A complex type that lets you control
+	// how Amazon Route 53 responds to DNS queries based on the geographic origin
+	// of the query. For example, if you want all queries from Africa to be routed
+	// to a web server with an IP address of 192.0.2.111, create a resource record
+	// set with a Type of A and a ContinentCode of AF.
+	//
+	// You can create geolocation and geolocation alias resource record sets only
+	// in public hosted zones. If you create separate resource record sets for overlapping
+	// geographic regions (for example, one resource record set for a continent
+	// and one for a country on the same continent), priority goes to the smallest
+	// geographic region. This allows you to route most queries for a continent
+	// to one resource and to route queries for a country on that continent to a
+	// different resource.
+	//
+	// You cannot create two geolocation resource record sets that specify the
+	// same geographic location.
+	//
+	// The value * in the CountryCode element matches all geographic locations
+	// that aren't specified in other geolocation resource record sets that have
+	// the same values for the Name and Type elements.
+	//
+	// Geolocation works by mapping IP addresses to locations. However, some IP
+	// addresses aren't mapped to geographic locations, so even if you create geolocation
+	// resource record sets that cover all seven continents, Amazon Route 53 will
+	// receive some DNS queries from locations that it can't identify. We recommend
+	// that you create a resource record set for which the value of CountryCode
+	// is *, which handles both queries that come from locations for which you haven't
+	// created geolocation resource record sets and queries from IP addresses that
+	// aren't mapped to a location. If you don't create a * resource record set,
+	// Amazon Route 53 returns a "no answer" response for queries from those locations.
+	// You cannot create non-geolocation resource record sets that have the same
+	// values for the Name and Type elements as geolocation resource record sets.
 	GeoLocation *GeoLocation `type:"structure"`
 
 	// Health Check resource record sets only, not required for alias resource record
@@ -3038,12 +4973,52 @@ type ResourceRecordSet struct {
 	// the resource record set.
 	HealthCheckId *string `type:"string"`
 
-	// The domain name of the current resource record set.
+	// The name of the domain you want to perform the action on.
+	//
+	// Enter a fully qualified domain name, for example, www.example.com. You can
+	// optionally include a trailing dot. If you omit the trailing dot, Amazon Route
+	// 53 still assumes that the domain name that you specify is fully qualified.
+	// This means that Amazon Route 53 treats www.example.com (without a trailing
+	// dot) and www.example.com. (with a trailing dot) as identical.
+	//
+	// For information about how to specify characters other than a-z, 0-9, and
+	// - (hyphen) and how to specify internationalized domain names, see DNS Domain
+	// Name Format (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DomainNameFormat.html)
+	// in the Amazon Route 53 Developer Guide.
+	//
+	// You can use an asterisk (*) character in the name. DNS treats the * character
+	// either as a wildcard or as the * character (ASCII 42), depending on where
+	// it appears in the name. For more information, see Using an Asterisk (*) in
+	// the Names of Hosted Zones and Resource Record Sets (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DomainNameFormat.html#domain-name-format-asterisk)
+	// in the Amazon Route 53 Developer Guide
+	//
+	// You can't use the * wildcard for resource records sets that have a type
+	// of NS.
 	Name *string `type:"string" required:"true"`
 
-	// Latency-based resource record sets only: Among resource record sets that
-	// have the same combination of DNS name and type, a value that specifies the
-	// AWS region for the current resource record set.
+	// Latency-based resource record sets only: The Amazon EC2 region where the
+	// resource that is specified in this resource record set resides. The resource
+	// typically is an AWS resource, such as an Amazon EC2 instance or an ELB load
+	// balancer, and is referred to by an IP address or a DNS domain name, depending
+	// on the record type.
+	//
+	// You can create latency and latency alias resource record sets only in public
+	// hosted zones. When Amazon Route 53 receives a DNS query for a domain name
+	// and type for which you have created latency resource record sets, Amazon
+	// Route 53 selects the latency resource record set that has the lowest latency
+	// between the end user and the associated Amazon EC2 region. Amazon Route 53
+	// then returns the value that is associated with the selected resource record
+	// set.
+	//
+	// Note the following:
+	//
+	//  You can only specify one ResourceRecord per latency resource record set.
+	// You can only create one latency resource record set for each Amazon EC2 region.
+	// You are not required to create latency resource record sets for all Amazon
+	// EC2 regions. Amazon Route 53 will choose the region with the best latency
+	// from among the regions for which you create latency resource record sets.
+	// You cannot create non-latency resource record sets that have the same values
+	// for the Name and Type elements as latency resource record sets.
 	Region *string `min:"1" type:"string" enum:"ResourceRecordSetRegion"`
 
 	// A complex type that contains the resource records for the current resource
@@ -3052,19 +5027,82 @@ type ResourceRecordSet struct {
 
 	// Weighted, Latency, Geo, and Failover resource record sets only: An identifier
 	// that differentiates among multiple resource record sets that have the same
-	// combination of DNS name and type.
+	// combination of DNS name and type. The value of SetIdentifier must be unique
+	// for each resource record set that has the same combination of DNS name and
+	// type.
 	SetIdentifier *string `min:"1" type:"string"`
 
-	// The cache time to live for the current resource record set.
+	// The cache time to live for the current resource record set. Note the following:
+	//
+	//  If you're creating an alias resource record set, omit TTL. Amazon Route
+	// 53 uses the value of TTL for the alias target.  If you're associating this
+	// resource record set with a health check (if you're adding a HealthCheckId
+	// element), we recommend that you specify a TTL of 60 seconds or less so clients
+	// respond quickly to changes in health status. All of the resource record sets
+	// in a group of weighted, latency, geolocation, or failover resource record
+	// sets must have the same value for TTL. If a group of weighted resource record
+	// sets includes one or more weighted alias resource record sets for which the
+	// alias target is an ELB load balancer, we recommend that you specify a TTL
+	// of 60 seconds for all of the non-alias weighted resource record sets that
+	// have the same name and type. Values other than 60 seconds (the TTL for load
+	// balancers) will change the effect of the values that you specify for Weight.
 	TTL *int64 `type:"long"`
 
-	// The type of the current resource record set.
+	TrafficPolicyInstanceId *string `type:"string"`
+
+	// The DNS record type. For information about different record types and how
+	// data is encoded for them, see Supported DNS Resource Record Types (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ResourceRecordTypes.html)
+	// in the Amazon Route 53 Developer Guide.
+	//
+	// Valid values for basic resource record sets: A | AAAA | CNAME | MX | NS
+	// | PTR | SOA | SPF | SRV | TXT
+	//
+	// Values for weighted, latency, geolocation, and failover resource record
+	// sets: A | AAAA | CNAME | MX | PTR | SPF | SRV | TXT. When creating a group
+	// of weighted, latency, geolocation, or failover resource record sets, specify
+	// the same value for all of the resource record sets in the group.
+	//
+	// SPF records were formerly used to verify the identity of the sender of email
+	// messages. However, we no longer recommend that you create resource record
+	// sets for which the value of Type is SPF. RFC 7208, Sender Policy Framework
+	// (SPF) for Authorizing Use of Domains in Email, Version 1, has been updated
+	// to say, "...[I]ts existence and mechanism defined in [RFC4408] have led to
+	// some interoperability issues. Accordingly, its use is no longer appropriate
+	// for SPF version 1; implementations are not to use it." In RFC 7208, see section
+	// 14.1, The SPF DNS Record Type (http://tools.ietf.org/html/rfc7208#section-14.1).
+	// Values for alias resource record sets:
+	//
+	//  CloudFront distributions: A ELB load balancers: A | AAAA Amazon S3 buckets:
+	// A Another resource record set in this hosted zone: Specify the type of the
+	// resource record set for which you're creating the alias. Specify any value
+	// except NS or SOA.
 	Type *string `type:"string" required:"true" enum:"RRType"`
 
 	// Weighted resource record sets only: Among resource record sets that have
-	// the same combination of DNS name and type, a value that determines what portion
-	// of traffic for the current resource record set is routed to the associated
-	// location.
+	// the same combination of DNS name and type, a value that determines the proportion
+	// of DNS queries that Amazon Route 53 responds to using the current resource
+	// record set. Amazon Route 53 calculates the sum of the weights for the resource
+	// record sets that have the same combination of DNS name and type. Amazon Route
+	// 53 then responds to queries based on the ratio of a resource's weight to
+	// the total. Note the following:
+	//
+	//  You must specify a value for the Weight element for every weighted resource
+	// record set. You can only specify one ResourceRecord per weighted resource
+	// record set. You cannot create latency, failover, or geolocation resource
+	// record sets that have the same values for the Name and Type elements as weighted
+	// resource record sets. You can create a maximum of 100 weighted resource record
+	// sets that have the same values for the Name and Type elements. For weighted
+	// (but not weighted alias) resource record sets, if you set Weight to 0 for
+	// a resource record set, Amazon Route 53 never responds to queries with the
+	// applicable value for that resource record set. However, if you set Weight
+	// to 0 for all resource record sets that have the same combination of DNS name
+	// and type, traffic is routed to all resources with equal probability.
+	//
+	// The effect of setting Weight to 0 is different when you associate health
+	// checks with weighted resource record sets. For more information, see Options
+	// for Configuring Amazon Route 53 Active-Active and Active-Passive Failover
+	// (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-configuring-options.html)
+	// in the Amazon Route 53 Developer Guide.
 	Weight *int64 `type:"long"`
 }
 
@@ -3114,7 +5152,7 @@ type StatusReport struct {
 	// The date and time the health check status was observed, in the format YYYY-MM-DDThh:mm:ssZ,
 	// as specified in the ISO 8601 standard (for example, 2009-11-19T19:37:58Z).
 	// The Z after the time indicates that the time is listed in Coordinated Universal
-	// Time (UTC), which is synonymous with Greenwich Mean Time in this context.
+	// Time (UTC).
 	CheckedTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The observed health check status.
@@ -3152,6 +5190,88 @@ func (s Tag) GoString() string {
 	return s.String()
 }
 
+type TrafficPolicy struct {
+	_ struct{} `type:"structure"`
+
+	Comment *string `type:"string"`
+
+	Document *string `type:"string" required:"true"`
+
+	Id *string `type:"string" required:"true"`
+
+	Name *string `type:"string" required:"true"`
+
+	Type *string `type:"string" required:"true" enum:"RRType"`
+
+	Version *int64 `min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s TrafficPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TrafficPolicy) GoString() string {
+	return s.String()
+}
+
+type TrafficPolicyInstance struct {
+	_ struct{} `type:"structure"`
+
+	HostedZoneId *string `type:"string" required:"true"`
+
+	Id *string `type:"string" required:"true"`
+
+	Message *string `type:"string" required:"true"`
+
+	Name *string `type:"string" required:"true"`
+
+	State *string `type:"string" required:"true"`
+
+	TTL *int64 `type:"long" required:"true"`
+
+	TrafficPolicyId *string `type:"string" required:"true"`
+
+	TrafficPolicyType *string `type:"string" required:"true" enum:"RRType"`
+
+	TrafficPolicyVersion *int64 `min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s TrafficPolicyInstance) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TrafficPolicyInstance) GoString() string {
+	return s.String()
+}
+
+type TrafficPolicySummary struct {
+	_ struct{} `type:"structure"`
+
+	Id *string `type:"string" required:"true"`
+
+	LatestVersion *int64 `min:"1" type:"integer" required:"true"`
+
+	Name *string `type:"string" required:"true"`
+
+	TrafficPolicyCount *int64 `min:"1" type:"integer" required:"true"`
+
+	Type *string `type:"string" required:"true" enum:"RRType"`
+}
+
+// String returns the string representation
+func (s TrafficPolicySummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TrafficPolicySummary) GoString() string {
+	return s.String()
+}
+
 // >A complex type that contains information about the request to update a health
 // check.
 type UpdateHealthCheckInput struct {
@@ -3164,7 +5284,7 @@ type UpdateHealthCheckInput struct {
 	ChildHealthChecks []*string `locationNameList:"ChildHealthCheck" type:"list"`
 
 	// The number of consecutive health checks that an endpoint must pass or fail
-	// for Route 53 to change the current status of the endpoint from unhealthy
+	// for Amazon Route 53 to change the current status of the endpoint from unhealthy
 	// to healthy or vice versa.
 	//
 	// Valid values are integers between 1 and 10. For more information, see "How
@@ -3182,15 +5302,15 @@ type UpdateHealthCheckInput struct {
 	// The ID of the health check to update.
 	HealthCheckId *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"`
 
-	// Optional. When you specify a health check version, Route 53 compares this
-	// value with the current value in the health check, which prevents you from
-	// updating the health check when the versions don't match. Using HealthCheckVersion
+	// Optional. When you specify a health check version, Amazon Route 53 compares
+	// this value with the current value in the health check, which prevents you
+	// from updating the health check when the versions don't match. Using HealthCheckVersion
 	// lets you prevent overwriting another change to the health check.
 	HealthCheckVersion *int64 `min:"1" type:"long"`
 
-	// The minimum number of child health checks that must be healthy for Route
-	// 53 to consider the parent health check to be healthy. Valid values are integers
-	// between 0 and 256, inclusive.
+	// The minimum number of child health checks that must be healthy for Amazon
+	// Route 53 to consider the parent health check to be healthy. Valid values
+	// are integers between 0 and 256, inclusive.
 	//
 	// Specify this value only if you want to change it.
 	HealthThreshold *int64 `type:"integer"`
@@ -3202,13 +5322,13 @@ type UpdateHealthCheckInput struct {
 
 	// A boolean value that indicates whether the status of health check should
 	// be inverted. For example, if a health check is healthy but Inverted is True,
-	// then Route 53 considers the health check to be unhealthy.
+	// then Amazon Route 53 considers the health check to be unhealthy.
 	//
 	// Specify this value only if you want to change it.
 	Inverted *bool `type:"boolean"`
 
-	// The port on which you want Route 53 to open a connection to perform health
-	// checks.
+	// The port on which you want Amazon Route 53 to open a connection to perform
+	// health checks.
 	//
 	// Specify this value only if you want to change it.
 	Port *int64 `min:"1" type:"integer"`
@@ -3222,9 +5342,9 @@ type UpdateHealthCheckInput struct {
 	ResourcePath *string `type:"string"`
 
 	// If the value of Type is HTTP_STR_MATCH or HTTP_STR_MATCH, the string that
-	// you want Route 53 to search for in the response body from the specified resource.
-	// If the string appears in the response body, Route 53 considers the resource
-	// healthy.
+	// you want Amazon Route 53 to search for in the response body from the specified
+	// resource. If the string appears in the response body, Amazon Route 53 considers
+	// the resource healthy.
 	//
 	// Specify this value only if you want to change it.
 	SearchString *string `type:"string"`
@@ -3295,6 +5415,100 @@ func (s UpdateHostedZoneCommentOutput) String() string {
 
 // GoString returns the string representation
 func (s UpdateHostedZoneCommentOutput) GoString() string {
+	return s.String()
+}
+
+// A complex type that contains information about the traffic policy for which
+// you want to update the comment.
+type UpdateTrafficPolicyCommentInput struct {
+	_ struct{} `locationName:"UpdateTrafficPolicyCommentRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+
+	// The new comment for the specified traffic policy and version.
+	Comment *string `type:"string" required:"true"`
+
+	// The value of Id for the traffic policy for which you want to update the comment.
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The value of Version for the traffic policy for which you want to update
+	// the comment.
+	Version *int64 `location:"uri" locationName:"Version" min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateTrafficPolicyCommentInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateTrafficPolicyCommentInput) GoString() string {
+	return s.String()
+}
+
+// A complex type that contains the response information for the traffic policy.
+type UpdateTrafficPolicyCommentOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A complex type that contains settings for the specified traffic policy.
+	TrafficPolicy *TrafficPolicy `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateTrafficPolicyCommentOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateTrafficPolicyCommentOutput) GoString() string {
+	return s.String()
+}
+
+// A complex type that contains information about the resource record sets that
+// you want to update based on a specified traffic policy instance.
+type UpdateTrafficPolicyInstanceInput struct {
+	_ struct{} `locationName:"UpdateTrafficPolicyInstanceRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
+
+	// The ID of the traffic policy instance that you want to update.
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The TTL that you want Amazon Route 53 to assign to all of the updated resource
+	// record sets.
+	TTL *int64 `type:"long" required:"true"`
+
+	// The ID of the traffic policy that you want Amazon Route 53 to use to update
+	// resource record sets for the specified traffic policy instance.
+	TrafficPolicyId *string `type:"string" required:"true"`
+
+	// The version of the traffic policy that you want Amazon Route 53 to use to
+	// update resource record sets for the specified traffic policy instance.
+	TrafficPolicyVersion *int64 `min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateTrafficPolicyInstanceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateTrafficPolicyInstanceInput) GoString() string {
+	return s.String()
+}
+
+// A complex type that contains information about the resource record sets that
+// Amazon Route 53 created based on a specified traffic policy.
+type UpdateTrafficPolicyInstanceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A complex type that contains settings for the updated traffic policy instance.
+	TrafficPolicyInstance *TrafficPolicyInstance `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateTrafficPolicyInstanceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateTrafficPolicyInstanceOutput) GoString() string {
 	return s.String()
 }
 

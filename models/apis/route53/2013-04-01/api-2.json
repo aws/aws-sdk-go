@@ -4,10 +4,10 @@
     "apiVersion":"2013-04-01",
     "endpointPrefix":"route53",
     "globalEndpoint":"route53.amazonaws.com",
+    "protocol":"rest-xml",
     "serviceAbbreviation":"Route 53",
     "serviceFullName":"Amazon Route 53",
-    "signatureVersion":"v4",
-    "protocol":"rest-xml"
+    "signatureVersion":"v4"
   },
   "operations":{
     "AssociateVPCWithHostedZone":{
@@ -18,35 +18,17 @@
       },
       "input":{
         "shape":"AssociateVPCWithHostedZoneRequest",
-        "xmlNamespace":{"uri":"https://route53.amazonaws.com/doc/2013-04-01/"},
-        "locationName":"AssociateVPCWithHostedZoneRequest"
+        "locationName":"AssociateVPCWithHostedZoneRequest",
+        "xmlNamespace":{"uri":"https://route53.amazonaws.com/doc/2013-04-01/"}
       },
       "output":{"shape":"AssociateVPCWithHostedZoneResponse"},
       "errors":[
-        {
-          "shape":"NoSuchHostedZone",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InvalidVPCId",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"PublicZoneVPCAssociation",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ConflictingDomainExists",
-          "exception":true
-        }
+        {"shape":"NoSuchHostedZone"},
+        {"shape":"InvalidVPCId"},
+        {"shape":"InvalidInput"},
+        {"shape":"PublicZoneVPCAssociation"},
+        {"shape":"ConflictingDomainExists"},
+        {"shape":"LimitsExceeded"}
       ]
     },
     "ChangeResourceRecordSets":{
@@ -57,35 +39,16 @@
       },
       "input":{
         "shape":"ChangeResourceRecordSetsRequest",
-        "xmlNamespace":{"uri":"https://route53.amazonaws.com/doc/2013-04-01/"},
-        "locationName":"ChangeResourceRecordSetsRequest"
+        "locationName":"ChangeResourceRecordSetsRequest",
+        "xmlNamespace":{"uri":"https://route53.amazonaws.com/doc/2013-04-01/"}
       },
       "output":{"shape":"ChangeResourceRecordSetsResponse"},
       "errors":[
-        {
-          "shape":"NoSuchHostedZone",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"NoSuchHealthCheck",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InvalidChangeBatch",
-          "exception":true
-        },
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"PriorRequestNotComplete",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"NoSuchHostedZone"},
+        {"shape":"NoSuchHealthCheck"},
+        {"shape":"InvalidChangeBatch"},
+        {"shape":"InvalidInput"},
+        {"shape":"PriorRequestNotComplete"}
       ]
     },
     "ChangeTagsForResource":{
@@ -96,36 +59,16 @@
       },
       "input":{
         "shape":"ChangeTagsForResourceRequest",
-        "xmlNamespace":{"uri":"https://route53.amazonaws.com/doc/2013-04-01/"},
-        "locationName":"ChangeTagsForResourceRequest"
+        "locationName":"ChangeTagsForResourceRequest",
+        "xmlNamespace":{"uri":"https://route53.amazonaws.com/doc/2013-04-01/"}
       },
       "output":{"shape":"ChangeTagsForResourceResponse"},
       "errors":[
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"NoSuchHealthCheck",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"NoSuchHostedZone",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"PriorRequestNotComplete",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ThrottlingException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInput"},
+        {"shape":"NoSuchHealthCheck"},
+        {"shape":"NoSuchHostedZone"},
+        {"shape":"PriorRequestNotComplete"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "CreateHealthCheck":{
@@ -137,25 +80,14 @@
       },
       "input":{
         "shape":"CreateHealthCheckRequest",
-        "xmlNamespace":{"uri":"https://route53.amazonaws.com/doc/2013-04-01/"},
-        "locationName":"CreateHealthCheckRequest"
+        "locationName":"CreateHealthCheckRequest",
+        "xmlNamespace":{"uri":"https://route53.amazonaws.com/doc/2013-04-01/"}
       },
       "output":{"shape":"CreateHealthCheckResponse"},
       "errors":[
-        {
-          "shape":"TooManyHealthChecks",
-          "exception":true
-        },
-        {
-          "shape":"HealthCheckAlreadyExists",
-          "error":{"httpStatusCode":409},
-          "exception":true
-        },
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"TooManyHealthChecks"},
+        {"shape":"HealthCheckAlreadyExists"},
+        {"shape":"InvalidInput"}
       ]
     },
     "CreateHostedZone":{
@@ -167,52 +99,20 @@
       },
       "input":{
         "shape":"CreateHostedZoneRequest",
-        "xmlNamespace":{"uri":"https://route53.amazonaws.com/doc/2013-04-01/"},
-        "locationName":"CreateHostedZoneRequest"
+        "locationName":"CreateHostedZoneRequest",
+        "xmlNamespace":{"uri":"https://route53.amazonaws.com/doc/2013-04-01/"}
       },
       "output":{"shape":"CreateHostedZoneResponse"},
       "errors":[
-        {
-          "shape":"InvalidDomainName",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"HostedZoneAlreadyExists",
-          "error":{"httpStatusCode":409},
-          "exception":true
-        },
-        {
-          "shape":"TooManyHostedZones",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"InvalidVPCId",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"DelegationSetNotAvailable",
-          "exception":true
-        },
-        {
-          "shape":"ConflictingDomainExists",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchDelegationSet",
-          "exception":true
-        },
-        {
-          "shape":"DelegationSetNotReusable",
-          "exception":true
-        }
+        {"shape":"InvalidDomainName"},
+        {"shape":"HostedZoneAlreadyExists"},
+        {"shape":"TooManyHostedZones"},
+        {"shape":"InvalidVPCId"},
+        {"shape":"InvalidInput"},
+        {"shape":"DelegationSetNotAvailable"},
+        {"shape":"ConflictingDomainExists"},
+        {"shape":"NoSuchDelegationSet"},
+        {"shape":"DelegationSetNotReusable"}
       ]
     },
     "CreateReusableDelegationSet":{
@@ -224,40 +124,79 @@
       },
       "input":{
         "shape":"CreateReusableDelegationSetRequest",
-        "xmlNamespace":{"uri":"https://route53.amazonaws.com/doc/2013-04-01/"},
-        "locationName":"CreateReusableDelegationSetRequest"
+        "locationName":"CreateReusableDelegationSetRequest",
+        "xmlNamespace":{"uri":"https://route53.amazonaws.com/doc/2013-04-01/"}
       },
       "output":{"shape":"CreateReusableDelegationSetResponse"},
       "errors":[
-        {
-          "shape":"DelegationSetAlreadyCreated",
-          "exception":true
-        },
-        {
-          "shape":"LimitsExceeded",
-          "exception":true
-        },
-        {
-          "shape":"HostedZoneNotFound",
-          "exception":true
-        },
-        {
-          "shape":"InvalidArgument",
-          "exception":true
-        },
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"DelegationSetNotAvailable",
-          "exception":true
-        },
-        {
-          "shape":"DelegationSetAlreadyReusable",
-          "exception":true
-        }
+        {"shape":"DelegationSetAlreadyCreated"},
+        {"shape":"LimitsExceeded"},
+        {"shape":"HostedZoneNotFound"},
+        {"shape":"InvalidArgument"},
+        {"shape":"InvalidInput"},
+        {"shape":"DelegationSetNotAvailable"},
+        {"shape":"DelegationSetAlreadyReusable"}
+      ]
+    },
+    "CreateTrafficPolicy":{
+      "name":"CreateTrafficPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2013-04-01/trafficpolicy",
+        "responseCode":201
+      },
+      "input":{
+        "shape":"CreateTrafficPolicyRequest",
+        "locationName":"CreateTrafficPolicyRequest",
+        "xmlNamespace":{"uri":"https://route53.amazonaws.com/doc/2013-04-01/"}
+      },
+      "output":{"shape":"CreateTrafficPolicyResponse"},
+      "errors":[
+        {"shape":"InvalidInput"},
+        {"shape":"TooManyTrafficPolicies"},
+        {"shape":"TrafficPolicyAlreadyExists"},
+        {"shape":"InvalidTrafficPolicyDocument"}
+      ]
+    },
+    "CreateTrafficPolicyInstance":{
+      "name":"CreateTrafficPolicyInstance",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2013-04-01/trafficpolicyinstance",
+        "responseCode":201
+      },
+      "input":{
+        "shape":"CreateTrafficPolicyInstanceRequest",
+        "locationName":"CreateTrafficPolicyInstanceRequest",
+        "xmlNamespace":{"uri":"https://route53.amazonaws.com/doc/2013-04-01/"}
+      },
+      "output":{"shape":"CreateTrafficPolicyInstanceResponse"},
+      "errors":[
+        {"shape":"NoSuchHostedZone"},
+        {"shape":"InvalidInput"},
+        {"shape":"TooManyTrafficPolicyInstances"},
+        {"shape":"NoSuchTrafficPolicy"},
+        {"shape":"TrafficPolicyInstanceAlreadyExists"}
+      ]
+    },
+    "CreateTrafficPolicyVersion":{
+      "name":"CreateTrafficPolicyVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2013-04-01/trafficpolicy/{Id}",
+        "responseCode":201
+      },
+      "input":{
+        "shape":"CreateTrafficPolicyVersionRequest",
+        "locationName":"CreateTrafficPolicyVersionRequest",
+        "xmlNamespace":{"uri":"https://route53.amazonaws.com/doc/2013-04-01/"}
+      },
+      "output":{"shape":"CreateTrafficPolicyVersionResponse"},
+      "errors":[
+        {"shape":"NoSuchTrafficPolicy"},
+        {"shape":"InvalidInput"},
+        {"shape":"ConcurrentModification"},
+        {"shape":"InvalidTrafficPolicyDocument"}
       ]
     },
     "DeleteHealthCheck":{
@@ -269,21 +208,9 @@
       "input":{"shape":"DeleteHealthCheckRequest"},
       "output":{"shape":"DeleteHealthCheckResponse"},
       "errors":[
-        {
-          "shape":"NoSuchHealthCheck",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"HealthCheckInUse",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"NoSuchHealthCheck"},
+        {"shape":"HealthCheckInUse"},
+        {"shape":"InvalidInput"}
       ]
     },
     "DeleteHostedZone":{
@@ -295,26 +222,10 @@
       "input":{"shape":"DeleteHostedZoneRequest"},
       "output":{"shape":"DeleteHostedZoneResponse"},
       "errors":[
-        {
-          "shape":"NoSuchHostedZone",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"HostedZoneNotEmpty",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"PriorRequestNotComplete",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"NoSuchHostedZone"},
+        {"shape":"HostedZoneNotEmpty"},
+        {"shape":"PriorRequestNotComplete"},
+        {"shape":"InvalidInput"}
       ]
     },
     "DeleteReusableDelegationSet":{
@@ -326,23 +237,39 @@
       "input":{"shape":"DeleteReusableDelegationSetRequest"},
       "output":{"shape":"DeleteReusableDelegationSetResponse"},
       "errors":[
-        {
-          "shape":"NoSuchDelegationSet",
-          "exception":true
-        },
-        {
-          "shape":"DelegationSetInUse",
-          "exception":true
-        },
-        {
-          "shape":"DelegationSetNotReusable",
-          "exception":true
-        },
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"NoSuchDelegationSet"},
+        {"shape":"DelegationSetInUse"},
+        {"shape":"DelegationSetNotReusable"},
+        {"shape":"InvalidInput"}
+      ]
+    },
+    "DeleteTrafficPolicy":{
+      "name":"DeleteTrafficPolicy",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/2013-04-01/trafficpolicy/{Id}/{Version}"
+      },
+      "input":{"shape":"DeleteTrafficPolicyRequest"},
+      "output":{"shape":"DeleteTrafficPolicyResponse"},
+      "errors":[
+        {"shape":"NoSuchTrafficPolicy"},
+        {"shape":"InvalidInput"},
+        {"shape":"TrafficPolicyInUse"},
+        {"shape":"ConcurrentModification"}
+      ]
+    },
+    "DeleteTrafficPolicyInstance":{
+      "name":"DeleteTrafficPolicyInstance",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/2013-04-01/trafficpolicyinstance/{Id}"
+      },
+      "input":{"shape":"DeleteTrafficPolicyInstanceRequest"},
+      "output":{"shape":"DeleteTrafficPolicyInstanceResponse"},
+      "errors":[
+        {"shape":"NoSuchTrafficPolicyInstance"},
+        {"shape":"InvalidInput"},
+        {"shape":"PriorRequestNotComplete"}
       ]
     },
     "DisassociateVPCFromHostedZone":{
@@ -353,36 +280,16 @@
       },
       "input":{
         "shape":"DisassociateVPCFromHostedZoneRequest",
-        "xmlNamespace":{"uri":"https://route53.amazonaws.com/doc/2013-04-01/"},
-        "locationName":"DisassociateVPCFromHostedZoneRequest"
+        "locationName":"DisassociateVPCFromHostedZoneRequest",
+        "xmlNamespace":{"uri":"https://route53.amazonaws.com/doc/2013-04-01/"}
       },
       "output":{"shape":"DisassociateVPCFromHostedZoneResponse"},
       "errors":[
-        {
-          "shape":"NoSuchHostedZone",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InvalidVPCId",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"VPCAssociationNotFound",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"LastVPCAssociation",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"NoSuchHostedZone"},
+        {"shape":"InvalidVPCId"},
+        {"shape":"VPCAssociationNotFound"},
+        {"shape":"LastVPCAssociation"},
+        {"shape":"InvalidInput"}
       ]
     },
     "GetChange":{
@@ -394,16 +301,21 @@
       "input":{"shape":"GetChangeRequest"},
       "output":{"shape":"GetChangeResponse"},
       "errors":[
-        {
-          "shape":"NoSuchChange",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"NoSuchChange"},
+        {"shape":"InvalidInput"}
+      ]
+    },
+    "GetChangeDetails":{
+      "name":"GetChangeDetails",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2013-04-01/changedetails/{Id}"
+      },
+      "input":{"shape":"GetChangeDetailsRequest"},
+      "output":{"shape":"GetChangeDetailsResponse"},
+      "errors":[
+        {"shape":"NoSuchChange"},
+        {"shape":"InvalidInput"}
       ]
     },
     "GetCheckerIpRanges":{
@@ -424,16 +336,8 @@
       "input":{"shape":"GetGeoLocationRequest"},
       "output":{"shape":"GetGeoLocationResponse"},
       "errors":[
-        {
-          "shape":"NoSuchGeoLocation",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"NoSuchGeoLocation"},
+        {"shape":"InvalidInput"}
       ]
     },
     "GetHealthCheck":{
@@ -445,21 +349,9 @@
       "input":{"shape":"GetHealthCheckRequest"},
       "output":{"shape":"GetHealthCheckResponse"},
       "errors":[
-        {
-          "shape":"NoSuchHealthCheck",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"IncompatibleVersion",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"NoSuchHealthCheck"},
+        {"shape":"InvalidInput"},
+        {"shape":"IncompatibleVersion"}
       ]
     },
     "GetHealthCheckCount":{
@@ -480,11 +372,8 @@
       "input":{"shape":"GetHealthCheckLastFailureReasonRequest"},
       "output":{"shape":"GetHealthCheckLastFailureReasonResponse"},
       "errors":[
-        {
-          "shape":"NoSuchHealthCheck",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        }
+        {"shape":"NoSuchHealthCheck"},
+        {"shape":"InvalidInput"}
       ]
     },
     "GetHealthCheckStatus":{
@@ -496,11 +385,8 @@
       "input":{"shape":"GetHealthCheckStatusRequest"},
       "output":{"shape":"GetHealthCheckStatusResponse"},
       "errors":[
-        {
-          "shape":"NoSuchHealthCheck",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        }
+        {"shape":"NoSuchHealthCheck"},
+        {"shape":"InvalidInput"}
       ]
     },
     "GetHostedZone":{
@@ -512,16 +398,8 @@
       "input":{"shape":"GetHostedZoneRequest"},
       "output":{"shape":"GetHostedZoneResponse"},
       "errors":[
-        {
-          "shape":"NoSuchHostedZone",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"NoSuchHostedZone"},
+        {"shape":"InvalidInput"}
       ]
     },
     "GetHostedZoneCount":{
@@ -533,11 +411,7 @@
       "input":{"shape":"GetHostedZoneCountRequest"},
       "output":{"shape":"GetHostedZoneCountResponse"},
       "errors":[
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInput"}
       ]
     },
     "GetReusableDelegationSet":{
@@ -549,19 +423,70 @@
       "input":{"shape":"GetReusableDelegationSetRequest"},
       "output":{"shape":"GetReusableDelegationSetResponse"},
       "errors":[
-        {
-          "shape":"NoSuchDelegationSet",
-          "exception":true
-        },
-        {
-          "shape":"DelegationSetNotReusable",
-          "exception":true
-        },
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"NoSuchDelegationSet"},
+        {"shape":"DelegationSetNotReusable"},
+        {"shape":"InvalidInput"}
+      ]
+    },
+    "GetTrafficPolicy":{
+      "name":"GetTrafficPolicy",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2013-04-01/trafficpolicy/{Id}/{Version}"
+      },
+      "input":{"shape":"GetTrafficPolicyRequest"},
+      "output":{"shape":"GetTrafficPolicyResponse"},
+      "errors":[
+        {"shape":"NoSuchTrafficPolicy"},
+        {"shape":"InvalidInput"}
+      ]
+    },
+    "GetTrafficPolicyInstance":{
+      "name":"GetTrafficPolicyInstance",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2013-04-01/trafficpolicyinstance/{Id}"
+      },
+      "input":{"shape":"GetTrafficPolicyInstanceRequest"},
+      "output":{"shape":"GetTrafficPolicyInstanceResponse"},
+      "errors":[
+        {"shape":"NoSuchTrafficPolicyInstance"},
+        {"shape":"InvalidInput"}
+      ]
+    },
+    "GetTrafficPolicyInstanceCount":{
+      "name":"GetTrafficPolicyInstanceCount",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2013-04-01/trafficpolicyinstancecount"
+      },
+      "input":{"shape":"GetTrafficPolicyInstanceCountRequest"},
+      "output":{"shape":"GetTrafficPolicyInstanceCountResponse"}
+    },
+    "ListChangeBatchesByHostedZone":{
+      "name":"ListChangeBatchesByHostedZone",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2013-04-01/hostedzone/{Id}/changes"
+      },
+      "input":{"shape":"ListChangeBatchesByHostedZoneRequest"},
+      "output":{"shape":"ListChangeBatchesByHostedZoneResponse"},
+      "errors":[
+        {"shape":"NoSuchHostedZone"},
+        {"shape":"InvalidInput"}
+      ]
+    },
+    "ListChangeBatchesByRRSet":{
+      "name":"ListChangeBatchesByRRSet",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2013-04-01/hostedzone/{Id}/rrsChanges"
+      },
+      "input":{"shape":"ListChangeBatchesByRRSetRequest"},
+      "output":{"shape":"ListChangeBatchesByRRSetResponse"},
+      "errors":[
+        {"shape":"NoSuchHostedZone"},
+        {"shape":"InvalidInput"}
       ]
     },
     "ListGeoLocations":{
@@ -573,11 +498,7 @@
       "input":{"shape":"ListGeoLocationsRequest"},
       "output":{"shape":"ListGeoLocationsResponse"},
       "errors":[
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInput"}
       ]
     },
     "ListHealthChecks":{
@@ -589,16 +510,8 @@
       "input":{"shape":"ListHealthChecksRequest"},
       "output":{"shape":"ListHealthChecksResponse"},
       "errors":[
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"IncompatibleVersion",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInput"},
+        {"shape":"IncompatibleVersion"}
       ]
     },
     "ListHostedZones":{
@@ -610,19 +523,9 @@
       "input":{"shape":"ListHostedZonesRequest"},
       "output":{"shape":"ListHostedZonesResponse"},
       "errors":[
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"NoSuchDelegationSet",
-          "exception":true
-        },
-        {
-          "shape":"DelegationSetNotReusable",
-          "exception":true
-        }
+        {"shape":"InvalidInput"},
+        {"shape":"NoSuchDelegationSet"},
+        {"shape":"DelegationSetNotReusable"}
       ]
     },
     "ListHostedZonesByName":{
@@ -634,16 +537,8 @@
       "input":{"shape":"ListHostedZonesByNameRequest"},
       "output":{"shape":"ListHostedZonesByNameResponse"},
       "errors":[
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"InvalidDomainName",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInput"},
+        {"shape":"InvalidDomainName"}
       ]
     },
     "ListResourceRecordSets":{
@@ -655,16 +550,8 @@
       "input":{"shape":"ListResourceRecordSetsRequest"},
       "output":{"shape":"ListResourceRecordSetsResponse"},
       "errors":[
-        {
-          "shape":"NoSuchHostedZone",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"NoSuchHostedZone"},
+        {"shape":"InvalidInput"}
       ]
     },
     "ListReusableDelegationSets":{
@@ -676,11 +563,7 @@
       "input":{"shape":"ListReusableDelegationSetsRequest"},
       "output":{"shape":"ListReusableDelegationSetsResponse"},
       "errors":[
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInput"}
       ]
     },
     "ListTagsForResource":{
@@ -692,31 +575,11 @@
       "input":{"shape":"ListTagsForResourceRequest"},
       "output":{"shape":"ListTagsForResourceResponse"},
       "errors":[
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"NoSuchHealthCheck",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"NoSuchHostedZone",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"PriorRequestNotComplete",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ThrottlingException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInput"},
+        {"shape":"NoSuchHealthCheck"},
+        {"shape":"NoSuchHostedZone"},
+        {"shape":"PriorRequestNotComplete"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "ListTagsForResources":{
@@ -727,36 +590,82 @@
       },
       "input":{
         "shape":"ListTagsForResourcesRequest",
-        "xmlNamespace":{"uri":"https://route53.amazonaws.com/doc/2013-04-01/"},
-        "locationName":"ListTagsForResourcesRequest"
+        "locationName":"ListTagsForResourcesRequest",
+        "xmlNamespace":{"uri":"https://route53.amazonaws.com/doc/2013-04-01/"}
       },
       "output":{"shape":"ListTagsForResourcesResponse"},
       "errors":[
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"NoSuchHealthCheck",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"NoSuchHostedZone",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"PriorRequestNotComplete",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ThrottlingException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInput"},
+        {"shape":"NoSuchHealthCheck"},
+        {"shape":"NoSuchHostedZone"},
+        {"shape":"PriorRequestNotComplete"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "ListTrafficPolicies":{
+      "name":"ListTrafficPolicies",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2013-04-01/trafficpolicies"
+      },
+      "input":{"shape":"ListTrafficPoliciesRequest"},
+      "output":{"shape":"ListTrafficPoliciesResponse"},
+      "errors":[
+        {"shape":"InvalidInput"}
+      ]
+    },
+    "ListTrafficPolicyInstances":{
+      "name":"ListTrafficPolicyInstances",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2013-04-01/trafficpolicyinstances"
+      },
+      "input":{"shape":"ListTrafficPolicyInstancesRequest"},
+      "output":{"shape":"ListTrafficPolicyInstancesResponse"},
+      "errors":[
+        {"shape":"InvalidInput"},
+        {"shape":"NoSuchTrafficPolicyInstance"}
+      ]
+    },
+    "ListTrafficPolicyInstancesByHostedZone":{
+      "name":"ListTrafficPolicyInstancesByHostedZone",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2013-04-01/trafficpolicyinstances/hostedzone"
+      },
+      "input":{"shape":"ListTrafficPolicyInstancesByHostedZoneRequest"},
+      "output":{"shape":"ListTrafficPolicyInstancesByHostedZoneResponse"},
+      "errors":[
+        {"shape":"InvalidInput"},
+        {"shape":"NoSuchTrafficPolicyInstance"},
+        {"shape":"NoSuchHostedZone"}
+      ]
+    },
+    "ListTrafficPolicyInstancesByPolicy":{
+      "name":"ListTrafficPolicyInstancesByPolicy",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2013-04-01/trafficpolicyinstances/trafficpolicy"
+      },
+      "input":{"shape":"ListTrafficPolicyInstancesByPolicyRequest"},
+      "output":{"shape":"ListTrafficPolicyInstancesByPolicyResponse"},
+      "errors":[
+        {"shape":"InvalidInput"},
+        {"shape":"NoSuchTrafficPolicyInstance"},
+        {"shape":"NoSuchTrafficPolicy"}
+      ]
+    },
+    "ListTrafficPolicyVersions":{
+      "name":"ListTrafficPolicyVersions",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2013-04-01/trafficpolicies/{Id}/versions"
+      },
+      "input":{"shape":"ListTrafficPolicyVersionsRequest"},
+      "output":{"shape":"ListTrafficPolicyVersionsResponse"},
+      "errors":[
+        {"shape":"InvalidInput"},
+        {"shape":"NoSuchTrafficPolicy"}
       ]
     },
     "UpdateHealthCheck":{
@@ -767,26 +676,14 @@
       },
       "input":{
         "shape":"UpdateHealthCheckRequest",
-        "xmlNamespace":{"uri":"https://route53.amazonaws.com/doc/2013-04-01/"},
-        "locationName":"UpdateHealthCheckRequest"
+        "locationName":"UpdateHealthCheckRequest",
+        "xmlNamespace":{"uri":"https://route53.amazonaws.com/doc/2013-04-01/"}
       },
       "output":{"shape":"UpdateHealthCheckResponse"},
       "errors":[
-        {
-          "shape":"NoSuchHealthCheck",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"HealthCheckVersionMismatch",
-          "error":{"httpStatusCode":409},
-          "exception":true
-        }
+        {"shape":"NoSuchHealthCheck"},
+        {"shape":"InvalidInput"},
+        {"shape":"HealthCheckVersionMismatch"}
       ]
     },
     "UpdateHostedZoneComment":{
@@ -797,25 +694,56 @@
       },
       "input":{
         "shape":"UpdateHostedZoneCommentRequest",
-        "xmlNamespace":{"uri":"https://route53.amazonaws.com/doc/2013-04-01/"},
-        "locationName":"UpdateHostedZoneCommentRequest"
+        "locationName":"UpdateHostedZoneCommentRequest",
+        "xmlNamespace":{"uri":"https://route53.amazonaws.com/doc/2013-04-01/"}
       },
       "output":{"shape":"UpdateHostedZoneCommentResponse"},
       "errors":[
-        {
-          "shape":"NoSuchHostedZone",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"NoSuchHostedZone"},
+        {"shape":"InvalidInput"}
+      ]
+    },
+    "UpdateTrafficPolicyComment":{
+      "name":"UpdateTrafficPolicyComment",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2013-04-01/trafficpolicy/{Id}/{Version}"
+      },
+      "input":{
+        "shape":"UpdateTrafficPolicyCommentRequest",
+        "locationName":"UpdateTrafficPolicyCommentRequest",
+        "xmlNamespace":{"uri":"https://route53.amazonaws.com/doc/2013-04-01/"}
+      },
+      "output":{"shape":"UpdateTrafficPolicyCommentResponse"},
+      "errors":[
+        {"shape":"InvalidInput"},
+        {"shape":"NoSuchTrafficPolicy"},
+        {"shape":"ConcurrentModification"}
+      ]
+    },
+    "UpdateTrafficPolicyInstance":{
+      "name":"UpdateTrafficPolicyInstance",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2013-04-01/trafficpolicyinstance/{Id}"
+      },
+      "input":{
+        "shape":"UpdateTrafficPolicyInstanceRequest",
+        "locationName":"UpdateTrafficPolicyInstanceRequest",
+        "xmlNamespace":{"uri":"https://route53.amazonaws.com/doc/2013-04-01/"}
+      },
+      "output":{"shape":"UpdateTrafficPolicyInstanceResponse"},
+      "errors":[
+        {"shape":"InvalidInput"},
+        {"shape":"NoSuchTrafficPolicy"},
+        {"shape":"NoSuchTrafficPolicyInstance"},
+        {"shape":"PriorRequestNotComplete"},
+        {"shape":"ConflictingTypes"}
       ]
     }
   },
   "shapes":{
+    "AWSAccountID":{"type":"string"},
     "AliasHealthEnabled":{"type":"boolean"},
     "AliasTarget":{
       "type":"structure",
@@ -880,6 +808,29 @@
         "Comment":{"shape":"ResourceDescription"},
         "Changes":{"shape":"Changes"}
       }
+    },
+    "ChangeBatchRecord":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "Status"
+      ],
+      "members":{
+        "Id":{"shape":"ResourceId"},
+        "SubmittedAt":{"shape":"TimeStamp"},
+        "Status":{"shape":"ChangeStatus"},
+        "Comment":{"shape":"ResourceDescription"},
+        "Submitter":{"shape":"AWSAccountID"},
+        "Changes":{"shape":"Changes"}
+      }
+    },
+    "ChangeBatchRecords":{
+      "type":"list",
+      "member":{
+        "shape":"ChangeBatchRecord",
+        "locationName":"ChangeBatchRecord"
+      },
+      "min":1
     },
     "ChangeInfo":{
       "type":"structure",
@@ -970,11 +921,27 @@
       },
       "max":256
     },
+    "ConcurrentModification":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "ConflictingDomainExists":{
       "type":"structure",
       "members":{
         "message":{"shape":"ErrorMessage"}
       },
+      "exception":true
+    },
+    "ConflictingTypes":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":400},
       "exception":true
     },
     "CreateHealthCheckRequest":{
@@ -1060,9 +1027,103 @@
         }
       }
     },
+    "CreateTrafficPolicyInstanceRequest":{
+      "type":"structure",
+      "required":[
+        "HostedZoneId",
+        "Name",
+        "TTL",
+        "TrafficPolicyId",
+        "TrafficPolicyVersion"
+      ],
+      "members":{
+        "HostedZoneId":{"shape":"ResourceId"},
+        "Name":{"shape":"DNSName"},
+        "TTL":{"shape":"TTL"},
+        "TrafficPolicyId":{"shape":"TrafficPolicyId"},
+        "TrafficPolicyVersion":{"shape":"TrafficPolicyVersion"}
+      }
+    },
+    "CreateTrafficPolicyInstanceResponse":{
+      "type":"structure",
+      "required":[
+        "TrafficPolicyInstance",
+        "Location"
+      ],
+      "members":{
+        "TrafficPolicyInstance":{"shape":"TrafficPolicyInstance"},
+        "Location":{
+          "shape":"ResourceURI",
+          "location":"header",
+          "locationName":"Location"
+        }
+      }
+    },
+    "CreateTrafficPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Document"
+      ],
+      "members":{
+        "Name":{"shape":"TrafficPolicyName"},
+        "Document":{"shape":"TrafficPolicyDocument"},
+        "Comment":{"shape":"TrafficPolicyComment"}
+      }
+    },
+    "CreateTrafficPolicyResponse":{
+      "type":"structure",
+      "required":[
+        "TrafficPolicy",
+        "Location"
+      ],
+      "members":{
+        "TrafficPolicy":{"shape":"TrafficPolicy"},
+        "Location":{
+          "shape":"ResourceURI",
+          "location":"header",
+          "locationName":"Location"
+        }
+      }
+    },
+    "CreateTrafficPolicyVersionRequest":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "Document"
+      ],
+      "members":{
+        "Id":{
+          "shape":"TrafficPolicyId",
+          "location":"uri",
+          "locationName":"Id"
+        },
+        "Document":{"shape":"TrafficPolicyDocument"},
+        "Comment":{"shape":"TrafficPolicyComment"}
+      }
+    },
+    "CreateTrafficPolicyVersionResponse":{
+      "type":"structure",
+      "required":[
+        "TrafficPolicy",
+        "Location"
+      ],
+      "members":{
+        "TrafficPolicy":{"shape":"TrafficPolicy"},
+        "Location":{
+          "shape":"ResourceURI",
+          "location":"header",
+          "locationName":"Location"
+        }
+      }
+    },
     "DNSName":{
       "type":"string",
       "max":1024
+    },
+    "Date":{
+      "type":"string",
+      "max":256
     },
     "DelegationSet":{
       "type":"structure",
@@ -1173,6 +1234,46 @@
       "members":{
       }
     },
+    "DeleteTrafficPolicyInstanceRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{
+          "shape":"TrafficPolicyInstanceId",
+          "location":"uri",
+          "locationName":"Id"
+        }
+      }
+    },
+    "DeleteTrafficPolicyInstanceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteTrafficPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "Version"
+      ],
+      "members":{
+        "Id":{
+          "shape":"TrafficPolicyId",
+          "location":"uri",
+          "locationName":"Id"
+        },
+        "Version":{
+          "shape":"TrafficPolicyVersion",
+          "location":"uri",
+          "locationName":"Version"
+        }
+      }
+    },
+    "DeleteTrafficPolicyResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DisassociateVPCComment":{"type":"string"},
     "DisassociateVPCFromHostedZoneRequest":{
       "type":"structure",
@@ -1207,8 +1308,8 @@
     },
     "FailureThreshold":{
       "type":"integer",
-      "min":1,
-      "max":10
+      "max":10,
+      "min":1
     },
     "FullyQualifiedDomainName":{
       "type":"string",
@@ -1224,23 +1325,23 @@
     },
     "GeoLocationContinentCode":{
       "type":"string",
-      "min":2,
-      "max":2
+      "max":2,
+      "min":2
     },
     "GeoLocationContinentName":{
       "type":"string",
-      "min":1,
-      "max":32
+      "max":32,
+      "min":1
     },
     "GeoLocationCountryCode":{
       "type":"string",
-      "min":1,
-      "max":2
+      "max":2,
+      "min":1
     },
     "GeoLocationCountryName":{
       "type":"string",
-      "min":1,
-      "max":64
+      "max":64,
+      "min":1
     },
     "GeoLocationDetails":{
       "type":"structure",
@@ -1262,13 +1363,31 @@
     },
     "GeoLocationSubdivisionCode":{
       "type":"string",
-      "min":1,
-      "max":3
+      "max":3,
+      "min":1
     },
     "GeoLocationSubdivisionName":{
       "type":"string",
-      "min":1,
-      "max":64
+      "max":64,
+      "min":1
+    },
+    "GetChangeDetailsRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"Id"
+        }
+      }
+    },
+    "GetChangeDetailsResponse":{
+      "type":"structure",
+      "required":["ChangeBatchRecord"],
+      "members":{
+        "ChangeBatchRecord":{"shape":"ChangeBatchRecord"}
+      }
     },
     "GetChangeRequest":{
       "type":"structure",
@@ -1443,6 +1562,62 @@
         "DelegationSet":{"shape":"DelegationSet"}
       }
     },
+    "GetTrafficPolicyInstanceCountRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "GetTrafficPolicyInstanceCountResponse":{
+      "type":"structure",
+      "required":["TrafficPolicyInstanceCount"],
+      "members":{
+        "TrafficPolicyInstanceCount":{"shape":"TrafficPolicyInstanceCount"}
+      }
+    },
+    "GetTrafficPolicyInstanceRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{
+          "shape":"TrafficPolicyInstanceId",
+          "location":"uri",
+          "locationName":"Id"
+        }
+      }
+    },
+    "GetTrafficPolicyInstanceResponse":{
+      "type":"structure",
+      "required":["TrafficPolicyInstance"],
+      "members":{
+        "TrafficPolicyInstance":{"shape":"TrafficPolicyInstance"}
+      }
+    },
+    "GetTrafficPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "Version"
+      ],
+      "members":{
+        "Id":{
+          "shape":"TrafficPolicyId",
+          "location":"uri",
+          "locationName":"Id"
+        },
+        "Version":{
+          "shape":"TrafficPolicyVersion",
+          "location":"uri",
+          "locationName":"Version"
+        }
+      }
+    },
+    "GetTrafficPolicyResponse":{
+      "type":"structure",
+      "required":["TrafficPolicy"],
+      "members":{
+        "TrafficPolicy":{"shape":"TrafficPolicy"}
+      }
+    },
     "HealthCheck":{
       "type":"structure",
       "required":[
@@ -1499,8 +1674,8 @@
     },
     "HealthCheckNonce":{
       "type":"string",
-      "min":1,
-      "max":64
+      "max":64,
+      "min":1
     },
     "HealthCheckObservation":{
       "type":"structure",
@@ -1548,8 +1723,8 @@
     },
     "HealthThreshold":{
       "type":"integer",
-      "min":0,
-      "max":256
+      "max":256,
+      "min":0
     },
     "HostedZone":{
       "type":"structure",
@@ -1649,6 +1824,14 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "InvalidTrafficPolicyDocument":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "InvalidVPCId":{
       "type":"structure",
       "members":{
@@ -1673,6 +1856,123 @@
         "message":{"shape":"ErrorMessage"}
       },
       "exception":true
+    },
+    "ListChangeBatchesByHostedZoneRequest":{
+      "type":"structure",
+      "required":[
+        "HostedZoneId",
+        "StartDate",
+        "EndDate"
+      ],
+      "members":{
+        "HostedZoneId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"Id"
+        },
+        "StartDate":{
+          "shape":"Date",
+          "location":"querystring",
+          "locationName":"startDate"
+        },
+        "EndDate":{
+          "shape":"Date",
+          "location":"querystring",
+          "locationName":"endDate"
+        },
+        "MaxItems":{
+          "shape":"PageMaxItems",
+          "location":"querystring",
+          "locationName":"maxItems"
+        },
+        "Marker":{
+          "shape":"PageMarker",
+          "location":"querystring",
+          "locationName":"marker"
+        }
+      }
+    },
+    "ListChangeBatchesByHostedZoneResponse":{
+      "type":"structure",
+      "required":[
+        "MaxItems",
+        "Marker",
+        "ChangeBatchRecords"
+      ],
+      "members":{
+        "MaxItems":{"shape":"PageMaxItems"},
+        "Marker":{"shape":"PageMarker"},
+        "IsTruncated":{"shape":"PageTruncated"},
+        "ChangeBatchRecords":{"shape":"ChangeBatchRecords"},
+        "NextMarker":{"shape":"PageMarker"}
+      }
+    },
+    "ListChangeBatchesByRRSetRequest":{
+      "type":"structure",
+      "required":[
+        "HostedZoneId",
+        "Name",
+        "Type",
+        "StartDate",
+        "EndDate"
+      ],
+      "members":{
+        "HostedZoneId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"Id"
+        },
+        "Name":{
+          "shape":"DNSName",
+          "location":"querystring",
+          "locationName":"rrSet_name"
+        },
+        "Type":{
+          "shape":"RRType",
+          "location":"querystring",
+          "locationName":"type"
+        },
+        "SetIdentifier":{
+          "shape":"ResourceRecordSetIdentifier",
+          "location":"querystring",
+          "locationName":"identifier"
+        },
+        "StartDate":{
+          "shape":"Date",
+          "location":"querystring",
+          "locationName":"startDate"
+        },
+        "EndDate":{
+          "shape":"Date",
+          "location":"querystring",
+          "locationName":"endDate"
+        },
+        "MaxItems":{
+          "shape":"PageMaxItems",
+          "location":"querystring",
+          "locationName":"maxItems"
+        },
+        "Marker":{
+          "shape":"PageMarker",
+          "location":"querystring",
+          "locationName":"marker"
+        }
+      }
+    },
+    "ListChangeBatchesByRRSetResponse":{
+      "type":"structure",
+      "required":[
+        "MaxItems",
+        "Marker",
+        "ChangeBatchRecords"
+      ],
+      "members":{
+        "MaxItems":{"shape":"PageMaxItems"},
+        "Marker":{"shape":"PageMarker"},
+        "IsTruncated":{"shape":"PageTruncated"},
+        "ChangeBatchRecords":{"shape":"ChangeBatchRecords"},
+        "NextMarker":{"shape":"PageMarker"}
+      }
     },
     "ListGeoLocationsRequest":{
       "type":"structure",
@@ -1945,7 +2245,214 @@
         "ResourceTagSets":{"shape":"ResourceTagSetList"}
       }
     },
+    "ListTrafficPoliciesRequest":{
+      "type":"structure",
+      "members":{
+        "TrafficPolicyIdMarker":{
+          "shape":"TrafficPolicyId",
+          "location":"querystring",
+          "locationName":"trafficpolicyid"
+        },
+        "MaxItems":{
+          "shape":"PageMaxItems",
+          "location":"querystring",
+          "locationName":"maxitems"
+        }
+      }
+    },
+    "ListTrafficPoliciesResponse":{
+      "type":"structure",
+      "required":[
+        "TrafficPolicySummaries",
+        "IsTruncated",
+        "TrafficPolicyIdMarker",
+        "MaxItems"
+      ],
+      "members":{
+        "TrafficPolicySummaries":{"shape":"TrafficPolicySummaries"},
+        "IsTruncated":{"shape":"PageTruncated"},
+        "TrafficPolicyIdMarker":{"shape":"TrafficPolicyId"},
+        "MaxItems":{"shape":"PageMaxItems"}
+      }
+    },
+    "ListTrafficPolicyInstancesByHostedZoneRequest":{
+      "type":"structure",
+      "required":["HostedZoneId"],
+      "members":{
+        "HostedZoneId":{
+          "shape":"ResourceId",
+          "location":"querystring",
+          "locationName":"id"
+        },
+        "TrafficPolicyInstanceNameMarker":{
+          "shape":"DNSName",
+          "location":"querystring",
+          "locationName":"trafficpolicyinstancename"
+        },
+        "TrafficPolicyInstanceTypeMarker":{
+          "shape":"RRType",
+          "location":"querystring",
+          "locationName":"trafficpolicyinstancetype"
+        },
+        "MaxItems":{
+          "shape":"PageMaxItems",
+          "location":"querystring",
+          "locationName":"maxitems"
+        }
+      }
+    },
+    "ListTrafficPolicyInstancesByHostedZoneResponse":{
+      "type":"structure",
+      "required":[
+        "TrafficPolicyInstances",
+        "IsTruncated",
+        "MaxItems"
+      ],
+      "members":{
+        "TrafficPolicyInstances":{"shape":"TrafficPolicyInstances"},
+        "TrafficPolicyInstanceNameMarker":{"shape":"DNSName"},
+        "TrafficPolicyInstanceTypeMarker":{"shape":"RRType"},
+        "IsTruncated":{"shape":"PageTruncated"},
+        "MaxItems":{"shape":"PageMaxItems"}
+      }
+    },
+    "ListTrafficPolicyInstancesByPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "TrafficPolicyId",
+        "TrafficPolicyVersion"
+      ],
+      "members":{
+        "TrafficPolicyId":{
+          "shape":"TrafficPolicyId",
+          "location":"querystring",
+          "locationName":"id"
+        },
+        "TrafficPolicyVersion":{
+          "shape":"TrafficPolicyVersion",
+          "location":"querystring",
+          "locationName":"version"
+        },
+        "HostedZoneIdMarker":{
+          "shape":"ResourceId",
+          "location":"querystring",
+          "locationName":"hostedzoneid"
+        },
+        "TrafficPolicyInstanceNameMarker":{
+          "shape":"DNSName",
+          "location":"querystring",
+          "locationName":"trafficpolicyinstancename"
+        },
+        "TrafficPolicyInstanceTypeMarker":{
+          "shape":"RRType",
+          "location":"querystring",
+          "locationName":"trafficpolicyinstancetype"
+        },
+        "MaxItems":{
+          "shape":"PageMaxItems",
+          "location":"querystring",
+          "locationName":"maxitems"
+        }
+      }
+    },
+    "ListTrafficPolicyInstancesByPolicyResponse":{
+      "type":"structure",
+      "required":[
+        "TrafficPolicyInstances",
+        "IsTruncated",
+        "MaxItems"
+      ],
+      "members":{
+        "TrafficPolicyInstances":{"shape":"TrafficPolicyInstances"},
+        "HostedZoneIdMarker":{"shape":"ResourceId"},
+        "TrafficPolicyInstanceNameMarker":{"shape":"DNSName"},
+        "TrafficPolicyInstanceTypeMarker":{"shape":"RRType"},
+        "IsTruncated":{"shape":"PageTruncated"},
+        "MaxItems":{"shape":"PageMaxItems"}
+      }
+    },
+    "ListTrafficPolicyInstancesRequest":{
+      "type":"structure",
+      "members":{
+        "HostedZoneIdMarker":{
+          "shape":"ResourceId",
+          "location":"querystring",
+          "locationName":"hostedzoneid"
+        },
+        "TrafficPolicyInstanceNameMarker":{
+          "shape":"DNSName",
+          "location":"querystring",
+          "locationName":"trafficpolicyinstancename"
+        },
+        "TrafficPolicyInstanceTypeMarker":{
+          "shape":"RRType",
+          "location":"querystring",
+          "locationName":"trafficpolicyinstancetype"
+        },
+        "MaxItems":{
+          "shape":"PageMaxItems",
+          "location":"querystring",
+          "locationName":"maxitems"
+        }
+      }
+    },
+    "ListTrafficPolicyInstancesResponse":{
+      "type":"structure",
+      "required":[
+        "TrafficPolicyInstances",
+        "IsTruncated",
+        "MaxItems"
+      ],
+      "members":{
+        "TrafficPolicyInstances":{"shape":"TrafficPolicyInstances"},
+        "HostedZoneIdMarker":{"shape":"ResourceId"},
+        "TrafficPolicyInstanceNameMarker":{"shape":"DNSName"},
+        "TrafficPolicyInstanceTypeMarker":{"shape":"RRType"},
+        "IsTruncated":{"shape":"PageTruncated"},
+        "MaxItems":{"shape":"PageMaxItems"}
+      }
+    },
+    "ListTrafficPolicyVersionsRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{
+          "shape":"TrafficPolicyId",
+          "location":"uri",
+          "locationName":"Id"
+        },
+        "TrafficPolicyVersionMarker":{
+          "shape":"TrafficPolicyVersionMarker",
+          "location":"querystring",
+          "locationName":"trafficpolicyversion"
+        },
+        "MaxItems":{
+          "shape":"PageMaxItems",
+          "location":"querystring",
+          "locationName":"maxitems"
+        }
+      }
+    },
+    "ListTrafficPolicyVersionsResponse":{
+      "type":"structure",
+      "required":[
+        "TrafficPolicies",
+        "IsTruncated",
+        "TrafficPolicyVersionMarker",
+        "MaxItems"
+      ],
+      "members":{
+        "TrafficPolicies":{"shape":"TrafficPolicies"},
+        "IsTruncated":{"shape":"PageTruncated"},
+        "TrafficPolicyVersionMarker":{"shape":"TrafficPolicyVersionMarker"},
+        "MaxItems":{"shape":"PageMaxItems"}
+      }
+    },
     "MeasureLatency":{"type":"boolean"},
+    "Message":{
+      "type":"string",
+      "max":1024
+    },
     "NoSuchChange":{
       "type":"structure",
       "members":{
@@ -1985,10 +2492,26 @@
       "error":{"httpStatusCode":404},
       "exception":true
     },
+    "NoSuchTrafficPolicy":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":404},
+      "exception":true
+    },
+    "NoSuchTrafficPolicyInstance":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":404},
+      "exception":true
+    },
     "Nonce":{
       "type":"string",
-      "min":1,
-      "max":128
+      "max":128,
+      "min":1
     },
     "PageMarker":{
       "type":"string",
@@ -1998,8 +2521,8 @@
     "PageTruncated":{"type":"boolean"},
     "Port":{
       "type":"integer",
-      "min":1,
-      "max":65535
+      "max":65535,
+      "min":1
     },
     "PriorRequestNotComplete":{
       "type":"structure",
@@ -2038,8 +2561,8 @@
     },
     "RequestInterval":{
       "type":"integer",
-      "min":10,
-      "max":30
+      "max":30,
+      "min":10
     },
     "ResourceDescription":{
       "type":"string",
@@ -2077,7 +2600,8 @@
         "TTL":{"shape":"TTL"},
         "ResourceRecords":{"shape":"ResourceRecords"},
         "AliasTarget":{"shape":"AliasTarget"},
-        "HealthCheckId":{"shape":"HealthCheckId"}
+        "HealthCheckId":{"shape":"HealthCheckId"},
+        "TrafficPolicyInstanceId":{"shape":"TrafficPolicyInstanceId"}
       }
     },
     "ResourceRecordSetFailover":{
@@ -2089,8 +2613,8 @@
     },
     "ResourceRecordSetIdentifier":{
       "type":"string",
-      "min":1,
-      "max":128
+      "max":128,
+      "min":1
     },
     "ResourceRecordSetRegion":{
       "type":"string",
@@ -2106,13 +2630,13 @@
         "sa-east-1",
         "cn-north-1"
       ],
-      "min":1,
-      "max":64
+      "max":64,
+      "min":1
     },
     "ResourceRecordSetWeight":{
       "type":"long",
-      "min":0,
-      "max":255
+      "max":255,
+      "min":0
     },
     "ResourceRecordSets":{
       "type":"list",
@@ -2162,8 +2686,8 @@
     },
     "TTL":{
       "type":"long",
-      "min":0,
-      "max":2147483647
+      "max":2147483647,
+      "min":0
     },
     "Tag":{
       "type":"structure",
@@ -2182,8 +2706,8 @@
         "shape":"TagKey",
         "locationName":"Key"
       },
-      "min":1,
-      "max":10
+      "max":10,
+      "min":1
     },
     "TagList":{
       "type":"list",
@@ -2191,8 +2715,8 @@
         "shape":"Tag",
         "locationName":"Tag"
       },
-      "min":1,
-      "max":10
+      "max":10,
+      "min":1
     },
     "TagResourceId":{
       "type":"string",
@@ -2204,8 +2728,8 @@
         "shape":"TagResourceId",
         "locationName":"ResourceId"
       },
-      "min":1,
-      "max":10
+      "max":10,
+      "min":1
     },
     "TagResourceType":{
       "type":"string",
@@ -2241,6 +2765,158 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "TooManyTrafficPolicies":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "TooManyTrafficPolicyInstances":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "TrafficPolicies":{
+      "type":"list",
+      "member":{
+        "shape":"TrafficPolicy",
+        "locationName":"TrafficPolicy"
+      }
+    },
+    "TrafficPolicy":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "Version",
+        "Name",
+        "Type",
+        "Document"
+      ],
+      "members":{
+        "Id":{"shape":"TrafficPolicyId"},
+        "Version":{"shape":"TrafficPolicyVersion"},
+        "Name":{"shape":"TrafficPolicyName"},
+        "Type":{"shape":"RRType"},
+        "Document":{"shape":"TrafficPolicyDocument"},
+        "Comment":{"shape":"TrafficPolicyComment"}
+      }
+    },
+    "TrafficPolicyAlreadyExists":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
+    "TrafficPolicyComment":{
+      "type":"string",
+      "max":1024
+    },
+    "TrafficPolicyDocument":{
+      "type":"string",
+      "max":102400
+    },
+    "TrafficPolicyId":{
+      "type":"string",
+      "max":36
+    },
+    "TrafficPolicyInUse":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "TrafficPolicyInstance":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "HostedZoneId",
+        "Name",
+        "TTL",
+        "State",
+        "Message",
+        "TrafficPolicyId",
+        "TrafficPolicyVersion",
+        "TrafficPolicyType"
+      ],
+      "members":{
+        "Id":{"shape":"TrafficPolicyInstanceId"},
+        "HostedZoneId":{"shape":"ResourceId"},
+        "Name":{"shape":"DNSName"},
+        "TTL":{"shape":"TTL"},
+        "State":{"shape":"TrafficPolicyInstanceState"},
+        "Message":{"shape":"Message"},
+        "TrafficPolicyId":{"shape":"TrafficPolicyId"},
+        "TrafficPolicyVersion":{"shape":"TrafficPolicyVersion"},
+        "TrafficPolicyType":{"shape":"RRType"}
+      }
+    },
+    "TrafficPolicyInstanceAlreadyExists":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
+    "TrafficPolicyInstanceCount":{"type":"integer"},
+    "TrafficPolicyInstanceId":{
+      "type":"string",
+      "max":36
+    },
+    "TrafficPolicyInstanceState":{"type":"string"},
+    "TrafficPolicyInstances":{
+      "type":"list",
+      "member":{
+        "shape":"TrafficPolicyInstance",
+        "locationName":"TrafficPolicyInstance"
+      }
+    },
+    "TrafficPolicyName":{
+      "type":"string",
+      "max":512
+    },
+    "TrafficPolicySummaries":{
+      "type":"list",
+      "member":{
+        "shape":"TrafficPolicySummary",
+        "locationName":"TrafficPolicySummary"
+      }
+    },
+    "TrafficPolicySummary":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "Name",
+        "Type",
+        "LatestVersion",
+        "TrafficPolicyCount"
+      ],
+      "members":{
+        "Id":{"shape":"TrafficPolicyId"},
+        "Name":{"shape":"TrafficPolicyName"},
+        "Type":{"shape":"RRType"},
+        "LatestVersion":{"shape":"TrafficPolicyVersion"},
+        "TrafficPolicyCount":{"shape":"TrafficPolicyVersion"}
+      }
+    },
+    "TrafficPolicyVersion":{
+      "type":"integer",
+      "max":1000,
+      "min":1
+    },
+    "TrafficPolicyVersionMarker":{
+      "type":"string",
+      "max":4
     },
     "UpdateHealthCheckRequest":{
       "type":"structure",
@@ -2289,6 +2965,60 @@
         "HostedZone":{"shape":"HostedZone"}
       }
     },
+    "UpdateTrafficPolicyCommentRequest":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "Version",
+        "Comment"
+      ],
+      "members":{
+        "Id":{
+          "shape":"TrafficPolicyId",
+          "location":"uri",
+          "locationName":"Id"
+        },
+        "Version":{
+          "shape":"TrafficPolicyVersion",
+          "location":"uri",
+          "locationName":"Version"
+        },
+        "Comment":{"shape":"TrafficPolicyComment"}
+      }
+    },
+    "UpdateTrafficPolicyCommentResponse":{
+      "type":"structure",
+      "required":["TrafficPolicy"],
+      "members":{
+        "TrafficPolicy":{"shape":"TrafficPolicy"}
+      }
+    },
+    "UpdateTrafficPolicyInstanceRequest":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "TTL",
+        "TrafficPolicyId",
+        "TrafficPolicyVersion"
+      ],
+      "members":{
+        "Id":{
+          "shape":"TrafficPolicyInstanceId",
+          "location":"uri",
+          "locationName":"Id"
+        },
+        "TTL":{"shape":"TTL"},
+        "TrafficPolicyId":{"shape":"TrafficPolicyId"},
+        "TrafficPolicyVersion":{"shape":"TrafficPolicyVersion"}
+      }
+    },
+    "UpdateTrafficPolicyInstanceResponse":{
+      "type":"structure",
+      "required":["TrafficPolicyInstance"],
+      "members":{
+        "TrafficPolicyInstance":{"shape":"TrafficPolicyInstance"}
+      }
+    },
     "VPC":{
       "type":"structure",
       "members":{
@@ -2322,8 +3052,8 @@
         "sa-east-1",
         "cn-north-1"
       ],
-      "min":1,
-      "max":64
+      "max":64,
+      "min":1
     },
     "VPCs":{
       "type":"list",
