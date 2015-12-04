@@ -2198,8 +2198,8 @@ func (c *RDS) ModifyDBSnapshotAttributeRequest(input *ModifyDBSnapshotAttributeI
 	return
 }
 
-// Adds an attribute and values to, or removes an attibute and values from a
-// manual DB snapshot.
+// Adds an attribute and values to, or removes an attribute and values from
+// a manual DB snapshot.
 //
 // To share a manual DB snapshot with other AWS accounts, specify restore as
 // the AttributeName and use the ValuesToAdd parameter to add a list of the
@@ -3692,7 +3692,7 @@ type CreateDBInstanceInput struct {
 	// The name of the database engine to be used for this instance.
 	//
 	//  Valid Values: MySQL | mariadb | oracle-se1 | oracle-se | oracle-ee | sqlserver-ee
-	// | sqlserver-se | sqlserver-ex | sqlserver-web | postgres
+	// | sqlserver-se | sqlserver-ex | sqlserver-web | postgres | aurora
 	//
 	//  Not every database engine is available for every AWS region.
 	Engine *string `type:"string" required:"true"`
@@ -3705,66 +3705,66 @@ type CreateDBInstanceInput struct {
 	//
 	// MySQL
 	//
-	//   Version 5.1 (Only available in the following regions: ap-northeast-1,
-	// ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):
-	//  5.1.73a | 5.1.73b   Version 5.5 (Only available in the following regions:
-	// ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1,
-	// us-west-2):  5.5.40 | 5.5.40a   Version 5.5 (Available in all regions):
-	// 5.5.40b | 5.5.41 | 5.5.42   Version 5.6 (Available in all regions):  5.6.19a
-	// | 5.6.19b | 5.6.21 | 5.6.21b | 5.6.22 | 5.6.23   MariaDB
+	//  Version 5.1 (Only available in the following regions: ap-northeast-1, ap-southeast-1,
+	// ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):  5.1.73a | 5.1.73b
+	// Version 5.5 (Only available in the following regions: ap-northeast-1, ap-southeast-1,
+	// ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):  5.5.40 | 5.5.40a
+	// Version 5.5 (Available in all regions):  5.5.40b | 5.5.41 | 5.5.42 Version
+	// 5.6 (Available in all regions):  5.6.19a | 5.6.19b | 5.6.21 | 5.6.21b | 5.6.22
+	// | 5.6.23  MariaDB
 	//
-	//   Version 10.0 (Available in all regions except AWS GovCloud (US) Region
-	// (us-gov-west-1)):  10.0.17    Oracle Database Enterprise Edition (oracle-ee)
+	//  Version 10.0 (Available in all regions except AWS GovCloud (US) Region
+	// (us-gov-west-1)):  10.0.17   Oracle Database Enterprise Edition (oracle-ee)
 	//
-	//   Version 11.2 (Only available in the following regions: ap-northeast-1,
+	//  Version 11.2 (Only available in the following regions: ap-northeast-1,
 	// ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):
-	//  11.2.0.2.v3 | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7   Version
+	//  11.2.0.2.v3 | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7 Version
 	// 11.2 (Available in all regions):  11.2.0.3.v1 | 11.2.0.3.v2 | 11.2.0.3.v3
-	// | 11.2.0.4.v1 | 11.2.0.4.v3 | 11.2.0.4.v4   Version 12.1 (Available in all
-	// regions): 12.1.0.1.v1 | 12.1.0.1.v2 | 12.1.0.2.v1    Oracle Database Standard
+	// | 11.2.0.4.v1 | 11.2.0.4.v3 | 11.2.0.4.v4 Version 12.1 (Available in all
+	// regions): 12.1.0.1.v1 | 12.1.0.1.v2 | 12.1.0.2.v1   Oracle Database Standard
 	// Edition (oracle-se)
 	//
-	//   Version 11.2 (Only available in the following regions: us-west-1):  11.2.0.2.v3
-	// | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7   Version 11.2 (Only
+	//  Version 11.2 (Only available in the following regions: us-west-1):  11.2.0.2.v3
+	// | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7 Version 11.2 (Only
 	// available in the following regions: eu-central-1, us-west-1):  11.2.0.3.v1
-	// | 11.2.0.3.v2 | 11.2.0.3.v3 | 11.2.0.4.v1 | 11.2.0.4.v3 | 11.2.0.4.v4   Version
+	// | 11.2.0.3.v2 | 11.2.0.3.v3 | 11.2.0.4.v1 | 11.2.0.4.v3 | 11.2.0.4.v4 Version
 	// 12.1 (Only available in the following regions: eu-central-1, us-west-1):
-	// 12.1.0.1.v1 | 12.1.0.1.v2   Oracle Database Standard Edition One (oracle-se1)
+	// 12.1.0.1.v1 | 12.1.0.1.v2  Oracle Database Standard Edition One (oracle-se1)
 	//
-	//   Version 11.2 (Only available in the following regions: us-west-1):  11.2.0.2.v3
-	// | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7   Version 11.2 (Only
+	//  Version 11.2 (Only available in the following regions: us-west-1):  11.2.0.2.v3
+	// | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7 Version 11.2 (Only
 	// available in the following regions: eu-central-1, us-west-1):  11.2.0.3.v1
-	// | 11.2.0.3.v2 | 11.2.0.3.v3 | 11.2.0.4.v1 | 11.2.0.4.v3 | 11.2.0.4.v4   Version
+	// | 11.2.0.3.v2 | 11.2.0.3.v3 | 11.2.0.4.v1 | 11.2.0.4.v3 | 11.2.0.4.v4 Version
 	// 12.1 (Only available in the following regions: eu-central-1, us-west-1):
-	//  12.1.0.1.v1 | 12.1.0.1.v2   PostgreSQL
+	//  12.1.0.1.v1 | 12.1.0.1.v2  PostgreSQL
 	//
-	//   Version 9.3 (Only available in the following regions: ap-northeast-1,
-	// ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):
-	//  9.3.1 | 9.3.2   Version 9.3 (Available in all regions):  9.3.3 | 9.3.5 |
-	// 9.3.6   Version 9.4 (Available in all regions):  9.4.1   Microsoft SQL Server
-	// Enterprise Edition (sqlserver-ee)
+	//  Version 9.3 (Only available in the following regions: ap-northeast-1, ap-southeast-1,
+	// ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):  9.3.1 | 9.3.2
+	// Version 9.3 (Available in all regions):  9.3.3 | 9.3.5 | 9.3.6 | 9.3.9 |
+	// 9.3.10 Version 9.4 (Available in all regions):  9.4.1 | 9.4.4 | 9.4.5  Microsoft
+	// SQL Server Enterprise Edition (sqlserver-ee)
 	//
-	//   Version 10.50 (Available in all regions):  10.50.2789.0.v1   Version 10.50
-	// (Available in all regions):  10.50.6000.34.v1   Version 11.00 (Available
-	// in all regions):  11.00.2100.60.v1   Version 11.00 (Available in all regions):
-	//  11.00.5058.0.v1   Microsoft SQL Server Express Edition (sqlserver-ex)
+	//  Version 10.50 (Available in all regions):  10.50.2789.0.v1 Version 10.50
+	// (Available in all regions):  10.50.6000.34.v1 Version 11.00 (Available in
+	// all regions):  11.00.2100.60.v1 Version 11.00 (Available in all regions):
+	//  11.00.5058.0.v1  Microsoft SQL Server Express Edition (sqlserver-ex)
 	//
-	//   Version 10.50 (Available in all regions):  10.50.2789.0.v1   Version 10.50
-	// (Available in all regions):  10.50.6000.34.v1   Version 11.00 (Available
-	// in all regions):  11.00.2100.60.v1   Version 11.00 (Available in all regions):
-	//  11.00.5058.0.v1   Version 12.00 (Available in all regions):  12.00.4422.0.v1
-	//   Microsoft SQL Server Standard Edition (sqlserver-se)
+	//  Version 10.50 (Available in all regions):  10.50.2789.0.v1 Version 10.50
+	// (Available in all regions):  10.50.6000.34.v1 Version 11.00 (Available in
+	// all regions):  11.00.2100.60.v1 Version 11.00 (Available in all regions):
+	//  11.00.5058.0.v1 Version 12.00 (Available in all regions):  12.00.4422.0.v1
+	//  Microsoft SQL Server Standard Edition (sqlserver-se)
 	//
-	//   Version 10.50 (Available in all regions):  10.50.2789.0.v1   Version 10.50
-	// (Available in all regions):  10.50.6000.34.v1   Version 11.00 (Available
-	// in all regions):  11.00.2100.60.v1   Version 11.00 (Available in all regions):
-	//  11.00.5058.0.v1   Version 12.00 (Available in all regions):  12.00.4422.0.v1
-	//   Microsoft SQL Server Web Edition (sqlserver-web)
+	//  Version 10.50 (Available in all regions):  10.50.2789.0.v1 Version 10.50
+	// (Available in all regions):  10.50.6000.34.v1 Version 11.00 (Available in
+	// all regions):  11.00.2100.60.v1 Version 11.00 (Available in all regions):
+	//  11.00.5058.0.v1 Version 12.00 (Available in all regions):  12.00.4422.0.v1
+	//  Microsoft SQL Server Web Edition (sqlserver-web)
 	//
-	//   Version 10.50 (Available in all regions):  10.50.2789.0.v1   Version 10.50
-	// (Available in all regions):  10.50.6000.34.v1   Version 11.00 (Available
-	// in all regions):  11.00.2100.60.v1   Version 11.00 (Available in all regions):
-	//  11.00.5058.0.v1   Version 12.00 (Available in all regions):  12.00.4422.0.v1
+	//  Version 10.50 (Available in all regions):  10.50.2789.0.v1 Version 10.50
+	// (Available in all regions):  10.50.6000.34.v1 Version 11.00 (Available in
+	// all regions):  11.00.2100.60.v1 Version 11.00 (Available in all regions):
+	//  11.00.5058.0.v1 Version 12.00 (Available in all regions):  12.00.4422.0.v1
 	EngineVersion *string `type:"string"`
 
 	// The amount of Provisioned IOPS (input/output operations per second) to be
@@ -4068,9 +4068,9 @@ type CreateDBInstanceReadReplicaInput struct {
 	//  Can only be specified if the source DB instance identifier specifies a
 	// DB instance in another region. The specified DB subnet group must be in the
 	// same region in which the operation is running.  All Read Replicas in one
-	// region that are created from the same source DB instance must either:  Specify
+	// region that are created from the same source DB instance must either: Specify
 	// DB subnet groups from the same VPC. All these Read Replicas will be created
-	// in the same VPC. Not specify a DB subnet group. All these Read Replicas will
+	// in the same VPC.Not specify a DB subnet group. All these Read Replicas will
 	// be created outside of any VPC.
 	DBSubnetGroupName *string `type:"string"`
 
@@ -6676,18 +6676,18 @@ type DescribeDBSnapshotsInput struct {
 	// The type of snapshots that will be returned. You can specify one of the following
 	// values:
 	//
-	//   automated - Return all DB snapshots that have been automatically taken
-	// by Amazon RDS for my AWS account.  manual - Return all DB snapshots that
-	// have been taken by my AWS account.  shared - Return all manual DB snapshots
-	// that have been shared to my AWS account.  public - Return all DB snapshots
-	// that have been marked as public.  If you do not specify a SnapshotType, then
-	// both automated and manual snapshots are returned. You can include shared
-	// snapshots with these results by setting the IncludeShared parameter to true.
-	// You can include public snapshots with these results by setting the IncludePublic
+	//  automated - Return all DB snapshots that have been automatically taken
+	// by Amazon RDS for my AWS account. manual - Return all DB snapshots that have
+	// been taken by my AWS account. shared - Return all manual DB snapshots that
+	// have been shared to my AWS account. public - Return all DB snapshots that
+	// have been marked as public.  If you do not specify a SnapshotType, then both
+	// automated and manual snapshots are returned. You can include shared snapshots
+	// with these results by setting the IncludeShared parameter to true. You can
+	// include public snapshots with these results by setting the IncludePublic
 	// parameter to true.
 	//
 	// The IncludeShared and IncludePublic parameters do not apply for SnapshotType
-	// values of manual or automated. The IncludePublic paramter does not apply
+	// values of manual or automated. The IncludePublic parameter does not apply
 	// when SnapshotType is set to shared. the IncludeShared parameter does not
 	// apply when SnapshotType is set to public.
 	SnapshotType *string `type:"string"`
@@ -7545,7 +7545,7 @@ type DownloadDBLogFilePortionInput struct {
 	//
 	// If the NumberOfLines parameter is specified, then the block of lines returned
 	// can be from the beginning or the end of the log file, depending on the value
-	// of the Marker parameter.  If neither Marker or NumberOfLines are specified,
+	// of the Marker parameter. If neither Marker or NumberOfLines are specified,
 	// the entire log file is returned.
 	//
 	// If NumberOfLines is specified and Marker is not specified, then the most
@@ -7554,11 +7554,11 @@ type DownloadDBLogFilePortionInput struct {
 	// If Marker is specified as "0", then the specified number of lines from the
 	// beginning of the log file are returned.
 	//
-	// You can download the log file in blocks of lines by specifying the size
-	// of the block using the NumberOfLines parameter, and by specifying a value
-	// of "0" for the Marker parameter in your first request. Include the Marker
-	// value returned in the response as the Marker value for the next request,
-	// continuing until the AdditionalDataPending response element returns false.
+	// You can download the log file in blocks of lines by specifying the size of
+	// the block using the NumberOfLines parameter, and by specifying a value of
+	// "0" for the Marker parameter in your first request. Include the Marker value
+	// returned in the response as the Marker value for the next request, continuing
+	// until the AdditionalDataPending response element returns false.
 	NumberOfLines *int64 `type:"integer"`
 }
 
@@ -8157,7 +8157,7 @@ type ModifyDBInstanceInput struct {
 	// during the next maintenance window. Some parameter changes can cause an outage
 	// and will be applied on the next call to RebootDBInstance, or the next failure
 	// reboot. Review the table of parameters in Modifying a DB Instance and Using
-	// the Apply Immediately Parameter (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.DBInstance.html#Overview.DBInstance.Modifying)
+	// the Apply Immediately Parameter (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.DBInstance.Modifying.html)
 	// to see the impact that setting ApplyImmediately to true or false has for
 	// each modified parameter and to determine when the changes will be applied.
 	//
@@ -8239,6 +8239,46 @@ type ModifyDBInstanceInput struct {
 	// Constraints: The DB parameter group must be in the same DB parameter group
 	// family as this DB instance.
 	DBParameterGroupName *string `type:"string"`
+
+	// The port number on which the database accepts connections.
+	//
+	//  MySQL
+	//
+	//  Default: 3306
+	//
+	//  Valid Values: 1150-65535
+	//
+	//  MariaDB
+	//
+	//  Default: 3306
+	//
+	//  Valid Values: 1150-65535
+	//
+	//  PostgreSQL
+	//
+	//  Default: 5432
+	//
+	//  Valid Values: 1150-65535
+	//
+	//  Oracle
+	//
+	//  Default: 1521
+	//
+	//  Valid Values: 1150-65535
+	//
+	//  SQL Server
+	//
+	//  Default: 1433
+	//
+	//  Valid Values: 1150-65535 except for 1434, 3389, 47001, 49152, and 49152
+	// through 49156.
+	//
+	//  Amazon Aurora
+	//
+	//  Default: 3306
+	//
+	//  Valid Values: 1150-65535
+	DBPortNumber *int64 `type:"integer"`
 
 	// A list of DB security groups to authorize on this DB instance. Changing this
 	// setting does not result in an outage and the change is asynchronously applied
@@ -9889,7 +9929,7 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// Constraint: Must be compatible with the engine of the source
 	//
 	//  Valid Values: MySQL | mariadb | oracle-se1 | oracle-se | oracle-ee | sqlserver-ee
-	// | sqlserver-se | sqlserver-ex | sqlserver-web | postgres
+	// | sqlserver-se | sqlserver-ex | sqlserver-web | postgres | aurora
 	Engine *string `type:"string"`
 
 	// Specifies the amount of provisioned IOPS for the DB instance, expressed in
@@ -10045,7 +10085,7 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	// Constraint: Must be compatible with the engine of the source
 	//
 	//  Valid Values: MySQL | mariadb | oracle-se1 | oracle-se | oracle-ee | sqlserver-ee
-	// | sqlserver-se | sqlserver-ex | sqlserver-web | postgres
+	// | sqlserver-se | sqlserver-ex | sqlserver-web | postgres| aurora
 	Engine *string `type:"string"`
 
 	// The amount of Provisioned IOPS (input/output operations per second) to be

@@ -1759,6 +1759,7 @@ func ExampleRDS_ModifyDBInstance() {
 		CopyTagsToSnapshot:       aws.Bool(true),
 		DBInstanceClass:          aws.String("String"),
 		DBParameterGroupName:     aws.String("String"),
+		DBPortNumber:             aws.Int64(1),
 		DBSecurityGroups: []*string{
 			aws.String("String"), // Required
 			// More values...
