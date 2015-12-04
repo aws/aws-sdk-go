@@ -4,11 +4,11 @@
     "apiVersion":"2015-04-16",
     "endpointPrefix":"ds",
     "jsonVersion":"1.1",
+    "protocol":"json",
     "serviceAbbreviation":"Directory Service",
     "serviceFullName":"AWS Directory Service",
     "signatureVersion":"v4",
-    "targetPrefix":"DirectoryService_20150416",
-    "protocol":"json"
+    "targetPrefix":"DirectoryService_20150416"
   },
   "operations":{
     "ConnectDirectory":{
@@ -20,23 +20,10 @@
       "input":{"shape":"ConnectDirectoryRequest"},
       "output":{"shape":"ConnectDirectoryResult"},
       "errors":[
-        {
-          "shape":"DirectoryLimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterException",
-          "exception":true
-        },
-        {
-          "shape":"ClientException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceException",
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"DirectoryLimitExceededException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
       ]
     },
     "CreateAlias":{
@@ -48,27 +35,11 @@
       "input":{"shape":"CreateAliasRequest"},
       "output":{"shape":"CreateAliasResult"},
       "errors":[
-        {
-          "shape":"EntityAlreadyExistsException",
-          "exception":true
-        },
-        {
-          "shape":"EntityDoesNotExistException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterException",
-          "exception":true
-        },
-        {
-          "shape":"ClientException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceException",
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"EntityAlreadyExistsException"},
+        {"shape":"EntityDoesNotExistException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
       ]
     },
     "CreateComputer":{
@@ -80,39 +51,14 @@
       "input":{"shape":"CreateComputerRequest"},
       "output":{"shape":"CreateComputerResult"},
       "errors":[
-        {
-          "shape":"AuthenticationFailedException",
-          "exception":true
-        },
-        {
-          "shape":"DirectoryUnavailableException",
-          "exception":true
-        },
-        {
-          "shape":"EntityAlreadyExistsException",
-          "exception":true
-        },
-        {
-          "shape":"EntityDoesNotExistException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterException",
-          "exception":true
-        },
-        {
-          "shape":"UnsupportedOperationException",
-          "exception":true
-        },
-        {
-          "shape":"ClientException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceException",
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"AuthenticationFailedException"},
+        {"shape":"DirectoryUnavailableException"},
+        {"shape":"EntityAlreadyExistsException"},
+        {"shape":"EntityDoesNotExistException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"UnsupportedOperationException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
       ]
     },
     "CreateDirectory":{
@@ -124,23 +70,26 @@
       "input":{"shape":"CreateDirectoryRequest"},
       "output":{"shape":"CreateDirectoryResult"},
       "errors":[
-        {
-          "shape":"DirectoryLimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterException",
-          "exception":true
-        },
-        {
-          "shape":"ClientException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceException",
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"DirectoryLimitExceededException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
+      ]
+    },
+    "CreateMicrosoftAD":{
+      "name":"CreateMicrosoftAD",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateMicrosoftADRequest"},
+      "output":{"shape":"CreateMicrosoftADResult"},
+      "errors":[
+        {"shape":"DirectoryLimitExceededException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"},
+        {"shape":"UnsupportedOperationException"}
       ]
     },
     "CreateSnapshot":{
@@ -152,27 +101,28 @@
       "input":{"shape":"CreateSnapshotRequest"},
       "output":{"shape":"CreateSnapshotResult"},
       "errors":[
-        {
-          "shape":"EntityDoesNotExistException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterException",
-          "exception":true
-        },
-        {
-          "shape":"SnapshotLimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ClientException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceException",
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"EntityDoesNotExistException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"SnapshotLimitExceededException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
+      ]
+    },
+    "CreateTrust":{
+      "name":"CreateTrust",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateTrustRequest"},
+      "output":{"shape":"CreateTrustResult"},
+      "errors":[
+        {"shape":"EntityAlreadyExistsException"},
+        {"shape":"EntityDoesNotExistException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"},
+        {"shape":"UnsupportedOperationException"}
       ]
     },
     "DeleteDirectory":{
@@ -184,19 +134,9 @@
       "input":{"shape":"DeleteDirectoryRequest"},
       "output":{"shape":"DeleteDirectoryResult"},
       "errors":[
-        {
-          "shape":"EntityDoesNotExistException",
-          "exception":true
-        },
-        {
-          "shape":"ClientException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceException",
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"EntityDoesNotExistException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
       ]
     },
     "DeleteSnapshot":{
@@ -208,23 +148,26 @@
       "input":{"shape":"DeleteSnapshotRequest"},
       "output":{"shape":"DeleteSnapshotResult"},
       "errors":[
-        {
-          "shape":"EntityDoesNotExistException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterException",
-          "exception":true
-        },
-        {
-          "shape":"ClientException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceException",
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"EntityDoesNotExistException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
+      ]
+    },
+    "DeleteTrust":{
+      "name":"DeleteTrust",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteTrustRequest"},
+      "output":{"shape":"DeleteTrustResult"},
+      "errors":[
+        {"shape":"EntityDoesNotExistException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"},
+        {"shape":"UnsupportedOperationException"}
       ]
     },
     "DescribeDirectories":{
@@ -236,27 +179,11 @@
       "input":{"shape":"DescribeDirectoriesRequest"},
       "output":{"shape":"DescribeDirectoriesResult"},
       "errors":[
-        {
-          "shape":"EntityDoesNotExistException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidNextTokenException",
-          "exception":true
-        },
-        {
-          "shape":"ClientException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceException",
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"EntityDoesNotExistException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
       ]
     },
     "DescribeSnapshots":{
@@ -268,27 +195,28 @@
       "input":{"shape":"DescribeSnapshotsRequest"},
       "output":{"shape":"DescribeSnapshotsResult"},
       "errors":[
-        {
-          "shape":"EntityDoesNotExistException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidNextTokenException",
-          "exception":true
-        },
-        {
-          "shape":"ClientException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceException",
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"EntityDoesNotExistException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
+      ]
+    },
+    "DescribeTrusts":{
+      "name":"DescribeTrusts",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeTrustsRequest"},
+      "output":{"shape":"DescribeTrustsResult"},
+      "errors":[
+        {"shape":"EntityDoesNotExistException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"},
+        {"shape":"UnsupportedOperationException"}
       ]
     },
     "DisableRadius":{
@@ -300,19 +228,9 @@
       "input":{"shape":"DisableRadiusRequest"},
       "output":{"shape":"DisableRadiusResult"},
       "errors":[
-        {
-          "shape":"EntityDoesNotExistException",
-          "exception":true
-        },
-        {
-          "shape":"ClientException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceException",
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"EntityDoesNotExistException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
       ]
     },
     "DisableSso":{
@@ -324,27 +242,11 @@
       "input":{"shape":"DisableSsoRequest"},
       "output":{"shape":"DisableSsoResult"},
       "errors":[
-        {
-          "shape":"EntityDoesNotExistException",
-          "exception":true
-        },
-        {
-          "shape":"InsufficientPermissionsException",
-          "exception":true
-        },
-        {
-          "shape":"AuthenticationFailedException",
-          "exception":true
-        },
-        {
-          "shape":"ClientException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceException",
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"EntityDoesNotExistException"},
+        {"shape":"InsufficientPermissionsException"},
+        {"shape":"AuthenticationFailedException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
       ]
     },
     "EnableRadius":{
@@ -356,27 +258,11 @@
       "input":{"shape":"EnableRadiusRequest"},
       "output":{"shape":"EnableRadiusResult"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "exception":true
-        },
-        {
-          "shape":"EntityAlreadyExistsException",
-          "exception":true
-        },
-        {
-          "shape":"EntityDoesNotExistException",
-          "exception":true
-        },
-        {
-          "shape":"ClientException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceException",
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"EntityAlreadyExistsException"},
+        {"shape":"EntityDoesNotExistException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
       ]
     },
     "EnableSso":{
@@ -388,27 +274,11 @@
       "input":{"shape":"EnableSsoRequest"},
       "output":{"shape":"EnableSsoResult"},
       "errors":[
-        {
-          "shape":"EntityDoesNotExistException",
-          "exception":true
-        },
-        {
-          "shape":"InsufficientPermissionsException",
-          "exception":true
-        },
-        {
-          "shape":"AuthenticationFailedException",
-          "exception":true
-        },
-        {
-          "shape":"ClientException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceException",
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"EntityDoesNotExistException"},
+        {"shape":"InsufficientPermissionsException"},
+        {"shape":"AuthenticationFailedException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
       ]
     },
     "GetDirectoryLimits":{
@@ -420,19 +290,9 @@
       "input":{"shape":"GetDirectoryLimitsRequest"},
       "output":{"shape":"GetDirectoryLimitsResult"},
       "errors":[
-        {
-          "shape":"EntityDoesNotExistException",
-          "exception":true
-        },
-        {
-          "shape":"ClientException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceException",
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"EntityDoesNotExistException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
       ]
     },
     "GetSnapshotLimits":{
@@ -444,19 +304,9 @@
       "input":{"shape":"GetSnapshotLimitsRequest"},
       "output":{"shape":"GetSnapshotLimitsResult"},
       "errors":[
-        {
-          "shape":"EntityDoesNotExistException",
-          "exception":true
-        },
-        {
-          "shape":"ClientException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceException",
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"EntityDoesNotExistException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
       ]
     },
     "RestoreFromSnapshot":{
@@ -468,23 +318,10 @@
       "input":{"shape":"RestoreFromSnapshotRequest"},
       "output":{"shape":"RestoreFromSnapshotResult"},
       "errors":[
-        {
-          "shape":"EntityDoesNotExistException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterException",
-          "exception":true
-        },
-        {
-          "shape":"ClientException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceException",
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"EntityDoesNotExistException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
       ]
     },
     "UpdateRadius":{
@@ -496,36 +333,39 @@
       "input":{"shape":"UpdateRadiusRequest"},
       "output":{"shape":"UpdateRadiusResult"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "exception":true
-        },
-        {
-          "shape":"EntityDoesNotExistException",
-          "exception":true
-        },
-        {
-          "shape":"ClientException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceException",
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"EntityDoesNotExistException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
+      ]
+    },
+    "VerifyTrust":{
+      "name":"VerifyTrust",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"VerifyTrustRequest"},
+      "output":{"shape":"VerifyTrustResult"},
+      "errors":[
+        {"shape":"EntityDoesNotExistException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"},
+        {"shape":"UnsupportedOperationException"}
       ]
     }
   },
   "shapes":{
     "AccessUrl":{
       "type":"string",
-      "min":1,
-      "max":128
+      "max":128,
+      "min":1
     },
     "AliasName":{
       "type":"string",
-      "min":1,
       "max":62,
+      "min":1,
       "pattern":"^(?!d-)([\\da-zA-Z]+)([-]*[\\da-zA-Z])*"
     },
     "Attribute":{
@@ -576,13 +416,13 @@
     },
     "ComputerName":{
       "type":"string",
-      "min":1,
-      "max":15
+      "max":15,
+      "min":1
     },
     "ComputerPassword":{
       "type":"string",
-      "min":8,
       "max":64,
+      "min":8,
       "pattern":"[\\u0020-\\u00FF]+",
       "sensitive":true
     },
@@ -611,8 +451,8 @@
     },
     "ConnectPassword":{
       "type":"string",
-      "min":1,
       "max":128,
+      "min":1,
       "sensitive":true
     },
     "ConnectedDirectoriesLimitReached":{"type":"boolean"},
@@ -677,6 +517,27 @@
         "DirectoryId":{"shape":"DirectoryId"}
       }
     },
+    "CreateMicrosoftADRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Password",
+        "VpcSettings"
+      ],
+      "members":{
+        "Name":{"shape":"DirectoryName"},
+        "ShortName":{"shape":"DirectoryShortName"},
+        "Password":{"shape":"Password"},
+        "Description":{"shape":"Description"},
+        "VpcSettings":{"shape":"DirectoryVpcSettings"}
+      }
+    },
+    "CreateMicrosoftADResult":{
+      "type":"structure",
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"}
+      }
+    },
     "CreateSnapshotRequest":{
       "type":"structure",
       "required":["DirectoryId"],
@@ -691,6 +552,29 @@
         "SnapshotId":{"shape":"SnapshotId"}
       }
     },
+    "CreateTrustRequest":{
+      "type":"structure",
+      "required":[
+        "DirectoryId",
+        "RemoteDomainName",
+        "TrustPassword",
+        "TrustDirection"
+      ],
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"},
+        "RemoteDomainName":{"shape":"RemoteDomainName"},
+        "TrustPassword":{"shape":"TrustPassword"},
+        "TrustDirection":{"shape":"TrustDirection"},
+        "TrustType":{"shape":"TrustType"}
+      }
+    },
+    "CreateTrustResult":{
+      "type":"structure",
+      "members":{
+        "TrustId":{"shape":"TrustId"}
+      }
+    },
+    "CreatedDateTime":{"type":"timestamp"},
     "DeleteDirectoryRequest":{
       "type":"structure",
       "required":["DirectoryId"],
@@ -715,6 +599,19 @@
       "type":"structure",
       "members":{
         "SnapshotId":{"shape":"SnapshotId"}
+      }
+    },
+    "DeleteTrustRequest":{
+      "type":"structure",
+      "required":["TrustId"],
+      "members":{
+        "TrustId":{"shape":"TrustId"}
+      }
+    },
+    "DeleteTrustResult":{
+      "type":"structure",
+      "members":{
+        "TrustId":{"shape":"TrustId"}
       }
     },
     "DescribeDirectoriesRequest":{
@@ -748,10 +645,26 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "DescribeTrustsRequest":{
+      "type":"structure",
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"},
+        "TrustIds":{"shape":"TrustIds"},
+        "NextToken":{"shape":"NextToken"},
+        "Limit":{"shape":"Limit"}
+      }
+    },
+    "DescribeTrustsResult":{
+      "type":"structure",
+      "members":{
+        "Trusts":{"shape":"Trusts"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "Description":{
       "type":"string",
-      "min":0,
       "max":128,
+      "min":0,
       "pattern":"^([a-zA-Z0-9_])[\\\\a-zA-Z0-9_@#%*+=:?./!\\s-]*$"
     },
     "DirectoryConnectSettings":{
@@ -829,6 +742,9 @@
         "CloudOnlyDirectoriesLimit":{"shape":"Limit"},
         "CloudOnlyDirectoriesCurrentCount":{"shape":"Limit"},
         "CloudOnlyDirectoriesLimitReached":{"shape":"CloudOnlyDirectoriesLimitReached"},
+        "CloudOnlyMicrosoftADLimit":{"shape":"Limit"},
+        "CloudOnlyMicrosoftADCurrentCount":{"shape":"Limit"},
+        "CloudOnlyMicrosoftADLimitReached":{"shape":"CloudOnlyDirectoriesLimitReached"},
         "ConnectedDirectoriesLimit":{"shape":"Limit"},
         "ConnectedDirectoriesCurrentCount":{"shape":"Limit"},
         "ConnectedDirectoriesLimitReached":{"shape":"ConnectedDirectoriesLimitReached"}
@@ -869,7 +785,8 @@
       "type":"string",
       "enum":[
         "SimpleAD",
-        "ADConnector"
+        "ADConnector",
+        "MicrosoftAD"
       ]
     },
     "DirectoryUnavailableException":{
@@ -1043,18 +960,18 @@
     "NextToken":{"type":"string"},
     "OrganizationalUnitDN":{
       "type":"string",
-      "min":1,
-      "max":2000
+      "max":2000,
+      "min":1
     },
     "Password":{
       "type":"string",
-      "pattern":"(?=^.{8,64}$)((?=.*\\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\\d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*\\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*",
+      "pattern":"(?=^.{8,64}$)((?=.*\\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\\d)(?=.*[^A-Za-z0-9\\s])(?=.*[a-z])|(?=.*[^A-Za-z0-9\\s])(?=.*[A-Z])(?=.*[a-z])|(?=.*\\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9\\s]))^.*",
       "sensitive":true
     },
     "PortNumber":{
       "type":"integer",
-      "min":1025,
-      "max":65535
+      "max":65535,
+      "min":1025
     },
     "RadiusAuthenticationProtocol":{
       "type":"string",
@@ -1067,13 +984,13 @@
     },
     "RadiusDisplayLabel":{
       "type":"string",
-      "min":1,
-      "max":64
+      "max":64,
+      "min":1
     },
     "RadiusRetries":{
       "type":"integer",
-      "min":0,
-      "max":10
+      "max":10,
+      "min":0
     },
     "RadiusSettings":{
       "type":"structure",
@@ -1090,8 +1007,8 @@
     },
     "RadiusSharedSecret":{
       "type":"string",
-      "min":8,
       "max":512,
+      "min":8,
       "sensitive":true
     },
     "RadiusStatus":{
@@ -1104,8 +1021,12 @@
     },
     "RadiusTimeout":{
       "type":"integer",
-      "min":1,
-      "max":20
+      "max":20,
+      "min":1
+    },
+    "RemoteDomainName":{
+      "type":"string",
+      "pattern":"^([a-zA-Z0-9]+[\\\\.-])+([a-zA-Z0-9])+[.]?$"
     },
     "RequestId":{
       "type":"string",
@@ -1125,8 +1046,8 @@
     },
     "SID":{
       "type":"string",
-      "min":1,
       "max":256,
+      "min":1,
       "pattern":"[&\\w+-.@]+"
     },
     "SecurityGroupId":{
@@ -1135,8 +1056,8 @@
     },
     "Server":{
       "type":"string",
-      "min":1,
-      "max":256
+      "max":256,
+      "min":1
     },
     "Servers":{
       "type":"list",
@@ -1188,8 +1109,8 @@
     },
     "SnapshotName":{
       "type":"string",
-      "min":0,
       "max":128,
+      "min":0,
       "pattern":"^([a-zA-Z0-9_])[\\\\a-zA-Z0-9_@#%*+=:?./!\\s-]*$"
     },
     "SnapshotStatus":{
@@ -1214,6 +1135,7 @@
     "SsoEnabled":{"type":"boolean"},
     "StageReason":{"type":"string"},
     "StartTime":{"type":"timestamp"},
+    "StateLastUpdatedDateTime":{"type":"timestamp"},
     "SubnetId":{
       "type":"string",
       "pattern":"^(subnet-[0-9a-f]{8})$"
@@ -1221,6 +1143,63 @@
     "SubnetIds":{
       "type":"list",
       "member":{"shape":"SubnetId"}
+    },
+    "Trust":{
+      "type":"structure",
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"},
+        "TrustId":{"shape":"TrustId"},
+        "RemoteDomainName":{"shape":"RemoteDomainName"},
+        "TrustType":{"shape":"TrustType"},
+        "TrustDirection":{"shape":"TrustDirection"},
+        "TrustState":{"shape":"TrustState"},
+        "CreatedDateTime":{"shape":"CreatedDateTime"},
+        "LastUpdatedDateTime":{"shape":"LastUpdatedDateTime"},
+        "StateLastUpdatedDateTime":{"shape":"StateLastUpdatedDateTime"}
+      }
+    },
+    "TrustDirection":{
+      "type":"string",
+      "enum":[
+        "One-Way: Outgoing",
+        "One-Way: Incoming",
+        "Two-Way"
+      ]
+    },
+    "TrustId":{
+      "type":"string",
+      "pattern":"^t-[0-9a-f]{10}$"
+    },
+    "TrustIds":{
+      "type":"list",
+      "member":{"shape":"TrustId"}
+    },
+    "TrustPassword":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "sensitive":true
+    },
+    "TrustState":{
+      "type":"string",
+      "enum":[
+        "Creating",
+        "Created",
+        "Verifying",
+        "VerifyFailed",
+        "Verified",
+        "Deleting",
+        "Deleted",
+        "Failed"
+      ]
+    },
+    "TrustType":{
+      "type":"string",
+      "enum":["Forest"]
+    },
+    "Trusts":{
+      "type":"list",
+      "member":{"shape":"Trust"}
     },
     "UnsupportedOperationException":{
       "type":"structure",
@@ -1251,6 +1230,19 @@
       "type":"string",
       "min":1,
       "pattern":"[a-zA-Z0-9._-]+"
+    },
+    "VerifyTrustRequest":{
+      "type":"structure",
+      "required":["TrustId"],
+      "members":{
+        "TrustId":{"shape":"TrustId"}
+      }
+    },
+    "VerifyTrustResult":{
+      "type":"structure",
+      "members":{
+        "TrustId":{"shape":"TrustId"}
+      }
     },
     "VpcId":{
       "type":"string",

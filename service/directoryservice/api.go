@@ -30,7 +30,7 @@ func (c *DirectoryService) ConnectDirectoryRequest(input *ConnectDirectoryInput)
 	return
 }
 
-// Creates an AD Connector to connect an on-premises directory.
+// Creates an AD Connector to connect to an on-premises directory.
 func (c *DirectoryService) ConnectDirectory(input *ConnectDirectoryInput) (*ConnectDirectoryOutput, error) {
 	req, out := c.ConnectDirectoryRequest(input)
 	err := req.Send()
@@ -59,7 +59,7 @@ func (c *DirectoryService) CreateAliasRequest(input *CreateAliasInput) (req *req
 
 // Creates an alias for a directory and assigns the alias to the directory.
 // The alias is used to construct the access URL for the directory, such as
-// http://<alias>.awsapps.com.
+// http://alias.awsapps.com.
 //
 //  After an alias has been created, it cannot be deleted or reused, so this
 // operation should only be used when absolutely necessary.
@@ -124,6 +124,33 @@ func (c *DirectoryService) CreateDirectory(input *CreateDirectoryInput) (*Create
 	return out, err
 }
 
+const opCreateMicrosoftAD = "CreateMicrosoftAD"
+
+// CreateMicrosoftADRequest generates a request for the CreateMicrosoftAD operation.
+func (c *DirectoryService) CreateMicrosoftADRequest(input *CreateMicrosoftADInput) (req *request.Request, output *CreateMicrosoftADOutput) {
+	op := &request.Operation{
+		Name:       opCreateMicrosoftAD,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateMicrosoftADInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &CreateMicrosoftADOutput{}
+	req.Data = output
+	return
+}
+
+// Creates a Microsoft AD in the AWS cloud.
+func (c *DirectoryService) CreateMicrosoftAD(input *CreateMicrosoftADInput) (*CreateMicrosoftADOutput, error) {
+	req, out := c.CreateMicrosoftADRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opCreateSnapshot = "CreateSnapshot"
 
 // CreateSnapshotRequest generates a request for the CreateSnapshot operation.
@@ -144,11 +171,45 @@ func (c *DirectoryService) CreateSnapshotRequest(input *CreateSnapshotInput) (re
 	return
 }
 
-// Creates a snapshot of an existing directory.
+// Creates a snapshot of a Simple AD directory.
 //
-// You cannot take snapshots of extended or connected directories.
+//  You cannot take snapshots of AD Connector directories.
 func (c *DirectoryService) CreateSnapshot(input *CreateSnapshotInput) (*CreateSnapshotOutput, error) {
 	req, out := c.CreateSnapshotRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opCreateTrust = "CreateTrust"
+
+// CreateTrustRequest generates a request for the CreateTrust operation.
+func (c *DirectoryService) CreateTrustRequest(input *CreateTrustInput) (req *request.Request, output *CreateTrustOutput) {
+	op := &request.Operation{
+		Name:       opCreateTrust,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateTrustInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &CreateTrustOutput{}
+	req.Data = output
+	return
+}
+
+// AWS Directory Service for Microsoft Active Directory allows you to configure
+// trust relationships. For example, you can establish a trust between your
+// Microsoft AD in the AWS cloud, and your existing on-premises Microsoft Active
+// Directory. This would allow you to provide users and groups access to resources
+// in either domain, with a single set of credentials.
+//
+// This action initiates the creation of the AWS side of a trust relationship
+// between a Microsoft AD in the AWS cloud and an external domain.
+func (c *DirectoryService) CreateTrust(input *CreateTrustInput) (*CreateTrustOutput, error) {
+	req, out := c.CreateTrustRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -203,6 +264,34 @@ func (c *DirectoryService) DeleteSnapshotRequest(input *DeleteSnapshotInput) (re
 // Deletes a directory snapshot.
 func (c *DirectoryService) DeleteSnapshot(input *DeleteSnapshotInput) (*DeleteSnapshotOutput, error) {
 	req, out := c.DeleteSnapshotRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDeleteTrust = "DeleteTrust"
+
+// DeleteTrustRequest generates a request for the DeleteTrust operation.
+func (c *DirectoryService) DeleteTrustRequest(input *DeleteTrustInput) (req *request.Request, output *DeleteTrustOutput) {
+	op := &request.Operation{
+		Name:       opDeleteTrust,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteTrustInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DeleteTrustOutput{}
+	req.Data = output
+	return
+}
+
+// Deletes an existing trust relationship between your Microsoft AD in the AWS
+// cloud and an external domain.
+func (c *DirectoryService) DeleteTrust(input *DeleteTrustInput) (*DeleteTrustOutput, error) {
+	req, out := c.DeleteTrustRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -279,6 +368,36 @@ func (c *DirectoryService) DescribeSnapshots(input *DescribeSnapshotsInput) (*De
 	return out, err
 }
 
+const opDescribeTrusts = "DescribeTrusts"
+
+// DescribeTrustsRequest generates a request for the DescribeTrusts operation.
+func (c *DirectoryService) DescribeTrustsRequest(input *DescribeTrustsInput) (req *request.Request, output *DescribeTrustsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeTrusts,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeTrustsInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeTrustsOutput{}
+	req.Data = output
+	return
+}
+
+// Obtains information about the trust relationships for this account.
+//
+// If no input parameters are provided, such as DirectoryId or TrustIds, this
+// request describes all the trust relationships belonging to the account.
+func (c *DirectoryService) DescribeTrusts(input *DescribeTrustsInput) (*DescribeTrustsOutput, error) {
+	req, out := c.DescribeTrustsRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opDisableRadius = "DisableRadius"
 
 // DisableRadiusRequest generates a request for the DisableRadius operation.
@@ -299,8 +418,8 @@ func (c *DirectoryService) DisableRadiusRequest(input *DisableRadiusInput) (req 
 	return
 }
 
-// Disables multi-factor authentication (MFA) with Remote Authentication Dial
-// In User Service (RADIUS) for an AD Connector directory.
+// Disables multi-factor authentication (MFA) with the Remote Authentication
+// Dial In User Service (RADIUS) server for an AD Connector directory.
 func (c *DirectoryService) DisableRadius(input *DisableRadiusInput) (*DisableRadiusOutput, error) {
 	req, out := c.DisableRadiusRequest(input)
 	err := req.Send()
@@ -354,8 +473,8 @@ func (c *DirectoryService) EnableRadiusRequest(input *EnableRadiusInput) (req *r
 	return
 }
 
-// Enables multi-factor authentication (MFA) with Remote Authentication Dial
-// In User Service (RADIUS) for an AD Connector directory.
+// Enables multi-factor authentication (MFA) with the Remote Authentication
+// Dial In User Service (RADIUS) server for an AD Connector directory.
 func (c *DirectoryService) EnableRadius(input *EnableRadiusInput) (*EnableRadiusOutput, error) {
 	req, out := c.EnableRadiusRequest(input)
 	err := req.Send()
@@ -506,6 +625,37 @@ func (c *DirectoryService) UpdateRadius(input *UpdateRadiusInput) (*UpdateRadius
 	return out, err
 }
 
+const opVerifyTrust = "VerifyTrust"
+
+// VerifyTrustRequest generates a request for the VerifyTrust operation.
+func (c *DirectoryService) VerifyTrustRequest(input *VerifyTrustInput) (req *request.Request, output *VerifyTrustOutput) {
+	op := &request.Operation{
+		Name:       opVerifyTrust,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &VerifyTrustInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &VerifyTrustOutput{}
+	req.Data = output
+	return
+}
+
+// AWS Directory Service for Microsoft Active Directory allows you to configure
+// and verify trust relationships.
+//
+// This action verifies a trust relationship between your Microsoft AD in the
+// AWS cloud and an external domain.
+func (c *DirectoryService) VerifyTrust(input *VerifyTrustInput) (*VerifyTrustOutput, error) {
+	req, out := c.VerifyTrustRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 // Represents a named directory attribute.
 type Attribute struct {
 	_ struct{} `type:"structure"`
@@ -531,7 +681,7 @@ func (s Attribute) GoString() string {
 type Computer struct {
 	_ struct{} `type:"structure"`
 
-	// An array of Attribute objects that contain the LDAP attributes that belong
+	// An array of Attribute objects containing the LDAP attributes that belong
 	// to the computer account.
 	ComputerAttributes []*Attribute `type:"list"`
 
@@ -610,11 +760,11 @@ type CreateAliasInput struct {
 
 	// The requested alias.
 	//
-	// The alias must be unique amongst all aliases in AWS. This operation will
-	// throw an EntityAlreadyExistsException if this alias already exists.
+	// The alias must be unique amongst all aliases in AWS. This operation throws
+	// an EntityAlreadyExistsException error if the alias already exists.
 	Alias *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the directory to create the alias for.
+	// The identifier of the directory for which to create the alias.
 	DirectoryId *string `type:"string" required:"true"`
 }
 
@@ -660,7 +810,7 @@ type CreateComputerInput struct {
 	// The name of the computer account.
 	ComputerName *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the directory to create the computer account in.
+	// The identifier of the directory in which to create the computer account.
 	DirectoryId *string `type:"string" required:"true"`
 
 	// The fully-qualified distinguished name of the organizational unit to place
@@ -686,7 +836,7 @@ func (s CreateComputerInput) GoString() string {
 type CreateComputerOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A Computer object the represents the computer account.
+	// A Computer object that represents the computer account.
 	Computer *Computer `type:"structure"`
 }
 
@@ -754,6 +904,58 @@ func (s CreateDirectoryOutput) GoString() string {
 	return s.String()
 }
 
+// Creates a Microsoft AD in the AWS cloud.
+type CreateMicrosoftADInput struct {
+	_ struct{} `type:"structure"`
+
+	// A textual description for the directory. This label will appear on the AWS
+	// console Directory Details page after the directory is created.
+	Description *string `type:"string"`
+
+	// The fully qualified domain name for the directory, such as corp.example.com.
+	// This name will resolve inside your VPC only. It does not need to be publicly
+	// resolvable.
+	Name *string `type:"string" required:"true"`
+
+	// The password for the default administrative user named Admin.
+	Password *string `type:"string" required:"true"`
+
+	// The NetBIOS name for your domain. A short identifier for your domain, such
+	// as CORP. If you don't specify a NetBIOS name, it will default to the first
+	// part of your directory DNS. For example, CORP for the directory DNS corp.example.com.
+	ShortName *string `type:"string"`
+
+	// Contains VPC information for the CreateDirectory or CreateMicrosoftAD operation.
+	VpcSettings *DirectoryVpcSettings `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateMicrosoftADInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateMicrosoftADInput) GoString() string {
+	return s.String()
+}
+
+type CreateMicrosoftADOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the directory that was created.
+	DirectoryId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateMicrosoftADOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateMicrosoftADOutput) GoString() string {
+	return s.String()
+}
+
 // Contains the inputs for the CreateSnapshot operation.
 type CreateSnapshotInput struct {
 	_ struct{} `type:"structure"`
@@ -790,6 +992,63 @@ func (s CreateSnapshotOutput) String() string {
 
 // GoString returns the string representation
 func (s CreateSnapshotOutput) GoString() string {
+	return s.String()
+}
+
+// AWS Directory Service for Microsoft Active Directory allows you to configure
+// trust relationships. For example, you can establish a trust between your
+// Microsoft AD in the AWS cloud, and your existing on-premises Microsoft Active
+// Directory. This would allow you to provide users and groups access to resources
+// in either domain, with a single set of credentials.
+//
+// This action initiates the creation of the AWS side of a trust relationship
+// between a Microsoft AD in the AWS cloud and an external domain.
+type CreateTrustInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Directory ID of the Microsoft AD in the AWS cloud for which to establish
+	// the trust relationship.
+	DirectoryId *string `type:"string" required:"true"`
+
+	// The Fully Qualified Domain Name (FQDN) of the external domain for which to
+	// create the trust relationship.
+	RemoteDomainName *string `type:"string" required:"true"`
+
+	// The direction of the trust relationship.
+	TrustDirection *string `type:"string" required:"true" enum:"TrustDirection"`
+
+	// The trust password. The must be the same password that was used when creating
+	// the trust relationship on the external domain.
+	TrustPassword *string `min:"1" type:"string" required:"true"`
+
+	// The trust relationship type.
+	TrustType *string `type:"string" enum:"TrustType"`
+}
+
+// String returns the string representation
+func (s CreateTrustInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateTrustInput) GoString() string {
+	return s.String()
+}
+
+type CreateTrustOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the trust relationship that was created.
+	TrustId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateTrustOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateTrustOutput) GoString() string {
 	return s.String()
 }
 
@@ -865,13 +1124,49 @@ func (s DeleteSnapshotOutput) GoString() string {
 	return s.String()
 }
 
+// Deletes the local side of an existing trust relationship between the Microsoft
+// AD in the AWS cloud and the external domain.
+type DeleteTrustInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Trust ID of the trust relationship to be deleted.
+	TrustId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteTrustInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteTrustInput) GoString() string {
+	return s.String()
+}
+
+type DeleteTrustOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Trust ID of the trust relationship that was deleted.
+	TrustId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DeleteTrustOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteTrustOutput) GoString() string {
+	return s.String()
+}
+
 // Contains the inputs for the DescribeDirectories operation.
 type DescribeDirectoriesInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of identifiers of the directories to obtain the information for. If
-	// this member is null, all directories that belong to the current account are
-	// returned.
+	// A list of identifiers of the directories for which to obtain the information.
+	// If this member is null, all directories that belong to the current account
+	// are returned.
 	//
 	// An empty list results in an InvalidParameterException being thrown.
 	DirectoryIds []*string `type:"list"`
@@ -927,7 +1222,7 @@ func (s DescribeDirectoriesOutput) GoString() string {
 type DescribeSnapshotsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the directory to retrieve snapshot information for.
+	// The identifier of the directory for which to retrieve snapshot information.
 	DirectoryId *string `type:"string"`
 
 	// The maximum number of objects to return.
@@ -980,6 +1275,68 @@ func (s DescribeSnapshotsOutput) GoString() string {
 	return s.String()
 }
 
+// Describes the trust relationships for a particular Microsoft AD in the AWS
+// cloud. If no input parameters are are provided, such as directory ID or trust
+// ID, this request describes all the trust relationships.
+type DescribeTrustsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Directory ID of the AWS directory that is a part of the requested trust
+	// relationship.
+	DirectoryId *string `type:"string"`
+
+	// The maximum number of objects to return.
+	Limit *int64 `type:"integer"`
+
+	// The DescribeTrustsResult.NextToken value from a previous call to DescribeTrusts.
+	// Pass null if this is the first call.
+	NextToken *string `type:"string"`
+
+	// A list of identifiers of the trust relationships for which to obtain the
+	// information. If this member is null, all trust relationships that belong
+	// to the current account are returned.
+	//
+	// An empty list results in an InvalidParameterException being thrown.
+	TrustIds []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeTrustsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTrustsInput) GoString() string {
+	return s.String()
+}
+
+type DescribeTrustsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If not null, more results are available. Pass this value for the NextToken
+	// parameter in a subsequent call to DescribeTrusts to retrieve the next set
+	// of items.
+	NextToken *string `type:"string"`
+
+	// The list of Trust objects that were retrieved.
+	//
+	// It is possible that this list contains less than the number of items specified
+	// in the Limit member of the request. This occurs if there are less than the
+	// requested number of items left to retrieve, or if the limitations of the
+	// operation have been exceeded.
+	Trusts []*Trust `type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeTrustsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTrustsOutput) GoString() string {
+	return s.String()
+}
+
 // Contains information for the ConnectDirectory operation when an AD Connector
 // directory is being created.
 type DirectoryConnectSettings struct {
@@ -995,11 +1352,10 @@ type DirectoryConnectSettings struct {
 	//  Read users and groups Create computer objects Join computers to the domain
 	CustomerUserName *string `min:"1" type:"string" required:"true"`
 
-	// A list of subnet identifiers in the VPC that the AD Connector is created
-	// in.
+	// A list of subnet identifiers in the VPC in which the AD Connector is created.
 	SubnetIds []*string `type:"list" required:"true"`
 
-	// The identifier of the VPC that the AD Connector is created in.
+	// The identifier of the VPC in which the AD Connector is created.
 	VpcId *string `type:"string" required:"true"`
 }
 
@@ -1050,10 +1406,13 @@ func (s DirectoryConnectSettingsDescription) GoString() string {
 type DirectoryDescription struct {
 	_ struct{} `type:"structure"`
 
-	// The access URL for the directory, such as http://<alias>.awsapps.com.
+	// The access URL for the directory, such as http://alias.awsapps.com. If no
+	// alias has been created for the directory, alias is the directory identifier,
+	// such as d-XXXXXXXXXX.
 	AccessUrl *string `min:"1" type:"string"`
 
-	// The alias for the directory.
+	// The alias for the directory. If no alias has been created for the directory,
+	// the alias is the directory identifier, such as d-XXXXXXXXXX.
 	Alias *string `min:"1" type:"string"`
 
 	// A DirectoryConnectSettingsDescription object that contains additional information
@@ -1067,11 +1426,11 @@ type DirectoryDescription struct {
 	// The directory identifier.
 	DirectoryId *string `type:"string"`
 
-	// The IP addresses of the DNS servers for the directory. For a Simple AD directory,
-	// these are the IP addresses of the Simple AD directory servers. For an AD
-	// Connector directory, these are the IP addresses of the DNS servers or domain
-	// controllers in the on-premises directory that the AD Connector is connected
-	// to.
+	// The IP addresses of the DNS servers for the directory. For a Simple AD or
+	// Microsoft AD directory, these are the IP addresses of the Simple AD or Microsoft
+	// AD directory servers. For an AD Connector directory, these are the IP addresses
+	// of the DNS servers or domain controllers in the on-premises directory to
+	// which the AD Connector is connected.
 	DnsIpAddrs []*string `type:"list"`
 
 	// Specifies when the directory was created.
@@ -1110,8 +1469,8 @@ type DirectoryDescription struct {
 	Type *string `type:"string" enum:"DirectoryType"`
 
 	// A DirectoryVpcSettingsDescription object that contains additional information
-	// about a Simple AD directory. This member is only present if the directory
-	// is a Simple AD directory.
+	// about a directory. This member is only present if the directory is a Simple
+	// AD or Managed AD directory.
 	VpcSettings *DirectoryVpcSettingsDescription `type:"structure"`
 }
 
@@ -1138,6 +1497,15 @@ type DirectoryLimits struct {
 	// Indicates if the cloud directory limit has been reached.
 	CloudOnlyDirectoriesLimitReached *bool `type:"boolean"`
 
+	// The current number of Microsoft AD directories in the region.
+	CloudOnlyMicrosoftADCurrentCount *int64 `type:"integer"`
+
+	// The maximum number of Microsoft AD directories allowed in the region.
+	CloudOnlyMicrosoftADLimit *int64 `type:"integer"`
+
+	// Indicates if the Microsoft AD directory limit has been reached.
+	CloudOnlyMicrosoftADLimitReached *bool `type:"boolean"`
+
 	// The current number of connected directories in the region.
 	ConnectedDirectoriesCurrentCount *int64 `type:"integer"`
 
@@ -1158,8 +1526,7 @@ func (s DirectoryLimits) GoString() string {
 	return s.String()
 }
 
-// Contains information for the CreateDirectory operation when a Simple AD directory
-// is being created.
+// Contains VPC information for the CreateDirectory or CreateMicrosoftAD operation.
 type DirectoryVpcSettings struct {
 	_ struct{} `type:"structure"`
 
@@ -1168,7 +1535,7 @@ type DirectoryVpcSettings struct {
 	// directory server and a DNS server in each of these subnets.
 	SubnetIds []*string `type:"list" required:"true"`
 
-	// The identifier of the VPC to create the Simple AD directory in.
+	// The identifier of the VPC in which to create the directory.
 	VpcId *string `type:"string" required:"true"`
 }
 
@@ -1182,14 +1549,17 @@ func (s DirectoryVpcSettings) GoString() string {
 	return s.String()
 }
 
-// Contains information about a Simple AD directory.
+// Contains information about the directory.
 type DirectoryVpcSettingsDescription struct {
 	_ struct{} `type:"structure"`
 
 	// The list of Availability Zones that the directory is in.
 	AvailabilityZones []*string `type:"list"`
 
-	// The security group identifier for the directory.
+	// The security group identifier for the directory. If the directory was created
+	// before 8/1/2014, this is the identifier of the directory members security
+	// group that was created when the directory was created. If the directory was
+	// created after this date, this value is null.
 	SecurityGroupId *string `type:"string"`
 
 	// The identifiers of the subnets for the directory servers.
@@ -1213,7 +1583,7 @@ func (s DirectoryVpcSettingsDescription) GoString() string {
 type DisableRadiusInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the directory to disable MFA for.
+	// The identifier of the directory for which to disable MFA.
 	DirectoryId *string `type:"string" required:"true"`
 }
 
@@ -1246,20 +1616,20 @@ func (s DisableRadiusOutput) GoString() string {
 type DisableSsoInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the directory to disable single-sign on for.
+	// The identifier of the directory for which to disable single-sign on.
 	DirectoryId *string `type:"string" required:"true"`
 
 	// The password of an alternate account to use to disable single-sign on. This
-	// is only used for AD Connector directories. See the UserName parameter for
-	// more information.
+	// is only used for AD Connector directories. For more information, see the
+	// UserName parameter.
 	Password *string `min:"1" type:"string"`
 
 	// The username of an alternate account to use to disable single-sign on. This
 	// is only used for AD Connector directories. This account must have privileges
-	// to remove a service principle name.
+	// to remove a service principal name.
 	//
 	// If the AD Connector service account does not have privileges to remove a
-	// service principle name, you can specify an alternate account with the UserName
+	// service principal name, you can specify an alternate account with the UserName
 	// and Password parameters. These credentials are only used to disable single
 	// sign-on and are not stored by the service. The AD Connector service account
 	// is not changed.
@@ -1295,7 +1665,7 @@ func (s DisableSsoOutput) GoString() string {
 type EnableRadiusInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the directory to enable MFA for.
+	// The identifier of the directory for which to enable MFA.
 	DirectoryId *string `type:"string" required:"true"`
 
 	// A RadiusSettings object that contains information about the RADIUS server.
@@ -1331,20 +1701,20 @@ func (s EnableRadiusOutput) GoString() string {
 type EnableSsoInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the directory to enable single-sign on for.
+	// The identifier of the directory for which to enable single-sign on.
 	DirectoryId *string `type:"string" required:"true"`
 
 	// The password of an alternate account to use to enable single-sign on. This
-	// is only used for AD Connector directories. See the UserName parameter for
-	// more information.
+	// is only used for AD Connector directories. For more information, see the
+	// UserName parameter.
 	Password *string `min:"1" type:"string"`
 
 	// The username of an alternate account to use to enable single-sign on. This
 	// is only used for AD Connector directories. This account must have privileges
-	// to add a service principle name.
+	// to add a service principal name.
 	//
 	// If the AD Connector service account does not have privileges to add a service
-	// principle name, you can specify an alternate account with the UserName and
+	// principal name, you can specify an alternate account with the UserName and
 	// Password parameters. These credentials are only used to enable single sign-on
 	// and are not stored by the service. The AD Connector service account is not
 	// changed.
@@ -1582,11 +1952,55 @@ func (s SnapshotLimits) GoString() string {
 	return s.String()
 }
 
+// Describes a trust relationship between an Microsoft AD in the AWS cloud and
+// an external domain.
+type Trust struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time that the trust relationship was created.
+	CreatedDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The Directory ID of the AWS directory involved in the trust relationship.
+	DirectoryId *string `type:"string"`
+
+	// The date and time that the trust relationship was last updated.
+	LastUpdatedDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The Fully Qualified Domain Name (FQDN) of the external domain involved in
+	// the trust relationship.
+	RemoteDomainName *string `type:"string"`
+
+	// The date and time that the TrustState was last updated.
+	StateLastUpdatedDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The trust relationship direction.
+	TrustDirection *string `type:"string" enum:"TrustDirection"`
+
+	// The unique ID of the trust relationship.
+	TrustId *string `type:"string"`
+
+	// The trust relationship state.
+	TrustState *string `type:"string" enum:"TrustState"`
+
+	// The trust relationship type.
+	TrustType *string `type:"string" enum:"TrustType"`
+}
+
+// String returns the string representation
+func (s Trust) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Trust) GoString() string {
+	return s.String()
+}
+
 // Contains the inputs for the UpdateRadius operation.
 type UpdateRadiusInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the directory to update the RADIUS server information for.
+	// The identifier of the directory for which to update the RADIUS server information.
 	DirectoryId *string `type:"string" required:"true"`
 
 	// A RadiusSettings object that contains information about the RADIUS server.
@@ -1615,6 +2029,42 @@ func (s UpdateRadiusOutput) String() string {
 
 // GoString returns the string representation
 func (s UpdateRadiusOutput) GoString() string {
+	return s.String()
+}
+
+// Initiates the verification of an existing trust relationship between a Microsoft
+// AD in the AWS cloud and an external domain.
+type VerifyTrustInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique Trust ID of the trust relationship to verify.
+	TrustId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s VerifyTrustInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VerifyTrustInput) GoString() string {
+	return s.String()
+}
+
+type VerifyTrustOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique Trust ID of the trust relationship that was verified.
+	TrustId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s VerifyTrustOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VerifyTrustOutput) GoString() string {
 	return s.String()
 }
 
@@ -1655,6 +2105,8 @@ const (
 	DirectoryTypeSimpleAd = "SimpleAD"
 	// @enum DirectoryType
 	DirectoryTypeAdconnector = "ADConnector"
+	// @enum DirectoryType
+	DirectoryTypeMicrosoftAd = "MicrosoftAD"
 )
 
 const (
@@ -1691,4 +2143,37 @@ const (
 	SnapshotTypeAuto = "Auto"
 	// @enum SnapshotType
 	SnapshotTypeManual = "Manual"
+)
+
+const (
+	// @enum TrustDirection
+	TrustDirectionOneWayOutgoing = "One-Way: Outgoing"
+	// @enum TrustDirection
+	TrustDirectionOneWayIncoming = "One-Way: Incoming"
+	// @enum TrustDirection
+	TrustDirectionTwoWay = "Two-Way"
+)
+
+const (
+	// @enum TrustState
+	TrustStateCreating = "Creating"
+	// @enum TrustState
+	TrustStateCreated = "Created"
+	// @enum TrustState
+	TrustStateVerifying = "Verifying"
+	// @enum TrustState
+	TrustStateVerifyFailed = "VerifyFailed"
+	// @enum TrustState
+	TrustStateVerified = "Verified"
+	// @enum TrustState
+	TrustStateDeleting = "Deleting"
+	// @enum TrustState
+	TrustStateDeleted = "Deleted"
+	// @enum TrustState
+	TrustStateFailed = "Failed"
+)
+
+const (
+	// @enum TrustType
+	TrustTypeForest = "Forest"
 )
