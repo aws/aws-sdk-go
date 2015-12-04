@@ -4,11 +4,11 @@
     "apiVersion":"2010-05-08",
     "endpointPrefix":"iam",
     "globalEndpoint":"iam.amazonaws.com",
+    "protocol":"query",
     "serviceAbbreviation":"IAM",
     "serviceFullName":"AWS Identity and Access Management",
     "signatureVersion":"v4",
-    "xmlNamespace":"https://iam.amazonaws.com/doc/2010-05-08/",
-    "protocol":"query"
+    "xmlNamespace":"https://iam.amazonaws.com/doc/2010-05-08/"
   },
   "operations":{
     "AddClientIDToOpenIDConnectProvider":{
@@ -19,41 +19,10 @@
       },
       "input":{"shape":"AddClientIDToOpenIDConnectProviderRequest"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{
-            "code":"InvalidInput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"NoSuchEntityException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "AddRoleToInstanceProfile":{
@@ -64,41 +33,10 @@
       },
       "input":{"shape":"AddRoleToInstanceProfileRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"EntityAlreadyExistsException",
-          "error":{
-            "code":"EntityAlreadyExists",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"EntityAlreadyExistsException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "AddUserToGroup":{
@@ -109,32 +47,9 @@
       },
       "input":{"shape":"AddUserToGroupRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "AttachGroupPolicy":{
@@ -145,41 +60,10 @@
       },
       "input":{"shape":"AttachGroupPolicyRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "error":{
-            "code":"InvalidInput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "AttachRolePolicy":{
@@ -190,41 +74,10 @@
       },
       "input":{"shape":"AttachRolePolicyRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "error":{
-            "code":"InvalidInput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "AttachUserPolicy":{
@@ -235,41 +88,10 @@
       },
       "input":{"shape":"AttachUserPolicyRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "error":{
-            "code":"InvalidInput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "ChangePassword":{
@@ -280,59 +102,12 @@
       },
       "input":{"shape":"ChangePasswordRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidUserTypeException",
-          "error":{
-            "code":"InvalidUserType",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"EntityTemporarilyUnmodifiableException",
-          "error":{
-            "code":"EntityTemporarilyUnmodifiable",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"PasswordPolicyViolationException",
-          "error":{
-            "code":"PasswordPolicyViolation",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"InvalidUserTypeException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"EntityTemporarilyUnmodifiableException"},
+        {"shape":"PasswordPolicyViolationException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "CreateAccessKey":{
@@ -347,32 +122,9 @@
         "resultWrapper":"CreateAccessKeyResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "CreateAccountAlias":{
@@ -383,32 +135,9 @@
       },
       "input":{"shape":"CreateAccountAliasRequest"},
       "errors":[
-        {
-          "shape":"EntityAlreadyExistsException",
-          "error":{
-            "code":"EntityAlreadyExists",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"EntityAlreadyExistsException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "CreateGroup":{
@@ -423,41 +152,10 @@
         "resultWrapper":"CreateGroupResult"
       },
       "errors":[
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"EntityAlreadyExistsException",
-          "error":{
-            "code":"EntityAlreadyExists",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"LimitExceededException"},
+        {"shape":"EntityAlreadyExistsException"},
+        {"shape":"NoSuchEntityException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "CreateInstanceProfile":{
@@ -472,32 +170,9 @@
         "resultWrapper":"CreateInstanceProfileResult"
       },
       "errors":[
-        {
-          "shape":"EntityAlreadyExistsException",
-          "error":{
-            "code":"EntityAlreadyExists",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"EntityAlreadyExistsException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "CreateLoginProfile":{
@@ -512,50 +187,11 @@
         "resultWrapper":"CreateLoginProfileResult"
       },
       "errors":[
-        {
-          "shape":"EntityAlreadyExistsException",
-          "error":{
-            "code":"EntityAlreadyExists",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"PasswordPolicyViolationException",
-          "error":{
-            "code":"PasswordPolicyViolation",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"EntityAlreadyExistsException"},
+        {"shape":"NoSuchEntityException"},
+        {"shape":"PasswordPolicyViolationException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "CreateOpenIDConnectProvider":{
@@ -570,41 +206,10 @@
         "resultWrapper":"CreateOpenIDConnectProviderResult"
       },
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{
-            "code":"InvalidInput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"EntityAlreadyExistsException",
-          "error":{
-            "code":"EntityAlreadyExists",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"EntityAlreadyExistsException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "CreatePolicy":{
@@ -619,50 +224,11 @@
         "resultWrapper":"CreatePolicyResult"
       },
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{
-            "code":"InvalidInput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"EntityAlreadyExistsException",
-          "error":{
-            "code":"EntityAlreadyExists",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"MalformedPolicyDocumentException",
-          "error":{
-            "code":"MalformedPolicyDocument",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"EntityAlreadyExistsException"},
+        {"shape":"MalformedPolicyDocumentException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "CreatePolicyVersion":{
@@ -677,50 +243,11 @@
         "resultWrapper":"CreatePolicyVersionResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"MalformedPolicyDocumentException",
-          "error":{
-            "code":"MalformedPolicyDocument",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "error":{
-            "code":"InvalidInput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"MalformedPolicyDocumentException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "CreateRole":{
@@ -735,41 +262,10 @@
         "resultWrapper":"CreateRoleResult"
       },
       "errors":[
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"EntityAlreadyExistsException",
-          "error":{
-            "code":"EntityAlreadyExists",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"MalformedPolicyDocumentException",
-          "error":{
-            "code":"MalformedPolicyDocument",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"LimitExceededException"},
+        {"shape":"EntityAlreadyExistsException"},
+        {"shape":"MalformedPolicyDocumentException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "CreateSAMLProvider":{
@@ -784,41 +280,10 @@
         "resultWrapper":"CreateSAMLProviderResult"
       },
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{
-            "code":"InvalidInput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"EntityAlreadyExistsException",
-          "error":{
-            "code":"EntityAlreadyExists",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"EntityAlreadyExistsException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "CreateUser":{
@@ -833,41 +298,10 @@
         "resultWrapper":"CreateUserResult"
       },
       "errors":[
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"EntityAlreadyExistsException",
-          "error":{
-            "code":"EntityAlreadyExists",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"LimitExceededException"},
+        {"shape":"EntityAlreadyExistsException"},
+        {"shape":"NoSuchEntityException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "CreateVirtualMFADevice":{
@@ -882,32 +316,9 @@
         "resultWrapper":"CreateVirtualMFADeviceResult"
       },
       "errors":[
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"EntityAlreadyExistsException",
-          "error":{
-            "code":"EntityAlreadyExists",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"LimitExceededException"},
+        {"shape":"EntityAlreadyExistsException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "DeactivateMFADevice":{
@@ -918,41 +329,10 @@
       },
       "input":{"shape":"DeactivateMFADeviceRequest"},
       "errors":[
-        {
-          "shape":"EntityTemporarilyUnmodifiableException",
-          "error":{
-            "code":"EntityTemporarilyUnmodifiable",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"EntityTemporarilyUnmodifiableException"},
+        {"shape":"NoSuchEntityException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "DeleteAccessKey":{
@@ -963,32 +343,9 @@
       },
       "input":{"shape":"DeleteAccessKeyRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "DeleteAccountAlias":{
@@ -999,32 +356,9 @@
       },
       "input":{"shape":"DeleteAccountAliasRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "DeleteAccountPasswordPolicy":{
@@ -1034,32 +368,9 @@
         "requestUri":"/"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "DeleteGroup":{
@@ -1070,41 +381,10 @@
       },
       "input":{"shape":"DeleteGroupRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DeleteConflictException",
-          "error":{
-            "code":"DeleteConflict",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"DeleteConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "DeleteGroupPolicy":{
@@ -1115,32 +395,9 @@
       },
       "input":{"shape":"DeleteGroupPolicyRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "DeleteInstanceProfile":{
@@ -1151,41 +408,10 @@
       },
       "input":{"shape":"DeleteInstanceProfileRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DeleteConflictException",
-          "error":{
-            "code":"DeleteConflict",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"DeleteConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "DeleteLoginProfile":{
@@ -1196,41 +422,10 @@
       },
       "input":{"shape":"DeleteLoginProfileRequest"},
       "errors":[
-        {
-          "shape":"EntityTemporarilyUnmodifiableException",
-          "error":{
-            "code":"EntityTemporarilyUnmodifiable",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"EntityTemporarilyUnmodifiableException"},
+        {"shape":"NoSuchEntityException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "DeleteOpenIDConnectProvider":{
@@ -1241,32 +436,9 @@
       },
       "input":{"shape":"DeleteOpenIDConnectProviderRequest"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{
-            "code":"InvalidInput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"NoSuchEntityException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "DeletePolicy":{
@@ -1277,50 +449,11 @@
       },
       "input":{"shape":"DeletePolicyRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "error":{
-            "code":"InvalidInput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DeleteConflictException",
-          "error":{
-            "code":"DeleteConflict",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"DeleteConflictException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "DeletePolicyVersion":{
@@ -1331,50 +464,11 @@
       },
       "input":{"shape":"DeletePolicyVersionRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "error":{
-            "code":"InvalidInput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DeleteConflictException",
-          "error":{
-            "code":"DeleteConflict",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"DeleteConflictException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "DeleteRole":{
@@ -1385,41 +479,10 @@
       },
       "input":{"shape":"DeleteRoleRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DeleteConflictException",
-          "error":{
-            "code":"DeleteConflict",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"DeleteConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "DeleteRolePolicy":{
@@ -1430,32 +493,9 @@
       },
       "input":{"shape":"DeleteRolePolicyRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "DeleteSAMLProvider":{
@@ -1466,41 +506,10 @@
       },
       "input":{"shape":"DeleteSAMLProviderRequest"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{
-            "code":"InvalidInput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"NoSuchEntityException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "DeleteSSHPublicKey":{
@@ -1511,15 +520,7 @@
       },
       "input":{"shape":"DeleteSSHPublicKeyRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "DeleteServerCertificate":{
@@ -1530,41 +531,10 @@
       },
       "input":{"shape":"DeleteServerCertificateRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DeleteConflictException",
-          "error":{
-            "code":"DeleteConflict",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"DeleteConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "DeleteSigningCertificate":{
@@ -1575,32 +545,9 @@
       },
       "input":{"shape":"DeleteSigningCertificateRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "DeleteUser":{
@@ -1611,41 +558,10 @@
       },
       "input":{"shape":"DeleteUserRequest"},
       "errors":[
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DeleteConflictException",
-          "error":{
-            "code":"DeleteConflict",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"LimitExceededException"},
+        {"shape":"NoSuchEntityException"},
+        {"shape":"DeleteConflictException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "DeleteUserPolicy":{
@@ -1656,32 +572,9 @@
       },
       "input":{"shape":"DeleteUserPolicyRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "DeleteVirtualMFADevice":{
@@ -1692,41 +585,10 @@
       },
       "input":{"shape":"DeleteVirtualMFADeviceRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DeleteConflictException",
-          "error":{
-            "code":"DeleteConflict",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"DeleteConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "DetachGroupPolicy":{
@@ -1737,41 +599,10 @@
       },
       "input":{"shape":"DetachGroupPolicyRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "error":{
-            "code":"InvalidInput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "DetachRolePolicy":{
@@ -1782,41 +613,10 @@
       },
       "input":{"shape":"DetachRolePolicyRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "error":{
-            "code":"InvalidInput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "DetachUserPolicy":{
@@ -1827,41 +627,10 @@
       },
       "input":{"shape":"DetachUserPolicyRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "error":{
-            "code":"InvalidInput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "EnableMFADevice":{
@@ -1872,59 +641,12 @@
       },
       "input":{"shape":"EnableMFADeviceRequest"},
       "errors":[
-        {
-          "shape":"EntityAlreadyExistsException",
-          "error":{
-            "code":"EntityAlreadyExists",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"EntityTemporarilyUnmodifiableException",
-          "error":{
-            "code":"EntityTemporarilyUnmodifiable",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidAuthenticationCodeException",
-          "error":{
-            "code":"InvalidAuthenticationCode",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"EntityAlreadyExistsException"},
+        {"shape":"EntityTemporarilyUnmodifiableException"},
+        {"shape":"InvalidAuthenticationCodeException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"NoSuchEntityException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "GenerateCredentialReport":{
@@ -1938,23 +660,8 @@
         "resultWrapper":"GenerateCredentialReportResult"
       },
       "errors":[
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "GetAccessKeyLastUsed":{
@@ -1969,15 +676,7 @@
         "resultWrapper":"GetAccessKeyLastUsedResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "GetAccountAuthorizationDetails":{
@@ -1992,14 +691,7 @@
         "resultWrapper":"GetAccountAuthorizationDetailsResult"
       },
       "errors":[
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"ServiceFailureException"}
       ]
     },
     "GetAccountPasswordPolicy":{
@@ -2013,23 +705,8 @@
         "resultWrapper":"GetAccountPasswordPolicyResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "GetAccountSummary":{
@@ -2043,14 +720,7 @@
         "resultWrapper":"GetAccountSummaryResult"
       },
       "errors":[
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"ServiceFailureException"}
       ]
     },
     "GetContextKeysForCustomPolicy":{
@@ -2065,15 +735,7 @@
         "resultWrapper":"GetContextKeysForCustomPolicyResult"
       },
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{
-            "code":"InvalidInput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidInputException"}
       ]
     },
     "GetContextKeysForPrincipalPolicy":{
@@ -2088,24 +750,8 @@
         "resultWrapper":"GetContextKeysForPrincipalPolicyResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "error":{
-            "code":"InvalidInput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"InvalidInputException"}
       ]
     },
     "GetCredentialReport":{
@@ -2119,41 +765,10 @@
         "resultWrapper":"GetCredentialReportResult"
       },
       "errors":[
-        {
-          "shape":"CredentialReportNotPresentException",
-          "error":{
-            "code":"ReportNotPresent",
-            "httpStatusCode":410,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"CredentialReportExpiredException",
-          "error":{
-            "code":"ReportExpired",
-            "httpStatusCode":410,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"CredentialReportNotReadyException",
-          "error":{
-            "code":"ReportInProgress",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"CredentialReportNotPresentException"},
+        {"shape":"CredentialReportExpiredException"},
+        {"shape":"CredentialReportNotReadyException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "GetGroup":{
@@ -2168,23 +783,8 @@
         "resultWrapper":"GetGroupResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "GetGroupPolicy":{
@@ -2199,23 +799,8 @@
         "resultWrapper":"GetGroupPolicyResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "GetInstanceProfile":{
@@ -2230,23 +815,8 @@
         "resultWrapper":"GetInstanceProfileResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "GetLoginProfile":{
@@ -2261,23 +831,8 @@
         "resultWrapper":"GetLoginProfileResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "GetOpenIDConnectProvider":{
@@ -2292,32 +847,9 @@
         "resultWrapper":"GetOpenIDConnectProviderResult"
       },
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{
-            "code":"InvalidInput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"NoSuchEntityException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "GetPolicy":{
@@ -2332,32 +864,9 @@
         "resultWrapper":"GetPolicyResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "error":{
-            "code":"InvalidInput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "GetPolicyVersion":{
@@ -2372,32 +881,9 @@
         "resultWrapper":"GetPolicyVersionResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "error":{
-            "code":"InvalidInput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "GetRole":{
@@ -2412,23 +898,8 @@
         "resultWrapper":"GetRoleResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "GetRolePolicy":{
@@ -2443,23 +914,8 @@
         "resultWrapper":"GetRolePolicyResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "GetSAMLProvider":{
@@ -2474,32 +930,9 @@
         "resultWrapper":"GetSAMLProviderResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "error":{
-            "code":"InvalidInput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "GetSSHPublicKey":{
@@ -2514,24 +947,8 @@
         "resultWrapper":"GetSSHPublicKeyResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"UnrecognizedPublicKeyEncodingException",
-          "error":{
-            "code":"UnrecognizedPublicKeyEncoding",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"UnrecognizedPublicKeyEncodingException"}
       ]
     },
     "GetServerCertificate":{
@@ -2546,23 +963,8 @@
         "resultWrapper":"GetServerCertificateResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "GetUser":{
@@ -2577,23 +979,8 @@
         "resultWrapper":"GetUserResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "GetUserPolicy":{
@@ -2608,23 +995,8 @@
         "resultWrapper":"GetUserPolicyResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "ListAccessKeys":{
@@ -2639,23 +1011,8 @@
         "resultWrapper":"ListAccessKeysResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "ListAccountAliases":{
@@ -2670,14 +1027,7 @@
         "resultWrapper":"ListAccountAliasesResult"
       },
       "errors":[
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"ServiceFailureException"}
       ]
     },
     "ListAttachedGroupPolicies":{
@@ -2692,32 +1042,9 @@
         "resultWrapper":"ListAttachedGroupPoliciesResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "error":{
-            "code":"InvalidInput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "ListAttachedRolePolicies":{
@@ -2732,32 +1059,9 @@
         "resultWrapper":"ListAttachedRolePoliciesResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "error":{
-            "code":"InvalidInput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "ListAttachedUserPolicies":{
@@ -2772,32 +1076,9 @@
         "resultWrapper":"ListAttachedUserPoliciesResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "error":{
-            "code":"InvalidInput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "ListEntitiesForPolicy":{
@@ -2812,32 +1093,9 @@
         "resultWrapper":"ListEntitiesForPolicyResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "error":{
-            "code":"InvalidInput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "ListGroupPolicies":{
@@ -2852,23 +1110,8 @@
         "resultWrapper":"ListGroupPoliciesResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "ListGroups":{
@@ -2883,14 +1126,7 @@
         "resultWrapper":"ListGroupsResult"
       },
       "errors":[
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"ServiceFailureException"}
       ]
     },
     "ListGroupsForUser":{
@@ -2905,23 +1141,8 @@
         "resultWrapper":"ListGroupsForUserResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "ListInstanceProfiles":{
@@ -2936,14 +1157,7 @@
         "resultWrapper":"ListInstanceProfilesResult"
       },
       "errors":[
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"ServiceFailureException"}
       ]
     },
     "ListInstanceProfilesForRole":{
@@ -2958,23 +1172,8 @@
         "resultWrapper":"ListInstanceProfilesForRoleResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "ListMFADevices":{
@@ -2989,23 +1188,8 @@
         "resultWrapper":"ListMFADevicesResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "ListOpenIDConnectProviders":{
@@ -3020,14 +1204,7 @@
         "resultWrapper":"ListOpenIDConnectProvidersResult"
       },
       "errors":[
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"ServiceFailureException"}
       ]
     },
     "ListPolicies":{
@@ -3042,14 +1219,7 @@
         "resultWrapper":"ListPoliciesResult"
       },
       "errors":[
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"ServiceFailureException"}
       ]
     },
     "ListPolicyVersions":{
@@ -3064,32 +1234,9 @@
         "resultWrapper":"ListPolicyVersionsResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "error":{
-            "code":"InvalidInput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "ListRolePolicies":{
@@ -3104,23 +1251,8 @@
         "resultWrapper":"ListRolePoliciesResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "ListRoles":{
@@ -3135,14 +1267,7 @@
         "resultWrapper":"ListRolesResult"
       },
       "errors":[
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"ServiceFailureException"}
       ]
     },
     "ListSAMLProviders":{
@@ -3157,14 +1282,7 @@
         "resultWrapper":"ListSAMLProvidersResult"
       },
       "errors":[
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"ServiceFailureException"}
       ]
     },
     "ListSSHPublicKeys":{
@@ -3179,15 +1297,7 @@
         "resultWrapper":"ListSSHPublicKeysResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "ListServerCertificates":{
@@ -3202,14 +1312,7 @@
         "resultWrapper":"ListServerCertificatesResult"
       },
       "errors":[
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"ServiceFailureException"}
       ]
     },
     "ListSigningCertificates":{
@@ -3224,23 +1327,8 @@
         "resultWrapper":"ListSigningCertificatesResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "ListUserPolicies":{
@@ -3255,23 +1343,8 @@
         "resultWrapper":"ListUserPoliciesResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "ListUsers":{
@@ -3286,14 +1359,7 @@
         "resultWrapper":"ListUsersResult"
       },
       "errors":[
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"ServiceFailureException"}
       ]
     },
     "ListVirtualMFADevices":{
@@ -3316,41 +1382,10 @@
       },
       "input":{"shape":"PutGroupPolicyRequest"},
       "errors":[
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"MalformedPolicyDocumentException",
-          "error":{
-            "code":"MalformedPolicyDocument",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"LimitExceededException"},
+        {"shape":"MalformedPolicyDocumentException"},
+        {"shape":"NoSuchEntityException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "PutRolePolicy":{
@@ -3361,41 +1396,10 @@
       },
       "input":{"shape":"PutRolePolicyRequest"},
       "errors":[
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"MalformedPolicyDocumentException",
-          "error":{
-            "code":"MalformedPolicyDocument",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"LimitExceededException"},
+        {"shape":"MalformedPolicyDocumentException"},
+        {"shape":"NoSuchEntityException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "PutUserPolicy":{
@@ -3406,41 +1410,10 @@
       },
       "input":{"shape":"PutUserPolicyRequest"},
       "errors":[
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"MalformedPolicyDocumentException",
-          "error":{
-            "code":"MalformedPolicyDocument",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"LimitExceededException"},
+        {"shape":"MalformedPolicyDocumentException"},
+        {"shape":"NoSuchEntityException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "RemoveClientIDFromOpenIDConnectProvider":{
@@ -3451,32 +1424,9 @@
       },
       "input":{"shape":"RemoveClientIDFromOpenIDConnectProviderRequest"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{
-            "code":"InvalidInput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"NoSuchEntityException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "RemoveRoleFromInstanceProfile":{
@@ -3487,32 +1437,9 @@
       },
       "input":{"shape":"RemoveRoleFromInstanceProfileRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "RemoveUserFromGroup":{
@@ -3523,32 +1450,9 @@
       },
       "input":{"shape":"RemoveUserFromGroupRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "ResyncMFADevice":{
@@ -3559,41 +1463,10 @@
       },
       "input":{"shape":"ResyncMFADeviceRequest"},
       "errors":[
-        {
-          "shape":"InvalidAuthenticationCodeException",
-          "error":{
-            "code":"InvalidAuthenticationCode",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"InvalidAuthenticationCodeException"},
+        {"shape":"NoSuchEntityException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "SetDefaultPolicyVersion":{
@@ -3604,41 +1477,10 @@
       },
       "input":{"shape":"SetDefaultPolicyVersionRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "error":{
-            "code":"InvalidInput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "SimulateCustomPolicy":{
@@ -3653,23 +1495,8 @@
         "resultWrapper":"SimulateCustomPolicyResult"
       },
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{
-            "code":"InvalidInput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"PolicyEvaluationException",
-          "error":{
-            "code":"PolicyEvaluation",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"PolicyEvaluationException"}
       ]
     },
     "SimulatePrincipalPolicy":{
@@ -3684,32 +1511,9 @@
         "resultWrapper":"SimulatePrincipalPolicyResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "error":{
-            "code":"InvalidInput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"PolicyEvaluationException",
-          "error":{
-            "code":"PolicyEvaluation",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"PolicyEvaluationException"}
       ]
     },
     "UpdateAccessKey":{
@@ -3720,32 +1524,9 @@
       },
       "input":{"shape":"UpdateAccessKeyRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "UpdateAccountPasswordPolicy":{
@@ -3756,41 +1537,10 @@
       },
       "input":{"shape":"UpdateAccountPasswordPolicyRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"MalformedPolicyDocumentException",
-          "error":{
-            "code":"MalformedPolicyDocument",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"MalformedPolicyDocumentException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "UpdateAssumeRolePolicy":{
@@ -3801,41 +1551,10 @@
       },
       "input":{"shape":"UpdateAssumeRolePolicyRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"MalformedPolicyDocumentException",
-          "error":{
-            "code":"MalformedPolicyDocument",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"MalformedPolicyDocumentException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "UpdateGroup":{
@@ -3846,41 +1565,10 @@
       },
       "input":{"shape":"UpdateGroupRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"EntityAlreadyExistsException",
-          "error":{
-            "code":"EntityAlreadyExists",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"EntityAlreadyExistsException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "UpdateLoginProfile":{
@@ -3891,50 +1579,11 @@
       },
       "input":{"shape":"UpdateLoginProfileRequest"},
       "errors":[
-        {
-          "shape":"EntityTemporarilyUnmodifiableException",
-          "error":{
-            "code":"EntityTemporarilyUnmodifiable",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"PasswordPolicyViolationException",
-          "error":{
-            "code":"PasswordPolicyViolation",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"EntityTemporarilyUnmodifiableException"},
+        {"shape":"NoSuchEntityException"},
+        {"shape":"PasswordPolicyViolationException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "UpdateOpenIDConnectProviderThumbprint":{
@@ -3945,32 +1594,9 @@
       },
       "input":{"shape":"UpdateOpenIDConnectProviderThumbprintRequest"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{
-            "code":"InvalidInput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"NoSuchEntityException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "UpdateSAMLProvider":{
@@ -3985,41 +1611,10 @@
         "resultWrapper":"UpdateSAMLProviderResult"
       },
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "error":{
-            "code":"InvalidInput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "UpdateSSHPublicKey":{
@@ -4030,15 +1625,7 @@
       },
       "input":{"shape":"UpdateSSHPublicKeyRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "UpdateServerCertificate":{
@@ -4049,41 +1636,10 @@
       },
       "input":{"shape":"UpdateServerCertificateRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"EntityAlreadyExistsException",
-          "error":{
-            "code":"EntityAlreadyExists",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"EntityAlreadyExistsException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "UpdateSigningCertificate":{
@@ -4094,32 +1650,9 @@
       },
       "input":{"shape":"UpdateSigningCertificateRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "UpdateUser":{
@@ -4130,50 +1663,11 @@
       },
       "input":{"shape":"UpdateUserRequest"},
       "errors":[
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"EntityAlreadyExistsException",
-          "error":{
-            "code":"EntityAlreadyExists",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"EntityTemporarilyUnmodifiableException",
-          "error":{
-            "code":"EntityTemporarilyUnmodifiable",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"NoSuchEntityException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"EntityAlreadyExistsException"},
+        {"shape":"EntityTemporarilyUnmodifiableException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "UploadSSHPublicKey":{
@@ -4188,51 +1682,11 @@
         "resultWrapper":"UploadSSHPublicKeyResult"
       },
       "errors":[
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidPublicKeyException",
-          "error":{
-            "code":"InvalidPublicKey",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DuplicateSSHPublicKeyException",
-          "error":{
-            "code":"DuplicateSSHPublicKey",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"UnrecognizedPublicKeyEncodingException",
-          "error":{
-            "code":"UnrecognizedPublicKeyEncoding",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"LimitExceededException"},
+        {"shape":"NoSuchEntityException"},
+        {"shape":"InvalidPublicKeyException"},
+        {"shape":"DuplicateSSHPublicKeyException"},
+        {"shape":"UnrecognizedPublicKeyEncodingException"}
       ]
     },
     "UploadServerCertificate":{
@@ -4247,50 +1701,11 @@
         "resultWrapper":"UploadServerCertificateResult"
       },
       "errors":[
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"EntityAlreadyExistsException",
-          "error":{
-            "code":"EntityAlreadyExists",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"MalformedCertificateException",
-          "error":{
-            "code":"MalformedCertificate",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"KeyPairMismatchException",
-          "error":{
-            "code":"KeyPairMismatch",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"LimitExceededException"},
+        {"shape":"EntityAlreadyExistsException"},
+        {"shape":"MalformedCertificateException"},
+        {"shape":"KeyPairMismatchException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "UploadSigningCertificate":{
@@ -4305,68 +1720,13 @@
         "resultWrapper":"UploadSigningCertificateResult"
       },
       "errors":[
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"EntityAlreadyExistsException",
-          "error":{
-            "code":"EntityAlreadyExists",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"MalformedCertificateException",
-          "error":{
-            "code":"MalformedCertificate",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidCertificateException",
-          "error":{
-            "code":"InvalidCertificate",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DuplicateCertificateException",
-          "error":{
-            "code":"DuplicateCertificate",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "error":{
-            "code":"NoSuchEntity",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ServiceFailureException",
-          "error":{
-            "code":"ServiceFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"LimitExceededException"},
+        {"shape":"EntityAlreadyExistsException"},
+        {"shape":"MalformedCertificateException"},
+        {"shape":"InvalidCertificateException"},
+        {"shape":"DuplicateCertificateException"},
+        {"shape":"NoSuchEntityException"},
+        {"shape":"ServiceFailureException"}
       ]
     }
   },
@@ -4415,8 +1775,8 @@
     },
     "ActionNameType":{
       "type":"string",
-      "min":3,
-      "max":128
+      "max":128,
+      "min":3
     },
     "AddClientIDToOpenIDConnectProviderRequest":{
       "type":"structure",
@@ -4521,8 +1881,8 @@
     },
     "ContextKeyNameType":{
       "type":"string",
-      "min":5,
-      "max":256
+      "max":256,
+      "min":5
     },
     "ContextKeyNamesResultListType":{
       "type":"list",
@@ -5059,8 +2419,8 @@
     },
     "EvalDecisionSourceType":{
       "type":"string",
-      "min":3,
-      "max":256
+      "max":256,
+      "min":3
     },
     "EvaluationResult":{
       "type":"structure",
@@ -6040,8 +3400,8 @@
     },
     "OpenIDConnectProviderUrlType":{
       "type":"string",
-      "min":1,
-      "max":255
+      "max":255,
+      "min":1
     },
     "PasswordPolicy":{
       "type":"structure",
@@ -6258,8 +3618,8 @@
     },
     "ResourceHandlingOptionType":{
       "type":"string",
-      "min":1,
-      "max":64
+      "max":64,
+      "min":1
     },
     "ResourceNameListType":{
       "type":"list",
@@ -6267,8 +3627,8 @@
     },
     "ResourceNameType":{
       "type":"string",
-      "min":1,
-      "max":2048
+      "max":2048,
+      "min":1
     },
     "ResourceSpecificResult":{
       "type":"structure",
@@ -6337,8 +3697,8 @@
     },
     "SAMLMetadataDocumentType":{
       "type":"string",
-      "min":1000,
-      "max":10000000
+      "max":10000000,
+      "min":1000
     },
     "SAMLProviderListEntry":{
       "type":"structure",
@@ -6354,8 +3714,8 @@
     },
     "SAMLProviderNameType":{
       "type":"string",
-      "min":1,
       "max":128,
+      "min":1,
       "pattern":"[\\w._-]+"
     },
     "SSHPublicKey":{
@@ -6761,8 +4121,8 @@
     },
     "accessKeyIdType":{
       "type":"string",
-      "min":16,
       "max":32,
+      "min":16,
       "pattern":"[\\w]+"
     },
     "accessKeyMetadataListType":{
@@ -6779,14 +4139,14 @@
     },
     "accountAliasType":{
       "type":"string",
-      "min":3,
       "max":63,
+      "min":3,
       "pattern":"^[a-z0-9](([a-z0-9]|-(?!-))*[a-z0-9])?$"
     },
     "arnType":{
       "type":"string",
-      "min":20,
-      "max":2048
+      "max":2048,
+      "min":20
     },
     "assignmentStatusType":{
       "type":"string",
@@ -6803,8 +4163,8 @@
     "attachmentCountType":{"type":"integer"},
     "authenticationCodeType":{
       "type":"string",
-      "min":6,
       "max":6,
+      "min":6,
       "pattern":"[\\d]+"
     },
     "booleanObjectType":{
@@ -6814,20 +4174,20 @@
     "booleanType":{"type":"boolean"},
     "certificateBodyType":{
       "type":"string",
-      "min":1,
       "max":16384,
+      "min":1,
       "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+"
     },
     "certificateChainType":{
       "type":"string",
-      "min":1,
       "max":2097152,
+      "min":1,
       "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+"
     },
     "certificateIdType":{
       "type":"string",
-      "min":24,
       "max":128,
+      "min":24,
       "pattern":"[\\w]+"
     },
     "certificateListType":{
@@ -6840,8 +4200,8 @@
     },
     "clientIDType":{
       "type":"string",
-      "min":1,
-      "max":255
+      "max":255,
+      "min":1
     },
     "credentialReportExpiredExceptionMessage":{"type":"string"},
     "credentialReportNotPresentExceptionMessage":{"type":"string"},
@@ -6865,8 +4225,8 @@
     "entityTemporarilyUnmodifiableMessage":{"type":"string"},
     "existingUserNameType":{
       "type":"string",
-      "min":1,
       "max":128,
+      "min":1,
       "pattern":"[\\w+=,.@-]+"
     },
     "groupDetailListType":{
@@ -6883,14 +4243,14 @@
     },
     "groupNameType":{
       "type":"string",
-      "min":1,
       "max":128,
+      "min":1,
       "pattern":"[\\w+=,.@-]+"
     },
     "idType":{
       "type":"string",
-      "min":16,
       "max":32,
+      "min":16,
       "pattern":"[\\w]+"
     },
     "instanceProfileListType":{
@@ -6899,8 +4259,8 @@
     },
     "instanceProfileNameType":{
       "type":"string",
-      "min":1,
       "max":128,
+      "min":1,
       "pattern":"[\\w+=,.@-]+"
     },
     "invalidAuthenticationCodeMessage":{"type":"string"},
@@ -6914,20 +4274,20 @@
     "malformedPolicyDocumentMessage":{"type":"string"},
     "markerType":{
       "type":"string",
-      "min":1,
       "max":320,
+      "min":1,
       "pattern":"[\\u0020-\\u00FF]+"
     },
     "maxItemsType":{
       "type":"integer",
-      "min":1,
-      "max":1000
+      "max":1000,
+      "min":1
     },
     "maxPasswordAgeType":{
       "type":"integer",
-      "min":1,
+      "box":true,
       "max":1095,
-      "box":true
+      "min":1
     },
     "mfaDeviceListType":{
       "type":"list",
@@ -6935,34 +4295,34 @@
     },
     "minimumPasswordLengthType":{
       "type":"integer",
-      "min":6,
-      "max":128
+      "max":128,
+      "min":6
     },
     "noSuchEntityMessage":{"type":"string"},
     "passwordPolicyViolationMessage":{"type":"string"},
     "passwordReusePreventionType":{
       "type":"integer",
-      "min":1,
+      "box":true,
       "max":24,
-      "box":true
+      "min":1
     },
     "passwordType":{
       "type":"string",
-      "min":1,
       "max":128,
+      "min":1,
       "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+",
       "sensitive":true
     },
     "pathPrefixType":{
       "type":"string",
-      "min":1,
       "max":512,
+      "min":1,
       "pattern":"\\u002F[\\u0021-\\u007F]*"
     },
     "pathType":{
       "type":"string",
-      "min":1,
       "max":512,
+      "min":1,
       "pattern":"(\\u002F)|(\\u002F[\\u0021-\\u007F]+\\u002F)"
     },
     "policyDescriptionType":{
@@ -6975,8 +4335,8 @@
     },
     "policyDocumentType":{
       "type":"string",
-      "min":1,
       "max":131072,
+      "min":1,
       "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+"
     },
     "policyDocumentVersionListType":{
@@ -6994,8 +4354,8 @@
     },
     "policyNameType":{
       "type":"string",
-      "min":1,
       "max":128,
+      "min":1,
       "pattern":"[\\w+=,.@-]+"
     },
     "policyPathType":{
@@ -7016,27 +4376,27 @@
     },
     "privateKeyType":{
       "type":"string",
-      "min":1,
       "max":16384,
+      "min":1,
       "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+",
       "sensitive":true
     },
     "publicKeyFingerprintType":{
       "type":"string",
-      "min":48,
       "max":48,
+      "min":48,
       "pattern":"[:\\w]+"
     },
     "publicKeyIdType":{
       "type":"string",
-      "min":20,
       "max":128,
+      "min":20,
       "pattern":"[\\w]+"
     },
     "publicKeyMaterialType":{
       "type":"string",
-      "min":1,
       "max":16384,
+      "min":1,
       "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+"
     },
     "roleDetailListType":{
@@ -7049,14 +4409,14 @@
     },
     "roleNameType":{
       "type":"string",
-      "min":1,
       "max":64,
+      "min":1,
       "pattern":"[\\w+=,.@-]+"
     },
     "serialNumberType":{
       "type":"string",
-      "min":9,
       "max":256,
+      "min":9,
       "pattern":"[\\w+=/:,.@-]+"
     },
     "serverCertificateMetadataListType":{
@@ -7065,8 +4425,8 @@
     },
     "serverCertificateNameType":{
       "type":"string",
-      "min":1,
       "max":128,
+      "min":1,
       "pattern":"[\\w+=,.@-]+"
     },
     "serviceFailureExceptionMessage":{"type":"string"},
@@ -7120,8 +4480,8 @@
     },
     "thumbprintType":{
       "type":"string",
-      "min":40,
-      "max":40
+      "max":40,
+      "min":40
     },
     "unrecognizedPublicKeyEncodingMessage":{"type":"string"},
     "userDetailListType":{
@@ -7134,8 +4494,8 @@
     },
     "userNameType":{
       "type":"string",
-      "min":1,
       "max":64,
+      "min":1,
       "pattern":"[\\w+=,.@-]+"
     },
     "virtualMFADeviceListType":{
