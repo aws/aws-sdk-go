@@ -234,10 +234,12 @@ func ExampleRDS_CreateDBCluster() {
 		DBSubnetGroupName:           aws.String("String"),
 		DatabaseName:                aws.String("String"),
 		EngineVersion:               aws.String("String"),
+		KmsKeyId:                    aws.String("String"),
 		OptionGroupName:             aws.String("String"),
 		Port:                        aws.Int64(1),
 		PreferredBackupWindow:      aws.String("String"),
 		PreferredMaintenanceWindow: aws.String("String"),
+		StorageEncrypted:           aws.Bool(true),
 		Tags: []*rds.Tag{
 			{ // Required
 				Key:   aws.String("String"),
@@ -2155,6 +2157,7 @@ func ExampleRDS_RestoreDBClusterFromSnapshot() {
 		DBSubnetGroupName: aws.String("String"),
 		DatabaseName:      aws.String("String"),
 		EngineVersion:     aws.String("String"),
+		KmsKeyId:          aws.String("String"),
 		OptionGroupName:   aws.String("String"),
 		Port:              aws.Int64(1),
 		Tags: []*rds.Tag{
@@ -2189,6 +2192,7 @@ func ExampleRDS_RestoreDBClusterToPointInTime() {
 		DBClusterIdentifier:       aws.String("String"), // Required
 		SourceDBClusterIdentifier: aws.String("String"), // Required
 		DBSubnetGroupName:         aws.String("String"),
+		KmsKeyId:                  aws.String("String"),
 		OptionGroupName:           aws.String("String"),
 		Port:                      aws.Int64(1),
 		RestoreToTime:             aws.Time(time.Now()),
