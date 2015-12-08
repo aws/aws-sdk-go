@@ -39,8 +39,12 @@ func init() {
 	}
 }
 
-func drainBody(b io.ReadCloser) (out *bytes.Buffer, err error) {
+func drainBody(b io.ReadCloser, length int64) (out *bytes.Buffer, err error) {
 	var buf bytes.Buffer
+	if length != -1 {
+		buf = *bytes.NewBuffer(make([]byte, length))
+	}
+
 	if _, err = buf.ReadFrom(b); err != nil {
 		return nil, err
 	}
@@ -75,7 +79,7 @@ func validateCRC32(r *request.Request) {
 		return // Could not determine CRC value, skip
 	}
 
-	buf, err := drainBody(r.HTTPResponse.Body)
+	buf, err := drainBody(r.HTTPResponse.Body, r.HTTPResponse.ContentLength)
 	if err != nil { // failed to read the response body, skip
 		return
 	}
