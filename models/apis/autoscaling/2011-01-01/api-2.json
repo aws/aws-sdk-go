@@ -3,10 +3,10 @@
   "metadata":{
     "apiVersion":"2011-01-01",
     "endpointPrefix":"autoscaling",
+    "protocol":"query",
     "serviceFullName":"Auto Scaling",
     "signatureVersion":"v4",
-    "xmlNamespace":"http://autoscaling.amazonaws.com/doc/2011-01-01/",
-    "protocol":"query"
+    "xmlNamespace":"http://autoscaling.amazonaws.com/doc/2011-01-01/"
   },
   "operations":{
     "AttachInstances":{
@@ -17,15 +17,7 @@
       },
       "input":{"shape":"AttachInstancesQuery"},
       "errors":[
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "AttachLoadBalancers":{
@@ -40,15 +32,7 @@
         "resultWrapper":"AttachLoadBalancersResult"
       },
       "errors":[
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "CompleteLifecycleAction":{
@@ -63,15 +47,7 @@
         "resultWrapper":"CompleteLifecycleActionResult"
       },
       "errors":[
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "CreateAutoScalingGroup":{
@@ -82,33 +58,9 @@
       },
       "input":{"shape":"CreateAutoScalingGroupType"},
       "errors":[
-        {
-          "shape":"AlreadyExistsFault",
-          "error":{
-            "code":"AlreadyExists",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededFault",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"AlreadyExistsFault"},
+        {"shape":"LimitExceededFault"},
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "CreateLaunchConfiguration":{
@@ -119,33 +71,9 @@
       },
       "input":{"shape":"CreateLaunchConfigurationType"},
       "errors":[
-        {
-          "shape":"AlreadyExistsFault",
-          "error":{
-            "code":"AlreadyExists",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededFault",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"AlreadyExistsFault"},
+        {"shape":"LimitExceededFault"},
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "CreateOrUpdateTags":{
@@ -156,33 +84,9 @@
       },
       "input":{"shape":"CreateOrUpdateTagsType"},
       "errors":[
-        {
-          "shape":"LimitExceededFault",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"AlreadyExistsFault",
-          "error":{
-            "code":"AlreadyExists",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"LimitExceededFault"},
+        {"shape":"AlreadyExistsFault"},
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "DeleteAutoScalingGroup":{
@@ -193,33 +97,9 @@
       },
       "input":{"shape":"DeleteAutoScalingGroupType"},
       "errors":[
-        {
-          "shape":"ScalingActivityInProgressFault",
-          "error":{
-            "code":"ScalingActivityInProgress",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceInUseFault",
-          "error":{
-            "code":"ResourceInUse",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ScalingActivityInProgressFault"},
+        {"shape":"ResourceInUseFault"},
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "DeleteLaunchConfiguration":{
@@ -230,24 +110,8 @@
       },
       "input":{"shape":"LaunchConfigurationNameType"},
       "errors":[
-        {
-          "shape":"ResourceInUseFault",
-          "error":{
-            "code":"ResourceInUse",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ResourceInUseFault"},
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "DeleteLifecycleHook":{
@@ -262,15 +126,7 @@
         "resultWrapper":"DeleteLifecycleHookResult"
       },
       "errors":[
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "DeleteNotificationConfiguration":{
@@ -281,15 +137,7 @@
       },
       "input":{"shape":"DeleteNotificationConfigurationType"},
       "errors":[
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "DeletePolicy":{
@@ -300,15 +148,7 @@
       },
       "input":{"shape":"DeletePolicyType"},
       "errors":[
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "DeleteScheduledAction":{
@@ -319,15 +159,7 @@
       },
       "input":{"shape":"DeleteScheduledActionType"},
       "errors":[
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "DeleteTags":{
@@ -338,15 +170,7 @@
       },
       "input":{"shape":"DeleteTagsType"},
       "errors":[
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "DescribeAccountLimits":{
@@ -360,15 +184,7 @@
         "resultWrapper":"DescribeAccountLimitsResult"
       },
       "errors":[
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "DescribeAdjustmentTypes":{
@@ -382,15 +198,7 @@
         "resultWrapper":"DescribeAdjustmentTypesResult"
       },
       "errors":[
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "DescribeAutoScalingGroups":{
@@ -405,24 +213,8 @@
         "resultWrapper":"DescribeAutoScalingGroupsResult"
       },
       "errors":[
-        {
-          "shape":"InvalidNextToken",
-          "error":{
-            "code":"InvalidNextToken",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidNextToken"},
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "DescribeAutoScalingInstances":{
@@ -437,24 +229,8 @@
         "resultWrapper":"DescribeAutoScalingInstancesResult"
       },
       "errors":[
-        {
-          "shape":"InvalidNextToken",
-          "error":{
-            "code":"InvalidNextToken",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidNextToken"},
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "DescribeAutoScalingNotificationTypes":{
@@ -468,15 +244,7 @@
         "resultWrapper":"DescribeAutoScalingNotificationTypesResult"
       },
       "errors":[
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "DescribeLaunchConfigurations":{
@@ -491,24 +259,8 @@
         "resultWrapper":"DescribeLaunchConfigurationsResult"
       },
       "errors":[
-        {
-          "shape":"InvalidNextToken",
-          "error":{
-            "code":"InvalidNextToken",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidNextToken"},
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "DescribeLifecycleHookTypes":{
@@ -522,15 +274,7 @@
         "resultWrapper":"DescribeLifecycleHookTypesResult"
       },
       "errors":[
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "DescribeLifecycleHooks":{
@@ -545,15 +289,7 @@
         "resultWrapper":"DescribeLifecycleHooksResult"
       },
       "errors":[
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "DescribeLoadBalancers":{
@@ -568,15 +304,7 @@
         "resultWrapper":"DescribeLoadBalancersResult"
       },
       "errors":[
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "DescribeMetricCollectionTypes":{
@@ -590,15 +318,7 @@
         "resultWrapper":"DescribeMetricCollectionTypesResult"
       },
       "errors":[
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "DescribeNotificationConfigurations":{
@@ -613,24 +333,8 @@
         "resultWrapper":"DescribeNotificationConfigurationsResult"
       },
       "errors":[
-        {
-          "shape":"InvalidNextToken",
-          "error":{
-            "code":"InvalidNextToken",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidNextToken"},
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "DescribePolicies":{
@@ -645,24 +349,8 @@
         "resultWrapper":"DescribePoliciesResult"
       },
       "errors":[
-        {
-          "shape":"InvalidNextToken",
-          "error":{
-            "code":"InvalidNextToken",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidNextToken"},
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "DescribeScalingActivities":{
@@ -677,24 +365,8 @@
         "resultWrapper":"DescribeScalingActivitiesResult"
       },
       "errors":[
-        {
-          "shape":"InvalidNextToken",
-          "error":{
-            "code":"InvalidNextToken",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidNextToken"},
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "DescribeScalingProcessTypes":{
@@ -708,15 +380,7 @@
         "resultWrapper":"DescribeScalingProcessTypesResult"
       },
       "errors":[
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "DescribeScheduledActions":{
@@ -731,24 +395,8 @@
         "resultWrapper":"DescribeScheduledActionsResult"
       },
       "errors":[
-        {
-          "shape":"InvalidNextToken",
-          "error":{
-            "code":"InvalidNextToken",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidNextToken"},
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "DescribeTags":{
@@ -763,24 +411,8 @@
         "resultWrapper":"DescribeTagsResult"
       },
       "errors":[
-        {
-          "shape":"InvalidNextToken",
-          "error":{
-            "code":"InvalidNextToken",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidNextToken"},
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "DescribeTerminationPolicyTypes":{
@@ -794,15 +426,7 @@
         "resultWrapper":"DescribeTerminationPolicyTypesResult"
       },
       "errors":[
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "DetachInstances":{
@@ -817,15 +441,7 @@
         "resultWrapper":"DetachInstancesResult"
       },
       "errors":[
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "DetachLoadBalancers":{
@@ -840,15 +456,7 @@
         "resultWrapper":"DetachLoadBalancersResult"
       },
       "errors":[
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "DisableMetricsCollection":{
@@ -859,15 +467,7 @@
       },
       "input":{"shape":"DisableMetricsCollectionQuery"},
       "errors":[
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "EnableMetricsCollection":{
@@ -878,15 +478,7 @@
       },
       "input":{"shape":"EnableMetricsCollectionQuery"},
       "errors":[
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "EnterStandby":{
@@ -901,15 +493,7 @@
         "resultWrapper":"EnterStandbyResult"
       },
       "errors":[
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "ExecutePolicy":{
@@ -920,24 +504,8 @@
       },
       "input":{"shape":"ExecutePolicyType"},
       "errors":[
-        {
-          "shape":"ScalingActivityInProgressFault",
-          "error":{
-            "code":"ScalingActivityInProgress",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ScalingActivityInProgressFault"},
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "ExitStandby":{
@@ -952,15 +520,7 @@
         "resultWrapper":"ExitStandbyResult"
       },
       "errors":[
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "PutLifecycleHook":{
@@ -975,24 +535,8 @@
         "resultWrapper":"PutLifecycleHookResult"
       },
       "errors":[
-        {
-          "shape":"LimitExceededFault",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"LimitExceededFault"},
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "PutNotificationConfiguration":{
@@ -1003,24 +547,8 @@
       },
       "input":{"shape":"PutNotificationConfigurationType"},
       "errors":[
-        {
-          "shape":"LimitExceededFault",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"LimitExceededFault"},
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "PutScalingPolicy":{
@@ -1035,24 +563,8 @@
         "resultWrapper":"PutScalingPolicyResult"
       },
       "errors":[
-        {
-          "shape":"LimitExceededFault",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"LimitExceededFault"},
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "PutScheduledUpdateGroupAction":{
@@ -1063,33 +575,9 @@
       },
       "input":{"shape":"PutScheduledUpdateGroupActionType"},
       "errors":[
-        {
-          "shape":"AlreadyExistsFault",
-          "error":{
-            "code":"AlreadyExists",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededFault",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"AlreadyExistsFault"},
+        {"shape":"LimitExceededFault"},
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "RecordLifecycleActionHeartbeat":{
@@ -1104,15 +592,7 @@
         "resultWrapper":"RecordLifecycleActionHeartbeatResult"
       },
       "errors":[
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "ResumeProcesses":{
@@ -1123,24 +603,8 @@
       },
       "input":{"shape":"ScalingProcessQuery"},
       "errors":[
-        {
-          "shape":"ResourceInUseFault",
-          "error":{
-            "code":"ResourceInUse",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ResourceInUseFault"},
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "SetDesiredCapacity":{
@@ -1151,24 +615,8 @@
       },
       "input":{"shape":"SetDesiredCapacityType"},
       "errors":[
-        {
-          "shape":"ScalingActivityInProgressFault",
-          "error":{
-            "code":"ScalingActivityInProgress",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ScalingActivityInProgressFault"},
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "SetInstanceHealth":{
@@ -1179,15 +627,23 @@
       },
       "input":{"shape":"SetInstanceHealthQuery"},
       "errors":[
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ResourceContentionFault"}
+      ]
+    },
+    "SetInstanceProtection":{
+      "name":"SetInstanceProtection",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SetInstanceProtectionQuery"},
+      "output":{
+        "shape":"SetInstanceProtectionAnswer",
+        "resultWrapper":"SetInstanceProtectionResult"
+      },
+      "errors":[
+        {"shape":"LimitExceededFault"},
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "SuspendProcesses":{
@@ -1198,24 +654,8 @@
       },
       "input":{"shape":"ScalingProcessQuery"},
       "errors":[
-        {
-          "shape":"ResourceInUseFault",
-          "error":{
-            "code":"ResourceInUse",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ResourceInUseFault"},
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "TerminateInstanceInAutoScalingGroup":{
@@ -1230,24 +670,8 @@
         "resultWrapper":"TerminateInstanceInAutoScalingGroupResult"
       },
       "errors":[
-        {
-          "shape":"ScalingActivityInProgressFault",
-          "error":{
-            "code":"ScalingActivityInProgress",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ScalingActivityInProgressFault"},
+        {"shape":"ResourceContentionFault"}
       ]
     },
     "UpdateAutoScalingGroup":{
@@ -1258,24 +682,8 @@
       },
       "input":{"shape":"UpdateAutoScalingGroupType"},
       "errors":[
-        {
-          "shape":"ScalingActivityInProgressFault",
-          "error":{
-            "code":"ScalingActivityInProgress",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceContentionFault",
-          "error":{
-            "code":"ResourceContention",
-            "httpStatusCode":500,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ScalingActivityInProgressFault"},
+        {"shape":"ResourceContentionFault"}
       ]
     }
   },
@@ -1359,8 +767,8 @@
     },
     "AsciiStringMaxLen255":{
       "type":"string",
-      "min":1,
       "max":255,
+      "min":1,
       "pattern":"[A-Za-z0-9\\-_\\/]+"
     },
     "AssociatePublicIpAddress":{"type":"boolean"},
@@ -1388,7 +796,6 @@
       "type":"structure",
       "required":[
         "AutoScalingGroupName",
-        "LaunchConfigurationName",
         "MinSize",
         "MaxSize",
         "DesiredCapacity",
@@ -1417,7 +824,8 @@
         "EnabledMetrics":{"shape":"EnabledMetrics"},
         "Status":{"shape":"XmlStringMaxLen255"},
         "Tags":{"shape":"TagDescriptionList"},
-        "TerminationPolicies":{"shape":"TerminationPolicies"}
+        "TerminationPolicies":{"shape":"TerminationPolicies"},
+        "NewInstancesProtectedFromScaleIn":{"shape":"InstanceProtected"}
       }
     },
     "AutoScalingGroupDesiredCapacity":{"type":"integer"},
@@ -1455,15 +863,17 @@
         "AvailabilityZone",
         "LifecycleState",
         "HealthStatus",
-        "LaunchConfigurationName"
+        "LaunchConfigurationName",
+        "ProtectedFromScaleIn"
       ],
       "members":{
-        "InstanceId":{"shape":"XmlStringMaxLen16"},
+        "InstanceId":{"shape":"XmlStringMaxLen19"},
         "AutoScalingGroupName":{"shape":"XmlStringMaxLen255"},
         "AvailabilityZone":{"shape":"XmlStringMaxLen255"},
         "LifecycleState":{"shape":"XmlStringMaxLen32"},
         "HealthStatus":{"shape":"XmlStringMaxLen32"},
-        "LaunchConfigurationName":{"shape":"XmlStringMaxLen255"}
+        "LaunchConfigurationName":{"shape":"XmlStringMaxLen255"},
+        "ProtectedFromScaleIn":{"shape":"InstanceProtected"}
       }
     },
     "AutoScalingInstances":{
@@ -1490,18 +900,18 @@
     "BlockDeviceEbsEncrypted":{"type":"boolean"},
     "BlockDeviceEbsIops":{
       "type":"integer",
-      "min":100,
-      "max":20000
+      "max":20000,
+      "min":100
     },
     "BlockDeviceEbsVolumeSize":{
       "type":"integer",
-      "min":1,
-      "max":16384
+      "max":16384,
+      "min":1
     },
     "BlockDeviceEbsVolumeType":{
       "type":"string",
-      "min":1,
-      "max":255
+      "max":255,
+      "min":1
     },
     "BlockDeviceMapping":{
       "type":"structure",
@@ -1552,7 +962,7 @@
       "members":{
         "AutoScalingGroupName":{"shape":"XmlStringMaxLen255"},
         "LaunchConfigurationName":{"shape":"ResourceName"},
-        "InstanceId":{"shape":"XmlStringMaxLen16"},
+        "InstanceId":{"shape":"XmlStringMaxLen19"},
         "MinSize":{"shape":"AutoScalingGroupMinSize"},
         "MaxSize":{"shape":"AutoScalingGroupMaxSize"},
         "DesiredCapacity":{"shape":"AutoScalingGroupDesiredCapacity"},
@@ -1564,6 +974,7 @@
         "PlacementGroup":{"shape":"XmlStringMaxLen255"},
         "VPCZoneIdentifier":{"shape":"XmlStringMaxLen255"},
         "TerminationPolicies":{"shape":"TerminationPolicies"},
+        "NewInstancesProtectedFromScaleIn":{"shape":"InstanceProtected"},
         "Tags":{"shape":"Tags"}
       }
     },
@@ -1578,7 +989,7 @@
         "ClassicLinkVPCId":{"shape":"XmlStringMaxLen255"},
         "ClassicLinkVPCSecurityGroups":{"shape":"ClassicLinkVPCSecurityGroups"},
         "UserData":{"shape":"XmlStringUserData"},
-        "InstanceId":{"shape":"XmlStringMaxLen16"},
+        "InstanceId":{"shape":"XmlStringMaxLen19"},
         "InstanceType":{"shape":"XmlStringMaxLen255"},
         "KernelId":{"shape":"XmlStringMaxLen255"},
         "RamdiskId":{"shape":"XmlStringMaxLen255"},
@@ -1660,7 +1071,9 @@
       "type":"structure",
       "members":{
         "MaxNumberOfAutoScalingGroups":{"shape":"MaxNumberOfAutoScalingGroups"},
-        "MaxNumberOfLaunchConfigurations":{"shape":"MaxNumberOfLaunchConfigurations"}
+        "MaxNumberOfLaunchConfigurations":{"shape":"MaxNumberOfLaunchConfigurations"},
+        "NumberOfAutoScalingGroups":{"shape":"NumberOfAutoScalingGroups"},
+        "NumberOfLaunchConfigurations":{"shape":"NumberOfLaunchConfigurations"}
       }
     },
     "DescribeAdjustmentTypesAnswer":{
@@ -1926,19 +1339,21 @@
         "AvailabilityZone",
         "LifecycleState",
         "HealthStatus",
-        "LaunchConfigurationName"
+        "LaunchConfigurationName",
+        "ProtectedFromScaleIn"
       ],
       "members":{
-        "InstanceId":{"shape":"XmlStringMaxLen16"},
+        "InstanceId":{"shape":"XmlStringMaxLen19"},
         "AvailabilityZone":{"shape":"XmlStringMaxLen255"},
         "LifecycleState":{"shape":"LifecycleState"},
         "HealthStatus":{"shape":"XmlStringMaxLen32"},
-        "LaunchConfigurationName":{"shape":"XmlStringMaxLen255"}
+        "LaunchConfigurationName":{"shape":"XmlStringMaxLen255"},
+        "ProtectedFromScaleIn":{"shape":"InstanceProtected"}
       }
     },
     "InstanceIds":{
       "type":"list",
-      "member":{"shape":"XmlStringMaxLen16"}
+      "member":{"shape":"XmlStringMaxLen19"}
     },
     "InstanceMonitoring":{
       "type":"structure",
@@ -1946,6 +1361,7 @@
         "Enabled":{"shape":"MonitoringEnabled"}
       }
     },
+    "InstanceProtected":{"type":"boolean"},
     "Instances":{
       "type":"list",
       "member":{"shape":"Instance"}
@@ -2026,8 +1442,8 @@
     "LifecycleActionResult":{"type":"string"},
     "LifecycleActionToken":{
       "type":"string",
-      "min":36,
-      "max":36
+      "max":36,
+      "min":36
     },
     "LifecycleHook":{
       "type":"structure",
@@ -2144,6 +1560,8 @@
       "type":"list",
       "member":{"shape":"NotificationConfiguration"}
     },
+    "NumberOfAutoScalingGroups":{"type":"integer"},
+    "NumberOfLaunchConfigurations":{"type":"integer"},
     "PoliciesType":{
       "type":"structure",
       "members":{
@@ -2189,6 +1607,7 @@
     },
     "Progress":{"type":"integer"},
     "PropagateAtLaunch":{"type":"boolean"},
+    "ProtectedFromScaleIn":{"type":"boolean"},
     "PutLifecycleHookAnswer":{
       "type":"structure",
       "members":{
@@ -2307,8 +1726,8 @@
     },
     "ResourceName":{
       "type":"string",
-      "min":1,
       "max":1600,
+      "min":1,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
     },
     "ScalingActivityInProgressFault":{
@@ -2326,6 +1745,7 @@
     "ScalingActivityStatusCode":{
       "type":"string",
       "enum":[
+        "PendingSpotBidPlacement",
         "WaitingForSpotInstanceRequestId",
         "WaitingForSpotInstanceId",
         "WaitingForInstanceId",
@@ -2422,17 +1842,35 @@
         "HealthStatus"
       ],
       "members":{
-        "InstanceId":{"shape":"XmlStringMaxLen16"},
+        "InstanceId":{"shape":"XmlStringMaxLen19"},
         "HealthStatus":{"shape":"XmlStringMaxLen32"},
         "ShouldRespectGracePeriod":{"shape":"ShouldRespectGracePeriod"}
+      }
+    },
+    "SetInstanceProtectionAnswer":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "SetInstanceProtectionQuery":{
+      "type":"structure",
+      "required":[
+        "InstanceIds",
+        "AutoScalingGroupName",
+        "ProtectedFromScaleIn"
+      ],
+      "members":{
+        "InstanceIds":{"shape":"InstanceIds"},
+        "AutoScalingGroupName":{"shape":"ResourceName"},
+        "ProtectedFromScaleIn":{"shape":"ProtectedFromScaleIn"}
       }
     },
     "ShouldDecrementDesiredCapacity":{"type":"boolean"},
     "ShouldRespectGracePeriod":{"type":"boolean"},
     "SpotPrice":{
       "type":"string",
-      "min":1,
-      "max":255
+      "max":255,
+      "min":1
     },
     "StepAdjustment":{
       "type":"structure",
@@ -2485,14 +1923,14 @@
     },
     "TagKey":{
       "type":"string",
-      "min":1,
       "max":128,
+      "min":1,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
     },
     "TagValue":{
       "type":"string",
-      "min":0,
       "max":256,
+      "min":0,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
     },
     "Tags":{
@@ -2513,7 +1951,7 @@
         "ShouldDecrementDesiredCapacity"
       ],
       "members":{
-        "InstanceId":{"shape":"XmlStringMaxLen16"},
+        "InstanceId":{"shape":"XmlStringMaxLen19"},
         "ShouldDecrementDesiredCapacity":{"shape":"ShouldDecrementDesiredCapacity"}
       }
     },
@@ -2537,7 +1975,8 @@
         "HealthCheckGracePeriod":{"shape":"HealthCheckGracePeriod"},
         "PlacementGroup":{"shape":"XmlStringMaxLen255"},
         "VPCZoneIdentifier":{"shape":"XmlStringMaxLen255"},
-        "TerminationPolicies":{"shape":"TerminationPolicies"}
+        "TerminationPolicies":{"shape":"TerminationPolicies"},
+        "NewInstancesProtectedFromScaleIn":{"shape":"InstanceProtected"}
       }
     },
     "Values":{
@@ -2550,38 +1989,38 @@
     },
     "XmlStringMaxLen1023":{
       "type":"string",
-      "min":1,
       "max":1023,
-      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
-    },
-    "XmlStringMaxLen16":{
-      "type":"string",
       "min":1,
-      "max":16,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
     },
     "XmlStringMaxLen1600":{
       "type":"string",
-      "min":1,
       "max":1600,
+      "min":1,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
+    },
+    "XmlStringMaxLen19":{
+      "type":"string",
+      "max":19,
+      "min":1,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
     },
     "XmlStringMaxLen255":{
       "type":"string",
-      "min":1,
       "max":255,
+      "min":1,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
     },
     "XmlStringMaxLen32":{
       "type":"string",
-      "min":1,
       "max":32,
+      "min":1,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
     },
     "XmlStringMaxLen64":{
       "type":"string",
-      "min":1,
       "max":64,
+      "min":1,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
     },
     "XmlStringUserData":{

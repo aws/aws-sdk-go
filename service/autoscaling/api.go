@@ -32,6 +32,11 @@ func (c *AutoScaling) AttachInstancesRequest(input *AttachInstancesInput) (req *
 
 // Attaches one or more EC2 instances to the specified Auto Scaling group.
 //
+// When you attach instances, Auto Scaling increases the desired capacity of
+// the group by the number of instances being attached. If the number of instances
+// being attached plus the desired capacity of the group exceeds the maximum
+// size of the group, the operation fails.
+//
 // For more information, see Attach EC2 Instances to Your Auto Scaling Group
 // (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/attach-instance-asg.html)
 // in the Auto Scaling Developer Guide.
@@ -106,7 +111,7 @@ func (c *AutoScaling) CompleteLifecycleActionRequest(input *CompleteLifecycleAct
 // to publish lifecycle notifications to the designated SQS queue or SNS topic.
 // Create the lifecycle hook. You can create a hook that acts when instances
 // launch or when instances terminate. If necessary, record the lifecycle action
-// heartbeat to keep the instance in a pending state.  Complete the lifecycle
+// heartbeat to keep the instance in a pending state. Complete the lifecycle
 // action.  For more information, see Auto Scaling Pending State (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingPendingState.html)
 // and Auto Scaling Terminating State (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingTerminatingState.html)
 // in the Auto Scaling Developer Guide.
@@ -246,10 +251,20 @@ func (c *AutoScaling) DeleteAutoScalingGroupRequest(input *DeleteAutoScalingGrou
 
 // Deletes the specified Auto Scaling group.
 //
-// The group must have no instances and no scaling activities in progress.
+// If the group has instances or scaling activities in progress, you must specify
+// the option to force the deletion in order for it to succeed.
 //
-// To remove all instances before calling DeleteAutoScalingGroup, call UpdateAutoScalingGroup
-// to set the minimum and maximum size of the Auto Scaling group to zero.
+// If the group has policies, deleting the group deletes the policies, the
+// underlying alarm actions, and any alarm that no longer has an associated
+// action.
+//
+// To remove instances from the Auto Scaling group before deleting it, call
+// DetachInstances with the list of instances and the option to decrement the
+// desired capacity so that Auto Scaling does not launch replacement instances.
+//
+// To terminate all instances before deleting the Auto Scaling group, call
+// UpdateAutoScalingGroup and set the minimum size and desired capacity of the
+// Auto Scaling group to zero.
 func (c *AutoScaling) DeleteAutoScalingGroup(input *DeleteAutoScalingGroupInput) (*DeleteAutoScalingGroupOutput, error) {
 	req, out := c.DeleteAutoScalingGroupRequest(input)
 	err := req.Send()
@@ -365,6 +380,9 @@ func (c *AutoScaling) DeletePolicyRequest(input *DeletePolicyInput) (req *reques
 }
 
 // Deletes the specified Auto Scaling policy.
+//
+// Deleting a policy deletes the underlying alarm action, but does not delete
+// the alarm, even if it no longer has an associated action.
 func (c *AutoScaling) DeletePolicy(input *DeletePolicyInput) (*DeletePolicyOutput, error) {
 	req, out := c.DeletePolicyRequest(input)
 	err := req.Send()
@@ -1040,9 +1058,13 @@ func (c *AutoScaling) DetachInstancesRequest(input *DetachInstancesInput) (req *
 	return
 }
 
-// Removes one or more instances from the specified Auto Scaling group. After
-// the instances are detached, you can manage them independently from the rest
-// of the Auto Scaling group.
+// Removes one or more instances from the specified Auto Scaling group.
+//
+// After the instances are detached, you can manage them independently from
+// the rest of the Auto Scaling group.
+//
+// If you do not specify the option to decrement the desired capacity, Auto
+// Scaling launches instances to replace the ones that are detached.
 //
 // For more information, see Detach EC2 Instances from Your Auto Scaling Group
 // (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/detach-instance-asg.html)
@@ -1515,6 +1537,36 @@ func (c *AutoScaling) SetInstanceHealth(input *SetInstanceHealthInput) (*SetInst
 	return out, err
 }
 
+const opSetInstanceProtection = "SetInstanceProtection"
+
+// SetInstanceProtectionRequest generates a request for the SetInstanceProtection operation.
+func (c *AutoScaling) SetInstanceProtectionRequest(input *SetInstanceProtectionInput) (req *request.Request, output *SetInstanceProtectionOutput) {
+	op := &request.Operation{
+		Name:       opSetInstanceProtection,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &SetInstanceProtectionInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &SetInstanceProtectionOutput{}
+	req.Data = output
+	return
+}
+
+// Updates the instance protection settings of the specified instances.
+//
+// For more information, see Instance Protection (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html#instance-protection)
+// in the Auto Scaling Developer Guide.
+func (c *AutoScaling) SetInstanceProtection(input *SetInstanceProtectionInput) (*SetInstanceProtectionOutput, error) {
+	req, out := c.SetInstanceProtectionRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opSuspendProcesses = "SuspendProcesses"
 
 // SuspendProcessesRequest generates a request for the SuspendProcesses operation.
@@ -1877,10 +1929,9 @@ type CreateAutoScalingGroupInput struct {
 	AvailabilityZones []*string `min:"1" type:"list"`
 
 	// The amount of time, in seconds, after a scaling activity completes before
-	// another scaling activity can start.
+	// another scaling activity can start. The default is 300.
 	//
-	// The default is 300. For more information, see Understanding Auto Scaling
-	// Cooldowns (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html)
+	// For more information, see Understanding Auto Scaling Cooldowns (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html)
 	// in the Auto Scaling Developer Guide.
 	DefaultCooldown *int64 `type:"integer"`
 
@@ -1889,17 +1940,14 @@ type CreateAutoScalingGroupInput struct {
 	// or equal to the maximum size of the group.
 	DesiredCapacity *int64 `type:"integer"`
 
-	// The amount of time, in seconds, after an EC2 instance comes into service
-	// that Auto Scaling starts checking its health. During this time, any health
-	// check failures for the instance are ignored.
+	// The amount of time, in seconds, that Auto Scaling waits before checking the
+	// health status of an EC2 instance that has come into service. During this
+	// time, any health check failures for the instance are ignored. The default
+	// is 300.
 	//
-	// This parameter is required if you are adding an ELB health check. Frequently,
-	// new instances need to warm up, briefly, before they can pass a health check.
-	// To provide ample warm-up time, set the health check grace period of the group
-	// to match the expected startup period of your application.
+	// This parameter is required if you are adding an ELB health check.
 	//
-	// For more information, see Add an Elastic Load Balancing Health Check to
-	// Your Auto Scaling Group (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-add-elb-healthcheck.html)
+	// For more information, see Health Checks for Auto Scaling Instances (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html)
 	// in the Auto Scaling Developer Guide.
 	HealthCheckGracePeriod *int64 `type:"integer"`
 
@@ -1939,6 +1987,10 @@ type CreateAutoScalingGroupInput struct {
 
 	// The minimum size of the group.
 	MinSize *int64 `type:"integer" required:"true"`
+
+	// Indicates whether newly launched instances are protected from termination
+	// by Auto Scaling when scaling in.
+	NewInstancesProtectedFromScaleIn *bool `type:"boolean"`
 
 	// The name of the placement group into which you'll launch your instances,
 	// if any. For more information, see Placement Groups (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html)
@@ -2461,6 +2513,12 @@ type DescribeAccountLimitsOutput struct {
 	// The maximum number of launch configurations allowed for your AWS account.
 	// The default limit is 100 per region.
 	MaxNumberOfLaunchConfigurations *int64 `type:"integer"`
+
+	// The current number of groups for your AWS account.
+	NumberOfAutoScalingGroups *int64 `type:"integer"`
+
+	// The current number of launch configurations for your AWS account.
+	NumberOfLaunchConfigurations *int64 `type:"integer"`
 }
 
 // String returns the string representation
@@ -3614,8 +3672,8 @@ type Group struct {
 	// The date and time the group was created.
 	CreatedTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// The number of seconds after a scaling activity completes before any further
-	// scaling activities can start.
+	// The amount of time, in seconds, after a scaling activity completes before
+	// another scaling activity can start.
 	DefaultCooldown *int64 `type:"integer" required:"true"`
 
 	// The desired size of the group.
@@ -3624,19 +3682,18 @@ type Group struct {
 	// The metrics enabled for the group.
 	EnabledMetrics []*EnabledMetric `type:"list"`
 
-	// The amount of time that Auto Scaling waits before checking an instance's
-	// health status. The grace period begins when an instance comes into service.
+	// The amount of time, in seconds, that Auto Scaling waits before checking the
+	// health status of an EC2 instance that has come into service.
 	HealthCheckGracePeriod *int64 `type:"integer"`
 
-	// The service of interest for the health status check, which can be either
-	// EC2 for Amazon EC2 or ELB for Elastic Load Balancing.
+	// The service to use for the health checks. The valid values are EC2 and ELB.
 	HealthCheckType *string `min:"1" type:"string" required:"true"`
 
 	// The EC2 instances associated with the group.
 	Instances []*Instance `type:"list"`
 
 	// The name of the associated launch configuration.
-	LaunchConfigurationName *string `min:"1" type:"string" required:"true"`
+	LaunchConfigurationName *string `min:"1" type:"string"`
 
 	// One or more load balancers associated with the group.
 	LoadBalancerNames []*string `type:"list"`
@@ -3646,6 +3703,10 @@ type Group struct {
 
 	// The minimum size of the group.
 	MinSize *int64 `type:"integer" required:"true"`
+
+	// Indicates whether newly launched instances are protected from termination
+	// by Auto Scaling when scaling in.
+	NewInstancesProtectedFromScaleIn *bool `type:"boolean"`
 
 	// The name of the placement group into which you'll launch your instances,
 	// if any. For more information, see Placement Groups (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html)
@@ -3700,6 +3761,10 @@ type Instance struct {
 	// A description of the current lifecycle state. Note that the Quarantined state
 	// is not used.
 	LifecycleState *string `type:"string" required:"true" enum:"LifecycleState"`
+
+	// Indicates whether the instance is protected from termination by Auto Scaling
+	// when scaling in.
+	ProtectedFromScaleIn *bool `type:"boolean" required:"true"`
 }
 
 // String returns the string representation
@@ -3737,6 +3802,10 @@ type InstanceDetails struct {
 	// Instance States (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html#AutoScalingStates)
 	// in the Auto Scaling Developer Guide.
 	LifecycleState *string `min:"1" type:"string" required:"true"`
+
+	// Indicates whether the instance is protected from termination by Auto Scaling
+	// when scaling in.
+	ProtectedFromScaleIn *bool `type:"boolean" required:"true"`
 }
 
 // String returns the string representation
@@ -4112,10 +4181,10 @@ type PutLifecycleHookInput struct {
 	//
 	// The notification message sent to the target will include:
 	//
-	//   LifecycleActionToken. The Lifecycle action token.  AccountId. The user
-	// account ID.  AutoScalingGroupName. The name of the Auto Scaling group.  LifecycleHookName.
-	// The lifecycle hook name.  EC2InstanceId. The EC2 instance ID.  LifecycleTransition.
-	// The lifecycle transition.  NotificationMetadata. The notification metadata.
+	//  LifecycleActionToken. The Lifecycle action token. AccountId. The user account
+	// ID. AutoScalingGroupName. The name of the Auto Scaling group. LifecycleHookName.
+	// The lifecycle hook name. EC2InstanceId. The EC2 instance ID. LifecycleTransition.
+	// The lifecycle transition. NotificationMetadata. The notification metadata.
 	//  This operation uses the JSON format when sending notifications to an Amazon
 	// SQS queue, and an email key/value pair format when sending notifications
 	// to an Amazon SNS topic.
@@ -4649,6 +4718,44 @@ func (s SetInstanceHealthOutput) GoString() string {
 	return s.String()
 }
 
+type SetInstanceProtectionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the group.
+	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
+
+	// One or more instance IDs.
+	InstanceIds []*string `type:"list" required:"true"`
+
+	// Indicates whether the instance is protected from termination by Auto Scaling
+	// when scaling in.
+	ProtectedFromScaleIn *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation
+func (s SetInstanceProtectionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SetInstanceProtectionInput) GoString() string {
+	return s.String()
+}
+
+type SetInstanceProtectionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s SetInstanceProtectionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SetInstanceProtectionOutput) GoString() string {
+	return s.String()
+}
+
 // Describes an adjustment based on the difference between the value of the
 // aggregated CloudWatch metric and the breach threshold that you've defined
 // for the alarm.
@@ -4859,8 +4966,9 @@ type UpdateAutoScalingGroupInput struct {
 	AvailabilityZones []*string `min:"1" type:"list"`
 
 	// The amount of time, in seconds, after a scaling activity completes before
-	// another scaling activity can start. For more information, see Understanding
-	// Auto Scaling Cooldowns (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html)
+	// another scaling activity can start. The default is 300.
+	//
+	// For more information, see Understanding Auto Scaling Cooldowns (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html)
 	// in the Auto Scaling Developer Guide.
 	DefaultCooldown *int64 `type:"integer"`
 
@@ -4870,15 +4978,14 @@ type UpdateAutoScalingGroupInput struct {
 	DesiredCapacity *int64 `type:"integer"`
 
 	// The amount of time, in seconds, that Auto Scaling waits before checking the
-	// health status of an instance. The grace period begins when the instance passes
-	// the system status and instance status checks from Amazon EC2. For more information,
-	// see Health Checks (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html)
+	// health status of an EC2 instance that has come into service. The default
+	// is 300.
+	//
+	// For more information, see Health Checks For Auto Scaling Instances (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html)
 	// in the Auto Scaling Developer Guide.
 	HealthCheckGracePeriod *int64 `type:"integer"`
 
-	// The type of health check for the instances in the Auto Scaling group. The
-	// health check type can either be EC2 for Amazon EC2 or ELB for Elastic Load
-	// Balancing.
+	// The service to use for the health checks. The valid values are EC2 and ELB.
 	HealthCheckType *string `min:"1" type:"string"`
 
 	// The name of the launch configuration.
@@ -4889,6 +4996,10 @@ type UpdateAutoScalingGroupInput struct {
 
 	// The minimum size of the Auto Scaling group.
 	MinSize *int64 `type:"integer"`
+
+	// Indicates whether newly launched instances are protected from termination
+	// by Auto Scaling when scaling in.
+	NewInstancesProtectedFromScaleIn *bool `type:"boolean"`
 
 	// The name of the placement group into which you'll launch your instances,
 	// if any. For more information, see Placement Groups (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html)
@@ -4970,6 +5081,8 @@ const (
 )
 
 const (
+	// @enum ScalingActivityStatusCode
+	ScalingActivityStatusCodePendingSpotBidPlacement = "PendingSpotBidPlacement"
 	// @enum ScalingActivityStatusCode
 	ScalingActivityStatusCodeWaitingForSpotInstanceRequestId = "WaitingForSpotInstanceRequestId"
 	// @enum ScalingActivityStatusCode

@@ -21,7 +21,7 @@ func ExampleAutoScaling_AttachInstances() {
 	params := &autoscaling.AttachInstancesInput{
 		AutoScalingGroupName: aws.String("ResourceName"), // Required
 		InstanceIds: []*string{
-			aws.String("XmlStringMaxLen16"), // Required
+			aws.String("XmlStringMaxLen19"), // Required
 			// More values...
 		},
 	}
@@ -98,13 +98,14 @@ func ExampleAutoScaling_CreateAutoScalingGroup() {
 		DesiredCapacity:         aws.Int64(1),
 		HealthCheckGracePeriod:  aws.Int64(1),
 		HealthCheckType:         aws.String("XmlStringMaxLen32"),
-		InstanceId:              aws.String("XmlStringMaxLen16"),
+		InstanceId:              aws.String("XmlStringMaxLen19"),
 		LaunchConfigurationName: aws.String("ResourceName"),
 		LoadBalancerNames: []*string{
 			aws.String("XmlStringMaxLen255"), // Required
 			// More values...
 		},
-		PlacementGroup: aws.String("XmlStringMaxLen255"),
+		NewInstancesProtectedFromScaleIn: aws.Bool(true),
+		PlacementGroup:                   aws.String("XmlStringMaxLen255"),
 		Tags: []*autoscaling.Tag{
 			{ // Required
 				Key:               aws.String("TagKey"), // Required
@@ -164,7 +165,7 @@ func ExampleAutoScaling_CreateLaunchConfiguration() {
 		EbsOptimized:       aws.Bool(true),
 		IamInstanceProfile: aws.String("XmlStringMaxLen1600"),
 		ImageId:            aws.String("XmlStringMaxLen255"),
-		InstanceId:         aws.String("XmlStringMaxLen16"),
+		InstanceId:         aws.String("XmlStringMaxLen19"),
 		InstanceMonitoring: &autoscaling.InstanceMonitoring{
 			Enabled: aws.Bool(true),
 		},
@@ -431,7 +432,7 @@ func ExampleAutoScaling_DescribeAutoScalingInstances() {
 
 	params := &autoscaling.DescribeAutoScalingInstancesInput{
 		InstanceIds: []*string{
-			aws.String("XmlStringMaxLen16"), // Required
+			aws.String("XmlStringMaxLen19"), // Required
 			// More values...
 		},
 		MaxRecords: aws.Int64(1),
@@ -745,7 +746,7 @@ func ExampleAutoScaling_DetachInstances() {
 		AutoScalingGroupName:           aws.String("ResourceName"), // Required
 		ShouldDecrementDesiredCapacity: aws.Bool(true),             // Required
 		InstanceIds: []*string{
-			aws.String("XmlStringMaxLen16"), // Required
+			aws.String("XmlStringMaxLen19"), // Required
 			// More values...
 		},
 	}
@@ -839,7 +840,7 @@ func ExampleAutoScaling_EnterStandby() {
 		AutoScalingGroupName:           aws.String("ResourceName"), // Required
 		ShouldDecrementDesiredCapacity: aws.Bool(true),             // Required
 		InstanceIds: []*string{
-			aws.String("XmlStringMaxLen16"), // Required
+			aws.String("XmlStringMaxLen19"), // Required
 			// More values...
 		},
 	}
@@ -885,7 +886,7 @@ func ExampleAutoScaling_ExitStandby() {
 	params := &autoscaling.ExitStandbyInput{
 		AutoScalingGroupName: aws.String("ResourceName"), // Required
 		InstanceIds: []*string{
-			aws.String("XmlStringMaxLen16"), // Required
+			aws.String("XmlStringMaxLen19"), // Required
 			// More values...
 		},
 	}
@@ -1085,10 +1086,34 @@ func ExampleAutoScaling_SetInstanceHealth() {
 
 	params := &autoscaling.SetInstanceHealthInput{
 		HealthStatus:             aws.String("XmlStringMaxLen32"), // Required
-		InstanceId:               aws.String("XmlStringMaxLen16"), // Required
+		InstanceId:               aws.String("XmlStringMaxLen19"), // Required
 		ShouldRespectGracePeriod: aws.Bool(true),
 	}
 	resp, err := svc.SetInstanceHealth(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleAutoScaling_SetInstanceProtection() {
+	svc := autoscaling.New(session.New())
+
+	params := &autoscaling.SetInstanceProtectionInput{
+		AutoScalingGroupName: aws.String("ResourceName"), // Required
+		InstanceIds: []*string{ // Required
+			aws.String("XmlStringMaxLen19"), // Required
+			// More values...
+		},
+		ProtectedFromScaleIn: aws.Bool(true), // Required
+	}
+	resp, err := svc.SetInstanceProtection(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -1128,7 +1153,7 @@ func ExampleAutoScaling_TerminateInstanceInAutoScalingGroup() {
 	svc := autoscaling.New(session.New())
 
 	params := &autoscaling.TerminateInstanceInAutoScalingGroupInput{
-		InstanceId:                     aws.String("XmlStringMaxLen16"), // Required
+		InstanceId:                     aws.String("XmlStringMaxLen19"), // Required
 		ShouldDecrementDesiredCapacity: aws.Bool(true),                  // Required
 	}
 	resp, err := svc.TerminateInstanceInAutoScalingGroup(params)
@@ -1160,7 +1185,8 @@ func ExampleAutoScaling_UpdateAutoScalingGroup() {
 		LaunchConfigurationName: aws.String("ResourceName"),
 		MaxSize:                 aws.Int64(1),
 		MinSize:                 aws.Int64(1),
-		PlacementGroup:          aws.String("XmlStringMaxLen255"),
+		NewInstancesProtectedFromScaleIn: aws.Bool(true),
+		PlacementGroup:                   aws.String("XmlStringMaxLen255"),
 		TerminationPolicies: []*string{
 			aws.String("XmlStringMaxLen1600"), // Required
 			// More values...
