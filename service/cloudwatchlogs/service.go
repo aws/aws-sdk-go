@@ -21,12 +21,12 @@ import (
 // Use the following links to get started using the Amazon CloudWatch Logs
 // API Reference:
 //
-//   Actions (http://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_Operations.html):
-// An alphabetical list of all Amazon CloudWatch Logs actions.  Data Types (http://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_Types.html):
-// An alphabetical list of all Amazon CloudWatch Logs data types.  Common Parameters
+//  Actions (http://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_Operations.html):
+// An alphabetical list of all Amazon CloudWatch Logs actions. Data Types (http://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_Types.html):
+// An alphabetical list of all Amazon CloudWatch Logs data types. Common Parameters
 // (http://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/CommonParameters.html):
-// Parameters that all Query actions can use.  Common Errors (http://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/CommonErrors.html):
-// Client and server errors that all actions can return.  Regions and Endpoints
+// Parameters that all Query actions can use. Common Errors (http://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/CommonErrors.html):
+// Client and server errors that all actions can return. Regions and Endpoints
 // (http://docs.aws.amazon.com/general/latest/gr/index.html?rande.html): Itemized
 // regions and endpoints for all AWS products.  In addition to using the Amazon
 // CloudWatch Logs API, you can also use the following SDKs and third-party

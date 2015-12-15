@@ -61,6 +61,11 @@ func (c *CloudWatchLogs) CreateExportTaskRequest(input *CreateExportTaskInput) (
 //  This is an asynchronous call. If all the required information is provided,
 // this API will initiate an export task and respond with the task Id. Once
 // started, DescribeExportTasks can be used to get the status of an export task.
+//
+//  You can export logs from multiple log groups or multiple time ranges to
+// the same Amazon S3 bucket. To separate out log data for each export task,
+// you can specify a prefix that will be used as the Amazon S3 key prefix for
+// all exported objects.
 func (c *CloudWatchLogs) CreateExportTask(input *CreateExportTaskInput) (*CreateExportTaskOutput, error) {
 	req, out := c.CreateExportTaskRequest(input)
 	err := req.Send()
@@ -944,16 +949,18 @@ func (s CancelExportTaskOutput) GoString() string {
 type CreateExportTaskInput struct {
 	_ struct{} `type:"structure"`
 
-	// Name of Amazon S3 bucket to which the log data will be exported. NOTE: Only
-	// buckets in the same AWS region are supported
+	// Name of Amazon S3 bucket to which the log data will be exported.
+	//
+	// NOTE: Only buckets in the same AWS region are supported
 	Destination *string `locationName:"destination" min:"1" type:"string" required:"true"`
 
 	// Prefix that will be used as the start of Amazon S3 key for every object exported.
 	// If not specified, this defaults to 'exportedlogs'.
 	DestinationPrefix *string `locationName:"destinationPrefix" type:"string"`
 
-	// A unix timestamp indicating the start time of the range for the request.
-	// Events with a timestamp prior to this time will not be exported.
+	// A point in time expressed as the number of milliseconds since Jan 1, 1970
+	// 00:00:00 UTC. It indicates the start time of the range for the request. Events
+	// with a timestamp prior to this time will not be exported.
 	From *int64 `locationName:"from" type:"long" required:"true"`
 
 	// The name of the log group to export.
@@ -966,7 +973,8 @@ type CreateExportTaskInput struct {
 	// The name of the export task.
 	TaskName *string `locationName:"taskName" min:"1" type:"string"`
 
-	// A unix timestamp indicating the end time of the range for the request. Events
+	// A point in time expressed as the number of milliseconds since Jan 1, 1970
+	// 00:00:00 UTC. It indicates the end time of the range for the request. Events
 	// with a timestamp later than this time will not be exported.
 	To *int64 `locationName:"to" type:"long" required:"true"`
 }
@@ -1621,8 +1629,8 @@ type ExportTask struct {
 	// Execution info about the export task.
 	ExecutionInfo *ExportTaskExecutionInfo `locationName:"executionInfo" type:"structure"`
 
-	// A unix timestamp indicating the start time of the range for the request.
-	// Events with a timestamp prior to this time were not exported.
+	// A point in time expressed as the number of milliseconds since Jan 1, 1970
+	// 00:00:00 UTC. Events with a timestamp prior to this time are not exported.
 	From *int64 `locationName:"from" type:"long"`
 
 	// The name of the log group from which logs data was exported.
@@ -1637,8 +1645,8 @@ type ExportTask struct {
 	// The name of the export task.
 	TaskName *string `locationName:"taskName" min:"1" type:"string"`
 
-	// A unix timestamp indicating the end time of the range for the request. Events
-	// with a timestamp later than this time were not exported.
+	// A point in time expressed as the number of milliseconds since Jan 1, 1970
+	// 00:00:00 UTC. Events with a timestamp later than this time are not exported.
 	To *int64 `locationName:"to" type:"long"`
 }
 
@@ -1697,8 +1705,9 @@ func (s ExportTaskStatus) GoString() string {
 type FilterLogEventsInput struct {
 	_ struct{} `type:"structure"`
 
-	// A unix timestamp indicating the end time of the range for the request. If
-	// provided, events with a timestamp later than this time will not be returned.
+	// A point in time expressed as the number of milliseconds since Jan 1, 1970
+	// 00:00:00 UTC. If provided, events with a timestamp later than this time are
+	// not returned.
 	EndTime *int64 `locationName:"endTime" type:"long"`
 
 	// A valid CloudWatch Logs filter pattern to use for filtering the response.
@@ -1723,11 +1732,13 @@ type FilterLogEventsInput struct {
 	LogStreamNames []*string `locationName:"logStreamNames" min:"1" type:"list"`
 
 	// A pagination token obtained from a FilterLogEvents response to continue paginating
-	// the FilterLogEvents results.
+	// the FilterLogEvents results. This token is omitted from the response when
+	// there are no other events to display.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
-	// A unix timestamp indicating the start time of the range for the request.
-	// If provided, events with a timestamp prior to this time will not be returned.
+	// A point in time expressed as the number of milliseconds since Jan 1, 1970
+	// 00:00:00 UTC. If provided, events with a timestamp prior to this time are
+	// not returned.
 	StartTime *int64 `locationName:"startTime" type:"long"`
 }
 
@@ -1749,7 +1760,8 @@ type FilterLogEventsOutput struct {
 	Events []*FilteredLogEvent `locationName:"events" type:"list"`
 
 	// A pagination token obtained from a FilterLogEvents response to continue paginating
-	// the FilterLogEvents results.
+	// the FilterLogEvents results. This token is omitted from the response when
+	// there are no other events to display.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
 	// A list of SearchedLogStream objects indicating which log streams have been
