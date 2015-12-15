@@ -22,11 +22,11 @@ import (
 // usage examples for each of the actions and data types for AWS Direct Connect.
 // Use the following links to get started using the AWS Direct Connect API Reference:
 //
-//   Actions (http://docs.aws.amazon.com/directconnect/latest/APIReference/API_Operations.html):
-// An alphabetical list of all AWS Direct Connect actions.  Data Types (http://docs.aws.amazon.com/directconnect/latest/APIReference/API_Types.html):
-// An alphabetical list of all AWS Direct Connect data types.  Common Query
-// Parameters (http://docs.aws.amazon.com/directconnect/latest/APIReference/CommonParameters.html):
-// Parameters that all Query actions can use.  Common Errors (http://docs.aws.amazon.com/directconnect/latest/APIReference/CommonErrors.html):
+//  Actions (http://docs.aws.amazon.com/directconnect/latest/APIReference/API_Operations.html):
+// An alphabetical list of all AWS Direct Connect actions. Data Types (http://docs.aws.amazon.com/directconnect/latest/APIReference/API_Types.html):
+// An alphabetical list of all AWS Direct Connect data types. Common Query Parameters
+// (http://docs.aws.amazon.com/directconnect/latest/APIReference/CommonParameters.html):
+// Parameters that all Query actions can use. Common Errors (http://docs.aws.amazon.com/directconnect/latest/APIReference/CommonErrors.html):
 // Client and server errors that all actions can return.
 //The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.

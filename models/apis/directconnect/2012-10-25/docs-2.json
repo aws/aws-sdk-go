@@ -1,4 +1,6 @@
 {
+  "version": "2.0",
+  "service": "<p>AWS Direct Connect makes it easy to establish a dedicated network connection from your premises to Amazon Web Services (AWS). Using AWS Direct Connect, you can establish private connectivity between AWS and your data center, office, or colocation environment, which in many cases can reduce your network costs, increase bandwidth throughput, and provide a more consistent network experience than Internet-based connections.</p> <p>The AWS Direct Connect API Reference provides descriptions, syntax, and usage examples for each of the actions and data types for AWS Direct Connect. Use the following links to get started using the <i>AWS Direct Connect API Reference</i>:</p> <ul> <li><a href=\"http://docs.aws.amazon.com/directconnect/latest/APIReference/API_Operations.html\">Actions</a>: An alphabetical list of all AWS Direct Connect actions.</li> <li><a href=\"http://docs.aws.amazon.com/directconnect/latest/APIReference/API_Types.html\">Data Types</a>: An alphabetical list of all AWS Direct Connect data types.</li> <li><a href=\"http://docs.aws.amazon.com/directconnect/latest/APIReference/CommonParameters.html\">Common Query Parameters</a>: Parameters that all Query actions can use.</li> <li><a href=\"http://docs.aws.amazon.com/directconnect/latest/APIReference/CommonErrors.html\">Common Errors</a>: Client and server errors that all actions can return.</li> </ul>",
   "operations": {
     "AllocateConnectionOnInterconnect": "<p>Creates a hosted connection on an interconnect.</p> <p>Allocates a VLAN number and a specified amount of bandwidth for use by a hosted connection on the given interconnect.</p>",
     "AllocatePrivateVirtualInterface": "<p>Provisions a private virtual interface to be owned by a different customer.</p> <p>The owner of a connection calls this function to provision a private virtual interface which will be owned by another AWS customer.</p> <p>Virtual interfaces created using this function must be confirmed by the virtual interface owner by calling ConfirmPrivateVirtualInterface. Until this step has been completed, the virtual interface will be in 'Confirming' state, and will not be available for handling traffic.</p>",
@@ -20,7 +22,6 @@
     "DescribeVirtualGateways": "<p>Returns a list of virtual private gateways owned by the AWS account.</p> <p>You can create one or more AWS Direct Connect private virtual interfaces linking to a virtual private gateway. A virtual private gateway can be managed via Amazon Virtual Private Cloud (VPC) console or the <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-CreateVpnGateway.html\">EC2 CreateVpnGateway</a> action.</p>",
     "DescribeVirtualInterfaces": "<p>Displays all virtual interfaces for an AWS account. Virtual interfaces deleted fewer than 15 minutes before DescribeVirtualInterfaces is called are also returned. If a connection ID is included then only virtual interfaces associated with this connection will be returned. If a virtual interface ID is included then only a single virtual interface will be returned.</p> <p>A virtual interface (VLAN) transmits the traffic between the AWS Direct Connect location and the customer.</p> <p>If a connection ID is provided, only virtual interfaces provisioned on the specified connection will be returned. If a virtual interface ID is provided, only this particular virtual interface will be returned.</p>"
   },
-  "service": "<p>AWS Direct Connect makes it easy to establish a dedicated network connection from your premises to Amazon Web Services (AWS). Using AWS Direct Connect, you can establish private connectivity between AWS and your data center, office, or colocation environment, which in many cases can reduce your network costs, increase bandwidth throughput, and provide a more consistent network experience than Internet-based connections.</p> <p>The AWS Direct Connect API Reference provides descriptions, syntax, and usage examples for each of the actions and data types for AWS Direct Connect. Use the following links to get started using the <i>AWS Direct Connect API Reference</i>:</p> <ul> <li> <a href=\"http://docs.aws.amazon.com/directconnect/latest/APIReference/API_Operations.html\">Actions</a>: An alphabetical list of all AWS Direct Connect actions.</li> <li> <a href=\"http://docs.aws.amazon.com/directconnect/latest/APIReference/API_Types.html\">Data Types</a>: An alphabetical list of all AWS Direct Connect data types.</li> <li> <a href=\"http://docs.aws.amazon.com/directconnect/latest/APIReference/CommonParameters.html\">Common Query Parameters</a>: Parameters that all Query actions can use.</li> <li> <a href=\"http://docs.aws.amazon.com/directconnect/latest/APIReference/CommonErrors.html\">Common Errors</a>: Client and server errors that all actions can return.</li> </ul>",
   "shapes": {
     "ASN": {
       "base": "<p>Autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.</p> <p>Example: 65000</p>",
@@ -149,7 +150,7 @@
       }
     },
     "ConnectionState": {
-      "base": "State of the connection. <ul> <li> <b>Ordering</b>: The initial state of a hosted connection provisioned on an interconnect. The connection stays in the ordering state until the owner of the hosted connection confirms or declines the connection order.</li> <li> <b>Requested</b>: The initial state of a standard connection. The connection stays in the requested state until the Letter of Authorization (LOA) is sent to the customer.</li> <li> <b>Pending</b>: The connection has been approved, and is being initialized.</li> <li> <b>Available</b>: The network link is up, and the connection is ready for use.</li> <li> <b>Down</b>: The network link is down.</li> <li> <b>Deleted</b>: The connection has been deleted.</li> <li> <b>Rejected</b>: A hosted connection in the 'Ordering' state will enter the 'Rejected' state if it is deleted by the end customer.</li> </ul>",
+      "base": "State of the connection. <ul> <li><b>Ordering</b>: The initial state of a hosted connection provisioned on an interconnect. The connection stays in the ordering state until the owner of the hosted connection confirms or declines the connection order.</li> <li><b>Requested</b>: The initial state of a standard connection. The connection stays in the requested state until the Letter of Authorization (LOA) is sent to the customer.</li> <li><b>Pending</b>: The connection has been approved, and is being initialized.</li> <li><b>Available</b>: The network link is up, and the connection is ready for use.</li> <li><b>Down</b>: The network link is down.</li> <li><b>Deleting</b>: The connection is in the process of being deleted.</li> <li><b>Deleted</b>: The connection has been deleted.</li> <li><b>Rejected</b>: A hosted connection in the 'Ordering' state will enter the 'Rejected' state if it is deleted by the end customer.</li> </ul>",
       "refs": {
         "ConfirmConnectionResponse$connectionState": null,
         "Connection$connectionState": null
@@ -248,8 +249,8 @@
     "ErrorMessage": {
       "base": null,
       "refs": {
-        "DirectConnectClientException$message": null,
-        "DirectConnectServerException$message": null
+        "DirectConnectClientException$message": "<p>This is an exception thrown when there is an issue with the input provided by the API call. For example, the name provided for a connection contains a pound sign (#). This can also occur when a valid value is provided, but is otherwise constrained. For example, the valid VLAN tag range is 1-4096 but each can only be used once per connection.</p>",
+        "DirectConnectServerException$message": "<p>This is an exception thrown when there is a backend issue on the server side.</p>"
       }
     },
     "Interconnect": {
@@ -282,7 +283,7 @@
       }
     },
     "InterconnectState": {
-      "base": "State of the interconnect. <ul> <li> <b>Requested</b>: The initial state of an interconnect. The interconnect stays in the requested state until the Letter of Authorization (LOA) is sent to the customer.</li> <li> <b>Pending</b>: The interconnect has been approved, and is being initialized.</li> <li> <b>Available</b>: The network link is up, and the interconnect is ready for use.</li> <li> <b>Down</b>: The network link is down.</li> <li> <b>Deleted</b>: The interconnect has been deleted.</li> </ul>",
+      "base": "State of the interconnect. <ul> <li><b>Requested</b>: The initial state of an interconnect. The interconnect stays in the requested state until the Letter of Authorization (LOA) is sent to the customer.</li> <li><b>Pending</b>: The interconnect has been approved, and is being initialized.</li> <li><b>Available</b>: The network link is up, and the interconnect is ready for use.</li> <li><b>Down</b>: The network link is down.</li> <li><b>Deleting</b>: The interconnect is in the process of being deleted.</li> <li><b>Deleted</b>: The interconnect has been deleted.</li> </ul>",
       "refs": {
         "DeleteInterconnectResponse$interconnectState": null,
         "Interconnect$interconnectState": null
@@ -313,7 +314,7 @@
     "LocationList": {
       "base": null,
       "refs": {
-        "Locations$locations": null
+        "Locations$locations": "<p>A list of colocation hubs where network providers have equipment. Most regions have multiple locations available.</p>"
       }
     },
     "LocationName": {
@@ -323,7 +324,7 @@
       }
     },
     "Locations": {
-      "base": null,
+      "base": "<p>A location is a network facility where AWS Direct Connect routers are available to be connected. Generally, these are colocation hubs where many network providers have equipment, and where cross connects can be delivered. Locations include a name and facility code, and must be provided when creating a connection.</p>",
       "refs": {
       }
     },
@@ -381,7 +382,7 @@
       }
     },
     "RouteFilterPrefixList": {
-      "base": "<p>A list of routes to be advertised to the AWS network in this region (public virtual interface) or your VPC (private virtual interface).</p>",
+      "base": "<p>A list of routes to be advertised to the AWS network in this region (public virtual interface).</p>",
       "refs": {
         "NewPublicVirtualInterface$routeFilterPrefixes": null,
         "NewPublicVirtualInterfaceAllocation$routeFilterPrefixes": null,
@@ -428,7 +429,7 @@
       }
     },
     "VirtualGatewayState": {
-      "base": "State of the virtual private gateway. <ul> <li> <b>Pending</b>: This is the initial state after calling <i>CreateVpnGateway</i>.</li> <li> <b>Available</b>: Ready for use by a private virtual interface.</li> <li> <b>Deleting</b>: This is the initial state after calling <i>DeleteVpnGateway</i>.</li> <li> <b>Deleted</b>: In this state, a private virtual interface is unable to send traffic over this gateway.</li> </ul>",
+      "base": "State of the virtual private gateway. <ul> <li><b>Pending</b>: This is the initial state after calling <i>CreateVpnGateway</i>.</li> <li><b>Available</b>: Ready for use by a private virtual interface.</li> <li><b>Deleting</b>: This is the initial state after calling <i>DeleteVpnGateway</i>.</li> <li><b>Deleted</b>: In this state, a private virtual interface is unable to send traffic over this gateway.</li> </ul>",
       "refs": {
         "VirtualGateway$virtualGatewayState": null
       }
@@ -471,7 +472,7 @@
       }
     },
     "VirtualInterfaceState": {
-      "base": "State of the virtual interface. <ul> <li> <b>Confirming</b>: The creation of the virtual interface is pending confirmation from the virtual interface owner. If the owner of the virtual interface is different from the owner of the connection on which it is provisioned, then the virtual interface will remain in this state until it is confirmed by the virtual interface owner.</li> <li> <b>Verifying</b>: This state only applies to public virtual interfaces. Each public virtual interface needs validation before the virtual interface can be created.</li> <li> <b>Pending</b>: A virtual interface is in this state from the time that it is created until the virtual interface is ready to forward traffic.</li> <li> <b>Available</b>: A virtual interface that is able to forward traffic.</li> <li> <b>Deleting</b>: A virtual interface is in this state immediately after calling <i>DeleteVirtualInterface</i> until it can no longer forward traffic.</li> <li> <b>Deleted</b>: A virtual interface that cannot forward traffic.</li> <li> <b>Rejected</b>: The virtual interface owner has declined creation of the virtual interface. If a virtual interface in the 'Confirming' state is deleted by the virtual interface owner, the virtual interface will enter the 'Rejected' state.</li> </ul>",
+      "base": "State of the virtual interface. <ul> <li><b>Confirming</b>: The creation of the virtual interface is pending confirmation from the virtual interface owner. If the owner of the virtual interface is different from the owner of the connection on which it is provisioned, then the virtual interface will remain in this state until it is confirmed by the virtual interface owner.</li> <li><b>Verifying</b>: This state only applies to public virtual interfaces. Each public virtual interface needs validation before the virtual interface can be created.</li> <li><b>Pending</b>: A virtual interface is in this state from the time that it is created until the virtual interface is ready to forward traffic.</li> <li><b>Available</b>: A virtual interface that is able to forward traffic.</li> <li><b>Down</b>: A virtual interface that is BGP down.</li> <li><b>Deleting</b>: A virtual interface is in this state immediately after calling <i>DeleteVirtualInterface</i> until it can no longer forward traffic.</li> <li><b>Deleted</b>: A virtual interface that cannot forward traffic.</li> <li><b>Rejected</b>: The virtual interface owner has declined creation of the virtual interface. If a virtual interface in the 'Confirming' state is deleted by the virtual interface owner, the virtual interface will enter the 'Rejected' state.</li> </ul>",
       "refs": {
         "ConfirmPrivateVirtualInterfaceResponse$virtualInterfaceState": null,
         "ConfirmPublicVirtualInterfaceResponse$virtualInterfaceState": null,
