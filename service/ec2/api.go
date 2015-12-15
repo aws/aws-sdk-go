@@ -446,20 +446,18 @@ func (c *EC2) AuthorizeSecurityGroupEgressRequest(input *AuthorizeSecurityGroupE
 	return
 }
 
-// Adds one or more egress rules to a security group for use with a VPC. Specifically,
-// this action permits instances to send traffic to one or more destination
-// CIDR IP address ranges, or to one or more destination security groups for
-// the same VPC.
+// [EC2-VPC only] Adds one or more egress rules to a security group for use
+// with a VPC. Specifically, this action permits instances to send traffic to
+// one or more destination CIDR IP address ranges, or to one or more destination
+// security groups for the same VPC. This action doesn't apply to security groups
+// for use in EC2-Classic. For more information, see Security Groups for Your
+// VPC (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html)
+// in the Amazon Virtual Private Cloud User Guide.
 //
 //  You can have up to 50 rules per security group (covering both ingress and
 // egress rules).
 //
-//  A security group is for use with instances either in the EC2-Classic platform
-// or in a specific VPC. This action doesn't apply to security groups for use
-// in EC2-Classic. For more information, see Security Groups for Your VPC (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html)
-// in the Amazon Virtual Private Cloud User Guide.
-//
-// Each rule consists of the protocol (for example, TCP), plus either a CIDR
+//  Each rule consists of the protocol (for example, TCP), plus either a CIDR
 // range or a source group. For the TCP and UDP protocols, you must also specify
 // the destination port or port range. For the ICMP protocol, you must also
 // specify the ICMP type and code. You can use -1 for the type or code to mean
@@ -1325,7 +1323,7 @@ func (c *EC2) CreateReservedInstancesListingRequest(input *CreateReservedInstanc
 // To sell your Reserved instances, you must first register as a seller in
 // the Reserved Instance Marketplace. After completing the registration process,
 // you can create a Reserved Instance Marketplace listing of some or all of
-// your Reserved Instances, and specify the upfront price to receive for them.
+// your Reserved instances, and specify the upfront price to receive for them.
 // Your Reserved instance listings then become available for purchase. To view
 // the details of your Reserved instance listing, you can use the DescribeReservedInstancesListings
 // operation.
@@ -2955,7 +2953,7 @@ func (c *EC2) DescribeHostsRequest(input *DescribeHostsInput) (req *request.Requ
 //
 // The results describe only the Dedicated hosts in the region you're currently
 // using. All listed instances consume capacity on your Dedicated host. Dedicated
-// hosts that have recently been released will be listed with the status "released".
+// hosts that have recently been released will be listed with the state released.
 func (c *EC2) DescribeHosts(input *DescribeHostsInput) (*DescribeHostsOutput, error) {
 	req, out := c.DescribeHostsRequest(input)
 	err := req.Send()
@@ -3626,7 +3624,7 @@ func (c *EC2) DescribeReservedInstancesModificationsRequest(input *DescribeReser
 }
 
 // Describes the modifications made to your Reserved instances. If no parameter
-// is specified, information about all your Reserved Instances modification
+// is specified, information about all your Reserved instances modification
 // requests is returned. If a modification ID is specified, only information
 // about the specific modification is returned.
 //
@@ -3677,6 +3675,10 @@ func (c *EC2) DescribeReservedInstancesOfferingsRequest(input *DescribeReservedI
 // of time. During that time period, you do not receive insufficient capacity
 // errors, and you pay a lower usage rate than the rate charged for On-Demand
 // instances for the actual time used.
+//
+// If you have listed your own Reserved instances for sale in the Reserved
+// Instance Marketplace, they will be excluded from these results. This is to
+// ensure that you do not purchase your own Reserved instances.
 //
 // For more information, see Reserved Instance Marketplace (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html)
 // in the Amazon Elastic Compute Cloud User Guide.
@@ -5368,8 +5370,8 @@ func (c *EC2) ModifyReservedInstancesRequest(input *ModifyReservedInstancesInput
 }
 
 // Modifies the Availability Zone, instance count, instance type, or network
-// platform (EC2-Classic or EC2-VPC) of your Reserved Instances. The Reserved
-// Instances to be modified must be identical, except for Availability Zone,
+// platform (EC2-Classic or EC2-VPC) of your Reserved instances. The Reserved
+// instances to be modified must be identical, except for Availability Zone,
 // network platform, and instance type.
 //
 // For more information, see Modifying Reserved Instances (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-modifying.html)
@@ -5871,7 +5873,7 @@ func (c *EC2) ReleaseHostsRequest(input *ReleaseHostsInput) (req *request.Reques
 }
 
 // When you no longer want to use a Dedicated host it can be released. On-Demand
-// billing is stopped and the host goes into "released" state. The host ID of
+// billing is stopped and the host goes into released state. The host ID of
 // Dedicated hosts that have been released can no longer be specified in another
 // request, e.g., ModifyHosts. You must stop or terminate all instances on a
 // host before it can be released.
@@ -6295,9 +6297,10 @@ func (c *EC2) RevokeSecurityGroupEgressRequest(input *RevokeSecurityGroupEgressI
 	return
 }
 
-// Removes one or more egress rules from a security group for EC2-VPC. The values
-// that you specify in the revoke request (for example, ports) must match the
-// existing rule's values for the rule to be revoked.
+// [EC2-VPC only] Removes one or more egress rules from a security group for
+// EC2-VPC. This action doesn't apply to security groups for use in EC2-Classic.
+// The values that you specify in the revoke request (for example, ports) must
+// match the existing rule's values for the rule to be revoked.
 //
 // Each rule consists of the protocol and the CIDR range or source security
 // group. For the TCP and UDP protocols, you must also specify the destination
@@ -7313,8 +7316,8 @@ func (s AttributeValue) GoString() string {
 type AuthorizeSecurityGroupEgressInput struct {
 	_ struct{} `type:"structure"`
 
-	// The CIDR IP address range. You can't specify this parameter when specifying
-	// a source security group.
+	// The CIDR IP address range. We recommend that you specify the CIDR range in
+	// a set of IP permissions instead.
 	CidrIp *string `locationName:"cidrIp" type:"string"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -7324,7 +7327,7 @@ type AuthorizeSecurityGroupEgressInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The start of port range for the TCP and UDP protocols, or an ICMP type number.
-	// For the ICMP type number, use -1 to specify all ICMP types.
+	// We recommend that you specify the port range in a set of IP permissions instead.
 	FromPort *int64 `locationName:"fromPort" type:"integer"`
 
 	// The ID of the security group.
@@ -7334,8 +7337,8 @@ type AuthorizeSecurityGroupEgressInput struct {
 	// a CIDR IP address range.
 	IpPermissions []*IpPermission `locationName:"ipPermissions" locationNameList:"item" type:"list"`
 
-	// The IP protocol name (tcp, udp, icmp) or number (see Protocol Numbers (http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml)).
-	// Use -1 to specify all.
+	// The IP protocol name or number. We recommend that you specify the protocol
+	// in a set of IP permissions instead.
 	IpProtocol *string `locationName:"ipProtocol" type:"string"`
 
 	// The name of a destination security group. To authorize outbound access to
@@ -7348,8 +7351,8 @@ type AuthorizeSecurityGroupEgressInput struct {
 	// IP permissions instead.
 	SourceSecurityGroupOwnerId *string `locationName:"sourceSecurityGroupOwnerId" type:"string"`
 
-	// The end of port range for the TCP and UDP protocols, or an ICMP code number.
-	// For the ICMP code number, use -1 to specify all ICMP codes for the ICMP type.
+	// The end of port range for the TCP and UDP protocols, or an ICMP type number.
+	// We recommend that you specify the port range in a set of IP permissions instead.
 	ToPort *int64 `locationName:"toPort" type:"integer"`
 }
 
@@ -7498,6 +7501,7 @@ func (s AvailabilityZoneMessage) GoString() string {
 	return s.String()
 }
 
+// The capacity information for instances launched onto the Dedicated host.
 type AvailableCapacity struct {
 	_ struct{} `type:"structure"`
 
@@ -8212,6 +8216,23 @@ type CopyImageInput struct {
 	// the required permissions, the error response is DryRunOperation. Otherwise,
 	// it is UnauthorizedOperation.
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// Specifies whether the destination snapshots of the copied image should be
+	// encrypted. The default CMK for EBS is used unless a non-default AWS Key Management
+	// Service (AWS KMS) CMK is specified with KmsKeyId. For more information, see
+	// Amazon EBS Encryption (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	Encrypted *bool `locationName:"encrypted" type:"boolean"`
+
+	// The full ARN of the AWS Key Management Service (AWS KMS) CMK to use when
+	// encrypting the snapshots of an image during a copy operation. This parameter
+	// is only required if you want to use a non-default CMK; if this parameter
+	// is not specified, the default CMK for EBS is used. The ARN contains the arn:aws:kms
+	// namespace, followed by the region of the CMK, the AWS account ID of the CMK
+	// owner, the key namespace, and then the CMK ID. For example, arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef.
+	// The specified CMK must exist in the region that the snapshot is being copied
+	// to. If a KmsKeyId is specified, the Encrypted flag must also be set.
+	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
 
 	// The name of the new AMI in the destination region.
 	Name *string `type:"string" required:"true"`
@@ -11781,6 +11802,9 @@ type DescribeInstancesInput struct {
 
 	// One or more filters.
 	//
+	//   affinity - The affinity setting for an instance running on a Dedicated
+	// host (default | host).
+	//
 	//   architecture - The instance architecture (i386 | x86_64).
 	//
 	//   availability-zone - The Availability Zone of the instance.
@@ -11809,6 +11833,9 @@ type DescribeInstancesInput struct {
 	//
 	//   group-name - The name of the security group for the instance. EC2-Classic
 	// only.
+	//
+	//   host-Id - The ID of the Dedicated host on which the instance is running,
+	// if applicable.
 	//
 	//   hypervisor - The hypervisor type of the instance (ovm | xen).
 	//
@@ -11915,7 +11942,7 @@ type DescribeInstancesInput struct {
 	//   tag-value - The value of a tag assigned to the resource. This filter is
 	// independent of the tag-key filter.
 	//
-	//   tenancy - The tenancy of an instance (dedicated | default).
+	//   tenancy - The tenancy of an instance (dedicated | default | host).
 	//
 	//   virtualization-type - The virtualization type of the instance (paravirtual
 	// | hvm).
@@ -12698,13 +12725,12 @@ type DescribeReservedInstancesInput struct {
 	//   fixed-price - The purchase price of the Reserved instance (for example,
 	// 9800.0).
 	//
-	//   instance-type - The instance type on which the Reserved instance can be
-	// used.
+	//   instance-type - The instance type that is covered by the reservation.
 	//
 	//   product-description - The Reserved instance product platform description.
 	// Instances that include (Amazon VPC) in the product platform description will
 	// only be displayed to EC2-Classic account holders and are for use with Amazon
-	// VPC. (Linux/UNIX | Linux/UNIX (Amazon VPC) | SUSE Linux | SUSE Linux (Amazon
+	// VPC (Linux/UNIX | Linux/UNIX (Amazon VPC) | SUSE Linux | SUSE Linux (Amazon
 	// VPC) | Red Hat Enterprise Linux | Red Hat Enterprise Linux (Amazon VPC) |
 	// Windows | Windows (Amazon VPC) | Windows with SQL Server Standard | Windows
 	// with SQL Server Standard (Amazon VPC) | Windows with SQL Server Web | Windows
@@ -12906,12 +12932,11 @@ type DescribeReservedInstancesOfferingsInput struct {
 	//   fixed-price - The purchase price of the Reserved instance (for example,
 	// 9800.0).
 	//
-	//   instance-type - The instance type on which the Reserved instance can be
-	// used.
+	//   instance-type - The instance type that is covered by the reservation.
 	//
 	//   marketplace - Set to true to show only Reserved Instance Marketplace offerings.
 	// When this filter is not used, which is the default behavior, all offerings
-	// from AWS and Reserved Instance Marketplace are listed.
+	// from both AWS and the Reserved Instance Marketplace are listed.
 	//
 	//   product-description - The Reserved instance product platform description.
 	// Instances that include (Amazon VPC) in the product platform description will
@@ -12923,7 +12948,7 @@ type DescribeReservedInstancesOfferingsInput struct {
 	// with SQL Server Web (Amazon VPC) | Windows with SQL Server Enterprise | Windows
 	// with SQL Server Enterprise (Amazon VPC))
 	//
-	//   reserved-instances-offering-id - The Reserved instances offering ID.
+	//   reserved-instances-offering-id - The Reserved instances' offering ID.
 	//
 	//   usage-price - The usage price of the Reserved instance, per hour (for
 	// example, 0.84).
@@ -12932,15 +12957,15 @@ type DescribeReservedInstancesOfferingsInput struct {
 	// Include Reserved Instance Marketplace offerings in the response.
 	IncludeMarketplace *bool `type:"boolean"`
 
-	// The tenancy of the Reserved instance offering. A Reserved instance with dedicated
-	// tenancy is applied to instances that run on single-tenant hardware and can
-	// only be launched within a VPC.
+	// The tenancy of the instances covered by the reservation. A Reserved instance
+	// with a tenancy of dedicated is applied to instances that run in a VPC on
+	// single-tenant hardware (i.e., Dedicated instances).
 	//
 	// Default: default
 	InstanceTenancy *string `locationName:"instanceTenancy" type:"string" enum:"Tenancy"`
 
-	// The instance type on which the Reserved instance can be used. For more information,
-	// see Instance Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html)
+	// The instance type that the reservation will cover (for example, m1.small).
+	// For more information, see Instance Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
 	InstanceType *string `type:"string" enum:"InstanceType"`
 
@@ -14238,7 +14263,7 @@ type DescribeVpcAttributeInput struct {
 	_ struct{} `type:"structure"`
 
 	// The VPC attribute.
-	Attribute *string `type:"string" enum:"VpcAttributeName"`
+	Attribute *string `type:"string" required:"true" enum:"VpcAttributeName"`
 
 	// Checks whether you have the required permissions for the action, without
 	// actually making the request, and provides an error response. If you have
@@ -15685,10 +15710,11 @@ type FlowLog struct {
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601"`
 
 	// Information about the error that occurred. Rate limited indicates that CloudWatch
-	// logs throttling has been applied for one or more network interfaces. Access
-	// error indicates that the IAM role associated with the flow log does not have
-	// sufficient permissions to publish to CloudWatch Logs. Unknown error indicates
-	// an internal error.
+	// logs throttling has been applied for one or more network interfaces, or that
+	// you've reached the limit on the number of CloudWatch Logs log groups that
+	// you can create. Access error indicates that the IAM role associated with
+	// the flow log does not have sufficient permissions to publish to CloudWatch
+	// Logs. Unknown error indicates an internal error.
 	DeliverLogsErrorMessage *string `locationName:"deliverLogsErrorMessage" type:"string"`
 
 	// The ARN of the IAM role that posts logs to CloudWatch Logs.
@@ -15867,6 +15893,7 @@ func (s HistoryRecord) GoString() string {
 	return s.String()
 }
 
+// Describes the properties of the Dedicated host.
 type Host struct {
 	_ struct{} `type:"structure"`
 
@@ -15890,14 +15917,14 @@ type Host struct {
 	// The hardware specifications of the Dedicated host.
 	HostProperties *HostProperties `locationName:"hostProperties" type:"structure"`
 
-	// The reservation ID of the Dedicated host. This returns a "null" response
-	// if the Dedicated host doesn't have an associated reservation.
+	// The reservation ID of the Dedicated host. This returns a null response if
+	// the Dedicated host doesn't have an associated reservation.
 	HostReservationId *string `locationName:"hostReservationId" type:"string"`
 
 	// The IDs and instance type that are currently running on the Dedicated host.
 	Instances []*HostInstance `locationName:"instances" locationNameList:"item" type:"list"`
 
-	// The Dedicated host's state. Can be "available", "under assessment, or "released".
+	// The Dedicated host's state.
 	State *string `locationName:"state" type:"string" enum:"AllocationState"`
 }
 
@@ -16895,6 +16922,7 @@ func (s InstanceBlockDeviceMappingSpecification) GoString() string {
 	return s.String()
 }
 
+// Information about the instance type that the Dedicated host supports.
 type InstanceCapacity struct {
 	_ struct{} `type:"structure"`
 
@@ -17406,14 +17434,11 @@ type IpPermission struct {
 	// A value of -1 indicates all ICMP types.
 	FromPort *int64 `locationName:"fromPort" type:"integer"`
 
-	// The protocol.
+	// The IP protocol name (for tcp, udp, and icmp) or number (see Protocol Numbers
+	// (http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml)).
 	//
-	// When you call DescribeSecurityGroups, the protocol value returned is the
-	// number. Exception: For TCP, UDP, and ICMP, the value returned is the name
-	// (for example, tcp, udp, or icmp). For a list of protocol numbers, see Protocol
-	// Numbers (http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).
-	// (VPC only) When you call AuthorizeSecurityGroupIngress, you can use -1 to
-	// specify all.
+	// [EC2-VPC only] When you authorize or revoke security group rules, you can
+	// use -1 to specify all.
 	IpProtocol *string `locationName:"ipProtocol" type:"string"`
 
 	// One or more IP ranges.
@@ -18810,10 +18835,10 @@ type PriceSchedule struct {
 	_ struct{} `type:"structure"`
 
 	// The current price schedule, as determined by the term remaining for the Reserved
-	// Instance in the listing.
+	// instance in the listing.
 	//
 	// A specific price schedule is always in effect, but only one price schedule
-	// can be active at any time. Take, for example, a Reserved Instance listing
+	// can be active at any time. Take, for example, a Reserved instance listing
 	// that has five months remaining in its term. When you specify price schedules
 	// for five months and two months, this means that schedule 1, covering the
 	// first three months of the remaining term, will be active during months 5,
@@ -18873,7 +18898,7 @@ func (s PriceScheduleSpecification) GoString() string {
 type PricingDetail struct {
 	_ struct{} `type:"structure"`
 
-	// The number of instances available for the price.
+	// The number of reservations available for the price.
 	Count *int64 `locationName:"count" type:"integer"`
 
 	// The price per instance.
@@ -19853,7 +19878,7 @@ type ReservedInstances struct {
 	// The purchase price of the Reserved instance.
 	FixedPrice *float64 `locationName:"fixedPrice" type:"float"`
 
-	// The number of Reserved instances purchased.
+	// The number of reservations purchased.
 	InstanceCount *int64 `locationName:"instanceCount" type:"integer"`
 
 	// The tenancy of the reserved instance.
@@ -20322,8 +20347,8 @@ func (s RestoreAddressToClassicOutput) GoString() string {
 type RevokeSecurityGroupEgressInput struct {
 	_ struct{} `type:"structure"`
 
-	// The CIDR IP address range. You can't specify this parameter when specifying
-	// a source security group.
+	// The CIDR IP address range. We recommend that you specify the CIDR range in
+	// a set of IP permissions instead.
 	CidrIp *string `locationName:"cidrIp" type:"string"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -20333,7 +20358,7 @@ type RevokeSecurityGroupEgressInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The start of port range for the TCP and UDP protocols, or an ICMP type number.
-	// For the ICMP type number, use -1 to specify all ICMP types.
+	// We recommend that you specify the port range in a set of IP permissions instead.
 	FromPort *int64 `locationName:"fromPort" type:"integer"`
 
 	// The ID of the security group.
@@ -20343,8 +20368,8 @@ type RevokeSecurityGroupEgressInput struct {
 	// a CIDR IP address range.
 	IpPermissions []*IpPermission `locationName:"ipPermissions" locationNameList:"item" type:"list"`
 
-	// The IP protocol name (tcp, udp, icmp) or number (see Protocol Numbers (http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml)).
-	// Use -1 to specify all.
+	// The IP protocol name or number. We recommend that you specify the protocol
+	// in a set of IP permissions instead.
 	IpProtocol *string `locationName:"ipProtocol" type:"string"`
 
 	// The name of a destination security group. To revoke outbound access to a
@@ -20357,8 +20382,8 @@ type RevokeSecurityGroupEgressInput struct {
 	// IP permissions instead.
 	SourceSecurityGroupOwnerId *string `locationName:"sourceSecurityGroupOwnerId" type:"string"`
 
-	// The end of port range for the TCP and UDP protocols, or an ICMP code number.
-	// For the ICMP code number, use -1 to specify all ICMP codes for the ICMP type.
+	// The end of port range for the TCP and UDP protocols, or an ICMP type number.
+	// We recommend that you specify the port range in a set of IP permissions instead.
 	ToPort *int64 `locationName:"toPort" type:"integer"`
 }
 
@@ -21085,7 +21110,8 @@ type SpotFleetLaunchSpecification struct {
 	// value of WeightedCapacity.
 	SpotPrice *string `locationName:"spotPrice" type:"string"`
 
-	// The ID of the subnet in which to launch the instances.
+	// The ID of the subnet in which to launch the instances. To specify multiple
+	// subnets, separate them using commas; for example, "subnet-a61dafcf, subnet-65ea5f08".
 	SubnetId *string `locationName:"subnetId" type:"string"`
 
 	// The Base64-encoded MIME user data to make available to the instances.
@@ -21350,7 +21376,8 @@ func (s SpotInstanceStatus) GoString() string {
 type SpotPlacement struct {
 	_ struct{} `type:"structure"`
 
-	// The Availability Zone.
+	// The Availability Zones. To specify multiple Availability Zones, separate
+	// them using commas; for example, "us-west-2a, us-west-2b".
 	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
 
 	// The name of the placement group (for cluster instances).

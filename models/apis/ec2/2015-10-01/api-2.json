@@ -2880,7 +2880,15 @@
         "SourceImageId":{"shape":"String"},
         "Name":{"shape":"String"},
         "Description":{"shape":"String"},
-        "ClientToken":{"shape":"String"}
+        "ClientToken":{"shape":"String"},
+        "Encrypted":{
+          "shape":"Boolean",
+          "locationName":"encrypted"
+        },
+        "KmsKeyId":{
+          "shape":"String",
+          "locationName":"kmsKeyId"
+        }
       }
     },
     "CopyImageResult":{
@@ -5515,7 +5523,10 @@
     },
     "DescribeVpcAttributeRequest":{
       "type":"structure",
-      "required":["VpcId"],
+      "required":[
+        "VpcId",
+        "Attribute"
+      ],
       "members":{
         "DryRun":{
           "shape":"Boolean",
@@ -11733,13 +11744,13 @@
       "type":"structure",
       "required":["Error"],
       "members":{
-        "Error":{
-          "shape":"UnsuccessfulItemError",
-          "locationName":"error"
-        },
         "ResourceId":{
           "shape":"String",
           "locationName":"resourceId"
+        },
+        "Error":{
+          "shape":"UnsuccessfulItemError",
+          "locationName":"error"
         }
       }
     },

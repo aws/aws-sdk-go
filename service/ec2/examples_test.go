@@ -597,6 +597,8 @@ func ExampleEC2_CopyImage() {
 		ClientToken:   aws.String("String"),
 		Description:   aws.String("String"),
 		DryRun:        aws.Bool(true),
+		Encrypted:     aws.Bool(true),
+		KmsKeyId:      aws.String("String"),
 	}
 	resp, err := svc.CopyImage(params)
 
@@ -3259,8 +3261,8 @@ func ExampleEC2_DescribeVpcAttribute() {
 	svc := ec2.New(session.New())
 
 	params := &ec2.DescribeVpcAttributeInput{
-		VpcId:     aws.String("String"), // Required
-		Attribute: aws.String("VpcAttributeName"),
+		Attribute: aws.String("VpcAttributeName"), // Required
+		VpcId:     aws.String("String"),           // Required
 		DryRun:    aws.Bool(true),
 	}
 	resp, err := svc.DescribeVpcAttribute(params)
