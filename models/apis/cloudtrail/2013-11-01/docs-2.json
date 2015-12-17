@@ -1,20 +1,20 @@
 {
   "version": "2.0",
+  "service": "<fullname>AWS CloudTrail</fullname> <p>This is the CloudTrail API Reference. It provides descriptions of actions, data types, common parameters, and common errors for CloudTrail.</p> <p>CloudTrail is a web service that records AWS API calls for your AWS account and delivers log files to an Amazon S3 bucket. The recorded information includes the identity of the user, the start time of the AWS API call, the source IP address, the request parameters, and the response elements returned by the service.</p> <note> As an alternative to using the API, you can use one of the AWS SDKs, which consist of libraries and sample code for various programming languages and platforms (Java, Ruby, .NET, iOS, Android, etc.). The SDKs provide a convenient way to create programmatic access to AWSCloudTrail. For example, the SDKs take care of cryptographically signing requests, managing errors, and retrying requests automatically. For information about the AWS SDKs, including how to download and install them, see the <a href=\"http://aws.amazon.com/tools/\">Tools for Amazon Web Services page</a>. </note> <p>See the CloudTrail User Guide for information about the data that is included with each AWS API call listed in the log files.</p>",
   "operations": {
-    "AddTags": "<p>Adds one or more tags to a trail, up to a limit of 10. Tags must be unique per trail. Overwrites an existing tag's value when a new value is specified for an existing tag key. If you specify a key without a value, the tag will be created with the specified key and a value of null.</p>",
-    "CreateTrail": "<p>Creates a trail that specifies the settings for delivery of log data to an Amazon S3 bucket. </p>",
-    "DeleteTrail": "<p>Deletes a trail. This operation must be called from the region in which the trail was created.</p>",
+    "AddTags": "<p>Adds one or more tags to a trail, up to a limit of 10. Tags must be unique per trail. Overwrites an existing tag's value when a new value is specified for an existing tag key. If you specify a key without a value, the tag will be created with the specified key and a value of null. You can tag a trail that applies to all regions only from the region in which the trail was created (that is, from its home region).</p>",
+    "CreateTrail": "<p>Creates a trail that specifies the settings for delivery of log data to an Amazon S3 bucket. A maximum of five trails can exist in a region, irrespective of the region in which they were created.</p>",
+    "DeleteTrail": "<p>Deletes a trail. This operation must be called from the region in which the trail was created. <code>DeleteTrail</code> cannot be called on the shadow trails (replicated trails in other regions) of a trail that is enabled in all regions.</p>",
     "DescribeTrails": "<p>Retrieves settings for the trail associated with the current region for your account.</p>",
     "GetTrailStatus": "<p>Returns a JSON-formatted list of information about the specified trail. Fields include information on delivery errors, Amazon SNS and Amazon S3 errors, and start and stop logging times for each trail. This operation returns trail status from a single region. To return trail status from all regions, you must call the operation on each region.</p>",
     "ListPublicKeys": "<p>Returns all public keys whose private keys were used to sign the digest files within the specified time range. The public key is needed to validate digest files that were signed with its corresponding private key.</p> <note>CloudTrail uses different private/public key pairs per region. Each digest file is signed with a private key unique to its region. Therefore, when you validate a digest file from a particular region, you must look in the same region for its corresponding public key.</note>",
-    "ListTags": "<p>Lists the tags for the trail in the current region.</p>",
+    "ListTags": "<p>Lists the tags for the specified trail or trails in the current region.</p> <p>Lists the tags for the trail in the current region.</p>",
     "LookupEvents": "<p>Looks up API activity events captured by CloudTrail that create, update, or delete resources in your account. Events for a region can be looked up for the times in which you had CloudTrail turned on in that region during the last seven days. Lookup supports five different attributes: time range (defined by a start time and end time), user name, event name, resource type, and resource name. All attributes are optional. The maximum number of attributes that can be specified in any one lookup request are time range and one other attribute. The default number of results returned is 10, with a maximum of 50 possible. The response includes a token that you can use to get the next page of results. </p> <important>The rate of lookup requests is limited to one per second per account. If this limit is exceeded, a throttling error occurs. </important> <important>Events that occurred during the selected time range will not be available for lookup if CloudTrail logging was not enabled when the events occurred.</important>",
     "RemoveTags": "<p>Removes the specified tags from a trail.</p>",
-    "StartLogging": "<p>Starts the recording of AWS API calls and log file delivery for a trail. </p>",
-    "StopLogging": "<p>Suspends the recording of AWS API calls and log file delivery for the specified trail. Under most circumstances, there is no need to use this action. You can update a trail without stopping it first. This action is the only way to stop recording. </p>",
-    "UpdateTrail": "<p>Updates the settings that specify delivery of log files. Changes to a trail do not require stopping the CloudTrail service. Use this action to designate an existing bucket for log delivery. If the existing bucket has previously been a target for CloudTrail log files, an IAM policy exists for the bucket. </p>"
+    "StartLogging": "<p>Starts the recording of AWS API calls and log file delivery for a trail. For a trail that is enabled in all regions, this operation must be called from the region in which the trail was created. This operation cannot be called on the shadow trails (replicated trails in other regions) of a trail that is enabled in all regions.</p>",
+    "StopLogging": "<p>Suspends the recording of AWS API calls and log file delivery for the specified trail. Under most circumstances, there is no need to use this action. You can update a trail without stopping it first. This action is the only way to stop recording. For a trail enabled in all regions, this operation must be called from the region in which the trail was created, or an <code>InvalidHomeRegionException</code> will occur. This operation cannot be called on the shadow trails (replicated trails in other regions) of a trail enabled in all regions.</p>",
+    "UpdateTrail": "<p>Updates the settings that specify delivery of log files. Changes to a trail do not require stopping the CloudTrail service. Use this action to designate an existing bucket for log delivery. If the existing bucket has previously been a target for CloudTrail log files, an IAM policy exists for the bucket. <code>UpdateTrail</code> must be called from the region in which the trail was created; otherwise, an <code>InvalidHomeRegionException</code> is thrown.</p>"
   },
-  "service": "<fullname>AWS CloudTrail</fullname> <p>This is the CloudTrail API Reference. It provides descriptions of actions, data types, common parameters, and common errors for CloudTrail.</p> <p>CloudTrail is a web service that records AWS API calls for your AWS account and delivers log files to an Amazon S3 bucket. The recorded information includes the identity of the user, the start time of the AWS API call, the source IP address, the request parameters, and the response elements returned by the service.</p> <note> As an alternative to using the API, you can use one of the AWS SDKs, which consist of libraries and sample code for various programming languages and platforms (Java, Ruby, .NET, iOS, Android, etc.). The SDKs provide a convenient way to create programmatic access to AWSCloudTrail. For example, the SDKs take care of cryptographically signing requests, managing errors, and retrying requests automatically. For information about the AWS SDKs, including how to download and install them, see the <a href=\"http://aws.amazon.com/tools/\">Tools for Amazon Web Services page</a>. </note> <p>See the CloudTrail User Guide for information about the data that is included with each AWS API call listed in the log files.</p>",
   "shapes": {
     "AddTagsRequest": {
       "base": "<p>Specifies the tags to add to a trail.</p>",
@@ -30,15 +30,21 @@
       "base": null,
       "refs": {
         "CreateTrailRequest$IncludeGlobalServiceEvents": "<p>Specifies whether the trail is publishing events from global services such as IAM to the log files. </p>",
+        "CreateTrailRequest$IsMultiRegionTrail": "<p>Specifies whether the trail is created in the current region or in all regions. The default is false.</p>",
         "CreateTrailRequest$EnableLogFileValidation": "<p>Specifies whether log file integrity validation is enabled. The default is false.</p> <note>When you disable log file integrity validation, the chain of digest files is broken after one hour. CloudTrail will not create digest files for log files that were delivered during a period in which log file integrity validation was disabled. For example, if you enable log file integrity validation at noon on January 1, disable it at noon on January 2, and re-enable it at noon on January 10, digest files will not be created for the log files delivered from noon on January 2 to noon on January 10. The same applies whenever you stop CloudTrail logging or delete a trail.</note>",
         "CreateTrailResponse$IncludeGlobalServiceEvents": "<p>Specifies whether the trail is publishing events from global services such as IAM to the log files. </p>",
+        "CreateTrailResponse$IsMultiRegionTrail": "<p>Specifies whether the trail exists in one region or in all regions.</p>",
         "CreateTrailResponse$LogFileValidationEnabled": "<p>Specifies whether log file integrity validation is enabled.</p>",
+        "DescribeTrailsRequest$includeShadowTrails": "<p>Specifies whether to include shadow trails in the response. A shadow trail is the replication in a region of a trail that was created in a different region. The default is true.</p>",
         "GetTrailStatusResponse$IsLogging": "<p>Whether the CloudTrail is currently logging AWS API calls.</p>",
         "Trail$IncludeGlobalServiceEvents": "<p>Set to <b>True</b> to include AWS API calls from AWS global services such as IAM. Otherwise, <b>False</b>.</p>",
+        "Trail$IsMultiRegionTrail": "<p>Specifies whether the trail belongs only to one region or exists in all regions.</p>",
         "Trail$LogFileValidationEnabled": "<p>Specifies whether log file validation is enabled.</p>",
         "UpdateTrailRequest$IncludeGlobalServiceEvents": "<p>Specifies whether the trail is publishing events from global services such as IAM to the log files. </p>",
+        "UpdateTrailRequest$IsMultiRegionTrail": "<p>Specifies whether the trail applies only to the current region or to all regions. The default is false. If the trail exists only in the current region and this value is set to true, shadow trails (replications of the trail) will be created in the other regions. If the trail exists in all regions and this value is set to false, the trail will remain in the region where it was created, and its shadow trails in other regions will be deleted.</p>",
         "UpdateTrailRequest$EnableLogFileValidation": "<p>Specifies whether log file validation is enabled. The default is false.</p> <note>When you disable log file integrity validation, the chain of digest files is broken after one hour. CloudTrail will not create digest files for log files that were delivered during a period in which log file integrity validation was disabled. For example, if you enable log file integrity validation at noon on January 1, disable it at noon on January 2, and re-enable it at noon on January 10, digest files will not be created for the log files delivered from noon on January 2 to noon on January 10. The same applies whenever you stop CloudTrail logging or delete a trail.</note>",
         "UpdateTrailResponse$IncludeGlobalServiceEvents": "<p>Specifies whether the trail is publishing events from global services such as IAM to the log files. </p>",
+        "UpdateTrailResponse$IsMultiRegionTrail": "<p>Specifies whether the trail exists in one region or in all regions.</p>",
         "UpdateTrailResponse$LogFileValidationEnabled": "<p>Specifies whether log file integrity validation is enabled.</p>"
       }
     },
@@ -153,6 +159,11 @@
       "refs": {
       }
     },
+    "InvalidHomeRegionException": {
+      "base": "<p>This exception is thrown when an operation is called on a trail from a region other than the region in which the trail was created.</p>",
+      "refs": {
+      }
+    },
     "InvalidKmsKeyIdException": {
       "base": "This exception is thrown when the KMS key ARN is invalid.",
       "refs": {
@@ -170,6 +181,11 @@
     },
     "InvalidNextTokenException": {
       "base": "<p>Invalid token or token that was previously used in a request with different parameters. This exception is thrown if the token is invalid. </p>",
+      "refs": {
+      }
+    },
+    "InvalidParameterCombinationException": {
+      "base": "<p>This exception is thrown when the combination of parameters provided is not valid.</p>",
       "refs": {
       }
     },
@@ -400,7 +416,7 @@
         "Event$EventName": "<p>The name of the event returned.</p>",
         "Event$Username": "<p>A user name or role name of the requester that called the API in the event returned.</p>",
         "Event$CloudTrailEvent": "<p>A JSON string that contains a representation of the event returned.</p>",
-        "GetTrailStatusRequest$Name": "<p>Specifies the name or the CloudTrail ARN of the trail for which you are requesting status. The format of a trail ARN is <code>arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail</code>.</p>",
+        "GetTrailStatusRequest$Name": "<p>Specifies the name or the CloudTrail ARN of the trail for which you are requesting status. To get the status of a shadow trail (a replication of the trail in another region), you must specify its ARN. The format of a trail ARN is <code>arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail</code>.</p>",
         "GetTrailStatusResponse$LatestDeliveryError": "<p>Displays any Amazon S3 error that CloudTrail encountered when attempting to deliver log files to the designated bucket. For more information see the topic <a href=\"http://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html\">Error Responses</a> in the Amazon S3 API Reference. </p> <note>This error occurs only when there is a problem with the destination S3 bucket and will not occur for timeouts. To resolve the issue, create a new bucket and call <code>UpdateTrail</code> to specify the new bucket, or fix the existing objects so that CloudTrail can again write to the bucket. </note>",
         "GetTrailStatusResponse$LatestNotificationError": "<p>Displays any Amazon SNS error that CloudTrail encountered when attempting to send a notification. For more information about Amazon SNS errors, see the <a href=\"http://docs.aws.amazon.com/sns/latest/dg/welcome.html\">Amazon SNS Developer Guide</a>. </p>",
         "GetTrailStatusResponse$LatestCloudWatchLogsDeliveryError": "<p>Displays any CloudWatch Logs error that CloudTrail encountered when attempting to deliver logs to CloudWatch Logs.</p>",
@@ -430,6 +446,7 @@
         "Trail$S3BucketName": "<p>Name of the Amazon S3 bucket into which CloudTrail delivers your trail files. See <a href=\"http://docs.aws.amazon.com/awscloudtrail/latest/userguide/create_trail_naming_policy.html\">Amazon S3 Bucket Naming Requirements</a>.</p>",
         "Trail$S3KeyPrefix": "<p>Specifies the Amazon S3 key prefix that comes after the name of the bucket you have designated for log file delivery. For more information, see <a href=\"http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-find-log-files.html\">Finding Your CloudTrail Log Files</a>.The maximum length is 200 characters.</p>",
         "Trail$SnsTopicName": "<p>Name of the existing Amazon SNS topic that CloudTrail uses to notify the account owner when new CloudTrail log files have been delivered. The maximum length is 256 characters.</p>",
+        "Trail$HomeRegion": "<p>The region in which the trail was created.</p>",
         "Trail$TrailARN": "<p>The Amazon Resource Name of the trail. The <code>TrailARN</code> format is <code>arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail</code>.</p>",
         "Trail$CloudWatchLogsLogGroupArn": "<p>Specifies an Amazon Resource Name (ARN), a unique identifier that represents the log group to which CloudTrail logs will be delivered.</p>",
         "Trail$CloudWatchLogsRoleArn": "<p>Specifies the role for the CloudWatch Logs endpoint to assume to write to a user's log group.</p>",
@@ -491,7 +508,7 @@
     "TrailNameList": {
       "base": null,
       "refs": {
-        "DescribeTrailsRequest$trailNameList": "<p>Specifies a list of trail names, trail ARNs, or both, of the trails to describe. The format of a trail ARN is <code>arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail</code>. If an empty list is specified, information for the trail in the current region is returned.</p>"
+        "DescribeTrailsRequest$trailNameList": "<p>Specifies a list of trail names, trail ARNs, or both, of the trails to describe. The format of a trail ARN is <code>arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail</code>. If an empty list is specified, information for the trail in the current region is returned.</p> <ul> <li>If an empty list is specified and <code>IncludeShadowTrails</code> is false, then information for all trails in the current region is returned.</li> <li> If an empty list is specified and IncludeShadowTrails is null or true, then information for all trails in the current region and any associated shadow trails in other regions is returned. </li> </ul> <note>If one or more trail names are specified, information is returned only if the names match the names of trails belonging only to the current region. To return information about a trail in another region, you must specify its trail ARN.</note>"
       }
     },
     "TrailNotFoundException": {
@@ -505,7 +522,7 @@
       }
     },
     "UnsupportedOperationException": {
-      "base": "<p>This exception is thrown when the requested operation is not supported. For example, this exception will occur if an attempt is made to tag a trail and tagging is not supported in the current region.</p>",
+      "base": "<p>This exception is thrown when the requested operation is not supported.</p>",
       "refs": {
       }
     },

@@ -51,6 +51,7 @@ func ExampleCloudTrail_CreateTrail() {
 		CloudWatchLogsRoleArn:      aws.String("String"),
 		EnableLogFileValidation:    aws.Bool(true),
 		IncludeGlobalServiceEvents: aws.Bool(true),
+		IsMultiRegionTrail:         aws.Bool(true),
 		KmsKeyId:                   aws.String("String"),
 		S3KeyPrefix:                aws.String("String"),
 		SnsTopicName:               aws.String("String"),
@@ -91,6 +92,7 @@ func ExampleCloudTrail_DescribeTrails() {
 	svc := cloudtrail.New(session.New())
 
 	params := &cloudtrail.DescribeTrailsInput{
+		IncludeShadowTrails: aws.Bool(true),
 		TrailNameList: []*string{
 			aws.String("String"), // Required
 			// More values...
@@ -274,6 +276,7 @@ func ExampleCloudTrail_UpdateTrail() {
 		CloudWatchLogsRoleArn:      aws.String("String"),
 		EnableLogFileValidation:    aws.Bool(true),
 		IncludeGlobalServiceEvents: aws.Bool(true),
+		IsMultiRegionTrail:         aws.Bool(true),
 		KmsKeyId:                   aws.String("String"),
 		S3BucketName:               aws.String("String"),
 		S3KeyPrefix:                aws.String("String"),

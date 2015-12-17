@@ -33,7 +33,9 @@ func (c *CloudTrail) AddTagsRequest(input *AddTagsInput) (req *request.Request, 
 // Adds one or more tags to a trail, up to a limit of 10. Tags must be unique
 // per trail. Overwrites an existing tag's value when a new value is specified
 // for an existing tag key. If you specify a key without a value, the tag will
-// be created with the specified key and a value of null.
+// be created with the specified key and a value of null. You can tag a trail
+// that applies to all regions only from the region in which the trail was created
+// (that is, from its home region).
 func (c *CloudTrail) AddTags(input *AddTagsInput) (*AddTagsOutput, error) {
 	req, out := c.AddTagsRequest(input)
 	err := req.Send()
@@ -61,7 +63,8 @@ func (c *CloudTrail) CreateTrailRequest(input *CreateTrailInput) (req *request.R
 }
 
 // Creates a trail that specifies the settings for delivery of log data to an
-// Amazon S3 bucket.
+// Amazon S3 bucket. A maximum of five trails can exist in a region, irrespective
+// of the region in which they were created.
 func (c *CloudTrail) CreateTrail(input *CreateTrailInput) (*CreateTrailOutput, error) {
 	req, out := c.CreateTrailRequest(input)
 	err := req.Send()
@@ -89,7 +92,8 @@ func (c *CloudTrail) DeleteTrailRequest(input *DeleteTrailInput) (req *request.R
 }
 
 // Deletes a trail. This operation must be called from the region in which the
-// trail was created.
+// trail was created. DeleteTrail cannot be called on the shadow trails (replicated
+// trails in other regions) of a trail that is enabled in all regions.
 func (c *CloudTrail) DeleteTrail(input *DeleteTrailInput) (*DeleteTrailOutput, error) {
 	req, out := c.DeleteTrailRequest(input)
 	err := req.Send()
@@ -209,6 +213,8 @@ func (c *CloudTrail) ListTagsRequest(input *ListTagsInput) (req *request.Request
 	return
 }
 
+// Lists the tags for the specified trail or trails in the current region.
+//
 // Lists the tags for the trail in the current region.
 func (c *CloudTrail) ListTags(input *ListTagsInput) (*ListTagsOutput, error) {
 	req, out := c.ListTagsRequest(input)
@@ -305,6 +311,10 @@ func (c *CloudTrail) StartLoggingRequest(input *StartLoggingInput) (req *request
 }
 
 // Starts the recording of AWS API calls and log file delivery for a trail.
+// For a trail that is enabled in all regions, this operation must be called
+// from the region in which the trail was created. This operation cannot be
+// called on the shadow trails (replicated trails in other regions) of a trail
+// that is enabled in all regions.
 func (c *CloudTrail) StartLogging(input *StartLoggingInput) (*StartLoggingOutput, error) {
 	req, out := c.StartLoggingRequest(input)
 	err := req.Send()
@@ -334,7 +344,10 @@ func (c *CloudTrail) StopLoggingRequest(input *StopLoggingInput) (req *request.R
 // Suspends the recording of AWS API calls and log file delivery for the specified
 // trail. Under most circumstances, there is no need to use this action. You
 // can update a trail without stopping it first. This action is the only way
-// to stop recording.
+// to stop recording. For a trail enabled in all regions, this operation must
+// be called from the region in which the trail was created, or an InvalidHomeRegionException
+// will occur. This operation cannot be called on the shadow trails (replicated
+// trails in other regions) of a trail enabled in all regions.
 func (c *CloudTrail) StopLogging(input *StopLoggingInput) (*StopLoggingOutput, error) {
 	req, out := c.StopLoggingRequest(input)
 	err := req.Send()
@@ -365,6 +378,8 @@ func (c *CloudTrail) UpdateTrailRequest(input *UpdateTrailInput) (req *request.R
 // do not require stopping the CloudTrail service. Use this action to designate
 // an existing bucket for log delivery. If the existing bucket has previously
 // been a target for CloudTrail log files, an IAM policy exists for the bucket.
+// UpdateTrail must be called from the region in which the trail was created;
+// otherwise, an InvalidHomeRegionException is thrown.
 func (c *CloudTrail) UpdateTrail(input *UpdateTrailInput) (*UpdateTrailOutput, error) {
 	req, out := c.UpdateTrailRequest(input)
 	err := req.Send()
@@ -439,6 +454,10 @@ type CreateTrailInput struct {
 	// as IAM to the log files.
 	IncludeGlobalServiceEvents *bool `type:"boolean"`
 
+	// Specifies whether the trail is created in the current region or in all regions.
+	// The default is false.
+	IsMultiRegionTrail *bool `type:"boolean"`
+
 	// Specifies the KMS key ID to use to encrypt the logs delivered by CloudTrail.
 	// The value can be a an alias name prefixed by "alias/", a fully specified
 	// ARN to an alias, a fully specified ARN to a key, or a globally unique identifier.
@@ -500,6 +519,9 @@ type CreateTrailOutput struct {
 	// Specifies whether the trail is publishing events from global services such
 	// as IAM to the log files.
 	IncludeGlobalServiceEvents *bool `type:"boolean"`
+
+	// Specifies whether the trail exists in one region or in all regions.
+	IsMultiRegionTrail *bool `type:"boolean"`
 
 	// Specifies the KMS key ID that encrypts the logs delivered by CloudTrail.
 	// The value is a fully specified ARN to a KMS key in the format:
@@ -579,10 +601,24 @@ func (s DeleteTrailOutput) GoString() string {
 type DescribeTrailsInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies whether to include shadow trails in the response. A shadow trail
+	// is the replication in a region of a trail that was created in a different
+	// region. The default is true.
+	IncludeShadowTrails *bool `locationName:"includeShadowTrails" type:"boolean"`
+
 	// Specifies a list of trail names, trail ARNs, or both, of the trails to describe.
 	// The format of a trail ARN is arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail.
 	// If an empty list is specified, information for the trail in the current region
 	// is returned.
+	//
+	//  If an empty list is specified and IncludeShadowTrails is false, then information
+	// for all trails in the current region is returned.  If an empty list is specified
+	// and IncludeShadowTrails is null or true, then information for all trails
+	// in the current region and any associated shadow trails in other regions is
+	// returned.   If one or more trail names are specified, information is returned
+	// only if the names match the names of trails belonging only to the current
+	// region. To return information about a trail in another region, you must specify
+	// its trail ARN.
 	TrailNameList []*string `locationName:"trailNameList" type:"list"`
 }
 
@@ -655,7 +691,8 @@ type GetTrailStatusInput struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies the name or the CloudTrail ARN of the trail for which you are requesting
-	// status. The format of a trail ARN is arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail.
+	// status. To get the status of a shadow trail (a replication of the trail in
+	// another region), you must specify its ARN. The format of a trail ARN is arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail.
 	Name *string `type:"string" required:"true"`
 }
 
@@ -1164,9 +1201,15 @@ type Trail struct {
 	// a user's log group.
 	CloudWatchLogsRoleArn *string `type:"string"`
 
+	// The region in which the trail was created.
+	HomeRegion *string `type:"string"`
+
 	// Set to True to include AWS API calls from AWS global services such as IAM.
 	// Otherwise, False.
 	IncludeGlobalServiceEvents *bool `type:"boolean"`
+
+	// Specifies whether the trail belongs only to one region or exists in all regions.
+	IsMultiRegionTrail *bool `type:"boolean"`
 
 	// Specifies the KMS key ID that encrypts the logs delivered by CloudTrail.
 	// The value is a fully specified ARN to a KMS key in the format:
@@ -1238,6 +1281,14 @@ type UpdateTrailInput struct {
 	// as IAM to the log files.
 	IncludeGlobalServiceEvents *bool `type:"boolean"`
 
+	// Specifies whether the trail applies only to the current region or to all
+	// regions. The default is false. If the trail exists only in the current region
+	// and this value is set to true, shadow trails (replications of the trail)
+	// will be created in the other regions. If the trail exists in all regions
+	// and this value is set to false, the trail will remain in the region where
+	// it was created, and its shadow trails in other regions will be deleted.
+	IsMultiRegionTrail *bool `type:"boolean"`
+
 	// Specifies the KMS key ID to use to encrypt the logs delivered by CloudTrail.
 	// The value can be a an alias name prefixed by "alias/", a fully specified
 	// ARN to an alias, a fully specified ARN to a key, or a globally unique identifier.
@@ -1301,6 +1352,9 @@ type UpdateTrailOutput struct {
 	// Specifies whether the trail is publishing events from global services such
 	// as IAM to the log files.
 	IncludeGlobalServiceEvents *bool `type:"boolean"`
+
+	// Specifies whether the trail exists in one region or in all regions.
+	IsMultiRegionTrail *bool `type:"boolean"`
 
 	// Specifies the KMS key ID that encrypts the logs delivered by CloudTrail.
 	// The value is a fully specified ARN to a KMS key in the format:
