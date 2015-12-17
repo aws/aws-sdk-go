@@ -11,8 +11,6 @@ import (
 	"github.com/aws/aws-sdk-go/private/signer/v4"
 )
 
-// AWS IoT is in beta and is subject to change
-//
 // AWS IoT provides secure, bi-directional communication between Internet-connected
 // things (such as sensors, actuators, embedded devices, or smart appliances)
 // and the AWS cloud. You can discover your custom IoT-Data endpoint to communicate

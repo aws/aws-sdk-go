@@ -156,6 +156,40 @@ func (c *IoT) CreateCertificateFromCsrRequest(input *CreateCertificateFromCsrInp
 //
 // Note Reusing the same certificate signing request (CSR) results in a distinct
 // certificate.
+//
+// You can create multiple certificates in a batch by creating a directory
+// and copying multiple .csr files into that directory and specifying that directory
+// on the command line. The following commands show how to create a batch of
+// certificates given a batch of CSRs.
+//
+// Assuming a set of CSRs are located inside of the directory my-csr-directory:
+//
+// > On Linux and OSX, the command is:
+//
+// $ ls my-csr-directory/ | xargs -I {} aws iot create-certificate-from-csr
+// --certificate-signing-request file://my-csr-directory/{}
+//
+//  This command lists all of the CSRs in my-csr-directory and pipes each CSR
+// filename to the aws iot create-certificate-from-csr AWS CLI command to create
+// a certificate for the corresponding CSR.
+//
+//  The aws iot create-certificate-from-csr part of the command can also be
+// run in parallel to speed up the certificate creation process:
+//
+//  $ ls my-csr-directory/ | xargs -P 10 -I {} aws iot create-certificate-from-csr
+// --certificate-signing-request file://my-csr-directory/{}
+//
+//  On Windows PowerShell, the command to create certificates for all CSRs
+// in my-csr-directory is:
+//
+//  > ls -Name my-csr-directory | %{aws iot create-certificate-from-csr --certificate-signing-request
+// file://my-csr-directory/$_}
+//
+//  On Windows Command Prompt, the command to create certificates for all CSRs
+// in my-csr-directory is:
+//
+//  > forfiles /p my-csr-directory /c "cmd /c aws iot create-certificate-from-csr
+// --certificate-signing-request file://@path"
 func (c *IoT) CreateCertificateFromCsr(input *CreateCertificateFromCsrInput) (*CreateCertificateFromCsrOutput, error) {
 	req, out := c.CreateCertificateFromCsrRequest(input)
 	err := req.Send()
@@ -244,7 +278,14 @@ func (c *IoT) CreatePolicyVersionRequest(input *CreatePolicyVersionInput) (req *
 	return
 }
 
-// Creates a new version of the specified AWS IoT policy.
+// Creates a new version of the specified AWS IoT policy. To update a policy,
+// create a new policy version. A managed policy can have up to five versions.
+// If the policy has five versions, you must delete an existing version using
+// DeletePolicyVersion before you create a new version.
+//
+// Optionally, you can set the new version as the policy's default version.
+// The default version is the operative version; that is, the version that is
+// in effect for the certificates that the policy is attached to.
 func (c *IoT) CreatePolicyVersion(input *CreatePolicyVersionInput) (*CreatePolicyVersionOutput, error) {
 	req, out := c.CreatePolicyVersionRequest(input)
 	err := req.Send()
@@ -327,13 +368,10 @@ func (c *IoT) DeleteCertificateRequest(input *DeleteCertificateInput) (req *requ
 
 // Deletes the specified certificate.
 //
-// A certificate cannot be deleted if it has a policy attached to it. To delete
-// a certificate, first detach all policies using the DetachPrincipalPolicy
-// operation.
-//
-// In addition, a certificate cannot be deleted if it is in ACTIVE status.
-// To delete a certificate, first change the status to INACTIVE using the UpdateCertificate
-// operation.
+// A certificate cannot be deleted if it has a policy attached to it or if
+// its status is set to ACTIVE. To delete a certificate, first detach all policies
+// using the DetachPrincipalPolicy API. Next use the UpdateCertificate API to
+// set the certificate to the INACTIVE status.
 func (c *IoT) DeleteCertificate(input *DeleteCertificateInput) (*DeleteCertificateOutput, error) {
 	req, out := c.DeleteCertificateRequest(input)
 	err := req.Send()
@@ -362,20 +400,16 @@ func (c *IoT) DeletePolicyRequest(input *DeletePolicyInput) (req *request.Reques
 
 // Deletes the specified policy.
 //
-// A policy cannot be deleted if:
+// A policy cannot be deleted if it has non-default versions and/or it is attached
+// to any certificate.
 //
-//  - it has non-default versions
+// To delete a policy, delete all non-default versions of the policy using
+// the DeletePolicyVersion API, detach the policy from any certificate using
+// the DetachPrincipalPolicy API, and then use the DeletePolicy API to delete
+// the policy.
 //
-//  - it is attached to any certificate
-//
-// To delete a policy:
-//
-//  - First delete all the non-default versions of the policy using the DeletePolicyVersion
-// API.
-//
-//  - Detach it from any certificate using the DetachPrincipalPolicy API.
-//
-// When a policy is deleted, its default version is deleted with it.
+// When a policy is deleted using DeletePolicy, its default version is deleted
+// with it.
 func (c *IoT) DeletePolicy(input *DeletePolicyInput) (*DeletePolicyOutput, error) {
 	req, out := c.DeletePolicyRequest(input)
 	err := req.Send()
@@ -402,11 +436,10 @@ func (c *IoT) DeletePolicyVersionRequest(input *DeletePolicyVersionInput) (req *
 	return
 }
 
-// Deletes the specified version of the specified policy. The default version
-// of the policy cannot be deleted.
-//
-// To delete the default version use the DeletePolicy API or mark the policy
-// as non-default and then delete it.
+// Deletes the specified version of the specified policy. You cannot delete
+// the default version of a policy using this API. To delete the default version
+// of a policy, use DeletePolicy. To find out which version of a policy is marked
+// as the default version, use ListPolicyVersions.
 func (c *IoT) DeletePolicyVersion(input *DeletePolicyVersionInput) (*DeletePolicyVersionOutput, error) {
 	req, out := c.DeletePolicyVersionRequest(input)
 	err := req.Send()
@@ -514,9 +547,9 @@ func (c *IoT) DescribeEndpointRequest(input *DescribeEndpointInput) (req *reques
 	return
 }
 
-// Returns a unique URL specific to the AWS account making the call. The URL
-// points to the AWS IoT data plane endpoint. The customer-specific endpoint
-// should be provided to all data plane operations.
+// Returns a unique endpoint specific to the AWS account making the call. You
+// specify the following URI when updating state information for your thing:
+// https://endpoint/things/thingName/shadow.
 func (c *IoT) DescribeEndpoint(input *DescribeEndpointInput) (*DescribeEndpointOutput, error) {
 	req, out := c.DescribeEndpointRequest(input)
 	err := req.Send()
@@ -1018,7 +1051,10 @@ func (c *IoT) SetDefaultPolicyVersionRequest(input *SetDefaultPolicyVersionInput
 	return
 }
 
-// Sets the specified policy version as the default for the specified policy.
+// Sets the specified version of the specified policy as the policy's default
+// (operative) version. This action affects all certificates that the policy
+// is attached to. To list the principals the policy is attached to, use the
+// ListPrincipalPolicy API.
 func (c *IoT) SetDefaultPolicyVersion(input *SetDefaultPolicyVersionInput) (*SetDefaultPolicyVersionOutput, error) {
 	req, out := c.SetDefaultPolicyVersionRequest(input)
 	err := req.Send()
@@ -1297,13 +1333,13 @@ func (s AttachThingPrincipalOutput) GoString() string {
 
 // The attribute payload, a JSON string containing up to three key-value pairs.
 //
-// For example: {\"attributes\":{\"string1\":\"string2\”}}
+// For example: {\"attributes\":{\"string1\":\"string2\"}}
 type AttributePayload struct {
 	_ struct{} `type:"structure"`
 
 	// A JSON string containing up to three key-value pair in JSON format.
 	//
-	// For example: {\"attributes\":{\"string1\":\"string2\”}}
+	// For example: {\"attributes\":{\"string1\":\"string2\"}}
 	Attributes map[string]*string `locationName:"attributes" type:"map"`
 }
 
@@ -1387,7 +1423,7 @@ type CertificateDescription struct {
 	CertificateId *string `locationName:"certificateId" min:"64" type:"string"`
 
 	// The certificate data, in PEM format.
-	CertificatePem *string `locationName:"certificatePem" type:"string"`
+	CertificatePem *string `locationName:"certificatePem" min:"1" type:"string"`
 
 	// The date and time the certificate was created.
 	CreationDate *time.Time `locationName:"creationDate" type:"timestamp" timestampFormat:"unix"`
@@ -1446,7 +1482,7 @@ type CreateCertificateFromCsrOutput struct {
 	CertificateId *string `locationName:"certificateId" min:"64" type:"string"`
 
 	// The certificate data, in PEM format.
-	CertificatePem *string `locationName:"certificatePem" type:"string"`
+	CertificatePem *string `locationName:"certificatePem" min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -1489,7 +1525,7 @@ type CreateKeysAndCertificateOutput struct {
 	CertificateId *string `locationName:"certificateId" min:"64" type:"string"`
 
 	// The certificate data, in PEM format.
-	CertificatePem *string `locationName:"certificatePem" type:"string"`
+	CertificatePem *string `locationName:"certificatePem" min:"1" type:"string"`
 
 	// The generated key pair.
 	KeyPair *KeyPair `locationName:"keyPair" type:"structure"`
@@ -1558,13 +1594,17 @@ func (s CreatePolicyOutput) GoString() string {
 type CreatePolicyVersionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The JSON document that describes the policy.
+	// The JSON document that describes the policy. Minimum length of 1. Maximum
+	// length of 2048 excluding whitespaces
 	PolicyDocument *string `locationName:"policyDocument" type:"string" required:"true"`
 
 	// The policy name.
 	PolicyName *string `location:"uri" locationName:"policyName" min:"1" type:"string" required:"true"`
 
-	// Specifies whether the policy version is set as the default.
+	// Specifies whether the policy version is set as the default. When this parameter
+	// is true, the new policy version becomes the operative version; that is, the
+	// version that is in effect for the certificates that the policy is attached
+	// to.
 	SetAsDefault *bool `location:"querystring" locationName:"setAsDefault" type:"boolean"`
 }
 
@@ -1610,7 +1650,7 @@ type CreateThingInput struct {
 	_ struct{} `type:"structure"`
 
 	// The attribute payload. Which consists of up to 3 name/value pairs in a JSON
-	// document. For example: {\"attributes\":{\"string1\":\"string2\”}}
+	// document. For example: {\"attributes\":{\"string1\":\"string2\"}}
 	AttributePayload *AttributePayload `locationName:"attributePayload" type:"structure"`
 
 	// The name of the thing.
@@ -1902,7 +1942,7 @@ func (s DescribeEndpointInput) GoString() string {
 type DescribeEndpointOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The address.
+	// The endpoint. The format of the endpoint is as follows: identifier.iot.region.amazonaws.com.
 	EndpointAddress *string `locationName:"endpointAddress" type:"string"`
 }
 
@@ -1940,8 +1980,8 @@ type DescribeThingOutput struct {
 
 	// The attributes which are name/value pairs in JSON format. For example:
 	//
-	// {\"attributes\":{\"some-name1\":\"some-value1\”}, {\"some-name2\":\"some-value2\”},
-	// {\"some-name3\":\"some-value3\”}}
+	// {\"attributes\":{\"some-name1\":\"some-value1\"}, {\"some-name2\":\"some-value2\"},
+	// {\"some-name3\":\"some-value3\"}}
 	Attributes map[string]*string `locationName:"attributes" type:"map"`
 
 	// The default client ID.
@@ -2061,7 +2101,7 @@ type DynamoDBAction struct {
 	// The hash key value.
 	HashKeyValue *string `locationName:"hashKeyValue" type:"string" required:"true"`
 
-	// The action payload.
+	// The action payload, this name can be customized.
 	PayloadField *string `locationName:"payloadField" type:"string"`
 
 	// The range key name.
@@ -2520,6 +2560,7 @@ func (s ListPrincipalPoliciesOutput) GoString() string {
 type ListPrincipalThingsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The maximum number of principals to return.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
@@ -3172,7 +3213,7 @@ type UpdateThingInput struct {
 
 	// The attribute payload, a JSON string containing up to three key-value pairs.
 	//
-	// For example: {\"attributes\":{\"string1\":\"string2\”}}
+	// For example: {\"attributes\":{\"string1\":\"string2\"}}
 	AttributePayload *AttributePayload `locationName:"attributePayload" type:"structure" required:"true"`
 
 	// The thing name.

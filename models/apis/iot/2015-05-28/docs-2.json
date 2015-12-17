@@ -5,19 +5,19 @@
     "AttachPrincipalPolicy": "<p>Attaches the specified policy to the specified principal (certificate or other credential).</p>",
     "AttachThingPrincipal": "<p>Attaches the specified principal to the specified thing.</p>",
     "CancelCertificateTransfer": "<p>Cancels a pending transfer for the specified certificate.</p> <p><b>Note</b> Only the transfer source account can use this operation to cancel a transfer (transfer destinations can use <a>RejectCertificateTransfer</a> instead). After transfer, AWS IoT returns the certificate to the source account in the INACTIVE state. Once the destination account has accepted the transfer, the transfer may no longer be cancelled.</p> <p>After a certificate transfer is cancelled, the status of the certificate changes from PENDING_TRANSFER to INACTIVE.</p>",
-    "CreateCertificateFromCsr": "<p>Creates an X.509 certificate using the specified certificate signing request.</p> <p><b>Note</b> Reusing the same certificate signing request (CSR) results in a distinct certificate.</p>",
+    "CreateCertificateFromCsr": "<p>Creates an X.509 certificate using the specified certificate signing request.</p> <p><b>Note</b> Reusing the same certificate signing request (CSR) results in a distinct certificate.</p> <p>You can create multiple certificates in a batch by creating a directory and copying multiple .csr files into that directory and specifying that directory on the command line. The following commands show how to create a batch of certificates given a batch of CSRs. </p> <p>Assuming a set of CSRs are located inside of the directory my-csr-directory:</p>&gt; <p>On Linux and OSX, the command is:</p> <p>$ ls my-csr-directory/ | xargs -I {} aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/{}</p> <p> This command lists all of the CSRs in my-csr-directory and pipes each CSR filename to the aws iot create-certificate-from-csr AWS CLI command to create a certificate for the corresponding CSR. </p> <p> The aws iot create-certificate-from-csr part of the command can also be run in parallel to speed up the certificate creation process: </p> <p> $ ls my-csr-directory/ | xargs -P 10 -I {} aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/{} </p> <p> On Windows PowerShell, the command to create certificates for all CSRs in my-csr-directory is: </p> <p> &gt; ls -Name my-csr-directory | %{aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/$_} </p> <p> On Windows Command Prompt, the command to create certificates for all CSRs in my-csr-directory is: </p> <p> &gt; forfiles /p my-csr-directory /c \"cmd /c aws iot create-certificate-from-csr --certificate-signing-request file://@path\"</p>",
     "CreateKeysAndCertificate": "<p>Creates a 2048 bit RSA key pair and issues an X.509 certificate using the issued public key.</p> <p><b>Note</b> This is the only time AWS IoT issues the private key for this certificate. It is important to keep track of the private key.</p>",
     "CreatePolicy": "<p>Creates an AWS IoT policy.</p> <p>The created policy is the default version for the policy. This operation creates a policy version with a version identifier of <b>1</b> and sets <b>1</b> as the policy's default version.</p>",
-    "CreatePolicyVersion": "<p>Creates a new version of the specified AWS IoT policy.</p>",
+    "CreatePolicyVersion": "<p>Creates a new version of the specified AWS IoT policy. To update a policy, create a new policy version. A managed policy can have up to five versions. If the policy has five versions, you must delete an existing version using <a>DeletePolicyVersion</a> before you create a new version.</p> <p>Optionally, you can set the new version as the policy's default version. The default version is the operative version; that is, the version that is in effect for the certificates that the policy is attached to.</p>",
     "CreateThing": "<p>Creates a thing in the thing registry.</p>",
     "CreateTopicRule": "<p>Creates a rule.</p>",
-    "DeleteCertificate": "<p>Deletes the specified certificate.</p> <p>A certificate cannot be deleted if it has a policy attached to it. To delete a certificate, first detach all policies using the <a>DetachPrincipalPolicy</a> operation.</p> <p>In addition, a certificate cannot be deleted if it is in ACTIVE status. To delete a certificate, first change the status to INACTIVE using the <a>UpdateCertificate</a> operation.</p>",
-    "DeletePolicy": "<p>Deletes the specified policy.</p> <p>A policy cannot be deleted if: </p> <p> - it has non-default versions</p> <p> - it is attached to any certificate</p> <p>To delete a policy:</p> <p> - First delete all the non-default versions of the policy using the <a>DeletePolicyVersion</a> API.</p> <p> - Detach it from any certificate using the <a>DetachPrincipalPolicy</a> API.</p> <p>When a policy is deleted, its default version is deleted with it.</p>",
-    "DeletePolicyVersion": "<p>Deletes the specified version of the specified policy. The default version of the policy cannot be deleted.</p> <p>To delete the default version use the <a>DeletePolicy</a> API or mark the policy as non-default and then delete it.</p>",
+    "DeleteCertificate": "<p>Deletes the specified certificate.</p> <p>A certificate cannot be deleted if it has a policy attached to it or if its status is set to ACTIVE. To delete a certificate, first detach all policies using the <a>DetachPrincipalPolicy</a> API. Next use the <a>UpdateCertificate</a> API to set the certificate to the INACTIVE status.</p>",
+    "DeletePolicy": "<p>Deletes the specified policy.</p> <p>A policy cannot be deleted if it has non-default versions and/or it is attached to any certificate.</p> <p>To delete a policy, delete all non-default versions of the policy using the DeletePolicyVersion API, detach the policy from any certificate using the DetachPrincipalPolicy API, and then use the DeletePolicy API to delete the policy.</p> <p>When a policy is deleted using DeletePolicy, its default version is deleted with it.</p>",
+    "DeletePolicyVersion": "<p>Deletes the specified version of the specified policy. You cannot delete the default version of a policy using this API. To delete the default version of a policy, use <a>DeletePolicy</a>. To find out which version of a policy is marked as the default version, use ListPolicyVersions.</p>",
     "DeleteThing": "<p>Deletes the specified thing from the Thing Registry.</p>",
     "DeleteTopicRule": "<p>Deletes the specified rule.</p>",
     "DescribeCertificate": "<p>Gets information about the specified certificate.</p>",
-    "DescribeEndpoint": "<p>Returns a unique URL specific to the AWS account making the call. The URL points to the AWS IoT data plane endpoint. The customer-specific endpoint should be provided to all data plane operations.</p>",
+    "DescribeEndpoint": "<p>Returns a unique endpoint specific to the AWS account making the call. You specify the following URI when updating state information for your thing: https://<i>endpoint</i>/things/<i>thingName</i>/shadow.</p>",
     "DescribeThing": "<p>Gets information about the specified thing.</p>",
     "DetachPrincipalPolicy": "<p>Removes the specified policy from the specified certificate.</p>",
     "DetachThingPrincipal": "<p>Detaches the specified principal from the specified thing.</p>",
@@ -35,13 +35,13 @@
     "ListTopicRules": "<p>Lists the rules for the specific topic.</p>",
     "RejectCertificateTransfer": "<p>Rejects a pending certificate transfer. After AWS IoT rejects a certificate transfer, the certificate status changes from <b>PENDING_TRANFER</b> to <b>INACTIVE</b>.</p> <p>To check for pending certificate transfers, call <a>ListCertificates</a> to enumerate your certificates.</p> <p>This operation can only be called by the transfer destination. Once called, the certificate will be returned to the source's account in the INACTIVE state.</p>",
     "ReplaceTopicRule": "<p>Replaces the specified rule. You must specify all parameters for the new rule.</p>",
-    "SetDefaultPolicyVersion": "<p>Sets the specified policy version as the default for the specified policy.</p>",
+    "SetDefaultPolicyVersion": "<p>Sets the specified version of the specified policy as the policy's default (operative) version. This action affects all certificates that the policy is attached to. To list the principals the policy is attached to, use the ListPrincipalPolicy API.</p>",
     "SetLoggingOptions": "<p>Sets the logging options.</p>",
-    "TransferCertificate": "<p>Transfers the specified certificate to the specified AWS account.</p> <p>You can cancel the transfer until it is acknowledged by the recipient.</p> <p>No notification is sent to the transfer destination's account, it is up to the caller to notify the transfer target.</p> <p>The certificate being transferred must not be in the ACTIVE state. It can be deactivated using the UpdateCertificate API.</p> <p>The certificate must not have any policies attached to it. These can be detached using the <a>DetachPrincipalPolicy</a> API.</p>",
+    "TransferCertificate": "<p>Transfers the specified certificate to the specified AWS account.</p> <p>You can cancel the transfer until it is acknowledged by the recipient.</p> <p>No notification is sent to the transfer destination's account, it is up to the caller to notify the transfer target.</p> <p>The certificate being transferred must not be in the ACTIVE state. It can be deactivated using the UpdateCertificate API.</p> <p>The certificate must not have any policies attached to it. These can be detached using the DetachPrincipalPolicy API.</p>",
     "UpdateCertificate": "<p>Updates the status of the specified certificate. This operation is idempotent.</p> <p>Moving a cert from the ACTIVE state (including REVOKED) will NOT disconnect currently-connected devices, although these devices will be unable to reconnect.</p> <p>The ACTIVE state is required to authenticate devices connecting to AWS IoT using a certificate.</p>",
     "UpdateThing": "<p>Updates the data for a thing.</p>"
   },
-  "service": "<fullname>AWS IoT (Beta)</fullname> <p><b>AWS IoT is in beta and is subject to change</b></p> <p>AWS IoT provides secure, bi-directional communication between Internet-connected things (such as sensors, actuators, embedded devices, or smart appliances) and the AWS cloud. You can discover your custom IoT-Data endpoint to communicate with, configure rules for data processing and integration with other services, organize resources associated with each thing (Thing Registry), configure logging, and create and manage policies and credentials to authenticate things.</p> <p>For more information about how AWS IoT works, see the <a href=\"http://docs.aws.amazon.com/iot/latest/developerguide/aws-iot-how-it-works.html\">Developer Guide</a>.</p>",
+  "service": "<fullname>AWS IoT</fullname> <p>AWS IoT provides secure, bi-directional communication between Internet-connected things (such as sensors, actuators, embedded devices, or smart appliances) and the AWS cloud. You can discover your custom IoT-Data endpoint to communicate with, configure rules for data processing and integration with other services, organize resources associated with each thing (Thing Registry), configure logging, and create and manage policies and credentials to authenticate things.</p> <p>For more information about how AWS IoT works, see the <a href=\"http://docs.aws.amazon.com/iot/latest/developerguide/aws-iot-how-it-works.html\">Developer Guide</a>.</p>",
   "shapes": {
     "AcceptCertificateTransferRequest": {
       "base": "<p>The input for the AcceptCertificateTransfer operation.</p>",
@@ -92,10 +92,10 @@
       }
     },
     "AttributePayload": {
-      "base": "<p>The attribute payload, a JSON string containing up to three key-value pairs.</p> <p>For example: {\\\"attributes\\\":{\\\"string1\\\":\\\"string2\\”}}</p>",
+      "base": "<p>The attribute payload, a JSON string containing up to three key-value pairs.</p> <p>For example: {\\\"attributes\\\":{\\\"string1\\\":\\\"string2\\\"}}</p>",
       "refs": {
-        "CreateThingRequest$attributePayload": "<p>The attribute payload. Which consists of up to 3 name/value pairs in a JSON document. For example: {\\\"attributes\\\":{\\\"string1\\\":\\\"string2\\”}}</p>",
-        "UpdateThingRequest$attributePayload": "<p>The attribute payload, a JSON string containing up to three key-value pairs.</p> <p>For example: {\\\"attributes\\\":{\\\"string1\\\":\\\"string2\\”}}</p>"
+        "CreateThingRequest$attributePayload": "<p>The attribute payload. Which consists of up to 3 name/value pairs in a JSON document. For example: {\\\"attributes\\\":{\\\"string1\\\":\\\"string2\\\"}}</p>",
+        "UpdateThingRequest$attributePayload": "<p>The attribute payload, a JSON string containing up to three key-value pairs.</p> <p>For example: {\\\"attributes\\\":{\\\"string1\\\":\\\"string2\\\"}}</p>"
       }
     },
     "AttributeValue": {
@@ -108,8 +108,8 @@
     "Attributes": {
       "base": null,
       "refs": {
-        "AttributePayload$attributes": "<p>A JSON string containing up to three key-value pair in JSON format.</p> <p>For example: {\\\"attributes\\\":{\\\"string1\\\":\\\"string2\\”}}</p>",
-        "DescribeThingResponse$attributes": "<p>The attributes which are name/value pairs in JSON format. For example: </p> <p>{\\\"attributes\\\":{\\\"some-name1\\\":\\\"some-value1\\”}, {\\\"some-name2\\\":\\\"some-value2\\”}, {\\\"some-name3\\\":\\\"some-value3\\”}}</p>",
+        "AttributePayload$attributes": "<p>A JSON string containing up to three key-value pair in JSON format.</p> <p>For example: {\\\"attributes\\\":{\\\"string1\\\":\\\"string2\\\"}}</p>",
+        "DescribeThingResponse$attributes": "<p>The attributes which are name/value pairs in JSON format. For example: </p> <p>{\\\"attributes\\\":{\\\"some-name1\\\":\\\"some-value1\\\"}, {\\\"some-name2\\\":\\\"some-value2\\\"}, {\\\"some-name3\\\":\\\"some-value3\\\"}}</p>",
         "ThingAttribute$attributes": "<p>The attributes.</p>"
       }
     },
@@ -396,7 +396,7 @@
     "EndpointAddress": {
       "base": null,
       "refs": {
-        "DescribeEndpointResponse$endpointAddress": "<p>The address.</p>"
+        "DescribeEndpointResponse$endpointAddress": "<p>The endpoint. The format of the endpoint is as follows: <i>identifier</i>.iot.<i>region</i>.amazonaws.com.</p>"
       }
     },
     "FirehoseAction": {
@@ -636,7 +636,7 @@
     "MaxResults": {
       "base": null,
       "refs": {
-        "ListPrincipalThingsRequest$maxResults": null,
+        "ListPrincipalThingsRequest$maxResults": "<p>The maximum number of principals to return.</p>",
         "ListThingsRequest$maxResults": "<p>The maximum number of results.</p>",
         "ListTopicRulesRequest$maxResults": "<p>The maximum number of results to return.</p>"
       }
@@ -669,7 +669,7 @@
     "PayloadField": {
       "base": null,
       "refs": {
-        "DynamoDBAction$payloadField": "<p>The action payload.</p>"
+        "DynamoDBAction$payloadField": "<p>The action payload, this name can be customized.</p>"
       }
     },
     "Policies": {
@@ -700,7 +700,7 @@
       "refs": {
         "CreatePolicyRequest$policyDocument": "<p>The JSON document that describes the policy. The length of the <b>policyDocument</b> must be a minimum length of 1, with a maximum length of 2048, excluding whitespace.</p>",
         "CreatePolicyResponse$policyDocument": "<p>The JSON document that describes the policy.</p>",
-        "CreatePolicyVersionRequest$policyDocument": "<p>The JSON document that describes the policy.</p>",
+        "CreatePolicyVersionRequest$policyDocument": "<p>The JSON document that describes the policy. Minimum length of 1. Maximum length of 2048 excluding whitespaces</p>",
         "CreatePolicyVersionResponse$policyDocument": "<p>The JSON document that describes the policy.</p>",
         "GetPolicyResponse$policyDocument": "<p>The JSON document that describes the policy.</p>",
         "GetPolicyVersionResponse$policyDocument": "<p>The JSON document that describes the policy.</p>"
@@ -869,7 +869,7 @@
     "SetAsDefault": {
       "base": null,
       "refs": {
-        "CreatePolicyVersionRequest$setAsDefault": "<p>Specifies whether the policy version is set as the default.</p>"
+        "CreatePolicyVersionRequest$setAsDefault": "<p>Specifies whether the policy version is set as the default. When this parameter is true, the new policy version becomes the operative version; that is, the version that is in effect for the certificates that the policy is attached to.</p>"
       }
     },
     "SetDefaultPolicyVersionRequest": {

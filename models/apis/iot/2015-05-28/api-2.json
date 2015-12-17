@@ -706,6 +706,11 @@
           "shape":"UnauthorizedException",
           "error":{"httpStatusCode":401},
           "exception":true
+        },
+        {
+          "shape":"ThrottlingException",
+          "error":{"httpStatusCode":429},
+          "exception":true
         }
       ]
     },
@@ -1731,7 +1736,10 @@
       "max":64,
       "pattern":"(0x)?[a-fA-F0-9]+"
     },
-    "CertificatePem":{"type":"string"},
+    "CertificatePem":{
+      "type":"string",
+      "min":1
+    },
     "CertificateSigningRequest":{
       "type":"string",
       "min":1
@@ -2527,7 +2535,8 @@
     },
     "PrivateKey":{
       "type":"string",
-      "min":1
+      "min":1,
+      "sensitive":true
     },
     "PublicKey":{
       "type":"string",
