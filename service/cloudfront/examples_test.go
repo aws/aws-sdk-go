@@ -90,6 +90,7 @@ func ExampleCloudFront_CreateDistribution() {
 						Quantity: aws.Int64(1), // Required
 					},
 				},
+				Compress:        aws.Bool(true),
 				DefaultTTL:      aws.Int64(1),
 				MaxTTL:          aws.Int64(1),
 				SmoothStreaming: aws.Bool(true),
@@ -171,6 +172,7 @@ func ExampleCloudFront_CreateDistribution() {
 								Quantity: aws.Int64(1), // Required
 							},
 						},
+						Compress:        aws.Bool(true),
 						DefaultTTL:      aws.Int64(1),
 						MaxTTL:          aws.Int64(1),
 						SmoothStreaming: aws.Bool(true),
@@ -209,6 +211,8 @@ func ExampleCloudFront_CreateDistribution() {
 				},
 			},
 			ViewerCertificate: &cloudfront.ViewerCertificate{
+				Certificate:                  aws.String("string"),
+				CertificateSource:            aws.String("CertificateSource"),
 				CloudFrontDefaultCertificate: aws.Bool(true),
 				IAMCertificateId:             aws.String("string"),
 				MinimumProtocolVersion:       aws.String("MinimumProtocolVersion"),
@@ -680,6 +684,7 @@ func ExampleCloudFront_UpdateDistribution() {
 						Quantity: aws.Int64(1), // Required
 					},
 				},
+				Compress:        aws.Bool(true),
 				DefaultTTL:      aws.Int64(1),
 				MaxTTL:          aws.Int64(1),
 				SmoothStreaming: aws.Bool(true),
@@ -761,6 +766,7 @@ func ExampleCloudFront_UpdateDistribution() {
 								Quantity: aws.Int64(1), // Required
 							},
 						},
+						Compress:        aws.Bool(true),
 						DefaultTTL:      aws.Int64(1),
 						MaxTTL:          aws.Int64(1),
 						SmoothStreaming: aws.Bool(true),
@@ -799,6 +805,8 @@ func ExampleCloudFront_UpdateDistribution() {
 				},
 			},
 			ViewerCertificate: &cloudfront.ViewerCertificate{
+				Certificate:                  aws.String("string"),
+				CertificateSource:            aws.String("CertificateSource"),
 				CloudFrontDefaultCertificate: aws.Bool(true),
 				IAMCertificateId:             aws.String("string"),
 				MinimumProtocolVersion:       aws.String("MinimumProtocolVersion"),
