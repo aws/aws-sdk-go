@@ -1,12 +1,12 @@
 {
   "version": "2.0",
+  "service": "<fullname>AWS IoT</fullname> <p>AWS IoT-Data enables secure, bi-directional communication between Internet-connected things (such as sensors, actuators, embedded devices, or smart appliances) and the AWS cloud. It implements a broker for applications and things to publish messages over HTTP (Publish) and retrieve, update, and delete thing shadows. A thing shadow is a persistent representation of your things and their state in the AWS cloud.</p>",
   "operations": {
     "DeleteThingShadow": "<p>Deletes the thing shadow for the specified thing.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/iot/latest/developerguide/API_DeleteThingShadow.html\">DeleteThingShadow</a> in the <i>AWS IoT Developer Guide</i>.</p>",
     "GetThingShadow": "<p>Gets the thing shadow for the specified thing.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/iot/latest/developerguide/API_GetThingShadow.html\">GetThingShadow</a> in the <i>AWS IoT Developer Guide</i>.</p>",
     "Publish": "<p>Publishes state information.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/iot/latest/developerguide/protocols.html#http\">HTTP Protocol</a> in the <i>AWS IoT Developer Guide</i>.</p>",
     "UpdateThingShadow": "<p>Updates the thing shadow for the specified thing.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/iot/latest/developerguide/API_UpdateThingShadow.html\">UpdateThingShadow</a> in the <i>AWS IoT Developer Guide</i>.</p>"
   },
-  "service": "<fullname>AWS IoT (Beta)</fullname> <p><b>AWS IoT is considered a beta service as defined in the Service Terms</b></p> <p>AWS IoT-Data enables secure, bi-directional communication between Internet-connected things (such as sensors, actuators, embedded devices, or smart appliances) and the AWS cloud. It implements a broker for applications and things to publish messages over HTTP (Publish) and retrieve, update, and delete thing shadows. A thing shadow is a persistent representation of your things and their state in the AWS cloud.</p>",
   "shapes": {
     "ConflictException": {
       "base": "<p>The specified version does not match the version of the document.</p>",

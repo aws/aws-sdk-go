@@ -3,10 +3,10 @@
   "metadata":{
     "apiVersion":"2015-05-28",
     "endpointPrefix":"data.iot",
+    "protocol":"rest-json",
     "serviceFullName":"AWS IoT Data Plane",
     "signatureVersion":"v4",
-    "signingName":"iotdata",
-    "protocol":"rest-json"
+    "signingName":"iotdata"
   },
   "operations":{
     "DeleteThingShadow":{
@@ -18,48 +18,14 @@
       "input":{"shape":"DeleteThingShadowRequest"},
       "output":{"shape":"DeleteThingShadowResponse"},
       "errors":[
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ThrottlingException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        },
-        {
-          "shape":"UnauthorizedException",
-          "error":{"httpStatusCode":401},
-          "exception":true
-        },
-        {
-          "shape":"ServiceUnavailableException",
-          "error":{"httpStatusCode":503},
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InternalFailureException",
-          "error":{"httpStatusCode":500},
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"MethodNotAllowedException",
-          "error":{"httpStatusCode":405},
-          "exception":true
-        },
-        {
-          "shape":"UnsupportedDocumentEncodingException",
-          "error":{"httpStatusCode":415},
-          "exception":true
-        }
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"MethodNotAllowedException"},
+        {"shape":"UnsupportedDocumentEncodingException"}
       ]
     },
     "GetThingShadow":{
@@ -71,48 +37,14 @@
       "input":{"shape":"GetThingShadowRequest"},
       "output":{"shape":"GetThingShadowResponse"},
       "errors":[
-        {
-          "shape":"InvalidRequestException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"ThrottlingException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        },
-        {
-          "shape":"UnauthorizedException",
-          "error":{"httpStatusCode":401},
-          "exception":true
-        },
-        {
-          "shape":"ServiceUnavailableException",
-          "error":{"httpStatusCode":503},
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InternalFailureException",
-          "error":{"httpStatusCode":500},
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"MethodNotAllowedException",
-          "error":{"httpStatusCode":405},
-          "exception":true
-        },
-        {
-          "shape":"UnsupportedDocumentEncodingException",
-          "error":{"httpStatusCode":415},
-          "exception":true
-        }
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"MethodNotAllowedException"},
+        {"shape":"UnsupportedDocumentEncodingException"}
       ]
     },
     "Publish":{
@@ -123,27 +55,10 @@
       },
       "input":{"shape":"PublishRequest"},
       "errors":[
-        {
-          "shape":"InternalFailureException",
-          "error":{"httpStatusCode":500},
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"UnauthorizedException",
-          "error":{"httpStatusCode":401},
-          "exception":true
-        },
-        {
-          "shape":"MethodNotAllowedException",
-          "error":{"httpStatusCode":405},
-          "exception":true
-        }
+        {"shape":"InternalFailureException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"MethodNotAllowedException"}
       ]
     },
     "UpdateThingShadow":{
@@ -155,53 +70,15 @@
       "input":{"shape":"UpdateThingShadowRequest"},
       "output":{"shape":"UpdateThingShadowResponse"},
       "errors":[
-        {
-          "shape":"ConflictException",
-          "error":{"httpStatusCode":409},
-          "exception":true
-        },
-        {
-          "shape":"RequestEntityTooLargeException",
-          "error":{"httpStatusCode":413},
-          "exception":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ThrottlingException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        },
-        {
-          "shape":"UnauthorizedException",
-          "error":{"httpStatusCode":401},
-          "exception":true
-        },
-        {
-          "shape":"ServiceUnavailableException",
-          "error":{"httpStatusCode":503},
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InternalFailureException",
-          "error":{"httpStatusCode":500},
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"MethodNotAllowedException",
-          "error":{"httpStatusCode":405},
-          "exception":true
-        },
-        {
-          "shape":"UnsupportedDocumentEncodingException",
-          "error":{"httpStatusCode":415},
-          "exception":true
-        }
+        {"shape":"ConflictException"},
+        {"shape":"RequestEntityTooLargeException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"MethodNotAllowedException"},
+        {"shape":"UnsupportedDocumentEncodingException"}
       ]
     }
   },
@@ -281,6 +158,7 @@
     "Payload":{"type":"blob"},
     "PublishRequest":{
       "type":"structure",
+      "required":["topic"],
       "members":{
         "topic":{
           "shape":"Topic",
@@ -294,13 +172,12 @@
         },
         "payload":{"shape":"Payload"}
       },
-      "required":["topic"],
       "payload":"payload"
     },
     "Qos":{
       "type":"integer",
-      "min":0,
-      "max":1
+      "max":1,
+      "min":0
     },
     "RequestEntityTooLargeException":{
       "type":"structure",
@@ -329,8 +206,8 @@
     },
     "ThingName":{
       "type":"string",
-      "min":1,
       "max":128,
+      "min":1,
       "pattern":"[a-zA-Z0-9_-]+"
     },
     "ThrottlingException":{

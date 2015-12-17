@@ -11,8 +11,6 @@ import (
 	"github.com/aws/aws-sdk-go/private/signer/v4"
 )
 
-// AWS IoT is considered a beta service as defined in the Service Terms
-//
 // AWS IoT-Data enables secure, bi-directional communication between Internet-connected
 // things (such as sensors, actuators, embedded devices, or smart appliances)
 // and the AWS cloud. It implements a broker for applications and things to
