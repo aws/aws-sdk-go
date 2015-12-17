@@ -823,8 +823,7 @@ func (c *EC2) CopyImageRequest(input *CopyImageInput) (req *request.Request, out
 
 // Initiates the copy of an AMI from the specified source region to the current
 // region. You specify the destination region by using its endpoint when making
-// the request. AMIs that use encrypted EBS snapshots cannot be copied with
-// this method.
+// the request.
 //
 // For more information, see Copying AMIs (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/CopyingAMIs.html)
 // in the Amazon Elastic Compute Cloud User Guide.
@@ -1153,6 +1152,38 @@ func (c *EC2) CreateKeyPair(input *CreateKeyPairInput) (*CreateKeyPairOutput, er
 	return out, err
 }
 
+const opCreateNatGateway = "CreateNatGateway"
+
+// CreateNatGatewayRequest generates a request for the CreateNatGateway operation.
+func (c *EC2) CreateNatGatewayRequest(input *CreateNatGatewayInput) (req *request.Request, output *CreateNatGatewayOutput) {
+	op := &request.Operation{
+		Name:       opCreateNatGateway,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateNatGatewayInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &CreateNatGatewayOutput{}
+	req.Data = output
+	return
+}
+
+// Creates a NAT gateway in the specified subnet. A NAT gateway can be used
+// to enable instances in a private subnet to connect to the Internet. This
+// action creates a network interface in the specified subnet with a private
+// IP address from the IP address range of the subnet. For more information,
+// see NAT Gateways (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html)
+// in the Amazon Virtual Private Cloud User Guide.
+func (c *EC2) CreateNatGateway(input *CreateNatGatewayInput) (*CreateNatGatewayOutput, error) {
+	req, out := c.CreateNatGatewayRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opCreateNetworkAcl = "CreateNetworkAcl"
 
 // CreateNetworkAclRequest generates a request for the CreateNetworkAcl operation.
@@ -1359,7 +1390,8 @@ func (c *EC2) CreateRouteRequest(input *CreateRouteInput) (req *request.Request,
 // Creates a route in a route table within a VPC.
 //
 // You must specify one of the following targets: Internet gateway or virtual
-// private gateway, NAT instance, VPC peering connection, or network interface.
+// private gateway, NAT instance, NAT gateway, VPC peering connection, or network
+// interface.
 //
 // When determining how to route traffic, we use the route with the most specific
 // match. For example, let's say the traffic is destined for 192.0.2.3, and
@@ -2030,6 +2062,35 @@ func (c *EC2) DeleteKeyPairRequest(input *DeleteKeyPairInput) (req *request.Requ
 // Deletes the specified key pair, by removing the public key from Amazon EC2.
 func (c *EC2) DeleteKeyPair(input *DeleteKeyPairInput) (*DeleteKeyPairOutput, error) {
 	req, out := c.DeleteKeyPairRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDeleteNatGateway = "DeleteNatGateway"
+
+// DeleteNatGatewayRequest generates a request for the DeleteNatGateway operation.
+func (c *EC2) DeleteNatGatewayRequest(input *DeleteNatGatewayInput) (req *request.Request, output *DeleteNatGatewayOutput) {
+	op := &request.Operation{
+		Name:       opDeleteNatGateway,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteNatGatewayInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DeleteNatGatewayOutput{}
+	req.Data = output
+	return
+}
+
+// Deletes the specified NAT gateway. Deleting a NAT gateway disassociates its
+// Elastic IP address, but does not release the address from your account. Deleting
+// a NAT gateway does not delete any NAT gateway routes in your route tables.
+func (c *EC2) DeleteNatGateway(input *DeleteNatGatewayInput) (*DeleteNatGatewayOutput, error) {
+	req, out := c.DeleteNatGatewayRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -3340,6 +3401,33 @@ func (c *EC2) DescribeMovingAddressesRequest(input *DescribeMovingAddressesInput
 // not return information about any other Elastic IP addresses in your account.
 func (c *EC2) DescribeMovingAddresses(input *DescribeMovingAddressesInput) (*DescribeMovingAddressesOutput, error) {
 	req, out := c.DescribeMovingAddressesRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDescribeNatGateways = "DescribeNatGateways"
+
+// DescribeNatGatewaysRequest generates a request for the DescribeNatGateways operation.
+func (c *EC2) DescribeNatGatewaysRequest(input *DescribeNatGatewaysInput) (req *request.Request, output *DescribeNatGatewaysOutput) {
+	op := &request.Operation{
+		Name:       opDescribeNatGateways,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeNatGatewaysInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeNatGatewaysOutput{}
+	req.Data = output
+	return
+}
+
+// Describes one or more of the your NAT gateways.
+func (c *EC2) DescribeNatGateways(input *DescribeNatGatewaysInput) (*DescribeNatGatewaysOutput, error) {
+	req, out := c.DescribeNatGatewaysRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -5971,7 +6059,7 @@ func (c *EC2) ReplaceRouteRequest(input *ReplaceRouteInput) (req *request.Reques
 
 // Replaces an existing route within a route table in a VPC. You must provide
 // only one of the following: Internet gateway or virtual private gateway, NAT
-// instance, VPC peering connection, or network interface.
+// instance, NAT gateway, VPC peering connection, or network interface.
 //
 // For more information about route tables, see Route Tables (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Route_Tables.html)
 // in the Amazon Virtual Private Cloud User Guide.
@@ -8697,6 +8785,55 @@ func (s CreateKeyPairOutput) GoString() string {
 	return s.String()
 }
 
+type CreateNatGatewayInput struct {
+	_ struct{} `type:"structure"`
+
+	// The allocation ID of an Elastic IP address to associate with the NAT gateway.
+	// If the Elastic IP address is associated with another resource, you must first
+	// disassociate it.
+	AllocationId *string `type:"string" required:"true"`
+
+	// Unique, case-sensitive identifier you provide to ensure the idempotency of
+	// the request. For more information, see How to Ensure Idempotency (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html).
+	//
+	// Constraint: Maximum 64 ASCII characters.
+	ClientToken *string `type:"string"`
+
+	// The subnet in which to create the NAT gateway.
+	SubnetId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateNatGatewayInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateNatGatewayInput) GoString() string {
+	return s.String()
+}
+
+type CreateNatGatewayOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Unique, case-sensitive identifier to ensure the idempotency of the request.
+	// Only returned if a client token was provided in the request.
+	ClientToken *string `locationName:"clientToken" type:"string"`
+
+	// Information about the NAT gateway.
+	NatGateway *NatGateway `locationName:"natGateway" type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateNatGatewayOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateNatGatewayOutput) GoString() string {
+	return s.String()
+}
+
 type CreateNetworkAclEntryInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8977,6 +9114,9 @@ type CreateRouteInput struct {
 	// The ID of a NAT instance in your VPC. The operation fails if you specify
 	// an instance ID unless exactly one network interface is attached.
 	InstanceId *string `locationName:"instanceId" type:"string"`
+
+	// The ID of a NAT gateway.
+	NatGatewayId *string `locationName:"natGatewayId" type:"string"`
 
 	// The ID of a network interface.
 	NetworkInterfaceId *string `locationName:"networkInterfaceId" type:"string"`
@@ -9894,6 +10034,40 @@ func (s DeleteKeyPairOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteKeyPairOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteNatGatewayInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the NAT gateway.
+	NatGatewayId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteNatGatewayInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteNatGatewayInput) GoString() string {
+	return s.String()
+}
+
+type DeleteNatGatewayOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the NAT gateway.
+	NatGatewayId *string `locationName:"natGatewayId" type:"string"`
+}
+
+// String returns the string representation
+func (s DeleteNatGatewayOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteNatGatewayOutput) GoString() string {
 	return s.String()
 }
 
@@ -12252,6 +12426,67 @@ func (s DescribeMovingAddressesOutput) GoString() string {
 	return s.String()
 }
 
+type DescribeNatGatewaysInput struct {
+	_ struct{} `type:"structure"`
+
+	// One or more filters.
+	//
+	//   nat-gateway-id - The ID of the NAT gateway.
+	//
+	//   state - The state of the NAT gateway (pending | failed | available | deleting
+	// | deleted).
+	//
+	//   subnet-id - The ID of the subnet in which the NAT gateway resides.
+	//
+	//   vpc-id - The ID of the VPC in which the NAT gateway resides.
+	Filter []*Filter `locationNameList:"Filter" type:"list"`
+
+	// The maximum number of items to return for this request. The request returns
+	// a token that you can specify in a subsequent call to get the next set of
+	// results.
+	//
+	// Constraint: If the value specified is greater than 1000, we return only
+	// 1000 items.
+	MaxResults *int64 `type:"integer"`
+
+	// One or more NAT gateway IDs.
+	NatGatewayIds []*string `locationName:"NatGatewayId" locationNameList:"item" type:"list"`
+
+	// The token to retrieve the next page of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeNatGatewaysInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeNatGatewaysInput) GoString() string {
+	return s.String()
+}
+
+type DescribeNatGatewaysOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the NAT gateways.
+	NatGateways []*NatGateway `locationName:"natGatewaySet" locationNameList:"item" type:"list"`
+
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeNatGatewaysOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeNatGatewaysOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeNetworkAclsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12437,23 +12672,26 @@ type DescribeNetworkInterfacesInput struct {
 	//
 	//   attachment.attachment-id - The ID of the interface attachment.
 	//
+	//   attachment.attach.time - The time that the network interface was attached
+	// to an instance.
+	//
+	//   attachment.delete-on-termination - Indicates whether the attachment is
+	// deleted when an instance is terminated.
+	//
+	//   attachment.device-index - The device index to which the network interface
+	// is attached.
+	//
 	//   attachment.instance-id - The ID of the instance to which the network interface
 	// is attached.
 	//
 	//   attachment.instance-owner-id - The owner ID of the instance to which the
 	// network interface is attached.
 	//
-	//   attachment.device-index - The device index to which the network interface
-	// is attached.
+	//   attachment.nat-gateway-id - The ID of the NAT gateway to which the network
+	// interface is attached.
 	//
 	//   attachment.status - The status of the attachment (attaching | attached
 	// | detaching | detached).
-	//
-	//   attachment.attach.time - The time that the network interface was attached
-	// to an instance.
-	//
-	//   attachment.delete-on-termination - Indicates whether the attachment is
-	// deleted when an instance is terminated.
 	//
 	//   availability-zone - The Availability Zone of the network interface.
 	//
@@ -12485,7 +12723,7 @@ type DescribeNetworkInterfacesInput struct {
 	//   source-desk-check - Indicates whether the network interface performs source/destination
 	// checking. A value of true means checking is enabled, and false means checking
 	// is disabled. The value must be false for the network interface to perform
-	// Network Address Translation (NAT) in your VPC.
+	// network address translation (NAT) in your VPC.
 	//
 	//   status - The status of the network interface. If the network interface
 	// is not attached to an instance, the status is available; if a network interface
@@ -13089,6 +13327,8 @@ type DescribeRouteTablesInput struct {
 	//
 	//   route.instance-id - The ID of an instance specified in a route in the
 	// table.
+	//
+	//   route.nat-gateway-id - The ID of a NAT gateway.
 	//
 	//   route.origin - Describes how the route was created. CreateRouteTable indicates
 	// that the route was automatically created when the route table was created;
@@ -18409,6 +18649,88 @@ func (s MovingAddressStatus) GoString() string {
 	return s.String()
 }
 
+// Describes a NAT gateway.
+type NatGateway struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time the NAT gateway was created.
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The date and time the NAT gateway was deleted, if applicable.
+	DeleteTime *time.Time `locationName:"deleteTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// If the NAT gateway could not be created, specifies the error code for the
+	// failure. (InsufficientFreeAddressesInSubnet | Gateway.NotAttached | InvalidAllocationID.NotFound
+	// | Resource.AlreadyAssociated | InternalError)
+	FailureCode *string `locationName:"failureCode" type:"string"`
+
+	// If the NAT gateway could not be created, specifies the error message for
+	// the failure, that corresponds to the error code.
+	//
+	//  For InsufficientFreeAddressesInSubnet: Subnet has insufficient free addresses
+	// to create this NAT gateway For Gateway.NotAttached: Network vpc-xxxxxxxx
+	// has no Internet gateway attached For InvalidAllocationID.NotFound: Elastic
+	// IP address eipalloc-xxxxxxxx could not be associated with this NAT gateway
+	// For Resource.AlreadyAssociated: Elastic IP address eipalloc-xxxxxxxx is already
+	// associated For InternalError: Network interface eni-xxxxxxxx, created and
+	// used internally by this NAT gateway is in an invalid state. Please try again.
+	FailureMessage *string `locationName:"failureMessage" type:"string"`
+
+	// Information about the IP addresses and network interface associated with
+	// the NAT gateway.
+	NatGatewayAddresses []*NatGatewayAddress `locationName:"natGatewayAddressSet" locationNameList:"item" type:"list"`
+
+	// The ID of the NAT gateway.
+	NatGatewayId *string `locationName:"natGatewayId" type:"string"`
+
+	// The state of the NAT gateway.
+	State *string `locationName:"state" type:"string" enum:"NatGatewayState"`
+
+	// The ID of the subnet in which the NAT gateway is located.
+	SubnetId *string `locationName:"subnetId" type:"string"`
+
+	// The ID of the VPC in which the NAT gateway is located.
+	VpcId *string `locationName:"vpcId" type:"string"`
+}
+
+// String returns the string representation
+func (s NatGateway) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NatGateway) GoString() string {
+	return s.String()
+}
+
+// Describes the IP addresses and network interface associated with a NAT gateway.
+type NatGatewayAddress struct {
+	_ struct{} `type:"structure"`
+
+	// The allocation ID of the Elastic IP address that's associated with the NAT
+	// gateway.
+	AllocationId *string `locationName:"allocationId" type:"string"`
+
+	// The ID of the network interface associated with the NAT gateway.
+	NetworkInterfaceId *string `locationName:"networkInterfaceId" type:"string"`
+
+	// The private IP address associated with the Elastic IP address.
+	PrivateIp *string `locationName:"privateIp" type:"string"`
+
+	// The Elastic IP address associated with the NAT gateway.
+	PublicIp *string `locationName:"publicIp" type:"string"`
+}
+
+// String returns the string representation
+func (s NatGatewayAddress) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NatGatewayAddress) GoString() string {
+	return s.String()
+}
+
 // Describes a network ACL.
 type NetworkAcl struct {
 	_ struct{} `type:"structure"`
@@ -18523,6 +18845,9 @@ type NetworkInterface struct {
 
 	// Any security groups for the network interface.
 	Groups []*GroupIdentifier `locationName:"groupSet" locationNameList:"item" type:"list"`
+
+	// The type of interface.
+	InterfaceType *string `locationName:"interfaceType" type:"string" enum:"NetworkInterfaceType"`
 
 	// The MAC address.
 	MacAddress *string `locationName:"macAddress" type:"string"`
@@ -19427,6 +19752,9 @@ type ReplaceRouteInput struct {
 
 	// The ID of a NAT instance in your VPC.
 	InstanceId *string `locationName:"instanceId" type:"string"`
+
+	// The ID of a NAT gateway.
+	NatGatewayId *string `locationName:"natGatewayId" type:"string"`
 
 	// The ID of a network interface.
 	NetworkInterfaceId *string `locationName:"networkInterfaceId" type:"string"`
@@ -20505,6 +20833,9 @@ type Route struct {
 
 	// The AWS account ID of the owner of the instance.
 	InstanceOwnerId *string `locationName:"instanceOwnerId" type:"string"`
+
+	// The ID of a NAT gateway.
+	NatGatewayId *string `locationName:"natGatewayId" type:"string"`
 
 	// The ID of the network interface.
 	NetworkInterfaceId *string `locationName:"networkInterfaceId" type:"string"`
@@ -23031,6 +23362,19 @@ const (
 )
 
 const (
+	// @enum NatGatewayState
+	NatGatewayStatePending = "pending"
+	// @enum NatGatewayState
+	NatGatewayStateFailed = "failed"
+	// @enum NatGatewayState
+	NatGatewayStateAvailable = "available"
+	// @enum NatGatewayState
+	NatGatewayStateDeleting = "deleting"
+	// @enum NatGatewayState
+	NatGatewayStateDeleted = "deleted"
+)
+
+const (
 	// @enum NetworkInterfaceAttribute
 	NetworkInterfaceAttributeDescription = "description"
 	// @enum NetworkInterfaceAttribute
@@ -23050,6 +23394,13 @@ const (
 	NetworkInterfaceStatusInUse = "in-use"
 	// @enum NetworkInterfaceStatus
 	NetworkInterfaceStatusDetaching = "detaching"
+)
+
+const (
+	// @enum NetworkInterfaceType
+	NetworkInterfaceTypeInterface = "interface"
+	// @enum NetworkInterfaceType
+	NetworkInterfaceTypeNatGateway = "natGateway"
 )
 
 const (
