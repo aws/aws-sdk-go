@@ -19,7 +19,8 @@
       },
       "input":{"shape":"DeleteConfigRuleRequest"},
       "errors":[
-        {"shape":"NoSuchConfigRuleException"}
+        {"shape":"NoSuchConfigRuleException"},
+        {"shape":"ResourceInUseException"}
       ]
     },
     "DeleteDeliveryChannel":{
@@ -234,7 +235,8 @@
       "errors":[
         {"shape":"InvalidParameterValueException"},
         {"shape":"MaxNumberOfConfigRulesExceededException"},
-        {"shape":"ResourceInUseException"}
+        {"shape":"ResourceInUseException"},
+        {"shape":"InsufficientPermissionsException"}
       ]
     },
     "PutConfigurationRecorder":{
@@ -436,9 +438,12 @@
         "ConfigRuleId":{"shape":"String"},
         "LastSuccessfulInvocationTime":{"shape":"Date"},
         "LastFailedInvocationTime":{"shape":"Date"},
+        "LastSuccessfulEvaluationTime":{"shape":"Date"},
+        "LastFailedEvaluationTime":{"shape":"Date"},
         "FirstActivatedTime":{"shape":"Date"},
         "LastErrorCode":{"shape":"String"},
-        "LastErrorMessage":{"shape":"String"}
+        "LastErrorMessage":{"shape":"String"},
+        "FirstEvaluationStarted":{"shape":"Boolean"}
       }
     },
     "ConfigRuleEvaluationStatusList":{
@@ -862,7 +867,14 @@
         "nextToken":{"shape":"NextToken"}
       }
     },
+    "IncludeGlobalResourceTypes":{"type":"boolean"},
     "InsufficientDeliveryPolicyException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "InsufficientPermissionsException":{
       "type":"structure",
       "members":{
       },
@@ -1105,6 +1117,7 @@
       "type":"structure",
       "members":{
         "allSupported":{"shape":"AllSupported"},
+        "includeGlobalResourceTypes":{"shape":"IncludeGlobalResourceTypes"},
         "resourceTypes":{"shape":"ResourceTypeList"}
       }
     },
@@ -1177,7 +1190,11 @@
         "AWS::EC2::Volume",
         "AWS::EC2::VPC",
         "AWS::EC2::VPNConnection",
-        "AWS::EC2::VPNGateway"
+        "AWS::EC2::VPNGateway",
+        "AWS::IAM::Group",
+        "AWS::IAM::Policy",
+        "AWS::IAM::Role",
+        "AWS::IAM::User"
       ]
     },
     "ResourceTypeList":{
