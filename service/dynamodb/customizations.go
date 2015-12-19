@@ -40,10 +40,10 @@ func init() {
 }
 
 func drainBody(b io.ReadCloser, length int64) (out *bytes.Buffer, err error) {
-	var buf bytes.Buffer
-	if length != -1 {
-		buf = *bytes.NewBuffer(make([]byte, length))
+	if length < 0 {
+		length = 0
 	}
+	buf := bytes.NewBuffer(make([]byte, 0, length))
 
 	if _, err = buf.ReadFrom(b); err != nil {
 		return nil, err
@@ -51,7 +51,7 @@ func drainBody(b io.ReadCloser, length int64) (out *bytes.Buffer, err error) {
 	if err = b.Close(); err != nil {
 		return nil, err
 	}
-	return &buf, nil
+	return buf, nil
 }
 
 func disableCompression(r *request.Request) {
