@@ -1629,6 +1629,96 @@ type InputService14TestShapeInputShape struct {
 	TimeArgInHeader *time.Time `location:"header" locationName:"x-amz-timearg" type:"timestamp" timestampFormat:"rfc822"`
 }
 
+//The service client's operations are safe to be used concurrently.
+// It is not safe to mutate any of the client's properties though.
+type InputService15ProtocolTest struct {
+	*client.Client
+}
+
+// New creates a new instance of the InputService15ProtocolTest client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+//
+// Example:
+//     // Create a InputService15ProtocolTest client from just a session.
+//     svc := inputservice15protocoltest.New(mySession)
+//
+//     // Create a InputService15ProtocolTest client with additional configuration
+//     svc := inputservice15protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+func NewInputService15ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService15ProtocolTest {
+	c := p.ClientConfig("inputservice15protocoltest", cfgs...)
+	return newInputService15ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion)
+}
+
+// newClient creates, initializes and returns a new service client instance.
+func newInputService15ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion string) *InputService15ProtocolTest {
+	svc := &InputService15ProtocolTest{
+		Client: client.New(
+			cfg,
+			metadata.ClientInfo{
+				ServiceName:   "inputservice15protocoltest",
+				SigningRegion: signingRegion,
+				Endpoint:      endpoint,
+				APIVersion:    "2014-01-01",
+			},
+			handlers,
+		),
+	}
+
+	// Handlers
+	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Build.PushBack(restjson.Build)
+	svc.Handlers.Unmarshal.PushBack(restjson.Unmarshal)
+	svc.Handlers.UnmarshalMeta.PushBack(restjson.UnmarshalMeta)
+	svc.Handlers.UnmarshalError.PushBack(restjson.UnmarshalError)
+
+	return svc
+}
+
+// newRequest creates a new request for a InputService15ProtocolTest operation and runs any
+// custom request initialization.
+func (c *InputService15ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+	req := c.NewRequest(op, params, data)
+
+	return req
+}
+
+const opInputService15TestCaseOperation1 = "OperationName"
+
+// InputService15TestCaseOperation1Request generates a request for the InputService15TestCaseOperation1 operation.
+func (c *InputService15ProtocolTest) InputService15TestCaseOperation1Request(input *InputService15TestShapeInputService15TestCaseOperation1Input) (req *request.Request, output *InputService15TestShapeInputService15TestCaseOperation1Output) {
+	op := &request.Operation{
+		Name:       opInputService15TestCaseOperation1,
+		HTTPMethod: "POST",
+		HTTPPath:   "/path",
+	}
+
+	if input == nil {
+		input = &InputService15TestShapeInputService15TestCaseOperation1Input{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &InputService15TestShapeInputService15TestCaseOperation1Output{}
+	req.Data = output
+	return
+}
+
+func (c *InputService15ProtocolTest) InputService15TestCaseOperation1(input *InputService15TestShapeInputService15TestCaseOperation1Input) (*InputService15TestShapeInputService15TestCaseOperation1Output, error) {
+	req, out := c.InputService15TestCaseOperation1Request(input)
+	err := req.Send()
+	return out, err
+}
+
+type InputService15TestShapeInputService15TestCaseOperation1Input struct {
+	_ struct{} `type:"structure"`
+
+	TimeArg *time.Time `locationName:"timestamp_location" type:"timestamp" timestampFormat:"unix"`
+}
+
+type InputService15TestShapeInputService15TestCaseOperation1Output struct {
+	_ struct{} `type:"structure"`
+}
+
 //
 // Tests begin here
 //
@@ -2251,5 +2341,31 @@ func TestInputService14ProtocolTestTimestampValuesCase2(t *testing.T) {
 
 	// assert headers
 	assert.Equal(t, "Sun, 25 Jan 2015 08:00:00 GMT", r.Header.Get("x-amz-timearg"))
+
+}
+
+func TestInputService15ProtocolTestNamedLocationsInJSONBodyCase1(t *testing.T) {
+	sess := session.New()
+	svc := NewInputService15ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+
+	input := &InputService15TestShapeInputService15TestCaseOperation1Input{
+		TimeArg: aws.Time(time.Unix(1422172800, 0)),
+	}
+	req, _ := svc.InputService15TestCaseOperation1Request(input)
+	r := req.HTTPRequest
+
+	// build request
+	restjson.Build(req)
+	assert.NoError(t, req.Error)
+
+	// assert body
+	assert.NotNil(t, r.Body)
+	body, _ := ioutil.ReadAll(r.Body)
+	awstesting.AssertJSON(t, `{"timestamp_location":1422172800}`, util.Trim(string(body)))
+
+	// assert URL
+	awstesting.AssertURL(t, "https://test/path", r.URL.String())
+
+	// assert headers
 
 }
