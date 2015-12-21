@@ -7,3 +7,4 @@ awstesting/integration/smoke/_test/
 /vendor/bin/
 /vendor/pkg/
 /vendor/src/
+/private/model/cli/gen-api/gen-api

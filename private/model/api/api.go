@@ -4,6 +4,7 @@ package api
 import (
 	"bytes"
 	"fmt"
+	"path"
 	"regexp"
 	"sort"
 	"strings"
@@ -32,6 +33,8 @@ type API struct {
 
 	// Set to true to not generate API service name constants
 	NoConstServiceNames bool
+
+	SvcClientImportPath string
 
 	initialized bool
 	imports     map[string]bool
@@ -346,7 +349,7 @@ func (a *API) ExampleGoCode() string {
 		"time",
 		"github.com/aws/aws-sdk-go/aws",
 		"github.com/aws/aws-sdk-go/aws/session",
-		"github.com/aws/aws-sdk-go/service/"+a.PackageName(),
+		path.Join(a.SvcClientImportPath, a.PackageName()),
 		strings.Join(exs, "\n\n"),
 	)
 	return code
@@ -370,8 +373,8 @@ var _ {{ .StructName }}API = (*{{ .PackageName }}.{{ .StructName }})(nil)
 func (a *API) InterfaceGoCode() string {
 	a.resetImports()
 	a.imports = map[string]bool{
-		"github.com/aws/aws-sdk-go/aws/request":                true,
-		"github.com/aws/aws-sdk-go/service/" + a.PackageName(): true,
+		"github.com/aws/aws-sdk-go/aws/request":           true,
+		path.Join(a.SvcClientImportPath, a.PackageName()): true,
 	}
 
 	var buf bytes.Buffer

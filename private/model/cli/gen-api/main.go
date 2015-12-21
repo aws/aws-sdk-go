@@ -31,8 +31,8 @@ var excludeServices = map[string]struct{}{
 // newGenerateInfo initializes the service API's folder structure for a specific service.
 // If the SERVICES environment variable is set, and this service is not apart of the list
 // this service will be skipped.
-func newGenerateInfo(modelFile, svcPath string) *generateInfo {
-	g := &generateInfo{API: &api.API{}}
+func newGenerateInfo(modelFile, svcPath, svcImportPath string) *generateInfo {
+	g := &generateInfo{API: &api.API{SvcClientImportPath: svcImportPath}}
 	g.API.Attach(modelFile)
 
 	if _, ok := excludeServices[g.API.PackageName()]; ok {
@@ -96,9 +96,10 @@ func newGenerateInfo(modelFile, svcPath string) *generateInfo {
 // Env:
 //  SERVICES comma separated list of services to generate.
 func main() {
-	var svcPath, sessionPath string
+	var svcPath, sessionPath, svcImportPath string
 	flag.StringVar(&svcPath, "path", "service", "directory to generate service clients in")
 	flag.StringVar(&sessionPath, "sessionPath", filepath.Join("aws", "session"), "generate session service client factories")
+	flag.StringVar(&svcImportPath, "svc-import-path", "github.com/aws/aws-sdk-go/service", "namespace to generate service client Go code import path under")
 	flag.Parse()
 
 	files := []string{}
@@ -141,7 +142,7 @@ func main() {
 			continue
 		}
 
-		genInfo := newGenerateInfo(filename, svcPath)
+		genInfo := newGenerateInfo(filename, svcPath, svcImportPath)
 		if genInfo == nil {
 			continue
 		}
