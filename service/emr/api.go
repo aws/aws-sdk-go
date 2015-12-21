@@ -1240,17 +1240,19 @@ type Ec2InstanceAttributes struct {
 	// type for nodes of a job flow launched in a VPC.
 	Ec2SubnetId *string `type:"string"`
 
-	// The identifier of the Amazon EC2 security group (managed by Amazon Elastic
-	// MapReduce) for the master node.
+	// The identifier of the Amazon EC2 security group for the master node.
 	EmrManagedMasterSecurityGroup *string `type:"string"`
 
-	// The identifier of the Amazon EC2 security group (managed by Amazon Elastic
-	// MapReduce) for the slave nodes.
+	// The identifier of the Amazon EC2 security group for the slave nodes.
 	EmrManagedSlaveSecurityGroup *string `type:"string"`
 
 	// The IAM role that was specified when the job flow was launched. The EC2 instances
 	// of the job flow assume this role.
 	IamInstanceProfile *string `type:"string"`
+
+	// The identifier of the Amazon EC2 security group for the Amazon EMR service
+	// to access clusters in VPC private subnets.
+	ServiceAccessSecurityGroup *string `type:"string"`
 }
 
 // String returns the string representation
@@ -1803,12 +1805,10 @@ type JobFlowInstancesConfig struct {
 	// type for nodes of a job flow launched in a Amazon VPC.
 	Ec2SubnetId *string `type:"string"`
 
-	// The identifier of the Amazon EC2 security group (managed by Amazon ElasticMapReduce)
-	// for the master node.
+	// The identifier of the Amazon EC2 security group for the master node.
 	EmrManagedMasterSecurityGroup *string `type:"string"`
 
-	// The identifier of the Amazon EC2 security group (managed by Amazon ElasticMapReduce)
-	// for the slave nodes.
+	// The identifier of the Amazon EC2 security group for the slave nodes.
 	EmrManagedSlaveSecurityGroup *string `type:"string"`
 
 	// The Hadoop version for the job flow. Valid inputs are "0.18" (deprecated),
@@ -1833,6 +1833,10 @@ type JobFlowInstancesConfig struct {
 
 	// The Availability Zone the job flow will run in.
 	Placement *PlacementType `type:"structure"`
+
+	// The identifier of the Amazon EC2 security group for the Amazon EMR service
+	// to access clusters in VPC private subnets.
+	ServiceAccessSecurityGroup *string `type:"string"`
 
 	// The EC2 instance type of the slave nodes.
 	SlaveInstanceType *string `min:"1" type:"string"`
@@ -2298,9 +2302,10 @@ type RunJobFlowInput struct {
 	// run the job flow.
 	Instances *JobFlowInstancesConfig `type:"structure" required:"true"`
 
-	// An IAM role for the job flow. The EC2 instances of the job flow assume this
-	// role. The default role is EMRJobflowDefault. In order to use the default
-	// role, you must have already created it using the CLI.
+	// Also called instance profile and EC2 role. An IAM role for an EMR cluster.
+	// The EC2 instances of the cluster assume this role. The default role is EMR_EC2_DefaultRole.
+	// In order to use the default role, you must have already created it using
+	// the CLI or console.
 	JobFlowRole *string `type:"string"`
 
 	// The location in Amazon S3 to write the log files of the job flow. If a value

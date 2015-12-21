@@ -1,5 +1,6 @@
 {
   "version": "2.0",
+  "service": "<p>Amazon Elastic MapReduce (Amazon EMR) is a web service that makes it easy to process large amounts of data efficiently. Amazon EMR uses Hadoop processing combined with several AWS products to do tasks such as web indexing, data mining, log file analysis, machine learning, scientific simulation, and data warehousing.</p>",
   "operations": {
     "AddInstanceGroups": "<p>AddInstanceGroups adds an instance group to a running cluster.</p>",
     "AddJobFlowSteps": "<p> AddJobFlowSteps adds new steps to a running job flow. A maximum of 256 steps are allowed in each job flow. </p> <p>If your job flow is long-running (such as a Hive data warehouse) or complex, you may require more than 256 steps to process your data. You can bypass the 256-step limitation in various ways, including using the SSH shell to connect to the master node and submitting queries directly to the software running on the master node, such as Hive and Hadoop. For more information on how to do this, go to <a href=\"http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/AddMoreThan256Steps.html\">Add More than 256 Steps to a Job Flow</a> in the <i>Amazon Elastic MapReduce Developer's Guide</i>.</p> <p> A step specifies the location of a JAR file stored either on the master node of the job flow or in Amazon S3. Each step is performed by the main function of the main class of the JAR file. The main class can be specified either in the manifest of the JAR or by using the MainFunction parameter of the step. </p> <p> Elastic MapReduce executes each step in the order listed. For a step to be considered complete, the main function must exit with a zero exit code and all Hadoop jobs started while the step was running must have completed and run successfully. </p> <p> You can only add steps to a job flow that is in one of the following states: STARTING, BOOTSTRAPPING, RUNNING, or WAITING.</p>",
@@ -19,7 +20,6 @@
     "SetVisibleToAllUsers": "<p>Sets whether all AWS Identity and Access Management (IAM) users under your account can access the specified job flows. This action works on running job flows. You can also set the visibility of a job flow when you launch it using the <code>VisibleToAllUsers</code> parameter of <a>RunJobFlow</a>. The SetVisibleToAllUsers action can be called only by an IAM user who created the job flow or the AWS account that owns the job flow.</p>",
     "TerminateJobFlows": "<p> TerminateJobFlows shuts a list of job flows down. When a job flow is shut down, any step not yet completed is canceled and the EC2 instances on which the job flow is running are stopped. Any log files not already saved are uploaded to Amazon S3 if a LogUri was specified when the job flow was created. </p> <p> The maximum number of JobFlows allowed is 10. The call to TerminateJobFlows is asynchronous. Depending on the configuration of the job flow, it may take up to 5-20 minutes for the job flow to completely terminate and release allocated resources, such as Amazon EC2 instances. </p>"
   },
-  "service": "<p>Amazon Elastic MapReduce (Amazon EMR) is a web service that makes it easy to process large amounts of data efficiently. Amazon EMR uses Hadoop processing combined with several AWS products to do tasks such as web indexing, data mining, log file analysis, machine learning, scientific simulation, and data warehousing.</p>",
   "shapes": {
     "ActionOnFailure": {
       "base": null,
@@ -841,8 +841,9 @@
         "Ec2InstanceAttributes$Ec2SubnetId": "<p> To launch the job flow in Amazon VPC, set this parameter to the identifier of the Amazon VPC subnet where you want the job flow to launch. If you do not specify this value, the job flow is launched in the normal AWS cloud, outside of a VPC. </p> <p> Amazon VPC currently does not support cluster compute quadruple extra large (cc1.4xlarge) instances. Thus, you cannot specify the cc1.4xlarge instance type for nodes of a job flow launched in a VPC. </p>",
         "Ec2InstanceAttributes$Ec2AvailabilityZone": "<p>The Availability Zone in which the cluster will run.</p>",
         "Ec2InstanceAttributes$IamInstanceProfile": "<p>The IAM role that was specified when the job flow was launched. The EC2 instances of the job flow assume this role.</p>",
-        "Ec2InstanceAttributes$EmrManagedMasterSecurityGroup": "<p>The identifier of the Amazon EC2 security group (managed by Amazon Elastic MapReduce) for the master node.</p>",
-        "Ec2InstanceAttributes$EmrManagedSlaveSecurityGroup": "<p>The identifier of the Amazon EC2 security group (managed by Amazon Elastic MapReduce) for the slave nodes.</p>",
+        "Ec2InstanceAttributes$EmrManagedMasterSecurityGroup": "<p>The identifier of the Amazon EC2 security group for the master node.</p>",
+        "Ec2InstanceAttributes$EmrManagedSlaveSecurityGroup": "<p>The identifier of the Amazon EC2 security group for the slave nodes.</p>",
+        "Ec2InstanceAttributes$ServiceAccessSecurityGroup": "<p>The identifier of the Amazon EC2 security group for the Amazon EMR service to access clusters in VPC private subnets.</p>",
         "HadoopStepConfig$Jar": "<p>The path to the JAR file that runs during the step.</p>",
         "HadoopStepConfig$MainClass": "<p>The name of the main class in the specified Java file. If not specified, the JAR file should specify a main class in its manifest file.</p>",
         "Instance$PublicDnsName": "<p>The public DNS name of the instance.</p>",
@@ -931,7 +932,7 @@
         "PlacementType$AvailabilityZone": "<p>The Amazon EC2 Availability Zone for the job flow.</p>",
         "RunJobFlowInput$LogUri": "<p>The location in Amazon S3 to write the log files of the job flow. If a value is not provided, logs are not created.</p>",
         "RunJobFlowInput$AdditionalInfo": "<p>A JSON string for selecting additional features.</p>",
-        "RunJobFlowInput$JobFlowRole": "<p>An IAM role for the job flow. The EC2 instances of the job flow assume this role. The default role is <code>EMRJobflowDefault</code>. In order to use the default role, you must have already created it using the CLI.</p>",
+        "RunJobFlowInput$JobFlowRole": "<p>Also called instance profile and EC2 role. An IAM role for an EMR cluster. The EC2 instances of the cluster assume this role. The default role is <code>EMR_EC2_DefaultRole</code>. In order to use the default role, you must have already created it using the CLI or console.</p>",
         "RunJobFlowInput$ServiceRole": "<p>The IAM role that will be assumed by the Amazon EMR service to access AWS resources on your behalf.</p>",
         "ScriptBootstrapActionConfig$Path": "<p>Location of the script to run during a bootstrap action. Can be either a location in Amazon S3 or on a local file system.</p>",
         "StepExecutionStatusDetail$LastStateChangeReason": "<p>A description of the step's current state.</p>",
@@ -971,8 +972,9 @@
         "JobFlowInstancesConfig$Ec2KeyName": "<p>The name of the Amazon EC2 key pair that can be used to ssh to the master node as the user called \"hadoop.\"</p>",
         "JobFlowInstancesConfig$HadoopVersion": "<p>The Hadoop version for the job flow. Valid inputs are \"0.18\" (deprecated), \"0.20\" (deprecated), \"0.20.205\" (deprecated), \"1.0.3\", \"2.2.0\", or \"2.4.0\". If you do not set this value, the default of 0.18 is used, unless the AmiVersion parameter is set in the RunJobFlow call, in which case the default version of Hadoop for that AMI version is used.</p>",
         "JobFlowInstancesConfig$Ec2SubnetId": "<p> To launch the job flow in Amazon Virtual Private Cloud (Amazon VPC), set this parameter to the identifier of the Amazon VPC subnet where you want the job flow to launch. If you do not specify this value, the job flow is launched in the normal Amazon Web Services cloud, outside of an Amazon VPC. </p> <p> Amazon VPC currently does not support cluster compute quadruple extra large (cc1.4xlarge) instances. Thus you cannot specify the cc1.4xlarge instance type for nodes of a job flow launched in a Amazon VPC. </p>",
-        "JobFlowInstancesConfig$EmrManagedMasterSecurityGroup": "<p>The identifier of the Amazon EC2 security group (managed by Amazon ElasticMapReduce) for the master node.</p>",
-        "JobFlowInstancesConfig$EmrManagedSlaveSecurityGroup": "<p>The identifier of the Amazon EC2 security group (managed by Amazon ElasticMapReduce) for the slave nodes.</p>",
+        "JobFlowInstancesConfig$EmrManagedMasterSecurityGroup": "<p>The identifier of the Amazon EC2 security group for the master node.</p>",
+        "JobFlowInstancesConfig$EmrManagedSlaveSecurityGroup": "<p>The identifier of the Amazon EC2 security group for the slave nodes.</p>",
+        "JobFlowInstancesConfig$ServiceAccessSecurityGroup": "<p>The identifier of the Amazon EC2 security group for the Amazon EMR service to access clusters in VPC private subnets.</p>",
         "JobFlowInstancesDetail$Ec2KeyName": "<p>The name of an Amazon EC2 key pair that can be used to ssh to the master node of job flow.</p>",
         "JobFlowInstancesDetail$Ec2SubnetId": "<p>For job flows launched within Amazon Virtual Private Cloud, this value specifies the identifier of the subnet where the job flow was launched.</p>",
         "JobFlowInstancesDetail$HadoopVersion": "<p>The Hadoop version for the job flow.</p>",

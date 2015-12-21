@@ -4,12 +4,12 @@
     "apiVersion":"2009-03-31",
     "endpointPrefix":"elasticmapreduce",
     "jsonVersion":"1.1",
+    "protocol":"json",
     "serviceAbbreviation":"Amazon EMR",
     "serviceFullName":"Amazon Elastic MapReduce",
     "signatureVersion":"v4",
     "targetPrefix":"ElasticMapReduce",
-    "timestampFormat":"unixTimestamp",
-    "protocol":"json"
+    "timestampFormat":"unixTimestamp"
   },
   "operations":{
     "AddInstanceGroups":{
@@ -21,14 +21,7 @@
       "input":{"shape":"AddInstanceGroupsInput"},
       "output":{"shape":"AddInstanceGroupsOutput"},
       "errors":[
-        {
-          "shape":"InternalServerError",
-          "error":{
-            "code":"InternalFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"InternalServerError"}
       ]
     },
     "AddJobFlowSteps":{
@@ -40,14 +33,7 @@
       "input":{"shape":"AddJobFlowStepsInput"},
       "output":{"shape":"AddJobFlowStepsOutput"},
       "errors":[
-        {
-          "shape":"InternalServerError",
-          "error":{
-            "code":"InternalFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"InternalServerError"}
       ]
     },
     "AddTags":{
@@ -59,15 +45,8 @@
       "input":{"shape":"AddTagsInput"},
       "output":{"shape":"AddTagsOutput"},
       "errors":[
-        {
-          "shape":"InternalServerException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "DescribeCluster":{
@@ -79,15 +58,8 @@
       "input":{"shape":"DescribeClusterInput"},
       "output":{"shape":"DescribeClusterOutput"},
       "errors":[
-        {
-          "shape":"InternalServerException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "DescribeJobFlows":{
@@ -99,14 +71,7 @@
       "input":{"shape":"DescribeJobFlowsInput"},
       "output":{"shape":"DescribeJobFlowsOutput"},
       "errors":[
-        {
-          "shape":"InternalServerError",
-          "error":{
-            "code":"InternalFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"InternalServerError"}
       ],
       "deprecated":true
     },
@@ -119,15 +84,8 @@
       "input":{"shape":"DescribeStepInput"},
       "output":{"shape":"DescribeStepOutput"},
       "errors":[
-        {
-          "shape":"InternalServerException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "ListBootstrapActions":{
@@ -139,15 +97,8 @@
       "input":{"shape":"ListBootstrapActionsInput"},
       "output":{"shape":"ListBootstrapActionsOutput"},
       "errors":[
-        {
-          "shape":"InternalServerException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "ListClusters":{
@@ -159,15 +110,8 @@
       "input":{"shape":"ListClustersInput"},
       "output":{"shape":"ListClustersOutput"},
       "errors":[
-        {
-          "shape":"InternalServerException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "ListInstanceGroups":{
@@ -179,15 +123,8 @@
       "input":{"shape":"ListInstanceGroupsInput"},
       "output":{"shape":"ListInstanceGroupsOutput"},
       "errors":[
-        {
-          "shape":"InternalServerException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "ListInstances":{
@@ -199,15 +136,8 @@
       "input":{"shape":"ListInstancesInput"},
       "output":{"shape":"ListInstancesOutput"},
       "errors":[
-        {
-          "shape":"InternalServerException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "ListSteps":{
@@ -219,15 +149,8 @@
       "input":{"shape":"ListStepsInput"},
       "output":{"shape":"ListStepsOutput"},
       "errors":[
-        {
-          "shape":"InternalServerException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "ModifyInstanceGroups":{
@@ -238,14 +161,7 @@
       },
       "input":{"shape":"ModifyInstanceGroupsInput"},
       "errors":[
-        {
-          "shape":"InternalServerError",
-          "error":{
-            "code":"InternalFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"InternalServerError"}
       ]
     },
     "RemoveTags":{
@@ -257,15 +173,8 @@
       "input":{"shape":"RemoveTagsInput"},
       "output":{"shape":"RemoveTagsOutput"},
       "errors":[
-        {
-          "shape":"InternalServerException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "RunJobFlow":{
@@ -277,14 +186,7 @@
       "input":{"shape":"RunJobFlowInput"},
       "output":{"shape":"RunJobFlowOutput"},
       "errors":[
-        {
-          "shape":"InternalServerError",
-          "error":{
-            "code":"InternalFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"InternalServerError"}
       ]
     },
     "SetTerminationProtection":{
@@ -295,14 +197,7 @@
       },
       "input":{"shape":"SetTerminationProtectionInput"},
       "errors":[
-        {
-          "shape":"InternalServerError",
-          "error":{
-            "code":"InternalFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"InternalServerError"}
       ]
     },
     "SetVisibleToAllUsers":{
@@ -313,14 +208,7 @@
       },
       "input":{"shape":"SetVisibleToAllUsersInput"},
       "errors":[
-        {
-          "shape":"InternalServerError",
-          "error":{
-            "code":"InternalFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"InternalServerError"}
       ]
     },
     "TerminateJobFlows":{
@@ -331,14 +219,7 @@
       },
       "input":{"shape":"TerminateJobFlowsInput"},
       "errors":[
-        {
-          "shape":"InternalServerError",
-          "error":{
-            "code":"InternalFailure",
-            "httpStatusCode":500
-          },
-          "exception":true
-        }
+        {"shape":"InternalServerError"}
       ]
     }
   },
@@ -612,14 +493,15 @@
         "IamInstanceProfile":{"shape":"String"},
         "EmrManagedMasterSecurityGroup":{"shape":"String"},
         "EmrManagedSlaveSecurityGroup":{"shape":"String"},
+        "ServiceAccessSecurityGroup":{"shape":"String"},
         "AdditionalMasterSecurityGroups":{"shape":"StringList"},
         "AdditionalSlaveSecurityGroups":{"shape":"StringList"}
       }
     },
     "ErrorCode":{
       "type":"string",
-      "min":1,
-      "max":256
+      "max":256,
+      "min":1
     },
     "ErrorMessage":{"type":"string"},
     "HadoopJarStepConfig":{
@@ -860,18 +742,14 @@
     },
     "InstanceType":{
       "type":"string",
-      "min":1,
       "max":256,
+      "min":1,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
     },
     "Integer":{"type":"integer"},
     "InternalServerError":{
       "type":"structure",
       "members":{
-      },
-      "error":{
-        "code":"InternalFailure",
-        "httpStatusCode":500
       },
       "exception":true
     },
@@ -965,6 +843,7 @@
         "Ec2SubnetId":{"shape":"XmlStringMaxLen256"},
         "EmrManagedMasterSecurityGroup":{"shape":"XmlStringMaxLen256"},
         "EmrManagedSlaveSecurityGroup":{"shape":"XmlStringMaxLen256"},
+        "ServiceAccessSecurityGroup":{"shape":"XmlStringMaxLen256"},
         "AdditionalMasterSecurityGroups":{"shape":"SecurityGroupsList"},
         "AdditionalSlaveSecurityGroups":{"shape":"SecurityGroupsList"}
       }
@@ -1359,8 +1238,8 @@
     },
     "XmlString":{
       "type":"string",
-      "min":0,
       "max":10280,
+      "min":0,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
     },
     "XmlStringList":{
@@ -1369,8 +1248,8 @@
     },
     "XmlStringMaxLen256":{
       "type":"string",
-      "min":0,
       "max":256,
+      "min":0,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
     }
   }

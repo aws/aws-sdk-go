@@ -410,8 +410,9 @@ func ExampleEMR_RunJobFlow() {
 			Placement: &emr.PlacementType{
 				AvailabilityZone: aws.String("XmlString"), // Required
 			},
-			SlaveInstanceType:    aws.String("InstanceType"),
-			TerminationProtected: aws.Bool(true),
+			ServiceAccessSecurityGroup: aws.String("XmlStringMaxLen256"),
+			SlaveInstanceType:          aws.String("InstanceType"),
+			TerminationProtected:       aws.Bool(true),
 		},
 		Name:           aws.String("XmlStringMaxLen256"), // Required
 		AdditionalInfo: aws.String("XmlString"),
