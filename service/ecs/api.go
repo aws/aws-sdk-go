@@ -64,6 +64,30 @@ func (c *ECS) CreateServiceRequest(input *CreateServiceInput) (req *request.Requ
 // ECS spawns another instantiation of the task in the specified cluster. To
 // update an existing service, see UpdateService.
 //
+// You can optionally specify a deployment configuration for your service.
+// During a deployment (which is triggered by changing the task definition of
+// a service with an UpdateService operation), the service scheduler uses the
+// minimumHealthyPercent and maximumPercent parameters to determine the deployment
+// strategy.
+//
+// If the minimumHealthyPercent is below 100%, the scheduler can ignore the
+// desiredCount temporarily during a deployment. For example, if your service
+// has a desiredCount of four tasks, a minimumHealthyPercent of 50% allows the
+// scheduler to stop two existing tasks before starting two new tasks. Tasks
+// for services that do not use a load balancer are considered healthy if they
+// are in the RUNNING state; tasks for services that do use a load balancer
+// are considered healthy if they are in the RUNNING state and the container
+// instance it is hosted on is reported as healthy by the load balancer. The
+// default value for minimumHealthyPercent is 50% in the console and 100% for
+// the AWS CLI, the AWS SDKs, and the APIs.
+//
+// The maximumPercent parameter represents an upper limit on the number of
+// running tasks during a deployment, which enables you to define the deployment
+// batch size. For example, if your service has a desiredCount of four tasks,
+// a maximumPercent value of 200% starts four new tasks before stopping the
+// four older tasks (provided that the cluster resources required to do this
+// are available). The default value for maximumPercent is 200%.
+//
 // When the service scheduler launches new tasks, it attempts to balance them
 // across the Availability Zones in your cluster with the following logic:
 //
@@ -929,23 +953,38 @@ func (c *ECS) UpdateServiceRequest(input *UpdateServiceInput) (req *request.Requ
 	return
 }
 
-// Modify the desired count or task definition used in a service.
+// Modifies the desired count, deployment configuration, or task definition
+// used in a service.
 //
 // You can add to or subtract from the number of instantiations of a task definition
 // in a service by specifying the cluster that the service is running in and
 // a new desiredCount parameter.
 //
 // You can use UpdateService to modify your task definition and deploy a new
-// version of your service, one task at a time. If you modify the task definition
-// with UpdateService, Amazon ECS spawns a task with the new version of the
-// task definition and then stops an old task after the new version is running.
-// Because UpdateService starts a new version of the task before stopping an
-// old version, your cluster must have capacity to support one more instantiation
-// of the task when UpdateService is run. If your cluster cannot support another
-// instantiation of the task used in your service, you can reduce the desired
-// count of your service by one before modifying the task definition.
+// version of your service.
 //
-// When UpdateService replaces a task during an update, the equivalent of docker
+// You can also update the deployment configuration of a service. When a deployment
+// is triggered by updating the task definition of a service, the service scheduler
+// uses the deployment configuration parameters, minimumHealthyPercent and maximumPercent,
+// to determine the deployment strategy.
+//
+// If the minimumHealthyPercent is below 100%, the scheduler can ignore the
+// desiredCount temporarily during a deployment. For example, if your service
+// has a desiredCount of four tasks, a minimumHealthyPercent of 50% allows the
+// scheduler to stop two existing tasks before starting two new tasks. Tasks
+// for services that do not use a load balancer are considered healthy if they
+// are in the RUNNING state; tasks for services that do use a load balancer
+// are considered healthy if they are in the RUNNING state and the container
+// instance it is hosted on is reported as healthy by the load balancer.
+//
+// The maximumPercent parameter represents an upper limit on the number of
+// running tasks during a deployment, which enables you to define the deployment
+// batch size. For example, if your service has a desiredCount of four tasks,
+// a maximumPercent value of 200% starts four new tasks before stopping the
+// four older tasks (provided that the cluster resources required to do this
+// are available).
+//
+// When UpdateService stops a task during a deployment, the equivalent of docker
 // stop is issued to the containers running in the task. This results in a SIGTERM
 // and a 30-second timeout, after which SIGKILL is sent and the containers are
 // forcibly stopped. If the container handles the SIGTERM gracefully and exits
@@ -980,7 +1019,8 @@ type Attribute struct {
 	// The name of the container instance attribute.
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// The value of the container instance attribute.
+	// The value of the container instance attribute (at this time, the value here
+	// is Null, but this could change in future revisions for expandability).
 	Value *string `locationName:"value" type:"string"`
 }
 
@@ -1219,6 +1259,12 @@ type ContainerDefinition struct {
 	// to Image in the Create a container (https://docs.docker.com/reference/api/docker_remote_api_v1.19/#create-a-container)
 	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.19/)
 	// and the IMAGE parameter of docker run (https://docs.docker.com/reference/commandline/run/).
+	//
+	//  Images in official repositories on Docker Hub use a single name (for example,
+	// ubuntu or mongo). Images in other repositories on Docker Hub are qualified
+	// with an organization name (for example, amazon/amazon-ecs-agent). Images
+	// in other online repositories are qualified further by a domain name (for
+	// example, quay.io/assemblyline/ubuntu).
 	Image *string `locationName:"image" type:"string"`
 
 	// The link parameter allows containers to communicate with each other without
@@ -1285,6 +1331,11 @@ type ContainerDefinition struct {
 	// This parameter maps to PortBindings in the Create a container (https://docs.docker.com/reference/api/docker_remote_api_v1.19/#create-a-container)
 	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.19/)
 	// and the --publish option to docker run (https://docs.docker.com/reference/commandline/run/).
+	//
+	//  After a task reaches the RUNNING status, manual and automatic host and
+	// container port assignments are visible in the Network Bindings section of
+	// a container description of a selected task in the Amazon ECS console, or
+	// the networkBindings section DescribeTasks responses.
 	PortMappings []*PortMapping `locationName:"portMappings" type:"list"`
 
 	// When this parameter is true, the container is given elevated privileges on
@@ -1477,6 +1528,10 @@ type CreateServiceInput struct {
 	// is assumed.
 	Cluster *string `locationName:"cluster" type:"string"`
 
+	// Optional deployment parameters that control how many tasks run during the
+	// deployment and the ordering of stopping and starting tasks.
+	DeploymentConfiguration *DeploymentConfiguration `locationName:"deploymentConfiguration" type:"structure"`
+
 	// The number of instantiations of the specified task definition to place and
 	// keep running on your cluster.
 	DesiredCount *int64 `locationName:"desiredCount" type:"integer" required:"true"`
@@ -1643,6 +1698,35 @@ func (s Deployment) String() string {
 
 // GoString returns the string representation
 func (s Deployment) GoString() string {
+	return s.String()
+}
+
+// Optional deployment parameters that control how many tasks run during the
+// deployment and the ordering of stopping and starting tasks.
+type DeploymentConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The upper limit (as a percentage of the service's desiredCount) of the number
+	// of running tasks that can be running in a service during a deployment. The
+	// maximum number of tasks during a deployment is the desiredCount multiplied
+	// by the maximumPercent/100, rounded down to the nearest integer value.
+	MaximumPercent *int64 `locationName:"maximumPercent" type:"integer"`
+
+	// The lower limit (as a percentage of the service's desiredCount) of the number
+	// of running tasks that must remain running and healthy in a service during
+	// a deployment. The minimum healthy tasks during a deployment is the desiredCount
+	// multiplied by the minimumHealthyPercent/100, rounded up to the nearest integer
+	// value.
+	MinimumHealthyPercent *int64 `locationName:"minimumHealthyPercent" type:"integer"`
+}
+
+// String returns the string representation
+func (s DeploymentConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeploymentConfiguration) GoString() string {
 	return s.String()
 }
 
@@ -2028,7 +2112,11 @@ type HostVolumeProperties struct {
 
 	// The path on the host container instance that is presented to the container.
 	// If this parameter is empty, then the Docker daemon has assigned a host path
-	// for you.
+	// for you. If the host parameter contains a sourcePath file location, then
+	// the data volume persists at the specified location on the host container
+	// instance until you delete it manually. If the sourcePath value does not exist
+	// on the host container instance, the Docker daemon creates it. If the location
+	// does exist, the contents of the source path folder are exported.
 	SourcePath *string `locationName:"sourcePath" type:"string"`
 }
 
@@ -2454,7 +2542,8 @@ func (s ListTasksOutput) GoString() string {
 type LoadBalancer struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the container to associate with the load balancer.
+	// The name of the container (as it appears in a container definition) to associate
+	// with the load balancer.
 	ContainerName *string `locationName:"containerName" type:"string"`
 
 	// The port on the container to associate with the load balancer. This port
@@ -2834,6 +2923,10 @@ type Service struct {
 	// The Amazon Resource Name (ARN) of the of the cluster that hosts the service.
 	ClusterArn *string `locationName:"clusterArn" type:"string"`
 
+	// Optional deployment parameters that control how many tasks run during the
+	// deployment and the ordering of stopping and starting tasks.
+	DeploymentConfiguration *DeploymentConfiguration `locationName:"deploymentConfiguration" type:"structure"`
+
 	// The current state of deployments for the service.
 	Deployments []*Deployment `locationName:"deployments" type:"list"`
 
@@ -2868,7 +2961,10 @@ type Service struct {
 	// name. For example, arn:aws:ecs:region:012345678910:service/my-service.
 	ServiceArn *string `locationName:"serviceArn" type:"string"`
 
-	// A user-generated string that you can use to identify your service.
+	// The name of your service. Up to 255 letters (uppercase and lowercase), numbers,
+	// hyphens, and underscores are allowed. Service names must be unique within
+	// a cluster, but you can have similarly named services in multiple clusters
+	// within a region or across multiple regions.
 	ServiceName *string `locationName:"serviceName" type:"string"`
 
 	// The status of the service. The valid values are ACTIVE, DRAINING, or INACTIVE.
@@ -3328,6 +3424,10 @@ type UpdateServiceInput struct {
 	// is assumed.
 	Cluster *string `locationName:"cluster" type:"string"`
 
+	// Optional deployment parameters that control how many tasks run during the
+	// deployment and the ordering of stopping and starting tasks.
+	DeploymentConfiguration *DeploymentConfiguration `locationName:"deploymentConfiguration" type:"structure"`
+
 	// The number of instantiations of the task to place and keep running in your
 	// service.
 	DesiredCount *int64 `locationName:"desiredCount" type:"integer"`
@@ -3400,13 +3500,16 @@ func (s VersionInfo) GoString() string {
 type Volume struct {
 	_ struct{} `type:"structure"`
 
-	// The path on the host container instance that is presented to the containers
-	// which access the volume. If this parameter is empty, then the Docker daemon
-	// assigns a host path for you.
+	// The contents of the host parameter determine whether your data volume persists
+	// on the host container instance and where it is stored. If the host parameter
+	// is empty, then the Docker daemon assigns a host path for your data volume,
+	// but the data is not guaranteed to persist after the containers associated
+	// with it stop running.
 	Host *HostVolumeProperties `locationName:"host" type:"structure"`
 
-	// The name of the volume. This name is referenced in the sourceVolume parameter
-	// of container definition mountPoints.
+	// The name of the volume. Up to 255 letters (uppercase and lowercase), numbers,
+	// hyphens, and underscores are allowed. This name is referenced in the sourceVolume
+	// parameter of container definition mountPoints.
 	Name *string `locationName:"name" type:"string"`
 }
 

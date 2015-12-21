@@ -592,7 +592,8 @@
         "loadBalancers":{"shape":"LoadBalancers"},
         "desiredCount":{"shape":"BoxedInteger"},
         "clientToken":{"shape":"String"},
-        "role":{"shape":"String"}
+        "role":{"shape":"String"},
+        "deploymentConfiguration":{"shape":"DeploymentConfiguration"}
       }
     },
     "CreateServiceResponse":{
@@ -639,6 +640,13 @@
         "runningCount":{"shape":"Integer"},
         "createdAt":{"shape":"Timestamp"},
         "updatedAt":{"shape":"Timestamp"}
+      }
+    },
+    "DeploymentConfiguration":{
+      "type":"structure",
+      "members":{
+        "maximumPercent":{"shape":"BoxedInteger"},
+        "minimumHealthyPercent":{"shape":"BoxedInteger"}
       }
     },
     "Deployments":{
@@ -1096,6 +1104,7 @@
         "runningCount":{"shape":"Integer"},
         "pendingCount":{"shape":"Integer"},
         "taskDefinition":{"shape":"String"},
+        "deploymentConfiguration":{"shape":"DeploymentConfiguration"},
         "deployments":{"shape":"Deployments"},
         "roleArn":{"shape":"String"},
         "events":{"shape":"ServiceEvents"}
@@ -1329,7 +1338,8 @@
         "cluster":{"shape":"String"},
         "service":{"shape":"String"},
         "desiredCount":{"shape":"BoxedInteger"},
-        "taskDefinition":{"shape":"String"}
+        "taskDefinition":{"shape":"String"},
+        "deploymentConfiguration":{"shape":"DeploymentConfiguration"}
       }
     },
     "UpdateServiceResponse":{
