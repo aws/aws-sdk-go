@@ -11,11 +11,11 @@ Checkout our [release notes](https://github.com/aws/aws-sdk-go/releases) for inf
 
 ## Installing
 
-If you are using Go 1.5 with the `GO15VENDOREXPERIMENT=1` vendoring flag you can use the following to get the SDK as the SDK's runtime dependancies are vendored in the `vendor` folder.
+If you are using Go 1.5 with the `GO15VENDOREXPERIMENT=1` vendoring flag you can use the following to get the SDK as the SDK's runtime dependencies are vendored in the `vendor` folder.
 
     $ go get -u github.com/aws/aws-sdk-go
 
-Otherwise you'll need to tell Go to get the SDK and all of its dependancies.
+Otherwise you'll need to tell Go to get the SDK and all of its dependencies.
 
     $ go get -u github.com/aws/aws-sdk-go/...
 

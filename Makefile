@@ -70,7 +70,7 @@ get-deps: get-deps-unit get-deps-integ get-deps-verify
 	@go get -v $(SDK_ONLY_PKGS)
 
 get-deps-unit:
-	@echo "go get SDK unit testing dependancies"
+	@echo "go get SDK unit testing dependencies"
 	go get github.com/stretchr/testify
 	go get github.com/smartystreets/goconvey
 
