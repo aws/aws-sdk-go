@@ -90,3 +90,16 @@ func TestMD5InDeleteObjects(t *testing.T) {
 	})
 	assertMD5(t, req)
 }
+
+func TestMD5InPutBucketLifecycleConfiguration(t *testing.T) {
+	svc := s3.New(unit.Session)
+	req, _ := svc.PutBucketLifecycleConfigurationRequest(&s3.PutBucketLifecycleConfigurationInput{
+		Bucket: aws.String("bucketname"),
+		LifecycleConfiguration: &s3.BucketLifecycleConfiguration{
+			Rules: []*s3.LifecycleRule{
+				{Prefix: aws.String("prefix"), Status: aws.String(s3.ExpirationStatusEnabled)},
+			},
+		},
+	})
+	assertMD5(t, req)
+}
