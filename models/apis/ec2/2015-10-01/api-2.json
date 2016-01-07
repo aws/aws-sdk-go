@@ -8108,6 +8108,7 @@
         "m4.2xlarge",
         "m4.4xlarge",
         "m4.10xlarge",
+        "t2.nano",
         "t2.micro",
         "t2.small",
         "t2.medium",

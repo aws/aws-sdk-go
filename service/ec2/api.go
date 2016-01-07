@@ -1475,7 +1475,7 @@ func (c *EC2) CreateSecurityGroupRequest(input *CreateSecurityGroupInput) (req *
 //
 //  EC2-Classic: You can have up to 500 security groups.
 //
-// EC2-VPC: You can create up to 100 security groups per VPC.
+// EC2-VPC: You can create up to 500 security groups per VPC.
 //
 //  When you create a security group, you specify a friendly name of your choice.
 // You can have a security group for use in EC2-Classic with the same name as
@@ -3044,18 +3044,20 @@ func (c *EC2) DescribeIdFormatRequest(input *DescribeIdFormatInput) (req *reques
 // Important: This command is reserved for future use, and is currently not
 // available for you to use.
 //
-// Describes the ID format settings for your resources, for example, to view
-// which resource types are enabled for longer IDs. This request only returns
-// information about resource types whose ID formats can be modified; it does
-// not return information about other resource types.
+// Describes the ID format settings for your resources on a per-region basis,
+// for example, to view which resource types are enabled for longer IDs. This
+// request only returns information about resource types whose ID formats can
+// be modified; it does not return information about other resource types.
 //
 // The following resource types support longer IDs: instance | reservation.
 //
 // These settings apply to the IAM user who makes the request; they do not
 // apply to the entire AWS account. By default, an IAM user defaults to the
 // same settings as the root user, unless they explicitly override the settings
-// by running the ModifyIdFormat command. These settings are applied on a per-region
-// basis.
+// by running the ModifyIdFormat command. Resources created with longer IDs
+// are visible to all IAM users, regardless of these settings and provided that
+// they have permission to use the relevant Describe command for the resource
+// type.
 func (c *EC2) DescribeIdFormat(input *DescribeIdFormatInput) (*DescribeIdFormatOutput, error) {
 	req, out := c.DescribeIdFormatRequest(input)
 	err := req.Send()
@@ -5287,14 +5289,17 @@ func (c *EC2) ModifyIdFormatRequest(input *ModifyIdFormatInput) (req *request.Re
 // Important: This command is reserved for future use, and is currently not
 // available for you to use.
 //
-// Modifies the ID format for the specified resource. You can specify that
-// resources should receive longer IDs (17-character IDs) when they are created.
-// The following resource types support longer IDs: instance | reservation.
+// Modifies the ID format for the specified resource on a per-region basis.
+// You can specify that resources should receive longer IDs (17-character IDs)
+// when they are created. The following resource types support longer IDs: instance
+// | reservation.
 //
 // This setting applies to the IAM user who makes the request; it does not
 // apply to the entire AWS account. By default, an IAM user defaults to the
 // same settings as the root user, unless they explicitly override the settings
-// by running this request. These settings are applied on a per-region basis.
+// by running this request. Resources created with longer IDs are visible to
+// all IAM users, regardless of these settings and provided that they have permission
+// to use the relevant Describe command for the resource type.
 func (c *EC2) ModifyIdFormat(input *ModifyIdFormatInput) (*ModifyIdFormatOutput, error) {
 	req, out := c.ModifyIdFormatRequest(input)
 	err := req.Send()
@@ -5722,12 +5727,14 @@ func (c *EC2) MoveAddressToVpcRequest(input *MoveAddressToVpcInput) (req *reques
 }
 
 // Moves an Elastic IP address from the EC2-Classic platform to the EC2-VPC
-// platform. The Elastic IP address must be allocated to your account, and it
-// must not be associated with an instance. After the Elastic IP address is
-// moved, it is no longer available for use in the EC2-Classic platform, unless
-// you move it back using the RestoreAddressToClassic request. You cannot move
-// an Elastic IP address that's allocated for use in the EC2-VPC platform to
-// the EC2-Classic platform.
+// platform. The Elastic IP address must be allocated to your account for more
+// than 24 hours, and it must not be associated with an instance. After the
+// Elastic IP address is moved, it is no longer available for use in the EC2-Classic
+// platform, unless you move it back using the RestoreAddressToClassic request.
+// You cannot move an Elastic IP address that's allocated for use in the EC2-VPC
+// platform to the EC2-Classic platform. You cannot migrate an Elastic IP address
+// that's associated with a reverse DNS record. Contact AWS account and billing
+// support to remove the reverse DNS record.
 func (c *EC2) MoveAddressToVpc(input *MoveAddressToVpcInput) (*MoveAddressToVpcOutput, error) {
 	req, out := c.MoveAddressToVpcRequest(input)
 	err := req.Send()
@@ -6358,7 +6365,9 @@ func (c *EC2) RestoreAddressToClassicRequest(input *RestoreAddressToClassicInput
 // Restores an Elastic IP address that was previously moved to the EC2-VPC platform
 // back to the EC2-Classic platform. You cannot move an Elastic IP address that
 // was originally allocated for use in EC2-VPC. The Elastic IP address must
-// not be associated with an instance or network interface.
+// not be associated with an instance or network interface. You cannot restore
+// an Elastic IP address that's associated with a reverse DNS record. Contact
+// AWS account and billing support to remove the reverse DNS record.
 func (c *EC2) RestoreAddressToClassic(input *RestoreAddressToClassicInput) (*RestoreAddressToClassicOutput, error) {
 	req, out := c.RestoreAddressToClassicRequest(input)
 	err := req.Send()
@@ -14979,7 +14988,8 @@ type DescribeVpnGatewaysInput struct {
 	//
 	//   attachment.vpc-id - The ID of an attached VPC.
 	//
-	//   availability-zone - The Availability Zone for the virtual private gateway.
+	//   availability-zone - The Availability Zone for the virtual private gateway
+	// (if applicable).
 	//
 	//   state - The state of the virtual private gateway (pending | available
 	// | deleting | deleted).
@@ -21826,7 +21836,8 @@ type StateReason struct {
 	// Client.UserInitiatedShutdown: The instance was shut down using the Amazon
 	// EC2 API.
 	//
-	// Client.VolumeLimitExceeded: The volume limit was exceeded.
+	// Client.VolumeLimitExceeded: The limit on the number of EBS volumes or total
+	// storage was exceeded. Decrease usage or request an increase in your limits.
 	//
 	// Client.InvalidSnapshot.NotFound: The specified snapshot was not found.
 	Message *string `locationName:"message" type:"string"`
@@ -22811,7 +22822,8 @@ func (s VpnConnectionOptionsSpecification) GoString() string {
 type VpnGateway struct {
 	_ struct{} `type:"structure"`
 
-	// The Availability Zone where the virtual private gateway was created.
+	// The Availability Zone where the virtual private gateway was created, if applicable.
+	// This field may be empty or not returned.
 	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
 
 	// The current state of the virtual private gateway.
@@ -23241,6 +23253,8 @@ const (
 	InstanceTypeM44xlarge = "m4.4xlarge"
 	// @enum InstanceType
 	InstanceTypeM410xlarge = "m4.10xlarge"
+	// @enum InstanceType
+	InstanceTypeT2Nano = "t2.nano"
 	// @enum InstanceType
 	InstanceTypeT2Micro = "t2.micro"
 	// @enum InstanceType
