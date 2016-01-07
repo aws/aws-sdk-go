@@ -1373,8 +1373,8 @@ type ListCommandInvocationsInput struct {
 	// (Optional) The invocations for a specific command ID.
 	CommandId *string `min:"36" type:"string"`
 
-	// (Optional) If set this returns the response of the command executions. By
-	// default this is set to False.
+	// (Optional) If set this returns the response of the command executions and
+	// any command output. By default this is set to False.
 	Details *bool `type:"boolean"`
 
 	// (Optional) One or more filters. Use a filter to return a more specific list
