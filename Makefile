@@ -8,7 +8,7 @@ LINTIGNOREDEPS='vendor/.+\.go'
 SDK_WITH_VENDOR_PKGS=$(shell go list ./... | grep -v "/vendor/src")
 SDK_ONLY_PKGS=$(shell go list ./... | grep -v "/vendor/")
 
-all: generate unit
+all: get-deps generate unit
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
