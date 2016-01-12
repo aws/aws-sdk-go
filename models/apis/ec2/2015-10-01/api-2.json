@@ -1121,6 +1121,15 @@
       "input":{"shape":"DescribeVpcClassicLinkRequest"},
       "output":{"shape":"DescribeVpcClassicLinkResult"}
     },
+    "DescribeVpcClassicLinkDnsSupport":{
+      "name":"DescribeVpcClassicLinkDnsSupport",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeVpcClassicLinkDnsSupportRequest"},
+      "output":{"shape":"DescribeVpcClassicLinkDnsSupportResult"}
+    },
     "DescribeVpcEndpointServices":{
       "name":"DescribeVpcEndpointServices",
       "http":{
@@ -1234,6 +1243,15 @@
       "input":{"shape":"DisableVpcClassicLinkRequest"},
       "output":{"shape":"DisableVpcClassicLinkResult"}
     },
+    "DisableVpcClassicLinkDnsSupport":{
+      "name":"DisableVpcClassicLinkDnsSupport",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisableVpcClassicLinkDnsSupportRequest"},
+      "output":{"shape":"DisableVpcClassicLinkDnsSupportResult"}
+    },
     "DisassociateAddress":{
       "name":"DisassociateAddress",
       "http":{
@@ -1274,6 +1292,15 @@
       },
       "input":{"shape":"EnableVpcClassicLinkRequest"},
       "output":{"shape":"EnableVpcClassicLinkResult"}
+    },
+    "EnableVpcClassicLinkDnsSupport":{
+      "name":"EnableVpcClassicLinkDnsSupport",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"EnableVpcClassicLinkDnsSupportRequest"},
+      "output":{"shape":"EnableVpcClassicLinkDnsSupportResult"}
     },
     "GetConsoleOutput":{
       "name":"GetConsoleOutput",
@@ -2745,6 +2772,26 @@
       "type":"list",
       "member":{
         "shape":"CancelledSpotInstanceRequest",
+        "locationName":"item"
+      }
+    },
+    "ClassicLinkDnsSupport":{
+      "type":"structure",
+      "members":{
+        "VpcId":{
+          "shape":"String",
+          "locationName":"vpcId"
+        },
+        "ClassicLinkDnsSupported":{
+          "shape":"Boolean",
+          "locationName":"classicLinkDnsSupported"
+        }
+      }
+    },
+    "ClassicLinkDnsSupportList":{
+      "type":"list",
+      "member":{
+        "shape":"ClassicLinkDnsSupport",
         "locationName":"item"
       }
     },
@@ -5629,6 +5676,33 @@
         }
       }
     },
+    "DescribeVpcClassicLinkDnsSupportRequest":{
+      "type":"structure",
+      "members":{
+        "VpcIds":{"shape":"VpcClassicLinkIdList"},
+        "MaxResults":{
+          "shape":"MaxResults",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "DescribeVpcClassicLinkDnsSupportResult":{
+      "type":"structure",
+      "members":{
+        "Vpcs":{
+          "shape":"ClassicLinkDnsSupportList",
+          "locationName":"vpcs"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "locationName":"nextToken"
+        }
+      }
+    },
     "DescribeVpcClassicLinkRequest":{
       "type":"structure",
       "members":{
@@ -5983,6 +6057,21 @@
         "GatewayId":{"shape":"String"}
       }
     },
+    "DisableVpcClassicLinkDnsSupportRequest":{
+      "type":"structure",
+      "members":{
+        "VpcId":{"shape":"String"}
+      }
+    },
+    "DisableVpcClassicLinkDnsSupportResult":{
+      "type":"structure",
+      "members":{
+        "Return":{
+          "shape":"Boolean",
+          "locationName":"return"
+        }
+      }
+    },
     "DisableVpcClassicLinkRequest":{
       "type":"structure",
       "required":["VpcId"],
@@ -6206,6 +6295,21 @@
         "VolumeId":{
           "shape":"String",
           "locationName":"volumeId"
+        }
+      }
+    },
+    "EnableVpcClassicLinkDnsSupportRequest":{
+      "type":"structure",
+      "members":{
+        "VpcId":{"shape":"String"}
+      }
+    },
+    "EnableVpcClassicLinkDnsSupportResult":{
+      "type":"structure",
+      "members":{
+        "Return":{
+          "shape":"Boolean",
+          "locationName":"return"
         }
       }
     },
@@ -8414,6 +8518,11 @@
       ]
     },
     "Long":{"type":"long"},
+    "MaxResults":{
+      "type":"integer",
+      "max":255,
+      "min":5
+    },
     "ModifyHostsRequest":{
       "type":"structure",
       "required":[
@@ -9267,6 +9376,11 @@
         "shape":"NewDhcpConfiguration",
         "locationName":"item"
       }
+    },
+    "NextToken":{
+      "type":"string",
+      "max":1024,
+      "min":1
     },
     "OfferingTypeValues":{
       "type":"string",

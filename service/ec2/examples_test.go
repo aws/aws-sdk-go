@@ -3386,6 +3386,30 @@ func ExampleEC2_DescribeVpcClassicLink() {
 	fmt.Println(resp)
 }
 
+func ExampleEC2_DescribeVpcClassicLinkDnsSupport() {
+	svc := ec2.New(session.New())
+
+	params := &ec2.DescribeVpcClassicLinkDnsSupportInput{
+		MaxResults: aws.Int64(1),
+		NextToken:  aws.String("NextToken"),
+		VpcIds: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.DescribeVpcClassicLinkDnsSupport(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleEC2_DescribeVpcEndpointServices() {
 	svc := ec2.New(session.New())
 
@@ -3721,6 +3745,25 @@ func ExampleEC2_DisableVpcClassicLink() {
 	fmt.Println(resp)
 }
 
+func ExampleEC2_DisableVpcClassicLinkDnsSupport() {
+	svc := ec2.New(session.New())
+
+	params := &ec2.DisableVpcClassicLinkDnsSupportInput{
+		VpcId: aws.String("String"),
+	}
+	resp, err := svc.DisableVpcClassicLinkDnsSupport(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleEC2_DisassociateAddress() {
 	svc := ec2.New(session.New())
 
@@ -3810,6 +3853,25 @@ func ExampleEC2_EnableVpcClassicLink() {
 		DryRun: aws.Bool(true),
 	}
 	resp, err := svc.EnableVpcClassicLink(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleEC2_EnableVpcClassicLinkDnsSupport() {
+	svc := ec2.New(session.New())
+
+	params := &ec2.EnableVpcClassicLinkDnsSupportInput{
+		VpcId: aws.String("String"),
+	}
+	resp, err := svc.EnableVpcClassicLinkDnsSupport(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
