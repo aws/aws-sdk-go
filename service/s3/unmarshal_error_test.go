@@ -1,9 +1,10 @@
 package s3_test
 
 import (
-	"bytes"
+	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -15,39 +16,93 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3"
 )
 
-var s3StatusCodeErrorTests = []struct {
-	scode   int
-	status  string
-	body    string
-	code    string
-	message string
-}{
-	{301, "Moved Permanently", "", "BucketRegionError", "incorrect region, the bucket is not in 'mock-region' region"},
-	{403, "Forbidden", "", "Forbidden", "Forbidden"},
-	{400, "Bad Request", "", "BadRequest", "Bad Request"},
-	{404, "Not Found", "", "NotFound", "Not Found"},
-	{500, "Internal Error", "", "InternalError", "Internal Error"},
+type testErrorCase struct {
+	RespFn    func() *http.Response
+	ReqID     string
+	Code, Msg string
 }
 
-func TestStatusCodeError(t *testing.T) {
-	for _, test := range s3StatusCodeErrorTests {
+var testUnmarshalCases = []testErrorCase{
+	{
+		RespFn: func() *http.Response {
+			return &http.Response{
+				StatusCode:    301,
+				Header:        http.Header{"X-Amz-Request-Id": []string{"abc123"}},
+				Body:          ioutil.NopCloser(nil),
+				ContentLength: -1,
+			}
+		},
+		ReqID: "abc123",
+		Code:  "BucketRegionError", Msg: "incorrect region, the bucket is not in 'mock-region' region",
+	},
+	{
+		RespFn: func() *http.Response {
+			return &http.Response{
+				StatusCode:    403,
+				Header:        http.Header{"X-Amz-Request-Id": []string{"abc123"}},
+				Body:          ioutil.NopCloser(nil),
+				ContentLength: 0,
+			}
+		},
+		ReqID: "abc123",
+		Code:  "Forbidden", Msg: "Forbidden",
+	},
+	{
+		RespFn: func() *http.Response {
+			return &http.Response{
+				StatusCode:    400,
+				Header:        http.Header{"X-Amz-Request-Id": []string{"abc123"}},
+				Body:          ioutil.NopCloser(nil),
+				ContentLength: 0,
+			}
+		},
+		ReqID: "abc123",
+		Code:  "BadRequest", Msg: "Bad Request",
+	},
+	{
+		RespFn: func() *http.Response {
+			return &http.Response{
+				StatusCode:    404,
+				Header:        http.Header{"X-Amz-Request-Id": []string{"abc123"}},
+				Body:          ioutil.NopCloser(nil),
+				ContentLength: 0,
+			}
+		},
+		ReqID: "abc123",
+		Code:  "NotFound", Msg: "Not Found",
+	},
+	{
+		RespFn: func() *http.Response {
+			body := `<Error><Code>SomeException</Code><Message>Exception message</Message></Error>`
+			return &http.Response{
+				StatusCode:    500,
+				Header:        http.Header{"X-Amz-Request-Id": []string{"abc123"}},
+				Body:          ioutil.NopCloser(strings.NewReader(body)),
+				ContentLength: int64(len(body)),
+			}
+		},
+		ReqID: "abc123",
+		Code:  "SomeException", Msg: "Exception message",
+	},
+}
+
+func TestUnmarshalError(t *testing.T) {
+	for _, c := range testUnmarshalCases {
 		s := s3.New(unit.Session)
 		s.Handlers.Send.Clear()
 		s.Handlers.Send.PushBack(func(r *request.Request) {
-			body := ioutil.NopCloser(bytes.NewReader([]byte(test.body)))
-			r.HTTPResponse = &http.Response{
-				ContentLength: int64(len(test.body)),
-				StatusCode:    test.scode,
-				Status:        test.status,
-				Body:          body,
-			}
+			r.HTTPResponse = c.RespFn()
+			r.HTTPResponse.Status = http.StatusText(r.HTTPResponse.StatusCode)
 		})
 		_, err := s.PutBucketAcl(&s3.PutBucketAclInput{
 			Bucket: aws.String("bucket"), ACL: aws.String("public-read"),
 		})
 
+		fmt.Printf("%#v\n", err)
+
 		assert.Error(t, err)
-		assert.Equal(t, test.code, err.(awserr.Error).Code())
-		assert.Equal(t, test.message, err.(awserr.Error).Message())
+		assert.Equal(t, c.Code, err.(awserr.Error).Code())
+		assert.Equal(t, c.Msg, err.(awserr.Error).Message())
+		assert.Equal(t, c.ReqID, err.(awserr.RequestFailure).RequestID())
 	}
 }
