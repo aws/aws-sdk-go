@@ -10,14 +10,14 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 )
 
-const opCreateCloudFrontOriginAccessIdentity = "CreateCloudFrontOriginAccessIdentity2015_09_17"
+const opCreateCloudFrontOriginAccessIdentity = "CreateCloudFrontOriginAccessIdentity2016_01_13"
 
 // CreateCloudFrontOriginAccessIdentityRequest generates a request for the CreateCloudFrontOriginAccessIdentity operation.
 func (c *CloudFront) CreateCloudFrontOriginAccessIdentityRequest(input *CreateCloudFrontOriginAccessIdentityInput) (req *request.Request, output *CreateCloudFrontOriginAccessIdentityOutput) {
 	op := &request.Operation{
 		Name:       opCreateCloudFrontOriginAccessIdentity,
 		HTTPMethod: "POST",
-		HTTPPath:   "/2015-09-17/origin-access-identity/cloudfront",
+		HTTPPath:   "/2016-01-13/origin-access-identity/cloudfront",
 	}
 
 	if input == nil {
@@ -37,14 +37,14 @@ func (c *CloudFront) CreateCloudFrontOriginAccessIdentity(input *CreateCloudFron
 	return out, err
 }
 
-const opCreateDistribution = "CreateDistribution2015_09_17"
+const opCreateDistribution = "CreateDistribution2016_01_13"
 
 // CreateDistributionRequest generates a request for the CreateDistribution operation.
 func (c *CloudFront) CreateDistributionRequest(input *CreateDistributionInput) (req *request.Request, output *CreateDistributionOutput) {
 	op := &request.Operation{
 		Name:       opCreateDistribution,
 		HTTPMethod: "POST",
-		HTTPPath:   "/2015-09-17/distribution",
+		HTTPPath:   "/2016-01-13/distribution",
 	}
 
 	if input == nil {
@@ -64,14 +64,14 @@ func (c *CloudFront) CreateDistribution(input *CreateDistributionInput) (*Create
 	return out, err
 }
 
-const opCreateInvalidation = "CreateInvalidation2015_09_17"
+const opCreateInvalidation = "CreateInvalidation2016_01_13"
 
 // CreateInvalidationRequest generates a request for the CreateInvalidation operation.
 func (c *CloudFront) CreateInvalidationRequest(input *CreateInvalidationInput) (req *request.Request, output *CreateInvalidationOutput) {
 	op := &request.Operation{
 		Name:       opCreateInvalidation,
 		HTTPMethod: "POST",
-		HTTPPath:   "/2015-09-17/distribution/{DistributionId}/invalidation",
+		HTTPPath:   "/2016-01-13/distribution/{DistributionId}/invalidation",
 	}
 
 	if input == nil {
@@ -91,14 +91,14 @@ func (c *CloudFront) CreateInvalidation(input *CreateInvalidationInput) (*Create
 	return out, err
 }
 
-const opCreateStreamingDistribution = "CreateStreamingDistribution2015_09_17"
+const opCreateStreamingDistribution = "CreateStreamingDistribution2016_01_13"
 
 // CreateStreamingDistributionRequest generates a request for the CreateStreamingDistribution operation.
 func (c *CloudFront) CreateStreamingDistributionRequest(input *CreateStreamingDistributionInput) (req *request.Request, output *CreateStreamingDistributionOutput) {
 	op := &request.Operation{
 		Name:       opCreateStreamingDistribution,
 		HTTPMethod: "POST",
-		HTTPPath:   "/2015-09-17/streaming-distribution",
+		HTTPPath:   "/2016-01-13/streaming-distribution",
 	}
 
 	if input == nil {
@@ -118,14 +118,14 @@ func (c *CloudFront) CreateStreamingDistribution(input *CreateStreamingDistribut
 	return out, err
 }
 
-const opDeleteCloudFrontOriginAccessIdentity = "DeleteCloudFrontOriginAccessIdentity2015_09_17"
+const opDeleteCloudFrontOriginAccessIdentity = "DeleteCloudFrontOriginAccessIdentity2016_01_13"
 
 // DeleteCloudFrontOriginAccessIdentityRequest generates a request for the DeleteCloudFrontOriginAccessIdentity operation.
 func (c *CloudFront) DeleteCloudFrontOriginAccessIdentityRequest(input *DeleteCloudFrontOriginAccessIdentityInput) (req *request.Request, output *DeleteCloudFrontOriginAccessIdentityOutput) {
 	op := &request.Operation{
 		Name:       opDeleteCloudFrontOriginAccessIdentity,
 		HTTPMethod: "DELETE",
-		HTTPPath:   "/2015-09-17/origin-access-identity/cloudfront/{Id}",
+		HTTPPath:   "/2016-01-13/origin-access-identity/cloudfront/{Id}",
 	}
 
 	if input == nil {
@@ -145,14 +145,14 @@ func (c *CloudFront) DeleteCloudFrontOriginAccessIdentity(input *DeleteCloudFron
 	return out, err
 }
 
-const opDeleteDistribution = "DeleteDistribution2015_09_17"
+const opDeleteDistribution = "DeleteDistribution2016_01_13"
 
 // DeleteDistributionRequest generates a request for the DeleteDistribution operation.
 func (c *CloudFront) DeleteDistributionRequest(input *DeleteDistributionInput) (req *request.Request, output *DeleteDistributionOutput) {
 	op := &request.Operation{
 		Name:       opDeleteDistribution,
 		HTTPMethod: "DELETE",
-		HTTPPath:   "/2015-09-17/distribution/{Id}",
+		HTTPPath:   "/2016-01-13/distribution/{Id}",
 	}
 
 	if input == nil {
@@ -172,14 +172,14 @@ func (c *CloudFront) DeleteDistribution(input *DeleteDistributionInput) (*Delete
 	return out, err
 }
 
-const opDeleteStreamingDistribution = "DeleteStreamingDistribution2015_09_17"
+const opDeleteStreamingDistribution = "DeleteStreamingDistribution2016_01_13"
 
 // DeleteStreamingDistributionRequest generates a request for the DeleteStreamingDistribution operation.
 func (c *CloudFront) DeleteStreamingDistributionRequest(input *DeleteStreamingDistributionInput) (req *request.Request, output *DeleteStreamingDistributionOutput) {
 	op := &request.Operation{
 		Name:       opDeleteStreamingDistribution,
 		HTTPMethod: "DELETE",
-		HTTPPath:   "/2015-09-17/streaming-distribution/{Id}",
+		HTTPPath:   "/2016-01-13/streaming-distribution/{Id}",
 	}
 
 	if input == nil {
@@ -199,14 +199,14 @@ func (c *CloudFront) DeleteStreamingDistribution(input *DeleteStreamingDistribut
 	return out, err
 }
 
-const opGetCloudFrontOriginAccessIdentity = "GetCloudFrontOriginAccessIdentity2015_09_17"
+const opGetCloudFrontOriginAccessIdentity = "GetCloudFrontOriginAccessIdentity2016_01_13"
 
 // GetCloudFrontOriginAccessIdentityRequest generates a request for the GetCloudFrontOriginAccessIdentity operation.
 func (c *CloudFront) GetCloudFrontOriginAccessIdentityRequest(input *GetCloudFrontOriginAccessIdentityInput) (req *request.Request, output *GetCloudFrontOriginAccessIdentityOutput) {
 	op := &request.Operation{
 		Name:       opGetCloudFrontOriginAccessIdentity,
 		HTTPMethod: "GET",
-		HTTPPath:   "/2015-09-17/origin-access-identity/cloudfront/{Id}",
+		HTTPPath:   "/2016-01-13/origin-access-identity/cloudfront/{Id}",
 	}
 
 	if input == nil {
@@ -226,14 +226,14 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentity(input *GetCloudFrontOrigi
 	return out, err
 }
 
-const opGetCloudFrontOriginAccessIdentityConfig = "GetCloudFrontOriginAccessIdentityConfig2015_09_17"
+const opGetCloudFrontOriginAccessIdentityConfig = "GetCloudFrontOriginAccessIdentityConfig2016_01_13"
 
 // GetCloudFrontOriginAccessIdentityConfigRequest generates a request for the GetCloudFrontOriginAccessIdentityConfig operation.
 func (c *CloudFront) GetCloudFrontOriginAccessIdentityConfigRequest(input *GetCloudFrontOriginAccessIdentityConfigInput) (req *request.Request, output *GetCloudFrontOriginAccessIdentityConfigOutput) {
 	op := &request.Operation{
 		Name:       opGetCloudFrontOriginAccessIdentityConfig,
 		HTTPMethod: "GET",
-		HTTPPath:   "/2015-09-17/origin-access-identity/cloudfront/{Id}/config",
+		HTTPPath:   "/2016-01-13/origin-access-identity/cloudfront/{Id}/config",
 	}
 
 	if input == nil {
@@ -253,14 +253,14 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentityConfig(input *GetCloudFron
 	return out, err
 }
 
-const opGetDistribution = "GetDistribution2015_09_17"
+const opGetDistribution = "GetDistribution2016_01_13"
 
 // GetDistributionRequest generates a request for the GetDistribution operation.
 func (c *CloudFront) GetDistributionRequest(input *GetDistributionInput) (req *request.Request, output *GetDistributionOutput) {
 	op := &request.Operation{
 		Name:       opGetDistribution,
 		HTTPMethod: "GET",
-		HTTPPath:   "/2015-09-17/distribution/{Id}",
+		HTTPPath:   "/2016-01-13/distribution/{Id}",
 	}
 
 	if input == nil {
@@ -280,14 +280,14 @@ func (c *CloudFront) GetDistribution(input *GetDistributionInput) (*GetDistribut
 	return out, err
 }
 
-const opGetDistributionConfig = "GetDistributionConfig2015_09_17"
+const opGetDistributionConfig = "GetDistributionConfig2016_01_13"
 
 // GetDistributionConfigRequest generates a request for the GetDistributionConfig operation.
 func (c *CloudFront) GetDistributionConfigRequest(input *GetDistributionConfigInput) (req *request.Request, output *GetDistributionConfigOutput) {
 	op := &request.Operation{
 		Name:       opGetDistributionConfig,
 		HTTPMethod: "GET",
-		HTTPPath:   "/2015-09-17/distribution/{Id}/config",
+		HTTPPath:   "/2016-01-13/distribution/{Id}/config",
 	}
 
 	if input == nil {
@@ -307,14 +307,14 @@ func (c *CloudFront) GetDistributionConfig(input *GetDistributionConfigInput) (*
 	return out, err
 }
 
-const opGetInvalidation = "GetInvalidation2015_09_17"
+const opGetInvalidation = "GetInvalidation2016_01_13"
 
 // GetInvalidationRequest generates a request for the GetInvalidation operation.
 func (c *CloudFront) GetInvalidationRequest(input *GetInvalidationInput) (req *request.Request, output *GetInvalidationOutput) {
 	op := &request.Operation{
 		Name:       opGetInvalidation,
 		HTTPMethod: "GET",
-		HTTPPath:   "/2015-09-17/distribution/{DistributionId}/invalidation/{Id}",
+		HTTPPath:   "/2016-01-13/distribution/{DistributionId}/invalidation/{Id}",
 	}
 
 	if input == nil {
@@ -334,14 +334,14 @@ func (c *CloudFront) GetInvalidation(input *GetInvalidationInput) (*GetInvalidat
 	return out, err
 }
 
-const opGetStreamingDistribution = "GetStreamingDistribution2015_09_17"
+const opGetStreamingDistribution = "GetStreamingDistribution2016_01_13"
 
 // GetStreamingDistributionRequest generates a request for the GetStreamingDistribution operation.
 func (c *CloudFront) GetStreamingDistributionRequest(input *GetStreamingDistributionInput) (req *request.Request, output *GetStreamingDistributionOutput) {
 	op := &request.Operation{
 		Name:       opGetStreamingDistribution,
 		HTTPMethod: "GET",
-		HTTPPath:   "/2015-09-17/streaming-distribution/{Id}",
+		HTTPPath:   "/2016-01-13/streaming-distribution/{Id}",
 	}
 
 	if input == nil {
@@ -361,14 +361,14 @@ func (c *CloudFront) GetStreamingDistribution(input *GetStreamingDistributionInp
 	return out, err
 }
 
-const opGetStreamingDistributionConfig = "GetStreamingDistributionConfig2015_09_17"
+const opGetStreamingDistributionConfig = "GetStreamingDistributionConfig2016_01_13"
 
 // GetStreamingDistributionConfigRequest generates a request for the GetStreamingDistributionConfig operation.
 func (c *CloudFront) GetStreamingDistributionConfigRequest(input *GetStreamingDistributionConfigInput) (req *request.Request, output *GetStreamingDistributionConfigOutput) {
 	op := &request.Operation{
 		Name:       opGetStreamingDistributionConfig,
 		HTTPMethod: "GET",
-		HTTPPath:   "/2015-09-17/streaming-distribution/{Id}/config",
+		HTTPPath:   "/2016-01-13/streaming-distribution/{Id}/config",
 	}
 
 	if input == nil {
@@ -388,14 +388,14 @@ func (c *CloudFront) GetStreamingDistributionConfig(input *GetStreamingDistribut
 	return out, err
 }
 
-const opListCloudFrontOriginAccessIdentities = "ListCloudFrontOriginAccessIdentities2015_09_17"
+const opListCloudFrontOriginAccessIdentities = "ListCloudFrontOriginAccessIdentities2016_01_13"
 
 // ListCloudFrontOriginAccessIdentitiesRequest generates a request for the ListCloudFrontOriginAccessIdentities operation.
 func (c *CloudFront) ListCloudFrontOriginAccessIdentitiesRequest(input *ListCloudFrontOriginAccessIdentitiesInput) (req *request.Request, output *ListCloudFrontOriginAccessIdentitiesOutput) {
 	op := &request.Operation{
 		Name:       opListCloudFrontOriginAccessIdentities,
 		HTTPMethod: "GET",
-		HTTPPath:   "/2015-09-17/origin-access-identity/cloudfront",
+		HTTPPath:   "/2016-01-13/origin-access-identity/cloudfront",
 		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"CloudFrontOriginAccessIdentityList.NextMarker"},
@@ -429,14 +429,14 @@ func (c *CloudFront) ListCloudFrontOriginAccessIdentitiesPages(input *ListCloudF
 	})
 }
 
-const opListDistributions = "ListDistributions2015_09_17"
+const opListDistributions = "ListDistributions2016_01_13"
 
 // ListDistributionsRequest generates a request for the ListDistributions operation.
 func (c *CloudFront) ListDistributionsRequest(input *ListDistributionsInput) (req *request.Request, output *ListDistributionsOutput) {
 	op := &request.Operation{
 		Name:       opListDistributions,
 		HTTPMethod: "GET",
-		HTTPPath:   "/2015-09-17/distribution",
+		HTTPPath:   "/2016-01-13/distribution",
 		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"DistributionList.NextMarker"},
@@ -470,14 +470,14 @@ func (c *CloudFront) ListDistributionsPages(input *ListDistributionsInput, fn fu
 	})
 }
 
-const opListDistributionsByWebACLId = "ListDistributionsByWebACLId2015_09_17"
+const opListDistributionsByWebACLId = "ListDistributionsByWebACLId2016_01_13"
 
 // ListDistributionsByWebACLIdRequest generates a request for the ListDistributionsByWebACLId operation.
 func (c *CloudFront) ListDistributionsByWebACLIdRequest(input *ListDistributionsByWebACLIdInput) (req *request.Request, output *ListDistributionsByWebACLIdOutput) {
 	op := &request.Operation{
 		Name:       opListDistributionsByWebACLId,
 		HTTPMethod: "GET",
-		HTTPPath:   "/2015-09-17/distributionsByWebACLId/{WebACLId}",
+		HTTPPath:   "/2016-01-13/distributionsByWebACLId/{WebACLId}",
 	}
 
 	if input == nil {
@@ -497,14 +497,14 @@ func (c *CloudFront) ListDistributionsByWebACLId(input *ListDistributionsByWebAC
 	return out, err
 }
 
-const opListInvalidations = "ListInvalidations2015_09_17"
+const opListInvalidations = "ListInvalidations2016_01_13"
 
 // ListInvalidationsRequest generates a request for the ListInvalidations operation.
 func (c *CloudFront) ListInvalidationsRequest(input *ListInvalidationsInput) (req *request.Request, output *ListInvalidationsOutput) {
 	op := &request.Operation{
 		Name:       opListInvalidations,
 		HTTPMethod: "GET",
-		HTTPPath:   "/2015-09-17/distribution/{DistributionId}/invalidation",
+		HTTPPath:   "/2016-01-13/distribution/{DistributionId}/invalidation",
 		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"InvalidationList.NextMarker"},
@@ -538,14 +538,14 @@ func (c *CloudFront) ListInvalidationsPages(input *ListInvalidationsInput, fn fu
 	})
 }
 
-const opListStreamingDistributions = "ListStreamingDistributions2015_09_17"
+const opListStreamingDistributions = "ListStreamingDistributions2016_01_13"
 
 // ListStreamingDistributionsRequest generates a request for the ListStreamingDistributions operation.
 func (c *CloudFront) ListStreamingDistributionsRequest(input *ListStreamingDistributionsInput) (req *request.Request, output *ListStreamingDistributionsOutput) {
 	op := &request.Operation{
 		Name:       opListStreamingDistributions,
 		HTTPMethod: "GET",
-		HTTPPath:   "/2015-09-17/streaming-distribution",
+		HTTPPath:   "/2016-01-13/streaming-distribution",
 		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"StreamingDistributionList.NextMarker"},
@@ -579,14 +579,14 @@ func (c *CloudFront) ListStreamingDistributionsPages(input *ListStreamingDistrib
 	})
 }
 
-const opUpdateCloudFrontOriginAccessIdentity = "UpdateCloudFrontOriginAccessIdentity2015_09_17"
+const opUpdateCloudFrontOriginAccessIdentity = "UpdateCloudFrontOriginAccessIdentity2016_01_13"
 
 // UpdateCloudFrontOriginAccessIdentityRequest generates a request for the UpdateCloudFrontOriginAccessIdentity operation.
 func (c *CloudFront) UpdateCloudFrontOriginAccessIdentityRequest(input *UpdateCloudFrontOriginAccessIdentityInput) (req *request.Request, output *UpdateCloudFrontOriginAccessIdentityOutput) {
 	op := &request.Operation{
 		Name:       opUpdateCloudFrontOriginAccessIdentity,
 		HTTPMethod: "PUT",
-		HTTPPath:   "/2015-09-17/origin-access-identity/cloudfront/{Id}/config",
+		HTTPPath:   "/2016-01-13/origin-access-identity/cloudfront/{Id}/config",
 	}
 
 	if input == nil {
@@ -606,14 +606,14 @@ func (c *CloudFront) UpdateCloudFrontOriginAccessIdentity(input *UpdateCloudFron
 	return out, err
 }
 
-const opUpdateDistribution = "UpdateDistribution2015_09_17"
+const opUpdateDistribution = "UpdateDistribution2016_01_13"
 
 // UpdateDistributionRequest generates a request for the UpdateDistribution operation.
 func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (req *request.Request, output *UpdateDistributionOutput) {
 	op := &request.Operation{
 		Name:       opUpdateDistribution,
 		HTTPMethod: "PUT",
-		HTTPPath:   "/2015-09-17/distribution/{Id}/config",
+		HTTPPath:   "/2016-01-13/distribution/{Id}/config",
 	}
 
 	if input == nil {
@@ -633,14 +633,14 @@ func (c *CloudFront) UpdateDistribution(input *UpdateDistributionInput) (*Update
 	return out, err
 }
 
-const opUpdateStreamingDistribution = "UpdateStreamingDistribution2015_09_17"
+const opUpdateStreamingDistribution = "UpdateStreamingDistribution2016_01_13"
 
 // UpdateStreamingDistributionRequest generates a request for the UpdateStreamingDistribution operation.
 func (c *CloudFront) UpdateStreamingDistributionRequest(input *UpdateStreamingDistributionInput) (req *request.Request, output *UpdateStreamingDistributionOutput) {
 	op := &request.Operation{
 		Name:       opUpdateStreamingDistribution,
 		HTTPMethod: "PUT",
-		HTTPPath:   "/2015-09-17/streaming-distribution/{Id}/config",
+		HTTPPath:   "/2016-01-13/streaming-distribution/{Id}/config",
 	}
 
 	if input == nil {
@@ -1218,6 +1218,27 @@ func (s CustomErrorResponses) GoString() string {
 	return s.String()
 }
 
+// A complex type that contains the list of Custom Headers for each origin.
+type CustomHeaders struct {
+	_ struct{} `type:"structure"`
+
+	// A complex type that contains the custom headers for this Origin.
+	Items []*OriginCustomHeader `locationNameList:"OriginCustomHeader" type:"list"`
+
+	// The number of custom headers for this origin.
+	Quantity *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s CustomHeaders) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CustomHeaders) GoString() string {
+	return s.String()
+}
+
 // A customer origin.
 type CustomOriginConfig struct {
 	_ struct{} `type:"structure"`
@@ -1230,6 +1251,10 @@ type CustomOriginConfig struct {
 
 	// The origin protocol policy to apply to your origin.
 	OriginProtocolPolicy *string `type:"string" required:"true" enum:"OriginProtocolPolicy"`
+
+	// The SSL/TLS protocols that you want CloudFront to use when communicating
+	// with your origin over HTTPS.
+	OriginSslProtocols *OriginSslProtocols `type:"structure"`
 }
 
 // String returns the string representation
@@ -2488,6 +2513,10 @@ func (s LoggingConfig) GoString() string {
 type Origin struct {
 	_ struct{} `type:"structure"`
 
+	// A complex type that contains information about the custom headers associated
+	// with this Origin.
+	CustomHeaders *CustomHeaders `type:"structure"`
+
 	// A complex type that contains information about a custom origin. If the origin
 	// is an Amazon S3 bucket, use the S3OriginConfig element instead.
 	CustomOriginConfig *CustomOriginConfig `type:"structure"`
@@ -2646,6 +2675,52 @@ func (s OriginAccessIdentitySummary) String() string {
 
 // GoString returns the string representation
 func (s OriginAccessIdentitySummary) GoString() string {
+	return s.String()
+}
+
+// A complex type that contains information related to a Header
+type OriginCustomHeader struct {
+	_ struct{} `type:"structure"`
+
+	// The header's name.
+	HeaderName *string `type:"string" required:"true"`
+
+	// The header's value.
+	HeaderValue *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s OriginCustomHeader) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OriginCustomHeader) GoString() string {
+	return s.String()
+}
+
+// A complex type that contains the list of SSL/TLS protocols that you want
+// CloudFront to use when communicating with your origin over HTTPS.
+type OriginSslProtocols struct {
+	_ struct{} `type:"structure"`
+
+	// A complex type that contains one SslProtocol element for each SSL/TLS protocol
+	// that you want to allow CloudFront to use when establishing an HTTPS connection
+	// with this origin.
+	Items []*string `locationNameList:"SslProtocol" type:"list" required:"true"`
+
+	// The number of SSL/TLS protocols that you want to allow CloudFront to use
+	// when establishing an HTTPS connection with this origin.
+	Quantity *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s OriginSslProtocols) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OriginSslProtocols) GoString() string {
 	return s.String()
 }
 
@@ -3211,8 +3286,8 @@ type ViewerCertificate struct {
 
 	// If you want viewers to use HTTPS to request your objects and you're using
 	// an alternate domain name in your object URLs (for example, https://example.com/logo.jpg),
-	// set to the IAM certificate identifier of the custom viewer certificate for
-	// this distribution.
+	// you can use your own IAM or ACM certificate. For ACM, set to the ACM certificate
+	// ARN. For IAM, set to the IAM certificate identifier.
 	Certificate *string `type:"string"`
 
 	// If you want viewers to use HTTPS to request your objects and you're using
@@ -3220,8 +3295,10 @@ type ViewerCertificate struct {
 	// example, https://d111111abcdef8.cloudfront.net/logo.jpg), set to "cloudfront".
 	// If you want viewers to use HTTPS to request your objects and you're using
 	// an alternate domain name in your object URLs (for example, https://example.com/logo.jpg),
-	// set to "iam", and update the Certificate field with the IAM certificate identifier
-	// of the custom viewer certificate for this distribution.
+	// you can use your own IAM or ACM certificate. To use an ACM certificate, set
+	// to "acm" and update the Certificate to the ACM certificate ARN. To use an
+	// IAM certificate, set to "iam" and update the Certificate to the IAM certificate
+	// identifier.
 	CertificateSource *string `type:"string" enum:"CertificateSource"`
 
 	// Note: this field is deprecated. Please use "cloudfront" as CertificateSource
@@ -3328,6 +3405,8 @@ const (
 	OriginProtocolPolicyHttpOnly = "http-only"
 	// @enum OriginProtocolPolicy
 	OriginProtocolPolicyMatchViewer = "match-viewer"
+	// @enum OriginProtocolPolicy
+	OriginProtocolPolicyHttpsOnly = "https-only"
 )
 
 const (
@@ -3344,6 +3423,17 @@ const (
 	SSLSupportMethodSniOnly = "sni-only"
 	// @enum SSLSupportMethod
 	SSLSupportMethodVip = "vip"
+)
+
+const (
+	// @enum SslProtocol
+	SslProtocolSslv3 = "SSLv3"
+	// @enum SslProtocol
+	SslProtocolTlsv1 = "TLSv1"
+	// @enum SslProtocol
+	SslProtocolTlsv11 = "TLSv1.1"
+	// @enum SslProtocol
+	SslProtocolTlsv12 = "TLSv1.2"
 )
 
 const (
