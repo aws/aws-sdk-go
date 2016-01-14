@@ -465,7 +465,7 @@
       "name":"InvokeAsync",
       "http":{
         "method":"POST",
-        "requestUri":"/2014-11-13/functions/{FunctionName}/invoke-async/",
+        "requestUri":"/2014-11-13/functions/{FunctionName}/invoke-async",
         "responseCode":202
       },
       "input":{
