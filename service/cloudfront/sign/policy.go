@@ -79,7 +79,7 @@ var randReader = rand.Reader
 // guidelines in:
 // http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-signed-urls.html
 func (p *Policy) Sign(privKey *rsa.PrivateKey) (b64Signature, b64Policy []byte, err error) {
-	if err := p.Validate(); err != nil {
+	if err = p.Validate(); err != nil {
 		return nil, nil, err
 	}
 
