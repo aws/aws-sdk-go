@@ -1,7 +1,6 @@
 package s3_test
 
 import (
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"strings"
@@ -98,11 +97,69 @@ func TestUnmarshalError(t *testing.T) {
 			Bucket: aws.String("bucket"), ACL: aws.String("public-read"),
 		})
 
-		fmt.Printf("%#v\n", err)
-
 		assert.Error(t, err)
 		assert.Equal(t, c.Code, err.(awserr.Error).Code())
 		assert.Equal(t, c.Msg, err.(awserr.Error).Message())
 		assert.Equal(t, c.ReqID, err.(awserr.RequestFailure).RequestID())
 	}
+}
+
+const completeMultiResp = `
+163
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CompleteMultipartUploadResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Location>https://bucket.s3-us-west-2.amazonaws.com/key</Location><Bucket>bucket</Bucket><Key>key</Key><ETag>&quot;a7d414b9133d6483d9a1c4e04e856e3b-2&quot;</ETag></CompleteMultipartUploadResult>
+0
+`
+
+func Test200NoErrorUnmarshalError(t *testing.T) {
+	s := s3.New(unit.Session)
+	s.Handlers.Send.Clear()
+	s.Handlers.Send.PushBack(func(r *request.Request) {
+		r.HTTPResponse = &http.Response{
+			StatusCode:    200,
+			Header:        http.Header{"X-Amz-Request-Id": []string{"abc123"}},
+			Body:          ioutil.NopCloser(strings.NewReader(completeMultiResp)),
+			ContentLength: -1,
+		}
+		r.HTTPResponse.Status = http.StatusText(r.HTTPResponse.StatusCode)
+	})
+	_, err := s.CompleteMultipartUpload(&s3.CompleteMultipartUploadInput{
+		Bucket: aws.String("bucket"), Key: aws.String("key"),
+		UploadId: aws.String("id"),
+		MultipartUpload: &s3.CompletedMultipartUpload{Parts: []*s3.CompletedPart{
+			{ETag: aws.String("etag"), PartNumber: aws.Int64(1)},
+		}},
+	})
+
+	assert.NoError(t, err)
+}
+
+const completeMultiErrResp = `<Error><Code>SomeException</Code><Message>Exception message</Message></Error>`
+
+func Test200WithErrorUnmarshalError(t *testing.T) {
+	s := s3.New(unit.Session)
+	s.Handlers.Send.Clear()
+	s.Handlers.Send.PushBack(func(r *request.Request) {
+		r.HTTPResponse = &http.Response{
+			StatusCode:    200,
+			Header:        http.Header{"X-Amz-Request-Id": []string{"abc123"}},
+			Body:          ioutil.NopCloser(strings.NewReader(completeMultiErrResp)),
+			ContentLength: -1,
+		}
+		r.HTTPResponse.Status = http.StatusText(r.HTTPResponse.StatusCode)
+	})
+	_, err := s.CompleteMultipartUpload(&s3.CompleteMultipartUploadInput{
+		Bucket: aws.String("bucket"), Key: aws.String("key"),
+		UploadId: aws.String("id"),
+		MultipartUpload: &s3.CompletedMultipartUpload{Parts: []*s3.CompletedPart{
+			{ETag: aws.String("etag"), PartNumber: aws.Int64(1)},
+		}},
+	})
+
+	assert.Error(t, err)
+
+	assert.Equal(t, "SomeException", err.(awserr.Error).Code())
+	assert.Equal(t, "Exception message", err.(awserr.Error).Message())
+	assert.Equal(t, "abc123", err.(awserr.RequestFailure).RequestID())
 }
