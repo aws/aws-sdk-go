@@ -2911,6 +2911,92 @@ func ExampleEC2_DescribeRouteTables() {
 	fmt.Println(resp)
 }
 
+func ExampleEC2_DescribeScheduledInstanceAvailability() {
+	svc := ec2.New(session.New())
+
+	params := &ec2.DescribeScheduledInstanceAvailabilityInput{
+		FirstSlotStartTimeRange: &ec2.SlotDateTimeRangeRequest{ // Required
+			EarliestTime: aws.Time(time.Now()), // Required
+			LatestTime:   aws.Time(time.Now()), // Required
+		},
+		Recurrence: &ec2.ScheduledInstanceRecurrenceRequest{ // Required
+			Frequency: aws.String("String"),
+			Interval:  aws.Int64(1),
+			OccurrenceDays: []*int64{
+				aws.Int64(1), // Required
+				// More values...
+			},
+			OccurrenceRelativeToEnd: aws.Bool(true),
+			OccurrenceUnit:          aws.String("String"),
+		},
+		DryRun: aws.Bool(true),
+		Filters: []*ec2.Filter{
+			{ // Required
+				Name: aws.String("String"),
+				Values: []*string{
+					aws.String("String"), // Required
+					// More values...
+				},
+			},
+			// More values...
+		},
+		MaxResults:             aws.Int64(1),
+		MaxSlotDurationInHours: aws.Int64(1),
+		MinSlotDurationInHours: aws.Int64(1),
+		NextToken:              aws.String("String"),
+	}
+	resp, err := svc.DescribeScheduledInstanceAvailability(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleEC2_DescribeScheduledInstances() {
+	svc := ec2.New(session.New())
+
+	params := &ec2.DescribeScheduledInstancesInput{
+		DryRun: aws.Bool(true),
+		Filters: []*ec2.Filter{
+			{ // Required
+				Name: aws.String("String"),
+				Values: []*string{
+					aws.String("String"), // Required
+					// More values...
+				},
+			},
+			// More values...
+		},
+		MaxResults: aws.Int64(1),
+		NextToken:  aws.String("String"),
+		ScheduledInstanceIds: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+		SlotStartTimeRange: &ec2.SlotStartTimeRangeRequest{
+			EarliestTime: aws.Time(time.Now()),
+			LatestTime:   aws.Time(time.Now()),
+		},
+	}
+	resp, err := svc.DescribeScheduledInstances(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleEC2_DescribeSecurityGroups() {
 	svc := ec2.New(session.New())
 
@@ -4604,6 +4690,33 @@ func ExampleEC2_PurchaseReservedInstancesOffering() {
 	fmt.Println(resp)
 }
 
+func ExampleEC2_PurchaseScheduledInstances() {
+	svc := ec2.New(session.New())
+
+	params := &ec2.PurchaseScheduledInstancesInput{
+		PurchaseRequests: []*ec2.PurchaseRequest{ // Required
+			{ // Required
+				InstanceCount: aws.Int64(1),
+				PurchaseToken: aws.String("String"),
+			},
+			// More values...
+		},
+		ClientToken: aws.String("String"),
+		DryRun:      aws.Bool(true),
+	}
+	resp, err := svc.PurchaseScheduledInstances(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleEC2_RebootInstances() {
 	svc := ec2.New(session.New())
 
@@ -5365,6 +5478,93 @@ func ExampleEC2_RunInstances() {
 		UserData: aws.String("String"),
 	}
 	resp, err := svc.RunInstances(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleEC2_RunScheduledInstances() {
+	svc := ec2.New(session.New())
+
+	params := &ec2.RunScheduledInstancesInput{
+		LaunchSpecification: &ec2.ScheduledInstancesLaunchSpecification{ // Required
+			ImageId: aws.String("String"), // Required
+			BlockDeviceMappings: []*ec2.ScheduledInstancesBlockDeviceMapping{
+				{ // Required
+					DeviceName: aws.String("String"),
+					Ebs: &ec2.ScheduledInstancesEbs{
+						DeleteOnTermination: aws.Bool(true),
+						Encrypted:           aws.Bool(true),
+						Iops:                aws.Int64(1),
+						SnapshotId:          aws.String("String"),
+						VolumeSize:          aws.Int64(1),
+						VolumeType:          aws.String("String"),
+					},
+					NoDevice:    aws.String("String"),
+					VirtualName: aws.String("String"),
+				},
+				// More values...
+			},
+			EbsOptimized: aws.Bool(true),
+			IamInstanceProfile: &ec2.ScheduledInstancesIamInstanceProfile{
+				Arn:  aws.String("String"),
+				Name: aws.String("String"),
+			},
+			InstanceType: aws.String("String"),
+			KernelId:     aws.String("String"),
+			KeyName:      aws.String("String"),
+			Monitoring: &ec2.ScheduledInstancesMonitoring{
+				Enabled: aws.Bool(true),
+			},
+			NetworkInterfaces: []*ec2.ScheduledInstancesNetworkInterface{
+				{ // Required
+					AssociatePublicIpAddress: aws.Bool(true),
+					DeleteOnTermination:      aws.Bool(true),
+					Description:              aws.String("String"),
+					DeviceIndex:              aws.Int64(1),
+					Groups: []*string{
+						aws.String("String"), // Required
+						// More values...
+					},
+					NetworkInterfaceId: aws.String("String"),
+					PrivateIpAddress:   aws.String("String"),
+					PrivateIpAddressConfigs: []*ec2.ScheduledInstancesPrivateIpAddressConfig{
+						{ // Required
+							Primary:          aws.Bool(true),
+							PrivateIpAddress: aws.String("String"),
+						},
+						// More values...
+					},
+					SecondaryPrivateIpAddressCount: aws.Int64(1),
+					SubnetId:                       aws.String("String"),
+				},
+				// More values...
+			},
+			Placement: &ec2.ScheduledInstancesPlacement{
+				AvailabilityZone: aws.String("String"),
+				GroupName:        aws.String("String"),
+			},
+			RamdiskId: aws.String("String"),
+			SecurityGroupIds: []*string{
+				aws.String("String"), // Required
+				// More values...
+			},
+			SubnetId: aws.String("String"),
+			UserData: aws.String("String"),
+		},
+		ScheduledInstanceId: aws.String("String"), // Required
+		ClientToken:         aws.String("String"),
+		DryRun:              aws.Bool(true),
+		InstanceCount:       aws.Int64(1),
+	}
+	resp, err := svc.RunScheduledInstances(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
