@@ -531,7 +531,7 @@
       "name":"ListEventSourceMappings",
       "http":{
         "method":"GET",
-        "requestUri":"/2015-03-31/event-source-mappings/",
+        "requestUri":"/2015-03-31/event-source-mappings",
         "responseCode":200
       },
       "input":{"shape":"ListEventSourceMappingsRequest"},
