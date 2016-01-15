@@ -6,7 +6,6 @@ import (
 	"strconv"
 	"strings"
 	"sync"
-	//"time"
 
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
