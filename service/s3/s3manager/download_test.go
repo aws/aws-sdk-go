@@ -39,7 +39,7 @@ func dlLoggingSvc(data []byte) (*s3.S3, *[]string, *[]string) {
 		fin, _ := strconv.ParseInt(rng[2], 10, 64)
 		fin++
 
-		if fin > int64(len(data)) {
+		if fin >= int64(len(data)) {
 			fin = int64(len(data))
 		}
 
@@ -50,7 +50,7 @@ func dlLoggingSvc(data []byte) (*s3.S3, *[]string, *[]string) {
 			Header:     http.Header{},
 		}
 		r.HTTPResponse.Header.Set("Content-Range", fmt.Sprintf("bytes %d-%d/%d",
-			start, fin, len(data)))
+			start, fin-1, len(data)))
 		r.HTTPResponse.Header.Set("Content-Length", fmt.Sprintf("%d", len(bodyBytes)))
 	})
 
@@ -75,6 +75,31 @@ func dlLoggingSvcNoChunk(data []byte) (*s3.S3, *[]string) {
 			Header:     http.Header{},
 		}
 		r.HTTPResponse.Header.Set("Content-Length", fmt.Sprintf("%d", len(data)))
+	})
+
+	return svc, &names
+}
+
+func dlLoggingSvcNoContentRangeLength(data []byte) (*s3.S3, *[]string) {
+	var m sync.Mutex
+	names := []string{}
+	states := []int{200, 416}
+	var index int = 0
+
+	svc := s3.New(unit.Session)
+	svc.Handlers.Send.Clear()
+	svc.Handlers.Send.PushBack(func(r *request.Request) {
+		m.Lock()
+		defer m.Unlock()
+
+		names = append(names, r.Operation.Name)
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: states[index],
+			Body:       ioutil.NopCloser(bytes.NewReader(data[:])),
+			Header:     http.Header{},
+		}
+		index++
 	})
 
 	return svc, &names
@@ -183,6 +208,29 @@ func TestDownloadNonChunk(t *testing.T) {
 	assert.Nil(t, err)
 	assert.Equal(t, int64(len(buf2MB)), n)
 	assert.Equal(t, []string{"GetObject"}, *names)
+
+	count := 0
+	for _, b := range w.Bytes() {
+		count += int(b)
+	}
+	assert.Equal(t, 0, count)
+}
+
+func TestDownloadNoContentRangeLength(t *testing.T) {
+	s, names := dlLoggingSvcNoContentRangeLength(buf2MB)
+
+	d := s3manager.NewDownloaderWithClient(s, func(d *s3manager.Downloader) {
+		d.Concurrency = 1
+	})
+	w := &aws.WriteAtBuffer{}
+	n, err := d.Download(w, &s3.GetObjectInput{
+		Bucket: aws.String("bucket"),
+		Key:    aws.String("key"),
+	})
+
+	assert.Nil(t, err)
+	assert.Equal(t, int64(len(buf2MB)), n)
+	assert.Equal(t, []string{"GetObject", "GetObject"}, *names)
 
 	count := 0
 	for _, b := range w.Bytes() {
