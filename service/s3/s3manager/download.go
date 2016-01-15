@@ -276,8 +276,8 @@ func (d *downloader) setTotalBytes(resp *s3.GetObjectOutput) {
 		// is not chunked. Use ContentLength instead.
 		if resp.ContentLength != nil {
 			d.totalBytes = *resp.ContentLength
+			return
 		}
-		return
 	}
 
 	parts := strings.Split(*resp.ContentRange, "/")
