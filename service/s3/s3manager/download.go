@@ -188,7 +188,10 @@ func (d *downloader) download() (n int64, err error) {
 		}
 
 		// We expect a 416 error letting us know we are done downloading the
-		// total bytes
+		// total bytes. Since we do not know the content's length, this will
+		// keep grabbing chunks of data until the range of bytes specified in
+		// the request is out of range of the content. Once, this happens, a
+		// 416 should occur.
 		e, ok := d.err.(awserr.RequestFailure)
 		if ok && e.StatusCode() == http.StatusRequestedRangeNotSatisfiable {
 			d.err = nil
