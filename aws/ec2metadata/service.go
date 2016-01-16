@@ -4,9 +4,7 @@ package ec2metadata
 
 import (
 	"io/ioutil"
-	"net"
 	"net/http"
-	"reflect"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -27,9 +25,6 @@ type EC2Metadata struct {
 // New creates a new instance of the EC2Metadata client with a session.
 // This client is safe to use across multiple goroutines.
 //
-// If an unmodified HTTP client is provided from the stdlib default, or no client
-// it is safe to override the dial's timeout and keep alive for shorter connections.
-// If any client is provided which is not equal to the original default.
 //
 // Example:
 //     // Create a EC2Metadata client from just a session.
@@ -45,23 +40,20 @@ func New(p client.ConfigProvider, cfgs ...*aws.Config) *EC2Metadata {
 // NewClient returns a new EC2Metadata client. Should be used to create
 // a client when not using a session. Generally using just New with a session
 // is preferred.
+//
+// If an unmodified HTTP client is provided from the stdlib default, or no client
+// the EC2RoleProvider's EC2Metadata HTTP client's timeout will be shortened.
+// To disable this set Config.EC2MetadataDisableTimeoutOverride to false. Enabled by default.
 func NewClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion string, opts ...func(*client.Client)) *EC2Metadata {
-	if cfg.HTTPClient == nil || reflect.DeepEqual(*cfg.HTTPClient, http.Client{}) {
-		// If a unmodified default http client is provided it is safe to add
-		// custom timeouts.
-		httpClient := *http.DefaultClient
-		if t, ok := http.DefaultTransport.(*http.Transport); ok {
-			transport := *t
-			transport.Dial = (&net.Dialer{
-				// use a shorter timeout than default because the metadata
-				// service is local if it is running, and to fail faster
-				// if not running on an ec2 instance.
-				Timeout:   5 * time.Second,
-				KeepAlive: 30 * time.Second,
-			}).Dial
-			httpClient.Transport = &transport
+	if !aws.BoolValue(cfg.EC2MetadataDisableTimeoutOverride) && httpClientZero(cfg.HTTPClient) {
+		// If the http client is unmodified and this feature is not disabled
+		// set custom timeouts for EC2Metadata requests.
+		cfg.HTTPClient = &http.Client{
+			// use a shorter timeout than default because the metadata
+			// service is local if it is running, and to fail faster
+			// if not running on an ec2 instance.
+			Timeout: 5 * time.Second,
 		}
-		cfg.HTTPClient = &httpClient
 	}
 
 	svc := &EC2Metadata{
@@ -87,6 +79,10 @@ func NewClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegio
 	}
 
 	return svc
+}
+
+func httpClientZero(c *http.Client) bool {
+	return c == nil || (c.Transport == nil && c.CheckRedirect == nil && c.Jar == nil && c.Timeout == 0)
 }
 
 type metadataOutput struct {
