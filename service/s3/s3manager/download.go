@@ -288,8 +288,9 @@ func (d *downloader) setTotalBytes(resp *s3.GetObjectOutput) {
 		// Checking for whether or not a numbered total exists
 		// If one does not exist, we will assume the total to be -1, undefined,
 		// and sequentially download each chunk until hitting a 416 error
-		if parts[len(parts)-1] != "*" {
-			total, err = strconv.ParseInt(parts[len(parts)-1], 10, 64)
+		var totalStr string = parts[len(parts)-1]
+		if totalStr != "*" {
+			total, err = strconv.ParseInt(totalStr, 10, 64)
 			if err != nil {
 				d.err = err
 				return
