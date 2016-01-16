@@ -79,11 +79,8 @@ var randReader = rand.Reader
 // guidelines in:
 // http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-signed-urls.html
 func (p *Policy) Sign(privKey *rsa.PrivateKey) (b64Signature, b64Policy []byte, err error) {
-	if len(p.Statements) != 1 {
-		return nil, nil, fmt.Errorf("invalid number of policy statements expected 1 got %d", len(p.Statements))
-	}
-	if p.Statements[0].Resource == "" {
-		return nil, nil, fmt.Errorf("no resource in profile statement")
+	if err = p.Validate(); err != nil {
+		return nil, nil, err
 	}
 
 	// Build and escape the policy
@@ -101,6 +98,21 @@ func (p *Policy) Sign(privKey *rsa.PrivateKey) (b64Signature, b64Policy []byte, 
 	awsEscapeEncoded(b64Signature)
 
 	return b64Signature, b64Policy, nil
+}
+
+// Validate verifies that the policy is valid and usable, and returns an
+// error if there is a problem.
+func (p *Policy) Validate() error {
+	if len(p.Statements) == 0 {
+		return fmt.Errorf("at least one policy statement is required")
+	}
+	for i, s := range p.Statements {
+		if s.Resource == "" {
+			return fmt.Errorf("statement at index %d does not have a resource", i)
+		}
+	}
+
+	return nil
 }
 
 // CreateResource constructs, validates, and returns a resource URL string. An

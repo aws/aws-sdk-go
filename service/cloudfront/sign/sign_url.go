@@ -81,7 +81,7 @@ func (s URLSigner) Sign(url string, expires time.Time) (string, error) {
 // Use this signing method if you are looking to sign a URL with more than just
 // the URL's expiry time, or reusing Policies between multiple URL signings.
 // If only the expiry time is needed you can use Sign and provide just the
-// URL's expiry time.
+// URL's expiry time. A minimum of at least one policy statement is required for a signed URL.
 //
 // Note: It is not safe to use Polices between multiple signers concurrently
 //

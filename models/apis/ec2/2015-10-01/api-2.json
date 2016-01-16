@@ -977,6 +977,24 @@
       "input":{"shape":"DescribeRouteTablesRequest"},
       "output":{"shape":"DescribeRouteTablesResult"}
     },
+    "DescribeScheduledInstanceAvailability":{
+      "name":"DescribeScheduledInstanceAvailability",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeScheduledInstanceAvailabilityRequest"},
+      "output":{"shape":"DescribeScheduledInstanceAvailabilityResult"}
+    },
+    "DescribeScheduledInstances":{
+      "name":"DescribeScheduledInstances",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeScheduledInstancesRequest"},
+      "output":{"shape":"DescribeScheduledInstancesResult"}
+    },
     "DescribeSecurityGroups":{
       "name":"DescribeSecurityGroups",
       "http":{
@@ -1501,6 +1519,15 @@
       "input":{"shape":"PurchaseReservedInstancesOfferingRequest"},
       "output":{"shape":"PurchaseReservedInstancesOfferingResult"}
     },
+    "PurchaseScheduledInstances":{
+      "name":"PurchaseScheduledInstances",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PurchaseScheduledInstancesRequest"},
+      "output":{"shape":"PurchaseScheduledInstancesResult"}
+    },
     "RebootInstances":{
       "name":"RebootInstances",
       "http":{
@@ -1669,6 +1696,15 @@
       },
       "input":{"shape":"RunInstancesRequest"},
       "output":{"shape":"Reservation"}
+    },
+    "RunScheduledInstances":{
+      "name":"RunScheduledInstances",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RunScheduledInstancesRequest"},
+      "output":{"shape":"RunScheduledInstancesResult"}
     },
     "StartInstances":{
       "name":"StartInstances",
@@ -5143,6 +5179,69 @@
         }
       }
     },
+    "DescribeScheduledInstanceAvailabilityRequest":{
+      "type":"structure",
+      "required":[
+        "Recurrence",
+        "FirstSlotStartTimeRange"
+      ],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "Recurrence":{"shape":"ScheduledInstanceRecurrenceRequest"},
+        "FirstSlotStartTimeRange":{"shape":"SlotDateTimeRangeRequest"},
+        "MinSlotDurationInHours":{"shape":"Integer"},
+        "MaxSlotDurationInHours":{"shape":"Integer"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"Integer"},
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        }
+      }
+    },
+    "DescribeScheduledInstanceAvailabilityResult":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        },
+        "ScheduledInstanceAvailabilitySet":{
+          "shape":"ScheduledInstanceAvailabilitySet",
+          "locationName":"scheduledInstanceAvailabilitySet"
+        }
+      }
+    },
+    "DescribeScheduledInstancesRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "ScheduledInstanceIds":{
+          "shape":"ScheduledInstanceIdRequestSet",
+          "locationName":"ScheduledInstanceId"
+        },
+        "SlotStartTimeRange":{"shape":"SlotStartTimeRangeRequest"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"Integer"},
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        }
+      }
+    },
+    "DescribeScheduledInstancesResult":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        },
+        "ScheduledInstanceSet":{
+          "shape":"ScheduledInstanceSet",
+          "locationName":"scheduledInstanceSet"
+        }
+      }
+    },
     "DescribeSecurityGroupsRequest":{
       "type":"structure",
       "members":{
@@ -7817,6 +7916,13 @@
         }
       }
     },
+    "InstanceIdSet":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"item"
+      }
+    },
     "InstanceIdStringList":{
       "type":"list",
       "member":{
@@ -9382,6 +9488,20 @@
       "max":1024,
       "min":1
     },
+    "OccurrenceDayRequestSet":{
+      "type":"list",
+      "member":{
+        "shape":"Integer",
+        "locationName":"OccurenceDay"
+      }
+    },
+    "OccurrenceDaySet":{
+      "type":"list",
+      "member":{
+        "shape":"Integer",
+        "locationName":"item"
+      }
+    },
     "OfferingTypeValues":{
       "type":"string",
       "enum":[
@@ -9606,6 +9726,13 @@
         "locationName":"item"
       }
     },
+    "PrivateIpAddressConfigSet":{
+      "type":"list",
+      "member":{
+        "shape":"ScheduledInstancesPrivateIpAddressConfig",
+        "locationName":"PrivateIpAddressConfigSet"
+      }
+    },
     "PrivateIpAddressSpecification":{
       "type":"structure",
       "required":["PrivateIpAddress"],
@@ -9695,6 +9822,20 @@
         "locationName":"PublicIp"
       }
     },
+    "PurchaseRequest":{
+      "type":"structure",
+      "members":{
+        "PurchaseToken":{"shape":"String"},
+        "InstanceCount":{"shape":"Integer"}
+      }
+    },
+    "PurchaseRequestSet":{
+      "type":"list",
+      "member":{
+        "shape":"PurchaseRequest",
+        "locationName":"PurchaseRequest"
+      }
+    },
     "PurchaseReservedInstancesOfferingRequest":{
       "type":"structure",
       "required":[
@@ -9721,6 +9862,34 @@
           "shape":"String",
           "locationName":"reservedInstancesId"
         }
+      }
+    },
+    "PurchaseScheduledInstancesRequest":{
+      "type":"structure",
+      "required":["PurchaseRequests"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "ClientToken":{"shape":"String"},
+        "PurchaseRequests":{
+          "shape":"PurchaseRequestSet",
+          "locationName":"PurchaseRequest"
+        }
+      }
+    },
+    "PurchaseScheduledInstancesResult":{
+      "type":"structure",
+      "members":{
+        "ScheduledInstanceSet":{
+          "shape":"PurchasedScheduledInstanceSet",
+          "locationName":"scheduledInstanceSet"
+        }
+      }
+    },
+    "PurchasedScheduledInstanceSet":{
+      "type":"list",
+      "member":{
+        "shape":"ScheduledInstance",
+        "locationName":"item"
       }
     },
     "RIProductDescription":{
@@ -11072,6 +11241,29 @@
         }
       }
     },
+    "RunScheduledInstancesRequest":{
+      "type":"structure",
+      "required":[
+        "ScheduledInstanceId",
+        "LaunchSpecification"
+      ],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "ClientToken":{"shape":"String"},
+        "InstanceCount":{"shape":"Integer"},
+        "ScheduledInstanceId":{"shape":"String"},
+        "LaunchSpecification":{"shape":"ScheduledInstancesLaunchSpecification"}
+      }
+    },
+    "RunScheduledInstancesResult":{
+      "type":"structure",
+      "members":{
+        "InstanceIdSet":{
+          "shape":"InstanceIdSet",
+          "locationName":"instanceIdSet"
+        }
+      }
+    },
     "S3Storage":{
       "type":"structure",
       "members":{
@@ -11092,6 +11284,305 @@
           "shape":"String",
           "locationName":"uploadPolicySignature"
         }
+      }
+    },
+    "ScheduledInstance":{
+      "type":"structure",
+      "members":{
+        "ScheduledInstanceId":{
+          "shape":"String",
+          "locationName":"scheduledInstanceId"
+        },
+        "InstanceType":{
+          "shape":"String",
+          "locationName":"instanceType"
+        },
+        "Platform":{
+          "shape":"String",
+          "locationName":"platform"
+        },
+        "NetworkPlatform":{
+          "shape":"String",
+          "locationName":"networkPlatform"
+        },
+        "AvailabilityZone":{
+          "shape":"String",
+          "locationName":"availabilityZone"
+        },
+        "SlotDurationInHours":{
+          "shape":"Integer",
+          "locationName":"slotDurationInHours"
+        },
+        "Recurrence":{
+          "shape":"ScheduledInstanceRecurrence",
+          "locationName":"recurrence"
+        },
+        "PreviousSlotEndTime":{
+          "shape":"DateTime",
+          "locationName":"previousSlotEndTime"
+        },
+        "NextSlotStartTime":{
+          "shape":"DateTime",
+          "locationName":"nextSlotStartTime"
+        },
+        "HourlyPrice":{
+          "shape":"String",
+          "locationName":"hourlyPrice"
+        },
+        "TotalScheduledInstanceHours":{
+          "shape":"Integer",
+          "locationName":"totalScheduledInstanceHours"
+        },
+        "InstanceCount":{
+          "shape":"Integer",
+          "locationName":"instanceCount"
+        },
+        "TermStartDate":{
+          "shape":"DateTime",
+          "locationName":"termStartDate"
+        },
+        "TermEndDate":{
+          "shape":"DateTime",
+          "locationName":"termEndDate"
+        },
+        "CreateDate":{
+          "shape":"DateTime",
+          "locationName":"createDate"
+        }
+      }
+    },
+    "ScheduledInstanceAvailability":{
+      "type":"structure",
+      "members":{
+        "InstanceType":{
+          "shape":"String",
+          "locationName":"instanceType"
+        },
+        "Platform":{
+          "shape":"String",
+          "locationName":"platform"
+        },
+        "NetworkPlatform":{
+          "shape":"String",
+          "locationName":"networkPlatform"
+        },
+        "AvailabilityZone":{
+          "shape":"String",
+          "locationName":"availabilityZone"
+        },
+        "PurchaseToken":{
+          "shape":"String",
+          "locationName":"purchaseToken"
+        },
+        "SlotDurationInHours":{
+          "shape":"Integer",
+          "locationName":"slotDurationInHours"
+        },
+        "Recurrence":{
+          "shape":"ScheduledInstanceRecurrence",
+          "locationName":"recurrence"
+        },
+        "FirstSlotStartTime":{
+          "shape":"DateTime",
+          "locationName":"firstSlotStartTime"
+        },
+        "HourlyPrice":{
+          "shape":"String",
+          "locationName":"hourlyPrice"
+        },
+        "TotalScheduledInstanceHours":{
+          "shape":"Integer",
+          "locationName":"totalScheduledInstanceHours"
+        },
+        "AvailableInstanceCount":{
+          "shape":"Integer",
+          "locationName":"availableInstanceCount"
+        },
+        "MinTermDurationInDays":{
+          "shape":"Integer",
+          "locationName":"minTermDurationInDays"
+        },
+        "MaxTermDurationInDays":{
+          "shape":"Integer",
+          "locationName":"maxTermDurationInDays"
+        }
+      }
+    },
+    "ScheduledInstanceAvailabilitySet":{
+      "type":"list",
+      "member":{
+        "shape":"ScheduledInstanceAvailability",
+        "locationName":"item"
+      }
+    },
+    "ScheduledInstanceIdRequestSet":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"ScheduledInstanceId"
+      }
+    },
+    "ScheduledInstanceRecurrence":{
+      "type":"structure",
+      "members":{
+        "Frequency":{
+          "shape":"String",
+          "locationName":"frequency"
+        },
+        "Interval":{
+          "shape":"Integer",
+          "locationName":"interval"
+        },
+        "OccurrenceDaySet":{
+          "shape":"OccurrenceDaySet",
+          "locationName":"occurrenceDaySet"
+        },
+        "OccurrenceRelativeToEnd":{
+          "shape":"Boolean",
+          "locationName":"occurrenceRelativeToEnd"
+        },
+        "OccurrenceUnit":{
+          "shape":"String",
+          "locationName":"occurrenceUnit"
+        }
+      }
+    },
+    "ScheduledInstanceRecurrenceRequest":{
+      "type":"structure",
+      "members":{
+        "Frequency":{"shape":"String"},
+        "Interval":{"shape":"Integer"},
+        "OccurrenceDays":{
+          "shape":"OccurrenceDayRequestSet",
+          "locationName":"OccurrenceDay"
+        },
+        "OccurrenceRelativeToEnd":{"shape":"Boolean"},
+        "OccurrenceUnit":{"shape":"String"}
+      }
+    },
+    "ScheduledInstanceSet":{
+      "type":"list",
+      "member":{
+        "shape":"ScheduledInstance",
+        "locationName":"item"
+      }
+    },
+    "ScheduledInstancesBlockDeviceMapping":{
+      "type":"structure",
+      "members":{
+        "DeviceName":{"shape":"String"},
+        "NoDevice":{"shape":"String"},
+        "VirtualName":{"shape":"String"},
+        "Ebs":{"shape":"ScheduledInstancesEbs"}
+      }
+    },
+    "ScheduledInstancesBlockDeviceMappingSet":{
+      "type":"list",
+      "member":{
+        "shape":"ScheduledInstancesBlockDeviceMapping",
+        "locationName":"BlockDeviceMapping"
+      }
+    },
+    "ScheduledInstancesEbs":{
+      "type":"structure",
+      "members":{
+        "SnapshotId":{"shape":"String"},
+        "VolumeSize":{"shape":"Integer"},
+        "DeleteOnTermination":{"shape":"Boolean"},
+        "VolumeType":{"shape":"String"},
+        "Iops":{"shape":"Integer"},
+        "Encrypted":{"shape":"Boolean"}
+      }
+    },
+    "ScheduledInstancesIamInstanceProfile":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"String"},
+        "Name":{"shape":"String"}
+      }
+    },
+    "ScheduledInstancesLaunchSpecification":{
+      "type":"structure",
+      "required":["ImageId"],
+      "members":{
+        "ImageId":{"shape":"String"},
+        "KeyName":{"shape":"String"},
+        "SecurityGroupIds":{
+          "shape":"ScheduledInstancesSecurityGroupIdSet",
+          "locationName":"SecurityGroupId"
+        },
+        "UserData":{"shape":"String"},
+        "Placement":{"shape":"ScheduledInstancesPlacement"},
+        "KernelId":{"shape":"String"},
+        "InstanceType":{"shape":"String"},
+        "RamdiskId":{"shape":"String"},
+        "BlockDeviceMappings":{
+          "shape":"ScheduledInstancesBlockDeviceMappingSet",
+          "locationName":"BlockDeviceMapping"
+        },
+        "Monitoring":{"shape":"ScheduledInstancesMonitoring"},
+        "SubnetId":{"shape":"String"},
+        "NetworkInterfaces":{
+          "shape":"ScheduledInstancesNetworkInterfaceSet",
+          "locationName":"NetworkInterface"
+        },
+        "IamInstanceProfile":{"shape":"ScheduledInstancesIamInstanceProfile"},
+        "EbsOptimized":{"shape":"Boolean"}
+      }
+    },
+    "ScheduledInstancesMonitoring":{
+      "type":"structure",
+      "members":{
+        "Enabled":{"shape":"Boolean"}
+      }
+    },
+    "ScheduledInstancesNetworkInterface":{
+      "type":"structure",
+      "members":{
+        "NetworkInterfaceId":{"shape":"String"},
+        "DeviceIndex":{"shape":"Integer"},
+        "SubnetId":{"shape":"String"},
+        "Description":{"shape":"String"},
+        "PrivateIpAddress":{"shape":"String"},
+        "PrivateIpAddressConfigs":{
+          "shape":"PrivateIpAddressConfigSet",
+          "locationName":"PrivateIpAddressConfig"
+        },
+        "SecondaryPrivateIpAddressCount":{"shape":"Integer"},
+        "AssociatePublicIpAddress":{"shape":"Boolean"},
+        "Groups":{
+          "shape":"ScheduledInstancesSecurityGroupIdSet",
+          "locationName":"Group"
+        },
+        "DeleteOnTermination":{"shape":"Boolean"}
+      }
+    },
+    "ScheduledInstancesNetworkInterfaceSet":{
+      "type":"list",
+      "member":{
+        "shape":"ScheduledInstancesNetworkInterface",
+        "locationName":"NetworkInterface"
+      }
+    },
+    "ScheduledInstancesPlacement":{
+      "type":"structure",
+      "members":{
+        "AvailabilityZone":{"shape":"String"},
+        "GroupName":{"shape":"String"}
+      }
+    },
+    "ScheduledInstancesPrivateIpAddressConfig":{
+      "type":"structure",
+      "members":{
+        "PrivateIpAddress":{"shape":"String"},
+        "Primary":{"shape":"Boolean"}
+      }
+    },
+    "ScheduledInstancesSecurityGroupIdSet":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"SecurityGroupId"
       }
     },
     "SecurityGroup":{
@@ -11158,6 +11649,24 @@
         "stop",
         "terminate"
       ]
+    },
+    "SlotDateTimeRangeRequest":{
+      "type":"structure",
+      "required":[
+        "EarliestTime",
+        "LatestTime"
+      ],
+      "members":{
+        "EarliestTime":{"shape":"DateTime"},
+        "LatestTime":{"shape":"DateTime"}
+      }
+    },
+    "SlotStartTimeRangeRequest":{
+      "type":"structure",
+      "members":{
+        "EarliestTime":{"shape":"DateTime"},
+        "LatestTime":{"shape":"DateTime"}
+      }
     },
     "Snapshot":{
       "type":"structure",
@@ -12040,13 +12549,13 @@
       "type":"structure",
       "required":["Error"],
       "members":{
-        "ResourceId":{
-          "shape":"String",
-          "locationName":"resourceId"
-        },
         "Error":{
           "shape":"UnsuccessfulItemError",
           "locationName":"error"
+        },
+        "ResourceId":{
+          "shape":"String",
+          "locationName":"resourceId"
         }
       }
     },
