@@ -39,7 +39,7 @@ func dlLoggingSvc(data []byte) (*s3.S3, *[]string, *[]string) {
 		fin, _ := strconv.ParseInt(rng[2], 10, 64)
 		fin++
 
-		if fin >= int64(len(data)) {
+		if fin > int64(len(data)) {
 			fin = int64(len(data))
 		}
 

@@ -214,6 +214,7 @@ func (d *downloader) downloadPart(ch chan dlchunk) {
 }
 
 // getChunk grabs a chunk of data from the body.
+// Not thread safe
 func (d *downloader) getChunk() {
 	chunk := dlchunk{w: d.w, start: d.pos, size: d.ctx.PartSize}
 	d.pos += d.ctx.PartSize
@@ -222,31 +223,32 @@ func (d *downloader) getChunk() {
 
 // downloadChunk downloads the chunk froom s3
 func (d *downloader) downloadChunk(chunk dlchunk) {
-	if d.getErr() == nil {
-		// Get the next byte range of data
-		in := &s3.GetObjectInput{}
-		awsutil.Copy(in, d.in)
-		rng := fmt.Sprintf("bytes=%d-%d",
-			chunk.start, chunk.start+chunk.size-1)
-		in.Range = &rng
+	if d.getErr() != nil {
+		return
+	}
+	// Get the next byte range of data
+	in := &s3.GetObjectInput{}
+	awsutil.Copy(in, d.in)
+	rng := fmt.Sprintf("bytes=%d-%d",
+		chunk.start, chunk.start+chunk.size-1)
+	in.Range = &rng
 
-		req, resp := d.ctx.S3.GetObjectRequest(in)
-		req.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("S3Manager"))
-		err := req.Send()
+	req, resp := d.ctx.S3.GetObjectRequest(in)
+	req.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("S3Manager"))
+	err := req.Send()
+
+	if err != nil {
+		d.setErr(err)
+	} else {
+		d.setTotalBytes(resp) // Set total if not yet set.
+
+		n, err := io.Copy(&chunk, resp.Body)
+		resp.Body.Close()
 
 		if err != nil {
 			d.setErr(err)
-		} else {
-			d.setTotalBytes(resp) // Set total if not yet set.
-
-			n, err := io.Copy(&chunk, resp.Body)
-			resp.Body.Close()
-
-			if err != nil {
-				d.setErr(err)
-			}
-			d.incrWritten(n)
 		}
+		d.incrWritten(n)
 	}
 }
 
@@ -278,17 +280,15 @@ func (d *downloader) setTotalBytes(resp *s3.GetObjectOutput) {
 			d.totalBytes = *resp.ContentLength
 			return
 		}
-	}
-
-	if resp.ContentRange != nil {
+	} else {
 		parts := strings.Split(*resp.ContentRange, "/")
 
-		var total int64 = -1
+		total := int64(-1)
 		var err error
 		// Checking for whether or not a numbered total exists
 		// If one does not exist, we will assume the total to be -1, undefined,
 		// and sequentially download each chunk until hitting a 416 error
-		var totalStr string = parts[len(parts)-1]
+		totalStr := parts[len(parts)-1]
 		if totalStr != "*" {
 			total, err = strconv.ParseInt(totalStr, 10, 64)
 			if err != nil {
