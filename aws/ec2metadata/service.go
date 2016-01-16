@@ -5,7 +5,6 @@ package ec2metadata
 import (
 	"io/ioutil"
 	"net/http"
-	"reflect"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -46,7 +45,7 @@ func New(p client.ConfigProvider, cfgs ...*aws.Config) *EC2Metadata {
 // the EC2RoleProvider's EC2Metadata HTTP client's timeout will be shortened.
 // To disable this set Config.EC2MetadataDisableTimeoutOverride to false. Enabled by default.
 func NewClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion string, opts ...func(*client.Client)) *EC2Metadata {
-	if !aws.BoolValue(cfg.EC2MetadataDisableTimeoutOverride) && (cfg.HTTPClient == nil || reflect.DeepEqual(*cfg.HTTPClient, http.Client{})) {
+	if !aws.BoolValue(cfg.EC2MetadataDisableTimeoutOverride) && httpClientZero(cfg.HTTPClient) {
 		// If the http client is unmodified and this feature is not disabled
 		// set custom timeouts for EC2Metadata requests.
 		cfg.HTTPClient = &http.Client{
@@ -80,6 +79,10 @@ func NewClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegio
 	}
 
 	return svc
+}
+
+func httpClientZero(c *http.Client) bool {
+	return c == nil || (c.Transport == nil && c.CheckRedirect == nil && c.Jar == nil && c.Timeout == 0)
 }
 
 type metadataOutput struct {
