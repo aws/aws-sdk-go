@@ -3,6 +3,7 @@ package s3manager
 import (
 	"fmt"
 	"io"
+	"net/http"
 	"strconv"
 	"strings"
 	"sync"
@@ -188,7 +189,8 @@ func (d *downloader) download() (n int64, err error) {
 
 		// We expect a 416 error letting us know we are done downloading the
 		// total bytes
-		if d.err.(awserr.RequestFailure).StatusCode() == 416 {
+		e, ok := d.err.(awserr.RequestFailure)
+		if ok && e.StatusCode() == http.StatusRequestedRangeNotSatisfiable {
 			d.err = nil
 		}
 	}
