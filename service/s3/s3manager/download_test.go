@@ -131,6 +131,8 @@ func dlLoggingSvcContentRangeTotalAny(data []byte) (*s3.S3, *[]string) {
 			fin = int64(len(data))
 		}
 
+		// Setting start and finish to 0 because this state of 1 is suppose to
+		// be an error state of 416
 		if index == 1 {
 			start = 0
 			fin = 0
