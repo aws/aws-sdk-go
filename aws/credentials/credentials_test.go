@@ -61,3 +61,13 @@ func TestCredentialsExpire(t *testing.T) {
 	stub.expired = true
 	assert.True(t, c.IsExpired(), "Expected to be expired")
 }
+
+func TestCredentialsGetWithProviderName(t *testing.T) {
+	stub := &stubProvider{}
+
+	c := NewCredentials(stub)
+
+	creds, err := c.Get()
+	assert.Nil(t, err, "Expected no error")
+	assert.Equal(t, creds.ProviderName, "stubProvider", "Expected provider name to match")
+}
