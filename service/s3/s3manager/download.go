@@ -156,7 +156,7 @@ func (d *downloader) download() (n int64, err error) {
 	d.init()
 
 	// Spin off first worker to check additional header information
-	d.getChunk()
+	d.notThreadSafeGetChunk()
 
 	if total := d.getTotalBytes(); total >= 0 {
 		// Spin up workers
@@ -184,7 +184,7 @@ func (d *downloader) download() (n int64, err error) {
 	} else {
 		// Checking if we read anything new
 		for d.err == nil {
-			d.getChunk()
+			d.notThreadSafeGetChunk()
 		}
 
 		// We expect a 416 error letting us know we are done downloading the
@@ -218,9 +218,9 @@ func (d *downloader) downloadPart(ch chan dlchunk) {
 	}
 }
 
-// getChunk grabs a chunk of data from the body.
-// Not thread safe
-func (d *downloader) getChunk() {
+// notThreadSafeGetChunk grabs a chunk of data from the body.
+// Not thread safe. Should only used when grabbing data on a single thread.
+func (d *downloader) notThreadSafeGetChunk() {
 	chunk := dlchunk{w: d.w, start: d.pos, size: d.ctx.PartSize}
 	d.pos += d.ctx.PartSize
 	d.downloadChunk(chunk)
