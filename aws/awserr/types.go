@@ -94,7 +94,9 @@ func (b baseError) OrigErr() error {
 
 // Pushes a new error to the stack
 func (b *baseError) Append(err error) {
-	b.errs = append(b.errs, err)
+	if err != nil {
+		b.errs = append(b.errs, err)
+	}
 }
 
 // So that the Error interface type can be included as an anonymous field
