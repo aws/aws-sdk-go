@@ -1,6 +1,9 @@
 package awserr
 
-import "fmt"
+import (
+	"bytes"
+	"fmt"
+)
 
 // SprintError returns a string of the formatted error code.
 //
@@ -132,4 +135,50 @@ func (r requestError) StatusCode() int {
 // RequestID returns the wrapped requestID
 func (r requestError) RequestID() string {
 	return r.requestID
+}
+
+type batchedErrors struct {
+	code       string
+	statusCode int
+	errors     []Error
+}
+
+func newBatchedErrors(code string, statusCode int, errors []Error) *batchedErrors {
+	return &batchedErrors{
+		code:       code,
+		statusCode: statusCode,
+		errors:     errors,
+	}
+}
+
+func (e batchedErrors) Error() string {
+	extra := fmt.Sprintf("status code: %d", e.statusCode)
+	return SprintError(e.Code(), e.Message(), extra, e.OrigErr())
+}
+
+func (e batchedErrors) Code() string {
+	return e.code
+}
+
+func (e batchedErrors) Message() string {
+	message := bytes.NewBuffer([]byte{})
+
+	for _, err := range e.errors {
+		message.WriteString(err.Message())
+		message.WriteByte('\n')
+	}
+
+	return message.String()
+}
+
+func (e batchedErrors) OrigErr() error {
+	return nil
+}
+
+func (e batchedErrors) StatusCode() int {
+	return e.statusCode
+}
+
+func (e batchedErrors) Errors() []Error {
+	return e.errors
 }
