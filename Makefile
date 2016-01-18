@@ -24,8 +24,7 @@ help:
 	@echo "  gen-test                to generate protocol tests"
 	@echo "  gen-services            to generate services"
 	@echo "  get-deps                to go get the SDK dependencies"
-	@echo "  get-deps-unit           to get the SDK's unit test dependencies"
-	@echo "  get-deps-integ          to get the SDK's integration test dependencies"
+	@echo "  get-deps-tests          to get the SDK's test dependencies"
 	@echo "  get-deps-verify         to get the SDK's verification dependencies"
 
 generate: gen-test gen-endpoints gen-services
@@ -45,15 +44,15 @@ build:
 	@echo "go build SDK and vendor packages"
 	@go build $(SDK_WITH_VENDOR_PKGS)
 
-unit: get-deps-unit build verify
+unit: get-deps-tests build verify
 	@echo "go test SDK and vendor packages"
 	@go test $(SDK_WITH_VENDOR_PKGS)
 
-unit-with-race-cover: get-deps-unit build verify
+unit-with-race-cover: get-deps-tests build verify
 	@echo "go test SDK and vendor packages"
 	@go test -v -race -cpu=1,2,4 -covermode=atomic $(SDK_WITH_VENDOR_PKGS)
 
-integration: get-deps-integ
+integration: get-deps-tests
 	go test -tags=integration ./awstesting/integration/customizations/...
 	gucumber ./awstesting/integration/smoke
 
@@ -69,18 +68,15 @@ lint:
 vet:
 	go tool vet -all -shadow $(shell ls -d */ | grep -v vendor)
 
-get-deps: get-deps-unit get-deps-integ get-deps-verify
+get-deps: get-deps-tests get-deps-verify
 	@echo "go get SDK dependencies"
 	@go get -v $(SDK_ONLY_PKGS)
 
-get-deps-unit:
-	@echo "go get SDK unit testing dependencies"
+get-deps-tests:
+	@echo "go get SDK testing dependencies"
+	go get github.com/lsegal/gucumber/cmd/gucumber
 	go get github.com/stretchr/testify
 	go get github.com/smartystreets/goconvey
-
-get-deps-integ: get-deps-unit
-	@echo "go get SDK integration testing dependencies"
-	go get github.com/lsegal/gucumber/cmd/gucumber
 
 get-deps-verify:
 	@echo "go get SDK verification utilities"
