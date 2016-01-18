@@ -38,8 +38,11 @@ type Error interface {
 	// Returns the error details message.
 	Message() string
 
-	// Returns the original error if one was set.  Nil is returned if not set.
+	// Returns the error that sits on top of the error stack
 	OrigErr() error
+
+	// Pushes a new error to the error stack
+	Append(error)
 }
 
 // New returns an Error object described by the code, message, and origErr.

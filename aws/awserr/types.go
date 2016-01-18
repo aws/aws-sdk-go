@@ -12,7 +12,11 @@ func SprintError(code, message, extra string, origErr error) string {
 		msg = fmt.Sprintf("%s\n\t%s", msg, extra)
 	}
 	if origErr != nil {
-		msg = fmt.Sprintf("%s\ncaused by: %s", msg, origErr.Error())
+		// TODO
+		// Think about including messages and codes for each error
+		for i := 0; i < len(b.errs); i++ {
+			msg += fmt.Sprintf("\nERROR %d:\n%s", i+1, b.errs[i].Error())
+		}
 	}
 	return msg
 }
@@ -31,7 +35,7 @@ type baseError struct {
 
 	// Optional original error this error is based off of. Allows building
 	// chained errors.
-	origErr error
+	errs []error
 }
 
 // newBaseError returns an error object for the code, message, and err.
@@ -43,11 +47,15 @@ type baseError struct {
 //
 // origErr is the error object which will be nested under the new error to be returned.
 func newBaseError(code, message string, origErr error) *baseError {
-	return &baseError{
+	err := &baseError{
 		code:    code,
 		message: message,
-		origErr: origErr,
 	}
+
+	if origErr != nil {
+		err.Append(origErr)
+	}
+	return err
 }
 
 // Error returns the string representation of the error.
@@ -56,7 +64,7 @@ func newBaseError(code, message string, origErr error) *baseError {
 //
 // Satisfies the error interface.
 func (b baseError) Error() string {
-	return SprintError(b.code, b.message, "", b.origErr)
+	return SprintError(b.code, b.message, "", b.errs)
 }
 
 // String returns the string representation of the error.
@@ -75,10 +83,19 @@ func (b baseError) Message() string {
 	return b.message
 }
 
-// OrigErr returns the original error if one was set. Nil is returned if no error
+// OrigErr returns the most recent error, if one was set. Nil is return if no error
 // was set.
-func (b baseError) OrigErr() error {
-	return b.origErr
+func (b brseError) OrigErr() error {
+	if size := len(b.errs); size > 0 {
+		return b.errs[size-1]
+	} else {
+		return nil
+	}
+}
+
+// Pushes a new error to the stack
+func (b baseError) Append(err error) {
+	b.errs = append(b.errs, err)
 }
 
 // So that the Error interface type can be included as an anonymous field
