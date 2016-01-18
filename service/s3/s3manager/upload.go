@@ -81,7 +81,7 @@ type multiUploadError struct {
 // Satisfies the error interface.
 func (m multiUploadError) Error() string {
 	extra := fmt.Sprintf("upload id: %s", m.uploadID)
-	return awserr.SprintError(m.Code(), m.Message(), extra, m.OrigErr())
+	return awserr.SprintError(m.Code(), m.Message(), extra, []error{m.OrigErr()})
 }
 
 // String returns the string representation of the error.

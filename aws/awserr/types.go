@@ -6,16 +6,16 @@ import "fmt"
 //
 // Both extra and origErr are optional.  If they are included their lines
 // will be added, but if they are not included their lines will be ignored.
-func SprintError(code, message, extra string, origErr error) string {
+func SprintError(code, message, extra string, errs []error) string {
 	msg := fmt.Sprintf("%s: %s", code, message)
 	if extra != "" {
 		msg = fmt.Sprintf("%s\n\t%s", msg, extra)
 	}
-	if origErr != nil {
+	if len(errs) > 0 {
 		// TODO
 		// Think about including messages and codes for each error
-		for i := 0; i < len(b.errs); i++ {
-			msg += fmt.Sprintf("\nERROR %d:\n%s", i+1, b.errs[i].Error())
+		for i := 0; i < len(errs); i++ {
+			msg += fmt.Sprintf("\nERROR %d:\n%s", i+1, errs[i].Error())
 		}
 	}
 	return msg
@@ -85,16 +85,15 @@ func (b baseError) Message() string {
 
 // OrigErr returns the most recent error, if one was set. Nil is return if no error
 // was set.
-func (b brseError) OrigErr() error {
+func (b baseError) OrigErr() error {
 	if size := len(b.errs); size > 0 {
 		return b.errs[size-1]
-	} else {
-		return nil
 	}
+	return nil
 }
 
 // Pushes a new error to the stack
-func (b baseError) Append(err error) {
+func (b *baseError) Append(err error) {
 	b.errs = append(b.errs, err)
 }
 
@@ -132,7 +131,7 @@ func newRequestError(err Error, statusCode int, requestID string) *requestError 
 func (r requestError) Error() string {
 	extra := fmt.Sprintf("status code: %d, request id: %s",
 		r.statusCode, r.requestID)
-	return SprintError(r.Code(), r.Message(), extra, r.OrigErr())
+	return SprintError(r.Code(), r.Message(), extra, []error{r.OrigErr()})
 }
 
 // String returns the string representation of the error.
