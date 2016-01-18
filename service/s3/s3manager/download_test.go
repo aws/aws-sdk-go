@@ -80,10 +80,9 @@ func dlLoggingSvcNoChunk(data []byte) (*s3.S3, *[]string) {
 	return svc, &names
 }
 
-func dlLoggingSvcNoContentRangeLength(data []byte) (*s3.S3, *[]string) {
+func dlLoggingSvcNoContentRangeLength(data []byte, states []int) (*s3.S3, *[]string) {
 	var m sync.Mutex
 	names := []string{}
-	states := []int{200, 416}
 	var index int = 0
 
 	svc := s3.New(unit.Session)
@@ -105,10 +104,9 @@ func dlLoggingSvcNoContentRangeLength(data []byte) (*s3.S3, *[]string) {
 	return svc, &names
 }
 
-func dlLoggingSvcContentRangeTotalAny(data []byte) (*s3.S3, *[]string) {
+func dlLoggingSvcContentRangeTotalAny(data []byte, states []int) (*s3.S3, *[]string) {
 	var m sync.Mutex
 	names := []string{}
-	states := []int{200, 416}
 	ranges := []string{}
 	var index int = 0
 
@@ -133,7 +131,7 @@ func dlLoggingSvcContentRangeTotalAny(data []byte) (*s3.S3, *[]string) {
 
 		// Setting start and finish to 0 because this state of 1 is suppose to
 		// be an error state of 416
-		if index == 1 {
+		if index == len(states)-1 {
 			start = 0
 			fin = 0
 		}
@@ -265,7 +263,7 @@ func TestDownloadNonChunk(t *testing.T) {
 }
 
 func TestDownloadNoContentRangeLength(t *testing.T) {
-	s, names := dlLoggingSvcNoContentRangeLength(buf2MB)
+	s, names := dlLoggingSvcNoContentRangeLength(buf2MB, []int{200, 416})
 
 	d := s3manager.NewDownloaderWithClient(s, func(d *s3manager.Downloader) {
 		d.Concurrency = 1
@@ -288,7 +286,7 @@ func TestDownloadNoContentRangeLength(t *testing.T) {
 }
 
 func TestDownloadContentRangeTotalAny(t *testing.T) {
-	s, names := dlLoggingSvcContentRangeTotalAny(buf2MB)
+	s, names := dlLoggingSvcContentRangeTotalAny(buf2MB, []int{200, 416})
 
 	d := s3manager.NewDownloaderWithClient(s, func(d *s3manager.Downloader) {
 		d.Concurrency = 1
