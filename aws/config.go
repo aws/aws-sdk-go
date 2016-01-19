@@ -126,8 +126,8 @@ func NewConfig() *Config {
 	return &Config{}
 }
 
-// WithCredentials sets a config Credentials value returning a Config pointer
-// for chaining.
+// WithCredentialsChainVerboseErrors sets a config verbose errors boolean and returning
+// a Config pointer.
 func (c *Config) WithCredentialsChainVerboseErrors(verboseErrs bool) *Config {
 	c.CredentialsChainVerboseErrors = &verboseErrs
 	return c
