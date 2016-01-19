@@ -3616,6 +3616,10 @@ const (
 	// @enum ArtifactType
 	ArtifactTypeAppiumJavaXmlOutput = "APPIUM_JAVA_XML_OUTPUT"
 	// @enum ArtifactType
+	ArtifactTypeAppiumPythonOutput = "APPIUM_PYTHON_OUTPUT"
+	// @enum ArtifactType
+	ArtifactTypeAppiumPythonXmlOutput = "APPIUM_PYTHON_XML_OUTPUT"
+	// @enum ArtifactType
 	ArtifactTypeExplorerEventLog = "EXPLORER_EVENT_LOG"
 	// @enum ArtifactType
 	ArtifactTypeExplorerSummaryLog = "EXPLORER_SUMMARY_LOG"
@@ -3752,9 +3756,13 @@ const (
 	// @enum TestType
 	TestTypeAppiumJavaTestng = "APPIUM_JAVA_TESTNG"
 	// @enum TestType
+	TestTypeAppiumPython = "APPIUM_PYTHON"
+	// @enum TestType
 	TestTypeAppiumWebJavaJunit = "APPIUM_WEB_JAVA_JUNIT"
 	// @enum TestType
 	TestTypeAppiumWebJavaTestng = "APPIUM_WEB_JAVA_TESTNG"
+	// @enum TestType
+	TestTypeAppiumWebPython = "APPIUM_WEB_PYTHON"
 	// @enum TestType
 	TestTypeCalabash = "CALABASH"
 	// @enum TestType
@@ -3792,9 +3800,13 @@ const (
 	// @enum UploadType
 	UploadTypeAppiumJavaTestngTestPackage = "APPIUM_JAVA_TESTNG_TEST_PACKAGE"
 	// @enum UploadType
+	UploadTypeAppiumPythonTestPackage = "APPIUM_PYTHON_TEST_PACKAGE"
+	// @enum UploadType
 	UploadTypeAppiumWebJavaJunitTestPackage = "APPIUM_WEB_JAVA_JUNIT_TEST_PACKAGE"
 	// @enum UploadType
 	UploadTypeAppiumWebJavaTestngTestPackage = "APPIUM_WEB_JAVA_TESTNG_TEST_PACKAGE"
+	// @enum UploadType
+	UploadTypeAppiumWebPythonTestPackage = "APPIUM_WEB_PYTHON_TEST_PACKAGE"
 	// @enum UploadType
 	UploadTypeCalabashTestPackage = "CALABASH_TEST_PACKAGE"
 	// @enum UploadType
