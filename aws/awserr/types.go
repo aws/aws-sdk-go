@@ -17,21 +17,6 @@ func SprintError(code, message, extra string, origErr error) string {
 	return msg
 }
 
-// SprintErrors behaves like SprintError, but instead, prints each error
-// within the list.
-func SprintErrors(code, message, extra string, errs []error) string {
-	msg := fmt.Sprintf("%s: %s", code, message)
-	if extra != "" {
-		msg = fmt.Sprintf("%s\n\t%s", msg, extra)
-	}
-	if len(errs) > 0 {
-		for i := 0; i < len(errs); i++ {
-			msg += fmt.Sprintf("\nERROR %d:\n%s", i+1, errs[i].Error())
-		}
-	}
-	return msg
-}
-
 // A baseError wraps the code and message which defines an error. It also
 // can be used to wrap an original error object.
 //

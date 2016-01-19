@@ -43,7 +43,8 @@ type Error interface {
 }
 
 // BatchError is a batch of errors which also wraps lower level errors with code, message,
-// and original errors.
+// and original errors. Calling Error() will only return the error that is at the end
+// of the list.
 type BatchError interface {
 	// Satisfy the generic error interface.
 	error
