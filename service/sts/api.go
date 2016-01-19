@@ -169,7 +169,7 @@ func (c *STS) AssumeRoleWithSAMLRequest(input *AssumeRoleWithSAMLInput) (req *re
 //
 // For more information, see the following resources:
 //
-//   About SAML 2.0-based Federation (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html)
+//  About SAML 2.0-based Federation (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html)
 // in the Using IAM.   Creating SAML Identity Providers (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_saml.html)
 // in the Using IAM.   Configuring a Relying Party and Claims (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_saml_relying-party.html)
 // in the Using IAM.   Creating a Role for SAML 2.0 Federation (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-idp_saml.html)
@@ -255,17 +255,16 @@ func (c *STS) AssumeRoleWithWebIdentityRequest(input *AssumeRoleWithWebIdentityI
 //
 //   Using Web Identity Federation APIs for Mobile Apps (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc_manual)
 // and Federation Through a Web-based Identity Provider (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#api_assumerolewithwebidentity).
-//    Web Identity Federation Playground (https://web-identity-federation-playground.s3.amazonaws.com/index.html).
+//   Web Identity Federation Playground (https://web-identity-federation-playground.s3.amazonaws.com/index.html).
 // This interactive website lets you walk through the process of authenticating
 // via Login with Amazon, Facebook, or Google, getting temporary security credentials,
-// and then using those credentials to make a request to AWS.   AWS SDK for
-// iOS (http://aws.amazon.com/sdkforios/) and AWS SDK for Android (http://aws.amazon.com/sdkforandroid/).
+// and then using those credentials to make a request to AWS.  AWS SDK for iOS
+// (http://aws.amazon.com/sdkforios/) and AWS SDK for Android (http://aws.amazon.com/sdkforandroid/).
 // These toolkits contain sample apps that show how to invoke the identity providers,
 // and then how to use the information from these providers to get and use temporary
-// security credentials.   Web Identity Federation with Mobile Applications
-// (http://aws.amazon.com/articles/4617974389850313). This article discusses
-// web identity federation and shows an example of how to use web identity federation
-// to get access to content in Amazon S3.
+// security credentials.  Web Identity Federation with Mobile Applications (http://aws.amazon.com/articles/4617974389850313).
+// This article discusses web identity federation and shows an example of how
+// to use web identity federation to get access to content in Amazon S3.
 func (c *STS) AssumeRoleWithWebIdentity(input *AssumeRoleWithWebIdentityInput) (*AssumeRoleWithWebIdentityOutput, error) {
 	req, out := c.AssumeRoleWithWebIdentityRequest(input)
 	err := req.Send()
@@ -514,7 +513,7 @@ type AssumeRoleInput struct {
 
 	// An identifier for the assumed role session.
 	//
-	// Use the role session name to uniquely identity a session when the same role
+	// Use the role session name to uniquely identify a session when the same role
 	// is assumed by different principals or for different reasons. In cross-account
 	// scenarios, the role session name is visible to, and can be logged by the
 	// account that owns the role. The role session name is also used in the ARN
@@ -561,6 +560,11 @@ type AssumeRoleOutput struct {
 
 	// The temporary security credentials, which include an access key ID, a secret
 	// access key, and a security (or session) token.
+	//
+	// Note: The size of the security token that STS APIs return is not fixed.
+	// We strongly recommend that you make no assumptions about the maximum size.
+	// As of this writing, the typical size is less than 4096 bytes, but that can
+	// vary. Also, future updates to AWS might require larger sizes.
 	Credentials *Credentials `type:"structure"`
 
 	// A percentage value that indicates the size of the policy in packed form.
@@ -650,7 +654,13 @@ type AssumeRoleWithSAMLOutput struct {
 	// of the SAML assertion.
 	Audience *string `type:"string"`
 
-	// AWS credentials for API authentication.
+	// The temporary security credentials, which include an access key ID, a secret
+	// access key, and a security (or session) token.
+	//
+	// Note: The size of the security token that STS APIs return is not fixed.
+	// We strongly recommend that you make no assumptions about the maximum size.
+	// As of this writing, the typical size is less than 4096 bytes, but that can
+	// vary. Also, future updates to AWS might require larger sizes.
 	Credentials *Credentials `type:"structure"`
 
 	// The value of the Issuer element of the SAML assertion.
@@ -778,6 +788,11 @@ type AssumeRoleWithWebIdentityOutput struct {
 
 	// The temporary security credentials, which include an access key ID, a secret
 	// access key, and a security token.
+	//
+	// Note: The size of the security token that STS APIs return is not fixed.
+	// We strongly recommend that you make no assumptions about the maximum size.
+	// As of this writing, the typical size is less than 4096 bytes, but that can
+	// vary. Also, future updates to AWS might require larger sizes.
 	Credentials *Credentials `type:"structure"`
 
 	// A percentage value that indicates the size of the policy in packed form.
@@ -984,7 +999,13 @@ func (s GetFederationTokenInput) GoString() string {
 type GetFederationTokenOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Credentials for the service API authentication.
+	// The temporary security credentials, which include an access key ID, a secret
+	// access key, and a security (or session) token.
+	//
+	// Note: The size of the security token that STS APIs return is not fixed.
+	// We strongly recommend that you make no assumptions about the maximum size.
+	// As of this writing, the typical size is less than 4096 bytes, but that can
+	// vary. Also, future updates to AWS might require larger sizes.
 	Credentials *Credentials `type:"structure"`
 
 	// Identifiers for the federated user associated with the credentials (such
@@ -1052,7 +1073,13 @@ func (s GetSessionTokenInput) GoString() string {
 type GetSessionTokenOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The session credentials for API authentication.
+	// The temporary security credentials, which include an access key ID, a secret
+	// access key, and a security (or session) token.
+	//
+	// Note: The size of the security token that STS APIs return is not fixed.
+	// We strongly recommend that you make no assumptions about the maximum size.
+	// As of this writing, the typical size is less than 4096 bytes, but that can
+	// vary. Also, future updates to AWS might require larger sizes.
 	Credentials *Credentials `type:"structure"`
 }
 

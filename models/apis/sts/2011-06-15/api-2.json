@@ -4,11 +4,11 @@
     "apiVersion":"2011-06-15",
     "endpointPrefix":"sts",
     "globalEndpoint":"sts.amazonaws.com",
+    "protocol":"query",
     "serviceAbbreviation":"AWS STS",
     "serviceFullName":"AWS Security Token Service",
     "signatureVersion":"v4",
-    "xmlNamespace":"https://sts.amazonaws.com/doc/2011-06-15/",
-    "protocol":"query"
+    "xmlNamespace":"https://sts.amazonaws.com/doc/2011-06-15/"
   },
   "operations":{
     "AssumeRole":{
@@ -23,24 +23,9 @@
         "resultWrapper":"AssumeRoleResult"
       },
       "errors":[
-        {
-          "shape":"MalformedPolicyDocumentException",
-          "error":{
-            "code":"MalformedPolicyDocument",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"PackedPolicyTooLargeException",
-          "error":{
-            "code":"PackedPolicyTooLarge",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"MalformedPolicyDocumentException"},
+        {"shape":"PackedPolicyTooLargeException"},
+        {"shape":"RegionDisabledException"}
       ]
     },
     "AssumeRoleWithSAML":{
@@ -55,51 +40,12 @@
         "resultWrapper":"AssumeRoleWithSAMLResult"
       },
       "errors":[
-        {
-          "shape":"MalformedPolicyDocumentException",
-          "error":{
-            "code":"MalformedPolicyDocument",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"PackedPolicyTooLargeException",
-          "error":{
-            "code":"PackedPolicyTooLarge",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"IDPRejectedClaimException",
-          "error":{
-            "code":"IDPRejectedClaim",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidIdentityTokenException",
-          "error":{
-            "code":"InvalidIdentityToken",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ExpiredTokenException",
-          "error":{
-            "code":"ExpiredTokenException",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"MalformedPolicyDocumentException"},
+        {"shape":"PackedPolicyTooLargeException"},
+        {"shape":"IDPRejectedClaimException"},
+        {"shape":"InvalidIdentityTokenException"},
+        {"shape":"ExpiredTokenException"},
+        {"shape":"RegionDisabledException"}
       ]
     },
     "AssumeRoleWithWebIdentity":{
@@ -114,60 +60,13 @@
         "resultWrapper":"AssumeRoleWithWebIdentityResult"
       },
       "errors":[
-        {
-          "shape":"MalformedPolicyDocumentException",
-          "error":{
-            "code":"MalformedPolicyDocument",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"PackedPolicyTooLargeException",
-          "error":{
-            "code":"PackedPolicyTooLarge",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"IDPRejectedClaimException",
-          "error":{
-            "code":"IDPRejectedClaim",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"IDPCommunicationErrorException",
-          "error":{
-            "code":"IDPCommunicationError",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidIdentityTokenException",
-          "error":{
-            "code":"InvalidIdentityToken",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ExpiredTokenException",
-          "error":{
-            "code":"ExpiredTokenException",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"MalformedPolicyDocumentException"},
+        {"shape":"PackedPolicyTooLargeException"},
+        {"shape":"IDPRejectedClaimException"},
+        {"shape":"IDPCommunicationErrorException"},
+        {"shape":"InvalidIdentityTokenException"},
+        {"shape":"ExpiredTokenException"},
+        {"shape":"RegionDisabledException"}
       ]
     },
     "DecodeAuthorizationMessage":{
@@ -182,15 +81,7 @@
         "resultWrapper":"DecodeAuthorizationMessageResult"
       },
       "errors":[
-        {
-          "shape":"InvalidAuthorizationMessageException",
-          "error":{
-            "code":"InvalidAuthorizationMessageException",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidAuthorizationMessageException"}
       ]
     },
     "GetFederationToken":{
@@ -205,24 +96,9 @@
         "resultWrapper":"GetFederationTokenResult"
       },
       "errors":[
-        {
-          "shape":"MalformedPolicyDocumentException",
-          "error":{
-            "code":"MalformedPolicyDocument",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"PackedPolicyTooLargeException",
-          "error":{
-            "code":"PackedPolicyTooLarge",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"MalformedPolicyDocumentException"},
+        {"shape":"PackedPolicyTooLargeException"},
+        {"shape":"RegionDisabledException"}
       ]
     },
     "GetSessionToken":{
@@ -235,7 +111,10 @@
       "output":{
         "shape":"GetSessionTokenResponse",
         "resultWrapper":"GetSessionTokenResult"
-      }
+      },
+      "errors":[
+        {"shape":"RegionDisabledException"}
+      ]
     }
   },
   "shapes":{
@@ -486,59 +365,71 @@
       },
       "exception":true
     },
+    "RegionDisabledException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"regionDisabledMessage"}
+      },
+      "error":{
+        "code":"RegionDisabledException",
+        "httpStatusCode":403,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "SAMLAssertionType":{
       "type":"string",
-      "min":4,
-      "max":50000
+      "max":50000,
+      "min":4
     },
     "Subject":{"type":"string"},
     "SubjectType":{"type":"string"},
     "accessKeyIdType":{
       "type":"string",
-      "min":16,
       "max":32,
+      "min":16,
       "pattern":"[\\w]*"
     },
     "accessKeySecretType":{"type":"string"},
     "arnType":{
       "type":"string",
-      "min":20,
-      "max":2048
+      "max":2048,
+      "min":20
     },
     "assumedRoleIdType":{
       "type":"string",
-      "min":2,
       "max":96,
+      "min":2,
       "pattern":"[\\w+=,.@:-]*"
     },
     "clientTokenType":{
       "type":"string",
-      "min":4,
-      "max":2048
+      "max":2048,
+      "min":4
     },
     "dateType":{"type":"timestamp"},
     "decodedMessageType":{"type":"string"},
     "durationSecondsType":{
       "type":"integer",
-      "min":900,
-      "max":129600
+      "max":129600,
+      "min":900
     },
     "encodedMessageType":{
       "type":"string",
-      "min":1,
-      "max":10240
+      "max":10240,
+      "min":1
     },
     "expiredIdentityTokenMessage":{"type":"string"},
     "externalIdType":{
       "type":"string",
-      "min":2,
       "max":1224,
+      "min":2,
       "pattern":"[\\w+=,.@:\\/-]*"
     },
     "federatedIdType":{
       "type":"string",
-      "min":2,
       "max":96,
+      "min":2,
       "pattern":"[\\w+=,.@\\:-]*"
     },
     "idpCommunicationErrorMessage":{"type":"string"},
@@ -551,51 +442,52 @@
       "min":0
     },
     "packedPolicyTooLargeMessage":{"type":"string"},
+    "regionDisabledMessage":{"type":"string"},
     "roleDurationSecondsType":{
       "type":"integer",
-      "min":900,
-      "max":3600
+      "max":3600,
+      "min":900
     },
     "roleSessionNameType":{
       "type":"string",
-      "min":2,
       "max":64,
+      "min":2,
       "pattern":"[\\w+=,.@-]*"
     },
     "serialNumberType":{
       "type":"string",
-      "min":9,
       "max":256,
+      "min":9,
       "pattern":"[\\w+=/:,.@-]*"
     },
     "sessionPolicyDocumentType":{
       "type":"string",
-      "min":1,
       "max":2048,
+      "min":1,
       "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+"
     },
     "tokenCodeType":{
       "type":"string",
-      "min":6,
       "max":6,
+      "min":6,
       "pattern":"[\\d]*"
     },
     "tokenType":{"type":"string"},
     "urlType":{
       "type":"string",
-      "min":4,
-      "max":2048
+      "max":2048,
+      "min":4
     },
     "userNameType":{
       "type":"string",
-      "min":2,
       "max":32,
+      "min":2,
       "pattern":"[\\w+=,.@-]*"
     },
     "webIdentitySubjectType":{
       "type":"string",
-      "min":6,
-      "max":255
+      "max":255,
+      "min":6
     }
   }
 }
