@@ -71,8 +71,8 @@ func New(code, message string, origErr error) Error {
 }
 
 // NewBatchError returns an baseError with an expectation of an array of errors
-func NewBatchError(code, message string, origErrs []error) BatchError {
-	return newBaseErrors(code, message, origErrs)
+func NewBatchError(code, message string, errs []error) BatchError {
+	return newBaseErrors(code, message, errs)
 }
 
 // A RequestFailure is an interface to extract request failure information from
