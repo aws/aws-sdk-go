@@ -118,6 +118,12 @@ func (c *OpsWorks) WaitUntilInstanceOnline(input *DescribeInstancesInput) error 
 				Argument: "Instances[].Status",
 				Expected: "terminated",
 			},
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "Instances[].Status",
+				Expected: "stop_failed",
+			},
 		},
 	}
 
@@ -188,6 +194,12 @@ func (c *OpsWorks) WaitUntilInstanceStopped(input *DescribeInstancesInput) error
 				Matcher:  "pathAny",
 				Argument: "Instances[].Status",
 				Expected: "start_failed",
+			},
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "Instances[].Status",
+				Expected: "stop_failed",
 			},
 		},
 	}

@@ -2592,7 +2592,8 @@ type AutoScalingThresholds struct {
 	// Allowing AWS OpsWorks to Act on Your Behalf (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-servicerole.html).
 	Alarms []*string `type:"list"`
 
-	// The CPU utilization threshold, as a percent of the available CPU.
+	// The CPU utilization threshold, as a percent of the available CPU. A value
+	// of -1 disables the threshold.
 	CpuThreshold *float64 `type:"double"`
 
 	// The amount of time (in minutes) after a scaling event occurs that AWS OpsWorks
@@ -2608,11 +2609,12 @@ type AutoScalingThresholds struct {
 	// The number of instances to add or remove when the load exceeds a threshold.
 	InstanceCount *int64 `type:"integer"`
 
-	// The load threshold. For more information about how load is computed, see
-	// Load (computing) (http://en.wikipedia.org/wiki/Load_%28computing%29).
+	// The load threshold. A value of -1 disables the threshold. For more information
+	// about how load is computed, see Load (computing) (http://en.wikipedia.org/wiki/Load_%28computing%29).
 	LoadThreshold *float64 `type:"double"`
 
-	// The memory utilization threshold, as a percent of the available memory.
+	// The memory utilization threshold, as a percent of the available memory. A
+	// value of -1 disables the threshold.
 	MemoryThreshold *float64 `type:"double"`
 
 	// The amount of time, in minutes, that the load must exceed a threshold before
@@ -2716,9 +2718,10 @@ type CloneStackInput struct {
 	// Whether to clone the source stack's permissions.
 	ClonePermissions *bool `type:"boolean"`
 
-	// The configuration manager. When you clone a Linux stack we recommend that
-	// you use the configuration manager to specify the Chef version: 0.9, 11.4,
-	// or 11.10. The default value is currently 11.10.
+	// The configuration manager. When you clone a stack we recommend that you use
+	// the configuration manager to specify the Chef version: 12, 11.10, or 11.4
+	// for Linux stacks, or 12.2 for Windows stacks. The default value for Linux
+	// stacks is currently 11.4.
 	ConfigurationManager *StackConfigurationManager `type:"structure"`
 
 	// Contains the information required to retrieve an app or cookbook from a repository.
@@ -2751,7 +2754,7 @@ type CloneStackInput struct {
 	//
 	//  A supported Linux operating system: An Amazon Linux version, such as Amazon
 	// Linux 2015.03, Red Hat Enterprise Linux 7, Ubuntu 12.04 LTS, or Ubuntu 14.04
-	// LTS.  Microsoft Windows Server 2012 R2 Base. A custom AMI: Custom. You specify
+	// LTS. Microsoft Windows Server 2012 R2 Base. A custom AMI: Custom. You specify
 	// the custom AMI you want to use when you create instances. For more information
 	// on how to use custom AMIs with OpsWorks, see Using Custom AMIs (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
 	//  The default option is the parent stack's operating system. For more information
@@ -3091,7 +3094,7 @@ type CreateInstanceInput struct {
 
 	// The default AWS OpsWorks agent version. You have the following options:
 	//
-	//   INHERIT - Use the stack's default agent version setting.  version_number
+	//  INHERIT - Use the stack's default agent version setting. version_number
 	// - Use the specified agent version. This value overrides the stack's default
 	// setting. To update the agent version, edit the instance configuration and
 	// specify a new version. AWS OpsWorks then automatically installs that version
@@ -3123,6 +3126,7 @@ type CreateInstanceInput struct {
 
 	// An array of BlockDeviceMapping objects that specify the instance's block
 	// devices. For more information, see Block Device Mapping (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html).
+	// Note that block device mappings are not supported for custom AMIs.
 	BlockDeviceMappings []*BlockDeviceMapping `type:"list"`
 
 	// Whether to create an Amazon EBS-optimized instance.
@@ -3156,14 +3160,15 @@ type CreateInstanceInput struct {
 	//
 	//  A supported Linux operating system: An Amazon Linux version, such as Amazon
 	// Linux 2015.03, Red Hat Enterprise Linux 7, Ubuntu 12.04 LTS, or Ubuntu 14.04
-	// LTS.  Microsoft Windows Server 2012 R2 Base. A custom AMI: Custom.  For more
+	// LTS. Microsoft Windows Server 2012 R2 Base. A custom AMI: Custom.  For more
 	// information on the supported operating systems, see AWS OpsWorks Operating
 	// Systems (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
 	//
 	// The default option is the current Amazon Linux version. If you set this
 	// parameter to Custom, you must use the CreateInstance action's AmiId parameter
-	// to specify the custom AMI that you want to use. For more information on the
-	// supported operating systems, see Operating Systems (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html)For
+	// to specify the custom AMI that you want to use. Block device mappings are
+	// not supported if the value is Custom. For more information on the supported
+	// operating systems, see Operating Systems (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html)For
 	// more information on how to use custom AMIs with AWS OpsWorks, see Using Custom
 	// AMIs (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
 	Os *string `type:"string"`
@@ -3240,6 +3245,7 @@ type CreateLayerInput struct {
 	// A JSON-formatted string containing custom stack configuration and deployment
 	// attributes to be installed on the layer's instances. For more information,
 	// see  Using Custom JSON (http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook-json-override.html).
+	// This feature is supported as of version 1.7.42 of the AWS CLI.
 	CustomJson *string `type:"string"`
 
 	// A LayerCustomRecipes object that specifies the layer custom recipes.
@@ -3334,9 +3340,10 @@ type CreateStackInput struct {
 	// available. Fixed version - Set this parameter to your preferred agent version.
 	// To update the agent version, you must edit the stack configuration and specify
 	// a new version. AWS OpsWorks then automatically installs that version on the
-	// stack's instances.  The default setting is LATEST. To specify an agent version,
-	// you must use the complete version number, not the abbreviated number shown
-	// on the console. For a list of available agent version numbers, call DescribeAgentVersions.
+	// stack's instances.  The default setting is the most recent release of the
+	// agent. To specify an agent version, you must use the complete version number,
+	// not the abbreviated number shown on the console. For a list of available
+	// agent version numbers, call DescribeAgentVersions.
 	//
 	// You can also specify an agent version when you create or update an instance,
 	// which overrides the stack's default setting.
@@ -3350,9 +3357,10 @@ type CreateStackInput struct {
 	// a New Stack (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-creating.html).
 	ChefConfiguration *ChefConfiguration `type:"structure"`
 
-	// The configuration manager. When you clone a stack we recommend that you use
-	// the configuration manager to specify the Chef version: 0.9, 11.4, or 11.10.
-	// The default value is currently 11.4.
+	// The configuration manager. When you create a stack we recommend that you
+	// use the configuration manager to specify the Chef version: 12, 11.10, or
+	// 11.4 for Linux stacks, or 12.2 for Windows stacks. The default value for
+	// Linux stacks is currently 11.4.
 	ConfigurationManager *StackConfigurationManager `type:"structure"`
 
 	// Contains the information required to retrieve an app or cookbook from a repository.
@@ -3388,7 +3396,7 @@ type CreateStackInput struct {
 	//
 	//  A supported Linux operating system: An Amazon Linux version, such as Amazon
 	// Linux 2015.03, Red Hat Enterprise Linux 7, Ubuntu 12.04 LTS, or Ubuntu 14.04
-	// LTS.  Microsoft Windows Server 2012 R2 Base. A custom AMI: Custom. You specify
+	// LTS. Microsoft Windows Server 2012 R2 Base. A custom AMI: Custom. You specify
 	// the custom AMI you want to use when you create instances. For more information,
 	// see  Using Custom AMIs (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
 	//  The default option is the current Amazon Linux version. For more information
@@ -3824,10 +3832,10 @@ type DeploymentCommand struct {
 	//
 	// The update_dependencies command takes two arguments:
 	//
-	//   upgrade_os_to - Specifies the desired Amazon Linux version for instances
+	//  upgrade_os_to - Specifies the desired Amazon Linux version for instances
 	// whose OS you want to upgrade, such as Amazon Linux 2014.09. You must also
-	// set the allow_reboot argument to true.  allow_reboot - Specifies whether
-	// to allow AWS OpsWorks to reboot the instances if necessary, after installing
+	// set the allow_reboot argument to true. allow_reboot - Specifies whether to
+	// allow AWS OpsWorks to reboot the instances if necessary, after installing
 	// the updates. This argument can be set to either true or false. The default
 	// value is false.  For example, to upgrade an instance to Amazon Linux 2014.09,
 	// set Args to the following.
@@ -3839,25 +3847,24 @@ type DeploymentCommand struct {
 	//
 	// For stacks, the following commands are available:
 	//
-	//   execute_recipes: Execute one or more recipes. To specify the recipes,
-	// set an Args parameter named recipes to the list of recipes to be executed.
-	// For example, to execute phpapp::appsetup, set Args to {"recipes":["phpapp::appsetup"]}.
-	//  install_dependencies: Install the stack's dependencies.  update_custom_cookbooks:
-	// Update the stack's custom cookbooks.  update_dependencies: Update the stack's
+	//  execute_recipes: Execute one or more recipes. To specify the recipes, set
+	// an Args parameter named recipes to the list of recipes to be executed. For
+	// example, to execute phpapp::appsetup, set Args to {"recipes":["phpapp::appsetup"]}.
+	// install_dependencies: Install the stack's dependencies. update_custom_cookbooks:
+	// Update the stack's custom cookbooks. update_dependencies: Update the stack's
 	// dependencies.  The update_dependencies and install_dependencies commands
 	// are supported only for Linux instances. You can run the commands successfully
 	// on Windows instances, but they do nothing. For apps, the following commands
 	// are available:
 	//
-	//   deploy: Deploy an app. Ruby on Rails apps have an optional Args parameter
+	//  deploy: Deploy an app. Ruby on Rails apps have an optional Args parameter
 	// named migrate. Set Args to {"migrate":["true"]} to migrate the database.
-	// The default setting is {"migrate":["false"]}.  rollback Roll the app back
+	// The default setting is {"migrate":["false"]}. rollback Roll the app back
 	// to the previous version. When you update an app, AWS OpsWorks stores the
 	// previous version, up to a maximum of five versions. You can use this command
-	// to roll an app back as many as four versions.  start: Start the app's web
-	// or application server.  stop: Stop the app's web or application server.
-	// restart: Restart the app's web or application server.  undeploy: Undeploy
-	// the app.
+	// to roll an app back as many as four versions. start: Start the app's web
+	// or application server. stop: Stop the app's web or application server. restart:
+	// Restart the app's web or application server. undeploy: Undeploy the app.
 	Name *string `type:"string" required:"true" enum:"DeploymentCommandName"`
 }
 
@@ -6436,8 +6443,9 @@ type StackConfigurationManager struct {
 	// The name. This parameter must be set to "Chef".
 	Name *string `type:"string"`
 
-	// The Chef version. This parameter must be set to 0.9, 11.4, or 11.10. The
-	// default value is 11.4.
+	// The Chef version. This parameter must be set to 12, 11.10, or 11.4 for Linux
+	// stacks, and to 12.2 for Windows stacks. The default value for Linux stacks
+	// is 11.4.
 	Version *string `type:"string"`
 }
 
@@ -6836,7 +6844,7 @@ type UpdateInstanceInput struct {
 
 	// The default AWS OpsWorks agent version. You have the following options:
 	//
-	//   INHERIT - Use the stack's default agent version setting.  version_number
+	//  INHERIT - Use the stack's default agent version setting. version_number
 	// - Use the specified agent version. This value overrides the stack's default
 	// setting. To update the agent version, you must edit the instance configuration
 	// and specify a new version. AWS OpsWorks then automatically installs that
@@ -6896,7 +6904,7 @@ type UpdateInstanceInput struct {
 	//
 	//  A supported Linux operating system: An Amazon Linux version, such as Amazon
 	// Linux 2015.03, Red Hat Enterprise Linux 7, Ubuntu 12.04 LTS, or Ubuntu 14.04
-	// LTS.  Microsoft Windows Server 2012 R2 Base. A custom AMI: Custom.  For more
+	// LTS. Microsoft Windows Server 2012 R2 Base. A custom AMI: Custom.  For more
 	// information on the supported operating systems, see AWS OpsWorks Operating
 	// Systems (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
 	//
@@ -7128,9 +7136,10 @@ type UpdateStackInput struct {
 	// a New Stack (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-creating.html).
 	ChefConfiguration *ChefConfiguration `type:"structure"`
 
-	// The configuration manager. When you clone a stack, we recommend that you
-	// use the configuration manager to specify the Chef version: 0.9, 11.4, or
-	// 11.10. The default value is currently 11.4.
+	// The configuration manager. When you update a stack, we recommend that you
+	// use the configuration manager to specify the Chef version: 12, 11.10, or
+	// 11.4 for Linux stacks, or 12.2 for Windows stacks. The default value for
+	// Linux stacks is currently 11.4.
 	ConfigurationManager *StackConfigurationManager `type:"structure"`
 
 	// Contains the information required to retrieve an app or cookbook from a repository.
@@ -7164,7 +7173,7 @@ type UpdateStackInput struct {
 	//
 	//  A supported Linux operating system: An Amazon Linux version, such as Amazon
 	// Linux 2015.03, Red Hat Enterprise Linux 7, Ubuntu 12.04 LTS, or Ubuntu 14.04
-	// LTS.  Microsoft Windows Server 2012 R2 Base. A custom AMI: Custom. You specify
+	// LTS. Microsoft Windows Server 2012 R2 Base. A custom AMI: Custom. You specify
 	// the custom AMI you want to use when you create instances. For more information
 	// on how to use custom AMIs with OpsWorks, see Using Custom AMIs (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
 	//  The default option is the stack's current operating system. For more information
@@ -7450,7 +7459,7 @@ type VolumeConfiguration struct {
 
 	// The volume type:
 	//
-	//   standard - Magnetic  io1 - Provisioned IOPS (SSD)  gp2 - General Purpose
+	//  standard - Magnetic io1 - Provisioned IOPS (SSD) gp2 - General Purpose
 	// (SSD)
 	VolumeType *string `type:"string"`
 }

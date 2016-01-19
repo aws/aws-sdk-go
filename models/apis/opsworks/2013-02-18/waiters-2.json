@@ -91,6 +91,12 @@
           "matcher": "pathAny",
           "state": "failure",
           "argument": "Instances[].Status"
+        },
+        {
+          "expected": "stop_failed",
+          "matcher": "pathAny",
+          "state": "failure",
+          "argument": "Instances[].Status"
         }
       ]
     },
@@ -150,6 +156,12 @@
         },
         {
           "expected": "start_failed",
+          "matcher": "pathAny",
+          "state": "failure",
+          "argument": "Instances[].Status"
+        },
+        {
+          "expected": "stop_failed",
           "matcher": "pathAny",
           "state": "failure",
           "argument": "Instances[].Status"

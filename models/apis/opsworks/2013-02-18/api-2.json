@@ -4,10 +4,10 @@
     "apiVersion":"2013-02-18",
     "endpointPrefix":"opsworks",
     "jsonVersion":"1.1",
+    "protocol":"json",
     "serviceFullName":"AWS OpsWorks",
     "signatureVersion":"v4",
-    "targetPrefix":"OpsWorks_20130218",
-    "protocol":"json"
+    "targetPrefix":"OpsWorks_20130218"
   },
   "operations":{
     "AssignInstance":{
@@ -18,14 +18,8 @@
       },
       "input":{"shape":"AssignInstanceRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "AssignVolume":{
@@ -36,14 +30,8 @@
       },
       "input":{"shape":"AssignVolumeRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "AssociateElasticIp":{
@@ -54,14 +42,8 @@
       },
       "input":{"shape":"AssociateElasticIpRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "AttachElasticLoadBalancer":{
@@ -72,14 +54,8 @@
       },
       "input":{"shape":"AttachElasticLoadBalancerRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "CloneStack":{
@@ -91,14 +67,8 @@
       "input":{"shape":"CloneStackRequest"},
       "output":{"shape":"CloneStackResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "CreateApp":{
@@ -110,14 +80,8 @@
       "input":{"shape":"CreateAppRequest"},
       "output":{"shape":"CreateAppResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "CreateDeployment":{
@@ -129,14 +93,8 @@
       "input":{"shape":"CreateDeploymentRequest"},
       "output":{"shape":"CreateDeploymentResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "CreateInstance":{
@@ -148,14 +106,8 @@
       "input":{"shape":"CreateInstanceRequest"},
       "output":{"shape":"CreateInstanceResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "CreateLayer":{
@@ -167,14 +119,8 @@
       "input":{"shape":"CreateLayerRequest"},
       "output":{"shape":"CreateLayerResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "CreateStack":{
@@ -186,10 +132,7 @@
       "input":{"shape":"CreateStackRequest"},
       "output":{"shape":"CreateStackResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        }
+        {"shape":"ValidationException"}
       ]
     },
     "CreateUserProfile":{
@@ -201,10 +144,7 @@
       "input":{"shape":"CreateUserProfileRequest"},
       "output":{"shape":"CreateUserProfileResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        }
+        {"shape":"ValidationException"}
       ]
     },
     "DeleteApp":{
@@ -215,14 +155,8 @@
       },
       "input":{"shape":"DeleteAppRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DeleteInstance":{
@@ -233,14 +167,8 @@
       },
       "input":{"shape":"DeleteInstanceRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DeleteLayer":{
@@ -251,14 +179,8 @@
       },
       "input":{"shape":"DeleteLayerRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DeleteStack":{
@@ -269,14 +191,8 @@
       },
       "input":{"shape":"DeleteStackRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DeleteUserProfile":{
@@ -287,14 +203,8 @@
       },
       "input":{"shape":"DeleteUserProfileRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DeregisterEcsCluster":{
@@ -305,14 +215,8 @@
       },
       "input":{"shape":"DeregisterEcsClusterRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DeregisterElasticIp":{
@@ -323,14 +227,8 @@
       },
       "input":{"shape":"DeregisterElasticIpRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DeregisterInstance":{
@@ -341,14 +239,8 @@
       },
       "input":{"shape":"DeregisterInstanceRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DeregisterRdsDbInstance":{
@@ -359,14 +251,8 @@
       },
       "input":{"shape":"DeregisterRdsDbInstanceRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DeregisterVolume":{
@@ -377,14 +263,8 @@
       },
       "input":{"shape":"DeregisterVolumeRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DescribeAgentVersions":{
@@ -396,14 +276,8 @@
       "input":{"shape":"DescribeAgentVersionsRequest"},
       "output":{"shape":"DescribeAgentVersionsResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DescribeApps":{
@@ -415,14 +289,8 @@
       "input":{"shape":"DescribeAppsRequest"},
       "output":{"shape":"DescribeAppsResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DescribeCommands":{
@@ -434,14 +302,8 @@
       "input":{"shape":"DescribeCommandsRequest"},
       "output":{"shape":"DescribeCommandsResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DescribeDeployments":{
@@ -453,14 +315,8 @@
       "input":{"shape":"DescribeDeploymentsRequest"},
       "output":{"shape":"DescribeDeploymentsResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DescribeEcsClusters":{
@@ -472,14 +328,8 @@
       "input":{"shape":"DescribeEcsClustersRequest"},
       "output":{"shape":"DescribeEcsClustersResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DescribeElasticIps":{
@@ -491,14 +341,8 @@
       "input":{"shape":"DescribeElasticIpsRequest"},
       "output":{"shape":"DescribeElasticIpsResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DescribeElasticLoadBalancers":{
@@ -510,14 +354,8 @@
       "input":{"shape":"DescribeElasticLoadBalancersRequest"},
       "output":{"shape":"DescribeElasticLoadBalancersResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DescribeInstances":{
@@ -529,14 +367,8 @@
       "input":{"shape":"DescribeInstancesRequest"},
       "output":{"shape":"DescribeInstancesResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DescribeLayers":{
@@ -548,14 +380,8 @@
       "input":{"shape":"DescribeLayersRequest"},
       "output":{"shape":"DescribeLayersResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DescribeLoadBasedAutoScaling":{
@@ -567,14 +393,8 @@
       "input":{"shape":"DescribeLoadBasedAutoScalingRequest"},
       "output":{"shape":"DescribeLoadBasedAutoScalingResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DescribeMyUserProfile":{
@@ -594,14 +414,8 @@
       "input":{"shape":"DescribePermissionsRequest"},
       "output":{"shape":"DescribePermissionsResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DescribeRaidArrays":{
@@ -613,14 +427,8 @@
       "input":{"shape":"DescribeRaidArraysRequest"},
       "output":{"shape":"DescribeRaidArraysResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DescribeRdsDbInstances":{
@@ -632,14 +440,8 @@
       "input":{"shape":"DescribeRdsDbInstancesRequest"},
       "output":{"shape":"DescribeRdsDbInstancesResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DescribeServiceErrors":{
@@ -651,14 +453,8 @@
       "input":{"shape":"DescribeServiceErrorsRequest"},
       "output":{"shape":"DescribeServiceErrorsResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DescribeStackProvisioningParameters":{
@@ -670,14 +466,8 @@
       "input":{"shape":"DescribeStackProvisioningParametersRequest"},
       "output":{"shape":"DescribeStackProvisioningParametersResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DescribeStackSummary":{
@@ -689,14 +479,8 @@
       "input":{"shape":"DescribeStackSummaryRequest"},
       "output":{"shape":"DescribeStackSummaryResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DescribeStacks":{
@@ -708,14 +492,8 @@
       "input":{"shape":"DescribeStacksRequest"},
       "output":{"shape":"DescribeStacksResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DescribeTimeBasedAutoScaling":{
@@ -727,14 +505,8 @@
       "input":{"shape":"DescribeTimeBasedAutoScalingRequest"},
       "output":{"shape":"DescribeTimeBasedAutoScalingResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DescribeUserProfiles":{
@@ -746,14 +518,8 @@
       "input":{"shape":"DescribeUserProfilesRequest"},
       "output":{"shape":"DescribeUserProfilesResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DescribeVolumes":{
@@ -765,14 +531,8 @@
       "input":{"shape":"DescribeVolumesRequest"},
       "output":{"shape":"DescribeVolumesResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DetachElasticLoadBalancer":{
@@ -783,10 +543,7 @@
       },
       "input":{"shape":"DetachElasticLoadBalancerRequest"},
       "errors":[
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DisassociateElasticIp":{
@@ -797,14 +554,8 @@
       },
       "input":{"shape":"DisassociateElasticIpRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "GetHostnameSuggestion":{
@@ -816,14 +567,8 @@
       "input":{"shape":"GetHostnameSuggestionRequest"},
       "output":{"shape":"GetHostnameSuggestionResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "GrantAccess":{
@@ -835,14 +580,8 @@
       "input":{"shape":"GrantAccessRequest"},
       "output":{"shape":"GrantAccessResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "RebootInstance":{
@@ -853,14 +592,8 @@
       },
       "input":{"shape":"RebootInstanceRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "RegisterEcsCluster":{
@@ -872,14 +605,8 @@
       "input":{"shape":"RegisterEcsClusterRequest"},
       "output":{"shape":"RegisterEcsClusterResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "RegisterElasticIp":{
@@ -891,14 +618,8 @@
       "input":{"shape":"RegisterElasticIpRequest"},
       "output":{"shape":"RegisterElasticIpResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "RegisterInstance":{
@@ -910,14 +631,8 @@
       "input":{"shape":"RegisterInstanceRequest"},
       "output":{"shape":"RegisterInstanceResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "RegisterRdsDbInstance":{
@@ -928,14 +643,8 @@
       },
       "input":{"shape":"RegisterRdsDbInstanceRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "RegisterVolume":{
@@ -947,14 +656,8 @@
       "input":{"shape":"RegisterVolumeRequest"},
       "output":{"shape":"RegisterVolumeResult"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "SetLoadBasedAutoScaling":{
@@ -965,14 +668,8 @@
       },
       "input":{"shape":"SetLoadBasedAutoScalingRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "SetPermission":{
@@ -983,14 +680,8 @@
       },
       "input":{"shape":"SetPermissionRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "SetTimeBasedAutoScaling":{
@@ -1001,14 +692,8 @@
       },
       "input":{"shape":"SetTimeBasedAutoScalingRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "StartInstance":{
@@ -1019,14 +704,8 @@
       },
       "input":{"shape":"StartInstanceRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "StartStack":{
@@ -1037,14 +716,8 @@
       },
       "input":{"shape":"StartStackRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "StopInstance":{
@@ -1055,14 +728,8 @@
       },
       "input":{"shape":"StopInstanceRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "StopStack":{
@@ -1073,14 +740,8 @@
       },
       "input":{"shape":"StopStackRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "UnassignInstance":{
@@ -1091,14 +752,8 @@
       },
       "input":{"shape":"UnassignInstanceRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "UnassignVolume":{
@@ -1109,14 +764,8 @@
       },
       "input":{"shape":"UnassignVolumeRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "UpdateApp":{
@@ -1127,14 +776,8 @@
       },
       "input":{"shape":"UpdateAppRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "UpdateElasticIp":{
@@ -1145,14 +788,8 @@
       },
       "input":{"shape":"UpdateElasticIpRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "UpdateInstance":{
@@ -1163,14 +800,8 @@
       },
       "input":{"shape":"UpdateInstanceRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "UpdateLayer":{
@@ -1181,14 +812,8 @@
       },
       "input":{"shape":"UpdateLayerRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "UpdateMyUserProfile":{
@@ -1199,10 +824,7 @@
       },
       "input":{"shape":"UpdateMyUserProfileRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        }
+        {"shape":"ValidationException"}
       ]
     },
     "UpdateRdsDbInstance":{
@@ -1213,14 +835,8 @@
       },
       "input":{"shape":"UpdateRdsDbInstanceRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "UpdateStack":{
@@ -1231,14 +847,8 @@
       },
       "input":{"shape":"UpdateStackRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "UpdateUserProfile":{
@@ -1249,14 +859,8 @@
       },
       "input":{"shape":"UpdateUserProfileRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "UpdateVolume":{
@@ -1267,14 +871,8 @@
       },
       "input":{"shape":"UpdateVolumeRequest"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     }
   },
@@ -2377,9 +1975,9 @@
     },
     "Minute":{
       "type":"integer",
-      "min":1,
+      "box":true,
       "max":100,
-      "box":true
+      "min":1
     },
     "Parameters":{
       "type":"map",
@@ -2921,9 +2519,9 @@
     },
     "ValidForInMinutes":{
       "type":"integer",
-      "min":60,
+      "box":true,
       "max":1440,
-      "box":true
+      "min":60
     },
     "ValidationException":{
       "type":"structure",
