@@ -14,6 +14,9 @@ import (
 	"github.com/aws/aws-sdk-go/service/sts"
 )
 
+// ProviderName provides a name of AssumeRole provider
+const ProviderName = "AssumeRoleProvider"
+
 // AssumeRoler represents the minimal subset of the STS client API used by this provider.
 type AssumeRoler interface {
 	AssumeRole(input *sts.AssumeRoleInput) (*sts.AssumeRoleOutput, error)
@@ -116,7 +119,7 @@ func (p *AssumeRoleProvider) Retrieve() (credentials.Value, error) {
 	})
 
 	if err != nil {
-		return credentials.Value{}, err
+		return credentials.Value{ProviderName: ProviderName}, err
 	}
 
 	// We will proactively generate new credentials before they expire.
@@ -126,5 +129,6 @@ func (p *AssumeRoleProvider) Retrieve() (credentials.Value, error) {
 		AccessKeyID:     *roleOutput.Credentials.AccessKeyId,
 		SecretAccessKey: *roleOutput.Credentials.SecretAccessKey,
 		SessionToken:    *roleOutput.Credentials.SessionToken,
+		ProviderName:    ProviderName,
 	}, nil
 }

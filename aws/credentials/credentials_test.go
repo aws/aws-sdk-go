@@ -15,6 +15,7 @@ type stubProvider struct {
 
 func (s *stubProvider) Retrieve() (Value, error) {
 	s.expired = false
+	s.creds.ProviderName = "stubProvider"
 	return s.creds, s.err
 }
 func (s *stubProvider) IsExpired() bool {
