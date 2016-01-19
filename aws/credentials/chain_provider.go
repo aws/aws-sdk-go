@@ -60,9 +60,8 @@ func (c *ChainProvider) Retrieve() (Value, error) {
 		if creds, err := p.Retrieve(); err == nil {
 			c.curr = p
 			return creds, nil
-		} else {
-			errs.Append(err)
 		}
+		errs.Append(err)
 	}
 	c.curr = nil
 
