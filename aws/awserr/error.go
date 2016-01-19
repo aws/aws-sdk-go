@@ -42,7 +42,7 @@ type Error interface {
 	OrigErr() error
 }
 
-// A batch of errors which also wraps lower level errors with code, message,
+// BatchError is a batch of errors which also wraps lower level errors with code, message,
 // and original errors.
 type BatchError interface {
 	// Satisfy the generic error interface.
