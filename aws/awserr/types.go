@@ -6,14 +6,23 @@ import "fmt"
 //
 // Both extra and origErr are optional.  If they are included their lines
 // will be added, but if they are not included their lines will be ignored.
-func SprintError(code, message, extra string, errs []error) string {
+func SprintError(code, message, extra string, origErr error) string {
+	msg := fmt.Sprintf("%s: %s", code, message)
+	if extra != "" {
+		msg = fmt.Sprintf("%s\n\t%s", msg, extra)
+	}
+	if origErr != nil {
+		msg = fmt.Sprintf("%s\ncaused by: %s", msg, origErr.Error())
+	}
+	return msg
+}
+
+func SprintErrors(code, message, extra string, errs []error) string {
 	msg := fmt.Sprintf("%s: %s", code, message)
 	if extra != "" {
 		msg = fmt.Sprintf("%s\n\t%s", msg, extra)
 	}
 	if len(errs) > 0 {
-		// TODO
-		// Think about including messages and codes for each error
 		for i := 0; i < len(errs); i++ {
 			msg += fmt.Sprintf("\nERROR %d:\n%s", i+1, errs[i].Error())
 		}
@@ -47,15 +56,34 @@ type baseError struct {
 //
 // origErr is the error object which will be nested under the new error to be returned.
 func newBaseError(code, message string, origErr error) *baseError {
-	err := &baseError{
+	b := &baseError{
 		code:    code,
 		message: message,
 	}
 
 	if origErr != nil {
-		err.Append(origErr)
+		b.errs = append(b.errs, origErr)
 	}
-	return err
+
+	return b
+}
+
+// newBaseErrors returns an error object for the code, message, and errors.
+//
+// code is a short no whitespace phrase depicting the classification of
+// the error that is being created.
+//
+// message is the free flow string containing detailed information about the error.
+//
+// origErrs is the error objects which will be nested under the new errors to be returned.
+func newBaseErrors(code, message string, origErrs []error) *baseError {
+	b := &baseError{
+		code:    code,
+		message: message,
+		errs:    origErrs,
+	}
+
+	return b
 }
 
 // Error returns the string representation of the error.
@@ -64,7 +92,12 @@ func newBaseError(code, message string, origErr error) *baseError {
 //
 // Satisfies the error interface.
 func (b baseError) Error() string {
-	return SprintError(b.code, b.message, "", b.errs)
+	size := len(b.errs)
+	if size > 0 {
+		return SprintError(b.code, b.message, "", b.errs[len(b.errs)-1])
+	}
+
+	return SprintError(b.code, b.message, "", nil)
 }
 
 // String returns the string representation of the error.
@@ -83,21 +116,18 @@ func (b baseError) Message() string {
 	return b.message
 }
 
-// OrigErr returns the most recent error, if one was set. Nil is return if no error
+// OrigErr returns the original error if one was set. Nil is returned if no error
 // was set.
 func (b baseError) OrigErr() error {
 	if size := len(b.errs); size > 0 {
-		return b.errs[size-1]
+		return b.errs[len(b.errs)-1]
 	}
+
 	return nil
 }
 
-// Pushes a new error to the stack
-func (b *baseError) Append(err error) {
-	// We only care about errors
-	if err != nil {
-		b.errs = append(b.errs, err)
-	}
+func (b baseError) OrigErrs() []error {
+	return b.errs
 }
 
 // So that the Error interface type can be included as an anonymous field
@@ -134,7 +164,7 @@ func newRequestError(err Error, statusCode int, requestID string) *requestError 
 func (r requestError) Error() string {
 	extra := fmt.Sprintf("status code: %d, request id: %s",
 		r.statusCode, r.requestID)
-	return SprintError(r.Code(), r.Message(), extra, []error{r.OrigErr()})
+	return SprintError(r.Code(), r.Message(), extra, r.OrigErr())
 }
 
 // String returns the string representation of the error.

@@ -38,11 +38,22 @@ type Error interface {
 	// Returns the error details message.
 	Message() string
 
-	// Returns the error that sits on top of the error stack
+	// Returns the original error if one was set.  Nil is returned if not set.
 	OrigErr() error
+}
 
-	// Pushes a new error to the error stack
-	Append(error)
+type BatchError interface {
+	// Satisfy the generic error interface.
+	error
+
+	// Returns the short phrase depicting the classification of the error.
+	Code() string
+
+	// Returns the error details message.
+	Message() string
+
+	// Returns the original error if one was set.  Nil is returned if not set.
+	OrigErrs() []error
 }
 
 // New returns an Error object described by the code, message, and origErr.
@@ -54,6 +65,10 @@ func New(code, message string, origErr error) Error {
 		return e
 	}
 	return newBaseError(code, message, origErr)
+}
+
+func NewBatchError(code, message string, origErrs []error) BatchError {
+	return newBaseErrors(code, message, origErrs)
 }
 
 // A RequestFailure is an interface to extract request failure information from

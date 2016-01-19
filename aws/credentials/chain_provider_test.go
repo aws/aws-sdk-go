@@ -56,26 +56,29 @@ func TestChainProviderWithNoProvider(t *testing.T) {
 
 	assert.True(t, p.IsExpired(), "Expect expired with no providers")
 	_, err := p.Retrieve()
-
-	errs := awserr.New("NoCredentialProviders", "no valid providers in chain", nil)
-
-	assert.Equal(t, errs, err, "Expect no providers error returned")
+	assert.Equal(t,
+		awserr.NewBatchError("NoCredentialProviders", "no valid providers in chain", nil),
+		err,
+		"Expect no providers error returned")
 }
 
 func TestChainProviderWithNoValidProvider(t *testing.T) {
-	firstErr := awserr.New("FirstError", "first provider error", nil)
-	secondErr := awserr.New("SecondError", "second provider error", nil)
+	errs := []error{
+		awserr.New("FirstError", "first provider error", nil),
+		awserr.New("SecondError", "second provider error", nil),
+	}
 	p := &ChainProvider{
 		Providers: []Provider{
-			&stubProvider{err: firstErr},
-			&stubProvider{err: secondErr},
+			&stubProvider{err: errs[0]},
+			&stubProvider{err: errs[1]},
 		},
 	}
 
 	assert.True(t, p.IsExpired(), "Expect expired with no providers")
 	_, err := p.Retrieve()
-	errs := awserr.New("NoCredentialProviders", "no valid providers in chain", nil)
-	errs.Append(firstErr)
-	errs.Append(secondErr)
-	assert.Equal(t, errs, err, "Expect no providers error returned")
+
+	assert.Equal(t,
+		awserr.NewBatchError("NoCredentialProviders", "no valid providers in chain", errs),
+		err,
+		"Expect no providers error returned")
 }
