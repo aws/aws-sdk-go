@@ -4,6 +4,14 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
+var (
+	// ErrNoValidProvidersFoundInChain Is returned when there are no valid
+	// providers in the ChainProvider.
+	//
+	// @readonly
+	ErrNoValidProvidersFoundInChain = awserr.New("NoCredentialProviders", "no valid providers in chain", nil)
+)
+
 // A ChainProvider will search for a provider which returns credentials
 // and cache that provider until Retrieve is called again.
 //
@@ -55,18 +63,17 @@ func NewChainCredentials(providers []Provider) *Credentials {
 // If a provider is found it will be cached and any calls to IsExpired()
 // will return the expired state of the cached provider.
 func (c *ChainProvider) Retrieve() (Value, error) {
-	var errs []error
 	for _, p := range c.Providers {
-		creds, err := p.Retrieve()
-		if err == nil {
+		if creds, err := p.Retrieve(); err == nil {
 			c.curr = p
 			return creds, nil
 		}
-		errs = append(errs, err)
 	}
 	c.curr = nil
 
-	return Value{}, awserr.NewBatchError("NoCredentialProviders", "no valid providers in chain", errs)
+	// TODO better error reporting. maybe report error for each failed retrieve?
+
+	return Value{}, ErrNoValidProvidersFoundInChain
 }
 
 // IsExpired will returned the expired state of the currently cached provider
