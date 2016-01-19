@@ -42,6 +42,8 @@ type Error interface {
 	OrigErr() error
 }
 
+// A batch of errors which also wraps lower level errors with code, message,
+// and original errors.
 type BatchError interface {
 	// Satisfy the generic error interface.
 	error
@@ -67,6 +69,7 @@ func New(code, message string, origErr error) Error {
 	return newBaseError(code, message, origErr)
 }
 
+// NewBatchError returns an baseError with an expectation of an array of errors
 func NewBatchError(code, message string, origErrs []error) BatchError {
 	return newBaseErrors(code, message, origErrs)
 }

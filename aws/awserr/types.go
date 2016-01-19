@@ -17,6 +17,8 @@ func SprintError(code, message, extra string, origErr error) string {
 	return msg
 }
 
+// SprintErrors behaves like SprintError, but instead, prints each error
+// within the list.
 func SprintErrors(code, message, extra string, errs []error) string {
 	msg := fmt.Sprintf("%s: %s", code, message)
 	if extra != "" {
