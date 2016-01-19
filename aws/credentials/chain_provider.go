@@ -57,7 +57,8 @@ func NewChainCredentials(providers []Provider) *Credentials {
 func (c *ChainProvider) Retrieve() (Value, error) {
 	errs := awserr.New("NoCredentialProviders", "no valid providers in chain", nil)
 	for _, p := range c.Providers {
-		if creds, err := p.Retrieve(); err == nil {
+		creds, err := p.Retrieve()
+		if err == nil {
 			c.curr = p
 			return creds, nil
 		}
