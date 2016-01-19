@@ -4,6 +4,20 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
+var (
+	// ErrNoValidProvidersFoundInChain Is returned when there are no valid
+	// providers in the ChainProvider.
+	//
+	// This has been deprecated. For verbose error messaging set
+	// aws.Config.CredentialsChainVerboseErrors to true
+	//
+	// @readonly
+	ErrNoValidProvidersFoundInChain = awserr.New("NoCredentialProviders",
+		`no valid providers in chain. Deprecated. 
+	For verbose messaging see aws.Config.CredentialsChainVerboseErrors`,
+		nil)
+)
+
 // A ChainProvider will search for a provider which returns credentials
 // and cache that provider until Retrieve is called again.
 //
@@ -37,8 +51,9 @@ import (
 //     svc := ec2.New(&aws.Config{Credentials: creds})
 //
 type ChainProvider struct {
-	Providers []Provider
-	curr      Provider
+	Providers     []Provider
+	curr          Provider
+	VerboseErrors bool
 }
 
 // NewChainCredentials returns a pointer to a new Credentials object
@@ -66,7 +81,12 @@ func (c *ChainProvider) Retrieve() (Value, error) {
 	}
 	c.curr = nil
 
-	return Value{}, awserr.NewBatchError("NoCredentialProviders", "no valid providers in chain", errs)
+	var err error
+	err = ErrNoValidProvidersFoundInChain
+	if c.VerboseErrors {
+		err = awserr.NewBatchError("NoCredentialProviders", "no valid providers in chain", errs)
+	}
+	return Value{}, err
 }
 
 // IsExpired will returned the expired state of the currently cached provider
