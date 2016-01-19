@@ -81,7 +81,7 @@ func newBaseErrors(code, message string, origErrs []error) *baseError {
 func (b baseError) Error() string {
 	size := len(b.errs)
 	if size > 0 {
-		return SprintError(b.code, b.message, "", b.errs[len(b.errs)-1])
+		return SprintError(b.code, b.message, "", errorList(b.errs))
 	}
 
 	return SprintError(b.code, b.message, "", nil)
@@ -113,6 +113,8 @@ func (b baseError) OrigErr() error {
 	return nil
 }
 
+// OrigErrs returns the original errors if one was set. An empty slice is returned if
+// no error was set:w
 func (b baseError) OrigErrs() []error {
 	return b.errs
 }
@@ -168,4 +170,27 @@ func (r requestError) StatusCode() int {
 // RequestID returns the wrapped requestID
 func (r requestError) RequestID() string {
 	return r.requestID
+}
+
+// An error list that satisfies the golang interface
+type errorList []error
+
+// Error returns the string representation of the error.
+//
+// Satisfies the error interface.
+func (e errorList) Error() string {
+	msg := ""
+	// How do we want to handle the array size being zero
+	if size := len(e); size > 0 {
+		for i := 0; i < size; i++ {
+			msg += fmt.Sprintf("%s", e[i].Error())
+			// We check the next index to see if it is within the slice.
+			// If it is, then we append a newline. We do this, because unit tests
+			// could be broken with the additional '\n'
+			if i+1 < size {
+				msg += "\n"
+			}
+		}
+	}
+	return msg
 }
