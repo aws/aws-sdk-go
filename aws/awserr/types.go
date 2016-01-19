@@ -104,10 +104,11 @@ func (b baseError) Message() string {
 }
 
 // OrigErr returns the original error if one was set. Nil is returned if no error
-// was set.
+// was set. This only returns the first element in the list. If the full list is
+// needed, use BatchError
 func (b baseError) OrigErr() error {
 	if size := len(b.errs); size > 0 {
-		return b.errs[len(b.errs)-1]
+		return b.errs[0]
 	}
 
 	return nil
