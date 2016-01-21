@@ -89,6 +89,12 @@ func init() {
 		}
 	})
 
+	And(`^I expect the response error message not be empty$`, func() {
+		err, ok := World["error"].(awserr.Error)
+		assert.True(T, ok, "no error returned")
+		assert.NotEmpty(T, err.Message())
+	})
+
 	When(`^I call the "(.+?)" API with JSON:$`, func(s1 string, data string) {
 		callWithJSON(s1, data, false)
 	})
