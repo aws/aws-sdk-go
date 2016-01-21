@@ -1051,6 +1051,10 @@ type Artifact struct {
 	//
 	// APPIUM_JAVA_XML_OUTPUT: The Appium Java XML output type.
 	//
+	// APPIUM_PYTHON_OUTPUT: The Appium Python output type.
+	//
+	// APPIUM_PYTHON_XML_OUTPUT: The Appium Python XML output type.
+	//
 	// APPIUM_SERVER_OUTPUT: The Appium server output type.
 	//
 	// AUTOMATION_OUTPUT: The automation output type.
@@ -1267,6 +1271,8 @@ type CreateUploadInput struct {
 	//
 	// APPIUM_JAVA_TESTNG_TEST_PACKAGE: An Appium Java TestNG test package upload.
 	//
+	// APPIUM_PYTHON_TEST_PACKAGE: An Appium Python test package upload.
+	//
 	// CALABASH_TEST_PACKAGE: A Calabash test package upload.
 	//
 	// INSTRUMENTATION_TEST_PACKAGE: An instrumentation upload.
@@ -1279,6 +1285,8 @@ type CreateUploadInput struct {
 	//
 	// APPIUM_WEB_JAVA_TESTNG_TEST_PACKAGE: An Appium Java TestNG test package
 	// upload.
+	//
+	// APPIUM_WEB_PYTHON_TEST_PACKAGE: An Appium Python test package upload.
 	//
 	//  Note If you call CreateUpload with WEB_APP specified, AWS Device Farm throws
 	// an ArgumentException error.
@@ -1696,6 +1704,8 @@ type GetDevicePoolCompatibilityInput struct {
 	//
 	// APPIUM_JAVA_TESTNG: The Appium Java TestNG type.
 	//
+	// APPIUM_PYTHON: The Appium Python type.
+	//
 	// CALABASH: The Calabash type.
 	//
 	// INSTRUMENTATION: The Instrumentation type.
@@ -1705,6 +1715,12 @@ type GetDevicePoolCompatibilityInput struct {
 	// UIAUTOMATOR: The uiautomator type.
 	//
 	// XCTEST: The XCode test type.
+	//
+	// APPIUM_WEB_JAVA_JUNIT: The Appium Java JUnit type for Web apps.
+	//
+	// APPIUM_WEB_JAVA_TESTNG: The Appium Java TestNG type for Web apps.
+	//
+	// APPIUM_WEB_PYTHON: The Appium Python type for Web apps.
 	TestType *string `locationName:"testType" type:"string" enum:"TestType"`
 }
 
@@ -2101,6 +2117,8 @@ type Job struct {
 	//
 	// APPIUM_JAVA_TESTNG: The Appium Java TestNG type.
 	//
+	// APPIUM_PYTHON: The Appium Python type.
+	//
 	// CALABASH: The Calabash type.
 	//
 	// INSTRUMENTATION: The Instrumentation type.
@@ -2110,6 +2128,12 @@ type Job struct {
 	// UIAUTOMATOR: The uiautomator type.
 	//
 	// XCTEST: The XCode test type.
+	//
+	// APPIUM_WEB_JAVA_JUNIT: The Appium Java JUnit type for Web apps.
+	//
+	// APPIUM_WEB_JAVA_TESTNG: The Appium Java TestNG type for Web apps.
+	//
+	// APPIUM_WEB_PYTHON: The Appium Python type for Web apps.
 	Type *string `locationName:"type" type:"string" enum:"TestType"`
 }
 
@@ -2961,6 +2985,8 @@ type Run struct {
 	//
 	// APPIUM_JAVA_TESTNG: The Appium Java TestNG type.
 	//
+	// APPIUM_PYTHON: The Appium Python type.
+	//
 	// CALABASH: The Calabash type.
 	//
 	// INSTRUMENTATION: The Instrumentation type.
@@ -2970,6 +2996,12 @@ type Run struct {
 	// UIAUTOMATOR: The uiautomator type.
 	//
 	// XCTEST: The XCode test type.
+	//
+	// APPIUM_WEB_JAVA_JUNIT: The Appium Java JUnit type for Web apps.
+	//
+	// APPIUM_WEB_JAVA_TESTNG: The Appium Java TestNG type for Web apps.
+	//
+	// APPIUM_WEB_PYTHON: The Appium Python type for Web apps.
 	Type *string `locationName:"type" type:"string" enum:"TestType"`
 }
 
@@ -3166,6 +3198,8 @@ type ScheduleRunTest struct {
 	//
 	// APPIUM_JAVA_TESTNG: The Appium Java TestNG type.
 	//
+	// APPIUM_PYTHON: The Appium Python type.
+	//
 	// CALABASH: The Calabash type.
 	//
 	// INSTRUMENTATION: The Instrumentation type.
@@ -3175,6 +3209,12 @@ type ScheduleRunTest struct {
 	// UIAUTOMATOR: The uiautomator type.
 	//
 	// XCTEST: The XCode test type.
+	//
+	// APPIUM_WEB_JAVA_JUNIT: The Appium Java JUnit type for Web apps.
+	//
+	// APPIUM_WEB_JAVA_TESTNG: The Appium Java TestNG type for Web apps.
+	//
+	// APPIUM_WEB_PYTHON: The Appium Python type for Web apps.
 	Type *string `locationName:"type" type:"string" required:"true" enum:"TestType"`
 }
 
@@ -3263,6 +3303,8 @@ type Suite struct {
 	//
 	// APPIUM_JAVA_TESTNG: The Appium Java TestNG type.
 	//
+	// APPIUM_PYTHON: The Appium Python type.
+	//
 	// CALABASH: The Calabash type.
 	//
 	// INSTRUMENTATION: The Instrumentation type.
@@ -3272,6 +3314,12 @@ type Suite struct {
 	// UIAUTOMATOR: The uiautomator type.
 	//
 	// XCTEST: The XCode test type.
+	//
+	// APPIUM_WEB_JAVA_JUNIT: The Appium Java JUnit type for Web apps.
+	//
+	// APPIUM_WEB_JAVA_TESTNG: The Appium Java TestNG type for Web apps.
+	//
+	// APPIUM_WEB_PYTHON: The Appium Python type for Web apps.
 	Type *string `locationName:"type" type:"string" enum:"TestType"`
 }
 
@@ -3360,6 +3408,8 @@ type Test struct {
 	//
 	// APPIUM_JAVA_TESTNG: The Appium Java TestNG type.
 	//
+	// APPIUM_PYTHON: The Appium Python type.
+	//
 	// CALABASH: The Calabash type.
 	//
 	// INSTRUMENTATION: The Instrumentation type.
@@ -3369,6 +3419,12 @@ type Test struct {
 	// UIAUTOMATOR: The uiautomator type.
 	//
 	// XCTEST: The XCode test type.
+	//
+	// APPIUM_WEB_JAVA_JUNIT: The Appium Java JUnit type for Web apps.
+	//
+	// APPIUM_WEB_JAVA_TESTNG: The Appium Java TestNG type for Web apps.
+	//
+	// APPIUM_WEB_PYTHON: The Appium Python type for Web apps.
 	Type *string `locationName:"type" type:"string" enum:"TestType"`
 }
 
@@ -3542,6 +3598,8 @@ type Upload struct {
 	//
 	// APPIUM_JAVA_TESTNG_TEST_PACKAGE: An Appium Java TestNG test package upload.
 	//
+	// APPIUM_PYTHON_TEST_PACKAGE: An Appium Python test package upload.
+	//
 	// CALABASH_TEST_PACKAGE: A Calabash test package upload.
 	//
 	// INSTRUMENTATION_TEST_PACKAGE: An instrumentation upload.
@@ -3554,6 +3612,8 @@ type Upload struct {
 	//
 	// APPIUM_WEB_JAVA_TESTNG_TEST_PACKAGE: An Appium Java TestNG test package
 	// upload.
+	//
+	// APPIUM_WEB_PYTHON_TEST_PACKAGE: An Appium Python test package upload.
 	Type *string `locationName:"type" type:"string" enum:"UploadType"`
 
 	// The pre-signed Amazon S3 URL that was used to store a file through a corresponding
