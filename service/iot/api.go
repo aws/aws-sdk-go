@@ -637,6 +637,60 @@ func (c *IoT) DetachThingPrincipal(input *DetachThingPrincipalInput) (*DetachThi
 	return out, err
 }
 
+const opDisableTopicRule = "DisableTopicRule"
+
+// DisableTopicRuleRequest generates a request for the DisableTopicRule operation.
+func (c *IoT) DisableTopicRuleRequest(input *DisableTopicRuleInput) (req *request.Request, output *DisableTopicRuleOutput) {
+	op := &request.Operation{
+		Name:       opDisableTopicRule,
+		HTTPMethod: "POST",
+		HTTPPath:   "/rules/{ruleName}/disable",
+	}
+
+	if input == nil {
+		input = &DisableTopicRuleInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DisableTopicRuleOutput{}
+	req.Data = output
+	return
+}
+
+// Disables the specified rule
+func (c *IoT) DisableTopicRule(input *DisableTopicRuleInput) (*DisableTopicRuleOutput, error) {
+	req, out := c.DisableTopicRuleRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opEnableTopicRule = "EnableTopicRule"
+
+// EnableTopicRuleRequest generates a request for the EnableTopicRule operation.
+func (c *IoT) EnableTopicRuleRequest(input *EnableTopicRuleInput) (req *request.Request, output *EnableTopicRuleOutput) {
+	op := &request.Operation{
+		Name:       opEnableTopicRule,
+		HTTPMethod: "POST",
+		HTTPPath:   "/rules/{ruleName}/enable",
+	}
+
+	if input == nil {
+		input = &EnableTopicRuleInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &EnableTopicRuleOutput{}
+	req.Data = output
+	return
+}
+
+// Enables the specified rule.
+func (c *IoT) EnableTopicRule(input *EnableTopicRuleInput) (*EnableTopicRuleOutput, error) {
+	req, out := c.EnableTopicRuleRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opGetLoggingOptions = "GetLoggingOptions"
 
 // GetLoggingOptionsRequest generates a request for the GetLoggingOptions operation.
@@ -1228,6 +1282,7 @@ type Action struct {
 	// Write to a DynamoDB table.
 	DynamoDB *DynamoDBAction `locationName:"dynamoDB" type:"structure"`
 
+	// Write to a Kinesis Firehose stream.
 	Firehose *FirehoseAction `locationName:"firehose" type:"structure"`
 
 	// Write data to a Kinesis stream.
@@ -2075,6 +2130,38 @@ func (s DetachThingPrincipalOutput) GoString() string {
 	return s.String()
 }
 
+// The input for the DisableTopicRuleRequest operation.
+type DisableTopicRuleInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the rule to disable.
+	RuleName *string `location:"uri" locationName:"ruleName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DisableTopicRuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisableTopicRuleInput) GoString() string {
+	return s.String()
+}
+
+type DisableTopicRuleOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisableTopicRuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisableTopicRuleOutput) GoString() string {
+	return s.String()
+}
+
 // Describes an action to write to a DynamoDB table.
 //
 // The tableName, hashKeyField, and rangeKeyField values must match the values
@@ -2110,7 +2197,7 @@ type DynamoDBAction struct {
 	// The range key value.
 	RangeKeyValue *string `locationName:"rangeKeyValue" type:"string" required:"true"`
 
-	// The ARN of the IAM role that grants access.
+	// The ARN of the IAM role that grants access to the DynamoDB table.
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 
 	// The name of the DynamoDB table.
@@ -2127,11 +2214,46 @@ func (s DynamoDBAction) GoString() string {
 	return s.String()
 }
 
+// The input for the EnableTopicRuleRequest operation.
+type EnableTopicRuleInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the topic rule to enable.
+	RuleName *string `location:"uri" locationName:"ruleName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s EnableTopicRuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EnableTopicRuleInput) GoString() string {
+	return s.String()
+}
+
+type EnableTopicRuleOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s EnableTopicRuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EnableTopicRuleOutput) GoString() string {
+	return s.String()
+}
+
+// Describes an action that writes data to a Kinesis Firehose stream.
 type FirehoseAction struct {
 	_ struct{} `type:"structure"`
 
+	// The delivery stream name.
 	DeliveryStreamName *string `locationName:"deliveryStreamName" type:"string" required:"true"`
 
+	// The IAM role that grants access to the firehose stream.
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 }
 
@@ -2301,6 +2423,9 @@ type GetTopicRuleOutput struct {
 
 	// The rule.
 	Rule *TopicRule `locationName:"rule" type:"structure"`
+
+	// The rule ARN.
+	RuleArn *string `locationName:"ruleArn" type:"string"`
 }
 
 // String returns the string representation
@@ -2341,7 +2466,7 @@ type KinesisAction struct {
 	// The partition key.
 	PartitionKey *string `locationName:"partitionKey" type:"string"`
 
-	// The ARN of the IAM role that grants access.
+	// The ARN of the IAM role that grants access to the Kinesis stream.
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 
 	// The name of the Kinesis stream.
@@ -2563,6 +2688,7 @@ type ListPrincipalThingsInput struct {
 	// The maximum number of principals to return.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
+	// A token used to retrieve the next value.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// The principal.
@@ -2950,7 +3076,7 @@ type SetLoggingOptionsInput struct {
 	_ struct{} `type:"structure" payload:"LoggingOptionsPayload"`
 
 	// The logging options payload.
-	LoggingOptionsPayload *LoggingOptionsPayload `locationName:"loggingOptionsPayload" type:"structure"`
+	LoggingOptionsPayload *LoggingOptionsPayload `locationName:"loggingOptionsPayload" type:"structure" required:"true"`
 }
 
 // String returns the string representation
@@ -3084,6 +3210,9 @@ type TopicRuleListItem struct {
 	// The date and time the rule was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"unix"`
 
+	// The rule ARN.
+	RuleArn *string `locationName:"ruleArn" type:"string"`
+
 	// Specifies whether the rule is disabled.
 	RuleDisabled *bool `locationName:"ruleDisabled" type:"boolean"`
 
@@ -3180,6 +3309,10 @@ type UpdateCertificateInput struct {
 	CertificateId *string `location:"uri" locationName:"certificateId" min:"64" type:"string" required:"true"`
 
 	// The new status.
+	//
+	// Note: setting the status to PENDING_TRANSFER will result in an exception
+	// being thrown. PENDING_TRANSFER is a status used internally by AWS IoT and
+	// is not meant to be used by developers.
 	NewStatus *string `location:"querystring" locationName:"newStatus" type:"string" required:"true" enum:"CertificateStatus"`
 }
 

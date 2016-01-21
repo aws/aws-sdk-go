@@ -90,6 +90,14 @@ type IoTAPI interface {
 
 	DetachThingPrincipal(*iot.DetachThingPrincipalInput) (*iot.DetachThingPrincipalOutput, error)
 
+	DisableTopicRuleRequest(*iot.DisableTopicRuleInput) (*request.Request, *iot.DisableTopicRuleOutput)
+
+	DisableTopicRule(*iot.DisableTopicRuleInput) (*iot.DisableTopicRuleOutput, error)
+
+	EnableTopicRuleRequest(*iot.EnableTopicRuleInput) (*request.Request, *iot.EnableTopicRuleOutput)
+
+	EnableTopicRule(*iot.EnableTopicRuleInput) (*iot.EnableTopicRuleOutput, error)
+
 	GetLoggingOptionsRequest(*iot.GetLoggingOptionsInput) (*request.Request, *iot.GetLoggingOptionsOutput)
 
 	GetLoggingOptions(*iot.GetLoggingOptionsInput) (*iot.GetLoggingOptionsOutput, error)

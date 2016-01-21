@@ -21,6 +21,8 @@
     "DescribeThing": "<p>Gets information about the specified thing.</p>",
     "DetachPrincipalPolicy": "<p>Removes the specified policy from the specified certificate.</p>",
     "DetachThingPrincipal": "<p>Detaches the specified principal from the specified thing.</p>",
+    "DisableTopicRule": "<p>Disables the specified rule</p>",
+    "EnableTopicRule": "<p>Enables the specified rule.</p>",
     "GetLoggingOptions": "<p>Gets the logging options.</p>",
     "GetPolicy": "<p>Gets information about the specified policy with the policy document of the default version.</p>",
     "GetPolicyVersion": "<p>Gets information about the specified policy version.</p>",
@@ -123,10 +125,10 @@
     "AwsArn": {
       "base": null,
       "refs": {
-        "DynamoDBAction$roleArn": "<p>The ARN of the IAM role that grants access.</p>",
-        "FirehoseAction$roleArn": null,
+        "DynamoDBAction$roleArn": "<p>The ARN of the IAM role that grants access to the DynamoDB table.</p>",
+        "FirehoseAction$roleArn": "<p>The IAM role that grants access to the firehose stream.</p>",
         "GetLoggingOptionsResponse$roleArn": "<p>The ARN of the IAM role that grants access.</p>",
-        "KinesisAction$roleArn": "<p>The ARN of the IAM role that grants access.</p>",
+        "KinesisAction$roleArn": "<p>The ARN of the IAM role that grants access to the Kinesis stream.</p>",
         "LoggingOptionsPayload$roleArn": "<p>The ARN of the IAM role that grants access.</p>",
         "RepublishAction$roleArn": "<p>The ARN of the IAM role that grants access.</p>",
         "S3Action$roleArn": "<p>The ARN of the IAM role that grants access.</p>",
@@ -208,7 +210,7 @@
       "refs": {
         "Certificate$status": "<p>The status of the certificate.</p>",
         "CertificateDescription$status": "<p>The status of the certificate.</p>",
-        "UpdateCertificateRequest$newStatus": "<p>The new status.</p>"
+        "UpdateCertificateRequest$newStatus": "<p>The new status.</p> <p>Note: setting the status to PENDING_TRANSFER will result in an exception being thrown. PENDING_TRANSFER is a status used internally by AWS IoT and is not meant to be used by developers.</p>"
       }
     },
     "Certificates": {
@@ -332,7 +334,7 @@
     "DeliveryStreamName": {
       "base": null,
       "refs": {
-        "FirehoseAction$deliveryStreamName": null
+        "FirehoseAction$deliveryStreamName": "<p>The delivery stream name.</p>"
       }
     },
     "DescribeCertificateRequest": {
@@ -387,10 +389,20 @@
       "refs": {
       }
     },
+    "DisableTopicRuleRequest": {
+      "base": "<p>The input for the DisableTopicRuleRequest operation.</p>",
+      "refs": {
+      }
+    },
     "DynamoDBAction": {
       "base": "<p>Describes an action to write to a DynamoDB table.</p> <p>The <code>tableName</code>, <code>hashKeyField</code>, and <code>rangeKeyField</code> values must match the values used when you created the table.</p> <p>The <code>hashKeyValue</code> and <code>rangeKeyvalue</code> fields use a substitution template syntax. These templates provide data at runtime. The syntax is as follows: ${<i>sql-expression</i>}.</p> <p>You can specify any expression that's valid in a WHERE or SELECT clause, including JSON properties, comparisons, calculations, and functions. For example, the following field uses the third level of the topic:</p> <p><code>\"hashKeyValue\": \"${topic(3)}\"</code></p> <p>The following field uses the timestamp:</p> <p><code>\"rangeKeyValue\": \"${timestamp()}\"</code></p>",
       "refs": {
         "Action$dynamoDB": "<p>Write to a DynamoDB table.</p>"
+      }
+    },
+    "EnableTopicRuleRequest": {
+      "base": "<p>The input for the EnableTopicRuleRequest operation.</p>",
+      "refs": {
       }
     },
     "EndpointAddress": {
@@ -400,9 +412,9 @@
       }
     },
     "FirehoseAction": {
-      "base": null,
+      "base": "<p>Describes an action that writes data to a Kinesis Firehose stream.</p>",
       "refs": {
-        "Action$firehose": null
+        "Action$firehose": "<p>Write to a Kinesis Firehose stream.</p>"
       }
     },
     "FunctionArn": {
@@ -644,7 +656,7 @@
     "NextToken": {
       "base": null,
       "refs": {
-        "ListPrincipalThingsRequest$nextToken": null,
+        "ListPrincipalThingsRequest$nextToken": "<p>A token used to retrieve the next value.</p>",
         "ListPrincipalThingsResponse$nextToken": "<p>A token used to retrieve the next value.</p>",
         "ListThingsRequest$nextToken": "<p>The token for the next value.</p>",
         "ListThingsResponse$nextToken": "<p>A token used to retrieve the next value.</p>",
@@ -829,11 +841,20 @@
       "refs": {
       }
     },
+    "RuleArn": {
+      "base": null,
+      "refs": {
+        "GetTopicRuleResponse$ruleArn": "<p>The rule ARN.</p>",
+        "TopicRuleListItem$ruleArn": "<p>The rule ARN.</p>"
+      }
+    },
     "RuleName": {
       "base": null,
       "refs": {
         "CreateTopicRuleRequest$ruleName": "<p>The name of the rule.</p>",
         "DeleteTopicRuleRequest$ruleName": "<p>The name of the rule.</p>",
+        "DisableTopicRuleRequest$ruleName": "<p>The name of the rule to disable.</p>",
+        "EnableTopicRuleRequest$ruleName": "<p>The name of the topic rule to enable.</p>",
         "GetTopicRuleRequest$ruleName": "<p>The name of the rule.</p>",
         "ReplaceTopicRuleRequest$ruleName": "<p>The name of the rule.</p>",
         "TopicRule$ruleName": "<p>The name of the rule.</p>",

@@ -458,6 +458,44 @@ func ExampleIoT_DetachThingPrincipal() {
 	fmt.Println(resp)
 }
 
+func ExampleIoT_DisableTopicRule() {
+	svc := iot.New(session.New())
+
+	params := &iot.DisableTopicRuleInput{
+		RuleName: aws.String("RuleName"), // Required
+	}
+	resp, err := svc.DisableTopicRule(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleIoT_EnableTopicRule() {
+	svc := iot.New(session.New())
+
+	params := &iot.EnableTopicRuleInput{
+		RuleName: aws.String("RuleName"), // Required
+	}
+	resp, err := svc.EnableTopicRule(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleIoT_GetLoggingOptions() {
 	svc := iot.New(session.New())
 
@@ -811,7 +849,7 @@ func ExampleIoT_SetLoggingOptions() {
 	svc := iot.New(session.New())
 
 	params := &iot.SetLoggingOptionsInput{
-		LoggingOptionsPayload: &iot.LoggingOptionsPayload{
+		LoggingOptionsPayload: &iot.LoggingOptionsPayload{ // Required
 			RoleArn:  aws.String("AwsArn"), // Required
 			LogLevel: aws.String("LogLevel"),
 		},
