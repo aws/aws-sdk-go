@@ -3,10 +3,10 @@
   "metadata":{
     "apiVersion":"2010-05-15",
     "endpointPrefix":"cloudformation",
+    "protocol":"query",
     "serviceFullName":"AWS CloudFormation",
     "signatureVersion":"v4",
-    "xmlNamespace":"http://cloudformation.amazonaws.com/doc/2010-05-15/",
-    "protocol":"query"
+    "xmlNamespace":"http://cloudformation.amazonaws.com/doc/2010-05-15/"
   },
   "operations":{
     "CancelUpdateStack":{
@@ -16,6 +16,18 @@
         "requestUri":"/"
       },
       "input":{"shape":"CancelUpdateStackInput"}
+    },
+    "ContinueUpdateRollback":{
+      "name":"ContinueUpdateRollback",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ContinueUpdateRollbackInput"},
+      "output":{
+        "shape":"ContinueUpdateRollbackOutput",
+        "resultWrapper":"ContinueUpdateRollbackResult"
+      }
     },
     "CreateStack":{
       "name":"CreateStack",
@@ -29,33 +41,9 @@
         "resultWrapper":"CreateStackResult"
       },
       "errors":[
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceededException",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"AlreadyExistsException",
-          "error":{
-            "code":"AlreadyExistsException",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InsufficientCapabilitiesException",
-          "error":{
-            "code":"InsufficientCapabilitiesException",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"LimitExceededException"},
+        {"shape":"AlreadyExistsException"},
+        {"shape":"InsufficientCapabilitiesException"}
       ]
     },
     "DeleteStack":{
@@ -226,15 +214,7 @@
         "resultWrapper":"UpdateStackResult"
       },
       "errors":[
-        {
-          "shape":"InsufficientCapabilitiesException",
-          "error":{
-            "code":"InsufficientCapabilitiesException",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InsufficientCapabilitiesException"}
       ]
     },
     "ValidateTemplate":{
@@ -293,6 +273,18 @@
     "Capability":{
       "type":"string",
       "enum":["CAPABILITY_IAM"]
+    },
+    "ContinueUpdateRollbackInput":{
+      "type":"structure",
+      "required":["StackName"],
+      "members":{
+        "StackName":{"shape":"StackNameOrId"}
+      }
+    },
+    "ContinueUpdateRollbackOutput":{
+      "type":"structure",
+      "members":{
+      }
     },
     "CreateStackInput":{
       "type":"structure",
@@ -521,8 +513,8 @@
     "Metadata":{"type":"string"},
     "NextToken":{
       "type":"string",
-      "min":1,
-      "max":1024
+      "max":1024,
+      "min":1
     },
     "NoEcho":{"type":"boolean"},
     "NotificationARN":{"type":"string"},
@@ -600,8 +592,8 @@
     },
     "ResourceSignalUniqueId":{
       "type":"string",
-      "min":1,
-      "max":64
+      "max":64,
+      "min":1
     },
     "ResourceStatus":{
       "type":"string",
@@ -706,23 +698,23 @@
     },
     "StackPolicyBody":{
       "type":"string",
-      "min":1,
-      "max":16384
+      "max":16384,
+      "min":1
     },
     "StackPolicyDuringUpdateBody":{
       "type":"string",
-      "min":1,
-      "max":16384
+      "max":16384,
+      "min":1
     },
     "StackPolicyDuringUpdateURL":{
       "type":"string",
-      "min":1,
-      "max":1350
+      "max":1350,
+      "min":1
     },
     "StackPolicyURL":{
       "type":"string",
-      "min":1,
-      "max":1350
+      "max":1350,
+      "min":1
     },
     "StackResource":{
       "type":"structure",
@@ -875,8 +867,8 @@
     },
     "TemplateURL":{
       "type":"string",
-      "min":1,
-      "max":1024
+      "max":1024,
+      "min":1
     },
     "TimeoutMinutes":{
       "type":"integer",

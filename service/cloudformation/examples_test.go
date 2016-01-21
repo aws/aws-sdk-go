@@ -34,6 +34,25 @@ func ExampleCloudFormation_CancelUpdateStack() {
 	fmt.Println(resp)
 }
 
+func ExampleCloudFormation_ContinueUpdateRollback() {
+	svc := cloudformation.New(session.New())
+
+	params := &cloudformation.ContinueUpdateRollbackInput{
+		StackName: aws.String("StackNameOrId"), // Required
+	}
+	resp, err := svc.ContinueUpdateRollback(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleCloudFormation_CreateStack() {
 	svc := cloudformation.New(session.New())
 

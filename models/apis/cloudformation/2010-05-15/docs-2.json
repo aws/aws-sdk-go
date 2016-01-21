@@ -1,13 +1,15 @@
 {
   "version": "2.0",
+  "service": "<fullname>AWS CloudFormation</fullname> <p>AWS CloudFormation enables you to create and manage AWS infrastructure deployments predictably and repeatedly. AWS CloudFormation helps you leverage AWS products such as Amazon EC2, EBS, Amazon SNS, ELB, and Auto Scaling to build highly-reliable, highly scalable, cost effective applications without worrying about creating and configuring the underlying AWS infrastructure.</p> <p>With AWS CloudFormation, you declare all of your resources and dependencies in a template file. The template defines a collection of resources as a single unit called a stack. AWS CloudFormation creates and deletes all member resources of the stack together and manages all dependencies between the resources for you.</p> <p>For more information about this product, go to the <a href=\"http://aws.amazon.com/cloudformation/\">CloudFormation Product Page</a>.</p> <p>Amazon CloudFormation makes use of other AWS products. If you need additional technical information about a specific AWS product, you can find the product's technical documentation at <a href=\"http://docs.aws.amazon.com/documentation/\">http://docs.aws.amazon.com/documentation/</a>.</p>",
   "operations": {
     "CancelUpdateStack": "<p>Cancels an update on the specified stack. If the call completes successfully, the stack rolls back the update and reverts to the previous stack configuration.</p> <note>You can cancel only stacks that are in the UPDATE_IN_PROGRESS state.</note>",
+    "ContinueUpdateRollback": "<p>For a specified stack that is in the <code>UPDATE_ROLLBACK_FAILED</code> state, continues rolling it back to the <code>UPDATE_ROLLBACK_COMPLETE</code> state. Depending on the cause of the failure, you can manually <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html#troubleshooting-errors-update-rollback-failed\"> fix the error</a> and continue the rollback. By continuing the rollback, you can return your stack to a working state (the <code>UPDATE_ROLLBACK_COMPLETE</code> state), return the stack to its original settings, and then try to update the stack again.</p> <p>A stack goes into the <code>UPDATE_ROLLBACK_FAILED</code> state when AWS CloudFormation cannot roll back all changes after a failed stack update. For example, you might have a stack that is rolling back to an old database instance that was deleted outside of AWS CloudFormation. Because AWS CloudFormation doesn't know the database was deleted, it assumes that the database instance still exists and attempts to roll back to it, causing the update rollback to fail.</p>",
     "CreateStack": "<p>Creates a stack as specified in the template. After the call completes successfully, the stack creation starts. You can check the status of the stack via the <a>DescribeStacks</a> API.</p>",
     "DeleteStack": "<p>Deletes a specified stack. Once the call completes successfully, stack deletion starts. Deleted stacks do not show up in the <a>DescribeStacks</a> API if the deletion has been completed successfully.</p>",
     "DescribeAccountLimits": "<p>Retrieves your account's AWS CloudFormation limits, such as the maximum number of stacks that you can create in your account.</p>",
     "DescribeStackEvents": "<p>Returns all stack related events for a specified stack. For more information about a stack's event history, go to <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/concept-stack.html\">Stacks</a> in the AWS CloudFormation User Guide.</p> <note>You can list events for stacks that have failed to create or have been deleted by specifying the unique stack identifier (stack ID).</note>",
     "DescribeStackResource": "<p>Returns a description of the specified resource in the specified stack.</p> <p>For deleted stacks, DescribeStackResource returns resource information for up to 90 days after the stack has been deleted.</p>",
-    "DescribeStackResources": "<p>Returns AWS resource descriptions for running and deleted stacks. If <code>StackName</code> is specified, all the associated resources that are part of the stack are returned. If <code>PhysicalResourceId</code> is specified, the associated resources of the stack that the resource belongs to are returned.</p> <note>Only the first 100 resources will be returned. If your stack has more resources than this, you should use <code>ListStackResources</code> instead.</note> <p>For deleted stacks, <code>DescribeStackResources</code> returns resource information for up to 90 days after the stack has been deleted.</p> <p>You must specify either <code>StackName</code> or <code>PhysicalResourceId</code>, but not both. In addition, you can specify <code>LogicalResourceId</code> to filter the returned result. For more information about resources, the <code>LogicalResourceId</code> and <code>PhysicalResourceId</code>, go to the <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide\">AWS CloudFormation User Guide</a>.</p> <note>A <code>ValidationError</code> is returned if you specify both <code>StackName</code> and <code>PhysicalResourceId</code> in the same request.</note>",
+    "DescribeStackResources": "<p>Returns AWS resource descriptions for running and deleted stacks. If <code>StackName</code> is specified, all the associated resources that are part of the stack are returned. If <code>PhysicalResourceId</code> is specified, the associated resources of the stack that the resource belongs to are returned.</p> <note>Only the first 100 resources will be returned. If your stack has more resources than this, you should use <code>ListStackResources</code> instead.</note> <p>For deleted stacks, <code>DescribeStackResources</code> returns resource information for up to 90 days after the stack has been deleted.</p> <p>You must specify either <code>StackName</code> or <code>PhysicalResourceId</code>, but not both. In addition, you can specify <code>LogicalResourceId</code> to filter the returned result. For more information about resources, the <code>LogicalResourceId</code> and <code>PhysicalResourceId</code>, go to the <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/\">AWS CloudFormation User Guide</a>.</p> <note>A <code>ValidationError</code> is returned if you specify both <code>StackName</code> and <code>PhysicalResourceId</code> in the same request.</note>",
     "DescribeStacks": "<p>Returns the description for the specified stack; if no stack name was specified, then it returns the description for all the stacks created.</p>",
     "EstimateTemplateCost": "<p>Returns the estimated monthly cost of a template. The return value is an AWS Simple Monthly Calculator URL with a query string that describes the resources required to run the template.</p>",
     "GetStackPolicy": "<p>Returns the stack policy for a specified stack. If a stack doesn't have a policy, a null value is returned.</p>",
@@ -20,7 +22,6 @@
     "UpdateStack": "<p>Updates a stack as specified in the template. After the call completes successfully, the stack update starts. You can check the status of the stack via the <a>DescribeStacks</a> action.</p> <p>To get a copy of the template for an existing stack, you can use the <a>GetTemplate</a> action.</p> <p>Tags that were associated with this stack during creation time will still be associated with the stack after an <code>UpdateStack</code> operation.</p> <p>For more information about creating an update template, updating a stack, and monitoring the progress of the update, see <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks.html\">Updating a Stack</a>.</p>",
     "ValidateTemplate": "<p>Validates a specified template.</p>"
   },
-  "service": "<fullname>AWS CloudFormation</fullname> <p>AWS CloudFormation enables you to create and manage AWS infrastructure deployments predictably and repeatedly. AWS CloudFormation helps you leverage AWS products such as Amazon EC2, EBS, Amazon SNS, ELB, and Auto Scaling to build highly-reliable, highly scalable, cost effective applications without worrying about creating and configuring the underlying AWS infrastructure.</p> <p>With AWS CloudFormation, you declare all of your resources and dependencies in a template file. The template defines a collection of resources as a single unit called a stack. AWS CloudFormation creates and deletes all member resources of the stack together and manages all dependencies between the resources for you.</p> <p>For more information about this product, go to the <a href=\"http://aws.amazon.com/cloudformation/\">CloudFormation Product Page</a>.</p> <p>Amazon CloudFormation makes use of other AWS products. If you need additional technical information about a specific AWS product, you can find the product's technical documentation at <a href=\"http://aws.amazon.com/documentation/\">http://aws.amazon.com/documentation/</a>.</p>",
   "shapes": {
     "AccountLimit": {
       "base": "<p>The AccountLimit data type.</p>",
@@ -77,6 +78,16 @@
       "base": null,
       "refs": {
         "Capabilities$member": null
+      }
+    },
+    "ContinueUpdateRollbackInput": {
+      "base": "<p>The input for the <a>ContinueUpdateRollback</a> action.</p>",
+      "refs": {
+      }
+    },
+    "ContinueUpdateRollbackOutput": {
+      "base": "<p>The output for a <a>ContinueUpdateRollback</a> action.</p>",
+      "refs": {
       }
     },
     "CreateStackInput": {
@@ -174,7 +185,7 @@
       "base": null,
       "refs": {
         "CreateStackInput$DisableRollback": "<p>Set to <code>true</code> to disable rollback of the stack if stack creation failed. You can specify either <code>DisableRollback</code> or <code>OnFailure</code>, but not both.</p> <p>Default: <code>false</code> </p>",
-        "Stack$DisableRollback": "<p>Boolean to enable or disable rollback on stack creation failures:</p> <p> <ul> <li> <code>true</code>: disable rollback</li> <li> <code>false</code>: enable rollback</li> </ul> </p>"
+        "Stack$DisableRollback": "<p>Boolean to enable or disable rollback on stack creation failures:</p> <p> <ul> <li><code>true</code>: disable rollback</li> <li><code>false</code>: enable rollback</li> </ul> </p>"
       }
     },
     "EstimateTemplateCostInput": {
@@ -295,15 +306,15 @@
       "base": null,
       "refs": {
         "DescribeAccountLimitsInput$NextToken": "<p>A string that identifies the next page of limits that you want to retrieve.</p>",
-        "DescribeAccountLimitsOutput$NextToken": "<p>A string that identifies the next page of limits. If no additional page exists, this value is null.</p>",
-        "DescribeStackEventsInput$NextToken": "<p>String that identifies the start of the next list of events, if there is one.</p> <p>Default: There is no default value.</p>",
-        "DescribeStackEventsOutput$NextToken": "<p>String that identifies the start of the next list of events, if there is one.</p>",
-        "DescribeStacksInput$NextToken": "String that identifies the start of the next list of stacks, if there is one.",
-        "DescribeStacksOutput$NextToken": "String that identifies the start of the next list of stacks, if there is one.",
-        "ListStackResourcesInput$NextToken": "<p>String that identifies the start of the next list of stack resource summaries, if there is one.</p> <p>Default: There is no default value.</p>",
-        "ListStackResourcesOutput$NextToken": "<p>String that identifies the start of the next list of stack resources, if there is one.</p>",
-        "ListStacksInput$NextToken": "<p>String that identifies the start of the next list of stacks, if there is one.</p> <p>Default: There is no default value.</p>",
-        "ListStacksOutput$NextToken": "<p>String that identifies the start of the next list of stacks, if there is one.</p>"
+        "DescribeAccountLimitsOutput$NextToken": "<p>If the output exceeds 1 MB in size, a string that identifies the next page of limits. If no additional page exists, this value is null.</p>",
+        "DescribeStackEventsInput$NextToken": "<p>A string that identifies the next page of events that you want to retrieve.</p>",
+        "DescribeStackEventsOutput$NextToken": "<p>If the output exceeds 1 MB in size, a string that identifies the next page of events. If no additional page exists, this value is null.</p>",
+        "DescribeStacksInput$NextToken": "<p>A string that identifies the next page of stacks that you want to retrieve.</p>",
+        "DescribeStacksOutput$NextToken": "<p>If the output exceeds 1 MB in size, a string that identifies the next page of stacks. If no additional page exists, this value is null.</p>",
+        "ListStackResourcesInput$NextToken": "<p>A string that identifies the next page of stack resources that you want to retrieve.</p>",
+        "ListStackResourcesOutput$NextToken": "<p>If the output exceeds 1 MB in size, a string that identifies the next page of stack resources. If no additional page exists, this value is null.</p>",
+        "ListStacksInput$NextToken": "<p>A string that identifies the next page of stacks that you want to retrieve.</p>",
+        "ListStacksOutput$NextToken": "<p>If the output exceeds 1 MB in size, a string that identifies the next page of stacks. If no additional page exists, this value is null.</p>"
       }
     },
     "NoEcho": {
@@ -324,7 +335,7 @@
       "refs": {
         "CreateStackInput$NotificationARNs": "<p>The Simple Notification Service (SNS) topic ARNs to publish stack related events. You can find your SNS topic ARNs using the <a href=\"http://console.aws.amazon.com/sns\">SNS console</a> or your Command Line Interface (CLI).</p>",
         "Stack$NotificationARNs": "<p>SNS topic ARNs to which stack related events are published.</p>",
-        "UpdateStackInput$NotificationARNs": "<p>Update the ARNs for the Amazon SNS topics that are associated with the stack.</p>"
+        "UpdateStackInput$NotificationARNs": "<p>Amazon Simple Notification Service topic Amazon Resource Names (ARNs) that AWS CloudFormation associates with the stack. Specify an empty list to remove all notification topics.</p>"
       }
     },
     "OnFailure": {
@@ -406,7 +417,7 @@
     "Parameters": {
       "base": null,
       "refs": {
-        "CreateStackInput$Parameters": "<p>A list of <code>Parameter</code> structures that specify input parameters for the stack.</p>",
+        "CreateStackInput$Parameters": "<p>A list of <code>Parameter</code> structures that specify input parameters for the stack. For more information, see the <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_Parameter.html\">Parameter</a> data type.</p>",
         "EstimateTemplateCostInput$Parameters": "<p>A list of <code>Parameter</code> structures that specify input parameters.</p>",
         "Stack$Parameters": "<p>A list of <code>Parameter</code> structures.</p>",
         "UpdateStackInput$Parameters": "<p>A list of <code>Parameter</code> structures that specify input parameters for the stack. For more information, see the <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_Parameter.html\">Parameter</a> data type.</p>"
@@ -472,8 +483,8 @@
       "base": null,
       "refs": {
         "CreateStackInput$ResourceTypes": "<p>The template resource types that you have permissions to work with for this create stack action, such as <code>AWS::EC2::Instance</code>, <code>AWS::EC2::*</code>, or <code>Custom::MyCustomInstance</code>. Use the following syntax to describe template resource types: <code>AWS::*</code> (for all AWS resource), <code>Custom::*</code> (for all custom resources), <code>Custom::<i>logical_ID</i></code> (for a specific custom resource), <code>AWS::<i>service_name</i>::*</code> (for all resources of a particular AWS service), and <code>AWS::<i>service_name</i>::<i>resource_logical_ID</i></code> (for a specific AWS resource).</p> <p>If the list of resource types doesn't include a resource that you're creating, the stack creation fails. By default, AWS CloudFormation grants permissions to all resource types. AWS Identity and Access Management (IAM) uses this parameter for AWS CloudFormation-specific condition keys in IAM policies. For more information, see <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-iam-template.html\">Controlling Access with AWS Identity and Access Management</a>.</p>",
-        "GetTemplateSummaryOutput$ResourceTypes": "<p>A list of all the template resource types that are defined in the template, such as <code>AWS::EC2::Instance</code>, <code>AWS::Dynamo::Table</code>, and <code>Custom::MyCustomInstance</code>. Use the following syntax to describe template resource types: <code>AWS::*</code> (for all AWS resources), <code>Custom::*</code> (for all custom resources), <code>Custom::<i>logical_ID</i></code> (for a specific custom resource), <code>AWS::<i>service_name</i>::*</code> (for all resources of a particular AWS service), and <code>AWS::<i>service_name</i>::<i>resource_logical_ID</i></code> (for a specific AWS resource).</p>",
-        "UpdateStackInput$ResourceTypes": "<p>The template resource types that you have permissions to work with for this update stack action, such as <code>AWS::EC2::Instance</code>, <code>AWS::EC2::*</code>, or <code>Custom::MyCustomInstance</code>.</p> <p>If the list of resource types doesn't include a resource that you're updating, the stack update fails. By default, AWS CloudFormation grants permissions to all resource types. AWS Identity and Access Management (IAM) uses this parameter for AWS CloudFormation-specific condition keys in IAM policies. For more information, see <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-iam-template.html\">Controlling Access with AWS Identity and Access Management</a></p>"
+        "GetTemplateSummaryOutput$ResourceTypes": "<p>A list of all the template resource types that are defined in the template, such as <code>AWS::EC2::Instance</code>, <code>AWS::Dynamo::Table</code>, and <code>Custom::MyCustomInstance</code>.</p>",
+        "UpdateStackInput$ResourceTypes": "<p>The template resource types that you have permissions to work with for this update stack action, such as <code>AWS::EC2::Instance</code>, <code>AWS::EC2::*</code>, or <code>Custom::MyCustomInstance</code>.</p> <p>If the list of resource types doesn't include a resource that you're updating, the stack update fails. By default, AWS CloudFormation grants permissions to all resource types. AWS Identity and Access Management (IAM) uses this parameter for AWS CloudFormation-specific condition keys in IAM policies. For more information, see <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-iam-template.html\">Controlling Access with AWS Identity and Access Management</a>.</p>"
       }
     },
     "SetStackPolicyInput": {
@@ -520,7 +531,7 @@
       "base": null,
       "refs": {
         "CancelUpdateStackInput$StackName": "<p>The name or the unique stack ID that is associated with the stack.</p>",
-        "CreateStackInput$StackName": "<p>The name that is associated with the stack. The name must be unique in the region in which you are creating the stack.</p> <note>A stack name can contain only alphanumeric characters (case sensitive) and hyphens. It must start with an alphabetic character and cannot be longer than 255 characters.</note>",
+        "CreateStackInput$StackName": "<p>The name that is associated with the stack. The name must be unique in the region in which you are creating the stack.</p> <note>A stack name can contain only alphanumeric characters (case sensitive) and hyphens. It must start with an alphabetic character and cannot be longer than 128 characters.</note>",
         "DeleteStackInput$StackName": "<p>The name or the unique stack ID that is associated with the stack.</p>",
         "DescribeStackEventsInput$StackName": "<p>The name or the unique stack ID that is associated with the stack, which are not always interchangeable:</p> <ul> <li>Running stacks: You can specify either the stack's name or its unique stack ID.</li> <li>Deleted stacks: You must specify the unique stack ID.</li> </ul> <p>Default: There is no default value.</p>",
         "DescribeStackResourceInput$StackName": "<p>The name or the unique stack ID that is associated with the stack, which are not always interchangeable:</p> <ul> <li>Running stacks: You can specify either the stack's name or its unique stack ID.</li> <li>Deleted stacks: You must specify the unique stack ID.</li> </ul> <p>Default: There is no default value.</p>",
@@ -541,6 +552,7 @@
     "StackNameOrId": {
       "base": null,
       "refs": {
+        "ContinueUpdateRollbackInput$StackName": "<p>The name or the unique ID of the stack that you want to continue rolling back.</p>",
         "GetTemplateSummaryInput$StackName": "<p>The name or the stack ID that is associated with the stack, which are not always interchangeable. For running stacks, you can specify either the stack's name or its unique stack ID. For deleted stack, you must specify the unique stack ID.</p> <p>Conditional: You must specify only one of the following parameters: <code>StackName</code>, <code>TemplateBody</code>, or <code>TemplateURL</code>.</p>",
         "SignalResourceInput$StackName": "<p>The stack name or unique stack ID that includes the resource that you want to signal.</p>"
       }
@@ -644,7 +656,7 @@
       }
     },
     "Tag": {
-      "base": "<p>The Tag type is used by <code>CreateStack</code> in the <code>Tags</code> parameter. It allows you to specify a key/value pair that can be used to store information related to cost allocation for an AWS CloudFormation stack.</p>",
+      "base": "<p>The Tag type is used by <code>CreateStack</code> in the <code>Tags</code> parameter. It allows you to specify a key-value pair that can be used to store information related to cost allocation for an AWS CloudFormation stack.</p>",
       "refs": {
         "Tags$member": null
       }
@@ -664,7 +676,7 @@
     "Tags": {
       "base": null,
       "refs": {
-        "CreateStackInput$Tags": "<p>A set of user-defined <code>Tags</code> to associate with this stack, represented by key/value pairs. Tags defined for the stack are propagated to EC2 resources that are created as part of the stack. A maximum number of 10 tags can be specified.</p>",
+        "CreateStackInput$Tags": "<p>Key-value pairs to associate with this stack. AWS CloudFormation also propagates these tags to the resources created in the stack. A maximum number of 10 tags can be specified.</p>",
         "Stack$Tags": "<p>A list of <code>Tag</code>s that specify cost allocation information for the stack.</p>"
       }
     },

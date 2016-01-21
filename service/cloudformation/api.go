@@ -40,6 +40,45 @@ func (c *CloudFormation) CancelUpdateStack(input *CancelUpdateStackInput) (*Canc
 	return out, err
 }
 
+const opContinueUpdateRollback = "ContinueUpdateRollback"
+
+// ContinueUpdateRollbackRequest generates a request for the ContinueUpdateRollback operation.
+func (c *CloudFormation) ContinueUpdateRollbackRequest(input *ContinueUpdateRollbackInput) (req *request.Request, output *ContinueUpdateRollbackOutput) {
+	op := &request.Operation{
+		Name:       opContinueUpdateRollback,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ContinueUpdateRollbackInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ContinueUpdateRollbackOutput{}
+	req.Data = output
+	return
+}
+
+// For a specified stack that is in the UPDATE_ROLLBACK_FAILED state, continues
+// rolling it back to the UPDATE_ROLLBACK_COMPLETE state. Depending on the cause
+// of the failure, you can manually  fix the error (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html#troubleshooting-errors-update-rollback-failed)
+// and continue the rollback. By continuing the rollback, you can return your
+// stack to a working state (the UPDATE_ROLLBACK_COMPLETE state), return the
+// stack to its original settings, and then try to update the stack again.
+//
+// A stack goes into the UPDATE_ROLLBACK_FAILED state when AWS CloudFormation
+// cannot roll back all changes after a failed stack update. For example, you
+// might have a stack that is rolling back to an old database instance that
+// was deleted outside of AWS CloudFormation. Because AWS CloudFormation doesn't
+// know the database was deleted, it assumes that the database instance still
+// exists and attempts to roll back to it, causing the update rollback to fail.
+func (c *CloudFormation) ContinueUpdateRollback(input *ContinueUpdateRollbackInput) (*ContinueUpdateRollbackOutput, error) {
+	req, out := c.ContinueUpdateRollbackRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opCreateStack = "CreateStack"
 
 // CreateStackRequest generates a request for the CreateStack operation.
@@ -235,7 +274,7 @@ func (c *CloudFormation) DescribeStackResourcesRequest(input *DescribeStackResou
 // You must specify either StackName or PhysicalResourceId, but not both. In
 // addition, you can specify LogicalResourceId to filter the returned result.
 // For more information about resources, the LogicalResourceId and PhysicalResourceId,
-// go to the AWS CloudFormation User Guide (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide).
+// go to the AWS CloudFormation User Guide (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/).
 //
 // A ValidationError is returned if you specify both StackName and PhysicalResourceId
 // in the same request.
@@ -679,6 +718,40 @@ func (s CancelUpdateStackOutput) GoString() string {
 	return s.String()
 }
 
+// The input for the ContinueUpdateRollback action.
+type ContinueUpdateRollbackInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name or the unique ID of the stack that you want to continue rolling
+	// back.
+	StackName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ContinueUpdateRollbackInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ContinueUpdateRollbackInput) GoString() string {
+	return s.String()
+}
+
+// The output for a ContinueUpdateRollback action.
+type ContinueUpdateRollbackOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s ContinueUpdateRollbackOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ContinueUpdateRollbackOutput) GoString() string {
+	return s.String()
+}
+
 // The input for CreateStack action.
 type CreateStackInput struct {
 	_ struct{} `type:"structure"`
@@ -720,6 +793,8 @@ type CreateStackInput struct {
 	OnFailure *string `type:"string" enum:"OnFailure"`
 
 	// A list of Parameter structures that specify input parameters for the stack.
+	// For more information, see the Parameter (http://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_Parameter.html)
+	// data type.
 	Parameters []*Parameter `type:"list"`
 
 	// The template resource types that you have permissions to work with for this
@@ -743,7 +818,7 @@ type CreateStackInput struct {
 	//
 	// A stack name can contain only alphanumeric characters (case sensitive) and
 	// hyphens. It must start with an alphabetic character and cannot be longer
-	// than 255 characters.
+	// than 128 characters.
 	StackName *string `type:"string" required:"true"`
 
 	// Structure containing the stack policy body. For more information, go to
@@ -758,9 +833,9 @@ type CreateStackInput struct {
 	// but not both.
 	StackPolicyURL *string `min:"1" type:"string"`
 
-	// A set of user-defined Tags to associate with this stack, represented by key/value
-	// pairs. Tags defined for the stack are propagated to EC2 resources that are
-	// created as part of the stack. A maximum number of 10 tags can be specified.
+	// Key-value pairs to associate with this stack. AWS CloudFormation also propagates
+	// these tags to the resources created in the stack. A maximum number of 10
+	// tags can be specified.
 	Tags []*Tag `type:"list"`
 
 	// Structure containing the template body with a minimum length of 1 byte and
@@ -873,8 +948,8 @@ type DescribeAccountLimitsOutput struct {
 	// limits and their values.
 	AccountLimits []*AccountLimit `type:"list"`
 
-	// A string that identifies the next page of limits. If no additional page exists,
-	// this value is null.
+	// If the output exceeds 1 MB in size, a string that identifies the next page
+	// of limits. If no additional page exists, this value is null.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -892,10 +967,7 @@ func (s DescribeAccountLimitsOutput) GoString() string {
 type DescribeStackEventsInput struct {
 	_ struct{} `type:"structure"`
 
-	// String that identifies the start of the next list of events, if there is
-	// one.
-	//
-	// Default: There is no default value.
+	// A string that identifies the next page of events that you want to retrieve.
 	NextToken *string `min:"1" type:"string"`
 
 	// The name or the unique stack ID that is associated with the stack, which
@@ -921,8 +993,8 @@ func (s DescribeStackEventsInput) GoString() string {
 type DescribeStackEventsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// String that identifies the start of the next list of events, if there is
-	// one.
+	// If the output exceeds 1 MB in size, a string that identifies the next page
+	// of events. If no additional page exists, this value is null.
 	NextToken *string `min:"1" type:"string"`
 
 	// A list of StackEvents structures.
@@ -1053,8 +1125,7 @@ func (s DescribeStackResourcesOutput) GoString() string {
 type DescribeStacksInput struct {
 	_ struct{} `type:"structure"`
 
-	// String that identifies the start of the next list of stacks, if there is
-	// one.
+	// A string that identifies the next page of stacks that you want to retrieve.
 	NextToken *string `min:"1" type:"string"`
 
 	// The name or the unique stack ID that is associated with the stack, which
@@ -1080,8 +1151,8 @@ func (s DescribeStacksInput) GoString() string {
 type DescribeStacksOutput struct {
 	_ struct{} `type:"structure"`
 
-	// String that identifies the start of the next list of stacks, if there is
-	// one.
+	// If the output exceeds 1 MB in size, a string that identifies the next page
+	// of stacks. If no additional page exists, this value is null.
 	NextToken *string `min:"1" type:"string"`
 
 	// A list of stack structures.
@@ -1303,11 +1374,6 @@ type GetTemplateSummaryOutput struct {
 
 	// A list of all the template resource types that are defined in the template,
 	// such as AWS::EC2::Instance, AWS::Dynamo::Table, and Custom::MyCustomInstance.
-	// Use the following syntax to describe template resource types: AWS::* (for
-	// all AWS resources), Custom::* (for all custom resources), Custom::logical_ID
-	// (for a specific custom resource), AWS::service_name::* (for all resources
-	// of a particular AWS service), and AWS::service_name::resource_logical_ID
-	// (for a specific AWS resource).
 	ResourceTypes []*string `type:"list"`
 
 	// The AWS template format version, which identifies the capabilities of the
@@ -1329,10 +1395,8 @@ func (s GetTemplateSummaryOutput) GoString() string {
 type ListStackResourcesInput struct {
 	_ struct{} `type:"structure"`
 
-	// String that identifies the start of the next list of stack resource summaries,
-	// if there is one.
-	//
-	// Default: There is no default value.
+	// A string that identifies the next page of stack resources that you want to
+	// retrieve.
 	NextToken *string `min:"1" type:"string"`
 
 	// The name or the unique stack ID that is associated with the stack, which
@@ -1358,8 +1422,8 @@ func (s ListStackResourcesInput) GoString() string {
 type ListStackResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// String that identifies the start of the next list of stack resources, if
-	// there is one.
+	// If the output exceeds 1 MB in size, a string that identifies the next page
+	// of stack resources. If no additional page exists, this value is null.
 	NextToken *string `min:"1" type:"string"`
 
 	// A list of StackResourceSummary structures.
@@ -1380,10 +1444,7 @@ func (s ListStackResourcesOutput) GoString() string {
 type ListStacksInput struct {
 	_ struct{} `type:"structure"`
 
-	// String that identifies the start of the next list of stacks, if there is
-	// one.
-	//
-	// Default: There is no default value.
+	// A string that identifies the next page of stacks that you want to retrieve.
 	NextToken *string `min:"1" type:"string"`
 
 	// Stack status to use as a filter. Specify one or more stack status codes to
@@ -1406,8 +1467,8 @@ func (s ListStacksInput) GoString() string {
 type ListStacksOutput struct {
 	_ struct{} `type:"structure"`
 
-	// String that identifies the start of the next list of stacks, if there is
-	// one.
+	// If the output exceeds 1 MB in size, a string that identifies the next page
+	// of stacks. If no additional page exists, this value is null.
 	NextToken *string `min:"1" type:"string"`
 
 	// A list of StackSummary structures containing information about the specified
@@ -1637,7 +1698,7 @@ type Stack struct {
 
 	// Boolean to enable or disable rollback on stack creation failures:
 	//
-	//    true: disable rollback  false: enable rollback
+	//   true: disable rollback false: enable rollback
 	DisableRollback *bool `type:"boolean"`
 
 	// The time the stack was last updated. This field will only be returned if
@@ -1902,7 +1963,7 @@ func (s StackSummary) GoString() string {
 }
 
 // The Tag type is used by CreateStack in the Tags parameter. It allows you
-// to specify a key/value pair that can be used to store information related
+// to specify a key-value pair that can be used to store information related
 // to cost allocation for an AWS CloudFormation stack.
 type Tag struct {
 	_ struct{} `type:"structure"`
@@ -1976,7 +2037,9 @@ type UpdateStackInput struct {
 	// this action returns an InsufficientCapabilities error.
 	Capabilities []*string `type:"list"`
 
-	// Update the ARNs for the Amazon SNS topics that are associated with the stack.
+	// Amazon Simple Notification Service topic Amazon Resource Names (ARNs) that
+	// AWS CloudFormation associates with the stack. Specify an empty list to remove
+	// all notification topics.
 	NotificationARNs []*string `type:"list"`
 
 	// A list of Parameter structures that specify input parameters for the stack.
@@ -1992,7 +2055,7 @@ type UpdateStackInput struct {
 	// to all resource types. AWS Identity and Access Management (IAM) uses this
 	// parameter for AWS CloudFormation-specific condition keys in IAM policies.
 	// For more information, see Controlling Access with AWS Identity and Access
-	// Management (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-iam-template.html)
+	// Management (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-iam-template.html).
 	ResourceTypes []*string `type:"list"`
 
 	// The name or unique stack ID of the stack to update.
