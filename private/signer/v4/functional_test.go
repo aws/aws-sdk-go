@@ -40,3 +40,36 @@ func TestPresignHandler(t *testing.T) {
 
 	assert.NotContains(t, urlstr, "+") // + encoded as %20
 }
+
+func TestPresignEnforceAllHandler(t *testing.T) {
+	svc := s3.New(unit.Session)
+	req, _ := svc.PutObjectRequest(&s3.PutObjectInput{
+		Bucket:             aws.String("bucket"),
+		Key:                aws.String("key"),
+		ContentDisposition: aws.String("a+b c$d"),
+		ACL:                aws.String("public-read"),
+	})
+	req.Time = time.Unix(0, 0)
+	urlstr, headers, err := req.PresignRequest(5 * time.Minute)
+
+	assert.NoError(t, err)
+
+	expectedDate := "19700101T000000Z"
+	expectedHeaders := "host;x-amz-acl"
+	expectedSig := "2c9fad10144b8d95908ddb59ef0822b004b7257eebdd89c32fcc84dd5112ae8a"
+	expectedCred := "AKID/19700101/mock-region/s3/aws4_request"
+	expectedHeaderMap := map[string][]string{
+		"x-amz-acl": []string{"public-read"},
+	}
+
+	u, _ := url.Parse(urlstr)
+	urlQ := u.Query()
+	assert.Equal(t, expectedSig, urlQ.Get("X-Amz-Signature"))
+	assert.Equal(t, expectedCred, urlQ.Get("X-Amz-Credential"))
+	assert.Equal(t, expectedHeaders, urlQ.Get("X-Amz-SignedHeaders"))
+	assert.Equal(t, expectedDate, urlQ.Get("X-Amz-Date"))
+	assert.Equal(t, expectedHeaderMap, headers)
+	assert.Equal(t, "300", urlQ.Get("X-Amz-Expires"))
+
+	assert.NotContains(t, urlstr, "+") // + encoded as %20
+}
