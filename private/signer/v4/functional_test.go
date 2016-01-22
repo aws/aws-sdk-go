@@ -32,7 +32,6 @@ func TestPresignHandler(t *testing.T) {
 
 	u, _ := url.Parse(urlstr)
 	urlQ := u.Query()
-	fmt.Println("URLQ: ", urlQ)
 	assert.Equal(t, expectedSig, urlQ.Get("X-Amz-Signature"))
 	assert.Equal(t, expectedCred, urlQ.Get("X-Amz-Credential"))
 	assert.Equal(t, expectedHeaders, urlQ.Get("X-Amz-SignedHeaders"))
