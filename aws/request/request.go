@@ -36,6 +36,8 @@ type Request struct {
 	RetryCount   int
 	Retryable    *bool
 	RetryDelay   time.Duration
+	NotHoist     bool
+	Headers      map[string][]string
 
 	built bool
 }
@@ -137,11 +139,24 @@ func (r *Request) SetReaderBody(reader io.ReadSeeker) {
 // if the signing fails.
 func (r *Request) Presign(expireTime time.Duration) (string, error) {
 	r.ExpireTime = expireTime
+	r.NotHoist = false
 	r.Sign()
 	if r.Error != nil {
 		return "", r.Error
 	}
 	return r.HTTPRequest.URL.String(), nil
+}
+
+// PresignRequest behaves just like presign, but hoists all headers and signs them.
+// Also returns the signed hash back to the user
+func (r *Request) PresignRequest(expireTime time.Duration) (string, map[string][]string, error) {
+	r.ExpireTime = expireTime
+	r.NotHoist = true
+	r.Sign()
+	if r.Error != nil {
+		return "", nil, r.Error
+	}
+	return r.HTTPRequest.URL.String(), r.Headers, nil
 }
 
 func debugLogReqError(r *Request, stage string, retrying bool, err error) {
