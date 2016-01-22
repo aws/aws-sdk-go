@@ -1,7 +1,6 @@
 package v4_test
 
 import (
-	"fmt"
 	"net/url"
 	"testing"
 	"time"
