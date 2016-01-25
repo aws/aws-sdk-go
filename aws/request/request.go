@@ -148,6 +148,7 @@ func (r *Request) Presign(expireTime time.Duration) (string, error) {
 }
 
 // PresignEnforceAll behaves just like presign, but hoists all headers and signs them.
+// Also returns the signed hash back to the user
 func (r *Request) PresignEnforceAll(expireTime time.Duration) (string, string, error) {
 	r.ExpireTime = expireTime
 	r.HoistAll = true
