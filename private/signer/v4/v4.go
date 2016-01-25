@@ -57,7 +57,8 @@ type signer struct {
 	stringToSign     string
 	signature        string
 	authorization    string
-	hoistAll         bool
+	notHoist         bool
+	headers          map[string][]string
 }
 
 // Sign requests with signature version 4.
@@ -93,11 +94,11 @@ func Sign(req *request.Request) {
 		Credentials: req.Config.Credentials,
 		Debug:       req.Config.LogLevel.Value(),
 		Logger:      req.Config.Logger,
-		hoistAll:    req.HoistAll,
+		notHoist:    req.NotHoist,
 	}
 
 	req.Error = s.sign()
-	req.HashSignature = s.signature
+	req.Headers = s.headers
 }
 
 func (v4 *signer) sign() error {
@@ -181,6 +182,27 @@ func (v4 *signer) build() {
 		"X-Amz-Meta-Other-Header": nil,
 		"X-Amz-Security-Token":    nil,
 		"X-Amz-Target":            nil,
+		/*
+			"Cache-Control":                         nil,
+			"Content-Disposition":                   nil,
+			"Content-Encoding":                      nil,
+			"Content-Language":                      nil,
+			"Content-Length":                        nil,
+			"Content-Md5":                           nil,
+			"Content-Type":                          nil,
+			"Expires":                               nil,
+			"If-Match":                              nil,
+			"If-Modified-Since":                     nil,
+			"If-None-Match":                         nil,
+			"If-Unmodified-Since":                   nil,
+			"Range":                                 nil,
+			"X-Amz-Copy-Source":                     nil,
+			"X-Amz-Copy-Source-If-Match":            nil,
+			"X-Amz-Copy-Source-If-Modified-Since":   nil,
+			"X-Amz-Copy-Source-If-None-Match":       nil,
+			"X-Amz-Copy-Source-If-Unmodified-Since": nil,
+			"X-Amz-Copy-Source-Range":               nil,
+		*/
 	}
 	filters = v4.buildCanonicalHeaders(allowedSignedHeaders, filters)
 
@@ -190,7 +212,7 @@ func (v4 *signer) build() {
 			"Content-Disposition": nil,
 		}
 
-		urlValues, filters = buildQuery(v4.hoistAll, allowedHoisting, v4.Request.Header, filters) // no depends
+		urlValues, filters = buildQuery(v4.notHoist, allowedHoisting, v4.Request.Header, filters) // no depends
 		for k := range urlValues {
 			v4.Request.Header.Del(k)
 			v4.Query.Del(k)
@@ -240,13 +262,13 @@ func (v4 *signer) buildCredentialString() {
 	}
 }
 
-func buildQuery(hoist bool, allowed, header, filters map[string][]string) (url.Values, map[string][]string) {
+func buildQuery(notHoist bool, allowed, header, filters map[string][]string) (url.Values, map[string][]string) {
 	query := url.Values{}
 	for k, h := range header {
 		_, allow := allowed[k]
 		_, filter := filters[k]
 
-		if (allow && !filter) || hoist {
+		if allow && !(filter || notHoist) {
 			filters[k] = h
 			query[k] = append(query[k], h...)
 		}
@@ -257,12 +279,18 @@ func buildQuery(hoist bool, allowed, header, filters map[string][]string) (url.V
 func (v4 *signer) buildCanonicalHeaders(allowed, filters map[string][]string) map[string][]string {
 	var headers []string
 	headers = append(headers, "host")
-	for k := range v4.Request.Header {
-		if _, ok := allowed[http.CanonicalHeaderKey(k)]; !(ok || v4.hoistAll) {
+	for k, v := range v4.Request.Header {
+		if _, ok := allowed[http.CanonicalHeaderKey(k)]; !ok {
 			continue // ignored header
 		}
 		filters[k] = nil
-		headers = append(headers, strings.ToLower(k))
+		lowerCaseKey := strings.ToLower(k)
+		headers = append(headers, lowerCaseKey)
+
+		if v4.headers == nil {
+			v4.headers = make(map[string][]string)
+		}
+		v4.headers[lowerCaseKey] = v
 	}
 	sort.Strings(headers)
 

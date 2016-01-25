@@ -50,14 +50,17 @@ func TestPresignEnforceAllHandler(t *testing.T) {
 		ACL:                aws.String("public-read"),
 	})
 	req.Time = time.Unix(0, 0)
-	urlstr, hashString, err := req.PresignEnforceAll(5 * time.Minute)
+	urlstr, headers, err := req.PresignRequest(5 * time.Minute)
 
 	assert.NoError(t, err)
 
 	expectedDate := "19700101T000000Z"
-	expectedHeaders := "content-disposition;content-length;host;user-agent;x-amz-acl"
-	expectedSig := "c7a885a19a140f4dddfe89f28ccdf1d480cb08cfc2ae81dd635791fc4a48feed"
+	expectedHeaders := "host;x-amz-acl"
+	expectedSig := "2c9fad10144b8d95908ddb59ef0822b004b7257eebdd89c32fcc84dd5112ae8a"
 	expectedCred := "AKID/19700101/mock-region/s3/aws4_request"
+	expectedHeaderMap := map[string][]string{
+		"x-amz-acl": []string{"public-read"},
+	}
 
 	u, _ := url.Parse(urlstr)
 	urlQ := u.Query()
@@ -65,7 +68,7 @@ func TestPresignEnforceAllHandler(t *testing.T) {
 	assert.Equal(t, expectedCred, urlQ.Get("X-Amz-Credential"))
 	assert.Equal(t, expectedHeaders, urlQ.Get("X-Amz-SignedHeaders"))
 	assert.Equal(t, expectedDate, urlQ.Get("X-Amz-Date"))
-	assert.Equal(t, expectedSig, hashString)
+	assert.Equal(t, expectedHeaderMap, headers)
 	assert.Equal(t, "300", urlQ.Get("X-Amz-Expires"))
 
 	assert.NotContains(t, urlstr, "+") // + encoded as %20
