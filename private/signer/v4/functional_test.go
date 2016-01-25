@@ -1,6 +1,7 @@
 package v4_test
 
 import (
+	"net/http"
 	"net/url"
 	"testing"
 	"time"
@@ -26,8 +27,8 @@ func TestPresignHandler(t *testing.T) {
 	assert.NoError(t, err)
 
 	expectedDate := "19700101T000000Z"
-	expectedHeaders := "host;x-amz-acl"
-	expectedSig := "7edcb4e3a1bf12f4989018d75acbe3a7f03df24bd6f3112602d59fc551f0e4e2"
+	expectedHeaders := "content-disposition;host;x-amz-acl"
+	expectedSig := "2d76a414208c0eac2a23ef9c834db9635ecd5a0fbb447a00ad191f82d854f55b"
 	expectedCred := "AKID/19700101/mock-region/s3/aws4_request"
 
 	u, _ := url.Parse(urlstr)
@@ -41,7 +42,7 @@ func TestPresignHandler(t *testing.T) {
 	assert.NotContains(t, urlstr, "+") // + encoded as %20
 }
 
-func TestPresignEnforceAllHandler(t *testing.T) {
+func TestPresignRequest(t *testing.T) {
 	svc := s3.New(unit.Session)
 	req, _ := svc.PutObjectRequest(&s3.PutObjectInput{
 		Bucket:             aws.String("bucket"),
@@ -55,11 +56,12 @@ func TestPresignEnforceAllHandler(t *testing.T) {
 	assert.NoError(t, err)
 
 	expectedDate := "19700101T000000Z"
-	expectedHeaders := "host;x-amz-acl"
-	expectedSig := "2c9fad10144b8d95908ddb59ef0822b004b7257eebdd89c32fcc84dd5112ae8a"
+	expectedHeaders := "content-disposition;host;x-amz-acl"
+	expectedSig := "2d76a414208c0eac2a23ef9c834db9635ecd5a0fbb447a00ad191f82d854f55b"
 	expectedCred := "AKID/19700101/mock-region/s3/aws4_request"
-	expectedHeaderMap := map[string][]string{
-		"x-amz-acl": []string{"public-read"},
+	expectedHeaderMap := http.Header{
+		"x-amz-acl":           []string{"public-read"},
+		"content-disposition": []string{"a+b c$d"},
 	}
 
 	u, _ := url.Parse(urlstr)
