@@ -22,20 +22,22 @@ type Request struct {
 	Handlers   Handlers
 
 	Retryer
-	Time         time.Time
-	ExpireTime   time.Duration
-	Operation    *Operation
-	HTTPRequest  *http.Request
-	HTTPResponse *http.Response
-	Body         io.ReadSeeker
-	BodyStart    int64 // offset from beginning of Body that the request body starts
-	Params       interface{}
-	Error        error
-	Data         interface{}
-	RequestID    string
-	RetryCount   int
-	Retryable    *bool
-	RetryDelay   time.Duration
+	Time          time.Time
+	ExpireTime    time.Duration
+	Operation     *Operation
+	HTTPRequest   *http.Request
+	HTTPResponse  *http.Response
+	Body          io.ReadSeeker
+	BodyStart     int64 // offset from beginning of Body that the request body starts
+	Params        interface{}
+	Error         error
+	Data          interface{}
+	RequestID     string
+	RetryCount    int
+	Retryable     *bool
+	RetryDelay    time.Duration
+	HoistAll      bool
+	HashSignature string
 
 	built bool
 }
@@ -137,11 +139,24 @@ func (r *Request) SetReaderBody(reader io.ReadSeeker) {
 // if the signing fails.
 func (r *Request) Presign(expireTime time.Duration) (string, error) {
 	r.ExpireTime = expireTime
+	r.HoistAll = false
 	r.Sign()
 	if r.Error != nil {
 		return "", r.Error
 	}
 	return r.HTTPRequest.URL.String(), nil
+}
+
+// PresignEnforceAll returns the request's signed URL. Error will be returned
+// if the signing fails.
+func (r *Request) PresignEnforceAll(expireTime time.Duration) (string, string, error) {
+	r.ExpireTime = expireTime
+	r.HoistAll = true
+	r.Sign()
+	if r.Error != nil {
+		return "", "", r.Error
+	}
+	return r.HTTPRequest.URL.String(), r.HashSignature, nil
 }
 
 func debugLogReqError(r *Request, stage string, retrying bool, err error) {

@@ -57,6 +57,7 @@ type signer struct {
 	stringToSign     string
 	signature        string
 	authorization    string
+	hoistAll         bool
 }
 
 // Sign requests with signature version 4.
@@ -92,9 +93,13 @@ func Sign(req *request.Request) {
 		Credentials: req.Config.Credentials,
 		Debug:       req.Config.LogLevel.Value(),
 		Logger:      req.Config.Logger,
+		hoistAll:    req.HoistAll,
 	}
 
 	req.Error = s.sign()
+	if req.Error == nil {
+		req.HashSignature = s.signature
+	}
 }
 
 func (v4 *signer) sign() error {
@@ -188,7 +193,7 @@ func (v4 *signer) build() {
 		}
 
 		urlValues, filters = buildQuery(allowedHoisting, v4.Request.Header, filters) // no depends
-		for k, _ := range urlValues {
+		for k := range urlValues {
 			v4.Request.Header.Del(k)
 			v4.Query.Del(k)
 			v4.Query[k] = append(v4.Query[k], urlValues[k]...)
@@ -254,7 +259,7 @@ func (v4 *signer) buildCanonicalHeaders(allowed, filters map[string][]string) ma
 	var headers []string
 	headers = append(headers, "host")
 	for k := range v4.Request.Header {
-		if _, ok := allowed[http.CanonicalHeaderKey(k)]; !ok {
+		if _, ok := allowed[http.CanonicalHeaderKey(k)]; !(ok || v4.hoistAll) {
 			continue // ignored header
 		}
 		filters[k] = nil
