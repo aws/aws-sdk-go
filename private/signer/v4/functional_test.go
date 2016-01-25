@@ -1,6 +1,7 @@
 package v4_test
 
 import (
+	"net/http"
 	"net/url"
 	"testing"
 	"time"
@@ -58,7 +59,7 @@ func TestPresignRequest(t *testing.T) {
 	expectedHeaders := "content-disposition;host;x-amz-acl"
 	expectedSig := "2d76a414208c0eac2a23ef9c834db9635ecd5a0fbb447a00ad191f82d854f55b"
 	expectedCred := "AKID/19700101/mock-region/s3/aws4_request"
-	expectedHeaderMap := map[string][]string{
+	expectedHeaderMap := http.Header{
 		"x-amz-acl":           []string{"public-read"},
 		"content-disposition": []string{"a+b c$d"},
 	}

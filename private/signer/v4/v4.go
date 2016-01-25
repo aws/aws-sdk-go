@@ -26,13 +26,13 @@ const (
 	shortTimeFormat  = "20060102"
 )
 
-var ignoredHeaders = map[string]struct{}{
+var ignoredHeaders = blacklistFilter{map[string]struct{}{
 	"Content-Length": struct{}{},
 	"User-Agent":     struct{}{},
-}
+}}
 
 // allowedSignedHeaders is a whitelist for build canonical headers.
-var allowedSignedHeaders = map[string]struct{}{
+var allowedSignedHeaders = whitelistFilter{map[string]struct{}{
 	"Cache-Control":                                               struct{}{},
 	"Content-Disposition":                                         struct{}{},
 	"Content-Encoding":                                            struct{}{},
@@ -70,11 +70,11 @@ var allowedSignedHeaders = map[string]struct{}{
 	"X-Amz-Server-Side-Encryption-Customer-Key-Md5":               struct{}{},
 	"X-Amz-Storage-Class":                                         struct{}{},
 	"X-Amz-Website-Redirect-Location":                             struct{}{},
-}
+}}
 
 // allowedHoisting is a whitelist for build query headers. The boolean value
 // represents whether or not it is a pattern.
-var allowedHoisting = map[string]bool{}
+var allowedQueryHoisting = whitelistFilter{map[string]struct{}{}}
 
 type signer struct {
 	Request     *http.Request
@@ -101,7 +101,7 @@ type signer struct {
 	signature        string
 	authorization    string
 	notHoist         bool
-	headers          map[string][]string
+	signedHeaderVals http.Header
 }
 
 // Sign requests with signature version 4.
@@ -141,7 +141,7 @@ func Sign(req *request.Request) {
 	}
 
 	req.Error = s.sign()
-	req.Headers = s.headers
+	req.SignedHeaderVals = s.signedHeaderVals
 }
 
 func (v4 *signer) sign() error {
@@ -218,17 +218,17 @@ func (v4 *signer) build() {
 	v4.buildCredentialString() // no depends
 
 	if v4.isPresign {
-		allower := whitelistAllower{allowedSignedHeaders}
-		unsignedHeaders := v4.buildCanonicalHeaders(allower, v4.Request.Header)
-		urlValues = buildQuery(v4.notHoist, allowedHoisting, unsignedHeaders) // no depends
-		for k := range urlValues {
-			v4.Request.Header.Del(k)
-			v4.Query.Del(k)
-			v4.Query[k] = append(v4.Query[k], urlValues[k]...)
+		unsignedHeaders := v4.buildCanonicalHeaders(allowedSignedHeaders, v4.Request.Header)
+
+		if !v4.notHoist {
+			urlValues = buildQuery(v4.notHoist, allowedQueryHoisting, unsignedHeaders) // no depends
+			for k := range urlValues {
+				v4.Request.Header.Del(k)
+				v4.Query[k] = urlValues[k]
+			}
 		}
 	} else {
-		allower := blacklistAllower{ignoredHeaders}
-		v4.buildCanonicalHeaders(allower, v4.Request.Header)
+		v4.buildCanonicalHeaders(ignoredHeaders, v4.Request.Header)
 	}
 
 	v4.buildCanonicalString() // depends on canon headers / signed headers
@@ -273,29 +273,27 @@ func (v4 *signer) buildCredentialString() {
 	}
 }
 
-func buildQuery(notHoist bool, allowed map[string]bool, header http.Header) url.Values {
+func buildQuery(notHoist bool, f filter, header http.Header) url.Values {
 	query := url.Values{}
 	for k, h := range header {
 		if strings.HasPrefix(http.CanonicalHeaderKey(k), "X-Amz-") {
-			query[k] = append(query[k], h...)
+			query[k] = h
 		} else {
-			_, allow := allowed[k]
-
-			if allow && !notHoist {
-				query[k] = append(query[k], h...)
+			if f.Allow(k) {
+				query[k] = h
 			}
 		}
 	}
 
 	return query
 }
-func (v4 *signer) buildCanonicalHeaders(allowed allower, header http.Header) http.Header {
+func (v4 *signer) buildCanonicalHeaders(f filter, header http.Header) http.Header {
 	var headers []string
 	unsignedHeaders := http.Header{}
 	headers = append(headers, "host")
 	for k, v := range header {
 		canonicalKey := http.CanonicalHeaderKey(k)
-		if !allowed.allow(canonicalKey) {
+		if !f.Allow(canonicalKey) {
 			unsignedHeaders[canonicalKey] = v
 			continue // ignored header
 		}
@@ -303,10 +301,10 @@ func (v4 *signer) buildCanonicalHeaders(allowed allower, header http.Header) htt
 		lowerCaseKey := strings.ToLower(k)
 		headers = append(headers, lowerCaseKey)
 
-		if v4.headers == nil {
-			v4.headers = make(map[string][]string)
+		if v4.signedHeaderVals == nil {
+			v4.signedHeaderVals = make(http.Header)
 		}
-		v4.headers[lowerCaseKey] = v
+		v4.signedHeaderVals[lowerCaseKey] = v
 	}
 	sort.Strings(headers)
 
