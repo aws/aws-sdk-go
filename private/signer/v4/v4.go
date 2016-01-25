@@ -97,9 +97,7 @@ func Sign(req *request.Request) {
 	}
 
 	req.Error = s.sign()
-	if req.Error == nil {
-		req.HashSignature = s.signature
-	}
+	req.HashSignature = s.signature
 }
 
 func (v4 *signer) sign() error {
