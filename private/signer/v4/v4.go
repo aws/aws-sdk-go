@@ -26,12 +26,57 @@ const (
 	shortTimeFormat  = "20060102"
 )
 
-var ignoredHeaders = map[string]bool{
-	"Authorization":  true,
-	"Content-Type":   true,
-	"Content-Length": true,
-	"User-Agent":     true,
-}
+var ignoredHeaders = blacklistFilter{map[string]struct{}{
+	"Content-Length": struct{}{},
+	"User-Agent":     struct{}{},
+}}
+
+// allowedSignedHeaders is a whitelist for build canonical headers.
+var allowedSignedHeaders = whitelistFilter{map[string]bool{
+	"Cache-Control":                                               false,
+	"Content-Disposition":                                         false,
+	"Content-Encoding":                                            false,
+	"Content-Language":                                            false,
+	"Content-Md5":                                                 false,
+	"Content-Type":                                                false,
+	"Expires":                                                     false,
+	"If-Match":                                                    false,
+	"If-Modified-Since":                                           false,
+	"If-None-Match":                                               false,
+	"If-Unmodified-Since":                                         false,
+	"Range":                                                       false,
+	"X-Amz-Acl":                                                   false,
+	"X-Amz-Copy-Source":                                           false,
+	"X-Amz-Copy-Source-If-Match":                                  false,
+	"X-Amz-Copy-Source-If-Modified-Since":                         false,
+	"X-Amz-Copy-Source-If-None-Match":                             false,
+	"X-Amz-Copy-Source-If-Unmodified-Since":                       false,
+	"X-Amz-Copy-Source-Range":                                     false,
+	"X-Amz-Copy-Source-Server-Side-Encryption-Customer-Algorithm": false,
+	"X-Amz-Copy-Source-Server-Side-Encryption-Customer-Key":       false,
+	"X-Amz-Copy-Source-Server-Side-Encryption-Customer-Key-Md5":   false,
+	"X-Amz-Grant-Full-control":                                    false,
+	"X-Amz-Grant-Read":                                            false,
+	"X-Amz-Grant-Read-Acp":                                        false,
+	"X-Amz-Grant-Write":                                           false,
+	"X-Amz-Grant-Write-Acp":                                       false,
+	"X-Amz-Metadata-Directive":                                    false,
+	"X-Amz-Mfa":                                                   false,
+	"X-Amz-Request-Payer":                                         false,
+	"X-Amz-Server-Side-Encryption":                                false,
+	"X-Amz-Server-Side-Encryption-Aws-Kms-Key-Id":                 false,
+	"X-Amz-Server-Side-Encryption-Customer-Algorithm":             false,
+	"X-Amz-Server-Side-Encryption-Customer-Key":                   false,
+	"X-Amz-Server-Side-Encryption-Customer-Key-Md5":               false,
+	"X-Amz-Storage-Class":                                         false,
+	"X-Amz-Website-Redirect-Location":                             false,
+
+	"X-Amz-Meta-": true,
+}}
+
+// allowedHoisting is a whitelist for build query headers. The boolean value
+// represents whether or not it is a pattern.
+var allowedQueryHoisting = whitelistFilter{map[string]bool{}}
 
 type signer struct {
 	Request     *http.Request
@@ -58,7 +103,7 @@ type signer struct {
 	signature        string
 	authorization    string
 	notHoist         bool
-	headers          map[string][]string
+	signedHeaderVals http.Header
 }
 
 // Sign requests with signature version 4.
@@ -98,7 +143,7 @@ func Sign(req *request.Request) {
 	}
 
 	req.Error = s.sign()
-	req.Headers = s.headers
+	req.SignedHeaderVals = s.signedHeaderVals
 }
 
 func (v4 *signer) sign() error {
@@ -169,55 +214,23 @@ func (v4 *signer) logSigningInfo() {
 }
 
 func (v4 *signer) build() {
-	filters := make(map[string][]string)
 	urlValues := url.Values{}
 
 	v4.buildTime()             // no depends
 	v4.buildCredentialString() // no depends
 
-	var allowedSignedHeaders = map[string][]string{
-		"X-Amz-Acl":               nil,
-		"X-Amz-Content-Sha256":    nil,
-		"X-Amz-Date":              nil,
-		"X-Amz-Meta-Other-Header": nil,
-		"X-Amz-Security-Token":    nil,
-		"X-Amz-Target":            nil,
-		/*
-			"Cache-Control":                         nil,
-			"Content-Disposition":                   nil,
-			"Content-Encoding":                      nil,
-			"Content-Language":                      nil,
-			"Content-Length":                        nil,
-			"Content-Md5":                           nil,
-			"Content-Type":                          nil,
-			"Expires":                               nil,
-			"If-Match":                              nil,
-			"If-Modified-Since":                     nil,
-			"If-None-Match":                         nil,
-			"If-Unmodified-Since":                   nil,
-			"Range":                                 nil,
-			"X-Amz-Copy-Source":                     nil,
-			"X-Amz-Copy-Source-If-Match":            nil,
-			"X-Amz-Copy-Source-If-Modified-Since":   nil,
-			"X-Amz-Copy-Source-If-None-Match":       nil,
-			"X-Amz-Copy-Source-If-Unmodified-Since": nil,
-			"X-Amz-Copy-Source-Range":               nil,
-		*/
-	}
-	filters = v4.buildCanonicalHeaders(allowedSignedHeaders, filters)
-
 	if v4.isPresign {
-		var allowedHoisting = map[string][]string{
-			"Content-Md5":         nil,
-			"Content-Disposition": nil,
-		}
+		unsignedHeaders := v4.buildCanonicalHeaders(allowedSignedHeaders, v4.Request.Header)
 
-		urlValues, filters = buildQuery(v4.notHoist, allowedHoisting, v4.Request.Header, filters) // no depends
-		for k := range urlValues {
-			v4.Request.Header.Del(k)
-			v4.Query.Del(k)
-			v4.Query[k] = append(v4.Query[k], urlValues[k]...)
+		if !v4.notHoist {
+			urlValues = buildQuery(v4.notHoist, allowedQueryHoisting, unsignedHeaders) // no depends
+			for k := range urlValues {
+				v4.Request.Header.Del(k)
+				v4.Query[k] = urlValues[k]
+			}
 		}
+	} else {
+		v4.buildCanonicalHeaders(ignoredHeaders, v4.Request.Header)
 	}
 
 	v4.buildCanonicalString() // depends on canon headers / signed headers
@@ -262,35 +275,38 @@ func (v4 *signer) buildCredentialString() {
 	}
 }
 
-func buildQuery(notHoist bool, allowed, header, filters map[string][]string) (url.Values, map[string][]string) {
+func buildQuery(notHoist bool, f filter, header http.Header) url.Values {
 	query := url.Values{}
 	for k, h := range header {
-		_, allow := allowed[k]
-		_, filter := filters[k]
-
-		if allow && !(filter || notHoist) {
-			filters[k] = h
-			query[k] = append(query[k], h...)
+		if strings.HasPrefix(http.CanonicalHeaderKey(k), "X-Amz-") {
+			query[k] = h
+		} else {
+			if f.Allow(k) {
+				query[k] = h
+			}
 		}
 	}
 
-	return query, filters
+	return query
 }
-func (v4 *signer) buildCanonicalHeaders(allowed, filters map[string][]string) map[string][]string {
+func (v4 *signer) buildCanonicalHeaders(f filter, header http.Header) http.Header {
 	var headers []string
+	unsignedHeaders := http.Header{}
 	headers = append(headers, "host")
-	for k, v := range v4.Request.Header {
-		if _, ok := allowed[http.CanonicalHeaderKey(k)]; !ok {
+	for k, v := range header {
+		canonicalKey := http.CanonicalHeaderKey(k)
+		if !f.Allow(canonicalKey) {
+			unsignedHeaders[canonicalKey] = v
 			continue // ignored header
 		}
-		filters[k] = nil
+
 		lowerCaseKey := strings.ToLower(k)
 		headers = append(headers, lowerCaseKey)
 
-		if v4.headers == nil {
-			v4.headers = make(map[string][]string)
+		if v4.signedHeaderVals == nil {
+			v4.signedHeaderVals = make(http.Header)
 		}
-		v4.headers[lowerCaseKey] = v
+		v4.signedHeaderVals[lowerCaseKey] = v
 	}
 	sort.Strings(headers)
 
@@ -311,7 +327,7 @@ func (v4 *signer) buildCanonicalHeaders(allowed, filters map[string][]string) ma
 	}
 
 	v4.canonicalHeaders = strings.Join(headerValues, "\n")
-	return filters
+	return unsignedHeaders
 }
 
 func (v4 *signer) buildCanonicalString() {
