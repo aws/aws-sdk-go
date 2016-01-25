@@ -147,8 +147,7 @@ func (r *Request) Presign(expireTime time.Duration) (string, error) {
 	return r.HTTPRequest.URL.String(), nil
 }
 
-// PresignEnforceAll returns the request's signed URL. Error will be returned
-// if the signing fails.
+// PresignEnforceAll behaves just like presign, but hoists all headers and signs them.
 func (r *Request) PresignEnforceAll(expireTime time.Duration) (string, string, error) {
 	r.ExpireTime = expireTime
 	r.HoistAll = true

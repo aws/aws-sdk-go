@@ -192,7 +192,7 @@ func (v4 *signer) build() {
 			"Content-Disposition": nil,
 		}
 
-		urlValues, filters = buildQuery(allowedHoisting, v4.Request.Header, filters) // no depends
+		urlValues, filters = buildQuery(v4.hoistAll, allowedHoisting, v4.Request.Header, filters) // no depends
 		for k := range urlValues {
 			v4.Request.Header.Del(k)
 			v4.Query.Del(k)
@@ -242,12 +242,13 @@ func (v4 *signer) buildCredentialString() {
 	}
 }
 
-func buildQuery(allowed, header, filters map[string][]string) (url.Values, map[string][]string) {
+func buildQuery(hoist bool, allowed, header, filters map[string][]string) (url.Values, map[string][]string) {
 	query := url.Values{}
 	for k, h := range header {
 		_, allow := allowed[k]
 		_, filter := filters[k]
-		if allow && !filter {
+
+		if (allow && !filter) || hoist {
 			filters[k] = h
 			query[k] = append(query[k], h...)
 		}
