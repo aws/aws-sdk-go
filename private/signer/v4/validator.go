@@ -49,7 +49,7 @@ func (blist blacklist) IsValid(value string) bool {
 	return !ok
 }
 
-// IsValida for patterns checks each pattern and returns if a match has
+// IsValid for patterns checks each pattern and returns if a match has
 // been found
 func (p patterns) IsValid(value string) bool {
 	for _, pattern := range p {
