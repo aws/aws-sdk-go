@@ -26,18 +26,19 @@ const (
 	shortTimeFormat  = "20060102"
 )
 
-var ignoredHeaders = validator{
-	rules: []rule{
-		blacklist{
+var ignoredHeaders = rules{
+	blacklist{
+		mapRule{
 			"Content-Length": struct{}{},
 			"User-Agent":     struct{}{},
 		},
-	}}
+	},
+}
 
-// allowedSignedHeaders is a whitelist for build canonical headers.
-var allowedSignedHeaders = validator{
-	rules: []rule{
-		whitelist{
+// requiredSignedHeaders is a whitelist for build canonical headers.
+var requiredSignedHeaders = rules{
+	whitelist{
+		mapRule{
 			"Cache-Control":                                               struct{}{},
 			"Content-Disposition":                                         struct{}{},
 			"Content-Encoding":                                            struct{}{},
@@ -76,15 +77,15 @@ var allowedSignedHeaders = validator{
 			"X-Amz-Storage-Class":                                         struct{}{},
 			"X-Amz-Website-Redirect-Location":                             struct{}{},
 		},
-		patterns{"X-Amz-Meta-"},
-	}}
+	},
+	patterns{"X-Amz-Meta-"},
+}
 
 // allowedHoisting is a whitelist for build query headers. The boolean value
 // represents whether or not it is a pattern.
-var allowedQueryHoisting = validator{
-	rules: []rule{
-		patterns{"X-Amz-"},
-	},
+var allowedQueryHoisting = inclusiveRules{
+	blacklist{requiredSignedHeaders},
+	patterns{"X-Amz-"},
 }
 
 type signer struct {
@@ -223,24 +224,22 @@ func (v4 *signer) logSigningInfo() {
 }
 
 func (v4 *signer) build() {
-	urlValues := url.Values{}
 
 	v4.buildTime()             // no depends
 	v4.buildCredentialString() // no depends
 
+	unsignedHeaders := v4.Request.Header
 	if v4.isPresign {
-		unsignedHeaders := v4.buildCanonicalHeaders(allowedSignedHeaders, v4.Request.Header)
-
 		if !v4.notHoist {
-			urlValues = buildQuery(v4.notHoist, allowedQueryHoisting, unsignedHeaders) // no depends
+			urlValues := url.Values{}
+			urlValues, unsignedHeaders = buildQuery(allowedQueryHoisting, unsignedHeaders) // no depends
 			for k := range urlValues {
 				v4.Query[k] = urlValues[k]
 			}
 		}
-	} else {
-		v4.buildCanonicalHeaders(ignoredHeaders, v4.Request.Header)
 	}
 
+	v4.buildCanonicalHeaders(ignoredHeaders, unsignedHeaders)
 	v4.buildCanonicalString() // depends on canon headers / signed headers
 	v4.buildStringToSign()    // depends on canon string
 	v4.buildSignature()       // depends on string to sign
@@ -283,24 +282,25 @@ func (v4 *signer) buildCredentialString() {
 	}
 }
 
-func buildQuery(notHoist bool, valid validator, header http.Header) url.Values {
+func buildQuery(r rule, header http.Header) (url.Values, http.Header) {
 	query := url.Values{}
+	unsignedHeaders := http.Header{}
 	for k, h := range header {
-		if valid.Validate(k) {
+		if r.IsValid(k) {
 			query[k] = h
+		} else {
+			unsignedHeaders[k] = h
 		}
 	}
 
-	return query
+	return query, unsignedHeaders
 }
-func (v4 *signer) buildCanonicalHeaders(valid validator, header http.Header) http.Header {
+func (v4 *signer) buildCanonicalHeaders(r rule, header http.Header) {
 	var headers []string
-	unsignedHeaders := http.Header{}
 	headers = append(headers, "host")
 	for k, v := range header {
 		canonicalKey := http.CanonicalHeaderKey(k)
-		if !valid.Validate(canonicalKey) {
-			unsignedHeaders[canonicalKey] = v
+		if !r.IsValid(canonicalKey) {
 			continue // ignored header
 		}
 
@@ -331,7 +331,6 @@ func (v4 *signer) buildCanonicalHeaders(valid validator, header http.Header) htt
 	}
 
 	v4.canonicalHeaders = strings.Join(headerValues, "\n")
-	return unsignedHeaders
 }
 
 func (v4 *signer) buildCanonicalString() {
