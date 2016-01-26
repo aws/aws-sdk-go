@@ -1,5 +1,10 @@
 package v4
 
+import (
+	"net/http"
+	"strings"
+)
+
 // filter is an interface that will check to see if a value
 // needs to be filtered
 type filter interface {
@@ -9,7 +14,7 @@ type filter interface {
 // whiltelistFilter takes a whitelist as a field and uses that to
 // check for allowance
 type whitelistFilter struct {
-	whitelist map[string]struct{}
+	whitelist map[string]bool
 }
 
 // blacklistFilter takes a whitelist as a field and uses that to
@@ -20,8 +25,17 @@ type blacklistFilter struct {
 
 // Allow check for allowance of a key
 func (a whitelistFilter) Allow(value string) bool {
-	_, ok := a.whitelist[value]
-	return ok
+	if _, ok := a.whitelist[value]; ok {
+		return true
+	}
+	for k, v := range a.whitelist {
+		if v {
+			if strings.HasPrefix(http.CanonicalHeaderKey(value), k) {
+				return true
+			}
+		}
+	}
+	return false
 }
 
 // Allow check for allowance of a key

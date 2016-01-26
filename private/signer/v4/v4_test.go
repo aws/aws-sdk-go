@@ -54,10 +54,9 @@ func TestPresignRequest(t *testing.T) {
 	signer.sign()
 
 	expectedDate := "19700101T000000Z"
-	expectedHeaders := "content-type;host"
-	expectedSig := "f2fa8d7a7ca0c612b25a4bf0376420f2822ae4c057ba2d5daf1ad43bdb4e99b8"
+	expectedHeaders := "content-type;host;x-amz-meta-other-header"
+	expectedSig := "4fe8944ddd3e83a32bc874955e734e5a349116bfce2d4f43171e0f7572b842f6"
 	expectedCred := "AKID/19700101/us-east-1/dynamodb/aws4_request"
-	expectedMetaOtherHeader := "some-value=!@#$%^&* (+)"
 	expectedTarget := "prefix.Operation"
 
 	q := signer.Request.URL.Query()
@@ -65,7 +64,7 @@ func TestPresignRequest(t *testing.T) {
 	assert.Equal(t, expectedCred, q.Get("X-Amz-Credential"))
 	assert.Equal(t, expectedHeaders, q.Get("X-Amz-SignedHeaders"))
 	assert.Equal(t, expectedDate, q.Get("X-Amz-Date"))
-	assert.Equal(t, expectedMetaOtherHeader, q.Get("X-Amz-Meta-Other-Header"))
+	assert.Empty(t, q.Get("X-Amz-Meta-Other-Header"))
 	assert.Equal(t, expectedTarget, q.Get("X-Amz-Target"))
 }
 
