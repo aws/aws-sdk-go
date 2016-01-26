@@ -76,12 +76,16 @@ var allowedSignedHeaders = validator{
 			"X-Amz-Storage-Class":                                         struct{}{},
 			"X-Amz-Website-Redirect-Location":                             struct{}{},
 		},
-		patterns{"X-Amz-Meta"},
+		patterns{"X-Amz-Meta-"},
 	}}
 
 // allowedHoisting is a whitelist for build query headers. The boolean value
 // represents whether or not it is a pattern.
-var allowedQueryHoisting = validator{}
+var allowedQueryHoisting = validator{
+	rules: []rule{
+		patterns{"X-Amz-"},
+	},
+}
 
 type signer struct {
 	Request     *http.Request
@@ -230,7 +234,6 @@ func (v4 *signer) build() {
 		if !v4.notHoist {
 			urlValues = buildQuery(v4.notHoist, allowedQueryHoisting, unsignedHeaders) // no depends
 			for k := range urlValues {
-				v4.Request.Header.Del(k)
 				v4.Query[k] = urlValues[k]
 			}
 		}
@@ -283,12 +286,8 @@ func (v4 *signer) buildCredentialString() {
 func buildQuery(notHoist bool, valid validator, header http.Header) url.Values {
 	query := url.Values{}
 	for k, h := range header {
-		if strings.HasPrefix(http.CanonicalHeaderKey(k), "X-Amz-") {
+		if valid.Validate(k) {
 			query[k] = h
-		} else {
-			if valid.Validate(k) {
-				query[k] = h
-			}
 		}
 	}
 
