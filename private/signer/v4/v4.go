@@ -26,12 +26,62 @@ const (
 	shortTimeFormat  = "20060102"
 )
 
-var ignoredHeaders = map[string]bool{
-	"Authorization":  true,
-	"Content-Type":   true,
-	"Content-Length": true,
-	"User-Agent":     true,
-}
+var ignoredHeaders = Validator{
+	rules: []Rule{
+		blacklist{
+			"Content-Length": struct{}{},
+			"User-Agent":     struct{}{},
+		},
+	}}
+
+// allowedSignedHeaders is a whitelist for build canonical headers.
+var allowedSignedHeaders = Validator{
+	rules: []Rule{
+		whitelist{
+			"Cache-Control":                                               struct{}{},
+			"Content-Disposition":                                         struct{}{},
+			"Content-Encoding":                                            struct{}{},
+			"Content-Language":                                            struct{}{},
+			"Content-Md5":                                                 struct{}{},
+			"Content-Type":                                                struct{}{},
+			"Expires":                                                     struct{}{},
+			"If-Match":                                                    struct{}{},
+			"If-Modified-Since":                                           struct{}{},
+			"If-None-Match":                                               struct{}{},
+			"If-Unmodified-Since":                                         struct{}{},
+			"Range":                                                       struct{}{},
+			"X-Amz-Acl":                                                   struct{}{},
+			"X-Amz-Copy-Source":                                           struct{}{},
+			"X-Amz-Copy-Source-If-Match":                                  struct{}{},
+			"X-Amz-Copy-Source-If-Modified-Since":                         struct{}{},
+			"X-Amz-Copy-Source-If-None-Match":                             struct{}{},
+			"X-Amz-Copy-Source-If-Unmodified-Since":                       struct{}{},
+			"X-Amz-Copy-Source-Range":                                     struct{}{},
+			"X-Amz-Copy-Source-Server-Side-Encryption-Customer-Algorithm": struct{}{},
+			"X-Amz-Copy-Source-Server-Side-Encryption-Customer-Key":       struct{}{},
+			"X-Amz-Copy-Source-Server-Side-Encryption-Customer-Key-Md5":   struct{}{},
+			"X-Amz-Grant-Full-control":                                    struct{}{},
+			"X-Amz-Grant-Read":                                            struct{}{},
+			"X-Amz-Grant-Read-Acp":                                        struct{}{},
+			"X-Amz-Grant-Write":                                           struct{}{},
+			"X-Amz-Grant-Write-Acp":                                       struct{}{},
+			"X-Amz-Metadata-Directive":                                    struct{}{},
+			"X-Amz-Mfa":                                                   struct{}{},
+			"X-Amz-Request-Payer":                                         struct{}{},
+			"X-Amz-Server-Side-Encryption":                                struct{}{},
+			"X-Amz-Server-Side-Encryption-Aws-Kms-Key-Id":                 struct{}{},
+			"X-Amz-Server-Side-Encryption-Customer-Algorithm":             struct{}{},
+			"X-Amz-Server-Side-Encryption-Customer-Key":                   struct{}{},
+			"X-Amz-Server-Side-Encryption-Customer-Key-Md5":               struct{}{},
+			"X-Amz-Storage-Class":                                         struct{}{},
+			"X-Amz-Website-Redirect-Location":                             struct{}{},
+		},
+		patterns{"X-Amz-Meta"},
+	}}
+
+// allowedHoisting is a whitelist for build query headers. The boolean value
+// represents whether or not it is a pattern.
+var allowedQueryHoisting = Validator{}
 
 type signer struct {
 	Request     *http.Request
@@ -57,6 +107,8 @@ type signer struct {
 	stringToSign     string
 	signature        string
 	authorization    string
+	notHoist         bool
+	signedHeaderVals http.Header
 }
 
 // Sign requests with signature version 4.
@@ -92,9 +144,11 @@ func Sign(req *request.Request) {
 		Credentials: req.Config.Credentials,
 		Debug:       req.Config.LogLevel.Value(),
 		Logger:      req.Config.Logger,
+		notHoist:    req.NotHoist,
 	}
 
 	req.Error = s.sign()
+	req.SignedHeaderVals = s.signedHeaderVals
 }
 
 func (v4 *signer) sign() error {
@@ -165,15 +219,28 @@ func (v4 *signer) logSigningInfo() {
 }
 
 func (v4 *signer) build() {
+	urlValues := url.Values{}
+
 	v4.buildTime()             // no depends
 	v4.buildCredentialString() // no depends
+
 	if v4.isPresign {
-		v4.buildQuery() // no depends
+		unsignedHeaders := v4.buildCanonicalHeaders(allowedSignedHeaders, v4.Request.Header)
+
+		if !v4.notHoist {
+			urlValues = buildQuery(v4.notHoist, allowedQueryHoisting, unsignedHeaders) // no depends
+			for k := range urlValues {
+				v4.Request.Header.Del(k)
+				v4.Query[k] = urlValues[k]
+			}
+		}
+	} else {
+		v4.buildCanonicalHeaders(ignoredHeaders, v4.Request.Header)
 	}
-	v4.buildCanonicalHeaders() // depends on cred string
-	v4.buildCanonicalString()  // depends on canon headers / signed headers
-	v4.buildStringToSign()     // depends on canon string
-	v4.buildSignature()        // depends on string to sign
+
+	v4.buildCanonicalString() // depends on canon headers / signed headers
+	v4.buildStringToSign()    // depends on canon string
+	v4.buildSignature()       // depends on string to sign
 
 	if v4.isPresign {
 		v4.Request.URL.RawQuery += "&X-Amz-Signature=" + v4.signature
@@ -213,31 +280,38 @@ func (v4 *signer) buildCredentialString() {
 	}
 }
 
-func (v4 *signer) buildQuery() {
-	for k, h := range v4.Request.Header {
+func buildQuery(notHoist bool, validator Validator, header http.Header) url.Values {
+	query := url.Values{}
+	for k, h := range header {
 		if strings.HasPrefix(http.CanonicalHeaderKey(k), "X-Amz-") {
-			continue // never hoist x-amz-* headers, they must be signed
-		}
-		if _, ok := ignoredHeaders[http.CanonicalHeaderKey(k)]; ok {
-			continue // never hoist ignored headers
-		}
-
-		v4.Request.Header.Del(k)
-		v4.Query.Del(k)
-		for _, v := range h {
-			v4.Query.Add(k, v)
+			query[k] = h
+		} else {
+			if validator.Validate(k) {
+				query[k] = h
+			}
 		}
 	}
-}
 
-func (v4 *signer) buildCanonicalHeaders() {
+	return query
+}
+func (v4 *signer) buildCanonicalHeaders(validator Validator, header http.Header) http.Header {
 	var headers []string
+	unsignedHeaders := http.Header{}
 	headers = append(headers, "host")
-	for k := range v4.Request.Header {
-		if _, ok := ignoredHeaders[http.CanonicalHeaderKey(k)]; ok {
+	for k, v := range header {
+		canonicalKey := http.CanonicalHeaderKey(k)
+		if !validator.Validate(canonicalKey) {
+			unsignedHeaders[canonicalKey] = v
 			continue // ignored header
 		}
-		headers = append(headers, strings.ToLower(k))
+
+		lowerCaseKey := strings.ToLower(k)
+		headers = append(headers, lowerCaseKey)
+
+		if v4.signedHeaderVals == nil {
+			v4.signedHeaderVals = make(http.Header)
+		}
+		v4.signedHeaderVals[lowerCaseKey] = v
 	}
 	sort.Strings(headers)
 
@@ -258,6 +332,7 @@ func (v4 *signer) buildCanonicalHeaders() {
 	}
 
 	v4.canonicalHeaders = strings.Join(headerValues, "\n")
+	return unsignedHeaders
 }
 
 func (v4 *signer) buildCanonicalString() {
