@@ -26,57 +26,62 @@ const (
 	shortTimeFormat  = "20060102"
 )
 
-var ignoredHeaders = blacklistFilter{map[string]struct{}{
-	"Content-Length": struct{}{},
-	"User-Agent":     struct{}{},
-}}
+var ignoredHeaders = Validator{
+	rules: []Rule{
+		blacklist{
+			"Content-Length": struct{}{},
+			"User-Agent":     struct{}{},
+		},
+	}}
 
 // allowedSignedHeaders is a whitelist for build canonical headers.
-var allowedSignedHeaders = whitelistFilter{map[string]bool{
-	"Cache-Control":                                               false,
-	"Content-Disposition":                                         false,
-	"Content-Encoding":                                            false,
-	"Content-Language":                                            false,
-	"Content-Md5":                                                 false,
-	"Content-Type":                                                false,
-	"Expires":                                                     false,
-	"If-Match":                                                    false,
-	"If-Modified-Since":                                           false,
-	"If-None-Match":                                               false,
-	"If-Unmodified-Since":                                         false,
-	"Range":                                                       false,
-	"X-Amz-Acl":                                                   false,
-	"X-Amz-Copy-Source":                                           false,
-	"X-Amz-Copy-Source-If-Match":                                  false,
-	"X-Amz-Copy-Source-If-Modified-Since":                         false,
-	"X-Amz-Copy-Source-If-None-Match":                             false,
-	"X-Amz-Copy-Source-If-Unmodified-Since":                       false,
-	"X-Amz-Copy-Source-Range":                                     false,
-	"X-Amz-Copy-Source-Server-Side-Encryption-Customer-Algorithm": false,
-	"X-Amz-Copy-Source-Server-Side-Encryption-Customer-Key":       false,
-	"X-Amz-Copy-Source-Server-Side-Encryption-Customer-Key-Md5":   false,
-	"X-Amz-Grant-Full-control":                                    false,
-	"X-Amz-Grant-Read":                                            false,
-	"X-Amz-Grant-Read-Acp":                                        false,
-	"X-Amz-Grant-Write":                                           false,
-	"X-Amz-Grant-Write-Acp":                                       false,
-	"X-Amz-Metadata-Directive":                                    false,
-	"X-Amz-Mfa":                                                   false,
-	"X-Amz-Request-Payer":                                         false,
-	"X-Amz-Server-Side-Encryption":                                false,
-	"X-Amz-Server-Side-Encryption-Aws-Kms-Key-Id":                 false,
-	"X-Amz-Server-Side-Encryption-Customer-Algorithm":             false,
-	"X-Amz-Server-Side-Encryption-Customer-Key":                   false,
-	"X-Amz-Server-Side-Encryption-Customer-Key-Md5":               false,
-	"X-Amz-Storage-Class":                                         false,
-	"X-Amz-Website-Redirect-Location":                             false,
-
-	"X-Amz-Meta-": true,
-}}
+var allowedSignedHeaders = Validator{
+	rules: []Rule{
+		whitelist{
+			"Cache-Control":                                               struct{}{},
+			"Content-Disposition":                                         struct{}{},
+			"Content-Encoding":                                            struct{}{},
+			"Content-Language":                                            struct{}{},
+			"Content-Md5":                                                 struct{}{},
+			"Content-Type":                                                struct{}{},
+			"Expires":                                                     struct{}{},
+			"If-Match":                                                    struct{}{},
+			"If-Modified-Since":                                           struct{}{},
+			"If-None-Match":                                               struct{}{},
+			"If-Unmodified-Since":                                         struct{}{},
+			"Range":                                                       struct{}{},
+			"X-Amz-Acl":                                                   struct{}{},
+			"X-Amz-Copy-Source":                                           struct{}{},
+			"X-Amz-Copy-Source-If-Match":                                  struct{}{},
+			"X-Amz-Copy-Source-If-Modified-Since":                         struct{}{},
+			"X-Amz-Copy-Source-If-None-Match":                             struct{}{},
+			"X-Amz-Copy-Source-If-Unmodified-Since":                       struct{}{},
+			"X-Amz-Copy-Source-Range":                                     struct{}{},
+			"X-Amz-Copy-Source-Server-Side-Encryption-Customer-Algorithm": struct{}{},
+			"X-Amz-Copy-Source-Server-Side-Encryption-Customer-Key":       struct{}{},
+			"X-Amz-Copy-Source-Server-Side-Encryption-Customer-Key-Md5":   struct{}{},
+			"X-Amz-Grant-Full-control":                                    struct{}{},
+			"X-Amz-Grant-Read":                                            struct{}{},
+			"X-Amz-Grant-Read-Acp":                                        struct{}{},
+			"X-Amz-Grant-Write":                                           struct{}{},
+			"X-Amz-Grant-Write-Acp":                                       struct{}{},
+			"X-Amz-Metadata-Directive":                                    struct{}{},
+			"X-Amz-Mfa":                                                   struct{}{},
+			"X-Amz-Request-Payer":                                         struct{}{},
+			"X-Amz-Server-Side-Encryption":                                struct{}{},
+			"X-Amz-Server-Side-Encryption-Aws-Kms-Key-Id":                 struct{}{},
+			"X-Amz-Server-Side-Encryption-Customer-Algorithm":             struct{}{},
+			"X-Amz-Server-Side-Encryption-Customer-Key":                   struct{}{},
+			"X-Amz-Server-Side-Encryption-Customer-Key-Md5":               struct{}{},
+			"X-Amz-Storage-Class":                                         struct{}{},
+			"X-Amz-Website-Redirect-Location":                             struct{}{},
+		},
+		patterns{"X-Amz-Meta"},
+	}}
 
 // allowedHoisting is a whitelist for build query headers. The boolean value
 // represents whether or not it is a pattern.
-var allowedQueryHoisting = whitelistFilter{map[string]bool{}}
+var allowedQueryHoisting = Validator{}
 
 type signer struct {
 	Request     *http.Request
@@ -275,13 +280,13 @@ func (v4 *signer) buildCredentialString() {
 	}
 }
 
-func buildQuery(notHoist bool, f filter, header http.Header) url.Values {
+func buildQuery(notHoist bool, validator Validator, header http.Header) url.Values {
 	query := url.Values{}
 	for k, h := range header {
 		if strings.HasPrefix(http.CanonicalHeaderKey(k), "X-Amz-") {
 			query[k] = h
 		} else {
-			if f.Allow(k) {
+			if validator.Validate(k) {
 				query[k] = h
 			}
 		}
@@ -289,13 +294,13 @@ func buildQuery(notHoist bool, f filter, header http.Header) url.Values {
 
 	return query
 }
-func (v4 *signer) buildCanonicalHeaders(f filter, header http.Header) http.Header {
+func (v4 *signer) buildCanonicalHeaders(validator Validator, header http.Header) http.Header {
 	var headers []string
 	unsignedHeaders := http.Header{}
 	headers = append(headers, "host")
 	for k, v := range header {
 		canonicalKey := http.CanonicalHeaderKey(k)
-		if !f.Allow(canonicalKey) {
+		if !validator.Validate(canonicalKey) {
 			unsignedHeaders[canonicalKey] = v
 			continue // ignored header
 		}
