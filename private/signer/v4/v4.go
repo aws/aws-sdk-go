@@ -165,39 +165,15 @@ func (v4 *signer) logSigningInfo() {
 }
 
 func (v4 *signer) build() {
-	filters := make(map[string][]string)
-	urlValues := url.Values{}
-
 	v4.buildTime()             // no depends
 	v4.buildCredentialString() // no depends
-
-	var allowedSignedHeaders = map[string][]string{
-		"X-Amz-Acl":               nil,
-		"X-Amz-Content-Sha256":    nil,
-		"X-Amz-Date":              nil,
-		"X-Amz-Meta-Other-Header": nil,
-		"X-Amz-Security-Token":    nil,
-		"X-Amz-Target":            nil,
-	}
-	filters = v4.buildCanonicalHeaders(allowedSignedHeaders, filters)
-
 	if v4.isPresign {
-		var allowedHoisting = map[string][]string{
-			"Content-Md5":         nil,
-			"Content-Disposition": nil,
-		}
-
-		urlValues, filters = buildQuery(allowedHoisting, v4.Request.Header, filters) // no depends
-		for k, _ := range urlValues {
-			v4.Request.Header.Del(k)
-			v4.Query.Del(k)
-			v4.Query[k] = append(v4.Query[k], urlValues[k]...)
-		}
+		v4.buildQuery() // no depends
 	}
-
-	v4.buildCanonicalString() // depends on canon headers / signed headers
-	v4.buildStringToSign()    // depends on canon string
-	v4.buildSignature()       // depends on string to sign
+	v4.buildCanonicalHeaders() // depends on cred string
+	v4.buildCanonicalString()  // depends on canon headers / signed headers
+	v4.buildStringToSign()     // depends on canon string
+	v4.buildSignature()        // depends on string to sign
 
 	if v4.isPresign {
 		v4.Request.URL.RawQuery += "&X-Amz-Signature=" + v4.signature
@@ -237,27 +213,30 @@ func (v4 *signer) buildCredentialString() {
 	}
 }
 
-func buildQuery(allowed, header, filters map[string][]string) (url.Values, map[string][]string) {
-	query := url.Values{}
-	for k, h := range header {
-		_, allow := allowed[k]
-		_, filter := filters[k]
-		if allow && !filter {
-			filters[k] = h
-			query[k] = append(query[k], h...)
+func (v4 *signer) buildQuery() {
+	for k, h := range v4.Request.Header {
+		if strings.HasPrefix(http.CanonicalHeaderKey(k), "X-Amz-") {
+			continue // never hoist x-amz-* headers, they must be signed
+		}
+		if _, ok := ignoredHeaders[http.CanonicalHeaderKey(k)]; ok {
+			continue // never hoist ignored headers
+		}
+
+		v4.Request.Header.Del(k)
+		v4.Query.Del(k)
+		for _, v := range h {
+			v4.Query.Add(k, v)
 		}
 	}
-
-	return query, filters
 }
-func (v4 *signer) buildCanonicalHeaders(allowed, filters map[string][]string) map[string][]string {
+
+func (v4 *signer) buildCanonicalHeaders() {
 	var headers []string
 	headers = append(headers, "host")
 	for k := range v4.Request.Header {
-		if _, ok := allowed[http.CanonicalHeaderKey(k)]; !ok {
+		if _, ok := ignoredHeaders[http.CanonicalHeaderKey(k)]; ok {
 			continue // ignored header
 		}
-		filters[k] = nil
 		headers = append(headers, strings.ToLower(k))
 	}
 	sort.Strings(headers)
@@ -279,7 +258,6 @@ func (v4 *signer) buildCanonicalHeaders(allowed, filters map[string][]string) ma
 	}
 
 	v4.canonicalHeaders = strings.Join(headerValues, "\n")
-	return filters
 }
 
 func (v4 *signer) buildCanonicalString() {
