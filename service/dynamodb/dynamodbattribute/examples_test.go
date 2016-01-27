@@ -2,8 +2,9 @@ package dynamodbattribute_test
 
 import (
 	"fmt"
-	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
 	"reflect"
+
+	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
 )
 
 func ExampleConvertTo() {
