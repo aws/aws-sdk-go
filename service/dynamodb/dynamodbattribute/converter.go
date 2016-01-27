@@ -4,6 +4,11 @@
 // These are most useful to serialize concrete types to dynamodb.AttributeValue for
 // requests or unmarshalling the dynamodb.AttributeValue into a well known typed form.
 //
+// Converting []byte fields to dynamodb.AttributeValue are only currently supported
+// if the input is a map[string]interface{} type. []byte within typed structs are not
+// converted correctly and are converted into base64 strings. This is a known bug,
+// and will be fixed in a later release.
+//
 // Convert concrete type to dynamodb.AttributeValue: See (ExampleConvertTo)
 //
 //     type Record struct {
