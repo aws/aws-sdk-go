@@ -376,15 +376,6 @@ func convertTo(in interface{}) *dynamodb.AttributeValue {
 		return a
 	}
 
-	if l, ok := in.([]interface{}); ok {
-		a.L = make([]*dynamodb.AttributeValue, len(l))
-		for index, v := range l {
-			a.L[index] = convertTo(v)
-		}
-		return a
-	}
-
-	// Only primitive types should remain.
 	v := reflect.ValueOf(in)
 	switch v.Kind() {
 	case reflect.Bool:
@@ -406,6 +397,16 @@ func convertTo(in interface{}) *dynamodb.AttributeValue {
 		} else {
 			a.S = new(string)
 			*a.S = v.String()
+		}
+	case reflect.Slice:
+		switch v.Type() {
+		case reflect.TypeOf(([]byte)(nil)):
+			a.B = v.Bytes()
+		default:
+			a.L = make([]*dynamodb.AttributeValue, v.Len())
+			for i := 0; i < v.Len(); i++ {
+				a.L[i] = convertTo(v.Index(i).Interface())
+			}
 		}
 	default:
 		panic(fmt.Sprintf("the type %s is not supported", v.Type().String()))
@@ -457,6 +458,10 @@ func convertFrom(a *dynamodb.AttributeValue) interface{} {
 			l[index] = convertFrom(v)
 		}
 		return l
+	}
+
+	if a.B != nil {
+		return a.B
 	}
 
 	panic(fmt.Sprintf("%#v is not a supported dynamodb.AttributeValue", a))
