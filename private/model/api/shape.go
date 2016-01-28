@@ -59,6 +59,9 @@ type Shape struct {
 
 	refs       []*ShapeRef // References to this shape
 	resolvePkg string      // use this package in the goType() if present
+
+	// Defines if the shape is a placeholder and should not be used directly
+	Placeholder bool
 }
 
 // Rename changes the name of the Shape to newName. Also updates

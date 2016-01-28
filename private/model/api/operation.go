@@ -62,7 +62,9 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 		input = &{{ .InputRef.GoTypeElem }}{}
 	}
 
-	req = c.newRequest(op, input, output)
+	req = c.newRequest(op, input, output){{ if eq .OutputRef.Shape.Placeholder true }}
+	req.Handlers.Unmarshal.Remove({{ .API.ProtocolPackage }}.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler){{ end }}
 	output = &{{ .OutputRef.GoTypeElem }}{}
 	req.Data = output
 	return
