@@ -133,6 +133,17 @@ func (a *API) OperationList() []*Operation {
 	return list
 }
 
+// OperationHasOutputPlaceholder returns if any of the API operation input
+// or output shapes are place holders.
+func (a *API) OperationHasOutputPlaceholder() bool {
+	for _, op := range a.Operations {
+		if op.OutputRef.Shape.Placeholder {
+			return true
+		}
+	}
+	return false
+}
+
 // ShapeNames returns a slice of names for each shape used by the API.
 func (a *API) ShapeNames() []string {
 	i, names := 0, make([]string, len(a.Shapes))
@@ -215,6 +226,10 @@ func (a *API) APIGoCode() string {
 	delete(a.imports, "github.com/aws/aws-sdk-go/aws")
 	a.imports["github.com/aws/aws-sdk-go/aws/awsutil"] = true
 	a.imports["github.com/aws/aws-sdk-go/aws/request"] = true
+	if a.OperationHasOutputPlaceholder() {
+		a.imports["github.com/aws/aws-sdk-go/private/protocol/"+a.ProtocolPackage()] = true
+		a.imports["github.com/aws/aws-sdk-go/private/protocol"] = true
+	}
 	var buf bytes.Buffer
 	err := tplAPI.Execute(&buf, a)
 	if err != nil {
@@ -282,10 +297,10 @@ func newClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegio
 	// Handlers
 	svc.Handlers.Sign.PushBack({{if eq .Metadata.SignatureVersion "v2"}}v2{{else}}v4{{end}}.Sign)
 	{{if eq .Metadata.SignatureVersion "v2"}}svc.Handlers.Sign.PushBackNamed(corehandlers.BuildContentLengthHandler)
-	{{end}}svc.Handlers.Build.PushBack({{ .ProtocolPackage }}.Build)
-	svc.Handlers.Unmarshal.PushBack({{ .ProtocolPackage }}.Unmarshal)
-	svc.Handlers.UnmarshalMeta.PushBack({{ .ProtocolPackage }}.UnmarshalMeta)
-	svc.Handlers.UnmarshalError.PushBack({{ .ProtocolPackage }}.UnmarshalError)
+	{{end}}svc.Handlers.Build.PushBackNamed({{ .ProtocolPackage }}.BuildHandler)
+	svc.Handlers.Unmarshal.PushBackNamed({{ .ProtocolPackage }}.UnmarshalHandler)
+	svc.Handlers.UnmarshalMeta.PushBackNamed({{ .ProtocolPackage }}.UnmarshalMetaHandler)
+	svc.Handlers.UnmarshalError.PushBackNamed({{ .ProtocolPackage }}.UnmarshalErrorHandler)
 
 	{{ if .UseInitMethods }}// Run custom client initialization if present
 	if initClient != nil {

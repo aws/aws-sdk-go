@@ -217,18 +217,21 @@ func (a *API) renameExportable() {
 // have not been defined in the API. This normalizes all APIs to always
 // have an input and output structure in the signature.
 func (a *API) createInputOutputShapes() {
-	for _, v := range a.Operations {
-		if !v.HasInput() {
-			shape := a.makeIOShape(v.ExportedName + "Input")
-			v.InputRef = ShapeRef{API: a, ShapeName: shape.ShapeName, Shape: shape}
-			shape.refs = append(shape.refs, &v.InputRef)
+	for _, op := range a.Operations {
+		if !op.HasInput() {
+			setAsPlacholderShape(&op.InputRef, op.ExportedName+"Input", a)
 		}
-		if !v.HasOutput() {
-			shape := a.makeIOShape(v.ExportedName + "Output")
-			v.OutputRef = ShapeRef{API: a, ShapeName: shape.ShapeName, Shape: shape}
-			shape.refs = append(shape.refs, &v.OutputRef)
+		if !op.HasOutput() {
+			setAsPlacholderShape(&op.OutputRef, op.ExportedName+"Output", a)
 		}
 	}
+}
+
+func setAsPlacholderShape(tgtShapeRef *ShapeRef, name string, a *API) {
+	shape := a.makeIOShape(name)
+	shape.Placeholder = true
+	*tgtShapeRef = ShapeRef{API: a, ShapeName: shape.ShapeName, Shape: shape}
+	shape.refs = append(shape.refs, tgtShapeRef)
 }
 
 // makeIOShape returns a pointer to a new Shape initialized by the name provided.
