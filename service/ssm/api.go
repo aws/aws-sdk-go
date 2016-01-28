@@ -317,6 +317,12 @@ func (c *SSM) ListAssociationsRequest(input *ListAssociationsInput) (req *reques
 		Name:       opListAssociations,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -336,6 +342,14 @@ func (c *SSM) ListAssociations(input *ListAssociationsInput) (*ListAssociationsO
 	return out, err
 }
 
+func (c *SSM) ListAssociationsPages(input *ListAssociationsInput, fn func(p *ListAssociationsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListAssociationsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListAssociationsOutput), lastPage)
+	})
+}
+
 const opListCommandInvocations = "ListCommandInvocations"
 
 // ListCommandInvocationsRequest generates a request for the ListCommandInvocations operation.
@@ -344,6 +358,12 @@ func (c *SSM) ListCommandInvocationsRequest(input *ListCommandInvocationsInput) 
 		Name:       opListCommandInvocations,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -367,6 +387,14 @@ func (c *SSM) ListCommandInvocations(input *ListCommandInvocationsInput) (*ListC
 	return out, err
 }
 
+func (c *SSM) ListCommandInvocationsPages(input *ListCommandInvocationsInput, fn func(p *ListCommandInvocationsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListCommandInvocationsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListCommandInvocationsOutput), lastPage)
+	})
+}
+
 const opListCommands = "ListCommands"
 
 // ListCommandsRequest generates a request for the ListCommands operation.
@@ -375,6 +403,12 @@ func (c *SSM) ListCommandsRequest(input *ListCommandsInput) (req *request.Reques
 		Name:       opListCommands,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -394,6 +428,14 @@ func (c *SSM) ListCommands(input *ListCommandsInput) (*ListCommandsOutput, error
 	return out, err
 }
 
+func (c *SSM) ListCommandsPages(input *ListCommandsInput, fn func(p *ListCommandsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListCommandsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListCommandsOutput), lastPage)
+	})
+}
+
 const opListDocuments = "ListDocuments"
 
 // ListDocumentsRequest generates a request for the ListDocuments operation.
@@ -402,6 +444,12 @@ func (c *SSM) ListDocumentsRequest(input *ListDocumentsInput) (req *request.Requ
 		Name:       opListDocuments,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -419,6 +467,14 @@ func (c *SSM) ListDocuments(input *ListDocumentsInput) (*ListDocumentsOutput, er
 	req, out := c.ListDocumentsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *SSM) ListDocumentsPages(input *ListDocumentsInput, fn func(p *ListDocumentsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListDocumentsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListDocumentsOutput), lastPage)
+	})
 }
 
 const opSendCommand = "SendCommand"
@@ -480,7 +536,7 @@ type Association struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the instance.
-	InstanceId *string `min:"10" type:"string"`
+	InstanceId *string `type:"string"`
 
 	// The name of the SSM document.
 	Name *string `type:"string"`
@@ -504,7 +560,7 @@ type AssociationDescription struct {
 	Date *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The ID of the instance.
-	InstanceId *string `min:"10" type:"string"`
+	InstanceId *string `type:"string"`
 
 	// The name of the SSM document.
 	Name *string `type:"string"`
@@ -705,7 +761,7 @@ type CommandInvocation struct {
 	DocumentName *string `type:"string"`
 
 	// The instance ID in which this invocation was requested.
-	InstanceId *string `min:"10" type:"string"`
+	InstanceId *string `type:"string"`
 
 	// The time and date the request was sent to this instance.
 	RequestedDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
@@ -813,7 +869,7 @@ type CreateAssociationBatchRequestEntry struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the instance.
-	InstanceId *string `min:"10" type:"string"`
+	InstanceId *string `type:"string"`
 
 	// The name of the configuration document.
 	Name *string `type:"string"`
@@ -836,7 +892,7 @@ type CreateAssociationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Windows Server instance ID.
-	InstanceId *string `min:"10" type:"string" required:"true"`
+	InstanceId *string `type:"string" required:"true"`
 
 	// The name of the SSM document.
 	Name *string `type:"string" required:"true"`
@@ -914,7 +970,7 @@ type DeleteAssociationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the instance.
-	InstanceId *string `min:"10" type:"string" required:"true"`
+	InstanceId *string `type:"string" required:"true"`
 
 	// The name of the SSM document.
 	Name *string `type:"string" required:"true"`
@@ -979,7 +1035,7 @@ type DescribeAssociationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Windows Server instance ID.
-	InstanceId *string `min:"10" type:"string" required:"true"`
+	InstanceId *string `type:"string" required:"true"`
 
 	// The name of the SSM document.
 	Name *string `type:"string" required:"true"`
@@ -1268,7 +1324,7 @@ type InstanceInformation struct {
 	AgentVersion *string `type:"string"`
 
 	// The instance ID.
-	InstanceId *string `min:"10" type:"string"`
+	InstanceId *string `type:"string"`
 
 	// Indicates whether latest version of the SSM agent is running on your instance.
 	IsLatestVersion *bool `type:"boolean"`
@@ -1382,7 +1438,7 @@ type ListCommandInvocationsInput struct {
 	Filters []*CommandFilter `min:"1" type:"list"`
 
 	// (Optional) The command execution details for a specific instance ID.
-	InstanceId *string `min:"10" type:"string"`
+	InstanceId *string `type:"string"`
 
 	// (Optional) The maximum number of items to return for this call. The call
 	// also returns a token that you can specify in a subsequent call to get the
@@ -1436,7 +1492,7 @@ type ListCommandsInput struct {
 	Filters []*CommandFilter `min:"1" type:"list"`
 
 	// (Optional) Lists commands issued against this instance ID.
-	InstanceId *string `min:"10" type:"string"`
+	InstanceId *string `type:"string"`
 
 	// (Optional) The maximum number of items to return for this call. The call
 	// also returns a token that you can specify in a subsequent call to get the
@@ -1591,7 +1647,7 @@ type UpdateAssociationStatusInput struct {
 	AssociationStatus *AssociationStatus `type:"structure" required:"true"`
 
 	// The ID of the instance.
-	InstanceId *string `min:"10" type:"string" required:"true"`
+	InstanceId *string `type:"string" required:"true"`
 
 	// The name of the SSM document.
 	Name *string `type:"string" required:"true"`

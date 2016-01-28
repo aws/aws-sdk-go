@@ -50,7 +50,7 @@ type mockCredsProvider struct {
 
 func (m *mockCredsProvider) Retrieve() (credentials.Value, error) {
 	m.retrieveCalled = true
-	return credentials.Value{}, nil
+	return credentials.Value{ProviderName: "mockCredsProvider"}, nil
 }
 
 func (m *mockCredsProvider) IsExpired() bool {

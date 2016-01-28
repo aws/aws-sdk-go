@@ -817,9 +817,7 @@
     },
     "InstanceId":{
       "type":"string",
-      "max":10,
-      "min":10,
-      "pattern":"^(?=.{10}$)(i-(\\w){8})"
+      "pattern":"(^i-(\\w{8}|\\w{17})$)|(^op-\\w{17}$)"
     },
     "InstanceIdList":{
       "type":"list",
