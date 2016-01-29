@@ -17,6 +17,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/awstesting"
+	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 	"github.com/aws/aws-sdk-go/private/protocol/xml/xmlutil"
 	"github.com/aws/aws-sdk-go/private/signer/v4"
@@ -30,6 +31,7 @@ var _ json.Marshaler
 var _ time.Time
 var _ xmlutil.XMLNode
 var _ xml.Attr
+var _ = protocol.UnmarshalDiscardBody
 var _ = awstesting.GenerateAssertions
 var _ = ioutil.Discard
 var _ = util.Trim("")
@@ -75,10 +77,10 @@ func newInputService1ProtocolTestClient(cfg aws.Config, handlers request.Handler
 
 	// Handlers
 	svc.Handlers.Sign.PushBack(v4.Sign)
-	svc.Handlers.Build.PushBack(restjson.Build)
-	svc.Handlers.Unmarshal.PushBack(restjson.Unmarshal)
-	svc.Handlers.UnmarshalMeta.PushBack(restjson.UnmarshalMeta)
-	svc.Handlers.UnmarshalError.PushBack(restjson.UnmarshalError)
+	svc.Handlers.Build.PushBackNamed(restjson.BuildHandler)
+	svc.Handlers.Unmarshal.PushBackNamed(restjson.UnmarshalHandler)
+	svc.Handlers.UnmarshalMeta.PushBackNamed(restjson.UnmarshalMetaHandler)
+	svc.Handlers.UnmarshalError.PushBackNamed(restjson.UnmarshalErrorHandler)
 
 	return svc
 }
@@ -106,6 +108,8 @@ func (c *InputService1ProtocolTest) InputService1TestCaseOperation1Request(input
 	}
 
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
 	output = &InputService1TestShapeInputService1TestCaseOperation1Output{}
 	req.Data = output
 	return
@@ -165,10 +169,10 @@ func newInputService2ProtocolTestClient(cfg aws.Config, handlers request.Handler
 
 	// Handlers
 	svc.Handlers.Sign.PushBack(v4.Sign)
-	svc.Handlers.Build.PushBack(restjson.Build)
-	svc.Handlers.Unmarshal.PushBack(restjson.Unmarshal)
-	svc.Handlers.UnmarshalMeta.PushBack(restjson.UnmarshalMeta)
-	svc.Handlers.UnmarshalError.PushBack(restjson.UnmarshalError)
+	svc.Handlers.Build.PushBackNamed(restjson.BuildHandler)
+	svc.Handlers.Unmarshal.PushBackNamed(restjson.UnmarshalHandler)
+	svc.Handlers.UnmarshalMeta.PushBackNamed(restjson.UnmarshalMetaHandler)
+	svc.Handlers.UnmarshalError.PushBackNamed(restjson.UnmarshalErrorHandler)
 
 	return svc
 }
@@ -196,6 +200,8 @@ func (c *InputService2ProtocolTest) InputService2TestCaseOperation1Request(input
 	}
 
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
 	output = &InputService2TestShapeInputService2TestCaseOperation1Output{}
 	req.Data = output
 	return
@@ -255,10 +261,10 @@ func newInputService3ProtocolTestClient(cfg aws.Config, handlers request.Handler
 
 	// Handlers
 	svc.Handlers.Sign.PushBack(v4.Sign)
-	svc.Handlers.Build.PushBack(restjson.Build)
-	svc.Handlers.Unmarshal.PushBack(restjson.Unmarshal)
-	svc.Handlers.UnmarshalMeta.PushBack(restjson.UnmarshalMeta)
-	svc.Handlers.UnmarshalError.PushBack(restjson.UnmarshalError)
+	svc.Handlers.Build.PushBackNamed(restjson.BuildHandler)
+	svc.Handlers.Unmarshal.PushBackNamed(restjson.UnmarshalHandler)
+	svc.Handlers.UnmarshalMeta.PushBackNamed(restjson.UnmarshalMetaHandler)
+	svc.Handlers.UnmarshalError.PushBackNamed(restjson.UnmarshalErrorHandler)
 
 	return svc
 }
@@ -286,6 +292,8 @@ func (c *InputService3ProtocolTest) InputService3TestCaseOperation1Request(input
 	}
 
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
 	output = &InputService3TestShapeInputService3TestCaseOperation1Output{}
 	req.Data = output
 	return
@@ -347,10 +355,10 @@ func newInputService4ProtocolTestClient(cfg aws.Config, handlers request.Handler
 
 	// Handlers
 	svc.Handlers.Sign.PushBack(v4.Sign)
-	svc.Handlers.Build.PushBack(restjson.Build)
-	svc.Handlers.Unmarshal.PushBack(restjson.Unmarshal)
-	svc.Handlers.UnmarshalMeta.PushBack(restjson.UnmarshalMeta)
-	svc.Handlers.UnmarshalError.PushBack(restjson.UnmarshalError)
+	svc.Handlers.Build.PushBackNamed(restjson.BuildHandler)
+	svc.Handlers.Unmarshal.PushBackNamed(restjson.UnmarshalHandler)
+	svc.Handlers.UnmarshalMeta.PushBackNamed(restjson.UnmarshalMetaHandler)
+	svc.Handlers.UnmarshalError.PushBackNamed(restjson.UnmarshalErrorHandler)
 
 	return svc
 }
@@ -378,6 +386,8 @@ func (c *InputService4ProtocolTest) InputService4TestCaseOperation1Request(input
 	}
 
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
 	output = &InputService4TestShapeInputService4TestCaseOperation1Output{}
 	req.Data = output
 	return
@@ -439,10 +449,10 @@ func newInputService5ProtocolTestClient(cfg aws.Config, handlers request.Handler
 
 	// Handlers
 	svc.Handlers.Sign.PushBack(v4.Sign)
-	svc.Handlers.Build.PushBack(restjson.Build)
-	svc.Handlers.Unmarshal.PushBack(restjson.Unmarshal)
-	svc.Handlers.UnmarshalMeta.PushBack(restjson.UnmarshalMeta)
-	svc.Handlers.UnmarshalError.PushBack(restjson.UnmarshalError)
+	svc.Handlers.Build.PushBackNamed(restjson.BuildHandler)
+	svc.Handlers.Unmarshal.PushBackNamed(restjson.UnmarshalHandler)
+	svc.Handlers.UnmarshalMeta.PushBackNamed(restjson.UnmarshalMetaHandler)
+	svc.Handlers.UnmarshalError.PushBackNamed(restjson.UnmarshalErrorHandler)
 
 	return svc
 }
@@ -470,6 +480,8 @@ func (c *InputService5ProtocolTest) InputService5TestCaseOperation1Request(input
 	}
 
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
 	output = &InputService5TestShapeInputService5TestCaseOperation1Output{}
 	req.Data = output
 	return
@@ -533,10 +545,10 @@ func newInputService6ProtocolTestClient(cfg aws.Config, handlers request.Handler
 
 	// Handlers
 	svc.Handlers.Sign.PushBack(v4.Sign)
-	svc.Handlers.Build.PushBack(restjson.Build)
-	svc.Handlers.Unmarshal.PushBack(restjson.Unmarshal)
-	svc.Handlers.UnmarshalMeta.PushBack(restjson.UnmarshalMeta)
-	svc.Handlers.UnmarshalError.PushBack(restjson.UnmarshalError)
+	svc.Handlers.Build.PushBackNamed(restjson.BuildHandler)
+	svc.Handlers.Unmarshal.PushBackNamed(restjson.UnmarshalHandler)
+	svc.Handlers.UnmarshalMeta.PushBackNamed(restjson.UnmarshalMetaHandler)
+	svc.Handlers.UnmarshalError.PushBackNamed(restjson.UnmarshalErrorHandler)
 
 	return svc
 }
@@ -564,6 +576,8 @@ func (c *InputService6ProtocolTest) InputService6TestCaseOperation1Request(input
 	}
 
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
 	output = &InputService6TestShapeInputService6TestCaseOperation1Output{}
 	req.Data = output
 	return
@@ -637,10 +651,10 @@ func newInputService7ProtocolTestClient(cfg aws.Config, handlers request.Handler
 
 	// Handlers
 	svc.Handlers.Sign.PushBack(v4.Sign)
-	svc.Handlers.Build.PushBack(restjson.Build)
-	svc.Handlers.Unmarshal.PushBack(restjson.Unmarshal)
-	svc.Handlers.UnmarshalMeta.PushBack(restjson.UnmarshalMeta)
-	svc.Handlers.UnmarshalError.PushBack(restjson.UnmarshalError)
+	svc.Handlers.Build.PushBackNamed(restjson.BuildHandler)
+	svc.Handlers.Unmarshal.PushBackNamed(restjson.UnmarshalHandler)
+	svc.Handlers.UnmarshalMeta.PushBackNamed(restjson.UnmarshalMetaHandler)
+	svc.Handlers.UnmarshalError.PushBackNamed(restjson.UnmarshalErrorHandler)
 
 	return svc
 }
@@ -668,6 +682,8 @@ func (c *InputService7ProtocolTest) InputService7TestCaseOperation1Request(input
 	}
 
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
 	output = &InputService7TestShapeInputService7TestCaseOperation1Output{}
 	req.Data = output
 	return
@@ -743,10 +759,10 @@ func newInputService8ProtocolTestClient(cfg aws.Config, handlers request.Handler
 
 	// Handlers
 	svc.Handlers.Sign.PushBack(v4.Sign)
-	svc.Handlers.Build.PushBack(restjson.Build)
-	svc.Handlers.Unmarshal.PushBack(restjson.Unmarshal)
-	svc.Handlers.UnmarshalMeta.PushBack(restjson.UnmarshalMeta)
-	svc.Handlers.UnmarshalError.PushBack(restjson.UnmarshalError)
+	svc.Handlers.Build.PushBackNamed(restjson.BuildHandler)
+	svc.Handlers.Unmarshal.PushBackNamed(restjson.UnmarshalHandler)
+	svc.Handlers.UnmarshalMeta.PushBackNamed(restjson.UnmarshalMetaHandler)
+	svc.Handlers.UnmarshalError.PushBackNamed(restjson.UnmarshalErrorHandler)
 
 	return svc
 }
@@ -774,6 +790,8 @@ func (c *InputService8ProtocolTest) InputService8TestCaseOperation1Request(input
 	}
 
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
 	output = &InputService8TestShapeInputService8TestCaseOperation1Output{}
 	req.Data = output
 	return
@@ -837,10 +855,10 @@ func newInputService9ProtocolTestClient(cfg aws.Config, handlers request.Handler
 
 	// Handlers
 	svc.Handlers.Sign.PushBack(v4.Sign)
-	svc.Handlers.Build.PushBack(restjson.Build)
-	svc.Handlers.Unmarshal.PushBack(restjson.Unmarshal)
-	svc.Handlers.UnmarshalMeta.PushBack(restjson.UnmarshalMeta)
-	svc.Handlers.UnmarshalError.PushBack(restjson.UnmarshalError)
+	svc.Handlers.Build.PushBackNamed(restjson.BuildHandler)
+	svc.Handlers.Unmarshal.PushBackNamed(restjson.UnmarshalHandler)
+	svc.Handlers.UnmarshalMeta.PushBackNamed(restjson.UnmarshalMetaHandler)
+	svc.Handlers.UnmarshalError.PushBackNamed(restjson.UnmarshalErrorHandler)
 
 	return svc
 }
@@ -868,6 +886,8 @@ func (c *InputService9ProtocolTest) InputService9TestCaseOperation1Request(input
 	}
 
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
 	output = &InputService9TestShapeInputService9TestCaseOperation1Output{}
 	req.Data = output
 	return
@@ -927,10 +947,10 @@ func newInputService10ProtocolTestClient(cfg aws.Config, handlers request.Handle
 
 	// Handlers
 	svc.Handlers.Sign.PushBack(v4.Sign)
-	svc.Handlers.Build.PushBack(restjson.Build)
-	svc.Handlers.Unmarshal.PushBack(restjson.Unmarshal)
-	svc.Handlers.UnmarshalMeta.PushBack(restjson.UnmarshalMeta)
-	svc.Handlers.UnmarshalError.PushBack(restjson.UnmarshalError)
+	svc.Handlers.Build.PushBackNamed(restjson.BuildHandler)
+	svc.Handlers.Unmarshal.PushBackNamed(restjson.UnmarshalHandler)
+	svc.Handlers.UnmarshalMeta.PushBackNamed(restjson.UnmarshalMetaHandler)
+	svc.Handlers.UnmarshalError.PushBackNamed(restjson.UnmarshalErrorHandler)
 
 	return svc
 }
@@ -958,6 +978,8 @@ func (c *InputService10ProtocolTest) InputService10TestCaseOperation1Request(inp
 	}
 
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
 	output = &InputService10TestShapeInputService10TestCaseOperation1Output{}
 	req.Data = output
 	return
@@ -984,6 +1006,8 @@ func (c *InputService10ProtocolTest) InputService10TestCaseOperation2Request(inp
 	}
 
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
 	output = &InputService10TestShapeInputService10TestCaseOperation2Output{}
 	req.Data = output
 	return
@@ -1047,10 +1071,10 @@ func newInputService11ProtocolTestClient(cfg aws.Config, handlers request.Handle
 
 	// Handlers
 	svc.Handlers.Sign.PushBack(v4.Sign)
-	svc.Handlers.Build.PushBack(restjson.Build)
-	svc.Handlers.Unmarshal.PushBack(restjson.Unmarshal)
-	svc.Handlers.UnmarshalMeta.PushBack(restjson.UnmarshalMeta)
-	svc.Handlers.UnmarshalError.PushBack(restjson.UnmarshalError)
+	svc.Handlers.Build.PushBackNamed(restjson.BuildHandler)
+	svc.Handlers.Unmarshal.PushBackNamed(restjson.UnmarshalHandler)
+	svc.Handlers.UnmarshalMeta.PushBackNamed(restjson.UnmarshalMetaHandler)
+	svc.Handlers.UnmarshalError.PushBackNamed(restjson.UnmarshalErrorHandler)
 
 	return svc
 }
@@ -1078,6 +1102,8 @@ func (c *InputService11ProtocolTest) InputService11TestCaseOperation1Request(inp
 	}
 
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
 	output = &InputService11TestShapeInputService11TestCaseOperation1Output{}
 	req.Data = output
 	return
@@ -1104,6 +1130,8 @@ func (c *InputService11ProtocolTest) InputService11TestCaseOperation2Request(inp
 	}
 
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
 	output = &InputService11TestShapeInputService11TestCaseOperation2Output{}
 	req.Data = output
 	return
@@ -1173,10 +1201,10 @@ func newInputService12ProtocolTestClient(cfg aws.Config, handlers request.Handle
 
 	// Handlers
 	svc.Handlers.Sign.PushBack(v4.Sign)
-	svc.Handlers.Build.PushBack(restjson.Build)
-	svc.Handlers.Unmarshal.PushBack(restjson.Unmarshal)
-	svc.Handlers.UnmarshalMeta.PushBack(restjson.UnmarshalMeta)
-	svc.Handlers.UnmarshalError.PushBack(restjson.UnmarshalError)
+	svc.Handlers.Build.PushBackNamed(restjson.BuildHandler)
+	svc.Handlers.Unmarshal.PushBackNamed(restjson.UnmarshalHandler)
+	svc.Handlers.UnmarshalMeta.PushBackNamed(restjson.UnmarshalMetaHandler)
+	svc.Handlers.UnmarshalError.PushBackNamed(restjson.UnmarshalErrorHandler)
 
 	return svc
 }
@@ -1204,6 +1232,8 @@ func (c *InputService12ProtocolTest) InputService12TestCaseOperation1Request(inp
 	}
 
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
 	output = &InputService12TestShapeInputService12TestCaseOperation1Output{}
 	req.Data = output
 	return
@@ -1230,6 +1260,8 @@ func (c *InputService12ProtocolTest) InputService12TestCaseOperation2Request(inp
 	}
 
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
 	output = &InputService12TestShapeInputService12TestCaseOperation2Output{}
 	req.Data = output
 	return
@@ -1293,10 +1325,10 @@ func newInputService13ProtocolTestClient(cfg aws.Config, handlers request.Handle
 
 	// Handlers
 	svc.Handlers.Sign.PushBack(v4.Sign)
-	svc.Handlers.Build.PushBack(restjson.Build)
-	svc.Handlers.Unmarshal.PushBack(restjson.Unmarshal)
-	svc.Handlers.UnmarshalMeta.PushBack(restjson.UnmarshalMeta)
-	svc.Handlers.UnmarshalError.PushBack(restjson.UnmarshalError)
+	svc.Handlers.Build.PushBackNamed(restjson.BuildHandler)
+	svc.Handlers.Unmarshal.PushBackNamed(restjson.UnmarshalHandler)
+	svc.Handlers.UnmarshalMeta.PushBackNamed(restjson.UnmarshalMetaHandler)
+	svc.Handlers.UnmarshalError.PushBackNamed(restjson.UnmarshalErrorHandler)
 
 	return svc
 }
@@ -1324,6 +1356,8 @@ func (c *InputService13ProtocolTest) InputService13TestCaseOperation1Request(inp
 	}
 
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
 	output = &InputService13TestShapeInputService13TestCaseOperation1Output{}
 	req.Data = output
 	return
@@ -1350,6 +1384,8 @@ func (c *InputService13ProtocolTest) InputService13TestCaseOperation2Request(inp
 	}
 
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
 	output = &InputService13TestShapeInputService13TestCaseOperation2Output{}
 	req.Data = output
 	return
@@ -1376,6 +1412,8 @@ func (c *InputService13ProtocolTest) InputService13TestCaseOperation3Request(inp
 	}
 
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
 	output = &InputService13TestShapeInputService13TestCaseOperation3Output{}
 	req.Data = output
 	return
@@ -1402,6 +1440,8 @@ func (c *InputService13ProtocolTest) InputService13TestCaseOperation4Request(inp
 	}
 
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
 	output = &InputService13TestShapeInputService13TestCaseOperation4Output{}
 	req.Data = output
 	return
@@ -1428,6 +1468,8 @@ func (c *InputService13ProtocolTest) InputService13TestCaseOperation5Request(inp
 	}
 
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
 	output = &InputService13TestShapeInputService13TestCaseOperation5Output{}
 	req.Data = output
 	return
@@ -1454,6 +1496,8 @@ func (c *InputService13ProtocolTest) InputService13TestCaseOperation6Request(inp
 	}
 
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
 	output = &InputService13TestShapeInputService13TestCaseOperation6Output{}
 	req.Data = output
 	return
@@ -1545,10 +1589,10 @@ func newInputService14ProtocolTestClient(cfg aws.Config, handlers request.Handle
 
 	// Handlers
 	svc.Handlers.Sign.PushBack(v4.Sign)
-	svc.Handlers.Build.PushBack(restjson.Build)
-	svc.Handlers.Unmarshal.PushBack(restjson.Unmarshal)
-	svc.Handlers.UnmarshalMeta.PushBack(restjson.UnmarshalMeta)
-	svc.Handlers.UnmarshalError.PushBack(restjson.UnmarshalError)
+	svc.Handlers.Build.PushBackNamed(restjson.BuildHandler)
+	svc.Handlers.Unmarshal.PushBackNamed(restjson.UnmarshalHandler)
+	svc.Handlers.UnmarshalMeta.PushBackNamed(restjson.UnmarshalMetaHandler)
+	svc.Handlers.UnmarshalError.PushBackNamed(restjson.UnmarshalErrorHandler)
 
 	return svc
 }
@@ -1576,6 +1620,8 @@ func (c *InputService14ProtocolTest) InputService14TestCaseOperation1Request(inp
 	}
 
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
 	output = &InputService14TestShapeInputService14TestCaseOperation1Output{}
 	req.Data = output
 	return
@@ -1602,6 +1648,8 @@ func (c *InputService14ProtocolTest) InputService14TestCaseOperation2Request(inp
 	}
 
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
 	output = &InputService14TestShapeInputService14TestCaseOperation2Output{}
 	req.Data = output
 	return
@@ -1667,10 +1715,10 @@ func newInputService15ProtocolTestClient(cfg aws.Config, handlers request.Handle
 
 	// Handlers
 	svc.Handlers.Sign.PushBack(v4.Sign)
-	svc.Handlers.Build.PushBack(restjson.Build)
-	svc.Handlers.Unmarshal.PushBack(restjson.Unmarshal)
-	svc.Handlers.UnmarshalMeta.PushBack(restjson.UnmarshalMeta)
-	svc.Handlers.UnmarshalError.PushBack(restjson.UnmarshalError)
+	svc.Handlers.Build.PushBackNamed(restjson.BuildHandler)
+	svc.Handlers.Unmarshal.PushBackNamed(restjson.UnmarshalHandler)
+	svc.Handlers.UnmarshalMeta.PushBackNamed(restjson.UnmarshalMetaHandler)
+	svc.Handlers.UnmarshalError.PushBackNamed(restjson.UnmarshalErrorHandler)
 
 	return svc
 }
@@ -1698,6 +1746,8 @@ func (c *InputService15ProtocolTest) InputService15TestCaseOperation1Request(inp
 	}
 
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
 	output = &InputService15TestShapeInputService15TestCaseOperation1Output{}
 	req.Data = output
 	return
@@ -1726,7 +1776,6 @@ type InputService15TestShapeInputService15TestCaseOperation1Output struct {
 func TestInputService1ProtocolTestURIParameterOnlyWithNoLocationNameCase1(t *testing.T) {
 	sess := session.New()
 	svc := NewInputService1ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
-
 	input := &InputService1TestShapeInputService1TestCaseOperation1Input{
 		PipelineId: aws.String("foo"),
 	}
@@ -1747,7 +1796,6 @@ func TestInputService1ProtocolTestURIParameterOnlyWithNoLocationNameCase1(t *tes
 func TestInputService2ProtocolTestURIParameterOnlyWithLocationNameCase1(t *testing.T) {
 	sess := session.New()
 	svc := NewInputService2ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
-
 	input := &InputService2TestShapeInputService2TestCaseOperation1Input{
 		Foo: aws.String("bar"),
 	}
@@ -1768,7 +1816,6 @@ func TestInputService2ProtocolTestURIParameterOnlyWithLocationNameCase1(t *testi
 func TestInputService3ProtocolTestStringToStringMapsInQuerystringCase1(t *testing.T) {
 	sess := session.New()
 	svc := NewInputService3ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
-
 	input := &InputService3TestShapeInputService3TestCaseOperation1Input{
 		PipelineId: aws.String("foo"),
 		QueryDoc: map[string]*string{
@@ -1793,7 +1840,6 @@ func TestInputService3ProtocolTestStringToStringMapsInQuerystringCase1(t *testin
 func TestInputService4ProtocolTestStringToStringListMapsInQuerystringCase1(t *testing.T) {
 	sess := session.New()
 	svc := NewInputService4ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
-
 	input := &InputService4TestShapeInputService4TestCaseOperation1Input{
 		PipelineId: aws.String("id"),
 		QueryDoc: map[string][]*string{
@@ -1824,7 +1870,6 @@ func TestInputService4ProtocolTestStringToStringListMapsInQuerystringCase1(t *te
 func TestInputService5ProtocolTestURIParameterAndQuerystringParamsCase1(t *testing.T) {
 	sess := session.New()
 	svc := NewInputService5ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
-
 	input := &InputService5TestShapeInputService5TestCaseOperation1Input{
 		Ascending:  aws.String("true"),
 		PageToken:  aws.String("bar"),
@@ -1847,7 +1892,6 @@ func TestInputService5ProtocolTestURIParameterAndQuerystringParamsCase1(t *testi
 func TestInputService6ProtocolTestURIParameterQuerystringParamsAndJSONBodyCase1(t *testing.T) {
 	sess := session.New()
 	svc := NewInputService6ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
-
 	input := &InputService6TestShapeInputService6TestCaseOperation1Input{
 		Ascending: aws.String("true"),
 		Config: &InputService6TestShapeStructType{
@@ -1879,7 +1923,6 @@ func TestInputService6ProtocolTestURIParameterQuerystringParamsAndJSONBodyCase1(
 func TestInputService7ProtocolTestURIParameterQuerystringParamsHeadersAndJSONBodyCase1(t *testing.T) {
 	sess := session.New()
 	svc := NewInputService7ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
-
 	input := &InputService7TestShapeInputService7TestCaseOperation1Input{
 		Ascending: aws.String("true"),
 		Checksum:  aws.String("12345"),
@@ -1913,7 +1956,6 @@ func TestInputService7ProtocolTestURIParameterQuerystringParamsHeadersAndJSONBod
 func TestInputService8ProtocolTestStreamingPayloadCase1(t *testing.T) {
 	sess := session.New()
 	svc := NewInputService8ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
-
 	input := &InputService8TestShapeInputService8TestCaseOperation1Input{
 		Body:      aws.ReadSeekCloser(bytes.NewBufferString("contents")),
 		Checksum:  aws.String("foo"),
@@ -1942,7 +1984,6 @@ func TestInputService8ProtocolTestStreamingPayloadCase1(t *testing.T) {
 func TestInputService9ProtocolTestStringPayloadCase1(t *testing.T) {
 	sess := session.New()
 	svc := NewInputService9ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
-
 	input := &InputService9TestShapeInputService9TestCaseOperation1Input{
 		Foo: aws.String("bar"),
 	}
@@ -1968,7 +2009,6 @@ func TestInputService9ProtocolTestStringPayloadCase1(t *testing.T) {
 func TestInputService10ProtocolTestBlobPayloadCase1(t *testing.T) {
 	sess := session.New()
 	svc := NewInputService10ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
-
 	input := &InputService10TestShapeInputShape{
 		Foo: []byte("bar"),
 	}
@@ -1994,7 +2034,6 @@ func TestInputService10ProtocolTestBlobPayloadCase1(t *testing.T) {
 func TestInputService10ProtocolTestBlobPayloadCase2(t *testing.T) {
 	sess := session.New()
 	svc := NewInputService10ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
-
 	input := &InputService10TestShapeInputShape{}
 	req, _ := svc.InputService10TestCaseOperation2Request(input)
 	r := req.HTTPRequest
@@ -2013,7 +2052,6 @@ func TestInputService10ProtocolTestBlobPayloadCase2(t *testing.T) {
 func TestInputService11ProtocolTestStructurePayloadCase1(t *testing.T) {
 	sess := session.New()
 	svc := NewInputService11ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
-
 	input := &InputService11TestShapeInputShape{
 		Foo: &InputService11TestShapeFooShape{
 			Baz: aws.String("bar"),
@@ -2041,7 +2079,6 @@ func TestInputService11ProtocolTestStructurePayloadCase1(t *testing.T) {
 func TestInputService11ProtocolTestStructurePayloadCase2(t *testing.T) {
 	sess := session.New()
 	svc := NewInputService11ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
-
 	input := &InputService11TestShapeInputShape{}
 	req, _ := svc.InputService11TestCaseOperation2Request(input)
 	r := req.HTTPRequest
@@ -2060,7 +2097,6 @@ func TestInputService11ProtocolTestStructurePayloadCase2(t *testing.T) {
 func TestInputService12ProtocolTestOmitsNullQueryParamsButSerializesEmptyStringsCase1(t *testing.T) {
 	sess := session.New()
 	svc := NewInputService12ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
-
 	input := &InputService12TestShapeInputShape{}
 	req, _ := svc.InputService12TestCaseOperation1Request(input)
 	r := req.HTTPRequest
@@ -2079,7 +2115,6 @@ func TestInputService12ProtocolTestOmitsNullQueryParamsButSerializesEmptyStrings
 func TestInputService12ProtocolTestOmitsNullQueryParamsButSerializesEmptyStringsCase2(t *testing.T) {
 	sess := session.New()
 	svc := NewInputService12ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
-
 	input := &InputService12TestShapeInputShape{
 		Foo: aws.String(""),
 	}
@@ -2100,7 +2135,6 @@ func TestInputService12ProtocolTestOmitsNullQueryParamsButSerializesEmptyStrings
 func TestInputService13ProtocolTestRecursiveShapesCase1(t *testing.T) {
 	sess := session.New()
 	svc := NewInputService13ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
-
 	input := &InputService13TestShapeInputShape{
 		RecursiveStruct: &InputService13TestShapeRecursiveStructType{
 			NoRecurse: aws.String("foo"),
@@ -2128,7 +2162,6 @@ func TestInputService13ProtocolTestRecursiveShapesCase1(t *testing.T) {
 func TestInputService13ProtocolTestRecursiveShapesCase2(t *testing.T) {
 	sess := session.New()
 	svc := NewInputService13ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
-
 	input := &InputService13TestShapeInputShape{
 		RecursiveStruct: &InputService13TestShapeRecursiveStructType{
 			RecursiveStruct: &InputService13TestShapeRecursiveStructType{
@@ -2158,7 +2191,6 @@ func TestInputService13ProtocolTestRecursiveShapesCase2(t *testing.T) {
 func TestInputService13ProtocolTestRecursiveShapesCase3(t *testing.T) {
 	sess := session.New()
 	svc := NewInputService13ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
-
 	input := &InputService13TestShapeInputShape{
 		RecursiveStruct: &InputService13TestShapeRecursiveStructType{
 			RecursiveStruct: &InputService13TestShapeRecursiveStructType{
@@ -2192,7 +2224,6 @@ func TestInputService13ProtocolTestRecursiveShapesCase3(t *testing.T) {
 func TestInputService13ProtocolTestRecursiveShapesCase4(t *testing.T) {
 	sess := session.New()
 	svc := NewInputService13ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
-
 	input := &InputService13TestShapeInputShape{
 		RecursiveStruct: &InputService13TestShapeRecursiveStructType{
 			RecursiveList: []*InputService13TestShapeRecursiveStructType{
@@ -2227,7 +2258,6 @@ func TestInputService13ProtocolTestRecursiveShapesCase4(t *testing.T) {
 func TestInputService13ProtocolTestRecursiveShapesCase5(t *testing.T) {
 	sess := session.New()
 	svc := NewInputService13ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
-
 	input := &InputService13TestShapeInputShape{
 		RecursiveStruct: &InputService13TestShapeRecursiveStructType{
 			RecursiveList: []*InputService13TestShapeRecursiveStructType{
@@ -2264,7 +2294,6 @@ func TestInputService13ProtocolTestRecursiveShapesCase5(t *testing.T) {
 func TestInputService13ProtocolTestRecursiveShapesCase6(t *testing.T) {
 	sess := session.New()
 	svc := NewInputService13ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
-
 	input := &InputService13TestShapeInputShape{
 		RecursiveStruct: &InputService13TestShapeRecursiveStructType{
 			RecursiveMap: map[string]*InputService13TestShapeRecursiveStructType{
@@ -2299,7 +2328,6 @@ func TestInputService13ProtocolTestRecursiveShapesCase6(t *testing.T) {
 func TestInputService14ProtocolTestTimestampValuesCase1(t *testing.T) {
 	sess := session.New()
 	svc := NewInputService14ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
-
 	input := &InputService14TestShapeInputShape{
 		TimeArg: aws.Time(time.Unix(1422172800, 0)),
 	}
@@ -2325,7 +2353,6 @@ func TestInputService14ProtocolTestTimestampValuesCase1(t *testing.T) {
 func TestInputService14ProtocolTestTimestampValuesCase2(t *testing.T) {
 	sess := session.New()
 	svc := NewInputService14ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
-
 	input := &InputService14TestShapeInputShape{
 		TimeArgInHeader: aws.Time(time.Unix(1422172800, 0)),
 	}
@@ -2347,7 +2374,6 @@ func TestInputService14ProtocolTestTimestampValuesCase2(t *testing.T) {
 func TestInputService15ProtocolTestNamedLocationsInJSONBodyCase1(t *testing.T) {
 	sess := session.New()
 	svc := NewInputService15ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
-
 	input := &InputService15TestShapeInputService15TestCaseOperation1Input{
 		TimeArg: aws.Time(time.Unix(1422172800, 0)),
 	}

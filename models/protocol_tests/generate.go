@@ -48,6 +48,7 @@ var _ json.Marshaler
 var _ time.Time
 var _ xmlutil.XMLNode
 var _ xml.Attr
+var _ = protocol.UnmarshalDiscardBody
 var _ = awstesting.GenerateAssertions
 var _ = ioutil.Discard
 var _ = util.Trim("")
@@ -77,6 +78,7 @@ var extraImports = []string{
 	"",
 	"github.com/aws/aws-sdk-go/awstesting",
 	"github.com/aws/aws-sdk-go/aws/session",
+	"github.com/aws/aws-sdk-go/private/protocol",
 	"github.com/aws/aws-sdk-go/private/protocol/xml/xmlutil",
 	"github.com/aws/aws-sdk-go/private/util",
 	"github.com/stretchr/testify/assert",
@@ -113,7 +115,6 @@ var tplInputTestCase = template.Must(template.New("inputcase").Parse(`
 func Test{{ .OpName }}(t *testing.T) {
 	sess := session.New()
 	svc := New{{ .TestCase.TestSuite.API.StructName }}(sess, &aws.Config{Endpoint: aws.String("https://test")})
-
 	input := {{ .ParamsString }}
 	req, _ := svc.{{ .TestCase.Given.ExportedName }}Request(input)
 	r := req.HTTPRequest
