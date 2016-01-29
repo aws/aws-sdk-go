@@ -175,86 +175,119 @@ func (ref *ShapeRef) GoTypeElem() string {
 	return ref.Shape.GoTypeElem()
 }
 
+// ShapeTag is a struct tag that will be applied to a shape's generated code
+type ShapeTag struct {
+	Key, Val string
+}
+
+// String returns the string representation of the shape tag
+func (s ShapeTag) String() string {
+	return fmt.Sprintf(`%s:"%s"`, s.Key, s.Val)
+}
+
+// ShapeTags is a collection of shape tags and provides serialization of the
+// tags in an ordered list.
+type ShapeTags []ShapeTag
+
+// Join returns an ordered serialization of the shape tags with the provided
+// seperator.
+func (s ShapeTags) Join(sep string) string {
+	o := &bytes.Buffer{}
+	for i, t := range s {
+		o.WriteString(t.String())
+		if i < len(s)-1 {
+			o.WriteString(sep)
+		}
+	}
+
+	return o.String()
+}
+
+// String is an alias for Join with the empty space seperator.
+func (s ShapeTags) String() string {
+	return s.Join(" ")
+}
+
 // GoTags returns the rendered tags string for the ShapeRef
 func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
-	code := "`"
+	tags := ShapeTags{}
+
 	if ref.Location != "" {
-		code += `location:"` + ref.Location + `" `
+		tags = append(tags, ShapeTag{"location", ref.Location})
 	} else if ref.Shape.Location != "" {
-		code += `location:"` + ref.Shape.Location + `" `
+		tags = append(tags, ShapeTag{"location", ref.Shape.Location})
 	}
+
 	if ref.LocationName != "" {
-		code += `locationName:"` + ref.LocationName + `" `
+		tags = append(tags, ShapeTag{"locationName", ref.LocationName})
 	} else if ref.Shape.LocationName != "" {
-		code += `locationName:"` + ref.Shape.LocationName + `" `
+		tags = append(tags, ShapeTag{"locationName", ref.Shape.LocationName})
 	}
+
 	if ref.QueryName != "" {
-		code += `queryName:"` + ref.QueryName + `" `
+		tags = append(tags, ShapeTag{"queryName", ref.QueryName})
 	}
 	if ref.Shape.MemberRef.LocationName != "" {
-		code += `locationNameList:"` + ref.Shape.MemberRef.LocationName + `" `
+		tags = append(tags, ShapeTag{"locationNameList", ref.Shape.MemberRef.LocationName})
 	}
 	if ref.Shape.KeyRef.LocationName != "" {
-		code += `locationNameKey:"` + ref.Shape.KeyRef.LocationName + `" `
+		tags = append(tags, ShapeTag{"locationNameKey", ref.Shape.KeyRef.LocationName})
 	}
 	if ref.Shape.ValueRef.LocationName != "" {
-		code += `locationNameValue:"` + ref.Shape.ValueRef.LocationName + `" `
+		tags = append(tags, ShapeTag{"locationNameValue", ref.Shape.ValueRef.LocationName})
 	}
 	if ref.Shape.Min > 0 {
-		code += fmt.Sprintf(`min:"%d" `, ref.Shape.Min)
+		tags = append(tags, ShapeTag{"min", fmt.Sprintf("%d", ref.Shape.Min)})
 	}
-	code += `type:"` + ref.Shape.Type + `" `
+	// All shapes have a type
+	tags = append(tags, ShapeTag{"type", ref.Shape.Type})
 
 	// embed the timestamp type for easier lookups
 	if ref.Shape.Type == "timestamp" {
-		code += `timestampFormat:"`
+		t := ShapeTag{Key: "timestampFormat"}
 		if ref.Location == "header" {
-			code += "rfc822"
+			t.Val = "rfc822"
 		} else {
 			switch ref.API.Metadata.Protocol {
 			case "json", "rest-json":
-				code += "unix"
+				t.Val = "unix"
 			case "rest-xml", "ec2", "query":
-				code += "iso8601"
+				t.Val = "iso8601"
 			}
 		}
-		code += `" `
+		tags = append(tags, t)
 	}
 
 	if ref.Shape.Flattened || ref.Flattened {
-		code += `flattened:"true" `
+		tags = append(tags, ShapeTag{"flattened", "true"})
 	}
-
 	if ref.XMLAttribute {
-		code += `xmlAttribute:"true" `
+		tags = append(tags, ShapeTag{"xmlAttribute", "true"})
 	}
-
 	if isRequired {
-		code += `required:"true" `
+		tags = append(tags, ShapeTag{"required", "true"})
 	}
-
 	if ref.Shape.IsEnum() {
-		code += `enum:"` + ref.ShapeName + `" `
+		tags = append(tags, ShapeTag{"enum", ref.ShapeName})
 	}
 
 	if toplevel {
 		if ref.Shape.Payload != "" {
-			code += `payload:"` + ref.Shape.Payload + `" `
+			tags = append(tags, ShapeTag{"payload", ref.Shape.Payload})
 		}
 		if ref.XMLNamespace.Prefix != "" {
-			code += `xmlPrefix:"` + ref.XMLNamespace.Prefix + `" `
+			tags = append(tags, ShapeTag{"xmlPrefix", ref.XMLNamespace.Prefix})
 		} else if ref.Shape.XMLNamespace.Prefix != "" {
-			code += `xmlPrefix:"` + ref.Shape.XMLNamespace.Prefix + `" `
+			tags = append(tags, ShapeTag{"xmlPrefix", ref.Shape.XMLNamespace.Prefix})
 		}
 		if ref.XMLNamespace.URI != "" {
-			code += `xmlURI:"` + ref.XMLNamespace.URI + `" `
+			tags = append(tags, ShapeTag{"xmlURI", ref.XMLNamespace.URI})
 		} else if ref.Shape.XMLNamespace.URI != "" {
-			code += `xmlURI:"` + ref.Shape.XMLNamespace.URI + `" `
+			tags = append(tags, ShapeTag{"xmlURI", ref.Shape.XMLNamespace.URI})
 		}
-
 	}
 
-	return strings.TrimSpace(code) + "`"
+	return fmt.Sprintf("`%s`", tags)
 }
 
 // Docstring returns the godocs formated documentation
