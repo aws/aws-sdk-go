@@ -48,13 +48,15 @@ var _ json.Marshaler
 var _ time.Time
 var _ xmlutil.XMLNode
 var _ xml.Attr
-var _ = protocol.UnmarshalDiscardBody
-var _ = awstesting.GenerateAssertions
 var _ = ioutil.Discard
 var _ = util.Trim("")
 var _ = url.Values{}
 var _ = io.EOF
 var _ = aws.String
+
+func init() {
+	protocol.RandReader = &awstesting.ZeroReader{}
+}
 `
 
 var reStripSpace = regexp.MustCompile(`\s(\w)`)

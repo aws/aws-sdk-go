@@ -14,18 +14,19 @@ import (
 
 // A ShapeRef defines the usage of a shape within the API.
 type ShapeRef struct {
-	API           *API   `json:"-"`
-	Shape         *Shape `json:"-"`
-	Documentation string
-	ShapeName     string `json:"shape"`
-	Location      string
-	LocationName  string
-	QueryName     string
-	Flattened     bool
-	Streaming     bool
-	XMLAttribute  bool
-	XMLNamespace  XMLInfo
-	Payload       string
+	API              *API   `json:"-"`
+	Shape            *Shape `json:"-"`
+	Documentation    string
+	ShapeName        string `json:"shape"`
+	Location         string
+	LocationName     string
+	QueryName        string
+	Flattened        bool
+	Streaming        bool
+	XMLAttribute     bool
+	XMLNamespace     XMLInfo
+	Payload          string
+	IdempotencyToken bool `json:"idempotencyToken"`
 }
 
 // A XMLInfo defines URL and prefix for Shapes when rendered as XML
@@ -36,26 +37,27 @@ type XMLInfo struct {
 
 // A Shape defines the definition of a shape type
 type Shape struct {
-	API           *API `json:"-"`
-	ShapeName     string
-	Documentation string
-	MemberRefs    map[string]*ShapeRef `json:"members"`
-	MemberRef     ShapeRef             `json:"member"`
-	KeyRef        ShapeRef             `json:"key"`
-	ValueRef      ShapeRef             `json:"value"`
-	Required      []string
-	Payload       string
-	Type          string
-	Exception     bool
-	Enum          []string
-	EnumConsts    []string
-	Flattened     bool
-	Streaming     bool
-	Location      string
-	LocationName  string
-	XMLNamespace  XMLInfo
-	Min           int // optional Minimum length (string, list) or value (number)
-	Max           int // optional Minimum length (string, list) or value (number)
+	API              *API `json:"-"`
+	ShapeName        string
+	Documentation    string
+	MemberRefs       map[string]*ShapeRef `json:"members"`
+	MemberRef        ShapeRef             `json:"member"`
+	KeyRef           ShapeRef             `json:"key"`
+	ValueRef         ShapeRef             `json:"value"`
+	Required         []string
+	Payload          string
+	Type             string
+	Exception        bool
+	Enum             []string
+	EnumConsts       []string
+	Flattened        bool
+	Streaming        bool
+	Location         string
+	LocationName     string
+	IdempotencyToken bool `json:"idempotencyToken"`
+	XMLNamespace     XMLInfo
+	Min              int // optional Minimum length (string, list) or value (number)
+	Max              int // optional Minimum length (string, list) or value (number)
 
 	refs       []*ShapeRef // References to this shape
 	resolvePkg string      // use this package in the goType() if present
@@ -285,6 +287,10 @@ func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
 		} else if ref.Shape.XMLNamespace.URI != "" {
 			tags = append(tags, ShapeTag{"xmlURI", ref.Shape.XMLNamespace.URI})
 		}
+	}
+
+	if ref.IdempotencyToken || ref.Shape.IdempotencyToken {
+		tags = append(tags, ShapeTag{"idempotencyToken", "true"})
 	}
 
 	return fmt.Sprintf("`%s`", tags)
