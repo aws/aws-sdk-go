@@ -14,13 +14,13 @@ package awserr
 //     if err != nil {
 //         if awsErr, ok := err.(awserr.Error); ok {
 //             // Get error details
-//             log.Println("Error:", err.Code(), err.Message())
+//             log.Println("Error:", awsErr.Code(), awsErr.Message())
 //
 //             // Prints out full error message, including original error if there was one.
-//             log.Println("Error:", err.Error())
+//             log.Println("Error:", awsErr.Error())
 //
 //             // Get original error
-//             if origErr := err.Err(); origErr != nil {
+//             if origErr := awsErr.OrigErr(); origErr != nil {
 //                 // operate on original error.
 //             }
 //         } else {
