@@ -31,13 +31,15 @@ var _ json.Marshaler
 var _ time.Time
 var _ xmlutil.XMLNode
 var _ xml.Attr
-var _ = protocol.UnmarshalDiscardBody
-var _ = awstesting.GenerateAssertions
 var _ = ioutil.Discard
 var _ = util.Trim("")
 var _ = url.Values{}
 var _ = io.EOF
 var _ = aws.String
+
+func init() {
+	protocol.RandReader = &awstesting.ZeroReader{}
+}
 
 //The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
@@ -2471,6 +2473,130 @@ type InputService21TestShapeInputService21TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
 }
 
+//The service client's operations are safe to be used concurrently.
+// It is not safe to mutate any of the client's properties though.
+type InputService22ProtocolTest struct {
+	*client.Client
+}
+
+// New creates a new instance of the InputService22ProtocolTest client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+//
+// Example:
+//     // Create a InputService22ProtocolTest client from just a session.
+//     svc := inputservice22protocoltest.New(mySession)
+//
+//     // Create a InputService22ProtocolTest client with additional configuration
+//     svc := inputservice22protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+func NewInputService22ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService22ProtocolTest {
+	c := p.ClientConfig("inputservice22protocoltest", cfgs...)
+	return newInputService22ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion)
+}
+
+// newClient creates, initializes and returns a new service client instance.
+func newInputService22ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion string) *InputService22ProtocolTest {
+	svc := &InputService22ProtocolTest{
+		Client: client.New(
+			cfg,
+			metadata.ClientInfo{
+				ServiceName:   "inputservice22protocoltest",
+				SigningRegion: signingRegion,
+				Endpoint:      endpoint,
+				APIVersion:    "2014-01-01",
+			},
+			handlers,
+		),
+	}
+
+	// Handlers
+	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Build.PushBackNamed(restxml.BuildHandler)
+	svc.Handlers.Unmarshal.PushBackNamed(restxml.UnmarshalHandler)
+	svc.Handlers.UnmarshalMeta.PushBackNamed(restxml.UnmarshalMetaHandler)
+	svc.Handlers.UnmarshalError.PushBackNamed(restxml.UnmarshalErrorHandler)
+
+	return svc
+}
+
+// newRequest creates a new request for a InputService22ProtocolTest operation and runs any
+// custom request initialization.
+func (c *InputService22ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+	req := c.NewRequest(op, params, data)
+
+	return req
+}
+
+const opInputService22TestCaseOperation1 = "OperationName"
+
+// InputService22TestCaseOperation1Request generates a request for the InputService22TestCaseOperation1 operation.
+func (c *InputService22ProtocolTest) InputService22TestCaseOperation1Request(input *InputService22TestShapeInputShape) (req *request.Request, output *InputService22TestShapeInputService22TestCaseOperation1Output) {
+	op := &request.Operation{
+		Name:       opInputService22TestCaseOperation1,
+		HTTPMethod: "POST",
+		HTTPPath:   "/path",
+	}
+
+	if input == nil {
+		input = &InputService22TestShapeInputShape{}
+	}
+
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	output = &InputService22TestShapeInputService22TestCaseOperation1Output{}
+	req.Data = output
+	return
+}
+
+func (c *InputService22ProtocolTest) InputService22TestCaseOperation1(input *InputService22TestShapeInputShape) (*InputService22TestShapeInputService22TestCaseOperation1Output, error) {
+	req, out := c.InputService22TestCaseOperation1Request(input)
+	err := req.Send()
+	return out, err
+}
+
+const opInputService22TestCaseOperation2 = "OperationName"
+
+// InputService22TestCaseOperation2Request generates a request for the InputService22TestCaseOperation2 operation.
+func (c *InputService22ProtocolTest) InputService22TestCaseOperation2Request(input *InputService22TestShapeInputShape) (req *request.Request, output *InputService22TestShapeInputService22TestCaseOperation2Output) {
+	op := &request.Operation{
+		Name:       opInputService22TestCaseOperation2,
+		HTTPMethod: "POST",
+		HTTPPath:   "/path",
+	}
+
+	if input == nil {
+		input = &InputService22TestShapeInputShape{}
+	}
+
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	output = &InputService22TestShapeInputService22TestCaseOperation2Output{}
+	req.Data = output
+	return
+}
+
+func (c *InputService22ProtocolTest) InputService22TestCaseOperation2(input *InputService22TestShapeInputShape) (*InputService22TestShapeInputService22TestCaseOperation2Output, error) {
+	req, out := c.InputService22TestCaseOperation2Request(input)
+	err := req.Send()
+	return out, err
+}
+
+type InputService22TestShapeInputService22TestCaseOperation1Output struct {
+	_ struct{} `type:"structure"`
+}
+
+type InputService22TestShapeInputService22TestCaseOperation2Output struct {
+	_ struct{} `type:"structure"`
+}
+
+type InputService22TestShapeInputShape struct {
+	_ struct{} `type:"structure"`
+
+	Token *string `type:"string" idempotencyToken:"true"`
+}
+
 //
 // Tests begin here
 //
@@ -3370,5 +3496,53 @@ func TestInputService21ProtocolTestTimestampInHeaderCase1(t *testing.T) {
 
 	// assert headers
 	assert.Equal(t, "Sun, 25 Jan 2015 08:00:00 GMT", r.Header.Get("x-amz-timearg"))
+
+}
+
+func TestInputService22ProtocolTestIdempotencyTokenAutoFillCase1(t *testing.T) {
+	sess := session.New()
+	svc := NewInputService22ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	input := &InputService22TestShapeInputShape{
+		Token: aws.String("abc123"),
+	}
+	req, _ := svc.InputService22TestCaseOperation1Request(input)
+	r := req.HTTPRequest
+
+	// build request
+	restxml.Build(req)
+	assert.NoError(t, req.Error)
+
+	// assert body
+	assert.NotNil(t, r.Body)
+	body := util.SortXML(r.Body)
+	awstesting.AssertXML(t, `<Token>abc123</Token>`, util.Trim(string(body)), InputService22TestShapeInputShape{})
+
+	// assert URL
+	awstesting.AssertURL(t, "https://test/path", r.URL.String())
+
+	// assert headers
+
+}
+
+func TestInputService22ProtocolTestIdempotencyTokenAutoFillCase2(t *testing.T) {
+	sess := session.New()
+	svc := NewInputService22ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	input := &InputService22TestShapeInputShape{}
+	req, _ := svc.InputService22TestCaseOperation2Request(input)
+	r := req.HTTPRequest
+
+	// build request
+	restxml.Build(req)
+	assert.NoError(t, req.Error)
+
+	// assert body
+	assert.NotNil(t, r.Body)
+	body := util.SortXML(r.Body)
+	awstesting.AssertXML(t, `<Token>00000000-0000-4000-8000-000000000000</Token>`, util.Trim(string(body)), InputService22TestShapeInputShape{})
+
+	// assert URL
+	awstesting.AssertURL(t, "https://test/path", r.URL.String())
+
+	// assert headers
 
 }
