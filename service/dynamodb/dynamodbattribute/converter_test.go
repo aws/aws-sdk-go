@@ -123,6 +123,10 @@ var converterMapTestInputs = []converterTestInput{
 		input:    map[string]interface{}{"int": int(12)},
 		expected: map[string]*dynamodb.AttributeValue{"int": {N: aws.String("12")}},
 	},
+	{
+		input:    map[string]interface{}{"byte": []byte{48, 49}},
+		expected: map[string]*dynamodb.AttributeValue{"byte": {B: []byte{48, 49}}},
+	},
 	// List
 	{
 		input: map[string]interface{}{"list": []interface{}{"a string", 12, 3.14, true, nil, false}},
