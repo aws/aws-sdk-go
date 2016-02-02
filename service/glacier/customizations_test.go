@@ -39,7 +39,7 @@ func TestCustomizations(t *testing.T) {
 
 	// Sets Account ID
 	v, _ := awsutil.ValuesAtPath(req.Params, "AccountId")
-	assert.Equal(t, "-", *(v[0].(*string)))
+	assert.Equal(t, "-", v[0].(string))
 
 	// Computes checksums
 	linear := "68aff0c5a91aa0491752bfb96e3fef33eb74953804f6a2f7b708d5bcefa8ff6b"
@@ -69,7 +69,7 @@ func TestFillAccountIDWithNilStruct(t *testing.T) {
 
 	// Sets Account ID
 	v, _ := awsutil.ValuesAtPath(req.Params, "AccountId")
-	assert.Equal(t, "-", *(v[0].(*string)))
+	assert.Equal(t, "-", v[0].(string))
 
 	// Does not set tree hash
 	assert.Equal(t, empty, req.HTTPRequest.Header.Get("x-amz-content-sha256"))
