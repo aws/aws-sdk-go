@@ -50,7 +50,7 @@ func TestPopulateLocationConstraint(t *testing.T) {
 	err := req.Build()
 	assert.NoError(t, err)
 	v, _ := awsutil.ValuesAtPath(req.Params, "CreateBucketConfiguration.LocationConstraint")
-	assert.Equal(t, "mock-region", *(v[0].(*string)))
+	assert.Equal(t, "mock-region", v[0].(string))
 	assert.Nil(t, in.CreateBucketConfiguration) // don't modify original params
 }
 

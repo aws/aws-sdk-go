@@ -50,8 +50,8 @@ func updateHostWithBucket(r *request.Request) {
 		return
 	}
 
-	if bucket := b[0].(*string); aws.StringValue(bucket) != "" && hostStyleBucketName(r, *bucket) {
-		r.HTTPRequest.URL.Host = *bucket + "." + r.HTTPRequest.URL.Host
+	if bucket := b[0].(string); bucket != "" && hostStyleBucketName(r, bucket) {
+		r.HTTPRequest.URL.Host = bucket + "." + r.HTTPRequest.URL.Host
 		r.HTTPRequest.URL.Path = strings.Replace(r.HTTPRequest.URL.Path, "/{Bucket}", "", -1)
 		if r.HTTPRequest.URL.Path == "" {
 			r.HTTPRequest.URL.Path = "/"
