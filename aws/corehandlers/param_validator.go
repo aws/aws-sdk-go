@@ -42,6 +42,12 @@ func (v *validator) validateAny(value reflect.Value, path string) {
 	case reflect.Struct:
 		v.validateStruct(value, path)
 	case reflect.Slice:
+		if value.Type().Name() == "" && value.Type().Elem().Name() == "uint8" {
+			// unnamed type (i.e. with no methods) whose underlying type is a
+			// slice of uint8, aka []byte. We don't need to validate its
+			// contents.
+			return
+		}
 		for i := 0; i < value.Len(); i++ {
 			v.validateAny(value.Index(i), path+fmt.Sprintf("[%d]", i))
 		}
