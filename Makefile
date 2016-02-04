@@ -17,6 +17,7 @@ help:
 	@echo "  build                   to go build the SDK"
 	@echo "  unit                    to run unit tests"
 	@echo "  integration             to run integration tests"
+	@echo "  performance             to run performance tests"
 	@echo "  verify                  to verify tests"
 	@echo "  lint                    to lint the SDK"
 	@echo "  vet                     to vet the SDK"
@@ -55,6 +56,9 @@ unit-with-race-cover: get-deps-tests build verify
 integration: get-deps-tests
 	go test -tags=integration ./awstesting/integration/customizations/...
 	gucumber ./awstesting/integration/smoke
+
+performance: get-deps-tests
+	AWS_TESTING_LOG_RESULTS=${log-detailed} AWS_TESTING_REGION=$(region) AWS_TESTING_DB_TABLE=$(table) gucumber ./awstesting/performance
 
 verify: get-deps-verify lint vet
 
