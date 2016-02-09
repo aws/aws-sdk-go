@@ -588,8 +588,8 @@ type RequestCertificateInput struct {
 	// The base validation domain that will act as the suffix of the email addresses
 	// that are used to send the emails. This must be the same as the Domain value
 	// or a superdomain of the Domain value. For example, if you requested a certificate
-	// for www.example.com and specify DomainValidationOptions of example.com, ACM
-	// sends email to the domain registrant, technical contact, and administrative
+	// for test.example.com and specify DomainValidationOptions of example.com,
+	// ACM sends email to the domain registrant, technical contact, and administrative
 	// contact in WHOIS and the following five addresses:  admin@example.com administrator@example.com
 	// hostmaster@example.com postmaster@example.com webmaster@example.com
 	DomainValidationOptions []*DomainValidationOption `min:"1" type:"list"`
