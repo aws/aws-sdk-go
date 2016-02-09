@@ -24,7 +24,11 @@ func ExampleMarketplaceCommerceAnalytics_GenerateDataSet() {
 		DestinationS3BucketName: aws.String("DestinationS3BucketName"), // Required
 		RoleNameArn:             aws.String("RoleNameArn"),             // Required
 		SnsTopicArn:             aws.String("SnsTopicArn"),             // Required
-		DestinationS3Prefix:     aws.String("DestinationS3Prefix"),
+		CustomerDefinedValues: map[string]*string{
+			"Key": aws.String("OptionalValue"), // Required
+			// More values...
+		},
+		DestinationS3Prefix: aws.String("DestinationS3Prefix"),
 	}
 	resp, err := svc.GenerateDataSet(params)
 
