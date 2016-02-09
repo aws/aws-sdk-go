@@ -3314,7 +3314,7 @@ type ViewerCertificate struct {
 	// your objects and you're using the CloudFront domain name of your distribution
 	// in your object URLs (for example, https://d111111abcdef8.cloudfront.net/logo.jpg),
 	// set to true. Omit this value if you are setting an IAMCertificateId.
-	CloudFrontDefaultCertificate *bool `type:"boolean"`
+	CloudFrontDefaultCertificate *bool `deprecated:"true" type:"boolean"`
 
 	// Note: this field is deprecated. Please use "iam" as CertificateSource and
 	// specify the IAM certificate Id as the Certificate. If you want viewers to
@@ -3322,7 +3322,7 @@ type ViewerCertificate struct {
 	// in your object URLs (for example, https://example.com/logo.jpg), specify
 	// the IAM certificate identifier of the custom viewer certificate for this
 	// distribution. Specify either this value or CloudFrontDefaultCertificate.
-	IAMCertificateId *string `type:"string"`
+	IAMCertificateId *string `deprecated:"true" type:"string"`
 
 	// Specify the minimum version of the SSL protocol that you want CloudFront
 	// to use, SSLv3 or TLSv1, for HTTPS connections. CloudFront will serve your

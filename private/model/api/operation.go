@@ -46,7 +46,9 @@ const op{{ .ExportedName }} = "{{ .Name }}"
 // {{ .ExportedName }}Request generates a request for the {{ .ExportedName }} operation.
 func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 	`input {{ .InputRef.GoType }}) (req *request.Request, output {{ .OutputRef.GoType }}) {
-	{{ if (or .Deprecated (or .InputRef.Deprecated .OutputRef.Deprecated)) }}c.Client.Config.Logger.Log("This operation, {{ .ExportedName }}, has been deprecated")
+	{{ if (or .Deprecated (or .InputRef.Deprecated .OutputRef.Deprecated)) }}if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, {{ .ExportedName }}, has been deprecated")
+	}
 	op := &request.Operation{ {{ else }} op := &request.Operation{ {{ end }}	
 		Name:       op{{ .ExportedName }},
 		{{ if ne .HTTP.Method "" }}HTTPMethod: "{{ .HTTP.Method }}",

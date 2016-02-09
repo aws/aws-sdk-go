@@ -151,6 +151,9 @@ const opDescribeJobFlows = "DescribeJobFlows"
 
 // DescribeJobFlowsRequest generates a request for the DescribeJobFlows operation.
 func (c *EMR) DescribeJobFlowsRequest(input *DescribeJobFlowsInput) (req *request.Request, output *DescribeJobFlowsOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, DescribeJobFlows, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opDescribeJobFlows,
 		HTTPMethod: "POST",
