@@ -27,6 +27,7 @@ type ShapeRef struct {
 	XMLNamespace     XMLInfo
 	Payload          string
 	IdempotencyToken bool `json:"idempotencyToken"`
+	Deprecated       bool `json:"deprecated"`
 }
 
 // A XMLInfo defines URL and prefix for Shapes when rendered as XML
@@ -64,6 +65,8 @@ type Shape struct {
 
 	// Defines if the shape is a placeholder and should not be used directly
 	Placeholder bool
+
+	Deprecated bool `json:"deprecated"`
 }
 
 // Rename changes the name of the Shape to newName. Also updates
@@ -240,6 +243,10 @@ func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
 	}
 	if ref.Shape.Min > 0 {
 		tags = append(tags, ShapeTag{"min", fmt.Sprintf("%d", ref.Shape.Min)})
+	}
+
+	if ref.Deprecated || ref.Shape.Deprecated {
+		tags = append(tags, ShapeTag{"deprecated", "true"})
 	}
 	// All shapes have a type
 	tags = append(tags, ShapeTag{"type", ref.Shape.Type})
