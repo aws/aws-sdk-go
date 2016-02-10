@@ -142,7 +142,7 @@ func (c *ConfigService) DescribeComplianceByConfigRuleRequest(input *DescribeCom
 // it is noncompliant if any of these resources do not comply.
 //
 // If AWS Config has no current evaluation results for the rule, it returns
-// InsufficientData. This result might indicate one of the following conditions:
+// INSUFFICIENT_DATA. This result might indicate one of the following conditions:
 //  AWS Config has never invoked an evaluation for the rule. To check whether
 // it has, use the DescribeConfigRuleEvaluationStatus action to get the LastSuccessfulInvocationTime
 // and LastFailedInvocationTime. The rule's AWS Lambda function is failing to
@@ -187,7 +187,7 @@ func (c *ConfigService) DescribeComplianceByResourceRequest(input *DescribeCompl
 // these rules.
 //
 // If AWS Config has no current evaluation results for the resource, it returns
-// InsufficientData. This result might indicate one of the following conditions
+// INSUFFICIENT_DATA. This result might indicate one of the following conditions
 // about the rules that evaluate the resource:  AWS Config has never invoked
 // an evaluation for the rule. To check whether it has, use the DescribeConfigRuleEvaluationStatus
 // action to get the LastSuccessfulInvocationTime and LastFailedInvocationTime.
@@ -838,6 +838,13 @@ type Compliance struct {
 	//
 	// A rule is compliant if all of the resources that the rule evaluates comply
 	// with it, and it is noncompliant if any of these resources do not comply.
+	//
+	// AWS Config returns the INSUFFICIENT_DATA value when no evaluation results
+	// are available for the AWS resource or Config rule.
+	//
+	// For the Compliance data type, AWS Config supports only COMPLIANT, NON_COMPLIANT,
+	// and INSUFFICIENT_DATA values. AWS Config does not support the NOT_APPLICABLE
+	// value for the Compliance data type.
 	ComplianceType *string `type:"string" enum:"ComplianceType"`
 }
 
@@ -1012,8 +1019,7 @@ func (s ConfigExportDeliveryInfo) GoString() string {
 // An AWS Lambda function that evaluates configuration items to assess whether
 // your AWS resources comply with your desired configurations. This function
 // can run when AWS Config detects a configuration change or delivers a configuration
-// snapshot. This function can evaluate any resource in the recording group.
-// To define which of these are evaluated, specify a value for the Scope key.
+// snapshot.
 //
 // For more information about developing and using AWS Config rules, see Evaluating
 // AWS Resource Configurations with AWS Config (http://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)
@@ -1060,11 +1066,12 @@ type ConfigRule struct {
 	// the PutDeliveryChannel action.
 	MaximumExecutionFrequency *string `type:"string" enum:"MaximumExecutionFrequency"`
 
-	// Defines which resources the AWS Config rule evaluates. The scope can include
-	// one or more resource types, a combination of a tag key and value, or a combination
-	// of one resource type and one or more resource IDs. Specify a scope to constrain
-	// the resources that are evaluated. If you do not specify a scope, the AWS
-	// Config Rule evaluates all resources in the recording group.
+	// Defines which resources can trigger an evaluation for the rule. The scope
+	// can include one or more resource types, a combination of one resource type
+	// and one resource ID, or a combination of a tag key and value. Specify a scope
+	// to constrain the resources that can trigger an evaluation for the rule. If
+	// you do not specify a scope, evaluations are triggered when any resource in
+	// the recording group changes.
 	Scope *Scope `type:"structure"`
 
 	// Provides the rule owner (AWS or customer), the rule identifier, and the events
@@ -1515,7 +1522,9 @@ func (s DeliveryChannelStatus) GoString() string {
 type DescribeComplianceByConfigRuleInput struct {
 	_ struct{} `type:"structure"`
 
-	// Filters the results by compliance. The valid values are Compliant and NonCompliant.
+	// Filters the results by compliance.
+	//
+	// The allowed values are COMPLIANT, NON_COMPLIANT, and INSUFFICIENT_DATA.
 	ComplianceTypes []*string `type:"list"`
 
 	// Specify one or more AWS Config rule names to filter the results by rule.
@@ -1560,7 +1569,9 @@ func (s DescribeComplianceByConfigRuleOutput) GoString() string {
 type DescribeComplianceByResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// Filters the results by compliance. The valid values are Compliant and NonCompliant.
+	// Filters the results by compliance.
+	//
+	// The allowed values are COMPLIANT, NON_COMPLIANT, and INSUFFICIENT_DATA.
 	ComplianceTypes []*string `type:"list"`
 
 	// The maximum number of evaluation results returned on each page. The default
@@ -1856,6 +1867,15 @@ type Evaluation struct {
 
 	// Indicates whether the AWS resource complies with the AWS Config rule that
 	// it was evaluated against.
+	//
+	// For the Evaluation data type, AWS Config supports only the COMPLIANT, NON_COMPLIANT,
+	// and NOT_APPLICABLE values. AWS Config does not support the INSUFFICIENT_DATA
+	// value for this data type.
+	//
+	// Similarly, AWS Config does not accept INSUFFICIENT_DATA as the value for
+	// ComplianceType from a PutEvaluations request. For example, an AWS Lambda
+	// function for a custom Config rule cannot pass an INSUFFICIENT_DATA value
+	// to AWS Config.
 	ComplianceType *string `type:"string" required:"true" enum:"ComplianceType"`
 
 	// The time of the event in AWS Config that triggered the evaluation. For event-based
@@ -1886,6 +1906,10 @@ type EvaluationResult struct {
 
 	// Indicates whether the AWS resource complies with the AWS Config rule that
 	// evaluated it.
+	//
+	// For the EvaluationResult data type, AWS Config supports only the COMPLIANT,
+	// NON_COMPLIANT, and NOT_APPLICABLE values. AWS Config does not support the
+	// INSUFFICIENT_DATA value for the EvaluationResult data type.
 	ComplianceType *string `type:"string" enum:"ComplianceType"`
 
 	// The time when the AWS Config rule evaluated the AWS resource.
@@ -1966,8 +1990,9 @@ func (s EvaluationResultQualifier) GoString() string {
 type GetComplianceDetailsByConfigRuleInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specify to filter the results by compliance. The valid values are Compliant,
-	// NonCompliant, and NotApplicable.
+	// Filters the results by compliance.
+	//
+	// The allowed values are COMPLIANT, NON_COMPLIANT, and NOT_APPLICABLE.
 	ComplianceTypes []*string `type:"list"`
 
 	// The name of the AWS Config rule for which you want compliance information.
@@ -2018,8 +2043,9 @@ func (s GetComplianceDetailsByConfigRuleOutput) GoString() string {
 type GetComplianceDetailsByResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specify to filter the results by compliance. The valid values are Compliant,
-	// NonCompliant, and NotApplicable.
+	// Filters the results by compliance.
+	//
+	// The allowed values are COMPLIANT, NON_COMPLIANT, and NOT_APPLICABLE.
 	ComplianceTypes []*string `type:"list"`
 
 	// The nextToken string returned on a previous page that you use to get the
@@ -2270,8 +2296,7 @@ type PutConfigRuleInput struct {
 	// An AWS Lambda function that evaluates configuration items to assess whether
 	// your AWS resources comply with your desired configurations. This function
 	// can run when AWS Config detects a configuration change or delivers a configuration
-	// snapshot. This function can evaluate any resource in the recording group.
-	// To define which of these are evaluated, specify a value for the Scope key.
+	// snapshot.
 	//
 	// For more information about developing and using AWS Config rules, see Evaluating
 	// AWS Resource Configurations with AWS Config (http://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)
@@ -2542,31 +2567,31 @@ func (s ResourceIdentifier) GoString() string {
 	return s.String()
 }
 
-// Defines which resources AWS Config evaluates against a rule. The scope can
-// include one or more resource types, a combination of a tag key and value,
-// or a combination of one resource type and one or more resource IDs. Specify
-// a scope to constrain the resources to be evaluated. If you do not specify
-// a scope, all resources in your recording group are evaluated against the
-// rule.
+// Defines which resources trigger an evaluation for an AWS Config rule. The
+// scope can include one or more resource types, a combination of a tag key
+// and value, or a combination of one resource type and one resource ID. Specify
+// a scope to constrain which resources trigger an evaluation for a rule. Otherwise,
+// evaluations for the rule are triggered when any resource in your recording
+// group changes in configuration.
 type Scope struct {
 	_ struct{} `type:"structure"`
 
-	// The IDs of only those AWS resources that you want AWS Config to evaluate
-	// against the rule. If you specify a resource ID, you must specify one resource
-	// type for ComplianceResourceTypes.
+	// The IDs of the only AWS resource that you want to trigger an evaluation for
+	// the rule. If you specify a resource ID, you must specify one resource type
+	// for ComplianceResourceTypes.
 	ComplianceResourceId *string `min:"1" type:"string"`
 
-	// The resource types of only those AWS resources that you want AWS Config to
-	// evaluate against the rule. You can specify only one type if you also specify
-	// resource IDs for ComplianceResourceId.
+	// The resource types of only those AWS resources that you want to trigger an
+	// evaluation for the rule. You can only specify one type if you also specify
+	// a resource ID for ComplianceResourceId.
 	ComplianceResourceTypes []*string `type:"list"`
 
-	// The tag key that is applied to only those AWS resources that you want AWS
-	// Config to evaluate against the rule.
+	// The tag key that is applied to only those AWS resources that you want you
+	// want to trigger an evaluation for the rule.
 	TagKey *string `min:"1" type:"string"`
 
-	// The tag value applied to only those AWS resources that you want AWS Config
-	// to evaluate against the rule. If you specify a value for TagValue, you must
+	// The tag value applied to only those AWS resources that you want to trigger
+	// an evaluation for the rule. If you specify a value for TagValue, you must
 	// also specify a value for TagKey.
 	TagValue *string `min:"1" type:"string"`
 }

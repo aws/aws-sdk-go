@@ -2186,16 +2186,17 @@
     "ViewerCertificate":{
       "type":"structure",
       "members":{
-        "Certificate":{"shape":"string"},
-        "CertificateSource":{"shape":"CertificateSource"},
+        "CloudFrontDefaultCertificate":{"shape":"boolean"},
+        "IAMCertificateId":{"shape":"string"},
+        "ACMCertificateArn":{"shape":"string"},
         "SSLSupportMethod":{"shape":"SSLSupportMethod"},
         "MinimumProtocolVersion":{"shape":"MinimumProtocolVersion"},
-        "IAMCertificateId":{
+        "Certificate":{
           "shape":"string",
           "deprecated":true
         },
-        "CloudFrontDefaultCertificate":{
-          "shape":"boolean",
+        "CertificateSource":{
+          "shape":"CertificateSource",
           "deprecated":true
         }
       }

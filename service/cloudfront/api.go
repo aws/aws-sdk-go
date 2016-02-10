@@ -3294,19 +3294,16 @@ type ViewerCertificate struct {
 
 	// If you want viewers to use HTTPS to request your objects and you're using
 	// an alternate domain name in your object URLs (for example, https://example.com/logo.jpg),
-	// you can use your own IAM or ACM certificate. For ACM, set to the ACM certificate
-	// ARN. For IAM, set to the IAM certificate identifier.
+	// specify the ACM certificate ARN of the custom viewer certificate for this
+	// distribution. Specify either this value, IAMCertificateId, or CloudFrontDefaultCertificate.
+	ACMCertificateArn *string `type:"string"`
+
+	// Note: this field is deprecated. Please use one of [ACMCertificateArn, IAMCertificateId,
+	// CloudFrontDefaultCertificate].
 	Certificate *string `type:"string"`
 
-	// If you want viewers to use HTTPS to request your objects and you're using
-	// the CloudFront domain name of your distribution in your object URLs (for
-	// example, https://d111111abcdef8.cloudfront.net/logo.jpg), set to "cloudfront".
-	// If you want viewers to use HTTPS to request your objects and you're using
-	// an alternate domain name in your object URLs (for example, https://example.com/logo.jpg),
-	// you can use your own IAM or ACM certificate. To use an ACM certificate, set
-	// to "acm" and update the Certificate to the ACM certificate ARN. To use an
-	// IAM certificate, set to "iam" and update the Certificate to the IAM certificate
-	// identifier.
+	// Note: this field is deprecated. Please use one of [ACMCertificateArn, IAMCertificateId,
+	// CloudFrontDefaultCertificate].
 	CertificateSource *string `type:"string" enum:"CertificateSource"`
 
 	// Note: this field is deprecated. Please use "cloudfront" as CertificateSource

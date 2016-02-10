@@ -228,6 +228,7 @@ func ExampleCloudFront_CreateDistribution() {
 				},
 			},
 			ViewerCertificate: &cloudfront.ViewerCertificate{
+				ACMCertificateArn:            aws.String("string"),
 				Certificate:                  aws.String("string"),
 				CertificateSource:            aws.String("CertificateSource"),
 				CloudFrontDefaultCertificate: aws.Bool(true),
@@ -839,6 +840,7 @@ func ExampleCloudFront_UpdateDistribution() {
 				},
 			},
 			ViewerCertificate: &cloudfront.ViewerCertificate{
+				ACMCertificateArn:            aws.String("string"),
 				Certificate:                  aws.String("string"),
 				CertificateSource:            aws.String("CertificateSource"),
 				CloudFrontDefaultCertificate: aws.Bool(true),

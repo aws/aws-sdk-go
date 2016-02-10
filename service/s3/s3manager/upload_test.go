@@ -378,8 +378,9 @@ func TestUploadOrderReadFail2(t *testing.T) {
 		Body:   &failreader{times: 2},
 	})
 
-	assert.Equal(t, "ReadRequestBody", err.(awserr.Error).Code())
-	assert.EqualError(t, err.(awserr.Error).OrigErr(), "random failure")
+	assert.Equal(t, "MultipartUpload", err.(awserr.Error).Code())
+	assert.Equal(t, "ReadRequestBody", err.(awserr.Error).OrigErr().(awserr.Error).Code())
+	assert.Contains(t, err.(awserr.Error).OrigErr().Error(), "random failure")
 	assert.Equal(t, []string{"CreateMultipartUpload", "AbortMultipartUpload"}, *ops)
 }
 
@@ -441,8 +442,9 @@ func TestUploadOrderMultiBufferedReaderExceedTotalParts(t *testing.T) {
 	assert.Equal(t, []string{"CreateMultipartUpload", "AbortMultipartUpload"}, *ops)
 
 	aerr := err.(awserr.Error)
-	assert.Equal(t, "TotalPartsExceeded", aerr.Code())
-	assert.Contains(t, aerr.Message(), "configured MaxUploadParts (2)")
+	assert.Equal(t, "MultipartUpload", aerr.Code())
+	assert.Equal(t, "TotalPartsExceeded", aerr.OrigErr().(awserr.Error).Code())
+	assert.Contains(t, aerr.Error(), "configured MaxUploadParts (2)")
 }
 
 func TestUploadOrderSingleBufferedReader(t *testing.T) {

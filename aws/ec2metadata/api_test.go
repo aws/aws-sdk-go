@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"path"
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -98,4 +99,21 @@ func TestMetadataNotAvailable(t *testing.T) {
 	available := c.Available()
 
 	assert.False(t, available)
+}
+
+func TestMetadataErrorResponse(t *testing.T) {
+	c := ec2metadata.New(session.New())
+	c.Handlers.Send.Clear()
+	c.Handlers.Send.PushBack(func(r *request.Request) {
+		r.HTTPResponse = &http.Response{
+			StatusCode: http.StatusBadRequest,
+			Status:     http.StatusText(http.StatusBadRequest),
+			Body:       ioutil.NopCloser(strings.NewReader("error message text")),
+		}
+		r.Retryable = aws.Bool(false) // network errors are retryable
+	})
+
+	data, err := c.GetMetadata("uri/path")
+	assert.Empty(t, data)
+	assert.Contains(t, err.Error(), "error message text")
 }
