@@ -4,11 +4,11 @@
     "apiVersion":"2015-07-01",
     "endpointPrefix":"marketplacecommerceanalytics",
     "jsonVersion":"1.1",
+    "protocol":"json",
     "serviceFullName":"AWS Marketplace Commerce Analytics",
     "signatureVersion":"v4",
     "signingName":"marketplacecommerceanalytics",
-    "targetPrefix":"MarketplaceCommerceAnalytics20150701",
-    "protocol":"json"
+    "targetPrefix":"MarketplaceCommerceAnalytics20150701"
   },
   "operations":{
     "GenerateDataSet":{
@@ -20,15 +20,18 @@
       "input":{"shape":"GenerateDataSetRequest"},
       "output":{"shape":"GenerateDataSetResult"},
       "errors":[
-        {
-          "shape":"MarketplaceCommerceAnalyticsException",
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"MarketplaceCommerceAnalyticsException"}
       ]
     }
   },
   "shapes":{
+    "CustomerDefinedValues":{
+      "type":"map",
+      "key":{"shape":"OptionalKey"},
+      "value":{"shape":"OptionalValue"},
+      "max":5,
+      "min":1
+    },
     "DataSetPublicationDate":{"type":"timestamp"},
     "DataSetRequestId":{"type":"string"},
     "DataSetType":{
@@ -49,10 +52,11 @@
         "disbursed_amount_by_age_of_uncollected_funds",
         "disbursed_amount_by_age_of_disbursed_funds",
         "customer_profile_by_industry",
-        "customer_profile_by_revenue"
+        "customer_profile_by_revenue",
+        "customer_profile_by_geography"
       ],
-      "min":1,
-      "max":255
+      "max":255,
+      "min":1
     },
     "DestinationS3BucketName":{
       "type":"string",
@@ -75,7 +79,8 @@
         "roleNameArn":{"shape":"RoleNameArn"},
         "destinationS3BucketName":{"shape":"DestinationS3BucketName"},
         "destinationS3Prefix":{"shape":"DestinationS3Prefix"},
-        "snsTopicArn":{"shape":"SnsTopicArn"}
+        "snsTopicArn":{"shape":"SnsTopicArn"},
+        "customerDefinedValues":{"shape":"CustomerDefinedValues"}
       }
     },
     "GenerateDataSetResult":{
@@ -91,6 +96,16 @@
       },
       "exception":true,
       "fault":true
+    },
+    "OptionalKey":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
+    "OptionalValue":{
+      "type":"string",
+      "max":255,
+      "min":1
     },
     "RoleNameArn":{
       "type":"string",
