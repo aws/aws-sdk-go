@@ -4350,7 +4350,7 @@ type PutScalingPolicyInput struct {
 	MinAdjustmentMagnitude *int64 `type:"integer"`
 
 	// Available for backward compatibility. Use MinAdjustmentMagnitude instead.
-	MinAdjustmentStep *int64 `type:"integer"`
+	MinAdjustmentStep *int64 `deprecated:"true" type:"integer"`
 
 	// The name of the policy.
 	PolicyName *string `min:"1" type:"string" required:"true"`
@@ -4558,7 +4558,7 @@ type ScalingPolicy struct {
 	MinAdjustmentMagnitude *int64 `type:"integer"`
 
 	// Available for backward compatibility. Use MinAdjustmentMagnitude instead.
-	MinAdjustmentStep *int64 `type:"integer"`
+	MinAdjustmentStep *int64 `deprecated:"true" type:"integer"`
 
 	// The Amazon Resource Name (ARN) of the policy.
 	PolicyARN *string `min:"1" type:"string"`

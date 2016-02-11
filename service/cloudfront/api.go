@@ -3300,11 +3300,11 @@ type ViewerCertificate struct {
 
 	// Note: this field is deprecated. Please use one of [ACMCertificateArn, IAMCertificateId,
 	// CloudFrontDefaultCertificate].
-	Certificate *string `type:"string"`
+	Certificate *string `deprecated:"true" type:"string"`
 
 	// Note: this field is deprecated. Please use one of [ACMCertificateArn, IAMCertificateId,
 	// CloudFrontDefaultCertificate].
-	CertificateSource *string `type:"string" enum:"CertificateSource"`
+	CertificateSource *string `deprecated:"true" type:"string" enum:"CertificateSource"`
 
 	// If you want viewers to use HTTPS to request your objects and you're using
 	// the CloudFront domain name of your distribution in your object URLs (for
