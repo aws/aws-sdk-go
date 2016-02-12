@@ -103,6 +103,16 @@ func ExampleLambda_CreateFunction() {
 		MemorySize:   aws.Int64(1),
 		Publish:      aws.Bool(true),
 		Timeout:      aws.Int64(1),
+		VpcConfig: &lambda.VpcConfig{
+			SecurityGroupIds: []*string{
+				aws.String("SecurityGroupId"), // Required
+				// More values...
+			},
+			SubnetIds: []*string{
+				aws.String("SubnetId"), // Required
+				// More values...
+			},
+		},
 	}
 	resp, err := svc.CreateFunction(params)
 
@@ -524,6 +534,16 @@ func ExampleLambda_UpdateFunctionConfiguration() {
 		MemorySize:   aws.Int64(1),
 		Role:         aws.String("RoleArn"),
 		Timeout:      aws.Int64(1),
+		VpcConfig: &lambda.VpcConfig{
+			SecurityGroupIds: []*string{
+				aws.String("SecurityGroupId"), // Required
+				// More values...
+			},
+			SubnetIds: []*string{
+				aws.String("SubnetId"), // Required
+				// More values...
+			},
+		},
 	}
 	resp, err := svc.UpdateFunctionConfiguration(params)
 
