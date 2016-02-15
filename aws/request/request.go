@@ -192,6 +192,10 @@ func (r *Request) Build() error {
 			return r.Error
 		}
 		r.Handlers.Build.Run(r)
+		if r.Error != nil {
+			debugLogReqError(r, "Build Request", false, r.Error)
+			return r.Error
+		}
 		r.built = true
 	}
 

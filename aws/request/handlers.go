@@ -50,9 +50,19 @@ func (h *Handlers) Clear() {
 	h.AfterRetry.Clear()
 }
 
+// A HandlerListRunItem represents an entry in the HandlerList which
+// is being run.
+type HandlerListRunItem struct {
+	Index   int
+	Handler NamedHandler
+	Request *Request
+}
+
 // A HandlerList manages zero or more handlers in a list.
 type HandlerList struct {
-	list []NamedHandler
+	list         []NamedHandler
+	ShouldStopFn func(item HandlerListRunItem) bool
+	LoggerFn     func(item HandlerListRunItem)
 }
 
 // A NamedHandler is a struct that contains a name and function callback.
@@ -63,7 +73,10 @@ type NamedHandler struct {
 
 // copy creates a copy of the handler list.
 func (l *HandlerList) copy() HandlerList {
-	var n HandlerList
+	n := HandlerList{
+		LoggerFn:     l.LoggerFn,
+		ShouldStopFn: l.ShouldStopFn,
+	}
 	n.list = append([]NamedHandler{}, l.list...)
 	return n
 }
@@ -111,9 +124,34 @@ func (l *HandlerList) Remove(n NamedHandler) {
 
 // Run executes all handlers in the list with a given request object.
 func (l *HandlerList) Run(r *Request) {
-	for _, f := range l.list {
-		f.Fn(r)
+	for i, h := range l.list {
+		h.Fn(r)
+		item := HandlerListRunItem{
+			Index: i, Handler: h, Request: r,
+		}
+		if l.LoggerFn != nil {
+			l.LoggerFn(item)
+		}
+		if l.ShouldStopFn != nil && l.ShouldStopFn(item) {
+			return
+		}
 	}
+}
+
+// LogHandlerListItems when set as a HandlerList's LoggerFn will log
+// the handler used and the current state of the request's Error value.
+func LogHandlerListItems(item HandlerListRunItem) {
+	if item.Request.Config.Logger == nil {
+		return
+	}
+	item.Request.Config.Logger.Log("DEBUG: RequestHandler",
+		item.Index, item.Handler.Name, item.Request.Error)
+}
+
+// HandlerListStopOnError if an error occured and Request.Error is not nil
+// return true stating the handler list should stop iterating.
+func HandlerListStopOnError(item HandlerListRunItem) bool {
+	return item.Request.Error != nil
 }
 
 // MakeAddToUserAgentHandler will add the name/version pair to the User-Agent request
