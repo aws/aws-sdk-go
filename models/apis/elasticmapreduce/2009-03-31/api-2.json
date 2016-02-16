@@ -298,6 +298,7 @@
       "member":{"shape":"Application"}
     },
     "Boolean":{"type":"boolean"},
+    "BooleanObject":{"type":"boolean"},
     "BootstrapActionConfig":{
       "type":"structure",
       "required":[
@@ -484,6 +485,47 @@
       "type":"list",
       "member":{"shape":"InstanceId"}
     },
+    "EbsBlockDevice":{
+      "type":"structure",
+      "members":{
+        "VolumeSpecification":{"shape":"VolumeSpecification"},
+        "Device":{"shape":"String"}
+      }
+    },
+    "EbsBlockDeviceConfig":{
+      "type":"structure",
+      "required":["VolumeSpecification"],
+      "members":{
+        "VolumeSpecification":{"shape":"VolumeSpecification"},
+        "VolumesPerInstance":{"shape":"Integer"}
+      }
+    },
+    "EbsBlockDeviceConfigList":{
+      "type":"list",
+      "member":{"shape":"EbsBlockDeviceConfig"}
+    },
+    "EbsBlockDeviceList":{
+      "type":"list",
+      "member":{"shape":"EbsBlockDevice"}
+    },
+    "EbsConfiguration":{
+      "type":"structure",
+      "members":{
+        "EbsBlockDeviceConfigs":{"shape":"EbsBlockDeviceConfigList"},
+        "EbsOptimized":{"shape":"BooleanObject"}
+      }
+    },
+    "EbsVolume":{
+      "type":"structure",
+      "members":{
+        "Device":{"shape":"String"},
+        "VolumeId":{"shape":"String"}
+      }
+    },
+    "EbsVolumeList":{
+      "type":"list",
+      "member":{"shape":"EbsVolume"}
+    },
     "Ec2InstanceAttributes":{
       "type":"structure",
       "members":{
@@ -532,7 +574,9 @@
         "PublicIpAddress":{"shape":"String"},
         "PrivateDnsName":{"shape":"String"},
         "PrivateIpAddress":{"shape":"String"},
-        "Status":{"shape":"InstanceStatus"}
+        "Status":{"shape":"InstanceStatus"},
+        "InstanceGroupId":{"shape":"String"},
+        "EbsVolumes":{"shape":"EbsVolumeList"}
       }
     },
     "InstanceGroup":{
@@ -547,7 +591,9 @@
         "RequestedInstanceCount":{"shape":"Integer"},
         "RunningInstanceCount":{"shape":"Integer"},
         "Status":{"shape":"InstanceGroupStatus"},
-        "Configurations":{"shape":"ConfigurationList"}
+        "Configurations":{"shape":"ConfigurationList"},
+        "EbsBlockDevices":{"shape":"EbsBlockDeviceList"},
+        "EbsOptimized":{"shape":"BooleanObject"}
       }
     },
     "InstanceGroupConfig":{
@@ -564,7 +610,8 @@
         "BidPrice":{"shape":"XmlStringMaxLen256"},
         "InstanceType":{"shape":"InstanceType"},
         "InstanceCount":{"shape":"Integer"},
-        "Configurations":{"shape":"ConfigurationList"}
+        "Configurations":{"shape":"ConfigurationList"},
+        "EbsConfiguration":{"shape":"EbsConfiguration"}
       }
     },
     "InstanceGroupConfigList":{
@@ -1234,6 +1281,18 @@
       "required":["JobFlowIds"],
       "members":{
         "JobFlowIds":{"shape":"XmlStringList"}
+      }
+    },
+    "VolumeSpecification":{
+      "type":"structure",
+      "required":[
+        "VolumeType",
+        "SizeInGB"
+      ],
+      "members":{
+        "VolumeType":{"shape":"String"},
+        "Iops":{"shape":"Integer"},
+        "SizeInGB":{"shape":"Integer"}
       }
     },
     "XmlString":{

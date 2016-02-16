@@ -38,6 +38,20 @@ func ExampleEMR_AddInstanceGroups() {
 					},
 					// More values...
 				},
+				EbsConfiguration: &emr.EbsConfiguration{
+					EbsBlockDeviceConfigs: []*emr.EbsBlockDeviceConfig{
+						{ // Required
+							VolumeSpecification: &emr.VolumeSpecification{ // Required
+								SizeInGB:   aws.Int64(1),         // Required
+								VolumeType: aws.String("String"), // Required
+								Iops:       aws.Int64(1),
+							},
+							VolumesPerInstance: aws.Int64(1),
+						},
+						// More values...
+					},
+					EbsOptimized: aws.Bool(true),
+				},
 				Market: aws.String("MarketType"),
 				Name:   aws.String("XmlStringMaxLen256"),
 			},
@@ -399,6 +413,20 @@ func ExampleEMR_RunJobFlow() {
 							},
 						},
 						// More values...
+					},
+					EbsConfiguration: &emr.EbsConfiguration{
+						EbsBlockDeviceConfigs: []*emr.EbsBlockDeviceConfig{
+							{ // Required
+								VolumeSpecification: &emr.VolumeSpecification{ // Required
+									SizeInGB:   aws.Int64(1),         // Required
+									VolumeType: aws.String("String"), // Required
+									Iops:       aws.Int64(1),
+								},
+								VolumesPerInstance: aws.Int64(1),
+							},
+							// More values...
+						},
+						EbsOptimized: aws.Bool(true),
 					},
 					Market: aws.String("MarketType"),
 					Name:   aws.String("XmlStringMaxLen256"),
