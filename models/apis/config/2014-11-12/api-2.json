@@ -1204,7 +1204,7 @@
     "ResourceTypes":{
       "type":"list",
       "member":{"shape":"StringWithCharLimit256"},
-      "max":100,
+      "max":20,
       "min":0
     },
     "Scope":{
