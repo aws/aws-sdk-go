@@ -45,3 +45,42 @@ func TestNamedHandlers(t *testing.T) {
 	l.Remove(named)
 	assert.Equal(t, 2, l.Len())
 }
+
+func TestLoggedHandlers(t *testing.T) {
+	expectedHandlers := []string{"name1", "name2"}
+	l := request.HandlerList{}
+	loggedHandlers := []string{}
+	l.LoggerFn = func(item request.HandlerListRunItem) {
+		loggedHandlers = append(loggedHandlers, item.Handler.Name)
+	}
+
+	named := request.NamedHandler{Name: "name1", Fn: func(r *request.Request) {}}
+	named2 := request.NamedHandler{Name: "name2", Fn: func(r *request.Request) {}}
+	l.PushBackNamed(named)
+	l.PushBackNamed(named2)
+	l.Run(&request.Request{})
+
+	assert.Equal(t, expectedHandlers, loggedHandlers)
+}
+
+func TestStopHandlers(t *testing.T) {
+	l := request.HandlerList{}
+	stopAt := 1
+	l.ShouldStopFn = func(item request.HandlerListRunItem) bool {
+		return item.Index == stopAt
+	}
+
+	called := 0
+	l.PushBackNamed(request.NamedHandler{Name: "name1", Fn: func(r *request.Request) {
+		called++
+	}})
+	l.PushBackNamed(request.NamedHandler{Name: "name2", Fn: func(r *request.Request) {
+		called++
+	}})
+	l.PushBackNamed(request.NamedHandler{Name: "name3", Fn: func(r *request.Request) {
+		assert.Fail(t, "thrid handler should not be called")
+	}})
+	l.Run(&request.Request{})
+
+	assert.Equal(t, 2, called, "Expect only two handlers to be called")
+}
