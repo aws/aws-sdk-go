@@ -77,9 +77,13 @@ type GenerateDataSetInput struct {
 	// - Available monthly on the 4th day of the month by 5:00 PM Pacific Time since
 	// 2015-02. monthly_revenue_annual_subscriptions - Available monthly on the
 	// 4th day of the month by 5:00 PM Pacific Time since 2015-02. disbursed_amount_by_product
-	// - Available every 30 days by 5:00 PM Pacific Time since 2012-04. disbursed_amount_by_customer_geo
-	// - Available every 30 days by 5:00 PM Pacific Time since 2012-04. disbursed_amount_by_age_of_uncollected_funds
-	// - Available every 30 days by 5:00 PM Pacific Time since 2015-01-26. disbursed_amount_by_age_of_disbursed_funds
+	// - Available every 30 days by 5:00 PM Pacific Time since 2015-01-26. disbursed_amount_by_product_with_uncollected_funds
+	// -This data set is only available from 2012-04-19 until 2015-01-25. After
+	// 2015-01-25, this data set was split into three data sets: disbursed_amount_by_product,
+	// disbursed_amount_by_age_of_uncollected_funds, and disbursed_amount_by_age_of_disbursed_funds.
+	//  disbursed_amount_by_customer_geo - Available every 30 days by 5:00 PM Pacific
+	// Time since 2012-04-19. disbursed_amount_by_age_of_uncollected_funds - Available
+	// every 30 days by 5:00 PM Pacific Time since 2015-01-26. disbursed_amount_by_age_of_disbursed_funds
 	// - Available every 30 days by 5:00 PM Pacific Time since 2015-01-26. customer_profile_by_industry
 	// - Available daily by 5:00 PM Pacific Time since 2015-10-01. customer_profile_by_revenue
 	// - Available daily by 5:00 PM Pacific Time since 2015-10-01. customer_profile_by_geography
@@ -159,6 +163,8 @@ const (
 	DataSetTypeMonthlyRevenueAnnualSubscriptions = "monthly_revenue_annual_subscriptions"
 	// @enum DataSetType
 	DataSetTypeDisbursedAmountByProduct = "disbursed_amount_by_product"
+	// @enum DataSetType
+	DataSetTypeDisbursedAmountByProductWithUncollectedFunds = "disbursed_amount_by_product_with_uncollected_funds"
 	// @enum DataSetType
 	DataSetTypeDisbursedAmountByCustomerGeo = "disbursed_amount_by_customer_geo"
 	// @enum DataSetType
