@@ -412,6 +412,37 @@ func (c *StorageGateway) CreateStorediSCSIVolume(input *CreateStorediSCSIVolumeI
 	return out, err
 }
 
+const opCreateTapeWithBarcode = "CreateTapeWithBarcode"
+
+// CreateTapeWithBarcodeRequest generates a request for the CreateTapeWithBarcode operation.
+func (c *StorageGateway) CreateTapeWithBarcodeRequest(input *CreateTapeWithBarcodeInput) (req *request.Request, output *CreateTapeWithBarcodeOutput) {
+	op := &request.Operation{
+		Name:       opCreateTapeWithBarcode,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateTapeWithBarcodeInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &CreateTapeWithBarcodeOutput{}
+	req.Data = output
+	return
+}
+
+// Creates a virtual tape by using your own barcode. You write data to the virtual
+// tape and then archive the tape.
+//
+// Cache storage must be allocated to the gateway before you can create a virtual
+// tape. Use the AddCache operation to add cache storage to a gateway.
+func (c *StorageGateway) CreateTapeWithBarcode(input *CreateTapeWithBarcodeInput) (*CreateTapeWithBarcodeOutput, error) {
+	req, out := c.CreateTapeWithBarcodeRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opCreateTapes = "CreateTapes"
 
 // CreateTapesRequest generates a request for the CreateTapes operation.
@@ -1728,6 +1759,10 @@ func (c *StorageGateway) UpdateGatewayInformationRequest(input *UpdateGatewayInf
 // This operation updates a gateway's metadata, which includes the gateway's
 // name and time zone. To specify which gateway to update, use the Amazon Resource
 // Name (ARN) of the gateway in your request.
+//
+// For Gateways activated after September 02, 2015, the gateway's ARN contains
+// the gateway id rather than the gateway name. However changing the name of
+// the gateway has no effect on the gateway's ARN.
 func (c *StorageGateway) UpdateGatewayInformation(input *UpdateGatewayInformationInput) (*UpdateGatewayInformationOutput, error) {
 	req, out := c.UpdateGatewayInformationRequest(input)
 	err := req.Send()
@@ -1869,9 +1904,10 @@ func (c *StorageGateway) UpdateVTLDeviceType(input *UpdateVTLDeviceTypeInput) (*
 
 // A JSON object containing one or more of the following fields:
 //
-//   ActivateGatewayInput$ActivationKey   GatewayName   ActivateGatewayInput$GatewayRegion
-//   ActivateGatewayInput$GatewayTimezone   ActivateGatewayInput$GatewayType
-//   ActivateGatewayInput$TapeDriveType   ActivateGatewayInput$MediumChangerType
+//   ActivateGatewayInput$ActivationKey   ActivateGatewayInput$GatewayName
+//   ActivateGatewayInput$GatewayRegion   ActivateGatewayInput$GatewayTimezone
+//   ActivateGatewayInput$GatewayType   ActivateGatewayInput$TapeDriveType
+//  ActivateGatewayInput$MediumChangerType
 type ActivateGatewayInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1884,29 +1920,27 @@ type ActivateGatewayInput struct {
 	// the actual configuration of your gateway.
 	ActivationKey *string `min:"1" type:"string" required:"true"`
 
-	// A unique identifier for your gateway. This name becomes part of the gateway
-	// Amazon Resources Name (ARN) which is what you use as an input to other operations.
+	// The name you configured for your gateway.
 	GatewayName *string `min:"2" type:"string" required:"true"`
 
-	// One of the values that indicates the region where you want to store the snapshot
-	// backups. The gateway region specified must be the same region as the region
-	// in your Host header in the request. For more information about available
-	// regions and endpoints for AWS Storage Gateway, see Regions and Endpoints
-	// (http://docs.aws.amazon.com/general/latest/gr/rande.html#sg_region) in the
-	// Amazon Web Services Glossary.
+	// A value that indicates the region where you want to store the snapshot backups.
+	// The gateway region specified must be the same region as the region in your
+	// Host header in the request. For more information about available regions
+	// and endpoints for AWS Storage Gateway, see Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html#sg_region)
+	// in the Amazon Web Services Glossary.
 	//
 	// Valid Values: "us-east-1", "us-west-1", "us-west-2", "eu-west-1", "eu-central-1",
 	// "ap-northeast-1", "ap-southeast-1", "ap-southeast-2", "sa-east-1"
 	GatewayRegion *string `min:"1" type:"string" required:"true"`
 
-	// One of the values that indicates the time zone you want to set for the gateway.
-	// The time zone is used, for example, for scheduling snapshots and your gateway's
+	// A value that indicates the time zone you want to set for the gateway. The
+	// time zone is used, for example, for scheduling snapshots and your gateway's
 	// maintenance schedule.
 	GatewayTimezone *string `min:"3" type:"string" required:"true"`
 
-	// One of the values that defines the type of gateway to activate. The type
-	// specified is critical to all later functions of the gateway and cannot be
-	// changed after activation. The default value is STORED.
+	// A value that defines the type of gateway to activate. The type specified
+	// is critical to all later functions of the gateway and cannot be changed after
+	// activation. The default value is STORED.
 	GatewayType *string `min:"2" type:"string"`
 
 	// The value that indicates the type of medium changer to use for gateway-VTL.
@@ -1936,6 +1970,10 @@ func (s ActivateGatewayInput) GoString() string {
 // gateway. It is a string made of information such as your account, gateway
 // name, and region. This ARN is used to reference the gateway in other API
 // operations as well as resource-based authorization.
+//
+// For Gateways activated prior to September 02, 2015 the gateway ARN contains
+// the gateway name rather than the gateway id. Changing the name of the gateway
+// has no effect on the gateway ARN.
 type ActivateGatewayOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2439,7 +2477,7 @@ type CreateStorediSCSIVolumeInput struct {
 
 	// The name of the iSCSI target used by initiators to connect to the target
 	// and as a suffix for the target ARN. For example, specifying TargetName as
-	// myvolume results in the target ARN of arn:aws:storagegateway:us-east-1:111122223333:gateway/mygateway/target/iqn.1997-05.com.amazon:myvolume.
+	// myvolume results in the target ARN of arn:aws:storagegateway:us-east-1:111122223333:gateway/sgw-12A3456B/target/iqn.1997-05.com.amazon:myvolume.
 	// The target name must be unique across all volumes of a gateway.
 	TargetName *string `min:"1" type:"string" required:"true"`
 }
@@ -2479,6 +2517,53 @@ func (s CreateStorediSCSIVolumeOutput) GoString() string {
 	return s.String()
 }
 
+// CreateTapeWithBarcodeInput
+type CreateTapeWithBarcodeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique Amazon Resource Name (ARN) that represents the gateway to associate
+	// the virtual tape with. Use the ListGateways operation to return a list of
+	// gateways for your account and region.
+	GatewayARN *string `min:"50" type:"string" required:"true"`
+
+	// The barcode that you want to assign to the tape.
+	TapeBarcode *string `min:"7" type:"string" required:"true"`
+
+	// The size, in bytes, of the virtual tape that you want to create.
+	//
+	// The size must be aligned by gigabyte (1024*1024*1024 byte).
+	TapeSizeInBytes *int64 `type:"long" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateTapeWithBarcodeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateTapeWithBarcodeInput) GoString() string {
+	return s.String()
+}
+
+// CreateTapeOutput
+type CreateTapeWithBarcodeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique Amazon Resource Name (ARN) that represents the virtual tape that
+	// was created.
+	TapeARN *string `min:"50" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateTapeWithBarcodeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateTapeWithBarcodeOutput) GoString() string {
+	return s.String()
+}
+
 // CreateTapesInput
 type CreateTapesInput struct {
 	_ struct{} `type:"structure"`
@@ -2489,24 +2574,24 @@ type CreateTapesInput struct {
 	// Using the same ClientToken prevents creating the tape multiple times.
 	ClientToken *string `min:"5" type:"string" required:"true"`
 
-	// The unique Amazon Resource Name(ARN) that represents the gateway to associate
+	// The unique Amazon Resource Name (ARN) that represents the gateway to associate
 	// the virtual tapes with. Use the ListGateways operation to return a list of
 	// gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
-	// The number of virtual tapes you want to create.
+	// The number of virtual tapes that you want to create.
 	NumTapesToCreate *int64 `min:"1" type:"integer" required:"true"`
 
-	// A prefix you append to the barcode of the virtual tape you are creating.
-	// This makes a barcode unique.
+	// A prefix that you append to the barcode of the virtual tape you are creating.
+	// This prefix makes the barcode unique.
 	//
-	// The prefix must be 1 to 4 characters in length and must be upper-case letters
-	// A-Z.
+	// The prefix must be 1 to 4 characters in length and must be one of the uppercase
+	// letters from A to Z.
 	TapeBarcodePrefix *string `min:"1" type:"string" required:"true"`
 
-	// The size, in bytes, of the virtual tapes you want to create.
+	// The size, in bytes, of the virtual tapes that you want to create.
 	//
-	// The size must be gigabyte (1024*1024*1024 byte) aligned.
+	// The size must be aligned by gigabyte (1024*1024*1024 byte).
 	TapeSizeInBytes *int64 `type:"long" required:"true"`
 }
 
@@ -2524,7 +2609,7 @@ func (s CreateTapesInput) GoString() string {
 type CreateTapesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of unique Amazon Resource Named (ARN) that represents the virtual
+	// A list of unique Amazon Resource Names (ARNs) that represents the virtual
 	// tapes that were created.
 	TapeARNs []*string `type:"list"`
 }
@@ -3019,20 +3104,22 @@ type DescribeGatewayInformationOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string"`
 
-	// The gateway ID.
+	// The unique identifier assigned to your gateway during activation. This id
+	// becomes part of the gateway Amazon Resources Name (ARN) which you use as
+	// input for other operations.
 	GatewayId *string `min:"12" type:"string"`
 
-	// The gateway name.
+	// The name you configured for your gateway.
 	GatewayName *string `type:"string"`
 
 	// A NetworkInterface array that contains descriptions of the gateway network
 	// interfaces.
 	GatewayNetworkInterfaces []*NetworkInterface `type:"list"`
 
-	// One of the values that indicates the operating state of the gateway.
+	// A value that indicates the operating state of the gateway.
 	GatewayState *string `min:"2" type:"string"`
 
-	// One of the values that indicates the time zone configured for the gateway.
+	// A value that indicates the time zone configured for the gateway.
 	GatewayTimezone *string `min:"3" type:"string"`
 
 	// The type of the gateway.
@@ -3752,7 +3839,7 @@ type ListTagsForResourceInput struct {
 
 	// The Amazon Resource Name (ARN) of the resource for which you want to list
 	// tags.
-	ResourceARN *string `min:"50" type:"string"`
+	ResourceARN *string `min:"50" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -3952,11 +4039,11 @@ type RemoveTagsFromResourceInput struct {
 
 	// The Amazon Resource Name (ARN) of the resource you want to remove the tags
 	// from.
-	ResourceARN *string `min:"50" type:"string"`
+	ResourceARN *string `min:"50" type:"string" required:"true"`
 
 	// The keys of the tags you want to remove from the specified resource. A tag
 	// is composed of a key/value pair.
-	TagKeys []*string `type:"list"`
+	TagKeys []*string `type:"list" required:"true"`
 }
 
 // String returns the string representation
@@ -4462,8 +4549,7 @@ type UpdateGatewayInformationInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
-	// A unique identifier for your gateway. This name becomes part of the gateway
-	// Amazon Resources Name (ARN) which is what you use as an input to other operations.
+	// The name you configured for your gateway.
 	GatewayName *string `min:"2" type:"string"`
 
 	GatewayTimezone *string `min:"3" type:"string"`
@@ -4479,7 +4565,7 @@ func (s UpdateGatewayInformationInput) GoString() string {
 	return s.String()
 }
 
-// A JSON object containing the of the gateway that was updated.
+// A JSON object containing the ARN of the gateway that was updated.
 type UpdateGatewayInformationOutput struct {
 	_ struct{} `type:"structure"`
 
