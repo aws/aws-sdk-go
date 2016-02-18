@@ -44,6 +44,42 @@ func ExampleCodeDeploy_AddTagsToOnPremisesInstances() {
 	fmt.Println(resp)
 }
 
+func ExampleCodeDeploy_BatchGetApplicationRevisions() {
+	svc := codedeploy.New(session.New())
+
+	params := &codedeploy.BatchGetApplicationRevisionsInput{
+		ApplicationName: aws.String("ApplicationName"), // Required
+		Revisions: []*codedeploy.RevisionLocation{ // Required
+			{ // Required
+				GitHubLocation: &codedeploy.GitHubLocation{
+					CommitId:   aws.String("CommitId"),
+					Repository: aws.String("Repository"),
+				},
+				RevisionType: aws.String("RevisionLocationType"),
+				S3Location: &codedeploy.S3Location{
+					Bucket:     aws.String("S3Bucket"),
+					BundleType: aws.String("BundleType"),
+					ETag:       aws.String("ETag"),
+					Key:        aws.String("S3Key"),
+					Version:    aws.String("VersionId"),
+				},
+			},
+			// More values...
+		},
+	}
+	resp, err := svc.BatchGetApplicationRevisions(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleCodeDeploy_BatchGetApplications() {
 	svc := codedeploy.New(session.New())
 
@@ -54,6 +90,29 @@ func ExampleCodeDeploy_BatchGetApplications() {
 		},
 	}
 	resp, err := svc.BatchGetApplications(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleCodeDeploy_BatchGetDeploymentInstances() {
+	svc := codedeploy.New(session.New())
+
+	params := &codedeploy.BatchGetDeploymentInstancesInput{
+		DeploymentId: aws.String("DeploymentId"), // Required
+		InstanceIds: []*string{ // Required
+			aws.String("InstanceId"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.BatchGetDeploymentInstances(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -214,6 +273,17 @@ func ExampleCodeDeploy_CreateDeploymentGroup() {
 				Key:   aws.String("Key"),
 				Type:  aws.String("TagFilterType"),
 				Value: aws.String("Value"),
+			},
+			// More values...
+		},
+		TriggerConfigurations: []*codedeploy.TriggerConfig{
+			{ // Required
+				TriggerEvents: []*string{
+					aws.String("TriggerEventType"), // Required
+					// More values...
+				},
+				TriggerName:      aws.String("TriggerName"),
+				TriggerTargetArn: aws.String("TriggerTargetArn"),
 			},
 			// More values...
 		},
@@ -772,6 +842,17 @@ func ExampleCodeDeploy_UpdateDeploymentGroup() {
 			// More values...
 		},
 		ServiceRoleArn: aws.String("Role"),
+		TriggerConfigurations: []*codedeploy.TriggerConfig{
+			{ // Required
+				TriggerEvents: []*string{
+					aws.String("TriggerEventType"), // Required
+					// More values...
+				},
+				TriggerName:      aws.String("TriggerName"),
+				TriggerTargetArn: aws.String("TriggerTargetArn"),
+			},
+			// More values...
+		},
 	}
 	resp, err := svc.UpdateDeploymentGroup(params)
 

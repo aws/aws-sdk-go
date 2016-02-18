@@ -3,7 +3,9 @@
   "service": "<fullname>AWS CodeDeploy</fullname> <b>Overview</b> <p>This is the AWS CodeDeploy API Reference. This guide provides descriptions of the AWS CodeDeploy APIs. For additional information, see the <a href=\"http://docs.aws.amazon.com/codedeploy/latest/userguide\">AWS CodeDeploy User Guide</a>.</p> <b>Using the APIs</b> <p>You can use the AWS CodeDeploy APIs to work with the following items:</p> <ul> <li> <p>Applications are unique identifiers that AWS CodeDeploy uses to ensure that the correct combinations of revisions, deployment configurations, and deployment groups are being referenced during deployments.</p> <p>You can use the AWS CodeDeploy APIs to create, delete, get, list, and update applications.</p> </li> <li> <p>Deployment configurations are sets of deployment rules and deployment success and failure conditions that AWS CodeDeploy uses during deployments.</p> <p>You can use the AWS CodeDeploy APIs to create, delete, get, and list deployment configurations.</p> </li> <li> <p>Deployment groups are groups of instances to which application revisions can be deployed.</p> <p>You can use the AWS CodeDeploy APIs to create, delete, get, list, and update deployment groups.</p> </li> <li> <p>Instances represent Amazon EC2 instances to which application revisions are deployed. Instances are identified by their Amazon EC2 tags or Auto Scaling group names. Instances belong to deployment groups.</p> <p>You can use the AWS CodeDeploy APIs to get and list instances.</p> </li> <li> <p>Deployments represent the process of deploying revisions to instances.</p> <p>You can use the AWS CodeDeploy APIs to create, get, list, and stop deployments.</p> </li> <li> <p>Application revisions are archive files that are stored in Amazon S3 buckets or GitHub repositories. These revisions contain source content (such as source code, web pages, executable files, any deployment scripts, and similar) along with an Application Specification file (AppSpec file). (The AppSpec file is unique to AWS CodeDeploy; it defines a series of deployment actions that you want AWS CodeDeploy to execute.) An application revision is uniquely identified by its Amazon S3 object key and its ETag, version, or both (for application revisions that are stored in Amazon S3 buckets) or by its repository name and commit ID (for applications revisions that are stored in GitHub repositories). Application revisions are deployed through deployment groups.</p> <p>You can use the AWS CodeDeploy APIs to get, list, and register application revisions.</p> </li> </ul>",
   "operations": {
     "AddTagsToOnPremisesInstances": "<p>Adds tags to on-premises instances.</p>",
+    "BatchGetApplicationRevisions": "<p>Gets information about one or more application revisions.</p>",
     "BatchGetApplications": "<p>Gets information about one or more applications.</p>",
+    "BatchGetDeploymentInstances": "<p>Gets information about one or more instances that are part of a deployment group.</p>",
     "BatchGetDeployments": "<p>Gets information about one or more deployments.</p>",
     "BatchGetOnPremisesInstances": "<p>Gets information about one or more on-premises instances.</p>",
     "CreateApplication": "<p>Creates a new application.</p>",
@@ -37,7 +39,7 @@
   },
   "shapes": {
     "AddTagsToOnPremisesInstancesInput": {
-      "base": "<p>Represents the input of an adds tags to on-premises instance operation.</p>",
+      "base": "<p>Represents the input of and adds tags to on-premises instance operation.</p>",
       "refs": {
       }
     },
@@ -75,6 +77,8 @@
       "refs": {
         "ApplicationInfo$applicationName": "<p>The application name.</p>",
         "ApplicationsList$member": null,
+        "BatchGetApplicationRevisionsInput$applicationName": "<p>The name of an existing AWS CodeDeploy application to get revision information about.</p>",
+        "BatchGetApplicationRevisionsOutput$applicationName": "<p>The name of the application that corresponds to the revisions.</p>",
         "CreateApplicationInput$applicationName": "<p>The name of the application. This name must be unique with the applicable IAM user or AWS account.</p>",
         "CreateDeploymentGroupInput$applicationName": "<p>The name of an existing AWS CodeDeploy application associated with the applicable IAM user or AWS account.</p>",
         "CreateDeploymentInput$applicationName": "<p>The name of an existing AWS CodeDeploy application associated with the applicable IAM user or AWS account.</p>",
@@ -151,7 +155,17 @@
       "base": null,
       "refs": {
         "CreateDeploymentGroupInput$autoScalingGroups": "<p>A list of associated Auto Scaling groups.</p>",
-        "UpdateDeploymentGroupInput$autoScalingGroups": "<p>The replacement list of Auto Scaling groups to be included in the deployment group, if you want to change them.</p>"
+        "UpdateDeploymentGroupInput$autoScalingGroups": "<p>The replacement list of Auto Scaling groups to be included in the deployment group, if you want to change them. To keep the existing Auto Scaling groups, enter their names. To remove Auto Scaling groups, do not enter any Auto Scaling group names.</p>"
+      }
+    },
+    "BatchGetApplicationRevisionsInput": {
+      "base": "<p>Represents the input of a batch get application revisions operation.</p>",
+      "refs": {
+      }
+    },
+    "BatchGetApplicationRevisionsOutput": {
+      "base": "<p>Represents the output of a batch get application revisions operation.</p>",
+      "refs": {
       }
     },
     "BatchGetApplicationsInput": {
@@ -161,6 +175,16 @@
     },
     "BatchGetApplicationsOutput": {
       "base": "<p>Represents the output of a batch get applications operation.</p>",
+      "refs": {
+      }
+    },
+    "BatchGetDeploymentInstancesInput": {
+      "base": "<p>Represents the input of a batch get deployment instances operation.</p>",
+      "refs": {
+      }
+    },
+    "BatchGetDeploymentInstancesOutput": {
+      "base": "<p>Represents the output of a batch get deployment instances operation.</p>",
       "refs": {
       }
     },
@@ -181,6 +205,11 @@
     },
     "BatchGetOnPremisesInstancesOutput": {
       "base": "<p>Represents the output of a batch get on-premises instances operation.</p>",
+      "refs": {
+      }
+    },
+    "BatchLimitExceededException": {
+      "base": "<p>The maximum number of names or IDs allowed for this request (100) was exceeded.</p>",
       "refs": {
       }
     },
@@ -206,7 +235,7 @@
     "CommitId": {
       "base": null,
       "refs": {
-        "GitHubLocation$commitId": "<p>The SHA1 commit ID of the GitHub commit that references the that represents the bundled artifacts for the application revision.</p>"
+        "GitHubLocation$commitId": "<p>The SHA1 commit ID of the GitHub commit that represents the bundled artifacts for the application revision.</p>"
       }
     },
     "CreateApplicationInput": {
@@ -311,7 +340,7 @@
       "base": null,
       "refs": {
         "CreateDeploymentConfigInput$deploymentConfigName": "<p>The name of the deployment configuration to create.</p>",
-        "CreateDeploymentGroupInput$deploymentConfigName": "<p>If specified, the deployment configuration name must be one of the predefined values, or it can be a custom deployment configuration:</p> <ul> <li>CodeDeployDefault.AllAtOnce deploys an application revision to up to all of the instances at once. The overall deployment succeeds if the application revision deploys to at least one of the instances. The overall deployment fails after the application revision fails to deploy to all of the instances. For example, for 9 instances, deploy to up to all 9 instances at once. The overall deployment succeeds if any of the 9 instances is successfully deployed to, and it fails if all 9 instances fail to be deployed to.</li> <li>CodeDeployDefault.HalfAtATime deploys to up to half of the instances at a time (with fractions rounded down). The overall deployment succeeds if the application revision deploys to at least half of the instances (with fractions rounded up); otherwise, the deployment fails. For example, for 9 instances, deploy to up to 4 instances at a time. The overall deployment succeeds if 5 or more instances are successfully deployed to; otherwise, the deployment fails. Note that the deployment may successfully deploy to some instances, even if the overall deployment fails.</li> <li>CodeDeployDefault.OneAtATime deploys the application revision to only one of the instances at a time. The overall deployment succeeds if the application revision deploys to all of the instances. The overall deployment fails after the application revision first fails to deploy to any one instances. For example, for 9 instances, deploy to one instance at a time. The overall deployment succeeds if all 9 instances are successfully deployed to, and it fails if any of one of the 9 instances fail to be deployed to. Note that the deployment may successfully deploy to some instances, even if the overall deployment fails. This is the default deployment configuration if a configuration isn't specified for either the deployment or the deployment group.</li> </ul> <p>To create a custom deployment configuration, call the create deployment configuration operation.</p>",
+        "CreateDeploymentGroupInput$deploymentConfigName": "<p>If specified, the deployment configuration name can be either one of the predefined configurations provided with AWS CodeDeploy, or a custom deployment configuration that you created by calling the create deployment configuration operation.</p> <note> <p>CodeDeployDefault.OneAtATime is the default deployment configuration that is used if a configuration isn't specified for either the deployment or the deployment group.</p> </note> <p>The predefined deployment configurations including the following:</p> <ul> <li> <p><b>CodeDeployDefault.AllAtOnce</b> attempts to deploy an application revision to as many instances as possible at once. The status of the overall deployment will be displayed as <b>Succeeded</b> if the application revision is deployed to one or more of the instances. The status of the overall deployment will be displayed as <b>Failed</b> if the application revision is not deployed to any of the instances. Using an example of nine instances, CodeDeployDefault.AllAtOnce will attempt to deploy to all nine instances at once. The overall deployment will succeed if deployment to even a single instance is successful; it will fail only if deployments to all nine instances fail. </p> </li> <li> <p><b>CodeDeployDefault.HalfAtATime</b> deploys to up to half of the instances at a time (with fractions rounded down). The overall deployment succeeds if the application revision deploys to at least half of the instances (with fractions rounded up); otherwise, the deployment fails. For example, for nine instances, deploy to up to four instances at a time. The overall deployment succeeds if deployment to five or more instances succeed; otherwise, the deployment fails. Note that the deployment may successfully deploy to some instances, even if the overall deployment fails.</p> </li> <li> <p><b>CodeDeployDefault.OneAtATime</b> deploys the application revision to only one instance at a time.</p> <p>For deployment groups that contain more than one instance:</p> <ul> <li> <p>The overall deployment succeeds if the application revision deploys to all of the instances. The exception to this rule is that if deployment to the last instance fails, the overall deployment still succeeds. This is because AWS CodeDeploy allows only one instance to be taken offline at a time with the CodeDeployDefault.OneAtATime configuration.</p> </li> <li> <p>The overall deployment fails as soon as the application revision fails to deploy to any but the last instance. Note that the deployment may successfully deploy to some instances, even if the overall deployment fails.</p> </li> <li> <p>Example: For nine instances, deploy to one instance at a time. The overall deployment succeeds if the first eight instances are successfully deployed to, but it fails if deployment to any of the first eight instances fails.</p> </li> </ul> <p>For deployment groups that contain only one instance, the overall deployment is of course successful only if deployment to the single instance succeeds.</p> </li> </ul>",
         "CreateDeploymentInput$deploymentConfigName": "<p>The name of an existing deployment configuration associated with the applicable IAM user or AWS account.</p> <p>If not specified, the value configured in the deployment group will be used as the default. If the deployment group does not have a deployment configuration associated with it, then CodeDeployDefault.OneAtATime will be used by default.</p>",
         "DeleteDeploymentConfigInput$deploymentConfigName": "<p>The name of an existing deployment configuration associated with the applicable IAM user or AWS account.</p>",
         "DeploymentConfigInfo$deploymentConfigName": "<p>The deployment configuration name.</p>",
@@ -375,7 +404,7 @@
     "DeploymentGroupName": {
       "base": null,
       "refs": {
-        "CreateDeploymentGroupInput$deploymentGroupName": "<p>The name of an existing deployment group for the specified application.</p>",
+        "CreateDeploymentGroupInput$deploymentGroupName": "<p>The name of a new deployment group for the specified application.</p>",
         "CreateDeploymentInput$deploymentGroupName": "<p>The deployment group's name.</p>",
         "DeleteDeploymentGroupInput$deploymentGroupName": "<p>The name of an existing deployment group for the specified application.</p>",
         "DeploymentGroupInfo$deploymentGroupName": "<p>The deployment group name.</p>",
@@ -395,13 +424,14 @@
     "DeploymentGroupsList": {
       "base": null,
       "refs": {
-        "GenericRevisionInfo$deploymentGroups": "<p>A list of deployment groups that use this revision.</p>",
+        "GenericRevisionInfo$deploymentGroups": "<p>The deployment groups where this is the current target revision.</p>",
         "ListDeploymentGroupsOutput$deploymentGroups": "<p>A list of corresponding deployment group names.</p>"
       }
     },
     "DeploymentId": {
       "base": null,
       "refs": {
+        "BatchGetDeploymentInstancesInput$deploymentId": "<p>The unique ID of a deployment.</p>",
         "CreateDeploymentOutput$deploymentId": "<p>A unique deployment ID.</p>",
         "DeploymentInfo$deploymentId": "<p>The deployment ID.</p>",
         "DeploymentsList$member": null,
@@ -502,7 +532,7 @@
       "refs": {
         "CreateDeploymentGroupInput$ec2TagFilters": "<p>The Amazon EC2 tags to filter on.</p>",
         "DeploymentGroupInfo$ec2TagFilters": "<p>The Amazon EC2 tags to filter on.</p>",
-        "UpdateDeploymentGroupInput$ec2TagFilters": "<p>The replacement set of Amazon EC2 tags to filter on, if you want to change them.</p>"
+        "UpdateDeploymentGroupInput$ec2TagFilters": "<p>The replacement set of Amazon EC2 tags to filter on, if you want to change them. To keep the existing tags, enter their names. To remove tags, do not enter any tag names.</p>"
       }
     },
     "EC2TagFilterType": {
@@ -532,13 +562,16 @@
     "ErrorMessage": {
       "base": null,
       "refs": {
+        "BatchGetApplicationRevisionsOutput$errorMessage": "<p>Information about errors that may have occurred during the API call.</p>",
+        "BatchGetDeploymentInstancesOutput$errorMessage": "<p>Information about errors that may have occurred during the API call.</p>",
         "ErrorInformation$message": "<p>An accompanying error message.</p>"
       }
     },
     "GenericRevisionInfo": {
       "base": "<p>Information about an application revision.</p>",
       "refs": {
-        "GetApplicationRevisionOutput$revisionInfo": "<p>General information about the revision.</p>"
+        "GetApplicationRevisionOutput$revisionInfo": "<p>General information about the revision.</p>",
+        "RevisionInfo$genericRevisionInfo": null
       }
     },
     "GetApplicationInput": {
@@ -736,12 +769,20 @@
     "InstanceSummary": {
       "base": "<p>Information about an instance in a deployment.</p>",
       "refs": {
-        "GetDeploymentInstanceOutput$instanceSummary": "<p>Information about the instance.</p>"
+        "GetDeploymentInstanceOutput$instanceSummary": "<p>Information about the instance.</p>",
+        "InstanceSummaryList$member": null
+      }
+    },
+    "InstanceSummaryList": {
+      "base": null,
+      "refs": {
+        "BatchGetDeploymentInstancesOutput$instancesSummary": "<p>Information about the instances.</p>"
       }
     },
     "InstancesList": {
       "base": null,
       "refs": {
+        "BatchGetDeploymentInstancesInput$instanceIds": "<p>The unique IDs of instances in the deployment's deployment group.</p>",
         "ListDeploymentInstancesOutput$instancesList": "<p>A list of instances IDs.</p>"
       }
     },
@@ -865,6 +906,11 @@
       "refs": {
       }
     },
+    "InvalidTriggerConfigException": {
+      "base": "<p>The trigger was specified in an invalid format.</p>",
+      "refs": {
+      }
+    },
     "Key": {
       "base": null,
       "refs": {
@@ -901,6 +947,11 @@
       "base": null,
       "refs": {
         "LifecycleEvent$status": "<p>The deployment lifecycle event status:</p> <ul> <li>Pending: The deployment lifecycle event is pending.</li> <li>InProgress: The deployment lifecycle event is in progress.</li> <li>Succeeded: The deployment lifecycle event has succeeded.</li> <li>Failed: The deployment lifecycle event has failed.</li> <li>Skipped: The deployment lifecycle event has been skipped.</li> <li>Unknown: The deployment lifecycle event is unknown.</li> </ul>"
+      }
+    },
+    "LifecycleHookLimitExceededException": {
+      "base": "<p>The limit for lifecycle hooks was exceeded.</p>",
+      "refs": {
       }
     },
     "LifecycleMessage": {
@@ -988,7 +1039,7 @@
     "LogTail": {
       "base": null,
       "refs": {
-        "Diagnostics$logTail": "<p>The last portion of the associated diagnostic log.</p>"
+        "Diagnostics$logTail": "<p>The last portion of the associated diagnostic log.</p> <p>If available, AWS CodeDeploy returns up to the last 4 KB of the associated diagnostic log.</p>"
       }
     },
     "Message": {
@@ -1007,7 +1058,7 @@
     "MinimumHealthyHostsType": {
       "base": null,
       "refs": {
-        "MinimumHealthyHosts$type": "<p>The minimum healthy instances type:</p> <ul> <li>HOST_COUNT: The minimum number of healthy instances, as an absolute value.</li> <li>FLEET_PERCENT: The minimum number of healthy instances, as a percentage of the total number of instances in the deployment.</li> </ul> <p>For example, for 9 instances, if a HOST_COUNT of 6 is specified, deploy to up to 3 instances at a time. The deployment succeeds if 6 or more instances are successfully deployed to; otherwise, the deployment fails. If a FLEET_PERCENT of 40 is specified, deploy to up to 5 instances at a time. The deployment succeeds if 4 or more instances are successfully deployed to; otherwise, the deployment fails.</p> <note>In a call to the get deployment configuration operation, CodeDeployDefault.OneAtATime will return a minimum healthy instances type of MOST_CONCURRENCY and a value of 1. This means a deployment to only one instances at a time. (You cannot set the type to MOST_CONCURRENCY, only to HOST_COUNT or FLEET_PERCENT.)</note>"
+        "MinimumHealthyHosts$type": "<p>The minimum healthy instances type:</p> <ul> <li>HOST_COUNT: The minimum number of healthy instances, as an absolute value.</li> <li>FLEET_PERCENT: The minimum number of healthy instances, as a percentage of the total number of instances in the deployment.</li> </ul> <p>For example, for 9 instances, if a HOST_COUNT of 6 is specified, deploy to up to 3 instances at a time. The deployment succeeds if 6 or more instances are successfully deployed to; otherwise, the deployment fails. If a FLEET_PERCENT of 40 is specified, deploy to up to 5 instances at a time. The deployment succeeds if 4 or more instances are successfully deployed to; otherwise, the deployment fails.</p> <note>In a call to the get deployment configuration operation, CodeDeployDefault.OneAtATime will return a minimum healthy instances type of MOST_CONCURRENCY and a value of 1. This means a deployment to only one instance at a time. (You cannot set the type to MOST_CONCURRENCY, only to HOST_COUNT or FLEET_PERCENT.) In addition, with CodeDeployDefault.OneAtATime, AWS CodeDeploy will try to ensure that all but one instance are kept in healthy states during the deployment operation. While this allows one instance at a time to be taken offline for a new deployment, it also means that if the deployment to the last instance fails, the overall deployment still succeeds.</note>"
       }
     },
     "MinimumHealthyHostsValue": {
@@ -1059,12 +1110,24 @@
     "Repository": {
       "base": null,
       "refs": {
-        "GitHubLocation$repository": "<p>The GitHub account and repository pair that stores a reference to the commit that represents the bundled artifacts for the application revision.</p> <p>Specified as account/repository.</p>"
+        "GitHubLocation$repository": "<p>The GitHub account and repository pair that stores a reference to the commit that represents the bundled artifacts for the application revision. </p> <p>Specified as account/repository.</p>"
       }
     },
     "RevisionDoesNotExistException": {
       "base": "<p>The named revision does not exist with the applicable IAM user or AWS account.</p>",
       "refs": {
+      }
+    },
+    "RevisionInfo": {
+      "base": "<p>Information about an application revision.</p>",
+      "refs": {
+        "RevisionInfoList$member": null
+      }
+    },
+    "RevisionInfoList": {
+      "base": null,
+      "refs": {
+        "BatchGetApplicationRevisionsOutput$revisions": "<p>Additional information about the revisions, including the revision type and location.</p>"
       }
     },
     "RevisionLocation": {
@@ -1076,12 +1139,14 @@
         "GetApplicationRevisionInput$revision": "<p>Information about the application revision to get, including the revision's type and its location.</p>",
         "GetApplicationRevisionOutput$revision": "<p>Additional information about the revision, including the revision's type and its location.</p>",
         "RegisterApplicationRevisionInput$revision": "<p>Information about the application revision to register, including the revision's type and its location.</p>",
+        "RevisionInfo$revisionLocation": null,
         "RevisionLocationList$member": null
       }
     },
     "RevisionLocationList": {
       "base": null,
       "refs": {
+        "BatchGetApplicationRevisionsInput$revisions": "<p>Information to get about the application revisions, including revision type and location.</p>",
         "ListApplicationRevisionsOutput$revisions": "<p>A list of revision locations that contain the matching revisions.</p>"
       }
     },
@@ -1175,7 +1240,7 @@
         "CreateDeploymentGroupInput$onPremisesInstanceTagFilters": "<p>The on-premises instance tags to filter on.</p>",
         "DeploymentGroupInfo$onPremisesInstanceTagFilters": "<p>The on-premises instance tags to filter on.</p>",
         "ListOnPremisesInstancesInput$tagFilters": "<p>The on-premises instance tags that will be used to restrict the corresponding on-premises instance names that are returned.</p>",
-        "UpdateDeploymentGroupInput$onPremisesInstanceTagFilters": "<p>The replacement set of on-premises instance tags for filter on, if you want to change them.</p>"
+        "UpdateDeploymentGroupInput$onPremisesInstanceTagFilters": "<p>The replacement set of on-premises instance tags for filter on, if you want to change them. To keep the existing tags, enter their names. To remove tags, do not enter any tag names.</p>"
       }
     },
     "TagFilterType": {
@@ -1226,6 +1291,49 @@
         "LifecycleEvent$endTime": "<p>A timestamp indicating when the deployment lifecycle event ended.</p>",
         "TimeRange$start": "<p>The time range's start time.</p> <note>Specify null to leave the time range's start time open-ended.</note>",
         "TimeRange$end": "<p>The time range's end time.</p> <note>Specify null to leave the time range's end time open-ended.</note>"
+      }
+    },
+    "TriggerConfig": {
+      "base": "<p>Information about notification triggers for the deployment group.</p>",
+      "refs": {
+        "TriggerConfigList$member": null
+      }
+    },
+    "TriggerConfigList": {
+      "base": null,
+      "refs": {
+        "CreateDeploymentGroupInput$triggerConfigurations": "<p>Information about triggers to create when the deployment group is created.</p>",
+        "DeploymentGroupInfo$triggerConfigurations": "<p>A list of associated triggers. </p>",
+        "UpdateDeploymentGroupInput$triggerConfigurations": "<p>Information about triggers to change when the deployment group is updated.</p>"
+      }
+    },
+    "TriggerEventType": {
+      "base": null,
+      "refs": {
+        "TriggerEventTypeList$member": null
+      }
+    },
+    "TriggerEventTypeList": {
+      "base": null,
+      "refs": {
+        "TriggerConfig$triggerEvents": "<p>The event type or types for which notifications are triggered.</p> <p>The following event type values are supported:</p> <ul> <li>DEPLOYMENT_START</li> <li>DEPLOYMENT_SUCCESS</li> <li>DEPLOYMENT_FAILURE</li> <li>DEPLOYMENT_STOP</li> <li>INSTANCE_START</li> <li>INSTANCE_SUCCESS</li> <li>INSTANCE_FAILURE</li> </ul>"
+      }
+    },
+    "TriggerName": {
+      "base": null,
+      "refs": {
+        "TriggerConfig$triggerName": "<para>The name of the notification trigger.</para>"
+      }
+    },
+    "TriggerTargetArn": {
+      "base": null,
+      "refs": {
+        "TriggerConfig$triggerTargetArn": "<p>The arn of the Amazon Simple Notification Service topic through which notifications about deployment or instance events are sent.</p>"
+      }
+    },
+    "TriggerTargetsLimitExceededException": {
+      "base": "<p>The maximum allowed number of triggers was exceeded.</p>",
+      "refs": {
       }
     },
     "UpdateApplicationInput": {
