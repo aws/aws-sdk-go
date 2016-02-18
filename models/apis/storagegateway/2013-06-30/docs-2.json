@@ -1,5 +1,6 @@
 {
   "version": "2.0",
+  "service": "<fullname>AWS Storage Gateway Service</fullname> <p>AWS Storage Gateway is the service that connects an on-premises software appliance with cloud-based storage to provide seamless and secure integration between an organization's on-premises IT environment and AWS's storage infrastructure. The service enables you to securely upload data to the AWS cloud for cost effective backup and rapid disaster recovery.</p> <p>Use the following links to get started using the <i>AWS Storage Gateway Service API Reference</i>:</p> <ul> <li><a href=\"http://docs.aws.amazon.com/storagegateway/latest/userguide/AWSStorageGatewayHTTPRequestsHeaders.html\">AWS Storage Gateway Required Request Headers</a>: Describes the required headers that you must send with every POST request to AWS Storage Gateway.</li> <li><a href=\"http://docs.aws.amazon.com/storagegateway/latest/userguide/AWSStorageGatewaySigningRequests.html\">Signing Requests</a>: AWS Storage Gateway requires that you authenticate every request you send; this topic describes how sign such a request.</li> <li><a href=\"http://docs.aws.amazon.com/storagegateway/latest/userguide/APIErrorResponses.html\">Error Responses</a>: Provides reference information about AWS Storage Gateway errors.</li> <li><a href=\"http://docs.aws.amazon.com/storagegateway/latest/userguide/AWSStorageGatewayAPIOperations.html\">Operations in AWS Storage Gateway</a>: Contains detailed descriptions of all AWS Storage Gateway operations, their request parameters, response elements, possible errors, and examples of requests and responses.</li> <li><a href=\"http://docs.aws.amazon.com/general/latest/gr/index.html?rande.html\">AWS Storage Gateway Regions and Endpoints</a>: Provides a list of each of the regions and endpoints available for use with AWS Storage Gateway. </li> </ul> <note>AWS Storage Gateway resource IDs are in uppercase. When you use these resource IDs with the Amazon EC2 API, EC2 expects resource IDs in lowercase. You must change your resource ID to lowercase to use it with the EC2 API. For example, in Storage Gateway the ID for a volume might be vol-1122AABB. When you use this ID with the EC2 API, you must change it to vol-1122aabb. Otherwise, the EC2 API might not behave as expected.</note>",
   "operations": {
     "ActivateGateway": "<p>This operation activates the gateway you previously deployed on your host. For more information, see <a href=\"http://docs.aws.amazon.com/storagegateway/latest/userguide/GettingStartedActivateGateway-common.html\"> Activate the AWS Storage Gateway</a>. In the activation process, you specify information such as the region you want to use for storing snapshots, the time zone for scheduled snapshots the gateway snapshot schedule window, an activation key, and a name for your gateway. The activation process also associates your gateway with your account; for more information, see <a>UpdateGatewayInformation</a>.</p> <note>You must turn on the gateway VM before you can activate your gateway.</note>",
     "AddCache": "<p>This operation configures one or more gateway local disks as cache for a cached-volume gateway. This operation is supported only for the gateway-cached volume architecture (see <a href=\"http://docs.aws.amazon.com/storagegateway/latest/userguide/StorageGatewayConcepts.html\">Storage Gateway Concepts</a>).</p> <p>In the request, you specify the gateway Amazon Resource Name (ARN) to which you want to add cache, and one or more disk IDs that you want to configure as cache. </p>",
@@ -12,6 +13,7 @@
     "CreateSnapshot": "<p>This operation initiates a snapshot of a volume.</p> <p>AWS Storage Gateway provides the ability to back up point-in-time snapshots of your data to Amazon Simple Storage (S3) for durable off-site recovery, as well as import the data to an Amazon Elastic Block Store (EBS) volume in Amazon Elastic Compute Cloud (EC2). You can take snapshots of your gateway volume on a scheduled or ad-hoc basis. This API enables you to take ad-hoc snapshot. For more information, see <a href=\"http://docs.aws.amazon.com/storagegateway/latest/userguide/WorkingWithSnapshots.html\">Working With Snapshots in the AWS Storage Gateway Console</a>.</p> <p>In the CreateSnapshot request you identify the volume by providing its Amazon Resource Name (ARN). You must also provide description for the snapshot. When AWS Storage Gateway takes the snapshot of specified volume, the snapshot and description appears in the AWS Storage Gateway Console. In response, AWS Storage Gateway returns you a snapshot ID. You can use this snapshot ID to check the snapshot progress or later use it when you want to create a volume from a snapshot.</p> <note>To list or delete a snapshot, you must use the Amazon EC2 API. For more information, see DescribeSnapshots or DeleteSnapshot in the <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_Operations.html\">EC2 API reference</a>.</note>",
     "CreateSnapshotFromVolumeRecoveryPoint": "<p>This operation initiates a snapshot of a gateway from a volume recovery point. This operation is supported only for the gateway-cached volume architecture (see ).</p> <p>A volume recovery point is a point in time at which all data of the volume is consistent and from which you can create a snapshot. To get a list of volume recovery point for gateway-cached volumes, use <a>ListVolumeRecoveryPoints</a>.</p> <p>In the <code>CreateSnapshotFromVolumeRecoveryPoint</code> request, you identify the volume by providing its Amazon Resource Name (ARN). You must also provide a description for the snapshot. When AWS Storage Gateway takes a snapshot of the specified volume, the snapshot and its description appear in the AWS Storage Gateway console. In response, AWS Storage Gateway returns you a snapshot ID. You can use this snapshot ID to check the snapshot progress or later use it when you want to create a volume from a snapshot.</p> <note> <p>To list or delete a snapshot, you must use the Amazon EC2 API. For more information, in <i>Amazon Elastic Compute Cloud API Reference</i>.</p> </note>",
     "CreateStorediSCSIVolume": "<p>This operation creates a volume on a specified gateway. This operation is supported only for the gateway-stored volume architecture. </p> <p>The size of the volume to create is inferred from the disk size. You can choose to preserve existing data on the disk, create volume from an existing snapshot, or create an empty volume. If you choose to create an empty gateway volume, then any existing data on the disk is erased.</p> <p>In the request you must specify the gateway and the disk information on which you are creating the volume. In response, AWS Storage Gateway creates the volume and returns volume information such as the volume Amazon Resource Name (ARN), its size, and the iSCSI target ARN that initiators can use to connect to the volume target.</p>",
+    "CreateTapeWithBarcode": "<p>Creates a virtual tape by using your own barcode. You write data to the virtual tape and then archive the tape.</p> <note>Cache storage must be allocated to the gateway before you can create a virtual tape. Use the <a>AddCache</a> operation to add cache storage to a gateway.</note>",
     "CreateTapes": "<p>Creates one or more virtual tapes. You write data to the virtual tapes and then archive the tapes.</p> <note>Cache storage must be allocated to the gateway before you can create virtual tapes. Use the <a>AddCache</a> operation to add cache storage to a gateway. </note>",
     "DeleteBandwidthRateLimit": "<p>This operation deletes the bandwidth rate limits of a gateway. You can delete either the upload and download bandwidth rate limit, or you can delete both. If you delete only one of the limits, the other limit remains unchanged. To specify which gateway to work with, use the Amazon Resource Name (ARN) of the gateway in your request.</p>",
     "DeleteChapCredentials": "<p>This operation deletes Challenge-Handshake Authentication Protocol (CHAP) credentials for a specified iSCSI target and initiator pair.</p>",
@@ -49,21 +51,20 @@
     "StartGateway": "<p>This operation starts a gateway that you previously shut down (see <a>ShutdownGateway</a>). After the gateway starts, you can then make other API calls, your applications can read from or write to the gateway's storage volumes and you will be able to take snapshot backups.</p> <note>When you make a request, you will get a 200 OK success response immediately. However, it might take some time for the gateway to be ready. You should call <a>DescribeGatewayInformation</a> and check the status before making any additional API calls. For more information, see <a>ActivateGateway</a>.</note> <p>To specify which gateway to start, use the Amazon Resource Name (ARN) of the gateway in your request.</p>",
     "UpdateBandwidthRateLimit": "<p>This operation updates the bandwidth rate limits of a gateway. You can update both the upload and download bandwidth rate limit or specify only one of the two. If you don't set a bandwidth rate limit, the existing rate limit remains.</p> <p>By default, a gateway's bandwidth rate limits are not set. If you don't set any limit, the gateway does not have any limitations on its bandwidth usage and could potentially use the maximum available bandwidth.</p> <p>To specify which gateway to update, use the Amazon Resource Name (ARN) of the gateway in your request.</p>",
     "UpdateChapCredentials": "<p>This operation updates the Challenge-Handshake Authentication Protocol (CHAP) credentials for a specified iSCSI target. By default, a gateway does not have CHAP enabled; however, for added security, you might use it.</p> <important> <p>When you update CHAP credentials, all existing connections on the target are closed and initiators must reconnect with the new credentials.</p> </important>",
-    "UpdateGatewayInformation": "<p>This operation updates a gateway's metadata, which includes the gateway's name and time zone. To specify which gateway to update, use the Amazon Resource Name (ARN) of the gateway in your request.</p>",
+    "UpdateGatewayInformation": "<p>This operation updates a gateway's metadata, which includes the gateway's name and time zone. To specify which gateway to update, use the Amazon Resource Name (ARN) of the gateway in your request.</p> <note>For Gateways activated after September 02, 2015, the gateway's ARN contains the gateway id rather than the gateway name. However changing the name of the gateway has no effect on the gateway's ARN.</note>",
     "UpdateGatewaySoftwareNow": "<p>This operation updates the gateway virtual machine (VM) software. The request immediately triggers the software update. </p> <note>When you make this request, you get a <code>200 OK</code> success response immediately. However, it might take some time for the update to complete. You can call <a>DescribeGatewayInformation</a> to verify the gateway is in the <code>STATE_RUNNING</code> state.</note> <important>A software update forces a system restart of your gateway. You can minimize the chance of any disruption to your applications by increasing your iSCSI Initiators' timeouts. For more information about increasing iSCSI Initiator timeouts for Windows and Linux, see <a href=\"http://docs.aws.amazon.com/storagegateway/latest/userguide/ConfiguringiSCSIClientInitiatorWindowsClient.html#CustomizeWindowsiSCSISettings\">Customizing Your Windows iSCSI Settings</a> and <a href=\"http://docs.aws.amazon.com/storagegateway/latest/userguide/ConfiguringiSCSIClientInitiatorRedHatClient.html#CustomizeLinuxiSCSISettings\">Customizing Your Linux iSCSI Settings</a>, respectively.</important>",
     "UpdateMaintenanceStartTime": "<p>This operation updates a gateway's weekly maintenance start time information, including day and time of the week. The maintenance time is the time in your gateway's time zone.</p>",
     "UpdateSnapshotSchedule": "<p>This operation updates a snapshot schedule configured for a gateway volume.</p> <p>The default snapshot schedule for volume is once every 24 hours, starting at the creation time of the volume. You can use this API to change the snapshot schedule configured for the volume.</p> <p>In the request you must identify the gateway volume whose snapshot schedule you want to update, and the schedule information, including when you want the snapshot to begin on a day and the frequency (in hours) of snapshots.</p>",
     "UpdateVTLDeviceType": "<p>This operation updates the type of medium changer in a gateway-VTL. When you activate a gateway-VTL, you select a medium changer type for the gateway-VTL. This operation enables you to select a different type of medium changer after a gateway-VTL is activated.</p>"
   },
-  "service": "<fullname>AWS Storage Gateway Service</fullname> <p>AWS Storage Gateway is the service that connects an on-premises software appliance with cloud-based storage to provide seamless and secure integration between an organization's on-premises IT environment and AWS's storage infrastructure. The service enables you to securely upload data to the AWS cloud for cost effective backup and rapid disaster recovery.</p> <p>Use the following links to get started using the <i>AWS Storage Gateway Service API Reference</i>:</p> <ul> <li> <a href=\"http://docs.aws.amazon.com/storagegateway/latest/userguide/AWSStorageGatewayHTTPRequestsHeaders.html\">AWS Storage Gateway Required Request Headers</a>: Describes the required headers that you must send with every POST request to AWS Storage Gateway.</li> <li> <a href=\"http://docs.aws.amazon.com/storagegateway/latest/userguide/AWSStorageGatewaySigningRequests.html\">Signing Requests</a>: AWS Storage Gateway requires that you authenticate every request you send; this topic describes how sign such a request.</li> <li> <a href=\"http://docs.aws.amazon.com/storagegateway/latest/userguide/APIErrorResponses.html\">Error Responses</a>: Provides reference information about AWS Storage Gateway errors.</li> <li> <a href=\"http://docs.aws.amazon.com/storagegateway/latest/userguide/AWSStorageGatewayAPIOperations.html\">Operations in AWS Storage Gateway</a>: Contains detailed descriptions of all AWS Storage Gateway operations, their request parameters, response elements, possible errors, and examples of requests and responses.</li> <li> <a href=\"http://docs.aws.amazon.com/general/latest/gr/index.html?rande.html\">AWS Storage Gateway Regions and Endpoints</a>: Provides a list of each of the regions and endpoints available for use with AWS Storage Gateway. </li> </ul>",
   "shapes": {
     "ActivateGatewayInput": {
-      "base": "<p>A JSON object containing one or more of the following fields:</p> <ul> <li> <a>ActivateGatewayInput$ActivationKey</a> </li> <li> <a>GatewayName</a> </li> <li> <a>ActivateGatewayInput$GatewayRegion</a> </li> <li> <a>ActivateGatewayInput$GatewayTimezone</a> </li> <li> <a>ActivateGatewayInput$GatewayType</a> </li> <li> <a>ActivateGatewayInput$TapeDriveType</a> </li> <li> <a>ActivateGatewayInput$MediumChangerType</a> </li> </ul>",
+      "base": "<p>A JSON object containing one or more of the following fields:</p> <ul> <li> <a>ActivateGatewayInput$ActivationKey</a> </li> <li> <a>ActivateGatewayInput$GatewayName</a> </li> <li> <a>ActivateGatewayInput$GatewayRegion</a> </li> <li> <a>ActivateGatewayInput$GatewayTimezone</a> </li> <li> <a>ActivateGatewayInput$GatewayType</a> </li> <li> <a>ActivateGatewayInput$TapeDriveType</a> </li> <li> <a>ActivateGatewayInput$MediumChangerType</a> </li> </ul>",
       "refs": {
       }
     },
     "ActivateGatewayOutput": {
-      "base": "<p>AWS Storage Gateway returns the Amazon Resource Name (ARN) of the activated gateway. It is a string made of information such as your account, gateway name, and region. This ARN is used to reference the gateway in other API operations as well as resource-based authorization.</p>",
+      "base": "<p>AWS Storage Gateway returns the Amazon Resource Name (ARN) of the activated gateway. It is a string made of information such as your account, gateway name, and region. This ARN is used to reference the gateway in other API operations as well as resource-based authorization.</p> <note>For Gateways activated prior to September 02, 2015 the gateway ARN contains the gateway name rather than the gateway id. Changing the name of the gateway has no effect on the gateway ARN.</note>",
       "refs": {
       }
     },
@@ -230,6 +231,16 @@
     },
     "CreateStorediSCSIVolumeOutput": {
       "base": "<p>A JSON object containing the following fields:</p>",
+      "refs": {
+      }
+    },
+    "CreateTapeWithBarcodeInput": {
+      "base": "<p>CreateTapeWithBarcodeInput</p>",
+      "refs": {
+      }
+    },
+    "CreateTapeWithBarcodeOutput": {
+      "base": "<p>CreateTapeOutput</p>",
       "refs": {
       }
     },
@@ -555,7 +566,8 @@
         "CancelRetrievalInput$GatewayARN": null,
         "CreateCachediSCSIVolumeInput$GatewayARN": null,
         "CreateStorediSCSIVolumeInput$GatewayARN": null,
-        "CreateTapesInput$GatewayARN": "<p>The unique Amazon Resource Name(ARN) that represents the gateway to associate the virtual tapes with. Use the <a>ListGateways</a> operation to return a list of gateways for your account and region.</p>",
+        "CreateTapeWithBarcodeInput$GatewayARN": "<p>The unique Amazon Resource Name (ARN) that represents the gateway to associate the virtual tape with. Use the <a>ListGateways</a> operation to return a list of gateways for your account and region.</p>",
+        "CreateTapesInput$GatewayARN": "<p>The unique Amazon Resource Name (ARN) that represents the gateway to associate the virtual tapes with. Use the <a>ListGateways</a> operation to return a list of gateways for your account and region.</p>",
         "DeleteBandwidthRateLimitInput$GatewayARN": null,
         "DeleteBandwidthRateLimitOutput$GatewayARN": null,
         "DeleteGatewayInput$GatewayARN": null,
@@ -609,7 +621,7 @@
     "GatewayId": {
       "base": null,
       "refs": {
-        "DescribeGatewayInformationOutput$GatewayId": "<p>The gateway ID.</p>"
+        "DescribeGatewayInformationOutput$GatewayId": "<p>The unique identifier assigned to your gateway during activation. This id becomes part of the gateway Amazon Resources Name (ARN) which you use as input for other operations.</p>"
       }
     },
     "GatewayInfo": {
@@ -619,9 +631,9 @@
       }
     },
     "GatewayName": {
-      "base": "<p>A unique identifier for your gateway. This name becomes part of the gateway Amazon Resources Name (ARN) which is what you use as an input to other operations.</p>",
+      "base": "<p>The name you configured for your gateway.</p>",
       "refs": {
-        "ActivateGatewayInput$GatewayName": null,
+        "ActivateGatewayInput$GatewayName": "<p>The name you configured for your gateway.</p>",
         "UpdateGatewayInformationInput$GatewayName": null
       }
     },
@@ -640,14 +652,14 @@
     "GatewayState": {
       "base": null,
       "refs": {
-        "DescribeGatewayInformationOutput$GatewayState": "<p>One of the values that indicates the operating state of the gateway.</p>"
+        "DescribeGatewayInformationOutput$GatewayState": "<p>A value that indicates the operating state of the gateway.</p>"
       }
     },
     "GatewayTimezone": {
       "base": null,
       "refs": {
-        "ActivateGatewayInput$GatewayTimezone": "<p>One of the values that indicates the time zone you want to set for the gateway. The time zone is used, for example, for scheduling snapshots and your gateway's maintenance schedule.</p>",
-        "DescribeGatewayInformationOutput$GatewayTimezone": "<p>One of the values that indicates the time zone configured for the gateway.</p>",
+        "ActivateGatewayInput$GatewayTimezone": "<p>A value that indicates the time zone you want to set for the gateway. The time zone is used, for example, for scheduling snapshots and your gateway's maintenance schedule.</p>",
+        "DescribeGatewayInformationOutput$GatewayTimezone": "<p>A value that indicates the time zone configured for the gateway.</p>",
         "DescribeMaintenanceStartTimeOutput$Timezone": null,
         "DescribeSnapshotScheduleOutput$Timezone": null,
         "UpdateGatewayInformationInput$GatewayTimezone": null
@@ -656,7 +668,7 @@
     "GatewayType": {
       "base": null,
       "refs": {
-        "ActivateGatewayInput$GatewayType": "<p>One of the values that defines the type of gateway to activate. The type specified is critical to all later functions of the gateway and cannot be changed after activation. The default value is <code>STORED</code>. </p>",
+        "ActivateGatewayInput$GatewayType": "<p>A value that defines the type of gateway to activate. The type specified is critical to all later functions of the gateway and cannot be changed after activation. The default value is <code>STORED</code>. </p>",
         "DescribeGatewayInformationOutput$GatewayType": "<p>The type of the gateway.</p>",
         "GatewayInfo$GatewayType": null
       }
@@ -830,7 +842,7 @@
     "NumTapesToCreate": {
       "base": null,
       "refs": {
-        "CreateTapesInput$NumTapesToCreate": "<p>The number of virtual tapes you want to create.</p>"
+        "CreateTapesInput$NumTapesToCreate": "<p>The number of virtual tapes that you want to create.</p>"
       }
     },
     "PositiveIntObject": {
@@ -856,7 +868,7 @@
     "RegionId": {
       "base": null,
       "refs": {
-        "ActivateGatewayInput$GatewayRegion": "<p>One of the values that indicates the region where you want to store the snapshot backups. The gateway region specified must be the same region as the region in your <code>Host</code> header in the request. For more information about available regions and endpoints for AWS Storage Gateway, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/rande.html#sg_region\">Regions and Endpoints</a> in the <i>Amazon Web Services Glossary</i>.</p> <p><i>Valid Values</i>: \"us-east-1\", \"us-west-1\", \"us-west-2\", \"eu-west-1\", \"eu-central-1\", \"ap-northeast-1\", \"ap-southeast-1\", \"ap-southeast-2\", \"sa-east-1\"</p>"
+        "ActivateGatewayInput$GatewayRegion": "<p>A value that indicates the region where you want to store the snapshot backups. The gateway region specified must be the same region as the region in your <code>Host</code> header in the request. For more information about available regions and endpoints for AWS Storage Gateway, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/rande.html#sg_region\">Regions and Endpoints</a> in the <i>Amazon Web Services Glossary</i>.</p> <p><i>Valid Values</i>: \"us-east-1\", \"us-west-1\", \"us-west-2\", \"eu-west-1\", \"eu-central-1\", \"ap-northeast-1\", \"ap-southeast-1\", \"ap-southeast-2\", \"sa-east-1\"</p>"
       }
     },
     "RemoveTagsFromResourceInput": {
@@ -1012,6 +1024,7 @@
         "CancelArchivalOutput$TapeARN": "<p>The Amazon Resource Name (ARN) of the virtual tape for which archiving was canceled.</p>",
         "CancelRetrievalInput$TapeARN": "<p>The Amazon Resource Name (ARN) of the virtual tape you want to cancel retrieval for.</p>",
         "CancelRetrievalOutput$TapeARN": "<p>The Amazon Resource Name (ARN) of the virtual tape for which retrieval was canceled.</p>",
+        "CreateTapeWithBarcodeOutput$TapeARN": "<p>A unique Amazon Resource Name (ARN) that represents the virtual tape that was created.</p>",
         "DeleteTapeArchiveInput$TapeARN": "<p>The Amazon Resource Name (ARN) of the virtual tape to delete from the virtual tape shelf (VTS).</p>",
         "DeleteTapeArchiveOutput$TapeARN": "<p>The Amazon Resource Name (ARN) of the virtual tape that was deleted from the virtual tape shelf (VTS).</p>",
         "DeleteTapeInput$TapeARN": "<p>The Amazon Resource Name (ARN) of the virtual tape to delete.</p>",
@@ -1029,7 +1042,7 @@
     "TapeARNs": {
       "base": null,
       "refs": {
-        "CreateTapesOutput$TapeARNs": "<p>A list of unique Amazon Resource Named (ARN) that represents the virtual tapes that were created.</p>",
+        "CreateTapesOutput$TapeARNs": "<p>A list of unique Amazon Resource Names (ARNs) that represents the virtual tapes that were created.</p>",
         "DescribeTapeArchivesInput$TapeARNs": "<p>Specifies one or more unique Amazon Resource Names (ARNs) that represent the virtual tapes you want to describe. </p>",
         "DescribeTapesInput$TapeARNs": "<p>Specifies one or more unique Amazon Resource Names (ARNs) that represent the virtual tapes you want to describe. If this parameter is not specified, AWS Storage Gateway returns a description of all virtual tapes associated with the specified gateway.</p>"
       }
@@ -1055,6 +1068,7 @@
     "TapeBarcode": {
       "base": null,
       "refs": {
+        "CreateTapeWithBarcodeInput$TapeBarcode": "<p>The barcode that you want to assign to the tape.</p>",
         "Tape$TapeBarcode": "<p>The barcode that identifies a specific virtual tape.</p>",
         "TapeArchive$TapeBarcode": "<p>The barcode that identifies the archived virtual tape.</p>"
       }
@@ -1062,7 +1076,7 @@
     "TapeBarcodePrefix": {
       "base": null,
       "refs": {
-        "CreateTapesInput$TapeBarcodePrefix": "<p>A prefix you append to the barcode of the virtual tape you are creating. This makes a barcode unique.</p> <note>The prefix must be 1 to 4 characters in length and must be upper-case letters A-Z.</note>"
+        "CreateTapesInput$TapeBarcodePrefix": "<p>A prefix that you append to the barcode of the virtual tape you are creating. This prefix makes the barcode unique.</p> <note>The prefix must be 1 to 4 characters in length and must be one of the uppercase letters from A to Z.</note>"
       }
     },
     "TapeDriveType": {
@@ -1092,7 +1106,8 @@
     "TapeSize": {
       "base": null,
       "refs": {
-        "CreateTapesInput$TapeSizeInBytes": "<p>The size, in bytes, of the virtual tapes you want to create.</p> <note>The size must be gigabyte (1024*1024*1024 byte) aligned.</note>",
+        "CreateTapeWithBarcodeInput$TapeSizeInBytes": "<p>The size, in bytes, of the virtual tape that you want to create.</p> <note>The size must be aligned by gigabyte (1024*1024*1024 byte).</note>",
+        "CreateTapesInput$TapeSizeInBytes": "<p>The size, in bytes, of the virtual tapes that you want to create.</p> <note>The size must be aligned by gigabyte (1024*1024*1024 byte).</note>",
         "Tape$TapeSizeInBytes": "<p>The size, in bytes, of the virtual tape.</p>",
         "TapeArchive$TapeSizeInBytes": "<p>The size, in bytes, of the archived virtual tape.</p>",
         "TapeRecoveryPointInfo$TapeSizeInBytes": "<p>The size, in bytes, of the virtual tapes to recover.</p>"
@@ -1129,7 +1144,7 @@
       "base": null,
       "refs": {
         "CreateCachediSCSIVolumeInput$TargetName": null,
-        "CreateStorediSCSIVolumeInput$TargetName": "<p>The name of the iSCSI target used by initiators to connect to the target and as a suffix for the target ARN. For example, specifying <code>TargetName</code> as <i>myvolume</i> results in the target ARN of arn:aws:storagegateway:us-east-1:111122223333:gateway/mygateway/target/iqn.1997-05.com.amazon:myvolume. The target name must be unique across all volumes of a gateway.</p>"
+        "CreateStorediSCSIVolumeInput$TargetName": "<p>The name of the iSCSI target used by initiators to connect to the target and as a suffix for the target ARN. For example, specifying <code>TargetName</code> as <i>myvolume</i> results in the target ARN of arn:aws:storagegateway:us-east-1:111122223333:gateway/sgw-12A3456B/target/iqn.1997-05.com.amazon:myvolume. The target name must be unique across all volumes of a gateway.</p>"
       }
     },
     "Time": {
@@ -1165,7 +1180,7 @@
       }
     },
     "UpdateGatewayInformationOutput": {
-      "base": "<p>A JSON object containing the of the gateway that was updated.</p>",
+      "base": "<p>A JSON object containing the ARN of the gateway that was updated.</p>",
       "refs": {
       }
     },
@@ -1392,7 +1407,7 @@
       "base": null,
       "refs": {
         "CreateSnapshotFromVolumeRecoveryPointOutput$VolumeRecoveryPointTime": null,
-        "DescribeGatewayInformationOutput$GatewayName": "<p>The gateway name.</p>",
+        "DescribeGatewayInformationOutput$GatewayName": "<p>The name you configured for your gateway.</p>",
         "Disk$DiskPath": null,
         "Disk$DiskNode": null,
         "Disk$DiskStatus": null,

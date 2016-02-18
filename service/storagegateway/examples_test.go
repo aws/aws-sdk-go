@@ -263,6 +263,27 @@ func ExampleStorageGateway_CreateStorediSCSIVolume() {
 	fmt.Println(resp)
 }
 
+func ExampleStorageGateway_CreateTapeWithBarcode() {
+	svc := storagegateway.New(session.New())
+
+	params := &storagegateway.CreateTapeWithBarcodeInput{
+		GatewayARN:      aws.String("GatewayARN"),  // Required
+		TapeBarcode:     aws.String("TapeBarcode"), // Required
+		TapeSizeInBytes: aws.Int64(1),              // Required
+	}
+	resp, err := svc.CreateTapeWithBarcode(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleStorageGateway_CreateTapes() {
 	svc := storagegateway.New(session.New())
 
@@ -775,9 +796,9 @@ func ExampleStorageGateway_ListTagsForResource() {
 	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.ListTagsForResourceInput{
+		ResourceARN: aws.String("ResourceARN"), // Required
 		Limit:       aws.Int64(1),
 		Marker:      aws.String("Marker"),
-		ResourceARN: aws.String("ResourceARN"),
 	}
 	resp, err := svc.ListTagsForResource(params)
 
@@ -855,8 +876,8 @@ func ExampleStorageGateway_RemoveTagsFromResource() {
 	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.RemoveTagsFromResourceInput{
-		ResourceARN: aws.String("ResourceARN"),
-		TagKeys: []*string{
+		ResourceARN: aws.String("ResourceARN"), // Required
+		TagKeys: []*string{ // Required
 			aws.String("TagKey"), // Required
 			// More values...
 		},
