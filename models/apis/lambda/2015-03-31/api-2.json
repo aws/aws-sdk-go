@@ -3,9 +3,9 @@
   "metadata":{
     "apiVersion":"2015-03-31",
     "endpointPrefix":"lambda",
+    "protocol":"rest-json",
     "serviceFullName":"AWS Lambda",
-    "signatureVersion":"v4",
-    "protocol":"rest-json"
+    "signatureVersion":"v4"
   },
   "operations":{
     "AddPermission":{
@@ -18,36 +18,12 @@
       "input":{"shape":"AddPermissionRequest"},
       "output":{"shape":"AddPermissionResponse"},
       "errors":[
-        {
-          "shape":"ServiceException",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"ResourceConflictException",
-          "error":{"httpStatusCode":409},
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"PolicyLengthExceededException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        }
+        {"shape":"ServiceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"PolicyLengthExceededException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "CreateAlias":{
@@ -60,31 +36,11 @@
       "input":{"shape":"CreateAliasRequest"},
       "output":{"shape":"AliasConfiguration"},
       "errors":[
-        {
-          "shape":"ServiceException",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"ResourceConflictException",
-          "error":{"httpStatusCode":409},
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        }
+        {"shape":"ServiceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "CreateEventSourceMapping":{
@@ -97,26 +53,10 @@
       "input":{"shape":"CreateEventSourceMappingRequest"},
       "output":{"shape":"EventSourceMappingConfiguration"},
       "errors":[
-        {
-          "shape":"ServiceException",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceConflictException",
-          "error":{"httpStatusCode":409},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        }
+        {"shape":"ServiceException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "CreateFunction":{
@@ -129,36 +69,12 @@
       "input":{"shape":"CreateFunctionRequest"},
       "output":{"shape":"FunctionConfiguration"},
       "errors":[
-        {
-          "shape":"ServiceException",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"ResourceConflictException",
-          "error":{"httpStatusCode":409},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        },
-        {
-          "shape":"CodeStorageExceededException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"ServiceException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"CodeStorageExceededException"}
       ]
     },
     "DeleteAlias":{
@@ -170,21 +86,9 @@
       },
       "input":{"shape":"DeleteAliasRequest"},
       "errors":[
-        {
-          "shape":"ServiceException",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        }
+        {"shape":"ServiceException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "DeleteEventSourceMapping":{
@@ -197,26 +101,10 @@
       "input":{"shape":"DeleteEventSourceMappingRequest"},
       "output":{"shape":"EventSourceMappingConfiguration"},
       "errors":[
-        {
-          "shape":"ServiceException",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        }
+        {"shape":"ServiceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "DeleteFunction":{
@@ -228,31 +116,11 @@
       },
       "input":{"shape":"DeleteFunctionRequest"},
       "errors":[
-        {
-          "shape":"ServiceException",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceConflictException",
-          "error":{"httpStatusCode":409},
-          "exception":true
-        }
+        {"shape":"ServiceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceConflictException"}
       ]
     },
     "GetAlias":{
@@ -265,26 +133,10 @@
       "input":{"shape":"GetAliasRequest"},
       "output":{"shape":"AliasConfiguration"},
       "errors":[
-        {
-          "shape":"ServiceException",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        }
+        {"shape":"ServiceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "GetEventSourceMapping":{
@@ -297,26 +149,10 @@
       "input":{"shape":"GetEventSourceMappingRequest"},
       "output":{"shape":"EventSourceMappingConfiguration"},
       "errors":[
-        {
-          "shape":"ServiceException",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        }
+        {"shape":"ServiceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "GetFunction":{
@@ -329,26 +165,10 @@
       "input":{"shape":"GetFunctionRequest"},
       "output":{"shape":"GetFunctionResponse"},
       "errors":[
-        {
-          "shape":"ServiceException",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"ServiceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InvalidParameterValueException"}
       ]
     },
     "GetFunctionConfiguration":{
@@ -361,26 +181,10 @@
       "input":{"shape":"GetFunctionConfigurationRequest"},
       "output":{"shape":"FunctionConfiguration"},
       "errors":[
-        {
-          "shape":"ServiceException",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"ServiceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InvalidParameterValueException"}
       ]
     },
     "GetPolicy":{
@@ -393,26 +197,10 @@
       "input":{"shape":"GetPolicyRequest"},
       "output":{"shape":"GetPolicyResponse"},
       "errors":[
-        {
-          "shape":"ServiceException",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"ServiceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InvalidParameterValueException"}
       ]
     },
     "Invoke":{
@@ -424,41 +212,20 @@
       "input":{"shape":"InvocationRequest"},
       "output":{"shape":"InvocationResponse"},
       "errors":[
-        {
-          "shape":"ServiceException",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InvalidRequestContentException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"RequestTooLargeException",
-          "error":{"httpStatusCode":413},
-          "exception":true
-        },
-        {
-          "shape":"UnsupportedMediaTypeException",
-          "error":{"httpStatusCode":415},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"ServiceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestContentException"},
+        {"shape":"RequestTooLargeException"},
+        {"shape":"UnsupportedMediaTypeException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"EC2UnexpectedException"},
+        {"shape":"SubnetIPAddressLimitReachedException"},
+        {"shape":"ENILimitReachedException"},
+        {"shape":"EC2ThrottledException"},
+        {"shape":"EC2AccessDeniedException"},
+        {"shape":"InvalidSubnetIDException"},
+        {"shape":"InvalidSecurityGroupIDException"}
       ]
     },
     "InvokeAsync":{
@@ -468,30 +235,12 @@
         "requestUri":"/2014-11-13/functions/{FunctionName}/invoke-async/",
         "responseCode":202
       },
-      "input":{
-        "shape":"InvokeAsyncRequest",
-        "deprecated":true
-      },
-      "output":{
-        "shape":"InvokeAsyncResponse",
-        "deprecated":true
-      },
+      "input":{"shape":"InvokeAsyncRequest"},
+      "output":{"shape":"InvokeAsyncResponse"},
       "errors":[
-        {
-          "shape":"ServiceException",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InvalidRequestContentException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"ServiceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestContentException"}
       ],
       "deprecated":true
     },
@@ -505,26 +254,10 @@
       "input":{"shape":"ListAliasesRequest"},
       "output":{"shape":"ListAliasesResponse"},
       "errors":[
-        {
-          "shape":"ServiceException",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        }
+        {"shape":"ServiceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "ListEventSourceMappings":{
@@ -537,26 +270,10 @@
       "input":{"shape":"ListEventSourceMappingsRequest"},
       "output":{"shape":"ListEventSourceMappingsResponse"},
       "errors":[
-        {
-          "shape":"ServiceException",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        }
+        {"shape":"ServiceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "ListFunctions":{
@@ -569,16 +286,8 @@
       "input":{"shape":"ListFunctionsRequest"},
       "output":{"shape":"ListFunctionsResponse"},
       "errors":[
-        {
-          "shape":"ServiceException",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        }
+        {"shape":"ServiceException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "ListVersionsByFunction":{
@@ -591,26 +300,10 @@
       "input":{"shape":"ListVersionsByFunctionRequest"},
       "output":{"shape":"ListVersionsByFunctionResponse"},
       "errors":[
-        {
-          "shape":"ServiceException",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        }
+        {"shape":"ServiceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "PublishVersion":{
@@ -623,31 +316,11 @@
       "input":{"shape":"PublishVersionRequest"},
       "output":{"shape":"FunctionConfiguration"},
       "errors":[
-        {
-          "shape":"ServiceException",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        },
-        {
-          "shape":"CodeStorageExceededException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"ServiceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"CodeStorageExceededException"}
       ]
     },
     "RemovePermission":{
@@ -659,26 +332,10 @@
       },
       "input":{"shape":"RemovePermissionRequest"},
       "errors":[
-        {
-          "shape":"ServiceException",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        }
+        {"shape":"ServiceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "UpdateAlias":{
@@ -691,26 +348,10 @@
       "input":{"shape":"UpdateAliasRequest"},
       "output":{"shape":"AliasConfiguration"},
       "errors":[
-        {
-          "shape":"ServiceException",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        }
+        {"shape":"ServiceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "UpdateEventSourceMapping":{
@@ -723,31 +364,11 @@
       "input":{"shape":"UpdateEventSourceMappingRequest"},
       "output":{"shape":"EventSourceMappingConfiguration"},
       "errors":[
-        {
-          "shape":"ServiceException",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        },
-        {
-          "shape":"ResourceConflictException",
-          "error":{"httpStatusCode":409},
-          "exception":true
-        }
+        {"shape":"ServiceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ResourceConflictException"}
       ]
     },
     "UpdateFunctionCode":{
@@ -760,31 +381,11 @@
       "input":{"shape":"UpdateFunctionCodeRequest"},
       "output":{"shape":"FunctionConfiguration"},
       "errors":[
-        {
-          "shape":"ServiceException",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        },
-        {
-          "shape":"CodeStorageExceededException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"ServiceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"CodeStorageExceededException"}
       ]
     },
     "UpdateFunctionConfiguration":{
@@ -797,26 +398,10 @@
       "input":{"shape":"UpdateFunctionConfigurationRequest"},
       "output":{"shape":"FunctionConfiguration"},
       "errors":[
-        {
-          "shape":"ServiceException",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        }
+        {"shape":"ServiceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"TooManyRequestsException"}
       ]
     }
   },
@@ -859,8 +444,8 @@
     },
     "Alias":{
       "type":"string",
-      "min":1,
       "max":128,
+      "min":1,
       "pattern":"(?!^[0-9]+$)([a-zA-Z0-9-_]+)"
     },
     "AliasConfiguration":{
@@ -882,8 +467,8 @@
     },
     "BatchSize":{
       "type":"integer",
-      "min":1,
-      "max":10000
+      "max":10000,
+      "min":1
     },
     "Blob":{"type":"blob"},
     "BlobStream":{
@@ -951,7 +536,8 @@
         "Description":{"shape":"Description"},
         "Timeout":{"shape":"Timeout"},
         "MemorySize":{"shape":"MemorySize"},
-        "Publish":{"shape":"Boolean"}
+        "Publish":{"shape":"Boolean"},
+        "VpcConfig":{"shape":"VpcConfig"}
       }
     },
     "Date":{"type":"timestamp"},
@@ -1003,8 +589,45 @@
     },
     "Description":{
       "type":"string",
-      "min":0,
-      "max":256
+      "max":256,
+      "min":0
+    },
+    "EC2AccessDeniedException":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"String"},
+        "Message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":502},
+      "exception":true
+    },
+    "EC2ThrottledException":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"String"},
+        "Message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":502},
+      "exception":true
+    },
+    "EC2UnexpectedException":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"String"},
+        "Message":{"shape":"String"},
+        "EC2ErrorCode":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":502},
+      "exception":true
+    },
+    "ENILimitReachedException":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"String"},
+        "Message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":502},
+      "exception":true
     },
     "Enabled":{"type":"boolean"},
     "EventSourceMappingConfiguration":{
@@ -1065,7 +688,8 @@
         "MemorySize":{"shape":"MemorySize"},
         "LastModified":{"shape":"Timestamp"},
         "CodeSha256":{"shape":"String"},
-        "Version":{"shape":"Version"}
+        "Version":{"shape":"Version"},
+        "VpcConfig":{"shape":"VpcConfigResponse"}
       }
     },
     "FunctionList":{
@@ -1074,8 +698,8 @@
     },
     "FunctionName":{
       "type":"string",
-      "min":1,
       "max":140,
+      "min":1,
       "pattern":"(arn:aws:lambda:)?([a-z]{2}-[a-z]+-\\d{1}:)?(\\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\\$LATEST|[a-zA-Z0-9-_]+))?"
     },
     "GetAliasRequest":{
@@ -1156,7 +780,11 @@
           "location":"uri",
           "locationName":"FunctionName"
         },
-        "Qualifier":{"shape":"Qualifier"}
+        "Qualifier":{
+          "shape":"Qualifier",
+          "location":"querystring",
+          "locationName":"Qualifier"
+        }
       }
     },
     "GetPolicyResponse":{
@@ -1188,6 +816,24 @@
         "message":{"shape":"String"}
       },
       "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "InvalidSecurityGroupIDException":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"String"},
+        "Message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":502},
+      "exception":true
+    },
+    "InvalidSubnetIDException":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"String"},
+        "Message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":502},
       "exception":true
     },
     "InvocationRequest":{
@@ -1404,13 +1050,13 @@
     "Long":{"type":"long"},
     "MaxListItems":{
       "type":"integer",
-      "min":1,
-      "max":10000
+      "max":10000,
+      "min":1
     },
     "MemorySize":{
       "type":"integer",
-      "min":128,
-      "max":1536
+      "max":1536,
+      "min":128
     },
     "PolicyLengthExceededException":{
       "type":"structure",
@@ -1440,9 +1086,9 @@
     },
     "Qualifier":{
       "type":"string",
-      "min":1,
       "max":128,
-      "pattern":"(|[a-zA-Z0-9$_]+)"
+      "min":1,
+      "pattern":"(|[a-zA-Z0-9$_-]+)"
     },
     "RemovePermissionRequest":{
       "type":"structure",
@@ -1509,19 +1155,25 @@
     },
     "S3Bucket":{
       "type":"string",
-      "min":3,
       "max":63,
+      "min":3,
       "pattern":"^[0-9A-Za-z\\.\\-_]*(?<!\\.)$"
     },
     "S3Key":{
       "type":"string",
-      "min":1,
-      "max":1024
+      "max":1024,
+      "min":1
     },
     "S3ObjectVersion":{
       "type":"string",
-      "min":1,
-      "max":1024
+      "max":1024,
+      "min":1
+    },
+    "SecurityGroupId":{"type":"string"},
+    "SecurityGroupIds":{
+      "type":"list",
+      "member":{"shape":"SecurityGroupId"},
+      "max":5
     },
     "ServiceException":{
       "type":"structure",
@@ -1538,11 +1190,26 @@
     },
     "StatementId":{
       "type":"string",
-      "min":1,
       "max":100,
+      "min":1,
       "pattern":"([a-zA-Z0-9-_]+)"
     },
     "String":{"type":"string"},
+    "SubnetIPAddressLimitReachedException":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"String"},
+        "Message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":502},
+      "exception":true
+    },
+    "SubnetId":{"type":"string"},
+    "SubnetIds":{
+      "type":"list",
+      "member":{"shape":"SubnetId"},
+      "max":16
+    },
     "Timeout":{
       "type":"integer",
       "min":1
@@ -1635,14 +1302,31 @@
         "Handler":{"shape":"Handler"},
         "Description":{"shape":"Description"},
         "Timeout":{"shape":"Timeout"},
-        "MemorySize":{"shape":"MemorySize"}
+        "MemorySize":{"shape":"MemorySize"},
+        "VpcConfig":{"shape":"VpcConfig"}
       }
     },
     "Version":{
       "type":"string",
-      "min":1,
       "max":1024,
+      "min":1,
       "pattern":"(\\$LATEST|[0-9]+)"
-    }
+    },
+    "VpcConfig":{
+      "type":"structure",
+      "members":{
+        "SubnetIds":{"shape":"SubnetIds"},
+        "SecurityGroupIds":{"shape":"SecurityGroupIds"}
+      }
+    },
+    "VpcConfigResponse":{
+      "type":"structure",
+      "members":{
+        "SubnetIds":{"shape":"SubnetIds"},
+        "SecurityGroupIds":{"shape":"SecurityGroupIds"},
+        "VpcId":{"shape":"VpcId"}
+      }
+    },
+    "VpcId":{"type":"string"}
   }
 }

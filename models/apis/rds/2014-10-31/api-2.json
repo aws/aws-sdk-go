@@ -1582,6 +1582,7 @@
       "members":{
         "SourceDBSnapshotIdentifier":{"shape":"String"},
         "TargetDBSnapshotIdentifier":{"shape":"String"},
+        "KmsKeyId":{"shape":"String"},
         "Tags":{"shape":"TagList"},
         "CopyTags":{"shape":"BooleanOptional"}
       }

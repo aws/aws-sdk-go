@@ -14,6 +14,10 @@ type APIGatewayAPI interface {
 
 	CreateApiKey(*apigateway.CreateApiKeyInput) (*apigateway.ApiKey, error)
 
+	CreateAuthorizerRequest(*apigateway.CreateAuthorizerInput) (*request.Request, *apigateway.Authorizer)
+
+	CreateAuthorizer(*apigateway.CreateAuthorizerInput) (*apigateway.Authorizer, error)
+
 	CreateBasePathMappingRequest(*apigateway.CreateBasePathMappingInput) (*request.Request, *apigateway.BasePathMapping)
 
 	CreateBasePathMapping(*apigateway.CreateBasePathMappingInput) (*apigateway.BasePathMapping, error)
@@ -45,6 +49,10 @@ type APIGatewayAPI interface {
 	DeleteApiKeyRequest(*apigateway.DeleteApiKeyInput) (*request.Request, *apigateway.DeleteApiKeyOutput)
 
 	DeleteApiKey(*apigateway.DeleteApiKeyInput) (*apigateway.DeleteApiKeyOutput, error)
+
+	DeleteAuthorizerRequest(*apigateway.DeleteAuthorizerInput) (*request.Request, *apigateway.DeleteAuthorizerOutput)
+
+	DeleteAuthorizer(*apigateway.DeleteAuthorizerInput) (*apigateway.DeleteAuthorizerOutput, error)
 
 	DeleteBasePathMappingRequest(*apigateway.DeleteBasePathMappingInput) (*request.Request, *apigateway.DeleteBasePathMappingOutput)
 
@@ -116,6 +124,14 @@ type APIGatewayAPI interface {
 
 	GetApiKeysPages(*apigateway.GetApiKeysInput, func(*apigateway.GetApiKeysOutput, bool) bool) error
 
+	GetAuthorizerRequest(*apigateway.GetAuthorizerInput) (*request.Request, *apigateway.Authorizer)
+
+	GetAuthorizer(*apigateway.GetAuthorizerInput) (*apigateway.Authorizer, error)
+
+	GetAuthorizersRequest(*apigateway.GetAuthorizersInput) (*request.Request, *apigateway.GetAuthorizersOutput)
+
+	GetAuthorizers(*apigateway.GetAuthorizersInput) (*apigateway.GetAuthorizersOutput, error)
+
 	GetBasePathMappingRequest(*apigateway.GetBasePathMappingInput) (*request.Request, *apigateway.BasePathMapping)
 
 	GetBasePathMapping(*apigateway.GetBasePathMappingInput) (*apigateway.BasePathMapping, error)
@@ -155,6 +171,10 @@ type APIGatewayAPI interface {
 	GetDomainNames(*apigateway.GetDomainNamesInput) (*apigateway.GetDomainNamesOutput, error)
 
 	GetDomainNamesPages(*apigateway.GetDomainNamesInput, func(*apigateway.GetDomainNamesOutput, bool) bool) error
+
+	GetExportRequest(*apigateway.GetExportInput) (*request.Request, *apigateway.GetExportOutput)
+
+	GetExport(*apigateway.GetExportInput) (*apigateway.GetExportOutput, error)
 
 	GetIntegrationRequest(*apigateway.GetIntegrationInput) (*request.Request, *apigateway.Integration)
 
@@ -245,6 +265,10 @@ type APIGatewayAPI interface {
 	UpdateApiKeyRequest(*apigateway.UpdateApiKeyInput) (*request.Request, *apigateway.ApiKey)
 
 	UpdateApiKey(*apigateway.UpdateApiKeyInput) (*apigateway.ApiKey, error)
+
+	UpdateAuthorizerRequest(*apigateway.UpdateAuthorizerInput) (*request.Request, *apigateway.Authorizer)
+
+	UpdateAuthorizer(*apigateway.UpdateAuthorizerInput) (*apigateway.Authorizer, error)
 
 	UpdateBasePathMappingRequest(*apigateway.UpdateBasePathMappingInput) (*request.Request, *apigateway.BasePathMapping)
 

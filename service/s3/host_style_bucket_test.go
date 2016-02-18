@@ -19,22 +19,22 @@ type s3BucketTest struct {
 
 var (
 	sslTests = []s3BucketTest{
-		{"abc", "https://abc.s3.mock-region.amazonaws.com/"},
-		{"a$b$c", "https://s3.mock-region.amazonaws.com/a%24b%24c"},
-		{"a.b.c", "https://s3.mock-region.amazonaws.com/a.b.c"},
-		{"a..bc", "https://s3.mock-region.amazonaws.com/a..bc"},
+		{"abc", "https://abc.s3-mock-region.amazonaws.com/"},
+		{"a$b$c", "https://s3-mock-region.amazonaws.com/a%24b%24c"},
+		{"a.b.c", "https://s3-mock-region.amazonaws.com/a.b.c"},
+		{"a..bc", "https://s3-mock-region.amazonaws.com/a..bc"},
 	}
 
 	nosslTests = []s3BucketTest{
-		{"a.b.c", "http://a.b.c.s3.mock-region.amazonaws.com/"},
-		{"a..bc", "http://s3.mock-region.amazonaws.com/a..bc"},
+		{"a.b.c", "http://a.b.c.s3-mock-region.amazonaws.com/"},
+		{"a..bc", "http://s3-mock-region.amazonaws.com/a..bc"},
 	}
 
 	forcepathTests = []s3BucketTest{
-		{"abc", "https://s3.mock-region.amazonaws.com/abc"},
-		{"a$b$c", "https://s3.mock-region.amazonaws.com/a%24b%24c"},
-		{"a.b.c", "https://s3.mock-region.amazonaws.com/a.b.c"},
-		{"a..bc", "https://s3.mock-region.amazonaws.com/a..bc"},
+		{"abc", "https://s3-mock-region.amazonaws.com/abc"},
+		{"a$b$c", "https://s3-mock-region.amazonaws.com/a%24b%24c"},
+		{"a.b.c", "https://s3-mock-region.amazonaws.com/a.b.c"},
+		{"a..bc", "https://s3-mock-region.amazonaws.com/a..bc"},
 	}
 )
 

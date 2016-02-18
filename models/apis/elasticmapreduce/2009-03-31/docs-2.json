@@ -88,6 +88,13 @@
         "SetVisibleToAllUsersInput$VisibleToAllUsers": "<p>Whether the specified job flows are visible to all IAM users of the AWS account associated with the job flow. If this value is set to True, all IAM users of that AWS account can view and, if they have the proper IAM policy permissions set, manage the job flows. If it is set to False, only the IAM user that created a job flow can view and manage it.</p>"
       }
     },
+    "BooleanObject": {
+      "base": null,
+      "refs": {
+        "EbsConfiguration$EbsOptimized": null,
+        "InstanceGroup$EbsOptimized": "<p>If the instance group is EBS-optimized. An Amazon EBS–optimized instance uses an optimized configuration stack and provides additional, dedicated capacity for Amazon EBS I/O. </p>"
+      }
+    },
     "BootstrapActionConfig": {
       "base": "<p>Configuration of a bootstrap action.</p>",
       "refs": {
@@ -276,6 +283,48 @@
       "base": null,
       "refs": {
         "InstanceGroupModifyConfig$EC2InstanceIdsToTerminate": "<p>The EC2 InstanceIds to terminate. For advanced users only. Once you terminate the instances, the instance group will not return to its original requested size.</p>"
+      }
+    },
+    "EbsBlockDevice": {
+      "base": "<p>Configuration of requested EBS block device associated with the instance group.</p>",
+      "refs": {
+        "EbsBlockDeviceList$member": null
+      }
+    },
+    "EbsBlockDeviceConfig": {
+      "base": "<p>Configuration of requested EBS block device associated with the instance group with count of volumes that will be associated to every instance.</p>",
+      "refs": {
+        "EbsBlockDeviceConfigList$member": null
+      }
+    },
+    "EbsBlockDeviceConfigList": {
+      "base": null,
+      "refs": {
+        "EbsConfiguration$EbsBlockDeviceConfigs": null
+      }
+    },
+    "EbsBlockDeviceList": {
+      "base": null,
+      "refs": {
+        "InstanceGroup$EbsBlockDevices": "<p>The EBS block devices that are mapped to this instance group.</p>"
+      }
+    },
+    "EbsConfiguration": {
+      "base": null,
+      "refs": {
+        "InstanceGroupConfig$EbsConfiguration": "<p>EBS configurations that will be attached to each Amazon EC2 instance in the instance group. </p>"
+      }
+    },
+    "EbsVolume": {
+      "base": "<p>EBS block device that's attached to an EC2 instance.</p>",
+      "refs": {
+        "EbsVolumeList$member": null
+      }
+    },
+    "EbsVolumeList": {
+      "base": null,
+      "refs": {
+        "Instance$EbsVolumes": "<p>The list of EBS volumes that are attached to this instance.</p>"
       }
     },
     "Ec2InstanceAttributes": {
@@ -490,6 +539,7 @@
       "refs": {
         "Cluster$NormalizedInstanceHours": "<p>An approximation of the cost of the job flow, represented in m1.small/hours. This value is incremented one time for every hour an m1.small instance runs. Larger instances are weighted more, so an EC2 instance that is roughly four times more expensive would result in the normalized instance hours being incremented by four. This result is only an approximation and does not reflect the actual billing rate.</p>",
         "ClusterSummary$NormalizedInstanceHours": "<p>An approximation of the cost of the job flow, represented in m1.small/hours. This value is incremented one time for every hour an m1.small instance runs. Larger instances are weighted more, so an EC2 instance that is roughly four times more expensive would result in the normalized instance hours being incremented by four. This result is only an approximation and does not reflect the actual billing rate.</p>",
+        "EbsBlockDeviceConfig$VolumesPerInstance": "<p>Number of EBS volumes with specific volume configuration, that will be associated with every instance in the instance group </p>",
         "InstanceGroup$RequestedInstanceCount": "<p>The target number of instances for the instance group. </p>",
         "InstanceGroup$RunningInstanceCount": "<p>The number of instances currently running in this instance group.</p>",
         "InstanceGroupConfig$InstanceCount": "<p>Target number of instances for the instance group. </p>",
@@ -498,7 +548,9 @@
         "InstanceGroupModifyConfig$InstanceCount": "<p>Target size for the instance group.</p>",
         "JobFlowInstancesConfig$InstanceCount": "<p>The number of Amazon EC2 instances used to execute the job flow.</p>",
         "JobFlowInstancesDetail$InstanceCount": "<p>The number of Amazon EC2 instances in the cluster. If the value is 1, the same instance serves as both the master and slave node. If the value is greater than 1, one instance is the master node and all others are slave nodes.</p>",
-        "JobFlowInstancesDetail$NormalizedInstanceHours": "<p>An approximation of the cost of the job flow, represented in m1.small/hours. This value is incremented once for every hour an m1.small runs. Larger instances are weighted more, so an Amazon EC2 instance that is roughly four times more expensive would result in the normalized instance hours being incremented by four. This result is only an approximation and does not reflect the actual billing rate.</p>"
+        "JobFlowInstancesDetail$NormalizedInstanceHours": "<p>An approximation of the cost of the job flow, represented in m1.small/hours. This value is incremented once for every hour an m1.small runs. Larger instances are weighted more, so an Amazon EC2 instance that is roughly four times more expensive would result in the normalized instance hours being incremented by four. This result is only an approximation and does not reflect the actual billing rate.</p>",
+        "VolumeSpecification$Iops": "<p>The number of I/O operations per second (IOPS) that the volume supports. </p>",
+        "VolumeSpecification$SizeInGB": "<p>The volume size, in gibibytes (GiB). This can be a number from 1 – 1024. If the volume type is EBS-optimized, the minimum value is 10. </p>"
       }
     },
     "InternalServerError": {
@@ -837,6 +889,9 @@
         "Command$Name": "<p>The name of the command.</p>",
         "Command$ScriptPath": "<p>The Amazon S3 location of the command script.</p>",
         "Configuration$Classification": "<p>The classification of a configuration. For more information see, <a href=\"http://docs.aws.amazon.com/ElasticMapReduce/latest/API/EmrConfigurations.html\">Amazon EMR Configurations</a>. </p>",
+        "EbsBlockDevice$Device": "<p>The device name that is exposed to the instance, such as /dev/sdh.</p>",
+        "EbsVolume$Device": "<p>The device name that is exposed to the instance, such as /dev/sdh.</p>",
+        "EbsVolume$VolumeId": "<p>The volume identifier of the EBS volume.</p>",
         "Ec2InstanceAttributes$Ec2KeyName": "<p>The name of the Amazon EC2 key pair to use when connecting with SSH into the master node as a user named \"hadoop\".</p>",
         "Ec2InstanceAttributes$Ec2SubnetId": "<p> To launch the job flow in Amazon VPC, set this parameter to the identifier of the Amazon VPC subnet where you want the job flow to launch. If you do not specify this value, the job flow is launched in the normal AWS cloud, outside of a VPC. </p> <p> Amazon VPC currently does not support cluster compute quadruple extra large (cc1.4xlarge) instances. Thus, you cannot specify the cc1.4xlarge instance type for nodes of a job flow launched in a VPC. </p>",
         "Ec2InstanceAttributes$Ec2AvailabilityZone": "<p>The Availability Zone in which the cluster will run.</p>",
@@ -850,6 +905,7 @@
         "Instance$PublicIpAddress": "<p>The public IP address of the instance.</p>",
         "Instance$PrivateDnsName": "<p>The private DNS name of the instance.</p>",
         "Instance$PrivateIpAddress": "<p>The private IP address of the instance.</p>",
+        "Instance$InstanceGroupId": "<p>The identifier of the instance group to which this instance belongs.</p>",
         "InstanceGroup$Name": "<p>The name of the instance group.</p>",
         "InstanceGroup$BidPrice": "<p>The bid price for each EC2 instance in the instance group when launching nodes as Spot Instances, expressed in USD.</p>",
         "InstanceGroupStateChangeReason$Message": "<p>The status change reason description.</p>",
@@ -861,7 +917,8 @@
         "StringMap$key": null,
         "StringMap$value": null,
         "Tag$Key": "<p>A user-defined key, which is the minimum required information for a valid tag. For more information, see <a href=\"http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-plan-tags.html\">Tagging Amazon EMR Resources</a>. </p>",
-        "Tag$Value": "<p>A user-defined value, which is optional in a tag. For more information, see <a href=\"http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-plan-tags.html\">Tagging Amazon EMR Resources</a>. </p>"
+        "Tag$Value": "<p>A user-defined value, which is optional in a tag. For more information, see <a href=\"http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-plan-tags.html\">Tagging Amazon EMR Resources</a>. </p>",
+        "VolumeSpecification$VolumeType": "<p>The volume type. Volume types supported are gp2, io1, standard. </p>"
       }
     },
     "StringList": {
@@ -913,6 +970,13 @@
     "TerminateJobFlowsInput": {
       "base": "<p> Input to the <a>TerminateJobFlows</a> operation. </p>",
       "refs": {
+      }
+    },
+    "VolumeSpecification": {
+      "base": "<p>EBS volume specifications such as volume type, IOPS, and size(GiB) that will be requested for the EBS volume attached to an EC2 instance in the cluster. </p>",
+      "refs": {
+        "EbsBlockDevice$VolumeSpecification": "<p>EBS volume specifications such as volume type, IOPS, and size(GiB) that will be requested for the EBS volume attached to an EC2 instance in the cluster.</p>",
+        "EbsBlockDeviceConfig$VolumeSpecification": "<p>EBS volume specifications such as volume type, IOPS, and size(GiB) that will be requested for the EBS volume attached to an EC2 instance in the cluster.</p>"
       }
     },
     "XmlString": {
