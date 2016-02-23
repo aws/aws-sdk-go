@@ -136,6 +136,7 @@ func ExampleRoute53_CreateHealthCheck() {
 				aws.String("HealthCheckId"), // Required
 				// More values...
 			},
+			EnableSNI:                aws.Bool(true),
 			FailureThreshold:         aws.Int64(1),
 			FullyQualifiedDomainName: aws.String("FullyQualifiedDomainName"),
 			HealthThreshold:          aws.Int64(1),
@@ -993,6 +994,7 @@ func ExampleRoute53_UpdateHealthCheck() {
 			aws.String("HealthCheckId"), // Required
 			// More values...
 		},
+		EnableSNI:                aws.Bool(true),
 		FailureThreshold:         aws.Int64(1),
 		FullyQualifiedDomainName: aws.String("FullyQualifiedDomainName"),
 		HealthCheckVersion:       aws.Int64(1),

@@ -316,7 +316,8 @@
       "errors":[
         {"shape":"NoSuchChange"},
         {"shape":"InvalidInput"}
-      ]
+      ],
+      "deprecated":true
     },
     "GetCheckerIpRanges":{
       "name":"GetCheckerIpRanges",
@@ -474,7 +475,8 @@
       "errors":[
         {"shape":"NoSuchHostedZone"},
         {"shape":"InvalidInput"}
-      ]
+      ],
+      "deprecated":true
     },
     "ListChangeBatchesByRRSet":{
       "name":"ListChangeBatchesByRRSet",
@@ -487,7 +489,8 @@
       "errors":[
         {"shape":"NoSuchHostedZone"},
         {"shape":"InvalidInput"}
-      ]
+      ],
+      "deprecated":true
     },
     "ListGeoLocations":{
       "name":"ListGeoLocations",
@@ -822,7 +825,8 @@
         "Comment":{"shape":"ResourceDescription"},
         "Submitter":{"shape":"AWSAccountID"},
         "Changes":{"shape":"Changes"}
-      }
+      },
+      "deprecated":true
     },
     "ChangeBatchRecords":{
       "type":"list",
@@ -830,6 +834,7 @@
         "shape":"ChangeBatchRecord",
         "locationName":"ChangeBatchRecord"
       },
+      "deprecated":true,
       "min":1
     },
     "ChangeInfo":{
@@ -1123,6 +1128,7 @@
     },
     "Date":{
       "type":"string",
+      "deprecated":true,
       "max":256
     },
     "DelegationSet":{
@@ -1298,6 +1304,7 @@
         "ChangeInfo":{"shape":"ChangeInfo"}
       }
     },
+    "EnableSNI":{"type":"boolean"},
     "ErrorMessage":{"type":"string"},
     "ErrorMessages":{
       "type":"list",
@@ -1380,14 +1387,16 @@
           "location":"uri",
           "locationName":"Id"
         }
-      }
+      },
+      "deprecated":true
     },
     "GetChangeDetailsResponse":{
       "type":"structure",
       "required":["ChangeBatchRecord"],
       "members":{
         "ChangeBatchRecord":{"shape":"ChangeBatchRecord"}
-      }
+      },
+      "deprecated":true
     },
     "GetChangeRequest":{
       "type":"structure",
@@ -1656,7 +1665,8 @@
         "MeasureLatency":{"shape":"MeasureLatency"},
         "Inverted":{"shape":"Inverted"},
         "HealthThreshold":{"shape":"HealthThreshold"},
-        "ChildHealthChecks":{"shape":"ChildHealthCheckList"}
+        "ChildHealthChecks":{"shape":"ChildHealthCheckList"},
+        "EnableSNI":{"shape":"EnableSNI"}
       }
     },
     "HealthCheckCount":{"type":"long"},
@@ -1890,7 +1900,8 @@
           "location":"querystring",
           "locationName":"marker"
         }
-      }
+      },
+      "deprecated":true
     },
     "ListChangeBatchesByHostedZoneResponse":{
       "type":"structure",
@@ -1905,7 +1916,8 @@
         "IsTruncated":{"shape":"PageTruncated"},
         "ChangeBatchRecords":{"shape":"ChangeBatchRecords"},
         "NextMarker":{"shape":"PageMarker"}
-      }
+      },
+      "deprecated":true
     },
     "ListChangeBatchesByRRSetRequest":{
       "type":"structure",
@@ -1957,7 +1969,8 @@
           "location":"querystring",
           "locationName":"marker"
         }
-      }
+      },
+      "deprecated":true
     },
     "ListChangeBatchesByRRSetResponse":{
       "type":"structure",
@@ -1972,7 +1985,8 @@
         "IsTruncated":{"shape":"PageTruncated"},
         "ChangeBatchRecords":{"shape":"ChangeBatchRecords"},
         "NextMarker":{"shape":"PageMarker"}
-      }
+      },
+      "deprecated":true
     },
     "ListGeoLocationsRequest":{
       "type":"structure",
@@ -2627,6 +2641,7 @@
         "ap-southeast-1",
         "ap-southeast-2",
         "ap-northeast-1",
+        "ap-northeast-2",
         "sa-east-1",
         "cn-north-1"
       ],
@@ -2936,7 +2951,8 @@
         "FailureThreshold":{"shape":"FailureThreshold"},
         "Inverted":{"shape":"Inverted"},
         "HealthThreshold":{"shape":"HealthThreshold"},
-        "ChildHealthChecks":{"shape":"ChildHealthCheckList"}
+        "ChildHealthChecks":{"shape":"ChildHealthCheckList"},
+        "EnableSNI":{"shape":"EnableSNI"}
       }
     },
     "UpdateHealthCheckResponse":{
@@ -3049,6 +3065,7 @@
         "ap-southeast-1",
         "ap-southeast-2",
         "ap-northeast-1",
+        "ap-northeast-2",
         "sa-east-1",
         "cn-north-1"
       ],
