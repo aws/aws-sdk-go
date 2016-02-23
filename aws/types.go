@@ -67,17 +67,20 @@ type WriteAtBuffer struct {
 // The number of bytes written will be returned, or error. Can overwrite previous
 // written slices if the write ats overlap.
 func (b *WriteAtBuffer) WriteAt(p []byte, pos int64) (n int, err error) {
+	pLen := len(p)
+	expLen := pos + int64(pLen)
 	b.m.Lock()
 	defer b.m.Unlock()
-
-	expLen := pos + int64(len(p))
 	if int64(len(b.buf)) < expLen {
-		newBuf := make([]byte, expLen)
-		copy(newBuf, b.buf)
-		b.buf = newBuf
+		if int64(cap(b.buf)) < expLen {
+			newBuf := make([]byte, expLen, 2*expLen)
+			copy(newBuf, b.buf)
+			b.buf = newBuf
+		}
+		b.buf = b.buf[:expLen]
 	}
 	copy(b.buf[pos:], p)
-	return len(p), nil
+	return pLen, nil
 }
 
 // Bytes returns a slice of bytes written to the buffer.

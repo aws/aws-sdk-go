@@ -41,20 +41,6 @@ func BenchmarkWriteAtBuffer(b *testing.B) {
 	}
 }
 
-func BenchmarkWriteAtBufferParallel(b *testing.B) {
-	buf := &WriteAtBuffer{}
-	r := rand.New(rand.NewSource(1))
-
-	b.ResetTimer()
-	b.RunParallel(func(pb *testing.PB) {
-		for pb.Next() {
-			to := r.Intn(10) * 4096
-			bs := make([]byte, to)
-			buf.WriteAt(bs, r.Int63n(10)*4096)
-		}
-	})
-}
-
 func BenchmarkWriteAtBufferOrderedWrites(b *testing.B) {
 	// test the performance of a WriteAtBuffer when written in an
 	// ordered fashion. This is similar to the behavior of the
@@ -72,4 +58,18 @@ func BenchmarkWriteAtBufferOrderedWrites(b *testing.B) {
 			buf.WriteAt(tmp, i)
 		}
 	}
+}
+
+func BenchmarkWriteAtBufferParallel(b *testing.B) {
+	buf := &WriteAtBuffer{}
+	r := rand.New(rand.NewSource(1))
+
+	b.ResetTimer()
+	b.RunParallel(func(pb *testing.PB) {
+		for pb.Next() {
+			to := r.Intn(10) * 4096
+			bs := make([]byte, to)
+			buf.WriteAt(bs, r.Int63n(10)*4096)
+		}
+	})
 }
