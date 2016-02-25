@@ -316,7 +316,8 @@
       "type":"structure",
       "required":["StackName"],
       "members":{
-        "StackName":{"shape":"StackName"}
+        "StackName":{"shape":"StackName"},
+        "RetainResources":{"shape":"RetainResources"}
       }
     },
     "DeletionTime":{"type":"timestamp"},
@@ -616,6 +617,10 @@
       "type":"list",
       "member":{"shape":"ResourceType"}
     },
+    "RetainResources":{
+      "type":"list",
+      "member":{"shape":"LogicalResourceId"}
+    },
     "SetStackPolicyInput":{
       "type":"structure",
       "required":["StackName"],
@@ -890,7 +895,8 @@
         "ResourceTypes":{"shape":"ResourceTypes"},
         "StackPolicyBody":{"shape":"StackPolicyBody"},
         "StackPolicyURL":{"shape":"StackPolicyURL"},
-        "NotificationARNs":{"shape":"NotificationARNs"}
+        "NotificationARNs":{"shape":"NotificationARNs"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "UpdateStackOutput":{
