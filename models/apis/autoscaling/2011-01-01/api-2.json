@@ -941,14 +941,14 @@
       "required":[
         "LifecycleHookName",
         "AutoScalingGroupName",
-        "LifecycleActionToken",
         "LifecycleActionResult"
       ],
       "members":{
         "LifecycleHookName":{"shape":"AsciiStringMaxLen255"},
         "AutoScalingGroupName":{"shape":"ResourceName"},
         "LifecycleActionToken":{"shape":"LifecycleActionToken"},
-        "LifecycleActionResult":{"shape":"LifecycleActionResult"}
+        "LifecycleActionResult":{"shape":"LifecycleActionResult"},
+        "InstanceId":{"shape":"XmlStringMaxLen19"}
       }
     },
     "Cooldown":{"type":"integer"},
@@ -1560,6 +1560,12 @@
       "type":"list",
       "member":{"shape":"NotificationConfiguration"}
     },
+    "NotificationTargetResourceName":{
+      "type":"string",
+      "max":1600,
+      "min":0,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
+    },
     "NumberOfAutoScalingGroups":{"type":"integer"},
     "NumberOfLaunchConfigurations":{"type":"integer"},
     "PoliciesType":{
@@ -1624,7 +1630,7 @@
         "AutoScalingGroupName":{"shape":"ResourceName"},
         "LifecycleTransition":{"shape":"LifecycleTransition"},
         "RoleARN":{"shape":"ResourceName"},
-        "NotificationTargetARN":{"shape":"ResourceName"},
+        "NotificationTargetARN":{"shape":"NotificationTargetResourceName"},
         "NotificationMetadata":{"shape":"XmlStringMaxLen1023"},
         "HeartbeatTimeout":{"shape":"HeartbeatTimeout"},
         "DefaultResult":{"shape":"LifecycleActionResult"}
@@ -1691,13 +1697,13 @@
       "type":"structure",
       "required":[
         "LifecycleHookName",
-        "AutoScalingGroupName",
-        "LifecycleActionToken"
+        "AutoScalingGroupName"
       ],
       "members":{
         "LifecycleHookName":{"shape":"AsciiStringMaxLen255"},
         "AutoScalingGroupName":{"shape":"ResourceName"},
-        "LifecycleActionToken":{"shape":"LifecycleActionToken"}
+        "LifecycleActionToken":{"shape":"LifecycleActionToken"},
+        "InstanceId":{"shape":"XmlStringMaxLen19"}
       }
     },
     "ResourceContentionFault":{

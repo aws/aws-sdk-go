@@ -67,8 +67,9 @@ func ExampleAutoScaling_CompleteLifecycleAction() {
 	params := &autoscaling.CompleteLifecycleActionInput{
 		AutoScalingGroupName:  aws.String("ResourceName"),          // Required
 		LifecycleActionResult: aws.String("LifecycleActionResult"), // Required
-		LifecycleActionToken:  aws.String("LifecycleActionToken"),  // Required
 		LifecycleHookName:     aws.String("AsciiStringMaxLen255"),  // Required
+		InstanceId:            aws.String("XmlStringMaxLen19"),
+		LifecycleActionToken:  aws.String("LifecycleActionToken"),
 	}
 	resp, err := svc.CompleteLifecycleAction(params)
 
@@ -913,7 +914,7 @@ func ExampleAutoScaling_PutLifecycleHook() {
 		HeartbeatTimeout:      aws.Int64(1),
 		LifecycleTransition:   aws.String("LifecycleTransition"),
 		NotificationMetadata:  aws.String("XmlStringMaxLen1023"),
-		NotificationTargetARN: aws.String("ResourceName"),
+		NotificationTargetARN: aws.String("NotificationTargetResourceName"),
 		RoleARN:               aws.String("ResourceName"),
 	}
 	resp, err := svc.PutLifecycleHook(params)
@@ -1021,8 +1022,9 @@ func ExampleAutoScaling_RecordLifecycleActionHeartbeat() {
 
 	params := &autoscaling.RecordLifecycleActionHeartbeatInput{
 		AutoScalingGroupName: aws.String("ResourceName"),         // Required
-		LifecycleActionToken: aws.String("LifecycleActionToken"), // Required
 		LifecycleHookName:    aws.String("AsciiStringMaxLen255"), // Required
+		InstanceId:           aws.String("XmlStringMaxLen19"),
+		LifecycleActionToken: aws.String("LifecycleActionToken"),
 	}
 	resp, err := svc.RecordLifecycleActionHeartbeat(params)
 
