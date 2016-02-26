@@ -92,6 +92,7 @@ func ExampleSES_CreateReceiptRule() {
 					},
 					SNSAction: &ses.SNSAction{
 						TopicArn: aws.String("AmazonResourceName"), // Required
+						Encoding: aws.String("SNSActionEncoding"),
 					},
 					StopAction: &ses.StopAction{
 						Scope:    aws.String("StopScope"), // Required
@@ -853,6 +854,7 @@ func ExampleSES_UpdateReceiptRule() {
 					},
 					SNSAction: &ses.SNSAction{
 						TopicArn: aws.String("AmazonResourceName"), // Required
+						Encoding: aws.String("SNSActionEncoding"),
 					},
 					StopAction: &ses.StopAction{
 						Scope:    aws.String("StopScope"), // Required

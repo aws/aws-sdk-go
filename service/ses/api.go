@@ -877,7 +877,7 @@ func (c *SES) ReorderReceiptRuleSetRequest(input *ReorderReceiptRuleSetInput) (r
 // Reorders the receipt rules within a receipt rule set.
 //
 // All of the rules in the rule set must be represented in this request. That
-// is, this API will return an error if the reorder request doesn’t explicitly
+// is, this API will return an error if the reorder request doesn't explicitly
 // position all of the rules. For information about managing receipt rule sets,
 // see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html).
 //
@@ -1675,8 +1675,6 @@ func (s CreateReceiptRuleSetOutput) GoString() string {
 	return s.String()
 }
 
-// Represents a request instructing the service to delete an identity from the
-// list of identities for the AWS Account.
 type DeleteIdentityInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1694,8 +1692,6 @@ func (s DeleteIdentityInput) GoString() string {
 	return s.String()
 }
 
-// An empty element. Receiving this element indicates that the request completed
-// successfully.
 type DeleteIdentityOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1710,10 +1706,6 @@ func (s DeleteIdentityOutput) GoString() string {
 	return s.String()
 }
 
-// Represents a request instructing the service to delete an authorization policy
-// applying to an identity.
-//
-// This request succeeds regardless of whether the specified policy exists.
 type DeleteIdentityPolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1738,8 +1730,6 @@ func (s DeleteIdentityPolicyInput) GoString() string {
 	return s.String()
 }
 
-// An empty element. Receiving this element indicates that the request completed
-// successfully.
 type DeleteIdentityPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1850,8 +1840,6 @@ func (s DeleteReceiptRuleSetOutput) GoString() string {
 	return s.String()
 }
 
-// Represents a request instructing the service to delete an address from the
-// list of verified email addresses.
 type DeleteVerifiedEmailAddressInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2052,12 +2040,6 @@ func (s ExtensionField) GoString() string {
 	return s.String()
 }
 
-// Given a list of verified identities, describes their DKIM attributes. The
-// DKIM attributes of an email address identity includes whether DKIM signing
-// is individually enabled or disabled for that address. The DKIM attributes
-// of a domain name identity includes whether DKIM signing is enabled, as well
-// as the DNS records (tokens) that must remain published in the domain name's
-// DNS.
 type GetIdentityDkimAttributesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2076,7 +2058,6 @@ func (s GetIdentityDkimAttributesInput) GoString() string {
 	return s.String()
 }
 
-// Represents a list of all the DKIM attributes for the specified identity.
 type GetIdentityDkimAttributesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2113,10 +2094,6 @@ func (s GetIdentityNotificationAttributesInput) GoString() string {
 	return s.String()
 }
 
-// Describes whether an identity has Amazon Simple Notification Service (Amazon
-// SNS) topics set for bounce, complaint, and/or delivery notifications, and
-// specifies whether feedback forwarding is enabled for bounce and complaint
-// notifications.
 type GetIdentityNotificationAttributesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2134,8 +2111,6 @@ func (s GetIdentityNotificationAttributesOutput) GoString() string {
 	return s.String()
 }
 
-// Represents a request instructing the service to retrieve the text of a list
-// of authorization policies applying to an identity.
 type GetIdentityPoliciesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2162,8 +2137,6 @@ func (s GetIdentityPoliciesInput) GoString() string {
 	return s.String()
 }
 
-// Represents a map of policy names to policies returned from a successful GetIdentityPolicies
-// request.
 type GetIdentityPoliciesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2181,8 +2154,6 @@ func (s GetIdentityPoliciesOutput) GoString() string {
 	return s.String()
 }
 
-// Represents a request instructing the service to provide the verification
-// attributes for a list of identities.
 type GetIdentityVerificationAttributesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2200,7 +2171,6 @@ func (s GetIdentityVerificationAttributesInput) GoString() string {
 	return s.String()
 }
 
-// Represents the verification attributes for a list of identities.
 type GetIdentityVerificationAttributesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2232,8 +2202,6 @@ func (s GetSendQuotaInput) GoString() string {
 	return s.String()
 }
 
-// Represents the user's current activity limits returned from a successful
-// GetSendQuota request.
 type GetSendQuotaOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2276,9 +2244,6 @@ func (s GetSendStatisticsInput) GoString() string {
 	return s.String()
 }
 
-// Represents a list of SendDataPoint items returned from a successful GetSendStatistics
-// request. This list contains aggregated data from the previous two weeks of
-// sending activity.
 type GetSendStatisticsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2438,8 +2403,6 @@ func (s LambdaAction) GoString() string {
 	return s.String()
 }
 
-// Represents a request instructing the service to list all identities for the
-// AWS Account.
 type ListIdentitiesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2464,7 +2427,6 @@ func (s ListIdentitiesInput) GoString() string {
 	return s.String()
 }
 
-// Represents a list of all verified identities for the AWS Account.
 type ListIdentitiesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2485,8 +2447,6 @@ func (s ListIdentitiesOutput) GoString() string {
 	return s.String()
 }
 
-// Represents a request instructing the service to list all authorization policies,
-// by name, applying to an identity.
 type ListIdentityPoliciesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2508,8 +2468,6 @@ func (s ListIdentityPoliciesInput) GoString() string {
 	return s.String()
 }
 
-// Represents a list of policy names returned from a successful ListIdentityPolicies
-// request.
 type ListIdentityPoliciesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2614,7 +2572,6 @@ func (s ListVerifiedEmailAddressesInput) GoString() string {
 	return s.String()
 }
 
-// Represents a list of all the email addresses verified for the current user.
 type ListVerifiedEmailAddressesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2685,8 +2642,6 @@ func (s MessageDsn) GoString() string {
 	return s.String()
 }
 
-// Represents a request instructing the service to apply an authorization policy
-// to an identity.
 type PutIdentityPolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2720,8 +2675,6 @@ func (s PutIdentityPolicyInput) GoString() string {
 	return s.String()
 }
 
-// An empty element. Receiving this element indicates that the request completed
-// successfully.
 type PutIdentityPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3137,6 +3090,12 @@ func (s S3Action) GoString() string {
 type SNSAction struct {
 	_ struct{} `type:"structure"`
 
+	// The encoding to use for the email within the Amazon SNS notification. UTF-8
+	// is easier to use, but may not preserve all special characters when a message
+	// was encoded with a different encoding format. Base64 preserves all special
+	// characters. The default value is Base64.
+	Encoding *string `type:"string" enum:"SNSActionEncoding"`
+
 	// The Amazon Resource Name (ARN) of the Amazon SNS topic to notify. An example
 	// of an Amazon SNS topic ARN is arn:aws:sns:us-west-2:123456789012:MyTopic.
 	// For more information about Amazon SNS topics, see the Amazon SNS Developer
@@ -3154,8 +3113,6 @@ func (s SNSAction) GoString() string {
 	return s.String()
 }
 
-// Request object for sending a simple/complex bounce. It contains all of the
-// information needed to generate a basic DSN or a fully-customized DSN.
 type SendBounceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3245,11 +3202,6 @@ func (s SendDataPoint) GoString() string {
 	return s.String()
 }
 
-// Represents a request instructing the service to send a single email message.
-//
-// This datatype can be used in application code to compose a message consisting
-// of source, destination, message, reply-to, and return-path parts. This object
-// can then be sent using the SendEmail action.
 type SendEmailInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3326,7 +3278,6 @@ func (s SendEmailInput) GoString() string {
 	return s.String()
 }
 
-// Represents a unique message ID returned from a successful SendEmail request.
 type SendEmailOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3344,11 +3295,6 @@ func (s SendEmailOutput) GoString() string {
 	return s.String()
 }
 
-// Represents a request instructing the service to send a raw email message.
-//
-// This datatype can be used in application code to compose a message consisting
-// of source, destination, and raw message text. This object can then be sent
-// using the SendRawEmail action.
 type SendRawEmailInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3440,7 +3386,6 @@ func (s SendRawEmailInput) GoString() string {
 	return s.String()
 }
 
-// Represents a unique message ID returned from a successful SendRawEmail request.
 type SendRawEmailOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3490,8 +3435,6 @@ func (s SetActiveReceiptRuleSetOutput) GoString() string {
 	return s.String()
 }
 
-// Represents a request instructing the service to enable or disable DKIM signing
-// for an identity.
 type SetIdentityDkimEnabledInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3513,8 +3456,6 @@ func (s SetIdentityDkimEnabledInput) GoString() string {
 	return s.String()
 }
 
-// An empty element. Receiving this element indicates that the request completed
-// successfully.
 type SetIdentityDkimEnabledOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3555,8 +3496,6 @@ func (s SetIdentityFeedbackForwardingEnabledInput) GoString() string {
 	return s.String()
 }
 
-// An empty element. Receiving this element indicates that the request completed
-// successfully.
 type SetIdentityFeedbackForwardingEnabledOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3571,7 +3510,6 @@ func (s SetIdentityFeedbackForwardingEnabledOutput) GoString() string {
 	return s.String()
 }
 
-// Represents a request to set or clear an identity's notification topic.
 type SetIdentityNotificationTopicInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3600,8 +3538,6 @@ func (s SetIdentityNotificationTopicInput) GoString() string {
 	return s.String()
 }
 
-// An empty element. Receiving this element indicates that the request completed
-// successfully.
 type SetIdentityNotificationTopicOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3716,8 +3652,6 @@ func (s UpdateReceiptRuleOutput) GoString() string {
 	return s.String()
 }
 
-// Represents a request instructing the service to begin DKIM verification for
-// a domain.
 type VerifyDomainDkimInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3735,8 +3669,6 @@ func (s VerifyDomainDkimInput) GoString() string {
 	return s.String()
 }
 
-// Represents the DNS records that must be published in the domain name's DNS
-// to complete DKIM setup.
 type VerifyDomainDkimOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3764,7 +3696,6 @@ func (s VerifyDomainDkimOutput) GoString() string {
 	return s.String()
 }
 
-// Represents a request instructing the service to begin domain verification.
 type VerifyDomainIdentityInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3782,7 +3713,6 @@ func (s VerifyDomainIdentityInput) GoString() string {
 	return s.String()
 }
 
-// Represents a token used for domain ownership verification.
 type VerifyDomainIdentityOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3801,7 +3731,6 @@ func (s VerifyDomainIdentityOutput) GoString() string {
 	return s.String()
 }
 
-// Represents a request instructing the service to begin email address verification.
 type VerifyEmailAddressInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3833,7 +3762,6 @@ func (s VerifyEmailAddressOutput) GoString() string {
 	return s.String()
 }
 
-// Represents a request instructing the service to begin email address verification.
 type VerifyEmailIdentityInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3851,8 +3779,6 @@ func (s VerifyEmailIdentityInput) GoString() string {
 	return s.String()
 }
 
-// An empty element. Receiving this element indicates that the request completed
-// successfully.
 type VerifyEmailIdentityOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3956,6 +3882,13 @@ const (
 	ReceiptFilterPolicyBlock = "Block"
 	// @enum ReceiptFilterPolicy
 	ReceiptFilterPolicyAllow = "Allow"
+)
+
+const (
+	// @enum SNSActionEncoding
+	SNSActionEncodingUtf8 = "UTF-8"
+	// @enum SNSActionEncoding
+	SNSActionEncodingBase64 = "Base64"
 )
 
 const (

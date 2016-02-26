@@ -3,12 +3,12 @@
   "metadata":{
     "apiVersion":"2010-12-01",
     "endpointPrefix":"email",
+    "protocol":"query",
     "serviceAbbreviation":"Amazon SES",
     "serviceFullName":"Amazon Simple Email Service",
     "signatureVersion":"v4",
     "signingName":"ses",
-    "xmlNamespace":"http://ses.amazonaws.com/doc/2010-12-01/",
-    "protocol":"query"
+    "xmlNamespace":"http://ses.amazonaws.com/doc/2010-12-01/"
   },
   "operations":{
     "CloneReceiptRuleSet":{
@@ -23,33 +23,9 @@
         "resultWrapper":"CloneReceiptRuleSetResult"
       },
       "errors":[
-        {
-          "shape":"RuleSetDoesNotExistException",
-          "error":{
-            "code":"RuleSetDoesNotExist",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"AlreadyExistsException",
-          "error":{
-            "code":"AlreadyExists",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"RuleSetDoesNotExistException"},
+        {"shape":"AlreadyExistsException"},
+        {"shape":"LimitExceededException"}
       ]
     },
     "CreateReceiptFilter":{
@@ -64,24 +40,8 @@
         "resultWrapper":"CreateReceiptFilterResult"
       },
       "errors":[
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"AlreadyExistsException",
-          "error":{
-            "code":"AlreadyExists",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"LimitExceededException"},
+        {"shape":"AlreadyExistsException"}
       ]
     },
     "CreateReceiptRule":{
@@ -96,69 +56,13 @@
         "resultWrapper":"CreateReceiptRuleResult"
       },
       "errors":[
-        {
-          "shape":"InvalidSnsTopicException",
-          "error":{
-            "code":"InvalidSnsTopic",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidS3ConfigurationException",
-          "error":{
-            "code":"InvalidS3Configuration",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidLambdaFunctionException",
-          "error":{
-            "code":"InvalidLambdaFunction",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"AlreadyExistsException",
-          "error":{
-            "code":"AlreadyExists",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"RuleDoesNotExistException",
-          "error":{
-            "code":"RuleDoesNotExist",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"RuleSetDoesNotExistException",
-          "error":{
-            "code":"RuleSetDoesNotExist",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidSnsTopicException"},
+        {"shape":"InvalidS3ConfigurationException"},
+        {"shape":"InvalidLambdaFunctionException"},
+        {"shape":"AlreadyExistsException"},
+        {"shape":"RuleDoesNotExistException"},
+        {"shape":"RuleSetDoesNotExistException"},
+        {"shape":"LimitExceededException"}
       ]
     },
     "CreateReceiptRuleSet":{
@@ -173,24 +77,8 @@
         "resultWrapper":"CreateReceiptRuleSetResult"
       },
       "errors":[
-        {
-          "shape":"AlreadyExistsException",
-          "error":{
-            "code":"AlreadyExists",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"AlreadyExistsException"},
+        {"shape":"LimitExceededException"}
       ]
     },
     "DeleteIdentity":{
@@ -241,15 +129,7 @@
         "resultWrapper":"DeleteReceiptRuleResult"
       },
       "errors":[
-        {
-          "shape":"RuleSetDoesNotExistException",
-          "error":{
-            "code":"RuleSetDoesNotExist",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"RuleSetDoesNotExistException"}
       ]
     },
     "DeleteReceiptRuleSet":{
@@ -264,15 +144,7 @@
         "resultWrapper":"DeleteReceiptRuleSetResult"
       },
       "errors":[
-        {
-          "shape":"CannotDeleteException",
-          "error":{
-            "code":"CannotDelete",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"CannotDeleteException"}
       ]
     },
     "DeleteVerifiedEmailAddress":{
@@ -307,24 +179,8 @@
         "resultWrapper":"DescribeReceiptRuleResult"
       },
       "errors":[
-        {
-          "shape":"RuleDoesNotExistException",
-          "error":{
-            "code":"RuleDoesNotExist",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"RuleSetDoesNotExistException",
-          "error":{
-            "code":"RuleSetDoesNotExist",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"RuleDoesNotExistException"},
+        {"shape":"RuleSetDoesNotExistException"}
       ]
     },
     "DescribeReceiptRuleSet":{
@@ -339,15 +195,7 @@
         "resultWrapper":"DescribeReceiptRuleSetResult"
       },
       "errors":[
-        {
-          "shape":"RuleSetDoesNotExistException",
-          "error":{
-            "code":"RuleSetDoesNotExist",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"RuleSetDoesNotExistException"}
       ]
     },
     "GetIdentityDkimAttributes":{
@@ -491,15 +339,7 @@
         "resultWrapper":"PutIdentityPolicyResult"
       },
       "errors":[
-        {
-          "shape":"InvalidPolicyException",
-          "error":{
-            "code":"InvalidPolicy",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidPolicyException"}
       ]
     },
     "ReorderReceiptRuleSet":{
@@ -514,24 +354,8 @@
         "resultWrapper":"ReorderReceiptRuleSetResult"
       },
       "errors":[
-        {
-          "shape":"RuleSetDoesNotExistException",
-          "error":{
-            "code":"RuleSetDoesNotExist",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"RuleDoesNotExistException",
-          "error":{
-            "code":"RuleDoesNotExist",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"RuleSetDoesNotExistException"},
+        {"shape":"RuleDoesNotExistException"}
       ]
     },
     "SendBounce":{
@@ -546,15 +370,7 @@
         "resultWrapper":"SendBounceResult"
       },
       "errors":[
-        {
-          "shape":"MessageRejected",
-          "error":{
-            "code":"MessageRejected",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"MessageRejected"}
       ]
     },
     "SendEmail":{
@@ -569,15 +385,7 @@
         "resultWrapper":"SendEmailResult"
       },
       "errors":[
-        {
-          "shape":"MessageRejected",
-          "error":{
-            "code":"MessageRejected",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"MessageRejected"}
       ]
     },
     "SendRawEmail":{
@@ -592,15 +400,7 @@
         "resultWrapper":"SendRawEmailResult"
       },
       "errors":[
-        {
-          "shape":"MessageRejected",
-          "error":{
-            "code":"MessageRejected",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"MessageRejected"}
       ]
     },
     "SetActiveReceiptRuleSet":{
@@ -615,15 +415,7 @@
         "resultWrapper":"SetActiveReceiptRuleSetResult"
       },
       "errors":[
-        {
-          "shape":"RuleSetDoesNotExistException",
-          "error":{
-            "code":"RuleSetDoesNotExist",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"RuleSetDoesNotExistException"}
       ]
     },
     "SetIdentityDkimEnabled":{
@@ -674,24 +466,8 @@
         "resultWrapper":"SetReceiptRulePositionResult"
       },
       "errors":[
-        {
-          "shape":"RuleSetDoesNotExistException",
-          "error":{
-            "code":"RuleSetDoesNotExist",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"RuleDoesNotExistException",
-          "error":{
-            "code":"RuleDoesNotExist",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"RuleSetDoesNotExistException"},
+        {"shape":"RuleDoesNotExistException"}
       ]
     },
     "UpdateReceiptRule":{
@@ -706,60 +482,12 @@
         "resultWrapper":"UpdateReceiptRuleResult"
       },
       "errors":[
-        {
-          "shape":"InvalidSnsTopicException",
-          "error":{
-            "code":"InvalidSnsTopic",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidS3ConfigurationException",
-          "error":{
-            "code":"InvalidS3Configuration",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidLambdaFunctionException",
-          "error":{
-            "code":"InvalidLambdaFunction",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"RuleSetDoesNotExistException",
-          "error":{
-            "code":"RuleSetDoesNotExist",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"RuleDoesNotExistException",
-          "error":{
-            "code":"RuleDoesNotExist",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidSnsTopicException"},
+        {"shape":"InvalidS3ConfigurationException"},
+        {"shape":"InvalidLambdaFunctionException"},
+        {"shape":"RuleSetDoesNotExistException"},
+        {"shape":"RuleDoesNotExistException"},
+        {"shape":"LimitExceededException"}
       ]
     },
     "VerifyDomainDkim":{
@@ -1451,8 +1179,8 @@
     },
     "PolicyName":{
       "type":"string",
-      "min":1,
-      "max":64
+      "max":64,
+      "min":1
     },
     "PolicyNameList":{
       "type":"list",
@@ -1647,8 +1375,16 @@
       "type":"structure",
       "required":["TopicArn"],
       "members":{
-        "TopicArn":{"shape":"AmazonResourceName"}
+        "TopicArn":{"shape":"AmazonResourceName"},
+        "Encoding":{"shape":"SNSActionEncoding"}
       }
+    },
+    "SNSActionEncoding":{
+      "type":"string",
+      "enum":[
+        "UTF-8",
+        "Base64"
+      ]
     },
     "SendBounceRequest":{
       "type":"structure",
