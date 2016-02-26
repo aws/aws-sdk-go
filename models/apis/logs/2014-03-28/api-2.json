@@ -719,7 +719,7 @@
     },
     "FilterPattern":{
       "type":"string",
-      "max":512,
+      "max":1024,
       "min":0
     },
     "FilteredLogEvent":{
