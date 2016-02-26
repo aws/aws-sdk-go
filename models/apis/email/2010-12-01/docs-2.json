@@ -1,5 +1,6 @@
 {
   "version": "2.0",
+  "service": "<fullname>Amazon Simple Email Service</fullname> <p> This is the API Reference for Amazon Simple Email Service (Amazon SES). This documentation is intended to be used in conjunction with the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/Welcome.html\">Amazon SES Developer Guide</a>. </p> <note>For a list of Amazon SES endpoints to use in service requests, see <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/regions.html\">Regions and Amazon SES</a> in the Amazon SES Developer Guide. </note>",
   "operations": {
     "CloneReceiptRuleSet": "<p>Creates a receipt rule set by cloning an existing one. All receipt rules and configurations are copied to the new receipt rule set and are completely independent of the source rule set.</p> <p>For information about setting up rule sets, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html\">Amazon SES Developer Guide</a>.</p> <p>This action is throttled at one request per second.</p>",
     "CreateReceiptFilter": "<p>Creates a new IP address filter.</p> <p>For information about setting up IP address filters, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-ip-filters.html\">Amazon SES Developer Guide</a>.</p> <p>This action is throttled at one request per second.</p>",
@@ -26,7 +27,7 @@
     "ListReceiptRuleSets": "<p>Lists the receipt rule sets that exist under your AWS account. If there are additional receipt rule sets to be retrieved, you will receive a <code>NextToken</code> that you can provide to the next call to <code>ListReceiptRuleSets</code> to retrieve the additional entries.</p> <p>For information about managing receipt rule sets, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html\">Amazon SES Developer Guide</a>.</p> <p>This action is throttled at one request per second.</p>",
     "ListVerifiedEmailAddresses": "<p>Returns a list containing all of the email addresses that have been verified.</p> <important>The ListVerifiedEmailAddresses action is deprecated as of the May 15, 2012 release of Domain Verification. The ListIdentities action is now preferred.</important> <p>This action is throttled at one request per second.</p>",
     "PutIdentityPolicy": "<p>Adds or updates a sending authorization policy for the specified identity (email address or domain).</p> <note>This API is for the identity owner only. If you have not verified the identity, this API will return an error.</note> <p>Sending authorization is a feature that enables an identity owner to authorize other senders to use its identities. For information about using sending authorization, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html\">Amazon SES Developer Guide</a>.</p> <p>This action is throttled at one request per second.</p>",
-    "ReorderReceiptRuleSet": "<p>Reorders the receipt rules within a receipt rule set.</p> <note>All of the rules in the rule set must be represented in this request. That is, this API will return an error if the reorder request doesn’t explicitly position all of the rules.</note> <p>For information about managing receipt rule sets, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html\">Amazon SES Developer Guide</a>.</p> <p>This action is throttled at one request per second.</p>",
+    "ReorderReceiptRuleSet": "<p>Reorders the receipt rules within a receipt rule set.</p> <note>All of the rules in the rule set must be represented in this request. That is, this API will return an error if the reorder request doesn't explicitly position all of the rules.</note> <p>For information about managing receipt rule sets, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html\">Amazon SES Developer Guide</a>.</p> <p>This action is throttled at one request per second.</p>",
     "SendBounce": "<p>Generates and sends a bounce message to the sender of an email you received through Amazon SES. You can only use this API on an email up to 24 hours after you receive it.</p> <note>You cannot use this API to send generic bounces for mail that was not received by Amazon SES.</note> <p>For information about receiving email through Amazon SES, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email.html\">Amazon SES Developer Guide</a>.</p> <p>This action is throttled at one request per second.</p>",
     "SendEmail": "<p>Composes an email message based on input data, and then immediately queues the message for sending. </p> <p>There are several important points to know about <code>SendEmail</code>:</p> <ul> <li>You can only send email from verified email addresses and domains; otherwise, you will get an \"Email address not verified\" error. If your account is still in the Amazon SES sandbox, you must also verify every recipient email address except for the recipients provided by the Amazon SES mailbox simulator. For more information, go to the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html\">Amazon SES Developer Guide</a>.</li> <li>The total size of the message cannot exceed 10 MB. This includes any attachments that are part of the message.</li> <li>Amazon SES has a limit on the total number of recipients per message. The combined number of To:, CC: and BCC: email addresses cannot exceed 50. If you need to send an email message to a larger audience, you can divide your recipient list into groups of 50 or fewer, and then call Amazon SES repeatedly to send the message to each group.</li> <li>For every message that you send, the total number of recipients (To:, CC: and BCC:) is counted against your sending quota - the maximum number of emails you can send in a 24-hour period. For information about your sending quota, go to the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html\">Amazon SES Developer Guide</a>.</li> </ul>",
     "SendRawEmail": "<p>Sends an email message, with header and content specified by the client. The <code>SendRawEmail</code> action is useful for sending multipart MIME emails. The raw text of the message must comply with Internet email standards; otherwise, the message cannot be sent. </p> <p>There are several important points to know about <code>SendRawEmail</code>:</p> <ul> <li>You can only send email from verified email addresses and domains; otherwise, you will get an \"Email address not verified\" error. If your account is still in the Amazon SES sandbox, you must also verify every recipient email address except for the recipients provided by the Amazon SES mailbox simulator. For more information, go to the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html\">Amazon SES Developer Guide</a>.</li> <li>The total size of the message cannot exceed 10 MB. This includes any attachments that are part of the message.</li> <li>Amazon SES has a limit on the total number of recipients per message. The combined number of To:, CC: and BCC: email addresses cannot exceed 50. If you need to send an email message to a larger audience, you can divide your recipient list into groups of 50 or fewer, and then call Amazon SES repeatedly to send the message to each group.</li> <li>The To:, CC:, and BCC: headers in the raw message can contain a group list. Note that each recipient in a group list counts towards the 50-recipient limit.</li> <li>For every message that you send, the total number of recipients (To:, CC: and BCC:) is counted against your sending quota - the maximum number of emails you can send in a 24-hour period. For information about your sending quota, go to the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html\">Amazon SES Developer Guide</a>.</li> <li>If you are using sending authorization to send on behalf of another user, <code>SendRawEmail</code> enables you to specify the cross-account identity for the email's \"Source,\" \"From,\" and \"Return-Path\" parameters in one of two ways: you can pass optional parameters <code>SourceArn</code>, <code>FromArn</code>, and/or <code>ReturnPathArn</code> to the API, or you can include the following X-headers in the header of your raw email: <ul> <li><code>X-SES-SOURCE-ARN</code></li> <li><code>X-SES-FROM-ARN</code></li> <li><code>X-SES-RETURN-PATH-ARN</code></li> </ul> <important>Do not include these X-headers in the DKIM signature, because they are removed by Amazon SES before sending the email.</important> For the most common sending authorization use case, we recommend that you specify the <code>SourceIdentityArn</code> and do not specify either the <code>FromIdentityArn</code> or <code>ReturnPathIdentityArn</code>. (The same note applies to the corresponding X-headers.) If you only specify the <code>SourceIdentityArn</code>, Amazon SES will simply set the \"From\" address and the \"Return Path\" address to the identity specified in <code>SourceIdentityArn</code>. For more information about sending authorization, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html\">Amazon SES Developer Guide</a>.</li> </ul>",
@@ -41,7 +42,6 @@
     "VerifyEmailAddress": "<p>Verifies an email address. This action causes a confirmation email message to be sent to the specified address.</p> <important>The VerifyEmailAddress action is deprecated as of the May 15, 2012 release of Domain Verification. The VerifyEmailIdentity action is now preferred.</important> <p>This action is throttled at one request per second.</p>",
     "VerifyEmailIdentity": "<p>Verifies an email address. This action causes a confirmation email message to be sent to the specified address.</p> <p>This action is throttled at one request per second.</p>"
   },
-  "service": "<fullname>Amazon Simple Email Service</fullname> <p> This is the API Reference for Amazon Simple Email Service (Amazon SES). This documentation is intended to be used in conjunction with the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/Welcome.html\">Amazon SES Developer Guide</a>. </p> <note>For a list of Amazon SES endpoints to use in service requests, see <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/regions.html\">Regions and Amazon SES</a> in the Amazon SES Developer Guide. </note>",
   "shapes": {
     "AddHeaderAction": {
       "base": "<p>When included in a receipt rule, this action adds a header to the received email.</p> <p>For information about adding a header using a receipt rule, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-action-add-header.html\">Amazon SES Developer Guide</a>.</p>",
@@ -233,22 +233,22 @@
       }
     },
     "DeleteIdentityPolicyRequest": {
-      "base": "<p>Represents a request instructing the service to delete an authorization policy applying to an identity.</p> <p>This request succeeds regardless of whether the specified policy exists.</p>",
+      "base": null,
       "refs": {
       }
     },
     "DeleteIdentityPolicyResponse": {
-      "base": "<p>An empty element. Receiving this element indicates that the request completed successfully.</p>",
+      "base": null,
       "refs": {
       }
     },
     "DeleteIdentityRequest": {
-      "base": "<p>Represents a request instructing the service to delete an identity from the list of identities for the AWS Account.</p>",
+      "base": null,
       "refs": {
       }
     },
     "DeleteIdentityResponse": {
-      "base": "<p>An empty element. Receiving this element indicates that the request completed successfully.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -283,7 +283,7 @@
       }
     },
     "DeleteVerifiedEmailAddressRequest": {
-      "base": "<p>Represents a request instructing the service to delete an address from the list of verified email addresses.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -397,12 +397,12 @@
       }
     },
     "GetIdentityDkimAttributesRequest": {
-      "base": "<p>Given a list of verified identities, describes their DKIM attributes. The DKIM attributes of an email address identity includes whether DKIM signing is individually enabled or disabled for that address. The DKIM attributes of a domain name identity includes whether DKIM signing is enabled, as well as the DNS records (tokens) that must remain published in the domain name's DNS.</p>",
+      "base": null,
       "refs": {
       }
     },
     "GetIdentityDkimAttributesResponse": {
-      "base": "<p>Represents a list of all the DKIM attributes for the specified identity.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -412,37 +412,37 @@
       }
     },
     "GetIdentityNotificationAttributesResponse": {
-      "base": "<p>Describes whether an identity has Amazon Simple Notification Service (Amazon SNS) topics set for bounce, complaint, and/or delivery notifications, and specifies whether feedback forwarding is enabled for bounce and complaint notifications.</p>",
+      "base": null,
       "refs": {
       }
     },
     "GetIdentityPoliciesRequest": {
-      "base": "<p>Represents a request instructing the service to retrieve the text of a list of authorization policies applying to an identity. </p>",
+      "base": null,
       "refs": {
       }
     },
     "GetIdentityPoliciesResponse": {
-      "base": "<p>Represents a map of policy names to policies returned from a successful <code>GetIdentityPolicies</code> request. </p>",
+      "base": null,
       "refs": {
       }
     },
     "GetIdentityVerificationAttributesRequest": {
-      "base": "<p>Represents a request instructing the service to provide the verification attributes for a list of identities.</p>",
+      "base": null,
       "refs": {
       }
     },
     "GetIdentityVerificationAttributesResponse": {
-      "base": "<p>Represents the verification attributes for a list of identities.</p>",
+      "base": null,
       "refs": {
       }
     },
     "GetSendQuotaResponse": {
-      "base": "<p>Represents the user's current activity limits returned from a successful <code>GetSendQuota</code> request. </p>",
+      "base": null,
       "refs": {
       }
     },
     "GetSendStatisticsResponse": {
-      "base": "<p>Represents a list of <code>SendDataPoint</code> items returned from a successful <code>GetSendStatistics</code> request. This list contains aggregated data from the previous two weeks of sending activity. </p>",
+      "base": null,
       "refs": {
       }
     },
@@ -552,22 +552,22 @@
       }
     },
     "ListIdentitiesRequest": {
-      "base": "<p>Represents a request instructing the service to list all identities for the AWS Account.</p>",
+      "base": null,
       "refs": {
       }
     },
     "ListIdentitiesResponse": {
-      "base": "<p>Represents a list of all verified identities for the AWS Account.</p>",
+      "base": null,
       "refs": {
       }
     },
     "ListIdentityPoliciesRequest": {
-      "base": "<p>Represents a request instructing the service to list all authorization policies, by name, applying to an identity.</p>",
+      "base": null,
       "refs": {
       }
     },
     "ListIdentityPoliciesResponse": {
-      "base": "<p>Represents a list of policy names returned from a successful <code>ListIdentityPolicies</code> request. </p>",
+      "base": null,
       "refs": {
       }
     },
@@ -592,7 +592,7 @@
       }
     },
     "ListVerifiedEmailAddressesResponse": {
-      "base": "<p>Represents a list of all the email addresses verified for the current user.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -677,7 +677,7 @@
       }
     },
     "Policy": {
-      "base": "JSON representation of a valid policy.",
+      "base": null,
       "refs": {
         "PolicyMap$value": null,
         "PutIdentityPolicyRequest$Policy": "<p>The text of the policy in JSON format. The policy cannot exceed 4 KB.</p> <p>For information about the syntax of sending authorization policies, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-policies.html\">Amazon SES Developer Guide</a>. </p>"
@@ -690,7 +690,7 @@
       }
     },
     "PolicyName": {
-      "base": "Name of the policy.",
+      "base": null,
       "refs": {
         "DeleteIdentityPolicyRequest$PolicyName": "<p>The name of the policy to be deleted.</p>",
         "PolicyMap$key": null,
@@ -706,12 +706,12 @@
       }
     },
     "PutIdentityPolicyRequest": {
-      "base": "<p>Represents a request instructing the service to apply an authorization policy to an identity.</p>",
+      "base": null,
       "refs": {
       }
     },
     "PutIdentityPolicyResponse": {
-      "base": "<p>An empty element. Receiving this element indicates that the request completed successfully.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -921,8 +921,14 @@
         "ReceiptAction$SNSAction": "<p>Publishes the email content within a notification to Amazon SNS.</p>"
       }
     },
+    "SNSActionEncoding": {
+      "base": null,
+      "refs": {
+        "SNSAction$Encoding": "<p>The encoding to use for the email within the Amazon SNS notification. UTF-8 is easier to use, but may not preserve all special characters when a message was encoded with a different encoding format. Base64 preserves all special characters. The default value is Base64.</p>"
+      }
+    },
     "SendBounceRequest": {
-      "base": "<p>Request object for sending a simple/complex bounce. It contains all of the information needed to generate a basic DSN or a fully-customized DSN.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -944,22 +950,22 @@
       }
     },
     "SendEmailRequest": {
-      "base": "<p>Represents a request instructing the service to send a single email message.</p> <p>This datatype can be used in application code to compose a message consisting of source, destination, message, reply-to, and return-path parts. This object can then be sent using the <code>SendEmail</code> action. </p>",
+      "base": null,
       "refs": {
       }
     },
     "SendEmailResponse": {
-      "base": "<p>Represents a unique message ID returned from a successful <code>SendEmail</code> request. </p>",
+      "base": null,
       "refs": {
       }
     },
     "SendRawEmailRequest": {
-      "base": "<p>Represents a request instructing the service to send a raw email message.</p> <p>This datatype can be used in application code to compose a message consisting of source, destination, and raw message text. This object can then be sent using the <code>SendRawEmail</code> action. </p>",
+      "base": null,
       "refs": {
       }
     },
     "SendRawEmailResponse": {
-      "base": "<p>Represents a unique message ID returned from a successful <code>SendRawEmail</code> request. </p>",
+      "base": null,
       "refs": {
       }
     },
@@ -980,12 +986,12 @@
       }
     },
     "SetIdentityDkimEnabledRequest": {
-      "base": "<p>Represents a request instructing the service to enable or disable DKIM signing for an identity.</p>",
+      "base": null,
       "refs": {
       }
     },
     "SetIdentityDkimEnabledResponse": {
-      "base": "<p>An empty element. Receiving this element indicates that the request completed successfully.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -995,17 +1001,17 @@
       }
     },
     "SetIdentityFeedbackForwardingEnabledResponse": {
-      "base": "<p>An empty element. Receiving this element indicates that the request completed successfully.</p>",
+      "base": null,
       "refs": {
       }
     },
     "SetIdentityNotificationTopicRequest": {
-      "base": "<p>Represents a request to set or clear an identity's notification topic.</p>",
+      "base": null,
       "refs": {
       }
     },
     "SetIdentityNotificationTopicResponse": {
-      "base": "<p>An empty element. Receiving this element indicates that the request completed successfully.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -1083,37 +1089,37 @@
       }
     },
     "VerifyDomainDkimRequest": {
-      "base": "<p>Represents a request instructing the service to begin DKIM verification for a domain.</p>",
+      "base": null,
       "refs": {
       }
     },
     "VerifyDomainDkimResponse": {
-      "base": "<p>Represents the DNS records that must be published in the domain name's DNS to complete DKIM setup.</p>",
+      "base": null,
       "refs": {
       }
     },
     "VerifyDomainIdentityRequest": {
-      "base": "<p>Represents a request instructing the service to begin domain verification.</p>",
+      "base": null,
       "refs": {
       }
     },
     "VerifyDomainIdentityResponse": {
-      "base": "<p>Represents a token used for domain ownership verification.</p>",
+      "base": null,
       "refs": {
       }
     },
     "VerifyEmailAddressRequest": {
-      "base": "<p>Represents a request instructing the service to begin email address verification.</p>",
+      "base": null,
       "refs": {
       }
     },
     "VerifyEmailIdentityRequest": {
-      "base": "<p>Represents a request instructing the service to begin email address verification.</p>",
+      "base": null,
       "refs": {
       }
     },
     "VerifyEmailIdentityResponse": {
-      "base": "<p>An empty element. Receiving this element indicates that the request completed successfully.</p>",
+      "base": null,
       "refs": {
       }
     },
