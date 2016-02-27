@@ -234,6 +234,7 @@ func (r *Request) Send() error {
 					r.ClientInfo.ServiceName, r.Operation.Name, r.RetryCount))
 			}
 
+			r.HTTPResponse.Body.Close()
 			// Re-seek the body back to the original point in for a retry so that
 			// send will send the body's contents again in the upcoming request.
 			r.Body.Seek(r.BodyStart, 0)
