@@ -234,7 +234,10 @@ func (r *Request) Send() error {
 					r.ClientInfo.ServiceName, r.Operation.Name, r.RetryCount))
 			}
 
+			// Closing response body. Since we are setting a new request to send off, this
+			// response will get squashed and leaked.
 			r.HTTPResponse.Body.Close()
+
 			// Re-seek the body back to the original point in for a retry so that
 			// send will send the body's contents again in the upcoming request.
 			r.Body.Seek(r.BodyStart, 0)
