@@ -32,6 +32,7 @@ func ExampleCloudSearchDomain_Search() {
 		Size:         aws.Int64(1),
 		Sort:         aws.String("Sort"),
 		Start:        aws.Int64(1),
+		Stats:        aws.String("Stat"),
 	}
 	resp, err := svc.Search(params)
 

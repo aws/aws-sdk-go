@@ -34,14 +34,14 @@ func (c *CloudSearchDomain) SearchRequest(input *SearchInput) (req *request.Requ
 // you specify the search criteria depends on which query parser you use. Amazon
 // CloudSearch supports four query parsers:
 //
-//   simple: search all text and text-array fields for the specified string.
-// Search for phrases, individual terms, and prefixes.   structured: search
-// specific fields, construct compound queries using Boolean operators, and
-// use advanced features such as term boosting and proximity searching.  lucene:
-// specify search criteria using the Apache Lucene query parser syntax.  dismax:
-// specify search criteria using the simplified subset of the Apache Lucene
-// query parser syntax defined by the DisMax query parser.  For more information,
-// see Searching Your Data (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/searching.html)
+//  simple: search all text and text-array fields for the specified string.
+// Search for phrases, individual terms, and prefixes.  structured: search specific
+// fields, construct compound queries using Boolean operators, and use advanced
+// features such as term boosting and proximity searching. lucene: specify search
+// criteria using the Apache Lucene query parser syntax. dismax: specify search
+// criteria using the simplified subset of the Apache Lucene query parser syntax
+// defined by the DisMax query parser.  For more information, see Searching
+// Your Data (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/searching.html)
 // in the Amazon CloudSearch Developer Guide.
 //
 // The endpoint for submitting Search requests is domain-specific. You submit
@@ -201,6 +201,67 @@ func (s DocumentServiceWarning) String() string {
 
 // GoString returns the string representation
 func (s DocumentServiceWarning) GoString() string {
+	return s.String()
+}
+
+// The statistics for a field calculated in the request.
+type FieldStats struct {
+	_ struct{} `type:"structure"`
+
+	// The number of documents that contain a value in the specified field in the
+	// result set.
+	Count *int64 `locationName:"count" type:"long"`
+
+	// The maximum value found in the specified field in the result set.
+	//
+	// If the field is numeric (int, int-array, double, or double-array), max is
+	// the string representation of a double-precision 64-bit floating point value.
+	// If the field is date or date-array, max is the string representation of a
+	// date with the format specified in IETF RFC3339 (http://tools.ietf.org/html/rfc3339):
+	// yyyy-mm-ddTHH:mm:ss.SSSZ.
+	Max *string `locationName:"max" type:"string"`
+
+	// The average of the values found in the specified field in the result set.
+	//
+	// If the field is numeric (int, int-array, double, or double-array), mean
+	// is the string representation of a double-precision 64-bit floating point
+	// value. If the field is date or date-array, mean is the string representation
+	// of a date with the format specified in IETF RFC3339 (http://tools.ietf.org/html/rfc3339):
+	// yyyy-mm-ddTHH:mm:ss.SSSZ.
+	Mean *string `locationName:"mean" type:"string"`
+
+	// The minimum value found in the specified field in the result set.
+	//
+	// If the field is numeric (int, int-array, double, or double-array), min is
+	// the string representation of a double-precision 64-bit floating point value.
+	// If the field is date or date-array, min is the string representation of a
+	// date with the format specified in IETF RFC3339 (http://tools.ietf.org/html/rfc3339):
+	// yyyy-mm-ddTHH:mm:ss.SSSZ.
+	Min *string `locationName:"min" type:"string"`
+
+	// The number of documents that do not contain a value in the specified field
+	// in the result set.
+	Missing *int64 `locationName:"missing" type:"long"`
+
+	// The standard deviation of the values in the specified field in the result
+	// set.
+	Stddev *float64 `locationName:"stddev" type:"double"`
+
+	// The sum of the field values across the documents in the result set. null
+	// for date fields.
+	Sum *float64 `locationName:"sum" type:"double"`
+
+	// The sum of all field values in the result set squared.
+	SumOfSquares *float64 `locationName:"sumOfSquares" type:"double"`
+}
+
+// String returns the string representation
+func (s FieldStats) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FieldStats) GoString() string {
 	return s.String()
 }
 
@@ -408,7 +469,7 @@ type SearchInput struct {
 	//
 	// The options you can configure vary according to which parser you use:
 	//
-	//   defaultOperator: The default operator used to combine individual terms
+	//  defaultOperator: The default operator used to combine individual terms
 	// in the search string. For example: defaultOperator: 'or'. For the dismax
 	// parser, you specify a percentage that represents the percentage of terms
 	// in the search string (rounded down) that must match, rather than a default
@@ -417,17 +478,17 @@ type SearchInput struct {
 	// by the percent (%) symbol. For example, defaultOperator: 50%. Valid values:
 	// and, or, a percentage in the range 0%-100% (dismax). Default: and (simple,
 	// structured, lucene) or 100 (dismax). Valid for: simple, structured, lucene,
-	// and dismax.  fields: An array of the fields to search when no fields are
-	// specified in a search. If no fields are specified in a search and this option
-	// is not specified, all text and text-array fields are searched. You can specify
-	// a weight for each field to control the relative importance of each field
-	// when Amazon CloudSearch calculates relevance scores. To specify a field weight,
+	// and dismax. fields: An array of the fields to search when no fields are specified
+	// in a search. If no fields are specified in a search and this option is not
+	// specified, all text and text-array fields are searched. You can specify a
+	// weight for each field to control the relative importance of each field when
+	// Amazon CloudSearch calculates relevance scores. To specify a field weight,
 	// append a caret (^) symbol and the weight to the field name. For example,
 	// to boost the importance of the title field over the description field you
 	// could specify: "fields":["title^5","description"]. Valid values: The name
 	// of any configured field and an optional numeric value greater than zero.
 	// Default: All text and text-array fields. Valid for: simple, structured, lucene,
-	// and dismax.  operators: An array of the operators or special characters you
+	// and dismax. operators: An array of the operators or special characters you
 	// want to disable for the simple query parser. If you disable the and, or,
 	// or not operators, the corresponding operators (+, |, -) have no special meaning
 	// and are dropped from the search string. Similarly, disabling prefix disables
@@ -444,7 +505,7 @@ type SearchInput struct {
 	// the phrase operator to support just simple term and phrase queries: "operators":["and","not","or",
 	// "prefix"]. Valid values: and, escape, fuzzy, near, not, or, phrase, precedence,
 	// prefix, whitespace. Default: All operators and special characters are enabled.
-	// Valid for: simple.  phraseFields: An array of the text or text-array fields
+	// Valid for: simple. phraseFields: An array of the text or text-array fields
 	// you want to use for phrase searches. When the terms in the search string
 	// appear in close proximity within a field, the field scores higher. You can
 	// specify a weight for each field to boost that score. The phraseSlop option
@@ -455,17 +516,17 @@ type SearchInput struct {
 	// "plot"] Valid values: The name of any text or text-array field and an optional
 	// numeric value greater than zero. Default: No fields. If you don't specify
 	// any fields with phraseFields, proximity scoring is disabled even if phraseSlop
-	// is specified. Valid for: dismax.  phraseSlop: An integer value that specifies
+	// is specified. Valid for: dismax. phraseSlop: An integer value that specifies
 	// how much matches can deviate from the search phrase and still be boosted
 	// according to the weights specified in the phraseFields option; for example,
 	// phraseSlop: 2. You must also specify phraseFields to enable proximity scoring.
-	// Valid values: positive integers. Default: 0. Valid for: dismax.  explicitPhraseSlop:
+	// Valid values: positive integers. Default: 0. Valid for: dismax. explicitPhraseSlop:
 	// An integer value that specifies how much a match can deviate from the search
 	// phrase when the phrase is enclosed in double quotes in the search string.
 	// (Phrases that exceed this proximity distance are not considered a match.)
 	// For example, to specify a slop of three for dismax phrase queries, you would
 	// specify "explicitPhraseSlop":3. Valid values: positive integers. Default:
-	// 0. Valid for: dismax.  tieBreaker: When a term in the search string is found
+	// 0. Valid for: dismax. tieBreaker: When a term in the search string is found
 	// in a document's field, a score is calculated for that field based on how
 	// common the word is in that field compared to other documents. If the term
 	// occurs in multiple fields within a document, by default only the highest
@@ -539,6 +600,14 @@ type SearchInput struct {
 	// For more information, see Paginating Results (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/paginating-results.html)
 	// in the Amazon CloudSearch Developer Guide.
 	Start *int64 `location:"querystring" locationName:"start" type:"long"`
+
+	// Specifies one or more fields for which to get statistics information. Each
+	// specified field must be facet-enabled in the domain configuration. The fields
+	// are specified in JSON using the form:
+	//
+	// {"FIELD-A":{},"FIELD-B":{}} There are currently no options supported for
+	// statistics.
+	Stats *string `location:"querystring" locationName:"stats" type:"string"`
 }
 
 // String returns the string representation
@@ -561,6 +630,9 @@ type SearchOutput struct {
 
 	// The documents that match the search criteria.
 	Hits *Hits `locationName:"hits" type:"structure"`
+
+	// The requested field statistics information.
+	Stats map[string]*FieldStats `locationName:"stats" type:"map"`
 
 	// The status information returned for the search request.
 	Status *SearchStatus `locationName:"status" type:"structure"`
