@@ -25,6 +25,7 @@
     "DeleteResource": "<p>Deletes a <a>Resource</a> resource.</p>",
     "DeleteRestApi": "<p>Deletes the specified API.</p>",
     "DeleteStage": "<p>Deletes a <a>Stage</a> resource.</p>",
+    "FlushStageAuthorizersCache": "<p>Flushes all authorizer cache entries on a stage.</p>",
     "FlushStageCache": "<p>Flushes a stage's cache.</p>",
     "GenerateClientCertificate": null,
     "GetAccount": "<p>Gets information about the current <a>Account</a> resource.</p>",
@@ -59,6 +60,7 @@
     "PutIntegrationResponse": "<p>Represents a put integration.</p>",
     "PutMethod": "<p>Add a method to an existing <a>Resource</a> resource.</p>",
     "PutMethodResponse": "<p>Adds a <a>MethodResponse</a> to an existing <a>Method</a> resource.</p>",
+    "TestInvokeAuthorizer": null,
     "TestInvokeMethod": null,
     "UpdateAccount": "<p>Changes information about the current <a>Account</a> resource.</p>",
     "UpdateApiKey": "<p>Changes information about an <a>ApiKey</a> resource.</p>",
@@ -145,6 +147,7 @@
         "MethodSetting$dataTraceEnabled": "<p>Specifies the whether data trace logging is enabled for this method, which effects the log entries pushed to Amazon CloudWatch Logs. The PATCH path for this setting is <code>/{method_setting_key}/logging/dataTrace</code>, and the value is a Boolean.</p>",
         "MethodSetting$cachingEnabled": "<p>Specifies whether responses should be cached and returned for requests. A cache cluster must be enabled on the stage for responses to be cached. The PATCH path for this setting is <code>/{method_setting_key}/caching/enabled</code>, and the value is a Boolean.</p>",
         "MethodSetting$cacheDataEncrypted": "<p>Specifies whether the cached responses are encrypted. The PATCH path for this setting is <code>/{method_setting_key}/caching/dataEncrypted</code>, and the value is a Boolean.</p>",
+        "MethodSetting$requireAuthorizationForCacheControl": "<p>Specifies whether authorization is required for a cache invalidation request. The PATCH path for this setting is <code>/{method_setting_key}/caching/requireAuthorizationForCacheControl</code>, and the value is a Boolean.</p>",
         "MethodSnapshot$apiKeyRequired": "<p>Specifies whether the method requires a valid <a>ApiKey</a>.</p>",
         "PutMethodRequest$apiKeyRequired": "<p>Specifies whether the method required a valid <a>ApiKey</a>.</p>",
         "Stage$cacheClusterEnabled": "<p>Specifies whether a cache cluster is enabled for the stage.</p>"
@@ -329,6 +332,11 @@
       "refs": {
       }
     },
+    "FlushStageAuthorizersCacheRequest": {
+      "base": "<p>Request to flush authorizer cache entries on a specified stage.</p>",
+      "refs": {
+      }
+    },
     "FlushStageCacheRequest": {
       "base": "<p>Requests Amazon API Gateway to flush a stage's cache.</p>",
       "refs": {
@@ -484,6 +492,7 @@
       "refs": {
         "MethodSetting$throttlingBurstLimit": "<p>Specifies the throttling burst limit. The PATCH path for this setting is <code>/{method_setting_key}/throttling/burstLimit</code>, and the value is an integer.</p>",
         "MethodSetting$cacheTtlInSeconds": "<p>Specifies the time to live (TTL) in seconds, for cached responses. The higher a the TTL, the longer the response will be cached. The PATCH path for this setting is <code>/{method_setting_key}/caching/ttlInSeconds</code>, and the value is an integer.</p>",
+        "TestInvokeAuthorizerResponse$clientStatus": "<p>The HTTP status code that the client would have received. Value is 0 if the authorizer succeeded.</p>",
         "TestInvokeMethodResponse$status": "<p>The HTTP status code.</p>",
         "ThrottleSettings$burstLimit": "<p>Returns the burstLimit when <b>ThrottleSettings</b> is called.</p>"
       }
@@ -603,18 +612,21 @@
       "refs": {
         "ApiKey$stageKeys": "<p>A list of <a>Stage</a> resources that are associated with the <a>ApiKey</a> resource.</p>",
         "Integration$cacheKeyParameters": "<p>Specifies the integration's cache key parameters.</p>",
+        "MapOfStringToList$value": null,
         "PutIntegrationRequest$cacheKeyParameters": "<p>Specifies a put integration input's cache key parameters.</p>"
       }
     },
     "Long": {
       "base": null,
       "refs": {
+        "TestInvokeAuthorizerResponse$latency": "<p>The execution latency of the test authorizer request</p>",
         "TestInvokeMethodResponse$latency": "<p>The execution latency of the test invoke request.</p>"
       }
     },
     "MapOfHeaderValues": {
       "base": null,
       "refs": {
+        "TestInvokeAuthorizerRequest$headers": null,
         "TestInvokeMethodRequest$headers": null,
         "TestInvokeMethodResponse$headers": "<p>The headers of HTTP response.</p>"
       }
@@ -658,6 +670,12 @@
         "PutMethodResponseRequest$responseParameters": "<p>Represents response parameters that can be sent back to the caller by Amazon API Gateway. Response parameters are represented as a key/value map, with a destination as the key and a Boolean flag as the value. The Boolean flag is used to specify whether the parameter is required. A destination must match the pattern <code>method.response.header.{name}</code>, where <code>name</code> is a valid, unique header name. Destinations specified here are available to the integration for mapping from integration response parameters.</p>"
       }
     },
+    "MapOfStringToList": {
+      "base": null,
+      "refs": {
+        "TestInvokeAuthorizerResponse$authorization": null
+      }
+    },
     "MapOfStringToString": {
       "base": null,
       "refs": {
@@ -678,6 +696,8 @@
         "PutMethodRequest$requestModels": "<p>Specifies the <a>Model</a> resources used for the request's content type. Request models are represented as a key/value map, with a content type as the key and a <a>Model</a> name as the value.</p>",
         "PutMethodResponseRequest$responseModels": "<p>Specifies the <a>Model</a> resources used for the response's content type. Response models are represented as a key/value map, with a content type as the key and a <a>Model</a> name as the value.</p>",
         "Stage$variables": "<p>A map that defines the stage variables for a <a>Stage</a> resource. Variable names can have alphanumeric characters, and the values must match <code>[A-Za-z0-9-._~:/?#&amp;=,]+</code>.</p>",
+        "TestInvokeAuthorizerRequest$stageVariables": null,
+        "TestInvokeAuthorizerRequest$additionalContext": null,
         "TestInvokeMethodRequest$stageVariables": null
       }
     },
@@ -939,6 +959,8 @@
         "DomainNames$position": null,
         "ExportResponse$contentType": null,
         "ExportResponse$contentDisposition": null,
+        "FlushStageAuthorizersCacheRequest$restApiId": "<p>The API identifier of the stage to flush.</p>",
+        "FlushStageAuthorizersCacheRequest$stageName": "<p>The name of the stage to flush.</p>",
         "FlushStageCacheRequest$restApiId": "<p>The API identifier of the stage to flush its cache.</p>",
         "FlushStageCacheRequest$stageName": "<p>The name of the stage to flush its cache.</p>",
         "GenerateClientCertificateRequest$description": null,
@@ -1011,6 +1033,7 @@
         "MapOfMethodSettings$key": null,
         "MapOfMethodSnapshot$key": null,
         "MapOfStringToBoolean$key": null,
+        "MapOfStringToList$key": null,
         "MapOfStringToString$key": null,
         "MapOfStringToString$value": null,
         "Method$httpMethod": "<p>The HTTP method.</p>",
@@ -1032,8 +1055,8 @@
         "PutIntegrationRequest$restApiId": "<p>Specifies a put integration request's API identifier.</p>",
         "PutIntegrationRequest$resourceId": "<p>Specifies a put integration request's resource ID.</p>",
         "PutIntegrationRequest$httpMethod": "<p>Specifies a put integration request's HTTP method.</p>",
-        "PutIntegrationRequest$integrationHttpMethod": "<p>Specifies a put integration HTTP method.</p>",
-        "PutIntegrationRequest$uri": "<p>Specifies a put integration input's Uniform Resource Identifier (URI).</p>",
+        "PutIntegrationRequest$integrationHttpMethod": "<p>Specifies a put integration HTTP method. When the integration type is HTTP or AWS, this field is required.</p>",
+        "PutIntegrationRequest$uri": "<p>Specifies a put integration input's Uniform Resource Identifier (URI). When the integration type is HTTP or AWS, this field is required.</p>",
         "PutIntegrationRequest$credentials": "<p>Specifies whether credentials are required for a put integration.</p>",
         "PutIntegrationRequest$cacheNamespace": "<p>Specifies a put integration input's cache namespace.</p>",
         "PutIntegrationResponseRequest$restApiId": "<p>Specifies a put integration response request's API identifier.</p>",
@@ -1068,6 +1091,13 @@
         "StageKey$restApiId": "<p>A list of <a>Stage</a> resources that are associated with the <a>ApiKey</a> resource.</p>",
         "StageKey$stageName": "<p>The stage name in the <a>RestApi</a> that the stage key references.</p>",
         "Template$value": "<p>The Apache <a href=\"http://velocity.apache.org/engine/devel/vtl-reference-guide.html\" target=\"_blank\">Velocity Template Language (VTL)</a> template content used for the template resource.</p>",
+        "TestInvokeAuthorizerRequest$restApiId": null,
+        "TestInvokeAuthorizerRequest$authorizerId": null,
+        "TestInvokeAuthorizerRequest$pathWithQueryString": null,
+        "TestInvokeAuthorizerRequest$body": null,
+        "TestInvokeAuthorizerResponse$log": "<p>The Amazon API Gateway execution log for the test authorizer request.</p>",
+        "TestInvokeAuthorizerResponse$principalId": "<p>The principal identity returned by the <a>Authorizer</a></p>",
+        "TestInvokeAuthorizerResponse$policy": "<p>The policy JSON document returned by the <a>Authorizer</a></p>",
         "TestInvokeMethodRequest$restApiId": null,
         "TestInvokeMethodRequest$resourceId": null,
         "TestInvokeMethodRequest$httpMethod": null,
@@ -1114,6 +1144,16 @@
       "refs": {
       }
     },
+    "TestInvokeAuthorizerRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TestInvokeAuthorizerResponse": {
+      "base": "<p>Represents the response of the test invoke request in for a custom <a>Authorizer</a></p>",
+      "refs": {
+      }
+    },
     "TestInvokeMethodRequest": {
       "base": null,
       "refs": {
@@ -1147,6 +1187,12 @@
     "TooManyRequestsException": {
       "base": null,
       "refs": {
+      }
+    },
+    "UnauthorizedCacheControlHeaderStrategy": {
+      "base": null,
+      "refs": {
+        "MethodSetting$unauthorizedCacheControlHeaderStrategy": "<p>Specifies the strategy on how to handle the unauthorized requests for cache invalidation. The PATCH path for this setting is <code>/{method_setting_key}/caching/unauthorizedCacheControlHeaderStrategy</code>, and the available values are <code>FAIL_WITH_403</code>, <code>SUCCEED_WITH_RESPONSE_HEADER</code>, <code>SUCCEED_WITHOUT_RESPONSE_HEADER</code>.</p>"
       }
     },
     "UnauthorizedException": {
