@@ -486,3 +486,60 @@ func TestUploadZeroLenObject(t *testing.T) {
 	assert.NotEqual(t, "", resp.Location)
 	assert.Equal(t, "", resp.UploadID)
 }
+
+func TestUploadInputS3PutObjectInputPairity(t *testing.T) {
+	matchings := compareStructType(reflect.TypeOf(s3.PutObjectInput{}),
+		reflect.TypeOf(s3manager.UploadInput{}))
+	aOnly := []string{}
+	bOnly := []string{}
+
+	for k, c := range matchings {
+		if c == 1 && k != "ContentLength" {
+			aOnly = append(aOnly, k)
+		} else if c == 2 {
+			bOnly = append(bOnly, k)
+		}
+	}
+	assert.Empty(t, aOnly, "s3.PutObjectInput")
+	assert.Empty(t, bOnly, "s3Manager.UploadInput")
+}
+func compareStructType(a, b reflect.Type) map[string]int {
+	if a.Kind() != reflect.Struct || b.Kind() != reflect.Struct {
+		panic(fmt.Sprintf("types must both be structs, got %v and %v", a.Kind(), b.Kind()))
+	}
+
+	aFields := enumFields(a)
+	bFields := enumFields(b)
+
+	matchings := map[string]int{}
+
+	for i := 0; i < len(aFields) || i < len(bFields); i++ {
+		if i < len(aFields) {
+			c := matchings[aFields[i].Name]
+			matchings[aFields[i].Name] = c + 1
+		}
+		if i < len(bFields) {
+			c := matchings[bFields[i].Name]
+			matchings[bFields[i].Name] = c + 2
+		}
+	}
+
+	return matchings
+}
+
+func enumFields(v reflect.Type) []reflect.StructField {
+	fields := []reflect.StructField{}
+
+	for i := 0; i < v.NumField(); i++ {
+		field := v.Field(i)
+		// Ignoreing anon fields
+		if field.PkgPath != "" {
+			// Ignore unexported fields
+			continue
+		}
+
+		fields = append(fields, field)
+	}
+
+	return fields
+}
