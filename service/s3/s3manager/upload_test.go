@@ -105,7 +105,8 @@ func TestUploadOrderMulti(t *testing.T) {
 		Bucket:               aws.String("Bucket"),
 		Key:                  aws.String("Key"),
 		Body:                 bytes.NewReader(buf12MB),
-		ServerSideEncryption: aws.String("AES256"),
+		ServerSideEncryption: aws.String("aws:kms"),
+		SSEKMSKeyId:          aws.String("KmsId"),
 		ContentType:          aws.String("content/type"),
 	})
 
@@ -132,7 +133,8 @@ func TestUploadOrderMulti(t *testing.T) {
 	assert.Regexp(t, `^ETAG\d+$`, val((*args)[4], "MultipartUpload.Parts[2].ETag"))
 
 	// Custom headers
-	assert.Equal(t, "AES256", val((*args)[0], "ServerSideEncryption"))
+	assert.Equal(t, "aws:kms", val((*args)[0], "ServerSideEncryption"))
+	assert.Equal(t, "KmsId", val((*args)[0], "SSEKMSKeyId"))
 	assert.Equal(t, "content/type", val((*args)[0], "ContentType"))
 }
 
@@ -202,7 +204,8 @@ func TestUploadOrderSingle(t *testing.T) {
 		Bucket:               aws.String("Bucket"),
 		Key:                  aws.String("Key"),
 		Body:                 bytes.NewReader(buf2MB),
-		ServerSideEncryption: aws.String("AES256"),
+		ServerSideEncryption: aws.String("aws:kms"),
+		SSEKMSKeyId:          aws.String("KmsId"),
 		ContentType:          aws.String("content/type"),
 	})
 
@@ -211,7 +214,8 @@ func TestUploadOrderSingle(t *testing.T) {
 	assert.NotEqual(t, "", resp.Location)
 	assert.Equal(t, aws.String("VERSION-ID"), resp.VersionID)
 	assert.Equal(t, "", resp.UploadID)
-	assert.Equal(t, "AES256", val((*args)[0], "ServerSideEncryption"))
+	assert.Equal(t, "aws:kms", val((*args)[0], "ServerSideEncryption"))
+	assert.Equal(t, "KmsId", val((*args)[0], "SSEKMSKeyId"))
 	assert.Equal(t, "content/type", val((*args)[0], "ContentType"))
 }
 
@@ -481,4 +485,61 @@ func TestUploadZeroLenObject(t *testing.T) {
 	assert.True(t, requestMade)
 	assert.NotEqual(t, "", resp.Location)
 	assert.Equal(t, "", resp.UploadID)
+}
+
+func TestUploadInputS3PutObjectInputPairity(t *testing.T) {
+	matchings := compareStructType(reflect.TypeOf(s3.PutObjectInput{}),
+		reflect.TypeOf(s3manager.UploadInput{}))
+	aOnly := []string{}
+	bOnly := []string{}
+
+	for k, c := range matchings {
+		if c == 1 && k != "ContentLength" {
+			aOnly = append(aOnly, k)
+		} else if c == 2 {
+			bOnly = append(bOnly, k)
+		}
+	}
+	assert.Empty(t, aOnly, "s3.PutObjectInput")
+	assert.Empty(t, bOnly, "s3Manager.UploadInput")
+}
+func compareStructType(a, b reflect.Type) map[string]int {
+	if a.Kind() != reflect.Struct || b.Kind() != reflect.Struct {
+		panic(fmt.Sprintf("types must both be structs, got %v and %v", a.Kind(), b.Kind()))
+	}
+
+	aFields := enumFields(a)
+	bFields := enumFields(b)
+
+	matchings := map[string]int{}
+
+	for i := 0; i < len(aFields) || i < len(bFields); i++ {
+		if i < len(aFields) {
+			c := matchings[aFields[i].Name]
+			matchings[aFields[i].Name] = c + 1
+		}
+		if i < len(bFields) {
+			c := matchings[bFields[i].Name]
+			matchings[bFields[i].Name] = c + 2
+		}
+	}
+
+	return matchings
+}
+
+func enumFields(v reflect.Type) []reflect.StructField {
+	fields := []reflect.StructField{}
+
+	for i := 0; i < v.NumField(); i++ {
+		field := v.Field(i)
+		// Ignoreing anon fields
+		if field.PkgPath != "" {
+			// Ignore unexported fields
+			continue
+		}
+
+		fields = append(fields, field)
+	}
+
+	return fields
 }
