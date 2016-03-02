@@ -105,7 +105,8 @@ func TestUploadOrderMulti(t *testing.T) {
 		Bucket:               aws.String("Bucket"),
 		Key:                  aws.String("Key"),
 		Body:                 bytes.NewReader(buf12MB),
-		ServerSideEncryption: aws.String("AES256"),
+		ServerSideEncryption: aws.String("aws:kms"),
+		SSEKMSKeyId:          aws.String("KmsId"),
 		ContentType:          aws.String("content/type"),
 	})
 
@@ -132,7 +133,8 @@ func TestUploadOrderMulti(t *testing.T) {
 	assert.Regexp(t, `^ETAG\d+$`, val((*args)[4], "MultipartUpload.Parts[2].ETag"))
 
 	// Custom headers
-	assert.Equal(t, "AES256", val((*args)[0], "ServerSideEncryption"))
+	assert.Equal(t, "aws:kms", val((*args)[0], "ServerSideEncryption"))
+	assert.Equal(t, "KmsId", val((*args)[0], "SSEKMSKeyId"))
 	assert.Equal(t, "content/type", val((*args)[0], "ContentType"))
 }
 
@@ -202,7 +204,8 @@ func TestUploadOrderSingle(t *testing.T) {
 		Bucket:               aws.String("Bucket"),
 		Key:                  aws.String("Key"),
 		Body:                 bytes.NewReader(buf2MB),
-		ServerSideEncryption: aws.String("AES256"),
+		ServerSideEncryption: aws.String("aws:kms"),
+		SSEKMSKeyId:          aws.String("KmsId"),
 		ContentType:          aws.String("content/type"),
 	})
 
@@ -211,7 +214,8 @@ func TestUploadOrderSingle(t *testing.T) {
 	assert.NotEqual(t, "", resp.Location)
 	assert.Equal(t, aws.String("VERSION-ID"), resp.VersionID)
 	assert.Equal(t, "", resp.UploadID)
-	assert.Equal(t, "AES256", val((*args)[0], "ServerSideEncryption"))
+	assert.Equal(t, "aws:kms", val((*args)[0], "ServerSideEncryption"))
+	assert.Equal(t, "KmsId", val((*args)[0], "SSEKMSKeyId"))
 	assert.Equal(t, "content/type", val((*args)[0], "ContentType"))
 }
 
