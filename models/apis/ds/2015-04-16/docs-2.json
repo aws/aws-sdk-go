@@ -7,12 +7,14 @@
     "CreateComputer": "<p>Creates a computer account in the specified directory, and joins the computer to the directory.</p>",
     "CreateDirectory": "<p>Creates a Simple AD directory.</p>",
     "CreateMicrosoftAD": "Creates a Microsoft AD in the AWS cloud.",
-    "CreateSnapshot": "<p>Creates a snapshot of a Simple AD directory.</p> <note> <p>You cannot take snapshots of AD Connector directories.</p> </note>",
+    "CreateSnapshot": "<p>Creates a snapshot of a Simple AD or Microsoft AD directory in the AWS cloud.</p> <note> <p>You cannot take snapshots of AD Connector directories.</p> </note>",
     "CreateTrust": "<p>AWS Directory Service for Microsoft Active Directory allows you to configure trust relationships. For example, you can establish a trust between your Microsoft AD in the AWS cloud, and your existing on-premises Microsoft Active Directory. This would allow you to provide users and groups access to resources in either domain, with a single set of credentials.</p><p>This action initiates the creation of the AWS side of a trust relationship between a Microsoft AD in the AWS cloud and an external domain.</p>",
     "DeleteDirectory": "<p>Deletes an AWS Directory Service directory.</p>",
     "DeleteSnapshot": "<p>Deletes a directory snapshot.</p>",
     "DeleteTrust": "Deletes an existing trust relationship between your Microsoft AD in the AWS cloud and an external domain.",
+    "DeregisterEventTopic": "<p>Removes the specified directory as a publisher to the specified SNS topic.</p>",
     "DescribeDirectories": "<p>Obtains information about the directories that belong to this account.</p> <p>You can retrieve information about specific directories by passing the directory identifiers in the <i>DirectoryIds</i> parameter. Otherwise, all directories that belong to the current account are returned.</p> <p>This operation supports pagination with the use of the <i>NextToken</i> request and response parameters. If more results are available, the <i>DescribeDirectoriesResult.NextToken</i> member contains a token that you pass in the next call to <a>DescribeDirectories</a> to retrieve the next set of items.</p> <p>You can also specify a maximum number of return results with the <i>Limit</i> parameter.</p>",
+    "DescribeEventTopics": "<p>Obtains information about which SNS topics receive status messages from the specified directory.</p> <p>If no input parameters are provided, such as DirectoryId or TopicName, this request describes all of the associations in the account.</p>",
     "DescribeSnapshots": "<p>Obtains information about the directory snapshots that belong to this account.</p> <p>This operation supports pagination with the use of the <i>NextToken</i> request and response parameters. If more results are available, the <i>DescribeSnapshots.NextToken</i> member contains a token that you pass in the next call to <a>DescribeSnapshots</a> to retrieve the next set of items.</p> <p>You can also specify a maximum number of return results with the <i>Limit</i> parameter.</p>",
     "DescribeTrusts": "<p>Obtains information about the trust relationships for this account.</p> <p>If no input parameters are provided, such as DirectoryId or TrustIds, this request describes all the trust relationships belonging to the account.</p>",
     "DisableRadius": "<p>Disables multi-factor authentication (MFA) with the Remote Authentication Dial In User Service (RADIUS) server for an AD Connector directory.</p>",
@@ -21,6 +23,7 @@
     "EnableSso": "<p>Enables single-sign on for a directory.</p>",
     "GetDirectoryLimits": "<p>Obtains directory limit information for the current region.</p>",
     "GetSnapshotLimits": "<p>Obtains the manual snapshot limits for a directory.</p>",
+    "RegisterEventTopic": "<p>Associates a directory with an SNS topic. This establishes the directory as a publisher to the specified SNS topic. You can then receive email or text (SMS) messages when the status of your directory changes. You get notified if your directory goes from an Active status to an Impaired or Inoperable status. You also receive a notification when the directory returns to an Active status. </p>",
     "RestoreFromSnapshot": "<p>Restores a directory using an existing directory snapshot.</p> <p>When you restore a directory from a snapshot, any changes made to the directory after the snapshot date are overwritten.</p> <p>This action returns as soon as the restore operation is initiated. You can monitor the progress of the restore operation by calling the <a>DescribeDirectories</a> operation with the directory identifier. When the <b>DirectoryDescription.Stage</b> value changes to <code>Active</code>, the restore operation is complete.</p>",
     "UpdateRadius": "<p>Updates the Remote Authentication Dial In User Service (RADIUS) server information for an AD Connector directory.</p>",
     "VerifyTrust": "<p>AWS Directory Service for Microsoft Active Directory allows you to configure and verify trust relationships. </p><p>This action verifies a trust relationship between your Microsoft AD in the AWS cloud and an external domain.</p>"
@@ -201,6 +204,7 @@
     "CreatedDateTime": {
       "base": null,
       "refs": {
+        "EventTopic$CreatedDateTime": "<p>The date and time of when you associated your directory with the SNS topic.</p>",
         "Trust$CreatedDateTime": "The date and time that the trust relationship was created."
       }
     },
@@ -234,6 +238,16 @@
       "refs": {
       }
     },
+    "DeregisterEventTopicRequest": {
+      "base": "<p>Removes the specified directory as a publisher to the specified SNS topic.</p>",
+      "refs": {
+      }
+    },
+    "DeregisterEventTopicResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeDirectoriesRequest": {
       "base": "<p>Contains the inputs for the <a>DescribeDirectories</a> operation.</p>",
       "refs": {
@@ -241,6 +255,16 @@
     },
     "DescribeDirectoriesResult": {
       "base": "<p>Contains the results of the <a>DescribeDirectories</a> operation.</p>",
+      "refs": {
+      }
+    },
+    "DescribeEventTopicsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeEventTopicsResult": {
+      "base": null,
       "refs": {
       }
     },
@@ -306,10 +330,12 @@
         "CreateComputerRequest$DirectoryId": "<p>The identifier of the directory in which to create the computer account.</p>",
         "CreateDirectoryResult$DirectoryId": "<p>The identifier of the directory that was created.</p>",
         "CreateMicrosoftADResult$DirectoryId": "The identifier of the directory that was created.",
-        "CreateSnapshotRequest$DirectoryId": "<p>The identifier of the directory to take a snapshot of.</p>",
+        "CreateSnapshotRequest$DirectoryId": "<p>The identifier of the directory of which to take a snapshot.</p>",
         "CreateTrustRequest$DirectoryId": "The Directory ID of the Microsoft AD in the AWS cloud for which to establish the trust relationship.",
         "DeleteDirectoryRequest$DirectoryId": "<p>The identifier of the directory to delete.</p>",
         "DeleteDirectoryResult$DirectoryId": "<p>The directory identifier.</p>",
+        "DeregisterEventTopicRequest$DirectoryId": "<p>The Directory ID to remove as a publisher. This directory will no longer send messages to the specified SNS topic.</p>",
+        "DescribeEventTopicsRequest$DirectoryId": "<p>The Directory ID for which to get the list of associated SNS topics. If this member is null, associations for all Directory IDs are returned.</p>",
         "DescribeSnapshotsRequest$DirectoryId": "<p>The identifier of the directory for which to retrieve snapshot information.</p>",
         "DescribeTrustsRequest$DirectoryId": "The Directory ID of the AWS directory that is a part of the requested trust relationship.",
         "DirectoryDescription$DirectoryId": "<p>The directory identifier.</p>",
@@ -318,7 +344,9 @@
         "DisableSsoRequest$DirectoryId": "<p>The identifier of the directory for which to disable single-sign on.</p>",
         "EnableRadiusRequest$DirectoryId": "<p>The identifier of the directory for which to enable MFA.</p>",
         "EnableSsoRequest$DirectoryId": "<p>The identifier of the directory for which to enable single-sign on.</p>",
+        "EventTopic$DirectoryId": "<p>The Directory ID of an AWS Directory Service directory that will publish status messages to an SNS topic.</p>",
         "GetSnapshotLimitsRequest$DirectoryId": "<p>Contains the identifier of the directory to obtain the limits for.</p>",
+        "RegisterEventTopicRequest$DirectoryId": "<p>The Directory ID that will publish status messages to the SNS topic.</p>",
         "Snapshot$DirectoryId": "<p>The directory identifier.</p>",
         "Trust$DirectoryId": "The Directory ID of the AWS directory involved in the trust relationship.",
         "UpdateRadiusRequest$DirectoryId": "<p>The identifier of the directory for which to update the RADIUS server information.</p>"
@@ -452,6 +480,18 @@
     "EntityDoesNotExistException": {
       "base": "<p>The specified entity could not be found.</p>",
       "refs": {
+      }
+    },
+    "EventTopic": {
+      "base": "<p>Information about SNS topic and AWS Directory Service directory associations.</p>",
+      "refs": {
+        "EventTopics$member": null
+      }
+    },
+    "EventTopics": {
+      "base": null,
+      "refs": {
+        "DescribeEventTopicsResult$EventTopics": "<p>A list of SNS topic names that receive status messages from the specified Directory ID.</p>"
       }
     },
     "ExceptionMessage": {
@@ -628,6 +668,16 @@
         "RadiusSettings$RadiusTimeout": "<p>The amount of time, in seconds, to wait for the RADIUS server to respond.</p>"
       }
     },
+    "RegisterEventTopicRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RegisterEventTopicResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "RemoteDomainName": {
       "base": null,
       "refs": {
@@ -788,6 +838,33 @@
         "DirectoryConnectSettingsDescription$SubnetIds": "<p>A list of subnet identifiers in the VPC that the AD connector is in.</p>",
         "DirectoryVpcSettings$SubnetIds": "<p>The identifiers of the subnets for the directory servers. The two subnets must be in different Availability Zones. AWS Directory Service creates a directory server and a DNS server in each of these subnets.</p>",
         "DirectoryVpcSettingsDescription$SubnetIds": "<p>The identifiers of the subnets for the directory servers.</p>"
+      }
+    },
+    "TopicArn": {
+      "base": null,
+      "refs": {
+        "EventTopic$TopicArn": "<p>The SNS topic ARN (Amazon Resource Name).</p>"
+      }
+    },
+    "TopicName": {
+      "base": null,
+      "refs": {
+        "DeregisterEventTopicRequest$TopicName": "<p>The name of the SNS topic from which to remove the directory as a publisher.</p>",
+        "EventTopic$TopicName": "<p>The name of an AWS SNS topic the receives status messages from the directory.</p>",
+        "RegisterEventTopicRequest$TopicName": "<p>The SNS topic name to which the directory will publish status messages. This SNS topic must be in the same region as the specified Directory ID.</p>",
+        "TopicNames$member": null
+      }
+    },
+    "TopicNames": {
+      "base": null,
+      "refs": {
+        "DescribeEventTopicsRequest$TopicNames": "<p>A list of SNS topic names for which to obtain the information. If this member is null, all associations for the specified Directory ID are returned.</p> <p>An empty list results in an <code>InvalidParameterException</code> being thrown.</p>"
+      }
+    },
+    "TopicStatus": {
+      "base": null,
+      "refs": {
+        "EventTopic$Status": "<p>The topic registration status.</p>"
       }
     },
     "Trust": {
