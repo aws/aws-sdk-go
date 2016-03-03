@@ -7932,7 +7932,10 @@
     },
     "InstanceLifecycleType":{
       "type":"string",
-      "enum":["spot"]
+      "enum":[
+        "spot",
+        "scheduled"
+      ]
     },
     "InstanceList":{
       "type":"list",
@@ -8348,6 +8351,7 @@
         "cc1.4xlarge",
         "cc2.8xlarge",
         "g2.2xlarge",
+        "g2.8xlarge",
         "cg1.4xlarge",
         "r3.large",
         "r3.xlarge",
@@ -9824,6 +9828,10 @@
     },
     "PurchaseRequest":{
       "type":"structure",
+      "required":[
+        "PurchaseToken",
+        "InstanceCount"
+      ],
       "members":{
         "PurchaseToken":{"shape":"String"},
         "InstanceCount":{"shape":"Integer"}
@@ -9834,7 +9842,8 @@
       "member":{
         "shape":"PurchaseRequest",
         "locationName":"PurchaseRequest"
-      }
+      },
+      "min":1
     },
     "PurchaseReservedInstancesOfferingRequest":{
       "type":"structure",
@@ -9869,7 +9878,10 @@
       "required":["PurchaseRequests"],
       "members":{
         "DryRun":{"shape":"Boolean"},
-        "ClientToken":{"shape":"String"},
+        "ClientToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        },
         "PurchaseRequests":{
           "shape":"PurchaseRequestSet",
           "locationName":"PurchaseRequest"
@@ -11249,7 +11261,10 @@
       ],
       "members":{
         "DryRun":{"shape":"Boolean"},
-        "ClientToken":{"shape":"String"},
+        "ClientToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        },
         "InstanceCount":{"shape":"Integer"},
         "ScheduledInstanceId":{"shape":"String"},
         "LaunchSpecification":{"shape":"ScheduledInstancesLaunchSpecification"}
@@ -12549,13 +12564,13 @@
       "type":"structure",
       "required":["Error"],
       "members":{
-        "Error":{
-          "shape":"UnsuccessfulItemError",
-          "locationName":"error"
-        },
         "ResourceId":{
           "shape":"String",
           "locationName":"resourceId"
+        },
+        "Error":{
+          "shape":"UnsuccessfulItemError",
+          "locationName":"error"
         }
       }
     },
@@ -12640,6 +12655,18 @@
         "GroupId":{
           "shape":"String",
           "locationName":"groupId"
+        },
+        "VpcId":{
+          "shape":"String",
+          "locationName":"vpcId"
+        },
+        "VpcPeeringConnectionId":{
+          "shape":"String",
+          "locationName":"vpcPeeringConnectionId"
+        },
+        "PeeringStatus":{
+          "shape":"String",
+          "locationName":"peeringStatus"
         }
       }
     },

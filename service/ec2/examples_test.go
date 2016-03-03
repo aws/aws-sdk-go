@@ -308,9 +308,12 @@ func ExampleEC2_AuthorizeSecurityGroupEgress() {
 				ToPort: aws.Int64(1),
 				UserIdGroupPairs: []*ec2.UserIdGroupPair{
 					{ // Required
-						GroupId:   aws.String("String"),
-						GroupName: aws.String("String"),
-						UserId:    aws.String("String"),
+						GroupId:       aws.String("String"),
+						GroupName:     aws.String("String"),
+						PeeringStatus: aws.String("String"),
+						UserId:        aws.String("String"),
+						VpcId:         aws.String("String"),
+						VpcPeeringConnectionId: aws.String("String"),
 					},
 					// More values...
 				},
@@ -363,9 +366,12 @@ func ExampleEC2_AuthorizeSecurityGroupIngress() {
 				ToPort: aws.Int64(1),
 				UserIdGroupPairs: []*ec2.UserIdGroupPair{
 					{ // Required
-						GroupId:   aws.String("String"),
-						GroupName: aws.String("String"),
-						UserId:    aws.String("String"),
+						GroupId:       aws.String("String"),
+						GroupName:     aws.String("String"),
+						PeeringStatus: aws.String("String"),
+						UserId:        aws.String("String"),
+						VpcId:         aws.String("String"),
+						VpcPeeringConnectionId: aws.String("String"),
 					},
 					// More values...
 				},
@@ -4696,8 +4702,8 @@ func ExampleEC2_PurchaseScheduledInstances() {
 	params := &ec2.PurchaseScheduledInstancesInput{
 		PurchaseRequests: []*ec2.PurchaseRequest{ // Required
 			{ // Required
-				InstanceCount: aws.Int64(1),
-				PurchaseToken: aws.String("String"),
+				InstanceCount: aws.Int64(1),         // Required
+				PurchaseToken: aws.String("String"), // Required
 			},
 			// More values...
 		},
@@ -5312,9 +5318,12 @@ func ExampleEC2_RevokeSecurityGroupEgress() {
 				ToPort: aws.Int64(1),
 				UserIdGroupPairs: []*ec2.UserIdGroupPair{
 					{ // Required
-						GroupId:   aws.String("String"),
-						GroupName: aws.String("String"),
-						UserId:    aws.String("String"),
+						GroupId:       aws.String("String"),
+						GroupName:     aws.String("String"),
+						PeeringStatus: aws.String("String"),
+						UserId:        aws.String("String"),
+						VpcId:         aws.String("String"),
+						VpcPeeringConnectionId: aws.String("String"),
 					},
 					// More values...
 				},
@@ -5367,9 +5376,12 @@ func ExampleEC2_RevokeSecurityGroupIngress() {
 				ToPort: aws.Int64(1),
 				UserIdGroupPairs: []*ec2.UserIdGroupPair{
 					{ // Required
-						GroupId:   aws.String("String"),
-						GroupName: aws.String("String"),
-						UserId:    aws.String("String"),
+						GroupId:       aws.String("String"),
+						GroupName:     aws.String("String"),
+						PeeringStatus: aws.String("String"),
+						UserId:        aws.String("String"),
+						VpcId:         aws.String("String"),
+						VpcPeeringConnectionId: aws.String("String"),
 					},
 					// More values...
 				},

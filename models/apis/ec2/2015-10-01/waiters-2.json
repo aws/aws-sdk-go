@@ -7,8 +7,9 @@
       "operation": "DescribeInstances",
       "acceptors": [
         {
-          "matcher": "status",
-          "expected": 200,
+          "matcher": "path",
+          "expected": true,
+          "argument": "length(Reservations[]) > `0`",
           "state": "success"
         },
         {
@@ -186,6 +187,11 @@
           "matcher": "pathAny",
           "state": "failure",
           "argument": "Reservations[].Instances[].State.Name"
+        },
+        {
+          "matcher": "error",
+          "expected": "InvalidInstanceIDNotFound",
+          "state": "retry"
         }
       ]
     },
@@ -199,6 +205,11 @@
           "matcher": "pathAll",
           "argument": "InstanceStatuses[].InstanceStatus.Status",
           "expected": "ok"
+        },
+        {
+          "matcher": "error",
+          "expected": "InvalidInstanceIDNotFound",
+          "state": "retry"
         }
       ]
     },
@@ -267,6 +278,42 @@
           "expected": "InvalidKeyPairNotFound",
           "matcher": "error",
           "state": "retry"
+        }
+      ]
+    },
+    "NatGatewayAvailable": {
+      "operation": "DescribeNatGateways",
+      "delay": 15,
+      "maxAttempts": 40,
+      "acceptors": [
+        {
+          "state": "success",
+          "matcher": "pathAll",
+          "argument": "NatGateways[].State",
+          "expected": "available"
+        },
+        {
+          "state": "failure",
+          "matcher": "pathAny",
+          "argument": "NatGateways[].State",
+          "expected": "failed"
+        },
+        {
+          "state": "failure",
+          "matcher": "pathAny",
+          "argument": "NatGateways[].State",
+          "expected": "deleting"
+        },
+        {
+          "state": "failure",
+          "matcher": "pathAny",
+          "argument": "NatGateways[].State",
+          "expected": "deleted"
+        },
+        {
+          "state": "retry",
+          "matcher": "error",
+          "expected": "InvalidNatGatewayIDNotFound"
         }
       ]
     },
@@ -487,6 +534,23 @@
           "matcher": "pathAny",
           "state": "failure",
           "argument": "VpnConnections[].State"
+        }
+      ]
+    },
+    "VpcPeeringConnectionExists": {
+      "delay": 15,
+      "operation": "DescribeVpcPeeringConnections",
+      "maxAttempts": 40,
+      "acceptors": [
+        {
+          "matcher": "status",
+          "expected": 200,
+          "state": "success"
+        },
+        {
+          "matcher": "error",
+          "expected": "InvalidVpcPeeringConnectionIDNotFound",
+          "state": "retry"
         }
       ]
     }
