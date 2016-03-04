@@ -42,7 +42,7 @@ const DefaultUploadConcurrency = 5
 //     u := s3manager.NewUploader(opts)
 //     output, err := u.upload(input)
 //     if err != nil {
-//         if multierr, ok := err.(MultiUploadFailure); ok {
+//         if multierr, ok := err.(s3manager.MultiUploadFailure); ok {
 //             // Process error and its associated uploadID
 //             fmt.Println("Error:", multierr.Code(), multierr.Message(), multierr.UploadID())
 //         } else {
