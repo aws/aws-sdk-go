@@ -1,6 +1,7 @@
 package s3_test
 
 import (
+	"bytes"
 	"io/ioutil"
 	"net/http"
 	"strings"
@@ -27,7 +28,7 @@ var testUnmarshalCases = []testErrorCase{
 			return &http.Response{
 				StatusCode:    301,
 				Header:        http.Header{"X-Amz-Request-Id": []string{"abc123"}},
-				Body:          ioutil.NopCloser(nil),
+				Body:          ioutil.NopCloser(bytes.NewReader(nil)),
 				ContentLength: -1,
 			}
 		},
@@ -39,7 +40,7 @@ var testUnmarshalCases = []testErrorCase{
 			return &http.Response{
 				StatusCode:    403,
 				Header:        http.Header{"X-Amz-Request-Id": []string{"abc123"}},
-				Body:          ioutil.NopCloser(nil),
+				Body:          ioutil.NopCloser(bytes.NewReader(nil)),
 				ContentLength: 0,
 			}
 		},
@@ -51,7 +52,7 @@ var testUnmarshalCases = []testErrorCase{
 			return &http.Response{
 				StatusCode:    400,
 				Header:        http.Header{"X-Amz-Request-Id": []string{"abc123"}},
-				Body:          ioutil.NopCloser(nil),
+				Body:          ioutil.NopCloser(bytes.NewReader(nil)),
 				ContentLength: 0,
 			}
 		},
@@ -63,7 +64,7 @@ var testUnmarshalCases = []testErrorCase{
 			return &http.Response{
 				StatusCode:    404,
 				Header:        http.Header{"X-Amz-Request-Id": []string{"abc123"}},
-				Body:          ioutil.NopCloser(nil),
+				Body:          ioutil.NopCloser(bytes.NewReader(nil)),
 				ContentLength: 0,
 			}
 		},
