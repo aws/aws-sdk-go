@@ -208,7 +208,7 @@ type Uploader struct {
 	PartSize int64
 
 	// The number of goroutines to spin up in parallel when sending parts.
-	// If this is set to zero, the DefaultConcurrency value will be used.
+	// If this is set to zero, the DefaultUploadConcurrency value will be used.
 	Concurrency int
 
 	// Setting this value to true will cause the SDK to avoid calling
