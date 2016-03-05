@@ -34,7 +34,7 @@ type Downloader struct {
 	PartSize int64
 
 	// The number of goroutines to spin up in parallel when sending parts.
-	// If this is set to zero, the DefaultConcurrency value will be used.
+	// If this is set to zero, the DefaultDownloadConcurrency value will be used.
 	Concurrency int
 
 	// An S3 client to use when performing downloads.

@@ -42,7 +42,7 @@ const DefaultUploadConcurrency = 5
 //     u := s3manager.NewUploader(opts)
 //     output, err := u.upload(input)
 //     if err != nil {
-//         if multierr, ok := err.(MultiUploadFailure); ok {
+//         if multierr, ok := err.(s3manager.MultiUploadFailure); ok {
 //             // Process error and its associated uploadID
 //             fmt.Println("Error:", multierr.Code(), multierr.Message(), multierr.UploadID())
 //         } else {
@@ -208,7 +208,7 @@ type Uploader struct {
 	PartSize int64
 
 	// The number of goroutines to spin up in parallel when sending parts.
-	// If this is set to zero, the DefaultConcurrency value will be used.
+	// If this is set to zero, the DefaultUploadConcurrency value will be used.
 	Concurrency int
 
 	// Setting this value to true will cause the SDK to avoid calling
