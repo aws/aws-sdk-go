@@ -27,7 +27,15 @@ import (
 // for GameLift. For administrative actions, you can use the Amazon GameLift
 // console.
 //
-// Setting Up Your Game Servers
+// Managing Game and Player Sessions Through GameLift
+//
+// Call these actions from your game clients and/or services to create and
+// manage multiplayer game sessions.
+//
+//   Game sessions  CreateGameSession DescribeGameSessions DescribeGameSessionDetails
+// UpdateGameSession    Player sessions  CreatePlayerSession CreatePlayerSessions
+// DescribePlayerSessions    Other actions:  GetGameSessionLogUrl    Setting
+// Up Game Servers
 //
 // Use these administrative actions to configure GameLift to host your game
 // servers. When configuring GameLift, you'll need to (1) configure a build
@@ -40,14 +48,8 @@ import (
 // DescribeFleetUtilization DescribeEC2InstanceLimits DescribeFleetEvents
 // Update fleet actions:  UpdateFleetAttributes UpdateFleetCapacity UpdateFleetPortSettings
 //   DeleteFleet    Alias actions:  ListAliases CreateAlias DescribeAlias UpdateAlias
-// DeleteAlias ResolveAlias    Managing Game and Player Sessions Through GameLift
-//
-// Call these actions from your game clients and/or services to create and
-// manage multiplayer game sessions.
-//
-//   Game sessions  CreateGameSession DescribeGameSessions UpdateGameSession
-//    Player sessions  CreatePlayerSession CreatePlayerSessions DescribePlayerSessions
-//    Other actions:  GetGameSessionLogUrl
+// DeleteAlias ResolveAlias    Scaling policy actions:  PutScalingPolicy DescribeScalingPolicies
+// DeleteScalingPolicy
 //The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
 type GameLift struct {

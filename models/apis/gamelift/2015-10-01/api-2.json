@@ -319,6 +319,33 @@
         }
       ]
     },
+    "DeleteScalingPolicy":{
+      "name":"DeleteScalingPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteScalingPolicyInput"},
+      "errors":[
+        {
+          "shape":"InternalServiceException",
+          "exception":true,
+          "fault":true
+        },
+        {
+          "shape":"InvalidRequestException",
+          "exception":true
+        },
+        {
+          "shape":"UnauthorizedException",
+          "exception":true
+        },
+        {
+          "shape":"NotFoundException",
+          "exception":true
+        }
+      ]
+    },
     "DescribeAlias":{
       "name":"DescribeAlias",
       "http":{
@@ -539,6 +566,38 @@
         }
       ]
     },
+    "DescribeGameSessionDetails":{
+      "name":"DescribeGameSessionDetails",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeGameSessionDetailsInput"},
+      "output":{"shape":"DescribeGameSessionDetailsOutput"},
+      "errors":[
+        {
+          "shape":"InternalServiceException",
+          "exception":true,
+          "fault":true
+        },
+        {
+          "shape":"NotFoundException",
+          "exception":true
+        },
+        {
+          "shape":"InvalidRequestException",
+          "exception":true
+        },
+        {
+          "shape":"UnauthorizedException",
+          "exception":true
+        },
+        {
+          "shape":"TerminalRoutingStrategyException",
+          "exception":true
+        }
+      ]
+    },
     "DescribeGameSessions":{
       "name":"DescribeGameSessions",
       "http":{
@@ -595,6 +654,34 @@
         },
         {
           "shape":"UnauthorizedException",
+          "exception":true
+        }
+      ]
+    },
+    "DescribeScalingPolicies":{
+      "name":"DescribeScalingPolicies",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeScalingPoliciesInput"},
+      "output":{"shape":"DescribeScalingPoliciesOutput"},
+      "errors":[
+        {
+          "shape":"InternalServiceException",
+          "exception":true,
+          "fault":true
+        },
+        {
+          "shape":"InvalidRequestException",
+          "exception":true
+        },
+        {
+          "shape":"UnauthorizedException",
+          "exception":true
+        },
+        {
+          "shape":"NotFoundException",
           "exception":true
         }
       ]
@@ -699,6 +786,34 @@
         },
         {
           "shape":"UnauthorizedException",
+          "exception":true
+        }
+      ]
+    },
+    "PutScalingPolicy":{
+      "name":"PutScalingPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutScalingPolicyInput"},
+      "output":{"shape":"PutScalingPolicyOutput"},
+      "errors":[
+        {
+          "shape":"InternalServiceException",
+          "exception":true,
+          "fault":true
+        },
+        {
+          "shape":"InvalidRequestException",
+          "exception":true
+        },
+        {
+          "shape":"UnauthorizedException",
+          "exception":true
+        },
+        {
+          "shape":"NotFoundException",
           "exception":true
         }
       ]
@@ -1032,6 +1147,15 @@
         "FAILED"
       ]
     },
+    "ComparisonOperatorType":{
+      "type":"string",
+      "enum":[
+        "GreaterThanOrEqualToThreshold",
+        "GreaterThanThreshold",
+        "LessThanThreshold",
+        "LessThanOrEqualToThreshold"
+      ]
+    },
     "ConflictException":{
       "type":"structure",
       "members":{
@@ -1041,7 +1165,10 @@
     },
     "CreateAliasInput":{
       "type":"structure",
-      "required":["Name"],
+      "required":[
+        "Name",
+        "RoutingStrategy"
+      ],
       "members":{
         "Name":{"shape":"NonZeroAndMaxString"},
         "Description":{"shape":"NonZeroAndMaxString"},
@@ -1058,7 +1185,8 @@
       "type":"structure",
       "members":{
         "Name":{"shape":"NonZeroAndMaxString"},
-        "Version":{"shape":"NonZeroAndMaxString"}
+        "Version":{"shape":"NonZeroAndMaxString"},
+        "StorageLocation":{"shape":"S3Location"}
       }
     },
     "CreateBuildOutput":{
@@ -1085,7 +1213,8 @@
         "ServerLaunchParameters":{"shape":"NonZeroAndMaxString"},
         "LogPaths":{"shape":"StringList"},
         "EC2InstanceType":{"shape":"EC2InstanceType"},
-        "EC2InboundPermissions":{"shape":"IpPermissionsList"}
+        "EC2InboundPermissions":{"shape":"IpPermissionsList"},
+        "NewGameSessionProtectionPolicy":{"shape":"ProtectionPolicy"}
       }
     },
     "CreateFleetOutput":{
@@ -1163,6 +1292,17 @@
       "type":"structure",
       "required":["FleetId"],
       "members":{
+        "FleetId":{"shape":"FleetId"}
+      }
+    },
+    "DeleteScalingPolicyInput":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "FleetId"
+      ],
+      "members":{
+        "Name":{"shape":"NonZeroAndMaxString"},
         "FleetId":{"shape":"FleetId"}
       }
     },
@@ -1280,6 +1420,24 @@
         "NextToken":{"shape":"NonZeroAndMaxString"}
       }
     },
+    "DescribeGameSessionDetailsInput":{
+      "type":"structure",
+      "members":{
+        "FleetId":{"shape":"FleetId"},
+        "GameSessionId":{"shape":"GameSessionId"},
+        "AliasId":{"shape":"AliasId"},
+        "StatusFilter":{"shape":"NonZeroAndMaxString"},
+        "Limit":{"shape":"PositiveInteger"},
+        "NextToken":{"shape":"NonZeroAndMaxString"}
+      }
+    },
+    "DescribeGameSessionDetailsOutput":{
+      "type":"structure",
+      "members":{
+        "GameSessionDetails":{"shape":"GameSessionDetailList"},
+        "NextToken":{"shape":"NonZeroAndMaxString"}
+      }
+    },
     "DescribeGameSessionsInput":{
       "type":"structure",
       "members":{
@@ -1316,12 +1474,33 @@
         "NextToken":{"shape":"NonZeroAndMaxString"}
       }
     },
+    "DescribeScalingPoliciesInput":{
+      "type":"structure",
+      "required":["FleetId"],
+      "members":{
+        "FleetId":{"shape":"FleetId"},
+        "StatusFilter":{"shape":"ScalingStatusType"},
+        "Limit":{"shape":"PositiveInteger"},
+        "NextToken":{"shape":"NonZeroAndMaxString"}
+      }
+    },
+    "DescribeScalingPoliciesOutput":{
+      "type":"structure",
+      "members":{
+        "ScalingPolicies":{"shape":"ScalingPolicyList"},
+        "NextToken":{"shape":"NonZeroAndMaxString"}
+      }
+    },
+    "Double":{"type":"double"},
     "EC2InstanceCounts":{
       "type":"structure",
       "members":{
         "DESIRED":{"shape":"WholeNumber"},
+        "MINIMUM":{"shape":"WholeNumber"},
+        "MAXIMUM":{"shape":"WholeNumber"},
         "PENDING":{"shape":"WholeNumber"},
         "ACTIVE":{"shape":"WholeNumber"},
+        "IDLE":{"shape":"WholeNumber"},
         "TERMINATING":{"shape":"WholeNumber"}
       }
     },
@@ -1399,7 +1578,8 @@
         "FLEET_VALIDATION_EXECUTABLE_RUNTIME_FAILURE",
         "FLEET_VALIDATION_TIMED_OUT",
         "FLEET_ACTIVATION_FAILED",
-        "FLEET_ACTIVATION_FAILED_NO_INSTANCES"
+        "FLEET_ACTIVATION_FAILED_NO_INSTANCES",
+        "FLEET_NEW_GAME_SESSION_PROTECTION_POLICY_UPDATED"
       ]
     },
     "EventList":{
@@ -1418,7 +1598,8 @@
         "BuildId":{"shape":"BuildId"},
         "ServerLaunchPath":{"shape":"NonZeroAndMaxString"},
         "ServerLaunchParameters":{"shape":"NonZeroAndMaxString"},
-        "LogPaths":{"shape":"StringList"}
+        "LogPaths":{"shape":"StringList"},
+        "NewGameSessionProtectionPolicy":{"shape":"ProtectionPolicy"}
       }
     },
     "FleetAttributesList":{
@@ -1521,6 +1702,17 @@
         "PlayerSessionCreationPolicy":{"shape":"PlayerSessionCreationPolicy"}
       }
     },
+    "GameSessionDetail":{
+      "type":"structure",
+      "members":{
+        "GameSession":{"shape":"GameSession"},
+        "ProtectionPolicy":{"shape":"ProtectionPolicy"}
+      }
+    },
+    "GameSessionDetailList":{
+      "type":"list",
+      "member":{"shape":"GameSessionDetail"}
+    },
     "GameSessionFullException":{
       "type":"structure",
       "members":{
@@ -1558,6 +1750,7 @@
         "PreSignedUrl":{"shape":"NonZeroAndMaxString"}
       }
     },
+    "Integer":{"type":"integer"},
     "InternalServiceException":{
       "type":"structure",
       "members":{
@@ -1668,6 +1861,17 @@
         "NextToken":{"shape":"NonZeroAndMaxString"}
       }
     },
+    "MetricName":{
+      "type":"string",
+      "enum":[
+        "ActivatingGameSessions",
+        "ActiveGameSessions",
+        "ActiveInstances",
+        "AvailablePlayerSessions",
+        "CurrentPlayerSessions",
+        "IdleInstances"
+      ]
+    },
     "NonBlankString":{
       "type":"string",
       "pattern":"[^\\s]+"
@@ -1744,6 +1948,42 @@
       "type":"long",
       "min":1
     },
+    "ProtectionPolicy":{
+      "type":"string",
+      "enum":[
+        "NoProtection",
+        "FullProtection"
+      ]
+    },
+    "PutScalingPolicyInput":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "FleetId",
+        "ScalingAdjustment",
+        "ScalingAdjustmentType",
+        "Threshold",
+        "ComparisonOperator",
+        "EvaluationPeriods",
+        "MetricName"
+      ],
+      "members":{
+        "Name":{"shape":"NonZeroAndMaxString"},
+        "FleetId":{"shape":"FleetId"},
+        "ScalingAdjustment":{"shape":"Integer"},
+        "ScalingAdjustmentType":{"shape":"ScalingAdjustmentType"},
+        "Threshold":{"shape":"Double"},
+        "ComparisonOperator":{"shape":"ComparisonOperatorType"},
+        "EvaluationPeriods":{"shape":"PositiveInteger"},
+        "MetricName":{"shape":"MetricName"}
+      }
+    },
+    "PutScalingPolicyOutput":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"NonZeroAndMaxString"}
+      }
+    },
     "RequestUploadCredentialsInput":{
       "type":"structure",
       "required":["BuildId"],
@@ -1790,8 +2030,47 @@
       "type":"structure",
       "members":{
         "Bucket":{"shape":"NonEmptyString"},
-        "Key":{"shape":"NonEmptyString"}
+        "Key":{"shape":"NonEmptyString"},
+        "RoleArn":{"shape":"NonEmptyString"}
       }
+    },
+    "ScalingAdjustmentType":{
+      "type":"string",
+      "enum":[
+        "ChangeInCapacity",
+        "ExactCapacity",
+        "PercentChangeInCapacity"
+      ]
+    },
+    "ScalingPolicy":{
+      "type":"structure",
+      "members":{
+        "FleetId":{"shape":"FleetId"},
+        "Name":{"shape":"NonZeroAndMaxString"},
+        "Status":{"shape":"ScalingStatusType"},
+        "ScalingAdjustment":{"shape":"Integer"},
+        "ScalingAdjustmentType":{"shape":"ScalingAdjustmentType"},
+        "ComparisonOperator":{"shape":"ComparisonOperatorType"},
+        "Threshold":{"shape":"Double"},
+        "EvaluationPeriods":{"shape":"PositiveInteger"},
+        "MetricName":{"shape":"MetricName"}
+      }
+    },
+    "ScalingPolicyList":{
+      "type":"list",
+      "member":{"shape":"ScalingPolicy"}
+    },
+    "ScalingStatusType":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "UPDATE_REQUESTED",
+        "UPDATING",
+        "DELETE_REQUESTED",
+        "DELETING",
+        "DELETED",
+        "ERROR"
+      ]
     },
     "StringList":{
       "type":"list",
@@ -1849,7 +2128,8 @@
       "members":{
         "FleetId":{"shape":"FleetId"},
         "Name":{"shape":"NonZeroAndMaxString"},
-        "Description":{"shape":"NonZeroAndMaxString"}
+        "Description":{"shape":"NonZeroAndMaxString"},
+        "NewGameSessionProtectionPolicy":{"shape":"ProtectionPolicy"}
       }
     },
     "UpdateFleetAttributesOutput":{
@@ -1860,13 +2140,12 @@
     },
     "UpdateFleetCapacityInput":{
       "type":"structure",
-      "required":[
-        "FleetId",
-        "DesiredInstances"
-      ],
+      "required":["FleetId"],
       "members":{
         "FleetId":{"shape":"FleetId"},
-        "DesiredInstances":{"shape":"WholeNumber"}
+        "DesiredInstances":{"shape":"WholeNumber"},
+        "MinSize":{"shape":"WholeNumber"},
+        "MaxSize":{"shape":"WholeNumber"}
       }
     },
     "UpdateFleetCapacityOutput":{
@@ -1897,7 +2176,8 @@
         "GameSessionId":{"shape":"GameSessionId"},
         "MaximumPlayerSessionCount":{"shape":"WholeNumber"},
         "Name":{"shape":"NonZeroAndMaxString"},
-        "PlayerSessionCreationPolicy":{"shape":"PlayerSessionCreationPolicy"}
+        "PlayerSessionCreationPolicy":{"shape":"PlayerSessionCreationPolicy"},
+        "ProtectionPolicy":{"shape":"ProtectionPolicy"}
       }
     },
     "UpdateGameSessionOutput":{

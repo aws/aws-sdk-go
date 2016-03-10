@@ -19,13 +19,13 @@ func ExampleGameLift_CreateAlias() {
 	svc := gamelift.New(session.New())
 
 	params := &gamelift.CreateAliasInput{
-		Name:        aws.String("NonZeroAndMaxString"), // Required
-		Description: aws.String("NonZeroAndMaxString"),
-		RoutingStrategy: &gamelift.RoutingStrategy{
+		Name: aws.String("NonZeroAndMaxString"), // Required
+		RoutingStrategy: &gamelift.RoutingStrategy{ // Required
 			FleetId: aws.String("FleetId"),
 			Message: aws.String("FreeText"),
 			Type:    aws.String("RoutingStrategyType"),
 		},
+		Description: aws.String("NonZeroAndMaxString"),
 	}
 	resp, err := svc.CreateAlias(params)
 
@@ -44,7 +44,12 @@ func ExampleGameLift_CreateBuild() {
 	svc := gamelift.New(session.New())
 
 	params := &gamelift.CreateBuildInput{
-		Name:    aws.String("NonZeroAndMaxString"),
+		Name: aws.String("NonZeroAndMaxString"),
+		StorageLocation: &gamelift.S3Location{
+			Bucket:  aws.String("NonEmptyString"),
+			Key:     aws.String("NonEmptyString"),
+			RoleArn: aws.String("NonEmptyString"),
+		},
 		Version: aws.String("NonZeroAndMaxString"),
 	}
 	resp, err := svc.CreateBuild(params)
@@ -82,7 +87,8 @@ func ExampleGameLift_CreateFleet() {
 			aws.String("NonZeroAndMaxString"), // Required
 			// More values...
 		},
-		ServerLaunchParameters: aws.String("NonZeroAndMaxString"),
+		NewGameSessionProtectionPolicy: aws.String("ProtectionPolicy"),
+		ServerLaunchParameters:         aws.String("NonZeroAndMaxString"),
 	}
 	resp, err := svc.CreateFleet(params)
 
@@ -214,6 +220,26 @@ func ExampleGameLift_DeleteFleet() {
 		FleetId: aws.String("FleetId"), // Required
 	}
 	resp, err := svc.DeleteFleet(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleGameLift_DeleteScalingPolicy() {
+	svc := gamelift.New(session.New())
+
+	params := &gamelift.DeleteScalingPolicyInput{
+		FleetId: aws.String("FleetId"),             // Required
+		Name:    aws.String("NonZeroAndMaxString"), // Required
+	}
+	resp, err := svc.DeleteScalingPolicy(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -397,6 +423,30 @@ func ExampleGameLift_DescribeFleetUtilization() {
 	fmt.Println(resp)
 }
 
+func ExampleGameLift_DescribeGameSessionDetails() {
+	svc := gamelift.New(session.New())
+
+	params := &gamelift.DescribeGameSessionDetailsInput{
+		AliasId:       aws.String("AliasId"),
+		FleetId:       aws.String("FleetId"),
+		GameSessionId: aws.String("GameSessionId"),
+		Limit:         aws.Int64(1),
+		NextToken:     aws.String("NonZeroAndMaxString"),
+		StatusFilter:  aws.String("NonZeroAndMaxString"),
+	}
+	resp, err := svc.DescribeGameSessionDetails(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleGameLift_DescribeGameSessions() {
 	svc := gamelift.New(session.New())
 
@@ -433,6 +483,28 @@ func ExampleGameLift_DescribePlayerSessions() {
 		PlayerSessionStatusFilter: aws.String("NonZeroAndMaxString"),
 	}
 	resp, err := svc.DescribePlayerSessions(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleGameLift_DescribeScalingPolicies() {
+	svc := gamelift.New(session.New())
+
+	params := &gamelift.DescribeScalingPoliciesInput{
+		FleetId:      aws.String("FleetId"), // Required
+		Limit:        aws.Int64(1),
+		NextToken:    aws.String("NonZeroAndMaxString"),
+		StatusFilter: aws.String("ScalingStatusType"),
+	}
+	resp, err := svc.DescribeScalingPolicies(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -516,6 +588,32 @@ func ExampleGameLift_ListFleets() {
 		NextToken: aws.String("NonZeroAndMaxString"),
 	}
 	resp, err := svc.ListFleets(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleGameLift_PutScalingPolicy() {
+	svc := gamelift.New(session.New())
+
+	params := &gamelift.PutScalingPolicyInput{
+		ComparisonOperator:    aws.String("ComparisonOperatorType"), // Required
+		EvaluationPeriods:     aws.Int64(1),                         // Required
+		FleetId:               aws.String("FleetId"),                // Required
+		MetricName:            aws.String("MetricName"),             // Required
+		Name:                  aws.String("NonZeroAndMaxString"),    // Required
+		ScalingAdjustment:     aws.Int64(1),                         // Required
+		ScalingAdjustmentType: aws.String("ScalingAdjustmentType"),  // Required
+		Threshold:             aws.Float64(1.0),                     // Required
+	}
+	resp, err := svc.PutScalingPolicy(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -620,6 +718,7 @@ func ExampleGameLift_UpdateFleetAttributes() {
 		FleetId:     aws.String("FleetId"), // Required
 		Description: aws.String("NonZeroAndMaxString"),
 		Name:        aws.String("NonZeroAndMaxString"),
+		NewGameSessionProtectionPolicy: aws.String("ProtectionPolicy"),
 	}
 	resp, err := svc.UpdateFleetAttributes(params)
 
@@ -638,8 +737,10 @@ func ExampleGameLift_UpdateFleetCapacity() {
 	svc := gamelift.New(session.New())
 
 	params := &gamelift.UpdateFleetCapacityInput{
-		DesiredInstances: aws.Int64(1),          // Required
 		FleetId:          aws.String("FleetId"), // Required
+		DesiredInstances: aws.Int64(1),
+		MaxSize:          aws.Int64(1),
+		MinSize:          aws.Int64(1),
 	}
 	resp, err := svc.UpdateFleetCapacity(params)
 
@@ -699,6 +800,7 @@ func ExampleGameLift_UpdateGameSession() {
 		MaximumPlayerSessionCount: aws.Int64(1),
 		Name: aws.String("NonZeroAndMaxString"),
 		PlayerSessionCreationPolicy: aws.String("PlayerSessionCreationPolicy"),
+		ProtectionPolicy:            aws.String("ProtectionPolicy"),
 	}
 	resp, err := svc.UpdateGameSession(params)
 

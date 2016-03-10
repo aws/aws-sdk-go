@@ -127,10 +127,11 @@ func (c *GameLift) CreateFleetRequest(input *CreateFleetInput) (req *request.Req
 // a READY state before they can be used to build fleets. When configuring the
 // new fleet, you can optionally (1) provide a set of launch parameters to be
 // passed to a game server when activated; (2) limit incoming traffic to a specified
-// range of IP addresses and port numbers; and (3) configure Amazon GameLift
-// to store game session logs by specifying the path to the logs stored in your
-// game server files. If the call is successful, Amazon GameLift performs the
-// following tasks:
+// range of IP addresses and port numbers; (3) set game session protection for
+// all instances in the fleet, and (4) configure Amazon GameLift to store game
+// session logs by specifying the path to the logs stored in your game server
+// files. If the call is successful, Amazon GameLift performs the following
+// tasks:
 //
 //  Creates a fleet record and sets the state to NEW. Sets the fleet's capacity
 // to 1 "desired" and 1 "active" EC2 instance count. Creates an EC2 instance
@@ -355,6 +356,37 @@ func (c *GameLift) DeleteFleet(input *DeleteFleetInput) (*DeleteFleetOutput, err
 	return out, err
 }
 
+const opDeleteScalingPolicy = "DeleteScalingPolicy"
+
+// DeleteScalingPolicyRequest generates a request for the DeleteScalingPolicy operation.
+func (c *GameLift) DeleteScalingPolicyRequest(input *DeleteScalingPolicyInput) (req *request.Request, output *DeleteScalingPolicyOutput) {
+	op := &request.Operation{
+		Name:       opDeleteScalingPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteScalingPolicyInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(jsonrpc.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	output = &DeleteScalingPolicyOutput{}
+	req.Data = output
+	return
+}
+
+// Deletes a fleet scaling policy. This action means that the policy is no longer
+// in force and removes all record of it. To delete a scaling policy, specify
+// both the scaling policy name and the fleet ID it is associated with.
+func (c *GameLift) DeleteScalingPolicy(input *DeleteScalingPolicyInput) (*DeleteScalingPolicyOutput, error) {
+	req, out := c.DeleteScalingPolicyRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opDescribeAlias = "DescribeAlias"
 
 // DescribeAliasRequest generates a request for the DescribeAlias operation.
@@ -431,9 +463,12 @@ func (c *GameLift) DescribeEC2InstanceLimitsRequest(input *DescribeEC2InstanceLi
 	return
 }
 
-// Retrieves the maximum number of instances allowed, per AWS account, for each
-// specified EC2 instance type. The current usage level for the AWS account
-// is also retrieved.
+// Retrieves the following information for the specified EC2 instance type:
+//
+//  maximum number of instances allowed per AWS account (service limit) current
+// usage level for the AWS account   Service limits vary depending on region.
+// Available regions for GameLift can be found in the AWS Management Console
+// for GameLift (see the drop-down list in the upper right corner).
 func (c *GameLift) DescribeEC2InstanceLimits(input *DescribeEC2InstanceLimitsInput) (*DescribeEC2InstanceLimitsOutput, error) {
 	req, out := c.DescribeEC2InstanceLimitsRequest(input)
 	err := req.Send()
@@ -612,6 +647,43 @@ func (c *GameLift) DescribeFleetUtilization(input *DescribeFleetUtilizationInput
 	return out, err
 }
 
+const opDescribeGameSessionDetails = "DescribeGameSessionDetails"
+
+// DescribeGameSessionDetailsRequest generates a request for the DescribeGameSessionDetails operation.
+func (c *GameLift) DescribeGameSessionDetailsRequest(input *DescribeGameSessionDetailsInput) (req *request.Request, output *DescribeGameSessionDetailsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeGameSessionDetails,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeGameSessionDetailsInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeGameSessionDetailsOutput{}
+	req.Data = output
+	return
+}
+
+// Retrieves properties, including the protection policy in force, for one or
+// more game sessions. This action can be used in several ways: (1) provide
+// a GameSessionId to request details for a specific game session; (2) provide
+// either a FleetId or an AliasId to request properties for all game sessions
+// running on a fleet.
+//
+// To get game session record(s), specify just one of the following: game session
+// ID, fleet ID, or alias ID. You can filter this request by game session status.
+// Use the pagination parameters to retrieve results as a set of sequential
+// pages. If successful, a GameSessionDetail object is returned for each session
+// matching the request.
+func (c *GameLift) DescribeGameSessionDetails(input *DescribeGameSessionDetailsInput) (*DescribeGameSessionDetailsOutput, error) {
+	req, out := c.DescribeGameSessionDetailsRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opDescribeGameSessions = "DescribeGameSessions"
 
 // DescribeGameSessionsRequest generates a request for the DescribeGameSessions operation.
@@ -633,11 +705,11 @@ func (c *GameLift) DescribeGameSessionsRequest(input *DescribeGameSessionsInput)
 }
 
 // Retrieves properties for one or more game sessions. This action can be used
-// in several ways: (1) provide a GameSessionId parameter to request properties
-// for a specific game session; (2) provide a FleetId or AliasId parameter to
-// request properties for all game sessions running on a fleet.
+// in several ways: (1) provide a GameSessionId to request properties for a
+// specific game session; (2) provide a FleetId or an AliasId to request properties
+// for all game sessions running on a fleet.
 //
-// To get game session record(s), specify only one of the following: game session
+// To get game session record(s), specify just one of the following: game session
 // ID, fleet ID, or alias ID. You can filter this request by game session status.
 // Use the pagination parameters to retrieve results as a set of sequential
 // pages. If successful, a GameSession object is returned for each session matching
@@ -682,6 +754,38 @@ func (c *GameLift) DescribePlayerSessionsRequest(input *DescribePlayerSessionsIn
 // for each session matching the request.
 func (c *GameLift) DescribePlayerSessions(input *DescribePlayerSessionsInput) (*DescribePlayerSessionsOutput, error) {
 	req, out := c.DescribePlayerSessionsRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDescribeScalingPolicies = "DescribeScalingPolicies"
+
+// DescribeScalingPoliciesRequest generates a request for the DescribeScalingPolicies operation.
+func (c *GameLift) DescribeScalingPoliciesRequest(input *DescribeScalingPoliciesInput) (req *request.Request, output *DescribeScalingPoliciesOutput) {
+	op := &request.Operation{
+		Name:       opDescribeScalingPolicies,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeScalingPoliciesInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeScalingPoliciesOutput{}
+	req.Data = output
+	return
+}
+
+// Retrieves all scaling policies applied to a fleet.
+//
+// To get a fleet's scaling policies, specify the fleet ID. You can filter
+// this request by policy status, such as to retrieve only active scaling policies.
+// Use the pagination parameters to retrieve results as a set of sequential
+// pages. If successful, set of ScalingPolicy objects is returned for the fleet.
+func (c *GameLift) DescribeScalingPolicies(input *DescribeScalingPoliciesInput) (*DescribeScalingPoliciesOutput, error) {
+	req, out := c.DescribeScalingPoliciesRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -808,6 +912,54 @@ func (c *GameLift) ListFleetsRequest(input *ListFleetsInput) (req *request.Reque
 // Fleet records are not listed in any particular order.
 func (c *GameLift) ListFleets(input *ListFleetsInput) (*ListFleetsOutput, error) {
 	req, out := c.ListFleetsRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opPutScalingPolicy = "PutScalingPolicy"
+
+// PutScalingPolicyRequest generates a request for the PutScalingPolicy operation.
+func (c *GameLift) PutScalingPolicyRequest(input *PutScalingPolicyInput) (req *request.Request, output *PutScalingPolicyOutput) {
+	op := &request.Operation{
+		Name:       opPutScalingPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutScalingPolicyInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &PutScalingPolicyOutput{}
+	req.Data = output
+	return
+}
+
+// Creates or updates a scaling policy for a fleet. An active scaling policy
+// prompts GameLift to track a certain metric for a fleet and automatically
+// change the fleet's capacity in specific circumstances. Each scaling policy
+// contains one rule statement. Fleets can have multiple scaling policies in
+// force simultaneously.
+//
+// A scaling policy rule statement has the following structure:
+//
+// If [MetricName] is [ComparisonOperator] [Threshold] for [EvaluationPeriods]
+// minutes, then [ScalingAdjustmentType] to/by [ScalingAdjustment].
+//
+// For example, this policy: "If the number of idle instances exceeds 20 for
+// more than 15 minutes, then reduce the fleet capacity by 10 instances" could
+// be implemented as the following rule statement:
+//
+// If [IdleInstances] is [GreaterThanOrEqualToThreshold] [20] for [15] minutes,
+// then [ChangeInCapacity] by [-10].
+//
+// To create or update a scaling policy, specify a unique combination of name
+// and fleet ID, and set the rule values. All parameters for this action are
+// required. If successful, the policy name is returned. Scaling policies cannot
+// be suspended or made inactive. To stop enforcing a scaling policy, call DeleteScalingPolicy.
+func (c *GameLift) PutScalingPolicy(input *PutScalingPolicyInput) (*PutScalingPolicyOutput, error) {
+	req, out := c.PutScalingPolicyRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -992,6 +1144,11 @@ func (c *GameLift) UpdateFleetCapacityRequest(input *UpdateFleetCapacityInput) (
 // action, you may want to call DescribeEC2InstanceLimits to get the maximum
 // capacity based on the fleet's EC2 instance type.
 //
+// If you're using auto-scaling (see PutScalingPolicy), you may want to specify
+// a minimum and/or maximum capacity. If you don't provide these boundaries,
+// auto-scaling can set capacity anywhere between zero and the service limits
+// (http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_gamelift).
+//
 // To update fleet capacity, specify the fleet ID and the desired number of
 // instances. If successful, Amazon GameLift starts or terminates instances
 // so that the fleet's active instance count matches the desired instance count.
@@ -1057,10 +1214,12 @@ func (c *GameLift) UpdateGameSessionRequest(input *UpdateGameSessionInput) (req 
 }
 
 // Updates game session properties. This includes the session name, maximum
-// player count and the player session creation policy, which either allows
-// or denies new players from joining the session. To update a game session,
-// specify the game session ID and the values you want to change. If successful,
-// an updated GameSession object is returned.
+// player count, protection policy, which controls whether or not an active
+// game session can be terminated during a scale-down event, and the player
+// session creation policy, which controls whether or not new players can join
+// the session. To update a game session, specify the game session ID and the
+// values you want to change. If successful, an updated GameSession object is
+// returned.
 func (c *GameLift) UpdateGameSession(input *UpdateGameSessionInput) (*UpdateGameSessionOutput, error) {
 	req, out := c.UpdateGameSessionRequest(input)
 	err := req.Send()
@@ -1184,7 +1343,7 @@ type CreateAliasInput struct {
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// Object specifying the fleet and routing type to use for the alias.
-	RoutingStrategy *RoutingStrategy `type:"structure"`
+	RoutingStrategy *RoutingStrategy `type:"structure" required:"true"`
 }
 
 // String returns the string representation
@@ -1222,6 +1381,12 @@ type CreateBuildInput struct {
 	// Descriptive label associated with this build. Build names do not need to
 	// be unique. A build name can be changed later using UpdateBuild.
 	Name *string `min:"1" type:"string"`
+
+	// Location in Amazon Simple Storage Service (Amazon S3) where a build's files
+	// are stored. This location is assigned in response to a CreateBuild call,
+	// and is always in the same region as the service used to create the build.
+	// For more details see the Amazon S3 documentation (http://aws.amazon.com/documentation/s3/).
+	StorageLocation *S3Location `type:"structure"`
 
 	// Version associated with this build. Version strings do not need to be unique
 	// to a build. A build version can be changed later using UpdateBuild.
@@ -1295,6 +1460,14 @@ type CreateFleetInput struct {
 	// Descriptive label associated with this fleet. Fleet names do not need to
 	// be unique.
 	Name *string `min:"1" type:"string" required:"true"`
+
+	// Game session protection policy to apply to all instances created in this
+	// fleet. If this parameter is not set, new instances in this fleet will default
+	// to no protection. Protection can be set for individual instances using UpdateGameSession.
+	// NoProtection: The game session can be terminated during a scale-down event.
+	// FullProtection: If the game session is in an ACTIVE status, it cannot be
+	// terminated during a scale-down event.
+	NewGameSessionProtectionPolicy *string `type:"string" enum:"ProtectionPolicy"`
 
 	// Parameters required to launch your game server. These parameters should be
 	// expressed as a string of command-line parameters. Example: "+sv_port 33435
@@ -1561,6 +1734,42 @@ func (s DeleteFleetOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteFleetOutput) GoString() string {
+	return s.String()
+}
+
+// Represents the input for a request action.
+type DeleteScalingPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// Unique identifier for a fleet.
+	FleetId *string `type:"string" required:"true"`
+
+	// Descriptive label associated with this scaling policy. Policy names do not
+	// need to be unique.
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteScalingPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteScalingPolicyInput) GoString() string {
+	return s.String()
+}
+
+type DeleteScalingPolicyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteScalingPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteScalingPolicyOutput) GoString() string {
 	return s.String()
 }
 
@@ -1947,6 +2156,72 @@ func (s DescribeFleetUtilizationOutput) GoString() string {
 }
 
 // Represents the input for a request action.
+type DescribeGameSessionDetailsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Unique identifier for a fleet alias. Specify an alias to retrieve information
+	// on all game sessions active on the fleet.
+	AliasId *string `type:"string"`
+
+	// Unique identifier for a fleet. Specify a fleet to retrieve information on
+	// all game sessions active on the fleet.
+	FleetId *string `type:"string"`
+
+	// Unique identifier for a game session. Specify the game session to retrieve
+	// information on.
+	GameSessionId *string `type:"string"`
+
+	// Maximum number of results to return. You can use this parameter with NextToken
+	// to get results as a set of sequential pages.
+	Limit *int64 `min:"1" type:"integer"`
+
+	// Token indicating the start of the next sequential page of results. Use the
+	// token that is returned with a previous call to this action. To specify the
+	// start of the result set, do not specify a value.
+	NextToken *string `min:"1" type:"string"`
+
+	// Game session status to filter results on. Possible game session states include
+	// ACTIVE, TERMINATED, ACTIVATING and TERMINATING (the last two are transitory).
+	StatusFilter *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeGameSessionDetailsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeGameSessionDetailsInput) GoString() string {
+	return s.String()
+}
+
+// Represents the returned data in response to a request action.
+type DescribeGameSessionDetailsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Collection of objects containing game session properties and the protection
+	// policy currently in force for each session matching the request.
+	GameSessionDetails []*GameSessionDetail `type:"list"`
+
+	// Token indicating where to resume retrieving results on the next call to this
+	// action. If no token is returned, these results represent the end of the list.
+	//
+	// If a request has a limit that exactly matches the number of remaining results,
+	// a token is returned even though there are no more results to retrieve.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeGameSessionDetailsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeGameSessionDetailsOutput) GoString() string {
+	return s.String()
+}
+
+// Represents the input for a request action.
 type DescribeGameSessionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2082,6 +2357,68 @@ func (s DescribePlayerSessionsOutput) GoString() string {
 	return s.String()
 }
 
+// Represents the input for a request action.
+type DescribeScalingPoliciesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Unique identifier for a fleet. Specify the fleet to retrieve scaling policies
+	// for.
+	FleetId *string `type:"string" required:"true"`
+
+	// Maximum number of results to return. You can use this parameter with NextToken
+	// to get results as a set of sequential pages.
+	Limit *int64 `min:"1" type:"integer"`
+
+	// Token indicating the start of the next sequential page of results. Use the
+	// token that is returned with a previous call to this action. To specify the
+	// start of the result set, do not specify a value.
+	NextToken *string `min:"1" type:"string"`
+
+	// Game session status to filter results on. A scaling policy is only in force
+	// when in an Active state.  ACTIVE: The scaling policy is currently in force.
+	// UPDATEREQUESTED: A request to update the scaling policy has been received.
+	// UPDATING: A change is being made to the scaling policy. DELETEREQUESTED:
+	// A request to delete the scaling policy has been received. DELETING: The scaling
+	// policy is being deleted. DELETED: The scaling policy has been deleted. ERROR:
+	// An error occurred in creating the policy. It should be removed and recreated.
+	StatusFilter *string `type:"string" enum:"ScalingStatusType"`
+}
+
+// String returns the string representation
+func (s DescribeScalingPoliciesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeScalingPoliciesInput) GoString() string {
+	return s.String()
+}
+
+// Represents the returned data in response to a request action.
+type DescribeScalingPoliciesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Token indicating where to resume retrieving results on the next call to this
+	// action. If no token is returned, these results represent the end of the list.
+	//
+	// If a request has a limit that exactly matches the number of remaining results,
+	// a token is returned even though there are no more results to retrieve.
+	NextToken *string `min:"1" type:"string"`
+
+	// Collection of objects containing the scaling policies matching the request.
+	ScalingPolicies []*ScalingPolicy `type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeScalingPoliciesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeScalingPoliciesOutput) GoString() string {
+	return s.String()
+}
+
 // Current status of fleet capacity. The number of active instances should match
 // or be in the process of matching the number of desired instances. Pending
 // and terminating counts are non-zero only if fleet capacity is adjusting to
@@ -2095,6 +2432,16 @@ type EC2InstanceCounts struct {
 
 	// Ideal number of active instances in the fleet.
 	DESIRED *int64 `type:"integer"`
+
+	// Number of active instances in the fleet that are not currently hosting a
+	// game session.
+	IDLE *int64 `type:"integer"`
+
+	// Maximum value allowed for the fleet's instance count.
+	MAXIMUM *int64 `type:"integer"`
+
+	// Minimum value allowed for the fleet's instance count.
+	MINIMUM *int64 `type:"integer"`
 
 	// Number of instances in the fleet that are starting but not yet active.
 	PENDING *int64 `type:"integer"`
@@ -2201,6 +2548,12 @@ type FleetAttributes struct {
 	// Descriptive label associated with this fleet. Fleet names do not need to
 	// be unique.
 	Name *string `min:"1" type:"string"`
+
+	// Type of game session protection to set for all new instances started in the
+	// fleet. NoProtection: The game session can be terminated during a scale-down
+	// event. FullProtection: If the game session is in an ACTIVE status, it cannot
+	// be terminated during a scale-down event.
+	NewGameSessionProtectionPolicy *string `type:"string" enum:"ProtectionPolicy"`
 
 	// Parameters required to launch your game server. These parameters should be
 	// expressed as a string of command-line parameters. Example: "+sv_port 33435
@@ -2368,6 +2721,30 @@ func (s GameSession) String() string {
 
 // GoString returns the string representation
 func (s GameSession) GoString() string {
+	return s.String()
+}
+
+// A game session's properties and the protection policy currently in force.
+type GameSessionDetail struct {
+	_ struct{} `type:"structure"`
+
+	// Properties describing a game session.
+	GameSession *GameSession `type:"structure"`
+
+	// Current status of protection for the game session. NoProtection: The game
+	// session can be terminated during a scale-down event. FullProtection: If the
+	// game session is in an ACTIVE status, it cannot be terminated during a scale-down
+	// event.
+	ProtectionPolicy *string `type:"string" enum:"ProtectionPolicy"`
+}
+
+// String returns the string representation
+func (s GameSessionDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GameSessionDetail) GoString() string {
 	return s.String()
 }
 
@@ -2665,6 +3042,86 @@ func (s PlayerSession) GoString() string {
 }
 
 // Represents the input for a request action.
+type PutScalingPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// Comparison operator to use when measuring the metric against the threshold
+	// value.
+	ComparisonOperator *string `type:"string" required:"true" enum:"ComparisonOperatorType"`
+
+	// Length of time (in minutes) the metric must be at or beyond the threshold
+	// before a scaling event is triggered.
+	EvaluationPeriods *int64 `min:"1" type:"integer" required:"true"`
+
+	// Unique identity for the fleet to scale with this policy.
+	FleetId *string `type:"string" required:"true"`
+
+	// Name of the Service-defined metric that is used to trigger an adjustment.
+	//  ActivatingGameSessions: number of game sessions in the process of being
+	// created (game session status = ACTIVATING). ActiveGameSessions: number of
+	// game sessions currently running (game session status = ACTIVE). CurrentPlayerSessions:
+	// number of active or reserved player sessions (player session status = ACTIVE
+	// or RESERVED).  AvailablePlayerSessions: number of player session slots currently
+	// available in active game sessions across the fleet, calculated by subtracting
+	// a game session's current player session count from its maximum player session
+	// count. This number includes game sessions that are not currently accepting
+	// players (game session PlayerSessionCreationPolicy = DENY_ALL). ActiveInstances:
+	// number of instances currently running a game session. IdleInstances: number
+	// of instances not currently running a game session.
+	MetricName *string `type:"string" required:"true" enum:"MetricName"`
+
+	// Descriptive label associated with this scaling policy. Policy names do not
+	// need to be unique. A fleet can have only one scaling policy with the same
+	// name.
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// Amount of adjustment to make, based on the scaling adjustment type.
+	ScalingAdjustment *int64 `type:"integer" required:"true"`
+
+	// Type of adjustment to make to a fleet's instance count (see FleetCapacity):
+	//  ChangeInCapacity: add (or subtract) the scaling adjustment value from the
+	// current instance count. Positive values scale up while negative values scale
+	// down. ExactCapacity: set the instance count to the scaling adjustment value.
+	// PercentChangeInCapacity: increase or reduce the current instance count by
+	// the scaling adjustment, read as a percentage. Positive values scale up while
+	// negative values scale down; for example, a value of "-10" scales the fleet
+	// down by 10%.
+	ScalingAdjustmentType *string `type:"string" required:"true" enum:"ScalingAdjustmentType"`
+
+	// Metric value used to trigger a scaling event.
+	Threshold *float64 `type:"double" required:"true"`
+}
+
+// String returns the string representation
+func (s PutScalingPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutScalingPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Represents the returned data in response to a request action.
+type PutScalingPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Descriptive label associated with this scaling policy. Policy names do not
+	// need to be unique.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s PutScalingPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutScalingPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// Represents the input for a request action.
 type RequestUploadCredentialsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2781,6 +3238,8 @@ type S3Location struct {
 
 	// Amazon S3 bucket key.
 	Key *string `min:"1" type:"string"`
+
+	RoleArn *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -2790,6 +3249,75 @@ func (s S3Location) String() string {
 
 // GoString returns the string representation
 func (s S3Location) GoString() string {
+	return s.String()
+}
+
+// Rule that controls how a fleet is scaled. Scaling policies are uniquely identified
+// by the combination of name and fleet ID.
+type ScalingPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// Comparison operator to use when measuring a metric against the threshold
+	// value.
+	ComparisonOperator *string `type:"string" enum:"ComparisonOperatorType"`
+
+	// Length of time (in minutes) the metric must be at or beyond the threshold
+	// before a scaling event is triggered.
+	EvaluationPeriods *int64 `min:"1" type:"integer"`
+
+	// Unique identity for the fleet associated with this scaling policy.
+	FleetId *string `type:"string"`
+
+	// Name of the GameLift-defined metric that is used to trigger an adjustment.
+	//  ActivatingGameSessions: number of game sessions in the process of being
+	// created (game session status = ACTIVATING). ActiveGameSessions: number of
+	// game sessions currently running (game session status = ACTIVE). CurrentPlayerSessions:
+	// number of active or reserved player sessions (player session status = ACTIVE
+	// or RESERVED).  AvailablePlayerSessions: number of player session slots currently
+	// available in active game sessions across the fleet, calculated by subtracting
+	// a game session's current player session count from its maximum player session
+	// count. This number does include game sessions that are not currently accepting
+	// players (game session PlayerSessionCreationPolicy = DENY_ALL). ActiveInstances:
+	// number of instances currently running a game session. IdleInstances: number
+	// of instances not currently running a game session.
+	MetricName *string `type:"string" enum:"MetricName"`
+
+	// Descriptive label associated with this scaling policy. Policy names do not
+	// need to be unique.
+	Name *string `min:"1" type:"string"`
+
+	// Amount of adjustment to make, based on the scaling adjustment type.
+	ScalingAdjustment *int64 `type:"integer"`
+
+	// Type of adjustment to make to a fleet's instance count (see FleetCapacity):
+	//  ChangeInCapacity: add (or subtract) the scaling adjustment value from the
+	// current instance count. Positive values scale up while negative values scale
+	// down. ExactCapacity: set the instance count to the scaling adjustment value.
+	// PercentChangeInCapacity: increase or reduce the current instance count by
+	// the scaling adjustment, read as a percentage. Positive values scale up while
+	// negative values scale down.
+	ScalingAdjustmentType *string `type:"string" enum:"ScalingAdjustmentType"`
+
+	// Current status of the scaling policy. The scaling policy is only in force
+	// when in an Active state.  ACTIVE: The scaling policy is currently in force.
+	// UPDATEREQUESTED: A request to update the scaling policy has been received.
+	// UPDATING: A change is being made to the scaling policy. DELETEREQUESTED:
+	// A request to delete the scaling policy has been received. DELETING: The scaling
+	// policy is being deleted. DELETED: The scaling policy has been deleted. ERROR:
+	// An error occurred in creating the policy. It should be removed and recreated.
+	Status *string `type:"string" enum:"ScalingStatusType"`
+
+	// Metric value used to trigger a scaling event.
+	Threshold *float64 `type:"double"`
+}
+
+// String returns the string representation
+func (s ScalingPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ScalingPolicy) GoString() string {
 	return s.String()
 }
 
@@ -2896,6 +3424,14 @@ type UpdateFleetAttributesInput struct {
 	// Descriptive label associated with this fleet. Fleet names do not need to
 	// be unique.
 	Name *string `min:"1" type:"string"`
+
+	// Game session protection policy to apply to all new instances created in this
+	// fleet. Instances that already exist will not be affected. You can set protection
+	// for individual instances using UpdateGameSession. NoProtection: The game
+	// session can be terminated during a scale-down event. FullProtection: If the
+	// game session is in an ACTIVE status, it cannot be terminated during a scale-down
+	// event.
+	NewGameSessionProtectionPolicy *string `type:"string" enum:"ProtectionPolicy"`
 }
 
 // String returns the string representation
@@ -2931,10 +3467,18 @@ type UpdateFleetCapacityInput struct {
 	_ struct{} `type:"structure"`
 
 	// Number of EC2 instances you want this fleet to host.
-	DesiredInstances *int64 `type:"integer" required:"true"`
+	DesiredInstances *int64 `type:"integer"`
 
 	// Unique identifier for the fleet you want to update capacity for.
 	FleetId *string `type:"string" required:"true"`
+
+	// Maximum value allowed for the fleet's instance count. Default if not set
+	// is 1.
+	MaxSize *int64 `type:"integer"`
+
+	// Minimum value allowed for the fleet's instance count. Default if not set
+	// is 0.
+	MinSize *int64 `type:"integer"`
 }
 
 // String returns the string representation
@@ -3025,6 +3569,12 @@ type UpdateGameSessionInput struct {
 
 	// Policy determining whether or not the game session accepts new players.
 	PlayerSessionCreationPolicy *string `type:"string" enum:"PlayerSessionCreationPolicy"`
+
+	// Game session protection policy to apply to this game session only. NoProtection:
+	// The game session can be terminated during a scale-down event. FullProtection:
+	// If the game session is in an ACTIVE status, it cannot be terminated during
+	// a scale-down event.
+	ProtectionPolicy *string `type:"string" enum:"ProtectionPolicy"`
 }
 
 // String returns the string representation
@@ -3062,6 +3612,17 @@ const (
 	BuildStatusReady = "READY"
 	// @enum BuildStatus
 	BuildStatusFailed = "FAILED"
+)
+
+const (
+	// @enum ComparisonOperatorType
+	ComparisonOperatorTypeGreaterThanOrEqualToThreshold = "GreaterThanOrEqualToThreshold"
+	// @enum ComparisonOperatorType
+	ComparisonOperatorTypeGreaterThanThreshold = "GreaterThanThreshold"
+	// @enum ComparisonOperatorType
+	ComparisonOperatorTypeLessThanThreshold = "LessThanThreshold"
+	// @enum ComparisonOperatorType
+	ComparisonOperatorTypeLessThanOrEqualToThreshold = "LessThanOrEqualToThreshold"
 )
 
 const (
@@ -3158,6 +3719,8 @@ const (
 	EventCodeFleetActivationFailed = "FLEET_ACTIVATION_FAILED"
 	// @enum EventCode
 	EventCodeFleetActivationFailedNoInstances = "FLEET_ACTIVATION_FAILED_NO_INSTANCES"
+	// @enum EventCode
+	EventCodeFleetNewGameSessionProtectionPolicyUpdated = "FLEET_NEW_GAME_SESSION_PROTECTION_POLICY_UPDATED"
 )
 
 const (
@@ -3200,6 +3763,21 @@ const (
 )
 
 const (
+	// @enum MetricName
+	MetricNameActivatingGameSessions = "ActivatingGameSessions"
+	// @enum MetricName
+	MetricNameActiveGameSessions = "ActiveGameSessions"
+	// @enum MetricName
+	MetricNameActiveInstances = "ActiveInstances"
+	// @enum MetricName
+	MetricNameAvailablePlayerSessions = "AvailablePlayerSessions"
+	// @enum MetricName
+	MetricNameCurrentPlayerSessions = "CurrentPlayerSessions"
+	// @enum MetricName
+	MetricNameIdleInstances = "IdleInstances"
+)
+
+const (
 	// @enum PlayerSessionCreationPolicy
 	PlayerSessionCreationPolicyAcceptAll = "ACCEPT_ALL"
 	// @enum PlayerSessionCreationPolicy
@@ -3218,8 +3796,41 @@ const (
 )
 
 const (
+	// @enum ProtectionPolicy
+	ProtectionPolicyNoProtection = "NoProtection"
+	// @enum ProtectionPolicy
+	ProtectionPolicyFullProtection = "FullProtection"
+)
+
+const (
 	// @enum RoutingStrategyType
 	RoutingStrategyTypeSimple = "SIMPLE"
 	// @enum RoutingStrategyType
 	RoutingStrategyTypeTerminal = "TERMINAL"
+)
+
+const (
+	// @enum ScalingAdjustmentType
+	ScalingAdjustmentTypeChangeInCapacity = "ChangeInCapacity"
+	// @enum ScalingAdjustmentType
+	ScalingAdjustmentTypeExactCapacity = "ExactCapacity"
+	// @enum ScalingAdjustmentType
+	ScalingAdjustmentTypePercentChangeInCapacity = "PercentChangeInCapacity"
+)
+
+const (
+	// @enum ScalingStatusType
+	ScalingStatusTypeActive = "ACTIVE"
+	// @enum ScalingStatusType
+	ScalingStatusTypeUpdateRequested = "UPDATE_REQUESTED"
+	// @enum ScalingStatusType
+	ScalingStatusTypeUpdating = "UPDATING"
+	// @enum ScalingStatusType
+	ScalingStatusTypeDeleteRequested = "DELETE_REQUESTED"
+	// @enum ScalingStatusType
+	ScalingStatusTypeDeleting = "DELETING"
+	// @enum ScalingStatusType
+	ScalingStatusTypeDeleted = "DELETED"
+	// @enum ScalingStatusType
+	ScalingStatusTypeError = "ERROR"
 )
