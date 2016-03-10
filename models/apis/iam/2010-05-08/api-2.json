@@ -3474,7 +3474,8 @@
     "PolicyGroup":{
       "type":"structure",
       "members":{
-        "GroupName":{"shape":"groupNameType"}
+        "GroupName":{"shape":"groupNameType"},
+        "GroupId":{"shape":"idType"}
       }
     },
     "PolicyGroupListType":{
@@ -3485,7 +3486,8 @@
     "PolicyRole":{
       "type":"structure",
       "members":{
-        "RoleName":{"shape":"roleNameType"}
+        "RoleName":{"shape":"roleNameType"},
+        "RoleId":{"shape":"idType"}
       }
     },
     "PolicyRoleListType":{
@@ -3507,7 +3509,8 @@
     "PolicyUser":{
       "type":"structure",
       "members":{
-        "UserName":{"shape":"userNameType"}
+        "UserName":{"shape":"userNameType"},
+        "UserId":{"shape":"idType"}
       }
     },
     "PolicyUserListType":{
