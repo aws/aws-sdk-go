@@ -156,8 +156,8 @@ func TestUnmarshal(t *testing.T) {
 		},
 		{
 			in: &dynamodb.AttributeValue{M: map[string]*dynamodb.AttributeValue{
-				"abc": &dynamodb.AttributeValue{S: aws.String("123")},
-				"Cba": &dynamodb.AttributeValue{S: aws.String("321")},
+				"abc": {S: aws.String("123")},
+				"Cba": {S: aws.String("321")},
 			}},
 			actual:   &struct{ Abc, Cba string }{},
 			expected: struct{ Abc, Cba string }{Abc: "123", Cba: "321"},
@@ -315,9 +315,9 @@ func TestUnmarshalUnmashaler(t *testing.T) {
 	u := &unmarhsalUnmarshaler{}
 	av := &dynamodb.AttributeValue{
 		M: map[string]*dynamodb.AttributeValue{
-			"abc": &dynamodb.AttributeValue{S: aws.String("value")},
-			"def": &dynamodb.AttributeValue{N: aws.String("123")},
-			"ghi": &dynamodb.AttributeValue{BOOL: aws.Bool(true)},
+			"abc": {S: aws.String("value")},
+			"def": {N: aws.String("123")},
+			"ghi": {BOOL: aws.Bool(true)},
 		},
 	}
 
@@ -333,9 +333,9 @@ func TestDecodeUseNumber(t *testing.T) {
 	u := map[string]interface{}{}
 	av := &dynamodb.AttributeValue{
 		M: map[string]*dynamodb.AttributeValue{
-			"abc": &dynamodb.AttributeValue{S: aws.String("value")},
-			"def": &dynamodb.AttributeValue{N: aws.String("123")},
-			"ghi": &dynamodb.AttributeValue{BOOL: aws.Bool(true)},
+			"abc": {S: aws.String("value")},
+			"def": {N: aws.String("123")},
+			"ghi": {BOOL: aws.Bool(true)},
 		},
 	}
 
@@ -356,7 +356,7 @@ func TestDecodeUseNumberNumberSet(t *testing.T) {
 	u := map[string]interface{}{}
 	av := &dynamodb.AttributeValue{
 		M: map[string]*dynamodb.AttributeValue{
-			"ns": &dynamodb.AttributeValue{
+			"ns": {
 				NS: []*string{
 					aws.String("123"), aws.String("321"),
 				},

@@ -82,15 +82,15 @@ func ExampleUnmarshal() {
 
 	av := &dynamodb.AttributeValue{
 		M: map[string]*dynamodb.AttributeValue{
-			"Bytes":   &dynamodb.AttributeValue{B: []byte{48, 49}},
-			"MyField": &dynamodb.AttributeValue{S: aws.String("MyFieldValue")},
-			"Letters": &dynamodb.AttributeValue{L: []*dynamodb.AttributeValue{
+			"Bytes":   {B: []byte{48, 49}},
+			"MyField": {S: aws.String("MyFieldValue")},
+			"Letters": {L: []*dynamodb.AttributeValue{
 				{S: aws.String("a")}, {S: aws.String("b")}, {S: aws.String("c")}, {S: aws.String("d")},
 			}},
-			"A2Num": &dynamodb.AttributeValue{M: map[string]*dynamodb.AttributeValue{
-				"a": &dynamodb.AttributeValue{N: aws.String("1")},
-				"b": &dynamodb.AttributeValue{N: aws.String("2")},
-				"c": &dynamodb.AttributeValue{N: aws.String("3")},
+			"A2Num": {M: map[string]*dynamodb.AttributeValue{
+				"a": {N: aws.String("1")},
+				"b": {N: aws.String("2")},
+				"c": {N: aws.String("3")},
 			}},
 		},
 	}

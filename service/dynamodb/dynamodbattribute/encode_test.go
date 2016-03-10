@@ -44,9 +44,9 @@ type marshalMarshaler struct {
 
 func (m *marshalMarshaler) MarshalDynamoDBAttributeValue(av *dynamodb.AttributeValue) error {
 	av.M = map[string]*dynamodb.AttributeValue{
-		"abc": &dynamodb.AttributeValue{S: &m.Value},
-		"def": &dynamodb.AttributeValue{N: aws.String(fmt.Sprintf("%d", m.Value2))},
-		"ghi": &dynamodb.AttributeValue{BOOL: &m.Value3},
+		"abc": {S: &m.Value},
+		"def": {N: aws.String(fmt.Sprintf("%d", m.Value2))},
+		"ghi": {BOOL: &m.Value3},
 	}
 
 	return nil
@@ -61,9 +61,9 @@ func TestMarshalMashaler(t *testing.T) {
 
 	expect := &dynamodb.AttributeValue{
 		M: map[string]*dynamodb.AttributeValue{
-			"abc": &dynamodb.AttributeValue{S: aws.String("value")},
-			"def": &dynamodb.AttributeValue{N: aws.String("123")},
-			"ghi": &dynamodb.AttributeValue{BOOL: aws.Bool(true)},
+			"abc": {S: aws.String("value")},
+			"def": {N: aws.String("123")},
+			"ghi": {BOOL: aws.Bool(true)},
 		},
 	}
 
@@ -84,7 +84,7 @@ type testOmitEmptyElemMapStruct struct {
 func TestMarshalListOmitEmptyElem(t *testing.T) {
 	expect := &dynamodb.AttributeValue{
 		M: map[string]*dynamodb.AttributeValue{
-			"Values": &dynamodb.AttributeValue{L: []*dynamodb.AttributeValue{
+			"Values": {L: []*dynamodb.AttributeValue{
 				{S: aws.String("abc")},
 				{S: aws.String("123")},
 			}},
@@ -101,7 +101,7 @@ func TestMarshalListOmitEmptyElem(t *testing.T) {
 func TestMarshalMapOmitEmptyElem(t *testing.T) {
 	expect := &dynamodb.AttributeValue{
 		M: map[string]*dynamodb.AttributeValue{
-			"Values": &dynamodb.AttributeValue{M: map[string]*dynamodb.AttributeValue{
+			"Values": {M: map[string]*dynamodb.AttributeValue{
 				"abc": {N: aws.String("123")},
 				"klm": {S: aws.String("abc")},
 			}},

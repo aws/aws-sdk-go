@@ -141,12 +141,12 @@ var marshallerMapTestInputs = []marshallerTestInput{
 		expected: map[string]*dynamodb.AttributeValue{"Byte": {B: []byte{48, 49}}},
 	},
 	{
-		input:    map[string]interface{}{"byte_set": [][]byte{[]byte{48, 49}, []byte{50, 51}}},
-		expected: map[string]*dynamodb.AttributeValue{"byte_set": {BS: [][]byte{[]byte{48, 49}, []byte{50, 51}}}},
+		input:    map[string]interface{}{"byte_set": [][]byte{{48, 49}, {50, 51}}},
+		expected: map[string]*dynamodb.AttributeValue{"byte_set": {BS: [][]byte{{48, 49}, {50, 51}}}},
 	},
 	{
-		input:    struct{ ByteSet [][]byte }{ByteSet: [][]byte{[]byte{48, 49}, []byte{50, 51}}},
-		expected: map[string]*dynamodb.AttributeValue{"ByteSet": {BS: [][]byte{[]byte{48, 49}, []byte{50, 51}}}},
+		input:    struct{ ByteSet [][]byte }{ByteSet: [][]byte{{48, 49}, {50, 51}}},
+		expected: map[string]*dynamodb.AttributeValue{"ByteSet": {BS: [][]byte{{48, 49}, {50, 51}}}},
 	},
 	// List
 	{

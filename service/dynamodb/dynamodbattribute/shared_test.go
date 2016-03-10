@@ -128,16 +128,16 @@ var sharedTestCases = []struct {
 	{ // Binary Set
 		in: &dynamodb.AttributeValue{
 			M: map[string]*dynamodb.AttributeValue{
-				"Binarys": &dynamodb.AttributeValue{BS: [][]byte{[]byte{48, 49}, []byte{50, 51}}},
+				"Binarys": {BS: [][]byte{{48, 49}, {50, 51}}},
 			},
 		},
 		actual:   &testBinarySetStruct{},
-		expected: testBinarySetStruct{Binarys: [][]byte{[]byte{48, 49}, []byte{50, 51}}},
+		expected: testBinarySetStruct{Binarys: [][]byte{{48, 49}, {50, 51}}},
 	},
 	{ // Number Set
 		in: &dynamodb.AttributeValue{
 			M: map[string]*dynamodb.AttributeValue{
-				"Numbers": &dynamodb.AttributeValue{NS: []*string{aws.String("123"), aws.String("321")}},
+				"Numbers": {NS: []*string{aws.String("123"), aws.String("321")}},
 			},
 		},
 		actual:   &testNumberSetStruct{},
@@ -146,7 +146,7 @@ var sharedTestCases = []struct {
 	{ // String Set
 		in: &dynamodb.AttributeValue{
 			M: map[string]*dynamodb.AttributeValue{
-				"Strings": &dynamodb.AttributeValue{SS: []*string{aws.String("abc"), aws.String("efg")}},
+				"Strings": {SS: []*string{aws.String("abc"), aws.String("efg")}},
 			},
 		},
 		actual:   &testStringSetStruct{},
@@ -155,7 +155,7 @@ var sharedTestCases = []struct {
 	{ // Int value as string
 		in: &dynamodb.AttributeValue{
 			M: map[string]*dynamodb.AttributeValue{
-				"Value": &dynamodb.AttributeValue{S: aws.String("123")},
+				"Value": {S: aws.String("123")},
 			},
 		},
 		actual:   &testIntAsStringStruct{},
@@ -164,7 +164,7 @@ var sharedTestCases = []struct {
 	{ // Omitempty
 		in: &dynamodb.AttributeValue{
 			M: map[string]*dynamodb.AttributeValue{
-				"Value3": &dynamodb.AttributeValue{N: aws.String("0")},
+				"Value3": {N: aws.String("0")},
 			},
 		},
 		actual:   &testOmitEmptyStruct{},
