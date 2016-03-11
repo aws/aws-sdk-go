@@ -38,7 +38,7 @@ func (c *ConfigService) DeleteConfigRuleRequest(input *DeleteConfigRuleInput) (r
 //
 // AWS Config sets the state of a rule to DELETING until the deletion is complete.
 // You cannot update a rule while it is in this state. If you make a PutConfigRule
-// request for the rule, you will receive a ResourceInUseException.
+// or DeleteConfigRule request for the rule, you will receive a ResourceInUseException.
 //
 // You can check the state of a rule by using the DescribeConfigRules request.
 func (c *ConfigService) DeleteConfigRule(input *DeleteConfigRuleInput) (*DeleteConfigRuleOutput, error) {
@@ -827,7 +827,7 @@ type Compliance struct {
 	_ struct{} `type:"structure"`
 
 	// The number of AWS resources or AWS Config rules that cause a result of NON_COMPLIANT,
-	// up to a maximum of 25.
+	// up to a maximum number.
 	ComplianceContributorCount *ComplianceContributorCount `type:"structure"`
 
 	// Indicates whether an AWS resource or AWS Config rule is compliant.
@@ -1018,8 +1018,8 @@ func (s ConfigExportDeliveryInfo) GoString() string {
 
 // An AWS Lambda function that evaluates configuration items to assess whether
 // your AWS resources comply with your desired configurations. This function
-// can run when AWS Config detects a configuration change or delivers a configuration
-// snapshot.
+// can run when AWS Config detects a configuration change to an AWS resource,
+// or when it delivers a configuration snapshot of the resources in the account.
 //
 // For more information about developing and using AWS Config rules, see Evaluating
 // AWS Resource Configurations with AWS Config (http://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)
@@ -2295,8 +2295,8 @@ type PutConfigRuleInput struct {
 
 	// An AWS Lambda function that evaluates configuration items to assess whether
 	// your AWS resources comply with your desired configurations. This function
-	// can run when AWS Config detects a configuration change or delivers a configuration
-	// snapshot.
+	// can run when AWS Config detects a configuration change to an AWS resource,
+	// or when it delivers a configuration snapshot of the resources in the account.
 	//
 	// For more information about developing and using AWS Config rules, see Evaluating
 	// AWS Resource Configurations with AWS Config (http://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)
@@ -2447,8 +2447,8 @@ func (s PutEvaluationsOutput) GoString() string {
 // volumes.
 //
 // You can also have AWS Config record configuration changes for supported
-// types of global resources. Global resources are not tied to an individual
-// region and can be used in all regions.
+// types of global resources (for example, IAM resources). Global resources
+// are not tied to an individual region and can be used in all regions.
 //
 // The configuration details for any global resource are the same in all regions.
 // If you customize AWS Config in multiple regions to record global resources,
@@ -2477,13 +2477,17 @@ type RecordingGroup struct {
 	AllSupported *bool `locationName:"allSupported" type:"boolean"`
 
 	// Specifies whether AWS Config includes all supported types of global resources
-	// with the resources that it records.
+	// (for example, IAM resources) with the resources that it records.
 	//
 	// Before you can set this option to true, you must set the allSupported option
 	// to true.
 	//
 	// If you set this option to true, when AWS Config adds support for a new type
 	// of global resource, it automatically starts recording resources of that type.
+	//
+	// The configuration details for any global resource are the same in all regions.
+	// To prevent duplicate configuration items, you should consider customizing
+	// AWS Config in only one region to record global resources.
 	IncludeGlobalResourceTypes *bool `locationName:"includeGlobalResourceTypes" type:"boolean"`
 
 	// A comma-separated list that specifies the types of AWS resources for which

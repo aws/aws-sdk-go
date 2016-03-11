@@ -258,6 +258,26 @@ func ExampleDirectoryService_DeleteTrust() {
 	fmt.Println(resp)
 }
 
+func ExampleDirectoryService_DeregisterEventTopic() {
+	svc := directoryservice.New(session.New())
+
+	params := &directoryservice.DeregisterEventTopicInput{
+		DirectoryId: aws.String("DirectoryId"), // Required
+		TopicName:   aws.String("TopicName"),   // Required
+	}
+	resp, err := svc.DeregisterEventTopic(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleDirectoryService_DescribeDirectories() {
 	svc := directoryservice.New(session.New())
 
@@ -270,6 +290,29 @@ func ExampleDirectoryService_DescribeDirectories() {
 		NextToken: aws.String("NextToken"),
 	}
 	resp, err := svc.DescribeDirectories(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleDirectoryService_DescribeEventTopics() {
+	svc := directoryservice.New(session.New())
+
+	params := &directoryservice.DescribeEventTopicsInput{
+		DirectoryId: aws.String("DirectoryId"),
+		TopicNames: []*string{
+			aws.String("TopicName"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.DescribeEventTopics(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -449,6 +492,26 @@ func ExampleDirectoryService_GetSnapshotLimits() {
 		DirectoryId: aws.String("DirectoryId"), // Required
 	}
 	resp, err := svc.GetSnapshotLimits(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleDirectoryService_RegisterEventTopic() {
+	svc := directoryservice.New(session.New())
+
+	params := &directoryservice.RegisterEventTopicInput{
+		DirectoryId: aws.String("DirectoryId"), // Required
+		TopicName:   aws.String("TopicName"),   // Required
+	}
+	resp, err := svc.RegisterEventTopic(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and

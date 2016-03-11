@@ -3,6 +3,7 @@ LINTIGNOREDOC='service/[^/]+/(api|service|waiters)\.go:.+(comment on exported|sh
 LINTIGNORECONST='service/[^/]+/(api|service|waiters)\.go:.+(type|struct field|const|func) ([^ ]+) should be ([^ ]+)'
 LINTIGNORESTUTTER='service/[^/]+/(api|service)\.go:.+(and that stutters)'
 LINTIGNOREINFLECT='service/[^/]+/(api|service)\.go:.+method .+ should be '
+LINTIGNOREINFLECTS3UPLOAD='service/s3/s3manager/upload\.go:.+struct field SSEKMSKeyId should be '
 LINTIGNOREDEPS='vendor/.+\.go'
 
 SDK_WITH_VENDOR_PKGS=$(shell go list ./... | grep -v "/vendor/src")
@@ -65,7 +66,7 @@ verify: get-deps-verify lint vet
 lint:
 	@echo "go lint SDK and vendor packages"
 	@lint=`golint ./...`; \
-	lint=`echo "$$lint" | grep -E -v -e ${LINTIGNOREDOT} -e ${LINTIGNOREDOC} -e ${LINTIGNORECONST} -e ${LINTIGNORESTUTTER} -e ${LINTIGNOREINFLECT} -e ${LINTIGNOREDEPS}`; \
+	lint=`echo "$$lint" | grep -E -v -e ${LINTIGNOREDOT} -e ${LINTIGNOREDOC} -e ${LINTIGNORECONST} -e ${LINTIGNORESTUTTER} -e ${LINTIGNOREINFLECT} -e ${LINTIGNOREDEPS} -e ${LINTIGNOREINFLECTS3UPLOAD}`; \
 	echo "$$lint"; \
 	if [ "$$lint" != "" ]; then exit 1; fi
 

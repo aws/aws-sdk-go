@@ -119,6 +119,9 @@
     "DescribeVpcs": {
       "result_key": "Vpcs"
     },
+    "DescribeVpcPeeringConnections": {
+      "result_key": "VpcPeeringConnections"
+    },
     "DescribeVpnConnections": {
       "result_key": "VpnConnections"
     },

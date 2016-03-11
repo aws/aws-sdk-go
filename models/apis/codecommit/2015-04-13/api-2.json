@@ -4,12 +4,11 @@
     "apiVersion":"2015-04-13",
     "endpointPrefix":"codecommit",
     "jsonVersion":"1.1",
+    "protocol":"json",
     "serviceAbbreviation":"CodeCommit",
     "serviceFullName":"AWS CodeCommit",
     "signatureVersion":"v4",
-    "targetPrefix":"CodeCommit_20150413",
-    "timestampFormat":"unixTimestamp",
-    "protocol":"json"
+    "targetPrefix":"CodeCommit_20150413"
   },
   "operations":{
     "BatchGetRepositories":{
@@ -21,39 +20,14 @@
       "input":{"shape":"BatchGetRepositoriesInput"},
       "output":{"shape":"BatchGetRepositoriesOutput"},
       "errors":[
-        {
-          "shape":"RepositoryNamesRequiredException",
-          "exception":true
-        },
-        {
-          "shape":"MaximumRepositoryNamesExceededException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidRepositoryNameException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionIntegrityChecksFailedException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"EncryptionKeyAccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionKeyDisabledException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionKeyNotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionKeyUnavailableException",
-          "exception":true
-        }
+        {"shape":"RepositoryNamesRequiredException"},
+        {"shape":"MaximumRepositoryNamesExceededException"},
+        {"shape":"InvalidRepositoryNameException"},
+        {"shape":"EncryptionIntegrityChecksFailedException"},
+        {"shape":"EncryptionKeyAccessDeniedException"},
+        {"shape":"EncryptionKeyDisabledException"},
+        {"shape":"EncryptionKeyNotFoundException"},
+        {"shape":"EncryptionKeyUnavailableException"}
       ]
     },
     "CreateBranch":{
@@ -64,63 +38,20 @@
       },
       "input":{"shape":"CreateBranchInput"},
       "errors":[
-        {
-          "shape":"RepositoryNameRequiredException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidRepositoryNameException",
-          "exception":true
-        },
-        {
-          "shape":"RepositoryDoesNotExistException",
-          "exception":true
-        },
-        {
-          "shape":"BranchNameRequiredException",
-          "exception":true
-        },
-        {
-          "shape":"BranchNameExistsException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidBranchNameException",
-          "exception":true
-        },
-        {
-          "shape":"CommitIdRequiredException",
-          "exception":true
-        },
-        {
-          "shape":"CommitDoesNotExistException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidCommitIdException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionIntegrityChecksFailedException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"EncryptionKeyAccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionKeyDisabledException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionKeyNotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionKeyUnavailableException",
-          "exception":true
-        }
+        {"shape":"RepositoryNameRequiredException"},
+        {"shape":"InvalidRepositoryNameException"},
+        {"shape":"RepositoryDoesNotExistException"},
+        {"shape":"BranchNameRequiredException"},
+        {"shape":"BranchNameExistsException"},
+        {"shape":"InvalidBranchNameException"},
+        {"shape":"CommitIdRequiredException"},
+        {"shape":"CommitDoesNotExistException"},
+        {"shape":"InvalidCommitIdException"},
+        {"shape":"EncryptionIntegrityChecksFailedException"},
+        {"shape":"EncryptionKeyAccessDeniedException"},
+        {"shape":"EncryptionKeyDisabledException"},
+        {"shape":"EncryptionKeyNotFoundException"},
+        {"shape":"EncryptionKeyUnavailableException"}
       ]
     },
     "CreateRepository":{
@@ -132,47 +63,16 @@
       "input":{"shape":"CreateRepositoryInput"},
       "output":{"shape":"CreateRepositoryOutput"},
       "errors":[
-        {
-          "shape":"RepositoryNameExistsException",
-          "exception":true
-        },
-        {
-          "shape":"RepositoryNameRequiredException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidRepositoryNameException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidRepositoryDescriptionException",
-          "exception":true
-        },
-        {
-          "shape":"RepositoryLimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionIntegrityChecksFailedException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"EncryptionKeyAccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionKeyDisabledException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionKeyNotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionKeyUnavailableException",
-          "exception":true
-        }
+        {"shape":"RepositoryNameExistsException"},
+        {"shape":"RepositoryNameRequiredException"},
+        {"shape":"InvalidRepositoryNameException"},
+        {"shape":"InvalidRepositoryDescriptionException"},
+        {"shape":"RepositoryLimitExceededException"},
+        {"shape":"EncryptionIntegrityChecksFailedException"},
+        {"shape":"EncryptionKeyAccessDeniedException"},
+        {"shape":"EncryptionKeyDisabledException"},
+        {"shape":"EncryptionKeyNotFoundException"},
+        {"shape":"EncryptionKeyUnavailableException"}
       ]
     },
     "DeleteRepository":{
@@ -184,35 +84,13 @@
       "input":{"shape":"DeleteRepositoryInput"},
       "output":{"shape":"DeleteRepositoryOutput"},
       "errors":[
-        {
-          "shape":"RepositoryNameRequiredException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidRepositoryNameException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionIntegrityChecksFailedException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"EncryptionKeyAccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionKeyDisabledException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionKeyNotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionKeyUnavailableException",
-          "exception":true
-        }
+        {"shape":"RepositoryNameRequiredException"},
+        {"shape":"InvalidRepositoryNameException"},
+        {"shape":"EncryptionIntegrityChecksFailedException"},
+        {"shape":"EncryptionKeyAccessDeniedException"},
+        {"shape":"EncryptionKeyDisabledException"},
+        {"shape":"EncryptionKeyNotFoundException"},
+        {"shape":"EncryptionKeyUnavailableException"}
       ]
     },
     "GetBranch":{
@@ -224,51 +102,39 @@
       "input":{"shape":"GetBranchInput"},
       "output":{"shape":"GetBranchOutput"},
       "errors":[
-        {
-          "shape":"RepositoryNameRequiredException",
-          "exception":true
-        },
-        {
-          "shape":"RepositoryDoesNotExistException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidRepositoryNameException",
-          "exception":true
-        },
-        {
-          "shape":"BranchNameRequiredException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidBranchNameException",
-          "exception":true
-        },
-        {
-          "shape":"BranchDoesNotExistException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionIntegrityChecksFailedException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"EncryptionKeyAccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionKeyDisabledException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionKeyNotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionKeyUnavailableException",
-          "exception":true
-        }
+        {"shape":"RepositoryNameRequiredException"},
+        {"shape":"RepositoryDoesNotExistException"},
+        {"shape":"InvalidRepositoryNameException"},
+        {"shape":"BranchNameRequiredException"},
+        {"shape":"InvalidBranchNameException"},
+        {"shape":"BranchDoesNotExistException"},
+        {"shape":"EncryptionIntegrityChecksFailedException"},
+        {"shape":"EncryptionKeyAccessDeniedException"},
+        {"shape":"EncryptionKeyDisabledException"},
+        {"shape":"EncryptionKeyNotFoundException"},
+        {"shape":"EncryptionKeyUnavailableException"}
+      ]
+    },
+    "GetCommit":{
+      "name":"GetCommit",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetCommitInput"},
+      "output":{"shape":"GetCommitOutput"},
+      "errors":[
+        {"shape":"RepositoryNameRequiredException"},
+        {"shape":"InvalidRepositoryNameException"},
+        {"shape":"RepositoryDoesNotExistException"},
+        {"shape":"CommitIdRequiredException"},
+        {"shape":"InvalidCommitIdException"},
+        {"shape":"CommitIdDoesNotExistException"},
+        {"shape":"EncryptionIntegrityChecksFailedException"},
+        {"shape":"EncryptionKeyAccessDeniedException"},
+        {"shape":"EncryptionKeyDisabledException"},
+        {"shape":"EncryptionKeyNotFoundException"},
+        {"shape":"EncryptionKeyUnavailableException"}
       ]
     },
     "GetRepository":{
@@ -280,39 +146,33 @@
       "input":{"shape":"GetRepositoryInput"},
       "output":{"shape":"GetRepositoryOutput"},
       "errors":[
-        {
-          "shape":"RepositoryNameRequiredException",
-          "exception":true
-        },
-        {
-          "shape":"RepositoryDoesNotExistException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidRepositoryNameException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionIntegrityChecksFailedException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"EncryptionKeyAccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionKeyDisabledException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionKeyNotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionKeyUnavailableException",
-          "exception":true
-        }
+        {"shape":"RepositoryNameRequiredException"},
+        {"shape":"RepositoryDoesNotExistException"},
+        {"shape":"InvalidRepositoryNameException"},
+        {"shape":"EncryptionIntegrityChecksFailedException"},
+        {"shape":"EncryptionKeyAccessDeniedException"},
+        {"shape":"EncryptionKeyDisabledException"},
+        {"shape":"EncryptionKeyNotFoundException"},
+        {"shape":"EncryptionKeyUnavailableException"}
+      ]
+    },
+    "GetRepositoryTriggers":{
+      "name":"GetRepositoryTriggers",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetRepositoryTriggersInput"},
+      "output":{"shape":"GetRepositoryTriggersOutput"},
+      "errors":[
+        {"shape":"RepositoryNameRequiredException"},
+        {"shape":"InvalidRepositoryNameException"},
+        {"shape":"RepositoryDoesNotExistException"},
+        {"shape":"EncryptionIntegrityChecksFailedException"},
+        {"shape":"EncryptionKeyAccessDeniedException"},
+        {"shape":"EncryptionKeyDisabledException"},
+        {"shape":"EncryptionKeyNotFoundException"},
+        {"shape":"EncryptionKeyUnavailableException"}
       ]
     },
     "ListBranches":{
@@ -324,43 +184,15 @@
       "input":{"shape":"ListBranchesInput"},
       "output":{"shape":"ListBranchesOutput"},
       "errors":[
-        {
-          "shape":"RepositoryNameRequiredException",
-          "exception":true
-        },
-        {
-          "shape":"RepositoryDoesNotExistException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidRepositoryNameException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionIntegrityChecksFailedException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"EncryptionKeyAccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionKeyDisabledException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionKeyNotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionKeyUnavailableException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidContinuationTokenException",
-          "exception":true
-        }
+        {"shape":"RepositoryNameRequiredException"},
+        {"shape":"RepositoryDoesNotExistException"},
+        {"shape":"InvalidRepositoryNameException"},
+        {"shape":"EncryptionIntegrityChecksFailedException"},
+        {"shape":"EncryptionKeyAccessDeniedException"},
+        {"shape":"EncryptionKeyDisabledException"},
+        {"shape":"EncryptionKeyNotFoundException"},
+        {"shape":"EncryptionKeyUnavailableException"},
+        {"shape":"InvalidContinuationTokenException"}
       ]
     },
     "ListRepositories":{
@@ -372,18 +204,73 @@
       "input":{"shape":"ListRepositoriesInput"},
       "output":{"shape":"ListRepositoriesOutput"},
       "errors":[
-        {
-          "shape":"InvalidSortByException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidOrderException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidContinuationTokenException",
-          "exception":true
-        }
+        {"shape":"InvalidSortByException"},
+        {"shape":"InvalidOrderException"},
+        {"shape":"InvalidContinuationTokenException"}
+      ]
+    },
+    "PutRepositoryTriggers":{
+      "name":"PutRepositoryTriggers",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutRepositoryTriggersInput"},
+      "output":{"shape":"PutRepositoryTriggersOutput"},
+      "errors":[
+        {"shape":"RepositoryDoesNotExistException"},
+        {"shape":"RepositoryNameRequiredException"},
+        {"shape":"InvalidRepositoryNameException"},
+        {"shape":"RepositoryTriggersListRequiredException"},
+        {"shape":"MaximumRepositoryTriggersExceededException"},
+        {"shape":"InvalidRepositoryTriggerNameException"},
+        {"shape":"InvalidRepositoryTriggerDestinationArnException"},
+        {"shape":"InvalidRepositoryTriggerRegionException"},
+        {"shape":"InvalidRepositoryTriggerCustomDataException"},
+        {"shape":"MaximumBranchesExceededException"},
+        {"shape":"InvalidRepositoryTriggerBranchNameException"},
+        {"shape":"InvalidRepositoryTriggerEventsException"},
+        {"shape":"RepositoryTriggerNameRequiredException"},
+        {"shape":"RepositoryTriggerDestinationArnRequiredException"},
+        {"shape":"RepositoryTriggerBranchNameListRequiredException"},
+        {"shape":"RepositoryTriggerEventsListRequiredException"},
+        {"shape":"EncryptionIntegrityChecksFailedException"},
+        {"shape":"EncryptionKeyAccessDeniedException"},
+        {"shape":"EncryptionKeyDisabledException"},
+        {"shape":"EncryptionKeyNotFoundException"},
+        {"shape":"EncryptionKeyUnavailableException"}
+      ]
+    },
+    "TestRepositoryTriggers":{
+      "name":"TestRepositoryTriggers",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TestRepositoryTriggersInput"},
+      "output":{"shape":"TestRepositoryTriggersOutput"},
+      "errors":[
+        {"shape":"RepositoryDoesNotExistException"},
+        {"shape":"RepositoryNameRequiredException"},
+        {"shape":"InvalidRepositoryNameException"},
+        {"shape":"RepositoryTriggersListRequiredException"},
+        {"shape":"MaximumRepositoryTriggersExceededException"},
+        {"shape":"InvalidRepositoryTriggerNameException"},
+        {"shape":"InvalidRepositoryTriggerDestinationArnException"},
+        {"shape":"InvalidRepositoryTriggerRegionException"},
+        {"shape":"InvalidRepositoryTriggerCustomDataException"},
+        {"shape":"MaximumBranchesExceededException"},
+        {"shape":"InvalidRepositoryTriggerBranchNameException"},
+        {"shape":"InvalidRepositoryTriggerEventsException"},
+        {"shape":"RepositoryTriggerNameRequiredException"},
+        {"shape":"RepositoryTriggerDestinationArnRequiredException"},
+        {"shape":"RepositoryTriggerBranchNameListRequiredException"},
+        {"shape":"RepositoryTriggerEventsListRequiredException"},
+        {"shape":"EncryptionIntegrityChecksFailedException"},
+        {"shape":"EncryptionKeyAccessDeniedException"},
+        {"shape":"EncryptionKeyDisabledException"},
+        {"shape":"EncryptionKeyNotFoundException"},
+        {"shape":"EncryptionKeyUnavailableException"}
       ]
     },
     "UpdateDefaultBranch":{
@@ -394,51 +281,17 @@
       },
       "input":{"shape":"UpdateDefaultBranchInput"},
       "errors":[
-        {
-          "shape":"RepositoryNameRequiredException",
-          "exception":true
-        },
-        {
-          "shape":"RepositoryDoesNotExistException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidRepositoryNameException",
-          "exception":true
-        },
-        {
-          "shape":"BranchNameRequiredException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidBranchNameException",
-          "exception":true
-        },
-        {
-          "shape":"BranchDoesNotExistException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionIntegrityChecksFailedException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"EncryptionKeyAccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionKeyDisabledException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionKeyNotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionKeyUnavailableException",
-          "exception":true
-        }
+        {"shape":"RepositoryNameRequiredException"},
+        {"shape":"RepositoryDoesNotExistException"},
+        {"shape":"InvalidRepositoryNameException"},
+        {"shape":"BranchNameRequiredException"},
+        {"shape":"InvalidBranchNameException"},
+        {"shape":"BranchDoesNotExistException"},
+        {"shape":"EncryptionIntegrityChecksFailedException"},
+        {"shape":"EncryptionKeyAccessDeniedException"},
+        {"shape":"EncryptionKeyDisabledException"},
+        {"shape":"EncryptionKeyNotFoundException"},
+        {"shape":"EncryptionKeyUnavailableException"}
       ]
     },
     "UpdateRepositoryDescription":{
@@ -449,43 +302,15 @@
       },
       "input":{"shape":"UpdateRepositoryDescriptionInput"},
       "errors":[
-        {
-          "shape":"RepositoryNameRequiredException",
-          "exception":true
-        },
-        {
-          "shape":"RepositoryDoesNotExistException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidRepositoryNameException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidRepositoryDescriptionException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionIntegrityChecksFailedException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"EncryptionKeyAccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionKeyDisabledException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionKeyNotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"EncryptionKeyUnavailableException",
-          "exception":true
-        }
+        {"shape":"RepositoryNameRequiredException"},
+        {"shape":"RepositoryDoesNotExistException"},
+        {"shape":"InvalidRepositoryNameException"},
+        {"shape":"InvalidRepositoryDescriptionException"},
+        {"shape":"EncryptionIntegrityChecksFailedException"},
+        {"shape":"EncryptionKeyAccessDeniedException"},
+        {"shape":"EncryptionKeyDisabledException"},
+        {"shape":"EncryptionKeyNotFoundException"},
+        {"shape":"EncryptionKeyUnavailableException"}
       ]
     },
     "UpdateRepositoryName":{
@@ -496,27 +321,16 @@
       },
       "input":{"shape":"UpdateRepositoryNameInput"},
       "errors":[
-        {
-          "shape":"RepositoryDoesNotExistException",
-          "exception":true
-        },
-        {
-          "shape":"RepositoryNameExistsException",
-          "exception":true
-        },
-        {
-          "shape":"RepositoryNameRequiredException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidRepositoryNameException",
-          "exception":true
-        }
+        {"shape":"RepositoryDoesNotExistException"},
+        {"shape":"RepositoryNameExistsException"},
+        {"shape":"RepositoryNameRequiredException"},
+        {"shape":"InvalidRepositoryNameException"}
       ]
     }
   },
   "shapes":{
     "AccountId":{"type":"string"},
+    "AdditionalData":{"type":"string"},
     "Arn":{"type":"string"},
     "BatchGetRepositoriesInput":{
       "type":"structure",
@@ -547,8 +361,8 @@
     },
     "BranchName":{
       "type":"string",
-      "min":1,
-      "max":100
+      "max":100,
+      "min":1
     },
     "BranchNameExistsException":{
       "type":"structure",
@@ -568,6 +382,17 @@
     },
     "CloneUrlHttp":{"type":"string"},
     "CloneUrlSsh":{"type":"string"},
+    "Commit":{
+      "type":"structure",
+      "members":{
+        "treeId":{"shape":"ObjectId"},
+        "parents":{"shape":"ParentList"},
+        "message":{"shape":"Message"},
+        "author":{"shape":"UserInfo"},
+        "committer":{"shape":"UserInfo"},
+        "additionalData":{"shape":"AdditionalData"}
+      }
+    },
     "CommitDoesNotExistException":{
       "type":"structure",
       "members":{
@@ -575,6 +400,12 @@
       "exception":true
     },
     "CommitId":{"type":"string"},
+    "CommitIdDoesNotExistException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "CommitIdRequiredException":{
       "type":"structure",
       "members":{
@@ -609,6 +440,7 @@
       }
     },
     "CreationDate":{"type":"timestamp"},
+    "Date":{"type":"string"},
     "DeleteRepositoryInput":{
       "type":"structure",
       "required":["repositoryName"],
@@ -622,6 +454,7 @@
         "repositoryId":{"shape":"RepositoryId"}
       }
     },
+    "Email":{"type":"string"},
     "EncryptionIntegrityChecksFailedException":{
       "type":"structure",
       "members":{
@@ -666,6 +499,24 @@
         "branch":{"shape":"BranchInfo"}
       }
     },
+    "GetCommitInput":{
+      "type":"structure",
+      "required":[
+        "repositoryName",
+        "commitId"
+      ],
+      "members":{
+        "repositoryName":{"shape":"RepositoryName"},
+        "commitId":{"shape":"ObjectId"}
+      }
+    },
+    "GetCommitOutput":{
+      "type":"structure",
+      "required":["commit"],
+      "members":{
+        "commit":{"shape":"Commit"}
+      }
+    },
     "GetRepositoryInput":{
       "type":"structure",
       "required":["repositoryName"],
@@ -677,6 +528,19 @@
       "type":"structure",
       "members":{
         "repositoryMetadata":{"shape":"RepositoryMetadata"}
+      }
+    },
+    "GetRepositoryTriggersInput":{
+      "type":"structure",
+      "members":{
+        "repositoryName":{"shape":"RepositoryName"}
+      }
+    },
+    "GetRepositoryTriggersOutput":{
+      "type":"structure",
+      "members":{
+        "configurationId":{"shape":"RepositoryTriggersConfigurationId"},
+        "triggers":{"shape":"RepositoryTriggersList"}
       }
     },
     "InvalidBranchNameException":{
@@ -710,6 +574,42 @@
       "exception":true
     },
     "InvalidRepositoryNameException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "InvalidRepositoryTriggerBranchNameException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "InvalidRepositoryTriggerCustomDataException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "InvalidRepositoryTriggerDestinationArnException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "InvalidRepositoryTriggerEventsException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "InvalidRepositoryTriggerNameException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "InvalidRepositoryTriggerRegionException":{
       "type":"structure",
       "members":{
       },
@@ -752,19 +652,51 @@
         "nextToken":{"shape":"NextToken"}
       }
     },
+    "MaximumBranchesExceededException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "MaximumRepositoryNamesExceededException":{
       "type":"structure",
       "members":{
       },
       "exception":true
     },
+    "MaximumRepositoryTriggersExceededException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "Message":{"type":"string"},
+    "Name":{"type":"string"},
     "NextToken":{"type":"string"},
+    "ObjectId":{"type":"string"},
     "OrderEnum":{
       "type":"string",
       "enum":[
         "ascending",
         "descending"
       ]
+    },
+    "ParentList":{
+      "type":"list",
+      "member":{"shape":"ObjectId"}
+    },
+    "PutRepositoryTriggersInput":{
+      "type":"structure",
+      "members":{
+        "repositoryName":{"shape":"RepositoryName"},
+        "triggers":{"shape":"RepositoryTriggersList"}
+      }
+    },
+    "PutRepositoryTriggersOutput":{
+      "type":"structure",
+      "members":{
+        "configurationId":{"shape":"RepositoryTriggersConfigurationId"}
+      }
     },
     "RepositoryDescription":{
       "type":"string",
@@ -804,8 +736,8 @@
     },
     "RepositoryName":{
       "type":"string",
-      "min":1,
       "max":100,
+      "min":1,
       "pattern":"[\\\\w\\\\.-]+"
     },
     "RepositoryNameExistsException":{
@@ -845,12 +777,102 @@
       "type":"list",
       "member":{"shape":"RepositoryName"}
     },
+    "RepositoryTrigger":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"RepositoryTriggerName"},
+        "destinationArn":{"shape":"Arn"},
+        "customData":{"shape":"RepositoryTriggerCustomData"},
+        "branches":{"shape":"BranchNameList"},
+        "events":{"shape":"RepositoryTriggerEventList"}
+      }
+    },
+    "RepositoryTriggerBranchNameListRequiredException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "RepositoryTriggerCustomData":{"type":"string"},
+    "RepositoryTriggerDestinationArnRequiredException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "RepositoryTriggerEventEnum":{
+      "type":"string",
+      "enum":[
+        "all",
+        "updateReference",
+        "createReference",
+        "deleteReference"
+      ]
+    },
+    "RepositoryTriggerEventList":{
+      "type":"list",
+      "member":{"shape":"RepositoryTriggerEventEnum"}
+    },
+    "RepositoryTriggerEventsListRequiredException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "RepositoryTriggerExecutionFailure":{
+      "type":"structure",
+      "members":{
+        "trigger":{"shape":"RepositoryTriggerName"},
+        "failureMessage":{"shape":"RepositoryTriggerExecutionFailureMessage"}
+      }
+    },
+    "RepositoryTriggerExecutionFailureList":{
+      "type":"list",
+      "member":{"shape":"RepositoryTriggerExecutionFailure"}
+    },
+    "RepositoryTriggerExecutionFailureMessage":{"type":"string"},
+    "RepositoryTriggerName":{"type":"string"},
+    "RepositoryTriggerNameList":{
+      "type":"list",
+      "member":{"shape":"RepositoryTriggerName"}
+    },
+    "RepositoryTriggerNameRequiredException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "RepositoryTriggersConfigurationId":{"type":"string"},
+    "RepositoryTriggersList":{
+      "type":"list",
+      "member":{"shape":"RepositoryTrigger"}
+    },
+    "RepositoryTriggersListRequiredException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "SortByEnum":{
       "type":"string",
       "enum":[
         "repositoryName",
         "lastModifiedDate"
       ]
+    },
+    "TestRepositoryTriggersInput":{
+      "type":"structure",
+      "members":{
+        "repositoryName":{"shape":"RepositoryName"},
+        "triggers":{"shape":"RepositoryTriggersList"}
+      }
+    },
+    "TestRepositoryTriggersOutput":{
+      "type":"structure",
+      "members":{
+        "successfulExecutions":{"shape":"RepositoryTriggerNameList"},
+        "failedExecutions":{"shape":"RepositoryTriggerExecutionFailureList"}
+      }
     },
     "UpdateDefaultBranchInput":{
       "type":"structure",
@@ -880,6 +902,14 @@
       "members":{
         "oldName":{"shape":"RepositoryName"},
         "newName":{"shape":"RepositoryName"}
+      }
+    },
+    "UserInfo":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"Name"},
+        "email":{"shape":"Email"},
+        "date":{"shape":"Date"}
       }
     }
   }

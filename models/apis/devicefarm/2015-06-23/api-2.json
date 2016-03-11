@@ -547,7 +547,8 @@
         "APPIUM_PYTHON_XML_OUTPUT",
         "EXPLORER_EVENT_LOG",
         "EXPLORER_SUMMARY_LOG",
-        "APPLICATION_CRASH_REPORT"
+        "APPLICATION_CRASH_REPORT",
+        "XCTEST_LOG"
       ]
     },
     "Artifacts":{
@@ -1433,7 +1434,8 @@
         "INSTRUMENTATION",
         "UIAUTOMATION",
         "UIAUTOMATOR",
-        "XCTEST"
+        "XCTEST",
+        "XCTEST_UI"
       ]
     },
     "Tests":{
@@ -1531,7 +1533,8 @@
         "INSTRUMENTATION_TEST_PACKAGE",
         "UIAUTOMATION_TEST_PACKAGE",
         "UIAUTOMATOR_TEST_PACKAGE",
-        "XCTEST_TEST_PACKAGE"
+        "XCTEST_TEST_PACKAGE",
+        "XCTEST_UI_TEST_PACKAGE"
       ]
     },
     "Uploads":{

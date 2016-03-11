@@ -102,6 +102,13 @@
       "limit_key": "MaxItems",
       "result_key": "Policies"
     },
+    "ListPolicyVersions": {
+      "input_token": "Marker",
+      "output_token": "Marker",
+      "more_results": "IsTruncated",
+      "limit_key": "MaxItems",
+      "result_key": "Versions"
+    },
     "ListRolePolicies": {
       "input_token": "Marker",
       "output_token": "Marker",

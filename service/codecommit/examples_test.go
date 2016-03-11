@@ -117,6 +117,26 @@ func ExampleCodeCommit_GetBranch() {
 	fmt.Println(resp)
 }
 
+func ExampleCodeCommit_GetCommit() {
+	svc := codecommit.New(session.New())
+
+	params := &codecommit.GetCommitInput{
+		CommitId:       aws.String("ObjectId"),       // Required
+		RepositoryName: aws.String("RepositoryName"), // Required
+	}
+	resp, err := svc.GetCommit(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleCodeCommit_GetRepository() {
 	svc := codecommit.New(session.New())
 
@@ -124,6 +144,25 @@ func ExampleCodeCommit_GetRepository() {
 		RepositoryName: aws.String("RepositoryName"), // Required
 	}
 	resp, err := svc.GetRepository(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleCodeCommit_GetRepositoryTriggers() {
+	svc := codecommit.New(session.New())
+
+	params := &codecommit.GetRepositoryTriggersInput{
+		RepositoryName: aws.String("RepositoryName"),
+	}
+	resp, err := svc.GetRepositoryTriggers(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -165,6 +204,76 @@ func ExampleCodeCommit_ListRepositories() {
 		SortBy:    aws.String("SortByEnum"),
 	}
 	resp, err := svc.ListRepositories(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleCodeCommit_PutRepositoryTriggers() {
+	svc := codecommit.New(session.New())
+
+	params := &codecommit.PutRepositoryTriggersInput{
+		RepositoryName: aws.String("RepositoryName"),
+		Triggers: []*codecommit.RepositoryTrigger{
+			{ // Required
+				Branches: []*string{
+					aws.String("BranchName"), // Required
+					// More values...
+				},
+				CustomData:     aws.String("RepositoryTriggerCustomData"),
+				DestinationArn: aws.String("Arn"),
+				Events: []*string{
+					aws.String("RepositoryTriggerEventEnum"), // Required
+					// More values...
+				},
+				Name: aws.String("RepositoryTriggerName"),
+			},
+			// More values...
+		},
+	}
+	resp, err := svc.PutRepositoryTriggers(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleCodeCommit_TestRepositoryTriggers() {
+	svc := codecommit.New(session.New())
+
+	params := &codecommit.TestRepositoryTriggersInput{
+		RepositoryName: aws.String("RepositoryName"),
+		Triggers: []*codecommit.RepositoryTrigger{
+			{ // Required
+				Branches: []*string{
+					aws.String("BranchName"), // Required
+					// More values...
+				},
+				CustomData:     aws.String("RepositoryTriggerCustomData"),
+				DestinationArn: aws.String("Arn"),
+				Events: []*string{
+					aws.String("RepositoryTriggerEventEnum"), // Required
+					// More values...
+				},
+				Name: aws.String("RepositoryTriggerName"),
+			},
+			// More values...
+		},
+	}
+	resp, err := svc.TestRepositoryTriggers(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and

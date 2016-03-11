@@ -360,6 +360,8 @@ type IAMAPI interface {
 
 	ListPolicyVersions(*iam.ListPolicyVersionsInput) (*iam.ListPolicyVersionsOutput, error)
 
+	ListPolicyVersionsPages(*iam.ListPolicyVersionsInput, func(*iam.ListPolicyVersionsOutput, bool) bool) error
+
 	ListRolePoliciesRequest(*iam.ListRolePoliciesInput) (*request.Request, *iam.ListRolePoliciesOutput)
 
 	ListRolePolicies(*iam.ListRolePoliciesInput) (*iam.ListRolePoliciesOutput, error)

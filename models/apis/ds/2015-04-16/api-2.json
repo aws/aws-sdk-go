@@ -170,6 +170,21 @@
         {"shape":"UnsupportedOperationException"}
       ]
     },
+    "DeregisterEventTopic":{
+      "name":"DeregisterEventTopic",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeregisterEventTopicRequest"},
+      "output":{"shape":"DeregisterEventTopicResult"},
+      "errors":[
+        {"shape":"EntityDoesNotExistException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
+      ]
+    },
     "DescribeDirectories":{
       "name":"DescribeDirectories",
       "http":{
@@ -182,6 +197,21 @@
         {"shape":"EntityDoesNotExistException"},
         {"shape":"InvalidParameterException"},
         {"shape":"InvalidNextTokenException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
+      ]
+    },
+    "DescribeEventTopics":{
+      "name":"DescribeEventTopics",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeEventTopicsRequest"},
+      "output":{"shape":"DescribeEventTopicsResult"},
+      "errors":[
+        {"shape":"EntityDoesNotExistException"},
+        {"shape":"InvalidParameterException"},
         {"shape":"ClientException"},
         {"shape":"ServiceException"}
       ]
@@ -305,6 +335,21 @@
       "output":{"shape":"GetSnapshotLimitsResult"},
       "errors":[
         {"shape":"EntityDoesNotExistException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
+      ]
+    },
+    "RegisterEventTopic":{
+      "name":"RegisterEventTopic",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RegisterEventTopicRequest"},
+      "output":{"shape":"RegisterEventTopicResult"},
+      "errors":[
+        {"shape":"EntityDoesNotExistException"},
+        {"shape":"InvalidParameterException"},
         {"shape":"ClientException"},
         {"shape":"ServiceException"}
       ]
@@ -614,6 +659,22 @@
         "TrustId":{"shape":"TrustId"}
       }
     },
+    "DeregisterEventTopicRequest":{
+      "type":"structure",
+      "required":[
+        "DirectoryId",
+        "TopicName"
+      ],
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"},
+        "TopicName":{"shape":"TopicName"}
+      }
+    },
+    "DeregisterEventTopicResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DescribeDirectoriesRequest":{
       "type":"structure",
       "members":{
@@ -627,6 +688,19 @@
       "members":{
         "DirectoryDescriptions":{"shape":"DirectoryDescriptions"},
         "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeEventTopicsRequest":{
+      "type":"structure",
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"},
+        "TopicNames":{"shape":"TopicNames"}
+      }
+    },
+    "DescribeEventTopicsResult":{
+      "type":"structure",
+      "members":{
+        "EventTopics":{"shape":"EventTopics"}
       }
     },
     "DescribeSnapshotsRequest":{
@@ -893,6 +967,20 @@
       },
       "exception":true
     },
+    "EventTopic":{
+      "type":"structure",
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"},
+        "TopicName":{"shape":"TopicName"},
+        "TopicArn":{"shape":"TopicArn"},
+        "CreatedDateTime":{"shape":"CreatedDateTime"},
+        "Status":{"shape":"TopicStatus"}
+      }
+    },
+    "EventTopics":{
+      "type":"list",
+      "member":{"shape":"EventTopic"}
+    },
     "ExceptionMessage":{"type":"string"},
     "GetDirectoryLimitsRequest":{
       "type":"structure",
@@ -1024,6 +1112,22 @@
       "max":20,
       "min":1
     },
+    "RegisterEventTopicRequest":{
+      "type":"structure",
+      "required":[
+        "DirectoryId",
+        "TopicName"
+      ],
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"},
+        "TopicName":{"shape":"TopicName"}
+      }
+    },
+    "RegisterEventTopicResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "RemoteDomainName":{
       "type":"string",
       "pattern":"^([a-zA-Z0-9]+[\\\\.-])+([a-zA-Z0-9])+[.]?$"
@@ -1143,6 +1247,26 @@
     "SubnetIds":{
       "type":"list",
       "member":{"shape":"SubnetId"}
+    },
+    "TopicArn":{"type":"string"},
+    "TopicName":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"[a-zA-Z0-9_-]+"
+    },
+    "TopicNames":{
+      "type":"list",
+      "member":{"shape":"TopicName"}
+    },
+    "TopicStatus":{
+      "type":"string",
+      "enum":[
+        "Registered",
+        "Topic not found",
+        "Failed",
+        "Deleted"
+      ]
     },
     "Trust":{
       "type":"structure",

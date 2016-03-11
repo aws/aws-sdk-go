@@ -42,7 +42,7 @@ const DefaultUploadConcurrency = 5
 //     u := s3manager.NewUploader(opts)
 //     output, err := u.upload(input)
 //     if err != nil {
-//         if multierr, ok := err.(MultiUploadFailure); ok {
+//         if multierr, ok := err.(s3manager.MultiUploadFailure); ok {
 //             // Process error and its associated uploadID
 //             fmt.Println("Error:", multierr.Code(), multierr.Message(), multierr.UploadID())
 //         } else {
@@ -165,7 +165,7 @@ type UploadInput struct {
 	// requests for an object protected by AWS KMS will fail if not made via SSL
 	// or using SigV4. Documentation on configuring any of the officially supported
 	// AWS SDKs and CLI can be found at http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAWSSDK.html#specify-signature-version
-	SSEKMSKeyID *string `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
+	SSEKMSKeyId *string `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
 
 	// The Server-side encryption algorithm used when storing this object in S3
 	// (e.g., AES256, aws:kms).
@@ -208,7 +208,7 @@ type Uploader struct {
 	PartSize int64
 
 	// The number of goroutines to spin up in parallel when sending parts.
-	// If this is set to zero, the DefaultConcurrency value will be used.
+	// If this is set to zero, the DefaultUploadConcurrency value will be used.
 	Concurrency int
 
 	// Setting this value to true will cause the SDK to avoid calling

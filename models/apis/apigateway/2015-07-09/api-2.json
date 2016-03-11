@@ -366,6 +366,21 @@
         {"shape":"TooManyRequestsException"}
       ]
     },
+    "FlushStageAuthorizersCache":{
+      "name":"FlushStageAuthorizersCache",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/restapis/{restapi_id}/stages/{stage_name}/cache/authorizers",
+        "responseCode":202
+      },
+      "input":{"shape":"FlushStageAuthorizersCacheRequest"},
+      "errors":[
+        {"shape":"UnauthorizedException"},
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
     "FlushStageCache":{
       "name":"FlushStageCache",
       "http":{
@@ -433,6 +448,7 @@
       "input":{"shape":"GetApiKeysRequest"},
       "output":{"shape":"ApiKeys"},
       "errors":[
+        {"shape":"BadRequestException"},
         {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
@@ -517,6 +533,7 @@
       "input":{"shape":"GetClientCertificatesRequest"},
       "output":{"shape":"ClientCertificates"},
       "errors":[
+        {"shape":"BadRequestException"},
         {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
@@ -545,6 +562,7 @@
       "input":{"shape":"GetDeploymentsRequest"},
       "output":{"shape":"Deployments"},
       "errors":[
+        {"shape":"BadRequestException"},
         {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"ServiceUnavailableException"}
@@ -574,6 +592,7 @@
       "input":{"shape":"GetDomainNamesRequest"},
       "output":{"shape":"DomainNames"},
       "errors":[
+        {"shape":"BadRequestException"},
         {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
@@ -688,6 +707,7 @@
       "input":{"shape":"GetModelsRequest"},
       "output":{"shape":"Models"},
       "errors":[
+        {"shape":"BadRequestException"},
         {"shape":"UnauthorizedException"},
         {"shape":"NotFoundException"},
         {"shape":"TooManyRequestsException"}
@@ -716,6 +736,7 @@
       "input":{"shape":"GetResourcesRequest"},
       "output":{"shape":"Resources"},
       "errors":[
+        {"shape":"BadRequestException"},
         {"shape":"UnauthorizedException"},
         {"shape":"NotFoundException"},
         {"shape":"TooManyRequestsException"}
@@ -744,6 +765,7 @@
       "input":{"shape":"GetRestApisRequest"},
       "output":{"shape":"RestApis"},
       "errors":[
+        {"shape":"BadRequestException"},
         {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
@@ -858,6 +880,21 @@
         {"shape":"ConflictException"},
         {"shape":"LimitExceededException"},
         {"shape":"BadRequestException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
+    "TestInvokeAuthorizer":{
+      "name":"TestInvokeAuthorizer",
+      "http":{
+        "method":"POST",
+        "requestUri":"/restapis/{restapi_id}/authorizers/{authorizer_id}"
+      },
+      "input":{"shape":"TestInvokeAuthorizerRequest"},
+      "output":{"shape":"TestInvokeAuthorizerResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"NotFoundException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -1729,6 +1766,25 @@
       },
       "payload":"body"
     },
+    "FlushStageAuthorizersCacheRequest":{
+      "type":"structure",
+      "required":[
+        "restApiId",
+        "stageName"
+      ],
+      "members":{
+        "restApiId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"restapi_id"
+        },
+        "stageName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"stage_name"
+        }
+      }
+    },
     "FlushStageCacheRequest":{
       "type":"structure",
       "required":[
@@ -2430,6 +2486,11 @@
       "key":{"shape":"String"},
       "value":{"shape":"NullableBoolean"}
     },
+    "MapOfStringToList":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"ListOfString"}
+    },
     "MapOfStringToString":{
       "type":"map",
       "key":{"shape":"String"},
@@ -2466,7 +2527,9 @@
         "throttlingRateLimit":{"shape":"Double"},
         "cachingEnabled":{"shape":"Boolean"},
         "cacheTtlInSeconds":{"shape":"Integer"},
-        "cacheDataEncrypted":{"shape":"Boolean"}
+        "cacheDataEncrypted":{"shape":"Boolean"},
+        "requireAuthorizationForCacheControl":{"shape":"Boolean"},
+        "unauthorizedCacheControlHeaderStrategy":{"shape":"UnauthorizedCacheControlHeaderStrategy"}
       }
     },
     "MethodSnapshot":{
@@ -2765,6 +2828,41 @@
         "value":{"shape":"String"}
       }
     },
+    "TestInvokeAuthorizerRequest":{
+      "type":"structure",
+      "required":[
+        "restApiId",
+        "authorizerId"
+      ],
+      "members":{
+        "restApiId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"restapi_id"
+        },
+        "authorizerId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"authorizer_id"
+        },
+        "headers":{"shape":"MapOfHeaderValues"},
+        "pathWithQueryString":{"shape":"String"},
+        "body":{"shape":"String"},
+        "stageVariables":{"shape":"MapOfStringToString"},
+        "additionalContext":{"shape":"MapOfStringToString"}
+      }
+    },
+    "TestInvokeAuthorizerResponse":{
+      "type":"structure",
+      "members":{
+        "clientStatus":{"shape":"Integer"},
+        "log":{"shape":"String"},
+        "latency":{"shape":"Long"},
+        "principalId":{"shape":"String"},
+        "policy":{"shape":"String"},
+        "authorization":{"shape":"MapOfStringToList"}
+      }
+    },
     "TestInvokeMethodRequest":{
       "type":"structure",
       "required":[
@@ -2825,6 +2923,14 @@
       },
       "error":{"httpStatusCode":429},
       "exception":true
+    },
+    "UnauthorizedCacheControlHeaderStrategy":{
+      "type":"string",
+      "enum":[
+        "FAIL_WITH_403",
+        "SUCCEED_WITH_RESPONSE_HEADER",
+        "SUCCEED_WITHOUT_RESPONSE_HEADER"
+      ]
     },
     "UnauthorizedException":{
       "type":"structure",
