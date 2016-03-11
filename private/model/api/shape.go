@@ -8,8 +8,6 @@ import (
 	"sort"
 	"strings"
 	"text/template"
-
-	"github.com/aws/aws-sdk-go/private/util"
 )
 
 // A ShapeRef defines the usage of a shape within the API.
@@ -69,6 +67,12 @@ type Shape struct {
 	Deprecated bool `json:"deprecated"`
 }
 
+// GoTags returns the struct tags for a shape.
+func (s *Shape) GoTags(root, required bool) string {
+	ref := &ShapeRef{ShapeName: s.ShapeName, API: s.API, Shape: s}
+	return ref.GoTags(root, required)
+}
+
 // Rename changes the name of the Shape to newName. Also updates
 // the associated API's reference to use newName.
 func (s *Shape) Rename(newName string) {
@@ -96,6 +100,24 @@ func (s *Shape) MemberNames() []string {
 // <packageName>.<type> format. Package naming only applies to structures.
 func (s *Shape) GoTypeWithPkgName() string {
 	return goType(s, true)
+}
+
+// GoStructType returns the type of a struct field based on the API
+// model definition.
+func (s *Shape) GoStructType(name string, ref *ShapeRef) string {
+	if (ref.Streaming || ref.Shape.Streaming) && s.Payload == name {
+		rtype := "io.ReadSeeker"
+		if len(s.refs) > 1 {
+			rtype = "aws.ReaderSeekCloser"
+		} else if strings.HasSuffix(s.ShapeName, "Output") {
+			rtype = "io.ReadCloser"
+		}
+
+		s.API.imports["io"] = true
+		return rtype
+	}
+
+	return ref.GoType()
 }
 
 // GoType returns a shape's Go type
@@ -306,14 +328,14 @@ func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
 // Docstring returns the godocs formated documentation
 func (ref *ShapeRef) Docstring() string {
 	if ref.Documentation != "" {
-		return ref.Documentation
+		return strings.Trim(ref.Documentation, "\n ")
 	}
 	return ref.Shape.Docstring()
 }
 
 // Docstring returns the godocs formated documentation
 func (s *Shape) Docstring() string {
-	return s.Documentation
+	return strings.Trim(s.Documentation, "\n ")
 }
 
 var goCodeStringerTmpl = template.Must(template.New("goCodeStringerTmpl").Parse(`
@@ -327,10 +349,11 @@ func (s {{ .ShapeName }}) GoString() string {
 }
 `))
 
-func (s *Shape) goCodeStringers() string {
+// GoCodeStringers renders the Stringers for API input/output shapes
+func (s *Shape) GoCodeStringers() string {
 	w := bytes.Buffer{}
 	if err := goCodeStringerTmpl.Execute(&w, s); err != nil {
-		panic(fmt.Sprintln("Unexpected error executing goCodeStringers template", err))
+		panic(fmt.Sprintln("Unexpected error executing GoCodeStringers template", err))
 	}
 
 	return w.String()
@@ -361,53 +384,53 @@ func (s *Shape) EnumName(n int) string {
 	return enum
 }
 
+var structShapeTmpl = template.Must(template.New("StructShape").Parse(`
+{{ .Docstring }}
+type {{ .ShapeName }} struct {
+	_ struct{} {{ .GoTags true false }}
+
+	{{ $context := . -}}
+	{{ range $_, $name := .MemberNames -}}
+		{{ $elem := index $context.MemberRefs $name }}
+		{{ $isRequired := $context.IsRequired $name }}
+		{{ $elem.Docstring }}
+		{{ $name }} {{ $context.GoStructType $name $elem }} {{ $elem.GoTags false $isRequired }}
+	{{ end }}
+}
+{{ if not .API.NoStringerMethods }}
+	{{ $context.GoCodeStringers }}
+{{ end }}
+`))
+
+var enumShapeTmpl = template.Must(template.New("EnumShape").Parse(`
+{{ .Docstring }}
+const (
+	{{ $context := . -}}
+	{{ range $index, $elem := .Enum -}}
+		// @enum {{ $context.ShapeName }}
+		{{ index $context.EnumConsts $index }} = "{{ $elem }}"
+	{{ end }}
+)
+`))
+
 // GoCode returns the rendered Go code for the Shape.
 func (s *Shape) GoCode() string {
-	code := s.Docstring()
-	if !s.IsEnum() {
-		code += "type " + s.ShapeName + " "
-	}
+	b := &bytes.Buffer{}
 
 	switch {
 	case s.Type == "structure":
-		ref := &ShapeRef{ShapeName: s.ShapeName, API: s.API, Shape: s}
-
-		code += "struct {\n"
-		code += "_ struct{} " + ref.GoTags(true, false) + "\n\n"
-		for _, n := range s.MemberNames() {
-			m := s.MemberRefs[n]
-			code += m.Docstring()
-			if (m.Streaming || m.Shape.Streaming) && s.Payload == n {
-				rtype := "io.ReadSeeker"
-				if len(s.refs) > 1 {
-					rtype = "aws.ReaderSeekCloser"
-				} else if strings.HasSuffix(s.ShapeName, "Output") {
-					rtype = "io.ReadCloser"
-				}
-
-				s.API.imports["io"] = true
-				code += n + " " + rtype + " " + m.GoTags(false, s.IsRequired(n)) + "\n\n"
-			} else {
-				code += n + " " + m.GoType() + " " + m.GoTags(false, s.IsRequired(n)) + "\n\n"
-			}
-		}
-		code += "}"
-
-		if !s.API.NoStringerMethods {
-			code += s.goCodeStringers()
+		if err := structShapeTmpl.Execute(b, s); err != nil {
+			panic(fmt.Sprintf("Failed to generate struct shape %s, %v\n", s.ShapeName, err))
 		}
 	case s.IsEnum():
-		code += "const (\n"
-		for n, e := range s.Enum {
-			code += fmt.Sprintf("\t// @enum %s\n\t%s = %q\n",
-				s.ShapeName, s.EnumConsts[n], e)
+		if err := enumShapeTmpl.Execute(b, s); err != nil {
+			panic(fmt.Sprintf("Failed to generate enum shape %s, %v\n", s.ShapeName, err))
 		}
-		code += ")"
 	default:
-		panic("Cannot generate toplevel shape for " + s.Type)
+		panic(fmt.Sprintln("Cannot generate toplevel shape for", s.Type))
 	}
 
-	return util.GoFmt(code)
+	return b.String()
 }
 
 // IsEnum returns whether this shape is an enum list
