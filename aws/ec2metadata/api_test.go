@@ -18,6 +18,23 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 )
 
+const instanceIdentityDocument = `{
+  "devpayProductCodes" : null,
+  "availabilityZone" : "us-east-1d",
+  "privateIp" : "10.158.112.84",
+  "version" : "2010-08-31",
+  "region" : "us-east-1",
+  "instanceId" : "i-1234567890abcdef0",
+  "billingProducts" : null,
+  "instanceType" : "t1.micro",
+  "accountId" : "123456789012",
+  "pendingTime" : "2015-11-19T16:32:11Z",
+  "imageId" : "ami-5fb8c835",
+  "kernelId" : "aki-919dcaf8",
+  "ramdiskId" : null,
+  "architecture" : "x86_64"
+}`
+
 func initTestServer(path string, resp string) *httptest.Server {
 	return httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.RequestURI != path {
@@ -116,4 +133,19 @@ func TestMetadataErrorResponse(t *testing.T) {
 	data, err := c.GetMetadata("uri/path")
 	assert.Empty(t, data)
 	assert.Contains(t, err.Error(), "error message text")
+}
+
+func TestEC2RoleProviderInstanceIdentity(t *testing.T) {
+	server := initTestServer(
+		"/latest/dynamic/instance-identity/document",
+		instanceIdentityDocument,
+	)
+	defer server.Close()
+	c := ec2metadata.New(session.New(), &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+
+	doc, err := c.GetInstanceIdentityDocument()
+	assert.Nil(t, err, "Expect no error, %v", err)
+	assert.Equal(t, doc.AccountID, "123456789012")
+	assert.Equal(t, doc.AvailabilityZone, "us-east-1d")
+	assert.Equal(t, doc.Region, "us-east-1")
 }
