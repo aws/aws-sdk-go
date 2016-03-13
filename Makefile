@@ -71,7 +71,7 @@ lint:
 	if [ "$$lint" != "" ]; then exit 1; fi
 
 vet:
-	go tool vet -all -shadow $(shell if go version | grep -v 1.5 | grep -v 1.4 >> /dev/null; then echo "-example=false" | tr -d '\n'; fi) $(shell ls -d */ | grep -v vendor)
+	go tool vet -all -shadow $(shell if go version | grep -v 1.6 | grep -v 1.5 | grep -v 1.4 >> /dev/null; then echo "-example=false" | tr -d '\n'; fi) $(shell ls -d */ | grep -v vendor)
 
 get-deps: get-deps-tests get-deps-verify
 	@echo "go get SDK dependencies"
