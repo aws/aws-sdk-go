@@ -1474,6 +1474,8 @@ type ByteMatchTuple struct {
 	//
 	// The value that you want AWS WAF to search for. The SDK automatically base64
 	// encodes the value.
+	//
+	// TargetString is automatically base64 encoded/decoded by the SDK.
 	TargetString []byte `type:"blob" required:"true"`
 
 	// Text transformations eliminate some of the unusual formatting that attackers

@@ -6627,6 +6627,8 @@ type GetCredentialReportOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Contains the credential report. The report is Base64-encoded.
+	//
+	// Content is automatically base64 encoded/decoded by the SDK.
 	Content []byte `type:"blob"`
 
 	// The date and time when the credential report was created, in ISO 8601 date-time
@@ -11105,6 +11107,8 @@ type VirtualMFADevice struct {
 
 	// The Base32 seed defined as specified in RFC3548 (http://www.ietf.org/rfc/rfc3548.txt).
 	// The Base32StringSeed is Base64-encoded.
+	//
+	// Base32StringSeed is automatically base64 encoded/decoded by the SDK.
 	Base32StringSeed []byte `type:"blob"`
 
 	// The date and time on which the virtual MFA device was enabled.
@@ -11114,6 +11118,8 @@ type VirtualMFADevice struct {
 	// where $virtualMFADeviceName is one of the create call arguments, AccountName
 	// is the user name if set (otherwise, the account ID otherwise), and Base32String
 	// is the seed in Base32 format. The Base32String value is Base64-encoded.
+	//
+	// QRCodePNG is automatically base64 encoded/decoded by the SDK.
 	QRCodePNG []byte `type:"blob"`
 
 	// The serial number associated with VirtualMFADevice.

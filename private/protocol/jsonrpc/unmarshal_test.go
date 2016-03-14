@@ -228,6 +228,7 @@ func (c *OutputService2ProtocolTest) OutputService2TestCaseOperation1(input *Out
 type OutputService2TestShapeBlobContainer struct {
 	_ struct{} `type:"structure"`
 
+	// Foo is automatically base64 encoded/decoded by the SDK.
 	Foo []byte `locationName:"foo" type:"blob"`
 }
 
@@ -238,6 +239,7 @@ type OutputService2TestShapeOutputService2TestCaseOperation1Input struct {
 type OutputService2TestShapeOutputService2TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
 
+	// BlobMember is automatically base64 encoded/decoded by the SDK.
 	BlobMember []byte `type:"blob"`
 
 	StructMember *OutputService2TestShapeBlobContainer `type:"structure"`
