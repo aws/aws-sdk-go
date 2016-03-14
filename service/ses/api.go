@@ -2706,6 +2706,8 @@ type RawMessage struct {
 	// Do not include these X-headers in the DKIM signature, because they are removed
 	// by Amazon SES before sending the email. For more information, go to the Amazon
 	// SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html).
+	//
+	// Data is automatically base64 encoded/decoded by the SDK.
 	Data []byte `type:"blob" required:"true"`
 }
 

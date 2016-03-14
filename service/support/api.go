@@ -627,6 +627,8 @@ type Attachment struct {
 	_ struct{} `type:"structure"`
 
 	// The content of the attachment file.
+	//
+	// Data is automatically base64 encoded/decoded by the SDK.
 	Data []byte `locationName:"data" type:"blob"`
 
 	// The name of the attachment file.

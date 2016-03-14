@@ -1098,6 +1098,7 @@ type InputService10TestShapeInputService10TestCaseOperation1Output struct {
 type InputService10TestShapeStructureShape struct {
 	_ struct{} `type:"structure"`
 
+	// B is automatically base64 encoded/decoded by the SDK.
 	B []byte `locationName:"b" type:"blob"`
 
 	T *time.Time `locationName:"t" type:"timestamp" timestampFormat:"iso8601"`
