@@ -1,6 +1,7 @@
 package api
 
 import (
+	"fmt"
 	"path/filepath"
 	"strings"
 )
@@ -15,6 +16,34 @@ func (a *API) customizationPasses() {
 
 	if fn := svcCustomizations[a.PackageName()]; fn != nil {
 		fn(a)
+	}
+
+	blobDocStringCustomizations(a)
+}
+
+const base64MarshalDocStr = "// %s is automatically base64 encoded/decoded by the SDK.\n"
+
+func blobDocStringCustomizations(a *API) {
+	for _, s := range a.Shapes {
+		payloadMemberName := s.Payload
+
+		for refName, ref := range s.MemberRefs {
+			if refName == payloadMemberName {
+				// Payload members have their own encoding and may
+				// be raw bytes or io.Reader
+				continue
+			}
+			if ref.Shape.Type == "blob" {
+				docStr := fmt.Sprintf(base64MarshalDocStr, refName)
+				if len(strings.TrimSpace(ref.Shape.Documentation)) != 0 {
+					ref.Shape.Documentation += "//\n" + docStr
+				} else if len(strings.TrimSpace(ref.Documentation)) != 0 {
+					ref.Documentation += "//\n" + docStr
+				} else {
+					ref.Documentation = docStr
+				}
+			}
+		}
 	}
 }
 
