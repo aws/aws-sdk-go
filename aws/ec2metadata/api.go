@@ -10,7 +10,9 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 )
 
-// GetMetadata uses the path provided to request
+// GetMetadata uses the path provided to request information from the EC2
+// instance metdata service. The content will be returned as a string, or
+// error if the request failed.
 func (c *EC2Metadata) GetMetadata(p string) (string, error) {
 	op := &request.Operation{
 		Name:       "GetMetadata",
@@ -24,10 +26,12 @@ func (c *EC2Metadata) GetMetadata(p string) (string, error) {
 	return output.Content, req.Send()
 }
 
-// GetDynamicData uses the path provided to request
+// GetDynamicData uses the path provided to request information from the EC2
+// instance metadata service for dynamic data. The content will be returned
+// as a string, or error if the request failed.
 func (c *EC2Metadata) GetDynamicData(p string) (string, error) {
 	op := &request.Operation{
-		Name:       "GetMetadata",
+		Name:       "GetDynamicData",
 		HTTPMethod: "GET",
 		HTTPPath:   path.Join("/", "dynamic", p),
 	}
@@ -38,7 +42,9 @@ func (c *EC2Metadata) GetDynamicData(p string) (string, error) {
 	return output.Content, req.Send()
 }
 
-// GetInstanceIdentityDocument retrieves an identity document describing an instance
+// GetInstanceIdentityDocument retrieves an identity document describing an
+// instance. Error is returned if the request fails or is unable to parse
+// the response.
 func (c *EC2Metadata) GetInstanceIdentityDocument() (EC2InstanceIdentityDocument, error) {
 	resp, err := c.GetDynamicData("instance-identity/document")
 	if err != nil {
