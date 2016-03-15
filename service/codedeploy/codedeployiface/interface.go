@@ -22,6 +22,10 @@ type CodeDeployAPI interface {
 
 	BatchGetApplications(*codedeploy.BatchGetApplicationsInput) (*codedeploy.BatchGetApplicationsOutput, error)
 
+	BatchGetDeploymentGroupsRequest(*codedeploy.BatchGetDeploymentGroupsInput) (*request.Request, *codedeploy.BatchGetDeploymentGroupsOutput)
+
+	BatchGetDeploymentGroups(*codedeploy.BatchGetDeploymentGroupsInput) (*codedeploy.BatchGetDeploymentGroupsOutput, error)
+
 	BatchGetDeploymentInstancesRequest(*codedeploy.BatchGetDeploymentInstancesInput) (*request.Request, *codedeploy.BatchGetDeploymentInstancesOutput)
 
 	BatchGetDeploymentInstances(*codedeploy.BatchGetDeploymentInstancesInput) (*codedeploy.BatchGetDeploymentInstancesOutput, error)
