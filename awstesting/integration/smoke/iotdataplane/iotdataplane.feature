@@ -4,9 +4,9 @@ Feature: AWS IoT Data Plane
 
   Scenario: Handling errors
     When I attempt to call the "GetThingShadow" API with:
-    | ThingName | "fake_thing" |
-    Then I expect the response error code to be "ResourceNotFoundException"
+    | ThingName | "fakeThing" |
+    Then I expect the response error code to be "InvalidRequestException"
     And I expect the response error message to include:
     """
-    Not Found
+    Invalid thing name
     """
