@@ -676,6 +676,7 @@ func (c *InputService7ProtocolTest) InputService7TestCaseOperation1(input *Input
 type InputService7TestShapeInputService7TestCaseOperation1Input struct {
 	_ struct{} `type:"structure"`
 
+	// BlobArg is automatically base64 encoded/decoded by the SDK.
 	BlobArg []byte `type:"blob"`
 }
 

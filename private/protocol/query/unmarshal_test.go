@@ -320,6 +320,7 @@ type OutputService3TestShapeOutputService3TestCaseOperation1Input struct {
 type OutputService3TestShapeOutputService3TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
 
+	// Blob is automatically base64 encoded/decoded by the SDK.
 	Blob []byte `type:"blob"`
 }
 
