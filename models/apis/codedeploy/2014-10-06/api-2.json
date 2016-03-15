@@ -60,6 +60,23 @@
         {"shape":"BatchLimitExceededException"}
       ]
     },
+    "BatchGetDeploymentGroups":{
+      "name":"BatchGetDeploymentGroups",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchGetDeploymentGroupsInput"},
+      "output":{"shape":"BatchGetDeploymentGroupsOutput"},
+      "errors":[
+        {"shape":"ApplicationNameRequiredException"},
+        {"shape":"InvalidApplicationNameException"},
+        {"shape":"ApplicationDoesNotExistException"},
+        {"shape":"DeploymentGroupNameRequiredException"},
+        {"shape":"InvalidDeploymentGroupNameException"},
+        {"shape":"BatchLimitExceededException"}
+      ]
+    },
     "BatchGetDeploymentInstances":{
       "name":"BatchGetDeploymentInstances",
       "http":{
@@ -679,6 +696,24 @@
         "applicationsInfo":{"shape":"ApplicationsInfoList"}
       }
     },
+    "BatchGetDeploymentGroupsInput":{
+      "type":"structure",
+      "required":[
+        "applicationName",
+        "deploymentGroupNames"
+      ],
+      "members":{
+        "applicationName":{"shape":"ApplicationName"},
+        "deploymentGroupNames":{"shape":"DeploymentGroupsList"}
+      }
+    },
+    "BatchGetDeploymentGroupsOutput":{
+      "type":"structure",
+      "members":{
+        "deploymentGroupsInfo":{"shape":"DeploymentGroupInfoList"},
+        "errorMessage":{"shape":"ErrorMessage"}
+      }
+    },
     "BatchGetDeploymentInstancesInput":{
       "type":"structure",
       "required":[
@@ -938,6 +973,10 @@
         "targetRevision":{"shape":"RevisionLocation"},
         "triggerConfigurations":{"shape":"TriggerConfigList"}
       }
+    },
+    "DeploymentGroupInfoList":{
+      "type":"list",
+      "member":{"shape":"DeploymentGroupInfo"}
     },
     "DeploymentGroupLimitExceededException":{
       "type":"structure",
