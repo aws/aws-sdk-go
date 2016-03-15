@@ -66,6 +66,10 @@ type SESAPI interface {
 
 	GetIdentityDkimAttributes(*ses.GetIdentityDkimAttributesInput) (*ses.GetIdentityDkimAttributesOutput, error)
 
+	GetIdentityMailFromDomainAttributesRequest(*ses.GetIdentityMailFromDomainAttributesInput) (*request.Request, *ses.GetIdentityMailFromDomainAttributesOutput)
+
+	GetIdentityMailFromDomainAttributes(*ses.GetIdentityMailFromDomainAttributesInput) (*ses.GetIdentityMailFromDomainAttributesOutput, error)
+
 	GetIdentityNotificationAttributesRequest(*ses.GetIdentityNotificationAttributesInput) (*request.Request, *ses.GetIdentityNotificationAttributesOutput)
 
 	GetIdentityNotificationAttributes(*ses.GetIdentityNotificationAttributesInput) (*ses.GetIdentityNotificationAttributesOutput, error)
@@ -139,6 +143,10 @@ type SESAPI interface {
 	SetIdentityFeedbackForwardingEnabledRequest(*ses.SetIdentityFeedbackForwardingEnabledInput) (*request.Request, *ses.SetIdentityFeedbackForwardingEnabledOutput)
 
 	SetIdentityFeedbackForwardingEnabled(*ses.SetIdentityFeedbackForwardingEnabledInput) (*ses.SetIdentityFeedbackForwardingEnabledOutput, error)
+
+	SetIdentityMailFromDomainRequest(*ses.SetIdentityMailFromDomainInput) (*request.Request, *ses.SetIdentityMailFromDomainOutput)
+
+	SetIdentityMailFromDomain(*ses.SetIdentityMailFromDomainInput) (*ses.SetIdentityMailFromDomainOutput, error)
 
 	SetIdentityNotificationTopicRequest(*ses.SetIdentityNotificationTopicInput) (*request.Request, *ses.SetIdentityNotificationTopicOutput)
 

@@ -478,6 +478,37 @@ func (c *SES) GetIdentityDkimAttributes(input *GetIdentityDkimAttributesInput) (
 	return out, err
 }
 
+const opGetIdentityMailFromDomainAttributes = "GetIdentityMailFromDomainAttributes"
+
+// GetIdentityMailFromDomainAttributesRequest generates a request for the GetIdentityMailFromDomainAttributes operation.
+func (c *SES) GetIdentityMailFromDomainAttributesRequest(input *GetIdentityMailFromDomainAttributesInput) (req *request.Request, output *GetIdentityMailFromDomainAttributesOutput) {
+	op := &request.Operation{
+		Name:       opGetIdentityMailFromDomainAttributes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetIdentityMailFromDomainAttributesInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &GetIdentityMailFromDomainAttributesOutput{}
+	req.Data = output
+	return
+}
+
+// Returns the custom MAIL FROM attributes for a list of identities (email addresses
+// and/or domains).
+//
+// This action is throttled at one request per second and can only get custom
+// MAIL FROM attributes for up to 100 identities at a time.
+func (c *SES) GetIdentityMailFromDomainAttributes(input *GetIdentityMailFromDomainAttributesInput) (*GetIdentityMailFromDomainAttributesOutput, error) {
+	req, out := c.GetIdentityMailFromDomainAttributesRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opGetIdentityNotificationAttributes = "GetIdentityNotificationAttributes"
 
 // GetIdentityNotificationAttributesRequest generates a request for the GetIdentityNotificationAttributes operation.
@@ -1139,6 +1170,40 @@ func (c *SES) SetIdentityFeedbackForwardingEnabledRequest(input *SetIdentityFeed
 // Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html).
 func (c *SES) SetIdentityFeedbackForwardingEnabled(input *SetIdentityFeedbackForwardingEnabledInput) (*SetIdentityFeedbackForwardingEnabledOutput, error) {
 	req, out := c.SetIdentityFeedbackForwardingEnabledRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opSetIdentityMailFromDomain = "SetIdentityMailFromDomain"
+
+// SetIdentityMailFromDomainRequest generates a request for the SetIdentityMailFromDomain operation.
+func (c *SES) SetIdentityMailFromDomainRequest(input *SetIdentityMailFromDomainInput) (req *request.Request, output *SetIdentityMailFromDomainOutput) {
+	op := &request.Operation{
+		Name:       opSetIdentityMailFromDomain,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &SetIdentityMailFromDomainInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &SetIdentityMailFromDomainOutput{}
+	req.Data = output
+	return
+}
+
+// Enables or disables the custom MAIL FROM domain setup for a verified identity
+// (email address or domain).
+//
+// To send emails using the specified MAIL FROM domain, you must add an MX
+// record to your MAIL FROM domain's DNS settings. If you want your emails to
+// pass Sender Policy Framework (SPF) checks, you must also add or update an
+// SPF record. For more information, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from-set.html).
+// This action is throttled at one request per second.
+func (c *SES) SetIdentityMailFromDomain(input *SetIdentityMailFromDomainInput) (*SetIdentityMailFromDomainOutput, error) {
+	req, out := c.SetIdentityMailFromDomainRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -2075,6 +2140,40 @@ func (s GetIdentityDkimAttributesOutput) GoString() string {
 	return s.String()
 }
 
+type GetIdentityMailFromDomainAttributesInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of one or more identities.
+	Identities []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s GetIdentityMailFromDomainAttributesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetIdentityMailFromDomainAttributesInput) GoString() string {
+	return s.String()
+}
+
+type GetIdentityMailFromDomainAttributesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A map of identities to custom MAIL FROM attributes.
+	MailFromDomainAttributes map[string]*IdentityMailFromDomainAttributes `type:"map" required:"true"`
+}
+
+// String returns the string representation
+func (s GetIdentityMailFromDomainAttributesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetIdentityMailFromDomainAttributesOutput) GoString() string {
+	return s.String()
+}
+
 type GetIdentityNotificationAttributesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2293,6 +2392,43 @@ func (s IdentityDkimAttributes) String() string {
 
 // GoString returns the string representation
 func (s IdentityDkimAttributes) GoString() string {
+	return s.String()
+}
+
+// Represents the custom MAIL FROM domain attributes of a verified identity
+// (email address or domain).
+type IdentityMailFromDomainAttributes struct {
+	_ struct{} `type:"structure"`
+
+	// The action that Amazon SES takes if it cannot successfully read the required
+	// MX record when you send an email. A value of UseDefaultValue indicates that
+	// if Amazon SES cannot read the required MX record, it uses amazonses.com (or
+	// a subdomain of that) as the MAIL FROM domain. A value of RejectMessage indicates
+	// that if Amazon SES cannot read the required MX record, Amazon SES returns
+	// a MailFromDomainNotVerified error and does not send the email.
+	//
+	// The custom MAIL FROM setup states that result in this behavior are Pending,
+	// Failed, and TemporaryFailure.
+	BehaviorOnMXFailure *string `type:"string" required:"true" enum:"BehaviorOnMXFailure"`
+
+	// The custom MAIL FROM domain that the identity is configured to use.
+	MailFromDomain *string `type:"string" required:"true"`
+
+	// The state that indicates whether Amazon SES has successfully read the MX
+	// record required for custom MAIL FROM domain setup. If the state is Success,
+	// Amazon SES uses the specified custom MAIL FROM domain when the verified identity
+	// sends an email. All other states indicate that Amazon SES takes the action
+	// described by BehaviorOnMXFailure.
+	MailFromDomainStatus *string `type:"string" required:"true" enum:"CustomMailFromStatus"`
+}
+
+// String returns the string representation
+func (s IdentityMailFromDomainAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s IdentityMailFromDomainAttributes) GoString() string {
 	return s.String()
 }
 
@@ -2842,7 +2978,7 @@ type ReceiptRule struct {
 	// of the recipient email addresses or domains specified in the receipt rule.
 	Actions []*ReceiptAction `type:"list"`
 
-	// If true, the receipt rule is active. The default value is true.
+	// If true, the receipt rule is active. The default value is false.
 	Enabled *bool `type:"boolean"`
 
 	// The name of the receipt rule. The name must:
@@ -2858,7 +2994,7 @@ type ReceiptRule struct {
 	Recipients []*string `type:"list"`
 
 	// If true, then messages to which this receipt rule applies are scanned for
-	// spam and viruses. The default value is true.
+	// spam and viruses. The default value is false.
 	ScanEnabled *bool `type:"boolean"`
 
 	// Specifies whether Amazon SES should require that incoming email is delivered
@@ -3093,7 +3229,7 @@ type SNSAction struct {
 	// The encoding to use for the email within the Amazon SNS notification. UTF-8
 	// is easier to use, but may not preserve all special characters when a message
 	// was encoded with a different encoding format. Base64 preserves all special
-	// characters. The default value is Base64.
+	// characters. The default value is UTF-8.
 	Encoding *string `type:"string" enum:"SNSActionEncoding"`
 
 	// The Amazon Resource Name (ARN) of the Amazon SNS topic to notify. An example
@@ -3510,6 +3646,57 @@ func (s SetIdentityFeedbackForwardingEnabledOutput) GoString() string {
 	return s.String()
 }
 
+type SetIdentityMailFromDomainInput struct {
+	_ struct{} `type:"structure"`
+
+	// The action that you want Amazon SES to take if it cannot successfully read
+	// the required MX record when you send an email. If you choose UseDefaultValue,
+	// Amazon SES will use amazonses.com (or a subdomain of that) as the MAIL FROM
+	// domain. If you choose RejectMessage, Amazon SES will return a MailFromDomainNotVerified
+	// error and not send the email.
+	//
+	// The action specified in BehaviorOnMXFailure is taken when the custom MAIL
+	// FROM domain setup is in the Pending, Failed, and TemporaryFailure states.
+	BehaviorOnMXFailure *string `type:"string" enum:"BehaviorOnMXFailure"`
+
+	// The verified identity for which you want to enable or disable the specified
+	// custom MAIL FROM domain.
+	Identity *string `type:"string" required:"true"`
+
+	// The custom MAIL FROM domain that you want the verified identity to use. The
+	// MAIL FROM domain must 1) be a subdomain of the verified identity, 2) not
+	// be used in a "From" address if the MAIL FROM domain is the destination of
+	// email feedback forwarding (for more information, see the Amazon SES Developer
+	// Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from.html)),
+	// and 3) not be used to receive emails. A value of null disables the custom
+	// MAIL FROM setting for the identity.
+	MailFromDomain *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SetIdentityMailFromDomainInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SetIdentityMailFromDomainInput) GoString() string {
+	return s.String()
+}
+
+type SetIdentityMailFromDomainOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s SetIdentityMailFromDomainOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SetIdentityMailFromDomainOutput) GoString() string {
+	return s.String()
+}
+
 type SetIdentityNotificationTopicInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3827,6 +4014,13 @@ func (s WorkmailAction) GoString() string {
 }
 
 const (
+	// @enum BehaviorOnMXFailure
+	BehaviorOnMXFailureUseDefaultValue = "UseDefaultValue"
+	// @enum BehaviorOnMXFailure
+	BehaviorOnMXFailureRejectMessage = "RejectMessage"
+)
+
+const (
 	// @enum BounceType
 	BounceTypeDoesNotExist = "DoesNotExist"
 	// @enum BounceType
@@ -3839,6 +4033,17 @@ const (
 	BounceTypeUndefined = "Undefined"
 	// @enum BounceType
 	BounceTypeTemporaryFailure = "TemporaryFailure"
+)
+
+const (
+	// @enum CustomMailFromStatus
+	CustomMailFromStatusPending = "Pending"
+	// @enum CustomMailFromStatus
+	CustomMailFromStatusSuccess = "Success"
+	// @enum CustomMailFromStatus
+	CustomMailFromStatusFailed = "Failed"
+	// @enum CustomMailFromStatus
+	CustomMailFromStatusTemporaryFailure = "TemporaryFailure"
 )
 
 const (

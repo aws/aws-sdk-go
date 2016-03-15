@@ -16,6 +16,7 @@
     "DescribeReceiptRule": "<p>Returns the details of the specified receipt rule.</p> <p>For information about setting up receipt rules, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rules.html\">Amazon SES Developer Guide</a>.</p> <p>This action is throttled at one request per second.</p>",
     "DescribeReceiptRuleSet": "<p>Returns the details of the specified receipt rule set.</p> <p>For information about managing receipt rule sets, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html\">Amazon SES Developer Guide</a>.</p> <p>This action is throttled at one request per second.</p>",
     "GetIdentityDkimAttributes": "<p>Returns the current status of Easy DKIM signing for an entity. For domain name identities, this action also returns the DKIM tokens that are required for Easy DKIM signing, and whether Amazon SES has successfully verified that these tokens have been published.</p> <p>This action takes a list of identities as input and returns the following information for each:</p> <ul> <li>Whether Easy DKIM signing is enabled or disabled.</li> <li>A set of DKIM tokens that represent the identity. If the identity is an email address, the tokens represent the domain of that address.</li> <li>Whether Amazon SES has successfully verified the DKIM tokens published in the domain's DNS. This information is only returned for domain name identities, not for email addresses.</li> </ul> <p>This action is throttled at one request per second and can only get DKIM attributes for up to 100 identities at a time.</p> <p>For more information about creating DNS records using DKIM tokens, go to the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html\">Amazon SES Developer Guide</a>.</p>",
+    "GetIdentityMailFromDomainAttributes": "<p>Returns the custom MAIL FROM attributes for a list of identities (email addresses and/or domains).</p> <p>This action is throttled at one request per second and can only get custom MAIL FROM attributes for up to 100 identities at a time.</p>",
     "GetIdentityNotificationAttributes": "<p>Given a list of verified identities (email addresses and/or domains), returns a structure describing identity notification attributes.</p> <p>This action is throttled at one request per second and can only get notification attributes for up to 100 identities at a time.</p> <p>For more information about using notifications with Amazon SES, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html\">Amazon SES Developer Guide</a>.</p>",
     "GetIdentityPolicies": "<p>Returns the requested sending authorization policies for the given identity (email address or domain). The policies are returned as a map of policy names to policy contents. You can retrieve a maximum of 20 policies at a time.</p> <note>This API is for the identity owner only. If you have not verified the identity, this API will return an error.</note> <p>Sending authorization is a feature that enables an identity owner to authorize other senders to use its identities. For information about using sending authorization, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html\">Amazon SES Developer Guide</a>.</p> <p>This action is throttled at one request per second.</p>",
     "GetIdentityVerificationAttributes": "<p>Given a list of identities (email addresses and/or domains), returns the verification status and (for domain identities) the verification token for each identity.</p> <p>This action is throttled at one request per second and can only get verification attributes for up to 100 identities at a time.</p>",
@@ -34,6 +35,7 @@
     "SetActiveReceiptRuleSet": "<p>Sets the specified receipt rule set as the active receipt rule set.</p> <note>To disable your email-receiving through Amazon SES completely, you can call this API with RuleSetName set to null.</note> <p>For information about managing receipt rule sets, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html\">Amazon SES Developer Guide</a>.</p> <p>This action is throttled at one request per second.</p>",
     "SetIdentityDkimEnabled": "<p>Enables or disables Easy DKIM signing of email sent from an identity:</p> <ul> <li>If Easy DKIM signing is enabled for a domain name identity (e.g., <code>example.com</code>), then Amazon SES will DKIM-sign all email sent by addresses under that domain name (e.g., <code>user@example.com</code>).</li> <li>If Easy DKIM signing is enabled for an email address, then Amazon SES will DKIM-sign all email sent by that email address.</li> </ul> <p>For email addresses (e.g., <code>user@example.com</code>), you can only enable Easy DKIM signing if the corresponding domain (e.g., <code>example.com</code>) has been set up for Easy DKIM using the AWS Console or the <code>VerifyDomainDkim</code> action.</p> <p>This action is throttled at one request per second.</p> <p>For more information about Easy DKIM signing, go to the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html\">Amazon SES Developer Guide</a>.</p>",
     "SetIdentityFeedbackForwardingEnabled": "<p>Given an identity (email address or domain), enables or disables whether Amazon SES forwards bounce and complaint notifications as email. Feedback forwarding can only be disabled when Amazon Simple Notification Service (Amazon SNS) topics are specified for both bounces and complaints.</p> <note>Feedback forwarding does not apply to delivery notifications. Delivery notifications are only available through Amazon SNS.</note> <p>This action is throttled at one request per second.</p> <p>For more information about using notifications with Amazon SES, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html\">Amazon SES Developer Guide</a>.</p>",
+    "SetIdentityMailFromDomain": "<p>Enables or disables the custom MAIL FROM domain setup for a verified identity (email address or domain). </p> <important>To send emails using the specified MAIL FROM domain, you must add an MX record to your MAIL FROM domain's DNS settings. If you want your emails to pass Sender Policy Framework (SPF) checks, you must also add or update an SPF record. For more information, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from-set.html\">Amazon SES Developer Guide</a>.</important> <p>This action is throttled at one request per second.</p>",
     "SetIdentityNotificationTopic": "<p>Given an identity (email address or domain), sets the Amazon Simple Notification Service (Amazon SNS) topic to which Amazon SES will publish bounce, complaint, and/or delivery notifications for emails sent with that identity as the <code>Source</code>.</p> <note>Unless feedback forwarding is enabled, you must specify Amazon SNS topics for bounce and complaint notifications. For more information, see <code>SetIdentityFeedbackForwardingEnabled</code>. </note> <p>This action is throttled at one request per second.</p> <p>For more information about feedback notification, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html\">Amazon SES Developer Guide</a>.</p>",
     "SetReceiptRulePosition": "<p>Sets the position of the specified receipt rule in the receipt rule set.</p> <p>For information about managing receipt rules, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html\">Amazon SES Developer Guide</a>.</p> <p>This action is throttled at one request per second.</p>",
     "UpdateReceiptRule": "<p>Updates a receipt rule.</p> <p>For information about managing receipt rules, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html\">Amazon SES Developer Guide</a>.</p> <p>This action is throttled at one request per second.</p>",
@@ -108,6 +110,13 @@
       "base": null,
       "refs": {
         "MessageDsn$ArrivalDate": "<p>When the message was received by the reporting mail transfer agent (MTA), in <a href=\"https://www.ietf.org/rfc/rfc0822.txt\">RFC 822</a> date-time format.</p>"
+      }
+    },
+    "BehaviorOnMXFailure": {
+      "base": null,
+      "refs": {
+        "IdentityMailFromDomainAttributes$BehaviorOnMXFailure": "<p>The action that Amazon SES takes if it cannot successfully read the required MX record when you send an email. A value of <code>UseDefaultValue</code> indicates that if Amazon SES cannot read the required MX record, it uses amazonses.com (or a subdomain of that) as the MAIL FROM domain. A value of <code>RejectMessage</code> indicates that if Amazon SES cannot read the required MX record, Amazon SES returns a <code>MailFromDomainNotVerified</code> error and does not send the email.</p> <p>The custom MAIL FROM setup states that result in this behavior are <code>Pending</code>, <code>Failed</code>, and <code>TemporaryFailure</code>.</p>",
+        "SetIdentityMailFromDomainRequest$BehaviorOnMXFailure": "<p>The action that you want Amazon SES to take if it cannot successfully read the required MX record when you send an email. If you choose <code>UseDefaultValue</code>, Amazon SES will use amazonses.com (or a subdomain of that) as the MAIL FROM domain. If you choose <code>RejectMessage</code>, Amazon SES will return a <code>MailFromDomainNotVerified</code> error and not send the email.</p> <p>The action specified in <code>BehaviorOnMXFailure</code> is taken when the custom MAIL FROM domain setup is in the <code>Pending</code>, <code>Failed</code>, and <code>TemporaryFailure</code> states.</p>"
       }
     },
     "Body": {
@@ -230,6 +239,12 @@
     "CreateReceiptRuleSetResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "CustomMailFromStatus": {
+      "base": null,
+      "refs": {
+        "IdentityMailFromDomainAttributes$MailFromDomainStatus": "<p>The state that indicates whether Amazon SES has successfully read the MX record required for custom MAIL FROM domain setup. If the state is <code>Success</code>, Amazon SES uses the specified custom MAIL FROM domain when the verified identity sends an email. All other states indicate that Amazon SES takes the action described by <code>BehaviorOnMXFailure</code>.</p>"
       }
     },
     "DeleteIdentityPolicyRequest": {
@@ -359,8 +374,8 @@
       "refs": {
         "IdentityDkimAttributes$DkimEnabled": "<p>True if DKIM signing is enabled for email sent from the identity; false otherwise.</p>",
         "IdentityNotificationAttributes$ForwardingEnabled": "<p>Describes whether Amazon SES will forward bounce and complaint notifications as email. <code>true</code> indicates that Amazon SES will forward bounce and complaint notifications as email, while <code>false</code> indicates that bounce and complaint notifications will be published only to the specified bounce and complaint Amazon SNS topics.</p>",
-        "ReceiptRule$Enabled": "<p>If <code>true</code>, the receipt rule is active. The default value is true.</p>",
-        "ReceiptRule$ScanEnabled": "<p>If <code>true</code>, then messages to which this receipt rule applies are scanned for spam and viruses. The default value is <code>true</code>.</p>",
+        "ReceiptRule$Enabled": "<p>If <code>true</code>, the receipt rule is active. The default value is <code>false</code>.</p>",
+        "ReceiptRule$ScanEnabled": "<p>If <code>true</code>, then messages to which this receipt rule applies are scanned for spam and viruses. The default value is <code>false</code>.</p>",
         "SetIdentityDkimEnabledRequest$DkimEnabled": "<p>Sets whether DKIM signing is enabled for an identity. Set to <code>true</code> to enable DKIM signing for this identity; <code>false</code> to disable it. </p>",
         "SetIdentityFeedbackForwardingEnabledRequest$ForwardingEnabled": "<p>Sets whether Amazon SES will forward bounce and complaint notifications as email. <code>true</code> specifies that Amazon SES will forward bounce and complaint notifications as email, in addition to any Amazon SNS topic publishing otherwise specified. <code>false</code> specifies that Amazon SES will publish bounce and complaint notifications only through Amazon SNS. This value can only be set to <code>false</code> when Amazon SNS topics are set for both <code>Bounce</code> and <code>Complaint</code> notification types.</p>"
       }
@@ -402,6 +417,16 @@
       }
     },
     "GetIdentityDkimAttributesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetIdentityMailFromDomainAttributesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetIdentityMailFromDomainAttributesResponse": {
       "base": null,
       "refs": {
       }
@@ -467,10 +492,12 @@
         "GetIdentityPoliciesRequest$Identity": "<p>The identity for which the policies will be retrieved. You can specify an identity by using its name or by using its Amazon Resource Name (ARN). Examples: <code>user@example.com</code>, <code>example.com</code>, <code>arn:aws:ses:us-east-1:123456789012:identity/example.com</code>.</p> <p>To successfully call this API, you must own the identity.</p>",
         "IdentityList$member": null,
         "ListIdentityPoliciesRequest$Identity": "<p>The identity that is associated with the policy for which the policies will be listed. You can specify an identity by using its name or by using its Amazon Resource Name (ARN). Examples: <code>user@example.com</code>, <code>example.com</code>, <code>arn:aws:ses:us-east-1:123456789012:identity/example.com</code>.</p> <p>To successfully call this API, you must own the identity.</p>",
+        "MailFromDomainAttributes$key": null,
         "NotificationAttributes$key": null,
         "PutIdentityPolicyRequest$Identity": "<p>The identity to which the policy will apply. You can specify an identity by using its name or by using its Amazon Resource Name (ARN). Examples: <code>user@example.com</code>, <code>example.com</code>, <code>arn:aws:ses:us-east-1:123456789012:identity/example.com</code>.</p> <p>To successfully call this API, you must own the identity.</p>",
         "SetIdentityDkimEnabledRequest$Identity": "<p>The identity for which DKIM signing should be enabled or disabled.</p>",
         "SetIdentityFeedbackForwardingEnabledRequest$Identity": "<p>The identity for which to set bounce and complaint notification forwarding. Examples: <code>user@example.com</code>, <code>example.com</code>.</p>",
+        "SetIdentityMailFromDomainRequest$Identity": "<p>The verified identity for which you want to enable or disable the specified custom MAIL FROM domain.</p>",
         "SetIdentityNotificationTopicRequest$Identity": "<p>The identity for which the Amazon SNS topic will be set. You can specify an identity by using its name or by using its Amazon Resource Name (ARN). Examples: <code>user@example.com</code>, <code>example.com</code>, <code>arn:aws:ses:us-east-1:123456789012:identity/example.com</code>.</p>",
         "VerificationAttributes$key": null
       }
@@ -485,9 +512,16 @@
       "base": null,
       "refs": {
         "GetIdentityDkimAttributesRequest$Identities": "<p>A list of one or more verified identities - email addresses, domains, or both.</p>",
+        "GetIdentityMailFromDomainAttributesRequest$Identities": "<p>A list of one or more identities.</p>",
         "GetIdentityNotificationAttributesRequest$Identities": "<p>A list of one or more identities. You can specify an identity by using its name or by using its Amazon Resource Name (ARN). Examples: <code>user@example.com</code>, <code>example.com</code>, <code>arn:aws:ses:us-east-1:123456789012:identity/example.com</code>.</p>",
         "GetIdentityVerificationAttributesRequest$Identities": "<p>A list of identities.</p>",
         "ListIdentitiesResponse$Identities": "<p>A list of identities.</p>"
+      }
+    },
+    "IdentityMailFromDomainAttributes": {
+      "base": "<p>Represents the custom MAIL FROM domain attributes of a verified identity (email address or domain).</p>",
+      "refs": {
+        "MailFromDomainAttributes$value": null
       }
     },
     "IdentityNotificationAttributes": {
@@ -593,6 +627,24 @@
     },
     "ListVerifiedEmailAddressesResponse": {
       "base": null,
+      "refs": {
+      }
+    },
+    "MailFromDomainAttributes": {
+      "base": null,
+      "refs": {
+        "GetIdentityMailFromDomainAttributesResponse$MailFromDomainAttributes": "<p>A map of identities to custom MAIL FROM attributes.</p>"
+      }
+    },
+    "MailFromDomainName": {
+      "base": null,
+      "refs": {
+        "IdentityMailFromDomainAttributes$MailFromDomain": "<p>The custom MAIL FROM domain that the identity is configured to use.</p>",
+        "SetIdentityMailFromDomainRequest$MailFromDomain": "<p>The custom MAIL FROM domain that you want the verified identity to use. The MAIL FROM domain must 1) be a subdomain of the verified identity, 2) not be used in a \"From\" address if the MAIL FROM domain is the destination of email feedback forwarding (for more information, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from.html\">Amazon SES Developer Guide</a>), and 3) not be used to receive emails. A value of <code>null</code> disables the custom MAIL FROM setting for the identity.</p>"
+      }
+    },
+    "MailFromDomainNotVerifiedException": {
+      "base": "<p> Indicates that the message could not be sent because Amazon SES could not read the MX record required to use the specified MAIL FROM domain. For information about editing the custom MAIL FROM domain settings for an identity, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from-edit.html\">Amazon SES Developer Guide</a>.</p>",
       "refs": {
       }
     },
@@ -924,7 +976,7 @@
     "SNSActionEncoding": {
       "base": null,
       "refs": {
-        "SNSAction$Encoding": "<p>The encoding to use for the email within the Amazon SNS notification. UTF-8 is easier to use, but may not preserve all special characters when a message was encoded with a different encoding format. Base64 preserves all special characters. The default value is Base64.</p>"
+        "SNSAction$Encoding": "<p>The encoding to use for the email within the Amazon SNS notification. UTF-8 is easier to use, but may not preserve all special characters when a message was encoded with a different encoding format. Base64 preserves all special characters. The default value is UTF-8.</p>"
       }
     },
     "SendBounceRequest": {
@@ -1001,6 +1053,16 @@
       }
     },
     "SetIdentityFeedbackForwardingEnabledResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SetIdentityMailFromDomainRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SetIdentityMailFromDomainResponse": {
       "base": null,
       "refs": {
       }
