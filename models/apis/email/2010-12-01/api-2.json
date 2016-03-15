@@ -210,6 +210,18 @@
         "resultWrapper":"GetIdentityDkimAttributesResult"
       }
     },
+    "GetIdentityMailFromDomainAttributes":{
+      "name":"GetIdentityMailFromDomainAttributes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetIdentityMailFromDomainAttributesRequest"},
+      "output":{
+        "shape":"GetIdentityMailFromDomainAttributesResponse",
+        "resultWrapper":"GetIdentityMailFromDomainAttributesResult"
+      }
+    },
     "GetIdentityNotificationAttributes":{
       "name":"GetIdentityNotificationAttributes",
       "http":{
@@ -385,7 +397,8 @@
         "resultWrapper":"SendEmailResult"
       },
       "errors":[
-        {"shape":"MessageRejected"}
+        {"shape":"MessageRejected"},
+        {"shape":"MailFromDomainNotVerifiedException"}
       ]
     },
     "SendRawEmail":{
@@ -400,7 +413,8 @@
         "resultWrapper":"SendRawEmailResult"
       },
       "errors":[
-        {"shape":"MessageRejected"}
+        {"shape":"MessageRejected"},
+        {"shape":"MailFromDomainNotVerifiedException"}
       ]
     },
     "SetActiveReceiptRuleSet":{
@@ -440,6 +454,18 @@
       "output":{
         "shape":"SetIdentityFeedbackForwardingEnabledResponse",
         "resultWrapper":"SetIdentityFeedbackForwardingEnabledResult"
+      }
+    },
+    "SetIdentityMailFromDomain":{
+      "name":"SetIdentityMailFromDomain",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SetIdentityMailFromDomainRequest"},
+      "output":{
+        "shape":"SetIdentityMailFromDomainResponse",
+        "resultWrapper":"SetIdentityMailFromDomainResult"
       }
     },
     "SetIdentityNotificationTopic":{
@@ -566,6 +592,13 @@
     },
     "AmazonResourceName":{"type":"string"},
     "ArrivalDate":{"type":"timestamp"},
+    "BehaviorOnMXFailure":{
+      "type":"string",
+      "enum":[
+        "UseDefaultValue",
+        "RejectMessage"
+      ]
+    },
     "Body":{
       "type":"structure",
       "members":{
@@ -695,6 +728,15 @@
       "type":"structure",
       "members":{
       }
+    },
+    "CustomMailFromStatus":{
+      "type":"string",
+      "enum":[
+        "Pending",
+        "Success",
+        "Failed",
+        "TemporaryFailure"
+      ]
     },
     "DeleteIdentityPolicyRequest":{
       "type":"structure",
@@ -873,6 +915,20 @@
         "DkimAttributes":{"shape":"DkimAttributes"}
       }
     },
+    "GetIdentityMailFromDomainAttributesRequest":{
+      "type":"structure",
+      "required":["Identities"],
+      "members":{
+        "Identities":{"shape":"IdentityList"}
+      }
+    },
+    "GetIdentityMailFromDomainAttributesResponse":{
+      "type":"structure",
+      "required":["MailFromDomainAttributes"],
+      "members":{
+        "MailFromDomainAttributes":{"shape":"MailFromDomainAttributes"}
+      }
+    },
     "GetIdentityNotificationAttributesRequest":{
       "type":"structure",
       "required":["Identities"],
@@ -951,6 +1007,19 @@
     "IdentityList":{
       "type":"list",
       "member":{"shape":"Identity"}
+    },
+    "IdentityMailFromDomainAttributes":{
+      "type":"structure",
+      "required":[
+        "MailFromDomain",
+        "MailFromDomainStatus",
+        "BehaviorOnMXFailure"
+      ],
+      "members":{
+        "MailFromDomain":{"shape":"MailFromDomainName"},
+        "MailFromDomainStatus":{"shape":"CustomMailFromStatus"},
+        "BehaviorOnMXFailure":{"shape":"BehaviorOnMXFailure"}
+      }
     },
     "IdentityNotificationAttributes":{
       "type":"structure",
@@ -1116,6 +1185,23 @@
       "members":{
         "VerifiedEmailAddresses":{"shape":"AddressList"}
       }
+    },
+    "MailFromDomainAttributes":{
+      "type":"map",
+      "key":{"shape":"Identity"},
+      "value":{"shape":"IdentityMailFromDomainAttributes"}
+    },
+    "MailFromDomainName":{"type":"string"},
+    "MailFromDomainNotVerifiedException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"MailFromDomainNotVerifiedException",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
     },
     "Max24HourSend":{"type":"double"},
     "MaxItems":{"type":"integer"},
@@ -1505,6 +1591,20 @@
       }
     },
     "SetIdentityFeedbackForwardingEnabledResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "SetIdentityMailFromDomainRequest":{
+      "type":"structure",
+      "required":["Identity"],
+      "members":{
+        "Identity":{"shape":"Identity"},
+        "MailFromDomain":{"shape":"MailFromDomainName"},
+        "BehaviorOnMXFailure":{"shape":"BehaviorOnMXFailure"}
+      }
+    },
+    "SetIdentityMailFromDomainResponse":{
       "type":"structure",
       "members":{
       }
