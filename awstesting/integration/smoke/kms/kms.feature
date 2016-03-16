@@ -9,5 +9,5 @@ Feature: Amazon Key Management Service
   Scenario: Handling errors
     When I attempt to call the "GetKeyPolicy" API with:
     | KeyId      | fake-key    |
-    | PolicyName | fake-policy |
+    | PolicyName | fakepolicy |
     Then I expect the response error code to be "NotFoundException"
