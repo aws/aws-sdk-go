@@ -54,8 +54,12 @@ unit-with-race-cover: get-deps-tests build verify
 	@echo "go test SDK and vendor packages"
 	@go test -v -race -cpu=1,2,4 -covermode=atomic $(SDK_WITH_VENDOR_PKGS)
 
-integration: get-deps-tests
+integration: get-deps-tests integ-custom smoke-tests performance
+
+integ-custom:
 	go test -tags=integration ./awstesting/integration/customizations/...
+
+smoke-tests: get-deps-tests
 	gucumber ./awstesting/integration/smoke
 
 performance: get-deps-tests
