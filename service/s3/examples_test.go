@@ -984,9 +984,13 @@ func ExampleS3_PutBucketLifecycle() {
 				{ // Required
 					Prefix: aws.String("Prefix"),           // Required
 					Status: aws.String("ExpirationStatus"), // Required
+					AbortIncompleteMultipartUpload: &s3.AbortIncompleteMultipartUpload{
+						DaysAfterInitiation: aws.Int64(1),
+					},
 					Expiration: &s3.LifecycleExpiration{
 						Date: aws.Time(time.Now()),
 						Days: aws.Int64(1),
+						ExpiredObjectDeleteMarker: aws.Bool(true),
 					},
 					ID: aws.String("ID"),
 					NoncurrentVersionExpiration: &s3.NoncurrentVersionExpiration{
@@ -1029,9 +1033,13 @@ func ExampleS3_PutBucketLifecycleConfiguration() {
 				{ // Required
 					Prefix: aws.String("Prefix"),           // Required
 					Status: aws.String("ExpirationStatus"), // Required
+					AbortIncompleteMultipartUpload: &s3.AbortIncompleteMultipartUpload{
+						DaysAfterInitiation: aws.Int64(1),
+					},
 					Expiration: &s3.LifecycleExpiration{
 						Date: aws.Time(time.Now()),
 						Days: aws.Int64(1),
+						ExpiredObjectDeleteMarker: aws.Bool(true),
 					},
 					ID: aws.String("ID"),
 					NoncurrentVersionExpiration: &s3.NoncurrentVersionExpiration{
