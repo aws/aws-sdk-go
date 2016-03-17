@@ -29,7 +29,7 @@ func TestUnmarhsalErrorLeak(t *testing.T) {
 	}
 
 	reader := req.HTTPResponse.Body.(*awstesting.ReadCloser)
-	unmarshalError(req)
+	unmarshalChangeResourceRecordSetsError(req)
 
 	assert.NotNil(t, req.Error)
 	assert.Equal(t, reader.Closed, true)
