@@ -1681,7 +1681,10 @@
         "kinesis":{"shape":"KinesisAction"},
         "republish":{"shape":"RepublishAction"},
         "s3":{"shape":"S3Action"},
-        "firehose":{"shape":"FirehoseAction"}
+        "firehose":{"shape":"FirehoseAction"},
+        "cloudwatchMetric":{"shape":"CloudwatchMetricAction"},
+        "cloudwatchAlarm":{"shape":"CloudwatchAlarmAction"},
+        "elasticsearch":{"shape":"ElasticsearchAction"}
       }
     },
     "ActionList":{
@@ -1690,6 +1693,7 @@
       "min":0,
       "max":10
     },
+    "AlarmName":{"type":"string"},
     "AscendingOrder":{"type":"boolean"},
     "AttachPrincipalPolicyRequest":{
       "type":"structure",
@@ -1830,6 +1834,39 @@
       "member":{"shape":"Certificate"}
     },
     "ClientId":{"type":"string"},
+    "CloudwatchAlarmAction":{
+      "type":"structure",
+      "required":[
+        "roleArn",
+        "alarmName",
+        "stateReason",
+        "stateValue"
+      ],
+      "members":{
+        "roleArn":{"shape":"AwsArn"},
+        "alarmName":{"shape":"AlarmName"},
+        "stateReason":{"shape":"StateReason"},
+        "stateValue":{"shape":"StateValue"}
+      }
+    },
+    "CloudwatchMetricAction":{
+      "type":"structure",
+      "required":[
+        "roleArn",
+        "metricNamespace",
+        "metricName",
+        "metricValue",
+        "metricUnit"
+      ],
+      "members":{
+        "roleArn":{"shape":"AwsArn"},
+        "metricNamespace":{"shape":"MetricNamespace"},
+        "metricName":{"shape":"MetricName"},
+        "metricValue":{"shape":"MetricValue"},
+        "metricUnit":{"shape":"MetricUnit"},
+        "metricTimestamp":{"shape":"MetricTimestamp"}
+      }
+    },
     "CreateCertificateFromCsrRequest":{
       "type":"structure",
       "required":["certificateSigningRequest"],
@@ -2158,6 +2195,30 @@
         "payloadField":{"shape":"PayloadField"}
       }
     },
+    "ElasticsearchAction":{
+      "type":"structure",
+      "required":[
+        "roleArn",
+        "endpoint",
+        "index",
+        "type",
+        "id"
+      ],
+      "members":{
+        "roleArn":{"shape":"AwsArn"},
+        "endpoint":{"shape":"ElasticsearchEndpoint"},
+        "index":{"shape":"ElasticsearchIndex"},
+        "type":{"shape":"ElasticsearchType"},
+        "id":{"shape":"ElasticsearchId"}
+      }
+    },
+    "ElasticsearchEndpoint":{
+      "type":"string",
+      "pattern":"https?://.*"
+    },
+    "ElasticsearchId":{"type":"string"},
+    "ElasticsearchIndex":{"type":"string"},
+    "ElasticsearchType":{"type":"string"},
     "EnableTopicRuleRequest":{
       "type":"structure",
       "required":["ruleName"],
@@ -2571,6 +2632,18 @@
       "min":1,
       "max":10000
     },
+    "MessageFormat":{
+      "type":"string",
+      "enum":[
+        "RAW",
+        "JSON"
+      ]
+    },
+    "MetricName":{"type":"string"},
+    "MetricNamespace":{"type":"string"},
+    "MetricTimestamp":{"type":"string"},
+    "MetricUnit":{"type":"string"},
+    "MetricValue":{"type":"string"},
     "NextToken":{"type":"string"},
     "PageSize":{
       "type":"integer",
@@ -2753,7 +2826,8 @@
       ],
       "members":{
         "targetArn":{"shape":"AwsArn"},
-        "roleArn":{"shape":"AwsArn"}
+        "roleArn":{"shape":"AwsArn"},
+        "messageFormat":{"shape":"MessageFormat"}
       }
     },
     "SqlParseException":{
@@ -2776,6 +2850,8 @@
         "useBase64":{"shape":"UseBase64"}
       }
     },
+    "StateReason":{"type":"string"},
+    "StateValue":{"type":"string"},
     "StreamName":{"type":"string"},
     "TableName":{"type":"string"},
     "ThingArn":{"type":"string"},

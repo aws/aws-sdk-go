@@ -127,10 +127,10 @@ func (c *IoT) CancelCertificateTransferRequest(input *CancelCertificateTransferI
 // Cancels a pending transfer for the specified certificate.
 //
 // Note Only the transfer source account can use this operation to cancel a
-// transfer (transfer destinations can use RejectCertificateTransfer instead).
+// transfer. (Transfer destinations can use RejectCertificateTransfer instead.)
 // After transfer, AWS IoT returns the certificate to the source account in
-// the INACTIVE state. Once the destination account has accepted the transfer,
-// the transfer may no longer be cancelled.
+// the INACTIVE state. After the destination account has accepted the transfer,
+// the transfer cannot be cancelled.
 //
 // After a certificate transfer is cancelled, the status of the certificate
 // changes from PENDING_TRANSFER to INACTIVE.
@@ -165,20 +165,20 @@ func (c *IoT) CreateCertificateFromCsrRequest(input *CreateCertificateFromCsrInp
 // Note Reusing the same certificate signing request (CSR) results in a distinct
 // certificate.
 //
-// You can create multiple certificates in a batch by creating a directory
-// and copying multiple .csr files into that directory and specifying that directory
-// on the command line. The following commands show how to create a batch of
-// certificates given a batch of CSRs.
+// You can create multiple certificates in a batch by creating a directory,
+// copying multiple .csr files into that directory, and then specifying that
+// directory on the command line. The following commands show how to create
+// a batch of certificates given a batch of CSRs.
 //
 // Assuming a set of CSRs are located inside of the directory my-csr-directory:
 //
-// > On Linux and OSX, the command is:
+// > On Linux and OS X, the command is:
 //
 // $ ls my-csr-directory/ | xargs -I {} aws iot create-certificate-from-csr
 // --certificate-signing-request file://my-csr-directory/{}
 //
 //  This command lists all of the CSRs in my-csr-directory and pipes each CSR
-// filename to the aws iot create-certificate-from-csr AWS CLI command to create
+// file name to the aws iot create-certificate-from-csr AWS CLI command to create
 // a certificate for the corresponding CSR.
 //
 //  The aws iot create-certificate-from-csr part of the command can also be
@@ -193,8 +193,8 @@ func (c *IoT) CreateCertificateFromCsrRequest(input *CreateCertificateFromCsrInp
 //  > ls -Name my-csr-directory | %{aws iot create-certificate-from-csr --certificate-signing-request
 // file://my-csr-directory/$_}
 //
-//  On Windows Command Prompt, the command to create certificates for all CSRs
-// in my-csr-directory is:
+//  On a Windows command prompt, the command to create certificates for all
+// CSRs in my-csr-directory is:
 //
 //  > forfiles /p my-csr-directory /c "cmd /c aws iot create-certificate-from-csr
 // --certificate-signing-request file://@path"
@@ -224,11 +224,11 @@ func (c *IoT) CreateKeysAndCertificateRequest(input *CreateKeysAndCertificateInp
 	return
 }
 
-// Creates a 2048 bit RSA key pair and issues an X.509 certificate using the
+// Creates a 2048-bit RSA key pair and issues an X.509 certificate using the
 // issued public key.
 //
-// Note This is the only time AWS IoT issues the private key for this certificate.
-// It is important to keep track of the private key.
+// Note This is the only time AWS IoT issues the private key for this certificate,
+// so it is important to keep it in a secure location.
 func (c *IoT) CreateKeysAndCertificate(input *CreateKeysAndCertificateInput) (*CreateKeysAndCertificateOutput, error) {
 	req, out := c.CreateKeysAndCertificateRequest(input)
 	err := req.Send()
@@ -288,12 +288,12 @@ func (c *IoT) CreatePolicyVersionRequest(input *CreatePolicyVersionInput) (req *
 
 // Creates a new version of the specified AWS IoT policy. To update a policy,
 // create a new policy version. A managed policy can have up to five versions.
-// If the policy has five versions, you must delete an existing version using
-// DeletePolicyVersion before you create a new version.
+// If the policy has five versions, you must use DeletePolicyVersion to delete
+// an existing version before you create a new one.
 //
 // Optionally, you can set the new version as the policy's default version.
-// The default version is the operative version; that is, the version that is
-// in effect for the certificates that the policy is attached to.
+// The default version is the operative version (that is, the version that is
+// in effect for the certificates to which the policy is attached).
 func (c *IoT) CreatePolicyVersion(input *CreatePolicyVersionInput) (*CreatePolicyVersionOutput, error) {
 	req, out := c.CreatePolicyVersionRequest(input)
 	err := req.Send()
@@ -320,7 +320,7 @@ func (c *IoT) CreateThingRequest(input *CreateThingInput) (req *request.Request,
 	return
 }
 
-// Creates a thing in the thing registry.
+// Creates a thing in the Thing Registry.
 func (c *IoT) CreateThing(input *CreateThingInput) (*CreateThingOutput, error) {
 	req, out := c.CreateThingRequest(input)
 	err := req.Send()
@@ -349,7 +349,9 @@ func (c *IoT) CreateTopicRuleRequest(input *CreateTopicRuleInput) (req *request.
 	return
 }
 
-// Creates a rule.
+// Creates a rule. Creating rules is an administrator-level action. Any user
+// who has permission to create rules will be able to access data processed
+// by the rule.
 func (c *IoT) CreateTopicRule(input *CreateTopicRuleInput) (*CreateTopicRuleOutput, error) {
 	req, out := c.CreateTopicRuleRequest(input)
 	err := req.Send()
@@ -381,9 +383,9 @@ func (c *IoT) DeleteCertificateRequest(input *DeleteCertificateInput) (req *requ
 // Deletes the specified certificate.
 //
 // A certificate cannot be deleted if it has a policy attached to it or if
-// its status is set to ACTIVE. To delete a certificate, first detach all policies
-// using the DetachPrincipalPolicy API. Next use the UpdateCertificate API to
-// set the certificate to the INACTIVE status.
+// its status is set to ACTIVE. To delete a certificate, first use the DetachPrincipalPolicy
+// API to detach all policies. Next, use the UpdateCertificate API to set the
+// certificate to the INACTIVE status.
 func (c *IoT) DeleteCertificate(input *DeleteCertificateInput) (*DeleteCertificateOutput, error) {
 	req, out := c.DeleteCertificateRequest(input)
 	err := req.Send()
@@ -414,13 +416,12 @@ func (c *IoT) DeletePolicyRequest(input *DeletePolicyInput) (req *request.Reques
 
 // Deletes the specified policy.
 //
-// A policy cannot be deleted if it has non-default versions and/or it is attached
+// A policy cannot be deleted if it has non-default versions or it is attached
 // to any certificate.
 //
-// To delete a policy, delete all non-default versions of the policy using
-// the DeletePolicyVersion API, detach the policy from any certificate using
-// the DetachPrincipalPolicy API, and then use the DeletePolicy API to delete
-// the policy.
+// To delete a policy, use the DeletePolicyVersion API to delete all non-default
+// versions of the policy; use the DetachPrincipalPolicy API to detach the policy
+// from any certificate; and then use the DeletePolicy API to delete the policy.
 //
 // When a policy is deleted using DeletePolicy, its default version is deleted
 // with it.
@@ -679,7 +680,7 @@ func (c *IoT) DisableTopicRuleRequest(input *DisableTopicRuleInput) (req *reques
 	return
 }
 
-// Disables the specified rule
+// Disables the specified rule.
 func (c *IoT) DisableTopicRule(input *DisableTopicRuleInput) (*DisableTopicRuleOutput, error) {
 	req, out := c.DisableTopicRuleRequest(input)
 	err := req.Send()
@@ -846,8 +847,8 @@ func (c *IoT) ListCertificatesRequest(input *ListCertificatesInput) (req *reques
 
 // Lists your certificates.
 //
-// The results are paginated with a default page size of 25. You can retrieve
-// additional results using the returned marker.
+// The results are paginated with a default page size of 25. You can use the
+// returned marker to retrieve additional results.
 func (c *IoT) ListCertificates(input *ListCertificatesInput) (*ListCertificatesOutput, error) {
 	req, out := c.ListCertificatesRequest(input)
 	err := req.Send()
@@ -928,8 +929,8 @@ func (c *IoT) ListPrincipalPoliciesRequest(input *ListPrincipalPoliciesInput) (r
 	return
 }
 
-// Lists the policies attached to the specified principal. If you use an Amazon
-// Cognito identity, the ID needs to be in Amazon Cognito Identity format (http://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetCredentialsForIdentity.html#API_GetCredentialsForIdentity_RequestSyntax).
+// Lists the policies attached to the specified principal. If you use an Cognito
+// identity, the ID must be in AmazonCognito Identity format (http://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetCredentialsForIdentity.html#API_GetCredentialsForIdentity_RequestSyntax).
 func (c *IoT) ListPrincipalPolicies(input *ListPrincipalPoliciesInput) (*ListPrincipalPoliciesOutput, error) {
 	req, out := c.ListPrincipalPoliciesRequest(input)
 	err := req.Send()
@@ -1010,9 +1011,8 @@ func (c *IoT) ListThingsRequest(input *ListThingsInput) (req *request.Request, o
 	return
 }
 
-// Lists your things. You can pass an AttributeName and/or AttributeValue to
-// filter your things. For example: "ListThings where AttributeName=Color and
-// AttributeValue=Red"
+// Lists your things. You can pass an AttributeName or AttributeValue to filter
+// your things (for example, "ListThings where AttributeName=Color and AttributeValue=Red").
 func (c *IoT) ListThings(input *ListThingsInput) (*ListThingsOutput, error) {
 	req, out := c.ListThingsRequest(input)
 	err := req.Send()
@@ -1074,9 +1074,9 @@ func (c *IoT) RejectCertificateTransferRequest(input *RejectCertificateTransferI
 // To check for pending certificate transfers, call ListCertificates to enumerate
 // your certificates.
 //
-// This operation can only be called by the transfer destination. Once called,
-// the certificate will be returned to the source's account in the INACTIVE
-// state.
+// This operation can only be called by the transfer destination. After it
+// is called, the certificate will be returned to the source's account in the
+// INACTIVE state.
 func (c *IoT) RejectCertificateTransfer(input *RejectCertificateTransferInput) (*RejectCertificateTransferOutput, error) {
 	req, out := c.RejectCertificateTransferRequest(input)
 	err := req.Send()
@@ -1106,7 +1106,8 @@ func (c *IoT) ReplaceTopicRuleRequest(input *ReplaceTopicRuleInput) (req *reques
 }
 
 // Replaces the specified rule. You must specify all parameters for the new
-// rule.
+// rule. Creating rules is an administrator-level action. Any user who has permission
+// to create rules will be able to access data processed by the rule.
 func (c *IoT) ReplaceTopicRule(input *ReplaceTopicRuleInput) (*ReplaceTopicRuleOutput, error) {
 	req, out := c.ReplaceTopicRuleRequest(input)
 	err := req.Send()
@@ -1136,9 +1137,9 @@ func (c *IoT) SetDefaultPolicyVersionRequest(input *SetDefaultPolicyVersionInput
 }
 
 // Sets the specified version of the specified policy as the policy's default
-// (operative) version. This action affects all certificates that the policy
-// is attached to. To list the principals the policy is attached to, use the
-// ListPrincipalPolicy API.
+// (operative) version. This action affects all certificates to which the policy
+// is attached. To list the principals the policy is attached to, use the ListPrincipalPolicy
+// API.
 func (c *IoT) SetDefaultPolicyVersion(input *SetDefaultPolicyVersionInput) (*SetDefaultPolicyVersionOutput, error) {
 	req, out := c.SetDefaultPolicyVersionRequest(input)
 	err := req.Send()
@@ -1198,14 +1199,14 @@ func (c *IoT) TransferCertificateRequest(input *TransferCertificateInput) (req *
 //
 // You can cancel the transfer until it is acknowledged by the recipient.
 //
-// No notification is sent to the transfer destination's account, it is up
+// No notification is sent to the transfer destination's account. It is up
 // to the caller to notify the transfer target.
 //
-// The certificate being transferred must not be in the ACTIVE state. It can
-// be deactivated using the UpdateCertificate API.
+// The certificate being transferred must not be in the ACTIVE state. You can
+// use the UpdateCertificate API to deactivate it.
 //
-// The certificate must not have any policies attached to it. These can be
-// detached using the DetachPrincipalPolicy API.
+// The certificate must not have any policies attached to it. You can use the
+// DetachPrincipalPolicy API to detach them.
 func (c *IoT) TransferCertificate(input *TransferCertificateInput) (*TransferCertificateOutput, error) {
 	req, out := c.TransferCertificateRequest(input)
 	err := req.Send()
@@ -1236,8 +1237,9 @@ func (c *IoT) UpdateCertificateRequest(input *UpdateCertificateInput) (req *requ
 
 // Updates the status of the specified certificate. This operation is idempotent.
 //
-// Moving a cert from the ACTIVE state (including REVOKED) will NOT disconnect
-// currently-connected devices, although these devices will be unable to reconnect.
+// Moving a certificate from the ACTIVE state (including REVOKED) will not
+// disconnect currently connected devices, but these devices will be unable
+// to reconnect.
 //
 // The ACTIVE state is required to authenticate devices connecting to AWS IoT
 // using a certificate.
@@ -1313,13 +1315,22 @@ func (s AcceptCertificateTransferOutput) GoString() string {
 type Action struct {
 	_ struct{} `type:"structure"`
 
+	// Change the state of a CloudWatch alarm.
+	CloudwatchAlarm *CloudwatchAlarmAction `locationName:"cloudwatchAlarm" type:"structure"`
+
+	// Capture a CloudWatch metric.
+	CloudwatchMetric *CloudwatchMetricAction `locationName:"cloudwatchMetric" type:"structure"`
+
 	// Write to a DynamoDB table.
 	DynamoDB *DynamoDBAction `locationName:"dynamoDB" type:"structure"`
 
-	// Write to a Kinesis Firehose stream.
+	// Write data to an Amazon Elasticsearch Service; domain.
+	Elasticsearch *ElasticsearchAction `locationName:"elasticsearch" type:"structure"`
+
+	// Write to an Amazon Kinesis Firehose stream.
 	Firehose *FirehoseAction `locationName:"firehose" type:"structure"`
 
-	// Write data to a Kinesis stream.
+	// Write data to an Amazon Kinesis stream.
 	Kinesis *KinesisAction `locationName:"kinesis" type:"structure"`
 
 	// Invoke a Lambda function.
@@ -1328,13 +1339,13 @@ type Action struct {
 	// Publish to another MQTT topic.
 	Republish *RepublishAction `locationName:"republish" type:"structure"`
 
-	// Write to an S3 bucket.
+	// Write to an Amazon S3 bucket.
 	S3 *S3Action `locationName:"s3" type:"structure"`
 
-	// Publish to an SNS topic.
+	// Publish to an Amazon SNS topic.
 	Sns *SnsAction `locationName:"sns" type:"structure"`
 
-	// Publish to an SQS queue.
+	// Publish to an Amazon SQS queue.
 	Sqs *SqsAction `locationName:"sqs" type:"structure"`
 }
 
@@ -1355,8 +1366,8 @@ type AttachPrincipalPolicyInput struct {
 	// The policy name.
 	PolicyName *string `location:"uri" locationName:"policyName" min:"1" type:"string" required:"true"`
 
-	// The principal which can be a certificate ARN (as returned from the CreateCertificate
-	// operation) or a Cognito ID.
+	// The principal, which can be a certificate ARN (as returned from the CreateCertificate
+	// operation) or an Amazon Cognito ID.
 	Principal *string `location:"header" locationName:"x-amzn-iot-principal" type:"string" required:"true"`
 }
 
@@ -1420,15 +1431,13 @@ func (s AttachThingPrincipalOutput) GoString() string {
 	return s.String()
 }
 
-// The attribute payload, a JSON string containing up to three key-value pairs.
-//
-// For example: {\"attributes\":{\"string1\":\"string2\"}}
+// The attribute payload, a JSON string containing up to three key-value pairs
+// (for example, {\"attributes\":{\"string1\":\"string2\"}}).
 type AttributePayload struct {
 	_ struct{} `type:"structure"`
 
-	// A JSON string containing up to three key-value pair in JSON format.
-	//
-	// For example: {\"attributes\":{\"string1\":\"string2\"}}
+	// A JSON string containing up to three key-value pair in JSON format (for example,
+	// {\"attributes\":{\"string1\":\"string2\"}}).
 	Attributes map[string]*string `locationName:"attributes" type:"map"`
 }
 
@@ -1537,6 +1546,67 @@ func (s CertificateDescription) GoString() string {
 	return s.String()
 }
 
+// Describes an action that updates a CloudWatch alarm.
+type CloudwatchAlarmAction struct {
+	_ struct{} `type:"structure"`
+
+	// The CloudWatch alarm name.
+	AlarmName *string `locationName:"alarmName" type:"string" required:"true"`
+
+	// The IAM role that allows access to the CloudWatch alarm.
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+
+	// The reason for the alarm change.
+	StateReason *string `locationName:"stateReason" type:"string" required:"true"`
+
+	// The value of the alarm state. Acceptable values are: OK, ALARM, INSUFFICIENT_DATA.
+	StateValue *string `locationName:"stateValue" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CloudwatchAlarmAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CloudwatchAlarmAction) GoString() string {
+	return s.String()
+}
+
+// Describes an action that captures a CloudWatch metric.
+type CloudwatchMetricAction struct {
+	_ struct{} `type:"structure"`
+
+	// The CloudWatch metric name.
+	MetricName *string `locationName:"metricName" type:"string" required:"true"`
+
+	// The CloudWatch metric namespace name.
+	MetricNamespace *string `locationName:"metricNamespace" type:"string" required:"true"`
+
+	// An optional Unix timestamp (http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp).
+	MetricTimestamp *string `locationName:"metricTimestamp" type:"string"`
+
+	// The metric unit (http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit)
+	// supported by CloudWatch.
+	MetricUnit *string `locationName:"metricUnit" type:"string" required:"true"`
+
+	// The CloudWatch metric value.
+	MetricValue *string `locationName:"metricValue" type:"string" required:"true"`
+
+	// The IAM role that allows access to the CloudWatch metric.
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CloudwatchMetricAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CloudwatchMetricAction) GoString() string {
+	return s.String()
+}
+
 // The input for the CreateCertificateFromCsr operation.
 type CreateCertificateFromCsrInput struct {
 	_ struct{} `type:"structure"`
@@ -1610,7 +1680,7 @@ type CreateKeysAndCertificateOutput struct {
 	CertificateArn *string `locationName:"certificateArn" type:"string"`
 
 	// The ID of the certificate. AWS IoT issues a default subject name for the
-	// certificate (e.g., AWS IoT Certificate).
+	// certificate (for example, AWS IoT Certificate).
 	CertificateId *string `locationName:"certificateId" min:"64" type:"string"`
 
 	// The certificate data, in PEM format.
@@ -1634,8 +1704,8 @@ func (s CreateKeysAndCertificateOutput) GoString() string {
 type CreatePolicyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The JSON document that describes the policy. The length of the policyDocument
-	// must be a minimum length of 1, with a maximum length of 2048, excluding whitespace.
+	// The JSON document that describes the policy. policyDocument must have a minimum
+	// length of 1, with a maximum length of 2048, excluding whitespace.
 	PolicyDocument *string `locationName:"policyDocument" type:"string" required:"true"`
 
 	// The policy name.
@@ -1684,16 +1754,15 @@ type CreatePolicyVersionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The JSON document that describes the policy. Minimum length of 1. Maximum
-	// length of 2048 excluding whitespaces
+	// length of 2048, excluding whitespaces
 	PolicyDocument *string `locationName:"policyDocument" type:"string" required:"true"`
 
 	// The policy name.
 	PolicyName *string `location:"uri" locationName:"policyName" min:"1" type:"string" required:"true"`
 
 	// Specifies whether the policy version is set as the default. When this parameter
-	// is true, the new policy version becomes the operative version; that is, the
-	// version that is in effect for the certificates that the policy is attached
-	// to.
+	// is true, the new policy version becomes the operative version (that is, the
+	// version that is in effect for the certificates to which the policy is attached).
 	SetAsDefault *bool `location:"querystring" locationName:"setAsDefault" type:"boolean"`
 }
 
@@ -1738,8 +1807,8 @@ func (s CreatePolicyVersionOutput) GoString() string {
 type CreateThingInput struct {
 	_ struct{} `type:"structure"`
 
-	// The attribute payload. Which consists of up to 3 name/value pairs in a JSON
-	// document. For example: {\"attributes\":{\"string1\":\"string2\"}}
+	// The attribute payload, which consists of up to 3 name/value pairs in a JSON
+	// document (for example, {\"attributes\":{\"string1\":\"string2\"}}).
 	AttributePayload *AttributePayload `locationName:"attributePayload" type:"structure"`
 
 	// The name of the thing.
@@ -2067,10 +2136,8 @@ func (s DescribeThingInput) GoString() string {
 type DescribeThingOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The attributes which are name/value pairs in JSON format. For example:
-	//
-	// {\"attributes\":{\"some-name1\":\"some-value1\"}, {\"some-name2\":\"some-value2\"},
-	// {\"some-name3\":\"some-value3\"}}
+	// The attributes, which are name/value pairs in JSON format (for example: {\"attributes\":{\"some-name1\":\"some-value1\"},
+	// {\"some-name2\":\"some-value2\"}, {\"some-name3\":\"some-value3\"}})
 	Attributes map[string]*string `locationName:"attributes" type:"map"`
 
 	// The default client ID.
@@ -2097,10 +2164,10 @@ type DetachPrincipalPolicyInput struct {
 	// The name of the policy to detach.
 	PolicyName *string `location:"uri" locationName:"policyName" min:"1" type:"string" required:"true"`
 
-	// The principal
+	// The principal.
 	//
 	// If the principal is a certificate, specify the certificate ARN. If the principal
-	// is a Cognito identity specify the identity ID.
+	// is an Amazon Cognito identity, specify the identity ID.
 	Principal *string `location:"header" locationName:"x-amzn-iot-principal" type:"string" required:"true"`
 }
 
@@ -2204,9 +2271,9 @@ func (s DisableTopicRuleOutput) GoString() string {
 // The hashKeyValue and rangeKeyvalue fields use a substitution template syntax.
 // These templates provide data at runtime. The syntax is as follows: ${sql-expression}.
 //
-// You can specify any expression that's valid in a WHERE or SELECT clause,
-// including JSON properties, comparisons, calculations, and functions. For
-// example, the following field uses the third level of the topic:
+// You can specify any valid expression in a WHERE or SELECT clause, including
+// JSON properties, comparisons, calculations, and functions. For example, the
+// following field uses the third level of the topic:
 //
 // "hashKeyValue": "${topic(3)}"
 //
@@ -2222,7 +2289,7 @@ type DynamoDBAction struct {
 	// The hash key value.
 	HashKeyValue *string `locationName:"hashKeyValue" type:"string" required:"true"`
 
-	// The action payload, this name can be customized.
+	// The action payload. This name can be customized.
 	PayloadField *string `locationName:"payloadField" type:"string"`
 
 	// The range key name.
@@ -2245,6 +2312,37 @@ func (s DynamoDBAction) String() string {
 
 // GoString returns the string representation
 func (s DynamoDBAction) GoString() string {
+	return s.String()
+}
+
+// Describes an action that writes data to an Amazon Elasticsearch Service;
+// domain.
+type ElasticsearchAction struct {
+	_ struct{} `type:"structure"`
+
+	// The endpoint of your Elasticsearch domain.
+	Endpoint *string `locationName:"endpoint" type:"string" required:"true"`
+
+	// The unique identifier for the document you are storing.
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The Elasticsearch index where you want to store your data.
+	Index *string `locationName:"index" type:"string" required:"true"`
+
+	// The IAM role ARN that has access to Elasticsearch.
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+
+	// The type of document you are storing.
+	Type *string `locationName:"type" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ElasticsearchAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ElasticsearchAction) GoString() string {
 	return s.String()
 }
 
@@ -2280,14 +2378,14 @@ func (s EnableTopicRuleOutput) GoString() string {
 	return s.String()
 }
 
-// Describes an action that writes data to a Kinesis Firehose stream.
+// Describes an action that writes data to an Amazon Kinesis Firehose stream.
 type FirehoseAction struct {
 	_ struct{} `type:"structure"`
 
 	// The delivery stream name.
 	DeliveryStreamName *string `locationName:"deliveryStreamName" type:"string" required:"true"`
 
-	// The IAM role that grants access to the firehose stream.
+	// The IAM role that grants access to the Amazon Kinesis Firehost stream.
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 }
 
@@ -2500,10 +2598,10 @@ type KinesisAction struct {
 	// The partition key.
 	PartitionKey *string `locationName:"partitionKey" type:"string"`
 
-	// The ARN of the IAM role that grants access to the Kinesis stream.
+	// The ARN of the IAM role that grants access to the Amazon Kinesis stream.
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 
-	// The name of the Kinesis stream.
+	// The name of the Amazon Kinesis stream.
 	StreamName *string `locationName:"streamName" type:"string" required:"true"`
 }
 
@@ -2517,7 +2615,7 @@ func (s KinesisAction) GoString() string {
 	return s.String()
 }
 
-// Describes an action to invoke a Lamdba function.
+// Describes an action to invoke a Lambda function.
 type LambdaAction struct {
 	_ struct{} `type:"structure"`
 
@@ -3050,7 +3148,7 @@ func (s RepublishAction) GoString() string {
 type S3Action struct {
 	_ struct{} `type:"structure"`
 
-	// The S3 bucket.
+	// The Amazon S3 bucket.
 	BucketName *string `locationName:"bucketName" type:"string" required:"true"`
 
 	// The object key.
@@ -3141,6 +3239,13 @@ func (s SetLoggingOptionsOutput) GoString() string {
 type SnsAction struct {
 	_ struct{} `type:"structure"`
 
+	// The message format of the message to publish. Optional. Accepted values are
+	// "JSON" and "RAW". The default value of the attribute is "RAW". SNS uses this
+	// setting to determine if the payload should be parsed and relevant platform-specific
+	// bits of the payload should be extracted. To read more about SNS message formats,
+	// see  refer to their official documentation.
+	MessageFormat *string `locationName:"messageFormat" type:"string" enum:"MessageFormat"`
+
 	// The ARN of the IAM role that grants access.
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 
@@ -3158,7 +3263,7 @@ func (s SnsAction) GoString() string {
 	return s.String()
 }
 
-// Describes an action to publish data to an SQS queue.
+// Describes an action to publish data to an Amazon SQS queue.
 type SqsAction struct {
 	_ struct{} `type:"structure"`
 
@@ -3223,7 +3328,7 @@ type TopicRule struct {
 	RuleName *string `locationName:"ruleName" min:"1" type:"string"`
 
 	// The SQL statement used to query the topic. When using a SQL query with multiple
-	// lines, be sure to escape the newline characters properly.
+	// lines, be sure to escape the newline characters.
 	Sql *string `locationName:"sql" type:"string"`
 }
 
@@ -3344,9 +3449,9 @@ type UpdateCertificateInput struct {
 
 	// The new status.
 	//
-	// Note: setting the status to PENDING_TRANSFER will result in an exception
-	// being thrown. PENDING_TRANSFER is a status used internally by AWS IoT and
-	// is not meant to be used by developers.
+	// Note: Setting the status to PENDING_TRANSFER will result in an exception
+	// being thrown. PENDING_TRANSFER is a status used internally by AWS IoT. It
+	// is not intended for developer use.
 	NewStatus *string `location:"querystring" locationName:"newStatus" type:"string" required:"true" enum:"CertificateStatus"`
 }
 
@@ -3378,9 +3483,8 @@ func (s UpdateCertificateOutput) GoString() string {
 type UpdateThingInput struct {
 	_ struct{} `type:"structure"`
 
-	// The attribute payload, a JSON string containing up to three key-value pairs.
-	//
-	// For example: {\"attributes\":{\"string1\":\"string2\"}}
+	// The attribute payload, a JSON string containing up to three key-value pairs
+	// (for example, {\"attributes\":{\"string1\":\"string2\"}}).
 	AttributePayload *AttributePayload `locationName:"attributePayload" type:"structure" required:"true"`
 
 	// The thing name.
@@ -3434,4 +3538,11 @@ const (
 	LogLevelWarn = "WARN"
 	// @enum LogLevel
 	LogLevelDisabled = "DISABLED"
+)
+
+const (
+	// @enum MessageFormat
+	MessageFormatRaw = "RAW"
+	// @enum MessageFormat
+	MessageFormatJson = "JSON"
 )
