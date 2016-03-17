@@ -207,6 +207,20 @@ func ExampleIoT_CreateTopicRule() {
 		TopicRulePayload: &iot.TopicRulePayload{ // Required
 			Actions: []*iot.Action{ // Required
 				{ // Required
+					CloudwatchAlarm: &iot.CloudwatchAlarmAction{
+						AlarmName:   aws.String("AlarmName"),   // Required
+						RoleArn:     aws.String("AwsArn"),      // Required
+						StateReason: aws.String("StateReason"), // Required
+						StateValue:  aws.String("StateValue"),  // Required
+					},
+					CloudwatchMetric: &iot.CloudwatchMetricAction{
+						MetricName:      aws.String("MetricName"),      // Required
+						MetricNamespace: aws.String("MetricNamespace"), // Required
+						MetricUnit:      aws.String("MetricUnit"),      // Required
+						MetricValue:     aws.String("MetricValue"),     // Required
+						RoleArn:         aws.String("AwsArn"),          // Required
+						MetricTimestamp: aws.String("MetricTimestamp"),
+					},
 					DynamoDB: &iot.DynamoDBAction{
 						HashKeyField:  aws.String("HashKeyField"),  // Required
 						HashKeyValue:  aws.String("HashKeyValue"),  // Required
@@ -215,6 +229,13 @@ func ExampleIoT_CreateTopicRule() {
 						RoleArn:       aws.String("AwsArn"),        // Required
 						TableName:     aws.String("TableName"),     // Required
 						PayloadField:  aws.String("PayloadField"),
+					},
+					Elasticsearch: &iot.ElasticsearchAction{
+						Endpoint: aws.String("ElasticsearchEndpoint"), // Required
+						Id:       aws.String("ElasticsearchId"),       // Required
+						Index:    aws.String("ElasticsearchIndex"),    // Required
+						RoleArn:  aws.String("AwsArn"),                // Required
+						Type:     aws.String("ElasticsearchType"),     // Required
 					},
 					Firehose: &iot.FirehoseAction{
 						DeliveryStreamName: aws.String("DeliveryStreamName"), // Required
@@ -238,8 +259,9 @@ func ExampleIoT_CreateTopicRule() {
 						RoleArn:    aws.String("AwsArn"),     // Required
 					},
 					Sns: &iot.SnsAction{
-						RoleArn:   aws.String("AwsArn"), // Required
-						TargetArn: aws.String("AwsArn"), // Required
+						RoleArn:       aws.String("AwsArn"), // Required
+						TargetArn:     aws.String("AwsArn"), // Required
+						MessageFormat: aws.String("MessageFormat"),
 					},
 					Sqs: &iot.SqsAction{
 						QueueUrl:  aws.String("QueueUrl"), // Required
@@ -765,6 +787,20 @@ func ExampleIoT_ReplaceTopicRule() {
 		TopicRulePayload: &iot.TopicRulePayload{ // Required
 			Actions: []*iot.Action{ // Required
 				{ // Required
+					CloudwatchAlarm: &iot.CloudwatchAlarmAction{
+						AlarmName:   aws.String("AlarmName"),   // Required
+						RoleArn:     aws.String("AwsArn"),      // Required
+						StateReason: aws.String("StateReason"), // Required
+						StateValue:  aws.String("StateValue"),  // Required
+					},
+					CloudwatchMetric: &iot.CloudwatchMetricAction{
+						MetricName:      aws.String("MetricName"),      // Required
+						MetricNamespace: aws.String("MetricNamespace"), // Required
+						MetricUnit:      aws.String("MetricUnit"),      // Required
+						MetricValue:     aws.String("MetricValue"),     // Required
+						RoleArn:         aws.String("AwsArn"),          // Required
+						MetricTimestamp: aws.String("MetricTimestamp"),
+					},
 					DynamoDB: &iot.DynamoDBAction{
 						HashKeyField:  aws.String("HashKeyField"),  // Required
 						HashKeyValue:  aws.String("HashKeyValue"),  // Required
@@ -773,6 +809,13 @@ func ExampleIoT_ReplaceTopicRule() {
 						RoleArn:       aws.String("AwsArn"),        // Required
 						TableName:     aws.String("TableName"),     // Required
 						PayloadField:  aws.String("PayloadField"),
+					},
+					Elasticsearch: &iot.ElasticsearchAction{
+						Endpoint: aws.String("ElasticsearchEndpoint"), // Required
+						Id:       aws.String("ElasticsearchId"),       // Required
+						Index:    aws.String("ElasticsearchIndex"),    // Required
+						RoleArn:  aws.String("AwsArn"),                // Required
+						Type:     aws.String("ElasticsearchType"),     // Required
 					},
 					Firehose: &iot.FirehoseAction{
 						DeliveryStreamName: aws.String("DeliveryStreamName"), // Required
@@ -796,8 +839,9 @@ func ExampleIoT_ReplaceTopicRule() {
 						RoleArn:    aws.String("AwsArn"),     // Required
 					},
 					Sns: &iot.SnsAction{
-						RoleArn:   aws.String("AwsArn"), // Required
-						TargetArn: aws.String("AwsArn"), // Required
+						RoleArn:       aws.String("AwsArn"), // Required
+						TargetArn:     aws.String("AwsArn"), // Required
+						MessageFormat: aws.String("MessageFormat"),
 					},
 					Sqs: &iot.SqsAction{
 						QueueUrl:  aws.String("QueueUrl"), // Required
