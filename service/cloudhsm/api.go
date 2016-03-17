@@ -8,6 +8,35 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 )
 
+const opAddTagsToResource = "AddTagsToResource"
+
+// AddTagsToResourceRequest generates a request for the AddTagsToResource operation.
+func (c *CloudHSM) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *request.Request, output *AddTagsToResourceOutput) {
+	op := &request.Operation{
+		Name:       opAddTagsToResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AddTagsToResourceInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &AddTagsToResourceOutput{}
+	req.Data = output
+	return
+}
+
+// Adds or overwrites one or more tags for the specified resource.
+//
+// Each tag consists of a key and a value. Tag keys must be unique per resource.
+func (c *CloudHSM) AddTagsToResource(input *AddTagsToResourceInput) (*AddTagsToResourceOutput, error) {
+	req, out := c.AddTagsToResourceRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opCreateHapg = "CreateHapg"
 
 // CreateHapgRequest generates a request for the CreateHapg operation.
@@ -64,7 +93,7 @@ func (c *CloudHSM) CreateHsmRequest(input *CreateHsmInput) (req *request.Request
 // the AWS Support Center (https://console.aws.amazon.com/support/home#/), create
 // a new case, and select Account and Billing Support.
 //
-//   It can take up to 20 minutes to create and provision an HSM. You can monitor
+//  It can take up to 20 minutes to create and provision an HSM. You can monitor
 // the status of the HSM with the DescribeHsm operation. The HSM is ready to
 // be initialized when the status changes to RUNNING.
 func (c *CloudHSM) CreateHsm(input *CreateHsmInput) (*CreateHsmOutput, error) {
@@ -416,6 +445,33 @@ func (c *CloudHSM) ListLunaClients(input *ListLunaClientsInput) (*ListLunaClient
 	return out, err
 }
 
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a request for the ListTagsForResource operation.
+func (c *CloudHSM) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListTagsForResourceOutput{}
+	req.Data = output
+	return
+}
+
+// Returns a list of all tags for the specified resource.
+func (c *CloudHSM) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opModifyHapg = "ModifyHapg"
 
 // ModifyHapgRequest generates a request for the ModifyHapg operation.
@@ -465,8 +521,8 @@ func (c *CloudHSM) ModifyHsmRequest(input *ModifyHsmInput) (req *request.Request
 
 // Modifies an HSM.
 //
-//   This operation can result in the HSM being offline for up to 15 minutes
-// while the AWS CloudHSM service is reconfigured. If you are modifying a production
+//  This operation can result in the HSM being offline for up to 15 minutes
+// while the AWS CloudHSM service is reconfigured. If you are modifying a production
 // HSM, you should ensure that your AWS CloudHSM service is configured for high
 // availability, and consider executing this operation during a maintenance
 // window.
@@ -504,6 +560,73 @@ func (c *CloudHSM) ModifyLunaClient(input *ModifyLunaClientInput) (*ModifyLunaCl
 	req, out := c.ModifyLunaClientRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+const opRemoveTagsFromResource = "RemoveTagsFromResource"
+
+// RemoveTagsFromResourceRequest generates a request for the RemoveTagsFromResource operation.
+func (c *CloudHSM) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceInput) (req *request.Request, output *RemoveTagsFromResourceOutput) {
+	op := &request.Operation{
+		Name:       opRemoveTagsFromResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RemoveTagsFromResourceInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &RemoveTagsFromResourceOutput{}
+	req.Data = output
+	return
+}
+
+// Removes one or more tags from the specified resource.
+//
+// To remove a tag, specify only the tag key to remove (not the value). To
+// overwrite the value for an existing tag, use AddTagsToResource.
+func (c *CloudHSM) RemoveTagsFromResource(input *RemoveTagsFromResourceInput) (*RemoveTagsFromResourceOutput, error) {
+	req, out := c.RemoveTagsFromResourceRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+type AddTagsToResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the resource to tag.
+	ResourceArn *string `type:"string" required:"true"`
+
+	// One or more tags.
+	TagList []*Tag `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s AddTagsToResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddTagsToResourceInput) GoString() string {
+	return s.String()
+}
+
+type AddTagsToResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the operation.
+	Status *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AddTagsToResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddTagsToResourceOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the inputs for the CreateHapgRequest action.
@@ -571,8 +694,8 @@ type CreateHsmInput struct {
 
 	// Specifies the type of subscription for the HSM.
 	//
-	//   PRODUCTION - The HSM is being used in a production environment.  TRIAL
-	// - The HSM is being used in a product trial.
+	//  PRODUCTION - The HSM is being used in a production environment. TRIAL -
+	// The HSM is being used in a product trial.
 	SubscriptionType *string `locationName:"SubscriptionType" type:"string" required:"true" enum:"SubscriptionType"`
 
 	// The IP address for the syslog monitoring server. The AWS CloudHSM service
@@ -898,8 +1021,8 @@ type DescribeHsmOutput struct {
 
 	// Specifies the type of subscription for the HSM.
 	//
-	//   PRODUCTION - The HSM is being used in a production environment.  TRIAL
-	// - The HSM is being used in a product trial.
+	//  PRODUCTION - The HSM is being used in a production environment. TRIAL -
+	// The HSM is being used in a product trial.
 	SubscriptionType *string `type:"string" enum:"SubscriptionType"`
 
 	// The name of the HSM vendor.
@@ -1165,6 +1288,40 @@ func (s ListLunaClientsOutput) GoString() string {
 	return s.String()
 }
 
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the resource.
+	ResourceArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// One or more tags.
+	TagList []*Tag `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
 type ModifyHapgInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1300,6 +1457,67 @@ func (s ModifyLunaClientOutput) GoString() string {
 	return s.String()
 }
 
+type RemoveTagsFromResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the resource.
+	ResourceArn *string `type:"string" required:"true"`
+
+	// The tag key or keys to remove.
+	//
+	// Specify only the tag key to remove (not the value). To overwrite the value
+	// for an existing tag, use AddTagsToResource.
+	TagKeyList []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s RemoveTagsFromResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveTagsFromResourceInput) GoString() string {
+	return s.String()
+}
+
+type RemoveTagsFromResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the operation.
+	Status *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s RemoveTagsFromResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveTagsFromResourceOutput) GoString() string {
+	return s.String()
+}
+
+// A key-value pair that identifies or specifies metadata about a resource.
+type Tag struct {
+	_ struct{} `type:"structure"`
+
+	// The key of the tag.
+	Key *string `min:"1" type:"string" required:"true"`
+
+	// The value of the tag.
+	Value *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s Tag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Tag) GoString() string {
+	return s.String()
+}
+
 const (
 	// @enum ClientVersion
 	ClientVersion51 = "5.1"
@@ -1335,8 +1553,8 @@ const (
 
 // Specifies the type of subscription for the HSM.
 //
-//   PRODUCTION - The HSM is being used in a production environment.  TRIAL
-// - The HSM is being used in a product trial.
+//  PRODUCTION - The HSM is being used in a production environment. TRIAL -
+// The HSM is being used in a product trial.
 const (
 	// @enum SubscriptionType
 	SubscriptionTypeProduction = "PRODUCTION"

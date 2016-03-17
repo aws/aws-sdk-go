@@ -15,6 +15,32 @@ import (
 var _ time.Duration
 var _ bytes.Buffer
 
+func ExampleCloudHSM_AddTagsToResource() {
+	svc := cloudhsm.New(session.New())
+
+	params := &cloudhsm.AddTagsToResourceInput{
+		ResourceArn: aws.String("String"), // Required
+		TagList: []*cloudhsm.Tag{ // Required
+			{ // Required
+				Key:   aws.String("TagKey"),   // Required
+				Value: aws.String("TagValue"), // Required
+			},
+			// More values...
+		},
+	}
+	resp, err := svc.AddTagsToResource(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleCloudHSM_CreateHapg() {
 	svc := cloudhsm.New(session.New())
 
@@ -294,6 +320,25 @@ func ExampleCloudHSM_ListLunaClients() {
 	fmt.Println(resp)
 }
 
+func ExampleCloudHSM_ListTagsForResource() {
+	svc := cloudhsm.New(session.New())
+
+	params := &cloudhsm.ListTagsForResourceInput{
+		ResourceArn: aws.String("String"), // Required
+	}
+	resp, err := svc.ListTagsForResource(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleCloudHSM_ModifyHapg() {
 	svc := cloudhsm.New(session.New())
 
@@ -350,6 +395,29 @@ func ExampleCloudHSM_ModifyLunaClient() {
 		ClientArn:   aws.String("ClientArn"),   // Required
 	}
 	resp, err := svc.ModifyLunaClient(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleCloudHSM_RemoveTagsFromResource() {
+	svc := cloudhsm.New(session.New())
+
+	params := &cloudhsm.RemoveTagsFromResourceInput{
+		ResourceArn: aws.String("String"), // Required
+		TagKeyList: []*string{ // Required
+			aws.String("TagKey"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.RemoveTagsFromResource(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and

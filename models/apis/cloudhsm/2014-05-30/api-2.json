@@ -4,13 +4,27 @@
     "apiVersion":"2014-05-30",
     "endpointPrefix":"cloudhsm",
     "jsonVersion":"1.1",
+    "protocol":"json",
     "serviceAbbreviation":"CloudHSM",
     "serviceFullName":"Amazon CloudHSM",
     "signatureVersion":"v4",
-    "targetPrefix":"CloudHsmFrontendService",
-    "protocol":"json"
+    "targetPrefix":"CloudHsmFrontendService"
   },
   "operations":{
+    "AddTagsToResource":{
+      "name":"AddTagsToResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AddTagsToResourceRequest"},
+      "output":{"shape":"AddTagsToResourceResponse"},
+      "errors":[
+        {"shape":"CloudHsmServiceException"},
+        {"shape":"CloudHsmInternalException"},
+        {"shape":"InvalidRequestException"}
+      ]
+    },
     "CreateHapg":{
       "name":"CreateHapg",
       "http":{
@@ -20,19 +34,9 @@
       "input":{"shape":"CreateHapgRequest"},
       "output":{"shape":"CreateHapgResponse"},
       "errors":[
-        {
-          "shape":"CloudHsmServiceException",
-          "exception":true
-        },
-        {
-          "shape":"CloudHsmInternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"CloudHsmServiceException"},
+        {"shape":"CloudHsmInternalException"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "CreateHsm":{
@@ -41,25 +45,12 @@
         "method":"POST",
         "requestUri":"/"
       },
-      "input":{
-        "shape":"CreateHsmRequest",
-        "locationName":"CreateHsmRequest"
-      },
+      "input":{"shape":"CreateHsmRequest"},
       "output":{"shape":"CreateHsmResponse"},
       "errors":[
-        {
-          "shape":"CloudHsmServiceException",
-          "exception":true
-        },
-        {
-          "shape":"CloudHsmInternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"CloudHsmServiceException"},
+        {"shape":"CloudHsmInternalException"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "CreateLunaClient":{
@@ -71,19 +62,9 @@
       "input":{"shape":"CreateLunaClientRequest"},
       "output":{"shape":"CreateLunaClientResponse"},
       "errors":[
-        {
-          "shape":"CloudHsmServiceException",
-          "exception":true
-        },
-        {
-          "shape":"CloudHsmInternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"CloudHsmServiceException"},
+        {"shape":"CloudHsmInternalException"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "DeleteHapg":{
@@ -95,19 +76,9 @@
       "input":{"shape":"DeleteHapgRequest"},
       "output":{"shape":"DeleteHapgResponse"},
       "errors":[
-        {
-          "shape":"CloudHsmServiceException",
-          "exception":true
-        },
-        {
-          "shape":"CloudHsmInternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"CloudHsmServiceException"},
+        {"shape":"CloudHsmInternalException"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "DeleteHsm":{
@@ -116,25 +87,12 @@
         "method":"POST",
         "requestUri":"/"
       },
-      "input":{
-        "shape":"DeleteHsmRequest",
-        "locationName":"DeleteHsmRequest"
-      },
+      "input":{"shape":"DeleteHsmRequest"},
       "output":{"shape":"DeleteHsmResponse"},
       "errors":[
-        {
-          "shape":"CloudHsmServiceException",
-          "exception":true
-        },
-        {
-          "shape":"CloudHsmInternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"CloudHsmServiceException"},
+        {"shape":"CloudHsmInternalException"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "DeleteLunaClient":{
@@ -146,19 +104,9 @@
       "input":{"shape":"DeleteLunaClientRequest"},
       "output":{"shape":"DeleteLunaClientResponse"},
       "errors":[
-        {
-          "shape":"CloudHsmServiceException",
-          "exception":true
-        },
-        {
-          "shape":"CloudHsmInternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"CloudHsmServiceException"},
+        {"shape":"CloudHsmInternalException"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "DescribeHapg":{
@@ -170,19 +118,9 @@
       "input":{"shape":"DescribeHapgRequest"},
       "output":{"shape":"DescribeHapgResponse"},
       "errors":[
-        {
-          "shape":"CloudHsmServiceException",
-          "exception":true
-        },
-        {
-          "shape":"CloudHsmInternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"CloudHsmServiceException"},
+        {"shape":"CloudHsmInternalException"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "DescribeHsm":{
@@ -194,19 +132,9 @@
       "input":{"shape":"DescribeHsmRequest"},
       "output":{"shape":"DescribeHsmResponse"},
       "errors":[
-        {
-          "shape":"CloudHsmServiceException",
-          "exception":true
-        },
-        {
-          "shape":"CloudHsmInternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"CloudHsmServiceException"},
+        {"shape":"CloudHsmInternalException"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "DescribeLunaClient":{
@@ -218,19 +146,9 @@
       "input":{"shape":"DescribeLunaClientRequest"},
       "output":{"shape":"DescribeLunaClientResponse"},
       "errors":[
-        {
-          "shape":"CloudHsmServiceException",
-          "exception":true
-        },
-        {
-          "shape":"CloudHsmInternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"CloudHsmServiceException"},
+        {"shape":"CloudHsmInternalException"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "GetConfig":{
@@ -242,19 +160,9 @@
       "input":{"shape":"GetConfigRequest"},
       "output":{"shape":"GetConfigResponse"},
       "errors":[
-        {
-          "shape":"CloudHsmServiceException",
-          "exception":true
-        },
-        {
-          "shape":"CloudHsmInternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"CloudHsmServiceException"},
+        {"shape":"CloudHsmInternalException"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "ListAvailableZones":{
@@ -266,19 +174,9 @@
       "input":{"shape":"ListAvailableZonesRequest"},
       "output":{"shape":"ListAvailableZonesResponse"},
       "errors":[
-        {
-          "shape":"CloudHsmServiceException",
-          "exception":true
-        },
-        {
-          "shape":"CloudHsmInternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"CloudHsmServiceException"},
+        {"shape":"CloudHsmInternalException"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "ListHapgs":{
@@ -290,19 +188,9 @@
       "input":{"shape":"ListHapgsRequest"},
       "output":{"shape":"ListHapgsResponse"},
       "errors":[
-        {
-          "shape":"CloudHsmServiceException",
-          "exception":true
-        },
-        {
-          "shape":"CloudHsmInternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"CloudHsmServiceException"},
+        {"shape":"CloudHsmInternalException"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "ListHsms":{
@@ -314,19 +202,9 @@
       "input":{"shape":"ListHsmsRequest"},
       "output":{"shape":"ListHsmsResponse"},
       "errors":[
-        {
-          "shape":"CloudHsmServiceException",
-          "exception":true
-        },
-        {
-          "shape":"CloudHsmInternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"CloudHsmServiceException"},
+        {"shape":"CloudHsmInternalException"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "ListLunaClients":{
@@ -338,19 +216,23 @@
       "input":{"shape":"ListLunaClientsRequest"},
       "output":{"shape":"ListLunaClientsResponse"},
       "errors":[
-        {
-          "shape":"CloudHsmServiceException",
-          "exception":true
-        },
-        {
-          "shape":"CloudHsmInternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"CloudHsmServiceException"},
+        {"shape":"CloudHsmInternalException"},
+        {"shape":"InvalidRequestException"}
+      ]
+    },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"CloudHsmServiceException"},
+        {"shape":"CloudHsmInternalException"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "ModifyHapg":{
@@ -362,19 +244,9 @@
       "input":{"shape":"ModifyHapgRequest"},
       "output":{"shape":"ModifyHapgResponse"},
       "errors":[
-        {
-          "shape":"CloudHsmServiceException",
-          "exception":true
-        },
-        {
-          "shape":"CloudHsmInternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"CloudHsmServiceException"},
+        {"shape":"CloudHsmInternalException"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "ModifyHsm":{
@@ -383,25 +255,12 @@
         "method":"POST",
         "requestUri":"/"
       },
-      "input":{
-        "shape":"ModifyHsmRequest",
-        "locationName":"ModifyHsmRequest"
-      },
+      "input":{"shape":"ModifyHsmRequest"},
       "output":{"shape":"ModifyHsmResponse"},
       "errors":[
-        {
-          "shape":"CloudHsmServiceException",
-          "exception":true
-        },
-        {
-          "shape":"CloudHsmInternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"CloudHsmServiceException"},
+        {"shape":"CloudHsmInternalException"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "ModifyLunaClient":{
@@ -413,10 +272,21 @@
       "input":{"shape":"ModifyLunaClientRequest"},
       "output":{"shape":"ModifyLunaClientResponse"},
       "errors":[
-        {
-          "shape":"CloudHsmServiceException",
-          "exception":true
-        }
+        {"shape":"CloudHsmServiceException"}
+      ]
+    },
+    "RemoveTagsFromResource":{
+      "name":"RemoveTagsFromResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RemoveTagsFromResourceRequest"},
+      "output":{"shape":"RemoveTagsFromResourceResponse"},
+      "errors":[
+        {"shape":"CloudHsmServiceException"},
+        {"shape":"CloudHsmInternalException"},
+        {"shape":"InvalidRequestException"}
       ]
     }
   },
@@ -429,11 +299,29 @@
       "type":"list",
       "member":{"shape":"AZ"}
     },
+    "AddTagsToResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "TagList"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"String"},
+        "TagList":{"shape":"TagList"}
+      }
+    },
+    "AddTagsToResourceResponse":{
+      "type":"structure",
+      "required":["Status"],
+      "members":{
+        "Status":{"shape":"String"}
+      }
+    },
     "Boolean":{"type":"boolean"},
     "Certificate":{
       "type":"string",
-      "min":600,
       "max":2400,
+      "min":600,
       "pattern":"[\\w :+=./\\n-]*"
     },
     "CertificateFingerprint":{
@@ -811,6 +699,20 @@
         "NextToken":{"shape":"PaginationToken"}
       }
     },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"String"}
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "required":["TagList"],
+      "members":{
+        "TagList":{"shape":"TagList"}
+      }
+    },
     "ModifyHapgRequest":{
       "type":"structure",
       "required":["HapgArn"],
@@ -894,11 +796,29 @@
     },
     "PartitionSerial":{
       "type":"string",
-      "pattern":"\\d{9}"
+      "pattern":"\\d{6,12}"
     },
     "PartitionSerialList":{
       "type":"list",
       "member":{"shape":"PartitionSerial"}
+    },
+    "RemoveTagsFromResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "TagKeyList"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"String"},
+        "TagKeyList":{"shape":"TagKeyList"}
+      }
+    },
+    "RemoveTagsFromResourceResponse":{
+      "type":"structure",
+      "required":["Status"],
+      "members":{
+        "Status":{"shape":"String"}
+      }
     },
     "SshKey":{
       "type":"string",
@@ -915,6 +835,35 @@
     "SubscriptionType":{
       "type":"string",
       "enum":["PRODUCTION"]
+    },
+    "Tag":{
+      "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
+      "members":{
+        "Key":{"shape":"TagKey"},
+        "Value":{"shape":"TagValue"}
+      }
+    },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"}
+    },
+    "TagList":{
+      "type":"list",
+      "member":{"shape":"Tag"}
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0
     },
     "Timestamp":{
       "type":"string",

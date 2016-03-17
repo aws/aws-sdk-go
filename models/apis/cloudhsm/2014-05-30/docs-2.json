@@ -1,8 +1,10 @@
 {
   "version": "2.0",
+  "service": "<fullname>AWS CloudHSM Service</fullname>",
   "operations": {
+    "AddTagsToResource": "<p>Adds or overwrites one or more tags for the specified resource.</p> <p>Each tag consists of a key and a value. Tag keys must be unique per resource.</p>",
     "CreateHapg": "<p>Creates a high-availability partition group. A high-availability partition group is a group of partitions that spans multiple physical HSMs.</p>",
-    "CreateHsm": "<p>Creates an uninitialized HSM instance. </p> <p>There is an upfront fee charged for each HSM instance that you create with the <a>CreateHsm</a> operation. If you accidentally provision an HSM and want to request a refund, delete the instance using the <a>DeleteHsm</a> operation, go to the <a href=\"https://console.aws.amazon.com/support/home#/\">AWS Support Center</a>, create a new case, and select <b>Account and Billing Support</b>.</p> <important> <p> <p>It can take up to 20 minutes to create and provision an HSM. You can monitor the status of the HSM with the <a>DescribeHsm</a> operation. The HSM is ready to be initialized when the status changes to <code>RUNNING</code>.</p> </p> </important>",
+    "CreateHsm": "<p>Creates an uninitialized HSM instance.</p> <p>There is an upfront fee charged for each HSM instance that you create with the <a>CreateHsm</a> operation. If you accidentally provision an HSM and want to request a refund, delete the instance using the <a>DeleteHsm</a> operation, go to the <a href=\"https://console.aws.amazon.com/support/home#/\">AWS Support Center</a>, create a new case, and select <b>Account and Billing Support</b>.</p> <important> <p>It can take up to 20 minutes to create and provision an HSM. You can monitor the status of the HSM with the <a>DescribeHsm</a> operation. The HSM is ready to be initialized when the status changes to <code>RUNNING</code>.</p> </important>",
     "CreateLunaClient": "<p>Creates an HSM client.</p>",
     "DeleteHapg": "<p>Deletes a high-availability partition group.</p>",
     "DeleteHsm": "<p>Deletes an HSM. After completion, this operation cannot be undone and your key material cannot be recovered.</p>",
@@ -15,11 +17,12 @@
     "ListHapgs": "<p>Lists the high-availability partition groups for the account.</p> <p>This operation supports pagination with the use of the <i>NextToken</i> member. If more results are available, the <i>NextToken</i> member of the response contains a token that you pass in the next call to <a>ListHapgs</a> to retrieve the next set of items.</p>",
     "ListHsms": "<p>Retrieves the identifiers of all of the HSMs provisioned for the current customer.</p> <p>This operation supports pagination with the use of the <i>NextToken</i> member. If more results are available, the <i>NextToken</i> member of the response contains a token that you pass in the next call to <a>ListHsms</a> to retrieve the next set of items.</p>",
     "ListLunaClients": "<p>Lists all of the clients.</p> <p>This operation supports pagination with the use of the <i>NextToken</i> member. If more results are available, the <i>NextToken</i> member of the response contains a token that you pass in the next call to <a>ListLunaClients</a> to retrieve the next set of items.</p>",
+    "ListTagsForResource": "<p>Returns a list of all tags for the specified resource.</p>",
     "ModifyHapg": "<p>Modifies an existing high-availability partition group.</p>",
-    "ModifyHsm": "<p>Modifies an HSM.</p> <important> <p> <p>This operation can result in the HSM being offline for up to 15 minutes while the AWS CloudHSM service is reconfigured. If you are modifying a production HSM, you should ensure that your AWS CloudHSM service is configured for high availability, and consider executing this operation during a maintenance window.</p> </p> </important>",
-    "ModifyLunaClient": "<p>Modifies the certificate used by the client.</p> <p>This action can potentially start a workflow to install the new certificate on the client's HSMs.</p>"
+    "ModifyHsm": "<p>Modifies an HSM.</p> <important> <p>This operation can result in the HSM being offline for up to 15 minutes while the AWS CloudHSM service is reconfigured. If you are modifying a production HSM, you should ensure that your AWS CloudHSM service is configured for high availability, and consider executing this operation during a maintenance window.</p> </important>",
+    "ModifyLunaClient": "<p>Modifies the certificate used by the client.</p> <p>This action can potentially start a workflow to install the new certificate on the client's HSMs.</p>",
+    "RemoveTagsFromResource": "<p>Removes one or more tags from the specified resource.</p> <p>To remove a tag, specify only the tag key to remove (not the value). To overwrite the value for an existing tag, use <a>AddTagsToResource</a>.</p>"
   },
-  "service": "<fullname>AWS CloudHSM Service</fullname>",
   "shapes": {
     "AZ": {
       "base": null,
@@ -34,6 +37,16 @@
         "ListAvailableZonesResponse$AZList": "<p>The list of Availability Zones that have available AWS CloudHSM capacity.</p>"
       }
     },
+    "AddTagsToResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AddTagsToResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Boolean": {
       "base": null,
       "refs": {
@@ -45,7 +58,7 @@
       "refs": {
         "CreateLunaClientRequest$Certificate": "<p>The contents of a Base64-Encoded X.509 v3 certificate to be installed on the HSMs used by this client.</p>",
         "DescribeLunaClientResponse$Certificate": "<p>The certificate installed on the HSMs used by this client.</p>",
-        "ModifyLunaClientRequest$Certificate": "<p>The new certificate for the client. </p>"
+        "ModifyLunaClientRequest$Certificate": "<p>The new certificate for the client.</p>"
       }
     },
     "CertificateFingerprint": {
@@ -119,7 +132,7 @@
       }
     },
     "CreateHsmRequest": {
-      "base": "<p>Contains the inputs for the <a>CreateHsm</a> operation. </p>",
+      "base": "<p>Contains the inputs for the <a>CreateHsm</a> operation.</p>",
       "refs": {
       }
     },
@@ -149,7 +162,7 @@
       }
     },
     "DeleteHsmRequest": {
-      "base": "<p>Contains the inputs for the <a>DeleteHsm</a> operation. </p>",
+      "base": "<p>Contains the inputs for the <a>DeleteHsm</a> operation.</p>",
       "refs": {
       }
     },
@@ -307,7 +320,7 @@
       }
     },
     "ListAvailableZonesRequest": {
-      "base": "<p>Contains the inputs for the <a>ListAvailableZones</a> action. </p>",
+      "base": "<p>Contains the inputs for the <a>ListAvailableZones</a> action.</p>",
       "refs": {
       }
     },
@@ -346,6 +359,16 @@
       "refs": {
       }
     },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ModifyHapgRequest": {
       "base": null,
       "refs": {
@@ -357,7 +380,7 @@
       }
     },
     "ModifyHsmRequest": {
-      "base": "<p>Contains the inputs for the <a>ModifyHsm</a> operation. </p>",
+      "base": "<p>Contains the inputs for the <a>ModifyHsm</a> operation.</p>",
       "refs": {
       }
     },
@@ -412,6 +435,16 @@
         "ModifyHapgRequest$PartitionSerialList": "<p>The list of partition serial numbers to make members of the high-availability partition group.</p>"
       }
     },
+    "RemoveTagsFromResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RemoveTagsFromResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "SshKey": {
       "base": null,
       "refs": {
@@ -422,6 +455,8 @@
     "String": {
       "base": null,
       "refs": {
+        "AddTagsToResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource to tag.</p>",
+        "AddTagsToResourceResponse$Status": "<p>The status of the operation.</p>",
         "CloudHsmServiceException$message": "<p>Additional information about the error.</p>",
         "DeleteHapgResponse$Status": "<p>The status of the action.</p>",
         "DeleteHsmResponse$Status": "<p>The status of the operation.</p>",
@@ -434,7 +469,10 @@
         "DescribeHsmResponse$ServerCertUri": "<p>The URI of the certificate server.</p>",
         "GetConfigResponse$ConfigType": "<p>The type of credentials.</p>",
         "GetConfigResponse$ConfigFile": "<p>The chrystoki.conf configuration file.</p>",
-        "GetConfigResponse$ConfigCred": "<p>The certificate file containing the server.pem files of the HSMs.</p>"
+        "GetConfigResponse$ConfigCred": "<p>The certificate file containing the server.pem files of the HSMs.</p>",
+        "ListTagsForResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+        "RemoveTagsFromResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+        "RemoveTagsFromResourceResponse$Status": "<p>The status of the operation.</p>"
       }
     },
     "SubnetId": {
@@ -446,10 +484,42 @@
       }
     },
     "SubscriptionType": {
-      "base": "<p>Specifies the type of subscription for the HSM.</p> <ul> <li> <b>PRODUCTION</b> - The HSM is being used in a production environment.</li> <li> <b>TRIAL</b> - The HSM is being used in a product trial.</li> </ul>",
+      "base": "<p>Specifies the type of subscription for the HSM.</p> <ul> <li><b>PRODUCTION</b> - The HSM is being used in a production environment.</li> <li><b>TRIAL</b> - The HSM is being used in a product trial.</li> </ul>",
       "refs": {
         "CreateHsmRequest$SubscriptionType": null,
         "DescribeHsmResponse$SubscriptionType": null
+      }
+    },
+    "Tag": {
+      "base": "<p>A key-value pair that identifies or specifies metadata about a resource.</p>",
+      "refs": {
+        "TagList$member": null
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "Tag$Key": "<p>The key of the tag.</p>",
+        "TagKeyList$member": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "RemoveTagsFromResourceRequest$TagKeyList": "<p>The tag key or keys to remove.</p> <p>Specify only the tag key to remove (not the value). To overwrite the value for an existing tag, use <a>AddTagsToResource</a>.</p>"
+      }
+    },
+    "TagList": {
+      "base": null,
+      "refs": {
+        "AddTagsToResourceRequest$TagList": "<p>One or more tags.</p>",
+        "ListTagsForResourceResponse$TagList": "<p>One or more tags.</p>"
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "Tag$Value": "<p>The value of the tag.</p>"
       }
     },
     "Timestamp": {
