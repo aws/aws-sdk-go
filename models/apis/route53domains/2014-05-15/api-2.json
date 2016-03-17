@@ -4,10 +4,10 @@
     "apiVersion":"2014-05-15",
     "endpointPrefix":"route53domains",
     "jsonVersion":"1.1",
+    "protocol":"json",
     "serviceFullName":"Amazon Route 53 Domains",
     "signatureVersion":"v4",
-    "targetPrefix":"Route53Domains_v20140515",
-    "protocol":"json"
+    "targetPrefix":"Route53Domains_v20140515"
   },
   "operations":{
     "CheckDomainAvailability":{
@@ -19,16 +19,8 @@
       "input":{"shape":"CheckDomainAvailabilityRequest"},
       "output":{"shape":"CheckDomainAvailabilityResponse"},
       "errors":[
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"UnsupportedTLD",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInput"},
+        {"shape":"UnsupportedTLD"}
       ]
     },
     "DeleteTagsForDomain":{
@@ -40,21 +32,9 @@
       "input":{"shape":"DeleteTagsForDomainRequest"},
       "output":{"shape":"DeleteTagsForDomainResponse"},
       "errors":[
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"OperationLimitExceeded",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"UnsupportedTLD",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInput"},
+        {"shape":"OperationLimitExceeded"},
+        {"shape":"UnsupportedTLD"}
       ]
     },
     "DisableDomainAutoRenew":{
@@ -66,16 +46,8 @@
       "input":{"shape":"DisableDomainAutoRenewRequest"},
       "output":{"shape":"DisableDomainAutoRenewResponse"},
       "errors":[
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"UnsupportedTLD",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInput"},
+        {"shape":"UnsupportedTLD"}
       ]
     },
     "DisableDomainTransferLock":{
@@ -87,31 +59,11 @@
       "input":{"shape":"DisableDomainTransferLockRequest"},
       "output":{"shape":"DisableDomainTransferLockResponse"},
       "errors":[
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"DuplicateRequest",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"TLDRulesViolation",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"OperationLimitExceeded",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"UnsupportedTLD",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInput"},
+        {"shape":"DuplicateRequest"},
+        {"shape":"TLDRulesViolation"},
+        {"shape":"OperationLimitExceeded"},
+        {"shape":"UnsupportedTLD"}
       ]
     },
     "EnableDomainAutoRenew":{
@@ -123,16 +75,8 @@
       "input":{"shape":"EnableDomainAutoRenewRequest"},
       "output":{"shape":"EnableDomainAutoRenewResponse"},
       "errors":[
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"UnsupportedTLD",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInput"},
+        {"shape":"UnsupportedTLD"}
       ]
     },
     "EnableDomainTransferLock":{
@@ -144,31 +88,11 @@
       "input":{"shape":"EnableDomainTransferLockRequest"},
       "output":{"shape":"EnableDomainTransferLockResponse"},
       "errors":[
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"DuplicateRequest",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"TLDRulesViolation",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"OperationLimitExceeded",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"UnsupportedTLD",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInput"},
+        {"shape":"DuplicateRequest"},
+        {"shape":"TLDRulesViolation"},
+        {"shape":"OperationLimitExceeded"},
+        {"shape":"UnsupportedTLD"}
       ]
     },
     "GetDomainDetail":{
@@ -180,16 +104,8 @@
       "input":{"shape":"GetDomainDetailRequest"},
       "output":{"shape":"GetDomainDetailResponse"},
       "errors":[
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"UnsupportedTLD",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInput"},
+        {"shape":"UnsupportedTLD"}
       ]
     },
     "GetOperationDetail":{
@@ -201,11 +117,7 @@
       "input":{"shape":"GetOperationDetailRequest"},
       "output":{"shape":"GetOperationDetailResponse"},
       "errors":[
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInput"}
       ]
     },
     "ListDomains":{
@@ -217,11 +129,7 @@
       "input":{"shape":"ListDomainsRequest"},
       "output":{"shape":"ListDomainsResponse"},
       "errors":[
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInput"}
       ]
     },
     "ListOperations":{
@@ -233,11 +141,7 @@
       "input":{"shape":"ListOperationsRequest"},
       "output":{"shape":"ListOperationsResponse"},
       "errors":[
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInput"}
       ]
     },
     "ListTagsForDomain":{
@@ -249,21 +153,9 @@
       "input":{"shape":"ListTagsForDomainRequest"},
       "output":{"shape":"ListTagsForDomainResponse"},
       "errors":[
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"OperationLimitExceeded",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"UnsupportedTLD",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInput"},
+        {"shape":"OperationLimitExceeded"},
+        {"shape":"UnsupportedTLD"}
       ]
     },
     "RegisterDomain":{
@@ -275,36 +167,12 @@
       "input":{"shape":"RegisterDomainRequest"},
       "output":{"shape":"RegisterDomainResponse"},
       "errors":[
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"UnsupportedTLD",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"DuplicateRequest",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"TLDRulesViolation",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"DomainLimitExceeded",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"OperationLimitExceeded",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInput"},
+        {"shape":"UnsupportedTLD"},
+        {"shape":"DuplicateRequest"},
+        {"shape":"TLDRulesViolation"},
+        {"shape":"DomainLimitExceeded"},
+        {"shape":"OperationLimitExceeded"}
       ]
     },
     "RetrieveDomainAuthCode":{
@@ -316,16 +184,8 @@
       "input":{"shape":"RetrieveDomainAuthCodeRequest"},
       "output":{"shape":"RetrieveDomainAuthCodeResponse"},
       "errors":[
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"UnsupportedTLD",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInput"},
+        {"shape":"UnsupportedTLD"}
       ]
     },
     "TransferDomain":{
@@ -337,36 +197,12 @@
       "input":{"shape":"TransferDomainRequest"},
       "output":{"shape":"TransferDomainResponse"},
       "errors":[
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"UnsupportedTLD",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"DuplicateRequest",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"TLDRulesViolation",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"DomainLimitExceeded",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"OperationLimitExceeded",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInput"},
+        {"shape":"UnsupportedTLD"},
+        {"shape":"DuplicateRequest"},
+        {"shape":"TLDRulesViolation"},
+        {"shape":"DomainLimitExceeded"},
+        {"shape":"OperationLimitExceeded"}
       ]
     },
     "UpdateDomainContact":{
@@ -378,31 +214,11 @@
       "input":{"shape":"UpdateDomainContactRequest"},
       "output":{"shape":"UpdateDomainContactResponse"},
       "errors":[
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"DuplicateRequest",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"TLDRulesViolation",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"OperationLimitExceeded",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"UnsupportedTLD",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInput"},
+        {"shape":"DuplicateRequest"},
+        {"shape":"TLDRulesViolation"},
+        {"shape":"OperationLimitExceeded"},
+        {"shape":"UnsupportedTLD"}
       ]
     },
     "UpdateDomainContactPrivacy":{
@@ -414,31 +230,11 @@
       "input":{"shape":"UpdateDomainContactPrivacyRequest"},
       "output":{"shape":"UpdateDomainContactPrivacyResponse"},
       "errors":[
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"DuplicateRequest",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"TLDRulesViolation",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"OperationLimitExceeded",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"UnsupportedTLD",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInput"},
+        {"shape":"DuplicateRequest"},
+        {"shape":"TLDRulesViolation"},
+        {"shape":"OperationLimitExceeded"},
+        {"shape":"UnsupportedTLD"}
       ]
     },
     "UpdateDomainNameservers":{
@@ -450,31 +246,11 @@
       "input":{"shape":"UpdateDomainNameserversRequest"},
       "output":{"shape":"UpdateDomainNameserversResponse"},
       "errors":[
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"DuplicateRequest",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"TLDRulesViolation",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"OperationLimitExceeded",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"UnsupportedTLD",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInput"},
+        {"shape":"DuplicateRequest"},
+        {"shape":"TLDRulesViolation"},
+        {"shape":"OperationLimitExceeded"},
+        {"shape":"UnsupportedTLD"}
       ]
     },
     "UpdateTagsForDomain":{
@@ -486,21 +262,9 @@
       "input":{"shape":"UpdateTagsForDomainRequest"},
       "output":{"shape":"UpdateTagsForDomainResponse"},
       "errors":[
-        {
-          "shape":"InvalidInput",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"OperationLimitExceeded",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"UnsupportedTLD",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInput"},
+        {"shape":"OperationLimitExceeded"},
+        {"shape":"UnsupportedTLD"}
       ]
     }
   },
@@ -867,7 +631,6 @@
       "members":{
         "message":{"shape":"ErrorMessage"}
       },
-      "error":{"httpStatusCode":400},
       "exception":true
     },
     "DomainName":{
@@ -899,13 +662,12 @@
       "members":{
         "message":{"shape":"ErrorMessage"}
       },
-      "error":{"httpStatusCode":400},
       "exception":true
     },
     "DurationInYears":{
       "type":"integer",
-      "min":1,
-      "max":10
+      "max":10,
+      "min":1
     },
     "Email":{
       "type":"string",
@@ -1059,7 +821,6 @@
       "members":{
         "message":{"shape":"ErrorMessage"}
       },
-      "error":{"httpStatusCode":400},
       "exception":true
     },
     "LangCode":{
@@ -1131,7 +892,6 @@
       "members":{
         "message":{"shape":"ErrorMessage"}
       },
-      "error":{"httpStatusCode":400},
       "exception":true
     },
     "OperationStatus":{
@@ -1240,7 +1000,6 @@
       "members":{
         "message":{"shape":"ErrorMessage"}
       },
-      "error":{"httpStatusCode":400},
       "exception":true
     },
     "Tag":{
@@ -1297,7 +1056,6 @@
       "members":{
         "message":{"shape":"ErrorMessage"}
       },
-      "error":{"httpStatusCode":400},
       "exception":true
     },
     "UpdateDomainContactPrivacyRequest":{
