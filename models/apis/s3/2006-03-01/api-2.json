@@ -58,7 +58,8 @@
       "input":{"shape":"CreateBucketRequest"},
       "output":{"shape":"CreateBucketOutput"},
       "errors":[
-        {"shape":"BucketAlreadyExists"}
+        {"shape":"BucketAlreadyExists"},
+        {"shape":"BucketAlreadyOwnedByYou"}
       ],
       "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTBucketPUT.html",
       "alias":"PutBucket"
@@ -587,6 +588,13 @@
     }
   },
   "shapes":{
+    "AbortDate":{"type":"timestamp"},
+    "AbortIncompleteMultipartUpload":{
+      "type":"structure",
+      "members":{
+        "DaysAfterInitiation":{"shape":"DaysAfterInitiation"}
+      }
+    },
     "AbortMultipartUploadOutput":{
       "type":"structure",
       "members":{
@@ -627,6 +635,7 @@
         }
       }
     },
+    "AbortRuleId":{"type":"string"},
     "AcceptRanges":{"type":"string"},
     "AccessControlPolicy":{
       "type":"structure",
@@ -665,6 +674,12 @@
       }
     },
     "BucketAlreadyExists":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "BucketAlreadyOwnedByYou":{
       "type":"structure",
       "members":{
       },
@@ -1218,6 +1233,16 @@
     "CreateMultipartUploadOutput":{
       "type":"structure",
       "members":{
+        "AbortDate":{
+          "shape":"AbortDate",
+          "location":"header",
+          "locationName":"x-amz-abort-date"
+        },
+        "AbortRuleId":{
+          "shape":"AbortRuleId",
+          "location":"header",
+          "locationName":"x-amz-abort-rule-id"
+        },
         "Bucket":{
           "shape":"BucketName",
           "locationName":"Bucket"
@@ -1376,6 +1401,7 @@
       "timestampFormat":"iso8601"
     },
     "Days":{"type":"integer"},
+    "DaysAfterInitiation":{"type":"integer"},
     "Delete":{
       "type":"structure",
       "required":["Objects"],
@@ -1658,6 +1684,7 @@
         "Disabled"
       ]
     },
+    "ExpiredObjectDeleteMarker":{"type":"boolean"},
     "Expires":{"type":"timestamp"},
     "ExposeHeader":{"type":"string"},
     "ExposeHeaders":{
@@ -2550,7 +2577,8 @@
       "type":"structure",
       "members":{
         "Date":{"shape":"Date"},
-        "Days":{"shape":"Days"}
+        "Days":{"shape":"Days"},
+        "ExpiredObjectDeleteMarker":{"shape":"ExpiredObjectDeleteMarker"}
       }
     },
     "LifecycleRule":{
@@ -2572,7 +2600,8 @@
           "shape":"NoncurrentVersionTransitionList",
           "locationName":"NoncurrentVersionTransition"
         },
-        "NoncurrentVersionExpiration":{"shape":"NoncurrentVersionExpiration"}
+        "NoncurrentVersionExpiration":{"shape":"NoncurrentVersionExpiration"},
+        "AbortIncompleteMultipartUpload":{"shape":"AbortIncompleteMultipartUpload"}
       }
     },
     "LifecycleRules":{
@@ -2767,6 +2796,16 @@
     "ListPartsOutput":{
       "type":"structure",
       "members":{
+        "AbortDate":{
+          "shape":"AbortDate",
+          "location":"header",
+          "locationName":"x-amz-abort-date"
+        },
+        "AbortRuleId":{
+          "shape":"AbortRuleId",
+          "location":"header",
+          "locationName":"x-amz-abort-rule-id"
+        },
         "Bucket":{"shape":"BucketName"},
         "Key":{"shape":"ObjectKey"},
         "UploadId":{"shape":"MultipartUploadId"},
@@ -3908,7 +3947,8 @@
         "Status":{"shape":"ExpirationStatus"},
         "Transition":{"shape":"Transition"},
         "NoncurrentVersionTransition":{"shape":"NoncurrentVersionTransition"},
-        "NoncurrentVersionExpiration":{"shape":"NoncurrentVersionExpiration"}
+        "NoncurrentVersionExpiration":{"shape":"NoncurrentVersionExpiration"},
+        "AbortIncompleteMultipartUpload":{"shape":"AbortIncompleteMultipartUpload"}
       }
     },
     "Rules":{

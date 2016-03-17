@@ -11,7 +11,7 @@
     "DeleteBucketCors": "Deletes the cors configuration information set for the bucket.",
     "DeleteBucketLifecycle": "Deletes the lifecycle configuration from the bucket.",
     "DeleteBucketPolicy": "Deletes the policy from the bucket.",
-    "DeleteBucketReplication": null,
+    "DeleteBucketReplication": "Deletes the replication configuration from the bucket.",
     "DeleteBucketTagging": "Deletes the tags from the bucket.",
     "DeleteBucketWebsite": "This operation removes the website configuration from the bucket.",
     "DeleteObject": "Removes the null version (if there is one) of an object and inserts a delete marker, which becomes the latest version of the object. If there isn't a null version, Amazon S3 does not remove any objects.",
@@ -25,7 +25,7 @@
     "GetBucketNotification": "Deprecated, see the GetBucketNotificationConfiguration operation.",
     "GetBucketNotificationConfiguration": "Returns the notification configuration of a bucket.",
     "GetBucketPolicy": "Returns the policy of a specified bucket.",
-    "GetBucketReplication": null,
+    "GetBucketReplication": "Deprecated, see the GetBucketReplicationConfiguration operation.",
     "GetBucketRequestPayment": "Returns the request payment configuration of a bucket.",
     "GetBucketTagging": "Returns the tag set associated with the bucket.",
     "GetBucketVersioning": "Returns the versioning state of a bucket.",
@@ -60,6 +60,20 @@
     "UploadPartCopy": "Uploads a part by copying data from an existing object as data source."
   },
   "shapes": {
+    "AbortDate": {
+      "base": null,
+      "refs": {
+        "CreateMultipartUploadOutput$AbortDate": "Date when multipart upload will become eligible for abort operation by lifecycle.",
+        "ListPartsOutput$AbortDate": "Date when multipart upload will become eligible for abort operation by lifecycle."
+      }
+    },
+    "AbortIncompleteMultipartUpload": {
+      "base": "Specifies the days since the initiation of an Incomplete Multipart Upload that Lifecycle will wait before permanently removing all parts of the upload.",
+      "refs": {
+        "LifecycleRule$AbortIncompleteMultipartUpload": null,
+        "Rule$AbortIncompleteMultipartUpload": null
+      }
+    },
     "AbortMultipartUploadOutput": {
       "base": null,
       "refs": {
@@ -68,6 +82,13 @@
     "AbortMultipartUploadRequest": {
       "base": null,
       "refs": {
+      }
+    },
+    "AbortRuleId": {
+      "base": null,
+      "refs": {
+        "CreateMultipartUploadOutput$AbortRuleId": "Id of the lifecycle rule that makes a multipart upload eligible for abort operation.",
+        "ListPartsOutput$AbortRuleId": "Id of the lifecycle rule that makes a multipart upload eligible for abort operation."
       }
     },
     "AcceptRanges": {
@@ -126,7 +147,7 @@
         "GetObjectOutput$Body": "Object data.",
         "GetObjectTorrentOutput$Body": null,
         "PutObjectRequest$Body": "Object data.",
-        "UploadPartRequest$Body": null
+        "UploadPartRequest$Body": "Object data."
       }
     },
     "Bucket": {
@@ -137,6 +158,11 @@
     },
     "BucketAlreadyExists": {
       "base": "The requested bucket name is not available. The bucket namespace is shared by all users of the system. Please select a different name and try again.",
+      "refs": {
+      }
+    },
+    "BucketAlreadyOwnedByYou": {
+      "base": null,
       "refs": {
       }
     },
@@ -199,7 +225,7 @@
         "GetBucketLifecycleRequest$Bucket": null,
         "GetBucketLocationRequest$Bucket": null,
         "GetBucketLoggingRequest$Bucket": null,
-        "GetBucketNotificationConfigurationRequest$Bucket": "Name of the buket to get the notification configuration for.",
+        "GetBucketNotificationConfigurationRequest$Bucket": "Name of the bucket to get the notification configuration for.",
         "GetBucketPolicyRequest$Bucket": null,
         "GetBucketReplicationRequest$Bucket": null,
         "GetBucketRequestPaymentRequest$Bucket": null,
@@ -233,10 +259,10 @@
         "PutBucketVersioningRequest$Bucket": null,
         "PutBucketWebsiteRequest$Bucket": null,
         "PutObjectAclRequest$Bucket": null,
-        "PutObjectRequest$Bucket": null,
+        "PutObjectRequest$Bucket": "Name of the bucket to which the PUT operation was initiated.",
         "RestoreObjectRequest$Bucket": null,
         "UploadPartCopyRequest$Bucket": null,
-        "UploadPartRequest$Bucket": null
+        "UploadPartRequest$Bucket": "Name of the bucket to which the multipart upload was initiated."
       }
     },
     "BucketVersioningStatus": {
@@ -407,8 +433,8 @@
         "PutBucketVersioningRequest$ContentMD5": null,
         "PutBucketWebsiteRequest$ContentMD5": null,
         "PutObjectAclRequest$ContentMD5": null,
-        "PutObjectRequest$ContentMD5": null,
-        "UploadPartRequest$ContentMD5": null
+        "PutObjectRequest$ContentMD5": "The base64-encoded 128-bit MD5 digest of the part data.",
+        "UploadPartRequest$ContentMD5": "The base64-encoded 128-bit MD5 digest of the part data."
       }
     },
     "ContentRange": {
@@ -565,6 +591,12 @@
         "NoncurrentVersionTransition$NoncurrentDays": "Specifies the number of days an object is noncurrent before Amazon S3 can perform the associated action. For information about the noncurrent days calculations, see <a href=\"/AmazonS3/latest/dev/s3-access-control.html\">How Amazon S3 Calculates When an Object Became Noncurrent</a> in the Amazon Simple Storage Service Developer Guide.",
         "RestoreRequest$Days": "Lifetime of the active copy in days",
         "Transition$Days": "Indicates the lifetime, in days, of the objects that are subject to the rule. The value must be a non-zero positive integer."
+      }
+    },
+    "DaysAfterInitiation": {
+      "base": null,
+      "refs": {
+        "AbortIncompleteMultipartUpload$DaysAfterInitiation": "Indicates the number of days that must pass since initiation for Lifecycle to abort an Incomplete Multipart Upload."
       }
     },
     "Delete": {
@@ -779,6 +811,12 @@
       "refs": {
         "LifecycleRule$Status": "If 'Enabled', the rule is currently being applied. If 'Disabled', the rule is not currently being applied.",
         "Rule$Status": "If 'Enabled', the rule is currently being applied. If 'Disabled', the rule is not currently being applied."
+      }
+    },
+    "ExpiredObjectDeleteMarker": {
+      "base": null,
+      "refs": {
+        "LifecycleExpiration$ExpiredObjectDeleteMarker": "Indicates whether Amazon S3 will remove a delete marker with no noncurrent versions. If set to true, the delete marker will be expired; if set to false the policy takes no action. This cannot be specified with Days or Date in a Lifecycle Expiration Policy."
       }
     },
     "Expires": {
@@ -1571,11 +1609,11 @@
         "ObjectIdentifier$Key": "Key name of the object to delete.",
         "ObjectVersion$Key": "The object key.",
         "PutObjectAclRequest$Key": null,
-        "PutObjectRequest$Key": null,
+        "PutObjectRequest$Key": "Object key for which the PUT operation was initiated.",
         "RestoreObjectRequest$Key": null,
         "Tag$Key": "Name of the tag.",
         "UploadPartCopyRequest$Key": null,
-        "UploadPartRequest$Key": null
+        "UploadPartRequest$Key": "Object key for which the multipart upload was initiated."
       }
     },
     "ObjectList": {
