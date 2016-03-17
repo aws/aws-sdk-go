@@ -73,7 +73,7 @@ but it already exists
 		HostedZoneId: aws.String("zoneId"),
 		ChangeBatch: &route53.ChangeBatch{
 			Changes: []*route53.Change{
-				&route53.Change{
+				{
 					Action: aws.String("CREATE"),
 					ResourceRecordSet: &route53.ResourceRecordSet{
 						Name: aws.String("domain"),

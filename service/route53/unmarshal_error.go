@@ -26,15 +26,6 @@ type invalidChangeBatchXMLErrorResponse struct {
 	Messages []string `xml:"Messages>Message"`
 }
 
-func unmarshalError(r *request.Request) {
-	switch r.Operation.Name {
-	case opChangeResourceRecordSets:
-		unmarshalChangeResourceRecordSetsError(r)
-	default:
-		restxml.UnmarshalError(r)
-	}
-}
-
 func unmarshalChangeResourceRecordSetsError(r *request.Request) {
 	defer r.HTTPResponse.Body.Close()
 
