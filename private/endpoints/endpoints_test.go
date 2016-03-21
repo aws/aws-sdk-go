@@ -39,3 +39,13 @@ func TestServicesInCN(t *testing.T) {
 		assert.Empty(t, sr)
 	}
 }
+
+func TestEC2MetadataEndpoints(t *testing.T) {
+	regions := []string{"us-east-1", "us-gov-west-1", "cn-north-1", "mock-region-1"}
+
+	for _, region := range regions {
+		ep, sr := endpoints.EndpointForRegion("ec2metadata", region, false)
+		assert.Equal(t, "http://169.254.169.254/latest", ep)
+		assert.Equal(t, "", sr)
+	}
+}
