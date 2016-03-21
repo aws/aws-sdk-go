@@ -75,7 +75,7 @@ lint:
 	if [ "$$lint" != "" ]; then exit 1; fi
 
 vet:
-	go tool vet -all -shadow $(shell if go version | grep -v 1.5 | grep -v 1.4 >> /dev/null; then echo "-example=false" | tr -d '\n'; fi) $(shell ls -d */ | grep -v vendor)
+	go tool vet -all -shadow $(shell if go version | grep -v 1.5 | grep -v 1.4 >> /dev/null; then echo "-example=false" | tr -d '\n'; fi) $(shell ls -d */ | grep -v vendor | grep -v awsmigrate)
 
 get-deps: get-deps-tests get-deps-verify
 	@echo "go get SDK dependencies"
@@ -90,6 +90,7 @@ get-deps-tests:
 get-deps-verify:
 	@echo "go get SDK verification utilities"
 	go get github.com/golang/lint/golint
+	go get golang.org/x/tools/cmd/vet
 
 bench:
 	@echo "go bench SDK packages"
