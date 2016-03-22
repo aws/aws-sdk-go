@@ -66,6 +66,14 @@ smoke-tests: get-deps-tests
 performance: get-deps-tests
 	AWS_TESTING_LOG_RESULTS=${log-detailed} AWS_TESTING_REGION=$(region) AWS_TESTING_DB_TABLE=$(table) gucumber ./awstesting/performance
 
+sandbox-tests:
+	docker build -f ./awstesting/sandbox/Dockerfile.test.go1.4 -t "aws-sdk-go-1.4" .
+	docker build -f ./awstesting/sandbox/Dockerfile.test.go1.5 -t "aws-sdk-go-1.5" .
+	docker build -f ./awstesting/sandbox/Dockerfile.test.go1.6 -t "aws-sdk-go-1.6" .
+	docker run -t aws-sdk-go-1.4
+	docker run -t aws-sdk-go-1.5
+	docker run -t aws-sdk-go-1.6
+
 verify: get-deps-verify lint vet
 
 lint:
