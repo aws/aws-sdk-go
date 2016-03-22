@@ -14,6 +14,7 @@
     "GetDevicePool": "<p>Gets information about a device pool.</p>",
     "GetDevicePoolCompatibility": "<p>Gets information about compatibility with a device pool.</p>",
     "GetJob": "<p>Gets information about a job.</p>",
+    "GetOfferingStatus": "<p>Gets the current status and future status of all offerings purchased by an AWS account. The response indicates how many offerings are currently available and the offerings that will be available in the next period. The API returns a <code>NotEligible</code> error if the user is not permitted to invoke the operation. Please contact <a href=\"mailto:aws-devicefarm-support@amazon.com\">aws-devicefarm-support@amazon.com</a> if you believe that you should be able to invoke this operation.</p>",
     "GetProject": "<p>Gets information about a project.</p>",
     "GetRun": "<p>Gets information about a run.</p>",
     "GetSuite": "<p>Gets information about a suite.</p>",
@@ -23,6 +24,8 @@
     "ListDevicePools": "<p>Gets information about device pools.</p>",
     "ListDevices": "<p>Gets information about unique device types.</p>",
     "ListJobs": "<p>Gets information about jobs.</p>",
+    "ListOfferingTransactions": "<p>Returns a list of all historical purchases, renewals, and system renewal transactions for an AWS account. The list is paginated and ordered by a descending timestamp (most recent transactions are first). The API returns a <code>NotEligible</code> error if the user is not permitted to invoke the operation. Please contact <a href=\"mailto:aws-devicefarm-support@amazon.com\">aws-devicefarm-support@amazon.com</a> if you believe that you should be able to invoke this operation.</p>",
+    "ListOfferings": "<p>Returns a list of products or offerings that the user can manage through the API. Each offering record indicates the recurring price per unit and the frequency for that offering. The API returns a <code>NotEligible</code> error if the user is not permitted to invoke the operation. Please contact <a href=\"mailto:aws-devicefarm-support@amazon.com\">aws-devicefarm-support@amazon.com</a> if you believe that you should be able to invoke this operation.</p>",
     "ListProjects": "<p>Gets information about projects.</p>",
     "ListRuns": "<p>Gets information about runs.</p>",
     "ListSamples": "<p>Gets information about samples.</p>",
@@ -30,7 +33,10 @@
     "ListTests": "<p>Gets information about tests.</p>",
     "ListUniqueProblems": "<p>Gets information about unique problems.</p>",
     "ListUploads": "<p>Gets information about uploads.</p>",
+    "PurchaseOffering": "<p>Immediately purchases offerings for an AWS account. Offerings renew with the latest total purchased quantity for an offering, unless the renewal was overridden. The API returns a <code>NotEligible</code> error if the user is not permitted to invoke the operation. Please contact <a href=\"mailto:aws-devicefarm-support@amazon.com\">aws-devicefarm-support@amazon.com</a> if you believe that you should be able to invoke this operation.</p>",
+    "RenewOffering": "<p>Explicitly sets the quantity of devices to renew for an offering, starting from the <code>effectiveDate</code> of the next period. The API returns a <code>NotEligible</code> error if the user is not permitted to invoke the operation. Please contact <a href=\"mailto:aws-devicefarm-support@amazon.com\">aws-devicefarm-support@amazon.com</a> if you believe that you should be able to invoke this operation.</p>",
     "ScheduleRun": "<p>Schedules a run.</p>",
+    "StopRun": "<p>Initiates a stop request for the current test run. AWS Device Farm will immediately stop the run on devices where tests have not started executing, and you will not be billed for these devices. On devices where tests have started executing, Setup Suite and Teardown Suite tests will run to completion before stopping execution on those devices. You will be billed for Setup, Teardown, and any tests that were in progress or already completed.</p>",
     "UpdateDevicePool": "<p>Modifies the name, description, and rules in a device pool given the attributes and the pool ARN. Rule updates are all-or-nothing, meaning they can only be updated as a whole (or not at all).</p>",
     "UpdateProject": "<p>Modifies the specified project name, given the project ARN and a new name.</p>"
   },
@@ -92,6 +98,7 @@
         "ScheduleRunRequest$appArn": "<p>The ARN of the app to schedule a run.</p>",
         "ScheduleRunRequest$devicePoolArn": "<p>The ARN of the device pool for the run to be scheduled.</p>",
         "ScheduleRunTest$testPackageArn": "<p>The ARN of the uploaded test that will be run.</p>",
+        "StopRunRequest$arn": "<p>Represents the Amazon Resource Name (ARN) of the Device Farm run you wish to stop.</p>",
         "Suite$arn": "<p>The suite's ARN.</p>",
         "Test$arn": "<p>The test's ARN.</p>",
         "UpdateDevicePoolRequest$arn": "<p>The Amazon Resourc Name (ARN) of the Device Farm device pool you wish to update.</p>",
@@ -203,12 +210,20 @@
       "refs": {
       }
     },
+    "CurrencyCode": {
+      "base": null,
+      "refs": {
+        "MonetaryAmount$currencyCode": "<p>The currency code of a monetary amount. For example, <code>USD</code> means \"U.S. dollars.\"</p>"
+      }
+    },
     "DateTime": {
       "base": null,
       "refs": {
         "Job$created": "<p>When the job was created.</p>",
         "Job$started": "<p>The job's start time.</p>",
         "Job$stopped": "<p>The job's stop time.</p>",
+        "OfferingStatus$effectiveOn": "<p>The date on which the offering is effective.</p>",
+        "OfferingTransaction$createdOn": "<p>The date on which an offering transaction was created.</p>",
         "Project$created": "<p>When the project was created.</p>",
         "Run$created": "<p>When the run was created.</p>",
         "Run$started": "<p>The run's start time.</p>",
@@ -276,7 +291,7 @@
       "base": null,
       "refs": {
         "IncompatibilityMessage$type": "<p>The type of incompatibility.</p> <p>Allowed values include:</p> <ul> <li><p>ARN: The ARN.</p></li> <li><p>FORM_FACTOR: The form factor (for example, phone or tablet).</p></li> <li><p>MANUFACTURER: The manufacturer.</p></li> <li><p>PLATFORM: The platform (for example, Android or iOS).</p></li> </ul>",
-        "Rule$attribute": "<p>The rule's attribute.</p> <p>Allowed values include:</p> <ul> <li><p>ARN: The ARN.</p></li> <li><p>FORM_FACTOR: The form factor (for example, phone or tablet).</p></li> <li><p>MANUFACTURER: The manufacturer.</p></li> <li><p>PLATFORM: The platform (for example, Android or iOS).</p></li> </ul>"
+        "Rule$attribute": "<p>The rule's stringified attribute. For example, specify the value as <code>\"\\\"abc\\\"\"</code>.</p> <p>Allowed values include:</p> <ul> <li><p>ARN: The ARN.</p></li> <li><p>FORM_FACTOR: The form factor (for example, phone or tablet).</p></li> <li><p>MANUFACTURER: The manufacturer.</p></li> <li><p>PLATFORM: The platform (for example, Android or iOS).</p></li> </ul>"
       }
     },
     "DeviceFormFactor": {
@@ -298,6 +313,7 @@
       "base": null,
       "refs": {
         "Device$platform": "<p>The device's platform.</p> <p>Allowed values include:</p> <ul> <li><p>ANDROID: The Android platform.</p></li> <li><p>IOS: The iOS platform.</p></li> </ul>",
+        "Offering$platform": "<p>The platform of the device (e.g., ANDROID or IOS).</p>",
         "PurchasedDevicesMap$key": null,
         "Run$platform": "<p>The run's platform.</p> <p>Allowed values include:</p> <ul> <li><p>ANDROID: The Android platform.</p></li> <li><p>IOS: The iOS platform.</p></li> </ul>"
       }
@@ -351,7 +367,8 @@
         "DeviceMinutes$metered": "<p>When specified, represents only the sum of metered minutes used by the resource to run tests.</p>",
         "DeviceMinutes$unmetered": "<p>When specified, represents only the sum of unmetered minutes used by the resource to run tests.</p>",
         "Location$latitude": "<p>The latitude.</p>",
-        "Location$longitude": "<p>The longitude.</p>"
+        "Location$longitude": "<p>The longitude.</p>",
+        "MonetaryAmount$amount": "<p>The numerical amount of an offering or transaction.</p>"
       }
     },
     "ExecutionResult": {
@@ -381,12 +398,12 @@
       }
     },
     "GetAccountSettingsRequest": {
-      "base": null,
+      "base": "<p>Represents the request sent to retrieve the account settings.</p>",
       "refs": {
       }
     },
     "GetAccountSettingsResult": {
-      "base": null,
+      "base": "<p>Represents the account settings return values from the <code>GetAccountSettings</code> request.</p>",
       "refs": {
       }
     },
@@ -427,6 +444,16 @@
     },
     "GetJobResult": {
       "base": "<p>Represents the result of a get job request.</p>",
+      "refs": {
+      }
+    },
+    "GetOfferingStatusRequest": {
+      "base": "<p>Represents the request to retrieve the offering status for the specified customer or account.</p>",
+      "refs": {
+      }
+    },
+    "GetOfferingStatusResult": {
+      "base": "<p>Returns the status result for a device offering.</p>",
       "refs": {
       }
     },
@@ -507,7 +534,10 @@
         "Counters$errored": "<p>The number of errored entities.</p>",
         "Counters$stopped": "<p>The number of stopped entities.</p>",
         "Counters$skipped": "<p>The number of skipped entities.</p>",
+        "OfferingStatus$quantity": "<p>The number of available devices in the offering.</p>",
+        "PurchaseOfferingRequest$quantity": "<p>The number of device slots you wish to purchase in an offering request.</p>",
         "PurchasedDevicesMap$value": null,
+        "RenewOfferingRequest$quantity": "<p>The quantity requested in an offering renewal.</p>",
         "Resolution$width": "<p>The screen resolution's width, expressed in pixels.</p>",
         "Resolution$height": "<p>The screen resolution's height, expressed in pixels.</p>",
         "Run$totalJobs": "<p>The total number of jobs for the run.</p>",
@@ -569,6 +599,26 @@
     },
     "ListJobsResult": {
       "base": "<p>Represents the result of a list jobs request.</p>",
+      "refs": {
+      }
+    },
+    "ListOfferingTransactionsRequest": {
+      "base": "<p>Represents the request to list the offering transaction history.</p>",
+      "refs": {
+      }
+    },
+    "ListOfferingTransactionsResult": {
+      "base": "<p>Returns the transaction log of the specified offerings.</p>",
+      "refs": {
+      }
+    },
+    "ListOfferingsRequest": {
+      "base": "<p>Represents the request to list all offerings.</p>",
+      "refs": {
+      }
+    },
+    "ListOfferingsResult": {
+      "base": "<p>Represents the return values of the list of offerings.</p>",
       "refs": {
       }
     },
@@ -665,7 +715,9 @@
         "IncompatibilityMessage$message": "<p>A message about the incompatibility.</p>",
         "Job$message": "<p>A message about the job's result.</p>",
         "LimitExceededException$message": "<p>Any additional information about the exception.</p>",
+        "NotEligibleException$message": "<p>The HTTP response code of a Not Eligible exception.</p>",
         "NotFoundException$message": "<p>Any additional information about the exception.</p>",
+        "Offering$description": "<p>A string describing the offering.</p>",
         "Problem$message": "<p>A message about the problem's result.</p>",
         "Run$message": "<p>A message about the run's result.</p>",
         "ServiceAccountException$message": "<p>Any additional information about the exception.</p>",
@@ -680,6 +732,13 @@
       "base": null,
       "refs": {
         "Upload$metadata": "<p>The upload's metadata. For example, for Android, this contains information that is parsed from the manifest and is displayed in the AWS Device Farm console after the associated app is uploaded.</p>"
+      }
+    },
+    "MonetaryAmount": {
+      "base": "<p>A number representing the monetary amount for an offering or transaction.</p>",
+      "refs": {
+        "OfferingTransaction$cost": "<p>The cost of an offering transaction.</p>",
+        "RecurringCharge$cost": "<p>The cost of the recurring charge.</p>"
       }
     },
     "Name": {
@@ -703,14 +762,83 @@
         "Upload$name": "<p>The upload's file name.</p>"
       }
     },
+    "NotEligibleException": {
+      "base": "<p>Exception gets thrown when a user is not eligible to perform the specified transaction.</p>",
+      "refs": {
+      }
+    },
     "NotFoundException": {
       "base": "<p>The specified entity was not found.</p>",
       "refs": {
       }
     },
+    "Offering": {
+      "base": "<p>Represents the metadata of a device offering.</p>",
+      "refs": {
+        "OfferingStatus$offering": "<p>Represents the metadata of an offering status.</p>",
+        "Offerings$member": null
+      }
+    },
+    "OfferingIdentifier": {
+      "base": null,
+      "refs": {
+        "Offering$id": "<p>The ID that corresponds to a device offering.</p>",
+        "OfferingStatusMap$key": null,
+        "PurchaseOfferingRequest$offeringId": "<p>The ID of the offering.</p>",
+        "RenewOfferingRequest$offeringId": "<p>The ID of a request to renew an offering.</p>"
+      }
+    },
+    "OfferingStatus": {
+      "base": "<p>The status of the offering.</p>",
+      "refs": {
+        "OfferingStatusMap$value": null,
+        "OfferingTransaction$offeringStatus": "<p>The status of an offering transaction.</p>"
+      }
+    },
+    "OfferingStatusMap": {
+      "base": null,
+      "refs": {
+        "GetOfferingStatusResult$current": "<p>When specified, gets the offering status for the current period.</p>",
+        "GetOfferingStatusResult$nextPeriod": "<p>When specified, gets the offering status for the next period.</p>"
+      }
+    },
+    "OfferingTransaction": {
+      "base": "<p>Represents the metadata of an offering transaction.</p>",
+      "refs": {
+        "OfferingTransactions$member": null,
+        "PurchaseOfferingResult$offeringTransaction": "<p>Represents the offering transaction for the purchase result.</p>",
+        "RenewOfferingResult$offeringTransaction": "<p>Represents the status of the offering transaction for the renewal.</p>"
+      }
+    },
+    "OfferingTransactionType": {
+      "base": null,
+      "refs": {
+        "OfferingStatus$type": "<p>The type specified for the offering status.</p>"
+      }
+    },
+    "OfferingTransactions": {
+      "base": null,
+      "refs": {
+        "ListOfferingTransactionsResult$offeringTransactions": "<p>The audit log of subscriptions you have purchased and modified through AWS Device Farm.</p>"
+      }
+    },
+    "OfferingType": {
+      "base": null,
+      "refs": {
+        "Offering$type": "<p>The type of offering (e.g., \"RECURRING\") for a device.</p>"
+      }
+    },
+    "Offerings": {
+      "base": null,
+      "refs": {
+        "ListOfferingsResult$offerings": "<p>A value representing the list offering results.</p>"
+      }
+    },
     "PaginationToken": {
       "base": null,
       "refs": {
+        "GetOfferingStatusRequest$nextToken": "<p>An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.</p>",
+        "GetOfferingStatusResult$nextToken": "<p>An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.</p>",
         "ListArtifactsRequest$nextToken": "<p>An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.</p>",
         "ListArtifactsResult$nextToken": "<p>If the number of items that are returned is significantly large, this is an identifier that is also returned, which can be used in a subsequent call to this operation to return the next set of items in the list.</p>",
         "ListDevicePoolsRequest$nextToken": "<p>An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.</p>",
@@ -719,6 +847,10 @@
         "ListDevicesResult$nextToken": "<p>If the number of items that are returned is significantly large, this is an identifier that is also returned, which can be used in a subsequent call to this operation to return the next set of items in the list.</p>",
         "ListJobsRequest$nextToken": "<p>An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.</p>",
         "ListJobsResult$nextToken": "<p>If the number of items that are returned is significantly large, this is an identifier that is also returned, which can be used in a subsequent call to this operation to return the next set of items in the list.</p>",
+        "ListOfferingTransactionsRequest$nextToken": "<p>An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.</p>",
+        "ListOfferingTransactionsResult$nextToken": "<p>An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.</p>",
+        "ListOfferingsRequest$nextToken": "<p>An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.</p>",
+        "ListOfferingsResult$nextToken": "<p>An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.</p>",
         "ListProjectsRequest$nextToken": "<p>An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.</p>",
         "ListProjectsResult$nextToken": "<p>If the number of items that are returned is significantly large, this is an identifier that is also returned, which can be used in a subsequent call to this operation to return the next set of items in the list.</p>",
         "ListRunsRequest$nextToken": "<p>An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.</p>",
@@ -771,6 +903,16 @@
         "ListProjectsResult$projects": "<p>Information about the projects.</p>"
       }
     },
+    "PurchaseOfferingRequest": {
+      "base": "<p>Represents a request for a purchase offering.</p>",
+      "refs": {
+      }
+    },
+    "PurchaseOfferingResult": {
+      "base": "<p>The result of the purchase offering (e.g., success or failure).</p>",
+      "refs": {
+      }
+    },
     "PurchasedDevicesMap": {
       "base": null,
       "refs": {
@@ -781,6 +923,34 @@
       "base": "<p>Represents the set of radios and their states on a device. Examples of radios include Wi-Fi, GPS, Bluetooth, and NFC.</p>",
       "refs": {
         "ScheduleRunConfiguration$radios": "<p>Information about the radio states for the run.</p>"
+      }
+    },
+    "RecurringCharge": {
+      "base": "<p>Specifies whether charges for devices will be recurring.</p>",
+      "refs": {
+        "RecurringCharges$member": null
+      }
+    },
+    "RecurringChargeFrequency": {
+      "base": null,
+      "refs": {
+        "RecurringCharge$frequency": "<p>The frequency in which charges will recur.</p>"
+      }
+    },
+    "RecurringCharges": {
+      "base": null,
+      "refs": {
+        "Offering$recurringCharges": "<p>Specifies whether there are recurring charges for the offering.</p>"
+      }
+    },
+    "RenewOfferingRequest": {
+      "base": "<p>A request representing an offering renewal.</p>",
+      "refs": {
+      }
+    },
+    "RenewOfferingResult": {
+      "base": "<p>The result of a renewal offering.</p>",
+      "refs": {
       }
     },
     "Resolution": {
@@ -814,7 +984,8 @@
       "refs": {
         "GetRunResult$run": null,
         "Runs$member": null,
-        "ScheduleRunResult$run": "<p>Information about the scheduled run.</p>"
+        "ScheduleRunResult$run": "<p>Information about the scheduled run.</p>",
+        "StopRunResult$run": null
       }
     },
     "Runs": {
@@ -865,6 +1036,16 @@
     },
     "ServiceAccountException": {
       "base": "<p>There was a problem with the service account.</p>",
+      "refs": {
+      }
+    },
+    "StopRunRequest": {
+      "base": "<p>Represents the request to stop a specific run.</p>",
+      "refs": {
+      }
+    },
+    "StopRunResult": {
+      "base": "<p>Represents the results of your stop run attempt.</p>",
       "refs": {
       }
     },
@@ -927,6 +1108,12 @@
       "base": null,
       "refs": {
         "ListTestsResult$tests": "<p>Information about the tests.</p>"
+      }
+    },
+    "TransactionIdentifier": {
+      "base": null,
+      "refs": {
+        "OfferingTransaction$transactionId": "<p>The transaction ID of the offering transaction.</p>"
       }
     },
     "URL": {
