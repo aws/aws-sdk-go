@@ -8,12 +8,12 @@
     "CreateApplication": "<p> Creates an application that has one configuration template named <code>default</code> and no application versions. </p>",
     "CreateApplicationVersion": "<p>Creates an application version for the specified application.</p> <note>Once you create an application version with a specified Amazon S3 bucket and key location, you cannot change that Amazon S3 location. If you change the Amazon S3 location, you receive an exception when you attempt to launch an environment from the application version. </note>",
     "CreateConfigurationTemplate": "<p>Creates a configuration template. Templates are associated with a specific application and are used to deploy different versions of the application with the same configuration settings.</p> <p>Related Topics</p> <ul> <li> <a>DescribeConfigurationOptions</a> </li> <li> <a>DescribeConfigurationSettings</a> </li> <li> <a>ListAvailableSolutionStacks</a> </li> </ul>",
-    "CreateEnvironment": "<p> Launches an environment for the specified application using the specified configuration. </p>",
+    "CreateEnvironment": "<p>Launches an environment for the specified application using the specified configuration.</p>",
     "CreateStorageLocation": "<p> Creates the Amazon S3 storage location for the account. </p> <p> This location is used to store user log files. </p>",
     "DeleteApplication": "<p> Deletes the specified application along with all associated versions and configurations. The application versions will not be deleted from your Amazon S3 bucket. </p> <note>You cannot delete an application that has a running environment. </note>",
     "DeleteApplicationVersion": "<p> Deletes the specified version from the specified application. </p> <note>You cannot delete an application version that is associated with a running environment.</note>",
     "DeleteConfigurationTemplate": "<p>Deletes the specified configuration template.</p> <note>When you launch an environment using a configuration template, the environment gets a copy of the template. You can delete or modify the environment's copy of the template without affecting the running environment.</note>",
-    "DeleteEnvironmentConfiguration": "<p> Deletes the draft configuration associated with the running environment. </p> <p> Updating a running environment with any configuration changes creates a draft configuration set. You can get the draft configuration using <a>DescribeConfigurationSettings</a> while the update is in progress or if the update fails. The <code>DeploymentStatus</code> for the draft configuration indicates whether the deployment is in process or has failed. The draft configuration remains in existence until it is deleted with this action. </p>",
+    "DeleteEnvironmentConfiguration": "<p>Deletes the draft configuration associated with the running environment.</p> <p>Updating a running environment with any configuration changes creates a draft configuration set. You can get the draft configuration using <a>DescribeConfigurationSettings</a> while the update is in progress or if the update fails. The <code>DeploymentStatus</code> for the draft configuration indicates whether the deployment is in process or has failed. The draft configuration remains in existence until it is deleted with this action.</p>",
     "DescribeApplicationVersions": "<p>Retrieve a list of application versions stored in your AWS Elastic Beanstalk storage bucket.</p>",
     "DescribeApplications": "<p>Returns the descriptions of existing applications.</p>",
     "DescribeConfigurationOptions": "<p> Describes the configuration options that are used in a particular configuration template or environment, or that a specified solution stack defines. The description includes the values the options, their default values, and an indication of the required action on a running environment if an option value is changed. </p>",
@@ -21,13 +21,13 @@
     "DescribeEnvironmentHealth": "<p>Returns information about the overall health of the specified environment. The <b>DescribeEnvironmentHealth</b> operation is only available with AWS Elastic Beanstalk Enhanced Health.</p>",
     "DescribeEnvironmentResources": "<p>Returns AWS resources for this environment.</p>",
     "DescribeEnvironments": "<p>Returns descriptions for existing environments.</p>",
-    "DescribeEvents": "<p>Returns list of event descriptions matching criteria up to the last 6 weeks.</p> <note> This action returns the most recent 1,000 events from the specified <code>NextToken</code>. </note>",
+    "DescribeEvents": "<p>Returns list of event descriptions matching criteria up to the last 6 weeks.</p> <note>This action returns the most recent 1,000 events from the specified <code>NextToken</code>.</note>",
     "DescribeInstancesHealth": "<p>Returns more detailed information about the health of the specified instances (for example, CPU utilization, load average, and causes). The <b>DescribeInstancesHealth</b> operation is only available with AWS Elastic Beanstalk Enhanced Health.</p>",
     "ListAvailableSolutionStacks": "<p> Returns a list of the available solution stack names. </p>",
     "RebuildEnvironment": "<p> Deletes and recreates all of the AWS resources (for example: the Auto Scaling group, load balancer, etc.) for a specified environment and forces a restart. </p>",
     "RequestEnvironmentInfo": "<p> Initiates a request to compile the specified type of information of the deployed environment. </p> <p> Setting the <code>InfoType</code> to <code>tail</code> compiles the last lines from the application server log files of every Amazon EC2 instance in your environment. </p> <p> Setting the <code>InfoType</code> to <code>bundle</code> compresses the application server log files for every Amazon EC2 instance into a <code>.zip</code> file. Legacy and .NET containers do not support bundle logs. </p> <p> Use <a>RetrieveEnvironmentInfo</a> to obtain the set of logs. </p> <p>Related Topics</p> <ul> <li> <a>RetrieveEnvironmentInfo</a> </li> </ul>",
     "RestartAppServer": "<p> Causes the environment to restart the application container server running on each Amazon EC2 instance. </p>",
-    "RetrieveEnvironmentInfo": "<p> Retrieves the compiled information from a <a>RequestEnvironmentInfo</a> request. </p> <p>Related Topics</p> <ul> <li> <a>RequestEnvironmentInfo</a> </li> </ul>",
+    "RetrieveEnvironmentInfo": "<p>Retrieves the compiled information from a <a>RequestEnvironmentInfo</a> request.</p> <p>Related Topics</p> <ul> <li> <a>RequestEnvironmentInfo</a> </li> </ul>",
     "SwapEnvironmentCNAMEs": "<p> Swaps the CNAMEs of two environments. </p>",
     "TerminateEnvironment": "<p> Terminates the specified environment. </p>",
     "UpdateApplication": "<p>Updates the specified application to have the specified properties. </p> <note> If a property (for example, <code>description</code>) is not provided, the value remains unchanged. To clear these properties, specify an empty string. </note>",
@@ -58,7 +58,7 @@
     "ApplicationDescriptionList": {
       "base": null,
       "refs": {
-        "ApplicationDescriptionsMessage$Applications": "<p> This parameter contains a list of <a>ApplicationDescription</a>. </p>"
+        "ApplicationDescriptionsMessage$Applications": "<p>This parameter contains a list of <a>ApplicationDescription</a>.</p>"
       }
     },
     "ApplicationDescriptionMessage": {
@@ -86,23 +86,23 @@
         "ApplicationVersionDescription$ApplicationName": "<p>The name of the application associated with this release.</p>",
         "ComposeEnvironmentsMessage$ApplicationName": "<p>The name of the application to which the specified source bundles belong.</p>",
         "ConfigurationSettingsDescription$ApplicationName": "<p> The name of the application associated with this configuration set. </p>",
-        "CreateApplicationMessage$ApplicationName": "<p>The name of the application.</p> <p> Constraint: This name must be unique within your account. If the specified name already exists, the action returns an <code>InvalidParameterValue</code> error. </p>",
+        "CreateApplicationMessage$ApplicationName": "<p>The name of the application.</p> <p>Constraint: This name must be unique within your account. If the specified name already exists, the action returns an <code>InvalidParameterValue</code> error.</p>",
         "CreateApplicationVersionMessage$ApplicationName": "<p> The name of the application. If no application is found with this name, and <code>AutoCreateApplication</code> is <code>false</code>, returns an <code>InvalidParameterValue</code> error. </p>",
-        "CreateConfigurationTemplateMessage$ApplicationName": "<p> The name of the application to associate with this configuration template. If no application is found with this name, AWS Elastic Beanstalk returns an <code>InvalidParameterValue</code> error. </p>",
+        "CreateConfigurationTemplateMessage$ApplicationName": "<p>The name of the application to associate with this configuration template. If no application is found with this name, AWS Elastic Beanstalk returns an <code>InvalidParameterValue</code> error. </p>",
         "CreateEnvironmentMessage$ApplicationName": "<p> The name of the application that contains the version to be deployed. </p> <p> If no application is found with this name, <code>CreateEnvironment</code> returns an <code>InvalidParameterValue</code> error. </p>",
         "DeleteApplicationMessage$ApplicationName": "<p>The name of the application to delete.</p>",
         "DeleteApplicationVersionMessage$ApplicationName": "<p>The name of the application to delete releases from.</p>",
-        "DeleteConfigurationTemplateMessage$ApplicationName": "<p> The name of the application to delete the configuration template from. </p>",
-        "DeleteEnvironmentConfigurationMessage$ApplicationName": "<p> The name of the application the environment is associated with. </p>",
+        "DeleteConfigurationTemplateMessage$ApplicationName": "<p> The name of the application to delete the configuration template from.</p>",
+        "DeleteEnvironmentConfigurationMessage$ApplicationName": "<p>The name of the application the environment is associated with.</p>",
         "DescribeApplicationVersionsMessage$ApplicationName": "<p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to only include ones that are associated with the specified application.</p>",
         "DescribeConfigurationOptionsMessage$ApplicationName": "<p> The name of the application associated with the configuration template or environment. Only needed if you want to describe the configuration options associated with either the configuration template or environment. </p>",
         "DescribeConfigurationSettingsMessage$ApplicationName": "<p> The application for the environment or configuration template. </p>",
-        "DescribeEnvironmentsMessage$ApplicationName": "<p> If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that are associated with this application. </p>",
-        "DescribeEventsMessage$ApplicationName": "<p> If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those associated with this application. </p>",
+        "DescribeEnvironmentsMessage$ApplicationName": "<p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that are associated with this application.</p>",
+        "DescribeEventsMessage$ApplicationName": "<p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those associated with this application.</p>",
         "EnvironmentDescription$ApplicationName": "<p>The name of the application associated with this environment.</p>",
         "EventDescription$ApplicationName": "<p>The application associated with the event.</p>",
         "SourceConfiguration$ApplicationName": "<p>The name of the application associated with the configuration.</p>",
-        "UpdateApplicationMessage$ApplicationName": "<p> The name of the application to update. If no such application is found, <code>UpdateApplication</code> returns an <code>InvalidParameterValue</code> error. </p>",
+        "UpdateApplicationMessage$ApplicationName": "<p>The name of the application to update. If no such application is found, <code>UpdateApplication</code> returns an <code>InvalidParameterValue</code> error. </p>",
         "UpdateApplicationVersionMessage$ApplicationName": "<p> The name of the application associated with this version. </p> <p> If no application is found with this name, <code>UpdateApplication</code> returns an <code>InvalidParameterValue</code> error. </p>",
         "UpdateConfigurationTemplateMessage$ApplicationName": "<p>The name of the application associated with the configuration template to update.</p> <p> If no application is found with this name, <code>UpdateConfigurationTemplate</code> returns an <code>InvalidParameterValue</code> error. </p>",
         "UpdateEnvironmentMessage$ApplicationName": "<p>The name of the application with which the environment is associated.</p>",
@@ -112,7 +112,7 @@
     "ApplicationNamesList": {
       "base": null,
       "refs": {
-        "DescribeApplicationsMessage$ApplicationNames": "<p> If specified, AWS Elastic Beanstalk restricts the returned descriptions to only include those with the specified names. </p>"
+        "DescribeApplicationsMessage$ApplicationNames": "<p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to only include those with the specified names. </p>"
       }
     },
     "ApplicationVersionDescription": {
@@ -216,7 +216,7 @@
       }
     },
     "ComposeEnvironmentsMessage": {
-      "base": "<p/>",
+      "base": "<p>Request to create or update a group of environments.</p>",
       "refs": {
       }
     },
@@ -337,7 +337,7 @@
         "DeleteConfigurationTemplateMessage$TemplateName": "<p>The name of the configuration template to delete.</p>",
         "DescribeConfigurationOptionsMessage$TemplateName": "<p> The name of the configuration template whose configuration options you want to describe. </p>",
         "DescribeConfigurationSettingsMessage$TemplateName": "<p> The name of the configuration template to describe. </p> <p> Conditional: You must specify either this parameter or an EnvironmentName, but not both. If you specify both, AWS Elastic Beanstalk returns an <code>InvalidParameterCombination</code> error. If you do not specify either, AWS Elastic Beanstalk returns a <code>MissingRequiredParameter</code> error. </p>",
-        "DescribeEventsMessage$TemplateName": "<p> If specified, AWS Elastic Beanstalk restricts the returned descriptions to those that are associated with this environment configuration. </p>",
+        "DescribeEventsMessage$TemplateName": "<p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to those that are associated with this environment configuration.</p>",
         "EnvironmentDescription$TemplateName": "<p> The name of the configuration template used to originally launch this environment. </p>",
         "EventDescription$TemplateName": "<p>The name of the configuration associated with this event.</p>",
         "SourceConfiguration$TemplateName": "<p>The name of the configuration template.</p>",
@@ -353,7 +353,7 @@
       }
     },
     "CreateApplicationMessage": {
-      "base": "<p/>",
+      "base": "<p>Request to create an application.</p>",
       "refs": {
       }
     },
@@ -363,7 +363,7 @@
       }
     },
     "CreateConfigurationTemplateMessage": {
-      "base": "<p/>",
+      "base": "<p>Request to create a configuration template.</p>",
       "refs": {
       }
     },
@@ -401,22 +401,22 @@
       }
     },
     "DeleteApplicationMessage": {
-      "base": "<p/>",
+      "base": "<p>Request to delete an application.</p>",
       "refs": {
       }
     },
     "DeleteApplicationVersionMessage": {
-      "base": "<p/>",
+      "base": "<p>Request to delete an application version.</p>",
       "refs": {
       }
     },
     "DeleteConfigurationTemplateMessage": {
-      "base": "<p/>",
+      "base": "<p>Request to delete a configuration template.</p>",
       "refs": {
       }
     },
     "DeleteEnvironmentConfigurationMessage": {
-      "base": "<p/>",
+      "base": "<p>Request to delete a draft environment configuration.</p>",
       "refs": {
       }
     },
@@ -432,7 +432,7 @@
       }
     },
     "DescribeApplicationsMessage": {
-      "base": "<p/>",
+      "base": "<p>Request to describe one or more applications.</p>",
       "refs": {
       }
     },
@@ -457,17 +457,17 @@
       }
     },
     "DescribeEnvironmentResourcesMessage": {
-      "base": "<p/>",
+      "base": "<p>Request to describe the resources in an environment.</p>",
       "refs": {
       }
     },
     "DescribeEnvironmentsMessage": {
-      "base": "<p/>",
+      "base": "<p>Request to describe one or more environments.</p>",
       "refs": {
       }
     },
     "DescribeEventsMessage": {
-      "base": "<p/>",
+      "base": "<p>Request to retrieve a list of events for an environment.</p>",
       "refs": {
       }
     },
@@ -561,27 +561,27 @@
       "base": null,
       "refs": {
         "AbortEnvironmentUpdateMessage$EnvironmentId": "<p>This specifies the ID of the environment with the in-progress update that you want to cancel.</p>",
-        "CreateConfigurationTemplateMessage$EnvironmentId": "<p> The ID of the environment used with this configuration template. </p>",
+        "CreateConfigurationTemplateMessage$EnvironmentId": "<p>The ID of the environment used with this configuration template.</p>",
         "DescribeEnvironmentHealthRequest$EnvironmentId": "<p>Specifies the AWS Elastic Beanstalk environment ID.</p> <p>Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>",
         "DescribeEnvironmentResourcesMessage$EnvironmentId": "<p> The ID of the environment to retrieve AWS resource usage data. </p> <p> Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>",
-        "DescribeEventsMessage$EnvironmentId": "<p> If specified, AWS Elastic Beanstalk restricts the returned descriptions to those associated with this environment. </p>",
+        "DescribeEventsMessage$EnvironmentId": "<p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to those associated with this environment.</p>",
         "DescribeInstancesHealthRequest$EnvironmentId": "<p>Specifies the AWS Elastic Beanstalk environment ID.</p>",
         "EnvironmentDescription$EnvironmentId": "<p> The ID of this environment. </p>",
         "EnvironmentIdList$member": null,
         "RebuildEnvironmentMessage$EnvironmentId": "<p> The ID of the environment to rebuild. </p> <p> Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>",
-        "RequestEnvironmentInfoMessage$EnvironmentId": "<p>The ID of the environment of the requested data.</p> <p> If no such environment is found, <code>RequestEnvironmentInfo</code> returns an <code>InvalidParameterValue</code> error. </p> <p> Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>",
+        "RequestEnvironmentInfoMessage$EnvironmentId": "<p>The ID of the environment of the requested data.</p> <p>If no such environment is found, <code>RequestEnvironmentInfo</code> returns an <code>InvalidParameterValue</code> error. </p> <p>Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>",
         "RestartAppServerMessage$EnvironmentId": "<p> The ID of the environment to restart the server for. </p> <p> Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>",
-        "RetrieveEnvironmentInfoMessage$EnvironmentId": "<p>The ID of the data's environment.</p> <p> If no such environment is found, returns an <code>InvalidParameterValue</code> error. </p> <p> Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>",
+        "RetrieveEnvironmentInfoMessage$EnvironmentId": "<p>The ID of the data's environment.</p> <p>If no such environment is found, returns an <code>InvalidParameterValue</code> error.</p> <p>Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error.</p>",
         "SwapEnvironmentCNAMEsMessage$SourceEnvironmentId": "<p> The ID of the source environment. </p> <p> Condition: You must specify at least the <code>SourceEnvironmentID</code> or the <code>SourceEnvironmentName</code>. You may also specify both. If you specify the <code>SourceEnvironmentId</code>, you must specify the <code>DestinationEnvironmentId</code>. </p>",
         "SwapEnvironmentCNAMEsMessage$DestinationEnvironmentId": "<p> The ID of the destination environment. </p> <p> Condition: You must specify at least the <code>DestinationEnvironmentID</code> or the <code>DestinationEnvironmentName</code>. You may also specify both. You must specify the <code>SourceEnvironmentId</code> with the <code>DestinationEnvironmentId</code>. </p>",
         "TerminateEnvironmentMessage$EnvironmentId": "<p>The ID of the environment to terminate.</p> <p> Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>",
-        "UpdateEnvironmentMessage$EnvironmentId": "<p>The ID of the environment to update.</p> <p> If no environment with this ID exists, AWS Elastic Beanstalk returns an <code>InvalidParameterValue</code> error. </p> <p>Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>"
+        "UpdateEnvironmentMessage$EnvironmentId": "<p>The ID of the environment to update.</p> <p>If no environment with this ID exists, AWS Elastic Beanstalk returns an <code>InvalidParameterValue</code> error.</p> <p>Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>"
       }
     },
     "EnvironmentIdList": {
       "base": null,
       "refs": {
-        "DescribeEnvironmentsMessage$EnvironmentIds": "<p> If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that have the specified IDs. </p>"
+        "DescribeEnvironmentsMessage$EnvironmentIds": "<p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that have the specified IDs.</p>"
       }
     },
     "EnvironmentInfoDescription": {
@@ -600,12 +600,12 @@
       "base": null,
       "refs": {
         "EnvironmentInfoDescription$InfoType": "<p>The type of information retrieved.</p>",
-        "RequestEnvironmentInfoMessage$InfoType": "<p> The type of information to request. </p>",
+        "RequestEnvironmentInfoMessage$InfoType": "<p>The type of information to request.</p>",
         "RetrieveEnvironmentInfoMessage$InfoType": "<p> The type of information to retrieve. </p>"
       }
     },
     "EnvironmentLink": {
-      "base": "<p>A link to another environment, defined in the environment's manifest. Links provide connection information in system properties that can be used to connect to another environment in the same group. See <a href=\"http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environment-mgmt-compose.html#environment-mgmt-compose-envyaml\">Environment Manifest (env.yaml)</a> for details.</p>",
+      "base": "<p>A link to another environment, defined in the environment's manifest. Links provide connection information in system properties that can be used to connect to another environment in the same group. See <a href=\"http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environment-cfg-manifest.html\">Environment Manifest (env.yaml)</a> for details.</p>",
       "refs": {
         "EnvironmentLinks$member": null
       }
@@ -622,20 +622,20 @@
         "AbortEnvironmentUpdateMessage$EnvironmentName": "<p>This specifies the name of the environment with the in-progress update that you want to cancel.</p>",
         "ConfigurationSettingsDescription$EnvironmentName": "<p> If not <code>null</code>, the name of the environment for this configuration set. </p>",
         "CreateEnvironmentMessage$EnvironmentName": "<p> A unique name for the deployment environment. Used in the application URL. </p> <p>Constraint: Must be from 4 to 23 characters in length. The name can contain only letters, numbers, and hyphens. It cannot start or end with a hyphen. This name must be unique in your account. If the specified name already exists, AWS Elastic Beanstalk returns an <code>InvalidParameterValue</code> error. </p> <p>Default: If the CNAME parameter is not specified, the environment name becomes part of the CNAME, and therefore part of the visible URL for your application.</p>",
-        "DeleteEnvironmentConfigurationMessage$EnvironmentName": "<p> The name of the environment to delete the draft configuration from. </p>",
+        "DeleteEnvironmentConfigurationMessage$EnvironmentName": "<p>The name of the environment to delete the draft configuration from.</p>",
         "DescribeConfigurationOptionsMessage$EnvironmentName": "<p> The name of the environment whose configuration options you want to describe. </p>",
         "DescribeConfigurationSettingsMessage$EnvironmentName": "<p> The name of the environment to describe. </p> <p> Condition: You must specify either this or a TemplateName, but not both. If you specify both, AWS Elastic Beanstalk returns an <code>InvalidParameterCombination</code> error. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>",
         "DescribeEnvironmentHealthRequest$EnvironmentName": "<p>Specifies the AWS Elastic Beanstalk environment name.</p> <p>Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>",
         "DescribeEnvironmentHealthResult$EnvironmentName": "<p>The AWS Elastic Beanstalk environment name.</p>",
         "DescribeEnvironmentResourcesMessage$EnvironmentName": "<p> The name of the environment to retrieve AWS resource usage data. </p> <p> Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>",
-        "DescribeEventsMessage$EnvironmentName": "<p> If specified, AWS Elastic Beanstalk restricts the returned descriptions to those associated with this environment. </p>",
+        "DescribeEventsMessage$EnvironmentName": "<p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to those associated with this environment.</p>",
         "DescribeInstancesHealthRequest$EnvironmentName": "<p>Specifies the AWS Elastic Beanstalk environment name.</p>",
         "EnvironmentDescription$EnvironmentName": "<p>The name of this environment.</p>",
         "EnvironmentNamesList$member": null,
         "EnvironmentResourceDescription$EnvironmentName": "<p>The name of the environment.</p>",
         "EventDescription$EnvironmentName": "<p>The name of the environment associated with this event.</p>",
         "RebuildEnvironmentMessage$EnvironmentName": "<p> The name of the environment to rebuild. </p> <p> Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>",
-        "RequestEnvironmentInfoMessage$EnvironmentName": "<p>The name of the environment of the requested data.</p> <p> If no such environment is found, <code>RequestEnvironmentInfo</code> returns an <code>InvalidParameterValue</code> error. </p> <p> Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>",
+        "RequestEnvironmentInfoMessage$EnvironmentName": "<p>The name of the environment of the requested data.</p> <p>If no such environment is found, <code>RequestEnvironmentInfo</code> returns an <code>InvalidParameterValue</code> error. </p> <p>Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>",
         "RestartAppServerMessage$EnvironmentName": "<p> The name of the environment to restart the server for. </p> <p> Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>",
         "RetrieveEnvironmentInfoMessage$EnvironmentName": "<p>The name of the data's environment.</p> <p> If no such environment is found, returns an <code>InvalidParameterValue</code> error. </p> <p> Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>",
         "SwapEnvironmentCNAMEsMessage$SourceEnvironmentName": "<p> The name of the source environment. </p> <p> Condition: You must specify at least the <code>SourceEnvironmentID</code> or the <code>SourceEnvironmentName</code>. You may also specify both. If you specify the <code>SourceEnvironmentName</code>, you must specify the <code>DestinationEnvironmentName</code>. </p>",
@@ -648,7 +648,7 @@
     "EnvironmentNamesList": {
       "base": null,
       "refs": {
-        "DescribeEnvironmentsMessage$EnvironmentNames": "<p> If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that have the specified names. </p>"
+        "DescribeEnvironmentsMessage$EnvironmentNames": "<p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that have the specified names.</p>"
       }
     },
     "EnvironmentResourceDescription": {
@@ -739,15 +739,15 @@
     "GroupName": {
       "base": null,
       "refs": {
-        "ComposeEnvironmentsMessage$GroupName": "<p>The name of the group to which the target environments belong. Specify a group name only if the environment name defined in each target environment's manifest ends with a + (plus) character. See <a href=\"http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environment-mgmt-compose.html#environment-mgmt-compose-envyaml\">Environment Manifest (env.yaml)</a> for details.</p>",
-        "CreateEnvironmentMessage$GroupName": "<p>The name of the group to which the target environment belongs. Specify a group name only if the environment's name is specified in an environment manifest and not with the environment name parameter. See <a href=\"http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environment-mgmt-compose.html#environment-mgmt-compose-envyaml\">Environment Manifest (env.yaml)</a> for details.</p>",
-        "UpdateEnvironmentMessage$GroupName": "<p>The name of the group to which the target environment belongs. Specify a group name only if the environment's name is specified in an environment manifest and not with the environment name or environment ID parameters. See <a href=\"http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environment-mgmt-compose.html#environment-mgmt-compose-envyaml\">Environment Manifest (env.yaml)</a> for details.</p>"
+        "ComposeEnvironmentsMessage$GroupName": "<p>The name of the group to which the target environments belong. Specify a group name only if the environment name defined in each target environment's manifest ends with a + (plus) character. See <a href=\"http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environment-cfg-manifest.html\">Environment Manifest (env.yaml)</a> for details.</p>",
+        "CreateEnvironmentMessage$GroupName": "<p>The name of the group to which the target environment belongs. Specify a group name only if the environment's name is specified in an environment manifest and not with the environment name parameter. See <a href=\"http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environment-cfg-manifest.html\">Environment Manifest (env.yaml)</a> for details.</p>",
+        "UpdateEnvironmentMessage$GroupName": "<p>The name of the group to which the target environment belongs. Specify a group name only if the environment's name is specified in an environment manifest and not with the environment name or environment ID parameters. See <a href=\"http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environment-cfg-manifest.html\">Environment Manifest (env.yaml)</a> for details.</p>"
       }
     },
     "IncludeDeleted": {
       "base": null,
       "refs": {
-        "DescribeEnvironmentsMessage$IncludeDeleted": "<p>Indicates whether to include deleted environments: </p> <p> <code>true</code>: Environments that have been deleted after <code>IncludedDeletedBackTo</code> are displayed. </p> <p> <code>false</code>: Do not include deleted environments. </p>"
+        "DescribeEnvironmentsMessage$IncludeDeleted": "<p>Indicates whether to include deleted environments:</p> <p> <code>true</code>: Environments that have been deleted after <code>IncludedDeletedBackTo</code> are displayed.</p> <p> <code>false</code>: Do not include deleted environments.</p>"
       }
     },
     "IncludeDeletedBackTo": {
@@ -1038,7 +1038,7 @@
       }
     },
     "RequestEnvironmentInfoMessage": {
-      "base": "<p/>",
+      "base": "<p>Request to retrieve logs from an environment and store them in your Elastic Beanstalk storage bucket.</p>",
       "refs": {
       }
     },
@@ -1072,7 +1072,7 @@
       }
     },
     "RetrieveEnvironmentInfoMessage": {
-      "base": "<p/>",
+      "base": "<p>Request to download logs retrieved with <a>RequestEnvironmentInfo</a>.</p>",
       "refs": {
       }
     },
@@ -1227,7 +1227,7 @@
       }
     },
     "TerminateEnvironmentMessage": {
-      "base": "<p/>",
+      "base": "<p>Request to terminate an environment.</p>",
       "refs": {
       }
     },
@@ -1246,7 +1246,7 @@
     "TimeFilterStart": {
       "base": null,
       "refs": {
-        "DescribeEventsMessage$StartTime": "<p> If specified, AWS Elastic Beanstalk restricts the returned descriptions to those that occur on or after this time. </p>"
+        "DescribeEventsMessage$StartTime": "<p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to those that occur on or after this time.</p>"
       }
     },
     "Token": {
@@ -1294,7 +1294,7 @@
       }
     },
     "UpdateApplicationMessage": {
-      "base": "<p/>",
+      "base": "<p>Request to update an application.</p>",
       "refs": {
       }
     },
@@ -1318,7 +1318,7 @@
       }
     },
     "UpdateEnvironmentMessage": {
-      "base": "<p/>",
+      "base": "<p>Request to update an environment.</p>",
       "refs": {
       }
     },
@@ -1363,9 +1363,9 @@
         "ApplicationVersionDescription$VersionLabel": "<p> A label uniquely identifying the version for the associated application. </p>",
         "CreateApplicationVersionMessage$VersionLabel": "<p>A label identifying this version.</p> <p>Constraint: Must be unique per application. If an application version already exists with this label for the specified application, AWS Elastic Beanstalk returns an <code>InvalidParameterValue</code> error. </p>",
         "CreateEnvironmentMessage$VersionLabel": "<p>The name of the application version to deploy.</p> <p> If the specified application has no associated application versions, AWS Elastic Beanstalk <code>UpdateEnvironment</code> returns an <code>InvalidParameterValue</code> error. </p> <p> Default: If not specified, AWS Elastic Beanstalk attempts to launch the sample application in the container. </p>",
-        "DeleteApplicationVersionMessage$VersionLabel": "<p> The label of the version to delete. </p>",
-        "DescribeEnvironmentsMessage$VersionLabel": "<p> If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that are associated with this application version. </p>",
-        "DescribeEventsMessage$VersionLabel": "<p> If specified, AWS Elastic Beanstalk restricts the returned descriptions to those associated with this application version. </p>",
+        "DeleteApplicationVersionMessage$VersionLabel": "<p>The label of the version to delete.</p>",
+        "DescribeEnvironmentsMessage$VersionLabel": "<p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that are associated with this application version.</p>",
+        "DescribeEventsMessage$VersionLabel": "<p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to those associated with this application version.</p>",
         "EnvironmentDescription$VersionLabel": "<p>The application version deployed in this environment.</p>",
         "EventDescription$VersionLabel": "<p>The release label for the application version associated with this event.</p>",
         "UpdateApplicationVersionMessage$VersionLabel": "<p>The name of the version to update.</p> <p> If no application version is found with this label, <code>UpdateApplication</code> returns an <code>InvalidParameterValue</code> error. </p>",
