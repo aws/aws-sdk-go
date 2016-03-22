@@ -1728,7 +1728,8 @@
         "KmsKeyId":{"shape":"String"},
         "CopyTagsToSnapshot":{"shape":"BooleanOptional"},
         "MonitoringInterval":{"shape":"IntegerOptional"},
-        "MonitoringRoleArn":{"shape":"String"}
+        "MonitoringRoleArn":{"shape":"String"},
+        "PromotionTier":{"shape":"IntegerOptional"}
       }
     },
     "CreateDBInstanceReadReplicaMessage":{
@@ -1942,7 +1943,8 @@
       "members":{
         "DBInstanceIdentifier":{"shape":"String"},
         "IsClusterWriter":{"shape":"Boolean"},
-        "DBClusterParameterGroupStatus":{"shape":"String"}
+        "DBClusterParameterGroupStatus":{"shape":"String"},
+        "PromotionTier":{"shape":"IntegerOptional"}
       },
       "wrapper":true
     },
@@ -2174,7 +2176,8 @@
         "CopyTagsToSnapshot":{"shape":"Boolean"},
         "MonitoringInterval":{"shape":"IntegerOptional"},
         "EnhancedMonitoringResourceArn":{"shape":"String"},
-        "MonitoringRoleArn":{"shape":"String"}
+        "MonitoringRoleArn":{"shape":"String"},
+        "PromotionTier":{"shape":"IntegerOptional"}
       },
       "wrapper":true
     },
@@ -3505,7 +3508,8 @@
         "MonitoringInterval":{"shape":"IntegerOptional"},
         "DBPortNumber":{"shape":"IntegerOptional"},
         "PubliclyAccessible":{"shape":"BooleanOptional"},
-        "MonitoringRoleArn":{"shape":"String"}
+        "MonitoringRoleArn":{"shape":"String"},
+        "PromotionTier":{"shape":"IntegerOptional"}
       }
     },
     "ModifyDBInstanceResult":{
