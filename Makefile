@@ -8,6 +8,7 @@ LINTIGNOREDEPS='vendor/.+\.go'
 
 SDK_WITH_VENDOR_PKGS=$(shell go list ./... | grep -v "/vendor/src")
 SDK_ONLY_PKGS=$(shell go list ./... | grep -v "/vendor/")
+SDK_GO_1_4=$(shell go version | grep "go1.4")
 
 all: get-deps generate unit
 
@@ -65,17 +66,25 @@ smoke-tests: get-deps-tests
 performance: get-deps-tests
 	AWS_TESTING_LOG_RESULTS=${log-detailed} AWS_TESTING_REGION=$(region) AWS_TESTING_DB_TABLE=$(table) gucumber ./awstesting/performance
 
+sandbox-tests:
+	docker build -f ./awstesting/sandbox/Dockerfile.test.go1.4 -t "aws-sdk-go-1.4" .
+	docker build -f ./awstesting/sandbox/Dockerfile.test.go1.5 -t "aws-sdk-go-1.5" .
+	docker build -f ./awstesting/sandbox/Dockerfile.test.go1.6 -t "aws-sdk-go-1.6" .
+	docker run -t aws-sdk-go-1.4
+	docker run -t aws-sdk-go-1.5
+	docker run -t aws-sdk-go-1.6
+
 verify: get-deps-verify lint vet
 
 lint:
 	@echo "go lint SDK and vendor packages"
-	@lint=`golint ./...`; \
+	@lint=`if [ -z "${SDK_GO_1_4}" ]; then  golint ./...; else echo "skipped"; fi`; \
 	lint=`echo "$$lint" | grep -E -v -e ${LINTIGNOREDOT} -e ${LINTIGNOREDOC} -e ${LINTIGNORECONST} -e ${LINTIGNORESTUTTER} -e ${LINTIGNOREINFLECT} -e ${LINTIGNOREDEPS} -e ${LINTIGNOREINFLECTS3UPLOAD}`; \
 	echo "$$lint"; \
-	if [ "$$lint" != "" ]; then exit 1; fi
+	if [ "$$lint" != "" ] && [ "$$lint" != "skipped" ]; then exit 1; fi
 
 vet:
-	go tool vet -all -shadow $(shell if go version | grep -v 1.5 | grep -v 1.4 >> /dev/null; then echo "-example=false" | tr -d '\n'; fi) $(shell ls -d */ | grep -v vendor)
+	go tool vet -all -shadow $(shell if go version | grep -v 1.5 | grep -v 1.4 >> /dev/null; then echo "-example=false" | tr -d '\n'; fi) $(shell ls -d */ | grep -v vendor | grep -v awsmigrate)
 
 get-deps: get-deps-tests get-deps-verify
 	@echo "go get SDK dependencies"
@@ -89,7 +98,8 @@ get-deps-tests:
 
 get-deps-verify:
 	@echo "go get SDK verification utilities"
-	go get github.com/golang/lint/golint
+	@if [ -z "${SDK_GO_1_4}" ]; then  go get github.com/golang/lint/golint; else echo "skipped getting golint"; fi
+	go get golang.org/x/tools/cmd/vet
 
 bench:
 	@echo "go bench SDK packages"
