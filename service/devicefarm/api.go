@@ -340,6 +340,38 @@ func (c *DeviceFarm) GetJob(input *GetJobInput) (*GetJobOutput, error) {
 	return out, err
 }
 
+const opGetOfferingStatus = "GetOfferingStatus"
+
+// GetOfferingStatusRequest generates a request for the GetOfferingStatus operation.
+func (c *DeviceFarm) GetOfferingStatusRequest(input *GetOfferingStatusInput) (req *request.Request, output *GetOfferingStatusOutput) {
+	op := &request.Operation{
+		Name:       opGetOfferingStatus,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetOfferingStatusInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &GetOfferingStatusOutput{}
+	req.Data = output
+	return
+}
+
+// Gets the current status and future status of all offerings purchased by an
+// AWS account. The response indicates how many offerings are currently available
+// and the offerings that will be available in the next period. The API returns
+// a NotEligible error if the user is not permitted to invoke the operation.
+// Please contact aws-devicefarm-support@amazon.com (mailto:aws-devicefarm-support@amazon.com)
+// if you believe that you should be able to invoke this operation.
+func (c *DeviceFarm) GetOfferingStatus(input *GetOfferingStatusInput) (*GetOfferingStatusOutput, error) {
+	req, out := c.GetOfferingStatusRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opGetProject = "GetProject"
 
 // GetProjectRequest generates a request for the GetProject operation.
@@ -639,6 +671,70 @@ func (c *DeviceFarm) ListJobsPages(input *ListJobsInput, fn func(p *ListJobsOutp
 	})
 }
 
+const opListOfferingTransactions = "ListOfferingTransactions"
+
+// ListOfferingTransactionsRequest generates a request for the ListOfferingTransactions operation.
+func (c *DeviceFarm) ListOfferingTransactionsRequest(input *ListOfferingTransactionsInput) (req *request.Request, output *ListOfferingTransactionsOutput) {
+	op := &request.Operation{
+		Name:       opListOfferingTransactions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListOfferingTransactionsInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListOfferingTransactionsOutput{}
+	req.Data = output
+	return
+}
+
+// Returns a list of all historical purchases, renewals, and system renewal
+// transactions for an AWS account. The list is paginated and ordered by a descending
+// timestamp (most recent transactions are first). The API returns a NotEligible
+// error if the user is not permitted to invoke the operation. Please contact
+// aws-devicefarm-support@amazon.com (mailto:aws-devicefarm-support@amazon.com)
+// if you believe that you should be able to invoke this operation.
+func (c *DeviceFarm) ListOfferingTransactions(input *ListOfferingTransactionsInput) (*ListOfferingTransactionsOutput, error) {
+	req, out := c.ListOfferingTransactionsRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opListOfferings = "ListOfferings"
+
+// ListOfferingsRequest generates a request for the ListOfferings operation.
+func (c *DeviceFarm) ListOfferingsRequest(input *ListOfferingsInput) (req *request.Request, output *ListOfferingsOutput) {
+	op := &request.Operation{
+		Name:       opListOfferings,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListOfferingsInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListOfferingsOutput{}
+	req.Data = output
+	return
+}
+
+// Returns a list of products or offerings that the user can manage through
+// the API. Each offering record indicates the recurring price per unit and
+// the frequency for that offering. The API returns a NotEligible error if the
+// user is not permitted to invoke the operation. Please contact aws-devicefarm-support@amazon.com
+// (mailto:aws-devicefarm-support@amazon.com) if you believe that you should
+// be able to invoke this operation.
+func (c *DeviceFarm) ListOfferings(input *ListOfferingsInput) (*ListOfferingsOutput, error) {
+	req, out := c.ListOfferingsRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opListProjects = "ListProjects"
 
 // ListProjectsRequest generates a request for the ListProjects operation.
@@ -926,6 +1022,69 @@ func (c *DeviceFarm) ListUploadsPages(input *ListUploadsInput, fn func(p *ListUp
 	})
 }
 
+const opPurchaseOffering = "PurchaseOffering"
+
+// PurchaseOfferingRequest generates a request for the PurchaseOffering operation.
+func (c *DeviceFarm) PurchaseOfferingRequest(input *PurchaseOfferingInput) (req *request.Request, output *PurchaseOfferingOutput) {
+	op := &request.Operation{
+		Name:       opPurchaseOffering,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PurchaseOfferingInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &PurchaseOfferingOutput{}
+	req.Data = output
+	return
+}
+
+// Immediately purchases offerings for an AWS account. Offerings renew with
+// the latest total purchased quantity for an offering, unless the renewal was
+// overridden. The API returns a NotEligible error if the user is not permitted
+// to invoke the operation. Please contact aws-devicefarm-support@amazon.com
+// (mailto:aws-devicefarm-support@amazon.com) if you believe that you should
+// be able to invoke this operation.
+func (c *DeviceFarm) PurchaseOffering(input *PurchaseOfferingInput) (*PurchaseOfferingOutput, error) {
+	req, out := c.PurchaseOfferingRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opRenewOffering = "RenewOffering"
+
+// RenewOfferingRequest generates a request for the RenewOffering operation.
+func (c *DeviceFarm) RenewOfferingRequest(input *RenewOfferingInput) (req *request.Request, output *RenewOfferingOutput) {
+	op := &request.Operation{
+		Name:       opRenewOffering,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RenewOfferingInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &RenewOfferingOutput{}
+	req.Data = output
+	return
+}
+
+// Explicitly sets the quantity of devices to renew for an offering, starting
+// from the effectiveDate of the next period. The API returns a NotEligible
+// error if the user is not permitted to invoke the operation. Please contact
+// aws-devicefarm-support@amazon.com (mailto:aws-devicefarm-support@amazon.com)
+// if you believe that you should be able to invoke this operation.
+func (c *DeviceFarm) RenewOffering(input *RenewOfferingInput) (*RenewOfferingOutput, error) {
+	req, out := c.RenewOfferingRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opScheduleRun = "ScheduleRun"
 
 // ScheduleRunRequest generates a request for the ScheduleRun operation.
@@ -949,6 +1108,38 @@ func (c *DeviceFarm) ScheduleRunRequest(input *ScheduleRunInput) (req *request.R
 // Schedules a run.
 func (c *DeviceFarm) ScheduleRun(input *ScheduleRunInput) (*ScheduleRunOutput, error) {
 	req, out := c.ScheduleRunRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opStopRun = "StopRun"
+
+// StopRunRequest generates a request for the StopRun operation.
+func (c *DeviceFarm) StopRunRequest(input *StopRunInput) (req *request.Request, output *StopRunOutput) {
+	op := &request.Operation{
+		Name:       opStopRun,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StopRunInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &StopRunOutput{}
+	req.Data = output
+	return
+}
+
+// Initiates a stop request for the current test run. AWS Device Farm will immediately
+// stop the run on devices where tests have not started executing, and you will
+// not be billed for these devices. On devices where tests have started executing,
+// Setup Suite and Teardown Suite tests will run to completion before stopping
+// execution on those devices. You will be billed for Setup, Teardown, and any
+// tests that were in progress or already completed.
+func (c *DeviceFarm) StopRun(input *StopRunInput) (*StopRunOutput, error) {
+	req, out := c.StopRunRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -1630,6 +1821,7 @@ func (s DevicePoolCompatibilityResult) GoString() string {
 	return s.String()
 }
 
+// Represents the request sent to retrieve the account settings.
 type GetAccountSettingsInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1644,6 +1836,8 @@ func (s GetAccountSettingsInput) GoString() string {
 	return s.String()
 }
 
+// Represents the account settings return values from the GetAccountSettings
+// request.
 type GetAccountSettingsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1842,6 +2036,51 @@ func (s GetJobOutput) String() string {
 
 // GoString returns the string representation
 func (s GetJobOutput) GoString() string {
+	return s.String()
+}
+
+// Represents the request to retrieve the offering status for the specified
+// customer or account.
+type GetOfferingStatusInput struct {
+	_ struct{} `type:"structure"`
+
+	// An identifier that was returned from the previous call to this operation,
+	// which can be used to return the next set of items in the list.
+	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
+}
+
+// String returns the string representation
+func (s GetOfferingStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetOfferingStatusInput) GoString() string {
+	return s.String()
+}
+
+// Returns the status result for a device offering.
+type GetOfferingStatusOutput struct {
+	_ struct{} `type:"structure"`
+
+	// When specified, gets the offering status for the current period.
+	Current map[string]*OfferingStatus `locationName:"current" type:"map"`
+
+	// When specified, gets the offering status for the next period.
+	NextPeriod map[string]*OfferingStatus `locationName:"nextPeriod" type:"map"`
+
+	// An identifier that was returned from the previous call to this operation,
+	// which can be used to return the next set of items in the list.
+	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
+}
+
+// String returns the string representation
+func (s GetOfferingStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetOfferingStatusOutput) GoString() string {
 	return s.String()
 }
 
@@ -2364,6 +2603,89 @@ func (s ListJobsOutput) GoString() string {
 	return s.String()
 }
 
+// Represents the request to list the offering transaction history.
+type ListOfferingTransactionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// An identifier that was returned from the previous call to this operation,
+	// which can be used to return the next set of items in the list.
+	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
+}
+
+// String returns the string representation
+func (s ListOfferingTransactionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListOfferingTransactionsInput) GoString() string {
+	return s.String()
+}
+
+// Returns the transaction log of the specified offerings.
+type ListOfferingTransactionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An identifier that was returned from the previous call to this operation,
+	// which can be used to return the next set of items in the list.
+	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
+
+	// The audit log of subscriptions you have purchased and modified through AWS
+	// Device Farm.
+	OfferingTransactions []*OfferingTransaction `locationName:"offeringTransactions" type:"list"`
+}
+
+// String returns the string representation
+func (s ListOfferingTransactionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListOfferingTransactionsOutput) GoString() string {
+	return s.String()
+}
+
+// Represents the request to list all offerings.
+type ListOfferingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// An identifier that was returned from the previous call to this operation,
+	// which can be used to return the next set of items in the list.
+	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
+}
+
+// String returns the string representation
+func (s ListOfferingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListOfferingsInput) GoString() string {
+	return s.String()
+}
+
+// Represents the return values of the list of offerings.
+type ListOfferingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An identifier that was returned from the previous call to this operation,
+	// which can be used to return the next set of items in the list.
+	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
+
+	// A value representing the list offering results.
+	Offerings []*Offering `locationName:"offerings" type:"list"`
+}
+
+// String returns the string representation
+func (s ListOfferingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListOfferingsOutput) GoString() string {
+	return s.String()
+}
+
 // Represents a request to the list projects operation.
 type ListProjectsInput struct {
 	_ struct{} `type:"structure"`
@@ -2719,6 +3041,111 @@ func (s Location) GoString() string {
 	return s.String()
 }
 
+// A number representing the monetary amount for an offering or transaction.
+type MonetaryAmount struct {
+	_ struct{} `type:"structure"`
+
+	// The numerical amount of an offering or transaction.
+	Amount *float64 `locationName:"amount" type:"double"`
+
+	// The currency code of a monetary amount. For example, USD means "U.S. dollars."
+	CurrencyCode *string `locationName:"currencyCode" type:"string" enum:"CurrencyCode"`
+}
+
+// String returns the string representation
+func (s MonetaryAmount) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MonetaryAmount) GoString() string {
+	return s.String()
+}
+
+// Represents the metadata of a device offering.
+type Offering struct {
+	_ struct{} `type:"structure"`
+
+	// A string describing the offering.
+	Description *string `locationName:"description" type:"string"`
+
+	// The ID that corresponds to a device offering.
+	Id *string `locationName:"id" min:"32" type:"string"`
+
+	// The platform of the device (e.g., ANDROID or IOS).
+	Platform *string `locationName:"platform" type:"string" enum:"DevicePlatform"`
+
+	// Specifies whether there are recurring charges for the offering.
+	RecurringCharges []*RecurringCharge `locationName:"recurringCharges" type:"list"`
+
+	// The type of offering (e.g., "RECURRING") for a device.
+	Type *string `locationName:"type" type:"string" enum:"OfferingType"`
+}
+
+// String returns the string representation
+func (s Offering) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Offering) GoString() string {
+	return s.String()
+}
+
+// The status of the offering.
+type OfferingStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The date on which the offering is effective.
+	EffectiveOn *time.Time `locationName:"effectiveOn" type:"timestamp" timestampFormat:"unix"`
+
+	// Represents the metadata of an offering status.
+	Offering *Offering `locationName:"offering" type:"structure"`
+
+	// The number of available devices in the offering.
+	Quantity *int64 `locationName:"quantity" type:"integer"`
+
+	// The type specified for the offering status.
+	Type *string `locationName:"type" type:"string" enum:"OfferingTransactionType"`
+}
+
+// String returns the string representation
+func (s OfferingStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OfferingStatus) GoString() string {
+	return s.String()
+}
+
+// Represents the metadata of an offering transaction.
+type OfferingTransaction struct {
+	_ struct{} `type:"structure"`
+
+	// The cost of an offering transaction.
+	Cost *MonetaryAmount `locationName:"cost" type:"structure"`
+
+	// The date on which an offering transaction was created.
+	CreatedOn *time.Time `locationName:"createdOn" type:"timestamp" timestampFormat:"unix"`
+
+	// The status of an offering transaction.
+	OfferingStatus *OfferingStatus `locationName:"offeringStatus" type:"structure"`
+
+	// The transaction ID of the offering transaction.
+	TransactionId *string `locationName:"transactionId" min:"32" type:"string"`
+}
+
+// String returns the string representation
+func (s OfferingTransaction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OfferingTransaction) GoString() string {
+	return s.String()
+}
+
 // Represents a specific warning or failure.
 type Problem struct {
 	_ struct{} `type:"structure"`
@@ -2817,6 +3244,45 @@ func (s Project) GoString() string {
 	return s.String()
 }
 
+// Represents a request for a purchase offering.
+type PurchaseOfferingInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the offering.
+	OfferingId *string `locationName:"offeringId" min:"32" type:"string"`
+
+	// The number of device slots you wish to purchase in an offering request.
+	Quantity *int64 `locationName:"quantity" type:"integer"`
+}
+
+// String returns the string representation
+func (s PurchaseOfferingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PurchaseOfferingInput) GoString() string {
+	return s.String()
+}
+
+// The result of the purchase offering (e.g., success or failure).
+type PurchaseOfferingOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Represents the offering transaction for the purchase result.
+	OfferingTransaction *OfferingTransaction `locationName:"offeringTransaction" type:"structure"`
+}
+
+// String returns the string representation
+func (s PurchaseOfferingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PurchaseOfferingOutput) GoString() string {
+	return s.String()
+}
+
 // Represents the set of radios and their states on a device. Examples of radios
 // include Wi-Fi, GPS, Bluetooth, and NFC.
 type Radios struct {
@@ -2842,6 +3308,66 @@ func (s Radios) String() string {
 
 // GoString returns the string representation
 func (s Radios) GoString() string {
+	return s.String()
+}
+
+// Specifies whether charges for devices will be recurring.
+type RecurringCharge struct {
+	_ struct{} `type:"structure"`
+
+	// The cost of the recurring charge.
+	Cost *MonetaryAmount `locationName:"cost" type:"structure"`
+
+	// The frequency in which charges will recur.
+	Frequency *string `locationName:"frequency" type:"string" enum:"RecurringChargeFrequency"`
+}
+
+// String returns the string representation
+func (s RecurringCharge) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RecurringCharge) GoString() string {
+	return s.String()
+}
+
+// A request representing an offering renewal.
+type RenewOfferingInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of a request to renew an offering.
+	OfferingId *string `locationName:"offeringId" min:"32" type:"string"`
+
+	// The quantity requested in an offering renewal.
+	Quantity *int64 `locationName:"quantity" type:"integer"`
+}
+
+// String returns the string representation
+func (s RenewOfferingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RenewOfferingInput) GoString() string {
+	return s.String()
+}
+
+// The result of a renewal offering.
+type RenewOfferingOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Represents the status of the offering transaction for the renewal.
+	OfferingTransaction *OfferingTransaction `locationName:"offeringTransaction" type:"structure"`
+}
+
+// String returns the string representation
+func (s RenewOfferingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RenewOfferingOutput) GoString() string {
 	return s.String()
 }
 
@@ -2871,7 +3397,7 @@ func (s Resolution) GoString() string {
 type Rule struct {
 	_ struct{} `type:"structure"`
 
-	// The rule's attribute.
+	// The rule's stringified attribute. For example, specify the value as "\"abc\"".
 	//
 	// Allowed values include:
 	//
@@ -3249,6 +3775,43 @@ func (s ScheduleRunTest) String() string {
 
 // GoString returns the string representation
 func (s ScheduleRunTest) GoString() string {
+	return s.String()
+}
+
+// Represents the request to stop a specific run.
+type StopRunInput struct {
+	_ struct{} `type:"structure"`
+
+	// Represents the Amazon Resource Name (ARN) of the Device Farm run you wish
+	// to stop.
+	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s StopRunInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopRunInput) GoString() string {
+	return s.String()
+}
+
+// Represents the results of your stop run attempt.
+type StopRunOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Represents an app on a set of devices with a specific test and configuration.
+	Run *Run `locationName:"run" type:"structure"`
+}
+
+// String returns the string representation
+func (s StopRunOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopRunOutput) GoString() string {
 	return s.String()
 }
 
@@ -3731,6 +4294,11 @@ const (
 )
 
 const (
+	// @enum CurrencyCode
+	CurrencyCodeUsd = "USD"
+)
+
+const (
 	// @enum DeviceAttribute
 	DeviceAttributeArn = "ARN"
 	// @enum DeviceAttribute
@@ -3790,6 +4358,27 @@ const (
 	ExecutionStatusRunning = "RUNNING"
 	// @enum ExecutionStatus
 	ExecutionStatusCompleted = "COMPLETED"
+	// @enum ExecutionStatus
+	ExecutionStatusStopping = "STOPPING"
+)
+
+const (
+	// @enum OfferingTransactionType
+	OfferingTransactionTypePurchase = "PURCHASE"
+	// @enum OfferingTransactionType
+	OfferingTransactionTypeRenew = "RENEW"
+	// @enum OfferingTransactionType
+	OfferingTransactionTypeSystem = "SYSTEM"
+)
+
+const (
+	// @enum OfferingType
+	OfferingTypeRecurring = "RECURRING"
+)
+
+const (
+	// @enum RecurringChargeFrequency
+	RecurringChargeFrequencyMonthly = "MONTHLY"
 )
 
 const (

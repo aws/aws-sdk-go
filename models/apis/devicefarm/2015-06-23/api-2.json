@@ -190,6 +190,22 @@
         {"shape":"ServiceAccountException"}
       ]
     },
+    "GetOfferingStatus":{
+      "name":"GetOfferingStatus",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetOfferingStatusRequest"},
+      "output":{"shape":"GetOfferingStatusResult"},
+      "errors":[
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"NotEligibleException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
+      ]
+    },
     "GetProject":{
       "name":"GetProject",
       "http":{
@@ -325,6 +341,38 @@
         {"shape":"ServiceAccountException"}
       ]
     },
+    "ListOfferingTransactions":{
+      "name":"ListOfferingTransactions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListOfferingTransactionsRequest"},
+      "output":{"shape":"ListOfferingTransactionsResult"},
+      "errors":[
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"NotEligibleException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
+      ]
+    },
+    "ListOfferings":{
+      "name":"ListOfferings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListOfferingsRequest"},
+      "output":{"shape":"ListOfferingsResult"},
+      "errors":[
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"NotEligibleException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
+      ]
+    },
     "ListProjects":{
       "name":"ListProjects",
       "http":{
@@ -430,6 +478,38 @@
         {"shape":"ServiceAccountException"}
       ]
     },
+    "PurchaseOffering":{
+      "name":"PurchaseOffering",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PurchaseOfferingRequest"},
+      "output":{"shape":"PurchaseOfferingResult"},
+      "errors":[
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"NotEligibleException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
+      ]
+    },
+    "RenewOffering":{
+      "name":"RenewOffering",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RenewOfferingRequest"},
+      "output":{"shape":"RenewOfferingResult"},
+      "errors":[
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"NotEligibleException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
+      ]
+    },
     "ScheduleRun":{
       "name":"ScheduleRun",
       "http":{
@@ -443,6 +523,21 @@
         {"shape":"NotFoundException"},
         {"shape":"LimitExceededException"},
         {"shape":"IdempotencyException"},
+        {"shape":"ServiceAccountException"}
+      ]
+    },
+    "StopRun":{
+      "name":"StopRun",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopRunRequest"},
+      "output":{"shape":"StopRunResult"},
+      "errors":[
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
         {"shape":"ServiceAccountException"}
       ]
     },
@@ -641,6 +736,10 @@
         "upload":{"shape":"Upload"}
       }
     },
+    "CurrencyCode":{
+      "type":"string",
+      "enum":["USD"]
+    },
     "DateTime":{"type":"timestamp"},
     "DeleteDevicePoolRequest":{
       "type":"structure",
@@ -797,7 +896,8 @@
         "PROCESSING",
         "SCHEDULING",
         "RUNNING",
-        "COMPLETED"
+        "COMPLETED",
+        "STOPPING"
       ]
     },
     "Filter":{
@@ -869,6 +969,20 @@
       "type":"structure",
       "members":{
         "job":{"shape":"Job"}
+      }
+    },
+    "GetOfferingStatusRequest":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "GetOfferingStatusResult":{
+      "type":"structure",
+      "members":{
+        "current":{"shape":"OfferingStatusMap"},
+        "nextPeriod":{"shape":"OfferingStatusMap"},
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "GetProjectRequest":{
@@ -1047,6 +1161,32 @@
         "nextToken":{"shape":"PaginationToken"}
       }
     },
+    "ListOfferingTransactionsRequest":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListOfferingTransactionsResult":{
+      "type":"structure",
+      "members":{
+        "offeringTransactions":{"shape":"OfferingTransactions"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListOfferingsRequest":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListOfferingsResult":{
+      "type":"structure",
+      "members":{
+        "offerings":{"shape":"Offerings"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
     "ListProjectsRequest":{
       "type":"structure",
       "members":{
@@ -1165,7 +1305,7 @@
     "Long":{"type":"long"},
     "Message":{
       "type":"string",
-      "max":8192,
+      "max":16384,
       "min":0
     },
     "Metadata":{
@@ -1173,10 +1313,24 @@
       "max":8192,
       "min":0
     },
+    "MonetaryAmount":{
+      "type":"structure",
+      "members":{
+        "amount":{"shape":"Double"},
+        "currencyCode":{"shape":"CurrencyCode"}
+      }
+    },
     "Name":{
       "type":"string",
       "max":256,
       "min":0
+    },
+    "NotEligibleException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"Message"}
+      },
+      "exception":true
     },
     "NotFoundException":{
       "type":"structure",
@@ -1184,6 +1338,63 @@
         "message":{"shape":"Message"}
       },
       "exception":true
+    },
+    "Offering":{
+      "type":"structure",
+      "members":{
+        "id":{"shape":"OfferingIdentifier"},
+        "description":{"shape":"Message"},
+        "type":{"shape":"OfferingType"},
+        "platform":{"shape":"DevicePlatform"},
+        "recurringCharges":{"shape":"RecurringCharges"}
+      }
+    },
+    "OfferingIdentifier":{
+      "type":"string",
+      "min":32
+    },
+    "OfferingStatus":{
+      "type":"structure",
+      "members":{
+        "type":{"shape":"OfferingTransactionType"},
+        "offering":{"shape":"Offering"},
+        "quantity":{"shape":"Integer"},
+        "effectiveOn":{"shape":"DateTime"}
+      }
+    },
+    "OfferingStatusMap":{
+      "type":"map",
+      "key":{"shape":"OfferingIdentifier"},
+      "value":{"shape":"OfferingStatus"}
+    },
+    "OfferingTransaction":{
+      "type":"structure",
+      "members":{
+        "offeringStatus":{"shape":"OfferingStatus"},
+        "transactionId":{"shape":"TransactionIdentifier"},
+        "createdOn":{"shape":"DateTime"},
+        "cost":{"shape":"MonetaryAmount"}
+      }
+    },
+    "OfferingTransactionType":{
+      "type":"string",
+      "enum":[
+        "PURCHASE",
+        "RENEW",
+        "SYSTEM"
+      ]
+    },
+    "OfferingTransactions":{
+      "type":"list",
+      "member":{"shape":"OfferingTransaction"}
+    },
+    "OfferingType":{
+      "type":"string",
+      "enum":["RECURRING"]
+    },
+    "Offerings":{
+      "type":"list",
+      "member":{"shape":"Offering"}
     },
     "PaginationToken":{
       "type":"string",
@@ -1225,6 +1436,19 @@
       "type":"list",
       "member":{"shape":"Project"}
     },
+    "PurchaseOfferingRequest":{
+      "type":"structure",
+      "members":{
+        "offeringId":{"shape":"OfferingIdentifier"},
+        "quantity":{"shape":"Integer"}
+      }
+    },
+    "PurchaseOfferingResult":{
+      "type":"structure",
+      "members":{
+        "offeringTransaction":{"shape":"OfferingTransaction"}
+      }
+    },
     "PurchasedDevicesMap":{
       "type":"map",
       "key":{"shape":"DevicePlatform"},
@@ -1237,6 +1461,34 @@
         "bluetooth":{"shape":"Boolean"},
         "nfc":{"shape":"Boolean"},
         "gps":{"shape":"Boolean"}
+      }
+    },
+    "RecurringCharge":{
+      "type":"structure",
+      "members":{
+        "cost":{"shape":"MonetaryAmount"},
+        "frequency":{"shape":"RecurringChargeFrequency"}
+      }
+    },
+    "RecurringChargeFrequency":{
+      "type":"string",
+      "enum":["MONTHLY"]
+    },
+    "RecurringCharges":{
+      "type":"list",
+      "member":{"shape":"RecurringCharge"}
+    },
+    "RenewOfferingRequest":{
+      "type":"structure",
+      "members":{
+        "offeringId":{"shape":"OfferingIdentifier"},
+        "quantity":{"shape":"Integer"}
+      }
+    },
+    "RenewOfferingResult":{
+      "type":"structure",
+      "members":{
+        "offeringTransaction":{"shape":"OfferingTransaction"}
       }
     },
     "Resolution":{
@@ -1377,6 +1629,19 @@
       },
       "exception":true
     },
+    "StopRunRequest":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"AmazonResourceName"}
+      }
+    },
+    "StopRunResult":{
+      "type":"structure",
+      "members":{
+        "run":{"shape":"Run"}
+      }
+    },
     "String":{"type":"string"},
     "Suite":{
       "type":"structure",
@@ -1441,6 +1706,10 @@
     "Tests":{
       "type":"list",
       "member":{"shape":"Test"}
+    },
+    "TransactionIdentifier":{
+      "type":"string",
+      "min":32
     },
     "URL":{
       "type":"string",

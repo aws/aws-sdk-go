@@ -256,6 +256,25 @@ func ExampleDeviceFarm_GetJob() {
 	fmt.Println(resp)
 }
 
+func ExampleDeviceFarm_GetOfferingStatus() {
+	svc := devicefarm.New(session.New())
+
+	params := &devicefarm.GetOfferingStatusInput{
+		NextToken: aws.String("PaginationToken"),
+	}
+	resp, err := svc.GetOfferingStatus(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleDeviceFarm_GetProject() {
 	svc := devicefarm.New(session.New())
 
@@ -433,6 +452,44 @@ func ExampleDeviceFarm_ListJobs() {
 	fmt.Println(resp)
 }
 
+func ExampleDeviceFarm_ListOfferingTransactions() {
+	svc := devicefarm.New(session.New())
+
+	params := &devicefarm.ListOfferingTransactionsInput{
+		NextToken: aws.String("PaginationToken"),
+	}
+	resp, err := svc.ListOfferingTransactions(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleDeviceFarm_ListOfferings() {
+	svc := devicefarm.New(session.New())
+
+	params := &devicefarm.ListOfferingsInput{
+		NextToken: aws.String("PaginationToken"),
+	}
+	resp, err := svc.ListOfferings(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleDeviceFarm_ListProjects() {
 	svc := devicefarm.New(session.New())
 
@@ -573,6 +630,46 @@ func ExampleDeviceFarm_ListUploads() {
 	fmt.Println(resp)
 }
 
+func ExampleDeviceFarm_PurchaseOffering() {
+	svc := devicefarm.New(session.New())
+
+	params := &devicefarm.PurchaseOfferingInput{
+		OfferingId: aws.String("OfferingIdentifier"),
+		Quantity:   aws.Int64(1),
+	}
+	resp, err := svc.PurchaseOffering(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleDeviceFarm_RenewOffering() {
+	svc := devicefarm.New(session.New())
+
+	params := &devicefarm.RenewOfferingInput{
+		OfferingId: aws.String("OfferingIdentifier"),
+		Quantity:   aws.Int64(1),
+	}
+	resp, err := svc.RenewOffering(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleDeviceFarm_ScheduleRun() {
 	svc := devicefarm.New(session.New())
 
@@ -612,6 +709,25 @@ func ExampleDeviceFarm_ScheduleRun() {
 		Name: aws.String("Name"),
 	}
 	resp, err := svc.ScheduleRun(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleDeviceFarm_StopRun() {
+	svc := devicefarm.New(session.New())
+
+	params := &devicefarm.StopRunInput{
+		Arn: aws.String("AmazonResourceName"), // Required
+	}
+	resp, err := svc.StopRun(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
