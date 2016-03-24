@@ -595,6 +595,19 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "SetLocalConsolePassword":{
+      "name":"SetLocalConsolePassword",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SetLocalConsolePasswordInput"},
+      "output":{"shape":"SetLocalConsolePasswordOutput"},
+      "errors":[
+        {"shape":"InvalidGatewayRequestException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "ShutdownGateway":{
       "name":"ShutdownGateway",
       "http":{
@@ -1676,6 +1689,13 @@
         "VolumeInfos":{"shape":"VolumeInfos"}
       }
     },
+    "LocalConsolePassword":{
+      "type":"string",
+      "max":512,
+      "min":6,
+      "pattern":"^[ -~]+$",
+      "sensitive":true
+    },
     "Marker":{
       "type":"string",
       "max":1000,
@@ -1796,6 +1816,23 @@
         "TapeARN":{"shape":"TapeARN"}
       }
     },
+    "SetLocalConsolePasswordInput":{
+      "type":"structure",
+      "required":[
+        "GatewayARN",
+        "LocalConsolePassword"
+      ],
+      "members":{
+        "GatewayARN":{"shape":"GatewayARN"},
+        "LocalConsolePassword":{"shape":"LocalConsolePassword"}
+      }
+    },
+    "SetLocalConsolePasswordOutput":{
+      "type":"structure",
+      "members":{
+        "GatewayARN":{"shape":"GatewayARN"}
+      }
+    },
     "ShutdownGatewayInput":{
       "type":"structure",
       "required":["GatewayARN"],
@@ -1816,7 +1853,7 @@
     },
     "SnapshotId":{
       "type":"string",
-      "pattern":"\\Asnap-[0-9a-fA-F]{8}\\z"
+      "pattern":"\\Asnap-([0-9A-Fa-f]{8}|[0-9A-Fa-f]{17})\\z"
     },
     "StartGatewayInput":{
       "type":"structure",

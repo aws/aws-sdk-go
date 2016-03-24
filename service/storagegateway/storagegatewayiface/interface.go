@@ -202,6 +202,10 @@ type StorageGatewayAPI interface {
 
 	RetrieveTapeRecoveryPoint(*storagegateway.RetrieveTapeRecoveryPointInput) (*storagegateway.RetrieveTapeRecoveryPointOutput, error)
 
+	SetLocalConsolePasswordRequest(*storagegateway.SetLocalConsolePasswordInput) (*request.Request, *storagegateway.SetLocalConsolePasswordOutput)
+
+	SetLocalConsolePassword(*storagegateway.SetLocalConsolePasswordInput) (*storagegateway.SetLocalConsolePasswordOutput, error)
+
 	ShutdownGatewayRequest(*storagegateway.ShutdownGatewayInput) (*request.Request, *storagegateway.ShutdownGatewayOutput)
 
 	ShutdownGateway(*storagegateway.ShutdownGatewayInput) (*storagegateway.ShutdownGatewayOutput, error)
