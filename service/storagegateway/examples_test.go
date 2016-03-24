@@ -954,6 +954,26 @@ func ExampleStorageGateway_RetrieveTapeRecoveryPoint() {
 	fmt.Println(resp)
 }
 
+func ExampleStorageGateway_SetLocalConsolePassword() {
+	svc := storagegateway.New(session.New())
+
+	params := &storagegateway.SetLocalConsolePasswordInput{
+		GatewayARN:           aws.String("GatewayARN"),           // Required
+		LocalConsolePassword: aws.String("LocalConsolePassword"), // Required
+	}
+	resp, err := svc.SetLocalConsolePassword(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleStorageGateway_ShutdownGateway() {
 	svc := storagegateway.New(session.New())
 
