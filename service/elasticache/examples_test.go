@@ -68,6 +68,7 @@ func ExampleElastiCache_CopySnapshot() {
 	params := &elasticache.CopySnapshotInput{
 		SourceSnapshotName: aws.String("String"), // Required
 		TargetSnapshotName: aws.String("String"), // Required
+		TargetBucket:       aws.String("String"),
 	}
 	resp, err := svc.CopySnapshot(params)
 
@@ -672,6 +673,26 @@ func ExampleElastiCache_DescribeSnapshots() {
 	fmt.Println(resp)
 }
 
+func ExampleElastiCache_ListAllowedNodeTypeModifications() {
+	svc := elasticache.New(session.New())
+
+	params := &elasticache.ListAllowedNodeTypeModificationsInput{
+		CacheClusterId:     aws.String("String"),
+		ReplicationGroupId: aws.String("String"),
+	}
+	resp, err := svc.ListAllowedNodeTypeModifications(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleElastiCache_ListTagsForResource() {
 	svc := elasticache.New(session.New())
 
@@ -703,6 +724,7 @@ func ExampleElastiCache_ModifyCacheCluster() {
 			aws.String("String"), // Required
 			// More values...
 		},
+		CacheNodeType:           aws.String("String"),
 		CacheParameterGroupName: aws.String("String"),
 		CacheSecurityGroupNames: []*string{
 			aws.String("String"), // Required
@@ -795,6 +817,7 @@ func ExampleElastiCache_ModifyReplicationGroup() {
 		ApplyImmediately:         aws.Bool(true),
 		AutoMinorVersionUpgrade:  aws.Bool(true),
 		AutomaticFailoverEnabled: aws.Bool(true),
+		CacheNodeType:            aws.String("String"),
 		CacheParameterGroupName:  aws.String("String"),
 		CacheSecurityGroupNames: []*string{
 			aws.String("String"), // Required
@@ -899,7 +922,7 @@ func ExampleElastiCache_ResetCacheParameterGroup() {
 
 	params := &elasticache.ResetCacheParameterGroupInput{
 		CacheParameterGroupName: aws.String("String"), // Required
-		ParameterNameValues: []*elasticache.ParameterNameValue{ // Required
+		ParameterNameValues: []*elasticache.ParameterNameValue{
 			{ // Required
 				ParameterName:  aws.String("String"),
 				ParameterValue: aws.String("String"),

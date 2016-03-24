@@ -3,10 +3,10 @@
   "metadata":{
     "apiVersion":"2015-02-02",
     "endpointPrefix":"elasticache",
+    "protocol":"query",
     "serviceFullName":"Amazon ElastiCache",
     "signatureVersion":"v4",
-    "xmlNamespace":"http://elasticache.amazonaws.com/doc/2015-02-02/",
-    "protocol":"query"
+    "xmlNamespace":"http://elasticache.amazonaws.com/doc/2015-02-02/"
   },
   "operations":{
     "AddTagsToResource":{
@@ -21,42 +21,10 @@
         "resultWrapper":"AddTagsToResourceResult"
       },
       "errors":[
-        {
-          "shape":"CacheClusterNotFoundFault",
-          "error":{
-            "code":"CacheClusterNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SnapshotNotFoundFault",
-          "error":{
-            "code":"SnapshotNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"TagQuotaPerResourceExceeded",
-          "error":{
-            "code":"TagQuotaPerResourceExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidARNFault",
-          "error":{
-            "code":"InvalidARN",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"CacheClusterNotFoundFault"},
+        {"shape":"SnapshotNotFoundFault"},
+        {"shape":"TagQuotaPerResourceExceeded"},
+        {"shape":"InvalidARNFault"}
       ]
     },
     "AuthorizeCacheSecurityGroupIngress":{
@@ -68,55 +36,14 @@
       "input":{"shape":"AuthorizeCacheSecurityGroupIngressMessage"},
       "output":{
         "shape":"AuthorizeCacheSecurityGroupIngressResult",
-        "wrapper":true,
         "resultWrapper":"AuthorizeCacheSecurityGroupIngressResult"
       },
       "errors":[
-        {
-          "shape":"CacheSecurityGroupNotFoundFault",
-          "error":{
-            "code":"CacheSecurityGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidCacheSecurityGroupStateFault",
-          "error":{
-            "code":"InvalidCacheSecurityGroupState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"AuthorizationAlreadyExistsFault",
-          "error":{
-            "code":"AuthorizationAlreadyExists",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{
-            "code":"InvalidParameterValue",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterCombinationException",
-          "error":{
-            "code":"InvalidParameterCombination",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"CacheSecurityGroupNotFoundFault"},
+        {"shape":"InvalidCacheSecurityGroupStateFault"},
+        {"shape":"AuthorizationAlreadyExistsFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
       ]
     },
     "CopySnapshot":{
@@ -128,64 +55,15 @@
       "input":{"shape":"CopySnapshotMessage"},
       "output":{
         "shape":"CopySnapshotResult",
-        "wrapper":true,
         "resultWrapper":"CopySnapshotResult"
       },
       "errors":[
-        {
-          "shape":"SnapshotAlreadyExistsFault",
-          "error":{
-            "code":"SnapshotAlreadyExistsFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SnapshotNotFoundFault",
-          "error":{
-            "code":"SnapshotNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SnapshotQuotaExceededFault",
-          "error":{
-            "code":"SnapshotQuotaExceededFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidSnapshotStateFault",
-          "error":{
-            "code":"InvalidSnapshotState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{
-            "code":"InvalidParameterValue",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterCombinationException",
-          "error":{
-            "code":"InvalidParameterCombination",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"SnapshotAlreadyExistsFault"},
+        {"shape":"SnapshotNotFoundFault"},
+        {"shape":"SnapshotQuotaExceededFault"},
+        {"shape":"InvalidSnapshotStateFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
       ]
     },
     "CreateCacheCluster":{
@@ -197,136 +75,23 @@
       "input":{"shape":"CreateCacheClusterMessage"},
       "output":{
         "shape":"CreateCacheClusterResult",
-        "wrapper":true,
         "resultWrapper":"CreateCacheClusterResult"
       },
       "errors":[
-        {
-          "shape":"ReplicationGroupNotFoundFault",
-          "error":{
-            "code":"ReplicationGroupNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidReplicationGroupStateFault",
-          "error":{
-            "code":"InvalidReplicationGroupState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"CacheClusterAlreadyExistsFault",
-          "error":{
-            "code":"CacheClusterAlreadyExists",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InsufficientCacheClusterCapacityFault",
-          "error":{
-            "code":"InsufficientCacheClusterCapacity",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"CacheSecurityGroupNotFoundFault",
-          "error":{
-            "code":"CacheSecurityGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"CacheSubnetGroupNotFoundFault",
-          "error":{
-            "code":"CacheSubnetGroupNotFoundFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterQuotaForCustomerExceededFault",
-          "error":{
-            "code":"ClusterQuotaForCustomerExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NodeQuotaForClusterExceededFault",
-          "error":{
-            "code":"NodeQuotaForClusterExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NodeQuotaForCustomerExceededFault",
-          "error":{
-            "code":"NodeQuotaForCustomerExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"CacheParameterGroupNotFoundFault",
-          "error":{
-            "code":"CacheParameterGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidVPCNetworkStateFault",
-          "error":{
-            "code":"InvalidVPCNetworkStateFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"TagQuotaPerResourceExceeded",
-          "error":{
-            "code":"TagQuotaPerResourceExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{
-            "code":"InvalidParameterValue",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterCombinationException",
-          "error":{
-            "code":"InvalidParameterCombination",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ReplicationGroupNotFoundFault"},
+        {"shape":"InvalidReplicationGroupStateFault"},
+        {"shape":"CacheClusterAlreadyExistsFault"},
+        {"shape":"InsufficientCacheClusterCapacityFault"},
+        {"shape":"CacheSecurityGroupNotFoundFault"},
+        {"shape":"CacheSubnetGroupNotFoundFault"},
+        {"shape":"ClusterQuotaForCustomerExceededFault"},
+        {"shape":"NodeQuotaForClusterExceededFault"},
+        {"shape":"NodeQuotaForCustomerExceededFault"},
+        {"shape":"CacheParameterGroupNotFoundFault"},
+        {"shape":"InvalidVPCNetworkStateFault"},
+        {"shape":"TagQuotaPerResourceExceeded"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
       ]
     },
     "CreateCacheParameterGroup":{
@@ -338,55 +103,14 @@
       "input":{"shape":"CreateCacheParameterGroupMessage"},
       "output":{
         "shape":"CreateCacheParameterGroupResult",
-        "wrapper":true,
         "resultWrapper":"CreateCacheParameterGroupResult"
       },
       "errors":[
-        {
-          "shape":"CacheParameterGroupQuotaExceededFault",
-          "error":{
-            "code":"CacheParameterGroupQuotaExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"CacheParameterGroupAlreadyExistsFault",
-          "error":{
-            "code":"CacheParameterGroupAlreadyExists",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidCacheParameterGroupStateFault",
-          "error":{
-            "code":"InvalidCacheParameterGroupState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{
-            "code":"InvalidParameterValue",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterCombinationException",
-          "error":{
-            "code":"InvalidParameterCombination",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"CacheParameterGroupQuotaExceededFault"},
+        {"shape":"CacheParameterGroupAlreadyExistsFault"},
+        {"shape":"InvalidCacheParameterGroupStateFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
       ]
     },
     "CreateCacheSecurityGroup":{
@@ -398,46 +122,13 @@
       "input":{"shape":"CreateCacheSecurityGroupMessage"},
       "output":{
         "shape":"CreateCacheSecurityGroupResult",
-        "wrapper":true,
         "resultWrapper":"CreateCacheSecurityGroupResult"
       },
       "errors":[
-        {
-          "shape":"CacheSecurityGroupAlreadyExistsFault",
-          "error":{
-            "code":"CacheSecurityGroupAlreadyExists",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"CacheSecurityGroupQuotaExceededFault",
-          "error":{
-            "code":"QuotaExceeded.CacheSecurityGroup",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{
-            "code":"InvalidParameterValue",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterCombinationException",
-          "error":{
-            "code":"InvalidParameterCombination",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"CacheSecurityGroupAlreadyExistsFault"},
+        {"shape":"CacheSecurityGroupQuotaExceededFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
       ]
     },
     "CreateCacheSubnetGroup":{
@@ -449,46 +140,13 @@
       "input":{"shape":"CreateCacheSubnetGroupMessage"},
       "output":{
         "shape":"CreateCacheSubnetGroupResult",
-        "wrapper":true,
         "resultWrapper":"CreateCacheSubnetGroupResult"
       },
       "errors":[
-        {
-          "shape":"CacheSubnetGroupAlreadyExistsFault",
-          "error":{
-            "code":"CacheSubnetGroupAlreadyExists",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"CacheSubnetGroupQuotaExceededFault",
-          "error":{
-            "code":"CacheSubnetGroupQuotaExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"CacheSubnetQuotaExceededFault",
-          "error":{
-            "code":"CacheSubnetQuotaExceededFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidSubnet",
-          "error":{
-            "code":"InvalidSubnet",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"CacheSubnetGroupAlreadyExistsFault"},
+        {"shape":"CacheSubnetGroupQuotaExceededFault"},
+        {"shape":"CacheSubnetQuotaExceededFault"},
+        {"shape":"InvalidSubnet"}
       ]
     },
     "CreateReplicationGroup":{
@@ -500,136 +158,23 @@
       "input":{"shape":"CreateReplicationGroupMessage"},
       "output":{
         "shape":"CreateReplicationGroupResult",
-        "wrapper":true,
         "resultWrapper":"CreateReplicationGroupResult"
       },
       "errors":[
-        {
-          "shape":"CacheClusterNotFoundFault",
-          "error":{
-            "code":"CacheClusterNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidCacheClusterStateFault",
-          "error":{
-            "code":"InvalidCacheClusterState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ReplicationGroupAlreadyExistsFault",
-          "error":{
-            "code":"ReplicationGroupAlreadyExists",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InsufficientCacheClusterCapacityFault",
-          "error":{
-            "code":"InsufficientCacheClusterCapacity",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"CacheSecurityGroupNotFoundFault",
-          "error":{
-            "code":"CacheSecurityGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"CacheSubnetGroupNotFoundFault",
-          "error":{
-            "code":"CacheSubnetGroupNotFoundFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterQuotaForCustomerExceededFault",
-          "error":{
-            "code":"ClusterQuotaForCustomerExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NodeQuotaForClusterExceededFault",
-          "error":{
-            "code":"NodeQuotaForClusterExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NodeQuotaForCustomerExceededFault",
-          "error":{
-            "code":"NodeQuotaForCustomerExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"CacheParameterGroupNotFoundFault",
-          "error":{
-            "code":"CacheParameterGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidVPCNetworkStateFault",
-          "error":{
-            "code":"InvalidVPCNetworkStateFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"TagQuotaPerResourceExceeded",
-          "error":{
-            "code":"TagQuotaPerResourceExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{
-            "code":"InvalidParameterValue",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterCombinationException",
-          "error":{
-            "code":"InvalidParameterCombination",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"CacheClusterNotFoundFault"},
+        {"shape":"InvalidCacheClusterStateFault"},
+        {"shape":"ReplicationGroupAlreadyExistsFault"},
+        {"shape":"InsufficientCacheClusterCapacityFault"},
+        {"shape":"CacheSecurityGroupNotFoundFault"},
+        {"shape":"CacheSubnetGroupNotFoundFault"},
+        {"shape":"ClusterQuotaForCustomerExceededFault"},
+        {"shape":"NodeQuotaForClusterExceededFault"},
+        {"shape":"NodeQuotaForCustomerExceededFault"},
+        {"shape":"CacheParameterGroupNotFoundFault"},
+        {"shape":"InvalidVPCNetworkStateFault"},
+        {"shape":"TagQuotaPerResourceExceeded"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
       ]
     },
     "CreateSnapshot":{
@@ -641,73 +186,16 @@
       "input":{"shape":"CreateSnapshotMessage"},
       "output":{
         "shape":"CreateSnapshotResult",
-        "wrapper":true,
         "resultWrapper":"CreateSnapshotResult"
       },
       "errors":[
-        {
-          "shape":"SnapshotAlreadyExistsFault",
-          "error":{
-            "code":"SnapshotAlreadyExistsFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"CacheClusterNotFoundFault",
-          "error":{
-            "code":"CacheClusterNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidCacheClusterStateFault",
-          "error":{
-            "code":"InvalidCacheClusterState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SnapshotQuotaExceededFault",
-          "error":{
-            "code":"SnapshotQuotaExceededFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SnapshotFeatureNotSupportedFault",
-          "error":{
-            "code":"SnapshotFeatureNotSupportedFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterCombinationException",
-          "error":{
-            "code":"InvalidParameterCombination",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{
-            "code":"InvalidParameterValue",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"SnapshotAlreadyExistsFault"},
+        {"shape":"CacheClusterNotFoundFault"},
+        {"shape":"InvalidCacheClusterStateFault"},
+        {"shape":"SnapshotQuotaExceededFault"},
+        {"shape":"SnapshotFeatureNotSupportedFault"},
+        {"shape":"InvalidParameterCombinationException"},
+        {"shape":"InvalidParameterValueException"}
       ]
     },
     "DeleteCacheCluster":{
@@ -719,73 +207,16 @@
       "input":{"shape":"DeleteCacheClusterMessage"},
       "output":{
         "shape":"DeleteCacheClusterResult",
-        "wrapper":true,
         "resultWrapper":"DeleteCacheClusterResult"
       },
       "errors":[
-        {
-          "shape":"CacheClusterNotFoundFault",
-          "error":{
-            "code":"CacheClusterNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidCacheClusterStateFault",
-          "error":{
-            "code":"InvalidCacheClusterState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SnapshotAlreadyExistsFault",
-          "error":{
-            "code":"SnapshotAlreadyExistsFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SnapshotFeatureNotSupportedFault",
-          "error":{
-            "code":"SnapshotFeatureNotSupportedFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SnapshotQuotaExceededFault",
-          "error":{
-            "code":"SnapshotQuotaExceededFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{
-            "code":"InvalidParameterValue",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterCombinationException",
-          "error":{
-            "code":"InvalidParameterCombination",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"CacheClusterNotFoundFault"},
+        {"shape":"InvalidCacheClusterStateFault"},
+        {"shape":"SnapshotAlreadyExistsFault"},
+        {"shape":"SnapshotFeatureNotSupportedFault"},
+        {"shape":"SnapshotQuotaExceededFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
       ]
     },
     "DeleteCacheParameterGroup":{
@@ -796,42 +227,10 @@
       },
       "input":{"shape":"DeleteCacheParameterGroupMessage"},
       "errors":[
-        {
-          "shape":"InvalidCacheParameterGroupStateFault",
-          "error":{
-            "code":"InvalidCacheParameterGroupState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"CacheParameterGroupNotFoundFault",
-          "error":{
-            "code":"CacheParameterGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{
-            "code":"InvalidParameterValue",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterCombinationException",
-          "error":{
-            "code":"InvalidParameterCombination",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidCacheParameterGroupStateFault"},
+        {"shape":"CacheParameterGroupNotFoundFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
       ]
     },
     "DeleteCacheSecurityGroup":{
@@ -842,42 +241,10 @@
       },
       "input":{"shape":"DeleteCacheSecurityGroupMessage"},
       "errors":[
-        {
-          "shape":"InvalidCacheSecurityGroupStateFault",
-          "error":{
-            "code":"InvalidCacheSecurityGroupState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"CacheSecurityGroupNotFoundFault",
-          "error":{
-            "code":"CacheSecurityGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{
-            "code":"InvalidParameterValue",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterCombinationException",
-          "error":{
-            "code":"InvalidParameterCombination",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidCacheSecurityGroupStateFault"},
+        {"shape":"CacheSecurityGroupNotFoundFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
       ]
     },
     "DeleteCacheSubnetGroup":{
@@ -888,24 +255,8 @@
       },
       "input":{"shape":"DeleteCacheSubnetGroupMessage"},
       "errors":[
-        {
-          "shape":"CacheSubnetGroupInUse",
-          "error":{
-            "code":"CacheSubnetGroupInUse",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"CacheSubnetGroupNotFoundFault",
-          "error":{
-            "code":"CacheSubnetGroupNotFoundFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"CacheSubnetGroupInUse"},
+        {"shape":"CacheSubnetGroupNotFoundFault"}
       ]
     },
     "DeleteReplicationGroup":{
@@ -917,73 +268,16 @@
       "input":{"shape":"DeleteReplicationGroupMessage"},
       "output":{
         "shape":"DeleteReplicationGroupResult",
-        "wrapper":true,
         "resultWrapper":"DeleteReplicationGroupResult"
       },
       "errors":[
-        {
-          "shape":"ReplicationGroupNotFoundFault",
-          "error":{
-            "code":"ReplicationGroupNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidReplicationGroupStateFault",
-          "error":{
-            "code":"InvalidReplicationGroupState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SnapshotAlreadyExistsFault",
-          "error":{
-            "code":"SnapshotAlreadyExistsFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SnapshotFeatureNotSupportedFault",
-          "error":{
-            "code":"SnapshotFeatureNotSupportedFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SnapshotQuotaExceededFault",
-          "error":{
-            "code":"SnapshotQuotaExceededFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{
-            "code":"InvalidParameterValue",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterCombinationException",
-          "error":{
-            "code":"InvalidParameterCombination",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ReplicationGroupNotFoundFault"},
+        {"shape":"InvalidReplicationGroupStateFault"},
+        {"shape":"SnapshotAlreadyExistsFault"},
+        {"shape":"SnapshotFeatureNotSupportedFault"},
+        {"shape":"SnapshotQuotaExceededFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
       ]
     },
     "DeleteSnapshot":{
@@ -995,46 +289,13 @@
       "input":{"shape":"DeleteSnapshotMessage"},
       "output":{
         "shape":"DeleteSnapshotResult",
-        "wrapper":true,
         "resultWrapper":"DeleteSnapshotResult"
       },
       "errors":[
-        {
-          "shape":"SnapshotNotFoundFault",
-          "error":{
-            "code":"SnapshotNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidSnapshotStateFault",
-          "error":{
-            "code":"InvalidSnapshotState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{
-            "code":"InvalidParameterValue",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterCombinationException",
-          "error":{
-            "code":"InvalidParameterCombination",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"SnapshotNotFoundFault"},
+        {"shape":"InvalidSnapshotStateFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
       ]
     },
     "DescribeCacheClusters":{
@@ -1049,33 +310,9 @@
         "resultWrapper":"DescribeCacheClustersResult"
       },
       "errors":[
-        {
-          "shape":"CacheClusterNotFoundFault",
-          "error":{
-            "code":"CacheClusterNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{
-            "code":"InvalidParameterValue",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterCombinationException",
-          "error":{
-            "code":"InvalidParameterCombination",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"CacheClusterNotFoundFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
       ]
     },
     "DescribeCacheEngineVersions":{
@@ -1102,33 +339,9 @@
         "resultWrapper":"DescribeCacheParameterGroupsResult"
       },
       "errors":[
-        {
-          "shape":"CacheParameterGroupNotFoundFault",
-          "error":{
-            "code":"CacheParameterGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{
-            "code":"InvalidParameterValue",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterCombinationException",
-          "error":{
-            "code":"InvalidParameterCombination",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"CacheParameterGroupNotFoundFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
       ]
     },
     "DescribeCacheParameters":{
@@ -1143,33 +356,9 @@
         "resultWrapper":"DescribeCacheParametersResult"
       },
       "errors":[
-        {
-          "shape":"CacheParameterGroupNotFoundFault",
-          "error":{
-            "code":"CacheParameterGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{
-            "code":"InvalidParameterValue",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterCombinationException",
-          "error":{
-            "code":"InvalidParameterCombination",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"CacheParameterGroupNotFoundFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
       ]
     },
     "DescribeCacheSecurityGroups":{
@@ -1184,33 +373,9 @@
         "resultWrapper":"DescribeCacheSecurityGroupsResult"
       },
       "errors":[
-        {
-          "shape":"CacheSecurityGroupNotFoundFault",
-          "error":{
-            "code":"CacheSecurityGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{
-            "code":"InvalidParameterValue",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterCombinationException",
-          "error":{
-            "code":"InvalidParameterCombination",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"CacheSecurityGroupNotFoundFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
       ]
     },
     "DescribeCacheSubnetGroups":{
@@ -1225,15 +390,7 @@
         "resultWrapper":"DescribeCacheSubnetGroupsResult"
       },
       "errors":[
-        {
-          "shape":"CacheSubnetGroupNotFoundFault",
-          "error":{
-            "code":"CacheSubnetGroupNotFoundFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"CacheSubnetGroupNotFoundFault"}
       ]
     },
     "DescribeEngineDefaultParameters":{
@@ -1245,28 +402,11 @@
       "input":{"shape":"DescribeEngineDefaultParametersMessage"},
       "output":{
         "shape":"DescribeEngineDefaultParametersResult",
-        "wrapper":true,
         "resultWrapper":"DescribeEngineDefaultParametersResult"
       },
       "errors":[
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{
-            "code":"InvalidParameterValue",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterCombinationException",
-          "error":{
-            "code":"InvalidParameterCombination",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
       ]
     },
     "DescribeEvents":{
@@ -1281,24 +421,8 @@
         "resultWrapper":"DescribeEventsResult"
       },
       "errors":[
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{
-            "code":"InvalidParameterValue",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterCombinationException",
-          "error":{
-            "code":"InvalidParameterCombination",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
       ]
     },
     "DescribeReplicationGroups":{
@@ -1313,33 +437,9 @@
         "resultWrapper":"DescribeReplicationGroupsResult"
       },
       "errors":[
-        {
-          "shape":"ReplicationGroupNotFoundFault",
-          "error":{
-            "code":"ReplicationGroupNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{
-            "code":"InvalidParameterValue",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterCombinationException",
-          "error":{
-            "code":"InvalidParameterCombination",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ReplicationGroupNotFoundFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
       ]
     },
     "DescribeReservedCacheNodes":{
@@ -1354,33 +454,9 @@
         "resultWrapper":"DescribeReservedCacheNodesResult"
       },
       "errors":[
-        {
-          "shape":"ReservedCacheNodeNotFoundFault",
-          "error":{
-            "code":"ReservedCacheNodeNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{
-            "code":"InvalidParameterValue",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterCombinationException",
-          "error":{
-            "code":"InvalidParameterCombination",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ReservedCacheNodeNotFoundFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
       ]
     },
     "DescribeReservedCacheNodesOfferings":{
@@ -1395,33 +471,9 @@
         "resultWrapper":"DescribeReservedCacheNodesOfferingsResult"
       },
       "errors":[
-        {
-          "shape":"ReservedCacheNodesOfferingNotFoundFault",
-          "error":{
-            "code":"ReservedCacheNodesOfferingNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{
-            "code":"InvalidParameterValue",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterCombinationException",
-          "error":{
-            "code":"InvalidParameterCombination",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ReservedCacheNodesOfferingNotFoundFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
       ]
     },
     "DescribeSnapshots":{
@@ -1436,42 +488,28 @@
         "resultWrapper":"DescribeSnapshotsResult"
       },
       "errors":[
-        {
-          "shape":"CacheClusterNotFoundFault",
-          "error":{
-            "code":"CacheClusterNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SnapshotNotFoundFault",
-          "error":{
-            "code":"SnapshotNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{
-            "code":"InvalidParameterValue",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterCombinationException",
-          "error":{
-            "code":"InvalidParameterCombination",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"CacheClusterNotFoundFault"},
+        {"shape":"SnapshotNotFoundFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
+      ]
+    },
+    "ListAllowedNodeTypeModifications":{
+      "name":"ListAllowedNodeTypeModifications",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListAllowedNodeTypeModificationsMessage"},
+      "output":{
+        "shape":"AllowedNodeTypeModificationsMessage",
+        "resultWrapper":"ListAllowedNodeTypeModificationsResult"
+      },
+      "errors":[
+        {"shape":"CacheClusterNotFoundFault"},
+        {"shape":"ReplicationGroupNotFoundFault"},
+        {"shape":"InvalidParameterCombinationException"},
+        {"shape":"InvalidParameterValueException"}
       ]
     },
     "ListTagsForResource":{
@@ -1486,33 +524,9 @@
         "resultWrapper":"ListTagsForResourceResult"
       },
       "errors":[
-        {
-          "shape":"CacheClusterNotFoundFault",
-          "error":{
-            "code":"CacheClusterNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SnapshotNotFoundFault",
-          "error":{
-            "code":"SnapshotNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidARNFault",
-          "error":{
-            "code":"InvalidARN",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"CacheClusterNotFoundFault"},
+        {"shape":"SnapshotNotFoundFault"},
+        {"shape":"InvalidARNFault"}
       ]
     },
     "ModifyCacheCluster":{
@@ -1524,109 +538,20 @@
       "input":{"shape":"ModifyCacheClusterMessage"},
       "output":{
         "shape":"ModifyCacheClusterResult",
-        "wrapper":true,
         "resultWrapper":"ModifyCacheClusterResult"
       },
       "errors":[
-        {
-          "shape":"InvalidCacheClusterStateFault",
-          "error":{
-            "code":"InvalidCacheClusterState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidCacheSecurityGroupStateFault",
-          "error":{
-            "code":"InvalidCacheSecurityGroupState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InsufficientCacheClusterCapacityFault",
-          "error":{
-            "code":"InsufficientCacheClusterCapacity",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"CacheClusterNotFoundFault",
-          "error":{
-            "code":"CacheClusterNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NodeQuotaForClusterExceededFault",
-          "error":{
-            "code":"NodeQuotaForClusterExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NodeQuotaForCustomerExceededFault",
-          "error":{
-            "code":"NodeQuotaForCustomerExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"CacheSecurityGroupNotFoundFault",
-          "error":{
-            "code":"CacheSecurityGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"CacheParameterGroupNotFoundFault",
-          "error":{
-            "code":"CacheParameterGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidVPCNetworkStateFault",
-          "error":{
-            "code":"InvalidVPCNetworkStateFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{
-            "code":"InvalidParameterValue",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterCombinationException",
-          "error":{
-            "code":"InvalidParameterCombination",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidCacheClusterStateFault"},
+        {"shape":"InvalidCacheSecurityGroupStateFault"},
+        {"shape":"InsufficientCacheClusterCapacityFault"},
+        {"shape":"CacheClusterNotFoundFault"},
+        {"shape":"NodeQuotaForClusterExceededFault"},
+        {"shape":"NodeQuotaForCustomerExceededFault"},
+        {"shape":"CacheSecurityGroupNotFoundFault"},
+        {"shape":"CacheParameterGroupNotFoundFault"},
+        {"shape":"InvalidVPCNetworkStateFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
       ]
     },
     "ModifyCacheParameterGroup":{
@@ -1641,42 +566,10 @@
         "resultWrapper":"ModifyCacheParameterGroupResult"
       },
       "errors":[
-        {
-          "shape":"CacheParameterGroupNotFoundFault",
-          "error":{
-            "code":"CacheParameterGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidCacheParameterGroupStateFault",
-          "error":{
-            "code":"InvalidCacheParameterGroupState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{
-            "code":"InvalidParameterValue",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterCombinationException",
-          "error":{
-            "code":"InvalidParameterCombination",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"CacheParameterGroupNotFoundFault"},
+        {"shape":"InvalidCacheParameterGroupStateFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
       ]
     },
     "ModifyCacheSubnetGroup":{
@@ -1688,46 +581,13 @@
       "input":{"shape":"ModifyCacheSubnetGroupMessage"},
       "output":{
         "shape":"ModifyCacheSubnetGroupResult",
-        "wrapper":true,
         "resultWrapper":"ModifyCacheSubnetGroupResult"
       },
       "errors":[
-        {
-          "shape":"CacheSubnetGroupNotFoundFault",
-          "error":{
-            "code":"CacheSubnetGroupNotFoundFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"CacheSubnetQuotaExceededFault",
-          "error":{
-            "code":"CacheSubnetQuotaExceededFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SubnetInUse",
-          "error":{
-            "code":"SubnetInUse",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidSubnet",
-          "error":{
-            "code":"InvalidSubnet",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"CacheSubnetGroupNotFoundFault"},
+        {"shape":"CacheSubnetQuotaExceededFault"},
+        {"shape":"SubnetInUse"},
+        {"shape":"InvalidSubnet"}
       ]
     },
     "ModifyReplicationGroup":{
@@ -1739,127 +599,22 @@
       "input":{"shape":"ModifyReplicationGroupMessage"},
       "output":{
         "shape":"ModifyReplicationGroupResult",
-        "wrapper":true,
         "resultWrapper":"ModifyReplicationGroupResult"
       },
       "errors":[
-        {
-          "shape":"ReplicationGroupNotFoundFault",
-          "error":{
-            "code":"ReplicationGroupNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidReplicationGroupStateFault",
-          "error":{
-            "code":"InvalidReplicationGroupState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidCacheClusterStateFault",
-          "error":{
-            "code":"InvalidCacheClusterState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidCacheSecurityGroupStateFault",
-          "error":{
-            "code":"InvalidCacheSecurityGroupState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InsufficientCacheClusterCapacityFault",
-          "error":{
-            "code":"InsufficientCacheClusterCapacity",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"CacheClusterNotFoundFault",
-          "error":{
-            "code":"CacheClusterNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NodeQuotaForClusterExceededFault",
-          "error":{
-            "code":"NodeQuotaForClusterExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NodeQuotaForCustomerExceededFault",
-          "error":{
-            "code":"NodeQuotaForCustomerExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"CacheSecurityGroupNotFoundFault",
-          "error":{
-            "code":"CacheSecurityGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"CacheParameterGroupNotFoundFault",
-          "error":{
-            "code":"CacheParameterGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidVPCNetworkStateFault",
-          "error":{
-            "code":"InvalidVPCNetworkStateFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{
-            "code":"InvalidParameterValue",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterCombinationException",
-          "error":{
-            "code":"InvalidParameterCombination",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ReplicationGroupNotFoundFault"},
+        {"shape":"InvalidReplicationGroupStateFault"},
+        {"shape":"InvalidCacheClusterStateFault"},
+        {"shape":"InvalidCacheSecurityGroupStateFault"},
+        {"shape":"InsufficientCacheClusterCapacityFault"},
+        {"shape":"CacheClusterNotFoundFault"},
+        {"shape":"NodeQuotaForClusterExceededFault"},
+        {"shape":"NodeQuotaForCustomerExceededFault"},
+        {"shape":"CacheSecurityGroupNotFoundFault"},
+        {"shape":"CacheParameterGroupNotFoundFault"},
+        {"shape":"InvalidVPCNetworkStateFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
       ]
     },
     "PurchaseReservedCacheNodesOffering":{
@@ -1871,55 +626,14 @@
       "input":{"shape":"PurchaseReservedCacheNodesOfferingMessage"},
       "output":{
         "shape":"PurchaseReservedCacheNodesOfferingResult",
-        "wrapper":true,
         "resultWrapper":"PurchaseReservedCacheNodesOfferingResult"
       },
       "errors":[
-        {
-          "shape":"ReservedCacheNodesOfferingNotFoundFault",
-          "error":{
-            "code":"ReservedCacheNodesOfferingNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ReservedCacheNodeAlreadyExistsFault",
-          "error":{
-            "code":"ReservedCacheNodeAlreadyExists",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ReservedCacheNodeQuotaExceededFault",
-          "error":{
-            "code":"ReservedCacheNodeQuotaExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{
-            "code":"InvalidParameterValue",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterCombinationException",
-          "error":{
-            "code":"InvalidParameterCombination",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ReservedCacheNodesOfferingNotFoundFault"},
+        {"shape":"ReservedCacheNodeAlreadyExistsFault"},
+        {"shape":"ReservedCacheNodeQuotaExceededFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
       ]
     },
     "RebootCacheCluster":{
@@ -1931,28 +645,11 @@
       "input":{"shape":"RebootCacheClusterMessage"},
       "output":{
         "shape":"RebootCacheClusterResult",
-        "wrapper":true,
         "resultWrapper":"RebootCacheClusterResult"
       },
       "errors":[
-        {
-          "shape":"InvalidCacheClusterStateFault",
-          "error":{
-            "code":"InvalidCacheClusterState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"CacheClusterNotFoundFault",
-          "error":{
-            "code":"CacheClusterNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidCacheClusterStateFault"},
+        {"shape":"CacheClusterNotFoundFault"}
       ]
     },
     "RemoveTagsFromResource":{
@@ -1967,42 +664,10 @@
         "resultWrapper":"RemoveTagsFromResourceResult"
       },
       "errors":[
-        {
-          "shape":"CacheClusterNotFoundFault",
-          "error":{
-            "code":"CacheClusterNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SnapshotNotFoundFault",
-          "error":{
-            "code":"SnapshotNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidARNFault",
-          "error":{
-            "code":"InvalidARN",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"TagNotFoundFault",
-          "error":{
-            "code":"TagNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"CacheClusterNotFoundFault"},
+        {"shape":"SnapshotNotFoundFault"},
+        {"shape":"InvalidARNFault"},
+        {"shape":"TagNotFoundFault"}
       ]
     },
     "ResetCacheParameterGroup":{
@@ -2017,42 +682,10 @@
         "resultWrapper":"ResetCacheParameterGroupResult"
       },
       "errors":[
-        {
-          "shape":"InvalidCacheParameterGroupStateFault",
-          "error":{
-            "code":"InvalidCacheParameterGroupState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"CacheParameterGroupNotFoundFault",
-          "error":{
-            "code":"CacheParameterGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{
-            "code":"InvalidParameterValue",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterCombinationException",
-          "error":{
-            "code":"InvalidParameterCombination",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidCacheParameterGroupStateFault"},
+        {"shape":"CacheParameterGroupNotFoundFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
       ]
     },
     "RevokeCacheSecurityGroupIngress":{
@@ -2064,55 +697,14 @@
       "input":{"shape":"RevokeCacheSecurityGroupIngressMessage"},
       "output":{
         "shape":"RevokeCacheSecurityGroupIngressResult",
-        "wrapper":true,
         "resultWrapper":"RevokeCacheSecurityGroupIngressResult"
       },
       "errors":[
-        {
-          "shape":"CacheSecurityGroupNotFoundFault",
-          "error":{
-            "code":"CacheSecurityGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"AuthorizationNotFoundFault",
-          "error":{
-            "code":"AuthorizationNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidCacheSecurityGroupStateFault",
-          "error":{
-            "code":"InvalidCacheSecurityGroupState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{
-            "code":"InvalidParameterValue",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterCombinationException",
-          "error":{
-            "code":"InvalidParameterCombination",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"CacheSecurityGroupNotFoundFault"},
+        {"shape":"AuthorizationNotFoundFault"},
+        {"shape":"InvalidCacheSecurityGroupStateFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
       ]
     }
   },
@@ -2133,6 +725,12 @@
       "members":{
         "ResourceName":{"shape":"String"},
         "Tags":{"shape":"TagList"}
+      }
+    },
+    "AllowedNodeTypeModificationsMessage":{
+      "type":"structure",
+      "members":{
+        "ScaleUpModifications":{"shape":"NodeTypeList"}
       }
     },
     "AuthorizationAlreadyExistsFault":{
@@ -2168,6 +766,12 @@
         "CacheSecurityGroupName":{"shape":"String"},
         "EC2SecurityGroupName":{"shape":"String"},
         "EC2SecurityGroupOwnerId":{"shape":"String"}
+      }
+    },
+    "AuthorizeCacheSecurityGroupIngressResult":{
+      "type":"structure",
+      "members":{
+        "CacheSecurityGroup":{"shape":"CacheSecurityGroup"}
       }
     },
     "AutomaticFailoverStatus":{
@@ -2605,7 +1209,14 @@
       ],
       "members":{
         "SourceSnapshotName":{"shape":"String"},
-        "TargetSnapshotName":{"shape":"String"}
+        "TargetSnapshotName":{"shape":"String"},
+        "TargetBucket":{"shape":"String"}
+      }
+    },
+    "CopySnapshotResult":{
+      "type":"structure",
+      "members":{
+        "Snapshot":{"shape":"Snapshot"}
       }
     },
     "CreateCacheClusterMessage":{
@@ -2636,6 +1247,12 @@
         "SnapshotWindow":{"shape":"String"}
       }
     },
+    "CreateCacheClusterResult":{
+      "type":"structure",
+      "members":{
+        "CacheCluster":{"shape":"CacheCluster"}
+      }
+    },
     "CreateCacheParameterGroupMessage":{
       "type":"structure",
       "required":[
@@ -2649,6 +1266,12 @@
         "Description":{"shape":"String"}
       }
     },
+    "CreateCacheParameterGroupResult":{
+      "type":"structure",
+      "members":{
+        "CacheParameterGroup":{"shape":"CacheParameterGroup"}
+      }
+    },
     "CreateCacheSecurityGroupMessage":{
       "type":"structure",
       "required":[
@@ -2658,6 +1281,12 @@
       "members":{
         "CacheSecurityGroupName":{"shape":"String"},
         "Description":{"shape":"String"}
+      }
+    },
+    "CreateCacheSecurityGroupResult":{
+      "type":"structure",
+      "members":{
+        "CacheSecurityGroup":{"shape":"CacheSecurityGroup"}
       }
     },
     "CreateCacheSubnetGroupMessage":{
@@ -2671,6 +1300,12 @@
         "CacheSubnetGroupName":{"shape":"String"},
         "CacheSubnetGroupDescription":{"shape":"String"},
         "SubnetIds":{"shape":"SubnetIdentifierList"}
+      }
+    },
+    "CreateCacheSubnetGroupResult":{
+      "type":"structure",
+      "members":{
+        "CacheSubnetGroup":{"shape":"CacheSubnetGroup"}
       }
     },
     "CreateReplicationGroupMessage":{
@@ -2704,6 +1339,12 @@
         "SnapshotWindow":{"shape":"String"}
       }
     },
+    "CreateReplicationGroupResult":{
+      "type":"structure",
+      "members":{
+        "ReplicationGroup":{"shape":"ReplicationGroup"}
+      }
+    },
     "CreateSnapshotMessage":{
       "type":"structure",
       "required":[
@@ -2715,12 +1356,24 @@
         "SnapshotName":{"shape":"String"}
       }
     },
+    "CreateSnapshotResult":{
+      "type":"structure",
+      "members":{
+        "Snapshot":{"shape":"Snapshot"}
+      }
+    },
     "DeleteCacheClusterMessage":{
       "type":"structure",
       "required":["CacheClusterId"],
       "members":{
         "CacheClusterId":{"shape":"String"},
         "FinalSnapshotIdentifier":{"shape":"String"}
+      }
+    },
+    "DeleteCacheClusterResult":{
+      "type":"structure",
+      "members":{
+        "CacheCluster":{"shape":"CacheCluster"}
       }
     },
     "DeleteCacheParameterGroupMessage":{
@@ -2753,11 +1406,23 @@
         "FinalSnapshotIdentifier":{"shape":"String"}
       }
     },
+    "DeleteReplicationGroupResult":{
+      "type":"structure",
+      "members":{
+        "ReplicationGroup":{"shape":"ReplicationGroup"}
+      }
+    },
     "DeleteSnapshotMessage":{
       "type":"structure",
       "required":["SnapshotName"],
       "members":{
         "SnapshotName":{"shape":"String"}
+      }
+    },
+    "DeleteSnapshotResult":{
+      "type":"structure",
+      "members":{
+        "Snapshot":{"shape":"Snapshot"}
       }
     },
     "DescribeCacheClustersMessage":{
@@ -2821,6 +1486,12 @@
         "CacheParameterGroupFamily":{"shape":"String"},
         "MaxRecords":{"shape":"IntegerOptional"},
         "Marker":{"shape":"String"}
+      }
+    },
+    "DescribeEngineDefaultParametersResult":{
+      "type":"structure",
+      "members":{
+        "EngineDefaults":{"shape":"EngineDefaults"}
       }
     },
     "DescribeEventsMessage":{
@@ -3070,6 +1741,13 @@
       "type":"list",
       "member":{"shape":"String"}
     },
+    "ListAllowedNodeTypeModificationsMessage":{
+      "type":"structure",
+      "members":{
+        "CacheClusterId":{"shape":"String"},
+        "ReplicationGroupId":{"shape":"String"}
+      }
+    },
     "ListTagsForResourceMessage":{
       "type":"structure",
       "required":["ResourceName"],
@@ -3096,7 +1774,14 @@
         "EngineVersion":{"shape":"String"},
         "AutoMinorVersionUpgrade":{"shape":"BooleanOptional"},
         "SnapshotRetentionLimit":{"shape":"IntegerOptional"},
-        "SnapshotWindow":{"shape":"String"}
+        "SnapshotWindow":{"shape":"String"},
+        "CacheNodeType":{"shape":"String"}
+      }
+    },
+    "ModifyCacheClusterResult":{
+      "type":"structure",
+      "members":{
+        "CacheCluster":{"shape":"CacheCluster"}
       }
     },
     "ModifyCacheParameterGroupMessage":{
@@ -3119,6 +1804,12 @@
         "SubnetIds":{"shape":"SubnetIdentifierList"}
       }
     },
+    "ModifyCacheSubnetGroupResult":{
+      "type":"structure",
+      "members":{
+        "CacheSubnetGroup":{"shape":"CacheSubnetGroup"}
+      }
+    },
     "ModifyReplicationGroupMessage":{
       "type":"structure",
       "required":["ReplicationGroupId"],
@@ -3138,7 +1829,14 @@
         "EngineVersion":{"shape":"String"},
         "AutoMinorVersionUpgrade":{"shape":"BooleanOptional"},
         "SnapshotRetentionLimit":{"shape":"IntegerOptional"},
-        "SnapshotWindow":{"shape":"String"}
+        "SnapshotWindow":{"shape":"String"},
+        "CacheNodeType":{"shape":"String"}
+      }
+    },
+    "ModifyReplicationGroupResult":{
+      "type":"structure",
+      "members":{
+        "ReplicationGroup":{"shape":"ReplicationGroup"}
       }
     },
     "NodeGroup":{
@@ -3213,6 +1911,10 @@
         "locationName":"NodeSnapshot"
       }
     },
+    "NodeTypeList":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "NotificationConfiguration":{
       "type":"structure",
       "members":{
@@ -3266,7 +1968,8 @@
       "members":{
         "NumCacheNodes":{"shape":"IntegerOptional"},
         "CacheNodeIdsToRemove":{"shape":"CacheNodeIdsList"},
-        "EngineVersion":{"shape":"String"}
+        "EngineVersion":{"shape":"String"},
+        "CacheNodeType":{"shape":"String"}
       }
     },
     "PreferredAvailabilityZoneList":{
@@ -3285,6 +1988,12 @@
         "CacheNodeCount":{"shape":"IntegerOptional"}
       }
     },
+    "PurchaseReservedCacheNodesOfferingResult":{
+      "type":"structure",
+      "members":{
+        "ReservedCacheNode":{"shape":"ReservedCacheNode"}
+      }
+    },
     "RebootCacheClusterMessage":{
       "type":"structure",
       "required":[
@@ -3294,6 +2003,12 @@
       "members":{
         "CacheClusterId":{"shape":"String"},
         "CacheNodeIdsToReboot":{"shape":"CacheNodeIdsList"}
+      }
+    },
+    "RebootCacheClusterResult":{
+      "type":"structure",
+      "members":{
+        "CacheCluster":{"shape":"CacheCluster"}
       }
     },
     "RecurringCharge":{
@@ -3485,10 +2200,7 @@
     },
     "ResetCacheParameterGroupMessage":{
       "type":"structure",
-      "required":[
-        "CacheParameterGroupName",
-        "ParameterNameValues"
-      ],
+      "required":["CacheParameterGroupName"],
       "members":{
         "CacheParameterGroupName":{"shape":"String"},
         "ResetAllParameters":{"shape":"Boolean"},
@@ -3506,6 +2218,12 @@
         "CacheSecurityGroupName":{"shape":"String"},
         "EC2SecurityGroupName":{"shape":"String"},
         "EC2SecurityGroupOwnerId":{"shape":"String"}
+      }
+    },
+    "RevokeCacheSecurityGroupIngressResult":{
+      "type":"structure",
+      "members":{
+        "CacheSecurityGroup":{"shape":"CacheSecurityGroup"}
       }
     },
     "SecurityGroupIdsList":{
@@ -3694,114 +2412,6 @@
         "senderFault":true
       },
       "exception":true
-    },
-    "AuthorizeCacheSecurityGroupIngressResult":{
-      "type":"structure",
-      "members":{
-        "CacheSecurityGroup":{"shape":"CacheSecurityGroup"}
-      }
-    },
-    "CopySnapshotResult":{
-      "type":"structure",
-      "members":{
-        "Snapshot":{"shape":"Snapshot"}
-      }
-    },
-    "CreateCacheClusterResult":{
-      "type":"structure",
-      "members":{
-        "CacheCluster":{"shape":"CacheCluster"}
-      }
-    },
-    "CreateCacheParameterGroupResult":{
-      "type":"structure",
-      "members":{
-        "CacheParameterGroup":{"shape":"CacheParameterGroup"}
-      }
-    },
-    "CreateCacheSecurityGroupResult":{
-      "type":"structure",
-      "members":{
-        "CacheSecurityGroup":{"shape":"CacheSecurityGroup"}
-      }
-    },
-    "CreateCacheSubnetGroupResult":{
-      "type":"structure",
-      "members":{
-        "CacheSubnetGroup":{"shape":"CacheSubnetGroup"}
-      }
-    },
-    "CreateReplicationGroupResult":{
-      "type":"structure",
-      "members":{
-        "ReplicationGroup":{"shape":"ReplicationGroup"}
-      }
-    },
-    "CreateSnapshotResult":{
-      "type":"structure",
-      "members":{
-        "Snapshot":{"shape":"Snapshot"}
-      }
-    },
-    "DeleteCacheClusterResult":{
-      "type":"structure",
-      "members":{
-        "CacheCluster":{"shape":"CacheCluster"}
-      }
-    },
-    "DeleteReplicationGroupResult":{
-      "type":"structure",
-      "members":{
-        "ReplicationGroup":{"shape":"ReplicationGroup"}
-      }
-    },
-    "DeleteSnapshotResult":{
-      "type":"structure",
-      "members":{
-        "Snapshot":{"shape":"Snapshot"}
-      }
-    },
-    "DescribeEngineDefaultParametersResult":{
-      "type":"structure",
-      "members":{
-        "EngineDefaults":{"shape":"EngineDefaults"}
-      }
-    },
-    "ModifyCacheClusterResult":{
-      "type":"structure",
-      "members":{
-        "CacheCluster":{"shape":"CacheCluster"}
-      }
-    },
-    "ModifyCacheSubnetGroupResult":{
-      "type":"structure",
-      "members":{
-        "CacheSubnetGroup":{"shape":"CacheSubnetGroup"}
-      }
-    },
-    "ModifyReplicationGroupResult":{
-      "type":"structure",
-      "members":{
-        "ReplicationGroup":{"shape":"ReplicationGroup"}
-      }
-    },
-    "PurchaseReservedCacheNodesOfferingResult":{
-      "type":"structure",
-      "members":{
-        "ReservedCacheNode":{"shape":"ReservedCacheNode"}
-      }
-    },
-    "RebootCacheClusterResult":{
-      "type":"structure",
-      "members":{
-        "CacheCluster":{"shape":"CacheCluster"}
-      }
-    },
-    "RevokeCacheSecurityGroupIngressResult":{
-      "type":"structure",
-      "members":{
-        "CacheSecurityGroup":{"shape":"CacheSecurityGroup"}
-      }
     }
   }
 }
