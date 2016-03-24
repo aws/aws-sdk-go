@@ -120,7 +120,8 @@
         {"shape":"DBSnapshotAlreadyExistsFault"},
         {"shape":"DBSnapshotNotFoundFault"},
         {"shape":"InvalidDBSnapshotStateFault"},
-        {"shape":"SnapshotQuotaExceededFault"}
+        {"shape":"SnapshotQuotaExceededFault"},
+        {"shape":"KMSKeyNotAccessibleFault"}
       ]
     },
     "CopyOptionGroup":{
@@ -162,7 +163,8 @@
         {"shape":"InvalidDBSubnetGroupStateFault"},
         {"shape":"InvalidSubnet"},
         {"shape":"DBClusterParameterGroupNotFoundFault"},
-        {"shape":"KMSKeyNotAccessibleFault"}
+        {"shape":"KMSKeyNotAccessibleFault"},
+        {"shape":"DBClusterNotFoundFault"}
       ]
     },
     "CreateDBClusterParameterGroup":{
@@ -196,7 +198,8 @@
         {"shape":"DBClusterSnapshotAlreadyExistsFault"},
         {"shape":"InvalidDBClusterStateFault"},
         {"shape":"DBClusterNotFoundFault"},
-        {"shape":"SnapshotQuotaExceededFault"}
+        {"shape":"SnapshotQuotaExceededFault"},
+        {"shape":"InvalidDBClusterSnapshotStateFault"}
       ]
     },
     "CreateDBInstance":{
@@ -227,7 +230,8 @@
         {"shape":"DBClusterNotFoundFault"},
         {"shape":"StorageTypeNotSupportedFault"},
         {"shape":"AuthorizationNotFoundFault"},
-        {"shape":"KMSKeyNotAccessibleFault"}
+        {"shape":"KMSKeyNotAccessibleFault"},
+        {"shape":"DomainNotFoundFault"}
       ]
     },
     "CreateDBInstanceReadReplica":{
@@ -382,7 +386,10 @@
       },
       "errors":[
         {"shape":"DBClusterNotFoundFault"},
-        {"shape":"InvalidDBClusterStateFault"}
+        {"shape":"InvalidDBClusterStateFault"},
+        {"shape":"DBClusterSnapshotAlreadyExistsFault"},
+        {"shape":"SnapshotQuotaExceededFault"},
+        {"shape":"InvalidDBClusterSnapshotStateFault"}
       ]
     },
     "DeleteDBClusterParameterGroup":{
@@ -428,7 +435,8 @@
         {"shape":"DBInstanceNotFoundFault"},
         {"shape":"InvalidDBInstanceStateFault"},
         {"shape":"DBSnapshotAlreadyExistsFault"},
-        {"shape":"SnapshotQuotaExceededFault"}
+        {"shape":"SnapshotQuotaExceededFault"},
+        {"shape":"InvalidDBClusterStateFault"}
       ]
     },
     "DeleteDBParameterGroup":{
@@ -993,7 +1001,8 @@
         {"shape":"DBUpgradeDependencyFailureFault"},
         {"shape":"StorageTypeNotSupportedFault"},
         {"shape":"AuthorizationNotFoundFault"},
-        {"shape":"CertificateNotFoundFault"}
+        {"shape":"CertificateNotFoundFault"},
+        {"shape":"DomainNotFoundFault"}
       ]
     },
     "ModifyDBParameterGroup":{
@@ -1282,7 +1291,8 @@
         {"shape":"StorageTypeNotSupportedFault"},
         {"shape":"AuthorizationNotFoundFault"},
         {"shape":"KMSKeyNotAccessibleFault"},
-        {"shape":"DBSecurityGroupNotFoundFault"}
+        {"shape":"DBSecurityGroupNotFoundFault"},
+        {"shape":"DomainNotFoundFault"}
       ]
     },
     "RestoreDBInstanceToPointInTime":{
@@ -1314,7 +1324,8 @@
         {"shape":"StorageTypeNotSupportedFault"},
         {"shape":"AuthorizationNotFoundFault"},
         {"shape":"KMSKeyNotAccessibleFault"},
-        {"shape":"DBSecurityGroupNotFoundFault"}
+        {"shape":"DBSecurityGroupNotFoundFault"},
+        {"shape":"DomainNotFoundFault"}
       ]
     },
     "RevokeDBSecurityGroupIngress":{
@@ -1726,9 +1737,11 @@
         "TdeCredentialPassword":{"shape":"String"},
         "StorageEncrypted":{"shape":"BooleanOptional"},
         "KmsKeyId":{"shape":"String"},
+        "Domain":{"shape":"String"},
         "CopyTagsToSnapshot":{"shape":"BooleanOptional"},
         "MonitoringInterval":{"shape":"IntegerOptional"},
         "MonitoringRoleArn":{"shape":"String"},
+        "DomainIAMRoleName":{"shape":"String"},
         "PromotionTier":{"shape":"IntegerOptional"}
       }
     },
@@ -2173,6 +2186,7 @@
         "KmsKeyId":{"shape":"String"},
         "DbiResourceId":{"shape":"String"},
         "CACertificateIdentifier":{"shape":"String"},
+        "DomainMemberships":{"shape":"DomainMembershipList"},
         "CopyTagsToSnapshot":{"shape":"Boolean"},
         "MonitoringInterval":{"shape":"IntegerOptional"},
         "EnhancedMonitoringResourceArn":{"shape":"String"},
@@ -3022,6 +3036,33 @@
         "Marker":{"shape":"String"}
       }
     },
+    "DomainMembership":{
+      "type":"structure",
+      "members":{
+        "Domain":{"shape":"String"},
+        "Status":{"shape":"String"},
+        "FQDN":{"shape":"String"},
+        "IAMRoleName":{"shape":"String"}
+      }
+    },
+    "DomainMembershipList":{
+      "type":"list",
+      "member":{
+        "shape":"DomainMembership",
+        "locationName":"DomainMembership"
+      }
+    },
+    "DomainNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DomainNotFoundFault",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "Double":{"type":"double"},
     "DownloadDBLogFilePortionDetails":{
       "type":"structure",
@@ -3504,11 +3545,13 @@
         "TdeCredentialArn":{"shape":"String"},
         "TdeCredentialPassword":{"shape":"String"},
         "CACertificateIdentifier":{"shape":"String"},
+        "Domain":{"shape":"String"},
         "CopyTagsToSnapshot":{"shape":"BooleanOptional"},
         "MonitoringInterval":{"shape":"IntegerOptional"},
         "DBPortNumber":{"shape":"IntegerOptional"},
         "PubliclyAccessible":{"shape":"BooleanOptional"},
         "MonitoringRoleArn":{"shape":"String"},
+        "DomainIAMRoleName":{"shape":"String"},
         "PromotionTier":{"shape":"IntegerOptional"}
       }
     },
@@ -4237,7 +4280,9 @@
         "StorageType":{"shape":"String"},
         "TdeCredentialArn":{"shape":"String"},
         "TdeCredentialPassword":{"shape":"String"},
-        "CopyTagsToSnapshot":{"shape":"BooleanOptional"}
+        "Domain":{"shape":"String"},
+        "CopyTagsToSnapshot":{"shape":"BooleanOptional"},
+        "DomainIAMRoleName":{"shape":"String"}
       }
     },
     "RestoreDBInstanceFromDBSnapshotResult":{
@@ -4273,7 +4318,9 @@
         "Tags":{"shape":"TagList"},
         "StorageType":{"shape":"String"},
         "TdeCredentialArn":{"shape":"String"},
-        "TdeCredentialPassword":{"shape":"String"}
+        "TdeCredentialPassword":{"shape":"String"},
+        "Domain":{"shape":"String"},
+        "DomainIAMRoleName":{"shape":"String"}
       }
     },
     "RestoreDBInstanceToPointInTimeResult":{

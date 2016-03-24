@@ -216,7 +216,7 @@ func (c *RDS) CopyDBSnapshotRequest(input *CopyDBSnapshotInput) (req *request.Re
 	return
 }
 
-// Copies the specified DB Snapshot. The source DB snapshot must be in the "available"
+// Copies the specified DB snapshot. The source DB snapshot must be in the "available"
 // state.
 //
 // If you are copying from a shared manual DB snapshot, the SourceDBSnapshotIdentifier
@@ -3748,6 +3748,13 @@ type CreateDBInstanceInput struct {
 	//  If there is no DB subnet group, then it is a non-VPC DB instance.
 	DBSubnetGroupName *string `type:"string"`
 
+	// Specify the Active Directory Domain to create the instance in.
+	Domain *string `type:"string"`
+
+	// Specify the name of the IAM role to be used when making API calls to the
+	// Directory Service.
+	DomainIAMRoleName *string `type:"string"`
+
 	// The name of the database engine to be used for this instance.
 	//
 	//  Valid Values: MySQL | mariadb | oracle-se1 | oracle-se | oracle-ee | sqlserver-ee
@@ -5037,6 +5044,9 @@ type DBInstance struct {
 	// is accessed.
 	DbiResourceId *string `type:"string"`
 
+	// The Active Directory Domain membership records associated with the DB instance.
+	DomainMemberships []*DomainMembership `locationNameList:"DomainMembership" type:"list"`
+
 	// Specifies the connection endpoint.
 	Endpoint *Endpoint `type:"structure"`
 
@@ -5834,9 +5844,10 @@ type DeleteDBSubnetGroupInput struct {
 
 	// The name of the database subnet group to delete.
 	//
-	// You cannot delete the default subnet group. Constraints: Must contain no
-	// more than 255 alphanumeric characters, periods, underscores, spaces, or hyphens.
-	// Must not be default.
+	// You cannot delete the default subnet group.  Constraints:
+	//
+	// Constraints: Must contain no more than 255 alphanumeric characters, periods,
+	// underscores, spaces, or hyphens. Must not be default.
 	//
 	// Example: mySubnetgroup
 	DBSubnetGroupName *string `type:"string" required:"true"`
@@ -7675,6 +7686,35 @@ func (s DescribeReservedDBInstancesOutput) GoString() string {
 	return s.String()
 }
 
+// An Active Directory Domain membership record associated with the DB instance.
+type DomainMembership struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Active Directory Domain.
+	Domain *string `type:"string"`
+
+	// The fully qualified domain name of the Active Directory Domain.
+	FQDN *string `type:"string"`
+
+	// The name of the IAM role to be used when making API calls to the Directory
+	// Service.
+	IAMRoleName *string `type:"string"`
+
+	// The status of the DB instance's Active Directory Domain membership, such
+	// as joined, pending-join, failed etc).
+	Status *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DomainMembership) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DomainMembership) GoString() string {
+	return s.String()
+}
+
 type DownloadDBLogFilePortionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8315,7 +8355,7 @@ type ModifyDBInstanceInput struct {
 	// are asynchronously applied as soon as possible, regardless of the PreferredMaintenanceWindow
 	// setting for the DB instance.
 	//
-	// If this parameter is set to false, changes to the DB instance are applied
+	//  If this parameter is set to false, changes to the DB instance are applied
 	// during the next maintenance window. Some parameter changes can cause an outage
 	// and will be applied on the next call to RebootDBInstance, or the next failure
 	// reboot. Review the table of parameters in Modifying a DB Instance and Using
@@ -8428,6 +8468,8 @@ type ModifyDBInstanceInput struct {
 	//
 	//  Valid Values: 1150-65535
 	//
+	// Type: Integer
+	//
 	//  Oracle
 	//
 	//  Default: 1521
@@ -8457,6 +8499,17 @@ type ModifyDBInstanceInput struct {
 	//  Must be 1 to 255 alphanumeric characters First character must be a letter
 	// Cannot end with a hyphen or contain two consecutive hyphens
 	DBSecurityGroups []*string `locationNameList:"DBSecurityGroupName" type:"list"`
+
+	// Specify the Active Directory Domain to move the instance to.
+	//
+	// The specified Active Directory Domain must be created prior to this operation.
+	// Currently only a SQL Server instance can be created in a Active Directory
+	// Domain.
+	Domain *string `type:"string"`
+
+	// Specify the name of the IAM role to be used when making API calls to the
+	// Directory Service.
+	DomainIAMRoleName *string `type:"string"`
 
 	// The version number of the database engine to upgrade to. Changing this parameter
 	// results in an outage and the change is applied during the next maintenance
@@ -8797,7 +8850,7 @@ type ModifyDBSubnetGroupInput struct {
 	// The name for the DB subnet group. This value is stored as a lowercase string.
 	//
 	// Constraints: Must contain no more than 255 alphanumeric characters, periods,
-	// underscores, spaces, or hyphens. Must not be "default".
+	// underscores, spaces, or hyphens. Must not be default.
 	//
 	// Example: mySubnetgroup
 	DBSubnetGroupName *string `type:"string" required:"true"`
@@ -10182,6 +10235,13 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// Example: mySubnetgroup
 	DBSubnetGroupName *string `type:"string"`
 
+	// Specify the Active Directory Domain to restore the instance in.
+	Domain *string `type:"string"`
+
+	// Specify the name of the IAM role to be used when making API calls to the
+	// Directory Service.
+	DomainIAMRoleName *string `type:"string"`
+
 	// The database engine to use for the new instance.
 	//
 	// Default: The same as source
@@ -10342,6 +10402,13 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	//
 	// Example: mySubnetgroup
 	DBSubnetGroupName *string `type:"string"`
+
+	// Specify the Active Directory Domain to restore the instance in.
+	Domain *string `type:"string"`
+
+	// Specify the name of the IAM role to be used when making API calls to the
+	// Directory Service.
+	DomainIAMRoleName *string `type:"string"`
 
 	// The database engine to use for the new instance.
 	//
