@@ -14,7 +14,7 @@
         },
         {
           "matcher": "error",
-          "expected": "InvalidInstanceIDNotFound",
+          "expected": "InvalidInstanceID.NotFound",
           "state": "retry"
         }
       ]
@@ -140,6 +140,24 @@
         }
       ]
     },
+    "ImageExists": {
+      "operation": "DescribeImages",
+      "maxAttempts": 40,
+      "delay": 15,
+      "acceptors": [
+        {
+          "matcher": "path",
+          "expected": true,
+          "argument": "length(Images[]) > `0`",
+          "state": "success"
+        },
+        {
+          "matcher": "error",
+          "expected": "InvalidAMIID.NotFound",
+          "state": "retry"
+        }
+      ]
+    },
     "ImageAvailable": {
       "operation": "DescribeImages",
       "maxAttempts": 40,
@@ -190,7 +208,7 @@
         },
         {
           "matcher": "error",
-          "expected": "InvalidInstanceIDNotFound",
+          "expected": "InvalidInstanceID.NotFound",
           "state": "retry"
         }
       ]
@@ -208,7 +226,7 @@
         },
         {
           "matcher": "error",
-          "expected": "InvalidInstanceIDNotFound",
+          "expected": "InvalidInstanceID.NotFound",
           "state": "retry"
         }
       ]
@@ -275,7 +293,7 @@
           "argument": "length(KeyPairs[].KeyName) > `0`"
         },
         {
-          "expected": "InvalidKeyPairNotFound",
+          "expected": "InvalidKeyPair.NotFound",
           "matcher": "error",
           "state": "retry"
         }
@@ -456,7 +474,7 @@
         },
         {
           "matcher": "error",
-          "expected": "InvalidVolumeNotFound",
+          "expected": "InvalidVolume.NotFound",
           "state": "success"
         }
       ]
@@ -549,7 +567,7 @@
         },
         {
           "matcher": "error",
-          "expected": "InvalidVpcPeeringConnectionIDNotFound",
+          "expected": "InvalidVpcPeeringConnectionID.NotFound",
           "state": "retry"
         }
       ]
