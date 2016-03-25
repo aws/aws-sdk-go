@@ -35,6 +35,20 @@ const instanceIdentityDocument = `{
   "architecture" : "x86_64"
 }`
 
+const validIamInfo = `{
+  "Code" : "Success",
+  "LastUpdated" : "2016-03-17T12:27:32Z",
+  "InstanceProfileArn" : "arn:aws:iam::123456789012:instance-profile/my-instance-profile",
+  "InstanceProfileId" : "AIPAABCDEFGHIJKLMN123"
+}`
+
+const unsuccessfulIamInfo = `{
+  "Code" : "Failed",
+  "LastUpdated" : "2016-03-17T12:27:32Z",
+  "InstanceProfileArn" : "arn:aws:iam::123456789012:instance-profile/my-instance-profile",
+  "InstanceProfileId" : "AIPAABCDEFGHIJKLMN123"
+}`
+
 func initTestServer(path string, resp string) *httptest.Server {
 	return httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.RequestURI != path {
@@ -98,6 +112,36 @@ func TestMetadataAvailable(t *testing.T) {
 	available := c.Available()
 
 	assert.True(t, available)
+}
+
+func TestMetadataIAMInfo_success(t *testing.T) {
+	server := initTestServer(
+		"/latest/meta-data/iam/info",
+		validIamInfo,
+	)
+	defer server.Close()
+	c := ec2metadata.New(session.New(), &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+
+	iamInfo, err := c.IAMInfo()
+	assert.NoError(t, err)
+	assert.Equal(t, "Success", iamInfo.Code)
+	assert.Equal(t, "arn:aws:iam::123456789012:instance-profile/my-instance-profile", iamInfo.InstanceProfileArn)
+	assert.Equal(t, "AIPAABCDEFGHIJKLMN123", iamInfo.InstanceProfileID)
+}
+
+func TestMetadataIAMInfo_failure(t *testing.T) {
+	server := initTestServer(
+		"/latest/meta-data/iam/info",
+		unsuccessfulIamInfo,
+	)
+	defer server.Close()
+	c := ec2metadata.New(session.New(), &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+
+	iamInfo, err := c.IAMInfo()
+	assert.NotNil(t, err)
+	assert.Equal(t, "", iamInfo.Code)
+	assert.Equal(t, "", iamInfo.InstanceProfileArn)
+	assert.Equal(t, "", iamInfo.InstanceProfileID)
 }
 
 func TestMetadataNotAvailable(t *testing.T) {
