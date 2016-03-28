@@ -41,8 +41,8 @@ func (d DefaultRetryer) RetryRules(r *request.Request) time.Duration {
 	retryCount := r.RetryCount
 	if retryCount > 13 {
 		retryCount = 13
-	} else if throttle && retryCount > 3 {
-		retryCount = 3
+	} else if throttle && retryCount > 8 {
+		retryCount = 8
 	}
 
 	delay := (1 << uint(retryCount)) * (rand.Intn(30) + minTime)
