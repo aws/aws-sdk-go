@@ -259,3 +259,47 @@ func TestRequestUserAgent(t *testing.T) {
 		aws.SDKName, aws.SDKVersion, runtime.Version(), runtime.GOOS, runtime.GOARCH)
 	assert.Equal(t, expectUA, req.HTTPRequest.Header.Get("User-Agent"))
 }
+
+func TestRequestThrottleRetries(t *testing.T) {
+	delays := []time.Duration{}
+	sleepDelay := func(delay time.Duration) {
+		delays = append(delays, delay)
+	}
+
+	reqNum := 0
+	reqs := []http.Response{
+		{StatusCode: 500, Body: body(`{"__type":"Throttling","message":"An error occurred."}`)},
+		{StatusCode: 500, Body: body(`{"__type":"Throttling","message":"An error occurred."}`)},
+		{StatusCode: 500, Body: body(`{"__type":"Throttling","message":"An error occurred."}`)},
+		{StatusCode: 500, Body: body(`{"__type":"Throttling","message":"An error occurred."}`)},
+	}
+
+	s := awstesting.NewClient(aws.NewConfig().WithSleepDelay(sleepDelay))
+	s.Handlers.Validate.Clear()
+	s.Handlers.Unmarshal.PushBack(unmarshal)
+	s.Handlers.UnmarshalError.PushBack(unmarshalError)
+	s.Handlers.Send.Clear() // mock sending
+	s.Handlers.Send.PushBack(func(r *request.Request) {
+		r.HTTPResponse = &reqs[reqNum]
+		reqNum++
+	})
+	r := s.NewRequest(&request.Operation{Name: "Operation"}, nil, nil)
+	err := r.Send()
+	assert.NotNil(t, err)
+	if e, ok := err.(awserr.RequestFailure); ok {
+		assert.Equal(t, 500, e.StatusCode())
+	} else {
+		assert.Fail(t, "Expected error to be a service failure")
+	}
+	assert.Equal(t, "Throttling", err.(awserr.Error).Code())
+	assert.Equal(t, "An error occurred.", err.(awserr.Error).Message())
+	assert.Equal(t, 3, int(r.RetryCount))
+
+	expectDelays := []struct{ min, max time.Duration }{{1000, 1030}, {2000, 2060}, {4000, 4120}}
+	for i, v := range delays {
+		min := expectDelays[i].min * time.Millisecond
+		max := expectDelays[i].max * time.Millisecond
+		assert.True(t, min <= v && v <= max,
+			"Expect delay to be within range, i:%d, v:%s, min:%s, max:%s", i, v, min, max)
+	}
+}
