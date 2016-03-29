@@ -21,7 +21,7 @@ func ExampleInspector_AddAttributesToFindings() {
 	params := &inspector.AddAttributesToFindingsInput{
 		Attributes: []*inspector.Attribute{ // Required
 			{ // Required
-				Key:   aws.String("AttributeKey"),
+				Key:   aws.String("AttributeKey"), // Required
 				Value: aws.String("AttributeValue"),
 			},
 			// More values...
@@ -44,14 +44,14 @@ func ExampleInspector_AddAttributesToFindings() {
 	fmt.Println(resp)
 }
 
-func ExampleInspector_AttachAssessmentAndRulesPackage() {
+func ExampleInspector_CreateAssessmentTarget() {
 	svc := inspector.New(session.New())
 
-	params := &inspector.AttachAssessmentAndRulesPackageInput{
-		AssessmentArn:   aws.String("Arn"), // Required
-		RulesPackageArn: aws.String("Arn"), // Required
+	params := &inspector.CreateAssessmentTargetInput{
+		AssessmentTargetName: aws.String("AssessmentTargetName"), // Required
+		ResourceGroupArn:     aws.String("Arn"),                  // Required
 	}
-	resp, err := svc.AttachAssessmentAndRulesPackage(params)
+	resp, err := svc.CreateAssessmentTarget(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -64,42 +64,26 @@ func ExampleInspector_AttachAssessmentAndRulesPackage() {
 	fmt.Println(resp)
 }
 
-func ExampleInspector_CreateApplication() {
+func ExampleInspector_CreateAssessmentTemplate() {
 	svc := inspector.New(session.New())
 
-	params := &inspector.CreateApplicationInput{
-		ApplicationName:  aws.String("Name"), // Required
-		ResourceGroupArn: aws.String("Arn"),  // Required
-	}
-	resp, err := svc.CreateApplication(params)
-
-	if err != nil {
-		// Print the error, cast err to awserr.Error to get the Code and
-		// Message from an error.
-		fmt.Println(err.Error())
-		return
-	}
-
-	// Pretty-print the response data.
-	fmt.Println(resp)
-}
-
-func ExampleInspector_CreateAssessment() {
-	svc := inspector.New(session.New())
-
-	params := &inspector.CreateAssessmentInput{
-		ApplicationArn:    aws.String("Arn"),  // Required
-		AssessmentName:    aws.String("Name"), // Required
-		DurationInSeconds: aws.Int64(1),       // Required
+	params := &inspector.CreateAssessmentTemplateInput{
+		AssessmentTargetArn:    aws.String("Arn"),                    // Required
+		AssessmentTemplateName: aws.String("AssessmentTemplateName"), // Required
+		DurationInSeconds:      aws.Int64(1),                         // Required
+		RulesPackageArns: []*string{ // Required
+			aws.String("Arn"), // Required
+			// More values...
+		},
 		UserAttributesForFindings: []*inspector.Attribute{
 			{ // Required
-				Key:   aws.String("AttributeKey"),
+				Key:   aws.String("AttributeKey"), // Required
 				Value: aws.String("AttributeValue"),
 			},
 			// More values...
 		},
 	}
-	resp, err := svc.CreateAssessment(params)
+	resp, err := svc.CreateAssessmentTemplate(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -116,7 +100,13 @@ func ExampleInspector_CreateResourceGroup() {
 	svc := inspector.New(session.New())
 
 	params := &inspector.CreateResourceGroupInput{
-		ResourceGroupTags: aws.String("ResourceGroupTags"), // Required
+		ResourceGroupTags: []*inspector.ResourceGroupTag{ // Required
+			{ // Required
+				Key:   aws.String("TagKey"), // Required
+				Value: aws.String("TagValue"),
+			},
+			// More values...
+		},
 	}
 	resp, err := svc.CreateResourceGroup(params)
 
@@ -131,13 +121,13 @@ func ExampleInspector_CreateResourceGroup() {
 	fmt.Println(resp)
 }
 
-func ExampleInspector_DeleteApplication() {
+func ExampleInspector_DeleteAssessmentRun() {
 	svc := inspector.New(session.New())
 
-	params := &inspector.DeleteApplicationInput{
-		ApplicationArn: aws.String("Arn"), // Required
+	params := &inspector.DeleteAssessmentRunInput{
+		AssessmentRunArn: aws.String("Arn"), // Required
 	}
-	resp, err := svc.DeleteApplication(params)
+	resp, err := svc.DeleteAssessmentRun(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -150,13 +140,13 @@ func ExampleInspector_DeleteApplication() {
 	fmt.Println(resp)
 }
 
-func ExampleInspector_DeleteAssessment() {
+func ExampleInspector_DeleteAssessmentTarget() {
 	svc := inspector.New(session.New())
 
-	params := &inspector.DeleteAssessmentInput{
-		AssessmentArn: aws.String("Arn"), // Required
+	params := &inspector.DeleteAssessmentTargetInput{
+		AssessmentTargetArn: aws.String("Arn"), // Required
 	}
-	resp, err := svc.DeleteAssessment(params)
+	resp, err := svc.DeleteAssessmentTarget(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -169,13 +159,13 @@ func ExampleInspector_DeleteAssessment() {
 	fmt.Println(resp)
 }
 
-func ExampleInspector_DeleteRun() {
+func ExampleInspector_DeleteAssessmentTemplate() {
 	svc := inspector.New(session.New())
 
-	params := &inspector.DeleteRunInput{
-		RunArn: aws.String("Arn"), // Required
+	params := &inspector.DeleteAssessmentTemplateInput{
+		AssessmentTemplateArn: aws.String("Arn"), // Required
 	}
-	resp, err := svc.DeleteRun(params)
+	resp, err := svc.DeleteAssessmentTemplate(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -188,13 +178,16 @@ func ExampleInspector_DeleteRun() {
 	fmt.Println(resp)
 }
 
-func ExampleInspector_DescribeApplication() {
+func ExampleInspector_DescribeAssessmentRuns() {
 	svc := inspector.New(session.New())
 
-	params := &inspector.DescribeApplicationInput{
-		ApplicationArn: aws.String("Arn"), // Required
+	params := &inspector.DescribeAssessmentRunsInput{
+		AssessmentRunArns: []*string{ // Required
+			aws.String("Arn"), // Required
+			// More values...
+		},
 	}
-	resp, err := svc.DescribeApplication(params)
+	resp, err := svc.DescribeAssessmentRuns(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -207,13 +200,38 @@ func ExampleInspector_DescribeApplication() {
 	fmt.Println(resp)
 }
 
-func ExampleInspector_DescribeAssessment() {
+func ExampleInspector_DescribeAssessmentTargets() {
 	svc := inspector.New(session.New())
 
-	params := &inspector.DescribeAssessmentInput{
-		AssessmentArn: aws.String("Arn"), // Required
+	params := &inspector.DescribeAssessmentTargetsInput{
+		AssessmentTargetArns: []*string{ // Required
+			aws.String("Arn"), // Required
+			// More values...
+		},
 	}
-	resp, err := svc.DescribeAssessment(params)
+	resp, err := svc.DescribeAssessmentTargets(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleInspector_DescribeAssessmentTemplates() {
+	svc := inspector.New(session.New())
+
+	params := &inspector.DescribeAssessmentTemplatesInput{
+		AssessmentTemplateArns: []*string{ // Required
+			aws.String("Arn"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.DescribeAssessmentTemplates(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -243,13 +261,17 @@ func ExampleInspector_DescribeCrossAccountAccessRole() {
 	fmt.Println(resp)
 }
 
-func ExampleInspector_DescribeFinding() {
+func ExampleInspector_DescribeFindings() {
 	svc := inspector.New(session.New())
 
-	params := &inspector.DescribeFindingInput{
-		FindingArn: aws.String("Arn"), // Required
+	params := &inspector.DescribeFindingsInput{
+		FindingArns: []*string{ // Required
+			aws.String("Arn"), // Required
+			// More values...
+		},
+		Locale: aws.String("Locale"),
 	}
-	resp, err := svc.DescribeFinding(params)
+	resp, err := svc.DescribeFindings(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -262,13 +284,16 @@ func ExampleInspector_DescribeFinding() {
 	fmt.Println(resp)
 }
 
-func ExampleInspector_DescribeResourceGroup() {
+func ExampleInspector_DescribeResourceGroups() {
 	svc := inspector.New(session.New())
 
-	params := &inspector.DescribeResourceGroupInput{
-		ResourceGroupArn: aws.String("Arn"), // Required
+	params := &inspector.DescribeResourceGroupsInput{
+		ResourceGroupArns: []*string{ // Required
+			aws.String("Arn"), // Required
+			// More values...
+		},
 	}
-	resp, err := svc.DescribeResourceGroup(params)
+	resp, err := svc.DescribeResourceGroups(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -281,13 +306,17 @@ func ExampleInspector_DescribeResourceGroup() {
 	fmt.Println(resp)
 }
 
-func ExampleInspector_DescribeRulesPackage() {
+func ExampleInspector_DescribeRulesPackages() {
 	svc := inspector.New(session.New())
 
-	params := &inspector.DescribeRulesPackageInput{
-		RulesPackageArn: aws.String("Arn"), // Required
+	params := &inspector.DescribeRulesPackagesInput{
+		RulesPackageArns: []*string{ // Required
+			aws.String("Arn"), // Required
+			// More values...
+		},
+		Locale: aws.String("Locale"),
 	}
-	resp, err := svc.DescribeRulesPackage(params)
+	resp, err := svc.DescribeRulesPackages(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -300,13 +329,13 @@ func ExampleInspector_DescribeRulesPackage() {
 	fmt.Println(resp)
 }
 
-func ExampleInspector_DescribeRun() {
+func ExampleInspector_GetTelemetryMetadata() {
 	svc := inspector.New(session.New())
 
-	params := &inspector.DescribeRunInput{
-		RunArn: aws.String("Arn"), // Required
+	params := &inspector.GetTelemetryMetadataInput{
+		AssessmentRunArn: aws.String("Arn"), // Required
 	}
-	resp, err := svc.DescribeRun(params)
+	resp, err := svc.GetTelemetryMetadata(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -319,78 +348,17 @@ func ExampleInspector_DescribeRun() {
 	fmt.Println(resp)
 }
 
-func ExampleInspector_DetachAssessmentAndRulesPackage() {
+func ExampleInspector_ListAssessmentRunAgents() {
 	svc := inspector.New(session.New())
 
-	params := &inspector.DetachAssessmentAndRulesPackageInput{
-		AssessmentArn:   aws.String("Arn"), // Required
-		RulesPackageArn: aws.String("Arn"), // Required
-	}
-	resp, err := svc.DetachAssessmentAndRulesPackage(params)
-
-	if err != nil {
-		// Print the error, cast err to awserr.Error to get the Code and
-		// Message from an error.
-		fmt.Println(err.Error())
-		return
-	}
-
-	// Pretty-print the response data.
-	fmt.Println(resp)
-}
-
-func ExampleInspector_GetAssessmentTelemetry() {
-	svc := inspector.New(session.New())
-
-	params := &inspector.GetAssessmentTelemetryInput{
-		AssessmentArn: aws.String("Arn"), // Required
-	}
-	resp, err := svc.GetAssessmentTelemetry(params)
-
-	if err != nil {
-		// Print the error, cast err to awserr.Error to get the Code and
-		// Message from an error.
-		fmt.Println(err.Error())
-		return
-	}
-
-	// Pretty-print the response data.
-	fmt.Println(resp)
-}
-
-func ExampleInspector_ListApplications() {
-	svc := inspector.New(session.New())
-
-	params := &inspector.ListApplicationsInput{
-		Filter: &inspector.ApplicationsFilter{
-			ApplicationNamePatterns: []*string{
-				aws.String("NamePattern"), // Required
+	params := &inspector.ListAssessmentRunAgentsInput{
+		AssessmentRunArn: aws.String("Arn"), // Required
+		Filter: &inspector.AgentFilter{
+			AgentHealthCodes: []*string{ // Required
+				aws.String("AgentHealthCode"), // Required
 				// More values...
 			},
-		},
-		MaxResults: aws.Int64(1),
-		NextToken:  aws.String("PaginationToken"),
-	}
-	resp, err := svc.ListApplications(params)
-
-	if err != nil {
-		// Print the error, cast err to awserr.Error to get the Code and
-		// Message from an error.
-		fmt.Println(err.Error())
-		return
-	}
-
-	// Pretty-print the response data.
-	fmt.Println(resp)
-}
-
-func ExampleInspector_ListAssessmentAgents() {
-	svc := inspector.New(session.New())
-
-	params := &inspector.ListAssessmentAgentsInput{
-		AssessmentArn: aws.String("Arn"), // Required
-		Filter: &inspector.AgentsFilter{
-			AgentHealthList: []*string{
+			AgentHealths: []*string{ // Required
 				aws.String("AgentHealth"), // Required
 				// More values...
 			},
@@ -398,7 +366,7 @@ func ExampleInspector_ListAssessmentAgents() {
 		MaxResults: aws.Int64(1),
 		NextToken:  aws.String("PaginationToken"),
 	}
-	resp, err := svc.ListAssessmentAgents(params)
+	resp, err := svc.ListAssessmentRunAgents(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -411,41 +379,45 @@ func ExampleInspector_ListAssessmentAgents() {
 	fmt.Println(resp)
 }
 
-func ExampleInspector_ListAssessments() {
+func ExampleInspector_ListAssessmentRuns() {
 	svc := inspector.New(session.New())
 
-	params := &inspector.ListAssessmentsInput{
-		ApplicationArns: []*string{
+	params := &inspector.ListAssessmentRunsInput{
+		AssessmentTemplateArns: []*string{
 			aws.String("Arn"), // Required
 			// More values...
 		},
-		Filter: &inspector.AssessmentsFilter{
-			AssessmentNamePatterns: []*string{
-				aws.String("NamePattern"), // Required
-				// More values...
+		Filter: &inspector.AssessmentRunFilter{
+			CompletionTimeRange: &inspector.TimestampRange{
+				BeginDate: aws.Time(time.Now()),
+				EndDate:   aws.Time(time.Now()),
 			},
-			AssessmentStates: []*string{
-				aws.String("AssessmentState"), // Required
-				// More values...
-			},
-			DataCollected: aws.Bool(true),
 			DurationRange: &inspector.DurationRange{
-				Maximum: aws.Int64(1),
-				Minimum: aws.Int64(1),
+				MaxSeconds: aws.Int64(1),
+				MinSeconds: aws.Int64(1),
 			},
-			EndTimeRange: &inspector.TimestampRange{
-				Maximum: aws.Time(time.Now()),
-				Minimum: aws.Time(time.Now()),
+			NamePattern: aws.String("NamePattern"),
+			RulesPackageArns: []*string{
+				aws.String("Arn"), // Required
+				// More values...
 			},
 			StartTimeRange: &inspector.TimestampRange{
-				Maximum: aws.Time(time.Now()),
-				Minimum: aws.Time(time.Now()),
+				BeginDate: aws.Time(time.Now()),
+				EndDate:   aws.Time(time.Now()),
+			},
+			StateChangeTimeRange: &inspector.TimestampRange{
+				BeginDate: aws.Time(time.Now()),
+				EndDate:   aws.Time(time.Now()),
+			},
+			States: []*string{
+				aws.String("AssessmentRunState"), // Required
+				// More values...
 			},
 		},
 		MaxResults: aws.Int64(1),
 		NextToken:  aws.String("PaginationToken"),
 	}
-	resp, err := svc.ListAssessments(params)
+	resp, err := svc.ListAssessmentRuns(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -458,38 +430,17 @@ func ExampleInspector_ListAssessments() {
 	fmt.Println(resp)
 }
 
-func ExampleInspector_ListAttachedAssessments() {
+func ExampleInspector_ListAssessmentTargets() {
 	svc := inspector.New(session.New())
 
-	params := &inspector.ListAttachedAssessmentsInput{
-		RulesPackageArn: aws.String("Arn"), // Required
-		Filter: &inspector.AssessmentsFilter{
-			AssessmentNamePatterns: []*string{
-				aws.String("NamePattern"), // Required
-				// More values...
-			},
-			AssessmentStates: []*string{
-				aws.String("AssessmentState"), // Required
-				// More values...
-			},
-			DataCollected: aws.Bool(true),
-			DurationRange: &inspector.DurationRange{
-				Maximum: aws.Int64(1),
-				Minimum: aws.Int64(1),
-			},
-			EndTimeRange: &inspector.TimestampRange{
-				Maximum: aws.Time(time.Now()),
-				Minimum: aws.Time(time.Now()),
-			},
-			StartTimeRange: &inspector.TimestampRange{
-				Maximum: aws.Time(time.Now()),
-				Minimum: aws.Time(time.Now()),
-			},
+	params := &inspector.ListAssessmentTargetsInput{
+		Filter: &inspector.AssessmentTargetFilter{
+			AssessmentTargetNamePattern: aws.String("NamePattern"),
 		},
 		MaxResults: aws.Int64(1),
 		NextToken:  aws.String("PaginationToken"),
 	}
-	resp, err := svc.ListAttachedAssessments(params)
+	resp, err := svc.ListAssessmentTargets(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -502,15 +453,50 @@ func ExampleInspector_ListAttachedAssessments() {
 	fmt.Println(resp)
 }
 
-func ExampleInspector_ListAttachedRulesPackages() {
+func ExampleInspector_ListAssessmentTemplates() {
 	svc := inspector.New(session.New())
 
-	params := &inspector.ListAttachedRulesPackagesInput{
-		AssessmentArn: aws.String("Arn"), // Required
-		MaxResults:    aws.Int64(1),
-		NextToken:     aws.String("PaginationToken"),
+	params := &inspector.ListAssessmentTemplatesInput{
+		AssessmentTargetArns: []*string{
+			aws.String("Arn"), // Required
+			// More values...
+		},
+		Filter: &inspector.AssessmentTemplateFilter{
+			DurationRange: &inspector.DurationRange{
+				MaxSeconds: aws.Int64(1),
+				MinSeconds: aws.Int64(1),
+			},
+			NamePattern: aws.String("NamePattern"),
+			RulesPackageArns: []*string{
+				aws.String("Arn"), // Required
+				// More values...
+			},
+		},
+		MaxResults: aws.Int64(1),
+		NextToken:  aws.String("PaginationToken"),
 	}
-	resp, err := svc.ListAttachedRulesPackages(params)
+	resp, err := svc.ListAssessmentTemplates(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleInspector_ListEventSubscriptions() {
+	svc := inspector.New(session.New())
+
+	params := &inspector.ListEventSubscriptionsInput{
+		MaxResults:  aws.Int64(1),
+		NextToken:   aws.String("PaginationToken"),
+		ResourceArn: aws.String("Arn"),
+	}
+	resp, err := svc.ListEventSubscriptions(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -527,16 +513,32 @@ func ExampleInspector_ListFindings() {
 	svc := inspector.New(session.New())
 
 	params := &inspector.ListFindingsInput{
-		Filter: &inspector.FindingsFilter{
+		AssessmentRunArns: []*string{
+			aws.String("Arn"), // Required
+			// More values...
+		},
+		Filter: &inspector.FindingFilter{
+			AgentIds: []*string{
+				aws.String("AgentId"), // Required
+				// More values...
+			},
 			Attributes: []*inspector.Attribute{
 				{ // Required
-					Key:   aws.String("AttributeKey"),
+					Key:   aws.String("AttributeKey"), // Required
 					Value: aws.String("AttributeValue"),
 				},
 				// More values...
 			},
+			AutoScalingGroups: []*string{
+				aws.String("AutoScalingGroup"), // Required
+				// More values...
+			},
+			CreationTimeRange: &inspector.TimestampRange{
+				BeginDate: aws.Time(time.Now()),
+				EndDate:   aws.Time(time.Now()),
+			},
 			RuleNames: []*string{
-				aws.String("Name"), // Required
+				aws.String("RuleName"), // Required
 				// More values...
 			},
 			RulesPackageArns: []*string{
@@ -549,7 +551,7 @@ func ExampleInspector_ListFindings() {
 			},
 			UserAttributes: []*inspector.Attribute{
 				{ // Required
-					Key:   aws.String("AttributeKey"),
+					Key:   aws.String("AttributeKey"), // Required
 					Value: aws.String("AttributeValue"),
 				},
 				// More values...
@@ -557,10 +559,6 @@ func ExampleInspector_ListFindings() {
 		},
 		MaxResults: aws.Int64(1),
 		NextToken:  aws.String("PaginationToken"),
-		RunArns: []*string{
-			aws.String("Arn"), // Required
-			// More values...
-		},
 	}
 	resp, err := svc.ListFindings(params)
 
@@ -595,52 +593,6 @@ func ExampleInspector_ListRulesPackages() {
 	fmt.Println(resp)
 }
 
-func ExampleInspector_ListRuns() {
-	svc := inspector.New(session.New())
-
-	params := &inspector.ListRunsInput{
-		AssessmentArns: []*string{
-			aws.String("Arn"), // Required
-			// More values...
-		},
-		Filter: &inspector.RunsFilter{
-			CompletionTime: &inspector.TimestampRange{
-				Maximum: aws.Time(time.Now()),
-				Minimum: aws.Time(time.Now()),
-			},
-			CreationTime: &inspector.TimestampRange{
-				Maximum: aws.Time(time.Now()),
-				Minimum: aws.Time(time.Now()),
-			},
-			RulesPackages: []*string{
-				aws.String("Arn"), // Required
-				// More values...
-			},
-			RunNamePatterns: []*string{
-				aws.String("NamePattern"), // Required
-				// More values...
-			},
-			RunStates: []*string{
-				aws.String("RunState"), // Required
-				// More values...
-			},
-		},
-		MaxResults: aws.Int64(1),
-		NextToken:  aws.String("PaginationToken"),
-	}
-	resp, err := svc.ListRuns(params)
-
-	if err != nil {
-		// Print the error, cast err to awserr.Error to get the Code and
-		// Message from an error.
-		fmt.Println(err.Error())
-		return
-	}
-
-	// Pretty-print the response data.
-	fmt.Println(resp)
-}
-
 func ExampleInspector_ListTagsForResource() {
 	svc := inspector.New(session.New())
 
@@ -660,50 +612,15 @@ func ExampleInspector_ListTagsForResource() {
 	fmt.Println(resp)
 }
 
-func ExampleInspector_LocalizeText() {
+func ExampleInspector_PreviewAgents() {
 	svc := inspector.New(session.New())
 
-	params := &inspector.LocalizeTextInput{
-		Locale: aws.String("Locale"), // Required
-		LocalizedTexts: []*inspector.LocalizedText{ // Required
-			{ // Required
-				Key: &inspector.LocalizedTextKey{
-					Facility: aws.String("LocalizedFacility"),
-					Id:       aws.String("LocalizedTextId"),
-				},
-				Parameters: []*inspector.Parameter{
-					{ // Required
-						Name:  aws.String("ParameterName"),
-						Value: aws.String("ParameterValue"),
-					},
-					// More values...
-				},
-			},
-			// More values...
-		},
-	}
-	resp, err := svc.LocalizeText(params)
-
-	if err != nil {
-		// Print the error, cast err to awserr.Error to get the Code and
-		// Message from an error.
-		fmt.Println(err.Error())
-		return
-	}
-
-	// Pretty-print the response data.
-	fmt.Println(resp)
-}
-
-func ExampleInspector_PreviewAgentsForResourceGroup() {
-	svc := inspector.New(session.New())
-
-	params := &inspector.PreviewAgentsForResourceGroupInput{
-		ResourceGroupArn: aws.String("Arn"), // Required
+	params := &inspector.PreviewAgentsInput{
+		PreviewAgentsArn: aws.String("Arn"), // Required
 		MaxResults:       aws.Int64(1),
 		NextToken:        aws.String("PaginationToken"),
 	}
-	resp, err := svc.PreviewAgentsForResourceGroup(params)
+	resp, err := svc.PreviewAgents(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -761,26 +678,6 @@ func ExampleInspector_RemoveAttributesFromFindings() {
 	fmt.Println(resp)
 }
 
-func ExampleInspector_RunAssessment() {
-	svc := inspector.New(session.New())
-
-	params := &inspector.RunAssessmentInput{
-		AssessmentArn: aws.String("Arn"),  // Required
-		RunName:       aws.String("Name"), // Required
-	}
-	resp, err := svc.RunAssessment(params)
-
-	if err != nil {
-		// Print the error, cast err to awserr.Error to get the Code and
-		// Message from an error.
-		fmt.Println(err.Error())
-		return
-	}
-
-	// Pretty-print the response data.
-	fmt.Println(resp)
-}
-
 func ExampleInspector_SetTagsForResource() {
 	svc := inspector.New(session.New())
 
@@ -788,7 +685,7 @@ func ExampleInspector_SetTagsForResource() {
 		ResourceArn: aws.String("Arn"), // Required
 		Tags: []*inspector.Tag{
 			{ // Required
-				Key:   aws.String("TagKey"),
+				Key:   aws.String("TagKey"), // Required
 				Value: aws.String("TagValue"),
 			},
 			// More values...
@@ -807,13 +704,14 @@ func ExampleInspector_SetTagsForResource() {
 	fmt.Println(resp)
 }
 
-func ExampleInspector_StartDataCollection() {
+func ExampleInspector_StartAssessmentRun() {
 	svc := inspector.New(session.New())
 
-	params := &inspector.StartDataCollectionInput{
-		AssessmentArn: aws.String("Arn"), // Required
+	params := &inspector.StartAssessmentRunInput{
+		AssessmentTemplateArn: aws.String("Arn"), // Required
+		AssessmentRunName:     aws.String("AssessmentRunName"),
 	}
-	resp, err := svc.StartDataCollection(params)
+	resp, err := svc.StartAssessmentRun(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -826,13 +724,13 @@ func ExampleInspector_StartDataCollection() {
 	fmt.Println(resp)
 }
 
-func ExampleInspector_StopDataCollection() {
+func ExampleInspector_StopAssessmentRun() {
 	svc := inspector.New(session.New())
 
-	params := &inspector.StopDataCollectionInput{
-		AssessmentArn: aws.String("Arn"), // Required
+	params := &inspector.StopAssessmentRunInput{
+		AssessmentRunArn: aws.String("Arn"), // Required
 	}
-	resp, err := svc.StopDataCollection(params)
+	resp, err := svc.StopAssessmentRun(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -845,15 +743,15 @@ func ExampleInspector_StopDataCollection() {
 	fmt.Println(resp)
 }
 
-func ExampleInspector_UpdateApplication() {
+func ExampleInspector_SubscribeToEvent() {
 	svc := inspector.New(session.New())
 
-	params := &inspector.UpdateApplicationInput{
-		ApplicationArn:   aws.String("Arn"),  // Required
-		ApplicationName:  aws.String("Name"), // Required
-		ResourceGroupArn: aws.String("Arn"),  // Required
+	params := &inspector.SubscribeToEventInput{
+		Event:       aws.String("Event"), // Required
+		ResourceArn: aws.String("Arn"),   // Required
+		TopicArn:    aws.String("Arn"),   // Required
 	}
-	resp, err := svc.UpdateApplication(params)
+	resp, err := svc.SubscribeToEvent(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -866,15 +764,36 @@ func ExampleInspector_UpdateApplication() {
 	fmt.Println(resp)
 }
 
-func ExampleInspector_UpdateAssessment() {
+func ExampleInspector_UnsubscribeFromEvent() {
 	svc := inspector.New(session.New())
 
-	params := &inspector.UpdateAssessmentInput{
-		AssessmentArn:     aws.String("Arn"),  // Required
-		AssessmentName:    aws.String("Name"), // Required
-		DurationInSeconds: aws.Int64(1),       // Required
+	params := &inspector.UnsubscribeFromEventInput{
+		Event:       aws.String("Event"), // Required
+		ResourceArn: aws.String("Arn"),   // Required
+		TopicArn:    aws.String("Arn"),   // Required
 	}
-	resp, err := svc.UpdateAssessment(params)
+	resp, err := svc.UnsubscribeFromEvent(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleInspector_UpdateAssessmentTarget() {
+	svc := inspector.New(session.New())
+
+	params := &inspector.UpdateAssessmentTargetInput{
+		AssessmentTargetArn:  aws.String("Arn"),                  // Required
+		AssessmentTargetName: aws.String("AssessmentTargetName"), // Required
+		ResourceGroupArn:     aws.String("Arn"),                  // Required
+	}
+	resp, err := svc.UpdateAssessmentTarget(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
