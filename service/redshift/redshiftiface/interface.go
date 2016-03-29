@@ -236,6 +236,10 @@ type RedshiftAPI interface {
 
 	ModifyCluster(*redshift.ModifyClusterInput) (*redshift.ModifyClusterOutput, error)
 
+	ModifyClusterIamRolesRequest(*redshift.ModifyClusterIamRolesInput) (*request.Request, *redshift.ModifyClusterIamRolesOutput)
+
+	ModifyClusterIamRoles(*redshift.ModifyClusterIamRolesInput) (*redshift.ModifyClusterIamRolesOutput, error)
+
 	ModifyClusterParameterGroupRequest(*redshift.ModifyClusterParameterGroupInput) (*request.Request, *redshift.ClusterParameterGroupNameMessage)
 
 	ModifyClusterParameterGroup(*redshift.ModifyClusterParameterGroupInput) (*redshift.ClusterParameterGroupNameMessage, error)
