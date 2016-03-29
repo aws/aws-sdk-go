@@ -1,5 +1,4 @@
 {
-  "version":"2.0",
   "metadata":{
     "apiVersion":"2009-04-15",
     "endpointPrefix":"sdb",
@@ -556,22 +555,6 @@
         "DomainName":{"shape":"String"}
       }
     },
-    "DeletableAttribute":{
-      "type":"structure",
-      "required":["Name"],
-      "members":{
-        "Name":{"shape":"String"},
-        "Value":{"shape":"String"}
-      }
-    },
-    "DeletableAttributeList":{
-      "type":"list",
-      "member":{
-        "shape":"DeletableAttribute",
-        "locationName":"Attribute"
-      },
-      "flattened":true
-    },
     "DeletableItem":{
       "type":"structure",
       "required":["Name"],
@@ -580,7 +563,7 @@
           "shape":"String",
           "locationName":"ItemName"
         },
-        "Attributes":{"shape":"DeletableAttributeList"}
+        "Attributes":{"shape":"AttributeList"}
       }
     },
     "DeletableItemList":{
@@ -600,7 +583,7 @@
       "members":{
         "DomainName":{"shape":"String"},
         "ItemName":{"shape":"String"},
-        "Attributes":{"shape":"DeletableAttributeList"},
+        "Attributes":{"shape":"AttributeList"},
         "Expected":{"shape":"UpdateCondition"}
       }
     },

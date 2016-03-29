@@ -2,7 +2,7 @@
   "version": "2.0",
   "service": "<fullname>AWS Database Migration Service</fullname> <p> AWS Database Migration Service (AWS DMS) can migrate your data to and from the most widely used commercial and open-source databases such as Oracle, PostgreSQL, Microsoft SQL Server, MariaDB, Amazon Aurora, and MySQL. The service supports homogeneous migrations such as Oracle to Oracle, as well as heterogeneous migrations between different database platforms, such as Oracle to MySQL or SQL Server to PostgreSQL. </p>",
   "operations": {
-    "AddTagsToResource": "<p>For internal use only</p> <note/><p/>",
+    "AddTagsToResource": "<p> Adds metadata tags to a DMS resource, including replication instance, endpoint, security group, and migration task. These tags can also be used with cost allocation reporting to track cost associated with DMS resources, or used in a Condition statement in an IAM policy for DMS.</p> <note/><p/>",
     "CreateEndpoint": "<p>Creates an endpoint using the provided settings.</p> <note/><p/>",
     "CreateReplicationInstance": "<p>Creates the replication instance using the specified parameters.</p> <note/><p/>",
     "CreateReplicationSubnetGroup": "<p>Creates a replication subnet group given a list of the subnet IDs in a VPC.</p> <note/><p/>",
@@ -22,19 +22,19 @@
     "DescribeReplicationTasks": "<p>Returns information about replication tasks for your account in the current region.</p> <note/><p/>",
     "DescribeSchemas": "<p>Returns information about the schema for the specified endpoint.</p> <note/><p/>",
     "DescribeTableStatistics": "<p>Returns table statistics on the database migration task, including table name, rows inserted, rows updated, and rows deleted.</p> <note/><p/>",
-    "ListTagsForResource": "<p>For internal use only</p> <note/><p/>",
+    "ListTagsForResource": "<p> Lists all tags for an AWS DMS resource.</p> <note/><p/>",
     "ModifyEndpoint": "<p>Modifies the specified endpoint.</p> <note/><p/>",
     "ModifyReplicationInstance": "<p>Modifies the replication instance to apply new settings. You can change one or more parameters by specifying these parameters and the new values in the request.</p> <note>Some settings are applied during the maintenance window.</note><p/> <p/>",
     "ModifyReplicationSubnetGroup": "<p>Modifies the settings for the specified replication subnet group.</p> <note/><p/>",
     "RefreshSchemas": "<p>Populates the schema for the specified endpoint. This is an asynchronous operation and can take several minutes. You can check the status of this operation by calling the DescribeRefreshSchemasStatus operation.</p> <note/><p/>",
-    "RemoveTagsFromResource": "<p>For internal use only</p> <note/><p/>",
+    "RemoveTagsFromResource": "<p> Removes metadata tags from a DMS resource.</p> <note/><p/>",
     "StartReplicationTask": "<p>Starts the replication task.</p> <note/><p/>",
     "StopReplicationTask": "<p>Stops the replication task.</p> <note/><p/>",
     "TestConnection": "<p>Tests the connection between the replication instance and the endpoint. </p> <note/><p/>"
   },
   "shapes": {
     "AccessDeniedFault": {
-      "base": null,
+      "base": "<p>AWS DMS was denied access to the endpoint.</p>",
       "refs": {
       }
     },
@@ -305,18 +305,18 @@
     "ExceptionMessage": {
       "base": null,
       "refs": {
-        "AccessDeniedFault$message": "<p>AWS DMS was denied access to the endpoint.</p>",
-        "InsufficientResourceCapacityFault$message": "<p>There are not enough resources allocated to the database migration.</p>",
-        "InvalidResourceStateFault$message": "<p>The resource is in a state that prevents it from being used for database migration.</p>",
-        "InvalidSubnet$message": "<p>The subnet provided is invalid.</p>",
-        "KMSKeyNotAccessibleFault$message": "<p>AWS DMS cannot access the KMS key.</p>",
-        "ReplicationSubnetGroupDoesNotCoverEnoughAZs$message": "<p>The replication subnet group does not cover enough Availability Zones (AZs). Edit the replication subnet group and add more AZs.</p>",
-        "ResourceAlreadyExistsFault$message": "<p>The resource you are attempting to create already exists.</p>",
-        "ResourceNotFoundFault$message": "<p>The resource could not be found.</p>",
-        "ResourceQuotaExceededFault$message": "<p>The quota for this resource quota has been exceeded.</p>",
-        "StorageQuotaExceededFault$message": "<p>The storage quota has been exceeded.</p>",
-        "SubnetAlreadyInUse$message": "<p>The specified subnet is already in use.</p>",
-        "UpgradeDependencyFailureFault$message": "<p>An upgrade dependency is preventing the database migration.</p>"
+        "AccessDeniedFault$message": null,
+        "InsufficientResourceCapacityFault$message": null,
+        "InvalidResourceStateFault$message": null,
+        "InvalidSubnet$message": null,
+        "KMSKeyNotAccessibleFault$message": null,
+        "ReplicationSubnetGroupDoesNotCoverEnoughAZs$message": null,
+        "ResourceAlreadyExistsFault$message": null,
+        "ResourceNotFoundFault$message": null,
+        "ResourceQuotaExceededFault$message": null,
+        "StorageQuotaExceededFault$message": null,
+        "SubnetAlreadyInUse$message": null,
+        "UpgradeDependencyFailureFault$message": null
       }
     },
     "Filter": {
@@ -343,7 +343,7 @@
       }
     },
     "InsufficientResourceCapacityFault": {
-      "base": null,
+      "base": "<p>There are not enough resources allocated to the database migration.</p>",
       "refs": {
       }
     },
@@ -383,17 +383,17 @@
       }
     },
     "InvalidResourceStateFault": {
-      "base": null,
+      "base": "<p>The resource is in a state that prevents it from being used for database migration.</p>",
       "refs": {
       }
     },
     "InvalidSubnet": {
-      "base": null,
+      "base": "<p>The subnet provided is invalid.</p>",
       "refs": {
       }
     },
     "KMSKeyNotAccessibleFault": {
-      "base": null,
+      "base": "<p>AWS DMS cannot access the KMS key.</p>",
       "refs": {
       }
     },
@@ -548,7 +548,7 @@
       }
     },
     "ReplicationSubnetGroupDoesNotCoverEnoughAZs": {
-      "base": null,
+      "base": "<p>The replication subnet group does not cover enough Availability Zones (AZs). Edit the replication subnet group and add more AZs.</p>",
       "refs": {
       }
     },
@@ -581,17 +581,17 @@
       }
     },
     "ResourceAlreadyExistsFault": {
-      "base": null,
+      "base": "<p>The resource you are attempting to create already exists.</p>",
       "refs": {
       }
     },
     "ResourceNotFoundFault": {
-      "base": null,
+      "base": "<p>The resource could not be found.</p>",
       "refs": {
       }
     },
     "ResourceQuotaExceededFault": {
-      "base": null,
+      "base": "<p>The quota for this resource quota has been exceeded.</p>",
       "refs": {
       }
     },
@@ -635,7 +635,7 @@
       }
     },
     "StorageQuotaExceededFault": {
-      "base": null,
+      "base": "<p>The storage quota has been exceeded.</p>",
       "refs": {
       }
     },
@@ -783,7 +783,7 @@
       }
     },
     "SubnetAlreadyInUse": {
-      "base": null,
+      "base": "<p>The specified subnet is already in use.</p>",
       "refs": {
       }
     },
@@ -864,7 +864,7 @@
       }
     },
     "UpgradeDependencyFailureFault": {
-      "base": null,
+      "base": "<p>An upgrade dependency is preventing the database migration.</p>",
       "refs": {
       }
     }

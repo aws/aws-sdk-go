@@ -4,15 +4,15 @@
         "GroupExists": {
             "acceptors": [
                 {
-                    "argument": "length(AutoScalingGroups)",
-                    "expected": 1,
-                    "matcher": "pathAll",
+                    "argument": "length(AutoScalingGroups) > `0`",
+                    "expected": true,
+                    "matcher": "path",
                     "state": "success"
                 },
                 {
-                    "argument": "length(AutoScalingGroups)",
-                    "expected": 0,
-                    "matcher": "pathAll",
+                    "argument": "length(AutoScalingGroups) > `0`",
+                    "expected": false,
+                    "matcher": "path",
                     "state": "retry"
                 }
             ],
@@ -25,13 +25,13 @@
                 {
                     "argument": "contains(AutoScalingGroups[].[length(Instances[?LifecycleState=='InService']) >= MinSize][], `false`)",
                     "expected": false,
-                    "matcher": "pathAll",
+                    "matcher": "path",
                     "state": "success"
                 },
                 {
                     "argument": "contains(AutoScalingGroups[].[length(Instances[?LifecycleState=='InService']) >= MinSize][], `false`)",
                     "expected": true,
-                    "matcher": "pathAll",
+                    "matcher": "path",
                     "state": "retry"
                 }
             ],
@@ -42,15 +42,15 @@
         "GroupNotExists": {
             "acceptors": [
                 {
-                    "argument": "length(AutoScalingGroups)",
-                    "expected": 0,
-                    "matcher": "pathAll",
+                    "argument": "length(AutoScalingGroups) > `0`",
+                    "expected": false,
+                    "matcher": "path",
                     "state": "success"
                 },
                 {
-                    "argument": "length(AutoScalingGroups)",
-                    "expected": 1,
-                    "matcher": "pathAll",
+                    "argument": "length(AutoScalingGroups) > `0`",
+                    "expected": true,
+                    "matcher": "path",
                     "state": "retry"
                 }
             ],

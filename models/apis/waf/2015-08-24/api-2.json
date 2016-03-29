@@ -112,6 +112,23 @@
         {"shape":"WAFLimitsExceededException"}
       ]
     },
+    "CreateXssMatchSet":{
+      "name":"CreateXssMatchSet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateXssMatchSetRequest"},
+      "output":{"shape":"CreateXssMatchSetResponse"},
+      "errors":[
+        {"shape":"WAFDisallowedNameException"},
+        {"shape":"WAFInternalErrorException"},
+        {"shape":"WAFInvalidAccountException"},
+        {"shape":"WAFInvalidParameterException"},
+        {"shape":"WAFStaleDataException"},
+        {"shape":"WAFLimitsExceededException"}
+      ]
+    },
     "DeleteByteMatchSet":{
       "name":"DeleteByteMatchSet",
       "http":{
@@ -211,6 +228,23 @@
         {"shape":"WAFInvalidAccountException"},
         {"shape":"WAFNonexistentItemException"},
         {"shape":"WAFReferencedItemException"},
+        {"shape":"WAFNonEmptyEntityException"}
+      ]
+    },
+    "DeleteXssMatchSet":{
+      "name":"DeleteXssMatchSet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteXssMatchSetRequest"},
+      "output":{"shape":"DeleteXssMatchSetResponse"},
+      "errors":[
+        {"shape":"WAFInternalErrorException"},
+        {"shape":"WAFInvalidAccountException"},
+        {"shape":"WAFNonexistentItemException"},
+        {"shape":"WAFReferencedItemException"},
+        {"shape":"WAFStaleDataException"},
         {"shape":"WAFNonEmptyEntityException"}
       ]
     },
@@ -336,6 +370,20 @@
         {"shape":"WAFNonexistentItemException"}
       ]
     },
+    "GetXssMatchSet":{
+      "name":"GetXssMatchSet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetXssMatchSetRequest"},
+      "output":{"shape":"GetXssMatchSetResponse"},
+      "errors":[
+        {"shape":"WAFInternalErrorException"},
+        {"shape":"WAFInvalidAccountException"},
+        {"shape":"WAFNonexistentItemException"}
+      ]
+    },
     "ListByteMatchSets":{
       "name":"ListByteMatchSets",
       "http":{
@@ -409,6 +457,19 @@
       },
       "input":{"shape":"ListWebACLsRequest"},
       "output":{"shape":"ListWebACLsResponse"},
+      "errors":[
+        {"shape":"WAFInternalErrorException"},
+        {"shape":"WAFInvalidAccountException"}
+      ]
+    },
+    "ListXssMatchSets":{
+      "name":"ListXssMatchSets",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListXssMatchSetsRequest"},
+      "output":{"shape":"ListXssMatchSetsResponse"},
       "errors":[
         {"shape":"WAFInternalErrorException"},
         {"shape":"WAFInvalidAccountException"}
@@ -529,6 +590,25 @@
         {"shape":"WAFNonexistentContainerException"},
         {"shape":"WAFNonexistentItemException"},
         {"shape":"WAFReferencedItemException"},
+        {"shape":"WAFLimitsExceededException"}
+      ]
+    },
+    "UpdateXssMatchSet":{
+      "name":"UpdateXssMatchSet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateXssMatchSetRequest"},
+      "output":{"shape":"UpdateXssMatchSetResponse"},
+      "errors":[
+        {"shape":"WAFInternalErrorException"},
+        {"shape":"WAFInvalidAccountException"},
+        {"shape":"WAFInvalidOperationException"},
+        {"shape":"WAFInvalidParameterException"},
+        {"shape":"WAFNonexistentContainerException"},
+        {"shape":"WAFNonexistentItemException"},
+        {"shape":"WAFStaleDataException"},
         {"shape":"WAFLimitsExceededException"}
       ]
     }
@@ -756,6 +836,24 @@
         "ChangeToken":{"shape":"ChangeToken"}
       }
     },
+    "CreateXssMatchSetRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "ChangeToken"
+      ],
+      "members":{
+        "Name":{"shape":"ResourceName"},
+        "ChangeToken":{"shape":"ChangeToken"}
+      }
+    },
+    "CreateXssMatchSetResponse":{
+      "type":"structure",
+      "members":{
+        "XssMatchSet":{"shape":"XssMatchSet"},
+        "ChangeToken":{"shape":"ChangeToken"}
+      }
+    },
     "DeleteByteMatchSetRequest":{
       "type":"structure",
       "required":[
@@ -853,6 +951,23 @@
       }
     },
     "DeleteWebACLResponse":{
+      "type":"structure",
+      "members":{
+        "ChangeToken":{"shape":"ChangeToken"}
+      }
+    },
+    "DeleteXssMatchSetRequest":{
+      "type":"structure",
+      "required":[
+        "XssMatchSetId",
+        "ChangeToken"
+      ],
+      "members":{
+        "XssMatchSetId":{"shape":"ResourceId"},
+        "ChangeToken":{"shape":"ChangeToken"}
+      }
+    },
+    "DeleteXssMatchSetResponse":{
       "type":"structure",
       "members":{
         "ChangeToken":{"shape":"ChangeToken"}
@@ -989,6 +1104,19 @@
       "type":"structure",
       "members":{
         "WebACL":{"shape":"WebACL"}
+      }
+    },
+    "GetXssMatchSetRequest":{
+      "type":"structure",
+      "required":["XssMatchSetId"],
+      "members":{
+        "XssMatchSetId":{"shape":"ResourceId"}
+      }
+    },
+    "GetXssMatchSetResponse":{
+      "type":"structure",
+      "members":{
+        "XssMatchSet":{"shape":"XssMatchSet"}
       }
     },
     "HTTPHeader":{
@@ -1175,6 +1303,21 @@
         "WebACLs":{"shape":"WebACLSummaries"}
       }
     },
+    "ListXssMatchSetsRequest":{
+      "type":"structure",
+      "required":["Limit"],
+      "members":{
+        "NextMarker":{"shape":"NextMarker"},
+        "Limit":{"shape":"PaginationLimit"}
+      }
+    },
+    "ListXssMatchSetsResponse":{
+      "type":"structure",
+      "members":{
+        "NextMarker":{"shape":"NextMarker"},
+        "XssMatchSets":{"shape":"XssMatchSetSummaries"}
+      }
+    },
     "MatchFieldData":{"type":"string"},
     "MatchFieldType":{
       "type":"string",
@@ -1252,7 +1395,8 @@
         "IPMatch",
         "ByteMatch",
         "SqlInjectionMatch",
-        "SizeConstraint"
+        "SizeConstraint",
+        "XssMatch"
       ]
     },
     "Predicates":{
@@ -1336,6 +1480,7 @@
     },
     "Size":{
       "type":"long",
+      "max":21474836480,
       "min":0
     },
     "SizeConstraint":{
@@ -1594,6 +1739,25 @@
         "ChangeToken":{"shape":"ChangeToken"}
       }
     },
+    "UpdateXssMatchSetRequest":{
+      "type":"structure",
+      "required":[
+        "XssMatchSetId",
+        "ChangeToken",
+        "Updates"
+      ],
+      "members":{
+        "XssMatchSetId":{"shape":"ResourceId"},
+        "ChangeToken":{"shape":"ChangeToken"},
+        "Updates":{"shape":"XssMatchSetUpdates"}
+      }
+    },
+    "UpdateXssMatchSetResponse":{
+      "type":"structure",
+      "members":{
+        "ChangeToken":{"shape":"ChangeToken"}
+      }
+    },
     "WAFDisallowedNameException":{
       "type":"structure",
       "members":{
@@ -1732,6 +1896,63 @@
     "WebACLUpdates":{
       "type":"list",
       "member":{"shape":"WebACLUpdate"}
+    },
+    "XssMatchSet":{
+      "type":"structure",
+      "required":[
+        "XssMatchSetId",
+        "XssMatchTuples"
+      ],
+      "members":{
+        "XssMatchSetId":{"shape":"ResourceId"},
+        "Name":{"shape":"ResourceName"},
+        "XssMatchTuples":{"shape":"XssMatchTuples"}
+      }
+    },
+    "XssMatchSetSummaries":{
+      "type":"list",
+      "member":{"shape":"XssMatchSetSummary"}
+    },
+    "XssMatchSetSummary":{
+      "type":"structure",
+      "required":[
+        "XssMatchSetId",
+        "Name"
+      ],
+      "members":{
+        "XssMatchSetId":{"shape":"ResourceId"},
+        "Name":{"shape":"ResourceName"}
+      }
+    },
+    "XssMatchSetUpdate":{
+      "type":"structure",
+      "required":[
+        "Action",
+        "XssMatchTuple"
+      ],
+      "members":{
+        "Action":{"shape":"ChangeAction"},
+        "XssMatchTuple":{"shape":"XssMatchTuple"}
+      }
+    },
+    "XssMatchSetUpdates":{
+      "type":"list",
+      "member":{"shape":"XssMatchSetUpdate"}
+    },
+    "XssMatchTuple":{
+      "type":"structure",
+      "required":[
+        "FieldToMatch",
+        "TextTransformation"
+      ],
+      "members":{
+        "FieldToMatch":{"shape":"FieldToMatch"},
+        "TextTransformation":{"shape":"TextTransformation"}
+      }
+    },
+    "XssMatchTuples":{
+      "type":"list",
+      "member":{"shape":"XssMatchTuple"}
     },
     "errorMessage":{"type":"string"}
   }

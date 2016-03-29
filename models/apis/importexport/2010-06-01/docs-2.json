@@ -15,6 +15,7 @@
       "refs": {
         "CancelJobInput$APIVersion": null,
         "CreateJobInput$APIVersion": null,
+        "GetShippingLabelInput$APIVersion": null,
         "GetStatusInput$APIVersion": null,
         "ListJobsInput$APIVersion": null,
         "UpdateJobInput$APIVersion": null
@@ -133,17 +134,6 @@
     "GenericString": {
       "base": null,
       "refs": {
-        "GetShippingLabelInput$name": null,
-        "GetShippingLabelInput$company": null,
-        "GetShippingLabelInput$phoneNumber": null,
-        "GetShippingLabelInput$country": null,
-        "GetShippingLabelInput$stateOrProvince": null,
-        "GetShippingLabelInput$city": null,
-        "GetShippingLabelInput$postalCode": null,
-        "GetShippingLabelInput$street1": null,
-        "GetShippingLabelInput$street2": null,
-        "GetShippingLabelInput$street3": null,
-        "GetShippingLabelInput$APIVersion": null,
         "GetShippingLabelOutput$ShippingLabelURL": null,
         "GetShippingLabelOutput$Warning": null,
         "JobIdList$member": null
@@ -426,6 +416,66 @@
       "refs": {
         "CreateJobOutput$WarningMessage": null,
         "UpdateJobOutput$WarningMessage": null
+      }
+    },
+    "city": {
+      "base": "Specifies the name of your city for the return address.",
+      "refs": {
+        "GetShippingLabelInput$city": null
+      }
+    },
+    "company": {
+      "base": "Specifies the name of the company that will ship this package.",
+      "refs": {
+        "GetShippingLabelInput$company": null
+      }
+    },
+    "country": {
+      "base": "Specifies the name of your country for the return address.",
+      "refs": {
+        "GetShippingLabelInput$country": null
+      }
+    },
+    "name": {
+      "base": "Specifies the name of the person responsible for shipping this package.",
+      "refs": {
+        "GetShippingLabelInput$name": null
+      }
+    },
+    "phoneNumber": {
+      "base": "Specifies the phone number of the person responsible for shipping this package.",
+      "refs": {
+        "GetShippingLabelInput$phoneNumber": null
+      }
+    },
+    "postalCode": {
+      "base": "Specifies the postal code for the return address.",
+      "refs": {
+        "GetShippingLabelInput$postalCode": null
+      }
+    },
+    "stateOrProvince": {
+      "base": "Specifies the name of your state or your province for the return address.",
+      "refs": {
+        "GetShippingLabelInput$stateOrProvince": null
+      }
+    },
+    "street1": {
+      "base": "Specifies the first part of the street address for the return address, for example 1234 Main Street.",
+      "refs": {
+        "GetShippingLabelInput$street1": null
+      }
+    },
+    "street2": {
+      "base": "Specifies the optional second part of the street address for the return address, for example Suite 100.",
+      "refs": {
+        "GetShippingLabelInput$street2": null
+      }
+    },
+    "street3": {
+      "base": "Specifies the optional third part of the street address for the return address, for example c/o Jane Doe.",
+      "refs": {
+        "GetShippingLabelInput$street3": null
       }
     }
   }

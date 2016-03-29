@@ -408,17 +408,17 @@
       "required":["jobIds"],
       "members":{
         "jobIds":{"shape":"JobIdList"},
-        "name":{"shape":"GenericString"},
-        "company":{"shape":"GenericString"},
-        "phoneNumber":{"shape":"GenericString"},
-        "country":{"shape":"GenericString"},
-        "stateOrProvince":{"shape":"GenericString"},
-        "city":{"shape":"GenericString"},
-        "postalCode":{"shape":"GenericString"},
-        "street1":{"shape":"GenericString"},
-        "street2":{"shape":"GenericString"},
-        "street3":{"shape":"GenericString"},
-        "APIVersion":{"shape":"GenericString"}
+        "name":{"shape":"name"},
+        "company":{"shape":"company"},
+        "phoneNumber":{"shape":"phoneNumber"},
+        "country":{"shape":"country"},
+        "stateOrProvince":{"shape":"stateOrProvince"},
+        "city":{"shape":"city"},
+        "postalCode":{"shape":"postalCode"},
+        "street1":{"shape":"street1"},
+        "street2":{"shape":"street2"},
+        "street3":{"shape":"street3"},
+        "APIVersion":{"shape":"APIVersion"}
       }
     },
     "GetShippingLabelOutput":{
@@ -651,6 +651,16 @@
       }
     },
     "ValidateOnly":{"type":"boolean"},
-    "WarningMessage":{"type":"string"}
+    "WarningMessage":{"type":"string"},
+    "city":{"type":"string"},
+    "company":{"type":"string"},
+    "country":{"type":"string"},
+    "name":{"type":"string"},
+    "phoneNumber":{"type":"string"},
+    "postalCode":{"type":"string"},
+    "stateOrProvince":{"type":"string"},
+    "street1":{"type":"string"},
+    "street2":{"type":"string"},
+    "street3":{"type":"string"}
   }
 }

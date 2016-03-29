@@ -500,7 +500,7 @@
     "DeploymentStatusList": {
       "base": null,
       "refs": {
-        "ListDeploymentsInput$includeOnlyStatuses": "<p>A subset of deployments to list by status:</p> <ul> <li>Created: Include created deployments in the resulting list.</li> <li>Queued: Include queued deployments in the resulting list.</li> <li>In Progress: Include in-progress deployments in the resulting list.</li> <li>Succeeded: Include successful deployments in the resulting list.</li> <li>Failed: Include failed deployments in the resulting list.</li> <li>Aborted: Include aborted deployments in the resulting list.</li> </ul>"
+        "ListDeploymentsInput$includeOnlyStatuses": "<p>A subset of deployments to list by status:</p> <ul> <li>Created: Include created deployments in the resulting list.</li> <li>Queued: Include queued deployments in the resulting list.</li> <li>In Progress: Include in-progress deployments in the resulting list.</li> <li>Succeeded: Include successful deployments in the resulting list.</li> <li>Failed: Include failed deployments in the resulting list.</li> <li>Stopped: Include stopped deployments in the resulting list.</li> </ul>"
       }
     },
     "DeploymentsInfoList": {
