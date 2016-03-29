@@ -673,15 +673,16 @@ type CheckDomainAvailabilityOutput struct {
 	//
 	// Valid values:
 	//
-	//  AVAILABLE – The domain name is available. AVAILABLE_RESERVED – The domain
-	// name is reserved under specific conditions. AVAILABLE_PREORDER – The domain
-	// name is available and can be preordered. UNAVAILABLE – The domain name is
-	// not available. UNAVAILABLE_PREMIUM – The domain name is not available. UNAVAILABLE_RESTRICTED
-	// – The domain name is forbidden. RESERVED – The domain name has been reserved
-	// for another person or organization. DONT_KNOW – The TLD registry didn't reply
-	// with a definitive answer about whether the domain name is available. Amazon
-	// Route 53 can return this response for a variety of reasons, for example,
-	// the registry is performing maintenance. Try again later.
+	//   AVAILABLE – The domain name is available.  AVAILABLE_RESERVED – The domain
+	// name is reserved under specific conditions.  AVAILABLE_PREORDER – The domain
+	// name is available and can be preordered.  UNAVAILABLE – The domain name is
+	// not available.  UNAVAILABLE_PREMIUM – The domain name is not available.
+	// UNAVAILABLE_RESTRICTED – The domain name is forbidden.  RESERVED – The domain
+	// name has been reserved for another person or organization.  DONT_KNOW – The
+	// TLD registry didn't reply with a definitive answer about whether the domain
+	// name is available. Amazon Route 53 can return this response for a variety
+	// of reasons, for example, the registry is performing maintenance. Try again
+	// later.
 	Availability *string `type:"string" required:"true" enum:"DomainAvailability"`
 }
 
@@ -913,10 +914,10 @@ type DeleteTagsForDomainInput struct {
 	// Default: None
 	//
 	// Constraints: The domain name can contain only the letters a through z, the
-	// numbers 0 through 9, and hyphen (-). Hyphens are allowed only when they're
-	// surrounded by letters, numbers, or other hyphens. You can't specify a hyphen
-	// at the beginning or end of a label. To specify an Internationalized Domain
-	// Name, you must convert the name to Punycode.
+	// numbers 0 through 9, and hyphen (-). Hyphens are allowed only when theyaposre
+	// surrounded by letters, numbers, or other hyphens. You canapost specify a
+	// hyphen at the beginning or end of a label. To specify an Internationalized
+	// Domain Name, you must convert the name to Punycode.
 	//
 	// Required: Yes
 	DomainName *string `type:"string" required:"true"`
@@ -1628,13 +1629,13 @@ type ListTagsForDomainOutput struct {
 	//
 	// Each tag includes the following elements.
 	//
-	//  Key
+	//   Key
 	//
 	// The key (name) of a tag.
 	//
 	// Type: String
 	//
-	//  Value
+	//   Value
 	//
 	// The value of a tag.
 	//
@@ -2399,10 +2400,10 @@ type UpdateTagsForDomainInput struct {
 	// Default: None
 	//
 	// Constraints: The domain name can contain only the letters a through z, the
-	// numbers 0 through 9, and hyphen (-). Hyphens are allowed only when they're
-	// surrounded by letters, numbers, or other hyphens. You can't specify a hyphen
-	// at the beginning or end of a label. To specify an Internationalized Domain
-	// Name, you must convert the name to Punycode.
+	// numbers 0 through 9, and hyphen (-). Hyphens are allowed only when theyaposre
+	// surrounded by letters, numbers, or other hyphens. You canapost specify a
+	// hyphen at the beginning or end of a label. To specify an Internationalized
+	// Domain Name, you must convert the name to Punycode.
 	//
 	// Required: Yes
 	DomainName *string `type:"string" required:"true"`
@@ -2418,7 +2419,7 @@ type UpdateTagsForDomainInput struct {
 	//
 	// '> Each tag includes the following elements:
 	//
-	//  Key
+	//   Key
 	//
 	// The key (name) of a tag.
 	//
@@ -2432,7 +2433,7 @@ type UpdateTagsForDomainInput struct {
 	//
 	// Required: Yes
 	//
-	//  Value
+	//   Value
 	//
 	// The value of a tag.
 	//
