@@ -30,7 +30,10 @@ func (c *DatabaseMigrationService) AddTagsToResourceRequest(input *AddTagsToReso
 	return
 }
 
-// For internal use only
+// Adds metadata tags to a DMS resource, including replication instance, endpoint,
+// security group, and migration task. These tags can also be used with cost
+// allocation reporting to track cost associated with DMS resources, or used
+// in a Condition statement in an IAM policy for DMS.
 func (c *DatabaseMigrationService) AddTagsToResource(input *AddTagsToResourceInput) (*AddTagsToResourceOutput, error) {
 	req, out := c.AddTagsToResourceRequest(input)
 	err := req.Send()
@@ -586,7 +589,7 @@ func (c *DatabaseMigrationService) ListTagsForResourceRequest(input *ListTagsFor
 	return
 }
 
-// For internal use only
+// Lists all tags for an AWS DMS resource.
 func (c *DatabaseMigrationService) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
 	err := req.Send()
@@ -727,7 +730,7 @@ func (c *DatabaseMigrationService) RemoveTagsFromResourceRequest(input *RemoveTa
 	return
 }
 
-// For internal use only
+// Removes metadata tags from a DMS resource.
 func (c *DatabaseMigrationService) RemoveTagsFromResource(input *RemoveTagsFromResourceInput) (*RemoveTagsFromResourceOutput, error) {
 	req, out := c.RemoveTagsFromResourceRequest(input)
 	err := req.Send()
