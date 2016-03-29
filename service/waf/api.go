@@ -275,6 +275,47 @@ func (c *WAF) CreateWebACL(input *CreateWebACLInput) (*CreateWebACLOutput, error
 	return out, err
 }
 
+const opCreateXssMatchSet = "CreateXssMatchSet"
+
+// CreateXssMatchSetRequest generates a request for the CreateXssMatchSet operation.
+func (c *WAF) CreateXssMatchSetRequest(input *CreateXssMatchSetInput) (req *request.Request, output *CreateXssMatchSetOutput) {
+	op := &request.Operation{
+		Name:       opCreateXssMatchSet,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateXssMatchSetInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &CreateXssMatchSetOutput{}
+	req.Data = output
+	return
+}
+
+// Creates an XssMatchSet, which you use to allow, block, or count requests
+// that contain cross-site scripting attacks in the specified part of web requests.
+// AWS WAF searches for character sequences that are likely to be malicious
+// strings.
+//
+// To create and configure an XssMatchSet, perform the following steps:
+//
+//  Use GetChangeToken to get the change token that you provide in the ChangeToken
+// parameter of a CreateXssMatchSet request. Submit a CreateXssMatchSet request.
+// Use GetChangeToken to get the change token that you provide in the ChangeToken
+// parameter of an UpdateXssMatchSet request. Submit an UpdateXssMatchSet request
+// to specify the parts of web requests in which you want to allow, block, or
+// count cross-site scripting attacks.  For more information about how to use
+// the AWS WAF API to allow or block HTTP requests, see the AWS WAF Developer
+// Guide (http://docs.aws.amazon.com/waf/latest/developerguide/).
+func (c *WAF) CreateXssMatchSet(input *CreateXssMatchSetInput) (*CreateXssMatchSetOutput, error) {
+	req, out := c.CreateXssMatchSetRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opDeleteByteMatchSet = "DeleteByteMatchSet"
 
 // DeleteByteMatchSetRequest generates a request for the DeleteByteMatchSet operation.
@@ -494,6 +535,44 @@ func (c *WAF) DeleteWebACLRequest(input *DeleteWebACLInput) (req *request.Reques
 // parameter of a DeleteWebACL request. Submit a DeleteWebACL request.
 func (c *WAF) DeleteWebACL(input *DeleteWebACLInput) (*DeleteWebACLOutput, error) {
 	req, out := c.DeleteWebACLRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDeleteXssMatchSet = "DeleteXssMatchSet"
+
+// DeleteXssMatchSetRequest generates a request for the DeleteXssMatchSet operation.
+func (c *WAF) DeleteXssMatchSetRequest(input *DeleteXssMatchSetInput) (req *request.Request, output *DeleteXssMatchSetOutput) {
+	op := &request.Operation{
+		Name:       opDeleteXssMatchSet,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteXssMatchSetInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DeleteXssMatchSetOutput{}
+	req.Data = output
+	return
+}
+
+// Permanently deletes an XssMatchSet. You can't delete an XssMatchSet if it's
+// still used in any Rules or if it still contains any XssMatchTuple objects.
+//
+// If you just want to remove an XssMatchSet from a Rule, use UpdateRule.
+//
+// To permanently delete an XssMatchSet from AWS WAF, perform the following
+// steps:
+//
+//  Update the XssMatchSet to remove filters, if any. For more information,
+// see UpdateXssMatchSet. Use GetChangeToken to get the change token that you
+// provide in the ChangeToken parameter of a DeleteXssMatchSet request. Submit
+// a DeleteXssMatchSet request.
+func (c *WAF) DeleteXssMatchSet(input *DeleteXssMatchSetInput) (*DeleteXssMatchSetOutput, error) {
+	req, out := c.DeleteXssMatchSetRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -772,6 +851,33 @@ func (c *WAF) GetWebACL(input *GetWebACLInput) (*GetWebACLOutput, error) {
 	return out, err
 }
 
+const opGetXssMatchSet = "GetXssMatchSet"
+
+// GetXssMatchSetRequest generates a request for the GetXssMatchSet operation.
+func (c *WAF) GetXssMatchSetRequest(input *GetXssMatchSetInput) (req *request.Request, output *GetXssMatchSetOutput) {
+	op := &request.Operation{
+		Name:       opGetXssMatchSet,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetXssMatchSetInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &GetXssMatchSetOutput{}
+	req.Data = output
+	return
+}
+
+// Returns the XssMatchSet that is specified by XssMatchSetId.
+func (c *WAF) GetXssMatchSet(input *GetXssMatchSetInput) (*GetXssMatchSetOutput, error) {
+	req, out := c.GetXssMatchSetRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opListByteMatchSets = "ListByteMatchSets"
 
 // ListByteMatchSetsRequest generates a request for the ListByteMatchSets operation.
@@ -930,6 +1036,33 @@ func (c *WAF) ListWebACLsRequest(input *ListWebACLsInput) (req *request.Request,
 // Returns an array of WebACLSummary objects in the response.
 func (c *WAF) ListWebACLs(input *ListWebACLsInput) (*ListWebACLsOutput, error) {
 	req, out := c.ListWebACLsRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opListXssMatchSets = "ListXssMatchSets"
+
+// ListXssMatchSetsRequest generates a request for the ListXssMatchSets operation.
+func (c *WAF) ListXssMatchSetsRequest(input *ListXssMatchSetsInput) (req *request.Request, output *ListXssMatchSetsOutput) {
+	op := &request.Operation{
+		Name:       opListXssMatchSets,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListXssMatchSetsInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListXssMatchSetsOutput{}
+	req.Data = output
+	return
+}
+
+// Returns an array of XssMatchSet objects.
+func (c *WAF) ListXssMatchSets(input *ListXssMatchSetsInput) (*ListXssMatchSetsOutput, error) {
+	req, out := c.ListXssMatchSetsRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -1251,6 +1384,55 @@ func (c *WAF) UpdateWebACL(input *UpdateWebACLInput) (*UpdateWebACLOutput, error
 	return out, err
 }
 
+const opUpdateXssMatchSet = "UpdateXssMatchSet"
+
+// UpdateXssMatchSetRequest generates a request for the UpdateXssMatchSet operation.
+func (c *WAF) UpdateXssMatchSetRequest(input *UpdateXssMatchSetInput) (req *request.Request, output *UpdateXssMatchSetOutput) {
+	op := &request.Operation{
+		Name:       opUpdateXssMatchSet,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateXssMatchSetInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &UpdateXssMatchSetOutput{}
+	req.Data = output
+	return
+}
+
+// Inserts or deletes XssMatchTuple objects (filters) in an XssMatchSet. For
+// each XssMatchTuple object, you specify the following values:
+//
+//  Action: Whether to insert the object into or delete the object from the
+// array. To change a XssMatchTuple, you delete the existing object and add
+// a new one. FieldToMatch: The part of web requests that you want AWS WAF to
+// inspect and, if you want AWS WAF to inspect a header, the name of the header.
+// TextTransformation: Which text transformation, if any, to perform on the
+// web request before inspecting the request for cross-site scripting attacks.
+//  You use XssMatchSet objects to specify which CloudFront requests you want
+// to allow, block, or count. For example, if you're receiving requests that
+// contain cross-site scripting attacks in the request body and you want to
+// block the requests, you can create an XssMatchSet with the applicable settings,
+// and then configure AWS WAF to block the requests.
+//
+// To create and configure an XssMatchSet, perform the following steps:
+//
+//  Submit a CreateXssMatchSet request. Use GetChangeToken to get the change
+// token that you provide in the ChangeToken parameter of an UpdateIPSet request.
+// Submit an UpdateXssMatchSet request to specify the parts of web requests
+// that you want AWS WAF to inspect for cross-site scripting attacks.  For more
+// information about how to use the AWS WAF API to allow or block HTTP requests,
+// see the AWS WAF Developer Guide (http://docs.aws.amazon.com/waf/latest/developerguide/).
+func (c *WAF) UpdateXssMatchSet(input *UpdateXssMatchSetInput) (*UpdateXssMatchSetOutput, error) {
+	req, out := c.UpdateXssMatchSetRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 // The ActivatedRule object in an UpdateWebACL request specifies a Rule that
 // you want to insert or delete, the priority of the Rule in the WebACL, and
 // the action that you want AWS WAF to take when a web request matches the Rule
@@ -1308,7 +1490,7 @@ type ByteMatchSet struct {
 	_ struct{} `type:"structure"`
 
 	// The ByteMatchSetId for a ByteMatchSet. You use ByteMatchSetId to get information
-	// about a ByteMatchSet (see GetByteMatchSet), update a ByteMatchSet (see UpdateByteMatchSet,
+	// about a ByteMatchSet (see GetByteMatchSet), update a ByteMatchSet (see UpdateByteMatchSet),
 	// insert a ByteMatchSet into a Rule or delete one from a Rule (see UpdateRule),
 	// and delete a ByteMatchSet from AWS WAF (see DeleteByteMatchSet).
 	//
@@ -1812,6 +1994,51 @@ func (s CreateWebACLOutput) GoString() string {
 	return s.String()
 }
 
+// A request to create an XssMatchSet.
+type CreateXssMatchSetInput struct {
+	_ struct{} `type:"structure"`
+
+	// The value returned by the most recent call to GetChangeToken.
+	ChangeToken *string `type:"string" required:"true"`
+
+	// A friendly name or description for the XssMatchSet that you're creating.
+	// You can't change Name after you create the XssMatchSet.
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateXssMatchSetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateXssMatchSetInput) GoString() string {
+	return s.String()
+}
+
+// The response to a CreateXssMatchSet request.
+type CreateXssMatchSetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ChangeToken that you used to submit the CreateXssMatchSet request. You
+	// can also use this value to query the status of the request. For more information,
+	// see GetChangeTokenStatus.
+	ChangeToken *string `type:"string"`
+
+	// An XssMatchSet.
+	XssMatchSet *XssMatchSet `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateXssMatchSetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateXssMatchSetOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteByteMatchSetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2051,6 +2278,48 @@ func (s DeleteWebACLOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteWebACLOutput) GoString() string {
+	return s.String()
+}
+
+// A request to delete an XssMatchSet from AWS WAF.
+type DeleteXssMatchSetInput struct {
+	_ struct{} `type:"structure"`
+
+	// The value returned by the most recent call to GetChangeToken.
+	ChangeToken *string `type:"string" required:"true"`
+
+	// The XssMatchSetId of the XssMatchSet that you want to delete. XssMatchSetId
+	// is returned by CreateXssMatchSet and by ListXssMatchSets.
+	XssMatchSetId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteXssMatchSetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteXssMatchSetInput) GoString() string {
+	return s.String()
+}
+
+// The response to a request to delete an XssMatchSet from AWS WAF.
+type DeleteXssMatchSetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ChangeToken that you used to submit the DeleteXssMatchSet request. You
+	// can also use this value to query the status of the request. For more information,
+	// see GetChangeTokenStatus.
+	ChangeToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DeleteXssMatchSetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteXssMatchSetOutput) GoString() string {
 	return s.String()
 }
 
@@ -2471,6 +2740,48 @@ func (s GetWebACLOutput) String() string {
 
 // GoString returns the string representation
 func (s GetWebACLOutput) GoString() string {
+	return s.String()
+}
+
+// A request to get an XssMatchSet.
+type GetXssMatchSetInput struct {
+	_ struct{} `type:"structure"`
+
+	// The XssMatchSetId of the XssMatchSet that you want to get. XssMatchSetId
+	// is returned by CreateXssMatchSet and by ListXssMatchSets.
+	XssMatchSetId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetXssMatchSetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetXssMatchSetInput) GoString() string {
+	return s.String()
+}
+
+// The response to a GetXssMatchSet request.
+type GetXssMatchSetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the XssMatchSet that you specified in the GetXssMatchSet
+	// request. For more information, see the following topics:
+	//
+	//  XssMatchSet: Contains Name, XssMatchSetId, and an array of XssMatchTuple
+	// objects XssMatchTuple: Each XssMatchTuple object contains FieldToMatch and
+	// TextTransformation FieldToMatch: Contains Data and Type
+	XssMatchSet *XssMatchSet `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetXssMatchSetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetXssMatchSetOutput) GoString() string {
 	return s.String()
 }
 
@@ -2967,10 +3278,63 @@ func (s ListWebACLsOutput) GoString() string {
 	return s.String()
 }
 
-// Specifies the ByteMatchSet, IPSet, and SqlInjectionMatchSet objects that
-// you want to add to a Rule and, for each object, indicates whether you want
-// to negate the settings, for example, requests that do NOT originate from
-// the IP address 192.0.2.44.
+// A request to list the XssMatchSet objects created by the current AWS account.
+type ListXssMatchSetsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the number of XssMatchSet objects that you want AWS WAF to return
+	// for this request. If you have more XssMatchSet objects than the number you
+	// specify for Limit, the response includes a NextMarker value that you can
+	// use to get another batch of Rules.
+	Limit *int64 `min:"1" type:"integer" required:"true"`
+
+	// If you specify a value for Limit and you have more XssMatchSet objects than
+	// the value of Limit, AWS WAF returns a NextMarker value in the response that
+	// allows you to list another group of XssMatchSets. For the second and subsequent
+	// ListXssMatchSets requests, specify the value of NextMarker from the previous
+	// response to get information about another batch of XssMatchSets.
+	NextMarker *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListXssMatchSetsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListXssMatchSetsInput) GoString() string {
+	return s.String()
+}
+
+// The response to a ListXssMatchSets request.
+type ListXssMatchSetsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If you have more XssMatchSet objects than the number that you specified for
+	// Limit in the request, the response includes a NextMarker value. To list more
+	// XssMatchSet objects, submit another ListXssMatchSets request, and specify
+	// the NextMarker value from the response in the NextMarker value in the next
+	// request.
+	NextMarker *string `min:"1" type:"string"`
+
+	// An array of XssMatchSetSummary objects.
+	XssMatchSets []*XssMatchSetSummary `type:"list"`
+}
+
+// String returns the string representation
+func (s ListXssMatchSetsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListXssMatchSetsOutput) GoString() string {
+	return s.String()
+}
+
+// Specifies the ByteMatchSet, IPSet, SqlInjectionMatchSet, XssMatchSet, and
+// SizeConstraintSet objects that you want to add to a Rule and, for each object,
+// indicates whether you want to negate the settings, for example, requests
+// that do NOT originate from the IP address 192.0.2.44.
 type Predicate struct {
 	_ struct{} `type:"structure"`
 
@@ -2979,14 +3343,16 @@ type Predicate struct {
 	DataId *string `min:"1" type:"string" required:"true"`
 
 	// Set Negated to False if you want AWS WAF to allow, block, or count requests
-	// based on the settings in the specified ByteMatchSet, IPSet, or SqlInjectionMatchSet.
-	// For example, if an IPSet includes the IP address 192.0.2.44, AWS WAF will
-	// allow or block requests based on that IP address.
+	// based on the settings in the specified ByteMatchSet, IPSet, SqlInjectionMatchSet,
+	// XssMatchSet, or SizeConstraintSet. For example, if an IPSet includes the
+	// IP address 192.0.2.44, AWS WAF will allow or block requests based on that
+	// IP address.
 	//
 	// Set Negated to True if you want AWS WAF to allow or block a request based
-	// on the negation of the settings in the ByteMatchSet, IPSet, or SqlInjectionMatchSet.
-	// For example, if an IPSet includes the IP address 192.0.2.44, AWS WAF will
-	// allow, block, or count requests based on all IP addresses except 192.0.2.44.
+	// on the negation of the settings in the ByteMatchSet, IPSet, SqlInjectionMatchSet,
+	// XssMatchSet, or SizeConstraintSet. For example, if an IPSet includes the
+	// IP address 192.0.2.44, AWS WAF will allow, block, or count requests based
+	// on all IP addresses except 192.0.2.44.
 	Negated *bool `type:"boolean" required:"true"`
 
 	// The type of predicate in a Rule, such as ByteMatchSet or IPSet.
@@ -3243,7 +3609,7 @@ type SizeConstraintSet struct {
 
 	// A unique identifier for a SizeConstraintSet. You use SizeConstraintSetId
 	// to get information about a SizeConstraintSet (see GetSizeConstraintSet),
-	// update a SizeConstraintSet (see UpdateSizeConstraintSet, insert a SizeConstraintSet
+	// update a SizeConstraintSet (see UpdateSizeConstraintSet), insert a SizeConstraintSet
 	// into a Rule or delete one from a Rule (see UpdateRule), and delete a SizeConstraintSet
 	// from AWS WAF (see DeleteSizeConstraintSet).
 	//
@@ -3273,7 +3639,7 @@ type SizeConstraintSetSummary struct {
 
 	// A unique identifier for a SizeConstraintSet. You use SizeConstraintSetId
 	// to get information about a SizeConstraintSet (see GetSizeConstraintSet),
-	// update a SizeConstraintSet (see UpdateSizeConstraintSet, insert a SizeConstraintSet
+	// update a SizeConstraintSet (see UpdateSizeConstraintSet), insert a SizeConstraintSet
 	// into a Rule or delete one from a Rule (see UpdateRule), and delete a SizeConstraintSet
 	// from AWS WAF (see DeleteSizeConstraintSet).
 	//
@@ -3332,9 +3698,9 @@ type SqlInjectionMatchSet struct {
 
 	// A unique identifier for a SqlInjectionMatchSet. You use SqlInjectionMatchSetId
 	// to get information about a SqlInjectionMatchSet (see GetSqlInjectionMatchSet),
-	// update a SqlInjectionMatchSet (see UpdateSqlInjectionMatchSet, insert a SqlInjectionMatchSet
-	// into a Rule or delete one from a Rule (see UpdateRule), and delete a SqlInjectionMatchSet
-	// from AWS WAF (see DeleteSqlInjectionMatchSet).
+	// update a SqlInjectionMatchSet (see UpdateSqlInjectionMatchSet), insert a
+	// SqlInjectionMatchSet into a Rule or delete one from a Rule (see UpdateRule),
+	// and delete a SqlInjectionMatchSet from AWS WAF (see DeleteSqlInjectionMatchSet).
 	//
 	// SqlInjectionMatchSetId is returned by CreateSqlInjectionMatchSet and by
 	// ListSqlInjectionMatchSets.
@@ -3364,9 +3730,9 @@ type SqlInjectionMatchSetSummary struct {
 
 	// A unique identifier for a SqlInjectionMatchSet. You use SqlInjectionMatchSetId
 	// to get information about a SqlInjectionMatchSet (see GetSqlInjectionMatchSet),
-	// update a SqlInjectionMatchSet (see UpdateSqlInjectionMatchSet, insert a SqlInjectionMatchSet
-	// into a Rule or delete one from a Rule (see UpdateRule), and delete a SqlInjectionMatchSet
-	// from AWS WAF (see DeleteSqlInjectionMatchSet).
+	// update a SqlInjectionMatchSet (see UpdateSqlInjectionMatchSet), insert a
+	// SqlInjectionMatchSet into a Rule or delete one from a Rule (see UpdateRule),
+	// and delete a SqlInjectionMatchSet from AWS WAF (see DeleteSqlInjectionMatchSet).
 	//
 	// SqlInjectionMatchSetId is returned by CreateSqlInjectionMatchSet and by
 	// ListSqlInjectionMatchSets.
@@ -3808,6 +4174,55 @@ func (s UpdateWebACLOutput) GoString() string {
 	return s.String()
 }
 
+// A request to update an XssMatchSet.
+type UpdateXssMatchSetInput struct {
+	_ struct{} `type:"structure"`
+
+	// The value returned by the most recent call to GetChangeToken.
+	ChangeToken *string `type:"string" required:"true"`
+
+	// An array of XssMatchSetUpdate objects that you want to insert into or delete
+	// from a XssMatchSet. For more information, see the applicable data types:
+	//
+	//  XssMatchSetUpdate: Contains Action and XssMatchTuple XssMatchTuple: Contains
+	// FieldToMatch and TextTransformation FieldToMatch: Contains Data and Type
+	Updates []*XssMatchSetUpdate `type:"list" required:"true"`
+
+	// The XssMatchSetId of the XssMatchSet that you want to update. XssMatchSetId
+	// is returned by CreateXssMatchSet and by ListXssMatchSets.
+	XssMatchSetId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateXssMatchSetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateXssMatchSetInput) GoString() string {
+	return s.String()
+}
+
+// The response to an UpdateXssMatchSets request.
+type UpdateXssMatchSetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ChangeToken that you used to submit the UpdateXssMatchSet request. You
+	// can also use this value to query the status of the request. For more information,
+	// see GetChangeTokenStatus.
+	ChangeToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateXssMatchSetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateXssMatchSetOutput) GoString() string {
+	return s.String()
+}
+
 // For the action that is associated with a rule in a WebACL, specifies the
 // action that you want AWS WAF to perform when a web request matches all of
 // the conditions in a rule. For the default action in a WebACL, specifies the
@@ -3863,8 +4278,8 @@ type WebACL struct {
 	Rules []*ActivatedRule `type:"list" required:"true"`
 
 	// A unique identifier for a WebACL. You use WebACLId to get information about
-	// a WebACL (see GetWebACL), update a WebACL (see UpdateWebACL, and delete a
-	// WebACL from AWS WAF (see DeleteWebACL).
+	// a WebACL (see GetWebACL), update a WebACL (see UpdateWebACL), and delete
+	// a WebACL from AWS WAF (see DeleteWebACL).
 	//
 	// WebACLId is returned by CreateWebACL and by ListWebACLs.
 	WebACLId *string `min:"1" type:"string" required:"true"`
@@ -3889,8 +4304,8 @@ type WebACLSummary struct {
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// A unique identifier for a WebACL. You use WebACLId to get information about
-	// a WebACL (see GetWebACL), update a WebACL (see UpdateWebACL, and delete a
-	// WebACL from AWS WAF (see DeleteWebACL).
+	// a WebACL (see GetWebACL), update a WebACL (see UpdateWebACL), and delete
+	// a WebACL from AWS WAF (see DeleteWebACL).
 	//
 	// WebACLId is returned by CreateWebACL and by ListWebACLs.
 	WebACLId *string `min:"1" type:"string" required:"true"`
@@ -3930,6 +4345,160 @@ func (s WebACLUpdate) String() string {
 
 // GoString returns the string representation
 func (s WebACLUpdate) GoString() string {
+	return s.String()
+}
+
+// A complex type that contains XssMatchTuple objects, which specify the parts
+// of web requests that you want AWS WAF to inspect for cross-site scripting
+// attacks and, if you want AWS WAF to inspect a header, the name of the header.
+// If a XssMatchSet contains more than one XssMatchTuple object, a request needs
+// to include cross-site scripting attacks in only one of the specified parts
+// of the request to be considered a match.
+type XssMatchSet struct {
+	_ struct{} `type:"structure"`
+
+	// The name, if any, of the XssMatchSet.
+	Name *string `min:"1" type:"string"`
+
+	// A unique identifier for an XssMatchSet. You use XssMatchSetId to get information
+	// about an XssMatchSet (see GetXssMatchSet), update an XssMatchSet (see UpdateXssMatchSet),
+	// insert an XssMatchSet into a Rule or delete one from a Rule (see UpdateRule),
+	// and delete an XssMatchSet from AWS WAF (see DeleteXssMatchSet).
+	//
+	// XssMatchSetId is returned by CreateXssMatchSet and by ListXssMatchSets.
+	XssMatchSetId *string `min:"1" type:"string" required:"true"`
+
+	// Specifies the parts of web requests that you want to inspect for cross-site
+	// scripting attacks.
+	XssMatchTuples []*XssMatchTuple `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s XssMatchSet) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s XssMatchSet) GoString() string {
+	return s.String()
+}
+
+// The Id and Name of an XssMatchSet.
+type XssMatchSetSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the XssMatchSet, if any, specified by Id.
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// A unique identifier for an XssMatchSet. You use XssMatchSetId to get information
+	// about a XssMatchSet (see GetXssMatchSet), update an XssMatchSet (see UpdateXssMatchSet),
+	// insert an XssMatchSet into a Rule or delete one from a Rule (see UpdateRule),
+	// and delete an XssMatchSet from AWS WAF (see DeleteXssMatchSet).
+	//
+	// XssMatchSetId is returned by CreateXssMatchSet and by ListXssMatchSets.
+	XssMatchSetId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s XssMatchSetSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s XssMatchSetSummary) GoString() string {
+	return s.String()
+}
+
+// Specifies the part of a web request that you want to inspect for cross-site
+// scripting attacks and indicates whether you want to add the specification
+// to an XssMatchSet or delete it from an XssMatchSet.
+type XssMatchSetUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// Specify INSERT to add a XssMatchSetUpdate to an XssMatchSet. Use DELETE to
+	// remove a XssMatchSetUpdate from an XssMatchSet.
+	Action *string `type:"string" required:"true" enum:"ChangeAction"`
+
+	// Specifies the part of a web request that you want AWS WAF to inspect for
+	// cross-site scripting attacks and, if you want AWS WAF to inspect a header,
+	// the name of the header.
+	XssMatchTuple *XssMatchTuple `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s XssMatchSetUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s XssMatchSetUpdate) GoString() string {
+	return s.String()
+}
+
+// Specifies the part of a web request that you want AWS WAF to inspect for
+// cross-site scripting attacks and, if you want AWS WAF to inspect a header,
+// the name of the header.
+type XssMatchTuple struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies where in a web request to look for TargetString.
+	FieldToMatch *FieldToMatch `type:"structure" required:"true"`
+
+	// Text transformations eliminate some of the unusual formatting that attackers
+	// use in web requests in an effort to bypass AWS WAF. If you specify a transformation,
+	// AWS WAF performs the transformation on FieldToMatch before inspecting a request
+	// for a match.
+	//
+	// CMD_LINE
+	//
+	// When you're concerned that attackers are injecting an operating system commandline
+	// command and using unusual formatting to disguise some or all of the command,
+	// use this option to perform the following transformations:
+	//
+	//  Delete the following characters: \ " ' ^ Delete spaces before the following
+	// characters: / ( Replace the following characters with a space: , ; Replace
+	// multiple spaces with one space Convert uppercase letters (A-Z) to lowercase
+	// (a-z)  COMPRESS_WHITE_SPACE
+	//
+	// Use this option to replace the following characters with a space character
+	// (decimal 32):
+	//
+	//  \f, formfeed, decimal 12 \t, tab, decimal 9 \n, newline, decimal 10 \r,
+	// carriage return, decimal 13 \v, vertical tab, decimal 11 non-breaking space,
+	// decimal 160  COMPRESS_WHITE_SPACE also replaces multiple spaces with one
+	// space.
+	//
+	// HTML_ENTITY_DECODE
+	//
+	// Use this option to replace HTML-encoded characters with unencoded characters.
+	// HTML_ENTITY_DECODE performs the following operations:
+	//
+	//  Replaces (ampersand)quot; with " Replaces (ampersand)nbsp; with a non-breaking
+	// space, decimal 160 Replaces (ampersand)lt; with a "less than" symbol Replaces
+	// (ampersand)gt; with > Replaces characters that are represented in hexadecimal
+	// format, (ampersand)#xhhhh;, with the corresponding characters Replaces characters
+	// that are represented in decimal format, (ampersand)#nnnn;, with the corresponding
+	// characters  LOWERCASE
+	//
+	// Use this option to convert uppercase letters (A-Z) to lowercase (a-z).
+	//
+	// URL_DECODE
+	//
+	// Use this option to decode a URL-encoded value.
+	//
+	// NONE
+	//
+	// Specify NONE if you don't want to perform any text transformations.
+	TextTransformation *string `type:"string" required:"true" enum:"TextTransformation"`
+}
+
+// String returns the string representation
+func (s XssMatchTuple) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s XssMatchTuple) GoString() string {
 	return s.String()
 }
 
@@ -4032,6 +4601,8 @@ const (
 	PredicateTypeSqlInjectionMatch = "SqlInjectionMatch"
 	// @enum PredicateType
 	PredicateTypeSizeConstraint = "SizeConstraint"
+	// @enum PredicateType
+	PredicateTypeXssMatch = "XssMatch"
 )
 
 const (
