@@ -5,12 +5,13 @@ import (
 	"net/http"
 )
 
-//the requirements for Cookie Signer is the same for the URL signer
+//CookieSigner requirements are the same for the URL signer
 type CookieSigner struct {
 	keyID   string
 	privKey *rsa.PrivateKey
 }
 
+//CookieOptions optional settings for Cookie Definition, these can also be set manually
 type CookieOptions struct {
 	Path   string
 	Domain string
@@ -83,22 +84,21 @@ func NewCookieSigner(keyID string, privKey *rsa.PrivateKey) *CookieSigner {
 	}
 }
 
-//CookieOptions are optional
+//SignCookies CookieOptions are optional, if unused, just pass in nil
 func (c CookieSigner) SignCookies(p *Policy, o *CookieOptions) (cPolicy, cSignature, cKey *http.Cookie, err error) {
 	b64Sig, b64Policy, err := p.Sign(c.privKey)
 	if err != nil {
 		return nil, nil, nil, err
 	}
 
-	cPolicy, cSignature, cKey = c.CreateCookies(b64Policy, b64Sig, o)
+	cPolicy, cSignature, cKey = c.createCookies(b64Policy, b64Sig, o)
 	return cPolicy, cSignature, cKey, nil
 
 }
 
 //prepares the cookies to be attached to the header. An (optional) options struct is provided
 //in case people don't want to manually edit their cookies
-
-func (c CookieSigner) CreateCookies(policy, signature []byte, o *CookieOptions) (cPolicy, cSignature, cKey *http.Cookie) {
+func (c CookieSigner) createCookies(policy, signature []byte, o *CookieOptions) (cPolicy, cSignature, cKey *http.Cookie) {
 	//creates proper cookies
 	cPolicy = &http.Cookie{
 		Name:     "CloudFront-Policy",
