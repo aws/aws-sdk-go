@@ -120,7 +120,7 @@ func (p *Policy) Validate() error {
 func CreateResource(scheme, u string) (string, error) {
 	scheme = strings.ToLower(scheme)
 
-	if scheme == "http" || scheme == "https" {
+	if scheme == "http" || scheme == "https" || scheme == "http*" || scheme == "*" {
 		return u, nil
 	}
 
