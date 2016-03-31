@@ -18,12 +18,12 @@ type CookieOptions struct {
 }
 
 //Example:
-//     // Sign URL to be valid for 30 minutes from now, expires one hour from now, and
-//     // restricted to the 192.0.2.0/24 IP address range.
 
 // func handler(w http.ResponseWriter, r *http.Request) {
 
-// 	//create a policy
+//  // sign cookie to be valid for 30 minutes from now, expires one hour from now, and
+//  // restricted to the 192.0.2.0/24 IP address range.
+
 //  //http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-setting-signed-cookie-custom-policy.html
 // 	p := &sign.Policy{
 // 		Statements: []sign.Statement{
@@ -54,15 +54,15 @@ type CookieOptions struct {
 // 	signer := sign.NewCookieSigner(keyID, privKey)
 
 // 	//creates 3 signed cookies, provide an optional Cookie Options struct to specify other options
-// 	//http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-setting-signed-cookie-custom-policy.html#private-content-custom-policy-statement-signed-cookies-examples
-//  //http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/CNAMEs.html
-// 	o := &CookieOptions{
+// 	o := &sign.CookieOptions{
 // 		Path:   "/",
 // 		Domain: ".cNameAssociatedWithMyDistribution.com",
 // 		Secure: true, //make sure your app/site can handle https payloads, otherwise set this to false
 // 	}
-
+// 	//http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-setting-signed-cookie-custom-policy.html#private-content-custom-policy-statement-signed-cookies-examples
+//  //http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/CNAMEs.html
 // 	//avoid adding an Expire or MaxAge. See provided AWS Documentation for more info
+
 // 	policy, signature, key, err := signer.SignCookies(p)
 // 	if err != nil {
 // 		fmt.Println("error", err)
