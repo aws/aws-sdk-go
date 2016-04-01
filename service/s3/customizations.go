@@ -20,6 +20,10 @@ func init() {
 	}
 
 	initRequest = func(r *request.Request) {
+		// Add reuest handlers for specific platforms.
+		// e.g. 100-continue support for PUT requests using Go 1.6
+		platformRequestHandlers(r)
+
 		switch r.Operation.Name {
 		case opPutBucketCors, opPutBucketLifecycle, opPutBucketPolicy, opPutBucketTagging, opDeleteObjects, opPutBucketLifecycleConfiguration, opPutBucketReplication:
 			// These S3 operations require Content-MD5 to be set

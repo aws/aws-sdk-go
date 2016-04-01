@@ -100,6 +100,22 @@ type Config struct {
 	//   Amazon S3: Virtual Hosting of Buckets
 	S3ForcePathStyle *bool
 
+	// Set this to `true` to disable the SDK adding the `Expect: 100-Continue`
+	// header to PUT requests over 2MB of content. 100-Continue instructs the
+	// HTTP client not to send the body until the service responds with a
+	// `continue` status. This is useful to prevent sending the request body
+	// until after the request is authenticated, and validated.
+	//
+	// http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPUT.html
+	//
+	// 100-Continue is only enabled for Go 1.6 and above. See `http.Transport`'s
+	// `ExpectContinueTimeout` for information on adjusting the continue wait timeout.
+	// https://golang.org/pkg/net/http/#Transport
+	//
+	// You should use this flag to disble 100-Continue if you experiance issues
+	// with proxies or thrid party S3 compatible services.
+	S3Disable100Continue *bool
+
 	// Set this to `true` to disable the EC2Metadata client from overriding the
 	// default http.Client's Timeout. This is helpful if you do not want the EC2Metadata
 	// client to create a new http.Client. This options is only meaningful if you're not
@@ -210,6 +226,13 @@ func (c *Config) WithS3ForcePathStyle(force bool) *Config {
 	return c
 }
 
+// WithS3Disable100Continue sets a config S3Disable100Continue value returning
+// a Config pointer for chaining.
+func (c *Config) WithS3Disable100Continue(disable bool) *Config {
+	c.S3Disable100Continue = &disable
+	return c
+}
+
 // WithEC2MetadataDisableTimeoutOverride sets a config EC2MetadataDisableTimeoutOverride value
 // returning a Config pointer for chaining.
 func (c *Config) WithEC2MetadataDisableTimeoutOverride(enable bool) *Config {
@@ -286,6 +309,10 @@ func mergeInConfig(dst *Config, other *Config) {
 
 	if other.S3ForcePathStyle != nil {
 		dst.S3ForcePathStyle = other.S3ForcePathStyle
+	}
+
+	if other.S3Disable100Continue != nil {
+		dst.S3Disable100Continue = other.S3Disable100Continue
 	}
 
 	if other.EC2MetadataDisableTimeoutOverride != nil {
