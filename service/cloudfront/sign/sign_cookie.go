@@ -1,18 +1,40 @@
+// Package sign provides utilities to generate signed Cookies and URLs for Amazon CloudFront.
+//
+// More information about signed URLs and their structure can be found at:
+// http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-setting-signed-cookie-custom-policy.html
+//
+// To sign a Cookie, create a CookieSigner with your private key and credential pair key ID.
+// Once you have a CookieSigner instance you can call Sign or SignWithPolicy to
+// sign the URLs.
+//
+// Example:
+//
+//    // Sign Cookie to be valid for 1 hour from now.
+//    signer := sign.NewCookieSigner(keyID, privKey)
+//    cookies, err := signer.Sign(rawURL, time.Now().Add(1*time.Hour))
+//    if err != nil {
+//        log.Fatalf("Failed to sign cookies, err: %s\n", err.Error())
+//    }
+
+//    http.SetCookie(w, cookie[0])
+// 	  http.SetCookie(w, cookie[1])
+// 	  http.SetCookie(w, cookie[2])
+//
 package sign
 
 import (
 	"crypto/rsa"
 	"net/http"
+	"time"
 )
 
-//CookieSigner requirements are the same for the URL signer
+// A Cookie Signer provides Cookie signing utilities to sign Cookies for Amazon CloudFront
+// resources.
+// Additional Options are provided and will be required depending on your set up
 type CookieSigner struct {
 	keyID   string
 	privKey *rsa.PrivateKey
-}
-
-//CookieOptions optional settings for Cookie Definition, these can also be set manually
-type CookieOptions struct {
+	//optional parameters
 	Path   string
 	Domain string
 	Secure bool
@@ -54,24 +76,23 @@ type CookieOptions struct {
 // 	//set credentials to the cookiesigner
 // 	signer := sign.NewCookieSigner(keyID, privKey)
 
-// 	//creates 3 signed cookies, provide an optional Cookie Options struct to specify other options
-// 	o := &sign.CookieOptions{
-// 		Path:   "/",
-// 		Domain: ".cNameAssociatedWithMyDistribution.com",
-// 		Secure: true, //make sure your app/site can handle https payloads, otherwise set this to false
-// 	}
-// 	//http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-setting-signed-cookie-custom-policy.html#private-content-custom-policy-statement-signed-cookies-examples
-//  //http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/CNAMEs.html
+// 	//provide an optional struct fields to specify other options
+//
+//
+// 	signer.Path:   "/",
+// 	signer.Domain: ".cNameAssociatedWithMyDistribution.com", //http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/CNAMEs.html
+// 	signer.Secure: true, //make sure your app/site can handle https payloads, otherwise set this to false
+//
 // 	//avoid adding an Expire or MaxAge. See provided AWS Documentation for more info
 
-// 	policy, signature, key, err := signer.SignCookies(p)
+// 	cookies, err := signer.SignCookies(p)
 // 	if err != nil {
 // 		fmt.Println("error", err)
 // 	}
 
-// 	http.SetCookie(w, policy)
-// 	http.SetCookie(w, signature)
-// 	http.SetCookie(w, key)
+// 	http.SetCookie(w, cookie[0])
+// 	http.SetCookie(w, cookie[1])
+// 	http.SetCookie(w, cookie[2])
 
 // }
 
@@ -84,58 +105,83 @@ func NewCookieSigner(keyID string, privKey *rsa.PrivateKey) *CookieSigner {
 	}
 }
 
-//SignCookies CookieOptions are optional, if unused, just pass in nil
-func (c CookieSigner) SignCookies(p *Policy, o *CookieOptions) (cPolicy, cSignature, cKey *http.Cookie, err error) {
-	b64Sig, b64Policy, err := p.Sign(c.privKey)
+// Sign will sign cookies to expire at the time of expires sign using the
+// Amazon CloudFront default Canned Policy. The URL will be signed with the
+// private key and Credential Key Pair Key ID previously provided to URLSigner.
+//
+//If extra policy conditions are need other than expiration use SignWithPolicy instead.
+func (c CookieSigner) Sign(url string, expires time.Time) ([]*http.Cookie, error) {
+	scheme, _, err := cleanURLScheme(url)
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, err
 	}
 
-	cPolicy, cSignature, cKey = c.createCookies(b64Policy, b64Sig, o)
-	return cPolicy, cSignature, cKey, nil
+	resource, err := CreateResource(scheme, url)
+	if err != nil {
+		return nil, err
+	}
 
+	return c.SignWithPolicy(NewCannedPolicy(resource, expires))
 }
 
-//prepares the cookies to be attached to the header. An (optional) options struct is provided
-//in case people don't want to manually edit their cookies
-func (c CookieSigner) createCookies(policy, signature []byte, o *CookieOptions) (cPolicy, cSignature, cKey *http.Cookie) {
+// SignWithPolicy will sign cookies with the Policy provided.  The cookies will be
+// signed with the private key and Credential Key Pair Key ID previously provided to CookieSigner.
+//
+// Use this signing method if you are looking to sign a Cookie with more than just
+// the Policy's expiry time, or reusing Policies between multiple Cookie signings.
+// If only the expiry time is needed you can use Sign and provide just the
+// Cookies expiry time. A minimum of at least one policy statement is required for signed Cookies.
+//
+// Note: It is not safe to use Polices between multiple signers concurrently
+func (c CookieSigner) SignWithPolicy(p *Policy) ([]*http.Cookie, error) {
+	b64Sig, b64Policy, err := p.Sign(c.privKey)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.createCookies(b64Policy, b64Sig), nil
+}
+
+//prepares the cookies to be attached to the header.
+func (c CookieSigner) createCookies(policy, signature []byte) []*http.Cookie {
 	//creates proper cookies
-	cPolicy = &http.Cookie{
+	p := &http.Cookie{
 		Name:     "CloudFront-Policy",
 		Value:    string(policy),
 		HttpOnly: true,
+		Secure:   false,
 	}
 
-	cSignature = &http.Cookie{
+	s := &http.Cookie{
 		Name:     "CloudFront-Signature",
 		Value:    string(signature),
 		HttpOnly: true,
+		Secure:   false,
 	}
-	cKey = &http.Cookie{
+	k := &http.Cookie{
 		Name:     "CloudFront-Key-Pair-Id",
 		Value:    c.keyID,
 		HttpOnly: true,
+		Secure:   false,
 	}
 
 	//if options are included, assign them to the cookies
-	if o != nil {
-		if o.Path != "" {
-			cPolicy.Path = o.Path
-			cSignature.Path = o.Path
-			cKey.Path = o.Path
-		}
-		if o.Domain != "" {
-			cPolicy.Domain = o.Domain
-			cSignature.Domain = o.Domain
-			cKey.Domain = o.Domain
-		}
-		if o.Secure != false {
-			cPolicy.Secure = o.Secure
-			cSignature.Secure = o.Secure
-			cKey.Secure = o.Secure
-		}
+	if c.Path != "" {
+		p.Path = c.Path
+		s.Path = c.Path
+		k.Path = c.Path
+	}
+	if c.Domain != "" {
+		p.Domain = c.Domain
+		s.Domain = c.Domain
+		k.Domain = c.Domain
+	}
+	if c.Secure != false {
+		p.Secure = c.Secure
+		s.Secure = c.Secure
+		k.Secure = c.Secure
 	}
 
 	//return 3 cookies to be attached to the response
-	return cPolicy, cSignature, cKey
+	return []*http.Cookie{p, s, k}
 }
