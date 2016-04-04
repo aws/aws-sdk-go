@@ -48,7 +48,7 @@ func HandlerExample(w http.ResponseWriter) {
 	// 	fmt.Println("error", err)
 	// }
 
-	//we create a random key since we have no pem file
+	//we create a random key for the example
 	privKey, err := rsa.GenerateKey(randReader, 1024)
 
 	//key ID that represents the key pair associated with the private key

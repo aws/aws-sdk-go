@@ -8,7 +8,7 @@
 // sign the URLs.
 //
 // Example:
-//
+//	func handler(w http.ResponseWriter) {
 //    // Sign Cookie to be valid for 1 hour from now.
 //    signer := sign.NewCookieSigner(keyID, privKey)
 //    cookies, err := signer.Sign(rawURL, time.Now().Add(1*time.Hour))
@@ -19,6 +19,7 @@
 //    http.SetCookie(w, cookie[0])
 // 	  http.SetCookie(w, cookie[1])
 // 	  http.SetCookie(w, cookie[2])
+//	}
 //
 package sign
 
@@ -28,7 +29,7 @@ import (
 	"time"
 )
 
-// A Cookie Signer provides Cookie signing utilities to sign Cookies for Amazon CloudFront
+// CookieSigner provides Cookie signing utilities to sign Cookies for Amazon CloudFront
 // resources.
 // Additional Options are provided and will be required depending on your set up
 type CookieSigner struct {
