@@ -15,7 +15,7 @@ const (
 	testDomain    = ".myexample.com"
 )
 
-func runCookieSetup(t *testing.T, f func(*rsa.PrivateKey)) {
+func RunCookieSetup(t *testing.T, f func(*rsa.PrivateKey)) {
 	origRandReader := randReader
 	randReader = newRandomReader(rand.New(rand.NewSource(1)))
 	defer func() {
@@ -29,7 +29,7 @@ func runCookieSetup(t *testing.T, f func(*rsa.PrivateKey)) {
 	f(privKey)
 }
 func TestCookieWithPolicy(t *testing.T) {
-	runCookieSetup(t, func(privKey *rsa.PrivateKey) {
+	RunCookieSetup(t, func(privKey *rsa.PrivateKey) {
 
 		signer := NewCookieSigner("keyID", privKey)
 
@@ -58,7 +58,7 @@ func TestCookieWithPolicy(t *testing.T) {
 
 //test cookie signer with additional options
 func TestCookieWithOptions(t *testing.T) {
-	runCookieSetup(t, func(privKey *rsa.PrivateKey) {
+	RunCookieSetup(t, func(privKey *rsa.PrivateKey) {
 
 		signer := NewCookieSigner("keyID", privKey)
 		signer.Path = "/"
@@ -90,7 +90,7 @@ func TestCookieWithOptions(t *testing.T) {
 }
 
 func TestCannedCookie(t *testing.T) {
-	runCookieSetup(t, func(privKey *rsa.PrivateKey) {
+	RunCookieSetup(t, func(privKey *rsa.PrivateKey) {
 		signer := NewCookieSigner("keyID", privKey)
 		cookies, err := signer.Sign("http://sub.cloudfront.com/path", time.Now().Add(1*time.Hour))
 		if err != nil {

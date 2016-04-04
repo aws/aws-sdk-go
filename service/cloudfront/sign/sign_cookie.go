@@ -7,20 +7,6 @@
 // Once you have a CookieSigner instance you can call Sign or SignWithPolicy to
 // sign the URLs.
 //
-// Example:
-//	func handler(w http.ResponseWriter) {
-//    // Sign Cookie to be valid for 1 hour from now.
-//    signer := sign.NewCookieSigner(keyID, privKey)
-//    cookies, err := signer.Sign(rawURL, time.Now().Add(1*time.Hour))
-//    if err != nil {
-//        log.Fatalf("Failed to sign cookies, err: %s\n", err.Error())
-//    }
-
-//    http.SetCookie(w, cookie[0])
-// 	  http.SetCookie(w, cookie[1])
-// 	  http.SetCookie(w, cookie[2])
-//	}
-//
 package sign
 
 import (
@@ -42,7 +28,21 @@ type CookieSigner struct {
 }
 
 //Example:
+//
+//   With Canned Policy
+//   // Sign Cookie to be valid for 1 hour from now.
+//   signer := sign.NewCookieSigner(keyID, privKey)
+//   cookies, err := signer.Sign(rawURL, time.Now().Add(1*time.Hour))
+//   if err != nil {
+//       log.Fatalf("Failed to sign cookies, err: %s\n", err.Error())
+//   }
 
+//   http.SetCookie(w, cookie[0])
+// 	 http.SetCookie(w, cookie[1])
+// 	 http.SetCookie(w, cookie[2])
+//
+
+// With Custom Policy
 // func handler(w http.ResponseWriter, r *http.Request) {
 
 //  // sign cookie to be valid for 30 minutes from now, expires one hour from now, and
