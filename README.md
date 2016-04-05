@@ -41,7 +41,7 @@ AWS_ACCESS_KEY_ID=AKID1234567890
 AWS_SECRET_ACCESS_KEY=MY-SECRET-KEY
 ```
 
-### AWS CLI config file (`~/aws/config`)
+### AWS CLI config file (`~/.aws/config`)
 The AWS SDK for Go does not support the AWS CLI's config file. The SDK will not use any contents from this file. The SDK only supports the shared credentials file (`~/.aws/credentials`). #384 tracks this feature request discussion.
 
 ## Using the Go SDK
