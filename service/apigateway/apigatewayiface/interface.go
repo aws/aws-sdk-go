@@ -242,6 +242,10 @@ type APIGatewayAPI interface {
 
 	GetStages(*apigateway.GetStagesInput) (*apigateway.GetStagesOutput, error)
 
+	ImportRestApiRequest(*apigateway.ImportRestApiInput) (*request.Request, *apigateway.RestApi)
+
+	ImportRestApi(*apigateway.ImportRestApiInput) (*apigateway.RestApi, error)
+
 	PutIntegrationRequest(*apigateway.PutIntegrationInput) (*request.Request, *apigateway.Integration)
 
 	PutIntegration(*apigateway.PutIntegrationInput) (*apigateway.Integration, error)
@@ -257,6 +261,10 @@ type APIGatewayAPI interface {
 	PutMethodResponseRequest(*apigateway.PutMethodResponseInput) (*request.Request, *apigateway.MethodResponse)
 
 	PutMethodResponse(*apigateway.PutMethodResponseInput) (*apigateway.MethodResponse, error)
+
+	PutRestApiRequest(*apigateway.PutRestApiInput) (*request.Request, *apigateway.RestApi)
+
+	PutRestApi(*apigateway.PutRestApiInput) (*apigateway.RestApi, error)
 
 	TestInvokeAuthorizerRequest(*apigateway.TestInvokeAuthorizerInput) (*request.Request, *apigateway.TestInvokeAuthorizerOutput)
 

@@ -2,8 +2,8 @@
   "version": "2.0",
   "service": "<fullname>Amazon API Gateway</fullname> <p>Amazon API Gateway helps developers deliver robust, secure and scalable mobile and web application backends. Amazon API Gateway allows developers to securely connect mobile and web applications to APIs that run on AWS Lambda, Amazon EC2, or other publicly addressable web services that are hosted outside of AWS.</p>",
   "operations": {
-    "CreateApiKey": null,
-    "CreateAuthorizer": null,
+    "CreateApiKey": "<p>Create an <a>ApiKey</a> resource. </p>",
+    "CreateAuthorizer": "<p>Adds a new <a>Authorizer</a> resource to an existing <a>RestApi</a> resource.</p>",
     "CreateBasePathMapping": "<p>Creates a new <a>BasePathMapping</a> resource.</p>",
     "CreateDeployment": "<p>Creates a <a>Deployment</a> resource, which makes a specified <a>RestApi</a> callable over the internet.</p>",
     "CreateDomainName": "<p>Creates a new domain name.</p>",
@@ -14,7 +14,7 @@
     "DeleteApiKey": "<p>Deletes the <a>ApiKey</a> resource.</p>",
     "DeleteAuthorizer": "<p>Deletes an existing <a>Authorizer</a> resource.</p>",
     "DeleteBasePathMapping": "<p>Deletes the <a>BasePathMapping</a> resource.</p>",
-    "DeleteClientCertificate": null,
+    "DeleteClientCertificate": "<p>Deletes the <a>ClientCertificate</a> resource.</p>",
     "DeleteDeployment": "<p>Deletes a <a>Deployment</a> resource. Deleting a deployment will only succeed if there are no <a>Stage</a> resources associated with it.</p>",
     "DeleteDomainName": "<p>Deletes the <a>DomainName</a> resource.</p>",
     "DeleteIntegration": "<p>Represents a delete integration.</p>",
@@ -27,7 +27,7 @@
     "DeleteStage": "<p>Deletes a <a>Stage</a> resource.</p>",
     "FlushStageAuthorizersCache": "<p>Flushes all authorizer cache entries on a stage.</p>",
     "FlushStageCache": "<p>Flushes a stage's cache.</p>",
-    "GenerateClientCertificate": null,
+    "GenerateClientCertificate": "<p>Generates a <a>ClientCertificate</a> resource.</p>",
     "GetAccount": "<p>Gets information about the current <a>Account</a> resource.</p>",
     "GetApiKey": "<p>Gets information about the current <a>ApiKey</a> resource.</p>",
     "GetApiKeys": "<p>Gets information about the current <a>ApiKeys</a> resource.</p>",
@@ -35,13 +35,13 @@
     "GetAuthorizers": "<p>Describe an existing <a>Authorizers</a> resource.</p>",
     "GetBasePathMapping": "<p>Describe a <a>BasePathMapping</a> resource.</p>",
     "GetBasePathMappings": "<p>Represents a collection of <a>BasePathMapping</a> resources.</p>",
-    "GetClientCertificate": null,
-    "GetClientCertificates": null,
+    "GetClientCertificate": "<p>Gets information about the current <a>ClientCertificate</a> resource.</p>",
+    "GetClientCertificates": "<p>Gets a collection of <a>ClientCertificate</a> resources.</p>",
     "GetDeployment": "<p>Gets information about a <a>Deployment</a> resource.</p>",
     "GetDeployments": "<p>Gets information about a <a>Deployments</a> collection.</p>",
     "GetDomainName": "<p>Represents a domain name that is contained in a simpler, more intuitive URL that can be called.</p>",
     "GetDomainNames": "<p>Represents a collection of <a>DomainName</a> resources.</p>",
-    "GetExport": null,
+    "GetExport": "<p>Exports a deployed version of a <a>RestApi</a> in a specified format.</p>",
     "GetIntegration": "<p>Represents a get integration.</p>",
     "GetIntegrationResponse": "<p>Represents a get integration response.</p>",
     "GetMethod": "<p>Describe an existing <a>Method</a> resource.</p>",
@@ -53,20 +53,22 @@
     "GetResources": "<p>Lists information about a collection of <a>Resource</a> resources.</p>",
     "GetRestApi": "<p>Lists the <a>RestApi</a> resource in the collection.</p>",
     "GetRestApis": "<p>Lists the <a>RestApis</a> resources for your collection.</p>",
-    "GetSdk": null,
+    "GetSdk": "<p>Generates a client SDK for a <a>RestApi</a> and <a>Stage</a>.</p>",
     "GetStage": "<p>Gets information about a <a>Stage</a> resource.</p>",
     "GetStages": "<p>Gets information about one or more <a>Stage</a> resources.</p>",
+    "ImportRestApi": "<p>A feature of the Amazon API Gateway control service for creating a new API from an external API definition file.</p>",
     "PutIntegration": "<p>Represents a put integration.</p>",
     "PutIntegrationResponse": "<p>Represents a put integration.</p>",
     "PutMethod": "<p>Add a method to an existing <a>Resource</a> resource.</p>",
     "PutMethodResponse": "<p>Adds a <a>MethodResponse</a> to an existing <a>Method</a> resource.</p>",
-    "TestInvokeAuthorizer": null,
-    "TestInvokeMethod": null,
+    "PutRestApi": "<p>A feature of the Amazon API Gateway control service for updating an existing API with an input of external API definitions. The update can take the form of merging the supplied definition into the existing API or overwriting the existing API.</p>",
+    "TestInvokeAuthorizer": "<p>Simulate the execution of an <a>Authorizer</a> in your <a>RestApi</a> with headers, parameters, and an incoming request body.</p>",
+    "TestInvokeMethod": "<p>Simulate the execution of a <a>Method</a> in your <a>RestApi</a> with headers, parameters, and an incoming request body.</p>",
     "UpdateAccount": "<p>Changes information about the current <a>Account</a> resource.</p>",
     "UpdateApiKey": "<p>Changes information about an <a>ApiKey</a> resource.</p>",
     "UpdateAuthorizer": "<p>Updates an existing <a>Authorizer</a> resource.</p>",
     "UpdateBasePathMapping": "<p>Changes information about the <a>BasePathMapping</a> resource.</p>",
-    "UpdateClientCertificate": null,
+    "UpdateClientCertificate": "<p>Changes information about an <a>ClientCertificate</a> resource.</p>",
     "UpdateDeployment": "<p>Changes information about a <a>Deployment</a> resource.</p>",
     "UpdateDomainName": "<p>Changes information about the <a>DomainName</a> resource.</p>",
     "UpdateIntegration": "<p>Represents an update integration.</p>",
@@ -102,7 +104,7 @@
       }
     },
     "AuthorizerType": {
-      "base": null,
+      "base": "<p>The authorizer type. Only current value is TOKEN.</p>",
       "refs": {
         "Authorizer$type": "<p>[Required] The type of the authorizer. Currently, the only valid type is TOKEN.</p>",
         "CreateAuthorizerRequest$type": "<p>[Required] The type of the authorizer.</p>"
@@ -132,8 +134,10 @@
     "Blob": {
       "base": null,
       "refs": {
-        "ExportResponse$body": null,
-        "SdkResponse$body": null
+        "ExportResponse$body": "<p>The binary blob response to <a>GetExport</a>, which contains the export.</p>",
+        "ImportRestApiRequest$body": "<p>The POST request body containing external API definitions. Currently, only Swagger definition JSON files are supported.</p>",
+        "PutRestApiRequest$body": "<p>The PUT request body containing external API definitions. Currently, only Swagger definition JSON files are supported.</p>",
+        "SdkResponse$body": "<p>The binary blob response to <a>GetSdk</a>, which contains the generated SDK.</p>"
       }
     },
     "Boolean": {
@@ -143,6 +147,7 @@
         "CreateApiKeyRequest$enabled": "<p>Specifies whether the <a>ApiKey</a> can be used by callers.</p>",
         "CreateStageRequest$cacheClusterEnabled": "<p>Whether cache clustering is enabled for the stage.</p>",
         "GetModelRequest$flatten": "<p>Resolves all external model references and returns a flattened model schema.</p>",
+        "ImportRestApiRequest$failOnWarnings": "<p>A query parameter to indicate whether to rollback the API creation (<code>true</code>) or not (<code>false</code>) when a warning is encountered. The default value is <code>false</code>.</p>",
         "MethodSetting$metricsEnabled": "<p>Specifies whether Amazon CloudWatch metrics are enabled for this method. The PATCH path for this setting is <code>/{method_setting_key}/metrics/enabled</code>, and the value is a Boolean.</p>",
         "MethodSetting$dataTraceEnabled": "<p>Specifies the whether data trace logging is enabled for this method, which effects the log entries pushed to Amazon CloudWatch Logs. The PATCH path for this setting is <code>/{method_setting_key}/logging/dataTrace</code>, and the value is a Boolean.</p>",
         "MethodSetting$cachingEnabled": "<p>Specifies whether responses should be cached and returned for requests. A cache cluster must be enabled on the stage for responses to be cached. The PATCH path for this setting is <code>/{method_setting_key}/caching/enabled</code>, and the value is a Boolean.</p>",
@@ -150,6 +155,7 @@
         "MethodSetting$requireAuthorizationForCacheControl": "<p>Specifies whether authorization is required for a cache invalidation request. The PATCH path for this setting is <code>/{method_setting_key}/caching/requireAuthorizationForCacheControl</code>, and the value is a Boolean.</p>",
         "MethodSnapshot$apiKeyRequired": "<p>Specifies whether the method requires a valid <a>ApiKey</a>.</p>",
         "PutMethodRequest$apiKeyRequired": "<p>Specifies whether the method required a valid <a>ApiKey</a>.</p>",
+        "PutRestApiRequest$failOnWarnings": "<p>A query parameter to indicate whether to rollback the API update (<code>true</code>) or not (<code>false</code>) when a warning is encountered. The default value is <code>false</code>.</p>",
         "Stage$cacheClusterEnabled": "<p>Specifies whether a cache cluster is enabled for the stage.</p>"
       }
     },
@@ -168,13 +174,13 @@
       }
     },
     "ClientCertificate": {
-      "base": null,
+      "base": "<p>Represents a Client Certificate used to configure client-side SSL authentication while sending requests to the integration endpoint.</p>",
       "refs": {
         "ListOfClientCertificate$member": null
       }
     },
     "ClientCertificates": {
-      "base": null,
+      "base": "<p>Represents a collection of <a>ClientCertificate</a> resources.</p>",
       "refs": {
       }
     },
@@ -184,12 +190,12 @@
       }
     },
     "CreateApiKeyRequest": {
-      "base": null,
+      "base": "<p>Request to create an <a>ApiKey</a> resource.</p>",
       "refs": {
       }
     },
     "CreateAuthorizerRequest": {
-      "base": null,
+      "base": "<p>Request to add a new <a>Authorizer</a> to an existing <a>RestApi</a> resource.</p>",
       "refs": {
       }
     },
@@ -219,7 +225,7 @@
       }
     },
     "CreateRestApiRequest": {
-      "base": "<p>Request to add a new <a>RestApi</a> resource to your collection.</p>",
+      "base": "<p>The POST Request to add a new <a>RestApi</a> resource to your collection.</p>",
       "refs": {
       }
     },
@@ -244,7 +250,7 @@
       }
     },
     "DeleteClientCertificateRequest": {
-      "base": null,
+      "base": "<p>A request to delete the <a>ClientCertificate</a> resource.</p>",
       "refs": {
       }
     },
@@ -328,7 +334,7 @@
       }
     },
     "ExportResponse": {
-      "base": null,
+      "base": "<p>The binary blob response to <a>GetExport</a>, which contains the generated SDK.</p>",
       "refs": {
       }
     },
@@ -343,7 +349,7 @@
       }
     },
     "GenerateClientCertificateRequest": {
-      "base": null,
+      "base": "<p>A request to generate a <a>ClientCertificate</a> resource.</p>",
       "refs": {
       }
     },
@@ -383,12 +389,12 @@
       }
     },
     "GetClientCertificateRequest": {
-      "base": null,
+      "base": "<p>A request to get information about the current <a>ClientCertificate</a> resource.</p>",
       "refs": {
       }
     },
     "GetClientCertificatesRequest": {
-      "base": null,
+      "base": "<p>A request to get information about a collection of <a>ClientCertificate</a> resources.</p>",
       "refs": {
       }
     },
@@ -413,7 +419,7 @@
       }
     },
     "GetExportRequest": {
-      "base": null,
+      "base": "<p>Request a new export of a <a>RestApi</a> for a particular <a>Stage</a>.</p>",
       "refs": {
       }
     },
@@ -463,17 +469,17 @@
       }
     },
     "GetRestApiRequest": {
-      "base": "<p>Request to list an existing <a>RestApi</a> defined for your collection. </p>",
+      "base": "<p>The GET request to list an existing <a>RestApi</a> defined for your collection. </p>",
       "refs": {
       }
     },
     "GetRestApisRequest": {
-      "base": "<p>Request to list existing <a>RestApis</a> defined for your collection.</p>",
+      "base": "<p>The GET request to list existing <a>RestApis</a> defined for your collection.</p>",
       "refs": {
       }
     },
     "GetSdkRequest": {
-      "base": null,
+      "base": "<p>Request a new generated client SDK for a <a>RestApi</a> and <a>Stage</a>.</p>",
       "refs": {
       }
     },
@@ -484,6 +490,11 @@
     },
     "GetStagesRequest": {
       "base": "<p>Requests Amazon API Gateway to get information about one or more <a>Stage</a> resources.</p>",
+      "refs": {
+      }
+    },
+    "ImportRestApiRequest": {
+      "base": "<p>A POST request to import an API to Amazon API Gateway using an input of an API definition file.</p>",
       "refs": {
       }
     },
@@ -510,9 +521,9 @@
       }
     },
     "IntegrationType": {
-      "base": "<p>The integration type. Possible values are HTTP, AWS, or Mock.</p>",
+      "base": "<p>The integration type. The valid value is <code>HTTP</code>, <code>AWS</code>, or <code>MOCK</code>.</p>",
       "refs": {
-        "Integration$type": "<p>Specifies the integration's type.</p>",
+        "Integration$type": "<p>Specifies the integration's type. The valid value is <code>HTTP</code>, <code>AWS</code>, or <code>MOCK</code>.</p>",
         "PutIntegrationRequest$type": "<p>Specifies a put integration input's type.</p>"
       }
     },
@@ -542,7 +553,7 @@
     "ListOfClientCertificate": {
       "base": null,
       "refs": {
-        "ClientCertificates$items": null
+        "ClientCertificates$items": "<p>The current page of any <a>ClientCertificate</a> resources in the collection of <a>ClientCertificate</a> resources.</p>"
       }
     },
     "ListOfDeployment": {
@@ -613,7 +624,8 @@
         "ApiKey$stageKeys": "<p>A list of <a>Stage</a> resources that are associated with the <a>ApiKey</a> resource.</p>",
         "Integration$cacheKeyParameters": "<p>Specifies the integration's cache key parameters.</p>",
         "MapOfStringToList$value": null,
-        "PutIntegrationRequest$cacheKeyParameters": "<p>Specifies a put integration input's cache key parameters.</p>"
+        "PutIntegrationRequest$cacheKeyParameters": "<p>Specifies a put integration input's cache key parameters.</p>",
+        "RestApi$warnings": null
       }
     },
     "Long": {
@@ -626,8 +638,8 @@
     "MapOfHeaderValues": {
       "base": null,
       "refs": {
-        "TestInvokeAuthorizerRequest$headers": null,
-        "TestInvokeMethodRequest$headers": null,
+        "TestInvokeAuthorizerRequest$headers": "<p>[Required] A key-value map of headers to simulate an incoming invocation request. This is where the incoming authorization token, or identity source, should be specified.</p>",
+        "TestInvokeMethodRequest$headers": "<p>A key-value map of headers to simulate an incoming invocation request.</p>",
         "TestInvokeMethodResponse$headers": "<p>The headers of HTTP response.</p>"
       }
     },
@@ -640,7 +652,7 @@
     "MapOfMethod": {
       "base": null,
       "refs": {
-        "Resource$resourceMethods": "<p>Map of methods for this resource, which is included only if requested using the <b>embed</b> option.</p>"
+        "Resource$resourceMethods": "<p>Map of methods for this resource, which is included only if the request uses the <b>embed</b> query option.</p>"
       }
     },
     "MapOfMethodResponse": {
@@ -681,8 +693,9 @@
       "refs": {
         "CreateDeploymentRequest$variables": "<p>A map that defines the stage variables for the <a>Stage</a> resource that is associated with the new deployment. Variable names can have alphanumeric characters, and the values must match <code>[A-Za-z0-9-._~:/?#&amp;=,]+</code>.</p>",
         "CreateStageRequest$variables": "<p>A map that defines the stage variables for the new <a>Stage</a> resource. Variable names can have alphanumeric characters, and the values must match <code>[A-Za-z0-9-._~:/?#&amp;=,]+</code>.</p>",
-        "GetExportRequest$parameters": null,
-        "GetSdkRequest$parameters": null,
+        "GetExportRequest$parameters": "<p>A key-value map of query string parameters that specify properties of the export, depending on the requested exportType. For exportType 'swagger', any combination of the following parameters are supported: 'integrations' will export x-amazon-apigateway-integration extensions 'authorizers' will export x-amazon-apigateway-authorizer extensions 'postman' will export with Postman extensions, allowing for import to the Postman tool</p>",
+        "GetSdkRequest$parameters": "<p>A key-value map of query string parameters that specify properties of the SDK, depending on the requested sdkType. For sdkType 'objectivec', a parameter named \"classPrefix\" is required. For sdkType 'android', parameters named \"groupId\", \"artifactId\", \"artifactVersion\", and \"invokerPackage\" are required.</p>",
+        "ImportRestApiRequest$parameters": "<p>Custom header parameters as part of the request.</p>",
         "Integration$requestParameters": "<p>Represents requests parameters that are sent with the backend request. Request parameters are represented as a key/value map, with a destination as the key and a source as the value. A source must match an existing method request parameter, or a static value. Static values must be enclosed with single quotes, and be pre-encoded based on their destination in the request. The destination must match the pattern <code>integration.request.{location}.{name}</code>, where <code>location</code> is either querystring, path, or header. <code>name</code> must be a valid, unique parameter name.</p>",
         "Integration$requestTemplates": "<p>Specifies the integration's request templates.</p>",
         "IntegrationResponse$responseParameters": "<p>Represents response parameters that can be read from the backend response. Response parameters are represented as a key/value map, with a destination as the key and a source as the value. A destination must match an existing response parameter in the <a>MethodResponse</a>. The source can be a header from the backend response, or a static value. Static values are specified using enclosing single quotes, and backend response headers can be read using the pattern <code>integration.response.header.{name}</code>.</p>",
@@ -695,10 +708,11 @@
         "PutIntegrationResponseRequest$responseTemplates": "<p>Specifies a put integration response's templates.</p>",
         "PutMethodRequest$requestModels": "<p>Specifies the <a>Model</a> resources used for the request's content type. Request models are represented as a key/value map, with a content type as the key and a <a>Model</a> name as the value.</p>",
         "PutMethodResponseRequest$responseModels": "<p>Specifies the <a>Model</a> resources used for the response's content type. Response models are represented as a key/value map, with a content type as the key and a <a>Model</a> name as the value.</p>",
+        "PutRestApiRequest$parameters": "<p>Custom headers supplied as part of the request. </p>",
         "Stage$variables": "<p>A map that defines the stage variables for a <a>Stage</a> resource. Variable names can have alphanumeric characters, and the values must match <code>[A-Za-z0-9-._~:/?#&amp;=,]+</code>.</p>",
-        "TestInvokeAuthorizerRequest$stageVariables": null,
-        "TestInvokeAuthorizerRequest$additionalContext": null,
-        "TestInvokeMethodRequest$stageVariables": null
+        "TestInvokeAuthorizerRequest$stageVariables": "<p>A key-value map of stage variables to simulate an invocation on a deployed <a>Stage</a>.</p>",
+        "TestInvokeAuthorizerRequest$additionalContext": "<p>[Optional] A key-value map of additional context variables.</p>",
+        "TestInvokeMethodRequest$stageVariables": "<p>A key-value map of stage variables to simulate an invocation on a deployed <a>Stage</a>.</p>"
       }
     },
     "Method": {
@@ -755,9 +769,9 @@
         "Authorizer$authorizerResultTtlInSeconds": "<p>The TTL in seconds of cached authorizer results. If greater than 0, API Gateway will cache authorizer responses. If this field is not set, the default value is 300. The maximum value is 3600, or 1 hour.</p>",
         "CreateAuthorizerRequest$authorizerResultTtlInSeconds": "<p>The TTL of cached authorizer results.</p>",
         "GetApiKeysRequest$limit": "<p>The maximum number of <a>ApiKeys</a> to get information about.</p>",
-        "GetAuthorizersRequest$limit": null,
+        "GetAuthorizersRequest$limit": "<p>Limit the number of <a>Authorizer</a> resources in the response.</p>",
         "GetBasePathMappingsRequest$limit": "<p>The maximum number of <a>BasePathMapping</a> resources in the collection to get information about. The default limit is 25. It should be an integer between 1 - 500.</p>",
-        "GetClientCertificatesRequest$limit": null,
+        "GetClientCertificatesRequest$limit": "<p>The maximum number of <a>ClientCertificate</a> resources in the collection to get information about. The default limit is 25. It should be an integer between 1 - 500.</p>",
         "GetDeploymentsRequest$limit": "<p>The maximum number of <a>Deployment</a> resources in the collection to get information about. The default limit is 25. It should be an integer between 1 - 500.</p>",
         "GetDomainNamesRequest$limit": "<p>The maximum number of <a>DomainName</a> resources in the collection to get information about. The default limit is 25. It should be an integer between 1 - 500.</p>",
         "GetModelsRequest$limit": "<p>The maximum number of models in the collection to get information about. The default limit is 25. It should be an integer between 1 - 500.</p>",
@@ -797,6 +811,17 @@
       "refs": {
       }
     },
+    "PutMode": {
+      "base": null,
+      "refs": {
+        "PutRestApiRequest$mode": "<p>The <code>mode</code> query parameter to specify the update mode. Valid values are \"merge\" and \"overwrite\". By default, the update mode is \"merge\".</p>"
+      }
+    },
+    "PutRestApiRequest": {
+      "base": "<p>A PUT request to update an existing API, with external API definitions specified as the request body.</p>",
+      "refs": {
+      }
+    },
     "Resource": {
       "base": "<p>Represents a resource.</p>",
       "refs": {
@@ -820,7 +845,7 @@
       }
     },
     "SdkResponse": {
-      "base": null,
+      "base": "<p>The binary blob response to <a>GetSdk</a>, which contains the generated SDK.</p>",
       "refs": {
       }
     },
@@ -871,6 +896,7 @@
         "ApiKeys$position": null,
         "Authorizer$id": "<p>The identifier for the authorizer resource.</p>",
         "Authorizer$name": "<p>[Required] The name of the authorizer.</p>",
+        "Authorizer$authType": "<p>Optional customer-defined field, used in Swagger imports/exports. Has no functional impact.</p>",
         "Authorizer$authorizerUri": "<p>[Required] Specifies the authorizer's Uniform Resource Identifier (URI). For TOKEN authorizers, this must be a well-formed Lambda function URI. The URI should be of the form <code>arn:aws:apigateway:{region}:lambda:path/{service_api}</code>. <code>Region</code> is used to determine the right endpoint. In this case, <code>path</code> is used to indicate that the remaining substring in the URI should be treated as the path to the resource, including the initial <code>/</code>. For Lambda functions, this is usually of the form /2015-03-31/functions/[FunctionARN]/invocations</p>",
         "Authorizer$authorizerCredentials": "<p>Specifies the credentials required for the authorizer, if any. Two options are available. To specify an IAM Role for Amazon API Gateway to assume, use the role's Amazon Resource Name (ARN). To use resource-based permissions on the Lambda function, specify null.</p>",
         "Authorizer$identitySource": "<p>[Required] The source of the identity in an incoming request. For TOKEN authorizers, this value is a mapping expression with the same syntax as integration parameter mappings. The only valid source for tokens is 'header', so the expression should match 'method.request.header.[headerName]'. The value of the header '[headerName]' will be interpreted as the incoming token.</p>",
@@ -881,15 +907,16 @@
         "BasePathMapping$restApiId": "<p>The name of the API.</p>",
         "BasePathMapping$stage": "<p>The name of the API's stage.</p>",
         "BasePathMappings$position": null,
-        "ClientCertificate$clientCertificateId": null,
-        "ClientCertificate$description": null,
-        "ClientCertificate$pemEncodedCertificate": null,
+        "ClientCertificate$clientCertificateId": "<p>The identifier of the Client Certificate.</p>",
+        "ClientCertificate$description": "<p>The description of the Client Certificate.</p>",
+        "ClientCertificate$pemEncodedCertificate": "<p>The PEM-encoded public key of the Client Certificate, that can be used to configure certificate authentication in the integration endpoint .</p>",
         "ClientCertificates$position": null,
         "ConflictException$message": null,
         "CreateApiKeyRequest$name": "<p>The name of the <a>ApiKey</a>.</p>",
         "CreateApiKeyRequest$description": "<p>The description of the <a>ApiKey</a>.</p>",
-        "CreateAuthorizerRequest$restApiId": null,
+        "CreateAuthorizerRequest$restApiId": "<p>The <a>RestApi</a> identifier under which the <a>Authorizer</a> will be created.</p>",
         "CreateAuthorizerRequest$name": "<p>[Required] The name of the authorizer.</p>",
+        "CreateAuthorizerRequest$authType": "<p>Optional customer-defined field, used in Swagger imports/exports. Has no functional impact.</p>",
         "CreateAuthorizerRequest$authorizerUri": "<p>[Required] Specifies the authorizer's Uniform Resource Identifier (URI).</p>",
         "CreateAuthorizerRequest$authorizerCredentials": "<p>Specifies the credentials required for the authorizer, if any.</p>",
         "CreateAuthorizerRequest$identitySource": "<p>[Required] The source of the identity in an incoming request.</p>",
@@ -927,7 +954,7 @@
         "DeleteAuthorizerRequest$authorizerId": "<p>The identifier of the <a>Authorizer</a> resource.</p>",
         "DeleteBasePathMappingRequest$domainName": "<p>The domain name of the <a>BasePathMapping</a> resource to delete.</p>",
         "DeleteBasePathMappingRequest$basePath": "<p>The base path name of the <a>BasePathMapping</a> resource to delete.</p>",
-        "DeleteClientCertificateRequest$clientCertificateId": null,
+        "DeleteClientCertificateRequest$clientCertificateId": "<p>The identifier of the <a>ClientCertificate</a> resource to be deleted.</p>",
         "DeleteDeploymentRequest$restApiId": "<p>The identifier of the <a>RestApi</a> resource for the <a>Deployment</a> resource to delete.</p>",
         "DeleteDeploymentRequest$deploymentId": "<p>The identifier of the <a>Deployment</a> resource to delete.</p>",
         "DeleteDomainNameRequest$domainName": "<p>The name of the <a>DomainName</a> resource to be deleted.</p>",
@@ -957,35 +984,35 @@
         "DomainName$certificateName": "<p>The name of the certificate.</p>",
         "DomainName$distributionDomainName": "<p>The domain name of the Amazon CloudFront distribution. For more information, see the <a href=\"http://aws.amazon.com/documentation/cloudfront/\" target=\"_blank\">Amazon CloudFront documentation</a>.</p>",
         "DomainNames$position": null,
-        "ExportResponse$contentType": null,
-        "ExportResponse$contentDisposition": null,
+        "ExportResponse$contentType": "<p>The content-type header value in the HTTP response. This will correspond to a valid 'accept' type in the request.</p>",
+        "ExportResponse$contentDisposition": "<p>The content-disposition header value in the HTTP reseponse.</p>",
         "FlushStageAuthorizersCacheRequest$restApiId": "<p>The API identifier of the stage to flush.</p>",
         "FlushStageAuthorizersCacheRequest$stageName": "<p>The name of the stage to flush.</p>",
         "FlushStageCacheRequest$restApiId": "<p>The API identifier of the stage to flush its cache.</p>",
         "FlushStageCacheRequest$stageName": "<p>The name of the stage to flush its cache.</p>",
-        "GenerateClientCertificateRequest$description": null,
+        "GenerateClientCertificateRequest$description": "<p>The description of the <a>ClientCertificate</a>.</p>",
         "GetApiKeyRequest$apiKey": "<p>The identifier of the <a>ApiKey</a> resource.</p>",
         "GetApiKeysRequest$position": "<p>The position of the current <a>ApiKeys</a> resource to get information about.</p>",
         "GetAuthorizerRequest$restApiId": "<p>The <a>RestApi</a> identifier for the <a>Authorizer</a> resource.</p>",
         "GetAuthorizerRequest$authorizerId": "<p>The identifier of the <a>Authorizer</a> resource.</p>",
         "GetAuthorizersRequest$restApiId": "<p>The <a>RestApi</a> identifier for the <a>Authorizers</a> resource.</p>",
-        "GetAuthorizersRequest$position": null,
+        "GetAuthorizersRequest$position": "<p>If not all <a>Authorizer</a> resources in the response were present, the position will specificy where to start the next page of results.</p>",
         "GetBasePathMappingRequest$domainName": "<p>The domain name of the <a>BasePathMapping</a> resource to be described.</p>",
         "GetBasePathMappingRequest$basePath": "<p>The base path name that callers of the API must provide as part of the URL after the domain name. This value must be unique for all of the mappings across a single API. Leave this blank if you do not want callers to specify any base path name after the domain name.</p>",
         "GetBasePathMappingsRequest$domainName": "<p>The domain name of a <a>BasePathMapping</a> resource.</p>",
         "GetBasePathMappingsRequest$position": "<p>The position of the current <a>BasePathMapping</a> resource in the collection to get information about.</p>",
-        "GetClientCertificateRequest$clientCertificateId": null,
-        "GetClientCertificatesRequest$position": null,
+        "GetClientCertificateRequest$clientCertificateId": "<p>The identifier of the <a>ClientCertificate</a> resource to be described.</p>",
+        "GetClientCertificatesRequest$position": "<p>The position of the current <a>ClientCertificate</a> resource in the collection to get information about.</p>",
         "GetDeploymentRequest$restApiId": "<p>The identifier of the <a>RestApi</a> resource for the <a>Deployment</a> resource to get information about.</p>",
         "GetDeploymentRequest$deploymentId": "<p>The identifier of the <a>Deployment</a> resource to get information about.</p>",
         "GetDeploymentsRequest$restApiId": "<p>The identifier of the <a>RestApi</a> resource for the collection of <a>Deployment</a> resources to get information about.</p>",
         "GetDeploymentsRequest$position": "<p>The position of the current <a>Deployment</a> resource in the collection to get information about.</p>",
         "GetDomainNameRequest$domainName": "<p>The name of the <a>DomainName</a> resource.</p>",
         "GetDomainNamesRequest$position": "<p>The position of the current domain names to get information about.</p>",
-        "GetExportRequest$restApiId": null,
-        "GetExportRequest$stageName": null,
-        "GetExportRequest$exportType": null,
-        "GetExportRequest$accepts": null,
+        "GetExportRequest$restApiId": "<p>The identifier of the <a>RestApi</a> to be exported.</p>",
+        "GetExportRequest$stageName": "<p>The name of the <a>Stage</a> that will be exported.</p>",
+        "GetExportRequest$exportType": "<p>The type of export. Currently only 'swagger' is supported.</p>",
+        "GetExportRequest$accepts": "<p>The content-type of the export, for example 'application/json'. Currently 'application/json' and 'application/yaml' are supported for exportType 'swagger'. Should be specifed in the 'Accept' header for direct API requests.</p>",
         "GetIntegrationRequest$restApiId": "<p>Specifies a get integration request's API identifier.</p>",
         "GetIntegrationRequest$resourceId": "<p>Specifies a get integration request's resource identifier</p>",
         "GetIntegrationRequest$httpMethod": "<p>Specifies a get integration request's HTTP method.</p>",
@@ -1010,9 +1037,9 @@
         "GetResourcesRequest$position": "<p>The position of the next set of results in the current <a>Resources</a> resource to get information about.</p>",
         "GetRestApiRequest$restApiId": "<p>The identifier of the <a>RestApi</a> resource.</p>",
         "GetRestApisRequest$position": "<p>The position of the current <a>RestApis</a> resource in the collection to get information about.</p>",
-        "GetSdkRequest$restApiId": null,
-        "GetSdkRequest$stageName": null,
-        "GetSdkRequest$sdkType": null,
+        "GetSdkRequest$restApiId": "<p>The identifier of the <a>RestApi</a> that the SDK will use.</p>",
+        "GetSdkRequest$stageName": "<p>The name of the <a>Stage</a> that the SDK will use.</p>",
+        "GetSdkRequest$sdkType": "<p>The language for the generated SDK. Currently javascript, android, and objectivec (for iOS) are supported.</p>",
         "GetStageRequest$restApiId": "<p>The identifier of the <a>RestApi</a> resource for the <a>Stage</a> resource to get information about.</p>",
         "GetStageRequest$stageName": "<p>The name of the <a>Stage</a> resource to get information about.</p>",
         "GetStagesRequest$restApiId": "<p>The stages' API identifiers.</p>",
@@ -1056,7 +1083,7 @@
         "PutIntegrationRequest$resourceId": "<p>Specifies a put integration request's resource ID.</p>",
         "PutIntegrationRequest$httpMethod": "<p>Specifies a put integration request's HTTP method.</p>",
         "PutIntegrationRequest$integrationHttpMethod": "<p>Specifies a put integration HTTP method. When the integration type is HTTP or AWS, this field is required.</p>",
-        "PutIntegrationRequest$uri": "<p>Specifies a put integration input's Uniform Resource Identifier (URI). When the integration type is HTTP or AWS, this field is required.</p>",
+        "PutIntegrationRequest$uri": "<p>Specifies a put integration input's Uniform Resource Identifier (URI). When the integration type is HTTP or AWS, this field is required. For integration with Lambda as an AWS service proxy, this value is of the 'arn:aws:apigateway:&lt;region&gt;:lambda:path/2015-03-31/functions/&lt;functionArn&gt;/invocations' format.</p>",
         "PutIntegrationRequest$credentials": "<p>Specifies whether credentials are required for a put integration.</p>",
         "PutIntegrationRequest$cacheNamespace": "<p>Specifies a put integration input's cache namespace.</p>",
         "PutIntegrationResponseRequest$restApiId": "<p>Specifies a put integration response request's API identifier.</p>",
@@ -1071,6 +1098,7 @@
         "PutMethodResponseRequest$restApiId": "<p>The <a>RestApi</a> identifier for the <a>Method</a> resource.</p>",
         "PutMethodResponseRequest$resourceId": "<p>The <a>Resource</a> identifier for the <a>Method</a> resource.</p>",
         "PutMethodResponseRequest$httpMethod": "<p>The HTTP verb that identifies the <a>Method</a> resource.</p>",
+        "PutRestApiRequest$restApiId": "<p>The identifier of the <a>RestApi</a> to be updated. </p>",
         "Resource$id": "<p>The resource's identifier.</p>",
         "Resource$parentId": "<p>The parent resource's identifier.</p>",
         "Resource$pathPart": "<p>The last path segment for this resource.</p>",
@@ -1080,8 +1108,8 @@
         "RestApi$name": "<p>The API's name.</p>",
         "RestApi$description": "<p>The API's description.</p>",
         "RestApis$position": null,
-        "SdkResponse$contentType": null,
-        "SdkResponse$contentDisposition": null,
+        "SdkResponse$contentType": "<p>The content-type header value in the HTTP response.</p>",
+        "SdkResponse$contentDisposition": "<p>The content-disposition header value in the HTTP reseponse.</p>",
         "ServiceUnavailableException$retryAfterSeconds": null,
         "ServiceUnavailableException$message": null,
         "Stage$deploymentId": "<p>The identifier of the <a>Deployment</a> that the stage points to.</p>",
@@ -1091,19 +1119,19 @@
         "StageKey$restApiId": "<p>A list of <a>Stage</a> resources that are associated with the <a>ApiKey</a> resource.</p>",
         "StageKey$stageName": "<p>The stage name in the <a>RestApi</a> that the stage key references.</p>",
         "Template$value": "<p>The Apache <a href=\"http://velocity.apache.org/engine/devel/vtl-reference-guide.html\" target=\"_blank\">Velocity Template Language (VTL)</a> template content used for the template resource.</p>",
-        "TestInvokeAuthorizerRequest$restApiId": null,
-        "TestInvokeAuthorizerRequest$authorizerId": null,
-        "TestInvokeAuthorizerRequest$pathWithQueryString": null,
-        "TestInvokeAuthorizerRequest$body": null,
+        "TestInvokeAuthorizerRequest$restApiId": "<p>Specifies a test invoke authorizer request's <a>RestApi</a> identifier.</p>",
+        "TestInvokeAuthorizerRequest$authorizerId": "<p>Specifies a test invoke authorizer request's <a>Authorizer</a> ID.</p>",
+        "TestInvokeAuthorizerRequest$pathWithQueryString": "<p>[Optional] The URI path, including query string, of the simulated invocation request. Use this to specify path parameters and query string parameters.</p>",
+        "TestInvokeAuthorizerRequest$body": "<p>[Optional] The simulated request body of an incoming invocation request.</p>",
         "TestInvokeAuthorizerResponse$log": "<p>The Amazon API Gateway execution log for the test authorizer request.</p>",
         "TestInvokeAuthorizerResponse$principalId": "<p>The principal identity returned by the <a>Authorizer</a></p>",
         "TestInvokeAuthorizerResponse$policy": "<p>The policy JSON document returned by the <a>Authorizer</a></p>",
-        "TestInvokeMethodRequest$restApiId": null,
-        "TestInvokeMethodRequest$resourceId": null,
-        "TestInvokeMethodRequest$httpMethod": null,
-        "TestInvokeMethodRequest$pathWithQueryString": null,
-        "TestInvokeMethodRequest$body": null,
-        "TestInvokeMethodRequest$clientCertificateId": null,
+        "TestInvokeMethodRequest$restApiId": "<p>Specifies a test invoke method request's API identifier.</p>",
+        "TestInvokeMethodRequest$resourceId": "<p>Specifies a test invoke method request's resource ID.</p>",
+        "TestInvokeMethodRequest$httpMethod": "<p>Specifies a test invoke method request's HTTP method.</p>",
+        "TestInvokeMethodRequest$pathWithQueryString": "<p>The URI path, including query string, of the simulated invocation request. Use this to specify path parameters and query string parameters.</p>",
+        "TestInvokeMethodRequest$body": "<p>The simulated request body of an incoming invocation request.</p>",
+        "TestInvokeMethodRequest$clientCertificateId": "<p>A <a>ClientCertificate</a> identifier to use in the test invocation. API Gateway will use use the certificate when making the HTTPS request to the defined backend endpoint.</p>",
         "TestInvokeMethodResponse$body": "<p>The body of HTTP response.</p>",
         "TestInvokeMethodResponse$log": "<p>The Amazon API Gateway execution log for the test invoke request.</p>",
         "TooManyRequestsException$retryAfterSeconds": null,
@@ -1114,7 +1142,7 @@
         "UpdateAuthorizerRequest$authorizerId": "<p>The identifier of the <a>Authorizer</a> resource.</p>",
         "UpdateBasePathMappingRequest$domainName": "<p>The domain name of the <a>BasePathMapping</a> resource to change.</p>",
         "UpdateBasePathMappingRequest$basePath": "<p>The base path of the <a>BasePathMapping</a> resource to change.</p>",
-        "UpdateClientCertificateRequest$clientCertificateId": null,
+        "UpdateClientCertificateRequest$clientCertificateId": "<p>The identifier of the <a>ClientCertificate</a> resource to be updated.</p>",
         "UpdateDeploymentRequest$restApiId": "<p>The replacement identifier of the <a>RestApi</a> resource for the <a>Deployment</a> resource to change information about.</p>",
         "UpdateDeploymentRequest$deploymentId": "<p>The replacment identifier for the <a>Deployment</a> resource to change information about.</p>",
         "UpdateDomainNameRequest$domainName": "<p>The name of the <a>DomainName</a> resource to be changed.</p>",
@@ -1145,7 +1173,7 @@
       }
     },
     "TestInvokeAuthorizerRequest": {
-      "base": null,
+      "base": "<p>Make a request to simulate the execution of an <a>Authorizer</a>.</p>",
       "refs": {
       }
     },
@@ -1155,7 +1183,7 @@
       }
     },
     "TestInvokeMethodRequest": {
-      "base": null,
+      "base": "<p>Make a request to simulate the execution of a <a>Method</a>.</p>",
       "refs": {
       }
     },
@@ -1175,8 +1203,8 @@
       "refs": {
         "ApiKey$createdDate": "<p>The date when the API Key was created, in <a href=\"http://www.iso.org/iso/home/standards/iso8601.htm\" target=\"_blank\">ISO 8601 format</a>.</p>",
         "ApiKey$lastUpdatedDate": "<p>When the API Key was last updated, in ISO 8601 format.</p>",
-        "ClientCertificate$createdDate": null,
-        "ClientCertificate$expirationDate": null,
+        "ClientCertificate$createdDate": "<p>The date when the Client Certificate was created, in <a href=\"http://www.iso.org/iso/home/standards/iso8601.htm\" target=\"_blank\">ISO 8601 format</a>.</p>",
+        "ClientCertificate$expirationDate": "<p>The date when the Client Certificate will expire, in <a href=\"http://www.iso.org/iso/home/standards/iso8601.htm\" target=\"_blank\">ISO 8601 format</a>.</p>",
         "Deployment$createdDate": "<p>The date and time that the deployment resource was created.</p>",
         "DomainName$certificateUploadDate": "<p>The date when the certificate was uploaded, in <a href=\"http://www.iso.org/iso/home/standards/iso8601.htm\" target=\"_blank\">ISO 8601 format</a>.</p>",
         "RestApi$createdDate": "<p>The date when the API was created, in <a href=\"http://www.iso.org/iso/home/standards/iso8601.htm\" target=\"_blank\">ISO 8601 format</a>.</p>",
@@ -1221,7 +1249,7 @@
       }
     },
     "UpdateClientCertificateRequest": {
-      "base": null,
+      "base": "<p>A request to change information about an <a>ClientCertificate</a> resource.</p>",
       "refs": {
       }
     },
