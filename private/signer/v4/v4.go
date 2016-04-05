@@ -326,7 +326,7 @@ func (v4 *signer) buildCanonicalHeaders(r rule, header http.Header) {
 			headerValues[i] = "host:" + v4.Request.URL.Host
 		} else {
 			headerValues[i] = k + ":" +
-				strings.Join(v4.Request.Header[http.CanonicalHeaderKey(k)], ",")
+				strings.Join(v4.signedHeaderVals[k], ",")
 		}
 	}
 

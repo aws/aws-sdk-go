@@ -23,6 +23,7 @@ func buildSigner(serviceName string, region string, signTime time.Time, expireTi
 	req.Header.Add("Content-Type", "application/x-amz-json-1.0")
 	req.Header.Add("Content-Length", string(len(body)))
 	req.Header.Add("X-Amz-Meta-Other-Header", "some-value=!@#$%^&* (+)")
+	req.Header.Add("X-Amz-Meta-Other-Header_With_Underscore", "some-value=!@#$%^&* (+)")
 
 	return signer{
 		Request:     req,
@@ -54,8 +55,8 @@ func TestPresignRequest(t *testing.T) {
 	signer.sign()
 
 	expectedDate := "19700101T000000Z"
-	expectedHeaders := "content-type;host;x-amz-meta-other-header"
-	expectedSig := "4fe8944ddd3e83a32bc874955e734e5a349116bfce2d4f43171e0f7572b842f6"
+	expectedHeaders := "content-type;host;x-amz-meta-other-header;x-amz-meta-other-header_with_underscore"
+	expectedSig := "e7c08d91b1771ee4f092faf6ed6193137a2924afaa385f4bec2f57ffa7d2f579"
 	expectedCred := "AKID/19700101/us-east-1/dynamodb/aws4_request"
 	expectedTarget := "prefix.Operation"
 
@@ -73,7 +74,7 @@ func TestSignRequest(t *testing.T) {
 	signer.sign()
 
 	expectedDate := "19700101T000000Z"
-	expectedSig := "AWS4-HMAC-SHA256 Credential=AKID/19700101/us-east-1/dynamodb/aws4_request, SignedHeaders=content-type;host;x-amz-date;x-amz-meta-other-header;x-amz-security-token;x-amz-target, Signature=5d3983fb3de907bdc2f3a6951d968e510f0252a8358c038f7680aa02374eeb67"
+	expectedSig := "AWS4-HMAC-SHA256 Credential=AKID/19700101/us-east-1/dynamodb/aws4_request, SignedHeaders=content-type;host;x-amz-date;x-amz-meta-other-header;x-amz-meta-other-header_with_underscore;x-amz-security-token;x-amz-target, Signature=7cbacc839bb2b3ea4d4781b360ef16adfb6a726476cc4e6d7134b610f42b3ff2"
 
 	q := signer.Request.Header
 	assert.Equal(t, expectedSig, q.Get("Authorization"))
