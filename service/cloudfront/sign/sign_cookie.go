@@ -1,6 +1,6 @@
 // Package sign provides utilities to generate signed Cookies and URLs for Amazon CloudFront.
 //
-// More information about signed URLs and their structure can be found at:
+// More information about signed Cokkies and their structure can be found at:
 // http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-setting-signed-cookie-custom-policy.html
 //
 // To sign a Cookie, create a CookieSigner with your private key and credential pair key ID.
@@ -56,9 +56,9 @@ type CookieSigner struct {
 // 				Condition: sign.Condition{
 // 					// Optional IP source address range
 // 					IPAddress: &sign.IPAddress{SourceIP: "192.0.2.0/24"},
-// 					// Optional date URL is not valid until
+// 					// Optional date Cookie is not valid until
 // 					DateGreaterThan: &sign.AWSEpochTime{time.Now().Add(30 * time.Minute)},
-// 					// Required date the URL will expire after
+// 					// Required date the Cookie will expire after
 // 					DateLessThan: &sign.AWSEpochTime{time.Now().Add(1 * time.Hour)},
 // 				},
 // 			},
@@ -95,7 +95,7 @@ type CookieSigner struct {
 // }
 
 // NewCookieSigner constructs and returns a new CookieSigner to be used to for signing
-// Amazon CloudFront URL resources with.
+// Amazon CloudFront Cookie resources with.
 func NewCookieSigner(keyID string, privKey *rsa.PrivateKey) *CookieSigner {
 	return &CookieSigner{
 		keyID:   keyID,
@@ -104,8 +104,8 @@ func NewCookieSigner(keyID string, privKey *rsa.PrivateKey) *CookieSigner {
 }
 
 // Sign will sign cookies to expire at the time of expires sign using the
-// Amazon CloudFront default Canned Policy. The URL will be signed with the
-// private key and Credential Key Pair Key ID previously provided to URLSigner.
+// Amazon CloudFront default Canned Policy. The Cookie will be signed with the
+// private key and Credential Key Pair Key ID previously provided to CookieSigner.
 //
 //If extra policy conditions are need other than expiration use SignWithPolicy instead.
 func (c CookieSigner) Sign(url string, expires time.Time) ([]*http.Cookie, error) {
