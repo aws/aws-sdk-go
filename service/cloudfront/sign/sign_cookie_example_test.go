@@ -65,9 +65,8 @@ func HandlerExample(t *testing.T, w http.ResponseWriter) {
 			t.Fatalf("error %#v", err)
 		}
 
-		http.SetCookie(w, cookies[0])
-		http.SetCookie(w, cookies[1])
-		http.SetCookie(w, cookies[2])
-
+		for _, cookie := range cookies {
+			http.SetCookie(w, cookie)
+		}
 	})
 }

@@ -78,23 +78,20 @@ type CookieSigner struct {
 // 	signer := sign.NewCookieSigner(keyID, privKey)
 
 // 	//provide an optional struct fields to specify other options
-//
-//
 // 	signer.Path:   "/",
 // 	signer.Domain: ".cNameAssociatedWithMyDistribution.com", //http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/CNAMEs.html
 // 	signer.Secure: true, //make sure your app/site can handle https payloads, otherwise set this to false
 //
 // 	//avoid adding an Expire or MaxAge. See provided AWS Documentation for more info
 
-// 	cookies, err := signer.SignCookies(p)
+// 	cookies, err := signer.SignWithPolicy(p)
 // 	if err != nil {
 // 		fmt.Println("error", err)
 // 	}
 
-// 	http.SetCookie(w, cookie[0])
-// 	http.SetCookie(w, cookie[1])
-// 	http.SetCookie(w, cookie[2])
-
+//	for _, cookie := range cookies {
+//	  http.SetCookie(w, cookie)
+//  }
 // }
 
 // NewCookieSigner constructs and returns a new CookieSigner to be used to for signing
