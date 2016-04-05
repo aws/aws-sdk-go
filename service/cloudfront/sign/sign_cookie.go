@@ -1,6 +1,6 @@
 // Package sign provides utilities to generate signed Cookies and URLs for Amazon CloudFront.
 //
-// More information about signed Cokkies and their structure can be found at:
+// More information about signed Cookies and their structure can be found at:
 // http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-setting-signed-cookie-custom-policy.html
 //
 // To sign a Cookie, create a CookieSigner with your private key and credential pair key ID.
