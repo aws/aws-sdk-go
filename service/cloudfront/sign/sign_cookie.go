@@ -29,8 +29,7 @@ type CookieSigner struct {
 
 //Example:
 //
-//   With Canned Policy
-//   // Sign Cookie to be valid for 1 hour from now.
+//   // Sign Cookie to be valid for 1 hour from now using Canned Policy.
 //   signer := sign.NewCookieSigner(keyID, privKey)
 //   cookies, err := signer.Sign(rawURL, time.Now().Add(1*time.Hour))
 //   if err != nil {
@@ -42,7 +41,7 @@ type CookieSigner struct {
 // 	 http.SetCookie(w, cookie[2])
 //
 
-// With Custom Policy
+//  // Sign Cookie to be valid for 1 hour from now using Canned Policy.
 // func handler(w http.ResponseWriter, r *http.Request) {
 
 //  // sign cookie to be valid for 30 minutes from now, expires one hour from now, and
@@ -107,7 +106,7 @@ func NewCookieSigner(keyID string, privKey *rsa.PrivateKey) *CookieSigner {
 // Amazon CloudFront default Canned Policy. The Cookie will be signed with the
 // private key and Credential Key Pair Key ID previously provided to CookieSigner.
 //
-//If extra policy conditions are need other than expiration use SignWithPolicy instead.
+// If extra policy conditions are need other than expiration use SignWithPolicy instead.
 func (c CookieSigner) Sign(url string, expires time.Time) ([]*http.Cookie, error) {
 	scheme, _, err := cleanURLScheme(url)
 	if err != nil {
