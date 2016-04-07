@@ -45,15 +45,15 @@ gen-endpoints:
 
 build:
 	@echo "go build SDK and vendor packages"
-	@go build $(SDK_WITH_VENDOR_PKGS)
+	@go build ${SDK_ONLY_PKGS}
 
 unit: get-deps-tests build verify
 	@echo "go test SDK and vendor packages"
-	@go test $(SDK_WITH_VENDOR_PKGS)
+	@go test $(SDK_ONLY_PKGS)
 
 unit-with-race-cover: get-deps-tests build verify
 	@echo "go test SDK and vendor packages"
-	@go test -v -race -cpu=1,2,4 -covermode=atomic $(SDK_WITH_VENDOR_PKGS)
+	@go test -v -race -cpu=1,2,4 -covermode=atomic $(SDK_ONLY_PKGS)
 
 integration: get-deps-tests integ-custom smoke-tests performance
 
@@ -78,13 +78,13 @@ verify: get-deps-verify lint vet
 
 lint:
 	@echo "go lint SDK and vendor packages"
-	@lint=`if [ -z "${SDK_GO_1_4}" ]; then  golint ./...; else echo "skipped"; fi`; \
+	@lint=`if [ -z "${SDK_GO_1_4}" ]; then  golint ./...; else echo "skipping golint"; fi`; \
 	lint=`echo "$$lint" | grep -E -v -e ${LINTIGNOREDOT} -e ${LINTIGNOREDOC} -e ${LINTIGNORECONST} -e ${LINTIGNORESTUTTER} -e ${LINTIGNOREINFLECT} -e ${LINTIGNOREDEPS} -e ${LINTIGNOREINFLECTS3UPLOAD}`; \
 	echo "$$lint"; \
-	if [ "$$lint" != "" ] && [ "$$lint" != "skipped" ]; then exit 1; fi
+	if [ "$$lint" != "" ] && [ "$$lint" != "skipping golint" ]; then exit 1; fi
 
 vet:
-	go tool vet -all -shadow $(shell if go version | grep -v 1.5 | grep -v 1.4 >> /dev/null; then echo "-example=false" | tr -d '\n'; fi) $(shell ls -d */ | grep -v vendor | grep -v awsmigrate)
+	@if [ -z "${SDK_GO_1_4}" ]; then  go tool vet -all -shadow $(shell if go version | grep -v 1.5 | grep -v 1.4 >> /dev/null; then echo "-example=false" | tr -d '\n'; fi) $(shell ls -d */ | grep -v vendor | grep -v awsmigrate); else echo "skipping vet"; fi
 
 get-deps: get-deps-tests get-deps-verify
 	@echo "go get SDK dependencies"
@@ -99,7 +99,6 @@ get-deps-tests:
 get-deps-verify:
 	@echo "go get SDK verification utilities"
 	@if [ -z "${SDK_GO_1_4}" ]; then  go get github.com/golang/lint/golint; else echo "skipped getting golint"; fi
-	go get golang.org/x/tools/cmd/vet
 
 bench:
 	@echo "go bench SDK packages"
