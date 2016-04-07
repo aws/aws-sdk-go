@@ -56,7 +56,8 @@
         {"shape":"ServiceException"},
         {"shape":"InvalidParameterValueException"},
         {"shape":"ResourceConflictException"},
-        {"shape":"TooManyRequestsException"}
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "CreateFunction":{
@@ -429,6 +430,7 @@
         "Principal":{"shape":"Principal"},
         "SourceArn":{"shape":"Arn"},
         "SourceAccount":{"shape":"SourceOwner"},
+        "EventSourceToken":{"shape":"EventSourceToken"},
         "Qualifier":{
           "shape":"Qualifier",
           "location":"querystring",
@@ -653,6 +655,12 @@
         "TRIM_HORIZON",
         "LATEST"
       ]
+    },
+    "EventSourceToken":{
+      "type":"string",
+      "max":256,
+      "min":0,
+      "pattern":"[a-zA-Z0-9._\\-]+"
     },
     "FunctionArn":{
       "type":"string",
@@ -1149,6 +1157,7 @@
       "type":"string",
       "enum":[
         "nodejs",
+        "nodejs4.3",
         "java8",
         "python2.7"
       ]
@@ -1303,7 +1312,8 @@
         "Description":{"shape":"Description"},
         "Timeout":{"shape":"Timeout"},
         "MemorySize":{"shape":"MemorySize"},
-        "VpcConfig":{"shape":"VpcConfig"}
+        "VpcConfig":{"shape":"VpcConfig"},
+        "Runtime":{"shape":"Runtime"}
       }
     },
     "Version":{

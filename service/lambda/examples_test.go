@@ -19,13 +19,14 @@ func ExampleLambda_AddPermission() {
 	svc := lambda.New(session.New())
 
 	params := &lambda.AddPermissionInput{
-		Action:        aws.String("Action"),       // Required
-		FunctionName:  aws.String("FunctionName"), // Required
-		Principal:     aws.String("Principal"),    // Required
-		StatementId:   aws.String("StatementId"),  // Required
-		Qualifier:     aws.String("Qualifier"),
-		SourceAccount: aws.String("SourceOwner"),
-		SourceArn:     aws.String("Arn"),
+		Action:           aws.String("Action"),       // Required
+		FunctionName:     aws.String("FunctionName"), // Required
+		Principal:        aws.String("Principal"),    // Required
+		StatementId:      aws.String("StatementId"),  // Required
+		EventSourceToken: aws.String("EventSourceToken"),
+		Qualifier:        aws.String("Qualifier"),
+		SourceAccount:    aws.String("SourceOwner"),
+		SourceArn:        aws.String("Arn"),
 	}
 	resp, err := svc.AddPermission(params)
 
@@ -533,6 +534,7 @@ func ExampleLambda_UpdateFunctionConfiguration() {
 		Handler:      aws.String("Handler"),
 		MemorySize:   aws.Int64(1),
 		Role:         aws.String("RoleArn"),
+		Runtime:      aws.String("Runtime"),
 		Timeout:      aws.Int64(1),
 		VpcConfig: &lambda.VpcConfig{
 			SecurityGroupIds: []*string{
