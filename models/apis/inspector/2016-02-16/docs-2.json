@@ -584,15 +584,6 @@
         "NoSuchEntityException$message": "<p>Details of the exception error.</p>"
       }
     },
-    "Event": {
-      "base": null,
-      "refs": {
-        "AssessmentRunNotification$event": "<p>The event for which a notification is sent.</p>",
-        "EventSubscription$event": "<p>The event for which Amazon Simple Notification Service (SNS) notifications are sent.</p>",
-        "SubscribeToEventRequest$event": "<p>The event for which you want to receive SNS notifications.</p>",
-        "UnsubscribeFromEventRequest$event": "<p>The event for which you want to stop receiving SNS notifications.</p>"
-      }
-    },
     "EventSubscription": {
       "base": "<p>This data type is used in the <a>Subscription</a> data type.</p>",
       "refs": {
@@ -676,6 +667,15 @@
       "base": null,
       "refs": {
         "AssetAttributes$hostname": "<p>The hostname of the EC2 instance where the finding is generated.</p>"
+      }
+    },
+    "InspectorEvent": {
+      "base": null,
+      "refs": {
+        "AssessmentRunNotification$event": "<p>The event for which a notification is sent.</p>",
+        "EventSubscription$event": "<p>The event for which Amazon Simple Notification Service (SNS) notifications are sent.</p>",
+        "SubscribeToEventRequest$event": "<p>The event for which you want to receive SNS notifications.</p>",
+        "UnsubscribeFromEventRequest$event": "<p>The event for which you want to stop receiving SNS notifications.</p>"
       }
     },
     "InspectorServiceAttributes": {

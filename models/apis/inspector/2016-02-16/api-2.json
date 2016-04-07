@@ -758,7 +758,7 @@
       ],
       "members":{
         "date":{"shape":"Timestamp"},
-        "event":{"shape":"Event"},
+        "event":{"shape":"InspectorEvent"},
         "message":{"shape":"Message"},
         "error":{"shape":"Bool"},
         "snsTopicArn":{"shape":"Arn"},
@@ -1167,16 +1167,6 @@
       "max":1000,
       "min":0
     },
-    "Event":{
-      "type":"string",
-      "enum":[
-        "ASSESSMENT_RUN_STARTED",
-        "ASSESSMENT_RUN_COMPLETED",
-        "ASSESSMENT_RUN_STATE_CHANGED",
-        "FINDING_REPORTED",
-        "OTHER"
-      ]
-    },
     "EventSubscription":{
       "type":"structure",
       "required":[
@@ -1184,7 +1174,7 @@
         "subscribedAt"
       ],
       "members":{
-        "event":{"shape":"Event"},
+        "event":{"shape":"InspectorEvent"},
         "subscribedAt":{"shape":"Timestamp"}
       }
     },
@@ -1299,6 +1289,16 @@
       "type":"string",
       "max":256,
       "min":0
+    },
+    "InspectorEvent":{
+      "type":"string",
+      "enum":[
+        "ASSESSMENT_RUN_STARTED",
+        "ASSESSMENT_RUN_COMPLETED",
+        "ASSESSMENT_RUN_STATE_CHANGED",
+        "FINDING_REPORTED",
+        "OTHER"
+      ]
     },
     "InspectorServiceAttributes":{
       "type":"structure",
@@ -1839,7 +1839,7 @@
       ],
       "members":{
         "resourceArn":{"shape":"Arn"},
-        "event":{"shape":"Event"},
+        "event":{"shape":"InspectorEvent"},
         "topicArn":{"shape":"Arn"}
       }
     },
@@ -1926,7 +1926,7 @@
       ],
       "members":{
         "resourceArn":{"shape":"Arn"},
-        "event":{"shape":"Event"},
+        "event":{"shape":"InspectorEvent"},
         "topicArn":{"shape":"Arn"}
       }
     },

@@ -106,6 +106,23 @@ func ExampleSTS_DecodeAuthorizationMessage() {
 	fmt.Println(resp)
 }
 
+func ExampleSTS_GetCallerIdentity() {
+	svc := sts.New(session.New())
+
+	var params *sts.GetCallerIdentityInput
+	resp, err := svc.GetCallerIdentity(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleSTS_GetFederationToken() {
 	svc := sts.New(session.New())
 

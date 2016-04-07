@@ -36,7 +36,24 @@ func (c *SimpleDB) BatchDeleteAttributesRequest(input *BatchDeleteAttributesInpu
 // round trips and latencies. This enables Amazon SimpleDB to optimize requests,
 // which generally yields better throughput.
 //
-//  The following limitations are enforced for this operation:  1 MB request
+//   If you specify BatchDeleteAttributes without attributes or values, all
+// the attributes for the item are deleted.
+//
+//  BatchDeleteAttributes is an idempotent operation; running it multiple times
+// on the same item or attribute doesn't result in an error.
+//
+//  The BatchDeleteAttributes operation succeeds or fails in its entirety.
+// There are no partial deletes. You can execute multiple BatchDeleteAttributes
+// operations and other operations in parallel. However, large numbers of concurrent
+// BatchDeleteAttributes calls can result in Service Unavailable (503) responses.
+//
+//  This operation is vulnerable to exceeding the maximum URL size when making
+// a REST request using the HTTP GET method.
+//
+//  This operation does not support conditions using Expected.X.Name, Expected.X.Value,
+// or Expected.X.Exists.
+//
+//   The following limitations are enforced for this operation:  1 MB request
 // size 25 item limit per BatchDeleteAttributes operation
 func (c *SimpleDB) BatchDeleteAttributes(input *BatchDeleteAttributesInput) (*BatchDeleteAttributesOutput, error) {
 	req, out := c.BatchDeleteAttributesRequest(input)
@@ -94,9 +111,11 @@ func (c *SimpleDB) BatchPutAttributesRequest(input *BatchPutAttributesInput) (re
 // true, the final attributes of the item will be { 'a', '1' } and { 'b', '4'
 // }, replacing the previous values of the 'b' attribute with the new value.
 //
-//  This operation is vulnerable to exceeding the maximum URL size when making
-// a REST request using the HTTP GET method. This operation does not support
-// conditions using Expected.X.Name, Expected.X.Value, or Expected.X.Exists.
+//  You cannot specify an empty string as an item or as an attribute name.
+// The BatchPutAttributes operation succeeds or fails in its entirety. There
+// are no partial puts.   This operation is vulnerable to exceeding the maximum
+// URL size when making a REST request using the HTTP GET method. This operation
+// does not support conditions using Expected.X.Name, Expected.X.Value, or Expected.X.Exists.
 //   You can execute multiple BatchPutAttributes operations and other operations
 // in parallel. However, large numbers of concurrent BatchPutAttributes calls
 // can result in Service Unavailable (503) responses.
@@ -137,7 +156,9 @@ func (c *SimpleDB) CreateDomainRequest(input *CreateDomainInput) (req *request.R
 // unique among the domains associated with the Access Key ID provided in the
 // request. The CreateDomain operation may take 10 or more seconds to complete.
 //
-//  The client can create up to 100 domains per account.
+//  CreateDomain is an idempotent operation; running it multiple times using
+// the same domain name will not result in an error response.   The client can
+// create up to 100 domains per account.
 //
 //  If the client requires additional domains, go to  http://aws.amazon.com/contact-us/simpledb-limit-request/
 // (http://aws.amazon.com/contact-us/simpledb-limit-request/).
@@ -172,8 +193,10 @@ func (c *SimpleDB) DeleteAttributesRequest(input *DeleteAttributesInput) (req *r
 // Deletes one or more attributes associated with an item. If all attributes
 // of the item are deleted, the item is deleted.
 //
-//  DeleteAttributes is an idempotent operation; running it multiple times
-// on the same item or attribute does not result in an error response.
+//  If DeleteAttributes is called without being passed any attributes or values
+// specified, all the attributes for the item are deleted.   DeleteAttributes
+// is an idempotent operation; running it multiple times on the same item or
+// attribute does not result in an error response.
 //
 //  Because Amazon SimpleDB makes multiple copies of item data and uses an
 // eventual consistency update model, performing a GetAttributes or Select operation
@@ -210,6 +233,9 @@ func (c *SimpleDB) DeleteDomainRequest(input *DeleteDomainInput) (req *request.R
 // The DeleteDomain operation deletes a domain. Any items (and their attributes)
 // in the domain are deleted as well. The DeleteDomain operation might take
 // 10 or more seconds to complete.
+//
+//  Running DeleteDomain on a domain that does not exist or running the function
+// multiple times using the same domain name will not result in an error response.
 func (c *SimpleDB) DeleteDomain(input *DeleteDomainInput) (*DeleteDomainOutput, error) {
 	req, out := c.DeleteDomainRequest(input)
 	err := req.Send()
@@ -272,6 +298,9 @@ func (c *SimpleDB) GetAttributesRequest(input *GetAttributesInput) (req *request
 //  If the item does not exist on the replica that was accessed for this operation,
 // an empty set is returned. The system does not return an error as it cannot
 // guarantee the item does not exist on other replicas.
+//
+//  If GetAttributes is called without being passed any attribute names, all
+// the attributes for the item are returned.
 func (c *SimpleDB) GetAttributes(input *GetAttributesInput) (*GetAttributesOutput, error) {
 	req, out := c.GetAttributesRequest(input)
 	err := req.Send()
@@ -365,7 +394,9 @@ func (c *SimpleDB) PutAttributesRequest(input *PutAttributesInput) (req *request
 // the final attributes of the item are changed to { 'a', '1' } and { 'b', '4'
 // }, which replaces the previous values of the 'b' attribute with the new value.
 //
-//  You cannot specify an empty string as an attribute name.
+//  Using PutAttributes to replace attribute values that do not exist will
+// not result in an error response.   You cannot specify an empty string as
+// an attribute name.
 //
 //  Because Amazon SimpleDB makes multiple copies of client data and uses an
 // eventual consistency update model, an immediate GetAttributes or Select operation

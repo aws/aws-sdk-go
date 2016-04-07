@@ -84,6 +84,18 @@
         {"shape":"InvalidAuthorizationMessageException"}
       ]
     },
+    "GetCallerIdentity":{
+      "name":"GetCallerIdentity",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetCallerIdentityRequest"},
+      "output":{
+        "shape":"GetCallerIdentityResponse",
+        "resultWrapper":"GetCallerIdentityResult"
+      }
+    },
     "GetFederationToken":{
       "name":"GetFederationToken",
       "http":{
@@ -260,6 +272,19 @@
         "Arn":{"shape":"arnType"}
       }
     },
+    "GetCallerIdentityRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "GetCallerIdentityResponse":{
+      "type":"structure",
+      "members":{
+        "UserId":{"shape":"userIdType"},
+        "Account":{"shape":"accountType"},
+        "Arn":{"shape":"arnType"}
+      }
+    },
     "GetFederationTokenRequest":{
       "type":"structure",
       "required":["Name"],
@@ -391,10 +416,12 @@
       "pattern":"[\\w]*"
     },
     "accessKeySecretType":{"type":"string"},
+    "accountType":{"type":"string"},
     "arnType":{
       "type":"string",
       "max":2048,
-      "min":20
+      "min":20,
+      "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u007E\\u0085\\u00A0-\\uD7FF\\uE000-\\uFFFD\\u10000-\\u10FFFF]+"
     },
     "assumedRoleIdType":{
       "type":"string",
@@ -478,6 +505,7 @@
       "max":2048,
       "min":4
     },
+    "userIdType":{"type":"string"},
     "userNameType":{
       "type":"string",
       "max":32,

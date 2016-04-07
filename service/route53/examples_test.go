@@ -132,21 +132,30 @@ func ExampleRoute53_CreateHealthCheck() {
 		CallerReference: aws.String("HealthCheckNonce"), // Required
 		HealthCheckConfig: &route53.HealthCheckConfig{ // Required
 			Type: aws.String("HealthCheckType"), // Required
+			AlarmIdentifier: &route53.AlarmIdentifier{
+				Name:   aws.String("AlarmName"),        // Required
+				Region: aws.String("CloudWatchRegion"), // Required
+			},
 			ChildHealthChecks: []*string{
 				aws.String("HealthCheckId"), // Required
 				// More values...
 			},
-			EnableSNI:                aws.Bool(true),
-			FailureThreshold:         aws.Int64(1),
-			FullyQualifiedDomainName: aws.String("FullyQualifiedDomainName"),
-			HealthThreshold:          aws.Int64(1),
-			IPAddress:                aws.String("IPAddress"),
-			Inverted:                 aws.Bool(true),
-			MeasureLatency:           aws.Bool(true),
-			Port:                     aws.Int64(1),
-			RequestInterval:          aws.Int64(1),
-			ResourcePath:             aws.String("ResourcePath"),
-			SearchString:             aws.String("SearchString"),
+			EnableSNI:                    aws.Bool(true),
+			FailureThreshold:             aws.Int64(1),
+			FullyQualifiedDomainName:     aws.String("FullyQualifiedDomainName"),
+			HealthThreshold:              aws.Int64(1),
+			IPAddress:                    aws.String("IPAddress"),
+			InsufficientDataHealthStatus: aws.String("InsufficientDataHealthStatus"),
+			Inverted:                     aws.Bool(true),
+			MeasureLatency:               aws.Bool(true),
+			Port:                         aws.Int64(1),
+			Regions: []*string{
+				aws.String("HealthCheckRegion"), // Required
+				// More values...
+			},
+			RequestInterval: aws.Int64(1),
+			ResourcePath:    aws.String("ResourcePath"),
+			SearchString:    aws.String("SearchString"),
 		},
 	}
 	resp, err := svc.CreateHealthCheck(params)
@@ -990,20 +999,29 @@ func ExampleRoute53_UpdateHealthCheck() {
 
 	params := &route53.UpdateHealthCheckInput{
 		HealthCheckId: aws.String("HealthCheckId"), // Required
+		AlarmIdentifier: &route53.AlarmIdentifier{
+			Name:   aws.String("AlarmName"),        // Required
+			Region: aws.String("CloudWatchRegion"), // Required
+		},
 		ChildHealthChecks: []*string{
 			aws.String("HealthCheckId"), // Required
 			// More values...
 		},
-		EnableSNI:                aws.Bool(true),
-		FailureThreshold:         aws.Int64(1),
-		FullyQualifiedDomainName: aws.String("FullyQualifiedDomainName"),
-		HealthCheckVersion:       aws.Int64(1),
-		HealthThreshold:          aws.Int64(1),
-		IPAddress:                aws.String("IPAddress"),
-		Inverted:                 aws.Bool(true),
-		Port:                     aws.Int64(1),
-		ResourcePath:             aws.String("ResourcePath"),
-		SearchString:             aws.String("SearchString"),
+		EnableSNI:                    aws.Bool(true),
+		FailureThreshold:             aws.Int64(1),
+		FullyQualifiedDomainName:     aws.String("FullyQualifiedDomainName"),
+		HealthCheckVersion:           aws.Int64(1),
+		HealthThreshold:              aws.Int64(1),
+		IPAddress:                    aws.String("IPAddress"),
+		InsufficientDataHealthStatus: aws.String("InsufficientDataHealthStatus"),
+		Inverted:                     aws.Bool(true),
+		Port:                         aws.Int64(1),
+		Regions: []*string{
+			aws.String("HealthCheckRegion"), // Required
+			// More values...
+		},
+		ResourcePath: aws.String("ResourcePath"),
+		SearchString: aws.String("SearchString"),
 	}
 	resp, err := svc.UpdateHealthCheck(params)
 
