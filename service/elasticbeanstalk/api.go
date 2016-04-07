@@ -1683,7 +1683,7 @@ type CreateEnvironmentInput struct {
 
 	// A unique name for the deployment environment. Used in the application URL.
 	//
-	// Constraint: Must be from 4 to 23 characters in length. The name can contain
+	// Constraint: Must be from 4 to 40 characters in length. The name can contain
 	// only letters, numbers, and hyphens. It cannot start or end with a hyphen.
 	// This name must be unique in your account. If the specified name already exists,
 	// AWS Elastic Beanstalk returns an InvalidParameterValue error.
@@ -1932,6 +1932,39 @@ func (s DeleteEnvironmentConfigurationOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteEnvironmentConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// Information about an application version deployment.
+type Deployment struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the deployment. This number increases by one each time that you
+	// deploy source code or change instance configuration settings.
+	DeploymentId *int64 `type:"long"`
+
+	// For in-progress deployments, the time that the deloyment started.
+	//
+	// For completed deployments, the time that the deployment ended.
+	DeploymentTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The status of the deployment:
+	//
+	//   In Progress : The deployment is in progress.  Deployed : The deployment
+	// succeeded.  Failed : The deployment failed.
+	Status *string `type:"string"`
+
+	// The version label of the application version in the deployment.
+	VersionLabel *string `type:"string"`
+}
+
+// String returns the string representation
+func (s Deployment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Deployment) GoString() string {
 	return s.String()
 }
 
@@ -3213,6 +3246,9 @@ type SingleInstanceHealth struct {
 	// Represents the application metrics for a specified environment.
 	ApplicationMetrics *ApplicationMetrics `type:"structure"`
 
+	// The availability zone in which the instance runs.
+	AvailabilityZone *string `type:"string"`
+
 	// Represents the causes, which provide more information about the current health
 	// status.
 	Causes []*string `type:"list"`
@@ -3222,12 +3258,18 @@ type SingleInstanceHealth struct {
 	// (http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html).
 	Color *string `type:"string"`
 
+	// Information about the most recent deployment to an instance.
+	Deployment *Deployment `type:"structure"`
+
 	// Returns the health status of the specified instance. For more information,
 	// see Health Colors and Statuses (http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html).
 	HealthStatus *string `type:"string"`
 
 	// The ID of the Amazon EC2 instance.
 	InstanceId *string `min:"1" type:"string"`
+
+	// The instance's type.
+	InstanceType *string `type:"string"`
 
 	// The time at which the EC2 instance was launched.
 	LaunchedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -3864,6 +3906,12 @@ const (
 	InstancesHealthAttributeLaunchedAt = "LaunchedAt"
 	// @enum InstancesHealthAttribute
 	InstancesHealthAttributeSystem = "System"
+	// @enum InstancesHealthAttribute
+	InstancesHealthAttributeDeployment = "Deployment"
+	// @enum InstancesHealthAttribute
+	InstancesHealthAttributeAvailabilityZone = "AvailabilityZone"
+	// @enum InstancesHealthAttribute
+	InstancesHealthAttributeInstanceType = "InstanceType"
 	// @enum InstancesHealthAttribute
 	InstancesHealthAttributeAll = "All"
 )

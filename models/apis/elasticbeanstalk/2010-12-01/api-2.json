@@ -811,6 +811,16 @@
       }
     },
     "DeleteSourceBundle":{"type":"boolean"},
+    "Deployment":{
+      "type":"structure",
+      "members":{
+        "VersionLabel":{"shape":"String"},
+        "DeploymentId":{"shape":"NullableLong"},
+        "Status":{"shape":"String"},
+        "DeploymentTime":{"shape":"DeploymentTimestamp"}
+      }
+    },
+    "DeploymentTimestamp":{"type":"timestamp"},
     "DescribeApplicationVersionsMessage":{
       "type":"structure",
       "members":{
@@ -1038,7 +1048,7 @@
     },
     "EnvironmentName":{
       "type":"string",
-      "max":23,
+      "max":40,
       "min":4
     },
     "EnvironmentNamesList":{
@@ -1180,6 +1190,9 @@
         "RefreshedAt",
         "LaunchedAt",
         "System",
+        "Deployment",
+        "AvailabilityZone",
+        "InstanceType",
         "All"
       ]
     },
@@ -1288,6 +1301,7 @@
     },
     "NullableDouble":{"type":"double"},
     "NullableInteger":{"type":"integer"},
+    "NullableLong":{"type":"long"},
     "OperationInProgressException":{
       "type":"structure",
       "members":{
@@ -1429,7 +1443,10 @@
         "Causes":{"shape":"Causes"},
         "LaunchedAt":{"shape":"LaunchedAt"},
         "ApplicationMetrics":{"shape":"ApplicationMetrics"},
-        "System":{"shape":"SystemStatus"}
+        "System":{"shape":"SystemStatus"},
+        "Deployment":{"shape":"Deployment"},
+        "AvailabilityZone":{"shape":"String"},
+        "InstanceType":{"shape":"String"}
       }
     },
     "SolutionStackDescription":{

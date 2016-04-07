@@ -426,6 +426,18 @@
         "DeleteApplicationVersionMessage$DeleteSourceBundle": "<p>Indicates whether to delete the associated source bundle from Amazon S3: </p> <ul> <li> <code>true</code>: An attempt is made to delete the associated Amazon S3 source bundle specified at time of creation. </li> <li> <code>false</code>: No action is taken on the Amazon S3 source bundle specified at time of creation. </li> </ul> <p> Valid Values: <code>true</code> | <code>false</code> </p>"
       }
     },
+    "Deployment": {
+      "base": "<p>Information about an application version deployment.</p>",
+      "refs": {
+        "SingleInstanceHealth$Deployment": "<p>Information about the most recent deployment to an instance.</p>"
+      }
+    },
+    "DeploymentTimestamp": {
+      "base": null,
+      "refs": {
+        "Deployment$DeploymentTime": "<p>For in-progress deployments, the time that the deloyment started.</p> <p>For completed deployments, the time that the deployment ended.</p>"
+      }
+    },
     "DescribeApplicationVersionsMessage": {
       "base": "<p>Result message containing a list of configuration descriptions.</p>",
       "refs": {
@@ -621,7 +633,7 @@
       "refs": {
         "AbortEnvironmentUpdateMessage$EnvironmentName": "<p>This specifies the name of the environment with the in-progress update that you want to cancel.</p>",
         "ConfigurationSettingsDescription$EnvironmentName": "<p> If not <code>null</code>, the name of the environment for this configuration set. </p>",
-        "CreateEnvironmentMessage$EnvironmentName": "<p> A unique name for the deployment environment. Used in the application URL. </p> <p>Constraint: Must be from 4 to 23 characters in length. The name can contain only letters, numbers, and hyphens. It cannot start or end with a hyphen. This name must be unique in your account. If the specified name already exists, AWS Elastic Beanstalk returns an <code>InvalidParameterValue</code> error. </p> <p>Default: If the CNAME parameter is not specified, the environment name becomes part of the CNAME, and therefore part of the visible URL for your application.</p>",
+        "CreateEnvironmentMessage$EnvironmentName": "<p> A unique name for the deployment environment. Used in the application URL. </p> <p>Constraint: Must be from 4 to 40 characters in length. The name can contain only letters, numbers, and hyphens. It cannot start or end with a hyphen. This name must be unique in your account. If the specified name already exists, AWS Elastic Beanstalk returns an <code>InvalidParameterValue</code> error. </p> <p>Default: If the CNAME parameter is not specified, the environment name becomes part of the CNAME, and therefore part of the visible URL for your application.</p>",
         "DeleteEnvironmentConfigurationMessage$EnvironmentName": "<p>The name of the environment to delete the draft configuration from.</p>",
         "DescribeConfigurationOptionsMessage$EnvironmentName": "<p> The name of the environment whose configuration options you want to describe. </p>",
         "DescribeConfigurationSettingsMessage$EnvironmentName": "<p> The name of the environment to describe. </p> <p> Condition: You must specify either this or a TemplateName, but not both. If you specify both, AWS Elastic Beanstalk returns an <code>InvalidParameterCombination</code> error. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>",
@@ -942,6 +954,12 @@
         "StatusCodes$Status5xx": "<p>The percentage of requests over the last 10 seconds that resulted in a 5xx (500, 501, etc.) status code.</p>"
       }
     },
+    "NullableLong": {
+      "base": null,
+      "refs": {
+        "Deployment$DeploymentId": "<p>The ID of the deployment. This number increases by one each time that you deploy source code or change instance configuration settings.</p>"
+      }
+    },
     "OperationInProgressException": {
       "base": "<p>Unable to perform the specified operation because another operation that effects an element in this activity is already in progress.</p>",
       "refs": {
@@ -1169,6 +1187,8 @@
     "String": {
       "base": null,
       "refs": {
+        "Deployment$VersionLabel": "<p>The version label of the application version in the deployment.</p>",
+        "Deployment$Status": "<p>The status of the deployment:</p> <ul> <li> <code>In Progress</code> : The deployment is in progress.</li> <li> <code>Deployed</code> : The deployment succeeded.</li> <li> <code>Failed</code> : The deployment failed.</li> </ul>",
         "DescribeEnvironmentHealthResult$HealthStatus": "<p>Contains the response body with information about the health of the environment.</p>",
         "DescribeEnvironmentHealthResult$Color": "<p>Returns the color indicator that tells you information about the health of the environment. For more information, see <a href=\"http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html\">Health Colors and Statuses</a>.</p>",
         "EnvironmentLink$LinkName": "<p>The name of the link.</p>",
@@ -1182,7 +1202,9 @@
         "Queue$Name": "<p>The name of the queue.</p>",
         "Queue$URL": "<p>The URL of the queue.</p>",
         "SingleInstanceHealth$HealthStatus": "<p>Returns the health status of the specified instance. For more information, see <a href=\"http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html\">Health Colors and Statuses</a>.</p>",
-        "SingleInstanceHealth$Color": "<p>Represents the color indicator that gives you information about the health of the EC2 instance. For more information, see <a href=\"http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html\">Health Colors and Statuses</a>.</p>"
+        "SingleInstanceHealth$Color": "<p>Represents the color indicator that gives you information about the health of the EC2 instance. For more information, see <a href=\"http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html\">Health Colors and Statuses</a>.</p>",
+        "SingleInstanceHealth$AvailabilityZone": "<p>The availability zone in which the instance runs.</p>",
+        "SingleInstanceHealth$InstanceType": "<p>The instance's type.</p>"
       }
     },
     "SwapEnvironmentCNAMEsMessage": {
