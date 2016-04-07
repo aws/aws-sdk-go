@@ -303,13 +303,18 @@ func (v4 *signer) buildCanonicalHeaders(r rule, header http.Header) {
 		if !r.IsValid(canonicalKey) {
 			continue // ignored header
 		}
-
-		lowerCaseKey := strings.ToLower(k)
-		headers = append(headers, lowerCaseKey)
-
 		if v4.signedHeaderVals == nil {
 			v4.signedHeaderVals = make(http.Header)
 		}
+
+		lowerCaseKey := strings.ToLower(k)
+		if _, ok := v4.signedHeaderVals[lowerCaseKey]; ok {
+			// include additional values
+			v4.signedHeaderVals[lowerCaseKey] = append(v4.signedHeaderVals[lowerCaseKey], v...)
+			continue
+		}
+
+		headers = append(headers, lowerCaseKey)
 		v4.signedHeaderVals[lowerCaseKey] = v
 	}
 	sort.Strings(headers)
@@ -326,7 +331,7 @@ func (v4 *signer) buildCanonicalHeaders(r rule, header http.Header) {
 			headerValues[i] = "host:" + v4.Request.URL.Host
 		} else {
 			headerValues[i] = k + ":" +
-				strings.Join(v4.Request.Header[http.CanonicalHeaderKey(k)], ",")
+				strings.Join(v4.signedHeaderVals[k], ",")
 		}
 	}
 
