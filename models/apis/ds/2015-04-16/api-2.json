@@ -61,6 +61,24 @@
         {"shape":"ServiceException"}
       ]
     },
+    "CreateConditionalForwarder":{
+      "name":"CreateConditionalForwarder",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateConditionalForwarderRequest"},
+      "output":{"shape":"CreateConditionalForwarderResult"},
+      "errors":[
+        {"shape":"EntityAlreadyExistsException"},
+        {"shape":"EntityDoesNotExistException"},
+        {"shape":"DirectoryUnavailableException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"UnsupportedOperationException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
+      ]
+    },
     "CreateDirectory":{
       "name":"CreateDirectory",
       "http":{
@@ -125,6 +143,23 @@
         {"shape":"UnsupportedOperationException"}
       ]
     },
+    "DeleteConditionalForwarder":{
+      "name":"DeleteConditionalForwarder",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteConditionalForwarderRequest"},
+      "output":{"shape":"DeleteConditionalForwarderResult"},
+      "errors":[
+        {"shape":"EntityDoesNotExistException"},
+        {"shape":"DirectoryUnavailableException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"UnsupportedOperationException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
+      ]
+    },
     "DeleteDirectory":{
       "name":"DeleteDirectory",
       "http":{
@@ -181,6 +216,23 @@
       "errors":[
         {"shape":"EntityDoesNotExistException"},
         {"shape":"InvalidParameterException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
+      ]
+    },
+    "DescribeConditionalForwarders":{
+      "name":"DescribeConditionalForwarders",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeConditionalForwardersRequest"},
+      "output":{"shape":"DescribeConditionalForwardersResult"},
+      "errors":[
+        {"shape":"EntityDoesNotExistException"},
+        {"shape":"DirectoryUnavailableException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"UnsupportedOperationException"},
         {"shape":"ClientException"},
         {"shape":"ServiceException"}
       ]
@@ -369,6 +421,23 @@
         {"shape":"ServiceException"}
       ]
     },
+    "UpdateConditionalForwarder":{
+      "name":"UpdateConditionalForwarder",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateConditionalForwarderRequest"},
+      "output":{"shape":"UpdateConditionalForwarderResult"},
+      "errors":[
+        {"shape":"EntityDoesNotExistException"},
+        {"shape":"DirectoryUnavailableException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"UnsupportedOperationException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
+      ]
+    },
     "UpdateRadius":{
       "name":"UpdateRadius",
       "http":{
@@ -471,6 +540,18 @@
       "pattern":"[\\u0020-\\u00FF]+",
       "sensitive":true
     },
+    "ConditionalForwarder":{
+      "type":"structure",
+      "members":{
+        "RemoteDomainName":{"shape":"RemoteDomainName"},
+        "DnsIpAddrs":{"shape":"DnsIpAddrs"},
+        "ReplicationScope":{"shape":"ReplicationScope"}
+      }
+    },
+    "ConditionalForwarders":{
+      "type":"list",
+      "member":{"shape":"ConditionalForwarder"}
+    },
     "ConnectDirectoryRequest":{
       "type":"structure",
       "required":[
@@ -538,6 +619,24 @@
       "type":"structure",
       "members":{
         "Computer":{"shape":"Computer"}
+      }
+    },
+    "CreateConditionalForwarderRequest":{
+      "type":"structure",
+      "required":[
+        "DirectoryId",
+        "RemoteDomainName",
+        "DnsIpAddrs"
+      ],
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"},
+        "RemoteDomainName":{"shape":"RemoteDomainName"},
+        "DnsIpAddrs":{"shape":"DnsIpAddrs"}
+      }
+    },
+    "CreateConditionalForwarderResult":{
+      "type":"structure",
+      "members":{
       }
     },
     "CreateDirectoryRequest":{
@@ -610,7 +709,8 @@
         "RemoteDomainName":{"shape":"RemoteDomainName"},
         "TrustPassword":{"shape":"TrustPassword"},
         "TrustDirection":{"shape":"TrustDirection"},
-        "TrustType":{"shape":"TrustType"}
+        "TrustType":{"shape":"TrustType"},
+        "ConditionalForwarderIpAddrs":{"shape":"DnsIpAddrs"}
       }
     },
     "CreateTrustResult":{
@@ -620,6 +720,23 @@
       }
     },
     "CreatedDateTime":{"type":"timestamp"},
+    "DeleteAssociatedConditionalForwarder":{"type":"boolean"},
+    "DeleteConditionalForwarderRequest":{
+      "type":"structure",
+      "required":[
+        "DirectoryId",
+        "RemoteDomainName"
+      ],
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"},
+        "RemoteDomainName":{"shape":"RemoteDomainName"}
+      }
+    },
+    "DeleteConditionalForwarderResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteDirectoryRequest":{
       "type":"structure",
       "required":["DirectoryId"],
@@ -650,7 +767,8 @@
       "type":"structure",
       "required":["TrustId"],
       "members":{
-        "TrustId":{"shape":"TrustId"}
+        "TrustId":{"shape":"TrustId"},
+        "DeleteAssociatedConditionalForwarder":{"shape":"DeleteAssociatedConditionalForwarder"}
       }
     },
     "DeleteTrustResult":{
@@ -673,6 +791,20 @@
     "DeregisterEventTopicResult":{
       "type":"structure",
       "members":{
+      }
+    },
+    "DescribeConditionalForwardersRequest":{
+      "type":"structure",
+      "required":["DirectoryId"],
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"},
+        "RemoteDomainNames":{"shape":"RemoteDomainNames"}
+      }
+    },
+    "DescribeConditionalForwardersResult":{
+      "type":"structure",
+      "members":{
+        "ConditionalForwarders":{"shape":"ConditionalForwarders"}
       }
     },
     "DescribeDirectoriesRequest":{
@@ -1132,6 +1264,14 @@
       "type":"string",
       "pattern":"^([a-zA-Z0-9]+[\\\\.-])+([a-zA-Z0-9])+[.]?$"
     },
+    "RemoteDomainNames":{
+      "type":"list",
+      "member":{"shape":"RemoteDomainName"}
+    },
+    "ReplicationScope":{
+      "type":"string",
+      "enum":["Domain"]
+    },
     "RequestId":{
       "type":"string",
       "pattern":"^([A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12})$"
@@ -1279,7 +1419,8 @@
         "TrustState":{"shape":"TrustState"},
         "CreatedDateTime":{"shape":"CreatedDateTime"},
         "LastUpdatedDateTime":{"shape":"LastUpdatedDateTime"},
-        "StateLastUpdatedDateTime":{"shape":"StateLastUpdatedDateTime"}
+        "StateLastUpdatedDateTime":{"shape":"StateLastUpdatedDateTime"},
+        "TrustStateReason":{"shape":"TrustStateReason"}
       }
     },
     "TrustDirection":{
@@ -1317,6 +1458,7 @@
         "Failed"
       ]
     },
+    "TrustStateReason":{"type":"string"},
     "TrustType":{
       "type":"string",
       "enum":["Forest"]
@@ -1332,6 +1474,24 @@
         "RequestId":{"shape":"RequestId"}
       },
       "exception":true
+    },
+    "UpdateConditionalForwarderRequest":{
+      "type":"structure",
+      "required":[
+        "DirectoryId",
+        "RemoteDomainName",
+        "DnsIpAddrs"
+      ],
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"},
+        "RemoteDomainName":{"shape":"RemoteDomainName"},
+        "DnsIpAddrs":{"shape":"DnsIpAddrs"}
+      }
+    },
+    "UpdateConditionalForwarderResult":{
+      "type":"structure",
+      "members":{
+      }
     },
     "UpdateRadiusRequest":{
       "type":"structure",

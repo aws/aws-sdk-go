@@ -99,6 +99,30 @@ func ExampleDirectoryService_CreateComputer() {
 	fmt.Println(resp)
 }
 
+func ExampleDirectoryService_CreateConditionalForwarder() {
+	svc := directoryservice.New(session.New())
+
+	params := &directoryservice.CreateConditionalForwarderInput{
+		DirectoryId: aws.String("DirectoryId"), // Required
+		DnsIpAddrs: []*string{ // Required
+			aws.String("IpAddr"), // Required
+			// More values...
+		},
+		RemoteDomainName: aws.String("RemoteDomainName"), // Required
+	}
+	resp, err := svc.CreateConditionalForwarder(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleDirectoryService_CreateDirectory() {
 	svc := directoryservice.New(session.New())
 
@@ -186,9 +210,33 @@ func ExampleDirectoryService_CreateTrust() {
 		RemoteDomainName: aws.String("RemoteDomainName"), // Required
 		TrustDirection:   aws.String("TrustDirection"),   // Required
 		TrustPassword:    aws.String("TrustPassword"),    // Required
-		TrustType:        aws.String("TrustType"),
+		ConditionalForwarderIpAddrs: []*string{
+			aws.String("IpAddr"), // Required
+			// More values...
+		},
+		TrustType: aws.String("TrustType"),
 	}
 	resp, err := svc.CreateTrust(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleDirectoryService_DeleteConditionalForwarder() {
+	svc := directoryservice.New(session.New())
+
+	params := &directoryservice.DeleteConditionalForwarderInput{
+		DirectoryId:      aws.String("DirectoryId"),      // Required
+		RemoteDomainName: aws.String("RemoteDomainName"), // Required
+	}
+	resp, err := svc.DeleteConditionalForwarder(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -244,6 +292,7 @@ func ExampleDirectoryService_DeleteTrust() {
 
 	params := &directoryservice.DeleteTrustInput{
 		TrustId: aws.String("TrustId"), // Required
+		DeleteAssociatedConditionalForwarder: aws.Bool(true),
 	}
 	resp, err := svc.DeleteTrust(params)
 
@@ -266,6 +315,29 @@ func ExampleDirectoryService_DeregisterEventTopic() {
 		TopicName:   aws.String("TopicName"),   // Required
 	}
 	resp, err := svc.DeregisterEventTopic(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleDirectoryService_DescribeConditionalForwarders() {
+	svc := directoryservice.New(session.New())
+
+	params := &directoryservice.DescribeConditionalForwardersInput{
+		DirectoryId: aws.String("DirectoryId"), // Required
+		RemoteDomainNames: []*string{
+			aws.String("RemoteDomainName"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.DescribeConditionalForwarders(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -531,6 +603,30 @@ func ExampleDirectoryService_RestoreFromSnapshot() {
 		SnapshotId: aws.String("SnapshotId"), // Required
 	}
 	resp, err := svc.RestoreFromSnapshot(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleDirectoryService_UpdateConditionalForwarder() {
+	svc := directoryservice.New(session.New())
+
+	params := &directoryservice.UpdateConditionalForwarderInput{
+		DirectoryId: aws.String("DirectoryId"), // Required
+		DnsIpAddrs: []*string{ // Required
+			aws.String("IpAddr"), // Required
+			// More values...
+		},
+		RemoteDomainName: aws.String("RemoteDomainName"), // Required
+	}
+	resp, err := svc.UpdateConditionalForwarder(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
