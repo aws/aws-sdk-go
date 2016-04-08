@@ -69,9 +69,11 @@ performance: get-deps-tests
 sandbox-tests:
 	docker build -f ./awstesting/sandbox/Dockerfile.test.go1.4 -t "aws-sdk-go-1.4" .
 	docker build -f ./awstesting/sandbox/Dockerfile.test.go1.5 -t "aws-sdk-go-1.5" .
+	docker build -f ./awstesting/sandbox/Dockerfile.test-no15exp.go1.5 -t "aws-sdk-go-no15exp-1.5" .
 	docker build -f ./awstesting/sandbox/Dockerfile.test.go1.6 -t "aws-sdk-go-1.6" .
 	docker run -t aws-sdk-go-1.4
 	docker run -t aws-sdk-go-1.5
+	docker run -t aws-sdk-go-no15exp-1.5
 	docker run -t aws-sdk-go-1.6
 
 verify: get-deps-verify lint vet
