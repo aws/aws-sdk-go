@@ -112,7 +112,7 @@ bench-protocol:
 
 docs:
 	@echo "generate SDK docs"
-	#rm -rf doc && bundle install && bundle exec yard
+	rm -rf doc && bundle install && bundle exec yard
 	@# This env variable, DOCS, is for internal use
 	@if [ -n "$(AWS_DOC_GEN_TOOL)" ]; then echo "For internal use. Subject to change."; $(AWS_DOC_GEN_TOOL) `pwd`; fi
 
