@@ -358,6 +358,33 @@ func (c *IoT) CreateTopicRule(input *CreateTopicRuleInput) (*CreateTopicRuleOutp
 	return out, err
 }
 
+const opDeleteCACertificate = "DeleteCACertificate"
+
+// DeleteCACertificateRequest generates a request for the DeleteCACertificate operation.
+func (c *IoT) DeleteCACertificateRequest(input *DeleteCACertificateInput) (req *request.Request, output *DeleteCACertificateOutput) {
+	op := &request.Operation{
+		Name:       opDeleteCACertificate,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/cacertificate/{certificateId}",
+	}
+
+	if input == nil {
+		input = &DeleteCACertificateInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DeleteCACertificateOutput{}
+	req.Data = output
+	return
+}
+
+// Deletes a registered CA certificate.
+func (c *IoT) DeleteCACertificate(input *DeleteCACertificateInput) (*DeleteCACertificateOutput, error) {
+	req, out := c.DeleteCACertificateRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opDeleteCertificate = "DeleteCertificate"
 
 // DeleteCertificateRequest generates a request for the DeleteCertificate operation.
@@ -463,6 +490,33 @@ func (c *IoT) DeletePolicyVersion(input *DeletePolicyVersionInput) (*DeletePolic
 	return out, err
 }
 
+const opDeleteRegistrationCode = "DeleteRegistrationCode"
+
+// DeleteRegistrationCodeRequest generates a request for the DeleteRegistrationCode operation.
+func (c *IoT) DeleteRegistrationCodeRequest(input *DeleteRegistrationCodeInput) (req *request.Request, output *DeleteRegistrationCodeOutput) {
+	op := &request.Operation{
+		Name:       opDeleteRegistrationCode,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/registrationcode",
+	}
+
+	if input == nil {
+		input = &DeleteRegistrationCodeInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DeleteRegistrationCodeOutput{}
+	req.Data = output
+	return
+}
+
+// Deletes a CA certificate registration code.
+func (c *IoT) DeleteRegistrationCode(input *DeleteRegistrationCodeInput) (*DeleteRegistrationCodeOutput, error) {
+	req, out := c.DeleteRegistrationCodeRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opDeleteThing = "DeleteThing"
 
 // DeleteThingRequest generates a request for the DeleteThing operation.
@@ -515,6 +569,33 @@ func (c *IoT) DeleteTopicRuleRequest(input *DeleteTopicRuleInput) (req *request.
 // Deletes the specified rule.
 func (c *IoT) DeleteTopicRule(input *DeleteTopicRuleInput) (*DeleteTopicRuleOutput, error) {
 	req, out := c.DeleteTopicRuleRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDescribeCACertificate = "DescribeCACertificate"
+
+// DescribeCACertificateRequest generates a request for the DescribeCACertificate operation.
+func (c *IoT) DescribeCACertificateRequest(input *DescribeCACertificateInput) (req *request.Request, output *DescribeCACertificateOutput) {
+	op := &request.Operation{
+		Name:       opDescribeCACertificate,
+		HTTPMethod: "GET",
+		HTTPPath:   "/cacertificate/{certificateId}",
+	}
+
+	if input == nil {
+		input = &DescribeCACertificateInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeCACertificateOutput{}
+	req.Data = output
+	return
+}
+
+// Describes a registered CA certificate.
+func (c *IoT) DescribeCACertificate(input *DescribeCACertificateInput) (*DescribeCACertificateOutput, error) {
+	req, out := c.DescribeCACertificateRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -798,6 +879,33 @@ func (c *IoT) GetPolicyVersion(input *GetPolicyVersionInput) (*GetPolicyVersionO
 	return out, err
 }
 
+const opGetRegistrationCode = "GetRegistrationCode"
+
+// GetRegistrationCodeRequest generates a request for the GetRegistrationCode operation.
+func (c *IoT) GetRegistrationCodeRequest(input *GetRegistrationCodeInput) (req *request.Request, output *GetRegistrationCodeOutput) {
+	op := &request.Operation{
+		Name:       opGetRegistrationCode,
+		HTTPMethod: "GET",
+		HTTPPath:   "/registrationcode",
+	}
+
+	if input == nil {
+		input = &GetRegistrationCodeInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &GetRegistrationCodeOutput{}
+	req.Data = output
+	return
+}
+
+// Gets a registration code used to register a CA certificate with AWS IoT.
+func (c *IoT) GetRegistrationCode(input *GetRegistrationCodeInput) (*GetRegistrationCodeOutput, error) {
+	req, out := c.GetRegistrationCodeRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opGetTopicRule = "GetTopicRule"
 
 // GetTopicRuleRequest generates a request for the GetTopicRule operation.
@@ -825,6 +933,36 @@ func (c *IoT) GetTopicRule(input *GetTopicRuleInput) (*GetTopicRuleOutput, error
 	return out, err
 }
 
+const opListCACertificates = "ListCACertificates"
+
+// ListCACertificatesRequest generates a request for the ListCACertificates operation.
+func (c *IoT) ListCACertificatesRequest(input *ListCACertificatesInput) (req *request.Request, output *ListCACertificatesOutput) {
+	op := &request.Operation{
+		Name:       opListCACertificates,
+		HTTPMethod: "GET",
+		HTTPPath:   "/cacertificates",
+	}
+
+	if input == nil {
+		input = &ListCACertificatesInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListCACertificatesOutput{}
+	req.Data = output
+	return
+}
+
+// Lists the CA certificates registered for your AWS account.
+//
+// The results are paginated with a default page size of 25. You can use the
+// returned marker to retrieve additional results.
+func (c *IoT) ListCACertificates(input *ListCACertificatesInput) (*ListCACertificatesOutput, error) {
+	req, out := c.ListCACertificatesRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opListCertificates = "ListCertificates"
 
 // ListCertificatesRequest generates a request for the ListCertificates operation.
@@ -845,12 +983,39 @@ func (c *IoT) ListCertificatesRequest(input *ListCertificatesInput) (req *reques
 	return
 }
 
-// Lists your certificates.
+// Lists the certificates registered in your AWS account.
 //
 // The results are paginated with a default page size of 25. You can use the
 // returned marker to retrieve additional results.
 func (c *IoT) ListCertificates(input *ListCertificatesInput) (*ListCertificatesOutput, error) {
 	req, out := c.ListCertificatesRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opListCertificatesByCA = "ListCertificatesByCA"
+
+// ListCertificatesByCARequest generates a request for the ListCertificatesByCA operation.
+func (c *IoT) ListCertificatesByCARequest(input *ListCertificatesByCAInput) (req *request.Request, output *ListCertificatesByCAOutput) {
+	op := &request.Operation{
+		Name:       opListCertificatesByCA,
+		HTTPMethod: "GET",
+		HTTPPath:   "/certificates-by-ca/{caCertificateId}",
+	}
+
+	if input == nil {
+		input = &ListCertificatesByCAInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListCertificatesByCAOutput{}
+	req.Data = output
+	return
+}
+
+// List the device certificates signed by the specified CA certificate.
+func (c *IoT) ListCertificatesByCA(input *ListCertificatesByCAInput) (*ListCertificatesByCAOutput, error) {
+	req, out := c.ListCertificatesByCARequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -1046,6 +1211,68 @@ func (c *IoT) ListTopicRules(input *ListTopicRulesInput) (*ListTopicRulesOutput,
 	return out, err
 }
 
+const opRegisterCACertificate = "RegisterCACertificate"
+
+// RegisterCACertificateRequest generates a request for the RegisterCACertificate operation.
+func (c *IoT) RegisterCACertificateRequest(input *RegisterCACertificateInput) (req *request.Request, output *RegisterCACertificateOutput) {
+	op := &request.Operation{
+		Name:       opRegisterCACertificate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/cacertificate",
+	}
+
+	if input == nil {
+		input = &RegisterCACertificateInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &RegisterCACertificateOutput{}
+	req.Data = output
+	return
+}
+
+// Registers a CA certificate with AWS IoT. This CA certificate can then be
+// used to sign device certificates, which can be then registered with AWS IoT.
+// You can register up to 10 CA certificates per AWS account that have the same
+// subject field and public key. This enables you to have up to 10 certificate
+// authorities sign your device certificates. If you have more than one CA certificate
+// registered, make sure you pass the CA certificate when you register your
+// device certificates with the RegisterCertificate API.
+func (c *IoT) RegisterCACertificate(input *RegisterCACertificateInput) (*RegisterCACertificateOutput, error) {
+	req, out := c.RegisterCACertificateRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opRegisterCertificate = "RegisterCertificate"
+
+// RegisterCertificateRequest generates a request for the RegisterCertificate operation.
+func (c *IoT) RegisterCertificateRequest(input *RegisterCertificateInput) (req *request.Request, output *RegisterCertificateOutput) {
+	op := &request.Operation{
+		Name:       opRegisterCertificate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/certificate/register",
+	}
+
+	if input == nil {
+		input = &RegisterCertificateInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &RegisterCertificateOutput{}
+	req.Data = output
+	return
+}
+
+// Registers a device certificate with AWS IoT. If you have more than one CA
+// certificate that has the same subject field, you must specify the CA certificate
+// that was used to sign the device certificate being registered.
+func (c *IoT) RegisterCertificate(input *RegisterCertificateInput) (*RegisterCertificateOutput, error) {
+	req, out := c.RegisterCertificateRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opRejectCertificateTransfer = "RejectCertificateTransfer"
 
 // RejectCertificateTransferRequest generates a request for the RejectCertificateTransfer operation.
@@ -1069,7 +1296,7 @@ func (c *IoT) RejectCertificateTransferRequest(input *RejectCertificateTransferI
 }
 
 // Rejects a pending certificate transfer. After AWS IoT rejects a certificate
-// transfer, the certificate status changes from PENDING_TRANFER to INACTIVE.
+// transfer, the certificate status changes from PENDING_TRANSFER to INACTIVE.
 //
 // To check for pending certificate transfers, call ListCertificates to enumerate
 // your certificates.
@@ -1209,6 +1436,35 @@ func (c *IoT) TransferCertificateRequest(input *TransferCertificateInput) (req *
 // DetachPrincipalPolicy API to detach them.
 func (c *IoT) TransferCertificate(input *TransferCertificateInput) (*TransferCertificateOutput, error) {
 	req, out := c.TransferCertificateRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opUpdateCACertificate = "UpdateCACertificate"
+
+// UpdateCACertificateRequest generates a request for the UpdateCACertificate operation.
+func (c *IoT) UpdateCACertificateRequest(input *UpdateCACertificateInput) (req *request.Request, output *UpdateCACertificateOutput) {
+	op := &request.Operation{
+		Name:       opUpdateCACertificate,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/cacertificate/{certificateId}",
+	}
+
+	if input == nil {
+		input = &UpdateCACertificateInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	output = &UpdateCACertificateOutput{}
+	req.Data = output
+	return
+}
+
+// Updates a registered CA certificate.
+func (c *IoT) UpdateCACertificate(input *UpdateCACertificateInput) (*UpdateCACertificateOutput, error) {
+	req, out := c.UpdateCACertificateRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -1451,6 +1707,66 @@ func (s AttributePayload) GoString() string {
 	return s.String()
 }
 
+// A CA certificate.
+type CACertificate struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the CA certificate.
+	CertificateArn *string `locationName:"certificateArn" type:"string"`
+
+	// The ID of the CA certificate.
+	CertificateId *string `locationName:"certificateId" min:"64" type:"string"`
+
+	// The date the CA certificate was created.
+	CreationDate *time.Time `locationName:"creationDate" type:"timestamp" timestampFormat:"unix"`
+
+	// The status of the CA certificate.
+	Status *string `locationName:"status" type:"string" enum:"CACertificateStatus"`
+}
+
+// String returns the string representation
+func (s CACertificate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CACertificate) GoString() string {
+	return s.String()
+}
+
+// Describes a CA certificate.
+type CACertificateDescription struct {
+	_ struct{} `type:"structure"`
+
+	// The CA certificate ARN.
+	CertificateArn *string `locationName:"certificateArn" type:"string"`
+
+	// The CA certificate ID.
+	CertificateId *string `locationName:"certificateId" min:"64" type:"string"`
+
+	// The CA certificate data, in PEM format.
+	CertificatePem *string `locationName:"certificatePem" min:"1" type:"string"`
+
+	// The date the CA certificate was created.
+	CreationDate *time.Time `locationName:"creationDate" type:"timestamp" timestampFormat:"unix"`
+
+	// The owner of the CA certificate.
+	OwnedBy *string `locationName:"ownedBy" type:"string"`
+
+	// The status of a CA certificate.
+	Status *string `locationName:"status" type:"string" enum:"CACertificateStatus"`
+}
+
+// String returns the string representation
+func (s CACertificateDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CACertificateDescription) GoString() string {
+	return s.String()
+}
+
 // The input for the CancelCertificateTransfer operation.
 type CancelCertificateTransferInput struct {
 	_ struct{} `type:"structure"`
@@ -1514,6 +1830,9 @@ func (s Certificate) GoString() string {
 type CertificateDescription struct {
 	_ struct{} `type:"structure"`
 
+	// The certificate ID of the CA certificate used to sign this certificate.
+	CaCertificateId *string `locationName:"caCertificateId" min:"64" type:"string"`
+
 	// The ARN of the certificate.
 	CertificateArn *string `locationName:"certificateArn" type:"string"`
 
@@ -1532,8 +1851,14 @@ type CertificateDescription struct {
 	// The ID of the AWS account that owns the certificate.
 	OwnedBy *string `locationName:"ownedBy" type:"string"`
 
+	// The ID of the AWS account of the previous owner of the certificate.
+	PreviousOwnedBy *string `locationName:"previousOwnedBy" type:"string"`
+
 	// The status of the certificate.
 	Status *string `locationName:"status" type:"string" enum:"CertificateStatus"`
+
+	// The transfer data.
+	TransferData *TransferData `locationName:"transferData" type:"structure"`
 }
 
 // String returns the string representation
@@ -1881,6 +2206,39 @@ func (s CreateTopicRuleOutput) GoString() string {
 	return s.String()
 }
 
+// Input for the DeleteCACertificate operation.
+type DeleteCACertificateInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the certificate to delete.
+	CertificateId *string `location:"uri" locationName:"certificateId" min:"64" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteCACertificateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteCACertificateInput) GoString() string {
+	return s.String()
+}
+
+// The output for the DeleteCACertificate operation.
+type DeleteCACertificateOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteCACertificateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteCACertificateOutput) GoString() string {
+	return s.String()
+}
+
 // The input for the DeleteCertificate operation.
 type DeleteCertificateInput struct {
 	_ struct{} `type:"structure"`
@@ -1980,6 +2338,36 @@ func (s DeletePolicyVersionOutput) GoString() string {
 	return s.String()
 }
 
+// The input for the DeleteRegistrationCode operation.
+type DeleteRegistrationCodeInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteRegistrationCodeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteRegistrationCodeInput) GoString() string {
+	return s.String()
+}
+
+// The output for the DeleteRegistrationCode operation.
+type DeleteRegistrationCodeOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteRegistrationCodeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteRegistrationCodeOutput) GoString() string {
+	return s.String()
+}
+
 // The input for the DeleteThing operation.
 type DeleteThingInput struct {
 	_ struct{} `type:"structure"`
@@ -2042,6 +2430,42 @@ func (s DeleteTopicRuleOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteTopicRuleOutput) GoString() string {
+	return s.String()
+}
+
+// The input for the DescribeCACertificate operation.
+type DescribeCACertificateInput struct {
+	_ struct{} `type:"structure"`
+
+	// The CA certificate identifier.
+	CertificateId *string `location:"uri" locationName:"certificateId" min:"64" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeCACertificateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCACertificateInput) GoString() string {
+	return s.String()
+}
+
+// The output from the DescribeCACertificate operation.
+type DescribeCACertificateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The CA certificate description.
+	CertificateDescription *CACertificateDescription `locationName:"certificateDescription" type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeCACertificateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCACertificateOutput) GoString() string {
 	return s.String()
 }
 
@@ -2531,6 +2955,39 @@ func (s GetPolicyVersionOutput) GoString() string {
 	return s.String()
 }
 
+// The input to the GetRegistrationCode operation.
+type GetRegistrationCodeInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetRegistrationCodeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetRegistrationCodeInput) GoString() string {
+	return s.String()
+}
+
+// The output from the GetRegistrationCode operation.
+type GetRegistrationCodeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The CA certificate registration code.
+	RegistrationCode *string `locationName:"registrationCode" min:"64" type:"string"`
+}
+
+// String returns the string representation
+func (s GetRegistrationCodeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetRegistrationCodeOutput) GoString() string {
+	return s.String()
+}
+
 // The input for the GetTopicRule operation.
 type GetTopicRuleInput struct {
 	_ struct{} `type:"structure"`
@@ -2630,6 +3087,102 @@ func (s LambdaAction) String() string {
 
 // GoString returns the string representation
 func (s LambdaAction) GoString() string {
+	return s.String()
+}
+
+// Input for the ListCACertificates operation.
+type ListCACertificatesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Determines the order of the results.
+	AscendingOrder *bool `location:"querystring" locationName:"isAscendingOrder" type:"boolean"`
+
+	// The marker for the next set of results.
+	Marker *string `location:"querystring" locationName:"marker" type:"string"`
+
+	// The result page size.
+	PageSize *int64 `location:"querystring" locationName:"pageSize" min:"1" type:"integer"`
+}
+
+// String returns the string representation
+func (s ListCACertificatesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListCACertificatesInput) GoString() string {
+	return s.String()
+}
+
+// The output from the ListCACertificates operation.
+type ListCACertificatesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The CA certificates registered in your AWS account.
+	Certificates []*CACertificate `locationName:"certificates" type:"list"`
+
+	// The current position within the list of CA certificates.
+	NextMarker *string `locationName:"nextMarker" type:"string"`
+}
+
+// String returns the string representation
+func (s ListCACertificatesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListCACertificatesOutput) GoString() string {
+	return s.String()
+}
+
+// The input to the ListCertificatesByCA operation.
+type ListCertificatesByCAInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the order for results. If True, the results are returned in ascending
+	// order, based on the creation date.
+	AscendingOrder *bool `location:"querystring" locationName:"isAscendingOrder" type:"boolean"`
+
+	// The ID of the CA certificate. This operation will list all registered device
+	// certificate that were signed by this CA certificate.
+	CaCertificateId *string `location:"uri" locationName:"caCertificateId" min:"64" type:"string" required:"true"`
+
+	// The marker for the next set of results.
+	Marker *string `location:"querystring" locationName:"marker" type:"string"`
+
+	// The result page size.
+	PageSize *int64 `location:"querystring" locationName:"pageSize" min:"1" type:"integer"`
+}
+
+// String returns the string representation
+func (s ListCertificatesByCAInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListCertificatesByCAInput) GoString() string {
+	return s.String()
+}
+
+// The output of the ListCertificatesByCA operation.
+type ListCertificatesByCAOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The device certificates signed by the specified CA certificate.
+	Certificates []*Certificate `locationName:"certificates" type:"list"`
+
+	// The marker for the next set of results, or null if there are no additional
+	// results.
+	NextMarker *string `locationName:"nextMarker" type:"string"`
+}
+
+// String returns the string representation
+func (s ListCertificatesByCAOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListCertificatesByCAOutput) GoString() string {
 	return s.String()
 }
 
@@ -3056,12 +3609,105 @@ func (s PolicyVersion) GoString() string {
 	return s.String()
 }
 
+// The input to the RegisterCACertificate operation.
+type RegisterCACertificateInput struct {
+	_ struct{} `type:"structure"`
+
+	// The CA certificate.
+	CaCertificate *string `locationName:"caCertificate" min:"1" type:"string" required:"true"`
+
+	// A boolean value that specifies if the CA certificate is set to active.
+	SetAsActive *bool `location:"querystring" locationName:"setAsActive" type:"boolean"`
+
+	// The private key verification certificate.
+	VerificationCertificate *string `locationName:"verificationCertificate" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s RegisterCACertificateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RegisterCACertificateInput) GoString() string {
+	return s.String()
+}
+
+// The output from the RegisterCACertificateResponse operation.
+type RegisterCACertificateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The CA certificate ARN.
+	CertificateArn *string `locationName:"certificateArn" type:"string"`
+
+	// The CA certificate identifier.
+	CertificateId *string `locationName:"certificateId" min:"64" type:"string"`
+}
+
+// String returns the string representation
+func (s RegisterCACertificateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RegisterCACertificateOutput) GoString() string {
+	return s.String()
+}
+
+// The input to the RegisterCertificate operation.
+type RegisterCertificateInput struct {
+	_ struct{} `type:"structure"`
+
+	// The CA certificate used to sign the device certificate being registered.
+	CaCertificatePem *string `locationName:"caCertificatePem" min:"1" type:"string"`
+
+	// The certificate data, in PEM format.
+	CertificatePem *string `locationName:"certificatePem" min:"1" type:"string" required:"true"`
+
+	// A boolean value that specifies if the CA certificate is set to active.
+	SetAsActive *bool `location:"querystring" locationName:"setAsActive" type:"boolean"`
+}
+
+// String returns the string representation
+func (s RegisterCertificateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RegisterCertificateInput) GoString() string {
+	return s.String()
+}
+
+// The output from the RegisterCertificate operation.
+type RegisterCertificateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The certificate ARN.
+	CertificateArn *string `locationName:"certificateArn" type:"string"`
+
+	// The certificate identifier.
+	CertificateId *string `locationName:"certificateId" min:"64" type:"string"`
+}
+
+// String returns the string representation
+func (s RegisterCertificateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RegisterCertificateOutput) GoString() string {
+	return s.String()
+}
+
 // The input for the RejectCertificateTransfer operation.
 type RejectCertificateTransferInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the certificate.
 	CertificateId *string `location:"uri" locationName:"certificateId" min:"64" type:"string" required:"true"`
+
+	// The reason the certificate transfer was rejected.
+	RejectReason *string `locationName:"rejectReason" type:"string"`
 }
 
 // String returns the string representation
@@ -3410,6 +4056,9 @@ type TransferCertificateInput struct {
 
 	// The AWS account.
 	TargetAwsAccount *string `location:"querystring" locationName:"targetAwsAccount" type:"string" required:"true"`
+
+	// The transfer message.
+	TransferMessage *string `locationName:"transferMessage" type:"string"`
 }
 
 // String returns the string representation
@@ -3437,6 +4086,71 @@ func (s TransferCertificateOutput) String() string {
 
 // GoString returns the string representation
 func (s TransferCertificateOutput) GoString() string {
+	return s.String()
+}
+
+// Data used to transfer a certificate to an AWS account.
+type TransferData struct {
+	_ struct{} `type:"structure"`
+
+	// The date the transfer was accepted.
+	AcceptDate *time.Time `locationName:"acceptDate" type:"timestamp" timestampFormat:"unix"`
+
+	// The date the transfer was rejected.
+	RejectDate *time.Time `locationName:"rejectDate" type:"timestamp" timestampFormat:"unix"`
+
+	// The reason why the transfer was rejected.
+	RejectReason *string `locationName:"rejectReason" type:"string"`
+
+	// The date the transfer took place.
+	TransferDate *time.Time `locationName:"transferDate" type:"timestamp" timestampFormat:"unix"`
+
+	// The transfer message.
+	TransferMessage *string `locationName:"transferMessage" type:"string"`
+}
+
+// String returns the string representation
+func (s TransferData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TransferData) GoString() string {
+	return s.String()
+}
+
+// The input to the UpdateCACertificate operation.
+type UpdateCACertificateInput struct {
+	_ struct{} `type:"structure"`
+
+	// The CA certificate identifier.
+	CertificateId *string `location:"uri" locationName:"certificateId" min:"64" type:"string" required:"true"`
+
+	// The updated status of the CA certificate.
+	NewStatus *string `location:"querystring" locationName:"newStatus" type:"string" required:"true" enum:"CACertificateStatus"`
+}
+
+// String returns the string representation
+func (s UpdateCACertificateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateCACertificateInput) GoString() string {
+	return s.String()
+}
+
+type UpdateCACertificateOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateCACertificateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateCACertificateOutput) GoString() string {
 	return s.String()
 }
 
@@ -3517,6 +4231,13 @@ func (s UpdateThingOutput) GoString() string {
 }
 
 const (
+	// @enum CACertificateStatus
+	CACertificateStatusActive = "ACTIVE"
+	// @enum CACertificateStatus
+	CACertificateStatusInactive = "INACTIVE"
+)
+
+const (
 	// @enum CertificateStatus
 	CertificateStatusActive = "ACTIVE"
 	// @enum CertificateStatus
@@ -3525,6 +4246,8 @@ const (
 	CertificateStatusRevoked = "REVOKED"
 	// @enum CertificateStatus
 	CertificateStatusPendingTransfer = "PENDING_TRANSFER"
+	// @enum CertificateStatus
+	CertificateStatusRegisterInactive = "REGISTER_INACTIVE"
 )
 
 const (

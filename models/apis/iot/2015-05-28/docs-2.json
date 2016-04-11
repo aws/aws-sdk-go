@@ -11,11 +11,14 @@
     "CreatePolicyVersion": "<p>Creates a new version of the specified AWS IoT policy. To update a policy, create a new policy version. A managed policy can have up to five versions. If the policy has five versions, you must use <a>DeletePolicyVersion</a> to delete an existing version before you create a new one.</p> <p>Optionally, you can set the new version as the policy's default version. The default version is the operative version (that is, the version that is in effect for the certificates to which the policy is attached).</p>",
     "CreateThing": "<p>Creates a thing in the Thing Registry.</p>",
     "CreateTopicRule": "<p>Creates a rule. Creating rules is an administrator-level action. Any user who has permission to create rules will be able to access data processed by the rule.</p>",
+    "DeleteCACertificate": "<p>Deletes a registered CA certificate.</p>",
     "DeleteCertificate": "<p>Deletes the specified certificate.</p> <p>A certificate cannot be deleted if it has a policy attached to it or if its status is set to ACTIVE. To delete a certificate, first use the <a>DetachPrincipalPolicy</a> API to detach all policies. Next, use the <a>UpdateCertificate</a> API to set the certificate to the INACTIVE status.</p>",
     "DeletePolicy": "<p>Deletes the specified policy.</p> <p>A policy cannot be deleted if it has non-default versions or it is attached to any certificate.</p> <p>To delete a policy, use the DeletePolicyVersion API to delete all non-default versions of the policy; use the DetachPrincipalPolicy API to detach the policy from any certificate; and then use the DeletePolicy API to delete the policy.</p> <p>When a policy is deleted using DeletePolicy, its default version is deleted with it.</p>",
     "DeletePolicyVersion": "<p>Deletes the specified version of the specified policy. You cannot delete the default version of a policy using this API. To delete the default version of a policy, use <a>DeletePolicy</a>. To find out which version of a policy is marked as the default version, use ListPolicyVersions.</p>",
+    "DeleteRegistrationCode": "<p>Deletes a CA certificate registration code.</p>",
     "DeleteThing": "<p>Deletes the specified thing from the Thing Registry.</p>",
     "DeleteTopicRule": "<p>Deletes the specified rule.</p>",
+    "DescribeCACertificate": "<p>Describes a registered CA certificate.</p>",
     "DescribeCertificate": "<p>Gets information about the specified certificate.</p>",
     "DescribeEndpoint": "<p>Returns a unique endpoint specific to the AWS account making the call. You specify the following URI when updating state information for your thing: https://<i>endpoint</i>/things/<i>thingName</i>/shadow.</p>",
     "DescribeThing": "<p>Gets information about the specified thing.</p>",
@@ -26,8 +29,11 @@
     "GetLoggingOptions": "<p>Gets the logging options.</p>",
     "GetPolicy": "<p>Gets information about the specified policy with the policy document of the default version.</p>",
     "GetPolicyVersion": "<p>Gets information about the specified policy version.</p>",
+    "GetRegistrationCode": "<p>Gets a registration code used to register a CA certificate with AWS IoT.</p>",
     "GetTopicRule": "<p>Gets information about the specified rule.</p>",
-    "ListCertificates": "<p>Lists your certificates.</p> <p>The results are paginated with a default page size of 25. You can use the returned marker to retrieve additional results.</p>",
+    "ListCACertificates": "<p>Lists the CA certificates registered for your AWS account.</p> <p>The results are paginated with a default page size of 25. You can use the returned marker to retrieve additional results.</p>",
+    "ListCertificates": "<p>Lists the certificates registered in your AWS account.</p> <p>The results are paginated with a default page size of 25. You can use the returned marker to retrieve additional results.</p>",
+    "ListCertificatesByCA": "<p>List the device certificates signed by the specified CA certificate.</p>",
     "ListPolicies": "<p>Lists your policies.</p>",
     "ListPolicyVersions": "<p>Lists the versions of the specified policy, and identifies the default version.</p>",
     "ListPrincipalPolicies": "<p>Lists the policies attached to the specified principal. If you use an Cognito identity, the ID must be in <a href=\"http://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetCredentialsForIdentity.html#API_GetCredentialsForIdentity_RequestSyntax\">AmazonCognito Identity format</a>.</p>",
@@ -35,11 +41,14 @@
     "ListThingPrincipals": "<p>Lists the principals associated with the specified thing.</p>",
     "ListThings": "<p>Lists your things. You can pass an AttributeName or AttributeValue to filter your things (for example, \"ListThings where AttributeName=Color and AttributeValue=Red\").</p>",
     "ListTopicRules": "<p>Lists the rules for the specific topic.</p>",
-    "RejectCertificateTransfer": "<p>Rejects a pending certificate transfer. After AWS IoT rejects a certificate transfer, the certificate status changes from <b>PENDING_TRANFER</b> to <b>INACTIVE</b>.</p> <p>To check for pending certificate transfers, call <a>ListCertificates</a> to enumerate your certificates.</p> <p>This operation can only be called by the transfer destination. After it is called, the certificate will be returned to the source's account in the INACTIVE state.</p>",
+    "RegisterCACertificate": "<p>Registers a CA certificate with AWS IoT. This CA certificate can then be used to sign device certificates, which can be then registered with AWS IoT. You can register up to 10 CA certificates per AWS account that have the same subject field and public key. This enables you to have up to 10 certificate authorities sign your device certificates. If you have more than one CA certificate registered, make sure you pass the CA certificate when you register your device certificates with the RegisterCertificate API.</p>",
+    "RegisterCertificate": "<p>Registers a device certificate with AWS IoT. If you have more than one CA certificate that has the same subject field, you must specify the CA certificate that was used to sign the device certificate being registered.</p>",
+    "RejectCertificateTransfer": "<p>Rejects a pending certificate transfer. After AWS IoT rejects a certificate transfer, the certificate status changes from <b>PENDING_TRANSFER</b> to <b>INACTIVE</b>.</p> <p>To check for pending certificate transfers, call <a>ListCertificates</a> to enumerate your certificates.</p> <p>This operation can only be called by the transfer destination. After it is called, the certificate will be returned to the source's account in the INACTIVE state.</p>",
     "ReplaceTopicRule": "<p>Replaces the specified rule. You must specify all parameters for the new rule. Creating rules is an administrator-level action. Any user who has permission to create rules will be able to access data processed by the rule.</p>",
     "SetDefaultPolicyVersion": "<p>Sets the specified version of the specified policy as the policy's default (operative) version. This action affects all certificates to which the policy is attached. To list the principals the policy is attached to, use the ListPrincipalPolicy API.</p>",
     "SetLoggingOptions": "<p>Sets the logging options.</p>",
     "TransferCertificate": "<p>Transfers the specified certificate to the specified AWS account.</p> <p>You can cancel the transfer until it is acknowledged by the recipient.</p> <p>No notification is sent to the transfer destination's account. It is up to the caller to notify the transfer target.</p> <p>The certificate being transferred must not be in the ACTIVE state. You can use the UpdateCertificate API to deactivate it.</p> <p>The certificate must not have any policies attached to it. You can use the DetachPrincipalPolicy API to detach them.</p>",
+    "UpdateCACertificate": "<p>Updates a registered CA certificate.</p>",
     "UpdateCertificate": "<p>Updates the status of the specified certificate. This operation is idempotent.</p> <p>Moving a certificate from the ACTIVE state (including REVOKED) will not disconnect currently connected devices, but these devices will be unable to reconnect.</p> <p>The ACTIVE state is required to authenticate devices connecting to AWS IoT using a certificate.</p>",
     "UpdateThing": "<p>Updates the data for a thing.</p>"
   },
@@ -72,6 +81,8 @@
     "AscendingOrder": {
       "base": null,
       "refs": {
+        "ListCACertificatesRequest$ascendingOrder": "<p>Determines the order of the results.</p>",
+        "ListCertificatesByCARequest$ascendingOrder": "<p>Specifies the order for results. If True, the results are returned in ascending order, based on the creation date.</p>",
         "ListCertificatesRequest$ascendingOrder": "<p>Specifies the order for results. If True, the results are returned in ascending order, based on the creation date.</p>",
         "ListPoliciesRequest$ascendingOrder": "<p>Specifies the order for results. If true, the results are returned in ascending creation order.</p>",
         "ListPrincipalPoliciesRequest$ascendingOrder": "<p>Specifies the order for results. If true, results are returned in ascending creation order.</p>"
@@ -124,7 +135,9 @@
     "AwsAccountId": {
       "base": null,
       "refs": {
+        "CACertificateDescription$ownedBy": "<p>The owner of the CA certificate.</p>",
         "CertificateDescription$ownedBy": "<p>The ID of the AWS account that owns the certificate.</p>",
+        "CertificateDescription$previousOwnedBy": "<p>The ID of the AWS account of the previous owner of the certificate.</p>",
         "TransferCertificateRequest$targetAwsAccount": "<p>The AWS account.</p>"
       }
     },
@@ -152,6 +165,32 @@
         "S3Action$bucketName": "<p>The Amazon S3 bucket.</p>"
       }
     },
+    "CACertificate": {
+      "base": "<p>A CA certificate.</p>",
+      "refs": {
+        "CACertificates$member": null
+      }
+    },
+    "CACertificateDescription": {
+      "base": "<p>Describes a CA certificate.</p>",
+      "refs": {
+        "DescribeCACertificateResponse$certificateDescription": "<p>The CA certificate description.</p>"
+      }
+    },
+    "CACertificateStatus": {
+      "base": null,
+      "refs": {
+        "CACertificate$status": "<p>The status of the CA certificate.</p>",
+        "CACertificateDescription$status": "<p>The status of a CA certificate.</p>",
+        "UpdateCACertificateRequest$newStatus": "<p>The updated status of the CA certificate.</p>"
+      }
+    },
+    "CACertificates": {
+      "base": null,
+      "refs": {
+        "ListCACertificatesResponse$certificates": "<p>The CA certificates registered in your AWS account.</p>"
+      }
+    },
     "CancelCertificateTransferRequest": {
       "base": "<p>The input for the CancelCertificateTransfer operation.</p>",
       "refs": {
@@ -166,11 +205,20 @@
     "CertificateArn": {
       "base": null,
       "refs": {
+        "CACertificate$certificateArn": "<p>The ARN of the CA certificate.</p>",
+        "CACertificateDescription$certificateArn": "<p>The CA certificate ARN.</p>",
         "Certificate$certificateArn": "<p>The ARN of the certificate.</p>",
         "CertificateDescription$certificateArn": "<p>The ARN of the certificate.</p>",
         "CreateCertificateFromCsrResponse$certificateArn": "<p>The Amazon Resource Name (ARN) of the certificate. You can use the ARN as a principal for policy operations.</p>",
         "CreateKeysAndCertificateResponse$certificateArn": "<p>The ARN of the certificate.</p>",
+        "RegisterCACertificateResponse$certificateArn": "<p>The CA certificate ARN.</p>",
+        "RegisterCertificateResponse$certificateArn": "<p>The certificate ARN.</p>",
         "TransferCertificateResponse$transferredCertificateArn": "<p>The ARN of the certificate.</p>"
+      }
+    },
+    "CertificateConflictException": {
+      "base": "<p>Unable to verify the CA certificate used to sign the device certificate you are attempting to register. This is happens when you have registered more than one CA certificate that has the same subject field and public key.</p>",
+      "refs": {
       }
     },
     "CertificateDescription": {
@@ -183,24 +231,38 @@
       "base": null,
       "refs": {
         "AcceptCertificateTransferRequest$certificateId": "<p>The ID of the certificate.</p>",
+        "CACertificate$certificateId": "<p>The ID of the CA certificate.</p>",
+        "CACertificateDescription$certificateId": "<p>The CA certificate ID.</p>",
         "CancelCertificateTransferRequest$certificateId": "<p>The ID of the certificate.</p>",
         "Certificate$certificateId": "<p>The ID of the certificate.</p>",
         "CertificateDescription$certificateId": "<p>The ID of the certificate.</p>",
+        "CertificateDescription$caCertificateId": "<p>The certificate ID of the CA certificate used to sign this certificate.</p>",
         "CreateCertificateFromCsrResponse$certificateId": "<p>The ID of the certificate. Certificate management operations only take a certificateId.</p>",
         "CreateKeysAndCertificateResponse$certificateId": "<p>The ID of the certificate. AWS IoT issues a default subject name for the certificate (for example, AWS IoT Certificate).</p>",
+        "DeleteCACertificateRequest$certificateId": "<p>The ID of the certificate to delete.</p>",
         "DeleteCertificateRequest$certificateId": "<p>The ID of the certificate.</p>",
+        "DescribeCACertificateRequest$certificateId": "<p>The CA certificate identifier.</p>",
         "DescribeCertificateRequest$certificateId": "<p>The ID of the certificate.</p>",
+        "ListCertificatesByCARequest$caCertificateId": "<p>The ID of the CA certificate. This operation will list all registered device certificate that were signed by this CA certificate. </p>",
+        "RegisterCACertificateResponse$certificateId": "<p>The CA certificate identifier.</p>",
+        "RegisterCertificateResponse$certificateId": "<p>The certificate identifier.</p>",
         "RejectCertificateTransferRequest$certificateId": "<p>The ID of the certificate.</p>",
         "TransferCertificateRequest$certificateId": "<p>The ID of the certificate.</p>",
+        "UpdateCACertificateRequest$certificateId": "<p>The CA certificate identifier.</p>",
         "UpdateCertificateRequest$certificateId": "<p>The ID of the certificate.</p>"
       }
     },
     "CertificatePem": {
       "base": null,
       "refs": {
+        "CACertificateDescription$certificatePem": "<p>The CA certificate data, in PEM format.</p>",
         "CertificateDescription$certificatePem": "<p>The certificate data, in PEM format.</p>",
         "CreateCertificateFromCsrResponse$certificatePem": "<p>The certificate data, in PEM format.</p>",
-        "CreateKeysAndCertificateResponse$certificatePem": "<p>The certificate data, in PEM format.</p>"
+        "CreateKeysAndCertificateResponse$certificatePem": "<p>The certificate data, in PEM format.</p>",
+        "RegisterCACertificateRequest$caCertificate": "<p>The CA certificate.</p>",
+        "RegisterCACertificateRequest$verificationCertificate": "<p>The private key verification certificate.</p>",
+        "RegisterCertificateRequest$certificatePem": "<p>The certificate data, in PEM format.</p>",
+        "RegisterCertificateRequest$caCertificatePem": "<p>The CA certificate used to sign the device certificate being registered.</p>"
       }
     },
     "CertificateSigningRequest": {
@@ -222,9 +284,15 @@
         "UpdateCertificateRequest$newStatus": "<p>The new status.</p> <p><b>Note:</b> Setting the status to PENDING_TRANSFER will result in an exception being thrown. PENDING_TRANSFER is a status used internally by AWS IoT. It is not intended for developer use.</p>"
       }
     },
+    "CertificateValidationException": {
+      "base": "<p>The certificate is invalid.</p>",
+      "refs": {
+      }
+    },
     "Certificates": {
       "base": null,
       "refs": {
+        "ListCertificatesByCAResponse$certificates": "<p>The device certificates signed by the specified CA certificate.</p>",
         "ListCertificatesResponse$certificates": "<p>The descriptions of the certificates.</p>"
       }
     },
@@ -311,10 +379,25 @@
     "DateType": {
       "base": null,
       "refs": {
+        "CACertificate$creationDate": "<p>The date the CA certificate was created.</p>",
+        "CACertificateDescription$creationDate": "<p>The date the CA certificate was created.</p>",
         "Certificate$creationDate": "<p>The date and time the certificate was created.</p>",
         "CertificateDescription$creationDate": "<p>The date and time the certificate was created.</p>",
         "CertificateDescription$lastModifiedDate": "<p>The date and time the certificate was last modified.</p>",
-        "PolicyVersion$createDate": "<p>The date and time the policy was created.</p>"
+        "PolicyVersion$createDate": "<p>The date and time the policy was created.</p>",
+        "TransferData$transferDate": "<p>The date the transfer took place.</p>",
+        "TransferData$acceptDate": "<p>The date the transfer was accepted.</p>",
+        "TransferData$rejectDate": "<p>The date the transfer was rejected.</p>"
+      }
+    },
+    "DeleteCACertificateRequest": {
+      "base": "<p>Input for the DeleteCACertificate operation.</p>",
+      "refs": {
+      }
+    },
+    "DeleteCACertificateResponse": {
+      "base": "<p>The output for the DeleteCACertificate operation.</p>",
+      "refs": {
       }
     },
     "DeleteCertificateRequest": {
@@ -337,6 +420,16 @@
       "refs": {
       }
     },
+    "DeleteRegistrationCodeRequest": {
+      "base": "<p>The input for the DeleteRegistrationCode operation.</p>",
+      "refs": {
+      }
+    },
+    "DeleteRegistrationCodeResponse": {
+      "base": "<p>The output for the DeleteRegistrationCode operation. </p>",
+      "refs": {
+      }
+    },
     "DeleteThingRequest": {
       "base": "<p>The input for the DeleteThing operation.</p>",
       "refs": {
@@ -356,6 +449,16 @@
       "base": null,
       "refs": {
         "FirehoseAction$deliveryStreamName": "<p>The delivery stream name.</p>"
+      }
+    },
+    "DescribeCACertificateRequest": {
+      "base": "<p>The input for the DescribeCACertificate operation.</p>",
+      "refs": {
+      }
+    },
+    "DescribeCACertificateResponse": {
+      "base": "<p>The output from the DescribeCACertificate operation.</p>",
+      "refs": {
       }
     },
     "DescribeCertificateRequest": {
@@ -504,6 +607,16 @@
       "refs": {
       }
     },
+    "GetRegistrationCodeRequest": {
+      "base": "<p>The input to the GetRegistrationCode operation.</p>",
+      "refs": {
+      }
+    },
+    "GetRegistrationCodeResponse": {
+      "base": "<p>The output from the GetRegistrationCode operation.</p>",
+      "refs": {
+      }
+    },
     "GetTopicRuleRequest": {
       "base": "<p>The input for the GetTopicRule operation.</p>",
       "refs": {
@@ -584,6 +697,26 @@
     },
     "LimitExceededException": {
       "base": "<p>The number of attached entities exceeds the limit.</p>",
+      "refs": {
+      }
+    },
+    "ListCACertificatesRequest": {
+      "base": "<p>Input for the ListCACertificates operation.</p>",
+      "refs": {
+      }
+    },
+    "ListCACertificatesResponse": {
+      "base": "<p>The output from the ListCACertificates operation.</p>",
+      "refs": {
+      }
+    },
+    "ListCertificatesByCARequest": {
+      "base": "<p>The input to the ListCertificatesByCA operation.</p>",
+      "refs": {
+      }
+    },
+    "ListCertificatesByCAResponse": {
+      "base": "<p>The output of the ListCertificatesByCA operation.</p>",
       "refs": {
       }
     },
@@ -688,6 +821,10 @@
     "Marker": {
       "base": null,
       "refs": {
+        "ListCACertificatesRequest$marker": "<p>The marker for the next set of results.</p>",
+        "ListCACertificatesResponse$nextMarker": "<p>The current position within the list of CA certificates.</p>",
+        "ListCertificatesByCARequest$marker": "<p>The marker for the next set of results.</p>",
+        "ListCertificatesByCAResponse$nextMarker": "<p>The marker for the next set of results, or null if there are no additional results.</p>",
         "ListCertificatesRequest$marker": "<p>The marker for the next set of results.</p>",
         "ListCertificatesResponse$nextMarker": "<p>The marker for the next set of results, or null if there are no additional results.</p>",
         "ListPoliciesRequest$marker": "<p>The marker for the next set of results.</p>",
@@ -702,6 +839,15 @@
         "ListPrincipalThingsRequest$maxResults": "<p>The maximum number of principals to return.</p>",
         "ListThingsRequest$maxResults": "<p>The maximum number of results.</p>",
         "ListTopicRulesRequest$maxResults": "<p>The maximum number of results to return.</p>"
+      }
+    },
+    "Message": {
+      "base": null,
+      "refs": {
+        "RejectCertificateTransferRequest$rejectReason": "<p>The reason the certificate transfer was rejected.</p>",
+        "TransferCertificateRequest$transferMessage": "<p>The transfer message.</p>",
+        "TransferData$transferMessage": "<p>The transfer message.</p>",
+        "TransferData$rejectReason": "<p>The reason why the transfer was rejected.</p>"
       }
     },
     "MessageFormat": {
@@ -754,6 +900,8 @@
     "PageSize": {
       "base": null,
       "refs": {
+        "ListCACertificatesRequest$pageSize": "<p>The result page size.</p>",
+        "ListCertificatesByCARequest$pageSize": "<p>The result page size.</p>",
         "ListCertificatesRequest$pageSize": "<p>The result page size.</p>",
         "ListPoliciesRequest$pageSize": "<p>The result page size.</p>",
         "ListPrincipalPoliciesRequest$pageSize": "<p>The result page size.</p>"
@@ -902,6 +1050,37 @@
         "DynamoDBAction$rangeKeyValue": "<p>The range key value.</p>"
       }
     },
+    "RegisterCACertificateRequest": {
+      "base": "<p>The input to the RegisterCACertificate operation.</p>",
+      "refs": {
+      }
+    },
+    "RegisterCACertificateResponse": {
+      "base": "<p>The output from the RegisterCACertificateResponse operation.</p>",
+      "refs": {
+      }
+    },
+    "RegisterCertificateRequest": {
+      "base": "<p>The input to the RegisterCertificate operation.</p>",
+      "refs": {
+      }
+    },
+    "RegisterCertificateResponse": {
+      "base": "<p>The output from the RegisterCertificate operation.</p>",
+      "refs": {
+      }
+    },
+    "RegistrationCode": {
+      "base": null,
+      "refs": {
+        "GetRegistrationCodeResponse$registrationCode": "<p>The CA certificate registration code.</p>"
+      }
+    },
+    "RegistrationCodeValidationException": {
+      "base": "<p>The registration code is invalid.</p>",
+      "refs": {
+      }
+    },
     "RejectCertificateTransferRequest": {
       "base": "<p>The input for the RejectCertificateTransfer operation.</p>",
       "refs": {
@@ -971,7 +1150,9 @@
       "refs": {
         "AcceptCertificateTransferRequest$setAsActive": "<p>Specifies whether the certificate is active.</p>",
         "CreateCertificateFromCsrRequest$setAsActive": "<p>Specifies whether the certificate is active.</p>",
-        "CreateKeysAndCertificateRequest$setAsActive": "<p>Specifies whether the certificate is active.</p>"
+        "CreateKeysAndCertificateRequest$setAsActive": "<p>Specifies whether the certificate is active.</p>",
+        "RegisterCACertificateRequest$setAsActive": "<p>A boolean value that specifies if the CA certificate is set to active.</p>",
+        "RegisterCertificateRequest$setAsActive": "<p>A boolean value that specifies if the CA certificate is set to active.</p>"
       }
     },
     "SetAsDefault": {
@@ -1134,8 +1315,19 @@
       "refs": {
       }
     },
+    "TransferData": {
+      "base": "<p>Data used to transfer a certificate to an AWS account.</p>",
+      "refs": {
+        "CertificateDescription$transferData": "<p>The transfer data.</p>"
+      }
+    },
     "UnauthorizedException": {
       "base": "<p>You are not authorized to perform this operation.</p>",
+      "refs": {
+      }
+    },
+    "UpdateCACertificateRequest": {
+      "base": "<p>The input to the UpdateCACertificate operation.</p>",
       "refs": {
       }
     },
@@ -1168,13 +1360,16 @@
     "errorMessage": {
       "base": null,
       "refs": {
+        "CertificateConflictException$message": "<p>The message for the exception.</p>",
         "CertificateStateException$message": "<p>The message for the exception.</p>",
+        "CertificateValidationException$message": "<p>Additional information about the exception.</p>",
         "DeleteConflictException$message": "<p>The message for the exception.</p>",
         "InternalException$message": "<p>The message for the exception.</p>",
         "InternalFailureException$message": "<p>The message for the exception.</p>",
         "InvalidRequestException$message": "<p>The message for the exception.</p>",
         "LimitExceededException$message": "<p>The message for the exception.</p>",
         "MalformedPolicyException$message": "<p>The message for the exception.</p>",
+        "RegistrationCodeValidationException$message": "<p>Additional information about the exception.</p>",
         "ResourceAlreadyExistsException$message": "<p>The message for the exception.</p>",
         "ResourceNotFoundException$message": "<p>The message for the exception.</p>",
         "ServiceUnavailableException$message": "<p>The message for the exception.</p>",
