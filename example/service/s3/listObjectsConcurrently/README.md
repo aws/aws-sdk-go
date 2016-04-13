@@ -1,6 +1,6 @@
 ## Example
 
-listS3EncryptedObjects is an example using the AWS SDK for Go concurrently to list the the encrypted objects in the S3 buckets owned by an account.
+listS3EncryptedObjects is an example using the AWS SDK for Go concurrently to list the encrypted objects in the S3 buckets owned by an account.
 
 ## Usage
 
@@ -9,3 +9,5 @@ The example's `accounts` string slice contains a list of the SharedCredentials p
 ```
 AWS_REGION=us-east-1 go run example/listS3EncryptedObjects/main.go
 ```
+
+
