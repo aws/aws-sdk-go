@@ -10,8 +10,11 @@ import (
 	"github.com/aws/aws-sdk-go/service/cloudfront/sign"
 )
 
+// Makes a request for object using CloudFront cookie signing, and outputs
+// the contents of the object to stdout.
+//
 // Usage example:
-// go run main.go -file <privkey file>  -id <keyId> -r <resource pattern> -g <object to get>
+// go run signCookies.go -file <privkey file>  -id <keyId> -r <resource pattern> -g <object to get>
 func main() {
 	var keyFile string  // Private key PEM file
 	var keyID string    // Key pair ID of CloudFront key pair

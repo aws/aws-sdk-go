@@ -18,6 +18,11 @@ func exit(msg ...interface{}) {
 	os.Exit(1)
 }
 
+// Lists all encrypted objects owned by an account. The `accounts` string
+// contains a list of profiles to use.
+//
+// Usage:
+// go run listObjectsConcurrently.go
 func main() {
 	accounts := []string{"default", "default2", "otherprofile"}
 
