@@ -75,3 +75,16 @@ func TestFillAccountIDWithNilStruct(t *testing.T) {
 	assert.Equal(t, empty, req.HTTPRequest.Header.Get("x-amz-content-sha256"))
 	assert.Equal(t, "", req.HTTPRequest.Header.Get("x-amz-sha256-tree-hash"))
 }
+
+func TestHashOnce(t *testing.T) {
+	req, _ := svc.UploadArchiveRequest(&glacier.UploadArchiveInput{
+		VaultName: aws.String("vault"),
+		Body:      payloadBuf,
+	})
+	req.HTTPRequest.Header.Set("X-Amz-Sha256-Tree-Hash", "0")
+
+	err := req.Build()
+	assert.NoError(t, err)
+
+	assert.Equal(t, "0", req.HTTPRequest.Header.Get("x-amz-sha256-tree-hash"))
+}
