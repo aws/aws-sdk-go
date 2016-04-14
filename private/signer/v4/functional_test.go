@@ -27,8 +27,8 @@ func TestPresignHandler(t *testing.T) {
 	assert.NoError(t, err)
 
 	expectedDate := "19700101T000000Z"
-	expectedHeaders := "content-disposition;host;x-amz-acl"
-	expectedSig := "b2754ba8ffeb74a40b94767017e24c4672107d6d5a894648d5d332ca61f5ffe4"
+	expectedHeaders := "content-disposition;content-length;host;x-amz-acl"
+	expectedSig := "f7c5effec05ec33b79ecdae84cbc7e394831fe091879abdf85c5e65f14adc35f"
 	expectedCred := "AKID/19700101/mock-region/s3/aws4_request"
 
 	u, _ := url.Parse(urlstr)
@@ -56,10 +56,11 @@ func TestPresignRequest(t *testing.T) {
 	assert.NoError(t, err)
 
 	expectedDate := "19700101T000000Z"
-	expectedHeaders := "content-disposition;host;x-amz-acl"
-	expectedSig := "b2754ba8ffeb74a40b94767017e24c4672107d6d5a894648d5d332ca61f5ffe4"
+	expectedHeaders := "content-disposition;content-length;host;x-amz-acl"
+	expectedSig := "f7c5effec05ec33b79ecdae84cbc7e394831fe091879abdf85c5e65f14adc35f"
 	expectedCred := "AKID/19700101/mock-region/s3/aws4_request"
 	expectedHeaderMap := http.Header{
+		"content-length":      []string{"0"},
 		"x-amz-acl":           []string{"public-read"},
 		"content-disposition": []string{"a+b c$d"},
 	}

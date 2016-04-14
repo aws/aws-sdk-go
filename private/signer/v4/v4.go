@@ -29,8 +29,7 @@ const (
 var ignoredHeaders = rules{
 	blacklist{
 		mapRule{
-			"Content-Length": struct{}{},
-			"User-Agent":     struct{}{},
+			"User-Agent": struct{}{},
 		},
 	},
 }
