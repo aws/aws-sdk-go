@@ -206,11 +206,31 @@ func TestResignRequestExpiredCreds(t *testing.T) {
 	)
 	Sign(r)
 	querySig := r.HTTPRequest.Header.Get("Authorization")
+	var origSignedHeaders string
+	for _, p := range strings.Split(querySig, ", ") {
+		if strings.HasPrefix(p, "SignedHeaders=") {
+			origSignedHeaders = p[len("SignedHeaders="):]
+			break
+		}
+	}
+	assert.NotEmpty(t, origSignedHeaders)
+	assert.NotContains(t, origSignedHeaders, "authorization")
 
 	creds.Expire()
 
 	Sign(r)
-	assert.NotEqual(t, querySig, r.HTTPRequest.Header.Get("Authorization"))
+	updatedQuerySig := r.HTTPRequest.Header.Get("Authorization")
+	assert.NotEqual(t, querySig, updatedQuerySig)
+
+	var updatedSignedHeaders string
+	for _, p := range strings.Split(updatedQuerySig, ", ") {
+		if strings.HasPrefix(p, "SignedHeaders=") {
+			updatedSignedHeaders = p[len("SignedHeaders="):]
+			break
+		}
+	}
+	assert.NotEmpty(t, updatedSignedHeaders)
+	assert.NotContains(t, updatedQuerySig, "authorization")
 }
 
 func TestPreResignRequestExpiredCreds(t *testing.T) {
@@ -234,12 +254,17 @@ func TestPreResignRequestExpiredCreds(t *testing.T) {
 
 	Sign(r)
 	querySig := r.HTTPRequest.URL.Query().Get("X-Amz-Signature")
+	signedHeaders := r.HTTPRequest.URL.Query().Get("X-Amz-SignedHeaders")
+	assert.NotEmpty(t, signedHeaders)
 
 	creds.Expire()
 	r.Time = time.Now().Add(time.Hour * 48)
 
 	Sign(r)
 	assert.NotEqual(t, querySig, r.HTTPRequest.URL.Query().Get("X-Amz-Signature"))
+	resignedHeaders := r.HTTPRequest.URL.Query().Get("X-Amz-SignedHeaders")
+	assert.Equal(t, signedHeaders, resignedHeaders)
+	assert.NotContains(t, signedHeaders, "x-amz-signedHeaders")
 }
 
 func BenchmarkPresignRequest(b *testing.B) {
