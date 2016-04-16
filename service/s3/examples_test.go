@@ -378,6 +378,26 @@ func ExampleS3_DeleteObjects() {
 	fmt.Println(resp)
 }
 
+func ExampleS3_DeleteAllObjects() {
+	svc := s3.New(session.New())
+
+	params := &s3.ListObjectsInput{
+		Bucket: aws.String("BucketName"), // Required
+		Prefix: aws.String("ObjectKey"),  // Required
+	}
+	resp, err := svc.DeleteAllObjects(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleS3_GetBucketAcl() {
 	svc := s3.New(session.New())
 
