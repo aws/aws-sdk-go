@@ -267,6 +267,29 @@ func TestPreResignRequestExpiredCreds(t *testing.T) {
 	assert.NotContains(t, signedHeaders, "x-amz-signedHeaders")
 }
 
+func TestResignRequestExpiredRequest(t *testing.T) {
+	creds := credentials.NewStaticCredentials("AKID", "SECRET", "SESSION")
+	svc := awstesting.NewClient(&aws.Config{Credentials: creds})
+	r := svc.NewRequest(
+		&request.Operation{
+			Name:       "BatchGetItem",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		},
+		nil,
+		nil,
+	)
+
+	Sign(r)
+	querySig := r.HTTPRequest.Header.Get("Authorization")
+
+	// Simulate the request occured 15 minutes in the past
+	r.Time = r.Time.Add(-15 * time.Minute)
+
+	Sign(r)
+	assert.NotEqual(t, querySig, r.HTTPRequest.Header.Get("Authorization"))
+}
+
 func BenchmarkPresignRequest(b *testing.B) {
 	signer := buildSigner("dynamodb", "us-east-1", time.Now(), 300*time.Second, "{}")
 	for i := 0; i < b.N; i++ {
