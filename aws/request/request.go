@@ -252,6 +252,7 @@ func (r *Request) Send() error {
 				Method:        r.HTTPRequest.Method,
 				Proto:         r.HTTPRequest.Proto,
 				ContentLength: r.HTTPRequest.ContentLength,
+				Cancel:        r.HTTPRequest.Cancel,
 			}
 			if r.HTTPResponse.Body != nil {
 				// Closing response body. Since we are setting a new request to send off, this
