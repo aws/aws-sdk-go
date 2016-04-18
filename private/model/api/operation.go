@@ -19,7 +19,8 @@ type Operation struct {
 	InputRef      ShapeRef `json:"input"`
 	OutputRef     ShapeRef `json:"output"`
 	Paginator     *Paginator
-	Deprecated    bool `json:"deprecated"`
+	Deprecated    bool   `json:"deprecated"`
+	AuthType      string `json:"authtype"`
 }
 
 // A HTTPInfo defines the method of HTTP request for the Operation.
@@ -69,7 +70,8 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 	req = c.newRequest(op, input, output){{ if eq .OutputRef.Shape.Placeholder true }}
 	req.Handlers.Unmarshal.Remove({{ .API.ProtocolPackage }}.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler){{ end }}
-	output = &{{ .OutputRef.GoTypeElem }}{}
+	{{ if eq .AuthType "none" }}req.Config.Credentials = credentials.AnonymousCredentials
+	output = &{{ .OutputRef.GoTypeElem }}{} {{ else }} output = &{{ .OutputRef.GoTypeElem }}{} {{ end }}
 	req.Data = output
 	return
 }
