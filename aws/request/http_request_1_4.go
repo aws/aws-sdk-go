@@ -1,8 +1,10 @@
 // +build go1.4 !go1.5
 
+package request
+
 import "net/http"
 
-func newHTTPRequest(r *http.Request) *http.Request {
+func copyHTTPRequest(r *http.Request) *http.Request {
 	return &http.Request{
 		URL:           r.URL,
 		Header:        r.Header,
