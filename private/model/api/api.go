@@ -230,6 +230,14 @@ func (a *API) APIGoCode() string {
 		a.imports["github.com/aws/aws-sdk-go/private/protocol/"+a.ProtocolPackage()] = true
 		a.imports["github.com/aws/aws-sdk-go/private/protocol"] = true
 	}
+
+	for _, op := range a.Operations {
+		if op.AuthType == "none" {
+			a.imports["github.com/aws/aws-sdk-go/aws/credentials"] = true
+			break
+		}
+	}
+
 	var buf bytes.Buffer
 	err := tplAPI.Execute(&buf, a)
 	if err != nil {
