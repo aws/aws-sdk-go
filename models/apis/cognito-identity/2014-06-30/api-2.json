@@ -4,10 +4,10 @@
     "apiVersion":"2014-06-30",
     "endpointPrefix":"cognito-identity",
     "jsonVersion":"1.1",
+    "protocol":"json",
     "serviceFullName":"Amazon Cognito Identity",
     "signatureVersion":"v4",
-    "targetPrefix":"AWSCognitoIdentityService",
-    "protocol":"json"
+    "targetPrefix":"AWSCognitoIdentityService"
   },
   "operations":{
     "CreateIdentityPool":{
@@ -19,36 +19,12 @@
       "input":{"shape":"CreateIdentityPoolInput"},
       "output":{"shape":"IdentityPool"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"NotAuthorizedException",
-          "error":{"httpStatusCode":403},
-          "exception":true
-        },
-        {
-          "shape":"ResourceConflictException",
-          "error":{"httpStatusCode":409},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"LimitExceededException"}
       ]
     },
     "DeleteIdentities":{
@@ -60,21 +36,9 @@
       "input":{"shape":"DeleteIdentitiesInput"},
       "output":{"shape":"DeleteIdentitiesResponse"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalErrorException"}
       ]
     },
     "DeleteIdentityPool":{
@@ -85,31 +49,11 @@
       },
       "input":{"shape":"DeleteIdentityPoolInput"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"NotAuthorizedException",
-          "error":{"httpStatusCode":403},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalErrorException"}
       ]
     },
     "DescribeIdentity":{
@@ -121,31 +65,11 @@
       "input":{"shape":"DescribeIdentityInput"},
       "output":{"shape":"IdentityDescription"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"NotAuthorizedException",
-          "error":{"httpStatusCode":403},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalErrorException"}
       ]
     },
     "DescribeIdentityPool":{
@@ -157,31 +81,11 @@
       "input":{"shape":"DescribeIdentityPoolInput"},
       "output":{"shape":"IdentityPool"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"NotAuthorizedException",
-          "error":{"httpStatusCode":403},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalErrorException"}
       ]
     },
     "GetCredentialsForIdentity":{
@@ -193,46 +97,14 @@
       "input":{"shape":"GetCredentialsForIdentityInput"},
       "output":{"shape":"GetCredentialsForIdentityResponse"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"NotAuthorizedException",
-          "error":{"httpStatusCode":403},
-          "exception":true
-        },
-        {
-          "shape":"ResourceConflictException",
-          "error":{"httpStatusCode":409},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        },
-        {
-          "shape":"InvalidIdentityPoolConfigurationException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"ExternalServiceException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InvalidIdentityPoolConfigurationException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"ExternalServiceException"}
       ]
     },
     "GetId":{
@@ -244,46 +116,14 @@
       "input":{"shape":"GetIdInput"},
       "output":{"shape":"GetIdResponse"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"NotAuthorizedException",
-          "error":{"httpStatusCode":403},
-          "exception":true
-        },
-        {
-          "shape":"ResourceConflictException",
-          "error":{"httpStatusCode":409},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ExternalServiceException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ExternalServiceException"}
       ]
     },
     "GetIdentityPoolRoles":{
@@ -295,36 +135,12 @@
       "input":{"shape":"GetIdentityPoolRolesInput"},
       "output":{"shape":"GetIdentityPoolRolesResponse"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"NotAuthorizedException",
-          "error":{"httpStatusCode":403},
-          "exception":true
-        },
-        {
-          "shape":"ResourceConflictException",
-          "error":{"httpStatusCode":409},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalErrorException"}
       ]
     },
     "GetOpenIdToken":{
@@ -336,41 +152,13 @@
       "input":{"shape":"GetOpenIdTokenInput"},
       "output":{"shape":"GetOpenIdTokenResponse"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"NotAuthorizedException",
-          "error":{"httpStatusCode":403},
-          "exception":true
-        },
-        {
-          "shape":"ResourceConflictException",
-          "error":{"httpStatusCode":409},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"ExternalServiceException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"ExternalServiceException"}
       ]
     },
     "GetOpenIdTokenForDeveloperIdentity":{
@@ -382,41 +170,13 @@
       "input":{"shape":"GetOpenIdTokenForDeveloperIdentityInput"},
       "output":{"shape":"GetOpenIdTokenForDeveloperIdentityResponse"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"NotAuthorizedException",
-          "error":{"httpStatusCode":403},
-          "exception":true
-        },
-        {
-          "shape":"ResourceConflictException",
-          "error":{"httpStatusCode":409},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"DeveloperUserAlreadyRegisteredException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"DeveloperUserAlreadyRegisteredException"}
       ]
     },
     "ListIdentities":{
@@ -428,31 +188,11 @@
       "input":{"shape":"ListIdentitiesInput"},
       "output":{"shape":"ListIdentitiesResponse"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"NotAuthorizedException",
-          "error":{"httpStatusCode":403},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalErrorException"}
       ]
     },
     "ListIdentityPools":{
@@ -464,26 +204,10 @@
       "input":{"shape":"ListIdentityPoolsInput"},
       "output":{"shape":"ListIdentityPoolsResponse"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"NotAuthorizedException",
-          "error":{"httpStatusCode":403},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalErrorException"}
       ]
     },
     "LookupDeveloperIdentity":{
@@ -495,36 +219,12 @@
       "input":{"shape":"LookupDeveloperIdentityInput"},
       "output":{"shape":"LookupDeveloperIdentityResponse"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"NotAuthorizedException",
-          "error":{"httpStatusCode":403},
-          "exception":true
-        },
-        {
-          "shape":"ResourceConflictException",
-          "error":{"httpStatusCode":409},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalErrorException"}
       ]
     },
     "MergeDeveloperIdentities":{
@@ -536,36 +236,12 @@
       "input":{"shape":"MergeDeveloperIdentitiesInput"},
       "output":{"shape":"MergeDeveloperIdentitiesResponse"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"NotAuthorizedException",
-          "error":{"httpStatusCode":403},
-          "exception":true
-        },
-        {
-          "shape":"ResourceConflictException",
-          "error":{"httpStatusCode":409},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalErrorException"}
       ]
     },
     "SetIdentityPoolRoles":{
@@ -576,41 +252,13 @@
       },
       "input":{"shape":"SetIdentityPoolRolesInput"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"NotAuthorizedException",
-          "error":{"httpStatusCode":403},
-          "exception":true
-        },
-        {
-          "shape":"ResourceConflictException",
-          "error":{"httpStatusCode":409},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"ConcurrentModificationException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "UnlinkDeveloperIdentity":{
@@ -621,36 +269,12 @@
       },
       "input":{"shape":"UnlinkDeveloperIdentityInput"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"NotAuthorizedException",
-          "error":{"httpStatusCode":403},
-          "exception":true
-        },
-        {
-          "shape":"ResourceConflictException",
-          "error":{"httpStatusCode":409},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalErrorException"}
       ]
     },
     "UnlinkIdentity":{
@@ -661,41 +285,13 @@
       },
       "input":{"shape":"UnlinkIdentityInput"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"NotAuthorizedException",
-          "error":{"httpStatusCode":403},
-          "exception":true
-        },
-        {
-          "shape":"ResourceConflictException",
-          "error":{"httpStatusCode":409},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"ExternalServiceException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"ExternalServiceException"}
       ]
     },
     "UpdateIdentityPool":{
@@ -707,63 +303,58 @@
       "input":{"shape":"IdentityPool"},
       "output":{"shape":"IdentityPool"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"NotAuthorizedException",
-          "error":{"httpStatusCode":403},
-          "exception":true
-        },
-        {
-          "shape":"ResourceConflictException",
-          "error":{"httpStatusCode":409},
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{"httpStatusCode":429},
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"ConcurrentModificationException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"LimitExceededException"}
       ]
     }
   },
   "shapes":{
     "ARNString":{
       "type":"string",
-      "min":20,
-      "max":2048
+      "max":2048,
+      "min":20
     },
     "AccessKeyString":{"type":"string"},
     "AccountId":{
       "type":"string",
-      "min":1,
       "max":15,
+      "min":1,
       "pattern":"\\d+"
+    },
+    "CognitoIdentityProvider":{
+      "type":"structure",
+      "members":{
+        "ProviderName":{"shape":"CognitoIdentityProviderName"},
+        "ClientId":{"shape":"CognitoIdentityProviderClientId"}
+      }
+    },
+    "CognitoIdentityProviderClientId":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[\\w_]+"
+    },
+    "CognitoIdentityProviderList":{
+      "type":"list",
+      "member":{"shape":"CognitoIdentityProvider"}
+    },
+    "CognitoIdentityProviderName":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[\\w._:/-]+"
     },
     "ConcurrentModificationException":{
       "type":"structure",
       "members":{
         "message":{"shape":"String"}
       },
-      "error":{"httpStatusCode":400},
       "exception":true
     },
     "CreateIdentityPoolInput":{
@@ -777,7 +368,8 @@
         "AllowUnauthenticatedIdentities":{"shape":"IdentityPoolUnauthenticated"},
         "SupportedLoginProviders":{"shape":"IdentityProviders"},
         "DeveloperProviderName":{"shape":"DeveloperProviderName"},
-        "OpenIdConnectProviderARNs":{"shape":"OIDCProviderList"}
+        "OpenIdConnectProviderARNs":{"shape":"OIDCProviderList"},
+        "CognitoIdentityProviders":{"shape":"CognitoIdentityProviderList"}
       }
     },
     "Credentials":{
@@ -826,8 +418,8 @@
     },
     "DeveloperProviderName":{
       "type":"string",
-      "min":1,
       "max":128,
+      "min":1,
       "pattern":"[\\w._-]+"
     },
     "DeveloperUserAlreadyRegisteredException":{
@@ -835,13 +427,12 @@
       "members":{
         "message":{"shape":"String"}
       },
-      "error":{"httpStatusCode":400},
       "exception":true
     },
     "DeveloperUserIdentifier":{
       "type":"string",
-      "min":1,
       "max":1024,
+      "min":1,
       "pattern":"[\\w.@_-]+"
     },
     "DeveloperUserIdentifierList":{
@@ -860,7 +451,6 @@
       "members":{
         "message":{"shape":"String"}
       },
-      "error":{"httpStatusCode":400},
       "exception":true
     },
     "GetCredentialsForIdentityInput":{
@@ -958,15 +548,15 @@
     },
     "IdentityId":{
       "type":"string",
-      "min":1,
       "max":55,
+      "min":1,
       "pattern":"[\\w-]+:[0-9a-f-]+"
     },
     "IdentityIdList":{
       "type":"list",
       "member":{"shape":"IdentityId"},
-      "min":1,
-      "max":60
+      "max":60,
+      "min":1
     },
     "IdentityPool":{
       "type":"structure",
@@ -981,19 +571,20 @@
         "AllowUnauthenticatedIdentities":{"shape":"IdentityPoolUnauthenticated"},
         "SupportedLoginProviders":{"shape":"IdentityProviders"},
         "DeveloperProviderName":{"shape":"DeveloperProviderName"},
-        "OpenIdConnectProviderARNs":{"shape":"OIDCProviderList"}
+        "OpenIdConnectProviderARNs":{"shape":"OIDCProviderList"},
+        "CognitoIdentityProviders":{"shape":"CognitoIdentityProviderList"}
       }
     },
     "IdentityPoolId":{
       "type":"string",
-      "min":1,
       "max":55,
+      "min":1,
       "pattern":"[\\w-]+:[0-9a-f-]+"
     },
     "IdentityPoolName":{
       "type":"string",
-      "min":1,
       "max":128,
+      "min":1,
       "pattern":"[\\w ]+"
     },
     "IdentityPoolShortDescription":{
@@ -1010,20 +601,20 @@
     },
     "IdentityProviderId":{
       "type":"string",
-      "min":1,
       "max":128,
-      "pattern":"[\\w.;_-]+"
+      "min":1,
+      "pattern":"[\\w.;_/-]+"
     },
     "IdentityProviderName":{
       "type":"string",
-      "min":1,
       "max":128,
-      "pattern":"[\\w._/-]+"
+      "min":1,
+      "pattern":"[\\w._/:-]+"
     },
     "IdentityProviderToken":{
       "type":"string",
-      "min":1,
       "max":2048,
+      "min":1,
       "pattern":"[\\S]+"
     },
     "IdentityProviders":{
@@ -1045,7 +636,6 @@
       "members":{
         "message":{"shape":"String"}
       },
-      "error":{"httpStatusCode":400},
       "exception":true
     },
     "InvalidParameterException":{
@@ -1053,7 +643,6 @@
       "members":{
         "message":{"shape":"String"}
       },
-      "error":{"httpStatusCode":400},
       "exception":true
     },
     "LimitExceededException":{
@@ -1061,7 +650,6 @@
       "members":{
         "message":{"shape":"String"}
       },
-      "error":{"httpStatusCode":400},
       "exception":true
     },
     "ListIdentitiesInput":{
@@ -1155,7 +743,6 @@
       "members":{
         "message":{"shape":"String"}
       },
-      "error":{"httpStatusCode":403},
       "exception":true
     },
     "OIDCProviderList":{
@@ -1170,15 +757,14 @@
     },
     "QueryLimit":{
       "type":"integer",
-      "min":1,
-      "max":60
+      "max":60,
+      "min":1
     },
     "ResourceConflictException":{
       "type":"structure",
       "members":{
         "message":{"shape":"String"}
       },
-      "error":{"httpStatusCode":409},
       "exception":true
     },
     "ResourceNotFoundException":{
@@ -1186,7 +772,6 @@
       "members":{
         "message":{"shape":"String"}
       },
-      "error":{"httpStatusCode":404},
       "exception":true
     },
     "RoleType":{
@@ -1215,15 +800,14 @@
     "String":{"type":"string"},
     "TokenDuration":{
       "type":"long",
-      "min":1,
-      "max":86400
+      "max":86400,
+      "min":1
     },
     "TooManyRequestsException":{
       "type":"structure",
       "members":{
         "message":{"shape":"String"}
       },
-      "error":{"httpStatusCode":429},
       "exception":true
     },
     "UnlinkDeveloperIdentityInput":{
