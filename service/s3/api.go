@@ -419,6 +419,33 @@ func (c *S3) DeleteObjects(input *DeleteObjectsInput) (*DeleteObjectsOutput, err
 	return out, err
 }
 
+const opGetBucketAccelerateConfiguration = "GetBucketAccelerateConfiguration"
+
+// GetBucketAccelerateConfigurationRequest generates a request for the GetBucketAccelerateConfiguration operation.
+func (c *S3) GetBucketAccelerateConfigurationRequest(input *GetBucketAccelerateConfigurationInput) (req *request.Request, output *GetBucketAccelerateConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opGetBucketAccelerateConfiguration,
+		HTTPMethod: "GET",
+		HTTPPath:   "/{Bucket}?accelerate",
+	}
+
+	if input == nil {
+		input = &GetBucketAccelerateConfigurationInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &GetBucketAccelerateConfigurationOutput{}
+	req.Data = output
+	return
+}
+
+// Returns the accelerate configuration of a bucket.
+func (c *S3) GetBucketAccelerateConfiguration(input *GetBucketAccelerateConfigurationInput) (*GetBucketAccelerateConfigurationOutput, error) {
+	req, out := c.GetBucketAccelerateConfigurationRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opGetBucketAcl = "GetBucketAcl"
 
 // GetBucketAclRequest generates a request for the GetBucketAcl operation.
@@ -1137,6 +1164,35 @@ func (c *S3) ListPartsPages(input *ListPartsInput, fn func(p *ListPartsOutput, l
 	})
 }
 
+const opPutBucketAccelerateConfiguration = "PutBucketAccelerateConfiguration"
+
+// PutBucketAccelerateConfigurationRequest generates a request for the PutBucketAccelerateConfiguration operation.
+func (c *S3) PutBucketAccelerateConfigurationRequest(input *PutBucketAccelerateConfigurationInput) (req *request.Request, output *PutBucketAccelerateConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opPutBucketAccelerateConfiguration,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/{Bucket}?accelerate",
+	}
+
+	if input == nil {
+		input = &PutBucketAccelerateConfigurationInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	output = &PutBucketAccelerateConfigurationOutput{}
+	req.Data = output
+	return
+}
+
+// Sets the accelerate configuration of an existing bucket.
+func (c *S3) PutBucketAccelerateConfiguration(input *PutBucketAccelerateConfigurationInput) (*PutBucketAccelerateConfigurationOutput, error) {
+	req, out := c.PutBucketAccelerateConfigurationRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opPutBucketAcl = "PutBucketAcl"
 
 // PutBucketAclRequest generates a request for the PutBucketAcl operation.
@@ -1733,6 +1789,23 @@ func (s AbortMultipartUploadOutput) String() string {
 
 // GoString returns the string representation
 func (s AbortMultipartUploadOutput) GoString() string {
+	return s.String()
+}
+
+type AccelerateConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The accelerate configuration of the bucket.
+	Status *string `type:"string" enum:"BucketAccelerateStatus"`
+}
+
+// String returns the string representation
+func (s AccelerateConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccelerateConfiguration) GoString() string {
 	return s.String()
 }
 
@@ -2936,6 +3009,40 @@ func (s FilterRule) String() string {
 
 // GoString returns the string representation
 func (s FilterRule) GoString() string {
+	return s.String()
+}
+
+type GetBucketAccelerateConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Name of the bucket for which the accelerate configuration is retrieved.
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetBucketAccelerateConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetBucketAccelerateConfigurationInput) GoString() string {
+	return s.String()
+}
+
+type GetBucketAccelerateConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The accelerate configuration of the bucket.
+	Status *string `type:"string" enum:"BucketAccelerateStatus"`
+}
+
+// String returns the string representation
+func (s GetBucketAccelerateConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetBucketAccelerateConfigurationOutput) GoString() string {
 	return s.String()
 }
 
@@ -4758,6 +4865,40 @@ func (s Part) GoString() string {
 	return s.String()
 }
 
+type PutBucketAccelerateConfigurationInput struct {
+	_ struct{} `type:"structure" payload:"AccelerateConfiguration"`
+
+	// Specifies the Accelerate Configuration you want to set for the bucket.
+	AccelerateConfiguration *AccelerateConfiguration `locationName:"AccelerateConfiguration" type:"structure" required:"true"`
+
+	// Name of the bucket for which the accelerate configuration is set.
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s PutBucketAccelerateConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutBucketAccelerateConfigurationInput) GoString() string {
+	return s.String()
+}
+
+type PutBucketAccelerateConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutBucketAccelerateConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutBucketAccelerateConfigurationOutput) GoString() string {
+	return s.String()
+}
+
 type PutBucketAclInput struct {
 	_ struct{} `type:"structure" payload:"AccessControlPolicy"`
 
@@ -5235,6 +5376,9 @@ type PutObjectAclInput struct {
 	// Documentation on downloading objects from requester pays buckets can be found
 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
 	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string" enum:"RequestPayer"`
+
+	// VersionId used to reference a specific version of the object.
+	VersionId *string `location:"querystring" locationName:"versionId" type:"string"`
 }
 
 // String returns the string representation
@@ -6134,6 +6278,13 @@ func (s WebsiteConfiguration) String() string {
 func (s WebsiteConfiguration) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum BucketAccelerateStatus
+	BucketAccelerateStatusEnabled = "Enabled"
+	// @enum BucketAccelerateStatus
+	BucketAccelerateStatusSuspended = "Suspended"
+)
 
 const (
 	// @enum BucketCannedACL

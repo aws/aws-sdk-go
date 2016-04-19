@@ -158,6 +158,15 @@
       "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/multiobjectdeleteapi.html",
       "alias":"DeleteMultipleObjects"
     },
+    "GetBucketAccelerateConfiguration":{
+      "name":"GetBucketAccelerateConfiguration",
+      "http":{
+        "method":"GET",
+        "requestUri":"/{Bucket}?accelerate"
+      },
+      "input":{"shape":"GetBucketAccelerateConfigurationRequest"},
+      "output":{"shape":"GetBucketAccelerateConfigurationOutput"}
+    },
     "GetBucketAcl":{
       "name":"GetBucketAcl",
       "http":{
@@ -413,6 +422,14 @@
       "output":{"shape":"ListPartsOutput"},
       "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/mpUploadListParts.html"
     },
+    "PutBucketAccelerateConfiguration":{
+      "name":"PutBucketAccelerateConfiguration",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/{Bucket}?accelerate"
+      },
+      "input":{"shape":"PutBucketAccelerateConfigurationRequest"}
+    },
     "PutBucketAcl":{
       "name":"PutBucketAcl",
       "http":{
@@ -636,6 +653,12 @@
       }
     },
     "AbortRuleId":{"type":"string"},
+    "AccelerateConfiguration":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"BucketAccelerateStatus"}
+      }
+    },
     "AcceptRanges":{"type":"string"},
     "AccessControlPolicy":{
       "type":"structure",
@@ -672,6 +695,13 @@
         "Name":{"shape":"BucketName"},
         "CreationDate":{"shape":"CreationDate"}
       }
+    },
+    "BucketAccelerateStatus":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Suspended"
+      ]
     },
     "BucketAlreadyExists":{
       "type":"structure",
@@ -1712,6 +1742,23 @@
       ]
     },
     "FilterRuleValue":{"type":"string"},
+    "GetBucketAccelerateConfigurationOutput":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"BucketAccelerateStatus"}
+      }
+    },
+    "GetBucketAccelerateConfigurationRequest":{
+      "type":"structure",
+      "required":["Bucket"],
+      "members":{
+        "Bucket":{
+          "shape":"BucketName",
+          "location":"uri",
+          "locationName":"Bucket"
+        }
+      }
+    },
     "GetBucketAclOutput":{
       "type":"structure",
       "members":{
@@ -3142,6 +3189,26 @@
         "https"
       ]
     },
+    "PutBucketAccelerateConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "Bucket",
+        "AccelerateConfiguration"
+      ],
+      "members":{
+        "Bucket":{
+          "shape":"BucketName",
+          "location":"uri",
+          "locationName":"Bucket"
+        },
+        "AccelerateConfiguration":{
+          "shape":"AccelerateConfiguration",
+          "locationName":"AccelerateConfiguration",
+          "xmlNamespace":{"uri":"http://s3.amazonaws.com/doc/2006-03-01/"}
+        }
+      },
+      "payload":"AccelerateConfiguration"
+    },
     "PutBucketAclRequest":{
       "type":"structure",
       "required":["Bucket"],
@@ -3550,6 +3617,11 @@
           "shape":"RequestPayer",
           "location":"header",
           "locationName":"x-amz-request-payer"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"querystring",
+          "locationName":"versionId"
         }
       },
       "payload":"AccessControlPolicy"

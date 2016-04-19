@@ -378,6 +378,25 @@ func ExampleS3_DeleteObjects() {
 	fmt.Println(resp)
 }
 
+func ExampleS3_GetBucketAccelerateConfiguration() {
+	svc := s3.New(session.New())
+
+	params := &s3.GetBucketAccelerateConfigurationInput{
+		Bucket: aws.String("BucketName"), // Required
+	}
+	resp, err := svc.GetBucketAccelerateConfiguration(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleS3_GetBucketAcl() {
 	svc := s3.New(session.New())
 
@@ -875,6 +894,28 @@ func ExampleS3_ListParts() {
 		RequestPayer:     aws.String("RequestPayer"),
 	}
 	resp, err := svc.ListParts(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleS3_PutBucketAccelerateConfiguration() {
+	svc := s3.New(session.New())
+
+	params := &s3.PutBucketAccelerateConfigurationInput{
+		AccelerateConfiguration: &s3.AccelerateConfiguration{ // Required
+			Status: aws.String("BucketAccelerateStatus"),
+		},
+		Bucket: aws.String("BucketName"), // Required
+	}
+	resp, err := svc.PutBucketAccelerateConfiguration(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -1504,6 +1545,7 @@ func ExampleS3_PutObjectAcl() {
 		GrantWrite:       aws.String("GrantWrite"),
 		GrantWriteACP:    aws.String("GrantWriteACP"),
 		RequestPayer:     aws.String("RequestPayer"),
+		VersionId:        aws.String("ObjectVersionId"),
 	}
 	resp, err := svc.PutObjectAcl(params)
 
