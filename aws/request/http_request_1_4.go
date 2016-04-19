@@ -1,4 +1,4 @@
-// +build go1.4 !go1.5
+// +build !go1.5
 
 package request
 
