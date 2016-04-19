@@ -16,6 +16,7 @@
     "DeleteBucketWebsite": "This operation removes the website configuration from the bucket.",
     "DeleteObject": "Removes the null version (if there is one) of an object and inserts a delete marker, which becomes the latest version of the object. If there isn't a null version, Amazon S3 does not remove any objects.",
     "DeleteObjects": "This operation enables you to delete multiple objects from a bucket using a single HTTP request. You may specify up to 1000 keys.",
+    "GetBucketAccelerateConfiguration": "Returns the accelerate configuration of a bucket.",
     "GetBucketAcl": "Gets the access control policy for the bucket.",
     "GetBucketCors": "Returns the cors configuration for the bucket.",
     "GetBucketLifecycle": "Deprecated, see the GetBucketLifecycleConfiguration operation.",
@@ -40,6 +41,7 @@
     "ListObjectVersions": "Returns metadata about all of the versions of objects in a bucket.",
     "ListObjects": "Returns some or all (up to 1000) of the objects in a bucket. You can use the request parameters as selection criteria to return a subset of the objects in a bucket.",
     "ListParts": "Lists the parts that have been uploaded for a specific multipart upload.",
+    "PutBucketAccelerateConfiguration": "Sets the accelerate configuration of an existing bucket.",
     "PutBucketAcl": "Sets the permissions on a bucket using access control lists (ACL).",
     "PutBucketCors": "Sets the cors configuration for a bucket.",
     "PutBucketLifecycle": "Deprecated, see the PutBucketLifecycleConfiguration operation.",
@@ -89,6 +91,12 @@
       "refs": {
         "CreateMultipartUploadOutput$AbortRuleId": "Id of the lifecycle rule that makes a multipart upload eligible for abort operation.",
         "ListPartsOutput$AbortRuleId": "Id of the lifecycle rule that makes a multipart upload eligible for abort operation."
+      }
+    },
+    "AccelerateConfiguration": {
+      "base": null,
+      "refs": {
+        "PutBucketAccelerateConfigurationRequest$AccelerateConfiguration": "Specifies the Accelerate Configuration you want to set for the bucket."
       }
     },
     "AcceptRanges": {
@@ -156,6 +164,13 @@
         "Buckets$member": null
       }
     },
+    "BucketAccelerateStatus": {
+      "base": null,
+      "refs": {
+        "AccelerateConfiguration$Status": "The accelerate configuration of the bucket.",
+        "GetBucketAccelerateConfigurationOutput$Status": "The accelerate configuration of the bucket."
+      }
+    },
     "BucketAlreadyExists": {
       "base": "The requested bucket name is not available. The bucket namespace is shared by all users of the system. Please select a different name and try again.",
       "refs": {
@@ -219,6 +234,7 @@
         "DeleteObjectRequest$Bucket": null,
         "DeleteObjectsRequest$Bucket": null,
         "Destination$Bucket": "Amazon resource name (ARN) of the bucket where you want Amazon S3 to store replicas of the object identified by the rule.",
+        "GetBucketAccelerateConfigurationRequest$Bucket": "Name of the bucket for which the accelerate configuration is retrieved.",
         "GetBucketAclRequest$Bucket": null,
         "GetBucketCorsRequest$Bucket": null,
         "GetBucketLifecycleConfigurationRequest$Bucket": null,
@@ -245,6 +261,7 @@
         "ListObjectsRequest$Bucket": null,
         "ListPartsOutput$Bucket": "Name of the bucket to which the multipart upload was initiated.",
         "ListPartsRequest$Bucket": null,
+        "PutBucketAccelerateConfigurationRequest$Bucket": "Name of the bucket for which the accelerate configuration is set.",
         "PutBucketAclRequest$Bucket": null,
         "PutBucketCorsRequest$Bucket": null,
         "PutBucketLifecycleConfigurationRequest$Bucket": null,
@@ -863,6 +880,16 @@
       "base": null,
       "refs": {
         "FilterRule$Value": null
+      }
+    },
+    "GetBucketAccelerateConfigurationOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetBucketAccelerateConfigurationRequest": {
+      "base": null,
+      "refs": {
       }
     },
     "GetBucketAclOutput": {
@@ -1656,6 +1683,7 @@
         "HeadObjectRequest$VersionId": "VersionId used to reference a specific version of the object.",
         "ObjectIdentifier$VersionId": "VersionId for the specific version of the object to delete.",
         "ObjectVersion$VersionId": "Version ID of an object.",
+        "PutObjectAclRequest$VersionId": "VersionId used to reference a specific version of the object.",
         "PutObjectOutput$VersionId": "Version of the object.",
         "RestoreObjectRequest$VersionId": null
       }
@@ -1754,6 +1782,11 @@
       "refs": {
         "Redirect$Protocol": "Protocol to use (http, https) when redirecting requests. The default is the protocol that is used in the original request.",
         "RedirectAllRequestsTo$Protocol": "Protocol to use (http, https) when redirecting requests. The default is the protocol that is used in the original request."
+      }
+    },
+    "PutBucketAccelerateConfigurationRequest": {
+      "base": null,
+      "refs": {
       }
     },
     "PutBucketAclRequest": {

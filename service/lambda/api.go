@@ -911,6 +911,8 @@ type AddPermissionInput struct {
 	// permission for all AWS Lambda actions.
 	Action *string `type:"string" required:"true"`
 
+	EventSourceToken *string `type:"string"`
+
 	// Name of the Lambda function whose resource policy you are updating by adding
 	// a new permission.
 	//
@@ -2175,6 +2177,8 @@ type UpdateFunctionConfigurationInput struct {
 	// it executes your function.
 	Role *string `type:"string"`
 
+	Runtime *string `type:"string" enum:"Runtime"`
+
 	// The function execution time at which AWS Lambda should terminate the function.
 	// Because the execution time has cost implications, we recommend you set this
 	// value based on your expected execution time. The default is 3 seconds.
@@ -2271,6 +2275,8 @@ const (
 const (
 	// @enum Runtime
 	RuntimeNodejs = "nodejs"
+	// @enum Runtime
+	RuntimeNodejs43 = "nodejs4.3"
 	// @enum Runtime
 	RuntimeJava8 = "java8"
 	// @enum Runtime

@@ -14,89 +14,81 @@ type InspectorAPI interface {
 
 	AddAttributesToFindings(*inspector.AddAttributesToFindingsInput) (*inspector.AddAttributesToFindingsOutput, error)
 
-	AttachAssessmentAndRulesPackageRequest(*inspector.AttachAssessmentAndRulesPackageInput) (*request.Request, *inspector.AttachAssessmentAndRulesPackageOutput)
+	CreateAssessmentTargetRequest(*inspector.CreateAssessmentTargetInput) (*request.Request, *inspector.CreateAssessmentTargetOutput)
 
-	AttachAssessmentAndRulesPackage(*inspector.AttachAssessmentAndRulesPackageInput) (*inspector.AttachAssessmentAndRulesPackageOutput, error)
+	CreateAssessmentTarget(*inspector.CreateAssessmentTargetInput) (*inspector.CreateAssessmentTargetOutput, error)
 
-	CreateApplicationRequest(*inspector.CreateApplicationInput) (*request.Request, *inspector.CreateApplicationOutput)
+	CreateAssessmentTemplateRequest(*inspector.CreateAssessmentTemplateInput) (*request.Request, *inspector.CreateAssessmentTemplateOutput)
 
-	CreateApplication(*inspector.CreateApplicationInput) (*inspector.CreateApplicationOutput, error)
-
-	CreateAssessmentRequest(*inspector.CreateAssessmentInput) (*request.Request, *inspector.CreateAssessmentOutput)
-
-	CreateAssessment(*inspector.CreateAssessmentInput) (*inspector.CreateAssessmentOutput, error)
+	CreateAssessmentTemplate(*inspector.CreateAssessmentTemplateInput) (*inspector.CreateAssessmentTemplateOutput, error)
 
 	CreateResourceGroupRequest(*inspector.CreateResourceGroupInput) (*request.Request, *inspector.CreateResourceGroupOutput)
 
 	CreateResourceGroup(*inspector.CreateResourceGroupInput) (*inspector.CreateResourceGroupOutput, error)
 
-	DeleteApplicationRequest(*inspector.DeleteApplicationInput) (*request.Request, *inspector.DeleteApplicationOutput)
+	DeleteAssessmentRunRequest(*inspector.DeleteAssessmentRunInput) (*request.Request, *inspector.DeleteAssessmentRunOutput)
 
-	DeleteApplication(*inspector.DeleteApplicationInput) (*inspector.DeleteApplicationOutput, error)
+	DeleteAssessmentRun(*inspector.DeleteAssessmentRunInput) (*inspector.DeleteAssessmentRunOutput, error)
 
-	DeleteAssessmentRequest(*inspector.DeleteAssessmentInput) (*request.Request, *inspector.DeleteAssessmentOutput)
+	DeleteAssessmentTargetRequest(*inspector.DeleteAssessmentTargetInput) (*request.Request, *inspector.DeleteAssessmentTargetOutput)
 
-	DeleteAssessment(*inspector.DeleteAssessmentInput) (*inspector.DeleteAssessmentOutput, error)
+	DeleteAssessmentTarget(*inspector.DeleteAssessmentTargetInput) (*inspector.DeleteAssessmentTargetOutput, error)
 
-	DeleteRunRequest(*inspector.DeleteRunInput) (*request.Request, *inspector.DeleteRunOutput)
+	DeleteAssessmentTemplateRequest(*inspector.DeleteAssessmentTemplateInput) (*request.Request, *inspector.DeleteAssessmentTemplateOutput)
 
-	DeleteRun(*inspector.DeleteRunInput) (*inspector.DeleteRunOutput, error)
+	DeleteAssessmentTemplate(*inspector.DeleteAssessmentTemplateInput) (*inspector.DeleteAssessmentTemplateOutput, error)
 
-	DescribeApplicationRequest(*inspector.DescribeApplicationInput) (*request.Request, *inspector.DescribeApplicationOutput)
+	DescribeAssessmentRunsRequest(*inspector.DescribeAssessmentRunsInput) (*request.Request, *inspector.DescribeAssessmentRunsOutput)
 
-	DescribeApplication(*inspector.DescribeApplicationInput) (*inspector.DescribeApplicationOutput, error)
+	DescribeAssessmentRuns(*inspector.DescribeAssessmentRunsInput) (*inspector.DescribeAssessmentRunsOutput, error)
 
-	DescribeAssessmentRequest(*inspector.DescribeAssessmentInput) (*request.Request, *inspector.DescribeAssessmentOutput)
+	DescribeAssessmentTargetsRequest(*inspector.DescribeAssessmentTargetsInput) (*request.Request, *inspector.DescribeAssessmentTargetsOutput)
 
-	DescribeAssessment(*inspector.DescribeAssessmentInput) (*inspector.DescribeAssessmentOutput, error)
+	DescribeAssessmentTargets(*inspector.DescribeAssessmentTargetsInput) (*inspector.DescribeAssessmentTargetsOutput, error)
+
+	DescribeAssessmentTemplatesRequest(*inspector.DescribeAssessmentTemplatesInput) (*request.Request, *inspector.DescribeAssessmentTemplatesOutput)
+
+	DescribeAssessmentTemplates(*inspector.DescribeAssessmentTemplatesInput) (*inspector.DescribeAssessmentTemplatesOutput, error)
 
 	DescribeCrossAccountAccessRoleRequest(*inspector.DescribeCrossAccountAccessRoleInput) (*request.Request, *inspector.DescribeCrossAccountAccessRoleOutput)
 
 	DescribeCrossAccountAccessRole(*inspector.DescribeCrossAccountAccessRoleInput) (*inspector.DescribeCrossAccountAccessRoleOutput, error)
 
-	DescribeFindingRequest(*inspector.DescribeFindingInput) (*request.Request, *inspector.DescribeFindingOutput)
+	DescribeFindingsRequest(*inspector.DescribeFindingsInput) (*request.Request, *inspector.DescribeFindingsOutput)
 
-	DescribeFinding(*inspector.DescribeFindingInput) (*inspector.DescribeFindingOutput, error)
+	DescribeFindings(*inspector.DescribeFindingsInput) (*inspector.DescribeFindingsOutput, error)
 
-	DescribeResourceGroupRequest(*inspector.DescribeResourceGroupInput) (*request.Request, *inspector.DescribeResourceGroupOutput)
+	DescribeResourceGroupsRequest(*inspector.DescribeResourceGroupsInput) (*request.Request, *inspector.DescribeResourceGroupsOutput)
 
-	DescribeResourceGroup(*inspector.DescribeResourceGroupInput) (*inspector.DescribeResourceGroupOutput, error)
+	DescribeResourceGroups(*inspector.DescribeResourceGroupsInput) (*inspector.DescribeResourceGroupsOutput, error)
 
-	DescribeRulesPackageRequest(*inspector.DescribeRulesPackageInput) (*request.Request, *inspector.DescribeRulesPackageOutput)
+	DescribeRulesPackagesRequest(*inspector.DescribeRulesPackagesInput) (*request.Request, *inspector.DescribeRulesPackagesOutput)
 
-	DescribeRulesPackage(*inspector.DescribeRulesPackageInput) (*inspector.DescribeRulesPackageOutput, error)
+	DescribeRulesPackages(*inspector.DescribeRulesPackagesInput) (*inspector.DescribeRulesPackagesOutput, error)
 
-	DescribeRunRequest(*inspector.DescribeRunInput) (*request.Request, *inspector.DescribeRunOutput)
+	GetTelemetryMetadataRequest(*inspector.GetTelemetryMetadataInput) (*request.Request, *inspector.GetTelemetryMetadataOutput)
 
-	DescribeRun(*inspector.DescribeRunInput) (*inspector.DescribeRunOutput, error)
+	GetTelemetryMetadata(*inspector.GetTelemetryMetadataInput) (*inspector.GetTelemetryMetadataOutput, error)
 
-	DetachAssessmentAndRulesPackageRequest(*inspector.DetachAssessmentAndRulesPackageInput) (*request.Request, *inspector.DetachAssessmentAndRulesPackageOutput)
+	ListAssessmentRunAgentsRequest(*inspector.ListAssessmentRunAgentsInput) (*request.Request, *inspector.ListAssessmentRunAgentsOutput)
 
-	DetachAssessmentAndRulesPackage(*inspector.DetachAssessmentAndRulesPackageInput) (*inspector.DetachAssessmentAndRulesPackageOutput, error)
+	ListAssessmentRunAgents(*inspector.ListAssessmentRunAgentsInput) (*inspector.ListAssessmentRunAgentsOutput, error)
 
-	GetAssessmentTelemetryRequest(*inspector.GetAssessmentTelemetryInput) (*request.Request, *inspector.GetAssessmentTelemetryOutput)
+	ListAssessmentRunsRequest(*inspector.ListAssessmentRunsInput) (*request.Request, *inspector.ListAssessmentRunsOutput)
 
-	GetAssessmentTelemetry(*inspector.GetAssessmentTelemetryInput) (*inspector.GetAssessmentTelemetryOutput, error)
+	ListAssessmentRuns(*inspector.ListAssessmentRunsInput) (*inspector.ListAssessmentRunsOutput, error)
 
-	ListApplicationsRequest(*inspector.ListApplicationsInput) (*request.Request, *inspector.ListApplicationsOutput)
+	ListAssessmentTargetsRequest(*inspector.ListAssessmentTargetsInput) (*request.Request, *inspector.ListAssessmentTargetsOutput)
 
-	ListApplications(*inspector.ListApplicationsInput) (*inspector.ListApplicationsOutput, error)
+	ListAssessmentTargets(*inspector.ListAssessmentTargetsInput) (*inspector.ListAssessmentTargetsOutput, error)
 
-	ListAssessmentAgentsRequest(*inspector.ListAssessmentAgentsInput) (*request.Request, *inspector.ListAssessmentAgentsOutput)
+	ListAssessmentTemplatesRequest(*inspector.ListAssessmentTemplatesInput) (*request.Request, *inspector.ListAssessmentTemplatesOutput)
 
-	ListAssessmentAgents(*inspector.ListAssessmentAgentsInput) (*inspector.ListAssessmentAgentsOutput, error)
+	ListAssessmentTemplates(*inspector.ListAssessmentTemplatesInput) (*inspector.ListAssessmentTemplatesOutput, error)
 
-	ListAssessmentsRequest(*inspector.ListAssessmentsInput) (*request.Request, *inspector.ListAssessmentsOutput)
+	ListEventSubscriptionsRequest(*inspector.ListEventSubscriptionsInput) (*request.Request, *inspector.ListEventSubscriptionsOutput)
 
-	ListAssessments(*inspector.ListAssessmentsInput) (*inspector.ListAssessmentsOutput, error)
-
-	ListAttachedAssessmentsRequest(*inspector.ListAttachedAssessmentsInput) (*request.Request, *inspector.ListAttachedAssessmentsOutput)
-
-	ListAttachedAssessments(*inspector.ListAttachedAssessmentsInput) (*inspector.ListAttachedAssessmentsOutput, error)
-
-	ListAttachedRulesPackagesRequest(*inspector.ListAttachedRulesPackagesInput) (*request.Request, *inspector.ListAttachedRulesPackagesOutput)
-
-	ListAttachedRulesPackages(*inspector.ListAttachedRulesPackagesInput) (*inspector.ListAttachedRulesPackagesOutput, error)
+	ListEventSubscriptions(*inspector.ListEventSubscriptionsInput) (*inspector.ListEventSubscriptionsOutput, error)
 
 	ListFindingsRequest(*inspector.ListFindingsInput) (*request.Request, *inspector.ListFindingsOutput)
 
@@ -106,21 +98,13 @@ type InspectorAPI interface {
 
 	ListRulesPackages(*inspector.ListRulesPackagesInput) (*inspector.ListRulesPackagesOutput, error)
 
-	ListRunsRequest(*inspector.ListRunsInput) (*request.Request, *inspector.ListRunsOutput)
-
-	ListRuns(*inspector.ListRunsInput) (*inspector.ListRunsOutput, error)
-
 	ListTagsForResourceRequest(*inspector.ListTagsForResourceInput) (*request.Request, *inspector.ListTagsForResourceOutput)
 
 	ListTagsForResource(*inspector.ListTagsForResourceInput) (*inspector.ListTagsForResourceOutput, error)
 
-	LocalizeTextRequest(*inspector.LocalizeTextInput) (*request.Request, *inspector.LocalizeTextOutput)
+	PreviewAgentsRequest(*inspector.PreviewAgentsInput) (*request.Request, *inspector.PreviewAgentsOutput)
 
-	LocalizeText(*inspector.LocalizeTextInput) (*inspector.LocalizeTextOutput, error)
-
-	PreviewAgentsForResourceGroupRequest(*inspector.PreviewAgentsForResourceGroupInput) (*request.Request, *inspector.PreviewAgentsForResourceGroupOutput)
-
-	PreviewAgentsForResourceGroup(*inspector.PreviewAgentsForResourceGroupInput) (*inspector.PreviewAgentsForResourceGroupOutput, error)
+	PreviewAgents(*inspector.PreviewAgentsInput) (*inspector.PreviewAgentsOutput, error)
 
 	RegisterCrossAccountAccessRoleRequest(*inspector.RegisterCrossAccountAccessRoleInput) (*request.Request, *inspector.RegisterCrossAccountAccessRoleOutput)
 
@@ -130,29 +114,29 @@ type InspectorAPI interface {
 
 	RemoveAttributesFromFindings(*inspector.RemoveAttributesFromFindingsInput) (*inspector.RemoveAttributesFromFindingsOutput, error)
 
-	RunAssessmentRequest(*inspector.RunAssessmentInput) (*request.Request, *inspector.RunAssessmentOutput)
-
-	RunAssessment(*inspector.RunAssessmentInput) (*inspector.RunAssessmentOutput, error)
-
 	SetTagsForResourceRequest(*inspector.SetTagsForResourceInput) (*request.Request, *inspector.SetTagsForResourceOutput)
 
 	SetTagsForResource(*inspector.SetTagsForResourceInput) (*inspector.SetTagsForResourceOutput, error)
 
-	StartDataCollectionRequest(*inspector.StartDataCollectionInput) (*request.Request, *inspector.StartDataCollectionOutput)
+	StartAssessmentRunRequest(*inspector.StartAssessmentRunInput) (*request.Request, *inspector.StartAssessmentRunOutput)
 
-	StartDataCollection(*inspector.StartDataCollectionInput) (*inspector.StartDataCollectionOutput, error)
+	StartAssessmentRun(*inspector.StartAssessmentRunInput) (*inspector.StartAssessmentRunOutput, error)
 
-	StopDataCollectionRequest(*inspector.StopDataCollectionInput) (*request.Request, *inspector.StopDataCollectionOutput)
+	StopAssessmentRunRequest(*inspector.StopAssessmentRunInput) (*request.Request, *inspector.StopAssessmentRunOutput)
 
-	StopDataCollection(*inspector.StopDataCollectionInput) (*inspector.StopDataCollectionOutput, error)
+	StopAssessmentRun(*inspector.StopAssessmentRunInput) (*inspector.StopAssessmentRunOutput, error)
 
-	UpdateApplicationRequest(*inspector.UpdateApplicationInput) (*request.Request, *inspector.UpdateApplicationOutput)
+	SubscribeToEventRequest(*inspector.SubscribeToEventInput) (*request.Request, *inspector.SubscribeToEventOutput)
 
-	UpdateApplication(*inspector.UpdateApplicationInput) (*inspector.UpdateApplicationOutput, error)
+	SubscribeToEvent(*inspector.SubscribeToEventInput) (*inspector.SubscribeToEventOutput, error)
 
-	UpdateAssessmentRequest(*inspector.UpdateAssessmentInput) (*request.Request, *inspector.UpdateAssessmentOutput)
+	UnsubscribeFromEventRequest(*inspector.UnsubscribeFromEventInput) (*request.Request, *inspector.UnsubscribeFromEventOutput)
 
-	UpdateAssessment(*inspector.UpdateAssessmentInput) (*inspector.UpdateAssessmentOutput, error)
+	UnsubscribeFromEvent(*inspector.UnsubscribeFromEventInput) (*inspector.UnsubscribeFromEventOutput, error)
+
+	UpdateAssessmentTargetRequest(*inspector.UpdateAssessmentTargetInput) (*request.Request, *inspector.UpdateAssessmentTargetOutput)
+
+	UpdateAssessmentTarget(*inspector.UpdateAssessmentTargetInput) (*inspector.UpdateAssessmentTargetOutput, error)
 }
 
 var _ InspectorAPI = (*inspector.Inspector)(nil)

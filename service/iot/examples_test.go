@@ -289,6 +289,25 @@ func ExampleIoT_CreateTopicRule() {
 	fmt.Println(resp)
 }
 
+func ExampleIoT_DeleteCACertificate() {
+	svc := iot.New(session.New())
+
+	params := &iot.DeleteCACertificateInput{
+		CertificateId: aws.String("CertificateId"), // Required
+	}
+	resp, err := svc.DeleteCACertificate(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleIoT_DeleteCertificate() {
 	svc := iot.New(session.New())
 
@@ -347,6 +366,23 @@ func ExampleIoT_DeletePolicyVersion() {
 	fmt.Println(resp)
 }
 
+func ExampleIoT_DeleteRegistrationCode() {
+	svc := iot.New(session.New())
+
+	var params *iot.DeleteRegistrationCodeInput
+	resp, err := svc.DeleteRegistrationCode(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleIoT_DeleteThing() {
 	svc := iot.New(session.New())
 
@@ -373,6 +409,25 @@ func ExampleIoT_DeleteTopicRule() {
 		RuleName: aws.String("RuleName"), // Required
 	}
 	resp, err := svc.DeleteTopicRule(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleIoT_DescribeCACertificate() {
+	svc := iot.New(session.New())
+
+	params := &iot.DescribeCACertificateInput{
+		CertificateId: aws.String("CertificateId"), // Required
+	}
+	resp, err := svc.DescribeCACertificate(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -574,6 +629,23 @@ func ExampleIoT_GetPolicyVersion() {
 	fmt.Println(resp)
 }
 
+func ExampleIoT_GetRegistrationCode() {
+	svc := iot.New(session.New())
+
+	var params *iot.GetRegistrationCodeInput
+	resp, err := svc.GetRegistrationCode(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleIoT_GetTopicRule() {
 	svc := iot.New(session.New())
 
@@ -581,6 +653,27 @@ func ExampleIoT_GetTopicRule() {
 		RuleName: aws.String("RuleName"), // Required
 	}
 	resp, err := svc.GetTopicRule(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleIoT_ListCACertificates() {
+	svc := iot.New(session.New())
+
+	params := &iot.ListCACertificatesInput{
+		AscendingOrder: aws.Bool(true),
+		Marker:         aws.String("Marker"),
+		PageSize:       aws.Int64(1),
+	}
+	resp, err := svc.ListCACertificates(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -602,6 +695,28 @@ func ExampleIoT_ListCertificates() {
 		PageSize:       aws.Int64(1),
 	}
 	resp, err := svc.ListCertificates(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleIoT_ListCertificatesByCA() {
+	svc := iot.New(session.New())
+
+	params := &iot.ListCertificatesByCAInput{
+		CaCertificateId: aws.String("CertificateId"), // Required
+		AscendingOrder:  aws.Bool(true),
+		Marker:          aws.String("Marker"),
+		PageSize:        aws.Int64(1),
+	}
+	resp, err := svc.ListCertificatesByCA(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -760,11 +875,54 @@ func ExampleIoT_ListTopicRules() {
 	fmt.Println(resp)
 }
 
+func ExampleIoT_RegisterCACertificate() {
+	svc := iot.New(session.New())
+
+	params := &iot.RegisterCACertificateInput{
+		CaCertificate:           aws.String("CertificatePem"), // Required
+		VerificationCertificate: aws.String("CertificatePem"), // Required
+		SetAsActive:             aws.Bool(true),
+	}
+	resp, err := svc.RegisterCACertificate(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleIoT_RegisterCertificate() {
+	svc := iot.New(session.New())
+
+	params := &iot.RegisterCertificateInput{
+		CertificatePem:   aws.String("CertificatePem"), // Required
+		CaCertificatePem: aws.String("CertificatePem"),
+		SetAsActive:      aws.Bool(true),
+	}
+	resp, err := svc.RegisterCertificate(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleIoT_RejectCertificateTransfer() {
 	svc := iot.New(session.New())
 
 	params := &iot.RejectCertificateTransferInput{
 		CertificateId: aws.String("CertificateId"), // Required
+		RejectReason:  aws.String("Message"),
 	}
 	resp, err := svc.RejectCertificateTransfer(params)
 
@@ -917,8 +1075,29 @@ func ExampleIoT_TransferCertificate() {
 	params := &iot.TransferCertificateInput{
 		CertificateId:    aws.String("CertificateId"), // Required
 		TargetAwsAccount: aws.String("AwsAccountId"),  // Required
+		TransferMessage:  aws.String("Message"),
 	}
 	resp, err := svc.TransferCertificate(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleIoT_UpdateCACertificate() {
+	svc := iot.New(session.New())
+
+	params := &iot.UpdateCACertificateInput{
+		CertificateId: aws.String("CertificateId"),       // Required
+		NewStatus:     aws.String("CACertificateStatus"), // Required
+	}
+	resp, err := svc.UpdateCACertificate(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and

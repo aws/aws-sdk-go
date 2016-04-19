@@ -62,6 +62,8 @@ type DeviceFarmAPI interface {
 
 	GetOfferingStatus(*devicefarm.GetOfferingStatusInput) (*devicefarm.GetOfferingStatusOutput, error)
 
+	GetOfferingStatusPages(*devicefarm.GetOfferingStatusInput, func(*devicefarm.GetOfferingStatusOutput, bool) bool) error
+
 	GetProjectRequest(*devicefarm.GetProjectInput) (*request.Request, *devicefarm.GetProjectOutput)
 
 	GetProject(*devicefarm.GetProjectInput) (*devicefarm.GetProjectOutput, error)
@@ -110,9 +112,13 @@ type DeviceFarmAPI interface {
 
 	ListOfferingTransactions(*devicefarm.ListOfferingTransactionsInput) (*devicefarm.ListOfferingTransactionsOutput, error)
 
+	ListOfferingTransactionsPages(*devicefarm.ListOfferingTransactionsInput, func(*devicefarm.ListOfferingTransactionsOutput, bool) bool) error
+
 	ListOfferingsRequest(*devicefarm.ListOfferingsInput) (*request.Request, *devicefarm.ListOfferingsOutput)
 
 	ListOfferings(*devicefarm.ListOfferingsInput) (*devicefarm.ListOfferingsOutput, error)
+
+	ListOfferingsPages(*devicefarm.ListOfferingsInput, func(*devicefarm.ListOfferingsOutput, bool) bool) error
 
 	ListProjectsRequest(*devicefarm.ListProjectsInput) (*request.Request, *devicefarm.ListProjectsOutput)
 

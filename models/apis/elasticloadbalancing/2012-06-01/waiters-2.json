@@ -14,6 +14,24 @@
         }
       ]
     },
+    "InstanceDeregistered": {
+      "delay": 15,
+      "operation": "DescribeInstanceHealth",
+      "maxAttempts": 40,
+      "acceptors": [
+        {
+          "expected": "OutOfService",
+          "matcher": "pathAll",
+          "state": "success",
+          "argument": "InstanceStates[].State"
+        },
+        {
+          "matcher": "error",
+          "expected": "InvalidInstance",
+          "state": "success"
+        }
+      ]
+    },
     "AnyInstanceInService": {
       "delay": 15,
       "operation": "DescribeInstanceHealth",

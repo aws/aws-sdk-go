@@ -42,6 +42,35 @@ func (c *ElasticBeanstalk) AbortEnvironmentUpdate(input *AbortEnvironmentUpdateI
 	return out, err
 }
 
+const opApplyEnvironmentManagedAction = "ApplyEnvironmentManagedAction"
+
+// ApplyEnvironmentManagedActionRequest generates a request for the ApplyEnvironmentManagedAction operation.
+func (c *ElasticBeanstalk) ApplyEnvironmentManagedActionRequest(input *ApplyEnvironmentManagedActionInput) (req *request.Request, output *ApplyEnvironmentManagedActionOutput) {
+	op := &request.Operation{
+		Name:       opApplyEnvironmentManagedAction,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ApplyEnvironmentManagedActionInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ApplyEnvironmentManagedActionOutput{}
+	req.Data = output
+	return
+}
+
+// Applies a scheduled managed action immediately. A managed action can be applied
+// only if its status is Scheduled. Get the status and action ID of a managed
+// action with DescribeEnvironmentManagedActions.
+func (c *ElasticBeanstalk) ApplyEnvironmentManagedAction(input *ApplyEnvironmentManagedActionInput) (*ApplyEnvironmentManagedActionOutput, error) {
+	req, out := c.ApplyEnvironmentManagedActionRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opCheckDNSAvailability = "CheckDNSAvailability"
 
 // CheckDNSAvailabilityRequest generates a request for the CheckDNSAvailability operation.
@@ -536,6 +565,60 @@ func (c *ElasticBeanstalk) DescribeEnvironmentHealthRequest(input *DescribeEnvir
 // Beanstalk Enhanced Health.
 func (c *ElasticBeanstalk) DescribeEnvironmentHealth(input *DescribeEnvironmentHealthInput) (*DescribeEnvironmentHealthOutput, error) {
 	req, out := c.DescribeEnvironmentHealthRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDescribeEnvironmentManagedActionHistory = "DescribeEnvironmentManagedActionHistory"
+
+// DescribeEnvironmentManagedActionHistoryRequest generates a request for the DescribeEnvironmentManagedActionHistory operation.
+func (c *ElasticBeanstalk) DescribeEnvironmentManagedActionHistoryRequest(input *DescribeEnvironmentManagedActionHistoryInput) (req *request.Request, output *DescribeEnvironmentManagedActionHistoryOutput) {
+	op := &request.Operation{
+		Name:       opDescribeEnvironmentManagedActionHistory,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeEnvironmentManagedActionHistoryInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeEnvironmentManagedActionHistoryOutput{}
+	req.Data = output
+	return
+}
+
+// Lists an environment's completed and failed managed actions.
+func (c *ElasticBeanstalk) DescribeEnvironmentManagedActionHistory(input *DescribeEnvironmentManagedActionHistoryInput) (*DescribeEnvironmentManagedActionHistoryOutput, error) {
+	req, out := c.DescribeEnvironmentManagedActionHistoryRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDescribeEnvironmentManagedActions = "DescribeEnvironmentManagedActions"
+
+// DescribeEnvironmentManagedActionsRequest generates a request for the DescribeEnvironmentManagedActions operation.
+func (c *ElasticBeanstalk) DescribeEnvironmentManagedActionsRequest(input *DescribeEnvironmentManagedActionsInput) (req *request.Request, output *DescribeEnvironmentManagedActionsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeEnvironmentManagedActions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeEnvironmentManagedActionsInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeEnvironmentManagedActionsOutput{}
+	req.Data = output
+	return
+}
+
+// Lists an environment's upcoming and in-progress managed actions.
+func (c *ElasticBeanstalk) DescribeEnvironmentManagedActions(input *DescribeEnvironmentManagedActionsInput) (*DescribeEnvironmentManagedActionsOutput, error) {
+	req, out := c.DescribeEnvironmentManagedActionsRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -1218,6 +1301,57 @@ func (s ApplicationVersionDescriptionMessage) GoString() string {
 	return s.String()
 }
 
+// Request to execute a scheduled managed action immediately.
+type ApplyEnvironmentManagedActionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The action ID of the scheduled managed action to execute.
+	ActionId *string `type:"string" required:"true"`
+
+	// The environment ID of the target environment.
+	EnvironmentId *string `type:"string"`
+
+	// The name of the target environment.
+	EnvironmentName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ApplyEnvironmentManagedActionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ApplyEnvironmentManagedActionInput) GoString() string {
+	return s.String()
+}
+
+// The result message containing information about the managed action.
+type ApplyEnvironmentManagedActionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the managed action.
+	ActionDescription *string `type:"string"`
+
+	// The action ID of the managed action.
+	ActionId *string `type:"string"`
+
+	// The type of managed action.
+	ActionType *string `type:"string" enum:"ActionType"`
+
+	// The status of the managed action.
+	Status *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ApplyEnvironmentManagedActionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ApplyEnvironmentManagedActionOutput) GoString() string {
+	return s.String()
+}
+
 // Describes an Auto Scaling launch configuration.
 type AutoScalingGroup struct {
 	_ struct{} `type:"structure"`
@@ -1683,7 +1817,7 @@ type CreateEnvironmentInput struct {
 
 	// A unique name for the deployment environment. Used in the application URL.
 	//
-	// Constraint: Must be from 4 to 23 characters in length. The name can contain
+	// Constraint: Must be from 4 to 40 characters in length. The name can contain
 	// only letters, numbers, and hyphens. It cannot start or end with a hyphen.
 	// This name must be unique in your account. If the specified name already exists,
 	// AWS Elastic Beanstalk returns an InvalidParameterValue error.
@@ -1932,6 +2066,39 @@ func (s DeleteEnvironmentConfigurationOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteEnvironmentConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// Information about an application version deployment.
+type Deployment struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the deployment. This number increases by one each time that you
+	// deploy source code or change instance configuration settings.
+	DeploymentId *int64 `type:"long"`
+
+	// For in-progress deployments, the time that the deloyment started.
+	//
+	// For completed deployments, the time that the deployment ended.
+	DeploymentTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The status of the deployment:
+	//
+	//   In Progress : The deployment is in progress.  Deployed : The deployment
+	// succeeded.  Failed : The deployment failed.
+	Status *string `type:"string"`
+
+	// The version label of the application version in the deployment.
+	VersionLabel *string `type:"string"`
+}
+
+// String returns the string representation
+func (s Deployment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Deployment) GoString() string {
 	return s.String()
 }
 
@@ -2192,6 +2359,97 @@ func (s DescribeEnvironmentHealthOutput) String() string {
 
 // GoString returns the string representation
 func (s DescribeEnvironmentHealthOutput) GoString() string {
+	return s.String()
+}
+
+// Request to list completed and failed managed actions.
+type DescribeEnvironmentManagedActionHistoryInput struct {
+	_ struct{} `type:"structure"`
+
+	// The environment ID of the target environment.
+	EnvironmentId *string `type:"string"`
+
+	// The name of the target environment.
+	EnvironmentName *string `min:"4" type:"string"`
+
+	// The maximum number of items to return for a single request.
+	MaxItems *int64 `type:"integer"`
+
+	// The pagination token returned by a previous request.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeEnvironmentManagedActionHistoryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEnvironmentManagedActionHistoryInput) GoString() string {
+	return s.String()
+}
+
+// A result message containing a list of completed and failed managed actions.
+type DescribeEnvironmentManagedActionHistoryOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of completed and failed managed actions.
+	ManagedActionHistoryItems []*ManagedActionHistoryItem `min:"1" type:"list"`
+
+	// A pagination token that you pass to DescribeEnvironmentManagedActionHistory
+	// to get the next page of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeEnvironmentManagedActionHistoryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEnvironmentManagedActionHistoryOutput) GoString() string {
+	return s.String()
+}
+
+// Request to list an environment's upcoming and in-progress managed actions.
+type DescribeEnvironmentManagedActionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The environment ID of the target environment.
+	EnvironmentId *string `type:"string"`
+
+	// The name of the target environment.
+	EnvironmentName *string `type:"string"`
+
+	// To show only actions with a particular status, specify a status.
+	Status *string `type:"string" enum:"ActionStatus"`
+}
+
+// String returns the string representation
+func (s DescribeEnvironmentManagedActionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEnvironmentManagedActionsInput) GoString() string {
+	return s.String()
+}
+
+// The result message containing a list of managed actions.
+type DescribeEnvironmentManagedActionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of upcoming and in-progress managed actions.
+	ManagedActions []*ManagedAction `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeEnvironmentManagedActionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEnvironmentManagedActionsOutput) GoString() string {
 	return s.String()
 }
 
@@ -2924,6 +3182,77 @@ func (s LoadBalancerDescription) GoString() string {
 	return s.String()
 }
 
+// The record of an upcoming or in-progress managed action.
+type ManagedAction struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the managed action.
+	ActionDescription *string `type:"string"`
+
+	// A unique identifier for the managed action.
+	ActionId *string `type:"string"`
+
+	// The type of managed action.
+	ActionType *string `type:"string" enum:"ActionType"`
+
+	// The status of the managed action. If the action is Scheduled, you can apply
+	// it immediately with ApplyEnvironmentManagedAction.
+	Status *string `type:"string" enum:"ActionStatus"`
+
+	// The start time of the maintenance window in which the managed action will
+	// execute.
+	WindowStartTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation
+func (s ManagedAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ManagedAction) GoString() string {
+	return s.String()
+}
+
+// The record of a completed or failed managed action.
+type ManagedActionHistoryItem struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the managed action.
+	ActionDescription *string `type:"string"`
+
+	// A unique identifier for the managed action.
+	ActionId *string `type:"string"`
+
+	// The type of the managed action.
+	ActionType *string `type:"string" enum:"ActionType"`
+
+	// The date and time that the action started executing.
+	ExecutedTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// If the action failed, a description of the failure.
+	FailureDescription *string `type:"string"`
+
+	// If the action failed, the type of failure.
+	FailureType *string `type:"string" enum:"FailureType"`
+
+	// The date and time that the action finished executing.
+	FinishedTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The status of the action.
+	Status *string `type:"string" enum:"ActionHistoryStatus"`
+}
+
+// String returns the string representation
+func (s ManagedActionHistoryItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ManagedActionHistoryItem) GoString() string {
+	return s.String()
+}
+
 // A regular expression representing a restriction on a string configuration
 // option value.
 type OptionRestrictionRegex struct {
@@ -3213,6 +3542,9 @@ type SingleInstanceHealth struct {
 	// Represents the application metrics for a specified environment.
 	ApplicationMetrics *ApplicationMetrics `type:"structure"`
 
+	// The availability zone in which the instance runs.
+	AvailabilityZone *string `type:"string"`
+
 	// Represents the causes, which provide more information about the current health
 	// status.
 	Causes []*string `type:"list"`
@@ -3222,12 +3554,18 @@ type SingleInstanceHealth struct {
 	// (http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html).
 	Color *string `type:"string"`
 
+	// Information about the most recent deployment to an instance.
+	Deployment *Deployment `type:"structure"`
+
 	// Returns the health status of the specified instance. For more information,
 	// see Health Colors and Statuses (http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html).
 	HealthStatus *string `type:"string"`
 
 	// The ID of the Amazon EC2 instance.
 	InstanceId *string `min:"1" type:"string"`
+
+	// The instance's type.
+	InstanceType *string `type:"string"`
 
 	// The time at which the EC2 instance was launched.
 	LaunchedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -3739,6 +4077,35 @@ func (s ValidationMessage) GoString() string {
 }
 
 const (
+	// @enum ActionHistoryStatus
+	ActionHistoryStatusCompleted = "Completed"
+	// @enum ActionHistoryStatus
+	ActionHistoryStatusFailed = "Failed"
+	// @enum ActionHistoryStatus
+	ActionHistoryStatusUnknown = "Unknown"
+)
+
+const (
+	// @enum ActionStatus
+	ActionStatusScheduled = "Scheduled"
+	// @enum ActionStatus
+	ActionStatusPending = "Pending"
+	// @enum ActionStatus
+	ActionStatusRunning = "Running"
+	// @enum ActionStatus
+	ActionStatusUnknown = "Unknown"
+)
+
+const (
+	// @enum ActionType
+	ActionTypeInstanceRefresh = "InstanceRefresh"
+	// @enum ActionType
+	ActionTypePlatformUpdate = "PlatformUpdate"
+	// @enum ActionType
+	ActionTypeUnknown = "Unknown"
+)
+
+const (
 	// @enum ApplicationVersionStatus
 	ApplicationVersionStatusProcessed = "Processed"
 	// @enum ApplicationVersionStatus
@@ -3850,6 +4217,23 @@ const (
 )
 
 const (
+	// @enum FailureType
+	FailureTypeUpdateCancelled = "UpdateCancelled"
+	// @enum FailureType
+	FailureTypeCancellationFailed = "CancellationFailed"
+	// @enum FailureType
+	FailureTypeRollbackFailed = "RollbackFailed"
+	// @enum FailureType
+	FailureTypeRollbackSuccessful = "RollbackSuccessful"
+	// @enum FailureType
+	FailureTypeInternalFailure = "InternalFailure"
+	// @enum FailureType
+	FailureTypeInvalidEnvironmentState = "InvalidEnvironmentState"
+	// @enum FailureType
+	FailureTypePermissionsError = "PermissionsError"
+)
+
+const (
 	// @enum InstancesHealthAttribute
 	InstancesHealthAttributeHealthStatus = "HealthStatus"
 	// @enum InstancesHealthAttribute
@@ -3864,6 +4248,12 @@ const (
 	InstancesHealthAttributeLaunchedAt = "LaunchedAt"
 	// @enum InstancesHealthAttribute
 	InstancesHealthAttributeSystem = "System"
+	// @enum InstancesHealthAttribute
+	InstancesHealthAttributeDeployment = "Deployment"
+	// @enum InstancesHealthAttribute
+	InstancesHealthAttributeAvailabilityZone = "AvailabilityZone"
+	// @enum InstancesHealthAttribute
+	InstancesHealthAttributeInstanceType = "InstanceType"
 	// @enum InstancesHealthAttribute
 	InstancesHealthAttributeAll = "All"
 )

@@ -44,13 +44,14 @@
     "DescribeReservedNodes": "<p> Returns the descriptions of the reserved nodes. </p>",
     "DescribeResize": "<p> Returns information about the last resize operation for the specified cluster. If no resize operation has ever been initiated for the specified cluster, a <code>HTTP 404</code> error is returned. If a resize operation was initiated and completed, the status of the resize remains as <code>SUCCEEDED</code> until the next resize. </p> <p> A resize operation can be requested using <a>ModifyCluster</a> and specifying a different number or type of nodes for the cluster. </p>",
     "DescribeSnapshotCopyGrants": "<p>Returns a list of snapshot copy grants owned by the AWS account in the destination region.</p> <p> For more information about managing snapshot copy grants, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html\">Amazon Redshift Database Encryption</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>",
-    "DescribeTableRestoreStatus": "<p>Lists the status of one or more table restore requests made using the <a>RestoreTableFromClusterSnapshot</a> API action. If you don't specify a value for the <code>TableRestoreRequestId</code> parameter, then <code>DescribeTableRestoreStatus</code> returns the status of all in-progress table restore requests. Otherwise <code>DescribeTableRestoreStatus</code> returns the status of the table specified by <code>TableRestoreRequestId</code>.</p>",
+    "DescribeTableRestoreStatus": "<p>Lists the status of one or more table restore requests made using the <a>RestoreTableFromClusterSnapshot</a> API action. If you don't specify a value for the <code>TableRestoreRequestId</code> parameter, then <code>DescribeTableRestoreStatus</code> returns the status of all table restore requests ordered by the date and time of the request in ascending order. Otherwise <code>DescribeTableRestoreStatus</code> returns the status of the table specified by <code>TableRestoreRequestId</code>.</p>",
     "DescribeTags": "<p> Returns a list of tags. You can return tags from a specific resource by specifying an ARN, or you can return all tags for a given type of resource, such as clusters, snapshots, and so on.</p> <p> The following are limitations for <code>DescribeTags</code>: <ul> <li>You cannot specify an ARN and a resource-type value together in the same request.</li> <li>You cannot use the <code>MaxRecords</code> and <code>Marker</code> parameters together with the ARN parameter.</li> <li>The <code>MaxRecords</code> parameter can be a range from 10 to 50 results to return in a request.</li> </ul> </p> <p>If you specify both tag keys and tag values in the same request, Amazon Redshift returns all resources that match any combination of the specified keys and values. For example, if you have <code>owner</code> and <code>environment</code> for tag keys, and <code>admin</code> and <code>test</code> for tag values, all resources that have any combination of those values are returned.</p> <p>If both tag keys and values are omitted from the request, resources are returned regardless of whether they have tag keys or values associated with them.</p>",
     "DisableLogging": "<p>Stops logging information, such as queries and connection attempts, for the specified Amazon Redshift cluster.</p>",
     "DisableSnapshotCopy": "<p>Disables the automatic copying of snapshots from one region to another region for a specified cluster.</p> <p>If your cluster and its snapshots are encrypted using a customer master key (CMK) from AWS KMS, use <a>DeleteSnapshotCopyGrant</a> to delete the grant that grants Amazon Redshift permission to the CMK in the destination region. </p>",
     "EnableLogging": "<p>Starts logging information, such as queries and connection attempts, for the specified Amazon Redshift cluster.</p>",
     "EnableSnapshotCopy": "<p>Enables the automatic copy of snapshots from one region to another region for a specified cluster.</p>",
     "ModifyCluster": "<p> Modifies the settings for a cluster. For example, you can add another security or parameter group, update the preferred maintenance window, or change the master user password. Resetting a cluster password or modifying the security groups associated with a cluster do not need a reboot. However, modifying a parameter group requires a reboot for parameters to take effect. For more information about managing clusters, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html\">Amazon Redshift Clusters</a> in the <i>Amazon Redshift Cluster Management Guide</i> . </p> <p>You can also change node type and the number of nodes to scale up or down the cluster. When resizing a cluster, you must specify both the number of nodes and the node type even if one of the parameters does not change.</p>",
+    "ModifyClusterIamRoles": "<p>Modifies the list of AWS Identity and Access Management (IAM) roles that can be used by the cluster to access other AWS services. </p> <p>A cluster can have up to 10 IAM roles associated at any time. </p>",
     "ModifyClusterParameterGroup": "<p> Modifies the parameters of a parameter group. </p> <p> For more information about parameters and parameter groups, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html\">Amazon Redshift Parameter Groups</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>",
     "ModifyClusterSubnetGroup": "<p> Modifies a cluster subnet group to include the specified list of VPC subnets. The operation replaces the existing list of subnets with the new list of subnets. </p>",
     "ModifyEventSubscription": "<p> Modifies an existing Amazon Redshift event notification subscription. </p>",
@@ -173,6 +174,7 @@
         "DeleteClusterResult$Cluster": null,
         "DisableSnapshotCopyResult$Cluster": null,
         "EnableSnapshotCopyResult$Cluster": null,
+        "ModifyClusterIamRolesResult$Cluster": null,
         "ModifyClusterResult$Cluster": null,
         "ModifySnapshotCopyRetentionPeriodResult$Cluster": null,
         "RebootClusterResult$Cluster": null,
@@ -183,6 +185,18 @@
     "ClusterAlreadyExistsFault": {
       "base": "<p> The account already has a cluster with the given identifier. </p>",
       "refs": {
+      }
+    },
+    "ClusterIamRole": {
+      "base": "<p>An AWS Identity and Access Management (IAM) role that can be used by the associated Amazon Redshift cluster to access other AWS services.</p>",
+      "refs": {
+        "ClusterIamRoleList$member": null
+      }
+    },
+    "ClusterIamRoleList": {
+      "base": null,
+      "refs": {
+        "Cluster$IamRoles": "<p>A list of AWS Identity and Access Management (IAM) roles that can be used by the cluster to access other AWS services.</p>"
       }
     },
     "ClusterList": {
@@ -941,6 +955,15 @@
         "ClusterSecurityGroup$IPRanges": "<p> A list of IP ranges (CIDR blocks) that are permitted to access clusters associated with this cluster security group. </p>"
       }
     },
+    "IamRoleArnList": {
+      "base": null,
+      "refs": {
+        "CreateClusterMessage$IamRoles": "<p>A list of AWS Identity and Access Management (IAM) roles that can be used by the cluster to access other AWS services. You must supply the IAM roles in their Amazon Resource Name (ARN) format. You can supply up to 10 IAM roles in a single request.</p> <p>A cluster can have up to 10 IAM roles associated at any time. </p>",
+        "ModifyClusterIamRolesMessage$AddIamRoles": "<p>Zero or more IAM roles (in their ARN format) to associate with the cluster. You can associate up to 10 IAM roles with a single cluster in a single request.</p>",
+        "ModifyClusterIamRolesMessage$RemoveIamRoles": "<p>Zero or more IAM roles (in their ARN format) to disassociate from the cluster. You can disassociate up to 10 IAM roles from a single cluster in a single request.</p>",
+        "RestoreFromClusterSnapshotMessage$IamRoles": "<p>A list of AWS Identity and Access Management (IAM) roles that can be used by the cluster to access other AWS services. You must supply the IAM roles in their Amazon Resource Name (ARN) format. You can supply up to 10 IAM roles in a single request.</p> <p>A cluster can have up to 10 IAM roles associated at any time. </p>"
+      }
+    },
     "ImportTablesCompleted": {
       "base": null,
       "refs": {
@@ -1150,6 +1173,16 @@
         "ResizeProgressMessage$EstimatedTimeToCompletionInSeconds": "<p>The estimated time remaining, in seconds, until the resize operation is complete. This value is calculated based on the average resize rate and the estimated amount of data remaining to be processed. Once the resize operation is complete, this value will be 0. </p>",
         "TableRestoreStatus$ProgressInMegaBytes": "<p>The amount of data restored to the new table so far, in megabytes (MB).</p>",
         "TableRestoreStatus$TotalDataInMegaBytes": "<p>The total amount of data to restore to the new table, in megabytes (MB).</p>"
+      }
+    },
+    "ModifyClusterIamRolesMessage": {
+      "base": "<p/>",
+      "refs": {
+      }
+    },
+    "ModifyClusterIamRolesResult": {
+      "base": null,
+      "refs": {
       }
     },
     "ModifyClusterMessage": {
@@ -1558,6 +1591,8 @@
         "Cluster$ClusterPublicKey": "<p>The public key for the cluster.</p>",
         "Cluster$ClusterRevisionNumber": "<p>The specific revision number of the database in the cluster.</p>",
         "Cluster$KmsKeyId": "<p>The AWS Key Management Service (KMS) key ID of the encryption key used to encrypt data in the cluster.</p>",
+        "ClusterIamRole$IamRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role. For example, <code>arn:aws:iam::123456789012:role/RedshiftCopyUnload</code>. </p>",
+        "ClusterIamRole$ApplyStatus": "<p>Describes the status of the IAM role's association with an Amazon Redshift cluster.</p> <p>The following are possible statuses and descriptions.<ul> <li><code>in-sync</code>: The role is available for use by the cluster.</li> <li><code>adding</code>: The role is in the process of being associated with the cluster.</li> <li><code>removing</code>: The role is in the process of being disassociated with the cluster.</li> </ul> </p>",
         "ClusterNode$NodeRole": "<p>Whether the node is a leader node or a compute node.</p>",
         "ClusterNode$PrivateIPAddress": "<p>The private IP address of a node within a cluster.</p>",
         "ClusterNode$PublicIPAddress": "<p>The public IP address of a node within a cluster.</p>",
@@ -1738,12 +1773,14 @@
         "HsmStatus$Status": "<p>Reports whether the Amazon Redshift cluster has finished applying any HSM settings changes specified in a modify cluster command.</p> <p>Values: active, applying</p>",
         "IPRange$Status": "<p> The status of the IP range, for example, \"authorized\". </p>",
         "IPRange$CIDRIP": "<p> The IP range in Classless Inter-Domain Routing (CIDR) notation. </p>",
+        "IamRoleArnList$member": null,
         "ImportTablesCompleted$member": null,
         "ImportTablesInProgress$member": null,
         "ImportTablesNotStarted$member": null,
         "LoggingStatus$BucketName": "<p>The name of the S3 bucket where the log files are stored.</p>",
         "LoggingStatus$S3KeyPrefix": "<p>The prefix applied to the log file names.</p>",
         "LoggingStatus$LastFailureMessage": "<p> The message indicating that logs failed to be delivered. </p>",
+        "ModifyClusterIamRolesMessage$ClusterIdentifier": "<p>The unique identifier of the cluster for which you want to associate or disassociate IAM roles.</p>",
         "ModifyClusterMessage$ClusterIdentifier": "<p> The unique identifier of the cluster to be modified. </p> <p>Example: <code>examplecluster</code></p>",
         "ModifyClusterMessage$ClusterType": "<p> The new cluster type. </p> <p> When you submit your cluster resize request, your existing cluster goes into a read-only mode. After Amazon Redshift provisions a new cluster based on your resize requirements, there will be outage for a period while the old cluster is deleted and your connection is switched to the new cluster. You can use <a>DescribeResize</a> to track the progress of the resize request. </p> <p>Valid Values: <code> multi-node | single-node </code></p>",
         "ModifyClusterMessage$NodeType": "<p> The new node type of the cluster. If you specify a new node type, you must also specify the number of nodes parameter. </p> <p> When you submit your request to resize a cluster, Amazon Redshift sets access permissions for the cluster to read-only. After Amazon Redshift provisions a new cluster according to your resize requirements, there will be a temporary outage while the old cluster is deleted and your connection is switched to the new cluster. When the new connection is complete, the original access permissions for the cluster are restored. You can use <a>DescribeResize</a> to track the progress of the resize request. </p> <p>Valid Values: <code> ds1.xlarge</code> | <code>ds1.8xlarge</code> | <code> ds2.xlarge</code> | <code>ds2.8xlarge</code> | <code>dc1.large</code> | <code>dc1.8xlarge</code>.</p>",
@@ -1817,11 +1854,11 @@
         "RestoreTableFromClusterSnapshotMessage$ClusterIdentifier": "<p>The identifier of the Amazon Redshift cluster to restore the table to.</p>",
         "RestoreTableFromClusterSnapshotMessage$SnapshotIdentifier": "<p>The identifier of the snapshot to restore the table from. This snapshot must have been created from the Amazon Redshift cluster specified by the <code>ClusterIdentifier</code> parameter.</p>",
         "RestoreTableFromClusterSnapshotMessage$SourceDatabaseName": "<p>The name of the source database that contains the table to restore from.</p>",
-        "RestoreTableFromClusterSnapshotMessage$SourceSchemaName": "<p>The name of the source schema that contains the table to restore from.</p>",
+        "RestoreTableFromClusterSnapshotMessage$SourceSchemaName": "<p>The name of the source schema that contains the table to restore from. If you do not specify a <code>SourceSchemaName</code> value, the default is <code>public</code>.</p>",
         "RestoreTableFromClusterSnapshotMessage$SourceTableName": "<p>The name of the source table to restore from.</p>",
         "RestoreTableFromClusterSnapshotMessage$TargetDatabaseName": "<p>The name of the database to restore the table to.</p>",
         "RestoreTableFromClusterSnapshotMessage$TargetSchemaName": "<p>The name of the schema to restore the table to.</p>",
-        "RestoreTableFromClusterSnapshotMessage$NewTableName": "<p>The name of the table to create as a result of the current request.</p>",
+        "RestoreTableFromClusterSnapshotMessage$NewTableName": "<p>The name of the table to create as a result of the current request. </p>",
         "RevokeClusterSecurityGroupIngressMessage$ClusterSecurityGroupName": "<p> The name of the security Group from which to revoke the ingress rule. </p>",
         "RevokeClusterSecurityGroupIngressMessage$CIDRIP": "<p> The IP range for which to revoke access. This range must be a valid Classless Inter-Domain Routing (CIDR) block of IP addresses. If <code>CIDRIP</code> is specified, <code>EC2SecurityGroupName</code> and <code>EC2SecurityGroupOwnerId</code> cannot be provided. </p>",
         "RevokeClusterSecurityGroupIngressMessage$EC2SecurityGroupName": "<p> The name of the EC2 Security Group whose access is to be revoked. If <code>EC2SecurityGroupName</code> is specified, <code>EC2SecurityGroupOwnerId</code> must also be provided and <code>CIDRIP</code> cannot be provided. </p>",
@@ -1852,7 +1889,7 @@
         "Subnet$SubnetStatus": "<p> The status of the subnet. </p>",
         "SubnetIdentifierList$member": null,
         "TableRestoreStatus$TableRestoreRequestId": "<p>The unique identifier for the table restore request.</p>",
-        "TableRestoreStatus$Message": "<p>A description of the status of the table restore request. Status values include <code>SUCCEEDED</code>, <code>FAILED</code>, <code>CANCELLED</code>, <code>PENDING</code>, <code>IN_PROGRESS</code>.</p>",
+        "TableRestoreStatus$Message": "<p>A description of the status of the table restore request. Status values include <code>SUCCEEDED</code>, <code>FAILED</code>, <code>CANCELED</code>, <code>PENDING</code>, <code>IN_PROGRESS</code>.</p>",
         "TableRestoreStatus$ClusterIdentifier": "<p>The identifier of the Amazon Redshift cluster that the table is being restored to.</p>",
         "TableRestoreStatus$SnapshotIdentifier": "<p>The identifier of the snapshot that the table is being restored from.</p>",
         "TableRestoreStatus$SourceDatabaseName": "<p>The name of the source database that contains the table being restored.</p>",
@@ -1967,7 +2004,7 @@
     "TableRestoreStatusType": {
       "base": null,
       "refs": {
-        "TableRestoreStatus$Status": "<p>A value that describes the current state of the table restore request.</p> <p>Valid Values: <code>SUCCEEDED</code>, <code>FAILED</code>, <code>CANCELLED</code>, <code>PENDING</code>, <code>IN_PROGRESS</code></p>"
+        "TableRestoreStatus$Status": "<p>A value that describes the current state of the table restore request.</p> <p>Valid Values: <code>SUCCEEDED</code>, <code>FAILED</code>, <code>CANCELED</code>, <code>PENDING</code>, <code>IN_PROGRESS</code></p>"
       }
     },
     "Tag": {

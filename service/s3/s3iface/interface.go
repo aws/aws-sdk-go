@@ -66,6 +66,10 @@ type S3API interface {
 
 	DeleteObjects(*s3.DeleteObjectsInput) (*s3.DeleteObjectsOutput, error)
 
+	GetBucketAccelerateConfigurationRequest(*s3.GetBucketAccelerateConfigurationInput) (*request.Request, *s3.GetBucketAccelerateConfigurationOutput)
+
+	GetBucketAccelerateConfiguration(*s3.GetBucketAccelerateConfigurationInput) (*s3.GetBucketAccelerateConfigurationOutput, error)
+
 	GetBucketAclRequest(*s3.GetBucketAclInput) (*request.Request, *s3.GetBucketAclOutput)
 
 	GetBucketAcl(*s3.GetBucketAclInput) (*s3.GetBucketAclOutput, error)
@@ -169,6 +173,10 @@ type S3API interface {
 	ListParts(*s3.ListPartsInput) (*s3.ListPartsOutput, error)
 
 	ListPartsPages(*s3.ListPartsInput, func(*s3.ListPartsOutput, bool) bool) error
+
+	PutBucketAccelerateConfigurationRequest(*s3.PutBucketAccelerateConfigurationInput) (*request.Request, *s3.PutBucketAccelerateConfigurationOutput)
+
+	PutBucketAccelerateConfiguration(*s3.PutBucketAccelerateConfigurationInput) (*s3.PutBucketAccelerateConfigurationOutput, error)
 
 	PutBucketAclRequest(*s3.PutBucketAclInput) (*request.Request, *s3.PutBucketAclOutput)
 

@@ -348,6 +348,12 @@ func (c *DeviceFarm) GetOfferingStatusRequest(input *GetOfferingStatusInput) (re
 		Name:       opGetOfferingStatus,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -370,6 +376,14 @@ func (c *DeviceFarm) GetOfferingStatus(input *GetOfferingStatusInput) (*GetOffer
 	req, out := c.GetOfferingStatusRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *DeviceFarm) GetOfferingStatusPages(input *GetOfferingStatusInput, fn func(p *GetOfferingStatusOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.GetOfferingStatusRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*GetOfferingStatusOutput), lastPage)
+	})
 }
 
 const opGetProject = "GetProject"
@@ -679,6 +693,12 @@ func (c *DeviceFarm) ListOfferingTransactionsRequest(input *ListOfferingTransact
 		Name:       opListOfferingTransactions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -703,6 +723,14 @@ func (c *DeviceFarm) ListOfferingTransactions(input *ListOfferingTransactionsInp
 	return out, err
 }
 
+func (c *DeviceFarm) ListOfferingTransactionsPages(input *ListOfferingTransactionsInput, fn func(p *ListOfferingTransactionsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListOfferingTransactionsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListOfferingTransactionsOutput), lastPage)
+	})
+}
+
 const opListOfferings = "ListOfferings"
 
 // ListOfferingsRequest generates a request for the ListOfferings operation.
@@ -711,6 +739,12 @@ func (c *DeviceFarm) ListOfferingsRequest(input *ListOfferingsInput) (req *reque
 		Name:       opListOfferings,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -733,6 +767,14 @@ func (c *DeviceFarm) ListOfferings(input *ListOfferingsInput) (*ListOfferingsOut
 	req, out := c.ListOfferingsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *DeviceFarm) ListOfferingsPages(input *ListOfferingsInput, fn func(p *ListOfferingsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListOfferingsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListOfferingsOutput), lastPage)
+	})
 }
 
 const opListProjects = "ListProjects"
@@ -1207,8 +1249,12 @@ type AccountSettings struct {
 	// The AWS account number specified in the AccountSettings container.
 	AwsAccountNumber *string `locationName:"awsAccountNumber" min:"2" type:"string"`
 
-	// Returns the unmetered devices you have purchased.
+	// Returns the unmetered devices you have purchased or want to purchase.
 	UnmeteredDevices map[string]*int64 `locationName:"unmeteredDevices" type:"map"`
+
+	// Returns the unmetered remote access devices you have purchased or want to
+	// purchase.
+	UnmeteredRemoteAccessDevices map[string]*int64 `locationName:"unmeteredRemoteAccessDevices" type:"map"`
 }
 
 // String returns the string representation
@@ -2325,19 +2371,19 @@ type Job struct {
 	//
 	// Allowed values include:
 	//
-	//  ERRORED: An error condition.
+	//  PENDING: A pending condition.
+	//
+	// PASSED: A passing condition.
+	//
+	// WARNED: A warning condition.
 	//
 	// FAILED: A failed condition.
 	//
 	// SKIPPED: A skipped condition.
 	//
+	// ERRORED: An error condition.
+	//
 	// STOPPED: A stopped condition.
-	//
-	// PASSED: A passing condition.
-	//
-	// PENDING: A pending condition.
-	//
-	// WARNED: A warning condition.
 	Result *string `locationName:"result" type:"string" enum:"ExecutionResult"`
 
 	// The job's start time.
@@ -2347,15 +2393,23 @@ type Job struct {
 	//
 	// Allowed values include:
 	//
-	//  COMPLETED: A completed status.
+	//  PENDING: A pending status.
 	//
-	// PENDING: A pending status.
+	// PENDING_CONCURRENCY: A pending concurrency status.
+	//
+	// PENDING_DEVICE: A pending device status.
 	//
 	// PROCESSING: A processing status.
 	//
+	// SCHEDULING: A scheduling status.
+	//
+	// PREPARING: A preparing status.
+	//
 	// RUNNING: A running status.
 	//
-	// SCHEDULING: A scheduling status.
+	// COMPLETED: A completed status.
+	//
+	// STOPPING: A stopping status.
 	Status *string `locationName:"status" type:"string" enum:"ExecutionStatus"`
 
 	// The job's stop time.
@@ -2946,19 +3000,19 @@ type ListUniqueProblemsOutput struct {
 	//
 	// Allowed values include:
 	//
-	//  ERRORED: An error condition.
+	//  PENDING: A pending condition.
+	//
+	// PASSED: A passing condition.
+	//
+	// WARNED: A warning condition.
 	//
 	// FAILED: A failed condition.
 	//
 	// SKIPPED: A skipped condition.
 	//
+	// ERRORED: An error condition.
+	//
 	// STOPPED: A stopped condition.
-	//
-	// PASSED: A passing condition.
-	//
-	// PENDING: A pending condition.
-	//
-	// WARNED: A warning condition.
 	UniqueProblems map[string][]*UniqueProblem `locationName:"uniqueProblems" type:"map"`
 }
 
@@ -3163,19 +3217,19 @@ type Problem struct {
 	//
 	// Allowed values include:
 	//
-	//  ERRORED: An error condition.
+	//  PENDING: A pending condition.
+	//
+	// PASSED: A passing condition.
+	//
+	// WARNED: A warning condition.
 	//
 	// FAILED: A failed condition.
 	//
 	// SKIPPED: A skipped condition.
 	//
+	// ERRORED: An error condition.
+	//
 	// STOPPED: A stopped condition.
-	//
-	// PASSED: A passing condition.
-	//
-	// PENDING: A pending condition.
-	//
-	// WARNED: A warning condition.
 	Result *string `locationName:"result" type:"string" enum:"ExecutionResult"`
 
 	// Information about the associated run.
@@ -3479,19 +3533,19 @@ type Run struct {
 	//
 	// Allowed values include:
 	//
-	//  ERRORED: An error condition.
+	//  PENDING: A pending condition.
+	//
+	// PASSED: A passing condition.
+	//
+	// WARNED: A warning condition.
 	//
 	// FAILED: A failed condition.
 	//
 	// SKIPPED: A skipped condition.
 	//
+	// ERRORED: An error condition.
+	//
 	// STOPPED: A stopped condition.
-	//
-	// PASSED: A passing condition.
-	//
-	// PENDING: A pending condition.
-	//
-	// WARNED: A warning condition.
 	Result *string `locationName:"result" type:"string" enum:"ExecutionResult"`
 
 	// The run's start time.
@@ -3501,15 +3555,23 @@ type Run struct {
 	//
 	// Allowed values include:
 	//
-	//  COMPLETED: A completed status.
+	//  PENDING: A pending status.
 	//
-	// PENDING: A pending status.
+	// PENDING_CONCURRENCY: A pending concurrency status.
+	//
+	// PENDING_DEVICE: A pending device status.
 	//
 	// PROCESSING: A processing status.
 	//
+	// SCHEDULING: A scheduling status.
+	//
+	// PREPARING: A preparing status.
+	//
 	// RUNNING: A running status.
 	//
-	// SCHEDULING: A scheduling status.
+	// COMPLETED: A completed status.
+	//
+	// STOPPING: A stopping status.
 	Status *string `locationName:"status" type:"string" enum:"ExecutionStatus"`
 
 	// The run's stop time.
@@ -3841,19 +3903,19 @@ type Suite struct {
 	//
 	// Allowed values include:
 	//
-	//  ERRORED: An error condition.
+	//  PENDING: A pending condition.
+	//
+	// PASSED: A passing condition.
+	//
+	// WARNED: A warning condition.
 	//
 	// FAILED: A failed condition.
 	//
 	// SKIPPED: A skipped condition.
 	//
+	// ERRORED: An error condition.
+	//
 	// STOPPED: A stopped condition.
-	//
-	// PASSED: A passing condition.
-	//
-	// PENDING: A pending condition.
-	//
-	// WARNED: A warning condition.
 	Result *string `locationName:"result" type:"string" enum:"ExecutionResult"`
 
 	// The suite's start time.
@@ -3863,15 +3925,23 @@ type Suite struct {
 	//
 	// Allowed values include:
 	//
-	//  COMPLETED: A completed status.
+	//  PENDING: A pending status.
 	//
-	// PENDING: A pending status.
+	// PENDING_CONCURRENCY: A pending concurrency status.
+	//
+	// PENDING_DEVICE: A pending device status.
 	//
 	// PROCESSING: A processing status.
 	//
+	// SCHEDULING: A scheduling status.
+	//
+	// PREPARING: A preparing status.
+	//
 	// RUNNING: A running status.
 	//
-	// SCHEDULING: A scheduling status.
+	// COMPLETED: A completed status.
+	//
+	// STOPPING: A stopping status.
 	Status *string `locationName:"status" type:"string" enum:"ExecutionStatus"`
 
 	// The suite's stop time.
@@ -3948,19 +4018,19 @@ type Test struct {
 	//
 	// Allowed values include:
 	//
-	//  ERRORED: An error condition.
+	//  PENDING: A pending condition.
+	//
+	// PASSED: A passing condition.
+	//
+	// WARNED: A warning condition.
 	//
 	// FAILED: A failed condition.
 	//
 	// SKIPPED: A skipped condition.
 	//
+	// ERRORED: An error condition.
+	//
 	// STOPPED: A stopped condition.
-	//
-	// PASSED: A passing condition.
-	//
-	// PENDING: A pending condition.
-	//
-	// WARNED: A warning condition.
 	Result *string `locationName:"result" type:"string" enum:"ExecutionResult"`
 
 	// The test's start time.
@@ -3970,15 +4040,23 @@ type Test struct {
 	//
 	// Allowed values include:
 	//
-	//  COMPLETED: A completed status.
+	//  PENDING: A pending status.
 	//
-	// PENDING: A pending status.
+	// PENDING_CONCURRENCY: A pending concurrency status.
+	//
+	// PENDING_DEVICE: A pending device status.
 	//
 	// PROCESSING: A processing status.
 	//
+	// SCHEDULING: A scheduling status.
+	//
+	// PREPARING: A preparing status.
+	//
 	// RUNNING: A running status.
 	//
-	// SCHEDULING: A scheduling status.
+	// COMPLETED: A completed status.
+	//
+	// STOPPING: A stopping status.
 	Status *string `locationName:"status" type:"string" enum:"ExecutionStatus"`
 
 	// The test's stop time.
@@ -4284,6 +4362,8 @@ const (
 	ArtifactTypeApplicationCrashReport = "APPLICATION_CRASH_REPORT"
 	// @enum ArtifactType
 	ArtifactTypeXctestLog = "XCTEST_LOG"
+	// @enum ArtifactType
+	ArtifactTypeVideo = "VIDEO"
 )
 
 const (
@@ -4351,9 +4431,15 @@ const (
 	// @enum ExecutionStatus
 	ExecutionStatusPending = "PENDING"
 	// @enum ExecutionStatus
+	ExecutionStatusPendingConcurrency = "PENDING_CONCURRENCY"
+	// @enum ExecutionStatus
+	ExecutionStatusPendingDevice = "PENDING_DEVICE"
+	// @enum ExecutionStatus
 	ExecutionStatusProcessing = "PROCESSING"
 	// @enum ExecutionStatus
 	ExecutionStatusScheduling = "SCHEDULING"
+	// @enum ExecutionStatus
+	ExecutionStatusPreparing = "PREPARING"
 	// @enum ExecutionStatus
 	ExecutionStatusRunning = "RUNNING"
 	// @enum ExecutionStatus

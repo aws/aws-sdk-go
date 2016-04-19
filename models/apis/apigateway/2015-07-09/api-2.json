@@ -349,7 +349,8 @@
       "errors":[
         {"shape":"UnauthorizedException"},
         {"shape":"NotFoundException"},
-        {"shape":"TooManyRequestsException"}
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"}
       ]
     },
     "DeleteStage":{
@@ -363,7 +364,8 @@
       "errors":[
         {"shape":"UnauthorizedException"},
         {"shape":"NotFoundException"},
-        {"shape":"TooManyRequestsException"}
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"}
       ]
     },
     "FlushStageAuthorizersCache":{
@@ -814,6 +816,22 @@
         {"shape":"TooManyRequestsException"}
       ]
     },
+    "ImportRestApi":{
+      "name":"ImportRestApi",
+      "http":{
+        "method":"POST",
+        "requestUri":"/restapis?mode=import",
+        "responseCode":201
+      },
+      "input":{"shape":"ImportRestApiRequest"},
+      "output":{"shape":"RestApi"},
+      "errors":[
+        {"shape":"UnauthorizedException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"BadRequestException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
     "PutIntegration":{
       "name":"PutIntegration",
       "http":{
@@ -844,7 +862,8 @@
         {"shape":"NotFoundException"},
         {"shape":"LimitExceededException"},
         {"shape":"BadRequestException"},
-        {"shape":"TooManyRequestsException"}
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ConflictException"}
       ]
     },
     "PutMethod":{
@@ -878,6 +897,21 @@
         {"shape":"UnauthorizedException"},
         {"shape":"NotFoundException"},
         {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"BadRequestException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
+    "PutRestApi":{
+      "name":"PutRestApi",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/restapis/{restapi_id}"
+      },
+      "input":{"shape":"PutRestApiRequest"},
+      "output":{"shape":"RestApi"},
+      "errors":[
+        {"shape":"UnauthorizedException"},
         {"shape":"LimitExceededException"},
         {"shape":"BadRequestException"},
         {"shape":"TooManyRequestsException"}
@@ -1032,7 +1066,8 @@
         {"shape":"UnauthorizedException"},
         {"shape":"NotFoundException"},
         {"shape":"BadRequestException"},
-        {"shape":"TooManyRequestsException"}
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ConflictException"}
       ]
     },
     "UpdateIntegrationResponse":{
@@ -1183,6 +1218,7 @@
         "id":{"shape":"String"},
         "name":{"shape":"String"},
         "type":{"shape":"AuthorizerType"},
+        "authType":{"shape":"String"},
         "authorizerUri":{"shape":"String"},
         "authorizerCredentials":{"shape":"String"},
         "identitySource":{"shape":"String"},
@@ -1309,6 +1345,7 @@
         },
         "name":{"shape":"String"},
         "type":{"shape":"AuthorizerType"},
+        "authType":{"shape":"String"},
         "authorizerUri":{"shape":"String"},
         "authorizerCredentials":{"shape":"String"},
         "identitySource":{"shape":"String"},
@@ -2353,6 +2390,23 @@
         }
       }
     },
+    "ImportRestApiRequest":{
+      "type":"structure",
+      "required":["body"],
+      "members":{
+        "failOnWarnings":{
+          "shape":"Boolean",
+          "location":"querystring",
+          "locationName":"failonwarnings"
+        },
+        "parameters":{
+          "shape":"MapOfStringToString",
+          "location":"querystring"
+        },
+        "body":{"shape":"Blob"}
+      },
+      "payload":"body"
+    },
     "Integer":{"type":"integer"},
     "Integration":{
       "type":"structure",
@@ -2718,6 +2772,43 @@
         "responseModels":{"shape":"MapOfStringToString"}
       }
     },
+    "PutMode":{
+      "type":"string",
+      "enum":[
+        "merge",
+        "overwrite"
+      ]
+    },
+    "PutRestApiRequest":{
+      "type":"structure",
+      "required":[
+        "restApiId",
+        "body"
+      ],
+      "members":{
+        "restApiId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"restapi_id"
+        },
+        "mode":{
+          "shape":"PutMode",
+          "location":"querystring",
+          "locationName":"mode"
+        },
+        "failOnWarnings":{
+          "shape":"Boolean",
+          "location":"querystring",
+          "locationName":"failonwarnings"
+        },
+        "parameters":{
+          "shape":"MapOfStringToString",
+          "location":"querystring"
+        },
+        "body":{"shape":"Blob"}
+      },
+      "payload":"body"
+    },
     "Resource":{
       "type":"structure",
       "members":{
@@ -2744,7 +2835,8 @@
         "id":{"shape":"String"},
         "name":{"shape":"String"},
         "description":{"shape":"String"},
-        "createdDate":{"shape":"Timestamp"}
+        "createdDate":{"shape":"Timestamp"},
+        "warnings":{"shape":"ListOfString"}
       }
     },
     "RestApis":{

@@ -34,7 +34,10 @@ func (c *CognitoIdentity) CreateIdentityPoolRequest(input *CreateIdentityPoolInp
 
 // Creates a new identity pool. The identity pool is a store of user identity
 // information that is specific to your AWS account. The limit on identity pools
-// is 60 per account. You must use AWS Developer credentials to call this API.
+// is 60 per account. The keys for SupportedLoginProviders are as follows:
+// Facebook: graph.facebook.com Google: accounts.google.com Amazon: www.amazon.com
+// Twitter: api.twitter.com Digits: www.digits.com  You must use AWS Developer
+// credentials to call this API.
 func (c *CognitoIdentity) CreateIdentityPool(input *CreateIdentityPoolInput) (*IdentityPool, error) {
 	req, out := c.CreateIdentityPoolRequest(input)
 	err := req.Send()
@@ -183,10 +186,10 @@ func (c *CognitoIdentity) GetCredentialsForIdentityRequest(input *GetCredentials
 	return
 }
 
-// Returns credentials for the the provided identity ID. Any provided logins
-// will be validated against supported login providers. If the token is for
-// cognito-identity.amazonaws.com, it will be passed through to AWS Security
-// Token Service with the appropriate role for the token.
+// Returns credentials for the provided identity ID. Any provided logins will
+// be validated against supported login providers. If the token is for cognito-identity.amazonaws.com,
+// it will be passed through to AWS Security Token Service with the appropriate
+// role for the token.
 //
 // This is a public API. You do not need any credentials to call this API.
 func (c *CognitoIdentity) GetCredentialsForIdentity(input *GetCredentialsForIdentityInput) (*GetCredentialsForIdentityOutput, error) {
@@ -217,8 +220,6 @@ func (c *CognitoIdentity) GetIdRequest(input *GetIdInput) (req *request.Request,
 
 // Generates (or retrieves) a Cognito ID. Supplying multiple logins will create
 // an implicit linked account.
-//
-// token+";"+tokenSecret.
 //
 // This is a public API. You do not need any credentials to call this API.
 func (c *CognitoIdentity) GetId(input *GetIdInput) (*GetIdOutput, error) {
@@ -382,7 +383,7 @@ func (c *CognitoIdentity) ListIdentityPoolsRequest(input *ListIdentityPoolsInput
 
 // Lists all of the Cognito identity pools registered for your account.
 //
-// This is a public API. You do not need any credentials to call this API.
+// You must use AWS Developer credentials to call this API.
 func (c *CognitoIdentity) ListIdentityPools(input *ListIdentityPoolsInput) (*ListIdentityPoolsOutput, error) {
 	req, out := c.ListIdentityPoolsRequest(input)
 	err := req.Send()
@@ -519,7 +520,7 @@ func (c *CognitoIdentity) UnlinkDeveloperIdentityRequest(input *UnlinkDeveloperI
 // a given Cognito identity, you remove all federated identities as well as
 // the developer user identifier, the Cognito identity becomes inaccessible.
 //
-// This is a public API. You do not need any credentials to call this API.
+// You must use AWS Developer credentials to call this API.
 func (c *CognitoIdentity) UnlinkDeveloperIdentity(input *UnlinkDeveloperIdentityInput) (*UnlinkDeveloperIdentityOutput, error) {
 	req, out := c.UnlinkDeveloperIdentityRequest(input)
 	err := req.Send()
@@ -595,6 +596,9 @@ type CreateIdentityPoolInput struct {
 	// TRUE if the identity pool supports unauthenticated logins.
 	AllowUnauthenticatedIdentities *bool `type:"boolean" required:"true"`
 
+	// A list representing a Cognito User Identity Pool and its client ID.
+	CognitoIdentityProviders []*Provider `type:"list"`
+
 	// The "domain" by which Cognito will refer to your users. This name acts as
 	// a placeholder that allows your backend and the Cognito service to communicate
 	// about the developer provider. For the DeveloperProviderName, you can use
@@ -624,7 +628,7 @@ func (s CreateIdentityPoolInput) GoString() string {
 	return s.String()
 }
 
-// Credentials for the the provided identity ID.
+// Credentials for the provided identity ID.
 type Credentials struct {
 	_ struct{} `type:"structure"`
 
@@ -781,7 +785,7 @@ func (s GetCredentialsForIdentityInput) GoString() string {
 type GetCredentialsForIdentityOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Credentials for the the provided identity ID.
+	// Credentials for the provided identity ID.
 	Credentials *Credentials `type:"structure"`
 
 	// A unique identifier in the format REGION:GUID.
@@ -811,8 +815,9 @@ type GetIdInput struct {
 	// A set of optional name-value pairs that map provider names to provider tokens.
 	//
 	// The available provider names for Logins are as follows:  Facebook: graph.facebook.com
-	//  Google: accounts.google.com  Amazon: www.amazon.com  Twitter: www.twitter.com
-	//  Digits: www.digits.com
+	// Amazon Cognito Identity Provider: cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789
+	// Google: accounts.google.com Amazon: www.amazon.com Twitter: api.twitter.com
+	// Digits: www.digits.com
 	Logins map[string]*string `type:"map"`
 }
 
@@ -956,8 +961,9 @@ type GetOpenIdTokenInput struct {
 
 	// A set of optional name-value pairs that map provider names to provider tokens.
 	// When using graph.facebook.com and www.amazon.com, supply the access_token
-	// returned from the provider's authflow. For accounts.google.com or any other
-	// OpenId Connect provider, always include the id_token.
+	// returned from the provider's authflow. For accounts.google.com, an Amazon
+	// Cognito Identity Provider, or any other OpenId Connect provider, always include
+	// the id_token.
 	Logins map[string]*string `type:"map"`
 }
 
@@ -1026,6 +1032,9 @@ type IdentityPool struct {
 
 	// TRUE if the identity pool supports unauthenticated logins.
 	AllowUnauthenticatedIdentities *bool `type:"boolean" required:"true"`
+
+	// A list representing a Cognito User Identity Pool and its client ID.
+	CognitoIdentityProviders []*Provider `type:"list"`
 
 	// The "domain" by which Cognito will refer to your users.
 	DeveloperProviderName *string `min:"1" type:"string"`
@@ -1283,6 +1292,27 @@ func (s MergeDeveloperIdentitiesOutput) String() string {
 
 // GoString returns the string representation
 func (s MergeDeveloperIdentitiesOutput) GoString() string {
+	return s.String()
+}
+
+// A provider representing a Cognito User Identity Pool and its client ID.
+type Provider struct {
+	_ struct{} `type:"structure"`
+
+	// The client ID for the Cognito User Identity Pool.
+	ClientId *string `min:"1" type:"string"`
+
+	// The provider name for a Cognito User Identity Pool. For example, cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789.
+	ProviderName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s Provider) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Provider) GoString() string {
 	return s.String()
 }
 

@@ -389,12 +389,18 @@ func (c *EC2) AttachVolumeRequest(input *AttachVolumeInput) (req *request.Reques
 //
 // If a volume has an AWS Marketplace product code:
 //
-//  The volume can be attached only to a stopped instance. AWS Marketplace
-// product codes are copied from the volume to the instance. You must be subscribed
-// to the product. The instance type and operating system of the instance must
-// support the product. For example, you can't detach a volume from a Windows
-// instance and attach it to a Linux instance.  For an overview of the AWS Marketplace,
-// see Introducing AWS Marketplace (https://aws.amazon.com/marketplace/help/200900000).
+//   The volume can be attached only to a stopped instance.
+//
+//   AWS Marketplace product codes are copied from the volume to the instance.
+//
+//   You must be subscribed to the product.
+//
+//   The instance type and operating system of the instance must support the
+// product. For example, you can't detach a volume from a Windows instance and
+// attach it to a Linux instance.
+//
+//   For an overview of the AWS Marketplace, see Introducing AWS Marketplace
+// (https://aws.amazon.com/marketplace/help/200900000).
 //
 // For more information about EBS volumes, see Attaching Amazon EBS Volumes
 // (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html)
@@ -969,25 +975,33 @@ func (c *EC2) CreateDhcpOptionsRequest(input *CreateDhcpOptionsInput) (req *requ
 //  domain-name-servers - The IP addresses of up to four domain name servers,
 // or AmazonProvidedDNS. The default DHCP option set specifies AmazonProvidedDNS.
 // If specifying more than one domain name server, specify the IP addresses
-// in a single parameter, separated by commas. domain-name - If you're using
-// AmazonProvidedDNS in us-east-1, specify ec2.internal. If you're using AmazonProvidedDNS
-// in another region, specify region.compute.internal (for example, ap-northeast-1.compute.internal).
-// Otherwise, specify a domain name (for example, MyCompany.com). Important:
+// in a single parameter, separated by commas.
+//
+// domain-name - If you're using AmazonProvidedDNS in "us-east-1", specify
+// "ec2.internal". If you're using AmazonProvidedDNS in another region, specify
+// "region.compute.internal" (for example, "ap-northeast-1.compute.internal").
+// Otherwise, specify a domain name (for example, "MyCompany.com"). Important:
 // Some Linux operating systems accept multiple domain names separated by spaces.
 // However, Windows and other Linux operating systems treat the value as a single
 // domain, which results in unexpected behavior. If your DHCP options set is
 // associated with a VPC that has instances with multiple operating systems,
-// specify only one domain name. ntp-servers - The IP addresses of up to four
-// Network Time Protocol (NTP) servers. netbios-name-servers - The IP addresses
-// of up to four NetBIOS name servers. netbios-node-type - The NetBIOS node
-// type (1, 2, 4, or 8). We recommend that you specify 2 (broadcast and multicast
-// are not currently supported). For more information about these node types,
-// see RFC 2132 (http://www.ietf.org/rfc/rfc2132.txt).   Your VPC automatically
-// starts out with a set of DHCP options that includes only a DNS server that
-// we provide (AmazonProvidedDNS). If you create a set of options, and if your
-// VPC has an Internet gateway, make sure to set the domain-name-servers option
-// either to AmazonProvidedDNS or to a domain name server of your choice. For
-// more information about DHCP options, see DHCP Options Sets (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html)
+// specify only one domain name.
+//
+// ntp-servers - The IP addresses of up to four Network Time Protocol (NTP)
+// servers.
+//
+// netbios-name-servers - The IP addresses of up to four NetBIOS name servers.
+//
+// netbios-node-type - The NetBIOS node type (1, 2, 4, or 8). We recommend
+// that you specify 2 (broadcast and multicast are not currently supported).
+// For more information about these node types, see RFC 2132 (http://www.ietf.org/rfc/rfc2132.txt).
+//
+//  Your VPC automatically starts out with a set of DHCP options that includes
+// only a DNS server that we provide (AmazonProvidedDNS). If you create a set
+// of options, and if your VPC has an Internet gateway, make sure to set the
+// domain-name-servers option either to AmazonProvidedDNS or to a domain name
+// server of your choice. For more information about DHCP options, see DHCP
+// Options Sets (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html)
 // in the Amazon Virtual Private Cloud User Guide.
 func (c *EC2) CreateDhcpOptions(input *CreateDhcpOptionsInput) (*CreateDhcpOptionsOutput, error) {
 	req, out := c.CreateDhcpOptionsRequest(input)
@@ -3313,7 +3327,7 @@ func (c *EC2) DescribeInstanceStatusRequest(input *DescribeInstanceStatusInput) 
 // and Troubleshooting Instances with Failed Status Checks (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
-//  Scheduled events - Amazon EC2 can schedule events (such as reboot, stop,
+//   Scheduled events - Amazon EC2 can schedule events (such as reboot, stop,
 // or terminate) for your instances related to hardware issues, software updates,
 // or system maintenance. For more information, see Scheduled Events for Your
 // Instances (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-instances-status-check_sched.html)
@@ -4047,14 +4061,20 @@ func (c *EC2) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (req *requ
 //
 // The create volume permissions fall into the following categories:
 //
-//  public: The owner of the snapshot granted create volume permissions for
+//   public: The owner of the snapshot granted create volume permissions for
 // the snapshot to the all group. All AWS accounts have create volume permissions
-// for these snapshots. explicit: The owner of the snapshot granted create volume
-// permissions to a specific AWS account. implicit: An AWS account has implicit
-// create volume permissions for all snapshots it owns.  The list of snapshots
-// returned can be modified by specifying snapshot IDs, snapshot owners, or
-// AWS accounts with create volume permissions. If no options are specified,
-// Amazon EC2 returns all snapshots for which you have create volume permissions.
+// for these snapshots.
+//
+//   explicit: The owner of the snapshot granted create volume permissions
+// to a specific AWS account.
+//
+//   implicit: An AWS account has implicit create volume permissions for all
+// snapshots it owns.
+//
+//   The list of snapshots returned can be modified by specifying snapshot
+// IDs, snapshot owners, or AWS accounts with create volume permissions. If
+// no options are specified, Amazon EC2 returns all snapshots for which you
+// have create volume permissions.
 //
 // If you specify one or more snapshot IDs, only snapshots that have the specified
 // IDs are returned. If you specify an invalid snapshot ID, an error is returned.
@@ -5997,10 +6017,10 @@ func (c *EC2) MoveAddressToVpcRequest(input *MoveAddressToVpcInput) (req *reques
 // than 24 hours, and it must not be associated with an instance. After the
 // Elastic IP address is moved, it is no longer available for use in the EC2-Classic
 // platform, unless you move it back using the RestoreAddressToClassic request.
-// You cannot move an Elastic IP address that's allocated for use in the EC2-VPC
-// platform to the EC2-Classic platform. You cannot migrate an Elastic IP address
-// that's associated with a reverse DNS record. Contact AWS account and billing
-// support to remove the reverse DNS record.
+// You cannot move an Elastic IP address that was originally allocated for use
+// in the EC2-VPC platform to the EC2-Classic platform. You cannot migrate an
+// Elastic IP address that's associated with a reverse DNS record. Contact AWS
+// account and billing support to remove the reverse DNS record.
 func (c *EC2) MoveAddressToVpc(input *MoveAddressToVpcInput) (*MoveAddressToVpcOutput, error) {
 	req, out := c.MoveAddressToVpcRequest(input)
 	err := req.Send()
@@ -7081,6 +7101,7 @@ func (c *EC2) UnmonitorInstances(input *UnmonitorInstancesInput) (*UnmonitorInst
 	return out, err
 }
 
+// Contains the parameters for AcceptVpcPeeringConnection.
 type AcceptVpcPeeringConnectionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7104,6 +7125,7 @@ func (s AcceptVpcPeeringConnectionInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of AcceptVpcPeeringConnection.
 type AcceptVpcPeeringConnectionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7225,6 +7247,7 @@ func (s Address) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for AllocateAddress.
 type AllocateAddressInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7250,6 +7273,7 @@ func (s AllocateAddressInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of AllocateAddress.
 type AllocateAddressOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7275,6 +7299,7 @@ func (s AllocateAddressOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for AllocateHosts.
 type AllocateHostsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7313,6 +7338,7 @@ func (s AllocateHostsInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of AllocateHosts.
 type AllocateHostsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7331,6 +7357,7 @@ func (s AllocateHostsOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for AssignPrivateIpAddresses.
 type AssignPrivateIpAddressesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7378,6 +7405,7 @@ func (s AssignPrivateIpAddressesOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for AssociateAddress.
 type AssociateAddressInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7427,6 +7455,7 @@ func (s AssociateAddressInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of AssociateAddress.
 type AssociateAddressOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7445,6 +7474,7 @@ func (s AssociateAddressOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for AssociateDhcpOptions.
 type AssociateDhcpOptionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7486,6 +7516,7 @@ func (s AssociateDhcpOptionsOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for AssociateRouteTable.
 type AssociateRouteTableInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7512,6 +7543,7 @@ func (s AssociateRouteTableInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of AssociateRouteTable.
 type AssociateRouteTableOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7529,6 +7561,7 @@ func (s AssociateRouteTableOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for AttachClassicLinkVpc.
 type AttachClassicLinkVpcInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7559,6 +7592,7 @@ func (s AttachClassicLinkVpcInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of AttachClassicLinkVpc.
 type AttachClassicLinkVpcOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7576,6 +7610,7 @@ func (s AttachClassicLinkVpcOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for AttachInternetGateway.
 type AttachInternetGatewayInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7616,6 +7651,7 @@ func (s AttachInternetGatewayOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for AttachNetworkInterface.
 type AttachNetworkInterfaceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7645,6 +7681,7 @@ func (s AttachNetworkInterfaceInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of AttachNetworkInterface.
 type AttachNetworkInterfaceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7662,6 +7699,7 @@ func (s AttachNetworkInterfaceOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for AttachVolume.
 type AttachVolumeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7692,6 +7730,7 @@ func (s AttachVolumeInput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for AttachVpnGateway.
 type AttachVpnGatewayInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7718,6 +7757,7 @@ func (s AttachVpnGatewayInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of AttachVpnGateway.
 type AttachVpnGatewayOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7771,6 +7811,7 @@ func (s AttributeValue) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for AuthorizeSecurityGroupEgress.
 type AuthorizeSecurityGroupEgressInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7838,6 +7879,7 @@ func (s AuthorizeSecurityGroupEgressOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for AuthorizeSecurityGroupIngress.
 type AuthorizeSecurityGroupIngressInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7872,17 +7914,18 @@ type AuthorizeSecurityGroupIngressInput struct {
 	// [EC2-Classic, default VPC] The name of the source security group. You can't
 	// specify this parameter in combination with the following parameters: the
 	// CIDR IP address range, the start of the port range, the IP protocol, and
-	// the end of the port range. For EC2-VPC, the source security group must be
-	// in the same VPC.
+	// the end of the port range. Creates rules that grant full ICMP, UDP, and TCP
+	// access. To create a rule with a specific IP protocol and port range, use
+	// a set of IP permissions instead. For EC2-VPC, the source security group must
+	// be in the same VPC.
 	SourceSecurityGroupName *string `type:"string"`
 
-	// [EC2-Classic, default VPC] The AWS account number for the source security
-	// group. For EC2-VPC, the source security group must be in the same VPC. You
-	// can't specify this parameter in combination with the following parameters:
-	// the CIDR IP address range, the IP protocol, the start of the port range,
-	// and the end of the port range. Creates rules that grant full ICMP, UDP, and
-	// TCP access. To create a rule with a specific IP protocol and port range,
-	// use a set of IP permissions instead.
+	// [EC2-Classic] The AWS account number for the source security group, if the
+	// source security group is in a different account. You can't specify this parameter
+	// in combination with the following parameters: the CIDR IP address range,
+	// the IP protocol, the start of the port range, and the end of the port range.
+	// Creates rules that grant full ICMP, UDP, and TCP access. To create a rule
+	// with a specific IP protocol and port range, use a set of IP permissions instead.
 	SourceSecurityGroupOwnerId *string `type:"string"`
 
 	// The end of port range for the TCP and UDP protocols, or an ICMP code number.
@@ -8035,6 +8078,7 @@ func (s BlockDeviceMapping) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for BundleInstance.
 type BundleInstanceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8069,6 +8113,7 @@ func (s BundleInstanceInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of BundleInstance.
 type BundleInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8146,6 +8191,7 @@ func (s BundleTaskError) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CancelBundleTask.
 type CancelBundleTaskInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8169,6 +8215,7 @@ func (s CancelBundleTaskInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of CancelBundleTask.
 type CancelBundleTaskOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8186,6 +8233,7 @@ func (s CancelBundleTaskOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CancelConversionTask.
 type CancelConversionTaskInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8226,6 +8274,7 @@ func (s CancelConversionTaskOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CancelExportTask.
 type CancelExportTaskInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8257,6 +8306,7 @@ func (s CancelExportTaskOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CancelImportTask.
 type CancelImportTaskInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8283,6 +8333,7 @@ func (s CancelImportTaskInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output for CancelImportTask.
 type CancelImportTaskOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8306,6 +8357,7 @@ func (s CancelImportTaskOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CancelReservedInstancesListing.
 type CancelReservedInstancesListingInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8323,6 +8375,7 @@ func (s CancelReservedInstancesListingInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of CancelReservedInstancesListing.
 type CancelReservedInstancesListingOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8593,6 +8646,7 @@ func (s ClientData) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for ConfirmProductInstance.
 type ConfirmProductInstanceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8619,6 +8673,7 @@ func (s ConfirmProductInstanceInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of ConfirmProductInstance.
 type ConfirmProductInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8680,6 +8735,7 @@ func (s ConversionTask) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CopyImage.
 type CopyImageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8734,6 +8790,7 @@ func (s CopyImageInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of CopyImage.
 type CopyImageOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8751,6 +8808,7 @@ func (s CopyImageOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CopySnapshot.
 type CopySnapshotInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8823,6 +8881,7 @@ func (s CopySnapshotInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of CopySnapshot.
 type CopySnapshotOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8840,6 +8899,7 @@ func (s CopySnapshotOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CreateCustomerGateway.
 type CreateCustomerGatewayInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8872,6 +8932,7 @@ func (s CreateCustomerGatewayInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of CreateCustomerGateway.
 type CreateCustomerGatewayOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8889,6 +8950,7 @@ func (s CreateCustomerGatewayOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CreateDhcpOptions.
 type CreateDhcpOptionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8912,6 +8974,7 @@ func (s CreateDhcpOptionsInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of CreateDhcpOptions.
 type CreateDhcpOptionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8929,6 +8992,7 @@ func (s CreateDhcpOptionsOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CreateFlowLogs.
 type CreateFlowLogsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8963,6 +9027,7 @@ func (s CreateFlowLogsInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of CreateFlowLogs.
 type CreateFlowLogsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8987,6 +9052,7 @@ func (s CreateFlowLogsOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CreateImage.
 type CreateImageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9030,6 +9096,7 @@ func (s CreateImageInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of CreateImage.
 type CreateImageOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9047,6 +9114,7 @@ func (s CreateImageOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CreateInstanceExportTask.
 type CreateInstanceExportTaskInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9074,6 +9142,7 @@ func (s CreateInstanceExportTaskInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output for CreateInstanceExportTask.
 type CreateInstanceExportTaskOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9091,6 +9160,7 @@ func (s CreateInstanceExportTaskOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CreateInternetGateway.
 type CreateInternetGatewayInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9111,6 +9181,7 @@ func (s CreateInternetGatewayInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of CreateInternetGateway.
 type CreateInternetGatewayOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9128,6 +9199,7 @@ func (s CreateInternetGatewayOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CreateKeyPair.
 type CreateKeyPairInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9177,6 +9249,7 @@ func (s CreateKeyPairOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CreateNatGateway.
 type CreateNatGatewayInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9205,6 +9278,7 @@ func (s CreateNatGatewayInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of CreateNatGateway.
 type CreateNatGatewayOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9226,6 +9300,7 @@ func (s CreateNatGatewayOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CreateNetworkAclEntry.
 type CreateNetworkAclEntryInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9289,6 +9364,7 @@ func (s CreateNetworkAclEntryOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CreateNetworkAcl.
 type CreateNetworkAclInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9312,6 +9388,7 @@ func (s CreateNetworkAclInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of CreateNetworkAcl.
 type CreateNetworkAclOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9329,6 +9406,7 @@ func (s CreateNetworkAclOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CreateNetworkInterface.
 type CreateNetworkInterfaceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9378,6 +9456,7 @@ func (s CreateNetworkInterfaceInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of CreateNetworkInterface.
 type CreateNetworkInterfaceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9395,6 +9474,7 @@ func (s CreateNetworkInterfaceOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CreatePlacementGroup.
 type CreatePlacementGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9437,6 +9517,7 @@ func (s CreatePlacementGroupOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CreateReservedInstancesListing.
 type CreateReservedInstancesListingInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9469,6 +9550,7 @@ func (s CreateReservedInstancesListingInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of CreateReservedInstancesListing.
 type CreateReservedInstancesListingOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9486,6 +9568,7 @@ func (s CreateReservedInstancesListingOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CreateRoute.
 type CreateRouteInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9530,6 +9613,7 @@ func (s CreateRouteInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of CreateRoute.
 type CreateRouteOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9547,6 +9631,7 @@ func (s CreateRouteOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CreateRouteTable.
 type CreateRouteTableInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9570,6 +9655,7 @@ func (s CreateRouteTableInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of CreateRouteTable.
 type CreateRouteTableOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9587,6 +9673,7 @@ func (s CreateRouteTableOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CreateSecurityGroup.
 type CreateSecurityGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9628,6 +9715,7 @@ func (s CreateSecurityGroupInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of CreateSecurityGroup.
 type CreateSecurityGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9645,6 +9733,7 @@ func (s CreateSecurityGroupOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CreateSnapshot.
 type CreateSnapshotInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9716,6 +9805,7 @@ func (s CreateSpotDatafeedSubscriptionOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CreateSubnet.
 type CreateSubnetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9748,6 +9838,7 @@ func (s CreateSubnetInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of CreateSubnet.
 type CreateSubnetOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9765,6 +9856,7 @@ func (s CreateSubnetOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CreateTags.
 type CreateTagsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9807,6 +9899,7 @@ func (s CreateTagsOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CreateVolume.
 type CreateVolumeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9829,11 +9922,11 @@ type CreateVolumeInput struct {
 	// in the Amazon Elastic Compute Cloud User Guide.
 	Encrypted *bool `locationName:"encrypted" type:"boolean"`
 
-	// Only valid for Provisioned IOPS (SSD) volumes. The number of I/O operations
+	// Only valid for Provisioned IOPS SSD volumes. The number of I/O operations
 	// per second (IOPS) to provision for the volume, with a maximum ratio of 30
 	// IOPS/GiB.
 	//
-	// Constraint: Range is 100 to 20000 for Provisioned IOPS (SSD) volumes
+	// Constraint: Range is 100 to 20000 for Provisioned IOPS SSD volumes
 	Iops *int64 `type:"integer"`
 
 	// The full ARN of the AWS Key Management Service (AWS KMS) customer master
@@ -9847,9 +9940,9 @@ type CreateVolumeInput struct {
 
 	// The size of the volume, in GiBs.
 	//
-	// Constraints: 1-1024 for standard volumes, 1-16384 for gp2 volumes, and 4-16384
-	// for io1 volumes. If you specify a snapshot, the volume size must be equal
-	// to or larger than the snapshot size.
+	// Constraints: 1-16384 for gp2, 4-16384 for io1, 500-16384 for st1, 500-16384
+	// for sc1, and 1-1024 for standard. If you specify a snapshot, the volume size
+	// must be equal to or larger than the snapshot size.
 	//
 	// Default: If you're creating the volume from a snapshot and don't specify
 	// a volume size, the default is the snapshot size.
@@ -9858,8 +9951,9 @@ type CreateVolumeInput struct {
 	// The snapshot from which to create the volume.
 	SnapshotId *string `type:"string"`
 
-	// The volume type. This can be gp2 for General Purpose (SSD) volumes, io1 for
-	// Provisioned IOPS (SSD) volumes, or standard for Magnetic volumes.
+	// The volume type. This can be gp2 for General Purpose SSD, io1 for Provisioned
+	// IOPS SSD, st1 for Throughput Optimized HDD, sc1 for Cold HDD, or standard
+	// for Magnetic volumes.
 	//
 	// Default: standard
 	VolumeType *string `type:"string" enum:"VolumeType"`
@@ -9922,6 +10016,7 @@ func (s CreateVolumePermissionModifications) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CreateVpcEndpoint.
 type CreateVpcEndpointInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9961,6 +10056,7 @@ func (s CreateVpcEndpointInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of CreateVpcEndpoint.
 type CreateVpcEndpointOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9982,6 +10078,7 @@ func (s CreateVpcEndpointOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CreateVpc.
 type CreateVpcInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10017,6 +10114,7 @@ func (s CreateVpcInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of CreateVpc.
 type CreateVpcOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -10034,6 +10132,7 @@ func (s CreateVpcOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CreateVpcPeeringConnection.
 type CreateVpcPeeringConnectionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10065,6 +10164,7 @@ func (s CreateVpcPeeringConnectionInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of CreateVpcPeeringConnection.
 type CreateVpcPeeringConnectionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -10082,6 +10182,7 @@ func (s CreateVpcPeeringConnectionOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CreateVpnConnection.
 type CreateVpnConnectionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10118,6 +10219,7 @@ func (s CreateVpnConnectionInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of CreateVpnConnection.
 type CreateVpnConnectionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -10135,6 +10237,7 @@ func (s CreateVpnConnectionOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CreateVpnConnectionRoute.
 type CreateVpnConnectionRouteInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10169,6 +10272,7 @@ func (s CreateVpnConnectionRouteOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for CreateVpnGateway.
 type CreateVpnGatewayInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10195,6 +10299,7 @@ func (s CreateVpnGatewayInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of CreateVpnGateway.
 type CreateVpnGatewayOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -10247,6 +10352,7 @@ func (s CustomerGateway) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DeleteCustomerGateway.
 type DeleteCustomerGatewayInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10284,6 +10390,7 @@ func (s DeleteCustomerGatewayOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DeleteDhcpOptions.
 type DeleteDhcpOptionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10321,6 +10428,7 @@ func (s DeleteDhcpOptionsOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DeleteFlowLogs.
 type DeleteFlowLogsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10338,6 +10446,7 @@ func (s DeleteFlowLogsInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DeleteFlowLogs.
 type DeleteFlowLogsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -10355,6 +10464,7 @@ func (s DeleteFlowLogsOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DeleteInternetGateway.
 type DeleteInternetGatewayInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10392,6 +10502,7 @@ func (s DeleteInternetGatewayOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DeleteKeyPair.
 type DeleteKeyPairInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10429,6 +10540,7 @@ func (s DeleteKeyPairOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DeleteNatGateway.
 type DeleteNatGatewayInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10446,6 +10558,7 @@ func (s DeleteNatGatewayInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DeleteNatGateway.
 type DeleteNatGatewayOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -10463,6 +10576,7 @@ func (s DeleteNatGatewayOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DeleteNetworkAclEntry.
 type DeleteNetworkAclEntryInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10506,6 +10620,7 @@ func (s DeleteNetworkAclEntryOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DeleteNetworkAcl.
 type DeleteNetworkAclInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10543,6 +10658,7 @@ func (s DeleteNetworkAclOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DeleteNetworkInterface.
 type DeleteNetworkInterfaceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10580,6 +10696,7 @@ func (s DeleteNetworkInterfaceOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DeletePlacementGroup.
 type DeletePlacementGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10617,6 +10734,7 @@ func (s DeletePlacementGroupOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DeleteRoute.
 type DeleteRouteInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10658,6 +10776,7 @@ func (s DeleteRouteOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DeleteRouteTable.
 type DeleteRouteTableInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10695,6 +10814,7 @@ func (s DeleteRouteTableOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DeleteSecurityGroup.
 type DeleteSecurityGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10736,6 +10856,7 @@ func (s DeleteSecurityGroupOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DeleteSnapshot.
 type DeleteSnapshotInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10808,6 +10929,7 @@ func (s DeleteSpotDatafeedSubscriptionOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DeleteSubnet.
 type DeleteSubnetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10845,6 +10967,7 @@ func (s DeleteSubnetOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DeleteTags.
 type DeleteTagsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10888,6 +11011,7 @@ func (s DeleteTagsOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DeleteVolume.
 type DeleteVolumeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10925,6 +11049,7 @@ func (s DeleteVolumeOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DeleteVpcEndpoints.
 type DeleteVpcEndpointsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10948,6 +11073,7 @@ func (s DeleteVpcEndpointsInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DeleteVpcEndpoints.
 type DeleteVpcEndpointsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -10965,6 +11091,7 @@ func (s DeleteVpcEndpointsOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DeleteVpc.
 type DeleteVpcInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11002,6 +11129,7 @@ func (s DeleteVpcOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DeleteVpcPeeringConnection.
 type DeleteVpcPeeringConnectionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11025,6 +11153,7 @@ func (s DeleteVpcPeeringConnectionInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DeleteVpcPeeringConnection.
 type DeleteVpcPeeringConnectionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11042,6 +11171,7 @@ func (s DeleteVpcPeeringConnectionOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DeleteVpnConnection.
 type DeleteVpnConnectionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11079,6 +11209,7 @@ func (s DeleteVpnConnectionOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DeleteVpnConnectionRoute.
 type DeleteVpnConnectionRouteInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11113,6 +11244,7 @@ func (s DeleteVpnConnectionRouteOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DeleteVpnGateway.
 type DeleteVpnGatewayInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11150,6 +11282,7 @@ func (s DeleteVpnGatewayOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DeregisterImage.
 type DeregisterImageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11187,6 +11320,7 @@ func (s DeregisterImageOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeAccountAttributes.
 type DescribeAccountAttributesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11210,6 +11344,7 @@ func (s DescribeAccountAttributesInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeAccountAttributes.
 type DescribeAccountAttributesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11227,6 +11362,7 @@ func (s DescribeAccountAttributesOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeAddresses.
 type DescribeAddressesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11280,6 +11416,7 @@ func (s DescribeAddressesInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeAddresses.
 type DescribeAddressesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11297,6 +11434,7 @@ func (s DescribeAddressesOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeAvailabilityZones.
 type DescribeAvailabilityZonesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11333,6 +11471,7 @@ func (s DescribeAvailabilityZonesInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeAvailabiltyZones.
 type DescribeAvailabilityZonesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11350,6 +11489,7 @@ func (s DescribeAvailabilityZonesOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeBundleTasks.
 type DescribeBundleTasksInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11400,6 +11540,7 @@ func (s DescribeBundleTasksInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeBundleTasks.
 type DescribeBundleTasksOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11417,6 +11558,7 @@ func (s DescribeBundleTasksOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeClassicLinkInstances.
 type DescribeClassicLinkInstancesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11474,6 +11616,7 @@ func (s DescribeClassicLinkInstancesInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeClassicLinkInstances.
 type DescribeClassicLinkInstancesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11495,6 +11638,7 @@ func (s DescribeClassicLinkInstancesOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeConversionTasks.
 type DescribeConversionTasksInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11521,6 +11665,7 @@ func (s DescribeConversionTasksInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output for DescribeConversionTasks.
 type DescribeConversionTasksOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11538,6 +11683,7 @@ func (s DescribeConversionTasksOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeCustomerGateways.
 type DescribeCustomerGatewaysInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11592,6 +11738,7 @@ func (s DescribeCustomerGatewaysInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeCustomerGateways.
 type DescribeCustomerGatewaysOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11609,6 +11756,7 @@ func (s DescribeCustomerGatewaysOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeDhcpOptions.
 type DescribeDhcpOptionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11655,6 +11803,7 @@ func (s DescribeDhcpOptionsInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeDhcpOptions.
 type DescribeDhcpOptionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11672,6 +11821,7 @@ func (s DescribeDhcpOptionsOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeExportTasks.
 type DescribeExportTasksInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11689,6 +11839,7 @@ func (s DescribeExportTasksInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output for DescribeExportTasks.
 type DescribeExportTasksOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11706,6 +11857,7 @@ func (s DescribeExportTasksOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeFlowLogs.
 type DescribeFlowLogsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11746,6 +11898,7 @@ func (s DescribeFlowLogsInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeFlowLogs.
 type DescribeFlowLogsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11767,6 +11920,7 @@ func (s DescribeFlowLogsOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeHosts.
 type DescribeHostsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11812,6 +11966,7 @@ func (s DescribeHostsInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeHosts.
 type DescribeHostsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11833,6 +11988,7 @@ func (s DescribeHostsOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeIdFormat.
 type DescribeIdFormatInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11850,6 +12006,7 @@ func (s DescribeIdFormatInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeIdFormat.
 type DescribeIdFormatOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11867,6 +12024,7 @@ func (s DescribeIdFormatOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeImageAttribute.
 type DescribeImageAttributeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11936,6 +12094,7 @@ func (s DescribeImageAttributeOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeImages.
 type DescribeImagesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11966,7 +12125,7 @@ type DescribeImagesInput struct {
 	// in GiB.
 	//
 	//   block-device-mapping.volume-type - The volume type of the EBS volume (gp2
-	// | standard | io1).
+	// | io1 | st1 | sc1 | standard).
 	//
 	//   description - The description of the image (provided during image creation).
 	//
@@ -12043,6 +12202,7 @@ func (s DescribeImagesInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeImages.
 type DescribeImagesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12060,6 +12220,7 @@ func (s DescribeImagesOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeImportImageTasks.
 type DescribeImportImageTasksInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12075,7 +12236,8 @@ type DescribeImportImageTasksInput struct {
 	// A list of import image task IDs.
 	ImportTaskIds []*string `locationName:"ImportTaskId" locationNameList:"ImportTaskId" type:"list"`
 
-	// The maximum number of results to return in a single request.
+	// The maximum number of results to return in a single call. To retrieve the
+	// remaining results, make another call with the returned NextToken value.
 	MaxResults *int64 `type:"integer"`
 
 	// A token that indicates the next page of results.
@@ -12092,6 +12254,7 @@ func (s DescribeImportImageTasksInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output for DescribeImportImageTasks.
 type DescribeImportImageTasksOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12114,6 +12277,7 @@ func (s DescribeImportImageTasksOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeImportSnapshotTasks.
 type DescribeImportSnapshotTasksInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12129,7 +12293,8 @@ type DescribeImportSnapshotTasksInput struct {
 	// A list of import snapshot task IDs.
 	ImportTaskIds []*string `locationName:"ImportTaskId" locationNameList:"ImportTaskId" type:"list"`
 
-	// The maximum number of results to return in a single request.
+	// The maximum number of results to return in a single call. To retrieve the
+	// remaining results, make another call with the returned NextToken value.
 	MaxResults *int64 `type:"integer"`
 
 	// A token that indicates the next page of results.
@@ -12146,6 +12311,7 @@ func (s DescribeImportSnapshotTasksInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output for DescribeImportSnapshotTasks.
 type DescribeImportSnapshotTasksOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12168,6 +12334,7 @@ func (s DescribeImportSnapshotTasksOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeInstanceAttribute.
 type DescribeInstanceAttributeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12255,6 +12422,7 @@ func (s DescribeInstanceAttributeOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeInstanceStatus.
 type DescribeInstanceStatusInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12314,12 +12482,10 @@ type DescribeInstanceStatusInput struct {
 	// Constraints: Maximum 100 explicitly specified instance IDs.
 	InstanceIds []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list"`
 
-	// The maximum number of results to return for the request in a single page.
-	// The remaining results of the initial request can be seen by sending another
-	// request with the returned NextToken value. This value can be between 5 and
-	// 1000; if MaxResults is given a value larger than 1000, only 1000 results
-	// are returned. You cannot specify this parameter and the instance IDs parameter
-	// in the same request.
+	// The maximum number of results to return in a single call. To retrieve the
+	// remaining results, make another call with the returned NextToken value. This
+	// value can be between 5 and 1000. You cannot specify this parameter and the
+	// instance IDs parameter in the same call.
 	MaxResults *int64 `type:"integer"`
 
 	// The token to retrieve the next page of results.
@@ -12336,6 +12502,7 @@ func (s DescribeInstanceStatusInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeInstanceStatus.
 type DescribeInstanceStatusOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12357,6 +12524,7 @@ func (s DescribeInstanceStatusOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeInstances.
 type DescribeInstancesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12603,12 +12771,10 @@ type DescribeInstancesInput struct {
 	// Default: Describes all your instances.
 	InstanceIds []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list"`
 
-	// The maximum number of results to return for the request in a single page.
-	// The remaining results of the initial request can be seen by sending another
-	// request with the returned NextToken value. This value can be between 5 and
-	// 1000; if MaxResults is given a value larger than 1000, only 1000 results
-	// are returned. You cannot specify this parameter and the instance IDs parameter
-	// in the same request.
+	// The maximum number of results to return in a single call. To retrieve the
+	// remaining results, make another call with the returned NextToken value. This
+	// value can be between 5 and 1000. You cannot specify this parameter and the
+	// instance IDs parameter in the same call.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
 	// The token to request the next page of results.
@@ -12625,6 +12791,7 @@ func (s DescribeInstancesInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeInstances.
 type DescribeInstancesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12646,6 +12813,7 @@ func (s DescribeInstancesOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeInternetGateways.
 type DescribeInternetGatewaysInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12693,6 +12861,7 @@ func (s DescribeInternetGatewaysInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeInternetGateways.
 type DescribeInternetGatewaysOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12710,6 +12879,7 @@ func (s DescribeInternetGatewaysOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeKeyPairs.
 type DescribeKeyPairsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12742,6 +12912,7 @@ func (s DescribeKeyPairsInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeKeyPairs.
 type DescribeKeyPairsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12759,6 +12930,7 @@ func (s DescribeKeyPairsOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeMovingAddresses.
 type DescribeMovingAddressesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12798,6 +12970,7 @@ func (s DescribeMovingAddressesInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeMovingAddresses.
 type DescribeMovingAddressesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12819,6 +12992,7 @@ func (s DescribeMovingAddressesOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeNatGateways.
 type DescribeNatGatewaysInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12859,6 +13033,7 @@ func (s DescribeNatGatewaysInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeNatGateways.
 type DescribeNatGatewaysOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12880,6 +13055,7 @@ func (s DescribeNatGatewaysOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeNetworkAcls.
 type DescribeNetworkAclsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12954,6 +13130,7 @@ func (s DescribeNetworkAclsInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeNetworkAcls.
 type DescribeNetworkAclsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12971,6 +13148,7 @@ func (s DescribeNetworkAclsOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeNetworkInterfaceAttribute.
 type DescribeNetworkInterfaceAttributeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12997,6 +13175,7 @@ func (s DescribeNetworkInterfaceAttributeInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeNetworkInterfaceAttribute.
 type DescribeNetworkInterfaceAttributeOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -13026,6 +13205,7 @@ func (s DescribeNetworkInterfaceAttributeOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeNetworkInterfaces.
 type DescribeNetworkInterfacesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13155,6 +13335,7 @@ func (s DescribeNetworkInterfacesInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeNetworkInterfaces.
 type DescribeNetworkInterfacesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -13172,6 +13353,7 @@ func (s DescribeNetworkInterfacesOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribePlacementGroups.
 type DescribePlacementGroupsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13207,6 +13389,7 @@ func (s DescribePlacementGroupsInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribePlacementGroups.
 type DescribePlacementGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -13224,6 +13407,7 @@ func (s DescribePlacementGroupsOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribePrefixLists.
 type DescribePrefixListsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13266,6 +13450,7 @@ func (s DescribePrefixListsInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribePrefixLists.
 type DescribePrefixListsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -13287,6 +13472,7 @@ func (s DescribePrefixListsOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeRegions.
 type DescribeRegionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13317,6 +13503,7 @@ func (s DescribeRegionsInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeRegions.
 type DescribeRegionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -13334,6 +13521,7 @@ func (s DescribeRegionsOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeReservedInstances.
 type DescribeReservedInstancesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13414,6 +13602,7 @@ func (s DescribeReservedInstancesInput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeReservedInstancesListings.
 type DescribeReservedInstancesListingsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13446,6 +13635,7 @@ func (s DescribeReservedInstancesListingsInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeReservedInstancesListings.
 type DescribeReservedInstancesListingsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -13463,6 +13653,7 @@ func (s DescribeReservedInstancesListingsOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeReservedInstancesModifications.
 type DescribeReservedInstancesModificationsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13519,6 +13710,7 @@ func (s DescribeReservedInstancesModificationsInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeReservedInstancesModifications.
 type DescribeReservedInstancesModificationsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -13540,6 +13732,7 @@ func (s DescribeReservedInstancesModificationsOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeReservedInstancesOfferings.
 type DescribeReservedInstancesOfferingsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13648,6 +13841,7 @@ func (s DescribeReservedInstancesOfferingsInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeReservedInstancesOfferings.
 type DescribeReservedInstancesOfferingsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -13669,6 +13863,7 @@ func (s DescribeReservedInstancesOfferingsOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the output for DescribeReservedInstances.
 type DescribeReservedInstancesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -13686,6 +13881,7 @@ func (s DescribeReservedInstancesOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeRouteTables.
 type DescribeRouteTablesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13768,6 +13964,7 @@ func (s DescribeRouteTablesInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeRouteTables.
 type DescribeRouteTablesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -13931,6 +14128,7 @@ func (s DescribeScheduledInstancesOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeSecurityGroups.
 type DescribeSecurityGroupsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14007,6 +14205,7 @@ func (s DescribeSecurityGroupsInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeSecurityGroups.
 type DescribeSecurityGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -14024,6 +14223,7 @@ func (s DescribeSecurityGroupsOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeSnapshotAttribute.
 type DescribeSnapshotAttributeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14050,6 +14250,7 @@ func (s DescribeSnapshotAttributeInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeSnapshotAttribute.
 type DescribeSnapshotAttributeOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -14073,6 +14274,7 @@ func (s DescribeSnapshotAttributeOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeSnapshots.
 type DescribeSnapshotsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14158,6 +14360,7 @@ func (s DescribeSnapshotsInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeSnapshots.
 type DescribeSnapshotsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -14440,8 +14643,9 @@ type DescribeSpotInstanceRequestsInput struct {
 	//   launch.block-device-mapping.volume-size - The size of the Amazon EBS volume,
 	// in GiB.
 	//
-	//   launch.block-device-mapping.volume-type - The type of the Amazon EBS volume
-	// (gp2 | standard | io1).
+	//   launch.block-device-mapping.volume-type - The type of the Amazon EBS volume:
+	// gp2 for General Purpose SSD, io1 for Provisioned IOPS SSD, st1 for Throughput
+	// Optimized HDD, sc1for Cold HDD, or standard for Magnetic.
 	//
 	//   launch.group-id - The security group for the instance.
 	//
@@ -14642,6 +14846,7 @@ func (s DescribeSpotPriceHistoryOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeSubnets.
 type DescribeSubnetsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14701,6 +14906,7 @@ func (s DescribeSubnetsInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeSubnets.
 type DescribeSubnetsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -14718,6 +14924,7 @@ func (s DescribeSubnetsOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeTags.
 type DescribeTagsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14741,11 +14948,9 @@ type DescribeTagsInput struct {
 	//   value - The tag value.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
-	// The maximum number of results to return for the request in a single page.
-	// The remaining results of the initial request can be seen by sending another
-	// request with the returned NextToken value. This value can be between 5 and
-	// 1000; if MaxResults is given a value larger than 1000, only 1000 results
-	// are returned.
+	// The maximum number of results to return in a single call. This value can
+	// be between 5 and 1000. To retrieve the remaining results, make another call
+	// with the returned NextToken value.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
 	// The token to retrieve the next page of results.
@@ -14762,6 +14967,7 @@ func (s DescribeTagsInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeTags.
 type DescribeTagsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -14783,6 +14989,7 @@ func (s DescribeTagsOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeVolumeAttribute.
 type DescribeVolumeAttributeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14809,6 +15016,7 @@ func (s DescribeVolumeAttributeInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeVolumeAttribute.
 type DescribeVolumeAttributeOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -14832,6 +15040,7 @@ func (s DescribeVolumeAttributeOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeVolumeStatus.
 type DescribeVolumeStatusInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14906,6 +15115,7 @@ func (s DescribeVolumeStatusInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeVolumeStatus.
 type DescribeVolumeStatusOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -14927,6 +15137,7 @@ func (s DescribeVolumeStatusOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeVolumes.
 type DescribeVolumesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14980,8 +15191,8 @@ type DescribeVolumesInput struct {
 	//   volume-id - The volume ID.
 	//
 	//   volume-type - The Amazon EBS volume type. This can be gp2 for General
-	// Purpose (SSD) volumes, io1 for Provisioned IOPS (SSD) volumes, or standard
-	// for Magnetic volumes.
+	// Purpose SSD, io1 for Provisioned IOPS SSD, st1 for Throughput Optimized HDD,
+	// sc1 for Cold HDD, or standard for Magnetic volumes.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// The maximum number of volume results returned by DescribeVolumes in paginated
@@ -15015,6 +15226,7 @@ func (s DescribeVolumesInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeVolumes.
 type DescribeVolumesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -15038,6 +15250,7 @@ func (s DescribeVolumesOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeVpcAttribute.
 type DescribeVpcAttributeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15064,6 +15277,7 @@ func (s DescribeVpcAttributeInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeVpcAttribute.
 type DescribeVpcAttributeOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -15091,6 +15305,7 @@ func (s DescribeVpcAttributeOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeVpcClassicLinkDnsSupport.
 type DescribeVpcClassicLinkDnsSupportInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15117,6 +15332,7 @@ func (s DescribeVpcClassicLinkDnsSupportInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeVpcClassicLinkDnsSupport.
 type DescribeVpcClassicLinkDnsSupportOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -15137,6 +15353,7 @@ func (s DescribeVpcClassicLinkDnsSupportOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeVpcClassicLink.
 type DescribeVpcClassicLinkInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15178,6 +15395,7 @@ func (s DescribeVpcClassicLinkInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeVpcClassicLink.
 type DescribeVpcClassicLinkOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -15195,6 +15413,7 @@ func (s DescribeVpcClassicLinkOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeVpcEndpointServices.
 type DescribeVpcEndpointServicesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15226,6 +15445,7 @@ func (s DescribeVpcEndpointServicesInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeVpcEndpointServices.
 type DescribeVpcEndpointServicesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -15247,6 +15467,7 @@ func (s DescribeVpcEndpointServicesOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeVpcEndpoints.
 type DescribeVpcEndpointsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15293,6 +15514,7 @@ func (s DescribeVpcEndpointsInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeVpcEndpoints.
 type DescribeVpcEndpointsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -15314,6 +15536,7 @@ func (s DescribeVpcEndpointsOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeVpcPeeringConnections.
 type DescribeVpcPeeringConnectionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15378,6 +15601,7 @@ func (s DescribeVpcPeeringConnectionsInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeVpcPeeringConnections.
 type DescribeVpcPeeringConnectionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -15395,6 +15619,7 @@ func (s DescribeVpcPeeringConnectionsOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeVpcs.
 type DescribeVpcsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15447,6 +15672,7 @@ func (s DescribeVpcsInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeVpcs.
 type DescribeVpcsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -15464,6 +15690,7 @@ func (s DescribeVpcsOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeVpnConnections.
 type DescribeVpnConnectionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15531,6 +15758,7 @@ func (s DescribeVpnConnectionsInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeVpnConnections.
 type DescribeVpnConnectionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -15548,6 +15776,7 @@ func (s DescribeVpnConnectionsOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeVpnGateways.
 type DescribeVpnGatewaysInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15604,6 +15833,7 @@ func (s DescribeVpnGatewaysInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DescribeVpnGateways.
 type DescribeVpnGatewaysOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -15621,6 +15851,7 @@ func (s DescribeVpnGatewaysOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DetachClassicLinkVpc.
 type DetachClassicLinkVpcInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15647,6 +15878,7 @@ func (s DetachClassicLinkVpcInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DetachClassicLinkVpc.
 type DetachClassicLinkVpcOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -15664,6 +15896,7 @@ func (s DetachClassicLinkVpcOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DetachInternetGateway.
 type DetachInternetGatewayInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15704,6 +15937,7 @@ func (s DetachInternetGatewayOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DetachNetworkInterface.
 type DetachNetworkInterfaceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15744,6 +15978,7 @@ func (s DetachNetworkInterfaceOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DetachVolume.
 type DetachVolumeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15782,6 +16017,7 @@ func (s DetachVolumeInput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DetachVpnGateway.
 type DetachVpnGatewayInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15867,6 +16103,7 @@ func (s DhcpOptions) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DisableVgwRoutePropagation.
 type DisableVgwRoutePropagationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15901,6 +16138,7 @@ func (s DisableVgwRoutePropagationOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DisableVpcClassicLinkDnsSupport.
 type DisableVpcClassicLinkDnsSupportInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15918,6 +16156,7 @@ func (s DisableVpcClassicLinkDnsSupportInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DisableVpcClassicLinkDnsSupport.
 type DisableVpcClassicLinkDnsSupportOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -15935,6 +16174,7 @@ func (s DisableVpcClassicLinkDnsSupportOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DisableVpcClassicLink.
 type DisableVpcClassicLinkInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15958,6 +16198,7 @@ func (s DisableVpcClassicLinkInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of DisableVpcClassicLink.
 type DisableVpcClassicLinkOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -15975,6 +16216,7 @@ func (s DisableVpcClassicLinkOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DisassociateAddress.
 type DisassociateAddressInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16015,6 +16257,7 @@ func (s DisassociateAddressOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DisassociateRouteTable.
 type DisassociateRouteTableInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16175,18 +16418,18 @@ type EbsBlockDevice struct {
 	Encrypted *bool `locationName:"encrypted" type:"boolean"`
 
 	// The number of I/O operations per second (IOPS) that the volume supports.
-	// For Provisioned IOPS (SSD) volumes, this represents the number of IOPS that
-	// are provisioned for the volume. For General Purpose (SSD) volumes, this represents
-	// the baseline performance of the volume and the rate at which the volume accumulates
-	// I/O credits for bursting. For more information on General Purpose (SSD) baseline
-	// performance, I/O credits, and bursting, see Amazon EBS Volume Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)
+	// For io1, this represents the number of IOPS that are provisioned for the
+	// volume. For gp2, this represents the baseline performance of the volume and
+	// the rate at which the volume accumulates I/O credits for bursting. For more
+	// information on General Purpose SSD baseline performance, I/O credits, and
+	// bursting, see Amazon EBS Volume Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
 	//
-	// Constraint: Range is 100 to 20000 for Provisioned IOPS (SSD) volumes and
-	// 3 to 10000 for General Purpose (SSD) volumes.
+	// Constraint: Range is 100-20000 IOPS for io1 volumes and 100-10000 IOPS for
+	// gp2 volumes.
 	//
 	// Condition: This parameter is required for requests to create io1 volumes;
-	// it is not used in requests to create standard or gp2 volumes.
+	// it is not used in requests to create gp2, st1, sc1, or standard volumes.
 	Iops *int64 `locationName:"iops" type:"integer"`
 
 	// The ID of the snapshot.
@@ -16194,16 +16437,17 @@ type EbsBlockDevice struct {
 
 	// The size of the volume, in GiB.
 	//
-	// Constraints: 1-1024 for standard volumes, 1-16384 for gp2 volumes, and 4-16384
-	// for io1 volumes. If you specify a snapshot, the volume size must be equal
-	// to or larger than the snapshot size.
+	// Constraints: 1-16384 for General Purpose SSD (gp2), 4-16384 for Provisioned
+	// IOPS SSD (io1), 500-16384 for Throughput Optimized HDD (st1), 500-16384 for
+	// Cold HDD (sc1), and 1-1024 for Magnetic (standard) volumes. If you specify
+	// a snapshot, the volume size must be equal to or larger than the snapshot
+	// size.
 	//
 	// Default: If you're creating the volume from a snapshot and don't specify
 	// a volume size, the default is the snapshot size.
 	VolumeSize *int64 `locationName:"volumeSize" type:"integer"`
 
-	// The volume type. gp2 for General Purpose (SSD) volumes, io1 for Provisioned
-	// IOPS (SSD) volumes, and standard for Magnetic volumes.
+	// The volume type: gp2, io1, st1, sc1, or standard.
 	//
 	// Default: standard
 	VolumeType *string `locationName:"volumeType" type:"string" enum:"VolumeType"`
@@ -16246,6 +16490,8 @@ func (s EbsInstanceBlockDevice) GoString() string {
 	return s.String()
 }
 
+// Describes information used to set up an EBS volume specified in a block device
+// mapping.
 type EbsInstanceBlockDeviceSpecification struct {
 	_ struct{} `type:"structure"`
 
@@ -16266,6 +16512,7 @@ func (s EbsInstanceBlockDeviceSpecification) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for EnableVgwRoutePropagation.
 type EnableVgwRoutePropagationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16300,6 +16547,7 @@ func (s EnableVgwRoutePropagationOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for EnableVolumeIO.
 type EnableVolumeIOInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16337,6 +16585,7 @@ func (s EnableVolumeIOOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for EnableVpcClassicLinkDnsSupport.
 type EnableVpcClassicLinkDnsSupportInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16354,6 +16603,7 @@ func (s EnableVpcClassicLinkDnsSupportInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of EnableVpcClassicLinkDnsSupport.
 type EnableVpcClassicLinkDnsSupportOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -16371,6 +16621,7 @@ func (s EnableVpcClassicLinkDnsSupportOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for EnableVpcClassicLink.
 type EnableVpcClassicLinkInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16394,6 +16645,7 @@ func (s EnableVpcClassicLinkInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of EnableVpcClassicLink.
 type EnableVpcClassicLinkOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -16649,6 +16901,7 @@ func (s FlowLog) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for GetConsoleOutput.
 type GetConsoleOutputInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16672,6 +16925,7 @@ func (s GetConsoleOutputInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of GetConsoleOutput.
 type GetConsoleOutputOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -16696,6 +16950,7 @@ func (s GetConsoleOutputOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for GetPasswordData.
 type GetPasswordDataInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16719,6 +16974,7 @@ func (s GetPasswordDataInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of GetPasswordData.
 type GetPasswordDataOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -16839,13 +17095,14 @@ func (s Host) GoString() string {
 	return s.String()
 }
 
+// Describes an instance running on a Dedicated host.
 type HostInstance struct {
 	_ struct{} `type:"structure"`
 
 	// the IDs of instances that are running on the Dedicated host.
 	InstanceId *string `locationName:"instanceId" type:"string"`
 
-	// The instance type size (e.g., m3.medium) of the running instance.
+	// The instance type size (for example, m3.medium) of the running instance.
 	InstanceType *string `locationName:"instanceType" type:"string"`
 }
 
@@ -16859,13 +17116,14 @@ func (s HostInstance) GoString() string {
 	return s.String()
 }
 
+// Describes properties of a Dedicated host.
 type HostProperties struct {
 	_ struct{} `type:"structure"`
 
 	// The number of cores on the Dedicated host.
 	Cores *int64 `locationName:"cores" type:"integer"`
 
-	// The instance type size that the Dedicated host supports (e.g., m3.medium).
+	// The instance type size that the Dedicated host supports (for example, m3.medium).
 	InstanceType *string `locationName:"instanceType" type:"string"`
 
 	// The number of sockets on the Dedicated host.
@@ -17101,6 +17359,7 @@ func (s ImageDiskContainer) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for ImportImage.
 type ImportImageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -17161,6 +17420,7 @@ func (s ImportImageInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output for ImportImage.
 type ImportImageOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -17260,6 +17520,7 @@ func (s ImportImageTask) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for ImportInstance.
 type ImportInstanceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -17343,6 +17604,7 @@ func (s ImportInstanceLaunchSpecification) GoString() string {
 	return s.String()
 }
 
+// Contains the output for ImportInstance.
 type ImportInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -17423,6 +17685,7 @@ func (s ImportInstanceVolumeDetailItem) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for ImportKeyPair.
 type ImportKeyPairInput struct {
 	_ struct{} `type:"structure"`
 
@@ -17435,8 +17698,8 @@ type ImportKeyPairInput struct {
 	// A unique name for the key pair.
 	KeyName *string `locationName:"keyName" type:"string" required:"true"`
 
-	// The public key. You must base64 encode the public key material before sending
-	// it to AWS.
+	// The public key. For API calls, the text must be base64-encoded. For command
+	// line tools, base64 encoding is performed for you.
 	//
 	// PublicKeyMaterial is automatically base64 encoded/decoded by the SDK.
 	PublicKeyMaterial []byte `locationName:"publicKeyMaterial" type:"blob" required:"true"`
@@ -17452,6 +17715,7 @@ func (s ImportKeyPairInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of ImportKeyPair.
 type ImportKeyPairOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -17472,6 +17736,7 @@ func (s ImportKeyPairOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for ImportSnapshot.
 type ImportSnapshotInput struct {
 	_ struct{} `type:"structure"`
 
@@ -17507,6 +17772,7 @@ func (s ImportSnapshotInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output for ImportSnapshot.
 type ImportSnapshotOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -17554,6 +17820,7 @@ func (s ImportSnapshotTask) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for ImportVolume.
 type ImportVolumeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -17586,6 +17853,7 @@ func (s ImportVolumeInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output for ImportVolume.
 type ImportVolumeOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -18120,17 +18388,17 @@ type InstanceState struct {
 	// The low byte represents the state. The high byte is an opaque internal value
 	// and should be ignored.
 	//
-	//  0 : pending
+	//   0 : pending
 	//
-	// 16 : running
+	//   16 : running
 	//
-	// 32 : shutting-down
+	//   32 : shutting-down
 	//
-	// 48 : terminated
+	//   48 : terminated
 	//
-	// 64 : stopping
+	//   64 : stopping
 	//
-	// 80 : stopped
+	//   80 : stopped
 	Code *int64 `locationName:"code" type:"integer"`
 
 	// The current state of the instance.
@@ -18466,6 +18734,9 @@ type LaunchSpecification struct {
 	AddressingType *string `locationName:"addressingType" type:"string"`
 
 	// One or more block device mapping entries.
+	//
+	// Although you can specify encrypted EBS volumes in this block device mapping
+	// for your Spot Instances, these volumes are not encrypted.
 	BlockDeviceMappings []*BlockDeviceMapping `locationName:"blockDeviceMapping" locationNameList:"item" type:"list"`
 
 	// Indicates whether the instance is optimized for EBS I/O. This optimization
@@ -18526,6 +18797,7 @@ func (s LaunchSpecification) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for ModifyHosts.
 type ModifyHostsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -18546,6 +18818,7 @@ func (s ModifyHostsInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of ModifyHosts.
 type ModifyHostsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -18567,6 +18840,7 @@ func (s ModifyHostsOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters of ModifyIdFormat.
 type ModifyIdFormatInput struct {
 	_ struct{} `type:"structure"`
 
@@ -18601,6 +18875,7 @@ func (s ModifyIdFormatOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for ModifyImageAttribute.
 type ModifyImageAttributeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -18666,6 +18941,7 @@ func (s ModifyImageAttributeOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for ModifyInstanceAttribute.
 type ModifyInstanceAttributeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -18741,7 +19017,8 @@ type ModifyInstanceAttributeInput struct {
 	// with a PV instance can make it unreachable.
 	SriovNetSupport *AttributeValue `locationName:"sriovNetSupport" type:"structure"`
 
-	// Changes the instance's user data to the specified value.
+	// Changes the instance's user data to the specified base64-encoded value. For
+	// command line tools, base64 encoding is performed for you.
 	UserData *BlobAttributeValue `locationName:"userData" type:"structure"`
 
 	// A new value for the attribute. Use only with the kernel, ramdisk, userData,
@@ -18773,6 +19050,7 @@ func (s ModifyInstanceAttributeOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for ModifyInstancePlacement.
 type ModifyInstancePlacementInput struct {
 	_ struct{} `type:"structure"`
 
@@ -18799,6 +19077,7 @@ func (s ModifyInstancePlacementInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of ModifyInstancePlacement.
 type ModifyInstancePlacementOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -18816,6 +19095,7 @@ func (s ModifyInstancePlacementOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for ModifyNetworkInterfaceAttribute.
 type ModifyNetworkInterfaceAttributeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -18873,6 +19153,7 @@ func (s ModifyNetworkInterfaceAttributeOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for ModifyReservedInstances.
 type ModifyReservedInstancesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -18897,6 +19178,7 @@ func (s ModifyReservedInstancesInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of ModifyReservedInstances.
 type ModifyReservedInstancesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -18914,6 +19196,7 @@ func (s ModifyReservedInstancesOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for ModifySnapshotAttribute.
 type ModifySnapshotAttributeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -19012,6 +19295,7 @@ func (s ModifySpotFleetRequestOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for ModifySubnetAttribute.
 type ModifySubnetAttributeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -19047,6 +19331,7 @@ func (s ModifySubnetAttributeOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for ModifyVolumeAttribute.
 type ModifyVolumeAttributeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -19087,6 +19372,7 @@ func (s ModifyVolumeAttributeOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for ModifyVpcAttribute.
 type ModifyVpcAttributeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -19136,6 +19422,7 @@ func (s ModifyVpcAttributeOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for ModifyVpcEndpoint.
 type ModifyVpcEndpointInput struct {
 	_ struct{} `type:"structure"`
 
@@ -19173,6 +19460,7 @@ func (s ModifyVpcEndpointInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of ModifyVpcEndpoint.
 type ModifyVpcEndpointOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -19190,6 +19478,7 @@ func (s ModifyVpcEndpointOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for MonitorInstances.
 type MonitorInstancesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -19213,6 +19502,7 @@ func (s MonitorInstancesInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of MonitorInstances.
 type MonitorInstancesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -19248,6 +19538,7 @@ func (s Monitoring) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for MoveAddressToVpc.
 type MoveAddressToVpcInput struct {
 	_ struct{} `type:"structure"`
 
@@ -19271,6 +19562,7 @@ func (s MoveAddressToVpcInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of MoveAddressToVpc.
 type MoveAddressToVpcOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -19331,15 +19623,22 @@ type NatGateway struct {
 	// If the NAT gateway could not be created, specifies the error message for
 	// the failure, that corresponds to the error code.
 	//
-	//  For InsufficientFreeAddressesInSubnet: Subnet has insufficient free addresses
-	// to create this NAT gateway For Gateway.NotAttached: Network vpc-xxxxxxxx
-	// has no Internet gateway attached For InvalidAllocationID.NotFound: Elastic
-	// IP address eipalloc-xxxxxxxx could not be associated with this NAT gateway
-	// For Resource.AlreadyAssociated: Elastic IP address eipalloc-xxxxxxxx is already
-	// associated For InternalError: Network interface eni-xxxxxxxx, created and
-	// used internally by this NAT gateway is in an invalid state. Please try again.
-	// For InvalidSubnetID.NotFound: The specified subnet subnet-xxxxxxxx does not
-	// exist or could not be found.
+	//  For InsufficientFreeAddressesInSubnet: "Subnet has insufficient free addresses
+	// to create this NAT gateway"
+	//
+	// For Gateway.NotAttached: "Network vpc-xxxxxxxx has no Internet gateway attached"
+	//
+	// For InvalidAllocationID.NotFound: "Elastic IP address eipalloc-xxxxxxxx
+	// could not be associated with this NAT gateway"
+	//
+	// For Resource.AlreadyAssociated: "Elastic IP address eipalloc-xxxxxxxx is
+	// already associated"
+	//
+	// For InternalError: "Network interface eni-xxxxxxxx, created and used internally
+	// by this NAT gateway is in an invalid state. Please try again."
+	//
+	// For InvalidSubnetID.NotFound: "The specified subnet subnet-xxxxxxxx does
+	// not exist or could not be found."
 	FailureMessage *string `locationName:"failureMessage" type:"string"`
 
 	// Information about the IP addresses and network interface associated with
@@ -19988,6 +20287,7 @@ func (s PurchaseRequest) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for PurchaseReservedInstancesOffering.
 type PurchaseReservedInstancesOfferingInput struct {
 	_ struct{} `type:"structure"`
 
@@ -20019,6 +20319,7 @@ func (s PurchaseReservedInstancesOfferingInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of PurchaseReservedInstancesOffering.
 type PurchaseReservedInstancesOfferingOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -20082,6 +20383,7 @@ func (s PurchaseScheduledInstancesOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for RebootInstances.
 type RebootInstancesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -20161,6 +20463,7 @@ func (s Region) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for RegisterImage.
 type RegisterImageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -20226,6 +20529,7 @@ func (s RegisterImageInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of RegisterImage.
 type RegisterImageOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -20243,6 +20547,7 @@ func (s RegisterImageOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for RejectVpcPeeringConnection.
 type RejectVpcPeeringConnectionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -20266,6 +20571,7 @@ func (s RejectVpcPeeringConnectionInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of RejectVpcPeeringConnection.
 type RejectVpcPeeringConnectionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -20283,6 +20589,7 @@ func (s RejectVpcPeeringConnectionOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for ReleaseAddress.
 type ReleaseAddressInput struct {
 	_ struct{} `type:"structure"`
 
@@ -20323,6 +20630,7 @@ func (s ReleaseAddressOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for ReleaseHosts.
 type ReleaseHostsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -20340,6 +20648,7 @@ func (s ReleaseHostsInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of ReleaseHosts.
 type ReleaseHostsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -20361,6 +20670,7 @@ func (s ReleaseHostsOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for ReplaceNetworkAclAssociation.
 type ReplaceNetworkAclAssociationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -20388,6 +20698,7 @@ func (s ReplaceNetworkAclAssociationInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of ReplaceNetworkAclAssociation.
 type ReplaceNetworkAclAssociationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -20405,6 +20716,7 @@ func (s ReplaceNetworkAclAssociationOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for ReplaceNetworkAclEntry.
 type ReplaceNetworkAclEntryInput struct {
 	_ struct{} `type:"structure"`
 
@@ -20467,6 +20779,7 @@ func (s ReplaceNetworkAclEntryOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for ReplaceRoute.
 type ReplaceRouteInput struct {
 	_ struct{} `type:"structure"`
 
@@ -20523,6 +20836,7 @@ func (s ReplaceRouteOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for ReplaceRouteTableAssociation.
 type ReplaceRouteTableAssociationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -20549,6 +20863,7 @@ func (s ReplaceRouteTableAssociationInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of ReplaceRouteTableAssociation.
 type ReplaceRouteTableAssociationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -20566,6 +20881,7 @@ func (s ReplaceRouteTableAssociationOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for ReportInstanceStatus.
 type ReportInstanceStatusInput struct {
 	_ struct{} `type:"structure"`
 
@@ -20586,26 +20902,26 @@ type ReportInstanceStatusInput struct {
 
 	// One or more reason codes that describes the health state of your instance.
 	//
-	//  instance-stuck-in-state: My instance is stuck in a state.
+	//   instance-stuck-in-state: My instance is stuck in a state.
 	//
-	// unresponsive: My instance is unresponsive.
+	//   unresponsive: My instance is unresponsive.
 	//
-	// not-accepting-credentials: My instance is not accepting my credentials.
+	//   not-accepting-credentials: My instance is not accepting my credentials.
 	//
-	// password-not-available: A password is not available for my instance.
+	//   password-not-available: A password is not available for my instance.
 	//
-	// performance-network: My instance is experiencing performance problems which
-	// I believe are network related.
+	//   performance-network: My instance is experiencing performance problems
+	// which I believe are network related.
 	//
-	// performance-instance-store: My instance is experiencing performance problems
+	//   performance-instance-store: My instance is experiencing performance problems
 	// which I believe are related to the instance stores.
 	//
-	// performance-ebs-volume: My instance is experiencing performance problems
+	//   performance-ebs-volume: My instance is experiencing performance problems
 	// which I believe are related to an EBS volume.
 	//
-	// performance-other: My instance is experiencing performance problems.
+	//   performance-other: My instance is experiencing performance problems.
 	//
-	// other: [explain using the description parameter]
+	//   other: [explain using the description parameter]
 	ReasonCodes []*string `locationName:"reasonCode" locationNameList:"item" type:"list" required:"true"`
 
 	// The time at which the reported instance health state began.
@@ -20807,6 +21123,9 @@ type RequestSpotLaunchSpecification struct {
 	AddressingType *string `locationName:"addressingType" type:"string"`
 
 	// One or more block device mapping entries.
+	//
+	// Although you can specify encrypted EBS volumes in this block device mapping
+	// for your Spot Instances, these volumes are not encrypted.
 	BlockDeviceMappings []*BlockDeviceMapping `locationName:"blockDeviceMapping" locationNameList:"item" type:"list"`
 
 	// Indicates whether the instance is optimized for EBS I/O. This optimization
@@ -21121,6 +21440,7 @@ func (s ReservedInstancesModification) GoString() string {
 	return s.String()
 }
 
+// Describes the modification request/s.
 type ReservedInstancesModificationResult struct {
 	_ struct{} `type:"structure"`
 
@@ -21201,6 +21521,7 @@ func (s ReservedInstancesOffering) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for ResetImageAttribute.
 type ResetImageAttributeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -21242,6 +21563,7 @@ func (s ResetImageAttributeOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for ResetInstanceAttribute.
 type ResetInstanceAttributeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -21282,6 +21604,7 @@ func (s ResetInstanceAttributeOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for ResetNetworkInterfaceAttribute.
 type ResetNetworkInterfaceAttributeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -21322,6 +21645,7 @@ func (s ResetNetworkInterfaceAttributeOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for ResetSnapshotAttribute.
 type ResetSnapshotAttributeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -21363,6 +21687,7 @@ func (s ResetSnapshotAttributeOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for RestoreAddressToClassic.
 type RestoreAddressToClassicInput struct {
 	_ struct{} `type:"structure"`
 
@@ -21386,6 +21711,7 @@ func (s RestoreAddressToClassicInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of RestoreAddressToClassic.
 type RestoreAddressToClassicOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -21406,6 +21732,7 @@ func (s RestoreAddressToClassicOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for RevokeSecurityGroupEgress.
 type RevokeSecurityGroupEgressInput struct {
 	_ struct{} `type:"structure"`
 
@@ -21473,6 +21800,7 @@ func (s RevokeSecurityGroupEgressOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for RevokeSecurityGroupIngress.
 type RevokeSecurityGroupIngressInput struct {
 	_ struct{} `type:"structure"`
 
@@ -21509,15 +21837,16 @@ type RevokeSecurityGroupIngressInput struct {
 	// specify this parameter in combination with the following parameters: the
 	// CIDR IP address range, the start of the port range, the IP protocol, and
 	// the end of the port range. For EC2-VPC, the source security group must be
-	// in the same VPC.
+	// in the same VPC. To revoke a specific rule for an IP protocol and port range,
+	// use a set of IP permissions instead.
 	SourceSecurityGroupName *string `type:"string"`
 
-	// [EC2-Classic, default VPC] The AWS account ID of the source security group.
-	// For EC2-VPC, the source security group must be in the same VPC. You can't
-	// specify this parameter in combination with the following parameters: the
-	// CIDR IP address range, the IP protocol, the start of the port range, and
-	// the end of the port range. To revoke a specific rule for an IP protocol and
-	// port range, use a set of IP permissions instead.
+	// [EC2-Classic] The AWS account ID of the source security group, if the source
+	// security group is in a different account. You can't specify this parameter
+	// in combination with the following parameters: the CIDR IP address range,
+	// the IP protocol, the start of the port range, and the end of the port range.
+	// To revoke a specific rule for an IP protocol and port range, use a set of
+	// IP permissions instead.
 	SourceSecurityGroupOwnerId *string `type:"string"`
 
 	// The end of port range for the TCP and UDP protocols, or an ICMP code number.
@@ -21576,10 +21905,12 @@ type Route struct {
 
 	// Describes how the route was created.
 	//
-	//  CreateRouteTable indicates that route was automatically created when the
-	// route table was created. CreateRoute indicates that the route was manually
-	// added to the route table. EnableVgwRoutePropagation indicates that the route
-	// was propagated by route propagation.
+	//  CreateRouteTable - The route was automatically created when the route table
+	// was created.
+	//
+	// CreateRoute - The route was manually added to the route table.
+	//
+	// EnableVgwRoutePropagation - The route was propagated by route propagation.
 	Origin *string `locationName:"origin" type:"string" enum:"RouteOrigin"`
 
 	// The state of the route. The blackhole state indicates that the route's target
@@ -21661,6 +21992,7 @@ func (s RouteTableAssociation) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for RunInstances.
 type RunInstancesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -21904,8 +22236,9 @@ type S3Storage struct {
 	// The beginning of the file name of the AMI.
 	Prefix *string `locationName:"prefix" type:"string"`
 
-	// A Base64-encoded Amazon S3 upload policy that gives Amazon EC2 permission
-	// to upload items into Amazon S3 on your behalf.
+	// A base64-encoded Amazon S3 upload policy that gives Amazon EC2 permission
+	// to upload items into Amazon S3 on your behalf. For command line tools, base64
+	// encoding is performed for you.
 	//
 	// UploadPolicy is automatically base64 encoded/decoded by the SDK.
 	UploadPolicy []byte `locationName:"uploadPolicy" type:"blob"`
@@ -22160,19 +22493,18 @@ type ScheduledInstancesEbs struct {
 	Encrypted *bool `type:"boolean"`
 
 	// The number of I/O operations per second (IOPS) that the volume supports.
-	// For Provisioned IOPS (SSD) volumes, this represents the number of IOPS that
-	// are provisioned for the volume. For General Purpose (SSD) volumes, this represents
-	// the baseline performance of the volume and the rate at which the volume accumulates
-	// I/O credits for bursting. For more information about General Purpose (SSD)
-	// baseline performance, I/O credits, and bursting, see Amazon EBS Volume Types
-	// (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)
+	// For io1 volumes, this represents the number of IOPS that are provisioned
+	// for the volume. For gp2 volumes, this represents the baseline performance
+	// of the volume and the rate at which the volume accumulates I/O credits for
+	// bursting. For more information about gp2 baseline performance, I/O credits,
+	// and bursting, see Amazon EBS Volume Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
 	//
-	// Constraint: Range is 100 to 20000 for Provisioned IOPS (SSD) volumes and
-	// 3 to 10000 for General Purpose (SSD) volumes.
+	// Constraint: Range is 100-20000 IOPS for io1 volumes and 100-10000 IOPS for
+	// gp2 volumes.
 	//
-	// Condition: This parameter is required for requests to create io1 volumes;
-	// it is not used in requests to create standard or gp2 volumes.
+	// Condition: This parameter is required for requests to create io1volumes;
+	// it is not used in requests to create gp2, st1, sc1, or standard volumes.
 	Iops *int64 `type:"integer"`
 
 	// The ID of the snapshot.
@@ -22184,8 +22516,8 @@ type ScheduledInstancesEbs struct {
 	// a volume size, the default is the snapshot size.
 	VolumeSize *int64 `type:"integer"`
 
-	// The volume type. gp2 for General Purpose (SSD) volumes, io1 for Provisioned
-	// IOPS (SSD) volumes, and standard for Magnetic volumes.
+	// The volume type. gp2 for General Purpose SSD, io1 for Provisioned IOPS SSD,
+	// Throughput Optimized HDD for st1, Cold HDD for sc1, or standard for Magnetic.
 	//
 	// Default: standard
 	VolumeType *string `type:"string"`
@@ -22584,7 +22916,7 @@ type SnapshotDetail struct {
 	// The URL used to access the disk image.
 	Url *string `locationName:"url" type:"string"`
 
-	// Describes the S3 bucket for the disk image.
+	// The S3 bucket for the disk image.
 	UserBucket *UserBucketDetails `locationName:"userBucket" type:"structure"`
 }
 
@@ -22614,7 +22946,7 @@ type SnapshotDiskContainer struct {
 	// a https URL (https://..) or an Amazon S3 URL (s3://..).
 	Url *string `type:"string"`
 
-	// Describes the S3 bucket for the disk image.
+	// The S3 bucket for the disk image.
 	UserBucket *UserBucket `type:"structure"`
 }
 
@@ -23074,6 +23406,7 @@ func (s SpotPrice) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for StartInstances.
 type StartInstancesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -23100,6 +23433,7 @@ func (s StartInstancesInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of StartInstances.
 type StartInstancesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -23126,28 +23460,29 @@ type StateReason struct {
 
 	// The message for the state change.
 	//
-	//  Server.SpotInstanceTermination: A Spot instance was terminated due to an
-	// increase in the market price.
+	//   Server.SpotInstanceTermination: A Spot instance was terminated due to
+	// an increase in the market price.
 	//
-	// Server.InternalError: An internal error occurred during instance launch,
+	//   Server.InternalError: An internal error occurred during instance launch,
 	// resulting in termination.
 	//
-	// Server.InsufficientInstanceCapacity: There was insufficient instance capacity
+	//   Server.InsufficientInstanceCapacity: There was insufficient instance capacity
 	// to satisfy the launch request.
 	//
-	// Client.InternalError: A client error caused the instance to terminate on
-	// launch.
+	//   Client.InternalError: A client error caused the instance to terminate
+	// on launch.
 	//
-	// Client.InstanceInitiatedShutdown: The instance was shut down using the shutdown
-	// -h command from the instance.
+	//   Client.InstanceInitiatedShutdown: The instance was shut down using the
+	// shutdown -h command from the instance.
 	//
-	// Client.UserInitiatedShutdown: The instance was shut down using the Amazon
+	//   Client.UserInitiatedShutdown: The instance was shut down using the Amazon
 	// EC2 API.
 	//
-	// Client.VolumeLimitExceeded: The limit on the number of EBS volumes or total
-	// storage was exceeded. Decrease usage or request an increase in your limits.
+	//   Client.VolumeLimitExceeded: The limit on the number of EBS volumes or
+	// total storage was exceeded. Decrease usage or request an increase in your
+	// limits.
 	//
-	// Client.InvalidSnapshot.NotFound: The specified snapshot was not found.
+	//   Client.InvalidSnapshot.NotFound: The specified snapshot was not found.
 	Message *string `locationName:"message" type:"string"`
 }
 
@@ -23161,6 +23496,7 @@ func (s StateReason) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for StopInstances.
 type StopInstancesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -23192,6 +23528,7 @@ func (s StopInstancesInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of StopInstances.
 type StopInstancesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -23324,6 +23661,7 @@ func (s TagDescription) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for TerminateInstances.
 type TerminateInstancesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -23347,6 +23685,7 @@ func (s TerminateInstancesInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of TerminateInstances.
 type TerminateInstancesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -23364,6 +23703,7 @@ func (s TerminateInstancesOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for UnassignPrivateIpAddresses.
 type UnassignPrivateIpAddressesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -23399,6 +23739,7 @@ func (s UnassignPrivateIpAddressesOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for UnmonitorInstances.
 type UnmonitorInstancesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -23422,6 +23763,7 @@ func (s UnmonitorInstancesInput) GoString() string {
 	return s.String()
 }
 
+// Contains the output of UnmonitorInstances.
 type UnmonitorInstancesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -23551,13 +23893,16 @@ type UserIdGroupPair struct {
 
 	// The name of the security group. In a request, use this parameter for a security
 	// group in EC2-Classic or a default VPC only. For a security group in a nondefault
-	// VPC, use GroupId.
+	// VPC, use the security group ID.
 	GroupName *string `locationName:"groupName" type:"string"`
 
 	// The status of a VPC peering connection, if applicable.
 	PeeringStatus *string `locationName:"peeringStatus" type:"string"`
 
 	// The ID of an AWS account.
+	//
+	// [EC2-Classic] Required when adding or removing rules that reference a security
+	// group in another AWS account.
 	UserId *string `locationName:"userId" type:"string"`
 
 	// The ID of the VPC for the referenced security group, if applicable.
@@ -23625,18 +23970,18 @@ type Volume struct {
 	Encrypted *bool `locationName:"encrypted" type:"boolean"`
 
 	// The number of I/O operations per second (IOPS) that the volume supports.
-	// For Provisioned IOPS (SSD) volumes, this represents the number of IOPS that
-	// are provisioned for the volume. For General Purpose (SSD) volumes, this represents
+	// For Provisioned IOPS SSD volumes, this represents the number of IOPS that
+	// are provisioned for the volume. For General Purpose SSD volumes, this represents
 	// the baseline performance of the volume and the rate at which the volume accumulates
-	// I/O credits for bursting. For more information on General Purpose (SSD) baseline
+	// I/O credits for bursting. For more information on General Purpose SSD baseline
 	// performance, I/O credits, and bursting, see Amazon EBS Volume Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
 	//
-	// Constraint: Range is 100 to 20000 for Provisioned IOPS (SSD) volumes and
-	// 3 to 10000 for General Purpose (SSD) volumes.
+	// Constraint: Range is 100-20000 IOPS for io1 volumes and 100-10000 IOPS for
+	// gp2 volumes.
 	//
 	// Condition: This parameter is required for requests to create io1 volumes;
-	// it is not used in requests to create standard or gp2 volumes.
+	// it is not used in requests to create gp2, st1, sc1, or standard volumes.
 	Iops *int64 `locationName:"iops" type:"integer"`
 
 	// The full ARN of the AWS Key Management Service (AWS KMS) customer master
@@ -23658,8 +24003,9 @@ type Volume struct {
 	// The ID of the volume.
 	VolumeId *string `locationName:"volumeId" type:"string"`
 
-	// The volume type. This can be gp2 for General Purpose (SSD) volumes, io1 for
-	// Provisioned IOPS (SSD) volumes, or standard for Magnetic volumes.
+	// The volume type. This can be gp2 for General Purpose SSD, io1 for Provisioned
+	// IOPS SSD, st1 for Throughput Optimized HDD, sc1 for Cold HDD, or standard
+	// for Magnetic volumes.
 	VolumeType *string `locationName:"volumeType" type:"string" enum:"VolumeType"`
 }
 
@@ -25100,6 +25446,10 @@ const (
 	VolumeTypeIo1 = "io1"
 	// @enum VolumeType
 	VolumeTypeGp2 = "gp2"
+	// @enum VolumeType
+	VolumeTypeSc1 = "sc1"
+	// @enum VolumeType
+	VolumeTypeSt1 = "st1"
 )
 
 const (

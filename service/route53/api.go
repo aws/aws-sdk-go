@@ -1809,6 +1809,28 @@ func (c *Route53) UpdateTrafficPolicyInstance(input *UpdateTrafficPolicyInstance
 	return out, err
 }
 
+// A complex type that contains information to uniquely identify the CloudWatch
+// alarm that you're associating with a Route 53 health check.
+type AlarmIdentifier struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the CloudWatch alarm.
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The CloudWatchRegion that the CloudWatch alarm was created in.
+	Region *string `min:"1" type:"string" required:"true" enum:"CloudWatchRegion"`
+}
+
+// String returns the string representation
+func (s AlarmIdentifier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AlarmIdentifier) GoString() string {
+	return s.String()
+}
+
 // Alias resource record sets only: Information about the CloudFront distribution,
 // ELB load balancer, Amazon S3 bucket, or Amazon Route 53 resource record set
 // to which you are routing traffic.
@@ -2223,6 +2245,62 @@ func (s ChangeTagsForResourceOutput) String() string {
 
 // GoString returns the string representation
 func (s ChangeTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// For CLOUDWATCH_METRIC health checks, a complex type that contains information
+// about the CloudWatch alarm that you're associating with the health check.
+type CloudWatchAlarmConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The arithmetic operation to use when comparing the specified Statistic and
+	// Threshold.
+	//
+	// Valid Values are GreaterThanOrEqualToThreshold, GreaterThanThreshold, LessThanThreshold
+	// and LessThanOrEqualToThreshold
+	ComparisonOperator *string `type:"string" required:"true" enum:"ComparisonOperator"`
+
+	// A list of Dimension elements for the CloudWatch metric that is associated
+	// with the CloudWatch alarm. For information about the metrics and dimensions
+	// that CloudWatch supports, see Amazon CloudWatch Namespaces, Dimensions, and
+	// Metrics Reference (http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html).
+	Dimensions []*Dimension `locationNameList:"Dimension" type:"list"`
+
+	// The number of periods over which data is compared to the specified threshold.
+	EvaluationPeriods *int64 `min:"1" type:"integer" required:"true"`
+
+	// The name of the CloudWatch metric that is associated with the CloudWatch
+	// alarm.
+	MetricName *string `min:"1" type:"string" required:"true"`
+
+	// The namespace of the CloudWatch metric that is associated with the CloudWatch
+	// alarm.
+	Namespace *string `min:"1" type:"string" required:"true"`
+
+	// An integer that represents the period in seconds over which the statistic
+	// is applied.
+	Period *int64 `min:"60" type:"integer" required:"true"`
+
+	// The statistic to apply to the CloudWatch metric that is associated with the
+	// CloudWatch alarm.
+	//
+	// Valid Values are SampleCount, Average, Sum, Minimum and Maximum
+	Statistic *string `type:"string" required:"true" enum:"Statistic"`
+
+	// The value that the metric is compared with to determine the state of the
+	// alarm. For example, if you want the health check to fail if the average TCP
+	// connection time is greater than 500 milliseconds for more than 60 seconds,
+	// the threshold is 500.
+	Threshold *float64 `type:"double" required:"true"`
+}
+
+// String returns the string representation
+func (s CloudWatchAlarmConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CloudWatchAlarmConfiguration) GoString() string {
 	return s.String()
 }
 
@@ -2757,6 +2835,27 @@ func (s DeleteTrafficPolicyOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteTrafficPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// The name and value of a dimension for a CloudWatch metric.
+type Dimension struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the dimension.
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The value of the dimension.
+	Value *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s Dimension) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Dimension) GoString() string {
 	return s.String()
 }
 
@@ -3505,6 +3604,10 @@ type HealthCheck struct {
 	// A unique string that identifies the request to create the health check.
 	CallerReference *string `min:"1" type:"string" required:"true"`
 
+	// For CLOUDWATCH_METRIC health checks, a complex type that contains information
+	// about the CloudWatch alarm that you're associating with the health check.
+	CloudWatchAlarmConfiguration *CloudWatchAlarmConfiguration `type:"structure"`
+
 	// A complex type that contains the health check configuration.
 	HealthCheckConfig *HealthCheckConfig `type:"structure" required:"true"`
 
@@ -3530,6 +3633,10 @@ func (s HealthCheck) GoString() string {
 // A complex type that contains the health check configuration.
 type HealthCheckConfig struct {
 	_ struct{} `type:"structure"`
+
+	// A complex type that contains information to uniquely identify the CloudWatch
+	// alarm that you're associating with a Route 53 health check.
+	AlarmIdentifier *AlarmIdentifier `type:"structure"`
 
 	// For a specified parent health check, a list of HealthCheckId values for the
 	// associated child health checks.
@@ -3562,6 +3669,10 @@ type HealthCheckConfig struct {
 	// IP Address of the instance being checked.
 	IPAddress *string `type:"string"`
 
+	// The status of the health check when CloudWatch has insufficient data about
+	// the state of associated alarm. Valid values are Healthy, Unhealthy and LastKnownStatus.
+	InsufficientDataHealthStatus *string `type:"string" enum:"InsufficientDataHealthStatus"`
+
 	// A boolean value that indicates whether the status of health check should
 	// be inverted. For example, if a health check is healthy but Inverted is True,
 	// then Amazon Route 53 considers the health check to be unhealthy.
@@ -3576,6 +3687,11 @@ type HealthCheckConfig struct {
 	// For HTTP and HTTP_STR_MATCH this defaults to 80 if the port is not specified.
 	// For HTTPS and HTTPS_STR_MATCH this defaults to 443 if the port is not specified.
 	Port *int64 `min:"1" type:"integer"`
+
+	// A list of HealthCheckRegion values that you want Amazon Route 53 to use to
+	// perform health checks for the specified endpoint. You must specify at least
+	// three regions.
+	Regions []*string `locationNameList:"Region" min:"1" type:"list"`
 
 	// The number of seconds between the time that Amazon Route 53 gets a response
 	// from your endpoint and the time that it sends the next health-check request.
@@ -3595,7 +3711,7 @@ type HealthCheckConfig struct {
 	SearchString *string `type:"string"`
 
 	// The type of health check to be performed. Currently supported types are TCP,
-	// HTTP, HTTPS, HTTP_STR_MATCH, and HTTPS_STR_MATCH.
+	// HTTP, HTTPS, HTTP_STR_MATCH, HTTPS_STR_MATCH, CALCULATED and CLOUDWATCH_METRIC.
 	Type *string `type:"string" required:"true" enum:"HealthCheckType"`
 }
 
@@ -3614,9 +3730,13 @@ func (s HealthCheckConfig) GoString() string {
 type HealthCheckObservation struct {
 	_ struct{} `type:"structure"`
 
-	// The IP address of the Amazon Route 53 health checker that performed the health
-	// check.
+	// The IP address of the Amazon Route 53 health checker that performed this
+	// health check.
 	IPAddress *string `type:"string"`
+
+	// The HealthCheckRegion of the Amazon Route 53 health checker that performed
+	// this health check.
+	Region *string `min:"1" type:"string" enum:"HealthCheckRegion"`
 
 	// A complex type that contains information about the health check status for
 	// the current observation.
@@ -5305,6 +5425,10 @@ func (s TrafficPolicySummary) GoString() string {
 type UpdateHealthCheckInput struct {
 	_ struct{} `locationName:"UpdateHealthCheckRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 
+	// A complex type that contains information to uniquely identify the CloudWatch
+	// alarm that you're associating with a Route 53 health check.
+	AlarmIdentifier *AlarmIdentifier `type:"structure"`
+
 	// For a specified parent health check, a list of HealthCheckId values for the
 	// associated child health checks.
 	//
@@ -5357,6 +5481,8 @@ type UpdateHealthCheckInput struct {
 	// Specify this value only if you want to change it.
 	IPAddress *string `type:"string"`
 
+	InsufficientDataHealthStatus *string `type:"string" enum:"InsufficientDataHealthStatus"`
+
 	// A boolean value that indicates whether the status of health check should
 	// be inverted. For example, if a health check is healthy but Inverted is True,
 	// then Amazon Route 53 considers the health check to be unhealthy.
@@ -5369,6 +5495,15 @@ type UpdateHealthCheckInput struct {
 	//
 	// Specify this value only if you want to change it.
 	Port *int64 `min:"1" type:"integer"`
+
+	// A list of HealthCheckRegion values that specify the Amazon EC2 regions that
+	// you want Amazon Route 53 to use to perform health checks. You must specify
+	// at least three regions.
+	//
+	// When you remove a region from the list, Amazon Route 53 will briefly continue
+	// to check your endpoint from that region. Specify this value only if you want
+	// to change it.
+	Regions []*string `locationNameList:"Region" min:"1" type:"list"`
 
 	// The path that you want Amazon Route 53 to request when performing health
 	// checks. The path can be any value for which your endpoint will return an
@@ -5586,6 +5721,61 @@ const (
 )
 
 const (
+	// @enum CloudWatchRegion
+	CloudWatchRegionUsEast1 = "us-east-1"
+	// @enum CloudWatchRegion
+	CloudWatchRegionUsWest1 = "us-west-1"
+	// @enum CloudWatchRegion
+	CloudWatchRegionUsWest2 = "us-west-2"
+	// @enum CloudWatchRegion
+	CloudWatchRegionEuCentral1 = "eu-central-1"
+	// @enum CloudWatchRegion
+	CloudWatchRegionEuWest1 = "eu-west-1"
+	// @enum CloudWatchRegion
+	CloudWatchRegionApSoutheast1 = "ap-southeast-1"
+	// @enum CloudWatchRegion
+	CloudWatchRegionApSoutheast2 = "ap-southeast-2"
+	// @enum CloudWatchRegion
+	CloudWatchRegionApNortheast1 = "ap-northeast-1"
+	// @enum CloudWatchRegion
+	CloudWatchRegionApNortheast2 = "ap-northeast-2"
+	// @enum CloudWatchRegion
+	CloudWatchRegionSaEast1 = "sa-east-1"
+)
+
+const (
+	// @enum ComparisonOperator
+	ComparisonOperatorGreaterThanOrEqualToThreshold = "GreaterThanOrEqualToThreshold"
+	// @enum ComparisonOperator
+	ComparisonOperatorGreaterThanThreshold = "GreaterThanThreshold"
+	// @enum ComparisonOperator
+	ComparisonOperatorLessThanThreshold = "LessThanThreshold"
+	// @enum ComparisonOperator
+	ComparisonOperatorLessThanOrEqualToThreshold = "LessThanOrEqualToThreshold"
+)
+
+// An Amazon EC2 region that you want Amazon Route 53 to use to perform health
+// checks.
+const (
+	// @enum HealthCheckRegion
+	HealthCheckRegionUsEast1 = "us-east-1"
+	// @enum HealthCheckRegion
+	HealthCheckRegionUsWest1 = "us-west-1"
+	// @enum HealthCheckRegion
+	HealthCheckRegionUsWest2 = "us-west-2"
+	// @enum HealthCheckRegion
+	HealthCheckRegionEuWest1 = "eu-west-1"
+	// @enum HealthCheckRegion
+	HealthCheckRegionApSoutheast1 = "ap-southeast-1"
+	// @enum HealthCheckRegion
+	HealthCheckRegionApSoutheast2 = "ap-southeast-2"
+	// @enum HealthCheckRegion
+	HealthCheckRegionApNortheast1 = "ap-northeast-1"
+	// @enum HealthCheckRegion
+	HealthCheckRegionSaEast1 = "sa-east-1"
+)
+
+const (
 	// @enum HealthCheckType
 	HealthCheckTypeHttp = "HTTP"
 	// @enum HealthCheckType
@@ -5598,6 +5788,17 @@ const (
 	HealthCheckTypeTcp = "TCP"
 	// @enum HealthCheckType
 	HealthCheckTypeCalculated = "CALCULATED"
+	// @enum HealthCheckType
+	HealthCheckTypeCloudwatchMetric = "CLOUDWATCH_METRIC"
+)
+
+const (
+	// @enum InsufficientDataHealthStatus
+	InsufficientDataHealthStatusHealthy = "Healthy"
+	// @enum InsufficientDataHealthStatus
+	InsufficientDataHealthStatusUnhealthy = "Unhealthy"
+	// @enum InsufficientDataHealthStatus
+	InsufficientDataHealthStatusLastKnownStatus = "LastKnownStatus"
 )
 
 const (
@@ -5653,6 +5854,19 @@ const (
 	ResourceRecordSetRegionSaEast1 = "sa-east-1"
 	// @enum ResourceRecordSetRegion
 	ResourceRecordSetRegionCnNorth1 = "cn-north-1"
+)
+
+const (
+	// @enum Statistic
+	StatisticAverage = "Average"
+	// @enum Statistic
+	StatisticSum = "Sum"
+	// @enum Statistic
+	StatisticSampleCount = "SampleCount"
+	// @enum Statistic
+	StatisticMaximum = "Maximum"
+	// @enum Statistic
+	StatisticMinimum = "Minimum"
 )
 
 const (

@@ -331,7 +331,7 @@
         {
           "state": "retry",
           "matcher": "error",
-          "expected": "InvalidNatGatewayIDNotFound"
+          "expected": "NatGatewayNotFound"
         }
       ]
     },
@@ -347,7 +347,7 @@
           "argument": "NetworkInterfaces[].Status"
         },
         {
-          "expected": "InvalidNetworkInterfaceIDNotFound",
+          "expected": "InvalidNetworkInterfaceID.NotFound",
           "matcher": "error",
           "state": "failure"
         }

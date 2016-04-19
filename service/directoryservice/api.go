@@ -97,6 +97,35 @@ func (c *DirectoryService) CreateComputer(input *CreateComputerInput) (*CreateCo
 	return out, err
 }
 
+const opCreateConditionalForwarder = "CreateConditionalForwarder"
+
+// CreateConditionalForwarderRequest generates a request for the CreateConditionalForwarder operation.
+func (c *DirectoryService) CreateConditionalForwarderRequest(input *CreateConditionalForwarderInput) (req *request.Request, output *CreateConditionalForwarderOutput) {
+	op := &request.Operation{
+		Name:       opCreateConditionalForwarder,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateConditionalForwarderInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &CreateConditionalForwarderOutput{}
+	req.Data = output
+	return
+}
+
+// Creates a conditional forwarder associated with your AWS directory. Conditional
+// forwarders are required in order to set up a trust relationship with another
+// domain. The conditional forwarder points to the trusted domain.
+func (c *DirectoryService) CreateConditionalForwarder(input *CreateConditionalForwarderInput) (*CreateConditionalForwarderOutput, error) {
+	req, out := c.CreateConditionalForwarderRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opCreateDirectory = "CreateDirectory"
 
 // CreateDirectoryRequest generates a request for the CreateDirectory operation.
@@ -214,6 +243,33 @@ func (c *DirectoryService) CreateTrust(input *CreateTrustInput) (*CreateTrustOut
 	return out, err
 }
 
+const opDeleteConditionalForwarder = "DeleteConditionalForwarder"
+
+// DeleteConditionalForwarderRequest generates a request for the DeleteConditionalForwarder operation.
+func (c *DirectoryService) DeleteConditionalForwarderRequest(input *DeleteConditionalForwarderInput) (req *request.Request, output *DeleteConditionalForwarderOutput) {
+	op := &request.Operation{
+		Name:       opDeleteConditionalForwarder,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteConditionalForwarderInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DeleteConditionalForwarderOutput{}
+	req.Data = output
+	return
+}
+
+// Deletes a conditional forwarder that has been set up for your AWS directory.
+func (c *DirectoryService) DeleteConditionalForwarder(input *DeleteConditionalForwarderInput) (*DeleteConditionalForwarderOutput, error) {
+	req, out := c.DeleteConditionalForwarderRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opDeleteDirectory = "DeleteDirectory"
 
 // DeleteDirectoryRequest generates a request for the DeleteDirectory operation.
@@ -319,6 +375,36 @@ func (c *DirectoryService) DeregisterEventTopicRequest(input *DeregisterEventTop
 // Removes the specified directory as a publisher to the specified SNS topic.
 func (c *DirectoryService) DeregisterEventTopic(input *DeregisterEventTopicInput) (*DeregisterEventTopicOutput, error) {
 	req, out := c.DeregisterEventTopicRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDescribeConditionalForwarders = "DescribeConditionalForwarders"
+
+// DescribeConditionalForwardersRequest generates a request for the DescribeConditionalForwarders operation.
+func (c *DirectoryService) DescribeConditionalForwardersRequest(input *DescribeConditionalForwardersInput) (req *request.Request, output *DescribeConditionalForwardersOutput) {
+	op := &request.Operation{
+		Name:       opDescribeConditionalForwarders,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeConditionalForwardersInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeConditionalForwardersOutput{}
+	req.Data = output
+	return
+}
+
+// Obtains information about the conditional forwarders for this account.
+//
+// If no input parameters are provided for RemoteDomainNames, this request
+// describes all conditional forwarders for the specified directory ID.
+func (c *DirectoryService) DescribeConditionalForwarders(input *DescribeConditionalForwardersInput) (*DescribeConditionalForwardersOutput, error) {
+	req, out := c.DescribeConditionalForwardersRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -687,6 +773,33 @@ func (c *DirectoryService) RestoreFromSnapshot(input *RestoreFromSnapshotInput) 
 	return out, err
 }
 
+const opUpdateConditionalForwarder = "UpdateConditionalForwarder"
+
+// UpdateConditionalForwarderRequest generates a request for the UpdateConditionalForwarder operation.
+func (c *DirectoryService) UpdateConditionalForwarderRequest(input *UpdateConditionalForwarderInput) (req *request.Request, output *UpdateConditionalForwarderOutput) {
+	op := &request.Operation{
+		Name:       opUpdateConditionalForwarder,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateConditionalForwarderInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &UpdateConditionalForwarderOutput{}
+	req.Data = output
+	return
+}
+
+// Updates a conditional forwarder that has been set up for your AWS directory.
+func (c *DirectoryService) UpdateConditionalForwarder(input *UpdateConditionalForwarderInput) (*UpdateConditionalForwarderOutput, error) {
+	req, out := c.UpdateConditionalForwarderRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opUpdateRadius = "UpdateRadius"
 
 // UpdateRadiusRequest generates a request for the UpdateRadius operation.
@@ -789,6 +902,37 @@ func (s Computer) String() string {
 
 // GoString returns the string representation
 func (s Computer) GoString() string {
+	return s.String()
+}
+
+// Points to a remote domain with which you are setting up a trust relationship.
+// Conditional forwarders are required in order to set up a trust relationship
+// with another domain.
+type ConditionalForwarder struct {
+	_ struct{} `type:"structure"`
+
+	// The IP addresses of the remote DNS server associated with RemoteDomainName.
+	// This is the IP address of the DNS server that your conditional forwarder
+	// points to.
+	DnsIpAddrs []*string `type:"list"`
+
+	// The fully qualified domain name (FQDN) of the remote domains pointed to by
+	// the conditional forwarder.
+	RemoteDomainName *string `type:"string"`
+
+	// The replication scope of the conditional forwarder. The only allowed value
+	// is Domain, which will replicate the conditional forwarder to all of the domain
+	// controllers for your AWS directory.
+	ReplicationScope *string `type:"string" enum:"ReplicationScope"`
+}
+
+// String returns the string representation
+func (s ConditionalForwarder) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConditionalForwarder) GoString() string {
 	return s.String()
 }
 
@@ -937,6 +1081,48 @@ func (s CreateComputerOutput) String() string {
 
 // GoString returns the string representation
 func (s CreateComputerOutput) GoString() string {
+	return s.String()
+}
+
+// Initiates the creation of a conditional forwarder for your AWS Directory
+// Service for Microsoft Active Directory. Conditional forwarders are required
+// in order to set up a trust relationship with another domain.
+type CreateConditionalForwarderInput struct {
+	_ struct{} `type:"structure"`
+
+	// The directory ID of the AWS directory for which you are creating the conditional
+	// forwarder.
+	DirectoryId *string `type:"string" required:"true"`
+
+	// The IP addresses of the remote DNS server associated with RemoteDomainName.
+	DnsIpAddrs []*string `type:"list" required:"true"`
+
+	// The fully qualified domain name (FQDN) of the remote domain with which you
+	// will set up a trust relationship.
+	RemoteDomainName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateConditionalForwarderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateConditionalForwarderInput) GoString() string {
+	return s.String()
+}
+
+type CreateConditionalForwarderOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateConditionalForwarderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateConditionalForwarderOutput) GoString() string {
 	return s.String()
 }
 
@@ -1096,6 +1282,8 @@ func (s CreateSnapshotOutput) GoString() string {
 type CreateTrustInput struct {
 	_ struct{} `type:"structure"`
 
+	ConditionalForwarderIpAddrs []*string `type:"list"`
+
 	// The Directory ID of the Microsoft AD in the AWS cloud for which to establish
 	// the trust relationship.
 	DirectoryId *string `type:"string" required:"true"`
@@ -1139,6 +1327,41 @@ func (s CreateTrustOutput) String() string {
 
 // GoString returns the string representation
 func (s CreateTrustOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteConditionalForwarderInput struct {
+	_ struct{} `type:"structure"`
+
+	// The directory ID for which you are deleting the conditional forwarder.
+	DirectoryId *string `type:"string" required:"true"`
+
+	// The fully qualified domain name (FQDN) of the remote domain with which you
+	// are deleting the conditional forwarder.
+	RemoteDomainName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteConditionalForwarderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteConditionalForwarderInput) GoString() string {
+	return s.String()
+}
+
+type DeleteConditionalForwarderOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteConditionalForwarderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteConditionalForwarderOutput) GoString() string {
 	return s.String()
 }
 
@@ -1219,6 +1442,8 @@ func (s DeleteSnapshotOutput) GoString() string {
 type DeleteTrustInput struct {
 	_ struct{} `type:"structure"`
 
+	DeleteAssociatedConditionalForwarder *bool `type:"boolean"`
+
 	// The Trust ID of the trust relationship to be deleted.
 	TrustId *string `type:"string" required:"true"`
 }
@@ -1283,6 +1508,45 @@ func (s DeregisterEventTopicOutput) String() string {
 
 // GoString returns the string representation
 func (s DeregisterEventTopicOutput) GoString() string {
+	return s.String()
+}
+
+type DescribeConditionalForwardersInput struct {
+	_ struct{} `type:"structure"`
+
+	// The directory ID for which to get the list of associated conditional forwarders.
+	DirectoryId *string `type:"string" required:"true"`
+
+	// The fully qualified domain names (FQDN) of the remote domains for which to
+	// get the list of associated conditional forwarders. If this member is null,
+	// all conditional forwarders are returned.
+	RemoteDomainNames []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeConditionalForwardersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeConditionalForwardersInput) GoString() string {
+	return s.String()
+}
+
+type DescribeConditionalForwardersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of conditional forwarders that have been created.
+	ConditionalForwarders []*ConditionalForwarder `type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeConditionalForwardersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeConditionalForwardersOutput) GoString() string {
 	return s.String()
 }
 
@@ -2216,6 +2480,9 @@ type Trust struct {
 	// The trust relationship state.
 	TrustState *string `type:"string" enum:"TrustState"`
 
+	// The reason for the TrustState.
+	TrustStateReason *string `type:"string"`
+
 	// The trust relationship type.
 	TrustType *string `type:"string" enum:"TrustType"`
 }
@@ -2227,6 +2494,46 @@ func (s Trust) String() string {
 
 // GoString returns the string representation
 func (s Trust) GoString() string {
+	return s.String()
+}
+
+type UpdateConditionalForwarderInput struct {
+	_ struct{} `type:"structure"`
+
+	// The directory ID of the AWS directory for which to update the conditional
+	// forwarder.
+	DirectoryId *string `type:"string" required:"true"`
+
+	// The updated IP addresses of the remote DNS server associated with the conditional
+	// forwarder.
+	DnsIpAddrs []*string `type:"list" required:"true"`
+
+	// The fully qualified domain name (FQDN) of the remote domain with which you
+	// will set up a trust relationship.
+	RemoteDomainName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateConditionalForwarderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateConditionalForwarderInput) GoString() string {
+	return s.String()
+}
+
+type UpdateConditionalForwarderOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateConditionalForwarderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateConditionalForwarderOutput) GoString() string {
 	return s.String()
 }
 
@@ -2361,6 +2668,11 @@ const (
 	RadiusStatusCompleted = "Completed"
 	// @enum RadiusStatus
 	RadiusStatusFailed = "Failed"
+)
+
+const (
+	// @enum ReplicationScope
+	ReplicationScopeDomain = "Domain"
 )
 
 const (

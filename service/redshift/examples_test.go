@@ -104,9 +104,13 @@ func ExampleRedshift_CreateCluster() {
 		Encrypted:                      aws.Bool(true),
 		HsmClientCertificateIdentifier: aws.String("String"),
 		HsmConfigurationIdentifier:     aws.String("String"),
-		KmsKeyId:                       aws.String("String"),
-		NumberOfNodes:                  aws.Int64(1),
-		Port:                           aws.Int64(1),
+		IamRoles: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+		KmsKeyId:      aws.String("String"),
+		NumberOfNodes: aws.Int64(1),
+		Port:          aws.Int64(1),
 		PreferredMaintenanceWindow: aws.String("String"),
 		PubliclyAccessible:         aws.Bool(true),
 		Tags: []*redshift.Tag{
@@ -1235,6 +1239,33 @@ func ExampleRedshift_ModifyCluster() {
 	fmt.Println(resp)
 }
 
+func ExampleRedshift_ModifyClusterIamRoles() {
+	svc := redshift.New(session.New())
+
+	params := &redshift.ModifyClusterIamRolesInput{
+		ClusterIdentifier: aws.String("String"), // Required
+		AddIamRoles: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+		RemoveIamRoles: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.ModifyClusterIamRoles(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleRedshift_ModifyClusterParameterGroup() {
 	svc := redshift.New(session.New())
 
@@ -1435,10 +1466,14 @@ func ExampleRedshift_RestoreFromClusterSnapshot() {
 		ElasticIp:                      aws.String("String"),
 		HsmClientCertificateIdentifier: aws.String("String"),
 		HsmConfigurationIdentifier:     aws.String("String"),
-		KmsKeyId:                       aws.String("String"),
-		NodeType:                       aws.String("String"),
-		OwnerAccount:                   aws.String("String"),
-		Port:                           aws.Int64(1),
+		IamRoles: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+		KmsKeyId:     aws.String("String"),
+		NodeType:     aws.String("String"),
+		OwnerAccount: aws.String("String"),
+		Port:         aws.Int64(1),
 		PreferredMaintenanceWindow: aws.String("String"),
 		PubliclyAccessible:         aws.Bool(true),
 		SnapshotClusterIdentifier:  aws.String("String"),

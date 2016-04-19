@@ -582,7 +582,8 @@
       "type":"structure",
       "members":{
         "awsAccountNumber":{"shape":"AWSAccountNumber"},
-        "unmeteredDevices":{"shape":"PurchasedDevicesMap"}
+        "unmeteredDevices":{"shape":"PurchasedDevicesMap"},
+        "unmeteredRemoteAccessDevices":{"shape":"PurchasedDevicesMap"}
       }
     },
     "AmazonResourceName":{
@@ -643,7 +644,8 @@
         "EXPLORER_EVENT_LOG",
         "EXPLORER_SUMMARY_LOG",
         "APPLICATION_CRASH_REPORT",
-        "XCTEST_LOG"
+        "XCTEST_LOG",
+        "VIDEO"
       ]
     },
     "Artifacts":{
@@ -893,8 +895,11 @@
       "type":"string",
       "enum":[
         "PENDING",
+        "PENDING_CONCURRENCY",
+        "PENDING_DEVICE",
         "PROCESSING",
         "SCHEDULING",
+        "PREPARING",
         "RUNNING",
         "COMPLETED",
         "STOPPING"

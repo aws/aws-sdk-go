@@ -35,6 +35,27 @@ func ExampleElasticBeanstalk_AbortEnvironmentUpdate() {
 	fmt.Println(resp)
 }
 
+func ExampleElasticBeanstalk_ApplyEnvironmentManagedAction() {
+	svc := elasticbeanstalk.New(session.New())
+
+	params := &elasticbeanstalk.ApplyEnvironmentManagedActionInput{
+		ActionId:        aws.String("String"), // Required
+		EnvironmentId:   aws.String("String"),
+		EnvironmentName: aws.String("String"),
+	}
+	resp, err := svc.ApplyEnvironmentManagedAction(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleElasticBeanstalk_CheckDNSAvailability() {
 	svc := elasticbeanstalk.New(session.New())
 
@@ -422,6 +443,49 @@ func ExampleElasticBeanstalk_DescribeEnvironmentHealth() {
 		EnvironmentName: aws.String("EnvironmentName"),
 	}
 	resp, err := svc.DescribeEnvironmentHealth(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleElasticBeanstalk_DescribeEnvironmentManagedActionHistory() {
+	svc := elasticbeanstalk.New(session.New())
+
+	params := &elasticbeanstalk.DescribeEnvironmentManagedActionHistoryInput{
+		EnvironmentId:   aws.String("EnvironmentId"),
+		EnvironmentName: aws.String("EnvironmentName"),
+		MaxItems:        aws.Int64(1),
+		NextToken:       aws.String("String"),
+	}
+	resp, err := svc.DescribeEnvironmentManagedActionHistory(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleElasticBeanstalk_DescribeEnvironmentManagedActions() {
+	svc := elasticbeanstalk.New(session.New())
+
+	params := &elasticbeanstalk.DescribeEnvironmentManagedActionsInput{
+		EnvironmentId:   aws.String("String"),
+		EnvironmentName: aws.String("String"),
+		Status:          aws.String("ActionStatus"),
+	}
+	resp, err := svc.DescribeEnvironmentManagedActions(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and

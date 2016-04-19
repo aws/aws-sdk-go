@@ -23,6 +23,8 @@ func buildSigner(serviceName string, region string, signTime time.Time, expireTi
 	req.Header.Add("Content-Type", "application/x-amz-json-1.0")
 	req.Header.Add("Content-Length", string(len(body)))
 	req.Header.Add("X-Amz-Meta-Other-Header", "some-value=!@#$%^&* (+)")
+	req.Header.Add("X-Amz-Meta-Other-Header_With_Underscore", "some-value=!@#$%^&* (+)")
+	req.Header.Add("X-amz-Meta-Other-Header_With_Underscore", "some-value=!@#$%^&* (+)")
 
 	return signer{
 		Request:     req,
@@ -54,8 +56,8 @@ func TestPresignRequest(t *testing.T) {
 	signer.sign()
 
 	expectedDate := "19700101T000000Z"
-	expectedHeaders := "content-type;host;x-amz-meta-other-header"
-	expectedSig := "4fe8944ddd3e83a32bc874955e734e5a349116bfce2d4f43171e0f7572b842f6"
+	expectedHeaders := "content-length;content-type;host;x-amz-meta-other-header;x-amz-meta-other-header_with_underscore"
+	expectedSig := "ea7856749041f727690c580569738282e99c79355fe0d8f125d3b5535d2ece83"
 	expectedCred := "AKID/19700101/us-east-1/dynamodb/aws4_request"
 	expectedTarget := "prefix.Operation"
 
@@ -73,7 +75,7 @@ func TestSignRequest(t *testing.T) {
 	signer.sign()
 
 	expectedDate := "19700101T000000Z"
-	expectedSig := "AWS4-HMAC-SHA256 Credential=AKID/19700101/us-east-1/dynamodb/aws4_request, SignedHeaders=content-type;host;x-amz-date;x-amz-meta-other-header;x-amz-security-token;x-amz-target, Signature=5d3983fb3de907bdc2f3a6951d968e510f0252a8358c038f7680aa02374eeb67"
+	expectedSig := "AWS4-HMAC-SHA256 Credential=AKID/19700101/us-east-1/dynamodb/aws4_request, SignedHeaders=content-length;content-type;host;x-amz-date;x-amz-meta-other-header;x-amz-meta-other-header_with_underscore;x-amz-security-token;x-amz-target, Signature=ea766cabd2ec977d955a3c2bae1ae54f4515d70752f2207618396f20aa85bd21"
 
 	q := signer.Request.Header
 	assert.Equal(t, expectedSig, q.Get("Authorization"))
@@ -204,11 +206,31 @@ func TestResignRequestExpiredCreds(t *testing.T) {
 	)
 	Sign(r)
 	querySig := r.HTTPRequest.Header.Get("Authorization")
+	var origSignedHeaders string
+	for _, p := range strings.Split(querySig, ", ") {
+		if strings.HasPrefix(p, "SignedHeaders=") {
+			origSignedHeaders = p[len("SignedHeaders="):]
+			break
+		}
+	}
+	assert.NotEmpty(t, origSignedHeaders)
+	assert.NotContains(t, origSignedHeaders, "authorization")
 
 	creds.Expire()
 
 	Sign(r)
-	assert.NotEqual(t, querySig, r.HTTPRequest.Header.Get("Authorization"))
+	updatedQuerySig := r.HTTPRequest.Header.Get("Authorization")
+	assert.NotEqual(t, querySig, updatedQuerySig)
+
+	var updatedSignedHeaders string
+	for _, p := range strings.Split(updatedQuerySig, ", ") {
+		if strings.HasPrefix(p, "SignedHeaders=") {
+			updatedSignedHeaders = p[len("SignedHeaders="):]
+			break
+		}
+	}
+	assert.NotEmpty(t, updatedSignedHeaders)
+	assert.NotContains(t, updatedQuerySig, "authorization")
 }
 
 func TestPreResignRequestExpiredCreds(t *testing.T) {
@@ -232,12 +254,40 @@ func TestPreResignRequestExpiredCreds(t *testing.T) {
 
 	Sign(r)
 	querySig := r.HTTPRequest.URL.Query().Get("X-Amz-Signature")
+	signedHeaders := r.HTTPRequest.URL.Query().Get("X-Amz-SignedHeaders")
+	assert.NotEmpty(t, signedHeaders)
 
 	creds.Expire()
 	r.Time = time.Now().Add(time.Hour * 48)
 
 	Sign(r)
 	assert.NotEqual(t, querySig, r.HTTPRequest.URL.Query().Get("X-Amz-Signature"))
+	resignedHeaders := r.HTTPRequest.URL.Query().Get("X-Amz-SignedHeaders")
+	assert.Equal(t, signedHeaders, resignedHeaders)
+	assert.NotContains(t, signedHeaders, "x-amz-signedHeaders")
+}
+
+func TestResignRequestExpiredRequest(t *testing.T) {
+	creds := credentials.NewStaticCredentials("AKID", "SECRET", "SESSION")
+	svc := awstesting.NewClient(&aws.Config{Credentials: creds})
+	r := svc.NewRequest(
+		&request.Operation{
+			Name:       "BatchGetItem",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		},
+		nil,
+		nil,
+	)
+
+	Sign(r)
+	querySig := r.HTTPRequest.Header.Get("Authorization")
+
+	// Simulate the request occured 15 minutes in the past
+	r.Time = r.Time.Add(-15 * time.Minute)
+
+	Sign(r)
+	assert.NotEqual(t, querySig, r.HTTPRequest.Header.Get("Authorization"))
 }
 
 func BenchmarkPresignRequest(b *testing.B) {

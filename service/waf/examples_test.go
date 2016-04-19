@@ -140,6 +140,26 @@ func ExampleWAF_CreateWebACL() {
 	fmt.Println(resp)
 }
 
+func ExampleWAF_CreateXssMatchSet() {
+	svc := waf.New(session.New())
+
+	params := &waf.CreateXssMatchSetInput{
+		ChangeToken: aws.String("ChangeToken"),  // Required
+		Name:        aws.String("ResourceName"), // Required
+	}
+	resp, err := svc.CreateXssMatchSet(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleWAF_DeleteByteMatchSet() {
 	svc := waf.New(session.New())
 
@@ -248,6 +268,26 @@ func ExampleWAF_DeleteWebACL() {
 		WebACLId:    aws.String("ResourceId"),  // Required
 	}
 	resp, err := svc.DeleteWebACL(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleWAF_DeleteXssMatchSet() {
+	svc := waf.New(session.New())
+
+	params := &waf.DeleteXssMatchSetInput{
+		ChangeToken:   aws.String("ChangeToken"), // Required
+		XssMatchSetId: aws.String("ResourceId"),  // Required
+	}
+	resp, err := svc.DeleteXssMatchSet(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -435,6 +475,25 @@ func ExampleWAF_GetWebACL() {
 	fmt.Println(resp)
 }
 
+func ExampleWAF_GetXssMatchSet() {
+	svc := waf.New(session.New())
+
+	params := &waf.GetXssMatchSetInput{
+		XssMatchSetId: aws.String("ResourceId"), // Required
+	}
+	resp, err := svc.GetXssMatchSet(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleWAF_ListByteMatchSets() {
 	svc := waf.New(session.New())
 
@@ -543,6 +602,26 @@ func ExampleWAF_ListWebACLs() {
 		NextMarker: aws.String("NextMarker"),
 	}
 	resp, err := svc.ListWebACLs(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleWAF_ListXssMatchSets() {
+	svc := waf.New(session.New())
+
+	params := &waf.ListXssMatchSetsInput{
+		Limit:      aws.Int64(1), // Required
+		NextMarker: aws.String("NextMarker"),
+	}
+	resp, err := svc.ListXssMatchSets(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -743,6 +822,39 @@ func ExampleWAF_UpdateWebACL() {
 		},
 	}
 	resp, err := svc.UpdateWebACL(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleWAF_UpdateXssMatchSet() {
+	svc := waf.New(session.New())
+
+	params := &waf.UpdateXssMatchSetInput{
+		ChangeToken: aws.String("ChangeToken"), // Required
+		Updates: []*waf.XssMatchSetUpdate{ // Required
+			{ // Required
+				Action: aws.String("ChangeAction"), // Required
+				XssMatchTuple: &waf.XssMatchTuple{ // Required
+					FieldToMatch: &waf.FieldToMatch{ // Required
+						Type: aws.String("MatchFieldType"), // Required
+						Data: aws.String("MatchFieldData"),
+					},
+					TextTransformation: aws.String("TextTransformation"), // Required
+				},
+			},
+			// More values...
+		},
+		XssMatchSetId: aws.String("ResourceId"), // Required
+	}
+	resp, err := svc.UpdateXssMatchSet(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and

@@ -118,6 +118,52 @@ func ExampleKinesis_DescribeStream() {
 	fmt.Println(resp)
 }
 
+func ExampleKinesis_DisableEnhancedMonitoring() {
+	svc := kinesis.New(session.New())
+
+	params := &kinesis.DisableEnhancedMonitoringInput{
+		ShardLevelMetrics: []*string{ // Required
+			aws.String("MetricsName"), // Required
+			// More values...
+		},
+		StreamName: aws.String("StreamName"), // Required
+	}
+	resp, err := svc.DisableEnhancedMonitoring(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleKinesis_EnableEnhancedMonitoring() {
+	svc := kinesis.New(session.New())
+
+	params := &kinesis.EnableEnhancedMonitoringInput{
+		ShardLevelMetrics: []*string{ // Required
+			aws.String("MetricsName"), // Required
+			// More values...
+		},
+		StreamName: aws.String("StreamName"), // Required
+	}
+	resp, err := svc.EnableEnhancedMonitoring(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleKinesis_GetRecords() {
 	svc := kinesis.New(session.New())
 
@@ -146,6 +192,7 @@ func ExampleKinesis_GetShardIterator() {
 		ShardIteratorType:      aws.String("ShardIteratorType"), // Required
 		StreamName:             aws.String("StreamName"),        // Required
 		StartingSequenceNumber: aws.String("SequenceNumber"),
+		Timestamp:              aws.Time(time.Now()),
 	}
 	resp, err := svc.GetShardIterator(params)
 

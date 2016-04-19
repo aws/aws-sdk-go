@@ -58,6 +58,19 @@
         "ChangeBatchRecord$Submitter": "<p>The AWS account ID attached to the changes. </p>"
       }
     },
+    "AlarmIdentifier": {
+      "base": "<p>A complex type that contains information to uniquely identify the CloudWatch alarm that you're associating with a Route 53 health check.</p>",
+      "refs": {
+        "HealthCheckConfig$AlarmIdentifier": "<p>A complex type that contains information to uniquely identify the CloudWatch alarm that you're associating with a Route 53 health check.</p>",
+        "UpdateHealthCheckRequest$AlarmIdentifier": null
+      }
+    },
+    "AlarmName": {
+      "base": null,
+      "refs": {
+        "AlarmIdentifier$Name": "<p>The name of the CloudWatch alarm.</p>"
+      }
+    },
     "AliasHealthEnabled": {
       "base": null,
       "refs": {
@@ -174,6 +187,24 @@
       "refs": {
         "HealthCheckConfig$ChildHealthChecks": "<p>For a specified parent health check, a list of <code>HealthCheckId</code> values for the associated child health checks.</p>",
         "UpdateHealthCheckRequest$ChildHealthChecks": "<p>For a specified parent health check, a list of <code>HealthCheckId</code> values for the associated child health checks.</p> <p>Specify this value only if you want to change it.</p>"
+      }
+    },
+    "CloudWatchAlarmConfiguration": {
+      "base": "<p>For CLOUDWATCH_METRIC health checks, a complex type that contains information about the CloudWatch alarm that you're associating with the health check.</p>",
+      "refs": {
+        "HealthCheck$CloudWatchAlarmConfiguration": "<p>For CLOUDWATCH_METRIC health checks, a complex type that contains information about the CloudWatch alarm that you're associating with the health check.</p>"
+      }
+    },
+    "CloudWatchRegion": {
+      "base": null,
+      "refs": {
+        "AlarmIdentifier$Region": "<p>The <code>CloudWatchRegion</code> that the CloudWatch alarm was created in.</p>"
+      }
+    },
+    "ComparisonOperator": {
+      "base": null,
+      "refs": {
+        "CloudWatchAlarmConfiguration$ComparisonOperator": "<p>The arithmetic operation to use when comparing the specified Statistic and Threshold.</p> <p>Valid Values are <code>GreaterThanOrEqualToThreshold</code>, <code>GreaterThanThreshold</code>, <code>LessThanThreshold</code> and <code>LessThanOrEqualToThreshold</code></p>"
       }
     },
     "ConcurrentModification": {
@@ -381,6 +412,25 @@
       "refs": {
       }
     },
+    "Dimension": {
+      "base": "<p>The name and value of a dimension for a CloudWatch metric.</p>",
+      "refs": {
+        "DimensionList$member": null
+      }
+    },
+    "DimensionField": {
+      "base": null,
+      "refs": {
+        "Dimension$Name": "<p>The name of the dimension.</p>",
+        "Dimension$Value": "<p>The value of the dimension.</p>"
+      }
+    },
+    "DimensionList": {
+      "base": null,
+      "refs": {
+        "CloudWatchAlarmConfiguration$Dimensions": "<p>A list of <code>Dimension</code> elements for the CloudWatch metric that is associated with the CloudWatch alarm. For information about the metrics and dimensions that CloudWatch supports, see <a href=\"http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html\">Amazon CloudWatch Namespaces, Dimensions, and Metrics Reference</a>.</p>"
+      }
+    },
     "DisassociateVPCComment": {
       "base": null,
       "refs": {
@@ -454,6 +504,12 @@
       "base": null,
       "refs": {
         "InvalidChangeBatch$messages": "<p>Descriptive message for the error response.</p>"
+      }
+    },
+    "EvaluationPeriods": {
+      "base": null,
+      "refs": {
+        "CloudWatchAlarmConfiguration$EvaluationPeriods": "<p>The number of periods over which data is compared to the specified threshold.</p>"
       }
     },
     "FailureThreshold": {
@@ -742,10 +798,24 @@
         "GetHealthCheckStatusResponse$HealthCheckObservations": "<p>A list that contains one <code>HealthCheckObservation</code> element for each Amazon Route 53 health checker.</p>"
       }
     },
+    "HealthCheckRegion": {
+      "base": "<p>An Amazon EC2 region that you want Amazon Route 53 to use to perform health checks.</p>",
+      "refs": {
+        "HealthCheckObservation$Region": "<p>The <code>HealthCheckRegion</code> of the Amazon Route 53 health checker that performed this health check.</p>",
+        "HealthCheckRegionList$member": null
+      }
+    },
+    "HealthCheckRegionList": {
+      "base": null,
+      "refs": {
+        "HealthCheckConfig$Regions": "<p>A list of <code>HealthCheckRegion</code> values that you want Amazon Route 53 to use to perform health checks for the specified endpoint. You must specify at least three regions.</p>",
+        "UpdateHealthCheckRequest$Regions": "<p>A list of <code>HealthCheckRegion</code> values that specify the Amazon EC2 regions that you want Amazon Route 53 to use to perform health checks. You must specify at least three regions.</p> <note>When you remove a region from the list, Amazon Route 53 will briefly continue to check your endpoint from that region.</note> <p>Specify this value only if you want to change it.</p>"
+      }
+    },
     "HealthCheckType": {
       "base": null,
       "refs": {
-        "HealthCheckConfig$Type": "<p>The type of health check to be performed. Currently supported types are TCP, HTTP, HTTPS, HTTP_STR_MATCH, and HTTPS_STR_MATCH.</p>"
+        "HealthCheckConfig$Type": "<p>The type of health check to be performed. Currently supported types are TCP, HTTP, HTTPS, HTTP_STR_MATCH, HTTPS_STR_MATCH, CALCULATED and CLOUDWATCH_METRIC.</p>"
       }
     },
     "HealthCheckVersion": {
@@ -827,7 +897,7 @@
       "base": null,
       "refs": {
         "HealthCheckConfig$IPAddress": "<p>IP Address of the instance being checked. </p>",
-        "HealthCheckObservation$IPAddress": "<p>The IP address of the Amazon Route 53 health checker that performed the health check.</p>",
+        "HealthCheckObservation$IPAddress": "<p>The IP address of the Amazon Route 53 health checker that performed this health check.</p>",
         "UpdateHealthCheckRequest$IPAddress": "<p>The IP address of the resource that you want to check.</p> <p>Specify this value only if you want to change it.</p>"
       }
     },
@@ -840,6 +910,13 @@
     "IncompatibleVersion": {
       "base": "<p>The resource you are trying to access is unsupported on this Amazon Route 53 endpoint. Please consider using a newer endpoint or a tool that does so.</p>",
       "refs": {
+      }
+    },
+    "InsufficientDataHealthStatus": {
+      "base": null,
+      "refs": {
+        "HealthCheckConfig$InsufficientDataHealthStatus": "<p>The status of the health check when CloudWatch has insufficient data about the state of associated alarm. Valid values are <code>Healthy</code>, <code>Unhealthy</code> and <code>LastKnownStatus</code>.</p>",
+        "UpdateHealthCheckRequest$InsufficientDataHealthStatus": null
       }
     },
     "InvalidArgument": {
@@ -1057,6 +1134,18 @@
         "TrafficPolicyInstance$Message": null
       }
     },
+    "MetricName": {
+      "base": null,
+      "refs": {
+        "CloudWatchAlarmConfiguration$MetricName": "<p>The name of the CloudWatch metric that is associated with the CloudWatch alarm.</p>"
+      }
+    },
+    "Namespace": {
+      "base": null,
+      "refs": {
+        "CloudWatchAlarmConfiguration$Namespace": "<p>The namespace of the CloudWatch metric that is associated with the CloudWatch alarm.</p>"
+      }
+    },
     "NoSuchChange": {
       "base": null,
       "refs": {
@@ -1168,6 +1257,12 @@
         "ListTrafficPolicyInstancesByPolicyResponse$IsTruncated": "<p>A flag that indicates whether there are more traffic policy instances to be listed. If the response was truncated, you can get the next group of <code>MaxItems</code> traffic policy instances by calling <code>ListTrafficPolicyInstancesByPolicy</code> again and specifying the values of the <code>HostedZoneIdMarker</code>, <code>TrafficPolicyInstanceNameMarker</code>, and <code>TrafficPolicyInstanceTypeMarker</code> elements in the corresponding request parameters.</p> <p>Valid Values: <code>true</code> | <code>false</code></p>",
         "ListTrafficPolicyInstancesResponse$IsTruncated": "<p>A flag that indicates whether there are more traffic policy instances to be listed. If the response was truncated, you can get the next group of <code>MaxItems</code> traffic policy instances by calling <code>ListTrafficPolicyInstances</code> again and specifying the values of the <code>HostedZoneIdMarker</code>, <code>TrafficPolicyInstanceNameMarker</code>, and <code>TrafficPolicyInstanceTypeMarker</code> elements in the corresponding request parameters.</p> <p>Valid Values: <code>true</code> | <code>false</code></p>",
         "ListTrafficPolicyVersionsResponse$IsTruncated": "<p>A flag that indicates whether there are more traffic policies to be listed. If the response was truncated, you can get the next group of <code>maxitems</code> traffic policies by calling <code>ListTrafficPolicyVersions</code> again and specifying the value of the <code>NextMarker</code> element in the marker parameter.</p> <p>Valid Values: <code>true</code> | <code>false</code></p>"
+      }
+    },
+    "Period": {
+      "base": null,
+      "refs": {
+        "CloudWatchAlarmConfiguration$Period": "<p>An integer that represents the period in seconds over which the statistic is applied.</p>"
       }
     },
     "Port": {
@@ -1353,6 +1448,12 @@
         "UpdateHealthCheckRequest$SearchString": "<p>If the value of <code>Type</code> is <code>HTTP_STR_MATCH</code> or <code>HTTP_STR_MATCH</code>, the string that you want Amazon Route 53 to search for in the response body from the specified resource. If the string appears in the response body, Amazon Route 53 considers the resource healthy. Amazon Route 53 considers case when searching for <code>SearchString</code> in the response body.</p> <p>Specify this value only if you want to change it.</p>"
       }
     },
+    "Statistic": {
+      "base": null,
+      "refs": {
+        "CloudWatchAlarmConfiguration$Statistic": "<p>The statistic to apply to the CloudWatch metric that is associated with the CloudWatch alarm.</p> <p>Valid Values are <code>SampleCount</code>, <code>Average</code>, <code>Sum</code>, <code>Minimum</code> and <code>Maximum</code></p>"
+      }
+    },
     "Status": {
       "base": null,
       "refs": {
@@ -1428,6 +1529,12 @@
       "base": null,
       "refs": {
         "Tag$Value": "<p>The value for a <code>Tag</code>.</p>"
+      }
+    },
+    "Threshold": {
+      "base": null,
+      "refs": {
+        "CloudWatchAlarmConfiguration$Threshold": "<p>The value that the metric is compared with to determine the state of the alarm. For example, if you want the health check to fail if the average TCP connection time is greater than 500 milliseconds for more than 60 seconds, the threshold is 500.</p>"
       }
     },
     "ThrottlingException": {

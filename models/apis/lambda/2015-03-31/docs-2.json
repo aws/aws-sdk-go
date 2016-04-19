@@ -203,6 +203,12 @@
         "CreateEventSourceMappingRequest$StartingPosition": "<p>The position in the stream where AWS Lambda should start reading. For more information, go to <a href=\"http://docs.aws.amazon.com/kinesis/latest/APIReference/API_GetShardIterator.html#Kinesis-GetShardIterator-request-ShardIteratorType\">ShardIteratorType</a> in the <i>Amazon Kinesis API Reference</i>. </p>"
       }
     },
+    "EventSourceToken": {
+      "base": null,
+      "refs": {
+        "AddPermissionRequest$EventSourceToken": null
+      }
+    },
     "FunctionArn": {
       "base": null,
       "refs": {
@@ -494,7 +500,8 @@
       "base": null,
       "refs": {
         "CreateFunctionRequest$Runtime": "<p>The runtime environment for the Lambda function you are uploading. </p>",
-        "FunctionConfiguration$Runtime": "<p>The runtime environment for the Lambda function.</p>"
+        "FunctionConfiguration$Runtime": "<p>The runtime environment for the Lambda function.</p>",
+        "UpdateFunctionConfigurationRequest$Runtime": null
       }
     },
     "S3Bucket": {

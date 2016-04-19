@@ -391,11 +391,15 @@ func TestUploadOrderReadFail2(t *testing.T) {
 type sizedReader struct {
 	size int
 	cur  int
+	err  error
 }
 
 func (s *sizedReader) Read(p []byte) (n int, err error) {
 	if s.cur >= s.size {
-		return 0, io.EOF
+		if s.err == nil {
+			s.err = io.EOF
+		}
+		return 0, s.err
 	}
 
 	n = len(p)
@@ -427,6 +431,52 @@ func TestUploadOrderMultiBufferedReader(t *testing.T) {
 	}
 	sort.Ints(parts)
 	assert.Equal(t, []int{1024 * 1024 * 2, 1024 * 1024 * 5, 1024 * 1024 * 5}, parts)
+}
+
+func TestUploadOrderMultiBufferedReaderUnexpectedEOF(t *testing.T) {
+	s, ops, args := loggingSvc(emptyList)
+	mgr := s3manager.NewUploaderWithClient(s)
+	_, err := mgr.Upload(&s3manager.UploadInput{
+		Bucket: aws.String("Bucket"),
+		Key:    aws.String("Key"),
+		Body:   &sizedReader{size: 1024 * 1024 * 12, err: io.ErrUnexpectedEOF},
+	})
+
+	assert.NoError(t, err)
+	assert.Equal(t, []string{"CreateMultipartUpload", "UploadPart", "UploadPart", "UploadPart", "CompleteMultipartUpload"}, *ops)
+
+	// Part lengths
+	parts := []int{
+		buflen(val((*args)[1], "Body")),
+		buflen(val((*args)[2], "Body")),
+		buflen(val((*args)[3], "Body")),
+	}
+	sort.Ints(parts)
+	assert.Equal(t, []int{1024 * 1024 * 2, 1024 * 1024 * 5, 1024 * 1024 * 5}, parts)
+}
+
+// TestUploadOrderMultiBufferedReaderEOF tests the edge case where the
+// file size is the same as part size, which means nextReader will
+// return io.EOF rather than io.ErrUnexpectedEOF
+func TestUploadOrderMultiBufferedReaderEOF(t *testing.T) {
+	s, ops, args := loggingSvc(emptyList)
+	mgr := s3manager.NewUploaderWithClient(s)
+	_, err := mgr.Upload(&s3manager.UploadInput{
+		Bucket: aws.String("Bucket"),
+		Key:    aws.String("Key"),
+		Body:   &sizedReader{size: 1024 * 1024 * 10, err: io.EOF},
+	})
+
+	assert.NoError(t, err)
+	assert.Equal(t, []string{"CreateMultipartUpload", "UploadPart", "UploadPart", "CompleteMultipartUpload"}, *ops)
+
+	// Part lengths
+	parts := []int{
+		buflen(val((*args)[1], "Body")),
+		buflen(val((*args)[2], "Body")),
+	}
+	sort.Ints(parts)
+	assert.Equal(t, []int{1024 * 1024 * 5, 1024 * 1024 * 5}, parts)
 }
 
 func TestUploadOrderMultiBufferedReaderExceedTotalParts(t *testing.T) {

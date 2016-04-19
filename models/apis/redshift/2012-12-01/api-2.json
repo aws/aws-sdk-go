@@ -818,6 +818,22 @@
         {"shape":"InvalidElasticIpFault"}
       ]
     },
+    "ModifyClusterIamRoles":{
+      "name":"ModifyClusterIamRoles",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyClusterIamRolesMessage"},
+      "output":{
+        "shape":"ModifyClusterIamRolesResult",
+        "resultWrapper":"ModifyClusterIamRolesResult"
+      },
+      "errors":[
+        {"shape":"InvalidClusterStateFault"},
+        {"shape":"ClusterNotFoundFault"}
+      ]
+    },
     "ModifyClusterParameterGroup":{
       "name":"ModifyClusterParameterGroup",
       "http":{
@@ -1205,7 +1221,8 @@
         "ElasticIpStatus":{"shape":"ElasticIpStatus"},
         "ClusterRevisionNumber":{"shape":"String"},
         "Tags":{"shape":"TagList"},
-        "KmsKeyId":{"shape":"String"}
+        "KmsKeyId":{"shape":"String"},
+        "IamRoles":{"shape":"ClusterIamRoleList"}
       },
       "wrapper":true
     },
@@ -1219,6 +1236,20 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "ClusterIamRole":{
+      "type":"structure",
+      "members":{
+        "IamRoleArn":{"shape":"String"},
+        "ApplyStatus":{"shape":"String"}
+      }
+    },
+    "ClusterIamRoleList":{
+      "type":"list",
+      "member":{
+        "shape":"ClusterIamRole",
+        "locationName":"ClusterIamRole"
+      }
     },
     "ClusterList":{
       "type":"list",
@@ -1633,7 +1664,8 @@
         "ElasticIp":{"shape":"String"},
         "Tags":{"shape":"TagList"},
         "KmsKeyId":{"shape":"String"},
-        "AdditionalInfo":{"shape":"String"}
+        "AdditionalInfo":{"shape":"String"},
+        "IamRoles":{"shape":"IamRoleArnList"}
       }
     },
     "CreateClusterParameterGroupMessage":{
@@ -2453,6 +2485,13 @@
         "locationName":"IPRange"
       }
     },
+    "IamRoleArnList":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"IamRoleArn"
+      }
+    },
     "ImportTablesCompleted":{
       "type":"list",
       "member":{"shape":"String"}
@@ -2733,6 +2772,21 @@
     },
     "Long":{"type":"long"},
     "LongOptional":{"type":"long"},
+    "ModifyClusterIamRolesMessage":{
+      "type":"structure",
+      "required":["ClusterIdentifier"],
+      "members":{
+        "ClusterIdentifier":{"shape":"String"},
+        "AddIamRoles":{"shape":"IamRoleArnList"},
+        "RemoveIamRoles":{"shape":"IamRoleArnList"}
+      }
+    },
+    "ModifyClusterIamRolesResult":{
+      "type":"structure",
+      "members":{
+        "Cluster":{"shape":"Cluster"}
+      }
+    },
     "ModifyClusterMessage":{
       "type":"structure",
       "required":["ClusterIdentifier"],
@@ -3148,7 +3202,8 @@
         "AutomatedSnapshotRetentionPeriod":{"shape":"IntegerOptional"},
         "KmsKeyId":{"shape":"String"},
         "NodeType":{"shape":"String"},
-        "AdditionalInfo":{"shape":"String"}
+        "AdditionalInfo":{"shape":"String"},
+        "IamRoles":{"shape":"IamRoleArnList"}
       }
     },
     "RestoreFromClusterSnapshotResult":{
