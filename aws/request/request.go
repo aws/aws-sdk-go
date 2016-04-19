@@ -253,7 +253,7 @@ func (r *Request) Send() error {
 				Proto:         r.HTTPRequest.Proto,
 				ContentLength: r.HTTPRequest.ContentLength,
 			}
-			if r.HTTPResponse.Body != nil {
+			if r.HTTPResponse != nil && r.HTTPResponse.Body != nil {
 				// Closing response body. Since we are setting a new request to send off, this
 				// response will get squashed and leaked.
 				r.HTTPResponse.Body.Close()

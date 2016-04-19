@@ -341,3 +341,40 @@ func TestRequestRecoverTimeoutWithNilBody(t *testing.T) {
 	assert.Equal(t, 1, int(r.RetryCount))
 	assert.Equal(t, "valid", out.Data)
 }
+
+func TestRequestRecoverTimeoutWithNilResponse(t *testing.T) {
+	reqNum := 0
+	reqs := []*http.Response{
+		nil,
+		{StatusCode: 200, Body: body(`{"data":"valid"}`)},
+	}
+	errors := []error{
+		errors.New("timeout"),
+		nil,
+	}
+
+	s := awstesting.NewClient(aws.NewConfig().WithMaxRetries(10))
+	s.Handlers.Validate.Clear()
+	s.Handlers.Unmarshal.PushBack(unmarshal)
+	s.Handlers.UnmarshalError.PushBack(unmarshalError)
+	s.Handlers.AfterRetry.Clear() // force retry on all errors
+	s.Handlers.AfterRetry.PushBack(func(r *request.Request) {
+		if r.Error != nil {
+			r.Error = nil
+			r.Retryable = aws.Bool(true)
+			r.RetryCount++
+		}
+	})
+	s.Handlers.Send.Clear() // mock sending
+	s.Handlers.Send.PushBack(func(r *request.Request) {
+		r.HTTPResponse = reqs[reqNum]
+		r.Error = errors[reqNum]
+		reqNum++
+	})
+	out := &testData{}
+	r := s.NewRequest(&request.Operation{Name: "Operation"}, nil, out)
+	err := r.Send()
+	assert.Nil(t, err)
+	assert.Equal(t, 1, int(r.RetryCount))
+	assert.Equal(t, "valid", out.Data)
+}
