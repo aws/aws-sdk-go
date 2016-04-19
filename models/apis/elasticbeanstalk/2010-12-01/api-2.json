@@ -21,6 +21,22 @@
         {"shape":"InsufficientPrivilegesException"}
       ]
     },
+    "ApplyEnvironmentManagedAction":{
+      "name":"ApplyEnvironmentManagedAction",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ApplyEnvironmentManagedActionRequest"},
+      "output":{
+        "shape":"ApplyEnvironmentManagedActionResult",
+        "resultWrapper":"ApplyEnvironmentManagedActionResult"
+      },
+      "errors":[
+        {"shape":"ElasticBeanstalkServiceException"},
+        {"shape":"ManagedActionInvalidStateException"}
+      ]
+    },
     "CheckDNSAvailability":{
       "name":"CheckDNSAvailability",
       "http":{
@@ -238,6 +254,36 @@
         {"shape":"ElasticBeanstalkServiceException"}
       ]
     },
+    "DescribeEnvironmentManagedActionHistory":{
+      "name":"DescribeEnvironmentManagedActionHistory",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeEnvironmentManagedActionHistoryRequest"},
+      "output":{
+        "shape":"DescribeEnvironmentManagedActionHistoryResult",
+        "resultWrapper":"DescribeEnvironmentManagedActionHistoryResult"
+      },
+      "errors":[
+        {"shape":"ElasticBeanstalkServiceException"}
+      ]
+    },
+    "DescribeEnvironmentManagedActions":{
+      "name":"DescribeEnvironmentManagedActions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeEnvironmentManagedActionsRequest"},
+      "output":{
+        "shape":"DescribeEnvironmentManagedActionsResult",
+        "resultWrapper":"DescribeEnvironmentManagedActionsResult"
+      },
+      "errors":[
+        {"shape":"ElasticBeanstalkServiceException"}
+      ]
+    },
     "DescribeEnvironmentResources":{
       "name":"DescribeEnvironmentResources",
       "http":{
@@ -445,6 +491,31 @@
       }
     },
     "AbortableOperationInProgress":{"type":"boolean"},
+    "ActionHistoryStatus":{
+      "type":"string",
+      "enum":[
+        "Completed",
+        "Failed",
+        "Unknown"
+      ]
+    },
+    "ActionStatus":{
+      "type":"string",
+      "enum":[
+        "Scheduled",
+        "Pending",
+        "Running",
+        "Unknown"
+      ]
+    },
+    "ActionType":{
+      "type":"string",
+      "enum":[
+        "InstanceRefresh",
+        "PlatformUpdate",
+        "Unknown"
+      ]
+    },
     "ApplicationDescription":{
       "type":"structure",
       "members":{
@@ -527,6 +598,24 @@
         "Failed",
         "Processing"
       ]
+    },
+    "ApplyEnvironmentManagedActionRequest":{
+      "type":"structure",
+      "required":["ActionId"],
+      "members":{
+        "EnvironmentName":{"shape":"String"},
+        "EnvironmentId":{"shape":"String"},
+        "ActionId":{"shape":"String"}
+      }
+    },
+    "ApplyEnvironmentManagedActionResult":{
+      "type":"structure",
+      "members":{
+        "ActionId":{"shape":"String"},
+        "ActionDescription":{"shape":"String"},
+        "ActionType":{"shape":"ActionType"},
+        "Status":{"shape":"String"}
+      }
     },
     "AutoCreateApplication":{"type":"boolean"},
     "AutoScalingGroup":{
@@ -874,6 +963,36 @@
         "RefreshedAt":{"shape":"RefreshedAt"}
       }
     },
+    "DescribeEnvironmentManagedActionHistoryRequest":{
+      "type":"structure",
+      "members":{
+        "EnvironmentId":{"shape":"EnvironmentId"},
+        "EnvironmentName":{"shape":"EnvironmentName"},
+        "NextToken":{"shape":"String"},
+        "MaxItems":{"shape":"Integer"}
+      }
+    },
+    "DescribeEnvironmentManagedActionHistoryResult":{
+      "type":"structure",
+      "members":{
+        "ManagedActionHistoryItems":{"shape":"ManagedActionHistoryItems"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "DescribeEnvironmentManagedActionsRequest":{
+      "type":"structure",
+      "members":{
+        "EnvironmentName":{"shape":"String"},
+        "EnvironmentId":{"shape":"String"},
+        "Status":{"shape":"ActionStatus"}
+      }
+    },
+    "DescribeEnvironmentManagedActionsResult":{
+      "type":"structure",
+      "members":{
+        "ManagedActions":{"shape":"ManagedActions"}
+      }
+    },
     "DescribeEnvironmentResourcesMessage":{
       "type":"structure",
       "members":{
@@ -1135,6 +1254,18 @@
       ]
     },
     "ExceptionMessage":{"type":"string"},
+    "FailureType":{
+      "type":"string",
+      "enum":[
+        "UpdateCancelled",
+        "CancellationFailed",
+        "RollbackFailed",
+        "RollbackSuccessful",
+        "InternalFailure",
+        "InvalidEnvironmentState",
+        "PermissionsError"
+      ]
+    },
     "FileTypeExtension":{
       "type":"string",
       "max":100,
@@ -1287,6 +1418,52 @@
     "LoadBalancerListenersDescription":{
       "type":"list",
       "member":{"shape":"Listener"}
+    },
+    "ManagedAction":{
+      "type":"structure",
+      "members":{
+        "ActionId":{"shape":"String"},
+        "ActionDescription":{"shape":"String"},
+        "ActionType":{"shape":"ActionType"},
+        "Status":{"shape":"ActionStatus"},
+        "WindowStartTime":{"shape":"Timestamp"}
+      }
+    },
+    "ManagedActionHistoryItem":{
+      "type":"structure",
+      "members":{
+        "ActionId":{"shape":"String"},
+        "ActionType":{"shape":"ActionType"},
+        "ActionDescription":{"shape":"String"},
+        "FailureType":{"shape":"FailureType"},
+        "Status":{"shape":"ActionHistoryStatus"},
+        "FailureDescription":{"shape":"String"},
+        "ExecutedTime":{"shape":"Timestamp"},
+        "FinishedTime":{"shape":"Timestamp"}
+      }
+    },
+    "ManagedActionHistoryItems":{
+      "type":"list",
+      "member":{"shape":"ManagedActionHistoryItem"},
+      "max":100,
+      "min":1
+    },
+    "ManagedActionInvalidStateException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"ManagedActionInvalidStateException",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "ManagedActions":{
+      "type":"list",
+      "member":{"shape":"ManagedAction"},
+      "max":100,
+      "min":1
     },
     "MaxRecords":{
       "type":"integer",
@@ -1542,6 +1719,7 @@
     "TerminateEnvironmentResources":{"type":"boolean"},
     "TimeFilterEnd":{"type":"timestamp"},
     "TimeFilterStart":{"type":"timestamp"},
+    "Timestamp":{"type":"timestamp"},
     "Token":{"type":"string"},
     "TooManyApplicationVersionsException":{
       "type":"structure",

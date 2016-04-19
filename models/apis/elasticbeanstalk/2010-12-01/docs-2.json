@@ -1,8 +1,9 @@
 {
   "version": "2.0",
-  "service": "<fullname>AWS Elastic Beanstalk</fullname> <p> This is the AWS Elastic Beanstalk API Reference. This guide provides detailed information about AWS Elastic Beanstalk actions, data types, parameters, and errors. </p> <p>AWS Elastic Beanstalk is a tool that makes it easy for you to create, deploy, and manage scalable, fault-tolerant applications running on Amazon Web Services cloud resources. </p> <p> For more information about this product, go to the <a href=\"http://aws.amazon.com/elasticbeanstalk/\">AWS Elastic Beanstalk</a> details page. The location of the latest AWS Elastic Beanstalk WSDL is <a href=\"http://elasticbeanstalk.s3.amazonaws.com/doc/2010-12-01/AWSElasticBeanstalk.wsdl\">http://elasticbeanstalk.s3.amazonaws.com/doc/2010-12-01/AWSElasticBeanstalk.wsdl</a>. To install the Software Development Kits (SDKs), Integrated Development Environment (IDE) Toolkits, and command line tools that enable you to access the API, go to <a href=\"https://aws.amazon.com/tools/\">Tools for Amazon Web Services</a>. </p> <p> <b>Endpoints</b> </p> <p>For a list of region-specific endpoints that AWS Elastic Beanstalk supports, go to <a href=\"http://docs.aws.amazon.com/general/latest/gr/rande.html#elasticbeanstalk_region\">Regions and Endpoints</a> in the <i>Amazon Web Services Glossary</i>.</p>",
+  "service": "<fullname>AWS Elastic Beanstalk</fullname> <p>AWS Elastic Beanstalk makes it easy for you to create, deploy, and manage scalable, fault-tolerant applications running on the Amazon Web Services cloud.</p> <p>For more information about this product, go to the <a href=\"http://aws.amazon.com/elasticbeanstalk/\">AWS Elastic Beanstalk</a> details page. The location of the latest AWS Elastic Beanstalk WSDL is <a href=\"http://elasticbeanstalk.s3.amazonaws.com/doc/2010-12-01/AWSElasticBeanstalk.wsdl\">http://elasticbeanstalk.s3.amazonaws.com/doc/2010-12-01/AWSElasticBeanstalk.wsdl</a>. To install the Software Development Kits (SDKs), Integrated Development Environment (IDE) Toolkits, and command line tools that enable you to access the API, go to <a href=\"https://aws.amazon.com/tools/\">Tools for Amazon Web Services</a>.</p> <p><b>Endpoints</b></p> <p>For a list of region-specific endpoints that AWS Elastic Beanstalk supports, go to <a href=\"http://docs.aws.amazon.com/general/latest/gr/rande.html#elasticbeanstalk_region\">Regions and Endpoints</a> in the <i>Amazon Web Services Glossary</i>.</p>",
   "operations": {
     "AbortEnvironmentUpdate": "<p>Cancels in-progress environment configuration update or application version deployment.</p>",
+    "ApplyEnvironmentManagedAction": "<p>Applies a scheduled managed action immediately. A managed action can be applied only if its status is <code>Scheduled</code>. Get the status and action ID of a managed action with <a>DescribeEnvironmentManagedActions</a>.</p>",
     "CheckDNSAvailability": "<p> Checks if the specified CNAME is available. </p>",
     "ComposeEnvironments": "<p>Create or update a group of environments that each run a separate component of a single application. Takes a list of version labels that specify application source bundles for each of the environments to create or update. The name of each environment and other required information must be included in the source bundles in an environment manifest named <code>env.yaml</code>. See <a href=\"http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environment-mgmt-compose.html\">Compose Environments</a> for details.</p>",
     "CreateApplication": "<p> Creates an application that has one configuration template named <code>default</code> and no application versions. </p>",
@@ -19,6 +20,8 @@
     "DescribeConfigurationOptions": "<p> Describes the configuration options that are used in a particular configuration template or environment, or that a specified solution stack defines. The description includes the values the options, their default values, and an indication of the required action on a running environment if an option value is changed. </p>",
     "DescribeConfigurationSettings": "<p> Returns a description of the settings for the specified configuration set, that is, either a configuration template or the configuration set associated with a running environment. </p> <p> When describing the settings for the configuration set associated with a running environment, it is possible to receive two sets of setting descriptions. One is the deployed configuration set, and the other is a draft configuration of an environment that is either in the process of deployment or that failed to deploy. </p> <p>Related Topics</p> <ul> <li> <a>DeleteEnvironmentConfiguration</a> </li> </ul>",
     "DescribeEnvironmentHealth": "<p>Returns information about the overall health of the specified environment. The <b>DescribeEnvironmentHealth</b> operation is only available with AWS Elastic Beanstalk Enhanced Health.</p>",
+    "DescribeEnvironmentManagedActionHistory": "<p>Lists an environment's completed and failed managed actions.</p>",
+    "DescribeEnvironmentManagedActions": "<p>Lists an environment's upcoming and in-progress managed actions.</p>",
     "DescribeEnvironmentResources": "<p>Returns AWS resources for this environment.</p>",
     "DescribeEnvironments": "<p>Returns descriptions for existing environments.</p>",
     "DescribeEvents": "<p>Returns list of event descriptions matching criteria up to the last 6 weeks.</p> <note>This action returns the most recent 1,000 events from the specified <code>NextToken</code>.</note>",
@@ -26,7 +29,7 @@
     "ListAvailableSolutionStacks": "<p> Returns a list of the available solution stack names. </p>",
     "RebuildEnvironment": "<p> Deletes and recreates all of the AWS resources (for example: the Auto Scaling group, load balancer, etc.) for a specified environment and forces a restart. </p>",
     "RequestEnvironmentInfo": "<p> Initiates a request to compile the specified type of information of the deployed environment. </p> <p> Setting the <code>InfoType</code> to <code>tail</code> compiles the last lines from the application server log files of every Amazon EC2 instance in your environment. </p> <p> Setting the <code>InfoType</code> to <code>bundle</code> compresses the application server log files for every Amazon EC2 instance into a <code>.zip</code> file. Legacy and .NET containers do not support bundle logs. </p> <p> Use <a>RetrieveEnvironmentInfo</a> to obtain the set of logs. </p> <p>Related Topics</p> <ul> <li> <a>RetrieveEnvironmentInfo</a> </li> </ul>",
-    "RestartAppServer": "<p> Causes the environment to restart the application container server running on each Amazon EC2 instance. </p>",
+    "RestartAppServer": "<p>Causes the environment to restart the application container server running on each Amazon EC2 instance.</p>",
     "RetrieveEnvironmentInfo": "<p>Retrieves the compiled information from a <a>RequestEnvironmentInfo</a> request.</p> <p>Related Topics</p> <ul> <li> <a>RequestEnvironmentInfo</a> </li> </ul>",
     "SwapEnvironmentCNAMEs": "<p> Swaps the CNAMEs of two environments. </p>",
     "TerminateEnvironment": "<p> Terminates the specified environment. </p>",
@@ -46,6 +49,27 @@
       "base": null,
       "refs": {
         "EnvironmentDescription$AbortableOperationInProgress": "<p>Indicates if there is an in-progress environment configuration update or application version deployment that you can cancel.</p> <p> <code>true:</code> There is an update in progress. </p> <p> <code>false:</code> There are no updates currently in progress. </p>"
+      }
+    },
+    "ActionHistoryStatus": {
+      "base": null,
+      "refs": {
+        "ManagedActionHistoryItem$Status": "<p>The status of the action.</p>"
+      }
+    },
+    "ActionStatus": {
+      "base": null,
+      "refs": {
+        "DescribeEnvironmentManagedActionsRequest$Status": "<p>To show only actions with a particular status, specify a status.</p>",
+        "ManagedAction$Status": "<p>The status of the managed action. If the action is <code>Scheduled</code>, you can apply it immediately with <a>ApplyEnvironmentManagedAction</a>.</p>"
+      }
+    },
+    "ActionType": {
+      "base": null,
+      "refs": {
+        "ApplyEnvironmentManagedActionResult$ActionType": "<p>The type of managed action.</p>",
+        "ManagedAction$ActionType": "<p>The type of managed action.</p>",
+        "ManagedActionHistoryItem$ActionType": "<p>The type of the managed action.</p>"
       }
     },
     "ApplicationDescription": {
@@ -148,6 +172,16 @@
       "base": null,
       "refs": {
         "ApplicationVersionDescription$Status": "<p>The processing status of the application version.</p>"
+      }
+    },
+    "ApplyEnvironmentManagedActionRequest": {
+      "base": "<p>Request to execute a scheduled managed action immediately.</p>",
+      "refs": {
+      }
+    },
+    "ApplyEnvironmentManagedActionResult": {
+      "base": "<p>The result message containing information about the managed action.</p>",
+      "refs": {
       }
     },
     "AutoCreateApplication": {
@@ -468,6 +502,26 @@
       "refs": {
       }
     },
+    "DescribeEnvironmentManagedActionHistoryRequest": {
+      "base": "<p>Request to list completed and failed managed actions.</p>",
+      "refs": {
+      }
+    },
+    "DescribeEnvironmentManagedActionHistoryResult": {
+      "base": "<p>A result message containing a list of completed and failed managed actions.</p>",
+      "refs": {
+      }
+    },
+    "DescribeEnvironmentManagedActionsRequest": {
+      "base": "<p>Request to list an environment's upcoming and in-progress managed actions.</p>",
+      "refs": {
+      }
+    },
+    "DescribeEnvironmentManagedActionsResult": {
+      "base": "<p>The result message containing a list of managed actions.</p>",
+      "refs": {
+      }
+    },
     "DescribeEnvironmentResourcesMessage": {
       "base": "<p>Request to describe the resources in an environment.</p>",
       "refs": {
@@ -575,6 +629,7 @@
         "AbortEnvironmentUpdateMessage$EnvironmentId": "<p>This specifies the ID of the environment with the in-progress update that you want to cancel.</p>",
         "CreateConfigurationTemplateMessage$EnvironmentId": "<p>The ID of the environment used with this configuration template.</p>",
         "DescribeEnvironmentHealthRequest$EnvironmentId": "<p>Specifies the AWS Elastic Beanstalk environment ID.</p> <p>Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>",
+        "DescribeEnvironmentManagedActionHistoryRequest$EnvironmentId": "<p>The environment ID of the target environment.</p>",
         "DescribeEnvironmentResourcesMessage$EnvironmentId": "<p> The ID of the environment to retrieve AWS resource usage data. </p> <p> Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>",
         "DescribeEventsMessage$EnvironmentId": "<p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to those associated with this environment.</p>",
         "DescribeInstancesHealthRequest$EnvironmentId": "<p>Specifies the AWS Elastic Beanstalk environment ID.</p>",
@@ -639,6 +694,7 @@
         "DescribeConfigurationSettingsMessage$EnvironmentName": "<p> The name of the environment to describe. </p> <p> Condition: You must specify either this or a TemplateName, but not both. If you specify both, AWS Elastic Beanstalk returns an <code>InvalidParameterCombination</code> error. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>",
         "DescribeEnvironmentHealthRequest$EnvironmentName": "<p>Specifies the AWS Elastic Beanstalk environment name.</p> <p>Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>",
         "DescribeEnvironmentHealthResult$EnvironmentName": "<p>The AWS Elastic Beanstalk environment name.</p>",
+        "DescribeEnvironmentManagedActionHistoryRequest$EnvironmentName": "<p>The name of the target environment.</p>",
         "DescribeEnvironmentResourcesMessage$EnvironmentName": "<p> The name of the environment to retrieve AWS resource usage data. </p> <p> Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>",
         "DescribeEventsMessage$EnvironmentName": "<p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to those associated with this environment.</p>",
         "DescribeInstancesHealthRequest$EnvironmentName": "<p>Specifies the AWS Elastic Beanstalk environment name.</p>",
@@ -736,6 +792,12 @@
         "ElasticBeanstalkServiceException$message": "<p>The exception error message.</p>"
       }
     },
+    "FailureType": {
+      "base": null,
+      "refs": {
+        "ManagedActionHistoryItem$FailureType": "<p>If the action failed, the type of failure.</p>"
+      }
+    },
     "FileTypeExtension": {
       "base": null,
       "refs": {
@@ -818,6 +880,7 @@
     "Integer": {
       "base": null,
       "refs": {
+        "DescribeEnvironmentManagedActionHistoryRequest$MaxItems": "<p>The maximum number of items to return for a single request.</p>",
         "Listener$Port": "<p>The port that is used by the Listener.</p>"
       }
     },
@@ -895,6 +958,35 @@
       "base": null,
       "refs": {
         "LoadBalancerDescription$Listeners": "<p>A list of Listeners used by the LoadBalancer.</p>"
+      }
+    },
+    "ManagedAction": {
+      "base": "<p>The record of an upcoming or in-progress managed action.</p>",
+      "refs": {
+        "ManagedActions$member": null
+      }
+    },
+    "ManagedActionHistoryItem": {
+      "base": "<p>The record of a completed or failed managed action.</p>",
+      "refs": {
+        "ManagedActionHistoryItems$member": null
+      }
+    },
+    "ManagedActionHistoryItems": {
+      "base": null,
+      "refs": {
+        "DescribeEnvironmentManagedActionHistoryResult$ManagedActionHistoryItems": "<p>A list of completed and failed managed actions.</p>"
+      }
+    },
+    "ManagedActionInvalidStateException": {
+      "base": "<p>Cannot modify the managed action in its current state.</p>",
+      "refs": {
+      }
+    },
+    "ManagedActions": {
+      "base": null,
+      "refs": {
+        "DescribeEnvironmentManagedActionsResult$ManagedActions": "<p>A list of upcoming and in-progress managed actions.</p>"
       }
     },
     "MaxRecords": {
@@ -1187,10 +1279,20 @@
     "String": {
       "base": null,
       "refs": {
+        "ApplyEnvironmentManagedActionRequest$EnvironmentName": "<p>The name of the target environment.</p>",
+        "ApplyEnvironmentManagedActionRequest$EnvironmentId": "<p>The environment ID of the target environment.</p>",
+        "ApplyEnvironmentManagedActionRequest$ActionId": "<p>The action ID of the scheduled managed action to execute.</p>",
+        "ApplyEnvironmentManagedActionResult$ActionId": "<p>The action ID of the managed action.</p>",
+        "ApplyEnvironmentManagedActionResult$ActionDescription": "<p>A description of the managed action.</p>",
+        "ApplyEnvironmentManagedActionResult$Status": "<p>The status of the managed action.</p>",
         "Deployment$VersionLabel": "<p>The version label of the application version in the deployment.</p>",
         "Deployment$Status": "<p>The status of the deployment:</p> <ul> <li> <code>In Progress</code> : The deployment is in progress.</li> <li> <code>Deployed</code> : The deployment succeeded.</li> <li> <code>Failed</code> : The deployment failed.</li> </ul>",
         "DescribeEnvironmentHealthResult$HealthStatus": "<p>Contains the response body with information about the health of the environment.</p>",
         "DescribeEnvironmentHealthResult$Color": "<p>Returns the color indicator that tells you information about the health of the environment. For more information, see <a href=\"http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html\">Health Colors and Statuses</a>.</p>",
+        "DescribeEnvironmentManagedActionHistoryRequest$NextToken": "<p>The pagination token returned by a previous request.</p>",
+        "DescribeEnvironmentManagedActionHistoryResult$NextToken": "<p>A pagination token that you pass to <a>DescribeEnvironmentManagedActionHistory</a> to get the next page of results.</p>",
+        "DescribeEnvironmentManagedActionsRequest$EnvironmentName": "<p>The name of the target environment.</p>",
+        "DescribeEnvironmentManagedActionsRequest$EnvironmentId": "<p>The environment ID of the target environment.</p>",
         "EnvironmentLink$LinkName": "<p>The name of the link.</p>",
         "EnvironmentLink$EnvironmentName": "<p>The name of the linked environment (the dependency).</p>",
         "EnvironmentTier$Name": "<p>The name of this environment tier.</p>",
@@ -1199,6 +1301,11 @@
         "Listener$Protocol": "<p>The protocol that is used by the Listener.</p>",
         "LoadBalancerDescription$LoadBalancerName": "<p>The name of the LoadBalancer.</p>",
         "LoadBalancerDescription$Domain": "<p>The domain name of the LoadBalancer.</p>",
+        "ManagedAction$ActionId": "<p>A unique identifier for the managed action.</p>",
+        "ManagedAction$ActionDescription": "<p>A description of the managed action.</p>",
+        "ManagedActionHistoryItem$ActionId": "<p>A unique identifier for the managed action.</p>",
+        "ManagedActionHistoryItem$ActionDescription": "<p>A description of the managed action.</p>",
+        "ManagedActionHistoryItem$FailureDescription": "<p>If the action failed, a description of the failure.</p>",
         "Queue$Name": "<p>The name of the queue.</p>",
         "Queue$URL": "<p>The URL of the queue.</p>",
         "SingleInstanceHealth$HealthStatus": "<p>Returns the health status of the specified instance. For more information, see <a href=\"http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html\">Health Colors and Statuses</a>.</p>",
@@ -1269,6 +1376,14 @@
       "base": null,
       "refs": {
         "DescribeEventsMessage$StartTime": "<p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to those that occur on or after this time.</p>"
+      }
+    },
+    "Timestamp": {
+      "base": null,
+      "refs": {
+        "ManagedAction$WindowStartTime": "<p>The start time of the maintenance window in which the managed action will execute.</p>",
+        "ManagedActionHistoryItem$ExecutedTime": "<p>The date and time that the action started executing.</p>",
+        "ManagedActionHistoryItem$FinishedTime": "<p>The date and time that the action finished executing.</p>"
       }
     },
     "Token": {
