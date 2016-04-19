@@ -12564,13 +12564,13 @@
       "type":"structure",
       "required":["Error"],
       "members":{
-        "ResourceId":{
-          "shape":"String",
-          "locationName":"resourceId"
-        },
         "Error":{
           "shape":"UnsuccessfulItemError",
           "locationName":"error"
+        },
+        "ResourceId":{
+          "shape":"String",
+          "locationName":"resourceId"
         }
       }
     },
@@ -13015,7 +13015,9 @@
       "enum":[
         "standard",
         "io1",
-        "gp2"
+        "gp2",
+        "sc1",
+        "st1"
       ]
     },
     "Vpc":{
