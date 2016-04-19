@@ -374,21 +374,21 @@
     "ExecutionResult": {
       "base": null,
       "refs": {
-        "Job$result": "<p>The job's result.</p> <p>Allowed values include:</p> <ul> <li><p>ERRORED: An error condition.</p></li> <li><p>FAILED: A failed condition.</p></li> <li><p>SKIPPED: A skipped condition.</p></li> <li><p>STOPPED: A stopped condition.</p></li> <li><p>PASSED: A passing condition.</p></li> <li><p>PENDING: A pending condition.</p></li> <li><p>WARNED: A warning condition.</p></li> </ul>",
-        "Problem$result": "<p>The problem's result.</p> <p>Allowed values include:</p> <ul> <li><p>ERRORED: An error condition.</p></li> <li><p>FAILED: A failed condition.</p></li> <li><p>SKIPPED: A skipped condition.</p></li> <li><p>STOPPED: A stopped condition.</p></li> <li><p>PASSED: A passing condition.</p></li> <li><p>PENDING: A pending condition.</p></li> <li><p>WARNED: A warning condition.</p></li> </ul>",
-        "Run$result": "<p>The run's result.</p> <p>Allowed values include:</p> <ul> <li><p>ERRORED: An error condition.</p></li> <li><p>FAILED: A failed condition.</p></li> <li><p>SKIPPED: A skipped condition.</p></li> <li><p>STOPPED: A stopped condition.</p></li> <li><p>PASSED: A passing condition.</p></li> <li><p>PENDING: A pending condition.</p></li> <li><p>WARNED: A warning condition.</p></li> </ul>",
-        "Suite$result": "<p>The suite's result.</p> <p>Allowed values include:</p> <ul> <li><p>ERRORED: An error condition.</p></li> <li><p>FAILED: A failed condition.</p></li> <li><p>SKIPPED: A skipped condition.</p></li> <li><p>STOPPED: A stopped condition.</p></li> <li><p>PASSED: A passing condition.</p></li> <li><p>PENDING: A pending condition.</p></li> <li><p>WARNED: A warning condition.</p></li> </ul>",
-        "Test$result": "<p>The test's result.</p> <p>Allowed values include:</p> <ul> <li><p>ERRORED: An error condition.</p></li> <li><p>FAILED: A failed condition.</p></li> <li><p>SKIPPED: A skipped condition.</p></li> <li><p>STOPPED: A stopped condition.</p></li> <li><p>PASSED: A passing condition.</p></li> <li><p>PENDING: A pending condition.</p></li> <li><p>WARNED: A warning condition.</p></li> </ul>",
+        "Job$result": "<p>The job's result.</p> <p>Allowed values include:</p> <ul> <li><p>PENDING: A pending condition.</p></li> <li><p>PASSED: A passing condition.</p></li> <li><p>WARNED: A warning condition.</p></li> <li><p>FAILED: A failed condition.</p></li> <li><p>SKIPPED: A skipped condition.</p></li> <li><p>ERRORED: An error condition.</p></li> <li><p>STOPPED: A stopped condition.</p></li> </ul>",
+        "Problem$result": "<p>The problem's result.</p> <p>Allowed values include:</p> <ul> <li><p>PENDING: A pending condition.</p></li> <li><p>PASSED: A passing condition.</p></li> <li><p>WARNED: A warning condition.</p></li> <li><p>FAILED: A failed condition.</p></li> <li><p>SKIPPED: A skipped condition.</p></li> <li><p>ERRORED: An error condition.</p></li> <li><p>STOPPED: A stopped condition.</p></li> </ul>",
+        "Run$result": "<p>The run's result.</p> <p>Allowed values include:</p> <ul> <li><p>PENDING: A pending condition.</p></li> <li><p>PASSED: A passing condition.</p></li> <li><p>WARNED: A warning condition.</p></li> <li><p>FAILED: A failed condition.</p></li> <li><p>SKIPPED: A skipped condition.</p></li> <li><p>ERRORED: An error condition.</p></li> <li><p>STOPPED: A stopped condition.</p></li> </ul>",
+        "Suite$result": "<p>The suite's result.</p> <p>Allowed values include:</p> <ul> <li><p>PENDING: A pending condition.</p></li> <li><p>PASSED: A passing condition.</p></li> <li><p>WARNED: A warning condition.</p></li> <li><p>FAILED: A failed condition.</p></li> <li><p>SKIPPED: A skipped condition.</p></li> <li><p>ERRORED: An error condition.</p></li> <li><p>STOPPED: A stopped condition.</p></li> </ul>",
+        "Test$result": "<p>The test's result.</p> <p>Allowed values include:</p> <ul> <li><p>PENDING: A pending condition.</p></li> <li><p>PASSED: A passing condition.</p></li> <li><p>WARNED: A warning condition.</p></li> <li><p>FAILED: A failed condition.</p></li> <li><p>SKIPPED: A skipped condition.</p></li> <li><p>ERRORED: An error condition.</p></li> <li><p>STOPPED: A stopped condition.</p></li> </ul>",
         "UniqueProblemsByExecutionResultMap$key": null
       }
     },
     "ExecutionStatus": {
       "base": null,
       "refs": {
-        "Job$status": "<p>The job's status.</p> <p>Allowed values include:</p> <ul> <li><p>COMPLETED: A completed status.</p></li> <li><p>PENDING: A pending status.</p></li> <li><p>PROCESSING: A processing status.</p></li> <li><p>RUNNING: A running status.</p></li> <li><p>SCHEDULING: A scheduling status.</p></li> </ul>",
-        "Run$status": "<p>The run's status.</p> <p>Allowed values include:</p> <ul> <li><p>COMPLETED: A completed status.</p></li> <li><p>PENDING: A pending status.</p></li> <li><p>PROCESSING: A processing status.</p></li> <li><p>RUNNING: A running status.</p></li> <li><p>SCHEDULING: A scheduling status.</p></li> </ul>",
-        "Suite$status": "<p>The suite's status.</p> <p>Allowed values include:</p> <ul> <li><p>COMPLETED: A completed status.</p></li> <li><p>PENDING: A pending status.</p></li> <li><p>PROCESSING: A processing status.</p></li> <li><p>RUNNING: A running status.</p></li> <li><p>SCHEDULING: A scheduling status.</p></li> </ul>",
-        "Test$status": "<p>The test's status.</p> <p>Allowed values include:</p> <ul> <li><p>COMPLETED: A completed status.</p></li> <li><p>PENDING: A pending status.</p></li> <li><p>PROCESSING: A processing status.</p></li> <li><p>RUNNING: A running status.</p></li> <li><p>SCHEDULING: A scheduling status.</p></li> </ul>"
+        "Job$status": "<p>The job's status.</p> <p>Allowed values include:</p> <ul> <li><p>PENDING: A pending status.</p></li> <li><p>PENDING_CONCURRENCY: A pending concurrency status.</p></li> <li><p>PENDING_DEVICE: A pending device status.</p></li> <li><p>PROCESSING: A processing status.</p></li> <li><p>SCHEDULING: A scheduling status.</p></li> <li><p>PREPARING: A preparing status.</p></li> <li><p>RUNNING: A running status.</p></li> <li><p>COMPLETED: A completed status.</p></li> <li><p>STOPPING: A stopping status.</p></li> </ul>",
+        "Run$status": "<p>The run's status.</p> <p>Allowed values include:</p> <ul> <li><p>PENDING: A pending status.</p></li> <li><p>PENDING_CONCURRENCY: A pending concurrency status.</p></li> <li><p>PENDING_DEVICE: A pending device status.</p></li> <li><p>PROCESSING: A processing status.</p></li> <li><p>SCHEDULING: A scheduling status.</p></li> <li><p>PREPARING: A preparing status.</p></li> <li><p>RUNNING: A running status.</p></li> <li><p>COMPLETED: A completed status.</p></li> <li><p>STOPPING: A stopping status.</p></li> </ul>",
+        "Suite$status": "<p>The suite's status.</p> <p>Allowed values include:</p> <ul> <li><p>PENDING: A pending status.</p></li> <li><p>PENDING_CONCURRENCY: A pending concurrency status.</p></li> <li><p>PENDING_DEVICE: A pending device status.</p></li> <li><p>PROCESSING: A processing status.</p></li> <li><p>SCHEDULING: A scheduling status.</p></li> <li><p>PREPARING: A preparing status.</p></li> <li><p>RUNNING: A running status.</p></li> <li><p>COMPLETED: A completed status.</p></li> <li><p>STOPPING: A stopping status.</p></li> </ul>",
+        "Test$status": "<p>The test's status.</p> <p>Allowed values include:</p> <ul> <li><p>PENDING: A pending status.</p></li> <li><p>PENDING_CONCURRENCY: A pending concurrency status.</p></li> <li><p>PENDING_DEVICE: A pending device status.</p></li> <li><p>PROCESSING: A processing status.</p></li> <li><p>SCHEDULING: A scheduling status.</p></li> <li><p>PREPARING: A preparing status.</p></li> <li><p>RUNNING: A running status.</p></li> <li><p>COMPLETED: A completed status.</p></li> <li><p>STOPPING: A stopping status.</p></li> </ul>"
       }
     },
     "Filter": {
@@ -916,7 +916,8 @@
     "PurchasedDevicesMap": {
       "base": null,
       "refs": {
-        "AccountSettings$unmeteredDevices": "<p>Returns the unmetered devices you have purchased.</p>"
+        "AccountSettings$unmeteredDevices": "<p>Returns the unmetered devices you have purchased or want to purchase.</p>",
+        "AccountSettings$unmeteredRemoteAccessDevices": "<p>Returns the unmetered remote access devices you have purchased or want to purchase.</p>"
       }
     },
     "Radios": {
@@ -1139,7 +1140,7 @@
     "UniqueProblemsByExecutionResultMap": {
       "base": null,
       "refs": {
-        "ListUniqueProblemsResult$uniqueProblems": "<p>Information about the unique problems.</p> <p>Allowed values include:</p> <ul> <li><p>ERRORED: An error condition.</p></li> <li><p>FAILED: A failed condition.</p></li> <li><p>SKIPPED: A skipped condition.</p></li> <li><p>STOPPED: A stopped condition.</p></li> <li><p>PASSED: A passing condition.</p></li> <li><p>PENDING: A pending condition.</p></li> <li><p>WARNED: A warning condition.</p></li> </ul>"
+        "ListUniqueProblemsResult$uniqueProblems": "<p>Information about the unique problems.</p> <p>Allowed values include:</p> <ul> <li><p>PENDING: A pending condition.</p></li> <li><p>PASSED: A passing condition.</p></li> <li><p>WARNED: A warning condition.</p></li> <li><p>FAILED: A failed condition.</p></li> <li><p>SKIPPED: A skipped condition.</p></li> <li><p>ERRORED: An error condition.</p></li> <li><p>STOPPED: A stopped condition.</p></li> </ul>"
       }
     },
     "UpdateDevicePoolRequest": {
