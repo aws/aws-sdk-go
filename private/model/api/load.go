@@ -60,5 +60,9 @@ func (a *API) Setup() {
 		a.removeUnusedShapes()
 	}
 
+	if !a.NoValidataShapeMethods {
+		a.addShapeValidations()
+	}
+
 	a.initialized = true
 }
