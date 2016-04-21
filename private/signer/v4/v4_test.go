@@ -290,6 +290,35 @@ func TestResignRequestExpiredRequest(t *testing.T) {
 	assert.NotEqual(t, querySig, r.HTTPRequest.Header.Get("Authorization"))
 }
 
+func TestStripExcessHeaders(t *testing.T) {
+	vals := []string{
+		"123",
+		"1 2 3",
+		"  1 2 3",
+		"1  2 3",
+		"1  23",
+		"1  2  3",
+		"1  2  ",
+		" 1  2  ",
+	}
+
+	expected := []string{
+		"123",
+		"1 2 3",
+		"1 2 3",
+		"1 2 3",
+		"1 23",
+		"1 2 3",
+		"1 2",
+		"1 2",
+	}
+
+	newVals := stripExcessSpaces(vals)
+	for i := 0; i < len(newVals); i++ {
+		assert.Equal(t, newVals[i], expected[i])
+	}
+}
+
 func BenchmarkPresignRequest(b *testing.B) {
 	signer := buildSigner("dynamodb", "us-east-1", time.Now(), 300*time.Second, "{}")
 	for i := 0; i < b.N; i++ {
