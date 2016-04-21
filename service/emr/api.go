@@ -1516,6 +1516,9 @@ type InstanceGroup struct {
 	// The number of instances currently running in this instance group.
 	RunningInstanceCount *int64 `type:"integer"`
 
+	// Policy for customizing shrink operations.
+	ShrinkPolicy *ShrinkPolicy `type:"structure"`
+
 	// The current status of the instance group.
 	Status *InstanceGroupStatus `type:"structure"`
 }
@@ -1638,9 +1641,8 @@ func (s InstanceGroupDetail) GoString() string {
 type InstanceGroupModifyConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The EC2 InstanceIds to terminate. For advanced users only. Once you terminate
-	// the instances, the instance group will not return to its original requested
-	// size.
+	// The EC2 InstanceIds to terminate. Once you terminate the instances, the instance
+	// group will not return to its original requested size.
 	EC2InstanceIdsToTerminate []*string `type:"list"`
 
 	// Target size for the instance group.
@@ -1648,6 +1650,9 @@ type InstanceGroupModifyConfig struct {
 
 	// Unique ID of the instance group to expand or shrink.
 	InstanceGroupId *string `type:"string" required:"true"`
+
+	// Policy for customizing shrink operations.
+	ShrinkPolicy *ShrinkPolicy `type:"structure"`
 }
 
 // String returns the string representation
@@ -1726,6 +1731,32 @@ func (s InstanceGroupTimeline) String() string {
 
 // GoString returns the string representation
 func (s InstanceGroupTimeline) GoString() string {
+	return s.String()
+}
+
+// Custom policy for requesting termination protection or termination of specific
+// instances when shrinking an instance group.
+type InstanceResizePolicy struct {
+	_ struct{} `type:"structure"`
+
+	// Decommissioning timeout override for the specific list of instances to be
+	// terminated.
+	InstanceTerminationTimeout *int64 `type:"integer"`
+
+	// Specific list of instances to be protected when shrinking an instance group.
+	InstancesToProtect []*string `type:"list"`
+
+	// Specific list of instances to be terminated when shrinking an instance group.
+	InstancesToTerminate []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s InstanceResizePolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InstanceResizePolicy) GoString() string {
 	return s.String()
 }
 
@@ -2269,7 +2300,8 @@ func (s ListStepsInput) GoString() string {
 	return s.String()
 }
 
-// This output contains the list of steps.
+// This output contains the list of steps returned in reverse order. This means
+// that the last step is the first element in the list.
 type ListStepsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2613,6 +2645,30 @@ func (s SetVisibleToAllUsersOutput) String() string {
 
 // GoString returns the string representation
 func (s SetVisibleToAllUsersOutput) GoString() string {
+	return s.String()
+}
+
+// Policy for customizing shrink operations. Allows configuration of decommissioning
+// timeout and targeted instance shrinking.
+type ShrinkPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// The desired timeout for decommissioning an instance. Overrides the default
+	// YARN decommissioning timeout.
+	DecommissionTimeout *int64 `type:"integer"`
+
+	// Custom policy for requesting termination protection or termination of specific
+	// instances when shrinking an instance group.
+	InstanceResizePolicy *InstanceResizePolicy `type:"structure"`
+}
+
+// String returns the string representation
+func (s ShrinkPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ShrinkPolicy) GoString() string {
 	return s.String()
 }
 

@@ -336,6 +336,20 @@ func ExampleEMR_ModifyInstanceGroups() {
 					// More values...
 				},
 				InstanceCount: aws.Int64(1),
+				ShrinkPolicy: &emr.ShrinkPolicy{
+					DecommissionTimeout: aws.Int64(1),
+					InstanceResizePolicy: &emr.InstanceResizePolicy{
+						InstanceTerminationTimeout: aws.Int64(1),
+						InstancesToProtect: []*string{
+							aws.String("InstanceId"), // Required
+							// More values...
+						},
+						InstancesToTerminate: []*string{
+							aws.String("InstanceId"), // Required
+							// More values...
+						},
+					},
+				},
 			},
 			// More values...
 		},
