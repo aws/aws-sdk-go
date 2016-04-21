@@ -4,14 +4,14 @@ package request
 
 import "net/http"
 
-func copyHTTPRequest(r *http.Request) *http.Request {
+func copyHTTPRequest(r *http.Request, body io.ReadCloser) *http.Request {
 	return &http.Request{
 		URL:           r.URL,
 		Header:        r.Header,
 		Close:         r.Close,
 		Form:          r.Form,
 		PostForm:      r.PostForm,
-		Body:          r.Body,
+		Body:          body,
 		MultipartForm: r.MultipartForm,
 		Host:          r.Host,
 		Method:        r.Method,
