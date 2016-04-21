@@ -11,6 +11,20 @@
     "targetPrefix":"CertificateManager"
   },
   "operations":{
+    "AddTagsToCertificate":{
+      "name":"AddTagsToCertificate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AddTagsToCertificateRequest"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidArnException"},
+        {"shape":"InvalidTagException"},
+        {"shape":"TooManyTagsException"}
+      ]
+    },
     "DeleteCertificate":{
       "name":"DeleteCertificate",
       "http":{
@@ -60,6 +74,32 @@
       "input":{"shape":"ListCertificatesRequest"},
       "output":{"shape":"ListCertificatesResponse"}
     },
+    "ListTagsForCertificate":{
+      "name":"ListTagsForCertificate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTagsForCertificateRequest"},
+      "output":{"shape":"ListTagsForCertificateResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidArnException"}
+      ]
+    },
+    "RemoveTagsFromCertificate":{
+      "name":"RemoveTagsFromCertificate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RemoveTagsFromCertificateRequest"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidArnException"},
+        {"shape":"InvalidTagException"}
+      ]
+    },
     "RequestCertificate":{
       "name":"RequestCertificate",
       "http":{
@@ -89,6 +129,17 @@
     }
   },
   "shapes":{
+    "AddTagsToCertificateRequest":{
+      "type":"structure",
+      "required":[
+        "CertificateArn",
+        "Tags"
+      ],
+      "members":{
+        "CertificateArn":{"shape":"Arn"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
     "Arn":{
       "type":"string",
       "max":2048,
@@ -265,6 +316,13 @@
       },
       "exception":true
     },
+    "InvalidTagException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "exception":true
+    },
     "KeyAlgorithm":{
       "type":"string",
       "enum":[
@@ -294,6 +352,19 @@
         "CertificateSummaryList":{"shape":"CertificateSummaryList"}
       }
     },
+    "ListTagsForCertificateRequest":{
+      "type":"structure",
+      "required":["CertificateArn"],
+      "members":{
+        "CertificateArn":{"shape":"Arn"}
+      }
+    },
+    "ListTagsForCertificateResponse":{
+      "type":"structure",
+      "members":{
+        "Tags":{"shape":"TagList"}
+      }
+    },
     "MaxItems":{
       "type":"integer",
       "max":1000,
@@ -304,6 +375,17 @@
       "max":320,
       "min":1,
       "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u00FF]*"
+    },
+    "RemoveTagsFromCertificateRequest":{
+      "type":"structure",
+      "required":[
+        "CertificateArn",
+        "Tags"
+      ],
+      "members":{
+        "CertificateArn":{"shape":"Arn"},
+        "Tags":{"shape":"TagList"}
+      }
     },
     "RequestCertificateRequest":{
       "type":"structure",
@@ -372,6 +454,39 @@
     },
     "String":{"type":"string"},
     "TStamp":{"type":"timestamp"},
+    "Tag":{
+      "type":"structure",
+      "required":["Key"],
+      "members":{
+        "Key":{"shape":"TagKey"},
+        "Value":{"shape":"TagValue"}
+      }
+    },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[\\p{L}\\p{Z}\\p{N}_.:\\/=+\\-@]*"
+    },
+    "TagList":{
+      "type":"list",
+      "member":{"shape":"Tag"},
+      "max":50,
+      "min":1
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0,
+      "pattern":"[\\p{L}\\p{Z}\\p{N}_.:\\/=+\\-@]*"
+    },
+    "TooManyTagsException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "exception":true
+    },
     "ValidationEmailList":{
       "type":"list",
       "member":{"shape":"String"}
