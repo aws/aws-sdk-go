@@ -2022,8 +2022,8 @@ type ListAliasesInput struct {
 	Limit *int64 `min:"1" type:"integer"`
 
 	// Use this parameter only when paginating results and only in a subsequent
-	// request after you've received a response with truncated results. Set it to
-	// the value of NextMarker from the response you just received.
+	// request after you receive a response with truncated results. Set it to the
+	// value of NextMarker from the response you just received.
 	Marker *string `min:"1" type:"string"`
 }
 
@@ -2081,8 +2081,8 @@ type ListGrantsInput struct {
 	Limit *int64 `min:"1" type:"integer"`
 
 	// Use this parameter only when paginating results and only in a subsequent
-	// request after you've received a response with truncated results. Set it to
-	// the value of NextMarker from the response you just received.
+	// request after you receive a response with truncated results. Set it to the
+	// value of NextMarker from the response you just received.
 	Marker *string `min:"1" type:"string"`
 }
 
@@ -2144,8 +2144,8 @@ type ListKeyPoliciesInput struct {
 	Limit *int64 `min:"1" type:"integer"`
 
 	// Use this parameter only when paginating results and only in a subsequent
-	// request after you've received a response with truncated results. Set it to
-	// the value of NextMarker from the response you just received.
+	// request after you receive a response with truncated results. Set it to the
+	// value of NextMarker from the response you just received.
 	Marker *string `min:"1" type:"string"`
 }
 
@@ -2198,8 +2198,8 @@ type ListKeysInput struct {
 	Limit *int64 `min:"1" type:"integer"`
 
 	// Use this parameter only when paginating results and only in a subsequent
-	// request after you've received a response with truncated results. Set it to
-	// the value of NextMarker from the response you just received.
+	// request after you receive a response with truncated results. Set it to the
+	// value of NextMarker from the response you just received.
 	Marker *string `min:"1" type:"string"`
 }
 
@@ -2251,8 +2251,8 @@ type ListRetirableGrantsInput struct {
 	Limit *int64 `min:"1" type:"integer"`
 
 	// Use this parameter only when paginating results and only in a subsequent
-	// request after you've received a response with truncated results. Set it to
-	// the value of NextMarker from the response you just received.
+	// request after you receive a response with truncated results. Set it to the
+	// value of NextMarker from the response you just received.
 	Marker *string `min:"1" type:"string"`
 
 	// The retiring principal for which to list grants.
