@@ -2,7 +2,7 @@
   "version": "2.0",
   "service": "<fullname>AWS CloudHSM Service</fullname>",
   "operations": {
-    "AddTagsToResource": "<p>Adds or overwrites one or more tags for the specified resource.</p> <p>Each tag consists of a key and a value. Tag keys must be unique per resource.</p>",
+    "AddTagsToResource": "<p>Adds or overwrites one or more tags for the specified AWS CloudHSM resource.</p> <p>Each tag consists of a key and a value. Tag keys must be unique to each resource.</p>",
     "CreateHapg": "<p>Creates a high-availability partition group. A high-availability partition group is a group of partitions that spans multiple physical HSMs.</p>",
     "CreateHsm": "<p>Creates an uninitialized HSM instance.</p> <p>There is an upfront fee charged for each HSM instance that you create with the <a>CreateHsm</a> operation. If you accidentally provision an HSM and want to request a refund, delete the instance using the <a>DeleteHsm</a> operation, go to the <a href=\"https://console.aws.amazon.com/support/home#/\">AWS Support Center</a>, create a new case, and select <b>Account and Billing Support</b>.</p> <important> <p>It can take up to 20 minutes to create and provision an HSM. You can monitor the status of the HSM with the <a>DescribeHsm</a> operation. The HSM is ready to be initialized when the status changes to <code>RUNNING</code>.</p> </important>",
     "CreateLunaClient": "<p>Creates an HSM client.</p>",
@@ -17,11 +17,11 @@
     "ListHapgs": "<p>Lists the high-availability partition groups for the account.</p> <p>This operation supports pagination with the use of the <i>NextToken</i> member. If more results are available, the <i>NextToken</i> member of the response contains a token that you pass in the next call to <a>ListHapgs</a> to retrieve the next set of items.</p>",
     "ListHsms": "<p>Retrieves the identifiers of all of the HSMs provisioned for the current customer.</p> <p>This operation supports pagination with the use of the <i>NextToken</i> member. If more results are available, the <i>NextToken</i> member of the response contains a token that you pass in the next call to <a>ListHsms</a> to retrieve the next set of items.</p>",
     "ListLunaClients": "<p>Lists all of the clients.</p> <p>This operation supports pagination with the use of the <i>NextToken</i> member. If more results are available, the <i>NextToken</i> member of the response contains a token that you pass in the next call to <a>ListLunaClients</a> to retrieve the next set of items.</p>",
-    "ListTagsForResource": "<p>Returns a list of all tags for the specified resource.</p>",
+    "ListTagsForResource": "<p>Returns a list of all tags for the specified AWS CloudHSM resource.</p>",
     "ModifyHapg": "<p>Modifies an existing high-availability partition group.</p>",
     "ModifyHsm": "<p>Modifies an HSM.</p> <important> <p>This operation can result in the HSM being offline for up to 15 minutes while the AWS CloudHSM service is reconfigured. If you are modifying a production HSM, you should ensure that your AWS CloudHSM service is configured for high availability, and consider executing this operation during a maintenance window.</p> </important>",
     "ModifyLunaClient": "<p>Modifies the certificate used by the client.</p> <p>This action can potentially start a workflow to install the new certificate on the client's HSMs.</p>",
-    "RemoveTagsFromResource": "<p>Removes one or more tags from the specified resource.</p> <p>To remove a tag, specify only the tag key to remove (not the value). To overwrite the value for an existing tag, use <a>AddTagsToResource</a>.</p>"
+    "RemoveTagsFromResource": "<p>Removes one or more tags from the specified AWS CloudHSM resource.</p> <p>To remove a tag, specify only the tag key to remove (not the value). To overwrite the value for an existing tag, use <a>AddTagsToResource</a>.</p>"
   },
   "shapes": {
     "AZ": {
@@ -455,7 +455,7 @@
     "String": {
       "base": null,
       "refs": {
-        "AddTagsToResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource to tag.</p>",
+        "AddTagsToResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the AWS CloudHSM resource to tag.</p>",
         "AddTagsToResourceResponse$Status": "<p>The status of the operation.</p>",
         "CloudHsmServiceException$message": "<p>Additional information about the error.</p>",
         "DeleteHapgResponse$Status": "<p>The status of the action.</p>",
@@ -470,8 +470,8 @@
         "GetConfigResponse$ConfigType": "<p>The type of credentials.</p>",
         "GetConfigResponse$ConfigFile": "<p>The chrystoki.conf configuration file.</p>",
         "GetConfigResponse$ConfigCred": "<p>The certificate file containing the server.pem files of the HSMs.</p>",
-        "ListTagsForResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
-        "RemoveTagsFromResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+        "ListTagsForResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the AWS CloudHSM resource.</p>",
+        "RemoveTagsFromResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the AWS CloudHSM resource.</p>",
         "RemoveTagsFromResourceResponse$Status": "<p>The status of the operation.</p>"
       }
     },
@@ -491,7 +491,7 @@
       }
     },
     "Tag": {
-      "base": "<p>A key-value pair that identifies or specifies metadata about a resource.</p>",
+      "base": "<p>A key-value pair that identifies or specifies metadata about an AWS CloudHSM resource.</p>",
       "refs": {
         "TagList$member": null
       }

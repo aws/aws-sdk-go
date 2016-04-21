@@ -28,9 +28,10 @@ func (c *CloudHSM) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req 
 	return
 }
 
-// Adds or overwrites one or more tags for the specified resource.
+// Adds or overwrites one or more tags for the specified AWS CloudHSM resource.
 //
-// Each tag consists of a key and a value. Tag keys must be unique per resource.
+// Each tag consists of a key and a value. Tag keys must be unique to each
+// resource.
 func (c *CloudHSM) AddTagsToResource(input *AddTagsToResourceInput) (*AddTagsToResourceOutput, error) {
 	req, out := c.AddTagsToResourceRequest(input)
 	err := req.Send()
@@ -465,7 +466,7 @@ func (c *CloudHSM) ListTagsForResourceRequest(input *ListTagsForResourceInput) (
 	return
 }
 
-// Returns a list of all tags for the specified resource.
+// Returns a list of all tags for the specified AWS CloudHSM resource.
 func (c *CloudHSM) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
 	err := req.Send()
@@ -582,7 +583,7 @@ func (c *CloudHSM) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceIn
 	return
 }
 
-// Removes one or more tags from the specified resource.
+// Removes one or more tags from the specified AWS CloudHSM resource.
 //
 // To remove a tag, specify only the tag key to remove (not the value). To
 // overwrite the value for an existing tag, use AddTagsToResource.
@@ -595,7 +596,7 @@ func (c *CloudHSM) RemoveTagsFromResource(input *RemoveTagsFromResourceInput) (*
 type AddTagsToResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the resource to tag.
+	// The Amazon Resource Name (ARN) of the AWS CloudHSM resource to tag.
 	ResourceArn *string `type:"string" required:"true"`
 
 	// One or more tags.
@@ -1291,7 +1292,7 @@ func (s ListLunaClientsOutput) GoString() string {
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the resource.
+	// The Amazon Resource Name (ARN) of the AWS CloudHSM resource.
 	ResourceArn *string `type:"string" required:"true"`
 }
 
@@ -1460,7 +1461,7 @@ func (s ModifyLunaClientOutput) GoString() string {
 type RemoveTagsFromResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the resource.
+	// The Amazon Resource Name (ARN) of the AWS CloudHSM resource.
 	ResourceArn *string `type:"string" required:"true"`
 
 	// The tag key or keys to remove.
@@ -1497,7 +1498,8 @@ func (s RemoveTagsFromResourceOutput) GoString() string {
 	return s.String()
 }
 
-// A key-value pair that identifies or specifies metadata about a resource.
+// A key-value pair that identifies or specifies metadata about an AWS CloudHSM
+// resource.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
