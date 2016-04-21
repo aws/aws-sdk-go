@@ -659,6 +659,11 @@
           "exception":true
         },
         {
+          "shape":"ResourceNotFoundException",
+          "error":{"httpStatusCode":404},
+          "exception":true
+        },
+        {
           "shape":"UnauthorizedException",
           "error":{"httpStatusCode":401},
           "exception":true
@@ -2182,6 +2187,7 @@
       "pattern":"[0-9]{12}"
     },
     "AwsArn":{"type":"string"},
+    "AwsIotSqlVersion":{"type":"string"},
     "BucketName":{"type":"string"},
     "CACertificate":{
       "type":"structure",
@@ -3540,7 +3546,8 @@
         "description":{"shape":"Description"},
         "createdAt":{"shape":"CreatedAtDate"},
         "actions":{"shape":"ActionList"},
-        "ruleDisabled":{"shape":"IsDisabled"}
+        "ruleDisabled":{"shape":"IsDisabled"},
+        "awsIotSqlVersion":{"shape":"AwsIotSqlVersion"}
       }
     },
     "TopicRuleList":{
@@ -3567,7 +3574,8 @@
         "sql":{"shape":"SQL"},
         "description":{"shape":"Description"},
         "actions":{"shape":"ActionList"},
-        "ruleDisabled":{"shape":"IsDisabled"}
+        "ruleDisabled":{"shape":"IsDisabled"},
+        "awsIotSqlVersion":{"shape":"AwsIotSqlVersion"}
       }
     },
     "TransferAlreadyCompletedException":{

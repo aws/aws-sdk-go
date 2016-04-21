@@ -271,9 +271,10 @@ func ExampleIoT_CreateTopicRule() {
 				},
 				// More values...
 			},
-			Sql:          aws.String("SQL"), // Required
-			Description:  aws.String("Description"),
-			RuleDisabled: aws.Bool(true),
+			Sql:              aws.String("SQL"), // Required
+			AwsIotSqlVersion: aws.String("AwsIotSqlVersion"),
+			Description:      aws.String("Description"),
+			RuleDisabled:     aws.Bool(true),
 		},
 	}
 	resp, err := svc.CreateTopicRule(params)
@@ -1009,9 +1010,10 @@ func ExampleIoT_ReplaceTopicRule() {
 				},
 				// More values...
 			},
-			Sql:          aws.String("SQL"), // Required
-			Description:  aws.String("Description"),
-			RuleDisabled: aws.Bool(true),
+			Sql:              aws.String("SQL"), // Required
+			AwsIotSqlVersion: aws.String("AwsIotSqlVersion"),
+			Description:      aws.String("Description"),
+			RuleDisabled:     aws.Bool(true),
 		},
 	}
 	resp, err := svc.ReplaceTopicRule(params)

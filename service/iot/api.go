@@ -3961,6 +3961,9 @@ type TopicRule struct {
 	// The actions associated with the rule.
 	Actions []*Action `locationName:"actions" type:"list"`
 
+	// The version of the SQL rules engine to use when evaluating the rule.
+	AwsIotSqlVersion *string `locationName:"awsIotSqlVersion" type:"string"`
+
 	// The date and time the rule was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"unix"`
 
@@ -4024,6 +4027,9 @@ type TopicRulePayload struct {
 
 	// The actions associated with the rule.
 	Actions []*Action `locationName:"actions" type:"list" required:"true"`
+
+	// The version of the SQL rules engine to use when evaluating the rule.
+	AwsIotSqlVersion *string `locationName:"awsIotSqlVersion" type:"string"`
 
 	// The description of the rule.
 	Description *string `locationName:"description" type:"string"`
