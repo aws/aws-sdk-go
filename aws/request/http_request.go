@@ -17,6 +17,6 @@ func copyHTTPRequest(r *http.Request) *http.Request {
 		Method:        r.Method,
 		Proto:         r.Proto,
 		ContentLength: r.ContentLength,
-		Cancel:        r.Cancel,
+		Cancel:        r.Cancel, // Cancel is added in 1.5
 	}
 }
