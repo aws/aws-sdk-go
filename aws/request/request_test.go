@@ -378,3 +378,44 @@ func TestRequestRecoverTimeoutWithNilResponse(t *testing.T) {
 	assert.Equal(t, 1, int(r.RetryCount))
 	assert.Equal(t, "valid", out.Data)
 }
+
+func TestRequestCancel(t *testing.T) {
+	c := make(chan struct{})
+
+	reqNum := 0
+	s := awstesting.NewMockClient()
+	s.Handlers.Validate.Clear()
+	s.Handlers.Unmarshal.PushBack(unmarshal)
+	s.Handlers.UnmarshalError.PushBack(unmarshalError)
+	s.Handlers.Send.PushBack(func(r *request.Request) {
+		reqNum++
+	})
+	out := &testData{}
+	r := s.NewRequest(&request.Operation{Name: "Operation"}, nil, out)
+	r.HTTPRequest.Cancel = c
+	close(c)
+
+	err := r.Send()
+	assert.NotNil(t, err)
+}
+
+func TestRequestCancelRetry(t *testing.T) {
+	c := make(chan struct{})
+
+	reqNum := 0
+	s := awstesting.NewMockClient(aws.NewConfig().WithMaxRetries(10))
+	s.Handlers.Validate.Clear()
+	s.Handlers.Unmarshal.PushBack(unmarshal)
+	s.Handlers.UnmarshalError.PushBack(unmarshalError)
+	s.Handlers.Send.PushBack(func(r *request.Request) {
+		reqNum++
+	})
+	out := &testData{}
+	r := s.NewRequest(&request.Operation{Name: "Operation"}, nil, out)
+	r.HTTPRequest.Cancel = c
+	close(c)
+
+	err := r.Send()
+	assert.NotNil(t, err)
+	assert.Equal(t, 1, reqNum)
+}
