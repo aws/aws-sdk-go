@@ -240,8 +240,7 @@ func (r *Request) Send() error {
 				body = ioutil.NopCloser(r.Body)
 			}
 
-			r.HTTPRequest = copyHTTPRequest(r.HTTPRequest)
-			r.HTTPRequest.Body = body
+			r.HTTPRequest = copyHTTPRequest(r.HTTPRequest, body)
 			if r.HTTPResponse.Body != nil {
 				// Closing response body. Since we are setting a new request to send off, this
 				// response will get squashed and leaked.
