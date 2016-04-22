@@ -9,6 +9,7 @@ LINTIGNOREDEPS='vendor/.+\.go'
 SDK_WITH_VENDOR_PKGS=$(shell go list ./... | grep -v "/vendor/src")
 SDK_ONLY_PKGS=$(shell go list ./... | grep -v "/vendor/")
 SDK_GO_1_4=$(shell go version | grep "go1.4")
+SDK_GO_VERSION=$(shell go version | awk '''{print $$3}''' | tr -d '''\n''')
 
 all: get-deps generate unit
 
@@ -66,15 +67,30 @@ smoke-tests: get-deps-tests
 performance: get-deps-tests
 	AWS_TESTING_LOG_RESULTS=${log-detailed} AWS_TESTING_REGION=$(region) AWS_TESTING_DB_TABLE=$(table) gucumber ./awstesting/performance
 
-sandbox-tests:
+sandbox-tests: sandbox-test-go14 sandbox-test-go15 sandbox-test-go15-novendorexp sandbox-test-go16 sandbox-test-gotip
+
+sandbox-test-go14:
 	docker build -f ./awstesting/sandbox/Dockerfile.test.go1.4 -t "aws-sdk-go-1.4" .
-	docker build -f ./awstesting/sandbox/Dockerfile.test.go1.5 -t "aws-sdk-go-1.5" .
-	docker build -f ./awstesting/sandbox/Dockerfile.test-no15exp.go1.5 -t "aws-sdk-go-no15exp-1.5" .
-	docker build -f ./awstesting/sandbox/Dockerfile.test.go1.6 -t "aws-sdk-go-1.6" .
 	docker run -t aws-sdk-go-1.4
+
+sandbox-test-go15:
+	docker build -f ./awstesting/sandbox/Dockerfile.test.go1.5 -t "aws-sdk-go-1.5" .
 	docker run -t aws-sdk-go-1.5
-	docker run -t aws-sdk-go-no15exp-1.5
+
+sandbox-test-go15-novendorexp:
+	docker build -f ./awstesting/sandbox/Dockerfile.test.go1.5-novendorexp -t "aws-sdk-go-1.5-novendorexp" .
+	docker run -t aws-sdk-go-1.5-novendorexp
+
+sandbox-test-go16:
+	docker build -f ./awstesting/sandbox/Dockerfile.test.go1.6 -t "aws-sdk-go-1.6" .
 	docker run -t aws-sdk-go-1.6
+
+sandbox-test-gotip:
+	docker build -f ./awstesting/sandbox/Dockerfile.test.gotip -t "aws-sdk-go-tip" .
+	docker run -t aws-sdk-go-tip
+
+update-aws-golang-tip:
+	docker build -f ./awstesting/sandbox/Dockerfile.golang-tip -t "aws-golang:tip" .
 
 verify: get-deps-verify lint vet
 
@@ -85,8 +101,19 @@ lint:
 	echo "$$lint"; \
 	if [ "$$lint" != "" ] && [ "$$lint" != "skipping golint" ]; then exit 1; fi
 
+SDK_BASE_FOLDERS=$(shell ls -d */ | grep -v vendor | grep -v awsmigrate)
+ifneq (,$(findstring go1.5, ${SDK_GO_VERSION}))
+	GO_VET_CMD=go tool vet --all -shadow
+else ifneq (,$(findstring go1.6, ${SDK_GO_VERSION}))
+	GO_VET_CMD=go tool vet --all -shadow -example=false
+else ifneq (,$(findstring devel, ${SDK_GO_VERSION}))
+	GO_VET_CMD=go tool vet --all -shadow -tests=false
+else
+	GO_VET_CMD=echo skipping go vet, ${SDK_GO_VERSION}
+endif
+
 vet:
-	@if [ -z "${SDK_GO_1_4}" ]; then  go tool vet -all -shadow $(shell if go version | grep -v 1.5 | grep -v 1.4 >> /dev/null; then echo "-example=false" | tr -d '\n'; fi) $(shell ls -d */ | grep -v vendor | grep -v awsmigrate); else echo "skipping vet"; fi
+	${GO_VET_CMD} ${SDK_BASE_FOLDERS}
 
 get-deps: get-deps-tests get-deps-verify
 	@echo "go get SDK dependencies"
