@@ -4,6 +4,7 @@
 package inspector
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
@@ -949,6 +950,35 @@ func (s AddAttributesToFindingsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddAttributesToFindingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddAttributesToFindingsInput"}
+	if s.Attributes == nil {
+		invalidParams.Add(request.NewErrParamRequired("Attributes"))
+	}
+	if s.FindingArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("FindingArns"))
+	}
+	if s.FindingArns != nil && len(s.FindingArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FindingArns", 1))
+	}
+	if s.Attributes != nil {
+		for i, v := range s.Attributes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Attributes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type AddAttributesToFindingsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1012,6 +1042,22 @@ func (s AgentFilter) String() string {
 // GoString returns the string representation
 func (s AgentFilter) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AgentFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AgentFilter"}
+	if s.AgentHealthCodes == nil {
+		invalidParams.Add(request.NewErrParamRequired("AgentHealthCodes"))
+	}
+	if s.AgentHealths == nil {
+		invalidParams.Add(request.NewErrParamRequired("AgentHealths"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Used as a response element in the PreviewAgents action.
@@ -1189,6 +1235,24 @@ func (s AssessmentRunFilter) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssessmentRunFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssessmentRunFilter"}
+	if s.NamePattern != nil && len(*s.NamePattern) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NamePattern", 1))
+	}
+	if s.DurationRange != nil {
+		if err := s.DurationRange.Validate(); err != nil {
+			invalidParams.AddNested("DurationRange", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Used as one of the elements of the AssessmentRun data type.
 type AssessmentRunNotification struct {
 	_ struct{} `type:"structure"`
@@ -1294,6 +1358,19 @@ func (s AssessmentTargetFilter) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssessmentTargetFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssessmentTargetFilter"}
+	if s.AssessmentTargetNamePattern != nil && len(*s.AssessmentTargetNamePattern) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssessmentTargetNamePattern", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains information about an Amazon Inspector assessment template. This
 // data type is used as the response element in the DescribeAssessmentTemplates
 // action.
@@ -1365,6 +1442,24 @@ func (s AssessmentTemplateFilter) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssessmentTemplateFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssessmentTemplateFilter"}
+	if s.NamePattern != nil && len(*s.NamePattern) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NamePattern", 1))
+	}
+	if s.DurationRange != nil {
+		if err := s.DurationRange.Validate(); err != nil {
+			invalidParams.AddNested("DurationRange", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // A collection of attributes of the host from which the finding is generated.
 type AssetAttributes struct {
 	_ struct{} `type:"structure"`
@@ -1422,6 +1517,25 @@ func (s Attribute) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Attribute) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Attribute"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type CreateAssessmentTargetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1442,6 +1556,28 @@ func (s CreateAssessmentTargetInput) String() string {
 // GoString returns the string representation
 func (s CreateAssessmentTargetInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAssessmentTargetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAssessmentTargetInput"}
+	if s.AssessmentTargetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssessmentTargetName"))
+	}
+	if s.AssessmentTargetName != nil && len(*s.AssessmentTargetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssessmentTargetName", 1))
+	}
+	if s.ResourceGroupArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceGroupArn"))
+	}
+	if s.ResourceGroupArn != nil && len(*s.ResourceGroupArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceGroupArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type CreateAssessmentTargetOutput struct {
@@ -1497,6 +1633,47 @@ func (s CreateAssessmentTemplateInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAssessmentTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAssessmentTemplateInput"}
+	if s.AssessmentTargetArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssessmentTargetArn"))
+	}
+	if s.AssessmentTargetArn != nil && len(*s.AssessmentTargetArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssessmentTargetArn", 1))
+	}
+	if s.AssessmentTemplateName == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssessmentTemplateName"))
+	}
+	if s.AssessmentTemplateName != nil && len(*s.AssessmentTemplateName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssessmentTemplateName", 1))
+	}
+	if s.DurationInSeconds == nil {
+		invalidParams.Add(request.NewErrParamRequired("DurationInSeconds"))
+	}
+	if s.DurationInSeconds != nil && *s.DurationInSeconds < 180 {
+		invalidParams.Add(request.NewErrParamMinValue("DurationInSeconds", 180))
+	}
+	if s.RulesPackageArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("RulesPackageArns"))
+	}
+	if s.UserAttributesForFindings != nil {
+		for i, v := range s.UserAttributesForFindings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "UserAttributesForFindings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type CreateAssessmentTemplateOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1533,6 +1710,32 @@ func (s CreateResourceGroupInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateResourceGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateResourceGroupInput"}
+	if s.ResourceGroupTags == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceGroupTags"))
+	}
+	if s.ResourceGroupTags != nil && len(s.ResourceGroupTags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceGroupTags", 1))
+	}
+	if s.ResourceGroupTags != nil {
+		for i, v := range s.ResourceGroupTags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ResourceGroupTags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type CreateResourceGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1567,6 +1770,22 @@ func (s DeleteAssessmentRunInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAssessmentRunInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAssessmentRunInput"}
+	if s.AssessmentRunArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssessmentRunArn"))
+	}
+	if s.AssessmentRunArn != nil && len(*s.AssessmentRunArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssessmentRunArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DeleteAssessmentRunOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1596,6 +1815,22 @@ func (s DeleteAssessmentTargetInput) String() string {
 // GoString returns the string representation
 func (s DeleteAssessmentTargetInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAssessmentTargetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAssessmentTargetInput"}
+	if s.AssessmentTargetArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssessmentTargetArn"))
+	}
+	if s.AssessmentTargetArn != nil && len(*s.AssessmentTargetArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssessmentTargetArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DeleteAssessmentTargetOutput struct {
@@ -1629,6 +1864,22 @@ func (s DeleteAssessmentTemplateInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAssessmentTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAssessmentTemplateInput"}
+	if s.AssessmentTemplateArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssessmentTemplateArn"))
+	}
+	if s.AssessmentTemplateArn != nil && len(*s.AssessmentTemplateArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssessmentTemplateArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DeleteAssessmentTemplateOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1658,6 +1909,22 @@ func (s DescribeAssessmentRunsInput) String() string {
 // GoString returns the string representation
 func (s DescribeAssessmentRunsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeAssessmentRunsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeAssessmentRunsInput"}
+	if s.AssessmentRunArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssessmentRunArns"))
+	}
+	if s.AssessmentRunArns != nil && len(s.AssessmentRunArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssessmentRunArns", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DescribeAssessmentRunsOutput struct {
@@ -1698,6 +1965,22 @@ func (s DescribeAssessmentTargetsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeAssessmentTargetsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeAssessmentTargetsInput"}
+	if s.AssessmentTargetArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssessmentTargetArns"))
+	}
+	if s.AssessmentTargetArns != nil && len(s.AssessmentTargetArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssessmentTargetArns", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DescribeAssessmentTargetsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1734,6 +2017,22 @@ func (s DescribeAssessmentTemplatesInput) String() string {
 // GoString returns the string representation
 func (s DescribeAssessmentTemplatesInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeAssessmentTemplatesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeAssessmentTemplatesInput"}
+	if s.AssessmentTemplateArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssessmentTemplateArns"))
+	}
+	if s.AssessmentTemplateArns != nil && len(s.AssessmentTemplateArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssessmentTemplateArns", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DescribeAssessmentTemplatesOutput struct {
@@ -1817,6 +2116,22 @@ func (s DescribeFindingsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeFindingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeFindingsInput"}
+	if s.FindingArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("FindingArns"))
+	}
+	if s.FindingArns != nil && len(s.FindingArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FindingArns", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DescribeFindingsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1853,6 +2168,22 @@ func (s DescribeResourceGroupsInput) String() string {
 // GoString returns the string representation
 func (s DescribeResourceGroupsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeResourceGroupsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeResourceGroupsInput"}
+	if s.ResourceGroupArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceGroupArns"))
+	}
+	if s.ResourceGroupArns != nil && len(s.ResourceGroupArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceGroupArns", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DescribeResourceGroupsOutput struct {
@@ -1896,6 +2227,22 @@ func (s DescribeRulesPackagesInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeRulesPackagesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeRulesPackagesInput"}
+	if s.RulesPackageArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("RulesPackageArns"))
+	}
+	if s.RulesPackageArns != nil && len(s.RulesPackageArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RulesPackageArns", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DescribeRulesPackagesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1937,6 +2284,22 @@ func (s DurationRange) String() string {
 // GoString returns the string representation
 func (s DurationRange) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DurationRange) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DurationRange"}
+	if s.MaxSeconds != nil && *s.MaxSeconds < 180 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxSeconds", 180))
+	}
+	if s.MinSeconds != nil && *s.MinSeconds < 180 {
+		invalidParams.Add(request.NewErrParamMinValue("MinSeconds", 180))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // This data type is used in the Subscription data type.
@@ -2105,6 +2468,36 @@ func (s FindingFilter) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FindingFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FindingFilter"}
+	if s.Attributes != nil {
+		for i, v := range s.Attributes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Attributes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.UserAttributes != nil {
+		for i, v := range s.UserAttributes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "UserAttributes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type GetTelemetryMetadataInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2121,6 +2514,22 @@ func (s GetTelemetryMetadataInput) String() string {
 // GoString returns the string representation
 func (s GetTelemetryMetadataInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetTelemetryMetadataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetTelemetryMetadataInput"}
+	if s.AssessmentRunArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssessmentRunArn"))
+	}
+	if s.AssessmentRunArn != nil && len(*s.AssessmentRunArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssessmentRunArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type GetTelemetryMetadataOutput struct {
@@ -2173,6 +2582,30 @@ func (s ListAssessmentRunAgentsInput) String() string {
 // GoString returns the string representation
 func (s ListAssessmentRunAgentsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAssessmentRunAgentsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAssessmentRunAgentsInput"}
+	if s.AssessmentRunArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssessmentRunArn"))
+	}
+	if s.AssessmentRunArn != nil && len(*s.AssessmentRunArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssessmentRunArn", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type ListAssessmentRunAgentsOutput struct {
@@ -2234,6 +2667,24 @@ func (s ListAssessmentRunsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAssessmentRunsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAssessmentRunsInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type ListAssessmentRunsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2288,6 +2739,24 @@ func (s ListAssessmentTargetsInput) String() string {
 // GoString returns the string representation
 func (s ListAssessmentTargetsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAssessmentTargetsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAssessmentTargetsInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type ListAssessmentTargetsOutput struct {
@@ -2350,6 +2819,24 @@ func (s ListAssessmentTemplatesInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAssessmentTemplatesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAssessmentTemplatesInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type ListAssessmentTemplatesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2399,6 +2886,22 @@ func (s ListEventSubscriptionsInput) String() string {
 // GoString returns the string representation
 func (s ListEventSubscriptionsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListEventSubscriptionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListEventSubscriptionsInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type ListEventSubscriptionsOutput struct {
@@ -2460,6 +2963,24 @@ func (s ListFindingsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListFindingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListFindingsInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type ListFindingsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2507,6 +3028,19 @@ func (s ListRulesPackagesInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListRulesPackagesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListRulesPackagesInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type ListRulesPackagesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2545,6 +3079,22 @@ func (s ListTagsForResourceInput) String() string {
 // GoString returns the string representation
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type ListTagsForResourceOutput struct {
@@ -2591,6 +3141,25 @@ func (s PreviewAgentsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PreviewAgentsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PreviewAgentsInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.PreviewAgentsArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("PreviewAgentsArn"))
+	}
+	if s.PreviewAgentsArn != nil && len(*s.PreviewAgentsArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PreviewAgentsArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type PreviewAgentsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2632,6 +3201,22 @@ func (s RegisterCrossAccountAccessRoleInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RegisterCrossAccountAccessRoleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RegisterCrossAccountAccessRoleInput"}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type RegisterCrossAccountAccessRoleOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2664,6 +3249,25 @@ func (s RemoveAttributesFromFindingsInput) String() string {
 // GoString returns the string representation
 func (s RemoveAttributesFromFindingsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RemoveAttributesFromFindingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RemoveAttributesFromFindingsInput"}
+	if s.AttributeKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttributeKeys"))
+	}
+	if s.FindingArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("FindingArns"))
+	}
+	if s.FindingArns != nil && len(s.FindingArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FindingArns", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type RemoveAttributesFromFindingsOutput struct {
@@ -2731,6 +3335,25 @@ func (s ResourceGroupTag) String() string {
 // GoString returns the string representation
 func (s ResourceGroupTag) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResourceGroupTag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResourceGroupTag"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains information about an Amazon Inspector rules package. This data type
@@ -2809,6 +3432,32 @@ func (s SetTagsForResourceInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SetTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SetTagsForResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type SetTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2846,6 +3495,25 @@ func (s StartAssessmentRunInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartAssessmentRunInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartAssessmentRunInput"}
+	if s.AssessmentRunName != nil && len(*s.AssessmentRunName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssessmentRunName", 1))
+	}
+	if s.AssessmentTemplateArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssessmentTemplateArn"))
+	}
+	if s.AssessmentTemplateArn != nil && len(*s.AssessmentTemplateArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssessmentTemplateArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type StartAssessmentRunOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2878,6 +3546,22 @@ func (s StopAssessmentRunInput) String() string {
 // GoString returns the string representation
 func (s StopAssessmentRunInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopAssessmentRunInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopAssessmentRunInput"}
+	if s.AssessmentRunArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssessmentRunArn"))
+	}
+	if s.AssessmentRunArn != nil && len(*s.AssessmentRunArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssessmentRunArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type StopAssessmentRunOutput struct {
@@ -2916,6 +3600,31 @@ func (s SubscribeToEventInput) String() string {
 // GoString returns the string representation
 func (s SubscribeToEventInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SubscribeToEventInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SubscribeToEventInput"}
+	if s.Event == nil {
+		invalidParams.Add(request.NewErrParamRequired("Event"))
+	}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.TopicArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopicArn"))
+	}
+	if s.TopicArn != nil && len(*s.TopicArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TopicArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type SubscribeToEventOutput struct {
@@ -2980,6 +3689,25 @@ func (s Tag) String() string {
 // GoString returns the string representation
 func (s Tag) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Tag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Tag"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The metadata about the Amazon Inspector application data metrics collected
@@ -3053,6 +3781,31 @@ func (s UnsubscribeFromEventInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UnsubscribeFromEventInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UnsubscribeFromEventInput"}
+	if s.Event == nil {
+		invalidParams.Add(request.NewErrParamRequired("Event"))
+	}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.TopicArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopicArn"))
+	}
+	if s.TopicArn != nil && len(*s.TopicArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TopicArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type UnsubscribeFromEventOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3089,6 +3842,34 @@ func (s UpdateAssessmentTargetInput) String() string {
 // GoString returns the string representation
 func (s UpdateAssessmentTargetInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateAssessmentTargetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateAssessmentTargetInput"}
+	if s.AssessmentTargetArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssessmentTargetArn"))
+	}
+	if s.AssessmentTargetArn != nil && len(*s.AssessmentTargetArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssessmentTargetArn", 1))
+	}
+	if s.AssessmentTargetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssessmentTargetName"))
+	}
+	if s.AssessmentTargetName != nil && len(*s.AssessmentTargetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssessmentTargetName", 1))
+	}
+	if s.ResourceGroupArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceGroupArn"))
+	}
+	if s.ResourceGroupArn != nil && len(*s.ResourceGroupArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceGroupArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type UpdateAssessmentTargetOutput struct {

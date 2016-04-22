@@ -73,6 +73,37 @@ func (s MeterUsageInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MeterUsageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MeterUsageInput"}
+	if s.DryRun == nil {
+		invalidParams.Add(request.NewErrParamRequired("DryRun"))
+	}
+	if s.ProductCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProductCode"))
+	}
+	if s.ProductCode != nil && len(*s.ProductCode) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProductCode", 1))
+	}
+	if s.Timestamp == nil {
+		invalidParams.Add(request.NewErrParamRequired("Timestamp"))
+	}
+	if s.UsageDimension == nil {
+		invalidParams.Add(request.NewErrParamRequired("UsageDimension"))
+	}
+	if s.UsageDimension != nil && len(*s.UsageDimension) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UsageDimension", 1))
+	}
+	if s.UsageQuantity == nil {
+		invalidParams.Add(request.NewErrParamRequired("UsageQuantity"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type MeterUsageOutput struct {
 	_ struct{} `type:"structure"`
 

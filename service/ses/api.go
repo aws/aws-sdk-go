@@ -4,6 +4,7 @@
 package ses
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
@@ -1469,6 +1470,22 @@ func (s AddHeaderAction) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddHeaderAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddHeaderAction"}
+	if s.HeaderName == nil {
+		invalidParams.Add(request.NewErrParamRequired("HeaderName"))
+	}
+	if s.HeaderValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("HeaderValue"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the body of the message. You can specify text, HTML, or both.
 // If you use both, then the message should display correctly in the widest
 // variety of email clients.
@@ -1493,6 +1510,26 @@ func (s Body) String() string {
 // GoString returns the string representation
 func (s Body) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Body) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Body"}
+	if s.Html != nil {
+		if err := s.Html.Validate(); err != nil {
+			invalidParams.AddNested("Html", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Text != nil {
+		if err := s.Text.Validate(); err != nil {
+			invalidParams.AddNested("Text", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // When included in a receipt rule, this action rejects the received email by
@@ -1534,6 +1571,25 @@ func (s BounceAction) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BounceAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BounceAction"}
+	if s.Message == nil {
+		invalidParams.Add(request.NewErrParamRequired("Message"))
+	}
+	if s.Sender == nil {
+		invalidParams.Add(request.NewErrParamRequired("Sender"))
+	}
+	if s.SmtpReplyCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("SmtpReplyCode"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Recipient-related information to include in the Delivery Status Notification
 // (DSN) when an email that Amazon SES receives on your behalf bounces.
 //
@@ -1570,6 +1626,24 @@ func (s BouncedRecipientInfo) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BouncedRecipientInfo) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BouncedRecipientInfo"}
+	if s.Recipient == nil {
+		invalidParams.Add(request.NewErrParamRequired("Recipient"))
+	}
+	if s.RecipientDsnFields != nil {
+		if err := s.RecipientDsnFields.Validate(); err != nil {
+			invalidParams.AddNested("RecipientDsnFields", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type CloneReceiptRuleSetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1592,6 +1666,22 @@ func (s CloneReceiptRuleSetInput) String() string {
 // GoString returns the string representation
 func (s CloneReceiptRuleSetInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CloneReceiptRuleSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CloneReceiptRuleSetInput"}
+	if s.OriginalRuleSetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("OriginalRuleSetName"))
+	}
+	if s.RuleSetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleSetName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type CloneReceiptRuleSetOutput struct {
@@ -1633,6 +1723,19 @@ func (s Content) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Content) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Content"}
+	if s.Data == nil {
+		invalidParams.Add(request.NewErrParamRequired("Data"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type CreateReceiptFilterInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1649,6 +1752,24 @@ func (s CreateReceiptFilterInput) String() string {
 // GoString returns the string representation
 func (s CreateReceiptFilterInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateReceiptFilterInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateReceiptFilterInput"}
+	if s.Filter == nil {
+		invalidParams.Add(request.NewErrParamRequired("Filter"))
+	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type CreateReceiptFilterOutput struct {
@@ -1691,6 +1812,27 @@ func (s CreateReceiptRuleInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateReceiptRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateReceiptRuleInput"}
+	if s.Rule == nil {
+		invalidParams.Add(request.NewErrParamRequired("Rule"))
+	}
+	if s.RuleSetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleSetName"))
+	}
+	if s.Rule != nil {
+		if err := s.Rule.Validate(); err != nil {
+			invalidParams.AddNested("Rule", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type CreateReceiptRuleOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1726,6 +1868,19 @@ func (s CreateReceiptRuleSetInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateReceiptRuleSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateReceiptRuleSetInput"}
+	if s.RuleSetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleSetName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type CreateReceiptRuleSetOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1755,6 +1910,19 @@ func (s DeleteIdentityInput) String() string {
 // GoString returns the string representation
 func (s DeleteIdentityInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteIdentityInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteIdentityInput"}
+	if s.Identity == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identity"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DeleteIdentityOutput struct {
@@ -1795,6 +1963,25 @@ func (s DeleteIdentityPolicyInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteIdentityPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteIdentityPolicyInput"}
+	if s.Identity == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identity"))
+	}
+	if s.PolicyName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyName"))
+	}
+	if s.PolicyName != nil && len(*s.PolicyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DeleteIdentityPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1824,6 +2011,19 @@ func (s DeleteReceiptFilterInput) String() string {
 // GoString returns the string representation
 func (s DeleteReceiptFilterInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteReceiptFilterInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteReceiptFilterInput"}
+	if s.FilterName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FilterName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DeleteReceiptFilterOutput struct {
@@ -1860,6 +2060,22 @@ func (s DeleteReceiptRuleInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteReceiptRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteReceiptRuleInput"}
+	if s.RuleName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleName"))
+	}
+	if s.RuleSetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleSetName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DeleteReceiptRuleOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1891,6 +2107,19 @@ func (s DeleteReceiptRuleSetInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteReceiptRuleSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteReceiptRuleSetInput"}
+	if s.RuleSetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleSetName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DeleteReceiptRuleSetOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1920,6 +2149,19 @@ func (s DeleteVerifiedEmailAddressInput) String() string {
 // GoString returns the string representation
 func (s DeleteVerifiedEmailAddressInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteVerifiedEmailAddressInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteVerifiedEmailAddressInput"}
+	if s.EmailAddress == nil {
+		invalidParams.Add(request.NewErrParamRequired("EmailAddress"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DeleteVerifiedEmailAddressOutput struct {
@@ -1991,6 +2233,22 @@ func (s DescribeReceiptRuleInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeReceiptRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeReceiptRuleInput"}
+	if s.RuleName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleName"))
+	}
+	if s.RuleSetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleSetName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DescribeReceiptRuleOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2025,6 +2283,19 @@ func (s DescribeReceiptRuleSetInput) String() string {
 // GoString returns the string representation
 func (s DescribeReceiptRuleSetInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeReceiptRuleSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeReceiptRuleSetInput"}
+	if s.RuleSetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleSetName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DescribeReceiptRuleSetOutput struct {
@@ -2105,6 +2376,22 @@ func (s ExtensionField) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExtensionField) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExtensionField"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type GetIdentityDkimAttributesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2121,6 +2408,19 @@ func (s GetIdentityDkimAttributesInput) String() string {
 // GoString returns the string representation
 func (s GetIdentityDkimAttributesInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetIdentityDkimAttributesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetIdentityDkimAttributesInput"}
+	if s.Identities == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identities"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type GetIdentityDkimAttributesOutput struct {
@@ -2157,6 +2457,19 @@ func (s GetIdentityMailFromDomainAttributesInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetIdentityMailFromDomainAttributesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetIdentityMailFromDomainAttributesInput"}
+	if s.Identities == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identities"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type GetIdentityMailFromDomainAttributesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2191,6 +2504,19 @@ func (s GetIdentityNotificationAttributesInput) String() string {
 // GoString returns the string representation
 func (s GetIdentityNotificationAttributesInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetIdentityNotificationAttributesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetIdentityNotificationAttributesInput"}
+	if s.Identities == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identities"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type GetIdentityNotificationAttributesOutput struct {
@@ -2236,6 +2562,22 @@ func (s GetIdentityPoliciesInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetIdentityPoliciesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetIdentityPoliciesInput"}
+	if s.Identity == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identity"))
+	}
+	if s.PolicyNames == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyNames"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type GetIdentityPoliciesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2268,6 +2610,19 @@ func (s GetIdentityVerificationAttributesInput) String() string {
 // GoString returns the string representation
 func (s GetIdentityVerificationAttributesInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetIdentityVerificationAttributesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetIdentityVerificationAttributesInput"}
+	if s.Identities == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identities"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type GetIdentityVerificationAttributesOutput struct {
@@ -2539,6 +2894,19 @@ func (s LambdaAction) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LambdaAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LambdaAction"}
+	if s.FunctionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FunctionArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type ListIdentitiesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2602,6 +2970,19 @@ func (s ListIdentityPoliciesInput) String() string {
 // GoString returns the string representation
 func (s ListIdentityPoliciesInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListIdentityPoliciesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListIdentityPoliciesInput"}
+	if s.Identity == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identity"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type ListIdentityPoliciesOutput struct {
@@ -2747,6 +3128,32 @@ func (s Message) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Message) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Message"}
+	if s.Body == nil {
+		invalidParams.Add(request.NewErrParamRequired("Body"))
+	}
+	if s.Subject == nil {
+		invalidParams.Add(request.NewErrParamRequired("Subject"))
+	}
+	if s.Body != nil {
+		if err := s.Body.Validate(); err != nil {
+			invalidParams.AddNested("Body", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Subject != nil {
+		if err := s.Subject.Validate(); err != nil {
+			invalidParams.AddNested("Subject", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Message-related information to include in the Delivery Status Notification
 // (DSN) when an email that Amazon SES receives on your behalf bounces.
 //
@@ -2776,6 +3183,29 @@ func (s MessageDsn) String() string {
 // GoString returns the string representation
 func (s MessageDsn) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MessageDsn) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MessageDsn"}
+	if s.ReportingMta == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReportingMta"))
+	}
+	if s.ExtensionFields != nil {
+		for i, v := range s.ExtensionFields {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ExtensionFields", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type PutIdentityPolicyInput struct {
@@ -2809,6 +3239,31 @@ func (s PutIdentityPolicyInput) String() string {
 // GoString returns the string representation
 func (s PutIdentityPolicyInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutIdentityPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutIdentityPolicyInput"}
+	if s.Identity == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identity"))
+	}
+	if s.Policy == nil {
+		invalidParams.Add(request.NewErrParamRequired("Policy"))
+	}
+	if s.Policy != nil && len(*s.Policy) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Policy", 1))
+	}
+	if s.PolicyName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyName"))
+	}
+	if s.PolicyName != nil && len(*s.PolicyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type PutIdentityPolicyOutput struct {
@@ -2855,6 +3310,19 @@ func (s RawMessage) String() string {
 // GoString returns the string representation
 func (s RawMessage) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RawMessage) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RawMessage"}
+	if s.Data == nil {
+		invalidParams.Add(request.NewErrParamRequired("Data"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // An action that Amazon SES can take when it receives an email on behalf of
@@ -2904,6 +3372,51 @@ func (s ReceiptAction) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReceiptAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReceiptAction"}
+	if s.AddHeaderAction != nil {
+		if err := s.AddHeaderAction.Validate(); err != nil {
+			invalidParams.AddNested("AddHeaderAction", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.BounceAction != nil {
+		if err := s.BounceAction.Validate(); err != nil {
+			invalidParams.AddNested("BounceAction", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.LambdaAction != nil {
+		if err := s.LambdaAction.Validate(); err != nil {
+			invalidParams.AddNested("LambdaAction", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.S3Action != nil {
+		if err := s.S3Action.Validate(); err != nil {
+			invalidParams.AddNested("S3Action", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SNSAction != nil {
+		if err := s.SNSAction.Validate(); err != nil {
+			invalidParams.AddNested("SNSAction", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.StopAction != nil {
+		if err := s.StopAction.Validate(); err != nil {
+			invalidParams.AddNested("StopAction", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.WorkmailAction != nil {
+		if err := s.WorkmailAction.Validate(); err != nil {
+			invalidParams.AddNested("WorkmailAction", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // A receipt IP address filter enables you to specify whether to accept or reject
 // mail originating from an IP address or range of IP addresses.
 //
@@ -2934,6 +3447,27 @@ func (s ReceiptFilter) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReceiptFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReceiptFilter"}
+	if s.IpFilter == nil {
+		invalidParams.Add(request.NewErrParamRequired("IpFilter"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.IpFilter != nil {
+		if err := s.IpFilter.Validate(); err != nil {
+			invalidParams.AddNested("IpFilter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // A receipt IP address filter enables you to specify whether to accept or reject
 // mail originating from an IP address or range of IP addresses.
 //
@@ -2960,6 +3494,22 @@ func (s ReceiptIpFilter) String() string {
 // GoString returns the string representation
 func (s ReceiptIpFilter) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReceiptIpFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReceiptIpFilter"}
+	if s.Cidr == nil {
+		invalidParams.Add(request.NewErrParamRequired("Cidr"))
+	}
+	if s.Policy == nil {
+		invalidParams.Add(request.NewErrParamRequired("Policy"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Receipt rules enable you to specify which actions Amazon SES should take
@@ -3014,6 +3564,29 @@ func (s ReceiptRule) String() string {
 // GoString returns the string representation
 func (s ReceiptRule) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReceiptRule) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReceiptRule"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Actions != nil {
+		for i, v := range s.Actions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Actions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Information about a receipt rule set.
@@ -3103,6 +3676,32 @@ func (s RecipientDsnFields) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RecipientDsnFields) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RecipientDsnFields"}
+	if s.Action == nil {
+		invalidParams.Add(request.NewErrParamRequired("Action"))
+	}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+	if s.ExtensionFields != nil {
+		for i, v := range s.ExtensionFields {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ExtensionFields", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type ReorderReceiptRuleSetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3122,6 +3721,22 @@ func (s ReorderReceiptRuleSetInput) String() string {
 // GoString returns the string representation
 func (s ReorderReceiptRuleSetInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReorderReceiptRuleSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReorderReceiptRuleSetInput"}
+	if s.RuleNames == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleNames"))
+	}
+	if s.RuleSetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleSetName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type ReorderReceiptRuleSetOutput struct {
@@ -3208,6 +3823,19 @@ func (s S3Action) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3Action) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3Action"}
+	if s.BucketName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // When included in a receipt rule, this action publishes a notification to
 // Amazon Simple Notification Service (Amazon SNS). This action includes a complete
 // copy of the email content in the Amazon SNS notifications. Amazon SNS notifications
@@ -3251,6 +3879,19 @@ func (s SNSAction) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SNSAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SNSAction"}
+	if s.TopicArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopicArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type SendBounceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3290,6 +3931,40 @@ func (s SendBounceInput) String() string {
 // GoString returns the string representation
 func (s SendBounceInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SendBounceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SendBounceInput"}
+	if s.BounceSender == nil {
+		invalidParams.Add(request.NewErrParamRequired("BounceSender"))
+	}
+	if s.BouncedRecipientInfoList == nil {
+		invalidParams.Add(request.NewErrParamRequired("BouncedRecipientInfoList"))
+	}
+	if s.OriginalMessageId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OriginalMessageId"))
+	}
+	if s.BouncedRecipientInfoList != nil {
+		for i, v := range s.BouncedRecipientInfoList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "BouncedRecipientInfoList", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.MessageDsn != nil {
+		if err := s.MessageDsn.Validate(); err != nil {
+			invalidParams.AddNested("MessageDsn", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type SendBounceOutput struct {
@@ -3416,6 +4091,30 @@ func (s SendEmailInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SendEmailInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SendEmailInput"}
+	if s.Destination == nil {
+		invalidParams.Add(request.NewErrParamRequired("Destination"))
+	}
+	if s.Message == nil {
+		invalidParams.Add(request.NewErrParamRequired("Message"))
+	}
+	if s.Source == nil {
+		invalidParams.Add(request.NewErrParamRequired("Source"))
+	}
+	if s.Message != nil {
+		if err := s.Message.Validate(); err != nil {
+			invalidParams.AddNested("Message", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type SendEmailOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3524,6 +4223,24 @@ func (s SendRawEmailInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SendRawEmailInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SendRawEmailInput"}
+	if s.RawMessage == nil {
+		invalidParams.Add(request.NewErrParamRequired("RawMessage"))
+	}
+	if s.RawMessage != nil {
+		if err := s.RawMessage.Validate(); err != nil {
+			invalidParams.AddNested("RawMessage", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type SendRawEmailOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3594,6 +4311,22 @@ func (s SetIdentityDkimEnabledInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SetIdentityDkimEnabledInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SetIdentityDkimEnabledInput"}
+	if s.DkimEnabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("DkimEnabled"))
+	}
+	if s.Identity == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identity"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type SetIdentityDkimEnabledOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3632,6 +4365,22 @@ func (s SetIdentityFeedbackForwardingEnabledInput) String() string {
 // GoString returns the string representation
 func (s SetIdentityFeedbackForwardingEnabledInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SetIdentityFeedbackForwardingEnabledInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SetIdentityFeedbackForwardingEnabledInput"}
+	if s.ForwardingEnabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("ForwardingEnabled"))
+	}
+	if s.Identity == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identity"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type SetIdentityFeedbackForwardingEnabledOutput struct {
@@ -3685,6 +4434,19 @@ func (s SetIdentityMailFromDomainInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SetIdentityMailFromDomainInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SetIdentityMailFromDomainInput"}
+	if s.Identity == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identity"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type SetIdentityMailFromDomainOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3727,6 +4489,22 @@ func (s SetIdentityNotificationTopicInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SetIdentityNotificationTopicInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SetIdentityNotificationTopicInput"}
+	if s.Identity == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identity"))
+	}
+	if s.NotificationType == nil {
+		invalidParams.Add(request.NewErrParamRequired("NotificationType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type SetIdentityNotificationTopicOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3762,6 +4540,22 @@ func (s SetReceiptRulePositionInput) String() string {
 // GoString returns the string representation
 func (s SetReceiptRulePositionInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SetReceiptRulePositionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SetReceiptRulePositionInput"}
+	if s.RuleName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleName"))
+	}
+	if s.RuleSetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleSetName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type SetReceiptRulePositionOutput struct {
@@ -3807,6 +4601,19 @@ func (s StopAction) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopAction"}
+	if s.Scope == nil {
+		invalidParams.Add(request.NewErrParamRequired("Scope"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type UpdateReceiptRuleInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3825,6 +4632,27 @@ func (s UpdateReceiptRuleInput) String() string {
 // GoString returns the string representation
 func (s UpdateReceiptRuleInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateReceiptRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateReceiptRuleInput"}
+	if s.Rule == nil {
+		invalidParams.Add(request.NewErrParamRequired("Rule"))
+	}
+	if s.RuleSetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleSetName"))
+	}
+	if s.Rule != nil {
+		if err := s.Rule.Validate(); err != nil {
+			invalidParams.AddNested("Rule", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type UpdateReceiptRuleOutput struct {
@@ -3856,6 +4684,19 @@ func (s VerifyDomainDkimInput) String() string {
 // GoString returns the string representation
 func (s VerifyDomainDkimInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VerifyDomainDkimInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VerifyDomainDkimInput"}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type VerifyDomainDkimOutput struct {
@@ -3902,6 +4743,19 @@ func (s VerifyDomainIdentityInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VerifyDomainIdentityInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VerifyDomainIdentityInput"}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type VerifyDomainIdentityOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3937,6 +4791,19 @@ func (s VerifyEmailAddressInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VerifyEmailAddressInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VerifyEmailAddressInput"}
+	if s.EmailAddress == nil {
+		invalidParams.Add(request.NewErrParamRequired("EmailAddress"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type VerifyEmailAddressOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3966,6 +4833,19 @@ func (s VerifyEmailIdentityInput) String() string {
 // GoString returns the string representation
 func (s VerifyEmailIdentityInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VerifyEmailIdentityInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VerifyEmailIdentityInput"}
+	if s.EmailAddress == nil {
+		invalidParams.Add(request.NewErrParamRequired("EmailAddress"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type VerifyEmailIdentityOutput struct {
@@ -4013,6 +4893,19 @@ func (s WorkmailAction) String() string {
 // GoString returns the string representation
 func (s WorkmailAction) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WorkmailAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WorkmailAction"}
+	if s.OrganizationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 const (

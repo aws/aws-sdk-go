@@ -4,6 +4,7 @@
 package swf
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
@@ -1874,6 +1875,28 @@ func (s ActivityType) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ActivityType) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ActivityType"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Version == nil {
+		invalidParams.Add(request.NewErrParamRequired("Version"))
+	}
+	if s.Version != nil && len(*s.Version) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Version", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Configuration settings registered with the activity type.
 type ActivityTypeConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -2006,6 +2029,22 @@ func (s CancelTimerDecisionAttributes) String() string {
 // GoString returns the string representation
 func (s CancelTimerDecisionAttributes) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CancelTimerDecisionAttributes) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CancelTimerDecisionAttributes"}
+	if s.TimerId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TimerId"))
+	}
+	if s.TimerId != nil && len(*s.TimerId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TimerId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Provides details of the CancelTimerFailed event.
@@ -2324,6 +2363,19 @@ func (s CloseStatusFilter) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CloseStatusFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CloseStatusFilter"}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Provides details of the CompleteWorkflowExecution decision.
 //
 // Access Control
@@ -2494,6 +2546,27 @@ func (s ContinueAsNewWorkflowExecutionDecisionAttributes) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContinueAsNewWorkflowExecutionDecisionAttributes) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContinueAsNewWorkflowExecutionDecisionAttributes"}
+	if s.LambdaRole != nil && len(*s.LambdaRole) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LambdaRole", 1))
+	}
+	if s.WorkflowTypeVersion != nil && len(*s.WorkflowTypeVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowTypeVersion", 1))
+	}
+	if s.TaskList != nil {
+		if err := s.TaskList.Validate(); err != nil {
+			invalidParams.AddNested("TaskList", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Provides details of the ContinueAsNewWorkflowExecutionFailed event.
 type ContinueAsNewWorkflowExecutionFailedEventAttributes struct {
 	_ struct{} `type:"structure"`
@@ -2581,6 +2654,52 @@ func (s CountClosedWorkflowExecutionsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CountClosedWorkflowExecutionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CountClosedWorkflowExecutionsInput"}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 1))
+	}
+	if s.CloseStatusFilter != nil {
+		if err := s.CloseStatusFilter.Validate(); err != nil {
+			invalidParams.AddNested("CloseStatusFilter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.CloseTimeFilter != nil {
+		if err := s.CloseTimeFilter.Validate(); err != nil {
+			invalidParams.AddNested("CloseTimeFilter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ExecutionFilter != nil {
+		if err := s.ExecutionFilter.Validate(); err != nil {
+			invalidParams.AddNested("ExecutionFilter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.StartTimeFilter != nil {
+		if err := s.StartTimeFilter.Validate(); err != nil {
+			invalidParams.AddNested("StartTimeFilter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TagFilter != nil {
+		if err := s.TagFilter.Validate(); err != nil {
+			invalidParams.AddNested("TagFilter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TypeFilter != nil {
+		if err := s.TypeFilter.Validate(); err != nil {
+			invalidParams.AddNested("TypeFilter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type CountOpenWorkflowExecutionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2622,6 +2741,45 @@ func (s CountOpenWorkflowExecutionsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CountOpenWorkflowExecutionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CountOpenWorkflowExecutionsInput"}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 1))
+	}
+	if s.StartTimeFilter == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartTimeFilter"))
+	}
+	if s.ExecutionFilter != nil {
+		if err := s.ExecutionFilter.Validate(); err != nil {
+			invalidParams.AddNested("ExecutionFilter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.StartTimeFilter != nil {
+		if err := s.StartTimeFilter.Validate(); err != nil {
+			invalidParams.AddNested("StartTimeFilter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TagFilter != nil {
+		if err := s.TagFilter.Validate(); err != nil {
+			invalidParams.AddNested("TagFilter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TypeFilter != nil {
+		if err := s.TypeFilter.Validate(); err != nil {
+			invalidParams.AddNested("TypeFilter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type CountPendingActivityTasksInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2642,6 +2800,30 @@ func (s CountPendingActivityTasksInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CountPendingActivityTasksInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CountPendingActivityTasksInput"}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 1))
+	}
+	if s.TaskList == nil {
+		invalidParams.Add(request.NewErrParamRequired("TaskList"))
+	}
+	if s.TaskList != nil {
+		if err := s.TaskList.Validate(); err != nil {
+			invalidParams.AddNested("TaskList", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type CountPendingDecisionTasksInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2660,6 +2842,30 @@ func (s CountPendingDecisionTasksInput) String() string {
 // GoString returns the string representation
 func (s CountPendingDecisionTasksInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CountPendingDecisionTasksInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CountPendingDecisionTasksInput"}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 1))
+	}
+	if s.TaskList == nil {
+		invalidParams.Add(request.NewErrParamRequired("TaskList"))
+	}
+	if s.TaskList != nil {
+		if err := s.TaskList.Validate(); err != nil {
+			invalidParams.AddNested("TaskList", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Specifies a decision made by the decider. A decision can be one of these
@@ -2854,6 +3060,69 @@ func (s Decision) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Decision) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Decision"}
+	if s.DecisionType == nil {
+		invalidParams.Add(request.NewErrParamRequired("DecisionType"))
+	}
+	if s.CancelTimerDecisionAttributes != nil {
+		if err := s.CancelTimerDecisionAttributes.Validate(); err != nil {
+			invalidParams.AddNested("CancelTimerDecisionAttributes", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ContinueAsNewWorkflowExecutionDecisionAttributes != nil {
+		if err := s.ContinueAsNewWorkflowExecutionDecisionAttributes.Validate(); err != nil {
+			invalidParams.AddNested("ContinueAsNewWorkflowExecutionDecisionAttributes", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RecordMarkerDecisionAttributes != nil {
+		if err := s.RecordMarkerDecisionAttributes.Validate(); err != nil {
+			invalidParams.AddNested("RecordMarkerDecisionAttributes", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RequestCancelActivityTaskDecisionAttributes != nil {
+		if err := s.RequestCancelActivityTaskDecisionAttributes.Validate(); err != nil {
+			invalidParams.AddNested("RequestCancelActivityTaskDecisionAttributes", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RequestCancelExternalWorkflowExecutionDecisionAttributes != nil {
+		if err := s.RequestCancelExternalWorkflowExecutionDecisionAttributes.Validate(); err != nil {
+			invalidParams.AddNested("RequestCancelExternalWorkflowExecutionDecisionAttributes", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ScheduleActivityTaskDecisionAttributes != nil {
+		if err := s.ScheduleActivityTaskDecisionAttributes.Validate(); err != nil {
+			invalidParams.AddNested("ScheduleActivityTaskDecisionAttributes", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ScheduleLambdaFunctionDecisionAttributes != nil {
+		if err := s.ScheduleLambdaFunctionDecisionAttributes.Validate(); err != nil {
+			invalidParams.AddNested("ScheduleLambdaFunctionDecisionAttributes", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SignalExternalWorkflowExecutionDecisionAttributes != nil {
+		if err := s.SignalExternalWorkflowExecutionDecisionAttributes.Validate(); err != nil {
+			invalidParams.AddNested("SignalExternalWorkflowExecutionDecisionAttributes", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.StartChildWorkflowExecutionDecisionAttributes != nil {
+		if err := s.StartChildWorkflowExecutionDecisionAttributes.Validate(); err != nil {
+			invalidParams.AddNested("StartChildWorkflowExecutionDecisionAttributes", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.StartTimerDecisionAttributes != nil {
+		if err := s.StartTimerDecisionAttributes.Validate(); err != nil {
+			invalidParams.AddNested("StartTimerDecisionAttributes", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Provides details of the DecisionTaskCompleted event.
 type DecisionTaskCompletedEventAttributes struct {
 	_ struct{} `type:"structure"`
@@ -2989,6 +3258,30 @@ func (s DeprecateActivityTypeInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeprecateActivityTypeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeprecateActivityTypeInput"}
+	if s.ActivityType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActivityType"))
+	}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 1))
+	}
+	if s.ActivityType != nil {
+		if err := s.ActivityType.Validate(); err != nil {
+			invalidParams.AddNested("ActivityType", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DeprecateActivityTypeOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3018,6 +3311,22 @@ func (s DeprecateDomainInput) String() string {
 // GoString returns the string representation
 func (s DeprecateDomainInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeprecateDomainInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeprecateDomainInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DeprecateDomainOutput struct {
@@ -3054,6 +3363,30 @@ func (s DeprecateWorkflowTypeInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeprecateWorkflowTypeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeprecateWorkflowTypeInput"}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 1))
+	}
+	if s.WorkflowType == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowType"))
+	}
+	if s.WorkflowType != nil {
+		if err := s.WorkflowType.Validate(); err != nil {
+			invalidParams.AddNested("WorkflowType", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DeprecateWorkflowTypeOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3087,6 +3420,30 @@ func (s DescribeActivityTypeInput) String() string {
 // GoString returns the string representation
 func (s DescribeActivityTypeInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeActivityTypeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeActivityTypeInput"}
+	if s.ActivityType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActivityType"))
+	}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 1))
+	}
+	if s.ActivityType != nil {
+		if err := s.ActivityType.Validate(); err != nil {
+			invalidParams.AddNested("ActivityType", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Detailed information about an activity type.
@@ -3135,6 +3492,22 @@ func (s DescribeDomainInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDomainInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDomainInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains details of a domain.
 type DescribeDomainOutput struct {
 	_ struct{} `type:"structure"`
@@ -3174,6 +3547,30 @@ func (s DescribeWorkflowExecutionInput) String() string {
 // GoString returns the string representation
 func (s DescribeWorkflowExecutionInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeWorkflowExecutionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeWorkflowExecutionInput"}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 1))
+	}
+	if s.Execution == nil {
+		invalidParams.Add(request.NewErrParamRequired("Execution"))
+	}
+	if s.Execution != nil {
+		if err := s.Execution.Validate(); err != nil {
+			invalidParams.AddNested("Execution", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains details about a workflow execution.
@@ -3230,6 +3627,30 @@ func (s DescribeWorkflowTypeInput) String() string {
 // GoString returns the string representation
 func (s DescribeWorkflowTypeInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeWorkflowTypeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeWorkflowTypeInput"}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 1))
+	}
+	if s.WorkflowType == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowType"))
+	}
+	if s.WorkflowType != nil {
+		if err := s.WorkflowType.Validate(); err != nil {
+			invalidParams.AddNested("WorkflowType", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains details about a workflow type.
@@ -3331,6 +3752,19 @@ func (s ExecutionTimeFilter) String() string {
 // GoString returns the string representation
 func (s ExecutionTimeFilter) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExecutionTimeFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExecutionTimeFilter"}
+	if s.OldestDate == nil {
+		invalidParams.Add(request.NewErrParamRequired("OldestDate"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Provides details of the ExternalWorkflowExecutionCancelRequested event.
@@ -3484,6 +3918,30 @@ func (s GetWorkflowExecutionHistoryInput) String() string {
 // GoString returns the string representation
 func (s GetWorkflowExecutionHistoryInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetWorkflowExecutionHistoryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetWorkflowExecutionHistoryInput"}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 1))
+	}
+	if s.Execution == nil {
+		invalidParams.Add(request.NewErrParamRequired("Execution"))
+	}
+	if s.Execution != nil {
+		if err := s.Execution.Validate(); err != nil {
+			invalidParams.AddNested("Execution", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Paginated representation of a workflow history for a workflow execution.
@@ -4032,6 +4490,28 @@ func (s ListActivityTypesInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListActivityTypesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListActivityTypesInput"}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.RegistrationStatus == nil {
+		invalidParams.Add(request.NewErrParamRequired("RegistrationStatus"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains a paginated list of activity type information structures.
 type ListActivityTypesOutput struct {
 	_ struct{} `type:"structure"`
@@ -4141,6 +4621,52 @@ func (s ListClosedWorkflowExecutionsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListClosedWorkflowExecutionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListClosedWorkflowExecutionsInput"}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 1))
+	}
+	if s.CloseStatusFilter != nil {
+		if err := s.CloseStatusFilter.Validate(); err != nil {
+			invalidParams.AddNested("CloseStatusFilter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.CloseTimeFilter != nil {
+		if err := s.CloseTimeFilter.Validate(); err != nil {
+			invalidParams.AddNested("CloseTimeFilter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ExecutionFilter != nil {
+		if err := s.ExecutionFilter.Validate(); err != nil {
+			invalidParams.AddNested("ExecutionFilter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.StartTimeFilter != nil {
+		if err := s.StartTimeFilter.Validate(); err != nil {
+			invalidParams.AddNested("StartTimeFilter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TagFilter != nil {
+		if err := s.TagFilter.Validate(); err != nil {
+			invalidParams.AddNested("TagFilter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TypeFilter != nil {
+		if err := s.TypeFilter.Validate(); err != nil {
+			invalidParams.AddNested("TypeFilter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type ListDomainsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4177,6 +4703,19 @@ func (s ListDomainsInput) String() string {
 // GoString returns the string representation
 func (s ListDomainsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDomainsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDomainsInput"}
+	if s.RegistrationStatus == nil {
+		invalidParams.Add(request.NewErrParamRequired("RegistrationStatus"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains a paginated collection of DomainInfo structures.
@@ -4266,6 +4805,45 @@ func (s ListOpenWorkflowExecutionsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListOpenWorkflowExecutionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListOpenWorkflowExecutionsInput"}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 1))
+	}
+	if s.StartTimeFilter == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartTimeFilter"))
+	}
+	if s.ExecutionFilter != nil {
+		if err := s.ExecutionFilter.Validate(); err != nil {
+			invalidParams.AddNested("ExecutionFilter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.StartTimeFilter != nil {
+		if err := s.StartTimeFilter.Validate(); err != nil {
+			invalidParams.AddNested("StartTimeFilter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TagFilter != nil {
+		if err := s.TagFilter.Validate(); err != nil {
+			invalidParams.AddNested("TagFilter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TypeFilter != nil {
+		if err := s.TypeFilter.Validate(); err != nil {
+			invalidParams.AddNested("TypeFilter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type ListWorkflowTypesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4309,6 +4887,28 @@ func (s ListWorkflowTypesInput) String() string {
 // GoString returns the string representation
 func (s ListWorkflowTypesInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListWorkflowTypesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListWorkflowTypesInput"}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.RegistrationStatus == nil {
+		invalidParams.Add(request.NewErrParamRequired("RegistrationStatus"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains a paginated list of information structures about workflow types.
@@ -4416,6 +5016,30 @@ func (s PollForActivityTaskInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PollForActivityTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PollForActivityTaskInput"}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 1))
+	}
+	if s.TaskList == nil {
+		invalidParams.Add(request.NewErrParamRequired("TaskList"))
+	}
+	if s.TaskList != nil {
+		if err := s.TaskList.Validate(); err != nil {
+			invalidParams.AddNested("TaskList", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Unit of work sent to an activity worker.
 type PollForActivityTaskOutput struct {
 	_ struct{} `type:"structure"`
@@ -4508,6 +5132,30 @@ func (s PollForDecisionTaskInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PollForDecisionTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PollForDecisionTaskInput"}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 1))
+	}
+	if s.TaskList == nil {
+		invalidParams.Add(request.NewErrParamRequired("TaskList"))
+	}
+	if s.TaskList != nil {
+		if err := s.TaskList.Validate(); err != nil {
+			invalidParams.AddNested("TaskList", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // A structure that represents a decision task. Decision tasks are sent to deciders
 // in order for them to make decisions.
 type PollForDecisionTaskOutput struct {
@@ -4580,6 +5228,22 @@ func (s RecordActivityTaskHeartbeatInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RecordActivityTaskHeartbeatInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RecordActivityTaskHeartbeatInput"}
+	if s.TaskToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("TaskToken"))
+	}
+	if s.TaskToken != nil && len(*s.TaskToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TaskToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Status information about an activity task.
 type RecordActivityTaskHeartbeatOutput struct {
 	_ struct{} `type:"structure"`
@@ -4631,6 +5295,22 @@ func (s RecordMarkerDecisionAttributes) String() string {
 // GoString returns the string representation
 func (s RecordMarkerDecisionAttributes) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RecordMarkerDecisionAttributes) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RecordMarkerDecisionAttributes"}
+	if s.MarkerName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MarkerName"))
+	}
+	if s.MarkerName != nil && len(*s.MarkerName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MarkerName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Provides details of the RecordMarkerFailed event.
@@ -4754,6 +5434,39 @@ func (s RegisterActivityTypeInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RegisterActivityTypeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RegisterActivityTypeInput"}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Version == nil {
+		invalidParams.Add(request.NewErrParamRequired("Version"))
+	}
+	if s.Version != nil && len(*s.Version) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Version", 1))
+	}
+	if s.DefaultTaskList != nil {
+		if err := s.DefaultTaskList.Validate(); err != nil {
+			invalidParams.AddNested("DefaultTaskList", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type RegisterActivityTypeOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4805,6 +5518,28 @@ func (s RegisterDomainInput) String() string {
 // GoString returns the string representation
 func (s RegisterDomainInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RegisterDomainInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RegisterDomainInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.WorkflowExecutionRetentionPeriodInDays == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowExecutionRetentionPeriodInDays"))
+	}
+	if s.WorkflowExecutionRetentionPeriodInDays != nil && len(*s.WorkflowExecutionRetentionPeriodInDays) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowExecutionRetentionPeriodInDays", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type RegisterDomainOutput struct {
@@ -4918,6 +5653,42 @@ func (s RegisterWorkflowTypeInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RegisterWorkflowTypeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RegisterWorkflowTypeInput"}
+	if s.DefaultLambdaRole != nil && len(*s.DefaultLambdaRole) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DefaultLambdaRole", 1))
+	}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Version == nil {
+		invalidParams.Add(request.NewErrParamRequired("Version"))
+	}
+	if s.Version != nil && len(*s.Version) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Version", 1))
+	}
+	if s.DefaultTaskList != nil {
+		if err := s.DefaultTaskList.Validate(); err != nil {
+			invalidParams.AddNested("DefaultTaskList", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type RegisterWorkflowTypeOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4962,6 +5733,22 @@ func (s RequestCancelActivityTaskDecisionAttributes) String() string {
 // GoString returns the string representation
 func (s RequestCancelActivityTaskDecisionAttributes) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RequestCancelActivityTaskDecisionAttributes) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RequestCancelActivityTaskDecisionAttributes"}
+	if s.ActivityId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActivityId"))
+	}
+	if s.ActivityId != nil && len(*s.ActivityId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ActivityId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Provides details of the RequestCancelActivityTaskFailed event.
@@ -5033,6 +5820,22 @@ func (s RequestCancelExternalWorkflowExecutionDecisionAttributes) String() strin
 // GoString returns the string representation
 func (s RequestCancelExternalWorkflowExecutionDecisionAttributes) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RequestCancelExternalWorkflowExecutionDecisionAttributes) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RequestCancelExternalWorkflowExecutionDecisionAttributes"}
+	if s.WorkflowId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowId"))
+	}
+	if s.WorkflowId != nil && len(*s.WorkflowId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Provides details of the RequestCancelExternalWorkflowExecutionFailed event.
@@ -5133,6 +5936,28 @@ func (s RequestCancelWorkflowExecutionInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RequestCancelWorkflowExecutionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RequestCancelWorkflowExecutionInput"}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 1))
+	}
+	if s.WorkflowId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowId"))
+	}
+	if s.WorkflowId != nil && len(*s.WorkflowId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type RequestCancelWorkflowExecutionOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5169,6 +5994,22 @@ func (s RespondActivityTaskCanceledInput) String() string {
 // GoString returns the string representation
 func (s RespondActivityTaskCanceledInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RespondActivityTaskCanceledInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RespondActivityTaskCanceledInput"}
+	if s.TaskToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("TaskToken"))
+	}
+	if s.TaskToken != nil && len(*s.TaskToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TaskToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type RespondActivityTaskCanceledOutput struct {
@@ -5208,6 +6049,22 @@ func (s RespondActivityTaskCompletedInput) String() string {
 // GoString returns the string representation
 func (s RespondActivityTaskCompletedInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RespondActivityTaskCompletedInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RespondActivityTaskCompletedInput"}
+	if s.TaskToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("TaskToken"))
+	}
+	if s.TaskToken != nil && len(*s.TaskToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TaskToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type RespondActivityTaskCompletedOutput struct {
@@ -5251,6 +6108,22 @@ func (s RespondActivityTaskFailedInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RespondActivityTaskFailedInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RespondActivityTaskFailedInput"}
+	if s.TaskToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("TaskToken"))
+	}
+	if s.TaskToken != nil && len(*s.TaskToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TaskToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type RespondActivityTaskFailedOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5291,6 +6164,32 @@ func (s RespondDecisionTaskCompletedInput) String() string {
 // GoString returns the string representation
 func (s RespondDecisionTaskCompletedInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RespondDecisionTaskCompletedInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RespondDecisionTaskCompletedInput"}
+	if s.TaskToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("TaskToken"))
+	}
+	if s.TaskToken != nil && len(*s.TaskToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TaskToken", 1))
+	}
+	if s.Decisions != nil {
+		for i, v := range s.Decisions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Decisions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type RespondDecisionTaskCompletedOutput struct {
@@ -5429,6 +6328,35 @@ func (s ScheduleActivityTaskDecisionAttributes) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ScheduleActivityTaskDecisionAttributes) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ScheduleActivityTaskDecisionAttributes"}
+	if s.ActivityId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActivityId"))
+	}
+	if s.ActivityId != nil && len(*s.ActivityId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ActivityId", 1))
+	}
+	if s.ActivityType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActivityType"))
+	}
+	if s.ActivityType != nil {
+		if err := s.ActivityType.Validate(); err != nil {
+			invalidParams.AddNested("ActivityType", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TaskList != nil {
+		if err := s.TaskList.Validate(); err != nil {
+			invalidParams.AddNested("TaskList", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Provides details of the ScheduleActivityTaskFailed event.
 type ScheduleActivityTaskFailedEventAttributes struct {
 	_ struct{} `type:"structure"`
@@ -5513,6 +6441,31 @@ func (s ScheduleLambdaFunctionDecisionAttributes) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ScheduleLambdaFunctionDecisionAttributes) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ScheduleLambdaFunctionDecisionAttributes"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.Input != nil && len(*s.Input) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Input", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Provides details for the ScheduleLambdaFunctionFailed event.
 type ScheduleLambdaFunctionFailedEventAttributes struct {
 	_ struct{} `type:"structure"`
@@ -5593,6 +6546,28 @@ func (s SignalExternalWorkflowExecutionDecisionAttributes) String() string {
 // GoString returns the string representation
 func (s SignalExternalWorkflowExecutionDecisionAttributes) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SignalExternalWorkflowExecutionDecisionAttributes) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SignalExternalWorkflowExecutionDecisionAttributes"}
+	if s.SignalName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SignalName"))
+	}
+	if s.SignalName != nil && len(*s.SignalName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SignalName", 1))
+	}
+	if s.WorkflowId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowId"))
+	}
+	if s.WorkflowId != nil && len(*s.WorkflowId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Provides details of the SignalExternalWorkflowExecutionFailed event.
@@ -5705,6 +6680,34 @@ func (s SignalWorkflowExecutionInput) String() string {
 // GoString returns the string representation
 func (s SignalWorkflowExecutionInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SignalWorkflowExecutionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SignalWorkflowExecutionInput"}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 1))
+	}
+	if s.SignalName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SignalName"))
+	}
+	if s.SignalName != nil && len(*s.SignalName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SignalName", 1))
+	}
+	if s.WorkflowId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowId"))
+	}
+	if s.WorkflowId != nil && len(*s.WorkflowId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type SignalWorkflowExecutionOutput struct {
@@ -5849,6 +6852,38 @@ func (s StartChildWorkflowExecutionDecisionAttributes) String() string {
 // GoString returns the string representation
 func (s StartChildWorkflowExecutionDecisionAttributes) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartChildWorkflowExecutionDecisionAttributes) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartChildWorkflowExecutionDecisionAttributes"}
+	if s.LambdaRole != nil && len(*s.LambdaRole) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LambdaRole", 1))
+	}
+	if s.WorkflowId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowId"))
+	}
+	if s.WorkflowId != nil && len(*s.WorkflowId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowId", 1))
+	}
+	if s.WorkflowType == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowType"))
+	}
+	if s.TaskList != nil {
+		if err := s.TaskList.Validate(); err != nil {
+			invalidParams.AddNested("TaskList", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.WorkflowType != nil {
+		if err := s.WorkflowType.Validate(); err != nil {
+			invalidParams.AddNested("WorkflowType", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Provides details of the StartChildWorkflowExecutionFailed event.
@@ -6054,6 +7089,28 @@ func (s StartTimerDecisionAttributes) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartTimerDecisionAttributes) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartTimerDecisionAttributes"}
+	if s.StartToFireTimeout == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartToFireTimeout"))
+	}
+	if s.StartToFireTimeout != nil && len(*s.StartToFireTimeout) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StartToFireTimeout", 1))
+	}
+	if s.TimerId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TimerId"))
+	}
+	if s.TimerId != nil && len(*s.TimerId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TimerId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Provides details of the StartTimerFailed event.
 type StartTimerFailedEventAttributes struct {
 	_ struct{} `type:"structure"`
@@ -6207,6 +7264,44 @@ func (s StartWorkflowExecutionInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartWorkflowExecutionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartWorkflowExecutionInput"}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 1))
+	}
+	if s.LambdaRole != nil && len(*s.LambdaRole) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LambdaRole", 1))
+	}
+	if s.WorkflowId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowId"))
+	}
+	if s.WorkflowId != nil && len(*s.WorkflowId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowId", 1))
+	}
+	if s.WorkflowType == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowType"))
+	}
+	if s.TaskList != nil {
+		if err := s.TaskList.Validate(); err != nil {
+			invalidParams.AddNested("TaskList", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.WorkflowType != nil {
+		if err := s.WorkflowType.Validate(); err != nil {
+			invalidParams.AddNested("WorkflowType", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Specifies the runId of a workflow execution.
 type StartWorkflowExecutionOutput struct {
 	_ struct{} `type:"structure"`
@@ -6245,6 +7340,22 @@ func (s TagFilter) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagFilter"}
+	if s.Tag == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tag"))
+	}
+	if s.Tag != nil && len(*s.Tag) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tag", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents a task list.
 type TaskList struct {
 	_ struct{} `type:"structure"`
@@ -6261,6 +7372,22 @@ func (s TaskList) String() string {
 // GoString returns the string representation
 func (s TaskList) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TaskList) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TaskList"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type TerminateWorkflowExecutionInput struct {
@@ -6308,6 +7435,28 @@ func (s TerminateWorkflowExecutionInput) String() string {
 // GoString returns the string representation
 func (s TerminateWorkflowExecutionInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TerminateWorkflowExecutionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TerminateWorkflowExecutionInput"}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 1))
+	}
+	if s.WorkflowId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowId"))
+	}
+	if s.WorkflowId != nil && len(*s.WorkflowId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type TerminateWorkflowExecutionOutput struct {
@@ -6429,6 +7578,28 @@ func (s WorkflowExecution) String() string {
 // GoString returns the string representation
 func (s WorkflowExecution) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WorkflowExecution) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WorkflowExecution"}
+	if s.RunId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RunId"))
+	}
+	if s.RunId != nil && len(*s.RunId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RunId", 1))
+	}
+	if s.WorkflowId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowId"))
+	}
+	if s.WorkflowId != nil && len(*s.WorkflowId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Provides details of the WorkflowExecutionCancelRequested event.
@@ -6700,6 +7871,22 @@ func (s WorkflowExecutionFilter) String() string {
 // GoString returns the string representation
 func (s WorkflowExecutionFilter) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WorkflowExecutionFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WorkflowExecutionFilter"}
+	if s.WorkflowId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowId"))
+	}
+	if s.WorkflowId != nil && len(*s.WorkflowId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains information about a workflow execution.
@@ -7020,6 +8207,28 @@ func (s WorkflowType) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WorkflowType) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WorkflowType"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Version == nil {
+		invalidParams.Add(request.NewErrParamRequired("Version"))
+	}
+	if s.Version != nil && len(*s.Version) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Version", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The configuration settings of a workflow type.
 type WorkflowTypeConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -7114,6 +8323,22 @@ func (s WorkflowTypeFilter) String() string {
 // GoString returns the string representation
 func (s WorkflowTypeFilter) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WorkflowTypeFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WorkflowTypeFilter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains information about a workflow type.

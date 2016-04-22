@@ -120,6 +120,46 @@ func (s GenerateDataSetInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GenerateDataSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GenerateDataSetInput"}
+	if s.CustomerDefinedValues != nil && len(s.CustomerDefinedValues) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomerDefinedValues", 1))
+	}
+	if s.DataSetPublicationDate == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetPublicationDate"))
+	}
+	if s.DataSetType == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetType"))
+	}
+	if s.DataSetType != nil && len(*s.DataSetType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSetType", 1))
+	}
+	if s.DestinationS3BucketName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DestinationS3BucketName"))
+	}
+	if s.DestinationS3BucketName != nil && len(*s.DestinationS3BucketName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DestinationS3BucketName", 1))
+	}
+	if s.RoleNameArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleNameArn"))
+	}
+	if s.RoleNameArn != nil && len(*s.RoleNameArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleNameArn", 1))
+	}
+	if s.SnsTopicArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SnsTopicArn"))
+	}
+	if s.SnsTopicArn != nil && len(*s.SnsTopicArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SnsTopicArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Container for the result of the GenerateDataSet operation.
 type GenerateDataSetOutput struct {
 	_ struct{} `type:"structure"`

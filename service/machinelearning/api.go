@@ -1009,6 +1009,37 @@ func (s CreateBatchPredictionInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateBatchPredictionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateBatchPredictionInput"}
+	if s.BatchPredictionDataSourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BatchPredictionDataSourceId"))
+	}
+	if s.BatchPredictionDataSourceId != nil && len(*s.BatchPredictionDataSourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BatchPredictionDataSourceId", 1))
+	}
+	if s.BatchPredictionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BatchPredictionId"))
+	}
+	if s.BatchPredictionId != nil && len(*s.BatchPredictionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BatchPredictionId", 1))
+	}
+	if s.MLModelId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MLModelId"))
+	}
+	if s.MLModelId != nil && len(*s.MLModelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MLModelId", 1))
+	}
+	if s.OutputUri == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutputUri"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the output of a CreateBatchPrediction operation, and is an acknowledgement
 // that Amazon ML received the request.
 //
@@ -1106,6 +1137,36 @@ func (s CreateDataSourceFromRDSInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateDataSourceFromRDSInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateDataSourceFromRDSInput"}
+	if s.DataSourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSourceId"))
+	}
+	if s.DataSourceId != nil && len(*s.DataSourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSourceId", 1))
+	}
+	if s.RDSData == nil {
+		invalidParams.Add(request.NewErrParamRequired("RDSData"))
+	}
+	if s.RoleARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleARN"))
+	}
+	if s.RoleARN != nil && len(*s.RoleARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleARN", 1))
+	}
+	if s.RDSData != nil {
+		if err := s.RDSData.Validate(); err != nil {
+			invalidParams.AddNested("RDSData", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the output of a CreateDataSourceFromRDS operation, and is an acknowledgement
 // that Amazon ML received the request.
 //
@@ -1195,6 +1256,36 @@ func (s CreateDataSourceFromRedshiftInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateDataSourceFromRedshiftInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateDataSourceFromRedshiftInput"}
+	if s.DataSourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSourceId"))
+	}
+	if s.DataSourceId != nil && len(*s.DataSourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSourceId", 1))
+	}
+	if s.DataSpec == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSpec"))
+	}
+	if s.RoleARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleARN"))
+	}
+	if s.RoleARN != nil && len(*s.RoleARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleARN", 1))
+	}
+	if s.DataSpec != nil {
+		if err := s.DataSpec.Validate(); err != nil {
+			invalidParams.AddNested("DataSpec", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the output of a CreateDataSourceFromRedshift operation, and is
 // an acknowledgement that Amazon ML received the request.
 //
@@ -1261,6 +1352,30 @@ func (s CreateDataSourceFromS3Input) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateDataSourceFromS3Input) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateDataSourceFromS3Input"}
+	if s.DataSourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSourceId"))
+	}
+	if s.DataSourceId != nil && len(*s.DataSourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSourceId", 1))
+	}
+	if s.DataSpec == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSpec"))
+	}
+	if s.DataSpec != nil {
+		if err := s.DataSpec.Validate(); err != nil {
+			invalidParams.AddNested("DataSpec", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the output of a CreateDataSourceFromS3 operation, and is an acknowledgement
 // that Amazon ML received the request.
 //
@@ -1312,6 +1427,34 @@ func (s CreateEvaluationInput) String() string {
 // GoString returns the string representation
 func (s CreateEvaluationInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateEvaluationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateEvaluationInput"}
+	if s.EvaluationDataSourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EvaluationDataSourceId"))
+	}
+	if s.EvaluationDataSourceId != nil && len(*s.EvaluationDataSourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EvaluationDataSourceId", 1))
+	}
+	if s.EvaluationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EvaluationId"))
+	}
+	if s.EvaluationId != nil && len(*s.EvaluationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EvaluationId", 1))
+	}
+	if s.MLModelId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MLModelId"))
+	}
+	if s.MLModelId != nil && len(*s.MLModelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MLModelId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the output of a CreateEvaluation operation, and is an acknowledgement
@@ -1413,6 +1556,31 @@ func (s CreateMLModelInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateMLModelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateMLModelInput"}
+	if s.MLModelId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MLModelId"))
+	}
+	if s.MLModelId != nil && len(*s.MLModelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MLModelId", 1))
+	}
+	if s.MLModelType == nil {
+		invalidParams.Add(request.NewErrParamRequired("MLModelType"))
+	}
+	if s.TrainingDataSourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TrainingDataSourceId"))
+	}
+	if s.TrainingDataSourceId != nil && len(*s.TrainingDataSourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TrainingDataSourceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the output of a CreateMLModel operation, and is an acknowledgement
 // that Amazon ML received the request.
 //
@@ -1451,6 +1619,22 @@ func (s CreateRealtimeEndpointInput) String() string {
 // GoString returns the string representation
 func (s CreateRealtimeEndpointInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateRealtimeEndpointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateRealtimeEndpointInput"}
+	if s.MLModelId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MLModelId"))
+	}
+	if s.MLModelId != nil && len(*s.MLModelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MLModelId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the output of an CreateRealtimeEndpoint operation.
@@ -1575,6 +1759,22 @@ func (s DeleteBatchPredictionInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteBatchPredictionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteBatchPredictionInput"}
+	if s.BatchPredictionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BatchPredictionId"))
+	}
+	if s.BatchPredictionId != nil && len(*s.BatchPredictionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BatchPredictionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the output of a DeleteBatchPrediction operation.
 //
 // You can use the GetBatchPrediction operation and check the value of the
@@ -1614,6 +1814,22 @@ func (s DeleteDataSourceInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteDataSourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteDataSourceInput"}
+	if s.DataSourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSourceId"))
+	}
+	if s.DataSourceId != nil && len(*s.DataSourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSourceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the output of a DeleteDataSource operation.
 type DeleteDataSourceOutput struct {
 	_ struct{} `type:"structure"`
@@ -1648,6 +1864,22 @@ func (s DeleteEvaluationInput) String() string {
 // GoString returns the string representation
 func (s DeleteEvaluationInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteEvaluationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteEvaluationInput"}
+	if s.EvaluationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EvaluationId"))
+	}
+	if s.EvaluationId != nil && len(*s.EvaluationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EvaluationId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the output of a DeleteEvaluation operation. The output indicates
@@ -1690,6 +1922,22 @@ func (s DeleteMLModelInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteMLModelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteMLModelInput"}
+	if s.MLModelId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MLModelId"))
+	}
+	if s.MLModelId != nil && len(*s.MLModelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MLModelId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the output of a DeleteMLModel operation.
 //
 // You can use the GetMLModel operation and check the value of the Status parameter
@@ -1727,6 +1975,22 @@ func (s DeleteRealtimeEndpointInput) String() string {
 // GoString returns the string representation
 func (s DeleteRealtimeEndpointInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteRealtimeEndpointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteRealtimeEndpointInput"}
+	if s.MLModelId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MLModelId"))
+	}
+	if s.MLModelId != nil && len(*s.MLModelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MLModelId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the output of an DeleteRealtimeEndpoint operation.
@@ -1833,6 +2097,19 @@ func (s DescribeBatchPredictionsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeBatchPredictionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeBatchPredictionsInput"}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the output of a DescribeBatchPredictions operation. The content
 // is essentially a list of BatchPredictions.
 type DescribeBatchPredictionsOutput struct {
@@ -1929,6 +2206,19 @@ func (s DescribeDataSourcesInput) String() string {
 // GoString returns the string representation
 func (s DescribeDataSourcesInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDataSourcesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDataSourcesInput"}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the query results from a DescribeDataSources operation. The content
@@ -2029,6 +2319,19 @@ func (s DescribeEvaluationsInput) String() string {
 // GoString returns the string representation
 func (s DescribeEvaluationsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeEvaluationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeEvaluationsInput"}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the query results from a DescribeEvaluations operation. The content
@@ -2132,6 +2435,19 @@ func (s DescribeMLModelsInput) String() string {
 // GoString returns the string representation
 func (s DescribeMLModelsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeMLModelsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeMLModelsInput"}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the output of a DescribeMLModels operation. The content is essentially
@@ -2252,6 +2568,22 @@ func (s GetBatchPredictionInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetBatchPredictionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetBatchPredictionInput"}
+	if s.BatchPredictionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BatchPredictionId"))
+	}
+	if s.BatchPredictionId != nil && len(*s.BatchPredictionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BatchPredictionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the output of a GetBatchPrediction operation and describes a BatchPrediction.
 type GetBatchPredictionOutput struct {
 	_ struct{} `type:"structure"`
@@ -2340,6 +2672,22 @@ func (s GetDataSourceInput) String() string {
 // GoString returns the string representation
 func (s GetDataSourceInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetDataSourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetDataSourceInput"}
+	if s.DataSourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSourceId"))
+	}
+	if s.DataSourceId != nil && len(*s.DataSourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSourceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the output of a GetDataSource operation and describes a DataSource.
@@ -2444,6 +2792,22 @@ func (s GetEvaluationInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetEvaluationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetEvaluationInput"}
+	if s.EvaluationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EvaluationId"))
+	}
+	if s.EvaluationId != nil && len(*s.EvaluationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EvaluationId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the output of a GetEvaluation operation and describes an Evaluation.
 type GetEvaluationOutput struct {
 	_ struct{} `type:"structure"`
@@ -2544,6 +2908,22 @@ func (s GetMLModelInput) String() string {
 // GoString returns the string representation
 func (s GetMLModelInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMLModelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMLModelInput"}
+	if s.MLModelId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MLModelId"))
+	}
+	if s.MLModelId != nil && len(*s.MLModelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MLModelId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the output of a GetMLModel operation, and provides detailed information
@@ -2844,6 +3224,28 @@ func (s PredictInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PredictInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PredictInput"}
+	if s.MLModelId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MLModelId"))
+	}
+	if s.MLModelId != nil && len(*s.MLModelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MLModelId", 1))
+	}
+	if s.PredictEndpoint == nil {
+		invalidParams.Add(request.NewErrParamRequired("PredictEndpoint"))
+	}
+	if s.Record == nil {
+		invalidParams.Add(request.NewErrParamRequired("Record"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type PredictOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3004,6 +3406,62 @@ func (s RDSDataSpec) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RDSDataSpec) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RDSDataSpec"}
+	if s.DatabaseCredentials == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseCredentials"))
+	}
+	if s.DatabaseInformation == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseInformation"))
+	}
+	if s.ResourceRole == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceRole"))
+	}
+	if s.ResourceRole != nil && len(*s.ResourceRole) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceRole", 1))
+	}
+	if s.S3StagingLocation == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3StagingLocation"))
+	}
+	if s.SecurityGroupIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityGroupIds"))
+	}
+	if s.SelectSqlQuery == nil {
+		invalidParams.Add(request.NewErrParamRequired("SelectSqlQuery"))
+	}
+	if s.SelectSqlQuery != nil && len(*s.SelectSqlQuery) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SelectSqlQuery", 1))
+	}
+	if s.ServiceRole == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceRole"))
+	}
+	if s.ServiceRole != nil && len(*s.ServiceRole) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceRole", 1))
+	}
+	if s.SubnetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubnetId"))
+	}
+	if s.SubnetId != nil && len(*s.SubnetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SubnetId", 1))
+	}
+	if s.DatabaseCredentials != nil {
+		if err := s.DatabaseCredentials.Validate(); err != nil {
+			invalidParams.AddNested("DatabaseCredentials", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DatabaseInformation != nil {
+		if err := s.DatabaseInformation.Validate(); err != nil {
+			invalidParams.AddNested("DatabaseInformation", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The database details of an Amazon RDS database.
 type RDSDatabase struct {
 	_ struct{} `type:"structure"`
@@ -3023,6 +3481,28 @@ func (s RDSDatabase) String() string {
 // GoString returns the string representation
 func (s RDSDatabase) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RDSDatabase) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RDSDatabase"}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
+	}
+	if s.InstanceIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceIdentifier"))
+	}
+	if s.InstanceIdentifier != nil && len(*s.InstanceIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The database credentials to connect to a database on an RDS DB instance.
@@ -3048,6 +3528,28 @@ func (s RDSDatabaseCredentials) String() string {
 // GoString returns the string representation
 func (s RDSDatabaseCredentials) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RDSDatabaseCredentials) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RDSDatabaseCredentials"}
+	if s.Password == nil {
+		invalidParams.Add(request.NewErrParamRequired("Password"))
+	}
+	if s.Password != nil && len(*s.Password) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("Password", 8))
+	}
+	if s.Username == nil {
+		invalidParams.Add(request.NewErrParamRequired("Username"))
+	}
+	if s.Username != nil && len(*s.Username) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Username", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The datasource details that are specific to Amazon RDS.
@@ -3202,6 +3704,41 @@ func (s RedshiftDataSpec) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RedshiftDataSpec) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RedshiftDataSpec"}
+	if s.DatabaseCredentials == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseCredentials"))
+	}
+	if s.DatabaseInformation == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseInformation"))
+	}
+	if s.S3StagingLocation == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3StagingLocation"))
+	}
+	if s.SelectSqlQuery == nil {
+		invalidParams.Add(request.NewErrParamRequired("SelectSqlQuery"))
+	}
+	if s.SelectSqlQuery != nil && len(*s.SelectSqlQuery) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SelectSqlQuery", 1))
+	}
+	if s.DatabaseCredentials != nil {
+		if err := s.DatabaseCredentials.Validate(); err != nil {
+			invalidParams.AddNested("DatabaseCredentials", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DatabaseInformation != nil {
+		if err := s.DatabaseInformation.Validate(); err != nil {
+			invalidParams.AddNested("DatabaseInformation", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Describes the database details required to connect to an Amazon Redshift
 // database.
 type RedshiftDatabase struct {
@@ -3222,6 +3759,28 @@ func (s RedshiftDatabase) String() string {
 // GoString returns the string representation
 func (s RedshiftDatabase) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RedshiftDatabase) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RedshiftDatabase"}
+	if s.ClusterIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterIdentifier"))
+	}
+	if s.ClusterIdentifier != nil && len(*s.ClusterIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterIdentifier", 1))
+	}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Describes the database credentials for connecting to a database on an Amazon
@@ -3250,6 +3809,28 @@ func (s RedshiftDatabaseCredentials) String() string {
 // GoString returns the string representation
 func (s RedshiftDatabaseCredentials) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RedshiftDatabaseCredentials) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RedshiftDatabaseCredentials"}
+	if s.Password == nil {
+		invalidParams.Add(request.NewErrParamRequired("Password"))
+	}
+	if s.Password != nil && len(*s.Password) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("Password", 8))
+	}
+	if s.Username == nil {
+		invalidParams.Add(request.NewErrParamRequired("Username"))
+	}
+	if s.Username != nil && len(*s.Username) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Username", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Describes the DataSource details specific to Amazon Redshift.
@@ -3339,6 +3920,19 @@ func (s S3DataSpec) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3DataSpec) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3DataSpec"}
+	if s.DataLocationS3 == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataLocationS3"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type UpdateBatchPredictionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3357,6 +3951,25 @@ func (s UpdateBatchPredictionInput) String() string {
 // GoString returns the string representation
 func (s UpdateBatchPredictionInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateBatchPredictionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateBatchPredictionInput"}
+	if s.BatchPredictionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BatchPredictionId"))
+	}
+	if s.BatchPredictionId != nil && len(*s.BatchPredictionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BatchPredictionId", 1))
+	}
+	if s.BatchPredictionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BatchPredictionName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the output of an UpdateBatchPrediction operation.
@@ -3401,6 +4014,25 @@ func (s UpdateDataSourceInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateDataSourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateDataSourceInput"}
+	if s.DataSourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSourceId"))
+	}
+	if s.DataSourceId != nil && len(*s.DataSourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSourceId", 1))
+	}
+	if s.DataSourceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSourceName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the output of an UpdateDataSource operation.
 //
 // You can see the updated content by using the GetBatchPrediction operation.
@@ -3441,6 +4073,25 @@ func (s UpdateEvaluationInput) String() string {
 // GoString returns the string representation
 func (s UpdateEvaluationInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateEvaluationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateEvaluationInput"}
+	if s.EvaluationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EvaluationId"))
+	}
+	if s.EvaluationId != nil && len(*s.EvaluationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EvaluationId", 1))
+	}
+	if s.EvaluationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EvaluationName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the output of an UpdateEvaluation operation.
@@ -3490,6 +4141,22 @@ func (s UpdateMLModelInput) String() string {
 // GoString returns the string representation
 func (s UpdateMLModelInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateMLModelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateMLModelInput"}
+	if s.MLModelId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MLModelId"))
+	}
+	if s.MLModelId != nil && len(*s.MLModelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MLModelId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the output of an UpdateMLModel operation.

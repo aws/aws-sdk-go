@@ -4,6 +4,7 @@
 package firehose
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
@@ -413,6 +414,22 @@ func (s BufferingHints) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BufferingHints) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BufferingHints"}
+	if s.IntervalInSeconds != nil && *s.IntervalInSeconds < 60 {
+		invalidParams.Add(request.NewErrParamMinValue("IntervalInSeconds", 60))
+	}
+	if s.SizeInMBs != nil && *s.SizeInMBs < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("SizeInMBs", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Describes CloudWatch logging options for your delivery stream.
 type CloudWatchLoggingOptions struct {
 	_ struct{} `type:"structure"`
@@ -482,6 +499,22 @@ func (s CopyCommand) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CopyCommand) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CopyCommand"}
+	if s.DataTableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataTableName"))
+	}
+	if s.DataTableName != nil && len(*s.DataTableName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataTableName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains the parameters for CreateDeliveryStream.
 type CreateDeliveryStreamInput struct {
 	_ struct{} `type:"structure"`
@@ -512,6 +545,37 @@ func (s CreateDeliveryStreamInput) String() string {
 // GoString returns the string representation
 func (s CreateDeliveryStreamInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateDeliveryStreamInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateDeliveryStreamInput"}
+	if s.DeliveryStreamName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeliveryStreamName"))
+	}
+	if s.DeliveryStreamName != nil && len(*s.DeliveryStreamName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeliveryStreamName", 1))
+	}
+	if s.ElasticsearchDestinationConfiguration != nil {
+		if err := s.ElasticsearchDestinationConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ElasticsearchDestinationConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RedshiftDestinationConfiguration != nil {
+		if err := s.RedshiftDestinationConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("RedshiftDestinationConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.S3DestinationConfiguration != nil {
+		if err := s.S3DestinationConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("S3DestinationConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the output of CreateDeliveryStream.
@@ -548,6 +612,22 @@ func (s DeleteDeliveryStreamInput) String() string {
 // GoString returns the string representation
 func (s DeleteDeliveryStreamInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteDeliveryStreamInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteDeliveryStreamInput"}
+	if s.DeliveryStreamName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeliveryStreamName"))
+	}
+	if s.DeliveryStreamName != nil && len(*s.DeliveryStreamName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeliveryStreamName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the output of DeleteDeliveryStream.
@@ -634,6 +714,28 @@ func (s DescribeDeliveryStreamInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDeliveryStreamInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDeliveryStreamInput"}
+	if s.DeliveryStreamName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeliveryStreamName"))
+	}
+	if s.DeliveryStreamName != nil && len(*s.DeliveryStreamName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeliveryStreamName", 1))
+	}
+	if s.ExclusiveStartDestinationId != nil && len(*s.ExclusiveStartDestinationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExclusiveStartDestinationId", 1))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains the output of DescribeDeliveryStream.
 type DescribeDeliveryStreamOutput struct {
 	_ struct{} `type:"structure"`
@@ -707,6 +809,22 @@ func (s ElasticsearchBufferingHints) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ElasticsearchBufferingHints) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ElasticsearchBufferingHints"}
+	if s.IntervalInSeconds != nil && *s.IntervalInSeconds < 60 {
+		invalidParams.Add(request.NewErrParamMinValue("IntervalInSeconds", 60))
+	}
+	if s.SizeInMBs != nil && *s.SizeInMBs < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("SizeInMBs", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Describes the configuration of a destination in Amazon ES.
 type ElasticsearchDestinationConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -766,6 +884,53 @@ func (s ElasticsearchDestinationConfiguration) String() string {
 // GoString returns the string representation
 func (s ElasticsearchDestinationConfiguration) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ElasticsearchDestinationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ElasticsearchDestinationConfiguration"}
+	if s.DomainARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainARN"))
+	}
+	if s.DomainARN != nil && len(*s.DomainARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainARN", 1))
+	}
+	if s.IndexName == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexName"))
+	}
+	if s.IndexName != nil && len(*s.IndexName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexName", 1))
+	}
+	if s.RoleARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleARN"))
+	}
+	if s.RoleARN != nil && len(*s.RoleARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleARN", 1))
+	}
+	if s.S3Configuration == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Configuration"))
+	}
+	if s.TypeName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TypeName"))
+	}
+	if s.TypeName != nil && len(*s.TypeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TypeName", 1))
+	}
+	if s.BufferingHints != nil {
+		if err := s.BufferingHints.Validate(); err != nil {
+			invalidParams.AddNested("BufferingHints", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.S3Configuration != nil {
+		if err := s.S3Configuration.Validate(); err != nil {
+			invalidParams.AddNested("S3Configuration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The destination description in Amazon ES.
@@ -864,6 +1029,38 @@ func (s ElasticsearchDestinationUpdate) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ElasticsearchDestinationUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ElasticsearchDestinationUpdate"}
+	if s.DomainARN != nil && len(*s.DomainARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainARN", 1))
+	}
+	if s.IndexName != nil && len(*s.IndexName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexName", 1))
+	}
+	if s.RoleARN != nil && len(*s.RoleARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleARN", 1))
+	}
+	if s.TypeName != nil && len(*s.TypeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TypeName", 1))
+	}
+	if s.BufferingHints != nil {
+		if err := s.BufferingHints.Validate(); err != nil {
+			invalidParams.AddNested("BufferingHints", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.S3Update != nil {
+		if err := s.S3Update.Validate(); err != nil {
+			invalidParams.AddNested("S3Update", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Configures retry behavior in the event that Firehose is unable to deliver
 // documents to Amazon ES.
 type ElasticsearchRetryOptions struct {
@@ -908,6 +1105,21 @@ func (s EncryptionConfiguration) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EncryptionConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EncryptionConfiguration"}
+	if s.KMSEncryptionConfig != nil {
+		if err := s.KMSEncryptionConfig.Validate(); err != nil {
+			invalidParams.AddNested("KMSEncryptionConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Describes an encryption key for a destination in Amazon S3.
 type KMSEncryptionConfig struct {
 	_ struct{} `type:"structure"`
@@ -925,6 +1137,22 @@ func (s KMSEncryptionConfig) String() string {
 // GoString returns the string representation
 func (s KMSEncryptionConfig) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KMSEncryptionConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KMSEncryptionConfig"}
+	if s.AWSKMSKeyARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("AWSKMSKeyARN"))
+	}
+	if s.AWSKMSKeyARN != nil && len(*s.AWSKMSKeyARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AWSKMSKeyARN", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the parameters for ListDeliveryStreams.
@@ -946,6 +1174,22 @@ func (s ListDeliveryStreamsInput) String() string {
 // GoString returns the string representation
 func (s ListDeliveryStreamsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDeliveryStreamsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDeliveryStreamsInput"}
+	if s.ExclusiveStartDeliveryStreamName != nil && len(*s.ExclusiveStartDeliveryStreamName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExclusiveStartDeliveryStreamName", 1))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the output of ListDeliveryStreams.
@@ -988,6 +1232,38 @@ func (s PutRecordBatchInput) String() string {
 // GoString returns the string representation
 func (s PutRecordBatchInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutRecordBatchInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutRecordBatchInput"}
+	if s.DeliveryStreamName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeliveryStreamName"))
+	}
+	if s.DeliveryStreamName != nil && len(*s.DeliveryStreamName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeliveryStreamName", 1))
+	}
+	if s.Records == nil {
+		invalidParams.Add(request.NewErrParamRequired("Records"))
+	}
+	if s.Records != nil && len(s.Records) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Records", 1))
+	}
+	if s.Records != nil {
+		for i, v := range s.Records {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Records", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the output of PutRecordBatch.
@@ -1060,6 +1336,30 @@ func (s PutRecordInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutRecordInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutRecordInput"}
+	if s.DeliveryStreamName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeliveryStreamName"))
+	}
+	if s.DeliveryStreamName != nil && len(*s.DeliveryStreamName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeliveryStreamName", 1))
+	}
+	if s.Record == nil {
+		invalidParams.Add(request.NewErrParamRequired("Record"))
+	}
+	if s.Record != nil {
+		if err := s.Record.Validate(); err != nil {
+			invalidParams.AddNested("Record", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains the output of PutRecord.
 type PutRecordOutput struct {
 	_ struct{} `type:"structure"`
@@ -1097,6 +1397,19 @@ func (s Record) String() string {
 // GoString returns the string representation
 func (s Record) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Record) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Record"}
+	if s.Data == nil {
+		invalidParams.Add(request.NewErrParamRequired("Data"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Describes the configuration of a destination in Amazon Redshift.
@@ -1138,6 +1451,56 @@ func (s RedshiftDestinationConfiguration) String() string {
 // GoString returns the string representation
 func (s RedshiftDestinationConfiguration) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RedshiftDestinationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RedshiftDestinationConfiguration"}
+	if s.ClusterJDBCURL == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterJDBCURL"))
+	}
+	if s.ClusterJDBCURL != nil && len(*s.ClusterJDBCURL) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterJDBCURL", 1))
+	}
+	if s.CopyCommand == nil {
+		invalidParams.Add(request.NewErrParamRequired("CopyCommand"))
+	}
+	if s.Password == nil {
+		invalidParams.Add(request.NewErrParamRequired("Password"))
+	}
+	if s.Password != nil && len(*s.Password) < 6 {
+		invalidParams.Add(request.NewErrParamMinLen("Password", 6))
+	}
+	if s.RoleARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleARN"))
+	}
+	if s.RoleARN != nil && len(*s.RoleARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleARN", 1))
+	}
+	if s.S3Configuration == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Configuration"))
+	}
+	if s.Username == nil {
+		invalidParams.Add(request.NewErrParamRequired("Username"))
+	}
+	if s.Username != nil && len(*s.Username) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Username", 1))
+	}
+	if s.CopyCommand != nil {
+		if err := s.CopyCommand.Validate(); err != nil {
+			invalidParams.AddNested("CopyCommand", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.S3Configuration != nil {
+		if err := s.S3Configuration.Validate(); err != nil {
+			invalidParams.AddNested("S3Configuration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Describes a destination in Amazon Redshift.
@@ -1213,6 +1576,38 @@ func (s RedshiftDestinationUpdate) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RedshiftDestinationUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RedshiftDestinationUpdate"}
+	if s.ClusterJDBCURL != nil && len(*s.ClusterJDBCURL) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterJDBCURL", 1))
+	}
+	if s.Password != nil && len(*s.Password) < 6 {
+		invalidParams.Add(request.NewErrParamMinLen("Password", 6))
+	}
+	if s.RoleARN != nil && len(*s.RoleARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleARN", 1))
+	}
+	if s.Username != nil && len(*s.Username) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Username", 1))
+	}
+	if s.CopyCommand != nil {
+		if err := s.CopyCommand.Validate(); err != nil {
+			invalidParams.AddNested("CopyCommand", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.S3Update != nil {
+		if err := s.S3Update.Validate(); err != nil {
+			invalidParams.AddNested("S3Update", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Describes the configuration of a destination in Amazon S3.
 type S3DestinationConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -1258,6 +1653,38 @@ func (s S3DestinationConfiguration) String() string {
 // GoString returns the string representation
 func (s S3DestinationConfiguration) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3DestinationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3DestinationConfiguration"}
+	if s.BucketARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketARN"))
+	}
+	if s.BucketARN != nil && len(*s.BucketARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BucketARN", 1))
+	}
+	if s.RoleARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleARN"))
+	}
+	if s.RoleARN != nil && len(*s.RoleARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleARN", 1))
+	}
+	if s.BufferingHints != nil {
+		if err := s.BufferingHints.Validate(); err != nil {
+			invalidParams.AddNested("BufferingHints", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.EncryptionConfiguration != nil {
+		if err := s.EncryptionConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("EncryptionConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Describes a destination in Amazon S3.
@@ -1350,6 +1777,32 @@ func (s S3DestinationUpdate) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3DestinationUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3DestinationUpdate"}
+	if s.BucketARN != nil && len(*s.BucketARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BucketARN", 1))
+	}
+	if s.RoleARN != nil && len(*s.RoleARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleARN", 1))
+	}
+	if s.BufferingHints != nil {
+		if err := s.BufferingHints.Validate(); err != nil {
+			invalidParams.AddNested("BufferingHints", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.EncryptionConfiguration != nil {
+		if err := s.EncryptionConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("EncryptionConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains the parameters for UpdateDestination.
 type UpdateDestinationInput struct {
 	_ struct{} `type:"structure"`
@@ -1386,6 +1839,49 @@ func (s UpdateDestinationInput) String() string {
 // GoString returns the string representation
 func (s UpdateDestinationInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateDestinationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateDestinationInput"}
+	if s.CurrentDeliveryStreamVersionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CurrentDeliveryStreamVersionId"))
+	}
+	if s.CurrentDeliveryStreamVersionId != nil && len(*s.CurrentDeliveryStreamVersionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CurrentDeliveryStreamVersionId", 1))
+	}
+	if s.DeliveryStreamName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeliveryStreamName"))
+	}
+	if s.DeliveryStreamName != nil && len(*s.DeliveryStreamName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeliveryStreamName", 1))
+	}
+	if s.DestinationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DestinationId"))
+	}
+	if s.DestinationId != nil && len(*s.DestinationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DestinationId", 1))
+	}
+	if s.ElasticsearchDestinationUpdate != nil {
+		if err := s.ElasticsearchDestinationUpdate.Validate(); err != nil {
+			invalidParams.AddNested("ElasticsearchDestinationUpdate", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RedshiftDestinationUpdate != nil {
+		if err := s.RedshiftDestinationUpdate.Validate(); err != nil {
+			invalidParams.AddNested("RedshiftDestinationUpdate", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.S3DestinationUpdate != nil {
+		if err := s.S3DestinationUpdate.Validate(); err != nil {
+			invalidParams.AddNested("S3DestinationUpdate", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the output of UpdateDestination.

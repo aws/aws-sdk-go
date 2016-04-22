@@ -548,6 +548,19 @@ func (s AddAttachmentsToSetInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddAttachmentsToSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddAttachmentsToSetInput"}
+	if s.Attachments == nil {
+		invalidParams.Add(request.NewErrParamRequired("Attachments"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The ID and expiry time of the attachment set returned by the AddAttachmentsToSet
 // operation.
 type AddAttachmentsToSetOutput struct {
@@ -601,6 +614,19 @@ func (s AddCommunicationToCaseInput) String() string {
 // GoString returns the string representation
 func (s AddCommunicationToCaseInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddCommunicationToCaseInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddCommunicationToCaseInput"}
+	if s.CommunicationBody == nil {
+		invalidParams.Add(request.NewErrParamRequired("CommunicationBody"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The result of the AddCommunicationToCase operation.
@@ -850,6 +876,22 @@ func (s CreateCaseInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateCaseInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateCaseInput"}
+	if s.CommunicationBody == nil {
+		invalidParams.Add(request.NewErrParamRequired("CommunicationBody"))
+	}
+	if s.Subject == nil {
+		invalidParams.Add(request.NewErrParamRequired("Subject"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The AWS Support case ID returned by a successful completion of the CreateCase
 // operation.
 type CreateCaseOutput struct {
@@ -886,6 +928,19 @@ func (s DescribeAttachmentInput) String() string {
 // GoString returns the string representation
 func (s DescribeAttachmentInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeAttachmentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeAttachmentInput"}
+	if s.AttachmentId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttachmentId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The content and file name of the attachment returned by the DescribeAttachment
@@ -955,6 +1010,19 @@ func (s DescribeCasesInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeCasesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeCasesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 10 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Returns an array of CaseDetails objects and a NextToken that defines a point
 // for pagination in the result set.
 type DescribeCasesOutput struct {
@@ -1007,6 +1075,22 @@ func (s DescribeCommunicationsInput) String() string {
 // GoString returns the string representation
 func (s DescribeCommunicationsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeCommunicationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeCommunicationsInput"}
+	if s.CaseId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CaseId"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 10 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The communications returned by the DescribeCommunications operation.
@@ -1125,6 +1209,19 @@ func (s DescribeTrustedAdvisorCheckRefreshStatusesInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeTrustedAdvisorCheckRefreshStatusesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeTrustedAdvisorCheckRefreshStatusesInput"}
+	if s.CheckIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("CheckIds"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The statuses of the Trusted Advisor checks returned by the DescribeTrustedAdvisorCheckRefreshStatuses
 // operation.
 type DescribeTrustedAdvisorCheckRefreshStatusesOutput struct {
@@ -1166,6 +1263,19 @@ func (s DescribeTrustedAdvisorCheckResultInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeTrustedAdvisorCheckResultInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeTrustedAdvisorCheckResultInput"}
+	if s.CheckId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CheckId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The result of the Trusted Advisor check returned by the DescribeTrustedAdvisorCheckResult
 // operation.
 type DescribeTrustedAdvisorCheckResultOutput struct {
@@ -1200,6 +1310,19 @@ func (s DescribeTrustedAdvisorCheckSummariesInput) String() string {
 // GoString returns the string representation
 func (s DescribeTrustedAdvisorCheckSummariesInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeTrustedAdvisorCheckSummariesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeTrustedAdvisorCheckSummariesInput"}
+	if s.CheckIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("CheckIds"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The summaries of the Trusted Advisor checks returned by the DescribeTrustedAdvisorCheckSummaries
@@ -1238,6 +1361,19 @@ func (s DescribeTrustedAdvisorChecksInput) String() string {
 // GoString returns the string representation
 func (s DescribeTrustedAdvisorChecksInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeTrustedAdvisorChecksInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeTrustedAdvisorChecksInput"}
+	if s.Language == nil {
+		invalidParams.Add(request.NewErrParamRequired("Language"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Information about the Trusted Advisor checks returned by the DescribeTrustedAdvisorChecks
@@ -1295,6 +1431,19 @@ func (s RefreshTrustedAdvisorCheckInput) String() string {
 // GoString returns the string representation
 func (s RefreshTrustedAdvisorCheckInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RefreshTrustedAdvisorCheckInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RefreshTrustedAdvisorCheckInput"}
+	if s.CheckId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CheckId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The current refresh status of a Trusted Advisor check.
