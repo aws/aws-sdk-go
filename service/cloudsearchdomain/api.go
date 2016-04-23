@@ -620,6 +620,19 @@ func (s SearchInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchInput"}
+	if s.Query == nil {
+		invalidParams.Add(request.NewErrParamRequired("Query"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The result of a Search request. Contains the documents that match the specified
 // search criteria and any requested fields, highlights, and facet information.
 type SearchOutput struct {
@@ -692,6 +705,22 @@ func (s SuggestInput) String() string {
 // GoString returns the string representation
 func (s SuggestInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SuggestInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SuggestInput"}
+	if s.Query == nil {
+		invalidParams.Add(request.NewErrParamRequired("Query"))
+	}
+	if s.Suggester == nil {
+		invalidParams.Add(request.NewErrParamRequired("Suggester"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Container for the suggestion information returned in a SuggestResponse.
@@ -808,6 +837,22 @@ func (s UploadDocumentsInput) String() string {
 // GoString returns the string representation
 func (s UploadDocumentsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UploadDocumentsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UploadDocumentsInput"}
+	if s.ContentType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContentType"))
+	}
+	if s.Documents == nil {
+		invalidParams.Add(request.NewErrParamRequired("Documents"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the response to an UploadDocuments request.

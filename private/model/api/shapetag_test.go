@@ -1,3 +1,5 @@
+// +build 1.6
+
 package api_test
 
 import (

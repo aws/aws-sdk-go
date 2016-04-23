@@ -4,6 +4,8 @@
 package cloudhsm
 
 import (
+	"fmt"
+
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 )
@@ -613,6 +615,32 @@ func (s AddTagsToResourceInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddTagsToResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddTagsToResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.TagList == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagList"))
+	}
+	if s.TagList != nil {
+		for i, v := range s.TagList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TagList", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type AddTagsToResourceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -646,6 +674,19 @@ func (s CreateHapgInput) String() string {
 // GoString returns the string representation
 func (s CreateHapgInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateHapgInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateHapgInput"}
+	if s.Label == nil {
+		invalidParams.Add(request.NewErrParamRequired("Label"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the output of the CreateHAPartitionGroup action.
@@ -714,6 +755,28 @@ func (s CreateHsmInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateHsmInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateHsmInput"}
+	if s.IamRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("IamRoleArn"))
+	}
+	if s.SshKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("SshKey"))
+	}
+	if s.SubnetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubnetId"))
+	}
+	if s.SubscriptionType == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubscriptionType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains the output of the CreateHsm operation.
 type CreateHsmOutput struct {
 	_ struct{} `type:"structure"`
@@ -754,6 +817,22 @@ func (s CreateLunaClientInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateLunaClientInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateLunaClientInput"}
+	if s.Certificate == nil {
+		invalidParams.Add(request.NewErrParamRequired("Certificate"))
+	}
+	if s.Certificate != nil && len(*s.Certificate) < 600 {
+		invalidParams.Add(request.NewErrParamMinLen("Certificate", 600))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains the output of the CreateLunaClient action.
 type CreateLunaClientOutput struct {
 	_ struct{} `type:"structure"`
@@ -788,6 +867,19 @@ func (s DeleteHapgInput) String() string {
 // GoString returns the string representation
 func (s DeleteHapgInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteHapgInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteHapgInput"}
+	if s.HapgArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("HapgArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the output of the DeleteHapg action.
@@ -826,6 +918,19 @@ func (s DeleteHsmInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteHsmInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteHsmInput"}
+	if s.HsmArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("HsmArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains the output of the DeleteHsm operation.
 type DeleteHsmOutput struct {
 	_ struct{} `type:"structure"`
@@ -861,6 +966,19 @@ func (s DeleteLunaClientInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteLunaClientInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteLunaClientInput"}
+	if s.ClientArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClientArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DeleteLunaClientOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -894,6 +1012,19 @@ func (s DescribeHapgInput) String() string {
 // GoString returns the string representation
 func (s DescribeHapgInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeHapgInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeHapgInput"}
+	if s.HapgArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("HapgArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the output of the DescribeHapg action.
@@ -1116,6 +1247,25 @@ func (s GetConfigInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetConfigInput"}
+	if s.ClientArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClientArn"))
+	}
+	if s.ClientVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClientVersion"))
+	}
+	if s.HapgList == nil {
+		invalidParams.Add(request.NewErrParamRequired("HapgList"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type GetConfigOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1306,6 +1456,19 @@ func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1345,6 +1508,19 @@ func (s ModifyHapgInput) String() string {
 // GoString returns the string representation
 func (s ModifyHapgInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifyHapgInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifyHapgInput"}
+	if s.HapgArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("HapgArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type ModifyHapgOutput struct {
@@ -1403,6 +1579,19 @@ func (s ModifyHsmInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifyHsmInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifyHsmInput"}
+	if s.HsmArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("HsmArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains the output of the ModifyHsm operation.
 type ModifyHsmOutput struct {
 	_ struct{} `type:"structure"`
@@ -1439,6 +1628,25 @@ func (s ModifyLunaClientInput) String() string {
 // GoString returns the string representation
 func (s ModifyLunaClientInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifyLunaClientInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifyLunaClientInput"}
+	if s.Certificate == nil {
+		invalidParams.Add(request.NewErrParamRequired("Certificate"))
+	}
+	if s.Certificate != nil && len(*s.Certificate) < 600 {
+		invalidParams.Add(request.NewErrParamMinLen("Certificate", 600))
+	}
+	if s.ClientArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClientArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type ModifyLunaClientOutput struct {
@@ -1481,6 +1689,22 @@ func (s RemoveTagsFromResourceInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RemoveTagsFromResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RemoveTagsFromResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.TagKeyList == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeyList"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type RemoveTagsFromResourceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1518,6 +1742,25 @@ func (s Tag) String() string {
 // GoString returns the string representation
 func (s Tag) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Tag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Tag"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 const (

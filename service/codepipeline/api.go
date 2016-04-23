@@ -4,6 +4,7 @@
 package codepipeline
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
@@ -740,6 +741,22 @@ func (s AcknowledgeJobInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AcknowledgeJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AcknowledgeJobInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.Nonce == nil {
+		invalidParams.Add(request.NewErrParamRequired("Nonce"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the output of an acknowledge job action.
 type AcknowledgeJobOutput struct {
 	_ struct{} `type:"structure"`
@@ -783,6 +800,28 @@ func (s AcknowledgeThirdPartyJobInput) String() string {
 // GoString returns the string representation
 func (s AcknowledgeThirdPartyJobInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AcknowledgeThirdPartyJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AcknowledgeThirdPartyJobInput"}
+	if s.ClientToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClientToken"))
+	}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+	if s.Nonce == nil {
+		invalidParams.Add(request.NewErrParamRequired("Nonce"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the output of an acknowledge third party job action.
@@ -871,6 +910,34 @@ func (s ActionConfigurationProperty) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ActionConfigurationProperty) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ActionConfigurationProperty"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Required == nil {
+		invalidParams.Add(request.NewErrParamRequired("Required"))
+	}
+	if s.Secret == nil {
+		invalidParams.Add(request.NewErrParamRequired("Secret"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the context of an action within the stage of a pipeline to a job
 // worker.
 type ActionContext struct {
@@ -927,6 +994,53 @@ func (s ActionDeclaration) String() string {
 // GoString returns the string representation
 func (s ActionDeclaration) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ActionDeclaration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ActionDeclaration"}
+	if s.ActionTypeId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActionTypeId"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.RunOrder != nil && *s.RunOrder < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("RunOrder", 1))
+	}
+	if s.ActionTypeId != nil {
+		if err := s.ActionTypeId.Validate(); err != nil {
+			invalidParams.AddNested("ActionTypeId", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.InputArtifacts != nil {
+		for i, v := range s.InputArtifacts {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "InputArtifacts", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.OutputArtifacts != nil {
+		for i, v := range s.OutputArtifacts {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "OutputArtifacts", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents information about how an action runs.
@@ -992,6 +1106,22 @@ func (s ActionRevision) String() string {
 // GoString returns the string representation
 func (s ActionRevision) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ActionRevision) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ActionRevision"}
+	if s.Created == nil {
+		invalidParams.Add(request.NewErrParamRequired("Created"))
+	}
+	if s.RevisionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RevisionId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents information about the state of an action.
@@ -1088,6 +1218,34 @@ func (s ActionTypeId) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ActionTypeId) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ActionTypeId"}
+	if s.Category == nil {
+		invalidParams.Add(request.NewErrParamRequired("Category"))
+	}
+	if s.Owner == nil {
+		invalidParams.Add(request.NewErrParamRequired("Owner"))
+	}
+	if s.Provider == nil {
+		invalidParams.Add(request.NewErrParamRequired("Provider"))
+	}
+	if s.Provider != nil && len(*s.Provider) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Provider", 1))
+	}
+	if s.Version == nil {
+		invalidParams.Add(request.NewErrParamRequired("Version"))
+	}
+	if s.Version != nil && len(*s.Version) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Version", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Returns information about the settings for an action type.
 type ActionTypeSettings struct {
 	_ struct{} `type:"structure"`
@@ -1123,6 +1281,28 @@ func (s ActionTypeSettings) String() string {
 // GoString returns the string representation
 func (s ActionTypeSettings) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ActionTypeSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ActionTypeSettings"}
+	if s.EntityUrlTemplate != nil && len(*s.EntityUrlTemplate) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityUrlTemplate", 1))
+	}
+	if s.ExecutionUrlTemplate != nil && len(*s.ExecutionUrlTemplate) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExecutionUrlTemplate", 1))
+	}
+	if s.RevisionUrlTemplate != nil && len(*s.RevisionUrlTemplate) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RevisionUrlTemplate", 1))
+	}
+	if s.ThirdPartyConfigurationUrl != nil && len(*s.ThirdPartyConfigurationUrl) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ThirdPartyConfigurationUrl", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents information about an artifact that will be worked upon by actions
@@ -1170,6 +1350,22 @@ func (s ArtifactDetails) String() string {
 // GoString returns the string representation
 func (s ArtifactDetails) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ArtifactDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ArtifactDetails"}
+	if s.MaximumCount == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaximumCount"))
+	}
+	if s.MinimumCount == nil {
+		invalidParams.Add(request.NewErrParamRequired("MinimumCount"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents information about the location of an artifact.
@@ -1222,6 +1418,30 @@ func (s ArtifactStore) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ArtifactStore) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ArtifactStore"}
+	if s.Location == nil {
+		invalidParams.Add(request.NewErrParamRequired("Location"))
+	}
+	if s.Location != nil && len(*s.Location) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Location", 3))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.EncryptionKey != nil {
+		if err := s.EncryptionKey.Validate(); err != nil {
+			invalidParams.AddNested("EncryptionKey", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents information about a gate declaration.
 type BlockerDeclaration struct {
 	_ struct{} `type:"structure"`
@@ -1241,6 +1461,25 @@ func (s BlockerDeclaration) String() string {
 // GoString returns the string representation
 func (s BlockerDeclaration) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BlockerDeclaration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BlockerDeclaration"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the input of a create custom action operation.
@@ -1282,6 +1521,62 @@ func (s CreateCustomActionTypeInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateCustomActionTypeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateCustomActionTypeInput"}
+	if s.Category == nil {
+		invalidParams.Add(request.NewErrParamRequired("Category"))
+	}
+	if s.InputArtifactDetails == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputArtifactDetails"))
+	}
+	if s.OutputArtifactDetails == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutputArtifactDetails"))
+	}
+	if s.Provider == nil {
+		invalidParams.Add(request.NewErrParamRequired("Provider"))
+	}
+	if s.Provider != nil && len(*s.Provider) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Provider", 1))
+	}
+	if s.Version == nil {
+		invalidParams.Add(request.NewErrParamRequired("Version"))
+	}
+	if s.Version != nil && len(*s.Version) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Version", 1))
+	}
+	if s.ConfigurationProperties != nil {
+		for i, v := range s.ConfigurationProperties {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ConfigurationProperties", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.InputArtifactDetails != nil {
+		if err := s.InputArtifactDetails.Validate(); err != nil {
+			invalidParams.AddNested("InputArtifactDetails", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OutputArtifactDetails != nil {
+		if err := s.OutputArtifactDetails.Validate(); err != nil {
+			invalidParams.AddNested("OutputArtifactDetails", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Settings != nil {
+		if err := s.Settings.Validate(); err != nil {
+			invalidParams.AddNested("Settings", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the output of a create custom action operation.
 type CreateCustomActionTypeOutput struct {
 	_ struct{} `type:"structure"`
@@ -1316,6 +1611,24 @@ func (s CreatePipelineInput) String() string {
 // GoString returns the string representation
 func (s CreatePipelineInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreatePipelineInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreatePipelineInput"}
+	if s.Pipeline == nil {
+		invalidParams.Add(request.NewErrParamRequired("Pipeline"))
+	}
+	if s.Pipeline != nil {
+		if err := s.Pipeline.Validate(); err != nil {
+			invalidParams.AddNested("Pipeline", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the output of a create pipeline action.
@@ -1357,6 +1670,22 @@ func (s CurrentRevision) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CurrentRevision) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CurrentRevision"}
+	if s.ChangeIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChangeIdentifier"))
+	}
+	if s.Revision == nil {
+		invalidParams.Add(request.NewErrParamRequired("Revision"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the input of a delete custom action operation. The custom action
 // will be marked as deleted.
 type DeleteCustomActionTypeInput struct {
@@ -1381,6 +1710,31 @@ func (s DeleteCustomActionTypeInput) String() string {
 // GoString returns the string representation
 func (s DeleteCustomActionTypeInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteCustomActionTypeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteCustomActionTypeInput"}
+	if s.Category == nil {
+		invalidParams.Add(request.NewErrParamRequired("Category"))
+	}
+	if s.Provider == nil {
+		invalidParams.Add(request.NewErrParamRequired("Provider"))
+	}
+	if s.Provider != nil && len(*s.Provider) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Provider", 1))
+	}
+	if s.Version == nil {
+		invalidParams.Add(request.NewErrParamRequired("Version"))
+	}
+	if s.Version != nil && len(*s.Version) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Version", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DeleteCustomActionTypeOutput struct {
@@ -1413,6 +1767,22 @@ func (s DeletePipelineInput) String() string {
 // GoString returns the string representation
 func (s DeletePipelineInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeletePipelineInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeletePipelineInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DeletePipelineOutput struct {
@@ -1463,6 +1833,37 @@ func (s DisableStageTransitionInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisableStageTransitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisableStageTransitionInput"}
+	if s.PipelineName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineName"))
+	}
+	if s.PipelineName != nil && len(*s.PipelineName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PipelineName", 1))
+	}
+	if s.Reason == nil {
+		invalidParams.Add(request.NewErrParamRequired("Reason"))
+	}
+	if s.Reason != nil && len(*s.Reason) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Reason", 1))
+	}
+	if s.StageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StageName"))
+	}
+	if s.StageName != nil && len(*s.StageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StageName", 1))
+	}
+	if s.TransitionType == nil {
+		invalidParams.Add(request.NewErrParamRequired("TransitionType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DisableStageTransitionOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1505,6 +1906,31 @@ func (s EnableStageTransitionInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EnableStageTransitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EnableStageTransitionInput"}
+	if s.PipelineName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineName"))
+	}
+	if s.PipelineName != nil && len(*s.PipelineName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PipelineName", 1))
+	}
+	if s.StageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StageName"))
+	}
+	if s.StageName != nil && len(*s.StageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StageName", 1))
+	}
+	if s.TransitionType == nil {
+		invalidParams.Add(request.NewErrParamRequired("TransitionType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type EnableStageTransitionOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1539,6 +1965,25 @@ func (s EncryptionKey) String() string {
 // GoString returns the string representation
 func (s EncryptionKey) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EncryptionKey) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EncryptionKey"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents information about an error in AWS CodePipeline.
@@ -1613,6 +2058,22 @@ func (s FailureDetails) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FailureDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FailureDetails"}
+	if s.Message == nil {
+		invalidParams.Add(request.NewErrParamRequired("Message"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the input of a get job details action.
 type GetJobDetailsInput struct {
 	_ struct{} `type:"structure"`
@@ -1629,6 +2090,19 @@ func (s GetJobDetailsInput) String() string {
 // GoString returns the string representation
 func (s GetJobDetailsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetJobDetailsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetJobDetailsInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the output of a get job details action.
@@ -1675,6 +2149,25 @@ func (s GetPipelineInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetPipelineInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetPipelineInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Version != nil && *s.Version < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Version", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the output of a get pipeline action.
 type GetPipelineOutput struct {
 	_ struct{} `type:"structure"`
@@ -1709,6 +2202,22 @@ func (s GetPipelineStateInput) String() string {
 // GoString returns the string representation
 func (s GetPipelineStateInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetPipelineStateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetPipelineStateInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the output of a get pipeline state action.
@@ -1766,6 +2275,25 @@ func (s GetThirdPartyJobDetailsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetThirdPartyJobDetailsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetThirdPartyJobDetailsInput"}
+	if s.ClientToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClientToken"))
+	}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the output of a get third party job details action.
 type GetThirdPartyJobDetailsOutput struct {
 	_ struct{} `type:"structure"`
@@ -1807,6 +2335,22 @@ func (s InputArtifact) String() string {
 // GoString returns the string representation
 func (s InputArtifact) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InputArtifact) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InputArtifact"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents information about a job.
@@ -2021,6 +2565,22 @@ func (s OutputArtifact) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OutputArtifact) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OutputArtifact"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents information about a pipeline to a job worker.
 type PipelineContext struct {
 	_ struct{} `type:"structure"`
@@ -2082,6 +2642,49 @@ func (s PipelineDeclaration) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PipelineDeclaration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PipelineDeclaration"}
+	if s.ArtifactStore == nil {
+		invalidParams.Add(request.NewErrParamRequired("ArtifactStore"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.Stages == nil {
+		invalidParams.Add(request.NewErrParamRequired("Stages"))
+	}
+	if s.Version != nil && *s.Version < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Version", 1))
+	}
+	if s.ArtifactStore != nil {
+		if err := s.ArtifactStore.Validate(); err != nil {
+			invalidParams.AddNested("ArtifactStore", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Stages != nil {
+		for i, v := range s.Stages {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Stages", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Returns a summary of a pipeline.
 type PipelineSummary struct {
 	_ struct{} `type:"structure"`
@@ -2136,6 +2739,27 @@ func (s PollForJobsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PollForJobsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PollForJobsInput"}
+	if s.ActionTypeId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActionTypeId"))
+	}
+	if s.MaxBatchSize != nil && *s.MaxBatchSize < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxBatchSize", 1))
+	}
+	if s.ActionTypeId != nil {
+		if err := s.ActionTypeId.Validate(); err != nil {
+			invalidParams.AddNested("ActionTypeId", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the output of a poll for jobs action.
 type PollForJobsOutput struct {
 	_ struct{} `type:"structure"`
@@ -2173,6 +2797,27 @@ func (s PollForThirdPartyJobsInput) String() string {
 // GoString returns the string representation
 func (s PollForThirdPartyJobsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PollForThirdPartyJobsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PollForThirdPartyJobsInput"}
+	if s.ActionTypeId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActionTypeId"))
+	}
+	if s.MaxBatchSize != nil && *s.MaxBatchSize < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxBatchSize", 1))
+	}
+	if s.ActionTypeId != nil {
+		if err := s.ActionTypeId.Validate(); err != nil {
+			invalidParams.AddNested("ActionTypeId", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the output of a poll for third party jobs action.
@@ -2220,6 +2865,42 @@ func (s PutActionRevisionInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutActionRevisionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutActionRevisionInput"}
+	if s.ActionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActionName"))
+	}
+	if s.ActionName != nil && len(*s.ActionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ActionName", 1))
+	}
+	if s.ActionRevision == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActionRevision"))
+	}
+	if s.PipelineName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineName"))
+	}
+	if s.PipelineName != nil && len(*s.PipelineName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PipelineName", 1))
+	}
+	if s.StageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StageName"))
+	}
+	if s.StageName != nil && len(*s.StageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StageName", 1))
+	}
+	if s.ActionRevision != nil {
+		if err := s.ActionRevision.Validate(); err != nil {
+			invalidParams.AddNested("ActionRevision", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the output of a put action revision action.
 type PutActionRevisionOutput struct {
 	_ struct{} `type:"structure"`
@@ -2261,6 +2942,27 @@ func (s PutJobFailureResultInput) String() string {
 // GoString returns the string representation
 func (s PutJobFailureResultInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutJobFailureResultInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutJobFailureResultInput"}
+	if s.FailureDetails == nil {
+		invalidParams.Add(request.NewErrParamRequired("FailureDetails"))
+	}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.FailureDetails != nil {
+		if err := s.FailureDetails.Validate(); err != nil {
+			invalidParams.AddNested("FailureDetails", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type PutJobFailureResultOutput struct {
@@ -2308,6 +3010,24 @@ func (s PutJobSuccessResultInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutJobSuccessResultInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutJobSuccessResultInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.CurrentRevision != nil {
+		if err := s.CurrentRevision.Validate(); err != nil {
+			invalidParams.AddNested("CurrentRevision", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type PutJobSuccessResultOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2345,6 +3065,33 @@ func (s PutThirdPartyJobFailureResultInput) String() string {
 // GoString returns the string representation
 func (s PutThirdPartyJobFailureResultInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutThirdPartyJobFailureResultInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutThirdPartyJobFailureResultInput"}
+	if s.ClientToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClientToken"))
+	}
+	if s.FailureDetails == nil {
+		invalidParams.Add(request.NewErrParamRequired("FailureDetails"))
+	}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+	if s.FailureDetails != nil {
+		if err := s.FailureDetails.Validate(); err != nil {
+			invalidParams.AddNested("FailureDetails", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type PutThirdPartyJobFailureResultOutput struct {
@@ -2393,6 +3140,30 @@ func (s PutThirdPartyJobSuccessResultInput) String() string {
 // GoString returns the string representation
 func (s PutThirdPartyJobSuccessResultInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutThirdPartyJobSuccessResultInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutThirdPartyJobSuccessResultInput"}
+	if s.ClientToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClientToken"))
+	}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+	if s.CurrentRevision != nil {
+		if err := s.CurrentRevision.Validate(); err != nil {
+			invalidParams.AddNested("CurrentRevision", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type PutThirdPartyJobSuccessResultOutput struct {
@@ -2473,6 +3244,45 @@ func (s StageDeclaration) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StageDeclaration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StageDeclaration"}
+	if s.Actions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Actions"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Actions != nil {
+		for i, v := range s.Actions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Actions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Blockers != nil {
+		for i, v := range s.Blockers {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Blockers", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents information about the state of the stage.
 type StageState struct {
 	_ struct{} `type:"structure"`
@@ -2513,6 +3323,22 @@ func (s StartPipelineExecutionInput) String() string {
 // GoString returns the string representation
 func (s StartPipelineExecutionInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartPipelineExecutionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartPipelineExecutionInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the output of a start pipeline execution action.
@@ -2677,6 +3503,24 @@ func (s UpdatePipelineInput) String() string {
 // GoString returns the string representation
 func (s UpdatePipelineInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdatePipelineInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdatePipelineInput"}
+	if s.Pipeline == nil {
+		invalidParams.Add(request.NewErrParamRequired("Pipeline"))
+	}
+	if s.Pipeline != nil {
+		if err := s.Pipeline.Validate(); err != nil {
+			invalidParams.AddNested("Pipeline", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the output of an update pipeline action.

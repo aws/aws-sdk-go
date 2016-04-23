@@ -4,6 +4,8 @@
 package elastictranscoder
 
 import (
+	"fmt"
+
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 )
@@ -661,6 +663,19 @@ func (s Artwork) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Artwork) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Artwork"}
+	if s.InputKey != nil && len(*s.InputKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InputKey", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Options associated with your audio codec.
 type AudioCodecOptions struct {
 	_ struct{} `type:"structure"`
@@ -872,6 +887,19 @@ func (s CancelJobInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CancelJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CancelJobInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The response body contains a JSON object. If the job is successfully canceled,
 // the value of Success is true.
 type CancelJobOutput struct {
@@ -997,6 +1025,25 @@ func (s CaptionSource) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CaptionSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CaptionSource"}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Label != nil && len(*s.Label) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Label", 1))
+	}
+	if s.Language != nil && len(*s.Language) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Language", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The captions to be created, if any.
 type Captions struct {
 	_ struct{} `type:"structure"`
@@ -1038,6 +1085,26 @@ func (s Captions) String() string {
 // GoString returns the string representation
 func (s Captions) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Captions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Captions"}
+	if s.CaptionSources != nil {
+		for i, v := range s.CaptionSources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CaptionSources", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Settings for one clip in a composition. All jobs in a playlist must have
@@ -1108,6 +1175,55 @@ func (s CreateJobInput) String() string {
 // GoString returns the string representation
 func (s CreateJobInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateJobInput"}
+	if s.Input == nil {
+		invalidParams.Add(request.NewErrParamRequired("Input"))
+	}
+	if s.OutputKeyPrefix != nil && len(*s.OutputKeyPrefix) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutputKeyPrefix", 1))
+	}
+	if s.PipelineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineId"))
+	}
+	if s.Input != nil {
+		if err := s.Input.Validate(); err != nil {
+			invalidParams.AddNested("Input", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Output != nil {
+		if err := s.Output.Validate(); err != nil {
+			invalidParams.AddNested("Output", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Outputs != nil {
+		for i, v := range s.Outputs {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Outputs", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Playlists != nil {
+		for i, v := range s.Playlists {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Playlists", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The CreateJobOutput structure.
@@ -1263,6 +1379,39 @@ func (s CreateJobOutput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateJobOutput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateJobOutput"}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.AlbumArt != nil {
+		if err := s.AlbumArt.Validate(); err != nil {
+			invalidParams.AddNested("AlbumArt", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Captions != nil {
+		if err := s.Captions.Validate(); err != nil {
+			invalidParams.AddNested("Captions", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Watermarks != nil {
+		for i, v := range s.Watermarks {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Watermarks", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Information about the master playlist.
 type CreateJobPlaylist struct {
 	_ struct{} `type:"structure"`
@@ -1339,6 +1488,24 @@ func (s CreateJobPlaylist) String() string {
 // GoString returns the string representation
 func (s CreateJobPlaylist) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateJobPlaylist) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateJobPlaylist"}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.PlayReadyDrm != nil {
+		if err := s.PlayReadyDrm.Validate(); err != nil {
+			invalidParams.AddNested("PlayReadyDrm", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The CreateJobResponse structure.
@@ -1526,6 +1693,38 @@ func (s CreatePipelineInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreatePipelineInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreatePipelineInput"}
+	if s.InputBucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputBucket"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Role == nil {
+		invalidParams.Add(request.NewErrParamRequired("Role"))
+	}
+	if s.ContentConfig != nil {
+		if err := s.ContentConfig.Validate(); err != nil {
+			invalidParams.AddNested("ContentConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ThumbnailConfig != nil {
+		if err := s.ThumbnailConfig.Validate(); err != nil {
+			invalidParams.AddNested("ThumbnailConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // When you create a pipeline, Elastic Transcoder returns the values that you
 // specified in the request.
 type CreatePipelineOutput struct {
@@ -1590,6 +1789,30 @@ func (s CreatePresetInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreatePresetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreatePresetInput"}
+	if s.Container == nil {
+		invalidParams.Add(request.NewErrParamRequired("Container"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Video != nil {
+		if err := s.Video.Validate(); err != nil {
+			invalidParams.AddNested("Video", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The CreatePresetResponse structure.
 type CreatePresetOutput struct {
 	_ struct{} `type:"structure"`
@@ -1633,6 +1856,19 @@ func (s DeletePipelineInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeletePipelineInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeletePipelineInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The DeletePipelineResponse structure.
 type DeletePipelineOutput struct {
 	_ struct{} `type:"structure"`
@@ -1664,6 +1900,19 @@ func (s DeletePresetInput) String() string {
 // GoString returns the string representation
 func (s DeletePresetInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeletePresetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeletePresetInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The DeletePresetResponse structure.
@@ -1969,6 +2218,26 @@ func (s JobAlbumArt) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *JobAlbumArt) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "JobAlbumArt"}
+	if s.Artwork != nil {
+		for i, v := range s.Artwork {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Artwork", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Information about the file that you're transcoding.
 type JobInput struct {
 	_ struct{} `type:"structure"`
@@ -2044,6 +2313,19 @@ func (s JobInput) String() string {
 // GoString returns the string representation
 func (s JobInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *JobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "JobInput"}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Outputs recommended instead.If you specified one output for a job, information
@@ -2297,6 +2579,22 @@ func (s JobWatermark) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *JobWatermark) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "JobWatermark"}
+	if s.InputKey != nil && len(*s.InputKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InputKey", 1))
+	}
+	if s.PresetWatermarkId != nil && len(*s.PresetWatermarkId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PresetWatermarkId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The ListJobsByPipelineRequest structure.
 type ListJobsByPipelineInput struct {
 	_ struct{} `type:"structure"`
@@ -2321,6 +2619,19 @@ func (s ListJobsByPipelineInput) String() string {
 // GoString returns the string representation
 func (s ListJobsByPipelineInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListJobsByPipelineInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListJobsByPipelineInput"}
+	if s.PipelineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The ListJobsByPipelineResponse structure.
@@ -2372,6 +2683,19 @@ func (s ListJobsByStatusInput) String() string {
 // GoString returns the string representation
 func (s ListJobsByStatusInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListJobsByStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListJobsByStatusInput"}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The ListJobsByStatusResponse structure.
@@ -2566,6 +2890,19 @@ func (s Permission) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Permission) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Permission"}
+	if s.Grantee != nil && len(*s.Grantee) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Grantee", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The pipeline (queue) that is used to manage jobs.
 type Pipeline struct {
 	_ struct{} `type:"structure"`
@@ -2741,6 +3078,26 @@ func (s PipelineOutputConfig) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PipelineOutputConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PipelineOutputConfig"}
+	if s.Permissions != nil {
+		for i, v := range s.Permissions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Permissions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The PlayReady DRM settings, if any, that you want Elastic Transcoder to apply
 // to the output files associated with this playlist.
 //
@@ -2801,6 +3158,19 @@ func (s PlayReadyDrm) String() string {
 // GoString returns the string representation
 func (s PlayReadyDrm) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PlayReadyDrm) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PlayReadyDrm"}
+	if s.LicenseAcquisitionUrl != nil && len(*s.LicenseAcquisitionUrl) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LicenseAcquisitionUrl", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Use Only for Fragmented MP4 or MPEG-TS Outputs. If you specify a preset for
@@ -3083,6 +3453,19 @@ func (s PresetWatermark) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PresetWatermark) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PresetWatermark"}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The ReadJobRequest structure.
 type ReadJobInput struct {
 	_ struct{} `type:"structure"`
@@ -3099,6 +3482,19 @@ func (s ReadJobInput) String() string {
 // GoString returns the string representation
 func (s ReadJobInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReadJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReadJobInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The ReadJobResponse structure.
@@ -3135,6 +3531,19 @@ func (s ReadPipelineInput) String() string {
 // GoString returns the string representation
 func (s ReadPipelineInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReadPipelineInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReadPipelineInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The ReadPipelineResponse structure.
@@ -3179,6 +3588,19 @@ func (s ReadPresetInput) String() string {
 // GoString returns the string representation
 func (s ReadPresetInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReadPresetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReadPresetInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The ReadPresetResponse structure.
@@ -3228,6 +3650,28 @@ func (s TestRoleInput) String() string {
 // GoString returns the string representation
 func (s TestRoleInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TestRoleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TestRoleInput"}
+	if s.InputBucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputBucket"))
+	}
+	if s.OutputBucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutputBucket"))
+	}
+	if s.Role == nil {
+		invalidParams.Add(request.NewErrParamRequired("Role"))
+	}
+	if s.Topics == nil {
+		invalidParams.Add(request.NewErrParamRequired("Topics"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The TestRoleResponse structure.
@@ -3532,6 +3976,32 @@ func (s UpdatePipelineInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdatePipelineInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdatePipelineInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.ContentConfig != nil {
+		if err := s.ContentConfig.Validate(); err != nil {
+			invalidParams.AddNested("ContentConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ThumbnailConfig != nil {
+		if err := s.ThumbnailConfig.Validate(); err != nil {
+			invalidParams.AddNested("ThumbnailConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The UpdatePipelineNotificationsRequest structure.
 type UpdatePipelineNotificationsInput struct {
 	_ struct{} `type:"structure"`
@@ -3567,6 +4037,22 @@ func (s UpdatePipelineNotificationsInput) String() string {
 // GoString returns the string representation
 func (s UpdatePipelineNotificationsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdatePipelineNotificationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdatePipelineNotificationsInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Notifications == nil {
+		invalidParams.Add(request.NewErrParamRequired("Notifications"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The UpdatePipelineNotificationsResponse structure.
@@ -3636,6 +4122,22 @@ func (s UpdatePipelineStatusInput) String() string {
 // GoString returns the string representation
 func (s UpdatePipelineStatusInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdatePipelineStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdatePipelineStatusInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // When you update status for a pipeline, Elastic Transcoder returns the values
@@ -3965,6 +4467,26 @@ func (s VideoParameters) String() string {
 // GoString returns the string representation
 func (s VideoParameters) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VideoParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VideoParameters"}
+	if s.Watermarks != nil {
+		for i, v := range s.Watermarks {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Watermarks", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Elastic Transcoder returns a warning if the resources used by your pipeline

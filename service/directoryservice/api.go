@@ -4,6 +4,7 @@
 package directoryservice
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
@@ -880,6 +881,19 @@ func (s Attribute) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Attribute) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Attribute"}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains information about a computer account in a directory.
 type Computer struct {
 	_ struct{} `type:"structure"`
@@ -970,6 +984,36 @@ func (s ConnectDirectoryInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConnectDirectoryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConnectDirectoryInput"}
+	if s.ConnectSettings == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectSettings"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Password == nil {
+		invalidParams.Add(request.NewErrParamRequired("Password"))
+	}
+	if s.Password != nil && len(*s.Password) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Password", 1))
+	}
+	if s.Size == nil {
+		invalidParams.Add(request.NewErrParamRequired("Size"))
+	}
+	if s.ConnectSettings != nil {
+		if err := s.ConnectSettings.Validate(); err != nil {
+			invalidParams.AddNested("ConnectSettings", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains the results of the ConnectDirectory operation.
 type ConnectDirectoryOutput struct {
 	_ struct{} `type:"structure"`
@@ -1010,6 +1054,25 @@ func (s CreateAliasInput) String() string {
 // GoString returns the string representation
 func (s CreateAliasInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAliasInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAliasInput"}
+	if s.Alias == nil {
+		invalidParams.Add(request.NewErrParamRequired("Alias"))
+	}
+	if s.Alias != nil && len(*s.Alias) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Alias", 1))
+	}
+	if s.DirectoryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the results of the CreateAlias operation.
@@ -1066,6 +1129,44 @@ func (s CreateComputerInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateComputerInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateComputerInput"}
+	if s.ComputerName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ComputerName"))
+	}
+	if s.ComputerName != nil && len(*s.ComputerName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ComputerName", 1))
+	}
+	if s.DirectoryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryId"))
+	}
+	if s.OrganizationalUnitDistinguishedName != nil && len(*s.OrganizationalUnitDistinguishedName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationalUnitDistinguishedName", 1))
+	}
+	if s.Password == nil {
+		invalidParams.Add(request.NewErrParamRequired("Password"))
+	}
+	if s.Password != nil && len(*s.Password) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("Password", 8))
+	}
+	if s.ComputerAttributes != nil {
+		for i, v := range s.ComputerAttributes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ComputerAttributes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains the results for the CreateComputer operation.
 type CreateComputerOutput struct {
 	_ struct{} `type:"structure"`
@@ -1110,6 +1211,25 @@ func (s CreateConditionalForwarderInput) String() string {
 // GoString returns the string representation
 func (s CreateConditionalForwarderInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateConditionalForwarderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateConditionalForwarderInput"}
+	if s.DirectoryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryId"))
+	}
+	if s.DnsIpAddrs == nil {
+		invalidParams.Add(request.NewErrParamRequired("DnsIpAddrs"))
+	}
+	if s.RemoteDomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RemoteDomainName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type CreateConditionalForwarderOutput struct {
@@ -1160,6 +1280,30 @@ func (s CreateDirectoryInput) String() string {
 // GoString returns the string representation
 func (s CreateDirectoryInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateDirectoryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateDirectoryInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Password == nil {
+		invalidParams.Add(request.NewErrParamRequired("Password"))
+	}
+	if s.Size == nil {
+		invalidParams.Add(request.NewErrParamRequired("Size"))
+	}
+	if s.VpcSettings != nil {
+		if err := s.VpcSettings.Validate(); err != nil {
+			invalidParams.AddNested("VpcSettings", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the results of the CreateDirectory operation.
@@ -1215,6 +1359,30 @@ func (s CreateMicrosoftADInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateMicrosoftADInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateMicrosoftADInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Password == nil {
+		invalidParams.Add(request.NewErrParamRequired("Password"))
+	}
+	if s.VpcSettings == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcSettings"))
+	}
+	if s.VpcSettings != nil {
+		if err := s.VpcSettings.Validate(); err != nil {
+			invalidParams.AddNested("VpcSettings", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type CreateMicrosoftADOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1251,6 +1419,19 @@ func (s CreateSnapshotInput) String() string {
 // GoString returns the string representation
 func (s CreateSnapshotInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateSnapshotInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateSnapshotInput"}
+	if s.DirectoryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the results of the CreateSnapshot operation.
@@ -1313,6 +1494,31 @@ func (s CreateTrustInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateTrustInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateTrustInput"}
+	if s.DirectoryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryId"))
+	}
+	if s.RemoteDomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RemoteDomainName"))
+	}
+	if s.TrustDirection == nil {
+		invalidParams.Add(request.NewErrParamRequired("TrustDirection"))
+	}
+	if s.TrustPassword == nil {
+		invalidParams.Add(request.NewErrParamRequired("TrustPassword"))
+	}
+	if s.TrustPassword != nil && len(*s.TrustPassword) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TrustPassword", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type CreateTrustOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1351,6 +1557,22 @@ func (s DeleteConditionalForwarderInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteConditionalForwarderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteConditionalForwarderInput"}
+	if s.DirectoryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryId"))
+	}
+	if s.RemoteDomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RemoteDomainName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DeleteConditionalForwarderOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1381,6 +1603,19 @@ func (s DeleteDirectoryInput) String() string {
 // GoString returns the string representation
 func (s DeleteDirectoryInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteDirectoryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteDirectoryInput"}
+	if s.DirectoryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the results of the DeleteDirectory operation.
@@ -1417,6 +1652,19 @@ func (s DeleteSnapshotInput) String() string {
 // GoString returns the string representation
 func (s DeleteSnapshotInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteSnapshotInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteSnapshotInput"}
+	if s.SnapshotId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SnapshotId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the results of the DeleteSnapshot operation.
@@ -1458,6 +1706,19 @@ func (s DeleteTrustInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteTrustInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteTrustInput"}
+	if s.TrustId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TrustId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DeleteTrustOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1497,6 +1758,25 @@ func (s DeregisterEventTopicInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeregisterEventTopicInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeregisterEventTopicInput"}
+	if s.DirectoryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryId"))
+	}
+	if s.TopicName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopicName"))
+	}
+	if s.TopicName != nil && len(*s.TopicName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TopicName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DeregisterEventTopicOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1531,6 +1811,19 @@ func (s DescribeConditionalForwardersInput) String() string {
 // GoString returns the string representation
 func (s DescribeConditionalForwardersInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeConditionalForwardersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeConditionalForwardersInput"}
+	if s.DirectoryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DescribeConditionalForwardersOutput struct {
@@ -1801,6 +2094,31 @@ func (s DirectoryConnectSettings) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DirectoryConnectSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DirectoryConnectSettings"}
+	if s.CustomerDnsIps == nil {
+		invalidParams.Add(request.NewErrParamRequired("CustomerDnsIps"))
+	}
+	if s.CustomerUserName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CustomerUserName"))
+	}
+	if s.CustomerUserName != nil && len(*s.CustomerUserName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomerUserName", 1))
+	}
+	if s.SubnetIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubnetIds"))
+	}
+	if s.VpcId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains information about an AD Connector directory.
 type DirectoryConnectSettingsDescription struct {
 	_ struct{} `type:"structure"`
@@ -1981,6 +2299,22 @@ func (s DirectoryVpcSettings) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DirectoryVpcSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DirectoryVpcSettings"}
+	if s.SubnetIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubnetIds"))
+	}
+	if s.VpcId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains information about the directory.
 type DirectoryVpcSettingsDescription struct {
 	_ struct{} `type:"structure"`
@@ -2027,6 +2361,19 @@ func (s DisableRadiusInput) String() string {
 // GoString returns the string representation
 func (s DisableRadiusInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisableRadiusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisableRadiusInput"}
+	if s.DirectoryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the results of the DisableRadius operation.
@@ -2078,6 +2425,25 @@ func (s DisableSsoInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisableSsoInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisableSsoInput"}
+	if s.DirectoryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryId"))
+	}
+	if s.Password != nil && len(*s.Password) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Password", 1))
+	}
+	if s.UserName != nil && len(*s.UserName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains the results of the DisableSso operation.
 type DisableSsoOutput struct {
 	_ struct{} `type:"structure"`
@@ -2112,6 +2478,27 @@ func (s EnableRadiusInput) String() string {
 // GoString returns the string representation
 func (s EnableRadiusInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EnableRadiusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EnableRadiusInput"}
+	if s.DirectoryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryId"))
+	}
+	if s.RadiusSettings == nil {
+		invalidParams.Add(request.NewErrParamRequired("RadiusSettings"))
+	}
+	if s.RadiusSettings != nil {
+		if err := s.RadiusSettings.Validate(); err != nil {
+			invalidParams.AddNested("RadiusSettings", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the results of the EnableRadius operation.
@@ -2161,6 +2548,25 @@ func (s EnableSsoInput) String() string {
 // GoString returns the string representation
 func (s EnableSsoInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EnableSsoInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EnableSsoInput"}
+	if s.DirectoryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryId"))
+	}
+	if s.Password != nil && len(*s.Password) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Password", 1))
+	}
+	if s.UserName != nil && len(*s.UserName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the results of the EnableSso operation.
@@ -2261,6 +2667,19 @@ func (s GetSnapshotLimitsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetSnapshotLimitsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetSnapshotLimitsInput"}
+	if s.DirectoryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains the results of the GetSnapshotLimits operation.
 type GetSnapshotLimitsOutput struct {
 	_ struct{} `type:"structure"`
@@ -2325,6 +2744,28 @@ func (s RadiusSettings) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RadiusSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RadiusSettings"}
+	if s.DisplayLabel != nil && len(*s.DisplayLabel) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DisplayLabel", 1))
+	}
+	if s.RadiusPort != nil && *s.RadiusPort < 1025 {
+		invalidParams.Add(request.NewErrParamMinValue("RadiusPort", 1025))
+	}
+	if s.RadiusTimeout != nil && *s.RadiusTimeout < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("RadiusTimeout", 1))
+	}
+	if s.SharedSecret != nil && len(*s.SharedSecret) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("SharedSecret", 8))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type RegisterEventTopicInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2344,6 +2785,25 @@ func (s RegisterEventTopicInput) String() string {
 // GoString returns the string representation
 func (s RegisterEventTopicInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RegisterEventTopicInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RegisterEventTopicInput"}
+	if s.DirectoryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryId"))
+	}
+	if s.TopicName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopicName"))
+	}
+	if s.TopicName != nil && len(*s.TopicName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TopicName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type RegisterEventTopicOutput struct {
@@ -2376,6 +2836,19 @@ func (s RestoreFromSnapshotInput) String() string {
 // GoString returns the string representation
 func (s RestoreFromSnapshotInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RestoreFromSnapshotInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RestoreFromSnapshotInput"}
+	if s.SnapshotId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SnapshotId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the results of the RestoreFromSnapshot operation.
@@ -2523,6 +2996,25 @@ func (s UpdateConditionalForwarderInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateConditionalForwarderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateConditionalForwarderInput"}
+	if s.DirectoryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryId"))
+	}
+	if s.DnsIpAddrs == nil {
+		invalidParams.Add(request.NewErrParamRequired("DnsIpAddrs"))
+	}
+	if s.RemoteDomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RemoteDomainName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type UpdateConditionalForwarderOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2558,6 +3050,27 @@ func (s UpdateRadiusInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateRadiusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateRadiusInput"}
+	if s.DirectoryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryId"))
+	}
+	if s.RadiusSettings == nil {
+		invalidParams.Add(request.NewErrParamRequired("RadiusSettings"))
+	}
+	if s.RadiusSettings != nil {
+		if err := s.RadiusSettings.Validate(); err != nil {
+			invalidParams.AddNested("RadiusSettings", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains the results of the UpdateRadius operation.
 type UpdateRadiusOutput struct {
 	_ struct{} `type:"structure"`
@@ -2590,6 +3103,19 @@ func (s VerifyTrustInput) String() string {
 // GoString returns the string representation
 func (s VerifyTrustInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VerifyTrustInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VerifyTrustInput"}
+	if s.TrustId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TrustId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type VerifyTrustOutput struct {

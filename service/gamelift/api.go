@@ -4,6 +4,7 @@
 package gamelift
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
@@ -1356,6 +1357,28 @@ func (s CreateAliasInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAliasInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAliasInput"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.RoutingStrategy == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoutingStrategy"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the returned data in response to a request action.
 type CreateAliasOutput struct {
 	_ struct{} `type:"structure"`
@@ -1401,6 +1424,27 @@ func (s CreateBuildInput) String() string {
 // GoString returns the string representation
 func (s CreateBuildInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateBuildInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateBuildInput"}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Version != nil && len(*s.Version) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Version", 1))
+	}
+	if s.StorageLocation != nil {
+		if err := s.StorageLocation.Validate(); err != nil {
+			invalidParams.AddNested("StorageLocation", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the returned data in response to a request action.
@@ -1491,6 +1535,50 @@ func (s CreateFleetInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateFleetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateFleetInput"}
+	if s.BuildId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BuildId"))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.EC2InstanceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("EC2InstanceType"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.ServerLaunchParameters != nil && len(*s.ServerLaunchParameters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServerLaunchParameters", 1))
+	}
+	if s.ServerLaunchPath == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServerLaunchPath"))
+	}
+	if s.ServerLaunchPath != nil && len(*s.ServerLaunchPath) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServerLaunchPath", 1))
+	}
+	if s.EC2InboundPermissions != nil {
+		for i, v := range s.EC2InboundPermissions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "EC2InboundPermissions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the returned data in response to a request action.
 type CreateFleetOutput struct {
 	_ struct{} `type:"structure"`
@@ -1544,6 +1632,32 @@ func (s CreateGameSessionInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateGameSessionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateGameSessionInput"}
+	if s.MaximumPlayerSessionCount == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaximumPlayerSessionCount"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.GameProperties != nil {
+		for i, v := range s.GameProperties {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "GameProperties", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the returned data in response to a request action.
 type CreateGameSessionOutput struct {
 	_ struct{} `type:"structure"`
@@ -1582,6 +1696,25 @@ func (s CreatePlayerSessionInput) String() string {
 // GoString returns the string representation
 func (s CreatePlayerSessionInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreatePlayerSessionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreatePlayerSessionInput"}
+	if s.GameSessionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("GameSessionId"))
+	}
+	if s.PlayerId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PlayerId"))
+	}
+	if s.PlayerId != nil && len(*s.PlayerId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PlayerId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the returned data in response to a request action.
@@ -1623,6 +1756,25 @@ func (s CreatePlayerSessionsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreatePlayerSessionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreatePlayerSessionsInput"}
+	if s.GameSessionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("GameSessionId"))
+	}
+	if s.PlayerIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("PlayerIds"))
+	}
+	if s.PlayerIds != nil && len(s.PlayerIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PlayerIds", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the returned data in response to a request action.
 type CreatePlayerSessionsOutput struct {
 	_ struct{} `type:"structure"`
@@ -1659,6 +1811,19 @@ func (s DeleteAliasInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAliasInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAliasInput"}
+	if s.AliasId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AliasId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DeleteAliasOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1691,6 +1856,19 @@ func (s DeleteBuildInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteBuildInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteBuildInput"}
+	if s.BuildId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BuildId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DeleteBuildOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1721,6 +1899,19 @@ func (s DeleteFleetInput) String() string {
 // GoString returns the string representation
 func (s DeleteFleetInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteFleetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteFleetInput"}
+	if s.FleetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FleetId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DeleteFleetOutput struct {
@@ -1759,6 +1950,25 @@ func (s DeleteScalingPolicyInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteScalingPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteScalingPolicyInput"}
+	if s.FleetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FleetId"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DeleteScalingPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1789,6 +1999,19 @@ func (s DescribeAliasInput) String() string {
 // GoString returns the string representation
 func (s DescribeAliasInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeAliasInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeAliasInput"}
+	if s.AliasId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AliasId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the returned data in response to a request action.
@@ -1825,6 +2048,19 @@ func (s DescribeBuildInput) String() string {
 // GoString returns the string representation
 func (s DescribeBuildInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeBuildInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeBuildInput"}
+	if s.BuildId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BuildId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the returned data in response to a request action.
@@ -1916,6 +2152,25 @@ func (s DescribeFleetAttributesInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeFleetAttributesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeFleetAttributesInput"}
+	if s.FleetIds != nil && len(s.FleetIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FleetIds", 1))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the returned data in response to a request action.
 type DescribeFleetAttributesOutput struct {
 	_ struct{} `type:"structure"`
@@ -1970,6 +2225,25 @@ func (s DescribeFleetCapacityInput) String() string {
 // GoString returns the string representation
 func (s DescribeFleetCapacityInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeFleetCapacityInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeFleetCapacityInput"}
+	if s.FleetIds != nil && len(s.FleetIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FleetIds", 1))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the returned data in response to a request action.
@@ -2038,6 +2312,25 @@ func (s DescribeFleetEventsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeFleetEventsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeFleetEventsInput"}
+	if s.FleetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FleetId"))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the returned data in response to a request action.
 type DescribeFleetEventsOutput struct {
 	_ struct{} `type:"structure"`
@@ -2079,6 +2372,19 @@ func (s DescribeFleetPortSettingsInput) String() string {
 // GoString returns the string representation
 func (s DescribeFleetPortSettingsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeFleetPortSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeFleetPortSettingsInput"}
+	if s.FleetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FleetId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the returned data in response to a request action.
@@ -2127,6 +2433,25 @@ func (s DescribeFleetUtilizationInput) String() string {
 // GoString returns the string representation
 func (s DescribeFleetUtilizationInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeFleetUtilizationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeFleetUtilizationInput"}
+	if s.FleetIds != nil && len(s.FleetIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FleetIds", 1))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the returned data in response to a request action.
@@ -2195,6 +2520,25 @@ func (s DescribeGameSessionDetailsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeGameSessionDetailsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeGameSessionDetailsInput"}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.StatusFilter != nil && len(*s.StatusFilter) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StatusFilter", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the returned data in response to a request action.
 type DescribeGameSessionDetailsOutput struct {
 	_ struct{} `type:"structure"`
@@ -2259,6 +2603,25 @@ func (s DescribeGameSessionsInput) String() string {
 // GoString returns the string representation
 func (s DescribeGameSessionsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeGameSessionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeGameSessionsInput"}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.StatusFilter != nil && len(*s.StatusFilter) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StatusFilter", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the returned data in response to a request action.
@@ -2331,6 +2694,28 @@ func (s DescribePlayerSessionsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribePlayerSessionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribePlayerSessionsInput"}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.PlayerId != nil && len(*s.PlayerId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PlayerId", 1))
+	}
+	if s.PlayerSessionStatusFilter != nil && len(*s.PlayerSessionStatusFilter) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PlayerSessionStatusFilter", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the returned data in response to a request action.
 type DescribePlayerSessionsOutput struct {
 	_ struct{} `type:"structure"`
@@ -2392,6 +2777,25 @@ func (s DescribeScalingPoliciesInput) String() string {
 // GoString returns the string representation
 func (s DescribeScalingPoliciesInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeScalingPoliciesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeScalingPoliciesInput"}
+	if s.FleetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FleetId"))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the returned data in response to a request action.
@@ -2672,6 +3076,22 @@ func (s GameProperty) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GameProperty) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GameProperty"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Properties describing a game session.
 type GameSession struct {
 	_ struct{} `type:"structure"`
@@ -2767,6 +3187,19 @@ func (s GetGameSessionLogUrlInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetGameSessionLogUrlInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetGameSessionLogUrlInput"}
+	if s.GameSessionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("GameSessionId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the returned data in response to a request action.
 type GetGameSessionLogUrlOutput struct {
 	_ struct{} `type:"structure"`
@@ -2817,6 +3250,34 @@ func (s IpPermission) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *IpPermission) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "IpPermission"}
+	if s.FromPort == nil {
+		invalidParams.Add(request.NewErrParamRequired("FromPort"))
+	}
+	if s.FromPort != nil && *s.FromPort < 1025 {
+		invalidParams.Add(request.NewErrParamMinValue("FromPort", 1025))
+	}
+	if s.IpRange == nil {
+		invalidParams.Add(request.NewErrParamRequired("IpRange"))
+	}
+	if s.Protocol == nil {
+		invalidParams.Add(request.NewErrParamRequired("Protocol"))
+	}
+	if s.ToPort == nil {
+		invalidParams.Add(request.NewErrParamRequired("ToPort"))
+	}
+	if s.ToPort != nil && *s.ToPort < 1025 {
+		invalidParams.Add(request.NewErrParamMinValue("ToPort", 1025))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the input for a request action.
 type ListAliasesInput struct {
 	_ struct{} `type:"structure"`
@@ -2852,6 +3313,25 @@ func (s ListAliasesInput) String() string {
 // GoString returns the string representation
 func (s ListAliasesInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAliasesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAliasesInput"}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the returned data in response to a request action.
@@ -2913,6 +3393,22 @@ func (s ListBuildsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListBuildsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListBuildsInput"}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the returned data in response to a request action.
 type ListBuildsOutput struct {
 	_ struct{} `type:"structure"`
@@ -2965,6 +3461,22 @@ func (s ListFleetsInput) String() string {
 // GoString returns the string representation
 func (s ListFleetsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListFleetsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListFleetsInput"}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the returned data in response to a request action.
@@ -3102,6 +3614,46 @@ func (s PutScalingPolicyInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutScalingPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutScalingPolicyInput"}
+	if s.ComparisonOperator == nil {
+		invalidParams.Add(request.NewErrParamRequired("ComparisonOperator"))
+	}
+	if s.EvaluationPeriods == nil {
+		invalidParams.Add(request.NewErrParamRequired("EvaluationPeriods"))
+	}
+	if s.EvaluationPeriods != nil && *s.EvaluationPeriods < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("EvaluationPeriods", 1))
+	}
+	if s.FleetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FleetId"))
+	}
+	if s.MetricName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetricName"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.ScalingAdjustment == nil {
+		invalidParams.Add(request.NewErrParamRequired("ScalingAdjustment"))
+	}
+	if s.ScalingAdjustmentType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ScalingAdjustmentType"))
+	}
+	if s.Threshold == nil {
+		invalidParams.Add(request.NewErrParamRequired("Threshold"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the returned data in response to a request action.
 type PutScalingPolicyOutput struct {
 	_ struct{} `type:"structure"`
@@ -3137,6 +3689,19 @@ func (s RequestUploadCredentialsInput) String() string {
 // GoString returns the string representation
 func (s RequestUploadCredentialsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RequestUploadCredentialsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RequestUploadCredentialsInput"}
+	if s.BuildId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BuildId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the returned data in response to a request action.
@@ -3178,6 +3743,19 @@ func (s ResolveAliasInput) String() string {
 // GoString returns the string representation
 func (s ResolveAliasInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResolveAliasInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResolveAliasInput"}
+	if s.AliasId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AliasId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the returned data in response to a request action.
@@ -3250,6 +3828,25 @@ func (s S3Location) String() string {
 // GoString returns the string representation
 func (s S3Location) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3Location) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3Location"}
+	if s.Bucket != nil && len(*s.Bucket) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 1))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Rule that controls how a fleet is scaled. Scaling policies are uniquely identified
@@ -3349,6 +3946,25 @@ func (s UpdateAliasInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateAliasInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateAliasInput"}
+	if s.AliasId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AliasId"))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the returned data in response to a request action.
 type UpdateAliasOutput struct {
 	_ struct{} `type:"structure"`
@@ -3391,6 +4007,25 @@ func (s UpdateBuildInput) String() string {
 // GoString returns the string representation
 func (s UpdateBuildInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateBuildInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateBuildInput"}
+	if s.BuildId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BuildId"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Version != nil && len(*s.Version) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Version", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the returned data in response to a request action.
@@ -3444,6 +4079,25 @@ func (s UpdateFleetAttributesInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFleetAttributesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFleetAttributesInput"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.FleetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FleetId"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the returned data in response to a request action.
 type UpdateFleetAttributesOutput struct {
 	_ struct{} `type:"structure"`
@@ -3491,6 +4145,19 @@ func (s UpdateFleetCapacityInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFleetCapacityInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFleetCapacityInput"}
+	if s.FleetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FleetId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the returned data in response to a request action.
 type UpdateFleetCapacityOutput struct {
 	_ struct{} `type:"structure"`
@@ -3531,6 +4198,39 @@ func (s UpdateFleetPortSettingsInput) String() string {
 // GoString returns the string representation
 func (s UpdateFleetPortSettingsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFleetPortSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFleetPortSettingsInput"}
+	if s.FleetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FleetId"))
+	}
+	if s.InboundPermissionAuthorizations != nil {
+		for i, v := range s.InboundPermissionAuthorizations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "InboundPermissionAuthorizations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.InboundPermissionRevocations != nil {
+		for i, v := range s.InboundPermissionRevocations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "InboundPermissionRevocations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the returned data in response to a request action.
@@ -3585,6 +4285,22 @@ func (s UpdateGameSessionInput) String() string {
 // GoString returns the string representation
 func (s UpdateGameSessionInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateGameSessionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateGameSessionInput"}
+	if s.GameSessionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("GameSessionId"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the returned data in response to a request action.

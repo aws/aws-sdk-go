@@ -658,6 +658,31 @@ func (s AllocateConnectionOnInterconnectInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AllocateConnectionOnInterconnectInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AllocateConnectionOnInterconnectInput"}
+	if s.Bandwidth == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bandwidth"))
+	}
+	if s.ConnectionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectionName"))
+	}
+	if s.InterconnectId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InterconnectId"))
+	}
+	if s.OwnerAccount == nil {
+		invalidParams.Add(request.NewErrParamRequired("OwnerAccount"))
+	}
+	if s.Vlan == nil {
+		invalidParams.Add(request.NewErrParamRequired("Vlan"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Container for the parameters to the AllocatePrivateVirtualInterface operation.
 type AllocatePrivateVirtualInterfaceInput struct {
 	_ struct{} `type:"structure"`
@@ -686,6 +711,30 @@ func (s AllocatePrivateVirtualInterfaceInput) String() string {
 // GoString returns the string representation
 func (s AllocatePrivateVirtualInterfaceInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AllocatePrivateVirtualInterfaceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AllocatePrivateVirtualInterfaceInput"}
+	if s.ConnectionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectionId"))
+	}
+	if s.NewPrivateVirtualInterfaceAllocation == nil {
+		invalidParams.Add(request.NewErrParamRequired("NewPrivateVirtualInterfaceAllocation"))
+	}
+	if s.OwnerAccount == nil {
+		invalidParams.Add(request.NewErrParamRequired("OwnerAccount"))
+	}
+	if s.NewPrivateVirtualInterfaceAllocation != nil {
+		if err := s.NewPrivateVirtualInterfaceAllocation.Validate(); err != nil {
+			invalidParams.AddNested("NewPrivateVirtualInterfaceAllocation", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Container for the parameters to the AllocatePublicVirtualInterface operation.
@@ -718,6 +767,30 @@ func (s AllocatePublicVirtualInterfaceInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AllocatePublicVirtualInterfaceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AllocatePublicVirtualInterfaceInput"}
+	if s.ConnectionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectionId"))
+	}
+	if s.NewPublicVirtualInterfaceAllocation == nil {
+		invalidParams.Add(request.NewErrParamRequired("NewPublicVirtualInterfaceAllocation"))
+	}
+	if s.OwnerAccount == nil {
+		invalidParams.Add(request.NewErrParamRequired("OwnerAccount"))
+	}
+	if s.NewPublicVirtualInterfaceAllocation != nil {
+		if err := s.NewPublicVirtualInterfaceAllocation.Validate(); err != nil {
+			invalidParams.AddNested("NewPublicVirtualInterfaceAllocation", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Container for the parameters to the ConfirmConnection operation.
 type ConfirmConnectionInput struct {
 	_ struct{} `type:"structure"`
@@ -738,6 +811,19 @@ func (s ConfirmConnectionInput) String() string {
 // GoString returns the string representation
 func (s ConfirmConnectionInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConfirmConnectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConfirmConnectionInput"}
+	if s.ConnectionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectionId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The response received when ConfirmConnection is called.
@@ -799,6 +885,22 @@ func (s ConfirmPrivateVirtualInterfaceInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConfirmPrivateVirtualInterfaceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConfirmPrivateVirtualInterfaceInput"}
+	if s.VirtualGatewayId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VirtualGatewayId"))
+	}
+	if s.VirtualInterfaceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VirtualInterfaceId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The response received when ConfirmPrivateVirtualInterface is called.
 type ConfirmPrivateVirtualInterfaceOutput struct {
 	_ struct{} `type:"structure"`
@@ -852,6 +954,19 @@ func (s ConfirmPublicVirtualInterfaceInput) String() string {
 // GoString returns the string representation
 func (s ConfirmPublicVirtualInterfaceInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConfirmPublicVirtualInterfaceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConfirmPublicVirtualInterfaceInput"}
+	if s.VirtualInterfaceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VirtualInterfaceId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The response received when ConfirmPublicVirtualInterface is called.
@@ -1014,6 +1129,25 @@ func (s CreateConnectionInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateConnectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateConnectionInput"}
+	if s.Bandwidth == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bandwidth"))
+	}
+	if s.ConnectionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectionName"))
+	}
+	if s.Location == nil {
+		invalidParams.Add(request.NewErrParamRequired("Location"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Container for the parameters to the CreateInterconnect operation.
 type CreateInterconnectInput struct {
 	_ struct{} `type:"structure"`
@@ -1052,6 +1186,25 @@ func (s CreateInterconnectInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateInterconnectInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateInterconnectInput"}
+	if s.Bandwidth == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bandwidth"))
+	}
+	if s.InterconnectName == nil {
+		invalidParams.Add(request.NewErrParamRequired("InterconnectName"))
+	}
+	if s.Location == nil {
+		invalidParams.Add(request.NewErrParamRequired("Location"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Container for the parameters to the CreatePrivateVirtualInterface operation.
 type CreatePrivateVirtualInterfaceInput struct {
 	_ struct{} `type:"structure"`
@@ -1077,6 +1230,27 @@ func (s CreatePrivateVirtualInterfaceInput) String() string {
 // GoString returns the string representation
 func (s CreatePrivateVirtualInterfaceInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreatePrivateVirtualInterfaceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreatePrivateVirtualInterfaceInput"}
+	if s.ConnectionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectionId"))
+	}
+	if s.NewPrivateVirtualInterface == nil {
+		invalidParams.Add(request.NewErrParamRequired("NewPrivateVirtualInterface"))
+	}
+	if s.NewPrivateVirtualInterface != nil {
+		if err := s.NewPrivateVirtualInterface.Validate(); err != nil {
+			invalidParams.AddNested("NewPrivateVirtualInterface", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Container for the parameters to the CreatePublicVirtualInterface operation.
@@ -1106,6 +1280,27 @@ func (s CreatePublicVirtualInterfaceInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreatePublicVirtualInterfaceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreatePublicVirtualInterfaceInput"}
+	if s.ConnectionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectionId"))
+	}
+	if s.NewPublicVirtualInterface == nil {
+		invalidParams.Add(request.NewErrParamRequired("NewPublicVirtualInterface"))
+	}
+	if s.NewPublicVirtualInterface != nil {
+		if err := s.NewPublicVirtualInterface.Validate(); err != nil {
+			invalidParams.AddNested("NewPublicVirtualInterface", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Container for the parameters to the DeleteConnection operation.
 type DeleteConnectionInput struct {
 	_ struct{} `type:"structure"`
@@ -1128,6 +1323,19 @@ func (s DeleteConnectionInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteConnectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteConnectionInput"}
+	if s.ConnectionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectionId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Container for the parameters to the DeleteInterconnect operation.
 type DeleteInterconnectInput struct {
 	_ struct{} `type:"structure"`
@@ -1146,6 +1354,19 @@ func (s DeleteInterconnectInput) String() string {
 // GoString returns the string representation
 func (s DeleteInterconnectInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteInterconnectInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteInterconnectInput"}
+	if s.InterconnectId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InterconnectId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The response received when DeleteInterconnect is called.
@@ -1191,6 +1412,19 @@ func (s DeleteVirtualInterfaceInput) String() string {
 // GoString returns the string representation
 func (s DeleteVirtualInterfaceInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteVirtualInterfaceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteVirtualInterfaceInput"}
+	if s.VirtualInterfaceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VirtualInterfaceId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The response received when DeleteVirtualInterface is called.
@@ -1268,6 +1502,19 @@ func (s DescribeConnectionsOnInterconnectInput) String() string {
 // GoString returns the string representation
 func (s DescribeConnectionsOnInterconnectInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeConnectionsOnInterconnectInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeConnectionsOnInterconnectInput"}
+	if s.InterconnectId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InterconnectId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Container for the parameters to the DescribeInterconnects operation.
@@ -1562,6 +1809,28 @@ func (s NewPrivateVirtualInterface) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NewPrivateVirtualInterface) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NewPrivateVirtualInterface"}
+	if s.Asn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Asn"))
+	}
+	if s.VirtualGatewayId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VirtualGatewayId"))
+	}
+	if s.VirtualInterfaceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("VirtualInterfaceName"))
+	}
+	if s.Vlan == nil {
+		invalidParams.Add(request.NewErrParamRequired("Vlan"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // A structure containing information about a private virtual interface that
 // will be provisioned on a connection.
 type NewPrivateVirtualInterfaceAllocation struct {
@@ -1606,6 +1875,25 @@ func (s NewPrivateVirtualInterfaceAllocation) String() string {
 // GoString returns the string representation
 func (s NewPrivateVirtualInterfaceAllocation) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NewPrivateVirtualInterfaceAllocation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NewPrivateVirtualInterfaceAllocation"}
+	if s.Asn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Asn"))
+	}
+	if s.VirtualInterfaceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("VirtualInterfaceName"))
+	}
+	if s.Vlan == nil {
+		invalidParams.Add(request.NewErrParamRequired("Vlan"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // A structure containing information about a new public virtual interface.
@@ -1657,6 +1945,34 @@ func (s NewPublicVirtualInterface) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NewPublicVirtualInterface) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NewPublicVirtualInterface"}
+	if s.AmazonAddress == nil {
+		invalidParams.Add(request.NewErrParamRequired("AmazonAddress"))
+	}
+	if s.Asn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Asn"))
+	}
+	if s.CustomerAddress == nil {
+		invalidParams.Add(request.NewErrParamRequired("CustomerAddress"))
+	}
+	if s.RouteFilterPrefixes == nil {
+		invalidParams.Add(request.NewErrParamRequired("RouteFilterPrefixes"))
+	}
+	if s.VirtualInterfaceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("VirtualInterfaceName"))
+	}
+	if s.Vlan == nil {
+		invalidParams.Add(request.NewErrParamRequired("Vlan"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // A structure containing information about a public virtual interface that
 // will be provisioned on a connection.
 type NewPublicVirtualInterfaceAllocation struct {
@@ -1705,6 +2021,34 @@ func (s NewPublicVirtualInterfaceAllocation) String() string {
 // GoString returns the string representation
 func (s NewPublicVirtualInterfaceAllocation) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NewPublicVirtualInterfaceAllocation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NewPublicVirtualInterfaceAllocation"}
+	if s.AmazonAddress == nil {
+		invalidParams.Add(request.NewErrParamRequired("AmazonAddress"))
+	}
+	if s.Asn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Asn"))
+	}
+	if s.CustomerAddress == nil {
+		invalidParams.Add(request.NewErrParamRequired("CustomerAddress"))
+	}
+	if s.RouteFilterPrefixes == nil {
+		invalidParams.Add(request.NewErrParamRequired("RouteFilterPrefixes"))
+	}
+	if s.VirtualInterfaceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("VirtualInterfaceName"))
+	}
+	if s.Vlan == nil {
+		invalidParams.Add(request.NewErrParamRequired("Vlan"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // A route filter prefix that the customer can advertise through Border Gateway

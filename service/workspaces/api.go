@@ -4,6 +4,8 @@
 package workspaces
 
 import (
+	"fmt"
+
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 )
@@ -331,6 +333,32 @@ func (s CreateWorkspacesInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateWorkspacesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateWorkspacesInput"}
+	if s.Workspaces == nil {
+		invalidParams.Add(request.NewErrParamRequired("Workspaces"))
+	}
+	if s.Workspaces != nil && len(s.Workspaces) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Workspaces", 1))
+	}
+	if s.Workspaces != nil {
+		for i, v := range s.Workspaces {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Workspaces", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains the result of the CreateWorkspaces operation.
 type CreateWorkspacesOutput struct {
 	_ struct{} `type:"structure"`
@@ -421,6 +449,22 @@ func (s DescribeWorkspaceBundlesInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeWorkspaceBundlesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeWorkspaceBundlesInput"}
+	if s.BundleIds != nil && len(s.BundleIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BundleIds", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains the results of the DescribeWorkspaceBundles operation.
 type DescribeWorkspaceBundlesOutput struct {
 	_ struct{} `type:"structure"`
@@ -465,6 +509,22 @@ func (s DescribeWorkspaceDirectoriesInput) String() string {
 // GoString returns the string representation
 func (s DescribeWorkspaceDirectoriesInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeWorkspaceDirectoriesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeWorkspaceDirectoriesInput"}
+	if s.DirectoryIds != nil && len(s.DirectoryIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DirectoryIds", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the results of the DescribeWorkspaceDirectories operation.
@@ -533,6 +593,28 @@ func (s DescribeWorkspacesInput) String() string {
 // GoString returns the string representation
 func (s DescribeWorkspacesInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeWorkspacesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeWorkspacesInput"}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.UserName != nil && len(*s.UserName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserName", 1))
+	}
+	if s.WorkspaceIds != nil && len(s.WorkspaceIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkspaceIds", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the results for the DescribeWorkspaces operation.
@@ -630,6 +712,19 @@ func (s RebootRequest) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RebootRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RebootRequest"}
+	if s.WorkspaceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkspaceId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains the inputs for the RebootWorkspaces operation.
 type RebootWorkspacesInput struct {
 	_ struct{} `type:"structure"`
@@ -646,6 +741,32 @@ func (s RebootWorkspacesInput) String() string {
 // GoString returns the string representation
 func (s RebootWorkspacesInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RebootWorkspacesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RebootWorkspacesInput"}
+	if s.RebootWorkspaceRequests == nil {
+		invalidParams.Add(request.NewErrParamRequired("RebootWorkspaceRequests"))
+	}
+	if s.RebootWorkspaceRequests != nil && len(s.RebootWorkspaceRequests) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RebootWorkspaceRequests", 1))
+	}
+	if s.RebootWorkspaceRequests != nil {
+		for i, v := range s.RebootWorkspaceRequests {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RebootWorkspaceRequests", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the results of the RebootWorkspaces operation.
@@ -685,6 +806,19 @@ func (s RebuildRequest) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RebuildRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RebuildRequest"}
+	if s.WorkspaceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkspaceId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains the inputs for the RebuildWorkspaces operation.
 type RebuildWorkspacesInput struct {
 	_ struct{} `type:"structure"`
@@ -701,6 +835,32 @@ func (s RebuildWorkspacesInput) String() string {
 // GoString returns the string representation
 func (s RebuildWorkspacesInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RebuildWorkspacesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RebuildWorkspacesInput"}
+	if s.RebuildWorkspaceRequests == nil {
+		invalidParams.Add(request.NewErrParamRequired("RebuildWorkspaceRequests"))
+	}
+	if s.RebuildWorkspaceRequests != nil && len(s.RebuildWorkspaceRequests) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RebuildWorkspaceRequests", 1))
+	}
+	if s.RebuildWorkspaceRequests != nil {
+		for i, v := range s.RebuildWorkspaceRequests {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RebuildWorkspaceRequests", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the results of the RebuildWorkspaces operation.
@@ -740,6 +900,19 @@ func (s TerminateRequest) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TerminateRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TerminateRequest"}
+	if s.WorkspaceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkspaceId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains the inputs for the TerminateWorkspaces operation.
 type TerminateWorkspacesInput struct {
 	_ struct{} `type:"structure"`
@@ -756,6 +929,32 @@ func (s TerminateWorkspacesInput) String() string {
 // GoString returns the string representation
 func (s TerminateWorkspacesInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TerminateWorkspacesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TerminateWorkspacesInput"}
+	if s.TerminateWorkspaceRequests == nil {
+		invalidParams.Add(request.NewErrParamRequired("TerminateWorkspaceRequests"))
+	}
+	if s.TerminateWorkspaceRequests != nil && len(s.TerminateWorkspaceRequests) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TerminateWorkspaceRequests", 1))
+	}
+	if s.TerminateWorkspaceRequests != nil {
+		for i, v := range s.TerminateWorkspaceRequests {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TerminateWorkspaceRequests", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the results of the TerminateWorkspaces operation.
@@ -978,6 +1177,28 @@ func (s WorkspaceRequest) String() string {
 // GoString returns the string representation
 func (s WorkspaceRequest) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WorkspaceRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WorkspaceRequest"}
+	if s.BundleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BundleId"))
+	}
+	if s.DirectoryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryId"))
+	}
+	if s.UserName == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserName"))
+	}
+	if s.UserName != nil && len(*s.UserName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 const (

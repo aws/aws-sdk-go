@@ -7,6 +7,7 @@ import (
 	"net/url"
 	"os"
 	"os/exec"
+	"reflect"
 	"regexp"
 	"sort"
 	"strconv"
@@ -53,6 +54,7 @@ var _ = util.Trim("")
 var _ = url.Values{}
 var _ = io.EOF
 var _ = aws.String
+var _ = fmt.Println
 
 func init() {
 	protocol.RandReader = &awstesting.ZeroReader{}
@@ -71,6 +73,7 @@ var extraImports = []string{
 	"bytes",
 	"encoding/json",
 	"encoding/xml",
+	"fmt",
 	"io",
 	"io/ioutil",
 	"net/http",
@@ -234,7 +237,7 @@ func (i *testCase) TestCase(idx int) string {
 		input := tplInputTestCaseData{
 			TestCase:     i,
 			OpName:       strings.ToUpper(opName[0:1]) + opName[1:],
-			ParamsString: awstesting.ParamsStructFromJSON(i.Params, i.Given.InputRef.Shape, false),
+			ParamsString: api.ParamsStructFromJSON(i.Params, i.Given.InputRef.Shape, false),
 		}
 
 		if err := tplInputTestCase.Execute(&buf, input); err != nil {
@@ -245,7 +248,7 @@ func (i *testCase) TestCase(idx int) string {
 			TestCase:   i,
 			Body:       fmt.Sprintf("%q", i.OutputTest.Body),
 			OpName:     strings.ToUpper(opName[0:1]) + opName[1:],
-			Assertions: awstesting.GenerateAssertions(i.Data, i.Given.OutputRef.Shape, "out"),
+			Assertions: GenerateAssertions(i.Data, i.Given.OutputRef.Shape, "out"),
 		}
 
 		if err := tplOutputTestCase.Execute(&buf, output); err != nil {
@@ -329,6 +332,64 @@ func generateTestSuite(filename string) string {
 	}
 
 	return buf.String() + innerBuf.String()
+}
+
+// findMember searches the shape for the member with the matching key name.
+func findMember(shape *api.Shape, key string) string {
+	for actualKey := range shape.MemberRefs {
+		if strings.ToLower(key) == strings.ToLower(actualKey) {
+			return actualKey
+		}
+	}
+	return ""
+}
+
+// GenerateAssertions builds assertions for a shape based on its type.
+//
+// The shape's recursive values also will have assertions generated for them.
+func GenerateAssertions(out interface{}, shape *api.Shape, prefix string) string {
+	switch t := out.(type) {
+	case map[string]interface{}:
+		keys := awstesting.SortedKeys(t)
+
+		code := ""
+		if shape.Type == "map" {
+			for _, k := range keys {
+				v := t[k]
+				s := shape.ValueRef.Shape
+				code += GenerateAssertions(v, s, prefix+"[\""+k+"\"]")
+			}
+		} else {
+			for _, k := range keys {
+				v := t[k]
+				m := findMember(shape, k)
+				s := shape.MemberRefs[m].Shape
+				code += GenerateAssertions(v, s, prefix+"."+m+"")
+			}
+		}
+		return code
+	case []interface{}:
+		code := ""
+		for i, v := range t {
+			s := shape.MemberRef.Shape
+			code += GenerateAssertions(v, s, prefix+"["+strconv.Itoa(i)+"]")
+		}
+		return code
+	default:
+		switch shape.Type {
+		case "timestamp":
+			return fmt.Sprintf("assert.Equal(t, time.Unix(%#v, 0).UTC().String(), %s.String())\n", out, prefix)
+		case "blob":
+			return fmt.Sprintf("assert.Equal(t, %#v, string(%s))\n", out, prefix)
+		case "integer", "long":
+			return fmt.Sprintf("assert.Equal(t, int64(%#v), *%s)\n", out, prefix)
+		default:
+			if !reflect.ValueOf(out).IsValid() {
+				return fmt.Sprintf("assert.Nil(t, %s)\n", prefix)
+			}
+			return fmt.Sprintf("assert.Equal(t, %#v, *%s)\n", out, prefix)
+		}
+	}
 }
 
 func main() {

@@ -4,6 +4,7 @@
 package waf
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
@@ -1477,6 +1478,33 @@ func (s ActivatedRule) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ActivatedRule) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ActivatedRule"}
+	if s.Action == nil {
+		invalidParams.Add(request.NewErrParamRequired("Action"))
+	}
+	if s.Priority == nil {
+		invalidParams.Add(request.NewErrParamRequired("Priority"))
+	}
+	if s.RuleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleId"))
+	}
+	if s.RuleId != nil && len(*s.RuleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RuleId", 1))
+	}
+	if s.Action != nil {
+		if err := s.Action.Validate(); err != nil {
+			invalidParams.AddNested("Action", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // In a GetByteMatchSet request, ByteMatchSet is a complex type that contains
 // the ByteMatchSetId and Name of a ByteMatchSet, and the values that you specified
 // when you updated the ByteMatchSet.
@@ -1567,6 +1595,27 @@ func (s ByteMatchSetUpdate) String() string {
 // GoString returns the string representation
 func (s ByteMatchSetUpdate) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ByteMatchSetUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ByteMatchSetUpdate"}
+	if s.Action == nil {
+		invalidParams.Add(request.NewErrParamRequired("Action"))
+	}
+	if s.ByteMatchTuple == nil {
+		invalidParams.Add(request.NewErrParamRequired("ByteMatchTuple"))
+	}
+	if s.ByteMatchTuple != nil {
+		if err := s.ByteMatchTuple.Validate(); err != nil {
+			invalidParams.AddNested("ByteMatchTuple", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The bytes (typically a string that corresponds with ASCII characters) that
@@ -1718,6 +1767,33 @@ func (s ByteMatchTuple) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ByteMatchTuple) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ByteMatchTuple"}
+	if s.FieldToMatch == nil {
+		invalidParams.Add(request.NewErrParamRequired("FieldToMatch"))
+	}
+	if s.PositionalConstraint == nil {
+		invalidParams.Add(request.NewErrParamRequired("PositionalConstraint"))
+	}
+	if s.TargetString == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetString"))
+	}
+	if s.TextTransformation == nil {
+		invalidParams.Add(request.NewErrParamRequired("TextTransformation"))
+	}
+	if s.FieldToMatch != nil {
+		if err := s.FieldToMatch.Validate(); err != nil {
+			invalidParams.AddNested("FieldToMatch", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type CreateByteMatchSetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1737,6 +1813,25 @@ func (s CreateByteMatchSetInput) String() string {
 // GoString returns the string representation
 func (s CreateByteMatchSetInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateByteMatchSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateByteMatchSetInput"}
+	if s.ChangeToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChangeToken"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type CreateByteMatchSetOutput struct {
@@ -1780,6 +1875,25 @@ func (s CreateIPSetInput) String() string {
 // GoString returns the string representation
 func (s CreateIPSetInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateIPSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateIPSetInput"}
+	if s.ChangeToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChangeToken"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type CreateIPSetOutput struct {
@@ -1831,6 +1945,28 @@ func (s CreateRuleInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateRuleInput"}
+	if s.ChangeToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChangeToken"))
+	}
+	if s.MetricName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetricName"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type CreateRuleOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1872,6 +2008,25 @@ func (s CreateSizeConstraintSetInput) String() string {
 // GoString returns the string representation
 func (s CreateSizeConstraintSetInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateSizeConstraintSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateSizeConstraintSetInput"}
+	if s.ChangeToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChangeToken"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type CreateSizeConstraintSetOutput struct {
@@ -1916,6 +2071,25 @@ func (s CreateSqlInjectionMatchSetInput) String() string {
 // GoString returns the string representation
 func (s CreateSqlInjectionMatchSetInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateSqlInjectionMatchSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateSqlInjectionMatchSetInput"}
+	if s.ChangeToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChangeToken"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The response to a CreateSqlInjectionMatchSet request.
@@ -1972,6 +2146,36 @@ func (s CreateWebACLInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateWebACLInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateWebACLInput"}
+	if s.ChangeToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChangeToken"))
+	}
+	if s.DefaultAction == nil {
+		invalidParams.Add(request.NewErrParamRequired("DefaultAction"))
+	}
+	if s.MetricName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetricName"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.DefaultAction != nil {
+		if err := s.DefaultAction.Validate(); err != nil {
+			invalidParams.AddNested("DefaultAction", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type CreateWebACLOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2014,6 +2218,25 @@ func (s CreateXssMatchSetInput) String() string {
 // GoString returns the string representation
 func (s CreateXssMatchSetInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateXssMatchSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateXssMatchSetInput"}
+	if s.ChangeToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChangeToken"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The response to a CreateXssMatchSet request.
@@ -2060,6 +2283,25 @@ func (s DeleteByteMatchSetInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteByteMatchSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteByteMatchSetInput"}
+	if s.ByteMatchSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ByteMatchSetId"))
+	}
+	if s.ByteMatchSetId != nil && len(*s.ByteMatchSetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ByteMatchSetId", 1))
+	}
+	if s.ChangeToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChangeToken"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DeleteByteMatchSetOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2098,6 +2340,25 @@ func (s DeleteIPSetInput) String() string {
 // GoString returns the string representation
 func (s DeleteIPSetInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteIPSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteIPSetInput"}
+	if s.ChangeToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChangeToken"))
+	}
+	if s.IPSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IPSetId"))
+	}
+	if s.IPSetId != nil && len(*s.IPSetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IPSetId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DeleteIPSetOutput struct {
@@ -2140,6 +2401,25 @@ func (s DeleteRuleInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteRuleInput"}
+	if s.ChangeToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChangeToken"))
+	}
+	if s.RuleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleId"))
+	}
+	if s.RuleId != nil && len(*s.RuleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RuleId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DeleteRuleOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2178,6 +2458,25 @@ func (s DeleteSizeConstraintSetInput) String() string {
 // GoString returns the string representation
 func (s DeleteSizeConstraintSetInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteSizeConstraintSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteSizeConstraintSetInput"}
+	if s.ChangeToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChangeToken"))
+	}
+	if s.SizeConstraintSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SizeConstraintSetId"))
+	}
+	if s.SizeConstraintSetId != nil && len(*s.SizeConstraintSetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SizeConstraintSetId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DeleteSizeConstraintSetOutput struct {
@@ -2221,6 +2520,25 @@ func (s DeleteSqlInjectionMatchSetInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteSqlInjectionMatchSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteSqlInjectionMatchSetInput"}
+	if s.ChangeToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChangeToken"))
+	}
+	if s.SqlInjectionMatchSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SqlInjectionMatchSetId"))
+	}
+	if s.SqlInjectionMatchSetId != nil && len(*s.SqlInjectionMatchSetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SqlInjectionMatchSetId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The response to a request to delete a SqlInjectionMatchSet from AWS WAF.
 type DeleteSqlInjectionMatchSetOutput struct {
 	_ struct{} `type:"structure"`
@@ -2262,6 +2580,25 @@ func (s DeleteWebACLInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteWebACLInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteWebACLInput"}
+	if s.ChangeToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChangeToken"))
+	}
+	if s.WebACLId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WebACLId"))
+	}
+	if s.WebACLId != nil && len(*s.WebACLId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WebACLId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DeleteWebACLOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2301,6 +2638,25 @@ func (s DeleteXssMatchSetInput) String() string {
 // GoString returns the string representation
 func (s DeleteXssMatchSetInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteXssMatchSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteXssMatchSetInput"}
+	if s.ChangeToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChangeToken"))
+	}
+	if s.XssMatchSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("XssMatchSetId"))
+	}
+	if s.XssMatchSetId != nil && len(*s.XssMatchSetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("XssMatchSetId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The response to a request to delete an XssMatchSet from AWS WAF.
@@ -2364,6 +2720,19 @@ func (s FieldToMatch) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FieldToMatch) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FieldToMatch"}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type GetByteMatchSetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2380,6 +2749,22 @@ func (s GetByteMatchSetInput) String() string {
 // GoString returns the string representation
 func (s GetByteMatchSetInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetByteMatchSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetByteMatchSetInput"}
+	if s.ByteMatchSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ByteMatchSetId"))
+	}
+	if s.ByteMatchSetId != nil && len(*s.ByteMatchSetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ByteMatchSetId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type GetByteMatchSetOutput struct {
@@ -2455,6 +2840,19 @@ func (s GetChangeTokenStatusInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetChangeTokenStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetChangeTokenStatusInput"}
+	if s.ChangeToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChangeToken"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type GetChangeTokenStatusOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2488,6 +2886,22 @@ func (s GetIPSetInput) String() string {
 // GoString returns the string representation
 func (s GetIPSetInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetIPSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetIPSetInput"}
+	if s.IPSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IPSetId"))
+	}
+	if s.IPSetId != nil && len(*s.IPSetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IPSetId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type GetIPSetOutput struct {
@@ -2528,6 +2942,22 @@ func (s GetRuleInput) String() string {
 // GoString returns the string representation
 func (s GetRuleInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetRuleInput"}
+	if s.RuleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleId"))
+	}
+	if s.RuleId != nil && len(*s.RuleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RuleId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type GetRuleOutput struct {
@@ -2589,6 +3019,42 @@ func (s GetSampledRequestsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetSampledRequestsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetSampledRequestsInput"}
+	if s.MaxItems == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaxItems"))
+	}
+	if s.MaxItems != nil && *s.MaxItems < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxItems", 1))
+	}
+	if s.RuleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleId"))
+	}
+	if s.RuleId != nil && len(*s.RuleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RuleId", 1))
+	}
+	if s.TimeWindow == nil {
+		invalidParams.Add(request.NewErrParamRequired("TimeWindow"))
+	}
+	if s.WebAclId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WebAclId"))
+	}
+	if s.WebAclId != nil && len(*s.WebAclId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WebAclId", 1))
+	}
+	if s.TimeWindow != nil {
+		if err := s.TimeWindow.Validate(); err != nil {
+			invalidParams.AddNested("TimeWindow", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type GetSampledRequestsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2636,6 +3102,22 @@ func (s GetSizeConstraintSetInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetSizeConstraintSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetSizeConstraintSetInput"}
+	if s.SizeConstraintSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SizeConstraintSetId"))
+	}
+	if s.SizeConstraintSetId != nil && len(*s.SizeConstraintSetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SizeConstraintSetId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type GetSizeConstraintSetOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2676,6 +3158,22 @@ func (s GetSqlInjectionMatchSetInput) String() string {
 // GoString returns the string representation
 func (s GetSqlInjectionMatchSetInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetSqlInjectionMatchSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetSqlInjectionMatchSetInput"}
+	if s.SqlInjectionMatchSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SqlInjectionMatchSetId"))
+	}
+	if s.SqlInjectionMatchSetId != nil && len(*s.SqlInjectionMatchSetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SqlInjectionMatchSetId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The response to a GetSqlInjectionMatchSet request.
@@ -2720,6 +3218,22 @@ func (s GetWebACLInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetWebACLInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetWebACLInput"}
+	if s.WebACLId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WebACLId"))
+	}
+	if s.WebACLId != nil && len(*s.WebACLId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WebACLId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type GetWebACLOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2760,6 +3274,22 @@ func (s GetXssMatchSetInput) String() string {
 // GoString returns the string representation
 func (s GetXssMatchSetInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetXssMatchSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetXssMatchSetInput"}
+	if s.XssMatchSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("XssMatchSetId"))
+	}
+	if s.XssMatchSetId != nil && len(*s.XssMatchSetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("XssMatchSetId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The response to a GetXssMatchSet request.
@@ -2927,6 +3457,22 @@ func (s IPSetDescriptor) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *IPSetDescriptor) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "IPSetDescriptor"}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains the identifier and the name of the IPSet.
 type IPSetSummary struct {
 	_ struct{} `type:"structure"`
@@ -2972,6 +3518,27 @@ func (s IPSetUpdate) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *IPSetUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "IPSetUpdate"}
+	if s.Action == nil {
+		invalidParams.Add(request.NewErrParamRequired("Action"))
+	}
+	if s.IPSetDescriptor == nil {
+		invalidParams.Add(request.NewErrParamRequired("IPSetDescriptor"))
+	}
+	if s.IPSetDescriptor != nil {
+		if err := s.IPSetDescriptor.Validate(); err != nil {
+			invalidParams.AddNested("IPSetDescriptor", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type ListByteMatchSetsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2997,6 +3564,25 @@ func (s ListByteMatchSetsInput) String() string {
 // GoString returns the string representation
 func (s ListByteMatchSetsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListByteMatchSetsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListByteMatchSetsInput"}
+	if s.Limit == nil {
+		invalidParams.Add(request.NewErrParamRequired("Limit"))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NextMarker != nil && len(*s.NextMarker) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextMarker", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type ListByteMatchSetsOutput struct {
@@ -3050,6 +3636,25 @@ func (s ListIPSetsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListIPSetsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListIPSetsInput"}
+	if s.Limit == nil {
+		invalidParams.Add(request.NewErrParamRequired("Limit"))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NextMarker != nil && len(*s.NextMarker) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextMarker", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type ListIPSetsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3097,6 +3702,25 @@ func (s ListRulesInput) String() string {
 // GoString returns the string representation
 func (s ListRulesInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListRulesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListRulesInput"}
+	if s.Limit == nil {
+		invalidParams.Add(request.NewErrParamRequired("Limit"))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NextMarker != nil && len(*s.NextMarker) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextMarker", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type ListRulesOutput struct {
@@ -3147,6 +3771,25 @@ func (s ListSizeConstraintSetsInput) String() string {
 // GoString returns the string representation
 func (s ListSizeConstraintSetsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListSizeConstraintSetsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListSizeConstraintSetsInput"}
+	if s.Limit == nil {
+		invalidParams.Add(request.NewErrParamRequired("Limit"))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NextMarker != nil && len(*s.NextMarker) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextMarker", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type ListSizeConstraintSetsOutput struct {
@@ -3202,6 +3845,25 @@ func (s ListSqlInjectionMatchSetsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListSqlInjectionMatchSetsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListSqlInjectionMatchSetsInput"}
+	if s.Limit == nil {
+		invalidParams.Add(request.NewErrParamRequired("Limit"))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NextMarker != nil && len(*s.NextMarker) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextMarker", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The response to a ListSqlInjectionMatchSets request.
 type ListSqlInjectionMatchSetsOutput struct {
 	_ struct{} `type:"structure"`
@@ -3255,6 +3917,25 @@ func (s ListWebACLsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListWebACLsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListWebACLsInput"}
+	if s.Limit == nil {
+		invalidParams.Add(request.NewErrParamRequired("Limit"))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NextMarker != nil && len(*s.NextMarker) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextMarker", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type ListWebACLsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3304,6 +3985,25 @@ func (s ListXssMatchSetsInput) String() string {
 // GoString returns the string representation
 func (s ListXssMatchSetsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListXssMatchSetsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListXssMatchSetsInput"}
+	if s.Limit == nil {
+		invalidParams.Add(request.NewErrParamRequired("Limit"))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NextMarker != nil && len(*s.NextMarker) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextMarker", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The response to a ListXssMatchSets request.
@@ -3367,6 +4067,28 @@ func (s Predicate) String() string {
 // GoString returns the string representation
 func (s Predicate) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Predicate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Predicate"}
+	if s.DataId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataId"))
+	}
+	if s.DataId != nil && len(*s.DataId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataId", 1))
+	}
+	if s.Negated == nil {
+		invalidParams.Add(request.NewErrParamRequired("Negated"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // A combination of ByteMatchSet, IPSet, and/or SqlInjectionMatchSet objects
@@ -3458,6 +4180,27 @@ func (s RuleUpdate) String() string {
 // GoString returns the string representation
 func (s RuleUpdate) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RuleUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RuleUpdate"}
+	if s.Action == nil {
+		invalidParams.Add(request.NewErrParamRequired("Action"))
+	}
+	if s.Predicate == nil {
+		invalidParams.Add(request.NewErrParamRequired("Predicate"))
+	}
+	if s.Predicate != nil {
+		if err := s.Predicate.Validate(); err != nil {
+			invalidParams.AddNested("Predicate", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The response from a GetSampledRequests request includes a SampledHTTPRequests
@@ -3597,6 +4340,33 @@ func (s SizeConstraint) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SizeConstraint) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SizeConstraint"}
+	if s.ComparisonOperator == nil {
+		invalidParams.Add(request.NewErrParamRequired("ComparisonOperator"))
+	}
+	if s.FieldToMatch == nil {
+		invalidParams.Add(request.NewErrParamRequired("FieldToMatch"))
+	}
+	if s.Size == nil {
+		invalidParams.Add(request.NewErrParamRequired("Size"))
+	}
+	if s.TextTransformation == nil {
+		invalidParams.Add(request.NewErrParamRequired("TextTransformation"))
+	}
+	if s.FieldToMatch != nil {
+		if err := s.FieldToMatch.Validate(); err != nil {
+			invalidParams.AddNested("FieldToMatch", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // A complex type that contains SizeConstraint objects, which specify the parts
 // of web requests that you want AWS WAF to inspect the size of. If a SizeConstraintSet
 // contains more than one SizeConstraint object, a request only needs to match
@@ -3682,6 +4452,27 @@ func (s SizeConstraintSetUpdate) String() string {
 // GoString returns the string representation
 func (s SizeConstraintSetUpdate) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SizeConstraintSetUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SizeConstraintSetUpdate"}
+	if s.Action == nil {
+		invalidParams.Add(request.NewErrParamRequired("Action"))
+	}
+	if s.SizeConstraint == nil {
+		invalidParams.Add(request.NewErrParamRequired("SizeConstraint"))
+	}
+	if s.SizeConstraint != nil {
+		if err := s.SizeConstraint.Validate(); err != nil {
+			invalidParams.AddNested("SizeConstraint", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // A complex type that contains SqlInjectionMatchTuple objects, which specify
@@ -3775,6 +4566,27 @@ func (s SqlInjectionMatchSetUpdate) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SqlInjectionMatchSetUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SqlInjectionMatchSetUpdate"}
+	if s.Action == nil {
+		invalidParams.Add(request.NewErrParamRequired("Action"))
+	}
+	if s.SqlInjectionMatchTuple == nil {
+		invalidParams.Add(request.NewErrParamRequired("SqlInjectionMatchTuple"))
+	}
+	if s.SqlInjectionMatchTuple != nil {
+		if err := s.SqlInjectionMatchTuple.Validate(); err != nil {
+			invalidParams.AddNested("SqlInjectionMatchTuple", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Specifies the part of a web request that you want AWS WAF to inspect for
 // snippets of malicious SQL code and, if you want AWS WAF to inspect a header,
 // the name of the header.
@@ -3842,6 +4654,27 @@ func (s SqlInjectionMatchTuple) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SqlInjectionMatchTuple) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SqlInjectionMatchTuple"}
+	if s.FieldToMatch == nil {
+		invalidParams.Add(request.NewErrParamRequired("FieldToMatch"))
+	}
+	if s.TextTransformation == nil {
+		invalidParams.Add(request.NewErrParamRequired("TextTransformation"))
+	}
+	if s.FieldToMatch != nil {
+		if err := s.FieldToMatch.Validate(); err != nil {
+			invalidParams.AddNested("FieldToMatch", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // In a GetSampledRequests request, the StartTime and EndTime objects specify
 // the time range for which you want AWS WAF to return a sample of web requests.
 //
@@ -3876,6 +4709,22 @@ func (s TimeWindow) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TimeWindow) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TimeWindow"}
+	if s.EndTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndTime"))
+	}
+	if s.StartTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartTime"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type UpdateByteMatchSetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3903,6 +4752,38 @@ func (s UpdateByteMatchSetInput) String() string {
 // GoString returns the string representation
 func (s UpdateByteMatchSetInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateByteMatchSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateByteMatchSetInput"}
+	if s.ByteMatchSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ByteMatchSetId"))
+	}
+	if s.ByteMatchSetId != nil && len(*s.ByteMatchSetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ByteMatchSetId", 1))
+	}
+	if s.ChangeToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChangeToken"))
+	}
+	if s.Updates == nil {
+		invalidParams.Add(request.NewErrParamRequired("Updates"))
+	}
+	if s.Updates != nil {
+		for i, v := range s.Updates {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Updates", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type UpdateByteMatchSetOutput struct {
@@ -3952,6 +4833,38 @@ func (s UpdateIPSetInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateIPSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateIPSetInput"}
+	if s.ChangeToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChangeToken"))
+	}
+	if s.IPSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IPSetId"))
+	}
+	if s.IPSetId != nil && len(*s.IPSetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IPSetId", 1))
+	}
+	if s.Updates == nil {
+		invalidParams.Add(request.NewErrParamRequired("Updates"))
+	}
+	if s.Updates != nil {
+		for i, v := range s.Updates {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Updates", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type UpdateIPSetOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3997,6 +4910,38 @@ func (s UpdateRuleInput) String() string {
 // GoString returns the string representation
 func (s UpdateRuleInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateRuleInput"}
+	if s.ChangeToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChangeToken"))
+	}
+	if s.RuleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleId"))
+	}
+	if s.RuleId != nil && len(*s.RuleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RuleId", 1))
+	}
+	if s.Updates == nil {
+		invalidParams.Add(request.NewErrParamRequired("Updates"))
+	}
+	if s.Updates != nil {
+		for i, v := range s.Updates {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Updates", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type UpdateRuleOutput struct {
@@ -4048,6 +4993,38 @@ func (s UpdateSizeConstraintSetInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSizeConstraintSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSizeConstraintSetInput"}
+	if s.ChangeToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChangeToken"))
+	}
+	if s.SizeConstraintSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SizeConstraintSetId"))
+	}
+	if s.SizeConstraintSetId != nil && len(*s.SizeConstraintSetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SizeConstraintSetId", 1))
+	}
+	if s.Updates == nil {
+		invalidParams.Add(request.NewErrParamRequired("Updates"))
+	}
+	if s.Updates != nil {
+		for i, v := range s.Updates {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Updates", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type UpdateSizeConstraintSetOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4096,6 +5073,38 @@ func (s UpdateSqlInjectionMatchSetInput) String() string {
 // GoString returns the string representation
 func (s UpdateSqlInjectionMatchSetInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSqlInjectionMatchSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSqlInjectionMatchSetInput"}
+	if s.ChangeToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChangeToken"))
+	}
+	if s.SqlInjectionMatchSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SqlInjectionMatchSetId"))
+	}
+	if s.SqlInjectionMatchSetId != nil && len(*s.SqlInjectionMatchSetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SqlInjectionMatchSetId", 1))
+	}
+	if s.Updates == nil {
+		invalidParams.Add(request.NewErrParamRequired("Updates"))
+	}
+	if s.Updates != nil {
+		for i, v := range s.Updates {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Updates", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The response to an UpdateSqlInjectionMatchSets request.
@@ -4155,6 +5164,40 @@ func (s UpdateWebACLInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateWebACLInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateWebACLInput"}
+	if s.ChangeToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChangeToken"))
+	}
+	if s.WebACLId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WebACLId"))
+	}
+	if s.WebACLId != nil && len(*s.WebACLId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WebACLId", 1))
+	}
+	if s.DefaultAction != nil {
+		if err := s.DefaultAction.Validate(); err != nil {
+			invalidParams.AddNested("DefaultAction", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Updates != nil {
+		for i, v := range s.Updates {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Updates", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type UpdateWebACLOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4201,6 +5244,38 @@ func (s UpdateXssMatchSetInput) String() string {
 // GoString returns the string representation
 func (s UpdateXssMatchSetInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateXssMatchSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateXssMatchSetInput"}
+	if s.ChangeToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChangeToken"))
+	}
+	if s.Updates == nil {
+		invalidParams.Add(request.NewErrParamRequired("Updates"))
+	}
+	if s.XssMatchSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("XssMatchSetId"))
+	}
+	if s.XssMatchSetId != nil && len(*s.XssMatchSetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("XssMatchSetId", 1))
+	}
+	if s.Updates != nil {
+		for i, v := range s.Updates {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Updates", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The response to an UpdateXssMatchSets request.
@@ -4250,6 +5325,19 @@ func (s WafAction) String() string {
 // GoString returns the string representation
 func (s WafAction) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WafAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WafAction"}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the Rules that identify the requests that you want to allow, block,
@@ -4348,6 +5436,27 @@ func (s WebACLUpdate) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WebACLUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WebACLUpdate"}
+	if s.Action == nil {
+		invalidParams.Add(request.NewErrParamRequired("Action"))
+	}
+	if s.ActivatedRule == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActivatedRule"))
+	}
+	if s.ActivatedRule != nil {
+		if err := s.ActivatedRule.Validate(); err != nil {
+			invalidParams.AddNested("ActivatedRule", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // A complex type that contains XssMatchTuple objects, which specify the parts
 // of web requests that you want AWS WAF to inspect for cross-site scripting
 // attacks and, if you want AWS WAF to inspect a header, the name of the header.
@@ -4435,6 +5544,27 @@ func (s XssMatchSetUpdate) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *XssMatchSetUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "XssMatchSetUpdate"}
+	if s.Action == nil {
+		invalidParams.Add(request.NewErrParamRequired("Action"))
+	}
+	if s.XssMatchTuple == nil {
+		invalidParams.Add(request.NewErrParamRequired("XssMatchTuple"))
+	}
+	if s.XssMatchTuple != nil {
+		if err := s.XssMatchTuple.Validate(); err != nil {
+			invalidParams.AddNested("XssMatchTuple", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Specifies the part of a web request that you want AWS WAF to inspect for
 // cross-site scripting attacks and, if you want AWS WAF to inspect a header,
 // the name of the header.
@@ -4500,6 +5630,27 @@ func (s XssMatchTuple) String() string {
 // GoString returns the string representation
 func (s XssMatchTuple) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *XssMatchTuple) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "XssMatchTuple"}
+	if s.FieldToMatch == nil {
+		invalidParams.Add(request.NewErrParamRequired("FieldToMatch"))
+	}
+	if s.TextTransformation == nil {
+		invalidParams.Add(request.NewErrParamRequired("TextTransformation"))
+	}
+	if s.FieldToMatch != nil {
+		if err := s.FieldToMatch.Validate(); err != nil {
+			invalidParams.AddNested("FieldToMatch", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 const (

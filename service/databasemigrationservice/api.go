@@ -4,6 +4,7 @@
 package databasemigrationservice
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
@@ -865,6 +866,22 @@ func (s AddTagsToResourceInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddTagsToResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddTagsToResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type AddTagsToResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -985,6 +1002,37 @@ func (s CreateEndpointInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateEndpointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateEndpointInput"}
+	if s.EndpointIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointIdentifier"))
+	}
+	if s.EndpointType == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointType"))
+	}
+	if s.EngineName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EngineName"))
+	}
+	if s.Password == nil {
+		invalidParams.Add(request.NewErrParamRequired("Password"))
+	}
+	if s.Port == nil {
+		invalidParams.Add(request.NewErrParamRequired("Port"))
+	}
+	if s.ServerName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServerName"))
+	}
+	if s.Username == nil {
+		invalidParams.Add(request.NewErrParamRequired("Username"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type CreateEndpointOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1084,6 +1132,22 @@ func (s CreateReplicationInstanceInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateReplicationInstanceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateReplicationInstanceInput"}
+	if s.ReplicationInstanceClass == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationInstanceClass"))
+	}
+	if s.ReplicationInstanceIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationInstanceIdentifier"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type CreateReplicationInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1131,6 +1195,25 @@ func (s CreateReplicationSubnetGroupInput) String() string {
 // GoString returns the string representation
 func (s CreateReplicationSubnetGroupInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateReplicationSubnetGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateReplicationSubnetGroupInput"}
+	if s.ReplicationSubnetGroupDescription == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationSubnetGroupDescription"))
+	}
+	if s.ReplicationSubnetGroupIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationSubnetGroupIdentifier"))
+	}
+	if s.SubnetIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubnetIds"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type CreateReplicationSubnetGroupOutput struct {
@@ -1196,6 +1279,34 @@ func (s CreateReplicationTaskInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateReplicationTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateReplicationTaskInput"}
+	if s.MigrationType == nil {
+		invalidParams.Add(request.NewErrParamRequired("MigrationType"))
+	}
+	if s.ReplicationInstanceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationInstanceArn"))
+	}
+	if s.ReplicationTaskIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationTaskIdentifier"))
+	}
+	if s.SourceEndpointArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceEndpointArn"))
+	}
+	if s.TableMappings == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableMappings"))
+	}
+	if s.TargetEndpointArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetEndpointArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type CreateReplicationTaskOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1228,6 +1339,19 @@ func (s DeleteEndpointInput) String() string {
 // GoString returns the string representation
 func (s DeleteEndpointInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteEndpointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteEndpointInput"}
+	if s.EndpointArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DeleteEndpointOutput struct {
@@ -1264,6 +1388,19 @@ func (s DeleteReplicationInstanceInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteReplicationInstanceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteReplicationInstanceInput"}
+	if s.ReplicationInstanceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationInstanceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DeleteReplicationInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1298,6 +1435,19 @@ func (s DeleteReplicationSubnetGroupInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteReplicationSubnetGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteReplicationSubnetGroupInput"}
+	if s.ReplicationSubnetGroupIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationSubnetGroupIdentifier"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DeleteReplicationSubnetGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1327,6 +1477,19 @@ func (s DeleteReplicationTaskInput) String() string {
 // GoString returns the string representation
 func (s DeleteReplicationTaskInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteReplicationTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteReplicationTaskInput"}
+	if s.ReplicationTaskArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationTaskArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DeleteReplicationTaskOutput struct {
@@ -1410,6 +1573,26 @@ func (s DescribeConnectionsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeConnectionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeConnectionsInput"}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DescribeConnectionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1465,6 +1648,26 @@ func (s DescribeEndpointTypesInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeEndpointTypesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeEndpointTypesInput"}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DescribeEndpointTypesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1518,6 +1721,26 @@ func (s DescribeEndpointsInput) String() string {
 // GoString returns the string representation
 func (s DescribeEndpointsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeEndpointsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeEndpointsInput"}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DescribeEndpointsOutput struct {
@@ -1609,6 +1832,19 @@ func (s DescribeRefreshSchemasStatusInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeRefreshSchemasStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeRefreshSchemasStatusInput"}
+	if s.EndpointArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DescribeRefreshSchemasStatusOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1658,6 +1894,26 @@ func (s DescribeReplicationInstancesInput) String() string {
 // GoString returns the string representation
 func (s DescribeReplicationInstancesInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeReplicationInstancesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeReplicationInstancesInput"}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DescribeReplicationInstancesOutput struct {
@@ -1711,6 +1967,26 @@ func (s DescribeReplicationSubnetGroupsInput) String() string {
 // GoString returns the string representation
 func (s DescribeReplicationSubnetGroupsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeReplicationSubnetGroupsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeReplicationSubnetGroupsInput"}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DescribeReplicationSubnetGroupsOutput struct {
@@ -1769,6 +2045,26 @@ func (s DescribeReplicationTasksInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeReplicationTasksInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeReplicationTasksInput"}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DescribeReplicationTasksOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1822,6 +2118,19 @@ func (s DescribeSchemasInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeSchemasInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeSchemasInput"}
+	if s.EndpointArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DescribeSchemasOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1873,6 +2182,19 @@ func (s DescribeTableStatisticsInput) String() string {
 // GoString returns the string representation
 func (s DescribeTableStatisticsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeTableStatisticsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeTableStatisticsInput"}
+	if s.ReplicationTaskArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationTaskArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DescribeTableStatisticsOutput struct {
@@ -1973,6 +2295,22 @@ func (s Filter) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Filter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Filter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Values == nil {
+		invalidParams.Add(request.NewErrParamRequired("Values"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1989,6 +2327,19 @@ func (s ListTagsForResourceInput) String() string {
 // GoString returns the string representation
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type ListTagsForResourceOutput struct {
@@ -2053,6 +2404,19 @@ func (s ModifyEndpointInput) String() string {
 // GoString returns the string representation
 func (s ModifyEndpointInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifyEndpointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifyEndpointInput"}
+	if s.EndpointArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type ModifyEndpointOutput struct {
@@ -2144,6 +2508,19 @@ func (s ModifyReplicationInstanceInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifyReplicationInstanceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifyReplicationInstanceInput"}
+	if s.ReplicationInstanceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationInstanceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type ModifyReplicationInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2182,6 +2559,22 @@ func (s ModifyReplicationSubnetGroupInput) String() string {
 // GoString returns the string representation
 func (s ModifyReplicationSubnetGroupInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifyReplicationSubnetGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifyReplicationSubnetGroupInput"}
+	if s.ReplicationSubnetGroupIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationSubnetGroupIdentifier"))
+	}
+	if s.SubnetIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubnetIds"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type ModifyReplicationSubnetGroupOutput struct {
@@ -2263,6 +2656,22 @@ func (s RefreshSchemasInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RefreshSchemasInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RefreshSchemasInput"}
+	if s.EndpointArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointArn"))
+	}
+	if s.ReplicationInstanceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationInstanceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type RefreshSchemasOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2328,6 +2737,22 @@ func (s RemoveTagsFromResourceInput) String() string {
 // GoString returns the string representation
 func (s RemoveTagsFromResourceInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RemoveTagsFromResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RemoveTagsFromResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type RemoveTagsFromResourceOutput struct {
@@ -2594,6 +3019,22 @@ func (s StartReplicationTaskInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartReplicationTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartReplicationTaskInput"}
+	if s.ReplicationTaskArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationTaskArn"))
+	}
+	if s.StartReplicationTaskType == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartReplicationTaskType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type StartReplicationTaskOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2626,6 +3067,19 @@ func (s StopReplicationTaskInput) String() string {
 // GoString returns the string representation
 func (s StopReplicationTaskInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopReplicationTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopReplicationTaskInput"}
+	if s.ReplicationTaskArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationTaskArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type StopReplicationTaskOutput struct {
@@ -2777,6 +3231,22 @@ func (s TestConnectionInput) String() string {
 // GoString returns the string representation
 func (s TestConnectionInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TestConnectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TestConnectionInput"}
+	if s.EndpointArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointArn"))
+	}
+	if s.ReplicationInstanceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationInstanceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type TestConnectionOutput struct {

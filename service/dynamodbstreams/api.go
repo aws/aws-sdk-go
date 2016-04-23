@@ -172,6 +172,28 @@ func (s DescribeStreamInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeStreamInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeStreamInput"}
+	if s.ExclusiveStartShardId != nil && len(*s.ExclusiveStartShardId) < 28 {
+		invalidParams.Add(request.NewErrParamMinLen("ExclusiveStartShardId", 28))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.StreamArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StreamArn"))
+	}
+	if s.StreamArn != nil && len(*s.StreamArn) < 37 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamArn", 37))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the output of a DescribeStream operation.
 type DescribeStreamOutput struct {
 	_ struct{} `type:"structure"`
@@ -214,6 +236,25 @@ func (s GetRecordsInput) String() string {
 // GoString returns the string representation
 func (s GetRecordsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetRecordsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetRecordsInput"}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.ShardIterator == nil {
+		invalidParams.Add(request.NewErrParamRequired("ShardIterator"))
+	}
+	if s.ShardIterator != nil && len(*s.ShardIterator) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ShardIterator", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the output of a GetRecords operation.
@@ -282,6 +323,34 @@ func (s GetShardIteratorInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetShardIteratorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetShardIteratorInput"}
+	if s.SequenceNumber != nil && len(*s.SequenceNumber) < 21 {
+		invalidParams.Add(request.NewErrParamMinLen("SequenceNumber", 21))
+	}
+	if s.ShardId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ShardId"))
+	}
+	if s.ShardId != nil && len(*s.ShardId) < 28 {
+		invalidParams.Add(request.NewErrParamMinLen("ShardId", 28))
+	}
+	if s.ShardIteratorType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ShardIteratorType"))
+	}
+	if s.StreamArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StreamArn"))
+	}
+	if s.StreamArn != nil && len(*s.StreamArn) < 37 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamArn", 37))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the output of a GetShardIterator operation.
 type GetShardIteratorOutput struct {
 	_ struct{} `type:"structure"`
@@ -327,6 +396,25 @@ func (s ListStreamsInput) String() string {
 // GoString returns the string representation
 func (s ListStreamsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListStreamsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListStreamsInput"}
+	if s.ExclusiveStartStreamArn != nil && len(*s.ExclusiveStartStreamArn) < 37 {
+		invalidParams.Add(request.NewErrParamMinLen("ExclusiveStartStreamArn", 37))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.TableName != nil && len(*s.TableName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("TableName", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the output of a ListStreams operation.
