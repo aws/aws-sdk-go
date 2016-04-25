@@ -4,6 +4,7 @@
 package datapipeline
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
@@ -679,6 +680,32 @@ func (s ActivatePipelineInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ActivatePipelineInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ActivatePipelineInput"}
+	if s.PipelineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineId"))
+	}
+	if s.PipelineId != nil && len(*s.PipelineId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PipelineId", 1))
+	}
+	if s.ParameterValues != nil {
+		for i, v := range s.ParameterValues {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ParameterValues", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains the output of ActivatePipeline.
 type ActivatePipelineOutput struct {
 	_ struct{} `type:"structure"`
@@ -713,6 +740,35 @@ func (s AddTagsInput) String() string {
 // GoString returns the string representation
 func (s AddTagsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddTagsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddTagsInput"}
+	if s.PipelineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineId"))
+	}
+	if s.PipelineId != nil && len(*s.PipelineId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PipelineId", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the output of AddTags.
@@ -772,6 +828,38 @@ func (s CreatePipelineInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreatePipelineInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreatePipelineInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.UniqueId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UniqueId"))
+	}
+	if s.UniqueId != nil && len(*s.UniqueId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UniqueId", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains the output of CreatePipeline.
 type CreatePipelineOutput struct {
 	_ struct{} `type:"structure"`
@@ -814,6 +902,22 @@ func (s DeactivatePipelineInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeactivatePipelineInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeactivatePipelineInput"}
+	if s.PipelineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineId"))
+	}
+	if s.PipelineId != nil && len(*s.PipelineId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PipelineId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains the output of DeactivatePipeline.
 type DeactivatePipelineOutput struct {
 	_ struct{} `type:"structure"`
@@ -845,6 +949,22 @@ func (s DeletePipelineInput) String() string {
 // GoString returns the string representation
 func (s DeletePipelineInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeletePipelineInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeletePipelineInput"}
+	if s.PipelineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineId"))
+	}
+	if s.PipelineId != nil && len(*s.PipelineId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PipelineId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DeletePipelineOutput struct {
@@ -893,6 +1013,25 @@ func (s DescribeObjectsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeObjectsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeObjectsInput"}
+	if s.ObjectIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("ObjectIds"))
+	}
+	if s.PipelineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineId"))
+	}
+	if s.PipelineId != nil && len(*s.PipelineId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PipelineId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains the output of DescribeObjects.
 type DescribeObjectsOutput struct {
 	_ struct{} `type:"structure"`
@@ -938,6 +1077,19 @@ func (s DescribePipelinesInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribePipelinesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribePipelinesInput"}
+	if s.PipelineIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineIds"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains the output of DescribePipelines.
 type DescribePipelinesOutput struct {
 	_ struct{} `type:"structure"`
@@ -978,6 +1130,31 @@ func (s EvaluateExpressionInput) String() string {
 // GoString returns the string representation
 func (s EvaluateExpressionInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EvaluateExpressionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EvaluateExpressionInput"}
+	if s.Expression == nil {
+		invalidParams.Add(request.NewErrParamRequired("Expression"))
+	}
+	if s.ObjectId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ObjectId"))
+	}
+	if s.ObjectId != nil && len(*s.ObjectId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ObjectId", 1))
+	}
+	if s.PipelineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineId"))
+	}
+	if s.PipelineId != nil && len(*s.PipelineId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PipelineId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the output of EvaluateExpression.
@@ -1024,6 +1201,25 @@ func (s Field) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Field) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Field"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.RefValue != nil && len(*s.RefValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RefValue", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains the parameters for GetPipelineDefinition.
 type GetPipelineDefinitionInput struct {
 	_ struct{} `type:"structure"`
@@ -1045,6 +1241,22 @@ func (s GetPipelineDefinitionInput) String() string {
 // GoString returns the string representation
 func (s GetPipelineDefinitionInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetPipelineDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetPipelineDefinitionInput"}
+	if s.PipelineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineId"))
+	}
+	if s.PipelineId != nil && len(*s.PipelineId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PipelineId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the output of GetPipelineDefinition.
@@ -1209,6 +1421,25 @@ func (s ParameterAttribute) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ParameterAttribute) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ParameterAttribute"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.StringValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("StringValue"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains information about a parameter object.
 type ParameterObject struct {
 	_ struct{} `type:"structure"`
@@ -1230,6 +1461,35 @@ func (s ParameterObject) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ParameterObject) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ParameterObject"}
+	if s.Attributes == nil {
+		invalidParams.Add(request.NewErrParamRequired("Attributes"))
+	}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.Attributes != nil {
+		for i, v := range s.Attributes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Attributes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // A value or list of parameter values.
 type ParameterValue struct {
 	_ struct{} `type:"structure"`
@@ -1249,6 +1509,25 @@ func (s ParameterValue) String() string {
 // GoString returns the string representation
 func (s ParameterValue) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ParameterValue) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ParameterValue"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.StringValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("StringValue"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains pipeline metadata.
@@ -1334,6 +1613,41 @@ func (s PipelineObject) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PipelineObject) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PipelineObject"}
+	if s.Fields == nil {
+		invalidParams.Add(request.NewErrParamRequired("Fields"))
+	}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Fields != nil {
+		for i, v := range s.Fields {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Fields", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains the parameters for PollForTask.
 type PollForTaskInput struct {
 	_ struct{} `type:"structure"`
@@ -1365,6 +1679,22 @@ func (s PollForTaskInput) String() string {
 // GoString returns the string representation
 func (s PollForTaskInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PollForTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PollForTaskInput"}
+	if s.Hostname != nil && len(*s.Hostname) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Hostname", 1))
+	}
+	if s.WorkerGroup == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkerGroup"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the output of PollForTask.
@@ -1414,6 +1744,55 @@ func (s PutPipelineDefinitionInput) String() string {
 // GoString returns the string representation
 func (s PutPipelineDefinitionInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutPipelineDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutPipelineDefinitionInput"}
+	if s.PipelineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineId"))
+	}
+	if s.PipelineId != nil && len(*s.PipelineId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PipelineId", 1))
+	}
+	if s.PipelineObjects == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineObjects"))
+	}
+	if s.ParameterObjects != nil {
+		for i, v := range s.ParameterObjects {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ParameterObjects", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.ParameterValues != nil {
+		for i, v := range s.ParameterValues {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ParameterValues", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.PipelineObjects != nil {
+		for i, v := range s.PipelineObjects {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "PipelineObjects", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the output of PutPipelineDefinition.
@@ -1499,6 +1878,25 @@ func (s QueryObjectsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *QueryObjectsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "QueryObjectsInput"}
+	if s.PipelineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineId"))
+	}
+	if s.PipelineId != nil && len(*s.PipelineId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PipelineId", 1))
+	}
+	if s.Sphere == nil {
+		invalidParams.Add(request.NewErrParamRequired("Sphere"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains the output of QueryObjects.
 type QueryObjectsOutput struct {
 	_ struct{} `type:"structure"`
@@ -1547,6 +1945,25 @@ func (s RemoveTagsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RemoveTagsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RemoveTagsInput"}
+	if s.PipelineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineId"))
+	}
+	if s.PipelineId != nil && len(*s.PipelineId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PipelineId", 1))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains the output of RemoveTags.
 type RemoveTagsOutput struct {
 	_ struct{} `type:"structure"`
@@ -1583,6 +2000,32 @@ func (s ReportTaskProgressInput) String() string {
 // GoString returns the string representation
 func (s ReportTaskProgressInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReportTaskProgressInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReportTaskProgressInput"}
+	if s.TaskId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TaskId"))
+	}
+	if s.TaskId != nil && len(*s.TaskId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TaskId", 1))
+	}
+	if s.Fields != nil {
+		for i, v := range s.Fields {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Fields", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the output of ReportTaskProgress.
@@ -1634,6 +2077,25 @@ func (s ReportTaskRunnerHeartbeatInput) String() string {
 // GoString returns the string representation
 func (s ReportTaskRunnerHeartbeatInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReportTaskRunnerHeartbeatInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReportTaskRunnerHeartbeatInput"}
+	if s.Hostname != nil && len(*s.Hostname) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Hostname", 1))
+	}
+	if s.TaskrunnerId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TaskrunnerId"))
+	}
+	if s.TaskrunnerId != nil && len(*s.TaskrunnerId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TaskrunnerId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the output of ReportTaskRunnerHeartbeat.
@@ -1706,6 +2168,28 @@ func (s SetStatusInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SetStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SetStatusInput"}
+	if s.ObjectIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("ObjectIds"))
+	}
+	if s.PipelineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineId"))
+	}
+	if s.PipelineId != nil && len(*s.PipelineId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PipelineId", 1))
+	}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type SetStatusOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1761,6 +2245,25 @@ func (s SetTaskStatusInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SetTaskStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SetTaskStatusInput"}
+	if s.TaskId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TaskId"))
+	}
+	if s.TaskId != nil && len(*s.TaskId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TaskId", 1))
+	}
+	if s.TaskStatus == nil {
+		invalidParams.Add(request.NewErrParamRequired("TaskStatus"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains the output of SetTaskStatus.
 type SetTaskStatusOutput struct {
 	_ struct{} `type:"structure"`
@@ -1803,6 +2306,25 @@ func (s Tag) String() string {
 // GoString returns the string representation
 func (s Tag) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Tag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Tag"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains information about a pipeline task that is assigned to a task runner.
@@ -1860,6 +2382,55 @@ func (s ValidatePipelineDefinitionInput) String() string {
 // GoString returns the string representation
 func (s ValidatePipelineDefinitionInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ValidatePipelineDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ValidatePipelineDefinitionInput"}
+	if s.PipelineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineId"))
+	}
+	if s.PipelineId != nil && len(*s.PipelineId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PipelineId", 1))
+	}
+	if s.PipelineObjects == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineObjects"))
+	}
+	if s.ParameterObjects != nil {
+		for i, v := range s.ParameterObjects {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ParameterObjects", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.ParameterValues != nil {
+		for i, v := range s.ParameterValues {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ParameterValues", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.PipelineObjects != nil {
+		for i, v := range s.PipelineObjects {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "PipelineObjects", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the output of ValidatePipelineDefinition.

@@ -633,6 +633,43 @@ func (s AssumeRoleInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssumeRoleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssumeRoleInput"}
+	if s.DurationSeconds != nil && *s.DurationSeconds < 900 {
+		invalidParams.Add(request.NewErrParamMinValue("DurationSeconds", 900))
+	}
+	if s.ExternalId != nil && len(*s.ExternalId) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("ExternalId", 2))
+	}
+	if s.Policy != nil && len(*s.Policy) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Policy", 1))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+	if s.RoleSessionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleSessionName"))
+	}
+	if s.RoleSessionName != nil && len(*s.RoleSessionName) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleSessionName", 2))
+	}
+	if s.SerialNumber != nil && len(*s.SerialNumber) < 9 {
+		invalidParams.Add(request.NewErrParamMinLen("SerialNumber", 9))
+	}
+	if s.TokenCode != nil && len(*s.TokenCode) < 6 {
+		invalidParams.Add(request.NewErrParamMinLen("TokenCode", 6))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains the response to a successful AssumeRole request, including temporary
 // AWS credentials that can be used to make AWS requests.
 type AssumeRoleOutput struct {
@@ -726,6 +763,40 @@ func (s AssumeRoleWithSAMLInput) String() string {
 // GoString returns the string representation
 func (s AssumeRoleWithSAMLInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssumeRoleWithSAMLInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssumeRoleWithSAMLInput"}
+	if s.DurationSeconds != nil && *s.DurationSeconds < 900 {
+		invalidParams.Add(request.NewErrParamMinValue("DurationSeconds", 900))
+	}
+	if s.Policy != nil && len(*s.Policy) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Policy", 1))
+	}
+	if s.PrincipalArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("PrincipalArn"))
+	}
+	if s.PrincipalArn != nil && len(*s.PrincipalArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("PrincipalArn", 20))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+	if s.SAMLAssertion == nil {
+		invalidParams.Add(request.NewErrParamRequired("SAMLAssertion"))
+	}
+	if s.SAMLAssertion != nil && len(*s.SAMLAssertion) < 4 {
+		invalidParams.Add(request.NewErrParamMinLen("SAMLAssertion", 4))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the response to a successful AssumeRoleWithSAML request, including
@@ -856,6 +927,43 @@ func (s AssumeRoleWithWebIdentityInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssumeRoleWithWebIdentityInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssumeRoleWithWebIdentityInput"}
+	if s.DurationSeconds != nil && *s.DurationSeconds < 900 {
+		invalidParams.Add(request.NewErrParamMinValue("DurationSeconds", 900))
+	}
+	if s.Policy != nil && len(*s.Policy) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Policy", 1))
+	}
+	if s.ProviderId != nil && len(*s.ProviderId) < 4 {
+		invalidParams.Add(request.NewErrParamMinLen("ProviderId", 4))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+	if s.RoleSessionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleSessionName"))
+	}
+	if s.RoleSessionName != nil && len(*s.RoleSessionName) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleSessionName", 2))
+	}
+	if s.WebIdentityToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("WebIdentityToken"))
+	}
+	if s.WebIdentityToken != nil && len(*s.WebIdentityToken) < 4 {
+		invalidParams.Add(request.NewErrParamMinLen("WebIdentityToken", 4))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains the response to a successful AssumeRoleWithWebIdentity request,
 // including temporary AWS credentials that can be used to make AWS requests.
 type AssumeRoleWithWebIdentityOutput struct {
@@ -981,6 +1089,22 @@ func (s DecodeAuthorizationMessageInput) String() string {
 // GoString returns the string representation
 func (s DecodeAuthorizationMessageInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DecodeAuthorizationMessageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DecodeAuthorizationMessageInput"}
+	if s.EncodedMessage == nil {
+		invalidParams.Add(request.NewErrParamRequired("EncodedMessage"))
+	}
+	if s.EncodedMessage != nil && len(*s.EncodedMessage) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EncodedMessage", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // A document that contains additional information about the authorization status
@@ -1124,6 +1248,28 @@ func (s GetFederationTokenInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetFederationTokenInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetFederationTokenInput"}
+	if s.DurationSeconds != nil && *s.DurationSeconds < 900 {
+		invalidParams.Add(request.NewErrParamMinValue("DurationSeconds", 900))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 2))
+	}
+	if s.Policy != nil && len(*s.Policy) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Policy", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains the response to a successful GetFederationToken request, including
 // temporary AWS credentials that can be used to make AWS requests.
 type GetFederationTokenOutput struct {
@@ -1196,6 +1342,25 @@ func (s GetSessionTokenInput) String() string {
 // GoString returns the string representation
 func (s GetSessionTokenInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetSessionTokenInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetSessionTokenInput"}
+	if s.DurationSeconds != nil && *s.DurationSeconds < 900 {
+		invalidParams.Add(request.NewErrParamMinValue("DurationSeconds", 900))
+	}
+	if s.SerialNumber != nil && len(*s.SerialNumber) < 9 {
+		invalidParams.Add(request.NewErrParamMinLen("SerialNumber", 9))
+	}
+	if s.TokenCode != nil && len(*s.TokenCode) < 6 {
+		invalidParams.Add(request.NewErrParamMinLen("TokenCode", 6))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Contains the response to a successful GetSessionToken request, including

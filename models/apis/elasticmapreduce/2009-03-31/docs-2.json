@@ -279,10 +279,17 @@
       "refs": {
       }
     },
+    "EC2InstanceIdsList": {
+      "base": null,
+      "refs": {
+        "InstanceResizePolicy$InstancesToTerminate": "<p>Specific list of instances to be terminated when shrinking an instance group.</p>",
+        "InstanceResizePolicy$InstancesToProtect": "<p>Specific list of instances to be protected when shrinking an instance group.</p>"
+      }
+    },
     "EC2InstanceIdsToTerminateList": {
       "base": null,
       "refs": {
-        "InstanceGroupModifyConfig$EC2InstanceIdsToTerminate": "<p>The EC2 InstanceIds to terminate. For advanced users only. Once you terminate the instances, the instance group will not return to its original requested size.</p>"
+        "InstanceGroupModifyConfig$EC2InstanceIdsToTerminate": "<p>The EC2 InstanceIds to terminate. Once you terminate the instances, the instance group will not return to its original requested size.</p>"
       }
     },
     "EbsBlockDevice": {
@@ -474,6 +481,7 @@
     "InstanceId": {
       "base": null,
       "refs": {
+        "EC2InstanceIdsList$member": null,
         "EC2InstanceIdsToTerminateList$member": null,
         "Instance$Id": "<p>The unique identifier for the instance in Amazon EMR.</p>",
         "Instance$Ec2InstanceId": "<p>The unique identifier of the instance in Amazon EC2.</p>"
@@ -483,6 +491,12 @@
       "base": null,
       "refs": {
         "ListInstancesOutput$Instances": "<p>The list of instances for the cluster and given filters.</p>"
+      }
+    },
+    "InstanceResizePolicy": {
+      "base": "<p>Custom policy for requesting termination protection or termination of specific instances when shrinking an instance group.</p>",
+      "refs": {
+        "ShrinkPolicy$InstanceResizePolicy": "<p>Custom policy for requesting termination protection or termination of specific instances when shrinking an instance group.</p>"
       }
     },
     "InstanceRoleType": {
@@ -546,9 +560,11 @@
         "InstanceGroupDetail$InstanceRequestCount": "<p>Target number of instances to run in the instance group. </p>",
         "InstanceGroupDetail$InstanceRunningCount": "<p>Actual count of running instances. </p>",
         "InstanceGroupModifyConfig$InstanceCount": "<p>Target size for the instance group.</p>",
+        "InstanceResizePolicy$InstanceTerminationTimeout": "<p>Decommissioning timeout override for the specific list of instances to be terminated.</p>",
         "JobFlowInstancesConfig$InstanceCount": "<p>The number of Amazon EC2 instances used to execute the job flow.</p>",
         "JobFlowInstancesDetail$InstanceCount": "<p>The number of Amazon EC2 instances in the cluster. If the value is 1, the same instance serves as both the master and slave node. If the value is greater than 1, one instance is the master node and all others are slave nodes.</p>",
         "JobFlowInstancesDetail$NormalizedInstanceHours": "<p>An approximation of the cost of the job flow, represented in m1.small/hours. This value is incremented once for every hour an m1.small runs. Larger instances are weighted more, so an Amazon EC2 instance that is roughly four times more expensive would result in the normalized instance hours being incremented by four. This result is only an approximation and does not reflect the actual billing rate.</p>",
+        "ShrinkPolicy$DecommissionTimeout": "<p>The desired timeout for decommissioning an instance. Overrides the default YARN decommissioning timeout.</p>",
         "VolumeSpecification$Iops": "<p>The number of I/O operations per second (IOPS) that the volume supports. </p>",
         "VolumeSpecification$SizeInGB": "<p>The volume size, in gibibytes (GiB). This can be a number from 1 – 1024. If the volume type is EBS-optimized, the minimum value is 10. </p>"
       }
@@ -669,7 +685,7 @@
       }
     },
     "ListStepsOutput": {
-      "base": "<p>This output contains the list of steps.</p>",
+      "base": "<p>This output contains the list of steps returned in reverse order. This means that the last step is the first element in the list.</p>",
       "refs": {
       }
     },
@@ -762,6 +778,13 @@
     "SetVisibleToAllUsersInput": {
       "base": "<p>The input to the SetVisibleToAllUsers action.</p>",
       "refs": {
+      }
+    },
+    "ShrinkPolicy": {
+      "base": "<p>Policy for customizing shrink operations. Allows configuration of decommissioning timeout and targeted instance shrinking.</p>",
+      "refs": {
+        "InstanceGroup$ShrinkPolicy": "<p>Policy for customizing shrink operations.</p>",
+        "InstanceGroupModifyConfig$ShrinkPolicy": "<p>Policy for customizing shrink operations.</p>"
       }
     },
     "Step": {

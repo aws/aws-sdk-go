@@ -1,11 +1,11 @@
-package awstesting
+package api
 
 import (
 	"fmt"
 	"reflect"
 	"strings"
 
-	"github.com/aws/aws-sdk-go/private/model/api"
+	"github.com/aws/aws-sdk-go/awstesting"
 	"github.com/aws/aws-sdk-go/private/util"
 )
 
@@ -15,7 +15,7 @@ type paramFiller struct {
 }
 
 // typeName returns the type name of a shape.
-func (f paramFiller) typeName(shape *api.Shape) string {
+func (f paramFiller) typeName(shape *Shape) string {
 	if f.prefixPackageName && shape.Type == "structure" {
 		return "*" + shape.API.PackageName() + "." + shape.GoTypeElem()
 	}
@@ -23,13 +23,13 @@ func (f paramFiller) typeName(shape *api.Shape) string {
 }
 
 // ParamsStructFromJSON returns a JSON string representation of a structure.
-func ParamsStructFromJSON(value interface{}, shape *api.Shape, prefixPackageName bool) string {
+func ParamsStructFromJSON(value interface{}, shape *Shape, prefixPackageName bool) string {
 	f := paramFiller{prefixPackageName: prefixPackageName}
 	return util.GoFmt(f.paramsStructAny(value, shape))
 }
 
 // paramsStructAny returns the string representation of any value.
-func (f paramFiller) paramsStructAny(value interface{}, shape *api.Shape) string {
+func (f paramFiller) paramsStructAny(value interface{}, shape *Shape) string {
 	if value == nil {
 		return ""
 	}
@@ -85,7 +85,7 @@ func (f paramFiller) paramsStructAny(value interface{}, shape *api.Shape) string
 }
 
 // paramsStructStruct returns the string representation of a structure
-func (f paramFiller) paramsStructStruct(value map[string]interface{}, shape *api.Shape) string {
+func (f paramFiller) paramsStructStruct(value map[string]interface{}, shape *Shape) string {
 	out := "&" + f.typeName(shape)[1:] + "{\n"
 	for _, n := range shape.MemberNames() {
 		ref := shape.MemberRefs[n]
@@ -100,9 +100,9 @@ func (f paramFiller) paramsStructStruct(value map[string]interface{}, shape *api
 }
 
 // paramsStructMap returns the string representation of a map of values
-func (f paramFiller) paramsStructMap(value map[string]interface{}, shape *api.Shape) string {
+func (f paramFiller) paramsStructMap(value map[string]interface{}, shape *Shape) string {
 	out := f.typeName(shape) + "{\n"
-	keys := SortedKeys(value)
+	keys := awstesting.SortedKeys(value)
 	for _, k := range keys {
 		v := value[k]
 		out += fmt.Sprintf("%q: %s,\n", k, f.paramsStructAny(v, shape.ValueRef.Shape))
@@ -112,7 +112,7 @@ func (f paramFiller) paramsStructMap(value map[string]interface{}, shape *api.Sh
 }
 
 // paramsStructList returns the string representation of slice of values
-func (f paramFiller) paramsStructList(value []interface{}, shape *api.Shape) string {
+func (f paramFiller) paramsStructList(value []interface{}, shape *Shape) string {
 	out := f.typeName(shape) + "{\n"
 	for _, v := range value {
 		out += fmt.Sprintf("%s,\n", f.paramsStructAny(v, shape.MemberRef.Shape))

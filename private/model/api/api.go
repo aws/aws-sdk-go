@@ -34,6 +34,9 @@ type API struct {
 	// Set to true to not generate API service name constants
 	NoConstServiceNames bool
 
+	// Set to true to not generate validation shapes
+	NoValidataShapeMethods bool
+
 	SvcClientImportPath string
 
 	initialized bool
@@ -422,4 +425,68 @@ func (a *API) InterfaceGoCode() string {
 // with its package name. Takes a string depicting the Config.
 func (a *API) NewAPIGoCodeWithPkgName(cfg string) string {
 	return fmt.Sprintf("%s.New(%s)", a.PackageName(), cfg)
+}
+
+// computes the validation chain for all input shapes
+func (a *API) addShapeValidations() {
+	for _, o := range a.Operations {
+		resolveShapeValidations(o.InputRef.Shape)
+	}
+}
+
+// Updates the source shape and all nested shapes with the validations that
+// could possibly be needed.
+func resolveShapeValidations(s *Shape, ancestry ...*Shape) {
+	for _, a := range ancestry {
+		if a == s {
+			return
+		}
+	}
+
+	children := []string{}
+	for _, name := range s.MemberNames() {
+		ref := s.MemberRefs[name]
+
+		if s.IsRequired(name) && !s.Validations.Has(ref, ShapeValidationRequired) {
+			s.Validations = append(s.Validations, ShapeValidation{
+				Name: name, Ref: ref, Type: ShapeValidationRequired,
+			})
+		}
+
+		if ref.Shape.Min != 0 && !s.Validations.Has(ref, ShapeValidationMinVal) {
+			s.Validations = append(s.Validations, ShapeValidation{
+				Name: name, Ref: ref, Type: ShapeValidationMinVal,
+			})
+		}
+
+		switch ref.Shape.Type {
+		case "map", "list", "structure":
+			children = append(children, name)
+		}
+	}
+
+	ancestry = append(ancestry, s)
+	for _, name := range children {
+		ref := s.MemberRefs[name]
+		nestedShape := ref.Shape.NestedShape()
+
+		var v *ShapeValidation
+		if len(nestedShape.Validations) > 0 {
+			v = &ShapeValidation{
+				Name: name, Ref: ref, Type: ShapeValidationNested,
+			}
+		} else {
+			resolveShapeValidations(nestedShape, ancestry...)
+			if len(nestedShape.Validations) > 0 {
+				v = &ShapeValidation{
+					Name: name, Ref: ref, Type: ShapeValidationNested,
+				}
+			}
+		}
+
+		if v != nil && !s.Validations.Has(v.Ref, v.Type) {
+			s.Validations = append(s.Validations, *v)
+		}
+	}
+	ancestry = ancestry[:len(ancestry)-1]
 }

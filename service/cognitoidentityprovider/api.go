@@ -4,6 +4,7 @@
 package cognitoidentityprovider
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
@@ -1044,6 +1045,38 @@ func (s AddCustomAttributesInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddCustomAttributesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddCustomAttributesInput"}
+	if s.CustomAttributes == nil {
+		invalidParams.Add(request.NewErrParamRequired("CustomAttributes"))
+	}
+	if s.CustomAttributes != nil && len(s.CustomAttributes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomAttributes", 1))
+	}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+	if s.CustomAttributes != nil {
+		for i, v := range s.CustomAttributes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CustomAttributes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the response from the server for the request to add custom attributes.
 type AddCustomAttributesOutput struct {
 	_ struct{} `type:"structure"`
@@ -1078,6 +1111,28 @@ func (s AdminConfirmSignUpInput) String() string {
 // GoString returns the string representation
 func (s AdminConfirmSignUpInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AdminConfirmSignUpInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AdminConfirmSignUpInput"}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+	if s.Username == nil {
+		invalidParams.Add(request.NewErrParamRequired("Username"))
+	}
+	if s.Username != nil && len(*s.Username) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Username", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the response from the server for the request to confirm registration.
@@ -1119,6 +1174,31 @@ func (s AdminDeleteUserAttributesInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AdminDeleteUserAttributesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AdminDeleteUserAttributesInput"}
+	if s.UserAttributeNames == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserAttributeNames"))
+	}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+	if s.Username == nil {
+		invalidParams.Add(request.NewErrParamRequired("Username"))
+	}
+	if s.Username != nil && len(*s.Username) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Username", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the response received from the server for a request to delete
 // user attributes.
 type AdminDeleteUserAttributesOutput struct {
@@ -1156,6 +1236,28 @@ func (s AdminDeleteUserInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AdminDeleteUserInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AdminDeleteUserInput"}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+	if s.Username == nil {
+		invalidParams.Add(request.NewErrParamRequired("Username"))
+	}
+	if s.Username != nil && len(*s.Username) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Username", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type AdminDeleteUserOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1189,6 +1291,28 @@ func (s AdminDisableUserInput) String() string {
 // GoString returns the string representation
 func (s AdminDisableUserInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AdminDisableUserInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AdminDisableUserInput"}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+	if s.Username == nil {
+		invalidParams.Add(request.NewErrParamRequired("Username"))
+	}
+	if s.Username != nil && len(*s.Username) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Username", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the response received from the server to disable the user as an
@@ -1228,6 +1352,28 @@ func (s AdminEnableUserInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AdminEnableUserInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AdminEnableUserInput"}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+	if s.Username == nil {
+		invalidParams.Add(request.NewErrParamRequired("Username"))
+	}
+	if s.Username != nil && len(*s.Username) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Username", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the response from the server for the request to enable a user
 // as an administrator.
 type AdminEnableUserOutput struct {
@@ -1264,6 +1410,28 @@ func (s AdminGetUserInput) String() string {
 // GoString returns the string representation
 func (s AdminGetUserInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AdminGetUserInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AdminGetUserInput"}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+	if s.Username == nil {
+		invalidParams.Add(request.NewErrParamRequired("Username"))
+	}
+	if s.Username != nil && len(*s.Username) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Username", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the response from the server from the request to get the specified
@@ -1329,6 +1497,28 @@ func (s AdminResetUserPasswordInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AdminResetUserPasswordInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AdminResetUserPasswordInput"}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+	if s.Username == nil {
+		invalidParams.Add(request.NewErrParamRequired("Username"))
+	}
+	if s.Username != nil && len(*s.Username) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Username", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the response from the server to reset a user password as an administrator.
 type AdminResetUserPasswordOutput struct {
 	_ struct{} `type:"structure"`
@@ -1367,6 +1557,41 @@ func (s AdminSetUserSettingsInput) String() string {
 // GoString returns the string representation
 func (s AdminSetUserSettingsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AdminSetUserSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AdminSetUserSettingsInput"}
+	if s.MFAOptions == nil {
+		invalidParams.Add(request.NewErrParamRequired("MFAOptions"))
+	}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+	if s.Username == nil {
+		invalidParams.Add(request.NewErrParamRequired("Username"))
+	}
+	if s.Username != nil && len(*s.Username) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Username", 1))
+	}
+	if s.MFAOptions != nil {
+		for i, v := range s.MFAOptions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MFAOptions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the response from the server to set user settings as an administrator.
@@ -1408,6 +1633,41 @@ func (s AdminUpdateUserAttributesInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AdminUpdateUserAttributesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AdminUpdateUserAttributesInput"}
+	if s.UserAttributes == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserAttributes"))
+	}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+	if s.Username == nil {
+		invalidParams.Add(request.NewErrParamRequired("Username"))
+	}
+	if s.Username != nil && len(*s.Username) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Username", 1))
+	}
+	if s.UserAttributes != nil {
+		for i, v := range s.UserAttributes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "UserAttributes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the response from the server for the request to update user attributes
 // as an administrator.
 type AdminUpdateUserAttributesOutput struct {
@@ -1445,6 +1705,22 @@ func (s AttributeType) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AttributeType) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AttributeType"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the request to change a user password.
 type ChangePasswordInput struct {
 	_ struct{} `type:"structure"`
@@ -1467,6 +1743,28 @@ func (s ChangePasswordInput) String() string {
 // GoString returns the string representation
 func (s ChangePasswordInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ChangePasswordInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ChangePasswordInput"}
+	if s.PreviousPassword == nil {
+		invalidParams.Add(request.NewErrParamRequired("PreviousPassword"))
+	}
+	if s.PreviousPassword != nil && len(*s.PreviousPassword) < 6 {
+		invalidParams.Add(request.NewErrParamMinLen("PreviousPassword", 6))
+	}
+	if s.ProposedPassword == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProposedPassword"))
+	}
+	if s.ProposedPassword != nil && len(*s.ProposedPassword) < 6 {
+		invalidParams.Add(request.NewErrParamMinLen("ProposedPassword", 6))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The response from the server to the change password request.
@@ -1540,6 +1838,43 @@ func (s ConfirmForgotPasswordInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConfirmForgotPasswordInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConfirmForgotPasswordInput"}
+	if s.ClientId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClientId"))
+	}
+	if s.ClientId != nil && len(*s.ClientId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientId", 1))
+	}
+	if s.ConfirmationCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfirmationCode"))
+	}
+	if s.ConfirmationCode != nil && len(*s.ConfirmationCode) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfirmationCode", 1))
+	}
+	if s.Password == nil {
+		invalidParams.Add(request.NewErrParamRequired("Password"))
+	}
+	if s.Password != nil && len(*s.Password) < 6 {
+		invalidParams.Add(request.NewErrParamMinLen("Password", 6))
+	}
+	if s.SecretHash != nil && len(*s.SecretHash) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretHash", 1))
+	}
+	if s.Username == nil {
+		invalidParams.Add(request.NewErrParamRequired("Username"))
+	}
+	if s.Username != nil && len(*s.Username) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Username", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The response from the server that results from a user's request to retrieve
 // a forgotten password.
 type ConfirmForgotPasswordOutput struct {
@@ -1592,6 +1927,37 @@ func (s ConfirmSignUpInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConfirmSignUpInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConfirmSignUpInput"}
+	if s.ClientId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClientId"))
+	}
+	if s.ClientId != nil && len(*s.ClientId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientId", 1))
+	}
+	if s.ConfirmationCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfirmationCode"))
+	}
+	if s.ConfirmationCode != nil && len(*s.ConfirmationCode) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfirmationCode", 1))
+	}
+	if s.SecretHash != nil && len(*s.SecretHash) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretHash", 1))
+	}
+	if s.Username == nil {
+		invalidParams.Add(request.NewErrParamRequired("Username"))
+	}
+	if s.Username != nil && len(*s.Username) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Username", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the response from the server for the registration confirmation.
 type ConfirmSignUpOutput struct {
 	_ struct{} `type:"structure"`
@@ -1630,6 +1996,28 @@ func (s CreateUserPoolClientInput) String() string {
 // GoString returns the string representation
 func (s CreateUserPoolClientInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateUserPoolClientInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateUserPoolClientInput"}
+	if s.ClientName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClientName"))
+	}
+	if s.ClientName != nil && len(*s.ClientName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientName", 1))
+	}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the response from the server to create a user pool client.
@@ -1696,6 +2084,44 @@ func (s CreateUserPoolInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateUserPoolInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateUserPoolInput"}
+	if s.EmailVerificationMessage != nil && len(*s.EmailVerificationMessage) < 6 {
+		invalidParams.Add(request.NewErrParamMinLen("EmailVerificationMessage", 6))
+	}
+	if s.EmailVerificationSubject != nil && len(*s.EmailVerificationSubject) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EmailVerificationSubject", 1))
+	}
+	if s.PoolName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PoolName"))
+	}
+	if s.PoolName != nil && len(*s.PoolName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PoolName", 1))
+	}
+	if s.SmsAuthenticationMessage != nil && len(*s.SmsAuthenticationMessage) < 6 {
+		invalidParams.Add(request.NewErrParamMinLen("SmsAuthenticationMessage", 6))
+	}
+	if s.SmsVerificationMessage != nil && len(*s.SmsVerificationMessage) < 6 {
+		invalidParams.Add(request.NewErrParamMinLen("SmsVerificationMessage", 6))
+	}
+	if s.LambdaConfig != nil {
+		if err := s.LambdaConfig.Validate(); err != nil {
+			invalidParams.AddNested("LambdaConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Policies != nil {
+		if err := s.Policies.Validate(); err != nil {
+			invalidParams.AddNested("Policies", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the response from the server for the request to create a user
 // pool.
 type CreateUserPoolOutput struct {
@@ -1734,6 +2160,19 @@ func (s DeleteUserAttributesInput) String() string {
 // GoString returns the string representation
 func (s DeleteUserAttributesInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteUserAttributesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteUserAttributesInput"}
+	if s.UserAttributeNames == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserAttributeNames"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the response from the server to delete user attributes.
@@ -1804,6 +2243,28 @@ func (s DeleteUserPoolClientInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteUserPoolClientInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteUserPoolClientInput"}
+	if s.ClientId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClientId"))
+	}
+	if s.ClientId != nil && len(*s.ClientId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientId", 1))
+	}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DeleteUserPoolClientOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1834,6 +2295,22 @@ func (s DeleteUserPoolInput) String() string {
 // GoString returns the string representation
 func (s DeleteUserPoolInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteUserPoolInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteUserPoolInput"}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DeleteUserPoolOutput struct {
@@ -1871,6 +2348,28 @@ func (s DescribeUserPoolClientInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeUserPoolClientInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeUserPoolClientInput"}
+	if s.ClientId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClientId"))
+	}
+	if s.ClientId != nil && len(*s.ClientId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientId", 1))
+	}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the response from the server from a request to describe the user
 // pool client.
 type DescribeUserPoolClientOutput struct {
@@ -1906,6 +2405,22 @@ func (s DescribeUserPoolInput) String() string {
 // GoString returns the string representation
 func (s DescribeUserPoolInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeUserPoolInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeUserPoolInput"}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the response to describe the user pool.
@@ -1952,6 +2467,31 @@ func (s ForgotPasswordInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ForgotPasswordInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ForgotPasswordInput"}
+	if s.ClientId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClientId"))
+	}
+	if s.ClientId != nil && len(*s.ClientId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientId", 1))
+	}
+	if s.SecretHash != nil && len(*s.SecretHash) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretHash", 1))
+	}
+	if s.Username == nil {
+		invalidParams.Add(request.NewErrParamRequired("Username"))
+	}
+	if s.Username != nil && len(*s.Username) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Username", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Respresents the response from the server regarding the request to reset a
 // password.
 type ForgotPasswordOutput struct {
@@ -1989,6 +2529,22 @@ func (s GetJWKSInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetJWKSInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetJWKSInput"}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the response from the server to get JSON Web keys.
 type GetJWKSOutput struct {
 	_ struct{} `type:"structure"`
@@ -2024,6 +2580,22 @@ func (s GetOpenIdConfigurationInput) String() string {
 // GoString returns the string representation
 func (s GetOpenIdConfigurationInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetOpenIdConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetOpenIdConfigurationInput"}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the response from the server to get the Open ID configuration
@@ -2086,6 +2658,22 @@ func (s GetUserAttributeVerificationCodeInput) String() string {
 // GoString returns the string representation
 func (s GetUserAttributeVerificationCodeInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetUserAttributeVerificationCodeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetUserAttributeVerificationCodeInput"}
+	if s.AttributeName == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttributeName"))
+	}
+	if s.AttributeName != nil && len(*s.AttributeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AttributeName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The verification code response returned by the server response to get the
@@ -2219,6 +2807,31 @@ func (s LambdaConfigType) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LambdaConfigType) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LambdaConfigType"}
+	if s.CustomMessage != nil && len(*s.CustomMessage) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomMessage", 20))
+	}
+	if s.PostAuthentication != nil && len(*s.PostAuthentication) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("PostAuthentication", 20))
+	}
+	if s.PostConfirmation != nil && len(*s.PostConfirmation) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("PostConfirmation", 20))
+	}
+	if s.PreAuthentication != nil && len(*s.PreAuthentication) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("PreAuthentication", 20))
+	}
+	if s.PreSignUp != nil && len(*s.PreSignUp) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("PreSignUp", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the request to list the user pool clients.
 type ListUserPoolClientsInput struct {
 	_ struct{} `type:"structure"`
@@ -2243,6 +2856,28 @@ func (s ListUserPoolClientsInput) String() string {
 // GoString returns the string representation
 func (s ListUserPoolClientsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListUserPoolClientsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListUserPoolClientsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the response from the server that lists user pool clients.
@@ -2288,6 +2923,25 @@ func (s ListUserPoolsInput) String() string {
 // GoString returns the string representation
 func (s ListUserPoolsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListUserPoolsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListUserPoolsInput"}
+	if s.MaxResults == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaxResults"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the response to list user pools.
@@ -2348,6 +3002,28 @@ func (s ListUsersInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListUsersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListUsersInput"}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.PaginationToken != nil && len(*s.PaginationToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PaginationToken", 1))
+	}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The response from the request to list users.
 type ListUsersOutput struct {
 	_ struct{} `type:"structure"`
@@ -2389,6 +3065,19 @@ func (s MFAOptionType) String() string {
 // GoString returns the string representation
 func (s MFAOptionType) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MFAOptionType) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MFAOptionType"}
+	if s.AttributeName != nil && len(*s.AttributeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AttributeName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The minimum and maximum value of an attribute that is of the number data
@@ -2448,6 +3137,19 @@ func (s PasswordPolicyType) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PasswordPolicyType) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PasswordPolicyType"}
+	if s.MinimumLength != nil && *s.MinimumLength < 6 {
+		invalidParams.Add(request.NewErrParamMinValue("MinimumLength", 6))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the request to resend the confirmation code.
 type ResendConfirmationCodeInput struct {
 	_ struct{} `type:"structure"`
@@ -2471,6 +3173,31 @@ func (s ResendConfirmationCodeInput) String() string {
 // GoString returns the string representation
 func (s ResendConfirmationCodeInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResendConfirmationCodeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResendConfirmationCodeInput"}
+	if s.ClientId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClientId"))
+	}
+	if s.ClientId != nil && len(*s.ClientId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientId", 1))
+	}
+	if s.SecretHash != nil && len(*s.SecretHash) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretHash", 1))
+	}
+	if s.Username == nil {
+		invalidParams.Add(request.NewErrParamRequired("Username"))
+	}
+	if s.Username != nil && len(*s.Username) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Username", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The response from the server when the Amazon Cognito service makes the request
@@ -2530,6 +3257,19 @@ func (s SchemaAttributeType) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SchemaAttributeType) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SchemaAttributeType"}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the request to set user settings.
 type SetUserSettingsInput struct {
 	_ struct{} `type:"structure"`
@@ -2549,6 +3289,32 @@ func (s SetUserSettingsInput) String() string {
 // GoString returns the string representation
 func (s SetUserSettingsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SetUserSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SetUserSettingsInput"}
+	if s.AccessToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccessToken"))
+	}
+	if s.MFAOptions == nil {
+		invalidParams.Add(request.NewErrParamRequired("MFAOptions"))
+	}
+	if s.MFAOptions != nil {
+		for i, v := range s.MFAOptions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MFAOptions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The response from the server for a set user settings request.
@@ -2598,6 +3364,57 @@ func (s SignUpInput) String() string {
 // GoString returns the string representation
 func (s SignUpInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SignUpInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SignUpInput"}
+	if s.ClientId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClientId"))
+	}
+	if s.ClientId != nil && len(*s.ClientId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientId", 1))
+	}
+	if s.Password == nil {
+		invalidParams.Add(request.NewErrParamRequired("Password"))
+	}
+	if s.Password != nil && len(*s.Password) < 6 {
+		invalidParams.Add(request.NewErrParamMinLen("Password", 6))
+	}
+	if s.SecretHash != nil && len(*s.SecretHash) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretHash", 1))
+	}
+	if s.Username == nil {
+		invalidParams.Add(request.NewErrParamRequired("Username"))
+	}
+	if s.Username != nil && len(*s.Username) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Username", 1))
+	}
+	if s.UserAttributes != nil {
+		for i, v := range s.UserAttributes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "UserAttributes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.ValidationData != nil {
+		for i, v := range s.ValidationData {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ValidationData", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The response from the server for a registration request.
@@ -2663,6 +3480,29 @@ func (s UpdateUserAttributesInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateUserAttributesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateUserAttributesInput"}
+	if s.UserAttributes == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserAttributes"))
+	}
+	if s.UserAttributes != nil {
+		for i, v := range s.UserAttributes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "UserAttributes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents the response from the server for the request to update user attributes.
 type UpdateUserAttributesOutput struct {
 	_ struct{} `type:"structure"`
@@ -2705,6 +3545,31 @@ func (s UpdateUserPoolClientInput) String() string {
 // GoString returns the string representation
 func (s UpdateUserPoolClientInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateUserPoolClientInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateUserPoolClientInput"}
+	if s.ClientId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClientId"))
+	}
+	if s.ClientId != nil && len(*s.ClientId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientId", 1))
+	}
+	if s.ClientName != nil && len(*s.ClientName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientName", 1))
+	}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the response from the server to the request to update the user
@@ -2774,6 +3639,44 @@ func (s UpdateUserPoolInput) String() string {
 // GoString returns the string representation
 func (s UpdateUserPoolInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateUserPoolInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateUserPoolInput"}
+	if s.EmailVerificationMessage != nil && len(*s.EmailVerificationMessage) < 6 {
+		invalidParams.Add(request.NewErrParamMinLen("EmailVerificationMessage", 6))
+	}
+	if s.EmailVerificationSubject != nil && len(*s.EmailVerificationSubject) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EmailVerificationSubject", 1))
+	}
+	if s.SmsAuthenticationMessage != nil && len(*s.SmsAuthenticationMessage) < 6 {
+		invalidParams.Add(request.NewErrParamMinLen("SmsAuthenticationMessage", 6))
+	}
+	if s.SmsVerificationMessage != nil && len(*s.SmsVerificationMessage) < 6 {
+		invalidParams.Add(request.NewErrParamMinLen("SmsVerificationMessage", 6))
+	}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+	if s.LambdaConfig != nil {
+		if err := s.LambdaConfig.Validate(); err != nil {
+			invalidParams.AddNested("LambdaConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Policies != nil {
+		if err := s.Policies.Validate(); err != nil {
+			invalidParams.AddNested("Policies", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Represents the response from the server when you make a request to update
@@ -2899,6 +3802,21 @@ func (s UserPoolPolicyType) String() string {
 // GoString returns the string representation
 func (s UserPoolPolicyType) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UserPoolPolicyType) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UserPoolPolicyType"}
+	if s.PasswordPolicy != nil {
+		if err := s.PasswordPolicy.Validate(); err != nil {
+			invalidParams.AddNested("PasswordPolicy", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // A container with information about the user pool type.
@@ -3029,6 +3947,28 @@ func (s VerifyUserAttributeInput) String() string {
 // GoString returns the string representation
 func (s VerifyUserAttributeInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VerifyUserAttributeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VerifyUserAttributeInput"}
+	if s.AttributeName == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttributeName"))
+	}
+	if s.AttributeName != nil && len(*s.AttributeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AttributeName", 1))
+	}
+	if s.Code == nil {
+		invalidParams.Add(request.NewErrParamRequired("Code"))
+	}
+	if s.Code != nil && len(*s.Code) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Code", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // A container representing the response from the server from the request to

@@ -481,6 +481,10 @@
         "Step":{"shape":"Step"}
       }
     },
+    "EC2InstanceIdsList":{
+      "type":"list",
+      "member":{"shape":"InstanceId"}
+    },
     "EC2InstanceIdsToTerminateList":{
       "type":"list",
       "member":{"shape":"InstanceId"}
@@ -593,7 +597,8 @@
         "Status":{"shape":"InstanceGroupStatus"},
         "Configurations":{"shape":"ConfigurationList"},
         "EbsBlockDevices":{"shape":"EbsBlockDeviceList"},
-        "EbsOptimized":{"shape":"BooleanObject"}
+        "EbsOptimized":{"shape":"BooleanObject"},
+        "ShrinkPolicy":{"shape":"ShrinkPolicy"}
       }
     },
     "InstanceGroupConfig":{
@@ -665,7 +670,8 @@
       "members":{
         "InstanceGroupId":{"shape":"XmlStringMaxLen256"},
         "InstanceCount":{"shape":"Integer"},
-        "EC2InstanceIdsToTerminate":{"shape":"EC2InstanceIdsToTerminateList"}
+        "EC2InstanceIdsToTerminate":{"shape":"EC2InstanceIdsToTerminateList"},
+        "ShrinkPolicy":{"shape":"ShrinkPolicy"}
       }
     },
     "InstanceGroupModifyConfigList":{
@@ -735,6 +741,14 @@
     "InstanceList":{
       "type":"list",
       "member":{"shape":"Instance"}
+    },
+    "InstanceResizePolicy":{
+      "type":"structure",
+      "members":{
+        "InstancesToTerminate":{"shape":"EC2InstanceIdsList"},
+        "InstancesToProtect":{"shape":"EC2InstanceIdsList"},
+        "InstanceTerminationTimeout":{"shape":"Integer"}
+      }
     },
     "InstanceRoleType":{
       "type":"string",
@@ -1114,6 +1128,13 @@
       "members":{
         "JobFlowIds":{"shape":"XmlStringList"},
         "VisibleToAllUsers":{"shape":"Boolean"}
+      }
+    },
+    "ShrinkPolicy":{
+      "type":"structure",
+      "members":{
+        "DecommissionTimeout":{"shape":"Integer"},
+        "InstanceResizePolicy":{"shape":"InstanceResizePolicy"}
       }
     },
     "Step":{

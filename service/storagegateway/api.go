@@ -4,6 +4,7 @@
 package storagegateway
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
@@ -1990,6 +1991,49 @@ func (s ActivateGatewayInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ActivateGatewayInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ActivateGatewayInput"}
+	if s.ActivationKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActivationKey"))
+	}
+	if s.ActivationKey != nil && len(*s.ActivationKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ActivationKey", 1))
+	}
+	if s.GatewayName == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayName"))
+	}
+	if s.GatewayName != nil && len(*s.GatewayName) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayName", 2))
+	}
+	if s.GatewayRegion == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayRegion"))
+	}
+	if s.GatewayRegion != nil && len(*s.GatewayRegion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayRegion", 1))
+	}
+	if s.GatewayTimezone == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayTimezone"))
+	}
+	if s.GatewayTimezone != nil && len(*s.GatewayTimezone) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayTimezone", 3))
+	}
+	if s.GatewayType != nil && len(*s.GatewayType) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayType", 2))
+	}
+	if s.MediumChangerType != nil && len(*s.MediumChangerType) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("MediumChangerType", 2))
+	}
+	if s.TapeDriveType != nil && len(*s.TapeDriveType) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("TapeDriveType", 2))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // AWS Storage Gateway returns the Amazon Resource Name (ARN) of the activated
 // gateway. It is a string made of information such as your account, gateway
 // name, and region. This ARN is used to reference the gateway in other API
@@ -2036,6 +2080,25 @@ func (s AddCacheInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddCacheInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddCacheInput"}
+	if s.DiskIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("DiskIds"))
+	}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type AddCacheOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2079,6 +2142,35 @@ func (s AddTagsToResourceInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddTagsToResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddTagsToResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 50))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // AddTagsToResourceOutput
 type AddTagsToResourceOutput struct {
 	_ struct{} `type:"structure"`
@@ -2115,6 +2207,25 @@ func (s AddUploadBufferInput) String() string {
 // GoString returns the string representation
 func (s AddUploadBufferInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddUploadBufferInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddUploadBufferInput"}
+	if s.DiskIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("DiskIds"))
+	}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type AddUploadBufferOutput struct {
@@ -2159,6 +2270,25 @@ func (s AddWorkingStorageInput) String() string {
 // GoString returns the string representation
 func (s AddWorkingStorageInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddWorkingStorageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddWorkingStorageInput"}
+	if s.DiskIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("DiskIds"))
+	}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // A JSON object containing the of the gateway for which working storage was
@@ -2235,6 +2365,28 @@ func (s CancelArchivalInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CancelArchivalInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CancelArchivalInput"}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+	if s.TapeARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("TapeARN"))
+	}
+	if s.TapeARN != nil && len(*s.TapeARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("TapeARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // CancelArchivalOutput
 type CancelArchivalOutput struct {
 	_ struct{} `type:"structure"`
@@ -2275,6 +2427,28 @@ func (s CancelRetrievalInput) String() string {
 // GoString returns the string representation
 func (s CancelRetrievalInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CancelRetrievalInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CancelRetrievalInput"}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+	if s.TapeARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("TapeARN"))
+	}
+	if s.TapeARN != nil && len(*s.TapeARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("TapeARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // CancelRetrievalOutput
@@ -2357,6 +2531,40 @@ func (s CreateCachediSCSIVolumeInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateCachediSCSIVolumeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateCachediSCSIVolumeInput"}
+	if s.ClientToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClientToken"))
+	}
+	if s.ClientToken != nil && len(*s.ClientToken) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 5))
+	}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+	if s.NetworkInterfaceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("NetworkInterfaceId"))
+	}
+	if s.TargetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetName"))
+	}
+	if s.TargetName != nil && len(*s.TargetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetName", 1))
+	}
+	if s.VolumeSizeInBytes == nil {
+		invalidParams.Add(request.NewErrParamRequired("VolumeSizeInBytes"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type CreateCachediSCSIVolumeOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2391,6 +2599,28 @@ func (s CreateSnapshotFromVolumeRecoveryPointInput) String() string {
 // GoString returns the string representation
 func (s CreateSnapshotFromVolumeRecoveryPointInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateSnapshotFromVolumeRecoveryPointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateSnapshotFromVolumeRecoveryPointInput"}
+	if s.SnapshotDescription == nil {
+		invalidParams.Add(request.NewErrParamRequired("SnapshotDescription"))
+	}
+	if s.SnapshotDescription != nil && len(*s.SnapshotDescription) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SnapshotDescription", 1))
+	}
+	if s.VolumeARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("VolumeARN"))
+	}
+	if s.VolumeARN != nil && len(*s.VolumeARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("VolumeARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type CreateSnapshotFromVolumeRecoveryPointOutput struct {
@@ -2437,6 +2667,28 @@ func (s CreateSnapshotInput) String() string {
 // GoString returns the string representation
 func (s CreateSnapshotInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateSnapshotInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateSnapshotInput"}
+	if s.SnapshotDescription == nil {
+		invalidParams.Add(request.NewErrParamRequired("SnapshotDescription"))
+	}
+	if s.SnapshotDescription != nil && len(*s.SnapshotDescription) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SnapshotDescription", 1))
+	}
+	if s.VolumeARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("VolumeARN"))
+	}
+	if s.VolumeARN != nil && len(*s.VolumeARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("VolumeARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // A JSON object containing the following fields:
@@ -2516,6 +2768,40 @@ func (s CreateStorediSCSIVolumeInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateStorediSCSIVolumeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateStorediSCSIVolumeInput"}
+	if s.DiskId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DiskId"))
+	}
+	if s.DiskId != nil && len(*s.DiskId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DiskId", 1))
+	}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+	if s.NetworkInterfaceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("NetworkInterfaceId"))
+	}
+	if s.PreserveExistingData == nil {
+		invalidParams.Add(request.NewErrParamRequired("PreserveExistingData"))
+	}
+	if s.TargetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetName"))
+	}
+	if s.TargetName != nil && len(*s.TargetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // A JSON object containing the following fields:
 type CreateStorediSCSIVolumeOutput struct {
 	_ struct{} `type:"structure"`
@@ -2567,6 +2853,31 @@ func (s CreateTapeWithBarcodeInput) String() string {
 // GoString returns the string representation
 func (s CreateTapeWithBarcodeInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateTapeWithBarcodeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateTapeWithBarcodeInput"}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+	if s.TapeBarcode == nil {
+		invalidParams.Add(request.NewErrParamRequired("TapeBarcode"))
+	}
+	if s.TapeBarcode != nil && len(*s.TapeBarcode) < 7 {
+		invalidParams.Add(request.NewErrParamMinLen("TapeBarcode", 7))
+	}
+	if s.TapeSizeInBytes == nil {
+		invalidParams.Add(request.NewErrParamRequired("TapeSizeInBytes"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // CreateTapeOutput
@@ -2629,6 +2940,43 @@ func (s CreateTapesInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateTapesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateTapesInput"}
+	if s.ClientToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClientToken"))
+	}
+	if s.ClientToken != nil && len(*s.ClientToken) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 5))
+	}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+	if s.NumTapesToCreate == nil {
+		invalidParams.Add(request.NewErrParamRequired("NumTapesToCreate"))
+	}
+	if s.NumTapesToCreate != nil && *s.NumTapesToCreate < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("NumTapesToCreate", 1))
+	}
+	if s.TapeBarcodePrefix == nil {
+		invalidParams.Add(request.NewErrParamRequired("TapeBarcodePrefix"))
+	}
+	if s.TapeBarcodePrefix != nil && len(*s.TapeBarcodePrefix) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TapeBarcodePrefix", 1))
+	}
+	if s.TapeSizeInBytes == nil {
+		invalidParams.Add(request.NewErrParamRequired("TapeSizeInBytes"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // CreateTapeOutput
 type CreateTapesOutput struct {
 	_ struct{} `type:"structure"`
@@ -2666,6 +3014,28 @@ func (s DeleteBandwidthRateLimitInput) String() string {
 // GoString returns the string representation
 func (s DeleteBandwidthRateLimitInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteBandwidthRateLimitInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteBandwidthRateLimitInput"}
+	if s.BandwidthType == nil {
+		invalidParams.Add(request.NewErrParamRequired("BandwidthType"))
+	}
+	if s.BandwidthType != nil && len(*s.BandwidthType) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("BandwidthType", 3))
+	}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // A JSON object containing the of the gateway whose bandwidth rate information
@@ -2712,6 +3082,28 @@ func (s DeleteChapCredentialsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteChapCredentialsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteChapCredentialsInput"}
+	if s.InitiatorName == nil {
+		invalidParams.Add(request.NewErrParamRequired("InitiatorName"))
+	}
+	if s.InitiatorName != nil && len(*s.InitiatorName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InitiatorName", 1))
+	}
+	if s.TargetARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetARN"))
+	}
+	if s.TargetARN != nil && len(*s.TargetARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // A JSON object containing the following fields:
 type DeleteChapCredentialsOutput struct {
 	_ struct{} `type:"structure"`
@@ -2752,6 +3144,22 @@ func (s DeleteGatewayInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteGatewayInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteGatewayInput"}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // A JSON object containing the id of the deleted gateway.
 type DeleteGatewayOutput struct {
 	_ struct{} `type:"structure"`
@@ -2787,6 +3195,22 @@ func (s DeleteSnapshotScheduleInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteSnapshotScheduleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteSnapshotScheduleInput"}
+	if s.VolumeARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("VolumeARN"))
+	}
+	if s.VolumeARN != nil && len(*s.VolumeARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("VolumeARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DeleteSnapshotScheduleOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2820,6 +3244,22 @@ func (s DeleteTapeArchiveInput) String() string {
 // GoString returns the string representation
 func (s DeleteTapeArchiveInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteTapeArchiveInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteTapeArchiveInput"}
+	if s.TapeARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("TapeARN"))
+	}
+	if s.TapeARN != nil && len(*s.TapeARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("TapeARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // DeleteTapeArchiveOutput
@@ -2864,6 +3304,28 @@ func (s DeleteTapeInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteTapeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteTapeInput"}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+	if s.TapeARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("TapeARN"))
+	}
+	if s.TapeARN != nil && len(*s.TapeARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("TapeARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // DeleteTapeOutput
 type DeleteTapeOutput struct {
 	_ struct{} `type:"structure"`
@@ -2899,6 +3361,22 @@ func (s DeleteVolumeInput) String() string {
 // GoString returns the string representation
 func (s DeleteVolumeInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteVolumeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteVolumeInput"}
+	if s.VolumeARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("VolumeARN"))
+	}
+	if s.VolumeARN != nil && len(*s.VolumeARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("VolumeARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // A JSON object containing the of the storage volume that was deleted
@@ -2937,6 +3415,22 @@ func (s DescribeBandwidthRateLimitInput) String() string {
 // GoString returns the string representation
 func (s DescribeBandwidthRateLimitInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeBandwidthRateLimitInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeBandwidthRateLimitInput"}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // A JSON object containing the following fields:
@@ -2982,6 +3476,22 @@ func (s DescribeCacheInput) String() string {
 // GoString returns the string representation
 func (s DescribeCacheInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeCacheInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeCacheInput"}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DescribeCacheOutput struct {
@@ -3030,6 +3540,19 @@ func (s DescribeCachediSCSIVolumesInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeCachediSCSIVolumesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeCachediSCSIVolumesInput"}
+	if s.VolumeARNs == nil {
+		invalidParams.Add(request.NewErrParamRequired("VolumeARNs"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // A JSON object containing the following fields:
 type DescribeCachediSCSIVolumesOutput struct {
 	_ struct{} `type:"structure"`
@@ -3067,6 +3590,22 @@ func (s DescribeChapCredentialsInput) String() string {
 // GoString returns the string representation
 func (s DescribeChapCredentialsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeChapCredentialsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeChapCredentialsInput"}
+	if s.TargetARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetARN"))
+	}
+	if s.TargetARN != nil && len(*s.TargetARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // A JSON object containing a .
@@ -3118,6 +3657,22 @@ func (s DescribeGatewayInformationInput) String() string {
 // GoString returns the string representation
 func (s DescribeGatewayInformationInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeGatewayInformationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeGatewayInformationInput"}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // A JSON object containing the following fields:
@@ -3189,6 +3744,22 @@ func (s DescribeMaintenanceStartTimeInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeMaintenanceStartTimeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeMaintenanceStartTimeInput"}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DescribeMaintenanceStartTimeOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3235,6 +3806,22 @@ func (s DescribeSnapshotScheduleInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeSnapshotScheduleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeSnapshotScheduleInput"}
+	if s.VolumeARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("VolumeARN"))
+	}
+	if s.VolumeARN != nil && len(*s.VolumeARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("VolumeARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DescribeSnapshotScheduleOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3279,6 +3866,19 @@ func (s DescribeStorediSCSIVolumesInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeStorediSCSIVolumesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeStorediSCSIVolumesInput"}
+	if s.VolumeARNs == nil {
+		invalidParams.Add(request.NewErrParamRequired("VolumeARNs"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DescribeStorediSCSIVolumesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3320,6 +3920,22 @@ func (s DescribeTapeArchivesInput) String() string {
 // GoString returns the string representation
 func (s DescribeTapeArchivesInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeTapeArchivesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeTapeArchivesInput"}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.Marker != nil && len(*s.Marker) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Marker", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // DescribeTapeArchivesOutput
@@ -3375,6 +3991,28 @@ func (s DescribeTapeRecoveryPointsInput) String() string {
 // GoString returns the string representation
 func (s DescribeTapeRecoveryPointsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeTapeRecoveryPointsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeTapeRecoveryPointsInput"}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.Marker != nil && len(*s.Marker) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Marker", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // DescribeTapeRecoveryPointsOutput
@@ -3444,6 +4082,28 @@ func (s DescribeTapesInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeTapesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeTapesInput"}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.Marker != nil && len(*s.Marker) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Marker", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // DescribeTapesOutput
 type DescribeTapesOutput struct {
 	_ struct{} `type:"structure"`
@@ -3485,6 +4145,22 @@ func (s DescribeUploadBufferInput) String() string {
 // GoString returns the string representation
 func (s DescribeUploadBufferInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeUploadBufferInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeUploadBufferInput"}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DescribeUploadBufferOutput struct {
@@ -3546,6 +4222,28 @@ func (s DescribeVTLDevicesInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeVTLDevicesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeVTLDevicesInput"}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.Marker != nil && len(*s.Marker) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Marker", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // DescribeVTLDevicesOutput
 type DescribeVTLDevicesOutput struct {
 	_ struct{} `type:"structure"`
@@ -3592,6 +4290,22 @@ func (s DescribeWorkingStorageInput) String() string {
 // GoString returns the string representation
 func (s DescribeWorkingStorageInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeWorkingStorageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeWorkingStorageInput"}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // A JSON object containing the following fields:
@@ -3672,6 +4386,22 @@ func (s DisableGatewayInput) String() string {
 // GoString returns the string representation
 func (s DisableGatewayInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisableGatewayInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisableGatewayInput"}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // DisableGatewayOutput
@@ -3792,6 +4522,22 @@ func (s ListGatewaysInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListGatewaysInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListGatewaysInput"}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.Marker != nil && len(*s.Marker) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Marker", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type ListGatewaysOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3827,6 +4573,22 @@ func (s ListLocalDisksInput) String() string {
 // GoString returns the string representation
 func (s ListLocalDisksInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListLocalDisksInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListLocalDisksInput"}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type ListLocalDisksOutput struct {
@@ -3876,6 +4638,28 @@ func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.Marker != nil && len(*s.Marker) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Marker", 1))
+	}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // ListTagsForResourceOutput
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
@@ -3921,6 +4705,22 @@ func (s ListVolumeInitiatorsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListVolumeInitiatorsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListVolumeInitiatorsInput"}
+	if s.VolumeARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("VolumeARN"))
+	}
+	if s.VolumeARN != nil && len(*s.VolumeARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("VolumeARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // ListVolumeInitiatorsOutput
 type ListVolumeInitiatorsOutput struct {
 	_ struct{} `type:"structure"`
@@ -3956,6 +4756,22 @@ func (s ListVolumeRecoveryPointsInput) String() string {
 // GoString returns the string representation
 func (s ListVolumeRecoveryPointsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListVolumeRecoveryPointsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListVolumeRecoveryPointsInput"}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type ListVolumeRecoveryPointsOutput struct {
@@ -4006,6 +4822,28 @@ func (s ListVolumesInput) String() string {
 // GoString returns the string representation
 func (s ListVolumesInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListVolumesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListVolumesInput"}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.Marker != nil && len(*s.Marker) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Marker", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type ListVolumesOutput struct {
@@ -4080,6 +4918,25 @@ func (s RemoveTagsFromResourceInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RemoveTagsFromResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RemoveTagsFromResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 50))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // RemoveTagsFromResourceOutput
 type RemoveTagsFromResourceOutput struct {
 	_ struct{} `type:"structure"`
@@ -4115,6 +4972,22 @@ func (s ResetCacheInput) String() string {
 // GoString returns the string representation
 func (s ResetCacheInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResetCacheInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResetCacheInput"}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type ResetCacheOutput struct {
@@ -4162,6 +5035,28 @@ func (s RetrieveTapeArchiveInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RetrieveTapeArchiveInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RetrieveTapeArchiveInput"}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+	if s.TapeARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("TapeARN"))
+	}
+	if s.TapeARN != nil && len(*s.TapeARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("TapeARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // RetrieveTapeArchiveOutput
 type RetrieveTapeArchiveOutput struct {
 	_ struct{} `type:"structure"`
@@ -4201,6 +5096,28 @@ func (s RetrieveTapeRecoveryPointInput) String() string {
 // GoString returns the string representation
 func (s RetrieveTapeRecoveryPointInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RetrieveTapeRecoveryPointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RetrieveTapeRecoveryPointInput"}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+	if s.TapeARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("TapeARN"))
+	}
+	if s.TapeARN != nil && len(*s.TapeARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("TapeARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // RetrieveTapeRecoveryPointOutput
@@ -4244,6 +5161,28 @@ func (s SetLocalConsolePasswordInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SetLocalConsolePasswordInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SetLocalConsolePasswordInput"}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+	if s.LocalConsolePassword == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocalConsolePassword"))
+	}
+	if s.LocalConsolePassword != nil && len(*s.LocalConsolePassword) < 6 {
+		invalidParams.Add(request.NewErrParamMinLen("LocalConsolePassword", 6))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type SetLocalConsolePasswordOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4279,6 +5218,22 @@ func (s ShutdownGatewayInput) String() string {
 // GoString returns the string representation
 func (s ShutdownGatewayInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ShutdownGatewayInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ShutdownGatewayInput"}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // A JSON object containing the of the gateway that was shut down.
@@ -4317,6 +5272,22 @@ func (s StartGatewayInput) String() string {
 // GoString returns the string representation
 func (s StartGatewayInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartGatewayInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartGatewayInput"}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // A JSON object containing the of the gateway that was restarted.
@@ -4389,6 +5360,25 @@ func (s Tag) String() string {
 // GoString returns the string representation
 func (s Tag) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Tag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Tag"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Describes a virtual tape object.
@@ -4524,6 +5514,28 @@ func (s UpdateBandwidthRateLimitInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateBandwidthRateLimitInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateBandwidthRateLimitInput"}
+	if s.AverageDownloadRateLimitInBitsPerSec != nil && *s.AverageDownloadRateLimitInBitsPerSec < 102400 {
+		invalidParams.Add(request.NewErrParamMinValue("AverageDownloadRateLimitInBitsPerSec", 102400))
+	}
+	if s.AverageUploadRateLimitInBitsPerSec != nil && *s.AverageUploadRateLimitInBitsPerSec < 51200 {
+		invalidParams.Add(request.NewErrParamMinValue("AverageUploadRateLimitInBitsPerSec", 51200))
+	}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // A JSON object containing the of the gateway whose throttle information was
 // updated.
 type UpdateBandwidthRateLimitOutput struct {
@@ -4583,6 +5595,37 @@ func (s UpdateChapCredentialsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateChapCredentialsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateChapCredentialsInput"}
+	if s.InitiatorName == nil {
+		invalidParams.Add(request.NewErrParamRequired("InitiatorName"))
+	}
+	if s.InitiatorName != nil && len(*s.InitiatorName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InitiatorName", 1))
+	}
+	if s.SecretToAuthenticateInitiator == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecretToAuthenticateInitiator"))
+	}
+	if s.SecretToAuthenticateInitiator != nil && len(*s.SecretToAuthenticateInitiator) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretToAuthenticateInitiator", 1))
+	}
+	if s.SecretToAuthenticateTarget != nil && len(*s.SecretToAuthenticateTarget) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretToAuthenticateTarget", 1))
+	}
+	if s.TargetARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetARN"))
+	}
+	if s.TargetARN != nil && len(*s.TargetARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // A JSON object containing the following fields:
 type UpdateChapCredentialsOutput struct {
 	_ struct{} `type:"structure"`
@@ -4629,6 +5672,28 @@ func (s UpdateGatewayInformationInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateGatewayInformationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateGatewayInformationInput"}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+	if s.GatewayName != nil && len(*s.GatewayName) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayName", 2))
+	}
+	if s.GatewayTimezone != nil && len(*s.GatewayTimezone) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayTimezone", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // A JSON object containing the ARN of the gateway that was updated.
 type UpdateGatewayInformationOutput struct {
 	_ struct{} `type:"structure"`
@@ -4667,6 +5732,22 @@ func (s UpdateGatewaySoftwareNowInput) String() string {
 // GoString returns the string representation
 func (s UpdateGatewaySoftwareNowInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateGatewaySoftwareNowInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateGatewaySoftwareNowInput"}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // A JSON object containing the of the gateway that was updated.
@@ -4723,6 +5804,31 @@ func (s UpdateMaintenanceStartTimeInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateMaintenanceStartTimeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateMaintenanceStartTimeInput"}
+	if s.DayOfWeek == nil {
+		invalidParams.Add(request.NewErrParamRequired("DayOfWeek"))
+	}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+	if s.HourOfDay == nil {
+		invalidParams.Add(request.NewErrParamRequired("HourOfDay"))
+	}
+	if s.MinuteOfHour == nil {
+		invalidParams.Add(request.NewErrParamRequired("MinuteOfHour"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // A JSON object containing the of the gateway whose maintenance start time
 // is updated.
 type UpdateMaintenanceStartTimeOutput struct {
@@ -4776,6 +5882,34 @@ func (s UpdateSnapshotScheduleInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSnapshotScheduleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSnapshotScheduleInput"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.RecurrenceInHours == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecurrenceInHours"))
+	}
+	if s.RecurrenceInHours != nil && *s.RecurrenceInHours < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("RecurrenceInHours", 1))
+	}
+	if s.StartAt == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartAt"))
+	}
+	if s.VolumeARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("VolumeARN"))
+	}
+	if s.VolumeARN != nil && len(*s.VolumeARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("VolumeARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // A JSON object containing the of the updated storage volume.
 type UpdateSnapshotScheduleOutput struct {
 	_ struct{} `type:"structure"`
@@ -4813,6 +5947,28 @@ func (s UpdateVTLDeviceTypeInput) String() string {
 // GoString returns the string representation
 func (s UpdateVTLDeviceTypeInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateVTLDeviceTypeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateVTLDeviceTypeInput"}
+	if s.DeviceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeviceType"))
+	}
+	if s.DeviceType != nil && len(*s.DeviceType) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceType", 2))
+	}
+	if s.VTLDeviceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("VTLDeviceARN"))
+	}
+	if s.VTLDeviceARN != nil && len(*s.VTLDeviceARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("VTLDeviceARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // UpdateVTLDeviceTypeOutput

@@ -4,6 +4,7 @@
 package acm
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
@@ -11,6 +12,51 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
+
+const opAddTagsToCertificate = "AddTagsToCertificate"
+
+// AddTagsToCertificateRequest generates a request for the AddTagsToCertificate operation.
+func (c *ACM) AddTagsToCertificateRequest(input *AddTagsToCertificateInput) (req *request.Request, output *AddTagsToCertificateOutput) {
+	op := &request.Operation{
+		Name:       opAddTagsToCertificate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AddTagsToCertificateInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(jsonrpc.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	output = &AddTagsToCertificateOutput{}
+	req.Data = output
+	return
+}
+
+// Adds one or more tags to an ACM Certificate. Tags are labels that you can
+// use to identify and organize your AWS resources. Each tag consists of a key
+// and an optional value. You specify the certificate on input by its Amazon
+// Resource Name (ARN). You specify the tag by using a key-value pair.
+//
+//  You can apply a tag to just one certificate if you want to identify a specific
+// characteristic of that certificate, or you can apply the same tag to multiple
+// certificates if you want to filter for a common relationship among those
+// certificates. Similarly, you can apply the same tag to multiple resources
+// if you want to specify a relationship among those resources. For example,
+// you can add the same tag to an ACM Certificate and an Elastic Load Balancing
+// load balancer to indicate that they are both used by the same website. For
+// more information, see Tagging ACM Certificates (http://docs.aws.amazon.com/acm/latest/userguide/tags.html).
+//
+// To remove one or more tags, use the RemoveTagsFromCertificate action. To
+// view all of the tags that have been applied to the certificate, use the ListTagsForCertificate
+// action.
+func (c *ACM) AddTagsToCertificate(input *AddTagsToCertificateInput) (*AddTagsToCertificateOutput, error) {
+	req, out := c.AddTagsToCertificateRequest(input)
+	err := req.Send()
+	return out, err
+}
 
 const opDeleteCertificate = "DeleteCertificate"
 
@@ -72,8 +118,8 @@ func (c *ACM) DescribeCertificateRequest(input *DescribeCertificateInput) (req *
 // Returns a list of the fields contained in the specified ACM Certificate.
 // For example, this action returns the certificate status, a flag that indicates
 // whether the certificate is associated with any other AWS service, and the
-// date at which the certificate request was created. The ACM Certificate is
-// specified on input by its Amazon Resource Name (ARN).
+// date at which the certificate request was created. You specify the ACM Certificate
+// on input by its Amazon Resource Name (ARN).
 func (c *ACM) DescribeCertificate(input *DescribeCertificateInput) (*DescribeCertificateOutput, error) {
 	req, out := c.DescribeCertificateRequest(input)
 	err := req.Send()
@@ -161,6 +207,72 @@ func (c *ACM) ListCertificatesPages(input *ListCertificatesInput, fn func(p *Lis
 	})
 }
 
+const opListTagsForCertificate = "ListTagsForCertificate"
+
+// ListTagsForCertificateRequest generates a request for the ListTagsForCertificate operation.
+func (c *ACM) ListTagsForCertificateRequest(input *ListTagsForCertificateInput) (req *request.Request, output *ListTagsForCertificateOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForCertificate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListTagsForCertificateInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListTagsForCertificateOutput{}
+	req.Data = output
+	return
+}
+
+// Lists the tags that have been applied to the ACM Certificate. Use the certificate
+// ARN to specify the certificate. To add a tag to an ACM Certificate, use the
+// AddTagsToCertificate action. To delete a tag, use the RemoveTagsFromCertificate
+// action.
+func (c *ACM) ListTagsForCertificate(input *ListTagsForCertificateInput) (*ListTagsForCertificateOutput, error) {
+	req, out := c.ListTagsForCertificateRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opRemoveTagsFromCertificate = "RemoveTagsFromCertificate"
+
+// RemoveTagsFromCertificateRequest generates a request for the RemoveTagsFromCertificate operation.
+func (c *ACM) RemoveTagsFromCertificateRequest(input *RemoveTagsFromCertificateInput) (req *request.Request, output *RemoveTagsFromCertificateOutput) {
+	op := &request.Operation{
+		Name:       opRemoveTagsFromCertificate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RemoveTagsFromCertificateInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(jsonrpc.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	output = &RemoveTagsFromCertificateOutput{}
+	req.Data = output
+	return
+}
+
+// Remove one or more tags from an ACM Certificate. A tag consists of a key-value
+// pair. If you do not specify the value portion of the tag when calling this
+// function, the tag will be removed regardless of value. If you specify a value,
+// the tag is removed only if it is associated with the specified value.
+//
+// To add tags to a certificate, use the AddTagsToCertificate action. To view
+// all of the tags that have been applied to a specific ACM Certificate, use
+// the ListTagsForCertificate action.
+func (c *ACM) RemoveTagsFromCertificate(input *RemoveTagsFromCertificateInput) (*RemoveTagsFromCertificateOutput, error) {
+	req, out := c.RemoveTagsFromCertificateRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opRequestCertificate = "RequestCertificate"
 
 // RequestCertificateRequest generates a request for the RequestCertificate operation.
@@ -231,6 +343,78 @@ func (c *ACM) ResendValidationEmail(input *ResendValidationEmailInput) (*ResendV
 	return out, err
 }
 
+type AddTagsToCertificateInput struct {
+	_ struct{} `type:"structure"`
+
+	// String that contains the ARN of the ACM Certificate to which the tag is to
+	// be applied. This must be of the form:
+	//
+	//  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
+	//
+	//  For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
+	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+	CertificateArn *string `min:"20" type:"string" required:"true"`
+
+	// The key-value pair that defines the tag. The tag value is optional.
+	Tags []*Tag `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s AddTagsToCertificateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddTagsToCertificateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddTagsToCertificateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddTagsToCertificateInput"}
+	if s.CertificateArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificateArn"))
+	}
+	if s.CertificateArn != nil && len(*s.CertificateArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificateArn", 20))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+type AddTagsToCertificateOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s AddTagsToCertificateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddTagsToCertificateOutput) GoString() string {
+	return s.String()
+}
+
 // This structure is returned in the response object of the DescribeCertificate
 // action.
 type CertificateDetail struct {
@@ -277,9 +461,25 @@ type CertificateDetail struct {
 
 	// A RevocationReason enumeration value that indicates why the certificate was
 	// revoked. This value exists only if the certificate has been revoked. This
-	// can be one of the following vales:  UNSPECIFIED KEY_COMPROMISE CA_COMPROMISE
-	// AFFILIATION_CHANGED SUPERCEDED CESSATION_OF_OPERATION CERTIFICATE_HOLD REMOVE_FROM_CRL
-	// PRIVILEGE_WITHDRAWN A_A_COMPROMISE
+	// can be one of the following vales:  UNSPECIFIED
+	//
+	// KEY_COMPROMISE
+	//
+	// CA_COMPROMISE
+	//
+	// AFFILIATION_CHANGED
+	//
+	// SUPERCEDED
+	//
+	// CESSATION_OF_OPERATION
+	//
+	// CERTIFICATE_HOLD
+	//
+	// REMOVE_FROM_CRL
+	//
+	// PRIVILEGE_WITHDRAWN
+	//
+	// A_A_COMPROMISE
 	RevocationReason *string `type:"string" enum:"RevocationReason"`
 
 	// The time, if any, at which the certificate was revoked. This value exists
@@ -294,7 +494,19 @@ type CertificateDetail struct {
 	SignatureAlgorithm *string `type:"string"`
 
 	// A CertificateStatus enumeration value that can contain one of the following:
-	//  PENDING_VALIDATION ISSUED INACTIVE EXPIRED REVOKED FAILED VALIDATION_TIMED_OUT
+	//  PENDING_VALIDATION
+	//
+	// ISSUED
+	//
+	// INACTIVE
+	//
+	// EXPIRED
+	//
+	// REVOKED
+	//
+	// FAILED
+	//
+	// VALIDATION_TIMED_OUT
 	Status *string `type:"string" enum:"CertificateStatus"`
 
 	// The X.500 distinguished name of the entity associated with the public key
@@ -369,6 +581,22 @@ func (s DeleteCertificateInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteCertificateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteCertificateInput"}
+	if s.CertificateArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificateArn"))
+	}
+	if s.CertificateArn != nil && len(*s.CertificateArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificateArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DeleteCertificateOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -403,6 +631,22 @@ func (s DescribeCertificateInput) String() string {
 // GoString returns the string representation
 func (s DescribeCertificateInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeCertificateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeCertificateInput"}
+	if s.CertificateArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificateArn"))
+	}
+	if s.CertificateArn != nil && len(*s.CertificateArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificateArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DescribeCertificateOutput struct {
@@ -463,7 +707,13 @@ type DomainValidationOption struct {
 	// specify a ValidationDomain of subdomain.example.com, ACM sends email to the
 	// domain registrant, technical contact, and administrative contact in WHOIS
 	// for the base domain and the following five addresses:  admin@subdomain.example.com
-	// administrator@subdomain.example.com hostmaster@subdomain.example.com postmaster@subdomain.example.com
+	//
+	// administrator@subdomain.example.com
+	//
+	// hostmaster@subdomain.example.com
+	//
+	// postmaster@subdomain.example.com
+	//
 	// webmaster@subdomain.example.com
 	ValidationDomain *string `min:"1" type:"string" required:"true"`
 }
@@ -476,6 +726,28 @@ func (s DomainValidationOption) String() string {
 // GoString returns the string representation
 func (s DomainValidationOption) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DomainValidationOption) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DomainValidationOption"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 1))
+	}
+	if s.ValidationDomain == nil {
+		invalidParams.Add(request.NewErrParamRequired("ValidationDomain"))
+	}
+	if s.ValidationDomain != nil && len(*s.ValidationDomain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValidationDomain", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type GetCertificateInput struct {
@@ -498,6 +770,22 @@ func (s GetCertificateInput) String() string {
 // GoString returns the string representation
 func (s GetCertificateInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCertificateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCertificateInput"}
+	if s.CertificateArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificateArn"))
+	}
+	if s.CertificateArn != nil && len(*s.CertificateArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificateArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type GetCertificateOutput struct {
@@ -527,7 +815,18 @@ type ListCertificatesInput struct {
 
 	// Identifies the statuses of the ACM Certificates for which you want to retrieve
 	// the ARNs. This can be one or more of the following values:  PENDING_VALIDATION
-	// ISSUED INACTIVE EXPIRED VALIDATION_TIMED_OUT REVOKED FAILED
+	//
+	// ISSUED
+	//
+	// INACTIVE
+	//
+	// EXPIRED
+	//
+	// VALIDATION_TIMED_OUT
+	//
+	// REVOKED
+	//
+	// FAILED
 	CertificateStatuses []*string `type:"list"`
 
 	// Specify this parameter when paginating results to indicate the maximum number
@@ -555,6 +854,22 @@ func (s ListCertificatesInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCertificatesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCertificatesInput"}
+	if s.MaxItems != nil && *s.MaxItems < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxItems", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type ListCertificatesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -576,6 +891,134 @@ func (s ListCertificatesOutput) GoString() string {
 	return s.String()
 }
 
+type ListTagsForCertificateInput struct {
+	_ struct{} `type:"structure"`
+
+	// String that contains the ARN of the ACM Certificate for which you want to
+	// list the tags. This must be of the form:
+	//
+	//  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
+	//
+	//  For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
+	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+	CertificateArn *string `min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListTagsForCertificateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForCertificateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForCertificateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForCertificateInput"}
+	if s.CertificateArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificateArn"))
+	}
+	if s.CertificateArn != nil && len(*s.CertificateArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificateArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+type ListTagsForCertificateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The key-value pairs that define the applied tags.
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s ListTagsForCertificateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForCertificateOutput) GoString() string {
+	return s.String()
+}
+
+type RemoveTagsFromCertificateInput struct {
+	_ struct{} `type:"structure"`
+
+	// String that contains the ARN of the ACM Certificate with one or more tags
+	// that you want to remove. This must be of the form:
+	//
+	//  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
+	//
+	//  For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
+	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+	CertificateArn *string `min:"20" type:"string" required:"true"`
+
+	// The key-value pair that defines the tag to remove.
+	Tags []*Tag `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s RemoveTagsFromCertificateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveTagsFromCertificateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RemoveTagsFromCertificateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RemoveTagsFromCertificateInput"}
+	if s.CertificateArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificateArn"))
+	}
+	if s.CertificateArn != nil && len(*s.CertificateArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificateArn", 20))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+type RemoveTagsFromCertificateOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s RemoveTagsFromCertificateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveTagsFromCertificateOutput) GoString() string {
+	return s.String()
+}
+
 type RequestCertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -590,8 +1033,15 @@ type RequestCertificateInput struct {
 	// or a superdomain of the Domain value. For example, if you requested a certificate
 	// for test.example.com and specify DomainValidationOptions of example.com,
 	// ACM sends email to the domain registrant, technical contact, and administrative
-	// contact in WHOIS and the following five addresses:  admin@example.com administrator@example.com
-	// hostmaster@example.com postmaster@example.com webmaster@example.com
+	// contact in WHOIS and the following five addresses:  admin@example.com
+	//
+	// administrator@example.com
+	//
+	// hostmaster@example.com
+	//
+	// postmaster@example.com
+	//
+	// webmaster@example.com
 	DomainValidationOptions []*DomainValidationOption `min:"1" type:"list"`
 
 	// Customer chosen string that can be used to distinguish between calls to RequestCertificate.
@@ -619,6 +1069,41 @@ func (s RequestCertificateInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RequestCertificateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RequestCertificateInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 1))
+	}
+	if s.DomainValidationOptions != nil && len(s.DomainValidationOptions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainValidationOptions", 1))
+	}
+	if s.IdempotencyToken != nil && len(*s.IdempotencyToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdempotencyToken", 1))
+	}
+	if s.SubjectAlternativeNames != nil && len(s.SubjectAlternativeNames) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SubjectAlternativeNames", 1))
+	}
+	if s.DomainValidationOptions != nil {
+		for i, v := range s.DomainValidationOptions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DomainValidationOptions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type RequestCertificateOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -643,9 +1128,9 @@ type ResendValidationEmailInput struct {
 	_ struct{} `type:"structure"`
 
 	// String that contains the ARN of the requested certificate. The certificate
-	// ARN is generated and returned by RequestCertificate as soon as the request
-	// is made. By default, using this parameter causes email to be sent to all
-	// top-level domains you specified in the certificate request.
+	// ARN is generated and returned by the RequestCertificate action as soon as
+	// the request is made. By default, using this parameter causes email to be
+	// sent to all top-level domains you specified in the certificate request.
 	//
 	//  The ARN must be of the form:
 	//
@@ -662,7 +1147,13 @@ type ResendValidationEmailInput struct {
 	// for site.subdomain.example.com and specify a ValidationDomain of subdomain.example.com,
 	// ACM sends email to the domain registrant, technical contact, and administrative
 	// contact in WHOIS and the following five addresses:  admin@subdomain.example.com
-	// administrator@subdomain.example.com hostmaster@subdomain.example.com postmaster@subdomain.example.com
+	//
+	// administrator@subdomain.example.com
+	//
+	// hostmaster@subdomain.example.com
+	//
+	// postmaster@subdomain.example.com
+	//
 	// webmaster@subdomain.example.com
 	ValidationDomain *string `min:"1" type:"string" required:"true"`
 }
@@ -677,6 +1168,34 @@ func (s ResendValidationEmailInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResendValidationEmailInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResendValidationEmailInput"}
+	if s.CertificateArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificateArn"))
+	}
+	if s.CertificateArn != nil && len(*s.CertificateArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificateArn", 20))
+	}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 1))
+	}
+	if s.ValidationDomain == nil {
+		invalidParams.Add(request.NewErrParamRequired("ValidationDomain"))
+	}
+	if s.ValidationDomain != nil && len(*s.ValidationDomain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValidationDomain", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type ResendValidationEmailOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -689,6 +1208,43 @@ func (s ResendValidationEmailOutput) String() string {
 // GoString returns the string representation
 func (s ResendValidationEmailOutput) GoString() string {
 	return s.String()
+}
+
+// A key-value pair that identifies or specifies metadata about an ACM resource.
+type Tag struct {
+	_ struct{} `type:"structure"`
+
+	// The key of the tag.
+	Key *string `min:"1" type:"string" required:"true"`
+
+	// The value of the tag.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation
+func (s Tag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Tag) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Tag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Tag"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 const (

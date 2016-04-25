@@ -4,6 +4,7 @@
 package route53domains
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
@@ -661,6 +662,19 @@ func (s CheckDomainAvailabilityInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CheckDomainAvailabilityInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CheckDomainAvailabilityInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The CheckDomainAvailability response includes the following elements.
 type CheckDomainAvailabilityOutput struct {
 	_ struct{} `type:"structure"`
@@ -901,6 +915,26 @@ func (s ContactDetail) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContactDetail) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContactDetail"}
+	if s.ExtraParams != nil {
+		for i, v := range s.ExtraParams {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ExtraParams", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The DeleteTagsForDomainRequest includes the following elements.
 type DeleteTagsForDomainInput struct {
 	_ struct{} `type:"structure"`
@@ -944,6 +978,22 @@ func (s DeleteTagsForDomainInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteTagsForDomainInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteTagsForDomainInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.TagsToDelete == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagsToDelete"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DeleteTagsForDomainOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -972,6 +1022,19 @@ func (s DisableDomainAutoRenewInput) String() string {
 // GoString returns the string representation
 func (s DisableDomainAutoRenewInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisableDomainAutoRenewInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisableDomainAutoRenewInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DisableDomainAutoRenewOutput struct {
@@ -1014,6 +1077,19 @@ func (s DisableDomainTransferLockInput) String() string {
 // GoString returns the string representation
 func (s DisableDomainTransferLockInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisableDomainTransferLockInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisableDomainTransferLockInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The DisableDomainTransferLock response includes the following element.
@@ -1096,6 +1172,19 @@ func (s EnableDomainAutoRenewInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EnableDomainAutoRenewInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EnableDomainAutoRenewInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type EnableDomainAutoRenewOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1136,6 +1225,19 @@ func (s EnableDomainTransferLockInput) String() string {
 // GoString returns the string representation
 func (s EnableDomainTransferLockInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EnableDomainTransferLockInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EnableDomainTransferLockInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The EnableDomainTransferLock response includes the following elements.
@@ -1209,6 +1311,22 @@ func (s ExtraParam) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExtraParam) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExtraParam"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The GetDomainDetail request includes the following element.
 type GetDomainDetailInput struct {
 	_ struct{} `type:"structure"`
@@ -1235,6 +1353,19 @@ func (s GetDomainDetailInput) String() string {
 // GoString returns the string representation
 func (s GetDomainDetailInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetDomainDetailInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetDomainDetailInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The GetDomainDetail response includes the following elements.
@@ -1412,6 +1543,19 @@ func (s GetOperationDetailInput) String() string {
 // GoString returns the string representation
 func (s GetOperationDetailInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetOperationDetailInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetOperationDetailInput"}
+	if s.OperationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OperationId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The GetOperationDetail response includes the following elements.
@@ -1619,6 +1763,19 @@ func (s ListTagsForDomainInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForDomainInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForDomainInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The ListTagsForDomain response includes the following elements.
 type ListTagsForDomainOutput struct {
 	_ struct{} `type:"structure"`
@@ -1687,6 +1844,19 @@ func (s Nameserver) String() string {
 // GoString returns the string representation
 func (s Nameserver) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Nameserver) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Nameserver"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // OperationSummary includes the following elements.
@@ -1855,6 +2025,49 @@ func (s RegisterDomainInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RegisterDomainInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RegisterDomainInput"}
+	if s.AdminContact == nil {
+		invalidParams.Add(request.NewErrParamRequired("AdminContact"))
+	}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DurationInYears == nil {
+		invalidParams.Add(request.NewErrParamRequired("DurationInYears"))
+	}
+	if s.DurationInYears != nil && *s.DurationInYears < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("DurationInYears", 1))
+	}
+	if s.RegistrantContact == nil {
+		invalidParams.Add(request.NewErrParamRequired("RegistrantContact"))
+	}
+	if s.TechContact == nil {
+		invalidParams.Add(request.NewErrParamRequired("TechContact"))
+	}
+	if s.AdminContact != nil {
+		if err := s.AdminContact.Validate(); err != nil {
+			invalidParams.AddNested("AdminContact", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RegistrantContact != nil {
+		if err := s.RegistrantContact.Validate(); err != nil {
+			invalidParams.AddNested("RegistrantContact", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TechContact != nil {
+		if err := s.TechContact.Validate(); err != nil {
+			invalidParams.AddNested("TechContact", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The RegisterDomain response includes the following element.
 type RegisterDomainOutput struct {
 	_ struct{} `type:"structure"`
@@ -1906,6 +2119,19 @@ func (s RetrieveDomainAuthCodeInput) String() string {
 // GoString returns the string representation
 func (s RetrieveDomainAuthCodeInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RetrieveDomainAuthCodeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RetrieveDomainAuthCodeInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The RetrieveDomainAuthCode response includes the following element.
@@ -2116,6 +2342,59 @@ func (s TransferDomainInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TransferDomainInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TransferDomainInput"}
+	if s.AdminContact == nil {
+		invalidParams.Add(request.NewErrParamRequired("AdminContact"))
+	}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DurationInYears == nil {
+		invalidParams.Add(request.NewErrParamRequired("DurationInYears"))
+	}
+	if s.DurationInYears != nil && *s.DurationInYears < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("DurationInYears", 1))
+	}
+	if s.RegistrantContact == nil {
+		invalidParams.Add(request.NewErrParamRequired("RegistrantContact"))
+	}
+	if s.TechContact == nil {
+		invalidParams.Add(request.NewErrParamRequired("TechContact"))
+	}
+	if s.AdminContact != nil {
+		if err := s.AdminContact.Validate(); err != nil {
+			invalidParams.AddNested("AdminContact", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Nameservers != nil {
+		for i, v := range s.Nameservers {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Nameservers", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.RegistrantContact != nil {
+		if err := s.RegistrantContact.Validate(); err != nil {
+			invalidParams.AddNested("RegistrantContact", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TechContact != nil {
+		if err := s.TechContact.Validate(); err != nil {
+			invalidParams.AddNested("TechContact", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The TranserDomain response includes the following element.
 type TransferDomainOutput struct {
 	_ struct{} `type:"structure"`
@@ -2200,6 +2479,34 @@ func (s UpdateDomainContactInput) String() string {
 // GoString returns the string representation
 func (s UpdateDomainContactInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateDomainContactInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateDomainContactInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.AdminContact != nil {
+		if err := s.AdminContact.Validate(); err != nil {
+			invalidParams.AddNested("AdminContact", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RegistrantContact != nil {
+		if err := s.RegistrantContact.Validate(); err != nil {
+			invalidParams.AddNested("RegistrantContact", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TechContact != nil {
+		if err := s.TechContact.Validate(); err != nil {
+			invalidParams.AddNested("TechContact", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The UpdateDomainContact response includes the following element.
@@ -2297,6 +2604,19 @@ func (s UpdateDomainContactPrivacyInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateDomainContactPrivacyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateDomainContactPrivacyInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The UpdateDomainContactPrivacy response includes the following element.
 type UpdateDomainContactPrivacyOutput struct {
 	_ struct{} `type:"structure"`
@@ -2360,6 +2680,32 @@ func (s UpdateDomainNameserversInput) String() string {
 // GoString returns the string representation
 func (s UpdateDomainNameserversInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateDomainNameserversInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateDomainNameserversInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.Nameservers == nil {
+		invalidParams.Add(request.NewErrParamRequired("Nameservers"))
+	}
+	if s.Nameservers != nil {
+		for i, v := range s.Nameservers {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Nameservers", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The UpdateDomainNameservers response includes the following element.
@@ -2457,6 +2803,19 @@ func (s UpdateTagsForDomainInput) String() string {
 // GoString returns the string representation
 func (s UpdateTagsForDomainInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateTagsForDomainInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateTagsForDomainInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type UpdateTagsForDomainOutput struct {

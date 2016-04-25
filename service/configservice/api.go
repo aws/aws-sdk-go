@@ -4,6 +4,7 @@
 package configservice
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
@@ -1089,6 +1090,35 @@ func (s ConfigRule) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConfigRule) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConfigRule"}
+	if s.ConfigRuleName != nil && len(*s.ConfigRuleName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigRuleName", 1))
+	}
+	if s.InputParameters != nil && len(*s.InputParameters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InputParameters", 1))
+	}
+	if s.Source == nil {
+		invalidParams.Add(request.NewErrParamRequired("Source"))
+	}
+	if s.Scope != nil {
+		if err := s.Scope.Validate(); err != nil {
+			invalidParams.AddNested("Scope", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Source != nil {
+		if err := s.Source.Validate(); err != nil {
+			invalidParams.AddNested("Source", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Status information for your AWS managed Config rules. The status includes
 // information such as the last time the rule ran, the last time it failed,
 // and the related error for the last failure.
@@ -1312,6 +1342,19 @@ func (s ConfigurationRecorder) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConfigurationRecorder) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConfigurationRecorder"}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The current status of the configuration recorder.
 type ConfigurationRecorderStatus struct {
 	_ struct{} `type:"structure"`
@@ -1368,6 +1411,22 @@ func (s DeleteConfigRuleInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteConfigRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteConfigRuleInput"}
+	if s.ConfigRuleName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigRuleName"))
+	}
+	if s.ConfigRuleName != nil && len(*s.ConfigRuleName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigRuleName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DeleteConfigRuleOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1401,6 +1460,22 @@ func (s DeleteDeliveryChannelInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteDeliveryChannelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteDeliveryChannelInput"}
+	if s.DeliveryChannelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeliveryChannelName"))
+	}
+	if s.DeliveryChannelName != nil && len(*s.DeliveryChannelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeliveryChannelName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DeleteDeliveryChannelOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1431,6 +1506,22 @@ func (s DeliverConfigSnapshotInput) String() string {
 // GoString returns the string representation
 func (s DeliverConfigSnapshotInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeliverConfigSnapshotInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeliverConfigSnapshotInput"}
+	if s.DeliveryChannelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeliveryChannelName"))
+	}
+	if s.DeliveryChannelName != nil && len(*s.DeliveryChannelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeliveryChannelName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The output for the DeliverConfigSnapshot action in JSON format.
@@ -1485,6 +1576,19 @@ func (s DeliveryChannel) String() string {
 // GoString returns the string representation
 func (s DeliveryChannel) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeliveryChannel) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeliveryChannel"}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The status of a specified delivery channel.
@@ -1602,6 +1706,22 @@ func (s DescribeComplianceByResourceInput) String() string {
 // GoString returns the string representation
 func (s DescribeComplianceByResourceInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeComplianceByResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeComplianceByResourceInput"}
+	if s.ResourceId != nil && len(*s.ResourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 1))
+	}
+	if s.ResourceType != nil && len(*s.ResourceType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceType", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DescribeComplianceByResourceOutput struct {
@@ -1895,6 +2015,37 @@ func (s Evaluation) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Evaluation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Evaluation"}
+	if s.Annotation != nil && len(*s.Annotation) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Annotation", 1))
+	}
+	if s.ComplianceResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ComplianceResourceId"))
+	}
+	if s.ComplianceResourceId != nil && len(*s.ComplianceResourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ComplianceResourceId", 1))
+	}
+	if s.ComplianceResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ComplianceResourceType"))
+	}
+	if s.ComplianceResourceType != nil && len(*s.ComplianceResourceType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ComplianceResourceType", 1))
+	}
+	if s.ComplianceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ComplianceType"))
+	}
+	if s.OrderingTimestamp == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrderingTimestamp"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The details of an AWS Config evaluation. Provides the AWS resource that was
 // evaluated, the compliance of the resource, related timestamps, and supplementary
 // information.
@@ -2018,6 +2169,22 @@ func (s GetComplianceDetailsByConfigRuleInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetComplianceDetailsByConfigRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetComplianceDetailsByConfigRuleInput"}
+	if s.ConfigRuleName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigRuleName"))
+	}
+	if s.ConfigRuleName != nil && len(*s.ConfigRuleName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigRuleName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type GetComplianceDetailsByConfigRuleOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2067,6 +2234,28 @@ func (s GetComplianceDetailsByResourceInput) String() string {
 // GoString returns the string representation
 func (s GetComplianceDetailsByResourceInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetComplianceDetailsByResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetComplianceDetailsByResourceInput"}
+	if s.ResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+	if s.ResourceId != nil && len(*s.ResourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 1))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+	if s.ResourceType != nil && len(*s.ResourceType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceType", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type GetComplianceDetailsByResourceOutput struct {
@@ -2206,6 +2395,22 @@ func (s GetResourceConfigHistoryInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetResourceConfigHistoryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetResourceConfigHistoryInput"}
+	if s.ResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The output for the GetResourceConfigHistory action.
 type GetResourceConfigHistoryOutput struct {
 	_ struct{} `type:"structure"`
@@ -2268,6 +2473,19 @@ func (s ListDiscoveredResourcesInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDiscoveredResourcesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDiscoveredResourcesInput"}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type ListDiscoveredResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2314,6 +2532,24 @@ func (s PutConfigRuleInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutConfigRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutConfigRuleInput"}
+	if s.ConfigRule == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigRule"))
+	}
+	if s.ConfigRule != nil {
+		if err := s.ConfigRule.Validate(); err != nil {
+			invalidParams.AddNested("ConfigRule", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type PutConfigRuleOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2347,6 +2583,24 @@ func (s PutConfigurationRecorderInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutConfigurationRecorderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutConfigurationRecorderInput"}
+	if s.ConfigurationRecorder == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigurationRecorder"))
+	}
+	if s.ConfigurationRecorder != nil {
+		if err := s.ConfigurationRecorder.Validate(); err != nil {
+			invalidParams.AddNested("ConfigurationRecorder", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type PutConfigurationRecorderOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2378,6 +2632,24 @@ func (s PutDeliveryChannelInput) String() string {
 // GoString returns the string representation
 func (s PutDeliveryChannelInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutDeliveryChannelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutDeliveryChannelInput"}
+	if s.DeliveryChannel == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeliveryChannel"))
+	}
+	if s.DeliveryChannel != nil {
+		if err := s.DeliveryChannel.Validate(); err != nil {
+			invalidParams.AddNested("DeliveryChannel", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type PutDeliveryChannelOutput struct {
@@ -2415,6 +2687,29 @@ func (s PutEvaluationsInput) String() string {
 // GoString returns the string representation
 func (s PutEvaluationsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutEvaluationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutEvaluationsInput"}
+	if s.ResultToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResultToken"))
+	}
+	if s.Evaluations != nil {
+		for i, v := range s.Evaluations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Evaluations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type PutEvaluationsOutput struct {
@@ -2610,6 +2905,25 @@ func (s Scope) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Scope) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Scope"}
+	if s.ComplianceResourceId != nil && len(*s.ComplianceResourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ComplianceResourceId", 1))
+	}
+	if s.TagKey != nil && len(*s.TagKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagKey", 1))
+	}
+	if s.TagValue != nil && len(*s.TagValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagValue", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Provides the AWS Config rule owner (AWS or customer), the rule identifier,
 // and the events that trigger the evaluation of your AWS resources.
 type Source struct {
@@ -2638,6 +2952,19 @@ func (s Source) String() string {
 // GoString returns the string representation
 func (s Source) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Source) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Source"}
+	if s.SourceIdentifier != nil && len(*s.SourceIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Provides the source and type of the event that triggers AWS Config to evaluate
@@ -2686,6 +3013,22 @@ func (s StartConfigurationRecorderInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartConfigurationRecorderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartConfigurationRecorderInput"}
+	if s.ConfigurationRecorderName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigurationRecorderName"))
+	}
+	if s.ConfigurationRecorderName != nil && len(*s.ConfigurationRecorderName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationRecorderName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type StartConfigurationRecorderOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2717,6 +3060,22 @@ func (s StopConfigurationRecorderInput) String() string {
 // GoString returns the string representation
 func (s StopConfigurationRecorderInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopConfigurationRecorderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopConfigurationRecorderInput"}
+	if s.ConfigurationRecorderName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigurationRecorderName"))
+	}
+	if s.ConfigurationRecorderName != nil && len(*s.ConfigurationRecorderName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationRecorderName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type StopConfigurationRecorderOutput struct {

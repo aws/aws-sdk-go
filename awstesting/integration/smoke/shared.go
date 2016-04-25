@@ -69,7 +69,7 @@ func init() {
 		err, ok := World["error"].(awserr.Error)
 		assert.True(T, ok, "no error returned")
 		if ok {
-			assert.Contains(T, err.Message(), data)
+			assert.Contains(T, err.Error(), data)
 		}
 	})
 
@@ -79,13 +79,13 @@ func init() {
 		if ok {
 			found := false
 			for _, row := range table {
-				if strings.Contains(err.Message(), row[0]) {
+				if strings.Contains(err.Error(), row[0]) {
 					found = true
 					break
 				}
 			}
 
-			assert.True(T, found, fmt.Sprintf("no error messages matched: \"%s\"", err.Message()))
+			assert.True(T, found, fmt.Sprintf("no error messages matched: \"%s\"", err.Error()))
 		}
 	})
 

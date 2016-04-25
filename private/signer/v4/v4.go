@@ -337,7 +337,7 @@ func (v4 *signer) buildCanonicalHeaders(r rule, header http.Header) {
 		}
 	}
 
-	v4.canonicalHeaders = strings.Join(headerValues, "\n")
+	v4.canonicalHeaders = strings.Join(stripExcessSpaces(headerValues), "\n")
 }
 
 func (v4 *signer) buildCanonicalString() {
@@ -442,4 +442,24 @@ func makeSha256Reader(reader io.ReadSeeker) []byte {
 
 	io.Copy(hash, reader)
 	return hash.Sum(nil)
+}
+
+func stripExcessSpaces(headerVals []string) []string {
+	vals := make([]string, len(headerVals))
+	for i, str := range headerVals {
+		stripped := ""
+		found := false
+		str = strings.TrimSpace(str)
+		for _, c := range str {
+			if !found && c == ' ' {
+				stripped += string(c)
+				found = true
+			} else if c != ' ' {
+				stripped += string(c)
+				found = false
+			}
+		}
+		vals[i] = stripped
+	}
+	return vals
 }

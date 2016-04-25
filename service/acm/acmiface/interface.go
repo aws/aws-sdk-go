@@ -10,6 +10,10 @@ import (
 
 // ACMAPI is the interface type for acm.ACM.
 type ACMAPI interface {
+	AddTagsToCertificateRequest(*acm.AddTagsToCertificateInput) (*request.Request, *acm.AddTagsToCertificateOutput)
+
+	AddTagsToCertificate(*acm.AddTagsToCertificateInput) (*acm.AddTagsToCertificateOutput, error)
+
 	DeleteCertificateRequest(*acm.DeleteCertificateInput) (*request.Request, *acm.DeleteCertificateOutput)
 
 	DeleteCertificate(*acm.DeleteCertificateInput) (*acm.DeleteCertificateOutput, error)
@@ -27,6 +31,14 @@ type ACMAPI interface {
 	ListCertificates(*acm.ListCertificatesInput) (*acm.ListCertificatesOutput, error)
 
 	ListCertificatesPages(*acm.ListCertificatesInput, func(*acm.ListCertificatesOutput, bool) bool) error
+
+	ListTagsForCertificateRequest(*acm.ListTagsForCertificateInput) (*request.Request, *acm.ListTagsForCertificateOutput)
+
+	ListTagsForCertificate(*acm.ListTagsForCertificateInput) (*acm.ListTagsForCertificateOutput, error)
+
+	RemoveTagsFromCertificateRequest(*acm.RemoveTagsFromCertificateInput) (*request.Request, *acm.RemoveTagsFromCertificateOutput)
+
+	RemoveTagsFromCertificate(*acm.RemoveTagsFromCertificateInput) (*acm.RemoveTagsFromCertificateOutput, error)
 
 	RequestCertificateRequest(*acm.RequestCertificateInput) (*request.Request, *acm.RequestCertificateOutput)
 

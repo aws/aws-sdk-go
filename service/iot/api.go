@@ -4,6 +4,7 @@
 package iot
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
@@ -1553,6 +1554,22 @@ func (s AcceptCertificateTransferInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AcceptCertificateTransferInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AcceptCertificateTransferInput"}
+	if s.CertificateId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificateId"))
+	}
+	if s.CertificateId != nil && len(*s.CertificateId) < 64 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificateId", 64))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type AcceptCertificateTransferOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1615,6 +1632,71 @@ func (s Action) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Action) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Action"}
+	if s.CloudwatchAlarm != nil {
+		if err := s.CloudwatchAlarm.Validate(); err != nil {
+			invalidParams.AddNested("CloudwatchAlarm", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.CloudwatchMetric != nil {
+		if err := s.CloudwatchMetric.Validate(); err != nil {
+			invalidParams.AddNested("CloudwatchMetric", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DynamoDB != nil {
+		if err := s.DynamoDB.Validate(); err != nil {
+			invalidParams.AddNested("DynamoDB", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Elasticsearch != nil {
+		if err := s.Elasticsearch.Validate(); err != nil {
+			invalidParams.AddNested("Elasticsearch", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Firehose != nil {
+		if err := s.Firehose.Validate(); err != nil {
+			invalidParams.AddNested("Firehose", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Kinesis != nil {
+		if err := s.Kinesis.Validate(); err != nil {
+			invalidParams.AddNested("Kinesis", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Lambda != nil {
+		if err := s.Lambda.Validate(); err != nil {
+			invalidParams.AddNested("Lambda", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Republish != nil {
+		if err := s.Republish.Validate(); err != nil {
+			invalidParams.AddNested("Republish", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.S3 != nil {
+		if err := s.S3.Validate(); err != nil {
+			invalidParams.AddNested("S3", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Sns != nil {
+		if err := s.Sns.Validate(); err != nil {
+			invalidParams.AddNested("Sns", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Sqs != nil {
+		if err := s.Sqs.Validate(); err != nil {
+			invalidParams.AddNested("Sqs", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The input for the AttachPrincipalPolicy operation.
 type AttachPrincipalPolicyInput struct {
 	_ struct{} `type:"structure"`
@@ -1635,6 +1717,25 @@ func (s AttachPrincipalPolicyInput) String() string {
 // GoString returns the string representation
 func (s AttachPrincipalPolicyInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AttachPrincipalPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AttachPrincipalPolicyInput"}
+	if s.PolicyName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyName"))
+	}
+	if s.PolicyName != nil && len(*s.PolicyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyName", 1))
+	}
+	if s.Principal == nil {
+		invalidParams.Add(request.NewErrParamRequired("Principal"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type AttachPrincipalPolicyOutput struct {
@@ -1670,6 +1771,25 @@ func (s AttachThingPrincipalInput) String() string {
 // GoString returns the string representation
 func (s AttachThingPrincipalInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AttachThingPrincipalInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AttachThingPrincipalInput"}
+	if s.Principal == nil {
+		invalidParams.Add(request.NewErrParamRequired("Principal"))
+	}
+	if s.ThingName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ThingName"))
+	}
+	if s.ThingName != nil && len(*s.ThingName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ThingName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The output from the AttachThingPrincipal operation.
@@ -1785,6 +1905,22 @@ func (s CancelCertificateTransferInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CancelCertificateTransferInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CancelCertificateTransferInput"}
+	if s.CertificateId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificateId"))
+	}
+	if s.CertificateId != nil && len(*s.CertificateId) < 64 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificateId", 64))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type CancelCertificateTransferOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1898,6 +2034,28 @@ func (s CloudwatchAlarmAction) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CloudwatchAlarmAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CloudwatchAlarmAction"}
+	if s.AlarmName == nil {
+		invalidParams.Add(request.NewErrParamRequired("AlarmName"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.StateReason == nil {
+		invalidParams.Add(request.NewErrParamRequired("StateReason"))
+	}
+	if s.StateValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("StateValue"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Describes an action that captures a CloudWatch metric.
 type CloudwatchMetricAction struct {
 	_ struct{} `type:"structure"`
@@ -1932,6 +2090,31 @@ func (s CloudwatchMetricAction) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CloudwatchMetricAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CloudwatchMetricAction"}
+	if s.MetricName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetricName"))
+	}
+	if s.MetricNamespace == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetricNamespace"))
+	}
+	if s.MetricUnit == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetricUnit"))
+	}
+	if s.MetricValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetricValue"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The input for the CreateCertificateFromCsr operation.
 type CreateCertificateFromCsrInput struct {
 	_ struct{} `type:"structure"`
@@ -1951,6 +2134,22 @@ func (s CreateCertificateFromCsrInput) String() string {
 // GoString returns the string representation
 func (s CreateCertificateFromCsrInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateCertificateFromCsrInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateCertificateFromCsrInput"}
+	if s.CertificateSigningRequest == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificateSigningRequest"))
+	}
+	if s.CertificateSigningRequest != nil && len(*s.CertificateSigningRequest) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificateSigningRequest", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The output from the CreateCertificateFromCsr operation.
@@ -2047,6 +2246,25 @@ func (s CreatePolicyInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreatePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreatePolicyInput"}
+	if s.PolicyDocument == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyDocument"))
+	}
+	if s.PolicyName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyName"))
+	}
+	if s.PolicyName != nil && len(*s.PolicyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The output from the CreatePolicy operation.
 type CreatePolicyOutput struct {
 	_ struct{} `type:"structure"`
@@ -2101,6 +2319,25 @@ func (s CreatePolicyVersionInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreatePolicyVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreatePolicyVersionInput"}
+	if s.PolicyDocument == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyDocument"))
+	}
+	if s.PolicyName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyName"))
+	}
+	if s.PolicyName != nil && len(*s.PolicyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The output of the CreatePolicyVersion operation.
 type CreatePolicyVersionOutput struct {
 	_ struct{} `type:"structure"`
@@ -2150,6 +2387,22 @@ func (s CreateThingInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateThingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateThingInput"}
+	if s.ThingName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ThingName"))
+	}
+	if s.ThingName != nil && len(*s.ThingName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ThingName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The output of the CreateThing operation.
 type CreateThingOutput struct {
 	_ struct{} `type:"structure"`
@@ -2192,6 +2445,30 @@ func (s CreateTopicRuleInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateTopicRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateTopicRuleInput"}
+	if s.RuleName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleName"))
+	}
+	if s.RuleName != nil && len(*s.RuleName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RuleName", 1))
+	}
+	if s.TopicRulePayload == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopicRulePayload"))
+	}
+	if s.TopicRulePayload != nil {
+		if err := s.TopicRulePayload.Validate(); err != nil {
+			invalidParams.AddNested("TopicRulePayload", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type CreateTopicRuleOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2222,6 +2499,22 @@ func (s DeleteCACertificateInput) String() string {
 // GoString returns the string representation
 func (s DeleteCACertificateInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteCACertificateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteCACertificateInput"}
+	if s.CertificateId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificateId"))
+	}
+	if s.CertificateId != nil && len(*s.CertificateId) < 64 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificateId", 64))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The output for the DeleteCACertificate operation.
@@ -2257,6 +2550,22 @@ func (s DeleteCertificateInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteCertificateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteCertificateInput"}
+	if s.CertificateId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificateId"))
+	}
+	if s.CertificateId != nil && len(*s.CertificateId) < 64 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificateId", 64))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DeleteCertificateOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2287,6 +2596,22 @@ func (s DeletePolicyInput) String() string {
 // GoString returns the string representation
 func (s DeletePolicyInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeletePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeletePolicyInput"}
+	if s.PolicyName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyName"))
+	}
+	if s.PolicyName != nil && len(*s.PolicyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DeletePolicyOutput struct {
@@ -2322,6 +2647,25 @@ func (s DeletePolicyVersionInput) String() string {
 // GoString returns the string representation
 func (s DeletePolicyVersionInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeletePolicyVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeletePolicyVersionInput"}
+	if s.PolicyName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyName"))
+	}
+	if s.PolicyName != nil && len(*s.PolicyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyName", 1))
+	}
+	if s.PolicyVersionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyVersionId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DeletePolicyVersionOutput struct {
@@ -2386,6 +2730,22 @@ func (s DeleteThingInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteThingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteThingInput"}
+	if s.ThingName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ThingName"))
+	}
+	if s.ThingName != nil && len(*s.ThingName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ThingName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The output of the DeleteThing operation.
 type DeleteThingOutput struct {
 	_ struct{} `type:"structure"`
@@ -2419,6 +2779,22 @@ func (s DeleteTopicRuleInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteTopicRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteTopicRuleInput"}
+	if s.RuleName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleName"))
+	}
+	if s.RuleName != nil && len(*s.RuleName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RuleName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DeleteTopicRuleOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2449,6 +2825,22 @@ func (s DescribeCACertificateInput) String() string {
 // GoString returns the string representation
 func (s DescribeCACertificateInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeCACertificateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeCACertificateInput"}
+	if s.CertificateId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificateId"))
+	}
+	if s.CertificateId != nil && len(*s.CertificateId) < 64 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificateId", 64))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The output from the DescribeCACertificate operation.
@@ -2485,6 +2877,22 @@ func (s DescribeCertificateInput) String() string {
 // GoString returns the string representation
 func (s DescribeCertificateInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeCertificateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeCertificateInput"}
+	if s.CertificateId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificateId"))
+	}
+	if s.CertificateId != nil && len(*s.CertificateId) < 64 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificateId", 64))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The output of the DescribeCertificate operation.
@@ -2556,6 +2964,22 @@ func (s DescribeThingInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeThingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeThingInput"}
+	if s.ThingName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ThingName"))
+	}
+	if s.ThingName != nil && len(*s.ThingName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ThingName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The output from the DescribeThing operation.
 type DescribeThingOutput struct {
 	_ struct{} `type:"structure"`
@@ -2605,6 +3029,25 @@ func (s DetachPrincipalPolicyInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DetachPrincipalPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DetachPrincipalPolicyInput"}
+	if s.PolicyName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyName"))
+	}
+	if s.PolicyName != nil && len(*s.PolicyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyName", 1))
+	}
+	if s.Principal == nil {
+		invalidParams.Add(request.NewErrParamRequired("Principal"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DetachPrincipalPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2640,6 +3083,25 @@ func (s DetachThingPrincipalInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DetachThingPrincipalInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DetachThingPrincipalInput"}
+	if s.Principal == nil {
+		invalidParams.Add(request.NewErrParamRequired("Principal"))
+	}
+	if s.ThingName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ThingName"))
+	}
+	if s.ThingName != nil && len(*s.ThingName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ThingName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The output from the DetachThingPrincipal operation.
 type DetachThingPrincipalOutput struct {
 	_ struct{} `type:"structure"`
@@ -2671,6 +3133,22 @@ func (s DisableTopicRuleInput) String() string {
 // GoString returns the string representation
 func (s DisableTopicRuleInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisableTopicRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisableTopicRuleInput"}
+	if s.RuleName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleName"))
+	}
+	if s.RuleName != nil && len(*s.RuleName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RuleName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DisableTopicRuleOutput struct {
@@ -2739,6 +3217,34 @@ func (s DynamoDBAction) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DynamoDBAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DynamoDBAction"}
+	if s.HashKeyField == nil {
+		invalidParams.Add(request.NewErrParamRequired("HashKeyField"))
+	}
+	if s.HashKeyValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("HashKeyValue"))
+	}
+	if s.RangeKeyField == nil {
+		invalidParams.Add(request.NewErrParamRequired("RangeKeyField"))
+	}
+	if s.RangeKeyValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("RangeKeyValue"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.TableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Describes an action that writes data to an Amazon Elasticsearch Service;
 // domain.
 type ElasticsearchAction struct {
@@ -2770,6 +3276,31 @@ func (s ElasticsearchAction) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ElasticsearchAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ElasticsearchAction"}
+	if s.Endpoint == nil {
+		invalidParams.Add(request.NewErrParamRequired("Endpoint"))
+	}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Index == nil {
+		invalidParams.Add(request.NewErrParamRequired("Index"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The input for the EnableTopicRuleRequest operation.
 type EnableTopicRuleInput struct {
 	_ struct{} `type:"structure"`
@@ -2786,6 +3317,22 @@ func (s EnableTopicRuleInput) String() string {
 // GoString returns the string representation
 func (s EnableTopicRuleInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EnableTopicRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EnableTopicRuleInput"}
+	if s.RuleName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleName"))
+	}
+	if s.RuleName != nil && len(*s.RuleName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RuleName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type EnableTopicRuleOutput struct {
@@ -2821,6 +3368,22 @@ func (s FirehoseAction) String() string {
 // GoString returns the string representation
 func (s FirehoseAction) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FirehoseAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FirehoseAction"}
+	if s.DeliveryStreamName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeliveryStreamName"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The input for the GetLoggingOptions operation.
@@ -2877,6 +3440,22 @@ func (s GetPolicyInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetPolicyInput"}
+	if s.PolicyName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyName"))
+	}
+	if s.PolicyName != nil && len(*s.PolicyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The output from the GetPolicy operation.
 type GetPolicyOutput struct {
 	_ struct{} `type:"structure"`
@@ -2923,6 +3502,25 @@ func (s GetPolicyVersionInput) String() string {
 // GoString returns the string representation
 func (s GetPolicyVersionInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetPolicyVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetPolicyVersionInput"}
+	if s.PolicyName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyName"))
+	}
+	if s.PolicyName != nil && len(*s.PolicyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyName", 1))
+	}
+	if s.PolicyVersionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyVersionId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The output from the GetPolicyVersion operation.
@@ -3006,6 +3604,22 @@ func (s GetTopicRuleInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetTopicRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetTopicRuleInput"}
+	if s.RuleName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleName"))
+	}
+	if s.RuleName != nil && len(*s.RuleName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RuleName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The output from the GetTopicRule operation.
 type GetTopicRuleOutput struct {
 	_ struct{} `type:"structure"`
@@ -3072,6 +3686,22 @@ func (s KinesisAction) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KinesisAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KinesisAction"}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.StreamName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StreamName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Describes an action to invoke a Lambda function.
 type LambdaAction struct {
 	_ struct{} `type:"structure"`
@@ -3088,6 +3718,19 @@ func (s LambdaAction) String() string {
 // GoString returns the string representation
 func (s LambdaAction) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LambdaAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LambdaAction"}
+	if s.FunctionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FunctionArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Input for the ListCACertificates operation.
@@ -3112,6 +3755,19 @@ func (s ListCACertificatesInput) String() string {
 // GoString returns the string representation
 func (s ListCACertificatesInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCACertificatesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCACertificatesInput"}
+	if s.PageSize != nil && *s.PageSize < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("PageSize", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The output from the ListCACertificates operation.
@@ -3164,6 +3820,25 @@ func (s ListCertificatesByCAInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCertificatesByCAInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCertificatesByCAInput"}
+	if s.CaCertificateId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CaCertificateId"))
+	}
+	if s.CaCertificateId != nil && len(*s.CaCertificateId) < 64 {
+		invalidParams.Add(request.NewErrParamMinLen("CaCertificateId", 64))
+	}
+	if s.PageSize != nil && *s.PageSize < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("PageSize", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The output of the ListCertificatesByCA operation.
 type ListCertificatesByCAOutput struct {
 	_ struct{} `type:"structure"`
@@ -3209,6 +3884,19 @@ func (s ListCertificatesInput) String() string {
 // GoString returns the string representation
 func (s ListCertificatesInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCertificatesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCertificatesInput"}
+	if s.PageSize != nil && *s.PageSize < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("PageSize", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The output of the ListCertificates operation.
@@ -3258,6 +3946,19 @@ func (s ListPoliciesInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListPoliciesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListPoliciesInput"}
+	if s.PageSize != nil && *s.PageSize < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("PageSize", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The output from the ListPolicies operation.
 type ListPoliciesOutput struct {
 	_ struct{} `type:"structure"`
@@ -3296,6 +3997,22 @@ func (s ListPolicyVersionsInput) String() string {
 // GoString returns the string representation
 func (s ListPolicyVersionsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListPolicyVersionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListPolicyVersionsInput"}
+	if s.PolicyName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyName"))
+	}
+	if s.PolicyName != nil && len(*s.PolicyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The output from the ListPolicyVersions operation.
@@ -3344,6 +4061,22 @@ func (s ListPrincipalPoliciesInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListPrincipalPoliciesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListPrincipalPoliciesInput"}
+	if s.PageSize != nil && *s.PageSize < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("PageSize", 1))
+	}
+	if s.Principal == nil {
+		invalidParams.Add(request.NewErrParamRequired("Principal"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The output from the ListPrincipalPolicies operation.
 type ListPrincipalPoliciesOutput struct {
 	_ struct{} `type:"structure"`
@@ -3390,6 +4123,22 @@ func (s ListPrincipalThingsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListPrincipalThingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListPrincipalThingsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Principal == nil {
+		invalidParams.Add(request.NewErrParamRequired("Principal"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The output from the ListPrincipalThings operation.
 type ListPrincipalThingsOutput struct {
 	_ struct{} `type:"structure"`
@@ -3427,6 +4176,22 @@ func (s ListThingPrincipalsInput) String() string {
 // GoString returns the string representation
 func (s ListThingPrincipalsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListThingPrincipalsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListThingPrincipalsInput"}
+	if s.ThingName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ThingName"))
+	}
+	if s.ThingName != nil && len(*s.ThingName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ThingName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The output from the ListThingPrincipals operation.
@@ -3472,6 +4237,19 @@ func (s ListThingsInput) String() string {
 // GoString returns the string representation
 func (s ListThingsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListThingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListThingsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The output from the ListThings operation.
@@ -3522,6 +4300,19 @@ func (s ListTopicRulesInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTopicRulesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTopicRulesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The output from the ListTopicRules operation.
 type ListTopicRulesOutput struct {
 	_ struct{} `type:"structure"`
@@ -3562,6 +4353,19 @@ func (s LoggingOptionsPayload) String() string {
 // GoString returns the string representation
 func (s LoggingOptionsPayload) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LoggingOptionsPayload) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LoggingOptionsPayload"}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Describes an AWS IoT policy.
@@ -3633,6 +4437,28 @@ func (s RegisterCACertificateInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RegisterCACertificateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RegisterCACertificateInput"}
+	if s.CaCertificate == nil {
+		invalidParams.Add(request.NewErrParamRequired("CaCertificate"))
+	}
+	if s.CaCertificate != nil && len(*s.CaCertificate) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CaCertificate", 1))
+	}
+	if s.VerificationCertificate == nil {
+		invalidParams.Add(request.NewErrParamRequired("VerificationCertificate"))
+	}
+	if s.VerificationCertificate != nil && len(*s.VerificationCertificate) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VerificationCertificate", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The output from the RegisterCACertificateResponse operation.
 type RegisterCACertificateOutput struct {
 	_ struct{} `type:"structure"`
@@ -3678,6 +4504,25 @@ func (s RegisterCertificateInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RegisterCertificateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RegisterCertificateInput"}
+	if s.CaCertificatePem != nil && len(*s.CaCertificatePem) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CaCertificatePem", 1))
+	}
+	if s.CertificatePem == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificatePem"))
+	}
+	if s.CertificatePem != nil && len(*s.CertificatePem) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificatePem", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The output from the RegisterCertificate operation.
 type RegisterCertificateOutput struct {
 	_ struct{} `type:"structure"`
@@ -3720,6 +4565,22 @@ func (s RejectCertificateTransferInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RejectCertificateTransferInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RejectCertificateTransferInput"}
+	if s.CertificateId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificateId"))
+	}
+	if s.CertificateId != nil && len(*s.CertificateId) < 64 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificateId", 64))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type RejectCertificateTransferOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3753,6 +4614,30 @@ func (s ReplaceTopicRuleInput) String() string {
 // GoString returns the string representation
 func (s ReplaceTopicRuleInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReplaceTopicRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReplaceTopicRuleInput"}
+	if s.RuleName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleName"))
+	}
+	if s.RuleName != nil && len(*s.RuleName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RuleName", 1))
+	}
+	if s.TopicRulePayload == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopicRulePayload"))
+	}
+	if s.TopicRulePayload != nil {
+		if err := s.TopicRulePayload.Validate(); err != nil {
+			invalidParams.AddNested("TopicRulePayload", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type ReplaceTopicRuleOutput struct {
@@ -3790,6 +4675,22 @@ func (s RepublishAction) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RepublishAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RepublishAction"}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.Topic == nil {
+		invalidParams.Add(request.NewErrParamRequired("Topic"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Describes an action to write data to an Amazon S3 bucket.
 type S3Action struct {
 	_ struct{} `type:"structure"`
@@ -3814,6 +4715,25 @@ func (s S3Action) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3Action) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3Action"}
+	if s.BucketName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketName"))
+	}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The input for the SetDefaultPolicyVersion operation.
 type SetDefaultPolicyVersionInput struct {
 	_ struct{} `type:"structure"`
@@ -3833,6 +4753,25 @@ func (s SetDefaultPolicyVersionInput) String() string {
 // GoString returns the string representation
 func (s SetDefaultPolicyVersionInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SetDefaultPolicyVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SetDefaultPolicyVersionInput"}
+	if s.PolicyName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyName"))
+	}
+	if s.PolicyName != nil && len(*s.PolicyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyName", 1))
+	}
+	if s.PolicyVersionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyVersionId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type SetDefaultPolicyVersionOutput struct {
@@ -3865,6 +4804,24 @@ func (s SetLoggingOptionsInput) String() string {
 // GoString returns the string representation
 func (s SetLoggingOptionsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SetLoggingOptionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SetLoggingOptionsInput"}
+	if s.LoggingOptionsPayload == nil {
+		invalidParams.Add(request.NewErrParamRequired("LoggingOptionsPayload"))
+	}
+	if s.LoggingOptionsPayload != nil {
+		if err := s.LoggingOptionsPayload.Validate(); err != nil {
+			invalidParams.AddNested("LoggingOptionsPayload", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type SetLoggingOptionsOutput struct {
@@ -3909,6 +4866,22 @@ func (s SnsAction) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SnsAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SnsAction"}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.TargetArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Describes an action to publish data to an Amazon SQS queue.
 type SqsAction struct {
 	_ struct{} `type:"structure"`
@@ -3931,6 +4904,22 @@ func (s SqsAction) String() string {
 // GoString returns the string representation
 func (s SqsAction) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SqsAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SqsAction"}
+	if s.QueueUrl == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueueUrl"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Describes a thing attribute.
@@ -3960,6 +4949,9 @@ type TopicRule struct {
 
 	// The actions associated with the rule.
 	Actions []*Action `locationName:"actions" type:"list"`
+
+	// The version of the SQL rules engine to use when evaluating the rule.
+	AwsIotSqlVersion *string `locationName:"awsIotSqlVersion" type:"string"`
 
 	// The date and time the rule was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"unix"`
@@ -4025,6 +5017,9 @@ type TopicRulePayload struct {
 	// The actions associated with the rule.
 	Actions []*Action `locationName:"actions" type:"list" required:"true"`
 
+	// The version of the SQL rules engine to use when evaluating the rule.
+	AwsIotSqlVersion *string `locationName:"awsIotSqlVersion" type:"string"`
+
 	// The description of the rule.
 	Description *string `locationName:"description" type:"string"`
 
@@ -4045,6 +5040,32 @@ func (s TopicRulePayload) String() string {
 // GoString returns the string representation
 func (s TopicRulePayload) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TopicRulePayload) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TopicRulePayload"}
+	if s.Actions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Actions"))
+	}
+	if s.Sql == nil {
+		invalidParams.Add(request.NewErrParamRequired("Sql"))
+	}
+	if s.Actions != nil {
+		for i, v := range s.Actions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Actions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The input for the TransferCertificate operation.
@@ -4069,6 +5090,25 @@ func (s TransferCertificateInput) String() string {
 // GoString returns the string representation
 func (s TransferCertificateInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TransferCertificateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TransferCertificateInput"}
+	if s.CertificateId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificateId"))
+	}
+	if s.CertificateId != nil && len(*s.CertificateId) < 64 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificateId", 64))
+	}
+	if s.TargetAwsAccount == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetAwsAccount"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The output from the TransferCertificate operation.
@@ -4140,6 +5180,25 @@ func (s UpdateCACertificateInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateCACertificateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateCACertificateInput"}
+	if s.CertificateId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificateId"))
+	}
+	if s.CertificateId != nil && len(*s.CertificateId) < 64 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificateId", 64))
+	}
+	if s.NewStatus == nil {
+		invalidParams.Add(request.NewErrParamRequired("NewStatus"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type UpdateCACertificateOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4179,6 +5238,25 @@ func (s UpdateCertificateInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateCertificateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateCertificateInput"}
+	if s.CertificateId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificateId"))
+	}
+	if s.CertificateId != nil && len(*s.CertificateId) < 64 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificateId", 64))
+	}
+	if s.NewStatus == nil {
+		invalidParams.Add(request.NewErrParamRequired("NewStatus"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type UpdateCertificateOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4213,6 +5291,25 @@ func (s UpdateThingInput) String() string {
 // GoString returns the string representation
 func (s UpdateThingInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateThingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateThingInput"}
+	if s.AttributePayload == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttributePayload"))
+	}
+	if s.ThingName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ThingName"))
+	}
+	if s.ThingName != nil && len(*s.ThingName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ThingName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The output from the UpdateThing operation.

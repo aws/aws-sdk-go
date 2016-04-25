@@ -13,7 +13,7 @@ import (
 
 // Amazon Inspector enables you to analyze the behavior of your AWS resources
 // and to identify potential security issues. For more information, see  Amazon
-// Inspector User Guide (https://docs.aws.amazon.com/inspector/latest/userguide/inspector_introduction.html).
+// Inspector User Guide (http://docs.aws.amazon.com/inspector/latest/userguide/inspector_introduction.html).
 //The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
 type Inspector struct {

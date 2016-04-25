@@ -4,6 +4,7 @@
 package ssm
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
@@ -603,6 +604,25 @@ func (s AssociationFilter) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociationFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociationFilter"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Describes an association status.
 type AssociationStatus struct {
 	_ struct{} `type:"structure"`
@@ -630,6 +650,25 @@ func (s AssociationStatus) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociationStatus) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociationStatus"}
+	if s.Date == nil {
+		invalidParams.Add(request.NewErrParamRequired("Date"))
+	}
+	if s.Message == nil {
+		invalidParams.Add(request.NewErrParamRequired("Message"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type CancelCommandInput struct {
 	_ struct{} `type:"structure"`
 
@@ -650,6 +689,25 @@ func (s CancelCommandInput) String() string {
 // GoString returns the string representation
 func (s CancelCommandInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CancelCommandInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CancelCommandInput"}
+	if s.CommandId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CommandId"))
+	}
+	if s.CommandId != nil && len(*s.CommandId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("CommandId", 36))
+	}
+	if s.InstanceIds != nil && len(s.InstanceIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceIds", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Whether or not the command was successfully canceled. There is no guarantee
@@ -738,6 +796,25 @@ func (s CommandFilter) String() string {
 // GoString returns the string representation
 func (s CommandFilter) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CommandFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CommandFilter"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // An invocation is copy of a command sent to a specific instance. A command
@@ -844,6 +921,19 @@ func (s CreateAssociationBatchInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAssociationBatchInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAssociationBatchInput"}
+	if s.Entries == nil {
+		invalidParams.Add(request.NewErrParamRequired("Entries"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type CreateAssociationBatchOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -911,6 +1001,22 @@ func (s CreateAssociationInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAssociationInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type CreateAssociationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -947,6 +1053,25 @@ func (s CreateDocumentInput) String() string {
 // GoString returns the string representation
 func (s CreateDocumentInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateDocumentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateDocumentInput"}
+	if s.Content == nil {
+		invalidParams.Add(request.NewErrParamRequired("Content"))
+	}
+	if s.Content != nil && len(*s.Content) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Content", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type CreateDocumentOutput struct {
@@ -986,6 +1111,22 @@ func (s DeleteAssociationInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAssociationInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DeleteAssociationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1015,6 +1156,19 @@ func (s DeleteDocumentInput) String() string {
 // GoString returns the string representation
 func (s DeleteDocumentInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteDocumentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteDocumentInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DeleteDocumentOutput struct {
@@ -1051,6 +1205,22 @@ func (s DescribeAssociationInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeAssociationInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type DescribeAssociationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1083,6 +1253,19 @@ func (s DescribeDocumentInput) String() string {
 // GoString returns the string representation
 func (s DescribeDocumentInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDocumentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDocumentInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DescribeDocumentOutput struct {
@@ -1126,6 +1309,32 @@ func (s DescribeInstanceInformationInput) String() string {
 // GoString returns the string representation
 func (s DescribeInstanceInformationInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeInstanceInformationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeInstanceInformationInput"}
+	if s.InstanceInformationFilterList != nil && len(s.InstanceInformationFilterList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceInformationFilterList", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 5 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 5))
+	}
+	if s.InstanceInformationFilterList != nil {
+		for i, v := range s.InstanceInformationFilterList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "InstanceInformationFilterList", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type DescribeInstanceInformationOutput struct {
@@ -1204,6 +1413,25 @@ func (s DocumentFilter) String() string {
 // GoString returns the string representation
 func (s DocumentFilter) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DocumentFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DocumentFilter"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Describes the name of an SSM document.
@@ -1296,6 +1524,19 @@ func (s GetDocumentInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetDocumentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetDocumentInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type GetDocumentOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1376,6 +1617,25 @@ func (s InstanceInformationFilter) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InstanceInformationFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InstanceInformationFilter"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.ValueSet == nil {
+		invalidParams.Add(request.NewErrParamRequired("ValueSet"))
+	}
+	if s.ValueSet != nil && len(s.ValueSet) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueSet", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type ListAssociationsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1400,6 +1660,35 @@ func (s ListAssociationsInput) String() string {
 // GoString returns the string representation
 func (s ListAssociationsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAssociationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAssociationsInput"}
+	if s.AssociationFilterList == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssociationFilterList"))
+	}
+	if s.AssociationFilterList != nil && len(s.AssociationFilterList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssociationFilterList", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.AssociationFilterList != nil {
+		for i, v := range s.AssociationFilterList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AssociationFilterList", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type ListAssociationsOutput struct {
@@ -1460,6 +1749,35 @@ func (s ListCommandInvocationsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCommandInvocationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCommandInvocationsInput"}
+	if s.CommandId != nil && len(*s.CommandId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("CommandId", 36))
+	}
+	if s.Filters != nil && len(s.Filters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filters", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type ListCommandInvocationsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1514,6 +1832,35 @@ func (s ListCommandsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCommandsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCommandsInput"}
+	if s.CommandId != nil && len(*s.CommandId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("CommandId", 36))
+	}
+	if s.Filters != nil && len(s.Filters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filters", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type ListCommandsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1559,6 +1906,32 @@ func (s ListDocumentsInput) String() string {
 // GoString returns the string representation
 func (s ListDocumentsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDocumentsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDocumentsInput"}
+	if s.DocumentFilterList != nil && len(s.DocumentFilterList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DocumentFilterList", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.DocumentFilterList != nil {
+		for i, v := range s.DocumentFilterList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DocumentFilterList", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type ListDocumentsOutput struct {
@@ -1622,6 +1995,31 @@ func (s SendCommandInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SendCommandInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SendCommandInput"}
+	if s.DocumentName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DocumentName"))
+	}
+	if s.InstanceIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceIds"))
+	}
+	if s.InstanceIds != nil && len(s.InstanceIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceIds", 1))
+	}
+	if s.OutputS3BucketName != nil && len(*s.OutputS3BucketName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("OutputS3BucketName", 3))
+	}
+	if s.TimeoutSeconds != nil && *s.TimeoutSeconds < 30 {
+		invalidParams.Add(request.NewErrParamMinValue("TimeoutSeconds", 30))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type SendCommandOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1661,6 +2059,30 @@ func (s UpdateAssociationStatusInput) String() string {
 // GoString returns the string representation
 func (s UpdateAssociationStatusInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateAssociationStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateAssociationStatusInput"}
+	if s.AssociationStatus == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssociationStatus"))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.AssociationStatus != nil {
+		if err := s.AssociationStatus.Validate(); err != nil {
+			invalidParams.AddNested("AssociationStatus", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 type UpdateAssociationStatusOutput struct {

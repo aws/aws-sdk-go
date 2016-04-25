@@ -4,6 +4,7 @@
 package cognitosync
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
@@ -580,6 +581,22 @@ func (s BulkPublishInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BulkPublishInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BulkPublishInput"}
+	if s.IdentityPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityPoolId"))
+	}
+	if s.IdentityPoolId != nil && len(*s.IdentityPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The output for the BulkPublish operation.
 type BulkPublishOutput struct {
 	_ struct{} `type:"structure"`
@@ -628,6 +645,22 @@ func (s CognitoStreams) String() string {
 // GoString returns the string representation
 func (s CognitoStreams) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CognitoStreams) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CognitoStreams"}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+	if s.StreamName != nil && len(*s.StreamName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // A collection of data for an identity pool. An identity pool can have multiple
@@ -699,6 +732,34 @@ func (s DeleteDatasetInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteDatasetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteDatasetInput"}
+	if s.DatasetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetName"))
+	}
+	if s.DatasetName != nil && len(*s.DatasetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetName", 1))
+	}
+	if s.IdentityId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityId"))
+	}
+	if s.IdentityId != nil && len(*s.IdentityId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityId", 1))
+	}
+	if s.IdentityPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityPoolId"))
+	}
+	if s.IdentityPoolId != nil && len(*s.IdentityPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Response to a successful DeleteDataset request.
 type DeleteDatasetOutput struct {
 	_ struct{} `type:"structure"`
@@ -749,6 +810,34 @@ func (s DescribeDatasetInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDatasetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDatasetInput"}
+	if s.DatasetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetName"))
+	}
+	if s.DatasetName != nil && len(*s.DatasetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetName", 1))
+	}
+	if s.IdentityId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityId"))
+	}
+	if s.IdentityId != nil && len(*s.IdentityId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityId", 1))
+	}
+	if s.IdentityPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityPoolId"))
+	}
+	if s.IdentityPoolId != nil && len(*s.IdentityPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Response to a successful DescribeDataset request.
 type DescribeDatasetOutput struct {
 	_ struct{} `type:"structure"`
@@ -788,6 +877,22 @@ func (s DescribeIdentityPoolUsageInput) String() string {
 // GoString returns the string representation
 func (s DescribeIdentityPoolUsageInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeIdentityPoolUsageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeIdentityPoolUsageInput"}
+	if s.IdentityPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityPoolId"))
+	}
+	if s.IdentityPoolId != nil && len(*s.IdentityPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Response to a successful DescribeIdentityPoolUsage request.
@@ -831,6 +936,28 @@ func (s DescribeIdentityUsageInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeIdentityUsageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeIdentityUsageInput"}
+	if s.IdentityId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityId"))
+	}
+	if s.IdentityId != nil && len(*s.IdentityId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityId", 1))
+	}
+	if s.IdentityPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityPoolId"))
+	}
+	if s.IdentityPoolId != nil && len(*s.IdentityPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The response to a successful DescribeIdentityUsage request.
 type DescribeIdentityUsageOutput struct {
 	_ struct{} `type:"structure"`
@@ -866,6 +993,22 @@ func (s GetBulkPublishDetailsInput) String() string {
 // GoString returns the string representation
 func (s GetBulkPublishDetailsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetBulkPublishDetailsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetBulkPublishDetailsInput"}
+	if s.IdentityPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityPoolId"))
+	}
+	if s.IdentityPoolId != nil && len(*s.IdentityPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The output for the GetBulkPublishDetails operation.
@@ -928,6 +1071,22 @@ func (s GetCognitoEventsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCognitoEventsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCognitoEventsInput"}
+	if s.IdentityPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityPoolId"))
+	}
+	if s.IdentityPoolId != nil && len(*s.IdentityPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The response from the GetCognitoEvents request
 type GetCognitoEventsOutput struct {
 	_ struct{} `type:"structure"`
@@ -964,6 +1123,22 @@ func (s GetIdentityPoolConfigurationInput) String() string {
 // GoString returns the string representation
 func (s GetIdentityPoolConfigurationInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetIdentityPoolConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetIdentityPoolConfigurationInput"}
+	if s.IdentityPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityPoolId"))
+	}
+	if s.IdentityPoolId != nil && len(*s.IdentityPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The output for the GetIdentityPoolConfiguration operation.
@@ -1080,6 +1255,28 @@ func (s ListDatasetsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDatasetsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDatasetsInput"}
+	if s.IdentityId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityId"))
+	}
+	if s.IdentityId != nil && len(*s.IdentityId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityId", 1))
+	}
+	if s.IdentityPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityPoolId"))
+	}
+	if s.IdentityPoolId != nil && len(*s.IdentityPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Returned for a successful ListDatasets request.
 type ListDatasetsOutput struct {
 	_ struct{} `type:"structure"`
@@ -1191,6 +1388,34 @@ func (s ListRecordsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListRecordsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListRecordsInput"}
+	if s.DatasetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetName"))
+	}
+	if s.DatasetName != nil && len(*s.DatasetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetName", 1))
+	}
+	if s.IdentityId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityId"))
+	}
+	if s.IdentityId != nil && len(*s.IdentityId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityId", 1))
+	}
+	if s.IdentityPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityPoolId"))
+	}
+	if s.IdentityPoolId != nil && len(*s.IdentityPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Returned for a successful ListRecordsRequest.
 type ListRecordsOutput struct {
 	_ struct{} `type:"structure"`
@@ -1252,6 +1477,19 @@ func (s PushSync) String() string {
 // GoString returns the string representation
 func (s PushSync) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PushSync) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PushSync"}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The basic data structure of a dataset.
@@ -1317,6 +1555,28 @@ func (s RecordPatch) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RecordPatch) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RecordPatch"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Op == nil {
+		invalidParams.Add(request.NewErrParamRequired("Op"))
+	}
+	if s.SyncCount == nil {
+		invalidParams.Add(request.NewErrParamRequired("SyncCount"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // A request to RegisterDevice.
 type RegisterDeviceInput struct {
 	_ struct{} `type:"structure"`
@@ -1344,6 +1604,34 @@ func (s RegisterDeviceInput) String() string {
 // GoString returns the string representation
 func (s RegisterDeviceInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RegisterDeviceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RegisterDeviceInput"}
+	if s.IdentityId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityId"))
+	}
+	if s.IdentityId != nil && len(*s.IdentityId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityId", 1))
+	}
+	if s.IdentityPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityPoolId"))
+	}
+	if s.IdentityPoolId != nil && len(*s.IdentityPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityPoolId", 1))
+	}
+	if s.Platform == nil {
+		invalidParams.Add(request.NewErrParamRequired("Platform"))
+	}
+	if s.Token == nil {
+		invalidParams.Add(request.NewErrParamRequired("Token"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Response to a RegisterDevice request.
@@ -1387,6 +1675,25 @@ func (s SetCognitoEventsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SetCognitoEventsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SetCognitoEventsInput"}
+	if s.Events == nil {
+		invalidParams.Add(request.NewErrParamRequired("Events"))
+	}
+	if s.IdentityPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityPoolId"))
+	}
+	if s.IdentityPoolId != nil && len(*s.IdentityPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type SetCognitoEventsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1424,6 +1731,32 @@ func (s SetIdentityPoolConfigurationInput) String() string {
 // GoString returns the string representation
 func (s SetIdentityPoolConfigurationInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SetIdentityPoolConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SetIdentityPoolConfigurationInput"}
+	if s.IdentityPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityPoolId"))
+	}
+	if s.IdentityPoolId != nil && len(*s.IdentityPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityPoolId", 1))
+	}
+	if s.CognitoStreams != nil {
+		if err := s.CognitoStreams.Validate(); err != nil {
+			invalidParams.AddNested("CognitoStreams", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.PushSync != nil {
+		if err := s.PushSync.Validate(); err != nil {
+			invalidParams.AddNested("PushSync", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The output for the SetIdentityPoolConfiguration operation
@@ -1479,6 +1812,40 @@ func (s SubscribeToDatasetInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SubscribeToDatasetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SubscribeToDatasetInput"}
+	if s.DatasetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetName"))
+	}
+	if s.DatasetName != nil && len(*s.DatasetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetName", 1))
+	}
+	if s.DeviceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeviceId"))
+	}
+	if s.DeviceId != nil && len(*s.DeviceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceId", 1))
+	}
+	if s.IdentityId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityId"))
+	}
+	if s.IdentityId != nil && len(*s.IdentityId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityId", 1))
+	}
+	if s.IdentityPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityPoolId"))
+	}
+	if s.IdentityPoolId != nil && len(*s.IdentityPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Response to a SubscribeToDataset request.
 type SubscribeToDatasetOutput struct {
 	_ struct{} `type:"structure"`
@@ -1520,6 +1887,40 @@ func (s UnsubscribeFromDatasetInput) String() string {
 // GoString returns the string representation
 func (s UnsubscribeFromDatasetInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UnsubscribeFromDatasetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UnsubscribeFromDatasetInput"}
+	if s.DatasetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetName"))
+	}
+	if s.DatasetName != nil && len(*s.DatasetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetName", 1))
+	}
+	if s.DeviceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeviceId"))
+	}
+	if s.DeviceId != nil && len(*s.DeviceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceId", 1))
+	}
+	if s.IdentityId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityId"))
+	}
+	if s.IdentityId != nil && len(*s.IdentityId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityId", 1))
+	}
+	if s.IdentityPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityPoolId"))
+	}
+	if s.IdentityPoolId != nil && len(*s.IdentityPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Response to an UnsubscribeFromDataset request.
@@ -1577,6 +1978,50 @@ func (s UpdateRecordsInput) String() string {
 // GoString returns the string representation
 func (s UpdateRecordsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateRecordsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateRecordsInput"}
+	if s.DatasetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetName"))
+	}
+	if s.DatasetName != nil && len(*s.DatasetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetName", 1))
+	}
+	if s.DeviceId != nil && len(*s.DeviceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceId", 1))
+	}
+	if s.IdentityId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityId"))
+	}
+	if s.IdentityId != nil && len(*s.IdentityId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityId", 1))
+	}
+	if s.IdentityPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityPoolId"))
+	}
+	if s.IdentityPoolId != nil && len(*s.IdentityPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityPoolId", 1))
+	}
+	if s.SyncSessionToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("SyncSessionToken"))
+	}
+	if s.RecordPatches != nil {
+		for i, v := range s.RecordPatches {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RecordPatches", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // Returned for a successful UpdateRecordsRequest.

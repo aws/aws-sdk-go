@@ -159,6 +159,13 @@
         "SqsAction$roleArn": "<p>The ARN of the IAM role that grants access.</p>"
       }
     },
+    "AwsIotSqlVersion": {
+      "base": null,
+      "refs": {
+        "TopicRule$awsIotSqlVersion": "<p>The version of the SQL rules engine to use when evaluating the rule.</p>",
+        "TopicRulePayload$awsIotSqlVersion": "<p>The version of the SQL rules engine to use when evaluating the rule.</p>"
+      }
+    },
     "BucketName": {
       "base": null,
       "refs": {
