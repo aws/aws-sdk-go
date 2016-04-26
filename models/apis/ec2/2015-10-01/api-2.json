@@ -1492,6 +1492,15 @@
       "input":{"shape":"ModifyVpcEndpointRequest"},
       "output":{"shape":"ModifyVpcEndpointResult"}
     },
+    "ModifyVpcPeeringConnectionOptions":{
+      "name":"ModifyVpcPeeringConnectionOptions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyVpcPeeringConnectionOptionsRequest"},
+      "output":{"shape":"ModifyVpcPeeringConnectionOptionsResult"}
+    },
     "MonitorInstances":{
       "name":"MonitorInstances",
       "http":{
@@ -8967,6 +8976,29 @@
         }
       }
     },
+    "ModifyVpcPeeringConnectionOptionsRequest":{
+      "type":"structure",
+      "required":["VpcPeeringConnectionId"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "VpcPeeringConnectionId":{"shape":"String"},
+        "RequesterPeeringConnectionOptions":{"shape":"PeeringConnectionOptionsRequest"},
+        "AccepterPeeringConnectionOptions":{"shape":"PeeringConnectionOptionsRequest"}
+      }
+    },
+    "ModifyVpcPeeringConnectionOptionsResult":{
+      "type":"structure",
+      "members":{
+        "RequesterPeeringConnectionOptions":{
+          "shape":"PeeringConnectionOptions",
+          "locationName":"requesterPeeringConnectionOptions"
+        },
+        "AccepterPeeringConnectionOptions":{
+          "shape":"PeeringConnectionOptions",
+          "locationName":"accepterPeeringConnectionOptions"
+        }
+      }
+    },
     "MonitorInstancesRequest":{
       "type":"structure",
       "required":["InstanceIds"],
@@ -9529,6 +9561,30 @@
       "member":{
         "shape":"String",
         "locationName":"Owner"
+      }
+    },
+    "PeeringConnectionOptions":{
+      "type":"structure",
+      "members":{
+        "AllowEgressFromLocalClassicLinkToRemoteVpc":{
+          "shape":"Boolean",
+          "locationName":"allowEgressFromLocalClassicLinkToRemoteVpc"
+        },
+        "AllowEgressFromLocalVpcToRemoteClassicLink":{
+          "shape":"Boolean",
+          "locationName":"allowEgressFromLocalVpcToRemoteClassicLink"
+        }
+      }
+    },
+    "PeeringConnectionOptionsRequest":{
+      "type":"structure",
+      "required":[
+        "AllowEgressFromLocalClassicLinkToRemoteVpc",
+        "AllowEgressFromLocalVpcToRemoteClassicLink"
+      ],
+      "members":{
+        "AllowEgressFromLocalClassicLinkToRemoteVpc":{"shape":"Boolean"},
+        "AllowEgressFromLocalVpcToRemoteClassicLink":{"shape":"Boolean"}
       }
     },
     "PermissionGroup":{
@@ -13201,6 +13257,19 @@
         "locationName":"item"
       }
     },
+    "VpcPeeringConnectionOptionsDescription":{
+      "type":"structure",
+      "members":{
+        "AllowEgressFromLocalClassicLinkToRemoteVpc":{
+          "shape":"Boolean",
+          "locationName":"allowEgressFromLocalClassicLinkToRemoteVpc"
+        },
+        "AllowEgressFromLocalVpcToRemoteClassicLink":{
+          "shape":"Boolean",
+          "locationName":"allowEgressFromLocalVpcToRemoteClassicLink"
+        }
+      }
+    },
     "VpcPeeringConnectionStateReason":{
       "type":"structure",
       "members":{
@@ -13242,6 +13311,10 @@
         "VpcId":{
           "shape":"String",
           "locationName":"vpcId"
+        },
+        "PeeringOptions":{
+          "shape":"VpcPeeringConnectionOptionsDescription",
+          "locationName":"peeringOptions"
         }
       }
     },
