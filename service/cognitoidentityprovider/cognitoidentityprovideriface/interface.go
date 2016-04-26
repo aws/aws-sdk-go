@@ -98,14 +98,6 @@ type CognitoIdentityProviderAPI interface {
 
 	ForgotPassword(*cognitoidentityprovider.ForgotPasswordInput) (*cognitoidentityprovider.ForgotPasswordOutput, error)
 
-	GetJWKSRequest(*cognitoidentityprovider.GetJWKSInput) (*request.Request, *cognitoidentityprovider.GetJWKSOutput)
-
-	GetJWKS(*cognitoidentityprovider.GetJWKSInput) (*cognitoidentityprovider.GetJWKSOutput, error)
-
-	GetOpenIdConfigurationRequest(*cognitoidentityprovider.GetOpenIdConfigurationInput) (*request.Request, *cognitoidentityprovider.GetOpenIdConfigurationOutput)
-
-	GetOpenIdConfiguration(*cognitoidentityprovider.GetOpenIdConfigurationInput) (*cognitoidentityprovider.GetOpenIdConfigurationOutput, error)
-
 	GetUserRequest(*cognitoidentityprovider.GetUserInput) (*request.Request, *cognitoidentityprovider.GetUserOutput)
 
 	GetUser(*cognitoidentityprovider.GetUserInput) (*cognitoidentityprovider.GetUserOutput, error)

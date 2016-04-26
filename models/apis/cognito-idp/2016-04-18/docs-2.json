@@ -24,8 +24,6 @@
     "DescribeUserPool": "<p>Returns the configuration information and metadata of the specified user pool.</p>",
     "DescribeUserPoolClient": "<p>Client method for returning the configuration information and metadata of the specified user pool client.</p>",
     "ForgotPassword": "<p>Retrieves the password for the specified client ID or username.</p>",
-    "GetJWKS": "<p>Gets the JSON Web keys for the specified user pool.</p>",
-    "GetOpenIdConfiguration": "<p>Gets the OpenId configuration information for the specified user pool.</p>",
     "GetUser": "<p>Gets the user attributes and metadata for a user.</p>",
     "GetUserAttributeVerificationCode": "<p>Gets the user attribute verification code for the specified attribute name.</p>",
     "ListUserPoolClients": "<p>Lists the clients that have been created for the specified user pool.</p>",
@@ -463,26 +461,6 @@
         "CreateUserPoolClientRequest$GenerateSecret": "<p> Boolean to specify whether you want to generate a secret for the user pool client being created.</p>"
       }
     },
-    "GetJWKSRequest": {
-      "base": "<p>Represents the request to get JSON Web keys.</p>",
-      "refs": {
-      }
-    },
-    "GetJWKSResponse": {
-      "base": "<p>Represents the response from the server to get JSON Web keys.</p>",
-      "refs": {
-      }
-    },
-    "GetOpenIdConfigurationRequest": {
-      "base": "<p>Represents the request to get the Open ID configuration.</p>",
-      "refs": {
-      }
-    },
-    "GetOpenIdConfigurationResponse": {
-      "base": "<p>Represents the response from the server to get the Open ID configuration information.</p>",
-      "refs": {
-      }
-    },
     "GetUserAttributeVerificationCodeRequest": {
       "base": "<p>Represents the request to get user attribute verification.</p>",
       "refs": {
@@ -527,18 +505,6 @@
     "InvalidPasswordException": {
       "base": "<p>This exception is thrown when the Amazon Cognito service encounters an invalid password.</p>",
       "refs": {
-      }
-    },
-    "KeyListType": {
-      "base": null,
-      "refs": {
-        "GetJWKSResponse$keys": "<p>The keys in a get JSON Web keys response.</p>"
-      }
-    },
-    "KeyType": {
-      "base": "<p>A JSON Web Key key type in <a href=\"http://self-issued.info/docs/draft-ietf-jose-json-web-key.html#rfc.section.4\">JSON Web Key (JWK) Format</a>.</p>",
-      "refs": {
-        "KeyListType$member": null
       }
     },
     "LambdaConfigType": {
@@ -779,17 +745,10 @@
       "base": null,
       "refs": {
         "CodeDeliveryDetailsType$Destination": "<p>The destination for the code delivery details.</p>",
-        "KeyType$kty": "<p>A \"kty\" key type parameter. For more information, see <a href=\"\">JSON Web Key (JWK) Format</a>.</p>",
-        "KeyType$alg": "<p>A \"kty\" (Key Type) parameter. For more information, see <a href=\"http://self-issued.info/docs/draft-ietf-jose-json-web-key.html#ktyDef\">\"kty\" (Key Type) Parameter</a>.</p>",
-        "KeyType$use": "<p>A \"use\" (Public Key Use) parameter. For more information, see <a href=\"http://self-issued.info/docs/draft-ietf-jose-json-web-key.html#useDef\">\"use\" (Public Key Use) Parameter</a>.</p>",
-        "KeyType$kid": "<p>A \"kid\" (Key ID) parameter. For more information, see <a href=\"http://self-issued.info/docs/draft-ietf-jose-json-web-key.html#kidDef\">\"kid\" (Key ID) Parameter</a>.</p>",
-        "KeyType$n": "<p>An \"n\" parameter.</p>",
-        "KeyType$e": "<p>An \"e\" parameter.</p>",
         "NumberAttributeConstraintsType$MinValue": "<p>The minimum value of an attribute that is of the number data type.</p>",
         "NumberAttributeConstraintsType$MaxValue": "<p>The maximum value of an attribute that is of the number data type.</p>",
         "StringAttributeConstraintsType$MinLength": "<p>The minimum length of an attribute value of the string type.</p>",
-        "StringAttributeConstraintsType$MaxLength": "<p>The maximum length of an attribute value of the string type.</p>",
-        "openIdListType$member": null
+        "StringAttributeConstraintsType$MaxLength": "<p>The maximum length of an attribute value of the string type.</p>"
       }
     },
     "TokenModelType": {
@@ -899,8 +858,6 @@
         "DeleteUserPoolRequest$UserPoolId": "<p>The user pool ID for the user pool you want to delete.</p>",
         "DescribeUserPoolClientRequest$UserPoolId": "<p>The user pool ID for the user pool you want to describe.</p>",
         "DescribeUserPoolRequest$UserPoolId": "<p>The user pool ID for the user pool you want to describe.</p>",
-        "GetJWKSRequest$UserPoolId": "<p>The user pool ID for the user pool where you want to get JSON Web keys.</p>",
-        "GetOpenIdConfigurationRequest$UserPoolId": "<p>The user pool ID for the user pool where you want to get Open ID configuration information.</p>",
         "ListUserPoolClientsRequest$UserPoolId": "<p>The user pool ID for the user pool where you want to list user pool clients.</p>",
         "ListUsersRequest$UserPoolId": "<p>The user pool ID for which you want to list users.</p>",
         "UpdateUserPoolClientRequest$UserPoolId": "<p>The user pool ID for the user pool where you want to update the user pool client.</p>",
@@ -1017,22 +974,6 @@
     "VerifyUserAttributeResponse": {
       "base": "<p>A container representing the response from the server from the request to verify user attributes.</p>",
       "refs": {
-      }
-    },
-    "openIdListType": {
-      "base": null,
-      "refs": {
-        "GetOpenIdConfigurationResponse$subject_types_supported": "<p>The subject types supported returned by the server response to get the Open ID configuration information.</p>",
-        "GetOpenIdConfigurationResponse$response_types_supported": "<p>The response types supported returned by the server response to get the Open ID configuration information.</p>",
-        "GetOpenIdConfigurationResponse$id_token_signing_alg_values_supported": "<p>The token-signing algorithm values supported returned by the server response to get the Open ID configuration information.</p>"
-      }
-    },
-    "openIdUrlType": {
-      "base": null,
-      "refs": {
-        "GetOpenIdConfigurationResponse$issuer": "<p>The issuer of the Open ID configuration response.</p>",
-        "GetOpenIdConfigurationResponse$jwks_uri": "<p>The URI of the JSON Web keys in the server response to get Open ID configuration information.</p>",
-        "GetOpenIdConfigurationResponse$authorization_endpoint": "<p>The authorization endpoint returned by the server response to get the Open ID configuration information.</p>"
       }
     }
   }
