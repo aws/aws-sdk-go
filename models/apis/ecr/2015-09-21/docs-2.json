@@ -13,7 +13,7 @@
     "GetAuthorizationToken": "<p>Retrieves a token that is valid for a specified registry for 12 hours. This command allows you to use the <code>docker</code> CLI to push and pull images with Amazon ECR. If you do not specify a registry, the default registry is assumed.</p> <p>The <code>authorizationToken</code> returned for each registry specified is a base64 encoded string that can be decoded and used in a <code>docker login</code> command to authenticate to a registry. The AWS CLI offers an <code>aws ecr get-login</code> command that simplifies the login process.</p>",
     "GetDownloadUrlForLayer": "<p>Retrieves the pre-signed Amazon S3 download URL corresponding to an image layer. You can only get URLs for image layers that are referenced in an image.</p> <note> <p>This operation is used by the Amazon ECR proxy, and it is not intended for general use by customers. Use the <code>docker</code> CLI to pull, tag, and push images.</p> </note>",
     "GetRepositoryPolicy": "<p>Retrieves the repository policy for a specified repository.</p>",
-    "InitiateLayerUpload": "<p>Notify Amazon ECR that you intend to upload an image layer. </p> <note> <p>This operation is used by the Amazon ECR proxy, and it is not intended for general use by customers. Use the <code>docker</code> CLI to pull, tag, and push images.</p> </note>",
+    "InitiateLayerUpload": "<p>Notify Amazon ECR that you intend to upload an image layer.</p> <note> <p>This operation is used by the Amazon ECR proxy, and it is not intended for general use by customers. Use the <code>docker</code> CLI to pull, tag, and push images.</p> </note>",
     "ListImages": "<p>Lists all the image IDs for a given repository.</p>",
     "PutImage": "<p>Creates or updates the image manifest associated with an image.</p> <note> <p>This operation is used by the Amazon ECR proxy, and it is not intended for general use by customers. Use the <code>docker</code> CLI to pull, tag, and push images.</p> </note>",
     "SetRepositoryPolicy": "<p>Applies a repository policy on a specified repository to control access permissions.</p>",
@@ -450,7 +450,7 @@
     "ProxyEndpoint": {
       "base": null,
       "refs": {
-        "AuthorizationData$proxyEndpoint": "<p>The registry URL to use for this authorization token in a <code>docker login</code> command. The Amazon ECR registry URL format is <code>https://aws_account_id.dkr.ecr.region.amazonaws.com</code>. For example, <code>https://012345678910.dkr.ecr.us-east-1.amazonaws.com</code>.</p>"
+        "AuthorizationData$proxyEndpoint": "<p>The registry URL to use for this authorization token in a <code>docker login</code> command. The Amazon ECR registry URL format is <code>https://aws_account_id.dkr.ecr.region.amazonaws.com</code>. For example, <code>https://012345678910.dkr.ecr.us-east-1.amazonaws.com</code>.. </p>"
       }
     },
     "PutImageRequest": {
@@ -541,7 +541,7 @@
     "RepositoryNameList": {
       "base": null,
       "refs": {
-        "DescribeRepositoriesRequest$repositoryNames": "<p>A list of repositories to describe. If this parameter is omitted, then all repositories in a registry are described. </p>"
+        "DescribeRepositoriesRequest$repositoryNames": "<p>A list of repositories to describe. If this parameter is omitted, then all repositories in a registry are described.</p>"
       }
     },
     "RepositoryNotEmptyException": {
@@ -612,7 +612,8 @@
     "Url": {
       "base": null,
       "refs": {
-        "GetDownloadUrlForLayerResponse$downloadUrl": "<p>The pre-signed Amazon S3 download URL for the requested layer.</p>"
+        "GetDownloadUrlForLayerResponse$downloadUrl": "<p>The pre-signed Amazon S3 download URL for the requested layer.</p>",
+        "Repository$repositoryUri": "<p>The URI for the repository. You can use this URI for Docker <code>push</code> and <code>pull</code> operations.</p>"
       }
     }
   }

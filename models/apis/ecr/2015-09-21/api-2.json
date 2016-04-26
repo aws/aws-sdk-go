@@ -724,7 +724,8 @@
       "members":{
         "repositoryArn":{"shape":"Arn"},
         "registryId":{"shape":"RegistryId"},
-        "repositoryName":{"shape":"RepositoryName"}
+        "repositoryName":{"shape":"RepositoryName"},
+        "repositoryUri":{"shape":"Url"}
       }
     },
     "RepositoryAlreadyExistsException":{
