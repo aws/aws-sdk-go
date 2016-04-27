@@ -489,7 +489,7 @@ type AuthorizationData struct {
 
 	// The registry URL to use for this authorization token in a docker login command.
 	// The Amazon ECR registry URL format is https://aws_account_id.dkr.ecr.region.amazonaws.com.
-	// For example, https://012345678910.dkr.ecr.us-east-1.amazonaws.com.
+	// For example, https://012345678910.dkr.ecr.us-east-1.amazonaws.com..
 	ProxyEndpoint *string `locationName:"proxyEndpoint" type:"string"`
 }
 
@@ -1538,6 +1538,10 @@ type Repository struct {
 
 	// The name of the repository.
 	RepositoryName *string `locationName:"repositoryName" min:"2" type:"string"`
+
+	// The URI for the repository. You can use this URI for Docker push and pull
+	// operations.
+	RepositoryUri *string `locationName:"repositoryUri" type:"string"`
 }
 
 // String returns the string representation

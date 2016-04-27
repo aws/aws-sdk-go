@@ -384,38 +384,6 @@
       ],
       "authtype":"none"
     },
-    "GetJWKS":{
-      "name":"GetJWKS",
-      "http":{
-        "method":"GET",
-        "requestUri":"/{userPoolId}/.well-known/jwks.json",
-        "responseCode":200
-      },
-      "input":{"shape":"GetJWKSRequest"},
-      "output":{"shape":"GetJWKSResponse"},
-      "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"TooManyRequestsException"},
-        {"shape":"InternalErrorException"}
-      ],
-      "authtype":"none"
-    },
-    "GetOpenIdConfiguration":{
-      "name":"GetOpenIdConfiguration",
-      "http":{
-        "method":"GET",
-        "requestUri":"/{userPoolId}/.well-known/openid-configuration",
-        "responseCode":200
-      },
-      "input":{"shape":"GetOpenIdConfigurationRequest"},
-      "output":{"shape":"GetOpenIdConfigurationResponse"},
-      "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"TooManyRequestsException"},
-        {"shape":"InternalErrorException"}
-      ],
-      "authtype":"none"
-    },
     "GetUser":{
       "name":"GetUser",
       "http":{
@@ -1136,45 +1104,6 @@
       }
     },
     "GenerateSecret":{"type":"boolean"},
-    "GetJWKSRequest":{
-      "type":"structure",
-      "required":["UserPoolId"],
-      "members":{
-        "UserPoolId":{
-          "shape":"UserPoolIdType",
-          "location":"uri",
-          "locationName":"userPoolId"
-        }
-      }
-    },
-    "GetJWKSResponse":{
-      "type":"structure",
-      "members":{
-        "keys":{"shape":"KeyListType"}
-      }
-    },
-    "GetOpenIdConfigurationRequest":{
-      "type":"structure",
-      "required":["UserPoolId"],
-      "members":{
-        "UserPoolId":{
-          "shape":"UserPoolIdType",
-          "location":"uri",
-          "locationName":"userPoolId"
-        }
-      }
-    },
-    "GetOpenIdConfigurationResponse":{
-      "type":"structure",
-      "members":{
-        "issuer":{"shape":"openIdUrlType"},
-        "jwks_uri":{"shape":"openIdUrlType"},
-        "authorization_endpoint":{"shape":"openIdUrlType"},
-        "subject_types_supported":{"shape":"openIdListType"},
-        "response_types_supported":{"shape":"openIdListType"},
-        "id_token_signing_alg_values_supported":{"shape":"openIdListType"}
-      }
-    },
     "GetUserAttributeVerificationCodeRequest":{
       "type":"structure",
       "required":["AttributeName"],
@@ -1236,21 +1165,6 @@
         "message":{"shape":"MessageType"}
       },
       "exception":true
-    },
-    "KeyListType":{
-      "type":"list",
-      "member":{"shape":"KeyType"}
-    },
-    "KeyType":{
-      "type":"structure",
-      "members":{
-        "kty":{"shape":"StringType"},
-        "alg":{"shape":"StringType"},
-        "use":{"shape":"StringType"},
-        "kid":{"shape":"StringType"},
-        "n":{"shape":"StringType"},
-        "e":{"shape":"StringType"}
-      }
     },
     "LambdaConfigType":{
       "type":"structure",
@@ -1738,16 +1652,6 @@
       "type":"structure",
       "members":{
       }
-    },
-    "openIdListType":{
-      "type":"list",
-      "member":{"shape":"StringType"}
-    },
-    "openIdUrlType":{
-      "type":"string",
-      "max":150,
-      "min":1,
-      "pattern":"https://cognito-idp\\.amazonaws\\.com/[\\w\\._/-]"
     }
   }
 }

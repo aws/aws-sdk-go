@@ -527,44 +527,6 @@ func ExampleCognitoIdentityProvider_ForgotPassword() {
 	fmt.Println(resp)
 }
 
-func ExampleCognitoIdentityProvider_GetJWKS() {
-	svc := cognitoidentityprovider.New(session.New())
-
-	params := &cognitoidentityprovider.GetJWKSInput{
-		UserPoolId: aws.String("UserPoolIdType"), // Required
-	}
-	resp, err := svc.GetJWKS(params)
-
-	if err != nil {
-		// Print the error, cast err to awserr.Error to get the Code and
-		// Message from an error.
-		fmt.Println(err.Error())
-		return
-	}
-
-	// Pretty-print the response data.
-	fmt.Println(resp)
-}
-
-func ExampleCognitoIdentityProvider_GetOpenIdConfiguration() {
-	svc := cognitoidentityprovider.New(session.New())
-
-	params := &cognitoidentityprovider.GetOpenIdConfigurationInput{
-		UserPoolId: aws.String("UserPoolIdType"), // Required
-	}
-	resp, err := svc.GetOpenIdConfiguration(params)
-
-	if err != nil {
-		// Print the error, cast err to awserr.Error to get the Code and
-		// Message from an error.
-		fmt.Println(err.Error())
-		return
-	}
-
-	// Pretty-print the response data.
-	fmt.Println(resp)
-}
-
 func ExampleCognitoIdentityProvider_GetUser() {
 	svc := cognitoidentityprovider.New(session.New())
 

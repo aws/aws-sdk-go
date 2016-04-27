@@ -4628,6 +4628,34 @@ func ExampleEC2_ModifyVpcEndpoint() {
 	fmt.Println(resp)
 }
 
+func ExampleEC2_ModifyVpcPeeringConnectionOptions() {
+	svc := ec2.New(session.New())
+
+	params := &ec2.ModifyVpcPeeringConnectionOptionsInput{
+		VpcPeeringConnectionId: aws.String("String"), // Required
+		AccepterPeeringConnectionOptions: &ec2.PeeringConnectionOptionsRequest{
+			AllowEgressFromLocalClassicLinkToRemoteVpc: aws.Bool(true), // Required
+			AllowEgressFromLocalVpcToRemoteClassicLink: aws.Bool(true), // Required
+		},
+		DryRun: aws.Bool(true),
+		RequesterPeeringConnectionOptions: &ec2.PeeringConnectionOptionsRequest{
+			AllowEgressFromLocalClassicLinkToRemoteVpc: aws.Bool(true), // Required
+			AllowEgressFromLocalVpcToRemoteClassicLink: aws.Bool(true), // Required
+		},
+	}
+	resp, err := svc.ModifyVpcPeeringConnectionOptions(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleEC2_MonitorInstances() {
 	svc := ec2.New(session.New())
 

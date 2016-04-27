@@ -471,7 +471,7 @@
     "TagList":{
       "type":"list",
       "member":{"shape":"Tag"},
-      "max":50,
+      "max":10,
       "min":1
     },
     "TagValue":{
