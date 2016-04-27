@@ -1,5 +1,29 @@
 [
   {
+    "description": "No parameters",
+    "metadata": {
+      "protocol": "rest-json",
+      "apiVersion": "2014-01-01"
+    },
+    "shapes": {},
+    "cases": [
+      {
+        "given": {
+          "http": {
+            "method": "GET",
+            "requestUri": "/2014-01-01/jobs"
+          },
+          "name": "OperationName"
+        },
+        "serialized": {
+          "body": "",
+          "uri": "/2014-01-01/jobs",
+          "headers": {}
+        }
+      }
+    ]
+  },
+  {
     "description": "URI parameter only with no location name",
     "metadata": {
       "protocol": "rest-json",
@@ -81,6 +105,56 @@
         "serialized": {
           "body": "",
           "uri": "/2014-01-01/jobsByPipeline/bar",
+          "headers": {}
+        }
+      }
+    ]
+  },
+  {
+    "description": "Querystring list of strings",
+    "metadata": {
+      "protocol": "rest-json",
+      "apiVersion": "2014-01-01"
+    },
+    "shapes": {
+      "InputShape": {
+        "type": "structure",
+        "members": {
+          "Items": {
+            "shape": "StringList",
+            "location": "querystring",
+            "locationName": "item"
+          }
+        }
+      },
+      "StringList": {
+        "type": "list",
+        "member": {
+          "shape": "String"
+        }
+      },
+      "String": {
+        "type": "string"
+      }
+    },
+    "cases": [
+      {
+        "given": {
+          "http": {
+            "method": "GET",
+            "requestUri": "/path"
+          },
+          "input": {
+            "shape": "InputShape"
+          },
+          "name": "OperationName"
+        },
+        "params": {
+          "Items": ["value1", "value2"]
+        },
+        "serialized": {
+          "body": "",
+          "uri": "/path?item=value1&item=value2",
           "headers": {}
         }
       }
@@ -489,7 +563,7 @@
     ]
   },
   {
-    "description": "String payload",
+    "description": "Serialize blobs in body",
     "metadata": {
       "protocol": "rest-json",
       "apiVersion": "2014-01-01"
@@ -498,40 +572,48 @@
       "InputShape": {
         "type": "structure",
         "members": {
-          "foo": {
-            "shape": "FooShape"
-          }
-        }
+          "Foo": {
+            "shape": "StringType",
+            "location": "uri",
+            "locationName": "Foo"
+          },
+          "Bar": {"shape": "BlobType"}
+        },
+        "required": [
+          "Foo"
+        ]
       },
-      "FooShape": {
+      "StringType": {
         "type": "string"
+      },
+      "BlobType": {
+        "type": "blob"
       }
     },
     "cases": [
       {
         "given": {
           "http": {
-            "method": "POST",
-            "requestUri": "/"
+            "method": "GET",
+            "requestUri": "/2014-01-01/{Foo}"
           },
           "input": {
-            "shape": "InputShape",
-            "payload": "foo"
+            "shape": "InputShape"
           },
           "name": "OperationName"
         },
         "params": {
-          "foo": "bar"
+          "Foo": "foo_name",
+          "Bar": "Blob param"
         },
         "serialized": {
-          "method": "POST",
-          "body": "bar",
-          "uri": "/"
+          "body": "{\"Bar\": \"QmxvYiBwYXJhbQ==\"}",
+          "uri": "/2014-01-01/foo_name"
         }
       }
     ]
   },
-  {
+	{
     "description": "Blob payload",
     "metadata": {
       "protocol": "rest-json",
@@ -1046,6 +1128,49 @@
           "uri": "/path",
           "headers": {},
           "body": "{\"timestamp_location\": 1422172800}"
+        }
+      }
+    ]
+  },
+  {
+    "description": "String payload",
+    "metadata": {
+      "protocol": "rest-json",
+      "apiVersion": "2014-01-01"
+    },
+    "shapes": {
+      "InputShape": {
+        "type": "structure",
+        "members": {
+          "foo": {
+            "shape": "FooShape"
+          }
+        }
+      },
+      "FooShape": {
+        "type": "string"
+      }
+    },
+    "cases": [
+      {
+        "given": {
+          "http": {
+            "method": "POST",
+            "requestUri": "/"
+          },
+          "input": {
+            "shape": "InputShape",
+            "payload": "foo"
+          },
+          "name": "OperationName"
+        },
+        "params": {
+          "foo": "bar"
+        },
+        "serialized": {
+          "method": "POST",
+          "body": "bar",
+          "uri": "/"
         }
       }
     ]
