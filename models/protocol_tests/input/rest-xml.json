@@ -723,6 +723,56 @@
     ]
   },
   {
+    "description": "Querystring list of strings",
+    "metadata": {
+      "protocol": "rest-xml",
+      "apiVersion": "2014-01-01"
+    },
+    "shapes": {
+      "InputShape": {
+        "type": "structure",
+        "members": {
+          "Items": {
+            "shape": "StringList",
+            "location": "querystring",
+            "locationName": "item"
+          }
+        }
+      },
+      "StringList": {
+        "type": "list",
+        "member": {
+          "shape": "String"
+        }
+      },
+      "String": {
+        "type": "string"
+      }
+    },
+    "cases": [
+      {
+        "given": {
+          "http": {
+            "method": "GET",
+            "requestUri": "/path"
+          },
+          "input": {
+            "shape": "InputShape"
+          },
+          "name": "OperationName"
+        },
+        "params": {
+          "Items": ["value1", "value2"]
+        },
+        "serialized": {
+          "body": "",
+          "uri": "/path?item=value1&item=value2",
+          "headers": {}
+        }
+      }
+    ]
+  },
+  {
     "description": "String to string maps in querystring",
     "metadata": {
       "protocol": "rest-xml",
@@ -862,7 +912,8 @@
           "foo": {
             "shape": "FooShape"
           }
-        }
+        },
+        "payload": "foo"
       },
       "FooShape": {
         "type": "string"
@@ -876,8 +927,7 @@
             "requestUri": "/"
           },
           "input": {
-            "shape": "InputShape",
-            "payload": "foo"
+            "shape": "InputShape"
           },
           "name": "OperationName"
         },
@@ -905,7 +955,8 @@
           "foo": {
             "shape": "FooShape"
           }
-        }
+        },
+        "payload": "foo"
       },
       "FooShape": {
         "type": "blob"
@@ -919,8 +970,7 @@
             "requestUri": "/"
           },
           "input": {
-            "shape": "InputShape",
-            "payload": "foo"
+            "shape": "InputShape"
           },
           "name": "OperationName"
         },
@@ -940,8 +990,7 @@
             "requestUri": "/"
           },
           "input": {
-            "shape": "InputShape",
-            "payload": "foo"
+            "shape": "InputShape"
           },
           "name": "OperationName"
         },
@@ -968,7 +1017,8 @@
           "foo": {
             "shape": "FooShape"
           }
-        }
+        },
+        "payload": "foo"
       },
       "FooShape": {
         "locationName": "foo",
@@ -991,8 +1041,7 @@
             "requestUri": "/"
           },
           "input": {
-            "shape": "InputShape",
-            "payload": "foo"
+            "shape": "InputShape"
           },
           "name": "OperationName"
         },
@@ -1014,8 +1063,7 @@
             "requestUri": "/"
           },
           "input": {
-            "shape": "InputShape",
-            "payload": "foo"
+            "shape": "InputShape"
           },
           "name": "OperationName"
         },
@@ -1033,8 +1081,7 @@
             "requestUri": "/"
           },
           "input": {
-            "shape": "InputShape",
-            "payload": "foo"
+            "shape": "InputShape"
           },
           "name": "OperationName"
         },
@@ -1054,8 +1101,7 @@
             "requestUri": "/"
           },
           "input": {
-            "shape": "InputShape",
-            "payload": "foo"
+            "shape": "InputShape"
           },
           "name": "OperationName"
         },
@@ -1083,7 +1129,8 @@
           "Grant": {
             "shape": "Grant"
           }
-        }
+        },
+        "payload": "Grant"
       },
       "Grant": {
         "type": "structure",
@@ -1126,8 +1173,7 @@
             "requestUri": "/"
           },
           "input": {
-            "shape": "InputShape",
-            "payload": "Grant"
+            "shape": "InputShape"
           },
           "name": "OperationName"
         },

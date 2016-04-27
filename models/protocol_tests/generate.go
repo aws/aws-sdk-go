@@ -19,10 +19,18 @@ import (
 	"github.com/aws/aws-sdk-go/private/util"
 )
 
+// TestSuiteTypeInput input test
+// TestSuiteTypeInput output test
+const (
+	TestSuiteTypeInput = iota
+	TestSuiteTypeOutput
+)
+
 type testSuite struct {
 	*api.API
 	Description string
 	Cases       []testCase
+	Type        uint
 	title       string
 }
 
@@ -120,8 +128,8 @@ var tplInputTestCase = template.Must(template.New("inputcase").Parse(`
 func Test{{ .OpName }}(t *testing.T) {
 	sess := session.New()
 	svc := New{{ .TestCase.TestSuite.API.StructName }}(sess, &aws.Config{Endpoint: aws.String("https://test")})
-	input := {{ .ParamsString }}
-	req, _ := svc.{{ .TestCase.Given.ExportedName }}Request(input)
+	{{ if ne .ParamsString "" }}input := {{ .ParamsString }}
+	req, _ := svc.{{ .TestCase.Given.ExportedName }}Request(input){{ else }}req, _ := svc.{{ .TestCase.Given.ExportedName }}Request(nil){{ end }}
 	r := req.HTTPRequest
 
 	// build request
@@ -222,7 +230,7 @@ func (i *testCase) TestCase(idx int) string {
 
 	opName := i.TestSuite.API.StructName() + i.TestSuite.title + "Case" + strconv.Itoa(idx+1)
 
-	if i.Params != nil { // input test
+	if i.TestSuite.Type == TestSuiteTypeInput { // input test
 		// query test should sort body as form encoded values
 		switch i.TestSuite.API.Metadata.Protocol {
 		case "query", "ec2":
@@ -243,7 +251,7 @@ func (i *testCase) TestCase(idx int) string {
 		if err := tplInputTestCase.Execute(&buf, input); err != nil {
 			panic(err)
 		}
-	} else {
+	} else if i.TestSuite.Type == TestSuiteTypeOutput {
 		output := tplOutputTestCaseData{
 			TestCase:   i,
 			Body:       fmt.Sprintf("%q", i.OutputTest.Body),
@@ -293,6 +301,7 @@ func generateTestSuite(filename string) string {
 			suite.API.Operations[c.Given.ExportedName] = c.Given
 		}
 
+		suite.Type = getType(inout)
 		suite.API.NoInitMethods = true       // don't generate init methods
 		suite.API.NoStringerMethods = true   // don't generate stringer methods
 		suite.API.NoConstServiceNames = true // don't generate service names
@@ -389,6 +398,17 @@ func GenerateAssertions(out interface{}, shape *api.Shape, prefix string) string
 			}
 			return fmt.Sprintf("assert.Equal(t, %#v, *%s)\n", out, prefix)
 		}
+	}
+}
+
+func getType(t string) uint {
+	switch t {
+	case "Input":
+		return TestSuiteTypeInput
+	case "Output":
+		return TestSuiteTypeOutput
+	default:
+		panic("Invalid type for test suite")
 	}
 }
 
