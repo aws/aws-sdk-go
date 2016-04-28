@@ -134,6 +134,25 @@ func ExampleRoute53Domains_EnableDomainTransferLock() {
 	fmt.Println(resp)
 }
 
+func ExampleRoute53Domains_GetContactReachabilityStatus() {
+	svc := route53domains.New(session.New())
+
+	params := &route53domains.GetContactReachabilityStatusInput{
+		DomainName: aws.String("DomainName"),
+	}
+	resp, err := svc.GetContactReachabilityStatus(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleRoute53Domains_GetDomainDetail() {
 	svc := route53domains.New(session.New())
 
@@ -310,6 +329,25 @@ func ExampleRoute53Domains_RegisterDomain() {
 		PrivacyProtectTechContact:       aws.Bool(true),
 	}
 	resp, err := svc.RegisterDomain(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleRoute53Domains_ResendContactReachabilityEmail() {
+	svc := route53domains.New(session.New())
+
+	params := &route53domains.ResendContactReachabilityEmailInput{
+		DomainName: aws.String("DomainName"),
+	}
+	resp, err := svc.ResendContactReachabilityEmail(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and

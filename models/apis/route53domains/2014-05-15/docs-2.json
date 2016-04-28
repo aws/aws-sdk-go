@@ -1,18 +1,21 @@
 {
   "version": "2.0",
+  "service": null,
   "operations": {
-    "CheckDomainAvailability": "<p>This operation checks the availability of one domain name. You can access this API without authenticating. Note that if the availability status of a domain is pending, you must submit another request to determine the availability of the domain name.</p>",
+    "CheckDomainAvailability": "<p>This operation checks the availability of one domain name. Note that if the availability status of a domain is pending, you must submit another request to determine the availability of the domain name.</p>",
     "DeleteTagsForDomain": "<p>This operation deletes the specified tags for a domain.</p> <p>All tag operations are eventually consistent; subsequent operations may not immediately represent all issued operations.</p>",
     "DisableDomainAutoRenew": "<p>This operation disables automatic renewal of domain registration for the specified domain.</p> <note>Caution! Amazon Route 53 doesn't have a manual renewal process, so if you disable automatic renewal, registration for the domain will not be renewed when the expiration date passes, and you will lose control of the domain name.</note>",
     "DisableDomainTransferLock": "<p>This operation removes the transfer lock on the domain (specifically the <code>clientTransferProhibited</code> status) to allow domain transfers. We recommend you refrain from performing this action unless you intend to transfer the domain to a different registrar. Successful submission returns an operation ID that you can use to track the progress and completion of the action. If the request is not completed successfully, the domain registrant will be notified by email.</p>",
     "EnableDomainAutoRenew": "<p>This operation configures Amazon Route 53 to automatically renew the specified domain before the domain registration expires. The cost of renewing your domain registration is billed to your AWS account.</p> <p>The period during which you can renew a domain name varies by TLD. For a list of TLDs and their renewal policies, see <a href=\"http://wiki.gandi.net/en/domains/renew#renewal_restoration_and_deletion_times\">\"Renewal, restoration, and deletion times\"</a> on the website for our registrar partner, Gandi. Route 53 requires that you renew before the end of the renewal period that is listed on the Gandi website so we can complete processing before the deadline.</p>",
     "EnableDomainTransferLock": "<p>This operation sets the transfer lock on the domain (specifically the <code>clientTransferProhibited</code> status) to prevent domain transfers. Successful submission returns an operation ID that you can use to track the progress and completion of the action. If the request is not completed successfully, the domain registrant will be notified by email.</p>",
+    "GetContactReachabilityStatus": "<p>For operations that require confirmation that the email address for the registrant contact is valid, such as registering a new domain, this operation returns information about whether the registrant contact has responded.</p> <p>If you want us to resend the email, use the <code>ResendContactReachabilityEmail</code> operation.</p>",
     "GetDomainDetail": "<p>This operation returns detailed information about the domain. The domain's contact information is also returned as part of the output.</p>",
     "GetOperationDetail": "<p>This operation returns the current status of an operation that is not completed.</p>",
     "ListDomains": "<p>This operation returns all the domain names registered with Amazon Route 53 for the current AWS account.</p>",
     "ListOperations": "<p>This operation returns the operation IDs of operations that are not yet complete.</p>",
     "ListTagsForDomain": "<p>This operation returns all of the tags that are associated with the specified domain.</p> <p>All tag operations are eventually consistent; subsequent operations may not immediately represent all issued operations.</p>",
     "RegisterDomain": "<p>This operation registers a domain. Domains are registered by the AWS registrar partner, Gandi. For some top-level domains (TLDs), this operation requires extra parameters.</p> <p>When you register a domain, Amazon Route 53 does the following:</p> <ul> <li>Creates a Amazon Route 53 hosted zone that has the same name as the domain. Amazon Route 53 assigns four name servers to your hosted zone and automatically updates your domain registration with the names of these name servers.</li> <li>Enables autorenew, so your domain registration will renew automatically each year. We'll notify you in advance of the renewal date so you can choose whether to renew the registration.</li> <li>Optionally enables privacy protection, so WHOIS queries return contact information for our registrar partner, Gandi, instead of the information you entered for registrant, admin, and tech contacts.</li> <li>If registration is successful, returns an operation ID that you can use to track the progress and completion of the action. If the request is not completed successfully, the domain registrant is notified by email.</li> <li>Charges your AWS account an amount based on the top-level domain. For more information, see <a href=\"http://aws.amazon.com/route53/pricing/\">Amazon Route 53 Pricing</a>.</li> </ul>",
+    "ResendContactReachabilityEmail": "<p>For operations that require confirmation that the email address for the registrant contact is valid, such as registering a new domain, this operation resends the confirmation email to the current email address for the registrant contact. </p>",
     "RetrieveDomainAuthCode": "<p>This operation returns the AuthCode for the domain. To transfer a domain to another registrar, you provide this value to the new registrar.</p>",
     "TransferDomain": "<p>This operation transfers a domain from another registrar to Amazon Route 53. When the transfer is complete, the domain is registered with the AWS registrar partner, Gandi.</p> <p>For transfer requirements, a detailed procedure, and information about viewing the status of a domain transfer, see <a href=\"http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-transfer-to-route-53.html\">Transferring Registration for a Domain to Amazon Route 53</a> in the Amazon Route 53 Developer Guide.</p> <p>If the registrar for your domain is also the DNS service provider for the domain, we highly recommend that you consider transferring your DNS service to Amazon Route 53 or to another DNS service provider before you transfer your registration. Some registrars provide free DNS service when you purchase a domain registration. When you transfer the registration, the previous registrar will not renew your domain registration and could end your DNS service at any time.</p> <note>Caution! If the registrar for your domain is also the DNS service provider for the domain and you don't transfer DNS service to another provider, your website, email, and the web applications associated with the domain might become unavailable.</note> <p>If the transfer is successful, this method returns an operation ID that you can use to track the progress and completion of the action. If the transfer doesn't complete successfully, the domain registrant will be notified by email.</p>",
     "UpdateDomainContact": "<p>This operation updates the contact information for a particular domain. Information for at least one contact (registrant, administrator, or technical) must be supplied for update.</p> <p>If the update is successful, this method returns an operation ID that you can use to track the progress and completion of the action. If the request is not completed successfully, the domain registrant will be notified by email.</p>",
@@ -20,13 +23,12 @@
     "UpdateDomainNameservers": "<p>This operation replaces the current set of name servers for the domain with the specified set of name servers. If you use Amazon Route 53 as your DNS service, specify the four name servers in the delegation set for the hosted zone for the domain. </p> <p>If successful, this operation returns an operation ID that you can use to track the progress and completion of the action. If the request is not completed successfully, the domain registrant will be notified by email.</p>",
     "UpdateTagsForDomain": "<p>This operation adds or updates tags for a specified domain.</p> <p>All tag operations are eventually consistent; subsequent operations may not immediately represent all issued operations.</p>"
   },
-  "service": null,
   "shapes": {
     "AddressLine": {
       "base": null,
       "refs": {
-        "ContactDetail$AddressLine1": "<p>First line of the contact's address.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: Maximum 255 characters.</p> <p>Parents: <code>RegistrantContact</code>, <code>AdminContact</code>, <code>TechContact</code></p> <p>Required: Yes</p>",
-        "ContactDetail$AddressLine2": "<p>Second line of contact's address, if any.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: Maximum 255 characters.</p> <p>Parents: <code>RegistrantContact</code>, <code>AdminContact</code>, <code>TechContact</code></p> <p>Required: No</p>"
+        "ContactDetail$AddressLine1": "<p>First line of the contact&apos;s address.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: Maximum 255 characters.</p> <p>Parents: <code>RegistrantContact</code>, <code>AdminContact</code>, <code>TechContact</code></p> <p>Required: Yes</p>",
+        "ContactDetail$AddressLine2": "<p>Second line of contact&apos;s address, if any.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: Maximum 255 characters.</p> <p>Parents: <code>RegistrantContact</code>, <code>AdminContact</code>, <code>TechContact</code></p> <p>Required: No</p>"
       }
     },
     "Boolean": {
@@ -42,6 +44,7 @@
         "RegisterDomainRequest$PrivacyProtectAdminContact": "<p>Whether you want to conceal contact information from WHOIS queries. If you specify true, WHOIS (\"who is\") queries will return contact information for our registrar partner, Gandi, instead of the contact information that you enter.</p> <p>Type: Boolean</p> <p>Default: <code>true</code></p> <p>Valid values: <code>true</code> | <code>false</code></p> <p>Required: No</p>",
         "RegisterDomainRequest$PrivacyProtectRegistrantContact": "<p>Whether you want to conceal contact information from WHOIS queries. If you specify true, WHOIS (\"who is\") queries will return contact information for our registrar partner, Gandi, instead of the contact information that you enter.</p> <p>Type: Boolean</p> <p>Default: <code>true</code></p> <p>Valid values: <code>true</code> | <code>false</code></p> <p>Required: No</p>",
         "RegisterDomainRequest$PrivacyProtectTechContact": "<p>Whether you want to conceal contact information from WHOIS queries. If you specify true, WHOIS (\"who is\") queries will return contact information for our registrar partner, Gandi, instead of the contact information that you enter.</p> <p>Type: Boolean</p> <p>Default: <code>true</code></p> <p>Valid values: <code>true</code> | <code>false</code></p> <p>Required: No</p>",
+        "ResendContactReachabilityEmailResponse$isAlreadyVerified": "<p>True if the email address for the registrant contact has already been verified, and false otherwise. If the email address has already been verified, we don't send another confirmation email.</p>",
         "TransferDomainRequest$AutoRenew": "<p>Indicates whether the domain will be automatically renewed (true) or not (false). Autorenewal only takes effect after the account is charged.</p> <p>Type: Boolean</p> <p>Valid values: <code>true</code> | <code>false</code></p> <p>Default: true</p> <p>Required: No</p>",
         "TransferDomainRequest$PrivacyProtectAdminContact": "<p>Whether you want to conceal contact information from WHOIS queries. If you specify true, WHOIS (\"who is\") queries will return contact information for our registrar partner, Gandi, instead of the contact information that you enter.</p> <p>Type: Boolean</p> <p>Default: <code>true</code></p> <p>Valid values: <code>true</code> | <code>false</code></p> <p>Required: No</p>",
         "TransferDomainRequest$PrivacyProtectRegistrantContact": "<p>Whether you want to conceal contact information from WHOIS queries. If you specify true, WHOIS (\"who is\") queries will return contact information for our registrar partner, Gandi, instead of the contact information that you enter.</p> <p>Type: Boolean</p> <p>Default: <code>true</code></p> <p>Valid values: <code>true</code> | <code>false</code></p> <p>Required: No</p>",
@@ -64,7 +67,7 @@
     "City": {
       "base": null,
       "refs": {
-        "ContactDetail$City": "<p>The city of the contact's address.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: Maximum 255 characters.</p> <p>Parents: <code>RegistrantContact</code>, <code>AdminContact</code>, <code>TechContact</code></p> <p>Required: Yes</p>"
+        "ContactDetail$City": "<p>The city of the contact&apos;s address.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: Maximum 255 characters.</p> <p>Parents: <code>RegistrantContact</code>, <code>AdminContact</code>, <code>TechContact</code></p> <p>Required: Yes</p>"
       }
     },
     "ContactDetail": {
@@ -95,7 +98,7 @@
     "ContactNumber": {
       "base": null,
       "refs": {
-        "ContactDetail$PhoneNumber": "<p>The phone number of the contact.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: Phone number must be specified in the format \"+[country dialing code].[number including any area code&gt;]\". For example, a US phone number might appear as <code>\"+1.1234567890\"</code>.</p> <p>Parents: <code>RegistrantContact</code>, <code>AdminContact</code>, <code>TechContact</code></p> <p>Required: Yes</p>",
+        "ContactDetail$PhoneNumber": "<p>The phone number of the contact.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: Phone number must be specified in the format \"+[country dialing code].[number including any area code>]\". For example, a US phone number might appear as <code>\"+1.1234567890\"</code>.</p> <p>Parents: <code>RegistrantContact</code>, <code>AdminContact</code>, <code>TechContact</code></p> <p>Required: Yes</p>",
         "ContactDetail$Fax": "<p>Fax number of the contact.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: Phone number must be specified in the format \"+[country dialing code].[number including any area code]\". For example, a US phone number might appear as <code>\"+1.1234567890\"</code>.</p> <p>Parents: <code>RegistrantContact</code>, <code>AdminContact</code>, <code>TechContact</code></p> <p>Required: No</p>",
         "GetDomainDetailResponse$AbuseContactPhone": "<p>Phone number for reporting abuse. </p> <p>Type: String</p>"
       }
@@ -103,13 +106,13 @@
     "ContactType": {
       "base": null,
       "refs": {
-        "ContactDetail$ContactType": "<p>Indicates whether the contact is a person, company, association, or public organization. If you choose an option other than <code>PERSON</code>, you must enter an organization name, and you can't enable privacy protection for the contact.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: Maximum 255 characters.</p> <p>Valid values: <code>PERSON</code> | <code>COMPANY</code> | <code>ASSOCIATION</code> | <code>PUBLIC_BODY</code></p> <p>Parents: <code>RegistrantContact</code>, <code>AdminContact</code>, <code>TechContact</code> </p> <p>Required: Yes</p>"
+        "ContactDetail$ContactType": "<p>Indicates whether the contact is a person, company, association, or public organization. If you choose an option other than <code>PERSON</code>, you must enter an organization name, and you can&apos;t enable privacy protection for the contact.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: Maximum 255 characters.</p> <p>Valid values: <code>PERSON</code> | <code>COMPANY</code> | <code>ASSOCIATION</code> | <code>PUBLIC_BODY</code></p> <p>Parents: <code>RegistrantContact</code>, <code>AdminContact</code>, <code>TechContact</code> </p> <p>Required: Yes</p>"
       }
     },
     "CountryCode": {
       "base": null,
       "refs": {
-        "ContactDetail$CountryCode": "<p>Code for the country of the contact's address.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: Maximum 255 characters.</p> <p>Parents: <code>RegistrantContact</code>, <code>AdminContact</code>, <code>TechContact</code></p> <p>Required: Yes</p>"
+        "ContactDetail$CountryCode": "<p>Code for the country of the contact&apos;s address.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: Maximum 255 characters.</p> <p>Parents: <code>RegistrantContact</code>, <code>AdminContact</code>, <code>TechContact</code></p> <p>Required: Yes</p>"
       }
     },
     "DNSSec": {
@@ -158,7 +161,7 @@
     "DomainAvailability": {
       "base": null,
       "refs": {
-        "CheckDomainAvailabilityResponse$Availability": "<p>Whether the domain name is available for registering.</p> <note> <p>You can only register domains designated as <code>AVAILABLE</code>.</p> </note> <p>Type: String</p> <p>Valid values:</p> <ul> <li> <code>AVAILABLE</code> – The domain name is available.</li> <li> <code>AVAILABLE_RESERVED</code> – The domain name is reserved under specific conditions.</li> <li> <code>AVAILABLE_PREORDER</code> – The domain name is available and can be preordered.</li> <li> <code>UNAVAILABLE</code> – The domain name is not available.</li> <li> <code>UNAVAILABLE_PREMIUM</code> – The domain name is not available.</li> <li> <code>UNAVAILABLE_RESTRICTED</code> – The domain name is forbidden.</li> <li> <code>RESERVED</code> – The domain name has been reserved for another person or organization.</li> <li> <code>DONT_KNOW</code> – The TLD registry didn't reply with a definitive answer about whether the domain name is available. Amazon Route 53 can return this response for a variety of reasons, for example, the registry is performing maintenance. Try again later.</li> </ul>"
+        "CheckDomainAvailabilityResponse$Availability": "<p>Whether the domain name is available for registering.</p> <note> <p>You can only register domains designated as <code>AVAILABLE</code>.</p> </note> <p>Type: String</p> <p>Valid values:</p> <ul> <li><code>AVAILABLE</code> – The domain name is available.</li> <li><code>AVAILABLE_RESERVED</code> – The domain name is reserved under specific conditions.</li> <li><code>AVAILABLE_PREORDER</code> – The domain name is available and can be preordered.</li> <li><code>UNAVAILABLE</code> – The domain name is not available.</li> <li><code>UNAVAILABLE_PREMIUM</code> – The domain name is not available.</li> <li><code>UNAVAILABLE_RESTRICTED</code> – The domain name is forbidden.</li> <li><code>RESERVED</code> – The domain name has been reserved for another person or organization.</li> <li><code>DONT_KNOW</code> – The TLD registry didn't reply with a definitive answer about whether the domain name is available. Amazon Route 53 can return this response for a variety of reasons, for example, the registry is performing maintenance. Try again later.</li> </ul>"
       }
     },
     "DomainLimitExceeded": {
@@ -170,23 +173,27 @@
       "base": null,
       "refs": {
         "CheckDomainAvailabilityRequest$DomainName": "<p>The name of a domain.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: The domain name can contain only the letters a through z, the numbers 0 through 9, and hyphen (-). Internationalized Domain Names are not supported.</p> <p>Required: Yes</p>",
-        "DeleteTagsForDomainRequest$DomainName": "<p>The domain for which you want to delete one or more tags.</p> <p>The name of a domain.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: The domain name can contain only the letters a through z, the numbers 0 through 9, and hyphen (-). Hyphens are allowed only when theyaposre surrounded by letters, numbers, or other hyphens. You canapost specify a hyphen at the beginning or end of a label. To specify an Internationalized Domain Name, you must convert the name to Punycode.</p> <p>Required: Yes</p>",
+        "DeleteTagsForDomainRequest$DomainName": "<p>The domain for which you want to delete one or more tags.</p> <p>The name of a domain.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: The domain name can contain only the letters a through z, the numbers 0 through 9, and hyphen (-). Hyphens are allowed only when they&apos;re surrounded by letters, numbers, or other hyphens. You can&apos;t specify a hyphen at the beginning or end of a label. To specify an Internationalized Domain Name, you must convert the name to Punycode.</p> <p>Required: Yes</p>",
         "DisableDomainAutoRenewRequest$DomainName": null,
         "DisableDomainTransferLockRequest$DomainName": "<p>The name of a domain.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: The domain name can contain only the letters a through z, the numbers 0 through 9, and hyphen (-). Internationalized Domain Names are not supported.</p> <p>Required: Yes</p>",
         "DomainSummary$DomainName": "<p>The name of a domain.</p> <p>Type: String</p>",
         "EnableDomainAutoRenewRequest$DomainName": null,
         "EnableDomainTransferLockRequest$DomainName": "<p>The name of a domain.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: The domain name can contain only the letters a through z, the numbers 0 through 9, and hyphen (-). Internationalized Domain Names are not supported.</p> <p>Required: Yes</p>",
+        "GetContactReachabilityStatusRequest$domainName": "<p>The name of the domain for which you want to know whether the registrant contact has confirmed that the email address is valid.</p> <p>Type: String</p> <p>Default: None</p> <p>Required: Yes</p>",
+        "GetContactReachabilityStatusResponse$domainName": "<p>The domain name for which you requested the reachability status.</p>",
         "GetDomainDetailRequest$DomainName": "<p>The name of a domain.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: The domain name can contain only the letters a through z, the numbers 0 through 9, and hyphen (-). Internationalized Domain Names are not supported.</p> <p>Required: Yes</p>",
         "GetDomainDetailResponse$DomainName": "<p>The name of a domain.</p> <p>Type: String</p>",
         "GetOperationDetailResponse$DomainName": "<p>The name of a domain.</p> <p>Type: String</p>",
         "ListTagsForDomainRequest$DomainName": "<p>The domain for which you want to get a list of tags.</p>",
         "RegisterDomainRequest$DomainName": "<p>The name of a domain.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: The domain name can contain only the letters a through z, the numbers 0 through 9, and hyphen (-). Internationalized Domain Names are not supported.</p> <p>Required: Yes</p>",
+        "ResendContactReachabilityEmailRequest$domainName": "<p>The name of the domain for which you want Amazon Route 53 to resend a confirmation email to the registrant contact.</p> <p>Type: String</p> <p>Default: None</p> <p>Required: Yes</p>",
+        "ResendContactReachabilityEmailResponse$domainName": "<p>The domain name for which you requested a confirmation email.</p>",
         "RetrieveDomainAuthCodeRequest$DomainName": "<p>The name of a domain.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: The domain name can contain only the letters a through z, the numbers 0 through 9, and hyphen (-). Internationalized Domain Names are not supported.</p> <p>Required: Yes</p>",
         "TransferDomainRequest$DomainName": "<p>The name of a domain.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: The domain name can contain only the letters a through z, the numbers 0 through 9, and hyphen (-). Internationalized Domain Names are not supported.</p> <p>Required: Yes</p>",
         "UpdateDomainContactPrivacyRequest$DomainName": "<p>The name of a domain.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: The domain name can contain only the letters a through z, the numbers 0 through 9, and hyphen (-). Internationalized Domain Names are not supported.</p> <p>Required: Yes</p>",
         "UpdateDomainContactRequest$DomainName": "<p>The name of a domain.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: The domain name can contain only the letters a through z, the numbers 0 through 9, and hyphen (-). Internationalized Domain Names are not supported.</p> <p>Required: Yes</p>",
         "UpdateDomainNameserversRequest$DomainName": "<p>The name of a domain.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: The domain name can contain only the letters a through z, the numbers 0 through 9, and hyphen (-). Internationalized Domain Names are not supported.</p> <p>Required: Yes</p>",
-        "UpdateTagsForDomainRequest$DomainName": "<p>The domain for which you want to add or update tags.</p> <p>The name of a domain.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: The domain name can contain only the letters a through z, the numbers 0 through 9, and hyphen (-). Hyphens are allowed only when theyaposre surrounded by letters, numbers, or other hyphens. You canapost specify a hyphen at the beginning or end of a label. To specify an Internationalized Domain Name, you must convert the name to Punycode.</p> <p>Required: Yes</p>"
+        "UpdateTagsForDomainRequest$DomainName": "<p>The domain for which you want to add or update tags.</p> <p>The name of a domain.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: The domain name can contain only the letters a through z, the numbers 0 through 9, and hyphen (-). Hyphens are allowed only when they&apos;re surrounded by letters, numbers, or other hyphens. You can&apos;t specify a hyphen at the beginning or end of a label. To specify an Internationalized Domain Name, you must convert the name to Punycode.</p> <p>Required: Yes</p>"
       }
     },
     "DomainStatus": {
@@ -229,7 +236,8 @@
       "base": null,
       "refs": {
         "ContactDetail$Email": "<p>Email address of the contact.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: Maximum 254 characters.</p> <p>Parents: <code>RegistrantContact</code>, <code>AdminContact</code>, <code>TechContact</code> </p> <p>Required: Yes</p>",
-        "GetDomainDetailResponse$AbuseContactEmail": "<p>Email address to contact to report incorrect contact information for a domain, to report that the domain is being used to send spam, to report that someone is cybersquatting on a domain name, or report some other type of abuse. </p> <p>Type: String</p>"
+        "GetDomainDetailResponse$AbuseContactEmail": "<p>Email address to contact to report incorrect contact information for a domain, to report that the domain is being used to send spam, to report that someone is cybersquatting on a domain name, or report some other type of abuse. </p> <p>Type: String</p>",
+        "ResendContactReachabilityEmailResponse$emailAddress": "<p>The email address for the registrant contact at the time that we sent the verification email.</p>"
       }
     },
     "EnableDomainAutoRenewRequest": {
@@ -279,7 +287,7 @@
     "ExtraParamName": {
       "base": null,
       "refs": {
-        "ExtraParam$Name": "<p>Name of the additional parameter required by the top-level domain.</p> <p>Type: String</p> <p>Default: None</p> <p>Valid values: <code>DUNS_NUMBER</code> | <code>BRAND_NUMBER</code> | <code>BIRTH_DEPARTMENT</code> | <code>BIRTH_DATE_IN_YYYY_MM_DD</code> | <code>BIRTH_COUNTRY</code> | <code>BIRTH_CITY</code> | <code>DOCUMENT_NUMBER</code> | <code>AU_ID_NUMBER</code> | <code>AU_ID_TYPE</code> | <code>CA_LEGAL_TYPE</code> | <code>ES_IDENTIFICATION</code> | <code>ES_IDENTIFICATION_TYPE</code> | <code>ES_LEGAL_FORM</code> | <code>FI_BUSINESS_NUMBER</code> | <code>FI_ID_NUMBER</code> | <code>IT_PIN</code> | <code>RU_PASSPORT_DATA</code> | <code>SE_ID_NUMBER</code> | <code>SG_ID_NUMBER</code> | <code>VAT_NUMBER</code></p> <p>Parent: <code>ExtraParams</code></p> <p>Required: Yes</p>"
+        "ExtraParam$Name": "<p>Name of the additional parameter required by the top-level domain.</p> <p>Type: String</p> <p>Default: None</p> <p>Valid values: <code>DUNS_NUMBER</code> | <code>BRAND_NUMBER</code> | <code>BIRTH_DEPARTMENT</code> | <code>BIRTH_DATE_IN_YYYY_MM_DD</code> | <code>BIRTH_COUNTRY</code> | <code>BIRTH_CITY</code> | <code>DOCUMENT_NUMBER</code> | <code>AU_ID_NUMBER</code> | <code>AU_ID_TYPE</code> | <code>CA_LEGAL_TYPE</code> | <code>CA_BUSINESS_ENTITY_TYPE</code> |<code>ES_IDENTIFICATION</code> | <code>ES_IDENTIFICATION_TYPE</code> | <code>ES_LEGAL_FORM</code> | <code>FI_BUSINESS_NUMBER</code> | <code>FI_ID_NUMBER</code> | <code>IT_PIN</code> | <code>RU_PASSPORT_DATA</code> | <code>SE_ID_NUMBER</code> | <code>SG_ID_NUMBER</code> | <code>VAT_NUMBER</code></p> <p>Parent: <code>ExtraParams</code></p> <p>Required: Yes</p>"
       }
     },
     "ExtraParamValue": {
@@ -292,6 +300,16 @@
       "base": null,
       "refs": {
         "UpdateDomainNameserversRequest$FIAuthKey": "<p>The authorization key for .fi domains</p>"
+      }
+    },
+    "GetContactReachabilityStatusRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetContactReachabilityStatusResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "GetDomainDetailRequest": {
@@ -451,6 +469,12 @@
         "ListOperationsRequest$MaxItems": "<p>Number of domains to be returned.</p> <p>Type: Integer</p> <p>Default: 20</p> <p>Constraints: A value between 1 and 100.</p> <p>Required: No</p>"
       }
     },
+    "ReachabilityStatus": {
+      "base": null,
+      "refs": {
+        "GetContactReachabilityStatusResponse$status": "<p>Whether the registrant contact has responded. <code>PENDING</code> indicates that we sent the confirmation email and haven't received a response yet, <code>DONE</code> indicates that we sent the email and got confirmation from the registrant contact, and <code>EXPIRED</code> indicates that the time limit expired before the registrant contact responded. </p> <p>Type: String</p> <p>Valid values: <code>PENDING</code>, <code>DONE</code>, <code>EXPIRED</code></p>"
+      }
+    },
     "RegisterDomainRequest": {
       "base": "<p>The RegisterDomain request includes the following elements.</p>",
       "refs": {
@@ -491,6 +515,16 @@
         "GetDomainDetailResponse$Reseller": "<p>Reseller of the domain. Domains registered or transferred using Amazon Route 53 domains will have <code>\"Amazon\"</code> as the reseller. </p> <p>Type: String</p>"
       }
     },
+    "ResendContactReachabilityEmailRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ResendContactReachabilityEmailResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "RetrieveDomainAuthCodeRequest": {
       "base": "<p>The RetrieveDomainAuthCode request includes the following element.</p>",
       "refs": {
@@ -504,7 +538,7 @@
     "State": {
       "base": null,
       "refs": {
-        "ContactDetail$State": "<p>The state or province of the contact's city.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: Maximum 255 characters.</p> <p>Parents: <code>RegistrantContact</code>, <code>AdminContact</code>, <code>TechContact</code></p> <p>Required: No</p>"
+        "ContactDetail$State": "<p>The state or province of the contact&apos;s city.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: Maximum 255 characters.</p> <p>Parents: <code>RegistrantContact</code>, <code>AdminContact</code>, <code>TechContact</code></p> <p>Required: No</p>"
       }
     },
     "TLDRulesViolation": {
@@ -528,14 +562,14 @@
     "TagKeyList": {
       "base": null,
       "refs": {
-        "DeleteTagsForDomainRequest$TagsToDelete": "<p>A list of tag keys to delete.</p> <p>Type: A list that contains the keys of the tags that you want to delete.</p> <p>Default: None</p> <p>Required: No</p>'&gt;"
+        "DeleteTagsForDomainRequest$TagsToDelete": "<p>A list of tag keys to delete.</p> <p>Type: A list that contains the keys of the tags that you want to delete.</p> <p>Default: None</p> <p>Required: No</p>'>"
       }
     },
     "TagList": {
       "base": null,
       "refs": {
-        "ListTagsForDomainResponse$TagList": "<p>A list of the tags that are associated with the specified domain.</p> <p>Type: A complex type containing a list of tags</p> <p>Each tag includes the following elements.</p> <ul> <li> <p>Key</p> <p>The key (name) of a tag.</p> <p>Type: String</p> </li> <li> <p>Value</p> <p>The value of a tag.</p> <p>Type: String</p> </li> </ul>",
-        "UpdateTagsForDomainRequest$TagsToUpdate": "<p>A list of the tag keys and values that you want to add or update. If you specify a key that already exists, the corresponding value will be replaced.</p> <p>Type: A complex type containing a list of tags</p> <p>Default: None</p> <p>Required: No</p>'&gt; <p>Each tag includes the following elements:</p> <ul> <li> <p>Key</p> <p>The key (name) of a tag.</p> <p>Type: String</p> <p>Default: None</p> <p>Valid values: Unicode characters including alphanumeric, space, and \".:/=+\\-@\"</p> <p>Constraints: Each key can be 1-128 characters long.</p> <p>Required: Yes</p> </li> <li> <p>Value</p> <p>The value of a tag.</p> <p>Type: String</p> <p>Default: None</p> <p>Valid values: Unicode characters including alphanumeric, space, and \".:/=+\\-@\"</p> <p>Constraints: Each value can be 0-256 characters long.</p> <p>Required: Yes</p> </li> </ul>"
+        "ListTagsForDomainResponse$TagList": "<p>A list of the tags that are associated with the specified domain.</p> <p>Type: A complex type containing a list of tags</p> <p>Each tag includes the following elements.</p> <ul> <li><p>Key</p> <p>The key (name) of a tag.</p> <p>Type: String</p> </li> <li><p>Value</p> <p>The value of a tag.</p> <p>Type: String</p> </li> </ul>",
+        "UpdateTagsForDomainRequest$TagsToUpdate": "<p>A list of the tag keys and values that you want to add or update. If you specify a key that already exists, the corresponding value will be replaced.</p> <p>Type: A complex type containing a list of tags</p> <p>Default: None</p> <p>Required: No</p>'> <p>Each tag includes the following elements:</p> <ul> <li><p>Key</p> <p>The key (name) of a tag.</p> <p>Type: String</p> <p>Default: None</p> <p>Valid values: Unicode characters including alphanumeric, space, and \".:/=+\\-@\"</p> <p>Constraints: Each key can be 1-128 characters long.</p> <p>Required: Yes</p> </li> <li><p>Value</p> <p>The value of a tag.</p> <p>Type: String</p> <p>Default: None</p> <p>Valid values: Unicode characters including alphanumeric, space, and \".:/=+\\-@\"</p> <p>Constraints: Each value can be 0-256 characters long.</p> <p>Required: Yes</p> </li> </ul>"
       }
     },
     "TagValue": {
@@ -613,7 +647,7 @@
     "ZipCode": {
       "base": null,
       "refs": {
-        "ContactDetail$ZipCode": "<p>The zip or postal code of the contact's address.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: Maximum 255 characters.</p> <p>Parents: <code>RegistrantContact</code>, <code>AdminContact</code>, <code>TechContact</code></p> <p>Required: No</p>"
+        "ContactDetail$ZipCode": "<p>The zip or postal code of the contact&apos;s address.</p> <p>Type: String</p> <p>Default: None</p> <p>Constraints: Maximum 255 characters.</p> <p>Parents: <code>RegistrantContact</code>, <code>AdminContact</code>, <code>TechContact</code></p> <p>Required: No</p>"
       }
     }
   }
