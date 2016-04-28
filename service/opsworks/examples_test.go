@@ -240,6 +240,10 @@ func ExampleOpsWorks_CreateDeployment() {
 			aws.String("String"), // Required
 			// More values...
 		},
+		LayerIds: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
 	}
 	resp, err := svc.CreateDeployment(params)
 
@@ -291,6 +295,7 @@ func ExampleOpsWorks_CreateInstance() {
 		RootDeviceType:       aws.String("RootDeviceType"),
 		SshKeyName:           aws.String("String"),
 		SubnetId:             aws.String("String"),
+		Tenancy:              aws.String("String"),
 		VirtualizationType:   aws.String("String"),
 	}
 	resp, err := svc.CreateInstance(params)
