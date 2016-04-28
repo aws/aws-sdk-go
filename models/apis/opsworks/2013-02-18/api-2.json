@@ -1119,6 +1119,7 @@
         "StackId":{"shape":"String"},
         "AppId":{"shape":"String"},
         "InstanceIds":{"shape":"Strings"},
+        "LayerIds":{"shape":"Strings"},
         "Command":{"shape":"DeploymentCommand"},
         "Comment":{"shape":"String"},
         "CustomJson":{"shape":"String"}
@@ -1154,7 +1155,8 @@
         "BlockDeviceMappings":{"shape":"BlockDeviceMappings"},
         "InstallUpdatesOnBoot":{"shape":"Boolean"},
         "EbsOptimized":{"shape":"Boolean"},
-        "AgentVersion":{"shape":"String"}
+        "AgentVersion":{"shape":"String"},
+        "Tenancy":{"shape":"String"}
       }
     },
     "CreateInstanceResult":{
@@ -1830,6 +1832,7 @@
         "StackId":{"shape":"String"},
         "Status":{"shape":"String"},
         "SubnetId":{"shape":"String"},
+        "Tenancy":{"shape":"String"},
         "VirtualizationType":{"shape":"VirtualizationType"}
       }
     },

@@ -3256,6 +3256,9 @@ type CreateDeploymentInput struct {
 	// The instance IDs for the deployment targets.
 	InstanceIds []*string `type:"list"`
 
+	// The layer IDs for the deployment targets.
+	LayerIds []*string `type:"list"`
+
 	// The stack ID.
 	StackId *string `type:"string" required:"true"`
 }
@@ -3408,6 +3411,18 @@ type CreateInstanceInput struct {
 	// use this parameter to override the stack's default subnet ID value and direct
 	// AWS OpsWorks to launch the instance in a different subnet.
 	SubnetId *string `type:"string"`
+
+	// The instance's tenancy option. The default option is no tenancy, or if the
+	// instance is running in a VPC, inherit tenancy settings from the VPC. The
+	// following are valid values for this parameter: dedicated, default, or host.
+	// Because there are costs associated with changes in tenancy options, we recommend
+	// that you research tenancy options before choosing them for your instances.
+	// For more information about dedicated hosts, see Dedicated Hosts Overview
+	// (https://aws.amazon.com/ec2/dedicated-hosts/) and Amazon EC2 Dedicated Hosts
+	// (https://aws.amazon.com/ec2/dedicated-hosts/). For more information about
+	// dedicated instances, see Dedicated Instances (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/dedicated-instance.html)
+	// and Amazon EC2 Dedicated Instances (https://aws.amazon.com/ec2/purchasing-options/dedicated-instances/).
+	Tenancy *string `type:"string"`
 
 	// The instance's virtualization type, paravirtual or hvm.
 	VirtualizationType *string `type:"string"`
@@ -5941,6 +5956,9 @@ type Instance struct {
 	// The instance's subnet ID; applicable only if the stack is running in a VPC.
 	SubnetId *string `type:"string"`
 
+	// The instance's tenancy option, such as dedicated or host.
+	Tenancy *string `type:"string"`
+
 	// The instance's virtualization type: paravirtual or hvm.
 	VirtualizationType *string `type:"string" enum:"VirtualizationType"`
 }
@@ -8359,7 +8377,7 @@ type Volume struct {
 	// For PIOPS volumes, the IOPS per disk.
 	Iops *int64 `type:"integer"`
 
-	// The volume mount point. For example "/dev/sdh".
+	// The volume mount point. For example, "/mnt/disk1".
 	MountPoint *string `type:"string"`
 
 	// The volume name.
