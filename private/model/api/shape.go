@@ -55,8 +55,8 @@ type Shape struct {
 	LocationName     string
 	IdempotencyToken bool `json:"idempotencyToken"`
 	XMLNamespace     XMLInfo
-	Min              int // optional Minimum length (string, list) or value (number)
-	Max              int // optional Maximum length (string, list) or value (number)
+	Min              float64 // optional Minimum length (string, list) or value (number)
+	Max              float64 // optional Maximum length (string, list) or value (number)
 
 	refs       []*ShapeRef // References to this shape
 	resolvePkg string      // use this package in the goType() if present
@@ -273,7 +273,7 @@ func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
 		tags = append(tags, ShapeTag{"locationNameValue", ref.Shape.ValueRef.LocationName})
 	}
 	if ref.Shape.Min > 0 {
-		tags = append(tags, ShapeTag{"min", fmt.Sprintf("%d", ref.Shape.Min)})
+		tags = append(tags, ShapeTag{"min", fmt.Sprintf("%v", ref.Shape.Min)})
 	}
 
 	if ref.Deprecated || ref.Shape.Deprecated {
