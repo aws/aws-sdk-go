@@ -12,13 +12,13 @@ func (c *Glacier) WaitUntilVaultExists(input *DescribeVaultInput) error {
 		Delay:       3,
 		MaxAttempts: 15,
 		Acceptors: []waiter.WaitAcceptor{
-			{
+			waiter.WaitAcceptor{
 				State:    "success",
 				Matcher:  "status",
 				Argument: "",
 				Expected: 200,
 			},
-			{
+			waiter.WaitAcceptor{
 				State:    "retry",
 				Matcher:  "error",
 				Argument: "",
@@ -41,13 +41,13 @@ func (c *Glacier) WaitUntilVaultNotExists(input *DescribeVaultInput) error {
 		Delay:       3,
 		MaxAttempts: 15,
 		Acceptors: []waiter.WaitAcceptor{
-			{
+			waiter.WaitAcceptor{
 				State:    "retry",
 				Matcher:  "status",
 				Argument: "",
 				Expected: 200,
 			},
-			{
+			waiter.WaitAcceptor{
 				State:    "success",
 				Matcher:  "error",
 				Argument: "",
