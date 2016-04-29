@@ -12,13 +12,13 @@ func (c *DynamoDB) WaitUntilTableExists(input *DescribeTableInput) error {
 		Delay:       20,
 		MaxAttempts: 25,
 		Acceptors: []waiter.WaitAcceptor{
-			{
+			waiter.WaitAcceptor{
 				State:    "success",
 				Matcher:  "path",
 				Argument: "Table.TableStatus",
 				Expected: "ACTIVE",
 			},
-			{
+			waiter.WaitAcceptor{
 				State:    "retry",
 				Matcher:  "error",
 				Argument: "",
@@ -41,7 +41,7 @@ func (c *DynamoDB) WaitUntilTableNotExists(input *DescribeTableInput) error {
 		Delay:       20,
 		MaxAttempts: 25,
 		Acceptors: []waiter.WaitAcceptor{
-			{
+			waiter.WaitAcceptor{
 				State:    "success",
 				Matcher:  "error",
 				Argument: "",
