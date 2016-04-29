@@ -21,7 +21,7 @@ func ExampleDataPipeline_ActivatePipeline() {
 	params := &datapipeline.ActivatePipelineInput{
 		PipelineId: aws.String("id"), // Required
 		ParameterValues: []*datapipeline.ParameterValue{
-			{ // Required
+			&datapipeline.ParameterValue{ // Required
 				Id:          aws.String("fieldNameString"),  // Required
 				StringValue: aws.String("fieldStringValue"), // Required
 			},
@@ -48,7 +48,7 @@ func ExampleDataPipeline_AddTags() {
 	params := &datapipeline.AddTagsInput{
 		PipelineId: aws.String("id"), // Required
 		Tags: []*datapipeline.Tag{ // Required
-			{ // Required
+			&datapipeline.Tag{ // Required
 				Key:   aws.String("tagKey"),   // Required
 				Value: aws.String("tagValue"), // Required
 			},
@@ -76,7 +76,7 @@ func ExampleDataPipeline_CreatePipeline() {
 		UniqueId:    aws.String("id"), // Required
 		Description: aws.String("string"),
 		Tags: []*datapipeline.Tag{
-			{ // Required
+			&datapipeline.Tag{ // Required
 				Key:   aws.String("tagKey"),   // Required
 				Value: aws.String("tagValue"), // Required
 			},
@@ -272,9 +272,9 @@ func ExampleDataPipeline_PutPipelineDefinition() {
 	params := &datapipeline.PutPipelineDefinitionInput{
 		PipelineId: aws.String("id"), // Required
 		PipelineObjects: []*datapipeline.PipelineObject{ // Required
-			{ // Required
+			&datapipeline.PipelineObject{ // Required
 				Fields: []*datapipeline.Field{ // Required
-					{ // Required
+					&datapipeline.Field{ // Required
 						Key:         aws.String("fieldNameString"), // Required
 						RefValue:    aws.String("fieldNameString"),
 						StringValue: aws.String("fieldStringValue"),
@@ -287,9 +287,9 @@ func ExampleDataPipeline_PutPipelineDefinition() {
 			// More values...
 		},
 		ParameterObjects: []*datapipeline.ParameterObject{
-			{ // Required
+			&datapipeline.ParameterObject{ // Required
 				Attributes: []*datapipeline.ParameterAttribute{ // Required
-					{ // Required
+					&datapipeline.ParameterAttribute{ // Required
 						Key:         aws.String("attributeNameString"),  // Required
 						StringValue: aws.String("attributeValueString"), // Required
 					},
@@ -300,7 +300,7 @@ func ExampleDataPipeline_PutPipelineDefinition() {
 			// More values...
 		},
 		ParameterValues: []*datapipeline.ParameterValue{
-			{ // Required
+			&datapipeline.ParameterValue{ // Required
 				Id:          aws.String("fieldNameString"),  // Required
 				StringValue: aws.String("fieldStringValue"), // Required
 			},
@@ -330,7 +330,7 @@ func ExampleDataPipeline_QueryObjects() {
 		Marker:     aws.String("string"),
 		Query: &datapipeline.Query{
 			Selectors: []*datapipeline.Selector{
-				{ // Required
+				&datapipeline.Selector{ // Required
 					FieldName: aws.String("string"),
 					Operator: &datapipeline.Operator{
 						Type: aws.String("OperatorType"),
@@ -386,7 +386,7 @@ func ExampleDataPipeline_ReportTaskProgress() {
 	params := &datapipeline.ReportTaskProgressInput{
 		TaskId: aws.String("taskId"), // Required
 		Fields: []*datapipeline.Field{
-			{ // Required
+			&datapipeline.Field{ // Required
 				Key:         aws.String("fieldNameString"), // Required
 				RefValue:    aws.String("fieldNameString"),
 				StringValue: aws.String("fieldStringValue"),
@@ -481,9 +481,9 @@ func ExampleDataPipeline_ValidatePipelineDefinition() {
 	params := &datapipeline.ValidatePipelineDefinitionInput{
 		PipelineId: aws.String("id"), // Required
 		PipelineObjects: []*datapipeline.PipelineObject{ // Required
-			{ // Required
+			&datapipeline.PipelineObject{ // Required
 				Fields: []*datapipeline.Field{ // Required
-					{ // Required
+					&datapipeline.Field{ // Required
 						Key:         aws.String("fieldNameString"), // Required
 						RefValue:    aws.String("fieldNameString"),
 						StringValue: aws.String("fieldStringValue"),
@@ -496,9 +496,9 @@ func ExampleDataPipeline_ValidatePipelineDefinition() {
 			// More values...
 		},
 		ParameterObjects: []*datapipeline.ParameterObject{
-			{ // Required
+			&datapipeline.ParameterObject{ // Required
 				Attributes: []*datapipeline.ParameterAttribute{ // Required
-					{ // Required
+					&datapipeline.ParameterAttribute{ // Required
 						Key:         aws.String("attributeNameString"),  // Required
 						StringValue: aws.String("attributeValueString"), // Required
 					},
@@ -509,7 +509,7 @@ func ExampleDataPipeline_ValidatePipelineDefinition() {
 			// More values...
 		},
 		ParameterValues: []*datapipeline.ParameterValue{
-			{ // Required
+			&datapipeline.ParameterValue{ // Required
 				Id:          aws.String("fieldNameString"),  // Required
 				StringValue: aws.String("fieldStringValue"), // Required
 			},
