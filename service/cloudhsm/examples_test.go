@@ -21,7 +21,7 @@ func ExampleCloudHSM_AddTagsToResource() {
 	params := &cloudhsm.AddTagsToResourceInput{
 		ResourceArn: aws.String("String"), // Required
 		TagList: []*cloudhsm.Tag{ // Required
-			{ // Required
+			&cloudhsm.Tag{ // Required
 				Key:   aws.String("TagKey"),   // Required
 				Value: aws.String("TagValue"), // Required
 			},
