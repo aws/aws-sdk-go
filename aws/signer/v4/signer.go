@@ -38,5 +38,11 @@ func NewVerifier(creds *credentials.Credentials) (*Verifier) {
 }
 
 func (v Verifier) Verify(r *http.Request) (bool, error) {
-	return false, awserr.New("Test", "test", nil)
+	if v.Creds == nil {
+		return false, awserr.New("NilCredentials", "Credentials can't be nil", nil)
+	}
+	if r == nil {
+		return false, awserr.New("NilRequest", "Request can't be nil", nil)
+	}
+	return true, nil
 }

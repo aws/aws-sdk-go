@@ -39,3 +39,12 @@ func TestVerifyFailsNoCredentials(t *testing.T) {
 	assert.Error(t, err)
 	assert.False(t, verified)
 }
+
+func TestVerifyFailsNoRequest(t *testing.T) {
+	creds := credentials.NewStaticCredentials("id", "secret", "token")
+	verifier := v4.NewVerifier(creds)
+	verified, err := verifier.Verify(nil)
+
+	assert.Error(t, err)
+	assert.False(t, verified)
+}
