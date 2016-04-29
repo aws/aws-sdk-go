@@ -21,7 +21,7 @@ func ExampleACM_AddTagsToCertificate() {
 	params := &acm.AddTagsToCertificateInput{
 		CertificateArn: aws.String("Arn"), // Required
 		Tags: []*acm.Tag{ // Required
-			{ // Required
+			&acm.Tag{ // Required
 				Key:   aws.String("TagKey"), // Required
 				Value: aws.String("TagValue"),
 			},
@@ -147,7 +147,7 @@ func ExampleACM_RemoveTagsFromCertificate() {
 	params := &acm.RemoveTagsFromCertificateInput{
 		CertificateArn: aws.String("Arn"), // Required
 		Tags: []*acm.Tag{ // Required
-			{ // Required
+			&acm.Tag{ // Required
 				Key:   aws.String("TagKey"), // Required
 				Value: aws.String("TagValue"),
 			},
@@ -173,7 +173,7 @@ func ExampleACM_RequestCertificate() {
 	params := &acm.RequestCertificateInput{
 		DomainName: aws.String("DomainNameString"), // Required
 		DomainValidationOptions: []*acm.DomainValidationOption{
-			{ // Required
+			&acm.DomainValidationOption{ // Required
 				DomainName:       aws.String("DomainNameString"), // Required
 				ValidationDomain: aws.String("DomainNameString"), // Required
 			},
