@@ -21,7 +21,7 @@ func ExampleElastiCache_AddTagsToResource() {
 	params := &elasticache.AddTagsToResourceInput{
 		ResourceName: aws.String("String"), // Required
 		Tags: []*elasticache.Tag{ // Required
-			{ // Required
+			&elasticache.Tag{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -120,7 +120,7 @@ func ExampleElastiCache_CreateCacheCluster() {
 		SnapshotRetentionLimit: aws.Int64(1),
 		SnapshotWindow:         aws.String("String"),
 		Tags: []*elasticache.Tag{
-			{ // Required
+			&elasticache.Tag{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -243,7 +243,7 @@ func ExampleElastiCache_CreateReplicationGroup() {
 		SnapshotRetentionLimit: aws.Int64(1),
 		SnapshotWindow:         aws.String("String"),
 		Tags: []*elasticache.Tag{
-			{ // Required
+			&elasticache.Tag{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -764,7 +764,7 @@ func ExampleElastiCache_ModifyCacheParameterGroup() {
 	params := &elasticache.ModifyCacheParameterGroupInput{
 		CacheParameterGroupName: aws.String("String"), // Required
 		ParameterNameValues: []*elasticache.ParameterNameValue{ // Required
-			{ // Required
+			&elasticache.ParameterNameValue{ // Required
 				ParameterName:  aws.String("String"),
 				ParameterValue: aws.String("String"),
 			},
@@ -922,7 +922,7 @@ func ExampleElastiCache_ResetCacheParameterGroup() {
 	params := &elasticache.ResetCacheParameterGroupInput{
 		CacheParameterGroupName: aws.String("String"), // Required
 		ParameterNameValues: []*elasticache.ParameterNameValue{ // Required
-			{ // Required
+			&elasticache.ParameterNameValue{ // Required
 				ParameterName:  aws.String("String"),
 				ParameterValue: aws.String("String"),
 			},
