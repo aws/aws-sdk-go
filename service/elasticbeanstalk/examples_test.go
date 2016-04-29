@@ -155,7 +155,7 @@ func ExampleElasticBeanstalk_CreateConfigurationTemplate() {
 		Description:     aws.String("Description"),
 		EnvironmentId:   aws.String("EnvironmentId"),
 		OptionSettings: []*elasticbeanstalk.ConfigurationOptionSetting{
-			{ // Required
+			&elasticbeanstalk.ConfigurationOptionSetting{ // Required
 				Namespace:    aws.String("OptionNamespace"),
 				OptionName:   aws.String("ConfigurationOptionName"),
 				ResourceName: aws.String("ResourceName"),
@@ -192,7 +192,7 @@ func ExampleElasticBeanstalk_CreateEnvironment() {
 		EnvironmentName: aws.String("EnvironmentName"),
 		GroupName:       aws.String("GroupName"),
 		OptionSettings: []*elasticbeanstalk.ConfigurationOptionSetting{
-			{ // Required
+			&elasticbeanstalk.ConfigurationOptionSetting{ // Required
 				Namespace:    aws.String("OptionNamespace"),
 				OptionName:   aws.String("ConfigurationOptionName"),
 				ResourceName: aws.String("ResourceName"),
@@ -201,7 +201,7 @@ func ExampleElasticBeanstalk_CreateEnvironment() {
 			// More values...
 		},
 		OptionsToRemove: []*elasticbeanstalk.OptionSpecification{
-			{ // Required
+			&elasticbeanstalk.OptionSpecification{ // Required
 				Namespace:    aws.String("OptionNamespace"),
 				OptionName:   aws.String("ConfigurationOptionName"),
 				ResourceName: aws.String("ResourceName"),
@@ -210,7 +210,7 @@ func ExampleElasticBeanstalk_CreateEnvironment() {
 		},
 		SolutionStackName: aws.String("SolutionStackName"),
 		Tags: []*elasticbeanstalk.Tag{
-			{ // Required
+			&elasticbeanstalk.Tag{ // Required
 				Key:   aws.String("TagKey"),
 				Value: aws.String("TagValue"),
 			},
@@ -387,7 +387,7 @@ func ExampleElasticBeanstalk_DescribeConfigurationOptions() {
 		ApplicationName: aws.String("ApplicationName"),
 		EnvironmentName: aws.String("EnvironmentName"),
 		Options: []*elasticbeanstalk.OptionSpecification{
-			{ // Required
+			&elasticbeanstalk.OptionSpecification{ // Required
 				Namespace:    aws.String("OptionNamespace"),
 				OptionName:   aws.String("ConfigurationOptionName"),
 				ResourceName: aws.String("ResourceName"),
@@ -794,7 +794,7 @@ func ExampleElasticBeanstalk_UpdateConfigurationTemplate() {
 		TemplateName:    aws.String("ConfigurationTemplateName"), // Required
 		Description:     aws.String("Description"),
 		OptionSettings: []*elasticbeanstalk.ConfigurationOptionSetting{
-			{ // Required
+			&elasticbeanstalk.ConfigurationOptionSetting{ // Required
 				Namespace:    aws.String("OptionNamespace"),
 				OptionName:   aws.String("ConfigurationOptionName"),
 				ResourceName: aws.String("ResourceName"),
@@ -803,7 +803,7 @@ func ExampleElasticBeanstalk_UpdateConfigurationTemplate() {
 			// More values...
 		},
 		OptionsToRemove: []*elasticbeanstalk.OptionSpecification{
-			{ // Required
+			&elasticbeanstalk.OptionSpecification{ // Required
 				Namespace:    aws.String("OptionNamespace"),
 				OptionName:   aws.String("ConfigurationOptionName"),
 				ResourceName: aws.String("ResourceName"),
@@ -834,7 +834,7 @@ func ExampleElasticBeanstalk_UpdateEnvironment() {
 		EnvironmentName: aws.String("EnvironmentName"),
 		GroupName:       aws.String("GroupName"),
 		OptionSettings: []*elasticbeanstalk.ConfigurationOptionSetting{
-			{ // Required
+			&elasticbeanstalk.ConfigurationOptionSetting{ // Required
 				Namespace:    aws.String("OptionNamespace"),
 				OptionName:   aws.String("ConfigurationOptionName"),
 				ResourceName: aws.String("ResourceName"),
@@ -843,7 +843,7 @@ func ExampleElasticBeanstalk_UpdateEnvironment() {
 			// More values...
 		},
 		OptionsToRemove: []*elasticbeanstalk.OptionSpecification{
-			{ // Required
+			&elasticbeanstalk.OptionSpecification{ // Required
 				Namespace:    aws.String("OptionNamespace"),
 				OptionName:   aws.String("ConfigurationOptionName"),
 				ResourceName: aws.String("ResourceName"),
@@ -878,7 +878,7 @@ func ExampleElasticBeanstalk_ValidateConfigurationSettings() {
 	params := &elasticbeanstalk.ValidateConfigurationSettingsInput{
 		ApplicationName: aws.String("ApplicationName"), // Required
 		OptionSettings: []*elasticbeanstalk.ConfigurationOptionSetting{ // Required
-			{ // Required
+			&elasticbeanstalk.ConfigurationOptionSetting{ // Required
 				Namespace:    aws.String("OptionNamespace"),
 				OptionName:   aws.String("ConfigurationOptionName"),
 				ResourceName: aws.String("ResourceName"),
