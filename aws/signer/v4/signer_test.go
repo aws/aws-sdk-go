@@ -28,3 +28,14 @@ func TestSignNilRequest(t *testing.T) {
 
 	assert.Error(t, err)
 }
+
+func TestVerifyFailsNoCredentials(t *testing.T) {
+	verifier := v4.NewVerifier(nil)
+	request, err := http.NewRequest("", "", nil)
+	assert.NoError(t, err)
+
+	verified, err := verifier.Verify(request)
+
+	assert.Error(t, err)
+	assert.False(t, verified)
+}

@@ -27,3 +27,16 @@ func (s Signer) Sign(r *http.Request) error {
 	return nil
 }
 
+type Verifier struct {
+	Creds *credentials.Credentials
+}
+
+func NewVerifier(creds *credentials.Credentials) (*Verifier) {
+	return & Verifier{
+		Creds: creds,
+	}
+}
+
+func (v Verifier) Verify(r *http.Request) (bool, error) {
+	return false, awserr.New("Test", "test", nil)
+}
