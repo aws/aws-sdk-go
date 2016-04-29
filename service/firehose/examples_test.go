@@ -221,7 +221,7 @@ func ExampleFirehose_PutRecordBatch() {
 	params := &firehose.PutRecordBatchInput{
 		DeliveryStreamName: aws.String("DeliveryStreamName"), // Required
 		Records: []*firehose.Record{ // Required
-			{ // Required
+			&firehose.Record{ // Required
 				Data: []byte("PAYLOAD"), // Required
 			},
 			// More values...
