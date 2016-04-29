@@ -12,13 +12,13 @@ func (c *AutoScaling) WaitUntilGroupExists(input *DescribeAutoScalingGroupsInput
 		Delay:       5,
 		MaxAttempts: 10,
 		Acceptors: []waiter.WaitAcceptor{
-			{
+			waiter.WaitAcceptor{
 				State:    "success",
 				Matcher:  "path",
 				Argument: "length(AutoScalingGroups) > `0`",
 				Expected: true,
 			},
-			{
+			waiter.WaitAcceptor{
 				State:    "retry",
 				Matcher:  "path",
 				Argument: "length(AutoScalingGroups) > `0`",
@@ -41,13 +41,13 @@ func (c *AutoScaling) WaitUntilGroupInService(input *DescribeAutoScalingGroupsIn
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			{
+			waiter.WaitAcceptor{
 				State:    "success",
 				Matcher:  "path",
 				Argument: "contains(AutoScalingGroups[].[length(Instances[?LifecycleState=='InService']) >= MinSize][], `false`)",
 				Expected: false,
 			},
-			{
+			waiter.WaitAcceptor{
 				State:    "retry",
 				Matcher:  "path",
 				Argument: "contains(AutoScalingGroups[].[length(Instances[?LifecycleState=='InService']) >= MinSize][], `false`)",
@@ -70,13 +70,13 @@ func (c *AutoScaling) WaitUntilGroupNotExists(input *DescribeAutoScalingGroupsIn
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			{
+			waiter.WaitAcceptor{
 				State:    "success",
 				Matcher:  "path",
 				Argument: "length(AutoScalingGroups) > `0`",
 				Expected: false,
 			},
-			{
+			waiter.WaitAcceptor{
 				State:    "retry",
 				Matcher:  "path",
 				Argument: "length(AutoScalingGroups) > `0`",
