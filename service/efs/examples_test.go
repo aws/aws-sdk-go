@@ -65,7 +65,7 @@ func ExampleEFS_CreateTags() {
 	params := &efs.CreateTagsInput{
 		FileSystemId: aws.String("FileSystemId"), // Required
 		Tags: []*efs.Tag{ // Required
-			{ // Required
+			&efs.Tag{ // Required
 				Key:   aws.String("TagKey"),   // Required
 				Value: aws.String("TagValue"), // Required
 			},
