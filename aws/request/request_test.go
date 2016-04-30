@@ -296,7 +296,7 @@ func TestRequestThrottleRetries(t *testing.T) {
 	assert.Equal(t, "An error occurred.", err.(awserr.Error).Message())
 	assert.Equal(t, 3, int(r.RetryCount))
 
-	expectDelays := []struct{ min, max time.Duration }{{1000, 1030}, {2000, 2060}, {4000, 4120}}
+	expectDelays := []struct{ min, max time.Duration }{{500, 999}, {1000, 1998}, {2000, 3996}}
 	for i, v := range delays {
 		min := expectDelays[i].min * time.Millisecond
 		max := expectDelays[i].max * time.Millisecond
