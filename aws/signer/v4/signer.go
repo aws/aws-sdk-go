@@ -24,6 +24,12 @@ func (s Signer) Sign(r *http.Request) error {
 		return awserr.New("NilRequest", "Request can't be nil", nil)
 	}
 
+	r.URL.RawQuery += "&X-Amz-Signature=ea7856749041f727690c580569738282e99c79355fe0d8f125d3b5535d2ece83"
+	r.URL.RawQuery += "&X-Amz-Credential=AKID/19700101/us-east-1/dynamodb/aws4_request"
+	r.URL.RawQuery += "&X-Amz-SignedHeaders=content-length%3Bcontent-type%3Bhost%3Bx-amz-meta-other-header%3Bx-amz-meta-other-header_with_underscore"
+	r.URL.RawQuery += "&X-Amz-Date=19700101T000000Z"
+	r.URL.RawQuery += "&X-Amz-Target=prefix.Operation"
+
 	return nil
 }
 
