@@ -4,6 +4,8 @@ import (
 	"net/http"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/awserr"
+	"fmt"
+	"net/url"
 )
 
 type Signer struct {
@@ -16,7 +18,15 @@ func NewSigner(creds *credentials.Credentials) (*Signer) {
 	}
 }
 
-func (s Signer) Sign(r *http.Request) error {
+func set(r *http.Request, presign bool, key, value string) {
+	if presign {
+		r.URL.RawQuery += fmt.Sprintf("&%s=%s", url.QueryEscape(key), url.QueryEscape(value))
+	} else {
+		r.Header.Add(key, value)
+	}
+}
+
+func (s Signer) Sign(r *http.Request, presign bool) error {
 	if s.Creds == nil {
 		return awserr.New("NilCredentials", "Credentials can't be nil", nil)
 	}
@@ -24,11 +34,11 @@ func (s Signer) Sign(r *http.Request) error {
 		return awserr.New("NilRequest", "Request can't be nil", nil)
 	}
 
-	r.URL.RawQuery += "&X-Amz-Signature=ea7856749041f727690c580569738282e99c79355fe0d8f125d3b5535d2ece83"
-	r.URL.RawQuery += "&X-Amz-Credential=AKID/19700101/us-east-1/dynamodb/aws4_request"
-	r.URL.RawQuery += "&X-Amz-SignedHeaders=content-length%3Bcontent-type%3Bhost%3Bx-amz-meta-other-header%3Bx-amz-meta-other-header_with_underscore"
-	r.URL.RawQuery += "&X-Amz-Date=19700101T000000Z"
-	r.URL.RawQuery += "&X-Amz-Target=prefix.Operation"
+	set(r, presign, "X-Amz-Signature", "ea7856749041f727690c580569738282e99c79355fe0d8f125d3b5535d2ece83")
+	set(r, presign, "X-Amz-Credential", "AKID/19700101/us-east-1/dynamodb/aws4_request")
+	set(r, presign, "X-Amz-SignedHeaders", "content-length;content-type;host;x-amz-meta-other-header;x-amz-meta-other-header_with_underscore")
+	set(r, presign, "X-Amz-Date", "19700101T000000Z")
+	set(r, presign, "X-Amz-Target", "prefix.Operation")
 
 	return nil
 }

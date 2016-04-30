@@ -51,25 +51,6 @@ func assertEqual(t *testing.T, expected, given string) {
 	}
 }
 
-func TestPresignRequest(t *testing.T) {
-	signer := buildSigner("dynamodb", "us-east-1", time.Unix(0, 0), 300*time.Second, "{}")
-	signer.sign()
-
-	expectedDate := "19700101T000000Z"
-	expectedHeaders := "content-length;content-type;host;x-amz-meta-other-header;x-amz-meta-other-header_with_underscore"
-	expectedSig := "ea7856749041f727690c580569738282e99c79355fe0d8f125d3b5535d2ece83"
-	expectedCred := "AKID/19700101/us-east-1/dynamodb/aws4_request"
-	expectedTarget := "prefix.Operation"
-
-	q := signer.Request.URL.Query()
-	assert.Equal(t, expectedSig, q.Get("X-Amz-Signature"))
-	assert.Equal(t, expectedCred, q.Get("X-Amz-Credential"))
-	assert.Equal(t, expectedHeaders, q.Get("X-Amz-SignedHeaders"))
-	assert.Equal(t, expectedDate, q.Get("X-Amz-Date"))
-	assert.Empty(t, q.Get("X-Amz-Meta-Other-Header"))
-	assert.Equal(t, expectedTarget, q.Get("X-Amz-Target"))
-}
-
 func TestSignRequest(t *testing.T) {
 	signer := buildSigner("dynamodb", "us-east-1", time.Unix(0, 0), 0, "{}")
 	signer.sign()

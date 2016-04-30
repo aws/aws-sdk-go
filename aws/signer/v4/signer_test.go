@@ -7,6 +7,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/signer/v4"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 "strings"
+	"fmt"
 )
 
 func TestSignNilCredentials(t *testing.T) {
@@ -14,7 +15,7 @@ func TestSignNilCredentials(t *testing.T) {
 	request, err := http.NewRequest("", "", nil)
 	assert.NoError(t, err)
 
-	err = signer.Sign(request)
+	err = signer.Sign(request, false)
 
 	assert.Error(t, err)
 }
@@ -25,7 +26,7 @@ func TestSignNilRequest(t *testing.T) {
 
 	assert.NotNil(t, signer)
 
-	err := signer.Sign(nil)
+	err := signer.Sign(nil, false)
 
 	assert.Error(t, err)
 }
@@ -50,29 +51,39 @@ func TestVerifyFailsNoRequest(t *testing.T) {
 	assert.False(t, verified)
 }
 
-func TestSignPostRequest(t *testing.T) {
-	creds := credentials.NewStaticCredentials("id", "secret", "token")
+type Headers map[string]string
 
-	serviceName := "dynamodb"
-	region := "us-west-2"
-
-	endpoint := "https://" + serviceName + "." + region + ".amazonaws.com"
-
-	body := "body"
-	reader := strings.NewReader(body)
-
-	req, _ := http.NewRequest("POST", endpoint, reader)
-
-	req.URL.Opaque = "//example.org/bucket/key-._~,!@#$%^&*()"
-	req.Header.Add("X-Amz-Target", "prefix.Operation")
-	req.Header.Add("Content-Type", "application/x-amz-json-1.0")
+func request(method, service, region, body, url string, headers map[string]string) *http.Request {
+	endpoint := fmt.Sprintf("https://%s.%s.amazonaws.com", service, region)
+	req, _ := http.NewRequest(method, endpoint, strings.NewReader(body))
+	req.URL.Opaque = url
+	for k, v := range headers {
+		req.Header.Add(k, v)
+	}
 	req.Header.Add("Content-Length", string(len(body)))
-	req.Header.Add("X-Amz-Meta-Other-Header", "some-value=!@#$%^&* (+)")
-	req.Header.Add("X-Amz-Meta-Other-Header_With_Underscore", "some-value=!@#$%^&* (+)")
-	req.Header.Add("X-amz-Meta-Other-Header_With_Underscore", "some-value=!@#$%^&* (+)")
+	return req
+}
+
+func TestSignPostRequest(t *testing.T) {
+	creds := credentials.NewStaticCredentials("AKID", "SECRET", "SESSION")
+
+	headers := make(Headers)
+	headers["X-Amz-Target"] = "prefix.Operation"
+	headers["Content-Type"] = "application/x-amz-json-1.0"
+	headers["X-Amz-Meta-Other-Header"] = "some-value=!@#$%^&* (+)"
+	headers["X-Amz-Meta-Other-Header_With_Underscore"] = "some-value=!@#$%^&* (+)"
+	headers["X-amz-Meta-Other-Header_With_Underscore"] = "some-value=!@#$%^&* (+)"
+
+	req := request(
+		"POST",
+		"dynamodb",
+		"us-east-1",
+		"",
+		"//example.org/bucket/key-._~,!@#$%^&*()",
+		headers)
 
 	signer := v4.NewSigner(creds)
-	err := signer.Sign(req)
+	err := signer.Sign(req, true)
 	assert.NoError(t, err)
 
 	expectedDate := "19700101T000000Z"
@@ -89,3 +100,26 @@ func TestSignPostRequest(t *testing.T) {
 	assert.Empty(t, q.Get("X-Amz-Meta-Other-Header"))
 	assert.Equal(t, expectedTarget, q.Get("X-Amz-Target"))
 }
+
+func TestSignOther(t *testing.T) {
+	creds := credentials.NewStaticCredentials("AKID", "SECRET", "SESSION")
+
+	req := request(
+		"POST",
+		"dynamodb",
+		"us-east-1",
+		"{}",
+		"//example.org/bucket/key-._~,!@#$%^&*()",
+		make(Headers))
+
+	signer := v4.NewSigner(creds)
+	signer.Sign(req, false)
+
+	expectedDate := "19700101T000000Z"
+	expectedSig := "AWS4-HMAC-SHA256 Credential=AKID/19700101/us-east-1/dynamodb/aws4_request, SignedHeaders=content-length;content-type;host;x-amz-date;x-amz-meta-other-header;x-amz-meta-other-header_with_underscore;x-amz-security-token;x-amz-target, Signature=ea766cabd2ec977d955a3c2bae1ae54f4515d70752f2207618396f20aa85bd21"
+
+	q := req.Header
+	assert.Equal(t, expectedSig, q.Get("Authorization"))
+	assert.Equal(t, expectedDate, q.Get("X-Amz-Date"))
+}
+
