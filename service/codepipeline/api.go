@@ -1051,7 +1051,7 @@ type ActionExecution struct {
 	ErrorDetails *ErrorDetails `locationName:"errorDetails" type:"structure"`
 
 	// The external ID of the run of the action.
-	ExternalExecutionId *string `locationName:"externalExecutionId" type:"string"`
+	ExternalExecutionId *string `locationName:"externalExecutionId" min:"1" type:"string"`
 
 	// The URL of a resource external to AWS that will be used when running the
 	// action, for example an external repository URL.
@@ -1091,11 +1091,11 @@ type ActionRevision struct {
 
 	// The unique identifier of the change that set the state to this revision,
 	// for example a deployment ID or timestamp.
-	RevisionChangeId *string `locationName:"revisionChangeId" type:"string"`
+	RevisionChangeId *string `locationName:"revisionChangeId" min:"1" type:"string" required:"true"`
 
 	// The system-generated unique ID that identifies the revision number of the
 	// action.
-	RevisionId *string `locationName:"revisionId" type:"string" required:"true"`
+	RevisionId *string `locationName:"revisionId" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -1114,8 +1114,17 @@ func (s *ActionRevision) Validate() error {
 	if s.Created == nil {
 		invalidParams.Add(request.NewErrParamRequired("Created"))
 	}
+	if s.RevisionChangeId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RevisionChangeId"))
+	}
+	if s.RevisionChangeId != nil && len(*s.RevisionChangeId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RevisionChangeId", 1))
+	}
 	if s.RevisionId == nil {
 		invalidParams.Add(request.NewErrParamRequired("RevisionId"))
+	}
+	if s.RevisionId != nil && len(*s.RevisionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RevisionId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -1318,7 +1327,7 @@ type Artifact struct {
 
 	// The artifact's revision ID. Depending on the type of object, this could be
 	// a commit ID (GitHub) or a revision ID (Amazon S3).
-	Revision *string `locationName:"revision" type:"string"`
+	Revision *string `locationName:"revision" min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -1391,13 +1400,13 @@ func (s ArtifactLocation) GoString() string {
 
 // The Amazon S3 location where artifacts are stored for the pipeline. If this
 // Amazon S3 bucket is created manually, it must meet the requirements for AWS
-// CodePipeline. For more information, see the Concepts.
+// CodePipeline. For more information, see the Concepts (http://docs.aws.amazon.com/codepipeline/latest/userguide/concepts.html#CPS3Bucket).
 type ArtifactStore struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Key Management Service (AWS KMS) key used to encrypt the data in
-	// the artifact store. If this is undefined, the default key for Amazon S3 is
-	// used.
+	// The encryption key used to encrypt the data in the artifact store, such as
+	// an AWS Key Management Service (AWS KMS) key. If this is undefined, the default
+	// key for Amazon S3 is used.
 	EncryptionKey *EncryptionKey `locationName:"encryptionKey" type:"structure"`
 
 	// The location for storing the artifacts for a pipeline, such as an S3 bucket
@@ -1442,14 +1451,14 @@ func (s *ArtifactStore) Validate() error {
 	return nil
 }
 
-// Represents information about a gate declaration.
+// Reserved for future use.
 type BlockerDeclaration struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the gate declaration.
+	// Reserved for future use.
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The type of the gate declaration.
+	// Reserved for future use.
 	Type *string `locationName:"type" type:"string" required:"true" enum:"BlockerType"`
 }
 
@@ -1487,9 +1496,17 @@ type CreateCustomActionTypeInput struct {
 	_ struct{} `type:"structure"`
 
 	// The category of the custom action, such as a source action or a build action.
+	//
+	// Although Source is listed as a valid value, it is not currently functional.
+	// This value is reserved for future use.
 	Category *string `locationName:"category" type:"string" required:"true" enum:"ActionCategory"`
 
 	// The configuration properties for the custom action.
+	//
+	// You can refer to a name in the configuration properties of the custom action
+	// within the URL templates by following the format of {Config:name}, as long
+	// as the configuration property is both required and not secret. For more information,
+	// see Create a Custom Action for a Pipeline (http://docs.aws.amazon.com/codepipeline/latest/userguide/how-to-create-custom-action.html).
 	ConfigurationProperties []*ActionConfigurationProperty `locationName:"configurationProperties" type:"list"`
 
 	// Returns information about the details of an artifact.
@@ -1505,9 +1522,6 @@ type CreateCustomActionTypeInput struct {
 	Settings *ActionTypeSettings `locationName:"settings" type:"structure"`
 
 	// The version number of the custom action.
-	//
-	// A newly-created custom action is always assigned a version number of 1.
-	// This is required.
 	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
 }
 
@@ -1654,10 +1668,10 @@ type CurrentRevision struct {
 	_ struct{} `type:"structure"`
 
 	// The change identifier for the current revision.
-	ChangeIdentifier *string `locationName:"changeIdentifier" type:"string" required:"true"`
+	ChangeIdentifier *string `locationName:"changeIdentifier" min:"1" type:"string" required:"true"`
 
 	// The revision ID of the current version of an artifact.
-	Revision *string `locationName:"revision" type:"string" required:"true"`
+	Revision *string `locationName:"revision" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -1676,8 +1690,14 @@ func (s *CurrentRevision) Validate() error {
 	if s.ChangeIdentifier == nil {
 		invalidParams.Add(request.NewErrParamRequired("ChangeIdentifier"))
 	}
+	if s.ChangeIdentifier != nil && len(*s.ChangeIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChangeIdentifier", 1))
+	}
 	if s.Revision == nil {
 		invalidParams.Add(request.NewErrParamRequired("Revision"))
+	}
+	if s.Revision != nil && len(*s.Revision) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Revision", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -1945,15 +1965,17 @@ func (s EnableStageTransitionOutput) GoString() string {
 	return s.String()
 }
 
-// Represents information about the AWS Key Management Service (AWS KMS) key
-// used to encrypt data in the artifact store.
+// Represents information about the key used to encrypt data in the artifact
+// store, such as an AWS Key Management Service (AWS KMS) key.
 type EncryptionKey struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the AWS KMS key.
+	// The ID used to identify the key. For an AWS KMS key, this is the key ID or
+	// key ARN.
 	Id *string `locationName:"id" min:"1" type:"string" required:"true"`
 
-	// The type of AWS KMS key, such as a customer master key.
+	// The type of encryption key, such as an AWS Key Management Service (AWS KMS)
+	// key. When creating or updating a pipeline, the value must be set to 'KMS'.
 	Type *string `locationName:"type" type:"string" required:"true" enum:"EncryptionKeyType"`
 }
 
@@ -2014,7 +2036,7 @@ type ExecutionDetails struct {
 
 	// The system-generated unique ID of this action used to identify this job worker
 	// in any external systems, such as AWS CodeDeploy.
-	ExternalExecutionId *string `locationName:"externalExecutionId" type:"string"`
+	ExternalExecutionId *string `locationName:"externalExecutionId" min:"1" type:"string"`
 
 	// The percentage of work completed on the action, represented on a scale of
 	// zero to one hundred percent.
@@ -2034,12 +2056,25 @@ func (s ExecutionDetails) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExecutionDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExecutionDetails"}
+	if s.ExternalExecutionId != nil && len(*s.ExternalExecutionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExternalExecutionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Represents information about failure details.
 type FailureDetails struct {
 	_ struct{} `type:"structure"`
 
 	// The external ID of the run of the action that failed.
-	ExternalExecutionId *string `locationName:"externalExecutionId" type:"string"`
+	ExternalExecutionId *string `locationName:"externalExecutionId" min:"1" type:"string"`
 
 	// The message about the failure.
 	Message *string `locationName:"message" type:"string" required:"true"`
@@ -2061,6 +2096,9 @@ func (s FailureDetails) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *FailureDetails) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "FailureDetails"}
+	if s.ExternalExecutionId != nil && len(*s.ExternalExecutionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExternalExecutionId", 1))
+	}
 	if s.Message == nil {
 		invalidParams.Add(request.NewErrParamRequired("Message"))
 	}
@@ -2403,8 +2441,8 @@ type JobData struct {
 	// job requires in order to continue the job asynchronously.
 	ContinuationToken *string `locationName:"continuationToken" type:"string"`
 
-	// Represents information about the AWS Key Management Service (AWS KMS) key
-	// used to encrypt data in the artifact store.
+	// Represents information about the key used to encrypt data in the artifact
+	// store, such as an AWS Key Management Service (AWS KMS) key.
 	EncryptionKey *EncryptionKey `locationName:"encryptionKey" type:"structure"`
 
 	// The artifact supplied to the job.
@@ -2613,7 +2651,7 @@ type PipelineDeclaration struct {
 
 	// The Amazon S3 location where artifacts are stored for the pipeline. If this
 	// Amazon S3 bucket is created manually, it must meet the requirements for AWS
-	// CodePipeline. For more information, see the Concepts.
+	// CodePipeline. For more information, see the Concepts (http://docs.aws.amazon.com/codepipeline/latest/userguide/concepts.html#CPS3Bucket).
 	ArtifactStore *ArtifactStore `locationName:"artifactStore" type:"structure" required:"true"`
 
 	// The name of the action to be performed.
@@ -2983,8 +3021,12 @@ func (s PutJobFailureResultOutput) GoString() string {
 type PutJobSuccessResultInput struct {
 	_ struct{} `type:"structure"`
 
-	// A system-generated token, such as a AWS CodeDeploy deployment ID, that the
-	// successful job used to complete a job asynchronously.
+	// A token generated by a job worker, such as an AWS CodeDeploy deployment ID,
+	// that a successful job provides to identify a custom action in progress. Future
+	// jobs will use this token in order to identify the running instance of the
+	// action. It can be reused to return additional information about the progress
+	// of the custom action. When the action is complete, no continuation token
+	// should be supplied.
 	ContinuationToken *string `locationName:"continuationToken" type:"string"`
 
 	// The ID of the current revision of the artifact successfully worked upon by
@@ -3019,6 +3061,11 @@ func (s *PutJobSuccessResultInput) Validate() error {
 	if s.CurrentRevision != nil {
 		if err := s.CurrentRevision.Validate(); err != nil {
 			invalidParams.AddNested("CurrentRevision", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ExecutionDetails != nil {
+		if err := s.ExecutionDetails.Validate(); err != nil {
+			invalidParams.AddNested("ExecutionDetails", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -3116,8 +3163,12 @@ type PutThirdPartyJobSuccessResultInput struct {
 	// that the calling entity is allowed access to the job and its details.
 	ClientToken *string `locationName:"clientToken" type:"string" required:"true"`
 
-	// A system-generated token, such as a AWS CodeDeploy deployment ID, that a
-	// job uses in order to continue the job asynchronously.
+	// A token generated by a job worker, such as an AWS CodeDeploy deployment ID,
+	// that a successful job provides to identify a partner action in progress.
+	// Future jobs will use this token in order to identify the running instance
+	// of the action. It can be reused to return additional information about the
+	// progress of the partner action. When the action is complete, no continuation
+	// token should be supplied.
 	ContinuationToken *string `locationName:"continuationToken" type:"string"`
 
 	// Represents information about a current revision.
@@ -3157,6 +3208,11 @@ func (s *PutThirdPartyJobSuccessResultInput) Validate() error {
 	if s.CurrentRevision != nil {
 		if err := s.CurrentRevision.Validate(); err != nil {
 			invalidParams.AddNested("CurrentRevision", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ExecutionDetails != nil {
+		if err := s.ExecutionDetails.Validate(); err != nil {
+			invalidParams.AddNested("ExecutionDetails", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -3227,7 +3283,7 @@ type StageDeclaration struct {
 	// The actions included in a stage.
 	Actions []*ActionDeclaration `locationName:"actions" type:"list" required:"true"`
 
-	// The gates included in a stage.
+	// Reserved for future use.
 	Blockers []*BlockerDeclaration `locationName:"blockers" type:"list"`
 
 	// The name of the stage.
@@ -3402,8 +3458,9 @@ type ThirdPartyJobData struct {
 	// job requires in order to continue the job asynchronously.
 	ContinuationToken *string `locationName:"continuationToken" type:"string"`
 
-	// The AWS Key Management Service (AWS KMS) key used to encrypt and decrypt
-	// data in the artifact store for the pipeline.
+	// The encryption key used to encrypt and decrypt data in the artifact store
+	// for the pipeline, such as an AWS Key Management Service (AWS KMS) key. This
+	// is optional and might not be present.
 	EncryptionKey *EncryptionKey `locationName:"encryptionKey" type:"structure"`
 
 	// The name of the artifact that will be worked upon by the action, if any.

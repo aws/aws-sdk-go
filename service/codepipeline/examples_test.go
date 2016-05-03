@@ -437,9 +437,9 @@ func ExampleCodePipeline_PutActionRevision() {
 	params := &codepipeline.PutActionRevisionInput{
 		ActionName: aws.String("ActionName"), // Required
 		ActionRevision: &codepipeline.ActionRevision{ // Required
-			Created:          aws.Time(time.Now()),     // Required
-			RevisionId:       aws.String("RevisionId"), // Required
-			RevisionChangeId: aws.String("RevisionChangeId"),
+			Created:          aws.Time(time.Now()),                   // Required
+			RevisionChangeId: aws.String("RevisionChangeIdentifier"), // Required
+			RevisionId:       aws.String("Revision"),                 // Required
 		},
 		PipelineName: aws.String("PipelineName"), // Required
 		StageName:    aws.String("StageName"),    // Required
