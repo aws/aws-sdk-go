@@ -2390,6 +2390,7 @@ type Finding struct {
 	// The data element is set to "Inspector".
 	Service *string `locationName:"service" type:"string"`
 
+	// This data type is used in the Finding data type.
 	ServiceAttributes *ServiceAttributes `locationName:"serviceAttributes" type:"structure"`
 
 	// The finding severity. Values can be set to High, Medium, Low, and Informational.
