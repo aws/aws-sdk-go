@@ -3,6 +3,7 @@ package dynamodbattribute
 import (
 	"fmt"
 	"testing"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
@@ -40,23 +41,33 @@ type marshalMarshaler struct {
 	Value  string
 	Value2 int
 	Value3 bool
+	Value4 time.Time
 }
 
 func (m *marshalMarshaler) MarshalDynamoDBAttributeValue(av *dynamodb.AttributeValue) error {
+	b, err := m.Value4.MarshalJSON()
+	if err != nil {
+		return err
+	}
+
 	av.M = map[string]*dynamodb.AttributeValue{
 		"abc": {S: &m.Value},
 		"def": {N: aws.String(fmt.Sprintf("%d", m.Value2))},
 		"ghi": {BOOL: &m.Value3},
+		"jkl": {S: aws.String(string(b))},
 	}
 
 	return nil
 }
 
 func TestMarshalMashaler(t *testing.T) {
+	testDate, _ := time.Parse(time.RFC3339, "2016-05-03T17:06:26.209072Z")
+
 	m := &marshalMarshaler{
 		Value:  "value",
 		Value2: 123,
 		Value3: true,
+		Value4: testDate,
 	}
 
 	expect := &dynamodb.AttributeValue{
@@ -64,6 +75,7 @@ func TestMarshalMashaler(t *testing.T) {
 			"abc": {S: aws.String("value")},
 			"def": {N: aws.String("123")},
 			"ghi": {BOOL: aws.Bool(true)},
+			"jkl": {S: aws.String("\"2016-05-03T17:06:26.209072Z\"")},
 		},
 	}
 
