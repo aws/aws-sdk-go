@@ -48,12 +48,12 @@
       }
     },
     "AddAttributesToFindingsRequest": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "AddAttributesToFindingsResponse": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
@@ -455,112 +455,112 @@
       }
     },
     "CreateAssessmentTargetRequest": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "CreateAssessmentTargetResponse": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "CreateAssessmentTemplateRequest": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "CreateAssessmentTemplateResponse": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "CreateResourceGroupRequest": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "CreateResourceGroupResponse": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "DeleteAssessmentRunRequest": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "DeleteAssessmentTargetRequest": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "DeleteAssessmentTemplateRequest": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "DescribeAssessmentRunsRequest": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "DescribeAssessmentRunsResponse": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "DescribeAssessmentTargetsRequest": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "DescribeAssessmentTargetsResponse": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "DescribeAssessmentTemplatesRequest": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "DescribeAssessmentTemplatesResponse": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "DescribeCrossAccountAccessRoleResponse": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "DescribeFindingsRequest": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "DescribeFindingsResponse": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "DescribeResourceGroupsRequest": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "DescribeResourceGroupsResponse": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "DescribeRulesPackagesRequest": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "DescribeRulesPackagesResponse": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
@@ -654,12 +654,12 @@
       }
     },
     "GetTelemetryMetadataRequest": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "GetTelemetryMetadataResponse": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
@@ -681,7 +681,7 @@
     "InspectorServiceAttributes": {
       "base": "<p>This data type is used in the <a>Finding</a> data type.</p>",
       "refs": {
-        "Finding$serviceAttributes": "<zonbook/> <xhtml/>"
+        "Finding$serviceAttributes": null
       }
     },
     "InternalException": {
@@ -741,42 +741,42 @@
       }
     },
     "ListAssessmentRunAgentsRequest": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "ListAssessmentRunAgentsResponse": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "ListAssessmentRunsRequest": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "ListAssessmentRunsResponse": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "ListAssessmentTargetsRequest": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "ListAssessmentTargetsResponse": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "ListAssessmentTemplatesRequest": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "ListAssessmentTemplatesResponse": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
@@ -787,22 +787,22 @@
       }
     },
     "ListEventSubscriptionsRequest": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "ListEventSubscriptionsResponse": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "ListFindingsRequest": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "ListFindingsResponse": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
@@ -836,22 +836,22 @@
       }
     },
     "ListRulesPackagesRequest": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "ListRulesPackagesResponse": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "ListTagsForResourceRequest": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "ListTagsForResourceResponse": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
@@ -873,7 +873,7 @@
       "base": null,
       "refs": {
         "AssessmentRunAgent$agentHealthDetails": "<p>The description for the agent health code.</p>",
-        "AssessmentRunNotification$message": "<zonbook/> <xhtml/>"
+        "AssessmentRunNotification$message": null
       }
     },
     "MessageType": {
@@ -943,12 +943,12 @@
       }
     },
     "PreviewAgentsRequest": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "PreviewAgentsResponse": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
@@ -959,17 +959,17 @@
       }
     },
     "RegisterCrossAccountAccessRoleRequest": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "RemoveAttributesFromFindingsRequest": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "RemoveAttributesFromFindingsResponse": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
@@ -1035,7 +1035,7 @@
       }
     },
     "SetTagsForResourceRequest": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
@@ -1053,22 +1053,22 @@
       }
     },
     "StartAssessmentRunRequest": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "StartAssessmentRunResponse": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "StopAssessmentRunRequest": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "SubscribeToEventRequest": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
@@ -1164,12 +1164,12 @@
       }
     },
     "UnsubscribeFromEventRequest": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
     "UpdateAssessmentTargetRequest": {
-      "base": "<zonbook/> <xhtml/>",
+      "base": null,
       "refs": {
       }
     },
