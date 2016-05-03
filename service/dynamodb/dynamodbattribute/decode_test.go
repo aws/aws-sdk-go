@@ -344,8 +344,6 @@ func (u *unmarshalUnmarshaler) UnmarshalDynamoDBAttributeValue(av *dynamodb.Attr
 		err := u.Value4.UnmarshalJSON(b)
 		return err
 	}
-
-	return nil
 }
 
 func TestUnmarshalUnmashaler(t *testing.T) {
