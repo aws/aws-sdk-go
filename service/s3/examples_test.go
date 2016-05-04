@@ -97,15 +97,16 @@ func ExampleS3_CopyObject() {
 			"Key": aws.String("MetadataValue"), // Required
 			// More values...
 		},
-		MetadataDirective:       aws.String("MetadataDirective"),
-		RequestPayer:            aws.String("RequestPayer"),
-		SSECustomerAlgorithm:    aws.String("SSECustomerAlgorithm"),
-		SSECustomerKey:          aws.String("SSECustomerKey"),
-		SSECustomerKeyMD5:       aws.String("SSECustomerKeyMD5"),
-		SSEKMSKeyId:             aws.String("SSEKMSKeyId"),
-		ServerSideEncryption:    aws.String("ServerSideEncryption"),
-		StorageClass:            aws.String("StorageClass"),
-		WebsiteRedirectLocation: aws.String("WebsiteRedirectLocation"),
+		MetadataDirective:           aws.String("MetadataDirective"),
+		RequestPayer:                aws.String("RequestPayer"),
+		SSECustomerAlgorithm:        aws.String("SSECustomerAlgorithm"),
+		SSECustomerKey:              aws.String("SSECustomerKey"),
+		SSECustomerKeyMD5:           aws.String("SSECustomerKeyMD5"),
+		SSEKMSKeyId:                 aws.String("SSEKMSKeyId"),
+		ServerSideEncryption:        aws.String("ServerSideEncryption"),
+		ServerSideEncryptionContext: aws.String("ServerSideEncryptionContext"),
+		StorageClass:                aws.String("StorageClass"),
+		WebsiteRedirectLocation:     aws.String("WebsiteRedirectLocation"),
 	}
 	resp, err := svc.CopyObject(params)
 
@@ -169,14 +170,15 @@ func ExampleS3_CreateMultipartUpload() {
 			"Key": aws.String("MetadataValue"), // Required
 			// More values...
 		},
-		RequestPayer:            aws.String("RequestPayer"),
-		SSECustomerAlgorithm:    aws.String("SSECustomerAlgorithm"),
-		SSECustomerKey:          aws.String("SSECustomerKey"),
-		SSECustomerKeyMD5:       aws.String("SSECustomerKeyMD5"),
-		SSEKMSKeyId:             aws.String("SSEKMSKeyId"),
-		ServerSideEncryption:    aws.String("ServerSideEncryption"),
-		StorageClass:            aws.String("StorageClass"),
-		WebsiteRedirectLocation: aws.String("WebsiteRedirectLocation"),
+		RequestPayer:                aws.String("RequestPayer"),
+		SSECustomerAlgorithm:        aws.String("SSECustomerAlgorithm"),
+		SSECustomerKey:              aws.String("SSECustomerKey"),
+		SSECustomerKeyMD5:           aws.String("SSECustomerKeyMD5"),
+		SSEKMSKeyId:                 aws.String("SSEKMSKeyId"),
+		ServerSideEncryption:        aws.String("ServerSideEncryption"),
+		ServerSideEncryptionContext: aws.String("ServerSideEncryptionContext"),
+		StorageClass:                aws.String("StorageClass"),
+		WebsiteRedirectLocation:     aws.String("WebsiteRedirectLocation"),
 	}
 	resp, err := svc.CreateMultipartUpload(params)
 
@@ -1491,14 +1493,15 @@ func ExampleS3_PutObject() {
 			"Key": aws.String("MetadataValue"), // Required
 			// More values...
 		},
-		RequestPayer:            aws.String("RequestPayer"),
-		SSECustomerAlgorithm:    aws.String("SSECustomerAlgorithm"),
-		SSECustomerKey:          aws.String("SSECustomerKey"),
-		SSECustomerKeyMD5:       aws.String("SSECustomerKeyMD5"),
-		SSEKMSKeyId:             aws.String("SSEKMSKeyId"),
-		ServerSideEncryption:    aws.String("ServerSideEncryption"),
-		StorageClass:            aws.String("StorageClass"),
-		WebsiteRedirectLocation: aws.String("WebsiteRedirectLocation"),
+		RequestPayer:                aws.String("RequestPayer"),
+		SSECustomerAlgorithm:        aws.String("SSECustomerAlgorithm"),
+		SSECustomerKey:              aws.String("SSECustomerKey"),
+		SSECustomerKeyMD5:           aws.String("SSECustomerKeyMD5"),
+		SSEKMSKeyId:                 aws.String("SSEKMSKeyId"),
+		ServerSideEncryption:        aws.String("ServerSideEncryption"),
+		ServerSideEncryptionContext: aws.String("ServerSideEncryptionContext"),
+		StorageClass:                aws.String("StorageClass"),
+		WebsiteRedirectLocation:     aws.String("WebsiteRedirectLocation"),
 	}
 	resp, err := svc.PutObject(params)
 

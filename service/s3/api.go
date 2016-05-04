@@ -2170,6 +2170,10 @@ type CompleteMultipartUploadOutput struct {
 	// (e.g., AES256, aws:kms).
 	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
 
+	// The encryption context for the object. The value of this header is a base64-encoded
+	//  UTF-8 string holding JSON with the encryption context key-value pairs.
+	ServerSideEncryptionContext *string `location:"header" locationName:"x-amz-server-side-encryption-context" type:"string"`
+
 	// Version of the object.
 	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 }
@@ -2361,6 +2365,10 @@ type CopyObjectInput struct {
 	// (e.g., AES256, aws:kms).
 	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
 
+	// The encryption context for the object. The value of this header is a base64-encoded
+	//  UTF-8 string holding JSON with the encryption context key-value pairs.
+	ServerSideEncryptionContext *string `location:"header" locationName:"x-amz-server-side-encryption-context" type:"string"`
+
 	// The type of storage to use for the object. Defaults to 'STANDARD'.
 	StorageClass *string `location:"header" locationName:"x-amz-storage-class" type:"string" enum:"StorageClass"`
 
@@ -2433,6 +2441,10 @@ type CopyObjectOutput struct {
 	// The Server-side encryption algorithm used when storing this object in S3
 	// (e.g., AES256, aws:kms).
 	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
+
+	// The encryption context for the object. The value of this header is a base64-encoded
+	//  UTF-8 string holding JSON with the encryption context key-value pairs.
+	ServerSideEncryptionContext *string `location:"header" locationName:"x-amz-server-side-encryption-context" type:"string"`
 
 	// Version ID of the newly created copy.
 	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
@@ -2646,6 +2658,10 @@ type CreateMultipartUploadInput struct {
 	// (e.g., AES256, aws:kms).
 	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
 
+	// The encryption context for the object. The value of this header is a base64-encoded
+	//  UTF-8 string holding JSON with the encryption context key-value pairs.
+	ServerSideEncryptionContext *string `location:"header" locationName:"x-amz-server-side-encryption-context" type:"string"`
+
 	// The type of storage to use for the object. Defaults to 'STANDARD'.
 	StorageClass *string `location:"header" locationName:"x-amz-storage-class" type:"string" enum:"StorageClass"`
 
@@ -2721,6 +2737,10 @@ type CreateMultipartUploadOutput struct {
 	// The Server-side encryption algorithm used when storing this object in S3
 	// (e.g., AES256, aws:kms).
 	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
+
+	// The encryption context for the object. The value of this header is a base64-encoded
+	//  UTF-8 string holding JSON with the encryption context key-value pairs.
+	ServerSideEncryptionContext *string `location:"header" locationName:"x-amz-server-side-encryption-context" type:"string"`
 
 	// ID for the initiated multipart upload.
 	UploadId *string `type:"string"`
@@ -4283,6 +4303,10 @@ type GetObjectOutput struct {
 	// (e.g., AES256, aws:kms).
 	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
 
+	// The encryption context for the object. The value of this header is a base64-encoded
+	//  UTF-8 string holding JSON with the encryption context key-value pairs.
+	ServerSideEncryptionContext *string `location:"header" locationName:"x-amz-server-side-encryption-context" type:"string"`
+
 	StorageClass *string `location:"header" locationName:"x-amz-storage-class" type:"string" enum:"StorageClass"`
 
 	// Version of the object.
@@ -4648,6 +4672,10 @@ type HeadObjectOutput struct {
 	// The Server-side encryption algorithm used when storing this object in S3
 	// (e.g., AES256, aws:kms).
 	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
+
+	// The encryption context for the object. The value of this header is a base64-encoded
+	//  UTF-8 string holding JSON with the encryption context key-value pairs.
+	ServerSideEncryptionContext *string `location:"header" locationName:"x-amz-server-side-encryption-context" type:"string"`
 
 	StorageClass *string `location:"header" locationName:"x-amz-storage-class" type:"string" enum:"StorageClass"`
 
@@ -6666,6 +6694,10 @@ type PutObjectInput struct {
 	// (e.g., AES256, aws:kms).
 	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
 
+	// The encryption context for the object. The value of this header is a base64-encoded
+	//  UTF-8 string holding JSON with the encryption context key-value pairs.
+	ServerSideEncryptionContext *string `location:"header" locationName:"x-amz-server-side-encryption-context" type:"string"`
+
 	// The type of storage to use for the object. Defaults to 'STANDARD'.
 	StorageClass *string `location:"header" locationName:"x-amz-storage-class" type:"string" enum:"StorageClass"`
 
@@ -6735,6 +6767,10 @@ type PutObjectOutput struct {
 	// The Server-side encryption algorithm used when storing this object in S3
 	// (e.g., AES256, aws:kms).
 	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
+
+	// The encryption context for the object. The value of this header is a base64-encoded
+	//  UTF-8 string holding JSON with the encryption context key-value pairs.
+	ServerSideEncryptionContext *string `location:"header" locationName:"x-amz-server-side-encryption-context" type:"string"`
 
 	// Version of the object.
 	VersionId *string `location:"header" locationName:"x-amz-version-id" type:"string"`
@@ -7578,6 +7614,10 @@ type UploadPartCopyOutput struct {
 	// The Server-side encryption algorithm used when storing this object in S3
 	// (e.g., AES256, aws:kms).
 	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
+
+	// The encryption context for the object. The value of this header is a base64-encoded
+	//  UTF-8 string holding JSON with the encryption context key-value pairs.
+	ServerSideEncryptionContext *string `location:"header" locationName:"x-amz-server-side-encryption-context" type:"string"`
 }
 
 // String returns the string representation
@@ -7698,6 +7738,10 @@ type UploadPartOutput struct {
 	// The Server-side encryption algorithm used when storing this object in S3
 	// (e.g., AES256, aws:kms).
 	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
+
+	// The encryption context for the object. The value of this header is a base64-encoded
+	//  UTF-8 string holding JSON with the encryption context key-value pairs.
+	ServerSideEncryptionContext *string `location:"header" locationName:"x-amz-server-side-encryption-context" type:"string"`
 }
 
 // String returns the string representation
