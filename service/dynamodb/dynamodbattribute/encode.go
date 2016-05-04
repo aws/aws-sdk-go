@@ -220,11 +220,7 @@ func (e *Encoder) encodeStruct(av *dynamodb.AttributeValue, v reflect.Value) err
 	// To maintain backwards compatibility with ConvertTo family of methods which
 	// converted time.Time structs to strings (using JSON encoding/decoding)
 	if t, ok := v.Interface().(time.Time); ok {
-		b, err := t.MarshalJSON()
-		if err != nil {
-			return err
-		}
-		s := string(b)
+		s := t.Format(time.RFC3339Nano)
 		av.S = &s
 		return nil
 	}

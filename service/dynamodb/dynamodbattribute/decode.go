@@ -457,9 +457,8 @@ func (d *Decoder) decodeString(s *string, v reflect.Value, fieldTag tag) error {
 
 	// To maintain backwards compatibility with ConvertFrom family of methods which
 	// converted strings to time.Time structs (using JSON encoding/decoding)
-	if t, ok := v.Interface().(time.Time); ok {
-		b := []byte(*s)
-		err := t.UnmarshalJSON(b)
+	if _, ok := v.Interface().(time.Time); ok {
+		t, err := time.Parse(time.RFC3339, *s)
 		if err != nil {
 			return err
 		}

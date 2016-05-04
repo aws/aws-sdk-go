@@ -177,21 +177,21 @@ func TestUnmarshal(t *testing.T) {
 		// time.Time fields
 		//------------
 		{
-			in:       &dynamodb.AttributeValue{S: aws.String("\"2016-05-03T17:06:26.209072Z\"")},
+			in:       &dynamodb.AttributeValue{S: aws.String("2016-05-03T17:06:26.209072Z")},
 			actual:   new(time.Time),
 			expected: testDate,
 		},
 		{
 			in: &dynamodb.AttributeValue{SS: []*string{
-				aws.String("\"2016-05-03T17:06:26.209072Z\""),
-				aws.String("\"2016-05-04T17:06:26.209072Z\""),
+				aws.String("2016-05-03T17:06:26.209072Z"),
+				aws.String("2016-05-04T17:06:26.209072Z"),
 			}},
 			actual:   new([]time.Time),
 			expected: []time.Time{testDate, testDate.Add(24 * time.Hour)},
 		},
 		{
 			in: &dynamodb.AttributeValue{M: map[string]*dynamodb.AttributeValue{
-				"abc": {S: aws.String("\"2016-05-03T17:06:26.209072Z\"")},
+				"abc": {S: aws.String("2016-05-03T17:06:26.209072Z")},
 			}},
 			actual:   &struct{ Abc time.Time }{},
 			expected: struct{ Abc time.Time }{Abc: testDate},
@@ -340,21 +340,26 @@ func (u *unmarshalUnmarshaler) UnmarshalDynamoDBAttributeValue(av *dynamodb.Attr
 	} else if v.S == nil {
 		return fmt.Errorf("expected `jkl` map value string")
 	} else {
-		b := []byte(*v.S)
-		err := u.Value4.UnmarshalJSON(b)
-		return err
+		t, err := time.Parse(time.RFC3339, *v.S)
+		if err != nil {
+			return err
+		}
+		u.Value4 = t
 	}
+
+	return nil
 }
 
 func TestUnmarshalUnmashaler(t *testing.T) {
 	testDate, _ := time.Parse(time.RFC3339, "2016-05-03T17:06:26.209072Z")
+
 	u := &unmarshalUnmarshaler{}
 	av := &dynamodb.AttributeValue{
 		M: map[string]*dynamodb.AttributeValue{
 			"abc": {S: aws.String("value")},
 			"def": {N: aws.String("123")},
 			"ghi": {BOOL: aws.Bool(true)},
-			"jkl": {S: aws.String("\"2016-05-03T17:06:26.209072Z\"")},
+			"jkl": {S: aws.String("2016-05-03T17:06:26.209072Z")},
 		},
 	}
 

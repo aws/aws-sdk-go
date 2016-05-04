@@ -45,16 +45,11 @@ type marshalMarshaler struct {
 }
 
 func (m *marshalMarshaler) MarshalDynamoDBAttributeValue(av *dynamodb.AttributeValue) error {
-	b, err := m.Value4.MarshalJSON()
-	if err != nil {
-		return err
-	}
-
 	av.M = map[string]*dynamodb.AttributeValue{
 		"abc": {S: &m.Value},
 		"def": {N: aws.String(fmt.Sprintf("%d", m.Value2))},
 		"ghi": {BOOL: &m.Value3},
-		"jkl": {S: aws.String(string(b))},
+		"jkl": {S: aws.String(m.Value4.Format(time.RFC3339Nano))},
 	}
 
 	return nil
@@ -75,7 +70,7 @@ func TestMarshalMashaler(t *testing.T) {
 			"abc": {S: aws.String("value")},
 			"def": {N: aws.String("123")},
 			"ghi": {BOOL: aws.Bool(true)},
-			"jkl": {S: aws.String("\"2016-05-03T17:06:26.209072Z\"")},
+			"jkl": {S: aws.String("2016-05-03T17:06:26.209072Z")},
 		},
 	}
 
