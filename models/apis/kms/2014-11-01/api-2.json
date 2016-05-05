@@ -381,7 +381,6 @@
         {"shape":"InvalidArnException"},
         {"shape":"MalformedPolicyDocumentException"},
         {"shape":"DependencyTimeoutException"},
-        {"shape":"InvalidArnException"},
         {"shape":"UnsupportedOperationException"},
         {"shape":"KMSInternalException"},
         {"shape":"LimitExceededException"},
@@ -576,7 +575,8 @@
       "members":{
         "Policy":{"shape":"PolicyType"},
         "Description":{"shape":"DescriptionType"},
-        "KeyUsage":{"shape":"KeyUsageType"}
+        "KeyUsage":{"shape":"KeyUsageType"},
+        "BypassPolicyLockoutSafetyCheck":{"shape":"BooleanType"}
       }
     },
     "CreateKeyResponse":{
@@ -1116,7 +1116,8 @@
       "members":{
         "KeyId":{"shape":"KeyIdType"},
         "PolicyName":{"shape":"PolicyNameType"},
-        "Policy":{"shape":"PolicyType"}
+        "Policy":{"shape":"PolicyType"},
+        "BypassPolicyLockoutSafetyCheck":{"shape":"BooleanType"}
       }
     },
     "ReEncryptRequest":{
