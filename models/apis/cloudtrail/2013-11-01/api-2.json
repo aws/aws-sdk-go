@@ -28,7 +28,8 @@
         {"shape":"InvalidTagParameterException"},
         {"shape":"UnsupportedOperationException"},
         {"shape":"OperationNotPermittedException"}
-      ]
+      ],
+      "idempotent":true
     },
     "CreateTrail":{
       "name":"CreateTrail",
@@ -59,7 +60,8 @@
         {"shape":"CloudWatchLogsDeliveryUnavailableException"},
         {"shape":"UnsupportedOperationException"},
         {"shape":"OperationNotPermittedException"}
-      ]
+      ],
+      "idempotent":true
     },
     "DeleteTrail":{
       "name":"DeleteTrail",
@@ -73,7 +75,8 @@
         {"shape":"TrailNotFoundException"},
         {"shape":"InvalidTrailNameException"},
         {"shape":"InvalidHomeRegionException"}
-      ]
+      ],
+      "idempotent":true
     },
     "DescribeTrails":{
       "name":"DescribeTrails",
@@ -86,7 +89,8 @@
       "errors":[
         {"shape":"UnsupportedOperationException"},
         {"shape":"OperationNotPermittedException"}
-      ]
+      ],
+      "idempotent":true
     },
     "GetTrailStatus":{
       "name":"GetTrailStatus",
@@ -99,7 +103,8 @@
       "errors":[
         {"shape":"TrailNotFoundException"},
         {"shape":"InvalidTrailNameException"}
-      ]
+      ],
+      "idempotent":true
     },
     "ListPublicKeys":{
       "name":"ListPublicKeys",
@@ -114,7 +119,8 @@
         {"shape":"UnsupportedOperationException"},
         {"shape":"OperationNotPermittedException"},
         {"shape":"InvalidTokenException"}
-      ]
+      ],
+      "idempotent":true
     },
     "ListTags":{
       "name":"ListTags",
@@ -132,7 +138,8 @@
         {"shape":"UnsupportedOperationException"},
         {"shape":"OperationNotPermittedException"},
         {"shape":"InvalidTokenException"}
-      ]
+      ],
+      "idempotent":true
     },
     "LookupEvents":{
       "name":"LookupEvents",
@@ -147,7 +154,8 @@
         {"shape":"InvalidTimeRangeException"},
         {"shape":"InvalidMaxResultsException"},
         {"shape":"InvalidNextTokenException"}
-      ]
+      ],
+      "idempotent":true
     },
     "RemoveTags":{
       "name":"RemoveTags",
@@ -165,7 +173,8 @@
         {"shape":"InvalidTagParameterException"},
         {"shape":"UnsupportedOperationException"},
         {"shape":"OperationNotPermittedException"}
-      ]
+      ],
+      "idempotent":true
     },
     "StartLogging":{
       "name":"StartLogging",
@@ -179,7 +188,8 @@
         {"shape":"TrailNotFoundException"},
         {"shape":"InvalidTrailNameException"},
         {"shape":"InvalidHomeRegionException"}
-      ]
+      ],
+      "idempotent":true
     },
     "StopLogging":{
       "name":"StopLogging",
@@ -193,7 +203,8 @@
         {"shape":"TrailNotFoundException"},
         {"shape":"InvalidTrailNameException"},
         {"shape":"InvalidHomeRegionException"}
-      ]
+      ],
+      "idempotent":true
     },
     "UpdateTrail":{
       "name":"UpdateTrail",
@@ -224,7 +235,8 @@
         {"shape":"CloudWatchLogsDeliveryUnavailableException"},
         {"shape":"UnsupportedOperationException"},
         {"shape":"OperationNotPermittedException"}
-      ]
+      ],
+      "idempotent":true
     }
   },
   "shapes":{
@@ -280,7 +292,11 @@
         "Name":{"shape":"String"},
         "S3BucketName":{"shape":"String"},
         "S3KeyPrefix":{"shape":"String"},
-        "SnsTopicName":{"shape":"String"},
+        "SnsTopicName":{
+          "shape":"String",
+          "deprecated":true
+        },
+        "SnsTopicARN":{"shape":"String"},
         "IncludeGlobalServiceEvents":{"shape":"Boolean"},
         "IsMultiRegionTrail":{"shape":"Boolean"},
         "TrailARN":{"shape":"String"},
@@ -689,7 +705,11 @@
         "Name":{"shape":"String"},
         "S3BucketName":{"shape":"String"},
         "S3KeyPrefix":{"shape":"String"},
-        "SnsTopicName":{"shape":"String"},
+        "SnsTopicName":{
+          "shape":"String",
+          "deprecated":true
+        },
+        "SnsTopicARN":{"shape":"String"},
         "IncludeGlobalServiceEvents":{"shape":"Boolean"},
         "IsMultiRegionTrail":{"shape":"Boolean"},
         "HomeRegion":{"shape":"String"},
@@ -754,7 +774,11 @@
         "Name":{"shape":"String"},
         "S3BucketName":{"shape":"String"},
         "S3KeyPrefix":{"shape":"String"},
-        "SnsTopicName":{"shape":"String"},
+        "SnsTopicName":{
+          "shape":"String",
+          "deprecated":true
+        },
+        "SnsTopicARN":{"shape":"String"},
         "IncludeGlobalServiceEvents":{"shape":"Boolean"},
         "IsMultiRegionTrail":{"shape":"Boolean"},
         "TrailARN":{"shape":"String"},
