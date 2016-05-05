@@ -48,7 +48,7 @@ func ExampleECS_CreateService() {
 			MinimumHealthyPercent: aws.Int64(1),
 		},
 		LoadBalancers: []*ecs.LoadBalancer{
-			&ecs.LoadBalancer{ // Required
+			{ // Required
 				ContainerName:    aws.String("String"),
 				ContainerPort:    aws.Int64(1),
 				LoadBalancerName: aws.String("String"),
@@ -416,7 +416,7 @@ func ExampleECS_RegisterContainerInstance() {
 
 	params := &ecs.RegisterContainerInstanceInput{
 		Attributes: []*ecs.Attribute{
-			&ecs.Attribute{ // Required
+			{ // Required
 				Name:  aws.String("String"), // Required
 				Value: aws.String("String"),
 			},
@@ -427,7 +427,7 @@ func ExampleECS_RegisterContainerInstance() {
 		InstanceIdentityDocument:          aws.String("String"),
 		InstanceIdentityDocumentSignature: aws.String("String"),
 		TotalResources: []*ecs.Resource{
-			&ecs.Resource{ // Required
+			{ // Required
 				DoubleValue:  aws.Float64(1.0),
 				IntegerValue: aws.Int64(1),
 				LongValue:    aws.Int64(1),
@@ -464,7 +464,7 @@ func ExampleECS_RegisterTaskDefinition() {
 
 	params := &ecs.RegisterTaskDefinitionInput{
 		ContainerDefinitions: []*ecs.ContainerDefinition{ // Required
-			&ecs.ContainerDefinition{ // Required
+			{ // Required
 				Command: []*string{
 					aws.String("String"), // Required
 					// More values...
@@ -492,7 +492,7 @@ func ExampleECS_RegisterTaskDefinition() {
 					// More values...
 				},
 				Environment: []*ecs.KeyValuePair{
-					&ecs.KeyValuePair{ // Required
+					{ // Required
 						Name:  aws.String("String"),
 						Value: aws.String("String"),
 					},
@@ -500,7 +500,7 @@ func ExampleECS_RegisterTaskDefinition() {
 				},
 				Essential: aws.Bool(true),
 				ExtraHosts: []*ecs.HostEntry{
-					&ecs.HostEntry{ // Required
+					{ // Required
 						Hostname:  aws.String("String"), // Required
 						IpAddress: aws.String("String"), // Required
 					},
@@ -521,7 +521,7 @@ func ExampleECS_RegisterTaskDefinition() {
 				},
 				Memory: aws.Int64(1),
 				MountPoints: []*ecs.MountPoint{
-					&ecs.MountPoint{ // Required
+					{ // Required
 						ContainerPath: aws.String("String"),
 						ReadOnly:      aws.Bool(true),
 						SourceVolume:  aws.String("String"),
@@ -530,7 +530,7 @@ func ExampleECS_RegisterTaskDefinition() {
 				},
 				Name: aws.String("String"),
 				PortMappings: []*ecs.PortMapping{
-					&ecs.PortMapping{ // Required
+					{ // Required
 						ContainerPort: aws.Int64(1),
 						HostPort:      aws.Int64(1),
 						Protocol:      aws.String("TransportProtocol"),
@@ -540,7 +540,7 @@ func ExampleECS_RegisterTaskDefinition() {
 				Privileged:             aws.Bool(true),
 				ReadonlyRootFilesystem: aws.Bool(true),
 				Ulimits: []*ecs.Ulimit{
-					&ecs.Ulimit{ // Required
+					{ // Required
 						HardLimit: aws.Int64(1),             // Required
 						Name:      aws.String("UlimitName"), // Required
 						SoftLimit: aws.Int64(1),             // Required
@@ -549,7 +549,7 @@ func ExampleECS_RegisterTaskDefinition() {
 				},
 				User: aws.String("String"),
 				VolumesFrom: []*ecs.VolumeFrom{
-					&ecs.VolumeFrom{ // Required
+					{ // Required
 						ReadOnly:        aws.Bool(true),
 						SourceContainer: aws.String("String"),
 					},
@@ -561,7 +561,7 @@ func ExampleECS_RegisterTaskDefinition() {
 		},
 		Family: aws.String("String"), // Required
 		Volumes: []*ecs.Volume{
-			&ecs.Volume{ // Required
+			{ // Required
 				Host: &ecs.HostVolumeProperties{
 					SourcePath: aws.String("String"),
 				},
@@ -592,13 +592,13 @@ func ExampleECS_RunTask() {
 		Count:          aws.Int64(1),
 		Overrides: &ecs.TaskOverride{
 			ContainerOverrides: []*ecs.ContainerOverride{
-				&ecs.ContainerOverride{ // Required
+				{ // Required
 					Command: []*string{
 						aws.String("String"), // Required
 						// More values...
 					},
 					Environment: []*ecs.KeyValuePair{
-						&ecs.KeyValuePair{ // Required
+						{ // Required
 							Name:  aws.String("String"),
 							Value: aws.String("String"),
 						},
@@ -636,13 +636,13 @@ func ExampleECS_StartTask() {
 		Cluster:        aws.String("String"),
 		Overrides: &ecs.TaskOverride{
 			ContainerOverrides: []*ecs.ContainerOverride{
-				&ecs.ContainerOverride{ // Required
+				{ // Required
 					Command: []*string{
 						aws.String("String"), // Required
 						// More values...
 					},
 					Environment: []*ecs.KeyValuePair{
-						&ecs.KeyValuePair{ // Required
+						{ // Required
 							Name:  aws.String("String"),
 							Value: aws.String("String"),
 						},
@@ -697,7 +697,7 @@ func ExampleECS_SubmitContainerStateChange() {
 		ContainerName: aws.String("String"),
 		ExitCode:      aws.Int64(1),
 		NetworkBindings: []*ecs.NetworkBinding{
-			&ecs.NetworkBinding{ // Required
+			{ // Required
 				BindIP:        aws.String("String"),
 				ContainerPort: aws.Int64(1),
 				HostPort:      aws.Int64(1),
