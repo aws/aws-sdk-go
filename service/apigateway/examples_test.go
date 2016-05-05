@@ -23,7 +23,7 @@ func ExampleAPIGateway_CreateApiKey() {
 		Enabled:     aws.Bool(true),
 		Name:        aws.String("String"),
 		StageKeys: []*apigateway.StageKey{
-			&apigateway.StageKey{ // Required
+			{ // Required
 				RestApiId: aws.String("String"),
 				StageName: aws.String("String"),
 			},
@@ -1192,6 +1192,7 @@ func ExampleAPIGateway_PutIntegration() {
 		CacheNamespace:        aws.String("String"),
 		Credentials:           aws.String("String"),
 		IntegrationHttpMethod: aws.String("String"),
+		PassthroughBehavior:   aws.String("String"),
 		RequestParameters: map[string]*string{
 			"Key": aws.String("String"), // Required
 			// More values...
@@ -1405,7 +1406,7 @@ func ExampleAPIGateway_UpdateAccount() {
 
 	params := &apigateway.UpdateAccountInput{
 		PatchOperations: []*apigateway.PatchOperation{
-			&apigateway.PatchOperation{ // Required
+			{ // Required
 				From:  aws.String("String"),
 				Op:    aws.String("op"),
 				Path:  aws.String("String"),
@@ -1433,7 +1434,7 @@ func ExampleAPIGateway_UpdateApiKey() {
 	params := &apigateway.UpdateApiKeyInput{
 		ApiKey: aws.String("String"), // Required
 		PatchOperations: []*apigateway.PatchOperation{
-			&apigateway.PatchOperation{ // Required
+			{ // Required
 				From:  aws.String("String"),
 				Op:    aws.String("op"),
 				Path:  aws.String("String"),
@@ -1462,7 +1463,7 @@ func ExampleAPIGateway_UpdateAuthorizer() {
 		AuthorizerId: aws.String("String"), // Required
 		RestApiId:    aws.String("String"), // Required
 		PatchOperations: []*apigateway.PatchOperation{
-			&apigateway.PatchOperation{ // Required
+			{ // Required
 				From:  aws.String("String"),
 				Op:    aws.String("op"),
 				Path:  aws.String("String"),
@@ -1491,7 +1492,7 @@ func ExampleAPIGateway_UpdateBasePathMapping() {
 		BasePath:   aws.String("String"), // Required
 		DomainName: aws.String("String"), // Required
 		PatchOperations: []*apigateway.PatchOperation{
-			&apigateway.PatchOperation{ // Required
+			{ // Required
 				From:  aws.String("String"),
 				Op:    aws.String("op"),
 				Path:  aws.String("String"),
@@ -1519,7 +1520,7 @@ func ExampleAPIGateway_UpdateClientCertificate() {
 	params := &apigateway.UpdateClientCertificateInput{
 		ClientCertificateId: aws.String("String"), // Required
 		PatchOperations: []*apigateway.PatchOperation{
-			&apigateway.PatchOperation{ // Required
+			{ // Required
 				From:  aws.String("String"),
 				Op:    aws.String("op"),
 				Path:  aws.String("String"),
@@ -1548,7 +1549,7 @@ func ExampleAPIGateway_UpdateDeployment() {
 		DeploymentId: aws.String("String"), // Required
 		RestApiId:    aws.String("String"), // Required
 		PatchOperations: []*apigateway.PatchOperation{
-			&apigateway.PatchOperation{ // Required
+			{ // Required
 				From:  aws.String("String"),
 				Op:    aws.String("op"),
 				Path:  aws.String("String"),
@@ -1576,7 +1577,7 @@ func ExampleAPIGateway_UpdateDomainName() {
 	params := &apigateway.UpdateDomainNameInput{
 		DomainName: aws.String("String"), // Required
 		PatchOperations: []*apigateway.PatchOperation{
-			&apigateway.PatchOperation{ // Required
+			{ // Required
 				From:  aws.String("String"),
 				Op:    aws.String("op"),
 				Path:  aws.String("String"),
@@ -1606,7 +1607,7 @@ func ExampleAPIGateway_UpdateIntegration() {
 		ResourceId: aws.String("String"), // Required
 		RestApiId:  aws.String("String"), // Required
 		PatchOperations: []*apigateway.PatchOperation{
-			&apigateway.PatchOperation{ // Required
+			{ // Required
 				From:  aws.String("String"),
 				Op:    aws.String("op"),
 				Path:  aws.String("String"),
@@ -1637,7 +1638,7 @@ func ExampleAPIGateway_UpdateIntegrationResponse() {
 		RestApiId:  aws.String("String"),     // Required
 		StatusCode: aws.String("StatusCode"), // Required
 		PatchOperations: []*apigateway.PatchOperation{
-			&apigateway.PatchOperation{ // Required
+			{ // Required
 				From:  aws.String("String"),
 				Op:    aws.String("op"),
 				Path:  aws.String("String"),
@@ -1667,7 +1668,7 @@ func ExampleAPIGateway_UpdateMethod() {
 		ResourceId: aws.String("String"), // Required
 		RestApiId:  aws.String("String"), // Required
 		PatchOperations: []*apigateway.PatchOperation{
-			&apigateway.PatchOperation{ // Required
+			{ // Required
 				From:  aws.String("String"),
 				Op:    aws.String("op"),
 				Path:  aws.String("String"),
@@ -1698,7 +1699,7 @@ func ExampleAPIGateway_UpdateMethodResponse() {
 		RestApiId:  aws.String("String"),     // Required
 		StatusCode: aws.String("StatusCode"), // Required
 		PatchOperations: []*apigateway.PatchOperation{
-			&apigateway.PatchOperation{ // Required
+			{ // Required
 				From:  aws.String("String"),
 				Op:    aws.String("op"),
 				Path:  aws.String("String"),
@@ -1727,7 +1728,7 @@ func ExampleAPIGateway_UpdateModel() {
 		ModelName: aws.String("String"), // Required
 		RestApiId: aws.String("String"), // Required
 		PatchOperations: []*apigateway.PatchOperation{
-			&apigateway.PatchOperation{ // Required
+			{ // Required
 				From:  aws.String("String"),
 				Op:    aws.String("op"),
 				Path:  aws.String("String"),
@@ -1756,7 +1757,7 @@ func ExampleAPIGateway_UpdateResource() {
 		ResourceId: aws.String("String"), // Required
 		RestApiId:  aws.String("String"), // Required
 		PatchOperations: []*apigateway.PatchOperation{
-			&apigateway.PatchOperation{ // Required
+			{ // Required
 				From:  aws.String("String"),
 				Op:    aws.String("op"),
 				Path:  aws.String("String"),
@@ -1784,7 +1785,7 @@ func ExampleAPIGateway_UpdateRestApi() {
 	params := &apigateway.UpdateRestApiInput{
 		RestApiId: aws.String("String"), // Required
 		PatchOperations: []*apigateway.PatchOperation{
-			&apigateway.PatchOperation{ // Required
+			{ // Required
 				From:  aws.String("String"),
 				Op:    aws.String("op"),
 				Path:  aws.String("String"),
@@ -1813,7 +1814,7 @@ func ExampleAPIGateway_UpdateStage() {
 		RestApiId: aws.String("String"), // Required
 		StageName: aws.String("String"), // Required
 		PatchOperations: []*apigateway.PatchOperation{
-			&apigateway.PatchOperation{ // Required
+			{ // Required
 				From:  aws.String("String"),
 				Op:    aws.String("op"),
 				Path:  aws.String("String"),

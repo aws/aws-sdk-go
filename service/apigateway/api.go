@@ -5138,6 +5138,22 @@ type Integration struct {
 	// Specifies the integration's responses.
 	IntegrationResponses map[string]*IntegrationResponse `locationName:"integrationResponses" type:"map"`
 
+	// Specifies the pass-through behavior for incoming requests based on the Content-Type
+	// header in the request, and the available requestTemplates defined on the
+	// Integration. There are three valid values: WHEN_NO_MATCH, WHEN_NO_TEMPLATES,
+	// and NEVER.
+	//
+	//  WHEN_NO_MATCH passes the request body for unmapped content types through
+	// to the Integration backend without transformation.
+	//
+	// NEVER rejects unmapped content types with an HTTP 415 'Unsupported Media
+	// Type' response.
+	//
+	// WHEN_NO_TEMPLATES will allow pass-through when the Integration has NO content
+	// types mapped to templates. However if there is at least one content type
+	// defined, unmapped content types will be rejected with the same 415 response.
+	PassthroughBehavior *string `locationName:"passthroughBehavior" type:"string"`
+
 	// Represents requests parameters that are sent with the backend request. Request
 	// parameters are represented as a key/value map, with a destination as the
 	// key and a source as the value. A source must match an existing method request
@@ -5148,7 +5164,10 @@ type Integration struct {
 	// unique parameter name.
 	RequestParameters map[string]*string `locationName:"requestParameters" type:"map"`
 
-	// Specifies the integration's request templates.
+	// Represents a map of Velocity templates that are applied on the request payload
+	// based on the value of the Content-Type header sent by the client. The content
+	// type value is the key in this map, and the template (as a String) is the
+	// value.
 	RequestTemplates map[string]*string `locationName:"requestTemplates" type:"map"`
 
 	// Specifies the integration's type. The valid value is HTTP, AWS, or MOCK.
@@ -5477,6 +5496,22 @@ type PutIntegrationInput struct {
 	// or AWS, this field is required.
 	IntegrationHttpMethod *string `locationName:"httpMethod" type:"string"`
 
+	// Specifies the pass-through behavior for incoming requests based on the Content-Type
+	// header in the request, and the available requestTemplates defined on the
+	// Integration. There are three valid values: WHEN_NO_MATCH, WHEN_NO_TEMPLATES,
+	// and NEVER.
+	//
+	//  WHEN_NO_MATCH passes the request body for unmapped content types through
+	// to the Integration backend without transformation.
+	//
+	// NEVER rejects unmapped content types with an HTTP 415 'Unsupported Media
+	// Type' response.
+	//
+	// WHEN_NO_TEMPLATES will allow pass-through when the Integration has NO content
+	// types mapped to templates. However if there is at least one content type
+	// defined, unmapped content types will be rejected with the same 415 response.
+	PassthroughBehavior *string `locationName:"passthroughBehavior" type:"string"`
+
 	// Represents request parameters that are sent with the backend request. Request
 	// parameters are represented as a key/value map, with a destination as the
 	// key and a source as the value. A source must match an existing method request
@@ -5487,9 +5522,10 @@ type PutIntegrationInput struct {
 	// unique parameter name.
 	RequestParameters map[string]*string `locationName:"requestParameters" type:"map"`
 
-	// Specifies the templates used to transform the method request body. Request
-	// templates are represented as a key/value map, with a content-type as the
-	// key and a template as the value.
+	// Represents a map of Velocity templates that are applied on the request payload
+	// based on the value of the Content-Type header sent by the client. The content
+	// type value is the key in this map, and the template (as a String) is the
+	// value.
 	RequestTemplates map[string]*string `locationName:"requestTemplates" type:"map"`
 
 	// Specifies a put integration request's resource ID.
