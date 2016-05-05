@@ -882,6 +882,32 @@ func ExampleS3_ListObjects() {
 	fmt.Println(resp)
 }
 
+func ExampleS3_ListObjectsV2() {
+	svc := s3.New(session.New())
+
+	params := &s3.ListObjectsV2Input{
+		Bucket:            aws.String("BucketName"), // Required
+		ContinuationToken: aws.String("Token"),
+		Delimiter:         aws.String("Delimiter"),
+		EncodingType:      aws.String("EncodingType"),
+		FetchOwner:        aws.Bool(true),
+		MaxKeys:           aws.Int64(1),
+		Prefix:            aws.String("Prefix"),
+		StartAfter:        aws.String("StartAfter"),
+	}
+	resp, err := svc.ListObjectsV2(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleS3_ListParts() {
 	svc := s3.New(session.New())
 
