@@ -75,7 +75,7 @@ func ExampleGameLift_CreateFleet() {
 		ServerLaunchPath: aws.String("NonZeroAndMaxString"), // Required
 		Description:      aws.String("NonZeroAndMaxString"),
 		EC2InboundPermissions: []*gamelift.IpPermission{
-			&gamelift.IpPermission{ // Required
+			{ // Required
 				FromPort: aws.Int64(1),                 // Required
 				IpRange:  aws.String("NonBlankString"), // Required
 				Protocol: aws.String("IpProtocol"),     // Required
@@ -111,7 +111,7 @@ func ExampleGameLift_CreateGameSession() {
 		AliasId:                   aws.String("AliasId"),
 		FleetId:                   aws.String("FleetId"),
 		GameProperties: []*gamelift.GameProperty{
-			&gamelift.GameProperty{ // Required
+			{ // Required
 				Key:   aws.String("GamePropertyKey"),   // Required
 				Value: aws.String("GamePropertyValue"), // Required
 			},
@@ -761,7 +761,7 @@ func ExampleGameLift_UpdateFleetPortSettings() {
 	params := &gamelift.UpdateFleetPortSettingsInput{
 		FleetId: aws.String("FleetId"), // Required
 		InboundPermissionAuthorizations: []*gamelift.IpPermission{
-			&gamelift.IpPermission{ // Required
+			{ // Required
 				FromPort: aws.Int64(1),                 // Required
 				IpRange:  aws.String("NonBlankString"), // Required
 				Protocol: aws.String("IpProtocol"),     // Required
@@ -770,7 +770,7 @@ func ExampleGameLift_UpdateFleetPortSettings() {
 			// More values...
 		},
 		InboundPermissionRevocations: []*gamelift.IpPermission{
-			&gamelift.IpPermission{ // Required
+			{ // Required
 				FromPort: aws.Int64(1),                 // Required
 				IpRange:  aws.String("NonBlankString"), // Required
 				Protocol: aws.String("IpProtocol"),     // Required

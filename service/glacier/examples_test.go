@@ -587,7 +587,7 @@ func ExampleGlacier_SetDataRetrievalPolicy() {
 		AccountId: aws.String("string"), // Required
 		Policy: &glacier.DataRetrievalPolicy{
 			Rules: []*glacier.DataRetrievalRule{
-				&glacier.DataRetrievalRule{ // Required
+				{ // Required
 					BytesPerHour: aws.Int64(1),
 					Strategy:     aws.String("string"),
 				},

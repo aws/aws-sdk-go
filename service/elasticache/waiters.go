@@ -12,31 +12,31 @@ func (c *ElastiCache) WaitUntilCacheClusterAvailable(input *DescribeCacheCluster
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "pathAll",
 				Argument: "CacheClusters[].CacheClusterStatus",
 				Expected: "available",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "CacheClusters[].CacheClusterStatus",
 				Expected: "deleted",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "CacheClusters[].CacheClusterStatus",
 				Expected: "deleting",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "CacheClusters[].CacheClusterStatus",
 				Expected: "incompatible-network",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "CacheClusters[].CacheClusterStatus",
@@ -59,49 +59,49 @@ func (c *ElastiCache) WaitUntilCacheClusterDeleted(input *DescribeCacheClustersI
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "pathAll",
 				Argument: "CacheClusters[].CacheClusterStatus",
 				Expected: "deleted",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "error",
 				Argument: "",
 				Expected: "CacheClusterNotFound",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "CacheClusters[].CacheClusterStatus",
 				Expected: "available",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "CacheClusters[].CacheClusterStatus",
 				Expected: "creating",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "CacheClusters[].CacheClusterStatus",
 				Expected: "incompatible-network",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "CacheClusters[].CacheClusterStatus",
 				Expected: "modifying",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "CacheClusters[].CacheClusterStatus",
 				Expected: "restore-failed",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "CacheClusters[].CacheClusterStatus",
@@ -124,13 +124,13 @@ func (c *ElastiCache) WaitUntilReplicationGroupAvailable(input *DescribeReplicat
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "pathAll",
 				Argument: "ReplicationGroups[].Status",
 				Expected: "available",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "ReplicationGroups[].Status",
@@ -153,19 +153,19 @@ func (c *ElastiCache) WaitUntilReplicationGroupDeleted(input *DescribeReplicatio
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "pathAll",
 				Argument: "ReplicationGroups[].Status",
 				Expected: "deleted",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "ReplicationGroups[].Status",
 				Expected: "available",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "error",
 				Argument: "",

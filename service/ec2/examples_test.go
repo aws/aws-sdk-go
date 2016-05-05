@@ -290,24 +290,24 @@ func ExampleEC2_AuthorizeSecurityGroupEgress() {
 		DryRun:   aws.Bool(true),
 		FromPort: aws.Int64(1),
 		IpPermissions: []*ec2.IpPermission{
-			&ec2.IpPermission{ // Required
+			{ // Required
 				FromPort:   aws.Int64(1),
 				IpProtocol: aws.String("String"),
 				IpRanges: []*ec2.IpRange{
-					&ec2.IpRange{ // Required
+					{ // Required
 						CidrIp: aws.String("String"),
 					},
 					// More values...
 				},
 				PrefixListIds: []*ec2.PrefixListId{
-					&ec2.PrefixListId{ // Required
+					{ // Required
 						PrefixListId: aws.String("String"),
 					},
 					// More values...
 				},
 				ToPort: aws.Int64(1),
 				UserIdGroupPairs: []*ec2.UserIdGroupPair{
-					&ec2.UserIdGroupPair{ // Required
+					{ // Required
 						GroupId:       aws.String("String"),
 						GroupName:     aws.String("String"),
 						PeeringStatus: aws.String("String"),
@@ -348,24 +348,24 @@ func ExampleEC2_AuthorizeSecurityGroupIngress() {
 		GroupId:   aws.String("String"),
 		GroupName: aws.String("String"),
 		IpPermissions: []*ec2.IpPermission{
-			&ec2.IpPermission{ // Required
+			{ // Required
 				FromPort:   aws.Int64(1),
 				IpProtocol: aws.String("String"),
 				IpRanges: []*ec2.IpRange{
-					&ec2.IpRange{ // Required
+					{ // Required
 						CidrIp: aws.String("String"),
 					},
 					// More values...
 				},
 				PrefixListIds: []*ec2.PrefixListId{
-					&ec2.PrefixListId{ // Required
+					{ // Required
 						PrefixListId: aws.String("String"),
 					},
 					// More values...
 				},
 				ToPort: aws.Int64(1),
 				UserIdGroupPairs: []*ec2.UserIdGroupPair{
-					&ec2.UserIdGroupPair{ // Required
+					{ // Required
 						GroupId:       aws.String("String"),
 						GroupName:     aws.String("String"),
 						PeeringStatus: aws.String("String"),
@@ -672,7 +672,7 @@ func ExampleEC2_CreateDhcpOptions() {
 
 	params := &ec2.CreateDhcpOptionsInput{
 		DhcpConfigurations: []*ec2.NewDhcpConfiguration{ // Required
-			&ec2.NewDhcpConfiguration{ // Required
+			{ // Required
 				Key: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -730,7 +730,7 @@ func ExampleEC2_CreateImage() {
 		InstanceId: aws.String("String"), // Required
 		Name:       aws.String("String"), // Required
 		BlockDeviceMappings: []*ec2.BlockDeviceMapping{
-			&ec2.BlockDeviceMapping{ // Required
+			{ // Required
 				DeviceName: aws.String("String"),
 				Ebs: &ec2.EbsBlockDevice{
 					DeleteOnTermination: aws.Bool(true),
@@ -915,7 +915,7 @@ func ExampleEC2_CreateNetworkInterface() {
 		},
 		PrivateIpAddress: aws.String("String"),
 		PrivateIpAddresses: []*ec2.PrivateIpAddressSpecification{
-			&ec2.PrivateIpAddressSpecification{ // Required
+			{ // Required
 				PrivateIpAddress: aws.String("String"), // Required
 				Primary:          aws.Bool(true),
 			},
@@ -964,7 +964,7 @@ func ExampleEC2_CreateReservedInstancesListing() {
 		ClientToken:   aws.String("String"), // Required
 		InstanceCount: aws.Int64(1),         // Required
 		PriceSchedules: []*ec2.PriceScheduleSpecification{ // Required
-			&ec2.PriceScheduleSpecification{ // Required
+			{ // Required
 				CurrencyCode: aws.String("CurrencyCodeValues"),
 				Price:        aws.Float64(1.0),
 				Term:         aws.Int64(1),
@@ -1127,7 +1127,7 @@ func ExampleEC2_CreateTags() {
 			// More values...
 		},
 		Tags: []*ec2.Tag{ // Required
-			&ec2.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -1644,7 +1644,7 @@ func ExampleEC2_DeleteTags() {
 		},
 		DryRun: aws.Bool(true),
 		Tags: []*ec2.Tag{
-			&ec2.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -1860,7 +1860,7 @@ func ExampleEC2_DescribeAddresses() {
 		},
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -1893,7 +1893,7 @@ func ExampleEC2_DescribeAvailabilityZones() {
 	params := &ec2.DescribeAvailabilityZonesInput{
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -1930,7 +1930,7 @@ func ExampleEC2_DescribeBundleTasks() {
 		},
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -1959,7 +1959,7 @@ func ExampleEC2_DescribeClassicLinkInstances() {
 	params := &ec2.DescribeClassicLinkInstancesInput{
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -1998,7 +1998,7 @@ func ExampleEC2_DescribeConversionTasks() {
 		},
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2031,7 +2031,7 @@ func ExampleEC2_DescribeCustomerGateways() {
 		},
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2064,7 +2064,7 @@ func ExampleEC2_DescribeDhcpOptions() {
 		},
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2114,7 +2114,7 @@ func ExampleEC2_DescribeFlowLogs() {
 
 	params := &ec2.DescribeFlowLogsInput{
 		Filter: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2148,7 +2148,7 @@ func ExampleEC2_DescribeHosts() {
 
 	params := &ec2.DescribeHostsInput{
 		Filter: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2227,7 +2227,7 @@ func ExampleEC2_DescribeImages() {
 			// More values...
 		},
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2264,7 +2264,7 @@ func ExampleEC2_DescribeImportImageTasks() {
 	params := &ec2.DescribeImportImageTasksInput{
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2299,7 +2299,7 @@ func ExampleEC2_DescribeImportSnapshotTasks() {
 	params := &ec2.DescribeImportSnapshotTasksInput{
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2355,7 +2355,7 @@ func ExampleEC2_DescribeInstanceStatus() {
 	params := &ec2.DescribeInstanceStatusInput{
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2391,7 +2391,7 @@ func ExampleEC2_DescribeInstances() {
 	params := &ec2.DescribeInstancesInput{
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2426,7 +2426,7 @@ func ExampleEC2_DescribeInternetGateways() {
 	params := &ec2.DescribeInternetGatewaysInput{
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2459,7 +2459,7 @@ func ExampleEC2_DescribeKeyPairs() {
 	params := &ec2.DescribeKeyPairsInput{
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2492,7 +2492,7 @@ func ExampleEC2_DescribeMovingAddresses() {
 	params := &ec2.DescribeMovingAddressesInput{
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2526,7 +2526,7 @@ func ExampleEC2_DescribeNatGateways() {
 
 	params := &ec2.DescribeNatGatewaysInput{
 		Filter: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2561,7 +2561,7 @@ func ExampleEC2_DescribeNetworkAcls() {
 	params := &ec2.DescribeNetworkAclsInput{
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2615,7 +2615,7 @@ func ExampleEC2_DescribeNetworkInterfaces() {
 	params := &ec2.DescribeNetworkInterfacesInput{
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2648,7 +2648,7 @@ func ExampleEC2_DescribePlacementGroups() {
 	params := &ec2.DescribePlacementGroupsInput{
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2681,7 +2681,7 @@ func ExampleEC2_DescribePrefixLists() {
 	params := &ec2.DescribePrefixListsInput{
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2716,7 +2716,7 @@ func ExampleEC2_DescribeRegions() {
 	params := &ec2.DescribeRegionsInput{
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2749,7 +2749,7 @@ func ExampleEC2_DescribeReservedInstances() {
 	params := &ec2.DescribeReservedInstancesInput{
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2782,7 +2782,7 @@ func ExampleEC2_DescribeReservedInstancesListings() {
 
 	params := &ec2.DescribeReservedInstancesListingsInput{
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2812,7 +2812,7 @@ func ExampleEC2_DescribeReservedInstancesModifications() {
 
 	params := &ec2.DescribeReservedInstancesModificationsInput{
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2847,7 +2847,7 @@ func ExampleEC2_DescribeReservedInstancesOfferings() {
 		AvailabilityZone: aws.String("String"),
 		DryRun:           aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2890,7 +2890,7 @@ func ExampleEC2_DescribeRouteTables() {
 	params := &ec2.DescribeRouteTablesInput{
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2937,7 +2937,7 @@ func ExampleEC2_DescribeScheduledInstanceAvailability() {
 		},
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2970,7 +2970,7 @@ func ExampleEC2_DescribeScheduledInstances() {
 	params := &ec2.DescribeScheduledInstancesInput{
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3009,7 +3009,7 @@ func ExampleEC2_DescribeSecurityGroups() {
 	params := &ec2.DescribeSecurityGroupsInput{
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3067,7 +3067,7 @@ func ExampleEC2_DescribeSnapshots() {
 	params := &ec2.DescribeSnapshotsInput{
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3200,7 +3200,7 @@ func ExampleEC2_DescribeSpotInstanceRequests() {
 	params := &ec2.DescribeSpotInstanceRequestsInput{
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3235,7 +3235,7 @@ func ExampleEC2_DescribeSpotPriceHistory() {
 		DryRun:           aws.Bool(true),
 		EndTime:          aws.Time(time.Now()),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3275,7 +3275,7 @@ func ExampleEC2_DescribeSubnets() {
 	params := &ec2.DescribeSubnetsInput{
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3308,7 +3308,7 @@ func ExampleEC2_DescribeTags() {
 	params := &ec2.DescribeTagsInput{
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3360,7 +3360,7 @@ func ExampleEC2_DescribeVolumeStatus() {
 	params := &ec2.DescribeVolumeStatusInput{
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3395,7 +3395,7 @@ func ExampleEC2_DescribeVolumes() {
 	params := &ec2.DescribeVolumesInput{
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3451,7 +3451,7 @@ func ExampleEC2_DescribeVpcClassicLink() {
 	params := &ec2.DescribeVpcClassicLinkInput{
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3529,7 +3529,7 @@ func ExampleEC2_DescribeVpcEndpoints() {
 	params := &ec2.DescribeVpcEndpointsInput{
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3564,7 +3564,7 @@ func ExampleEC2_DescribeVpcPeeringConnections() {
 	params := &ec2.DescribeVpcPeeringConnectionsInput{
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3597,7 +3597,7 @@ func ExampleEC2_DescribeVpcs() {
 	params := &ec2.DescribeVpcsInput{
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3630,7 +3630,7 @@ func ExampleEC2_DescribeVpnConnections() {
 	params := &ec2.DescribeVpnConnectionsInput{
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3663,7 +3663,7 @@ func ExampleEC2_DescribeVpnGateways() {
 	params := &ec2.DescribeVpnGatewaysInput{
 		DryRun: aws.Bool(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -4030,7 +4030,7 @@ func ExampleEC2_ImportImage() {
 		ClientToken: aws.String("String"),
 		Description: aws.String("String"),
 		DiskContainers: []*ec2.ImageDiskContainer{
-			&ec2.ImageDiskContainer{ // Required
+			{ // Required
 				Description: aws.String("String"),
 				DeviceName:  aws.String("String"),
 				Format:      aws.String("String"),
@@ -4069,7 +4069,7 @@ func ExampleEC2_ImportInstance() {
 		Platform:    aws.String("PlatformValues"), // Required
 		Description: aws.String("String"),
 		DiskImages: []*ec2.DiskImage{
-			&ec2.DiskImage{ // Required
+			{ // Required
 				Description: aws.String("String"),
 				Image: &ec2.DiskImageDetail{
 					Bytes:             aws.Int64(1),                  // Required
@@ -4266,14 +4266,14 @@ func ExampleEC2_ModifyImageAttribute() {
 		DryRun: aws.Bool(true),
 		LaunchPermission: &ec2.LaunchPermissionModifications{
 			Add: []*ec2.LaunchPermission{
-				&ec2.LaunchPermission{ // Required
+				{ // Required
 					Group:  aws.String("PermissionGroup"),
 					UserId: aws.String("String"),
 				},
 				// More values...
 			},
 			Remove: []*ec2.LaunchPermission{
-				&ec2.LaunchPermission{ // Required
+				{ // Required
 					Group:  aws.String("PermissionGroup"),
 					UserId: aws.String("String"),
 				},
@@ -4315,7 +4315,7 @@ func ExampleEC2_ModifyInstanceAttribute() {
 		InstanceId: aws.String("String"), // Required
 		Attribute:  aws.String("InstanceAttributeName"),
 		BlockDeviceMappings: []*ec2.InstanceBlockDeviceMappingSpecification{
-			&ec2.InstanceBlockDeviceMappingSpecification{ // Required
+			{ // Required
 				DeviceName: aws.String("String"),
 				Ebs: &ec2.EbsInstanceBlockDeviceSpecification{
 					DeleteOnTermination: aws.Bool(true),
@@ -4438,7 +4438,7 @@ func ExampleEC2_ModifyReservedInstances() {
 			// More values...
 		},
 		TargetConfigurations: []*ec2.ReservedInstancesConfiguration{ // Required
-			&ec2.ReservedInstancesConfiguration{ // Required
+			{ // Required
 				AvailabilityZone: aws.String("String"),
 				InstanceCount:    aws.Int64(1),
 				InstanceType:     aws.String("InstanceType"),
@@ -4469,14 +4469,14 @@ func ExampleEC2_ModifySnapshotAttribute() {
 		Attribute:  aws.String("SnapshotAttributeName"),
 		CreateVolumePermission: &ec2.CreateVolumePermissionModifications{
 			Add: []*ec2.CreateVolumePermission{
-				&ec2.CreateVolumePermission{ // Required
+				{ // Required
 					Group:  aws.String("PermissionGroup"),
 					UserId: aws.String("String"),
 				},
 				// More values...
 			},
 			Remove: []*ec2.CreateVolumePermission{
-				&ec2.CreateVolumePermission{ // Required
+				{ // Required
 					Group:  aws.String("PermissionGroup"),
 					UserId: aws.String("String"),
 				},
@@ -4729,7 +4729,7 @@ func ExampleEC2_PurchaseScheduledInstances() {
 
 	params := &ec2.PurchaseScheduledInstancesInput{
 		PurchaseRequests: []*ec2.PurchaseRequest{ // Required
-			&ec2.PurchaseRequest{ // Required
+			{ // Required
 				InstanceCount: aws.Int64(1),         // Required
 				PurchaseToken: aws.String("String"), // Required
 			},
@@ -4781,7 +4781,7 @@ func ExampleEC2_RegisterImage() {
 		Name:         aws.String("String"), // Required
 		Architecture: aws.String("ArchitectureValues"),
 		BlockDeviceMappings: []*ec2.BlockDeviceMapping{
-			&ec2.BlockDeviceMapping{ // Required
+			{ // Required
 				DeviceName: aws.String("String"),
 				Ebs: &ec2.EbsBlockDevice{
 					DeleteOnTermination: aws.Bool(true),
@@ -5020,10 +5020,10 @@ func ExampleEC2_RequestSpotFleet() {
 		SpotFleetRequestConfig: &ec2.SpotFleetRequestConfigData{ // Required
 			IamFleetRole: aws.String("String"), // Required
 			LaunchSpecifications: []*ec2.SpotFleetLaunchSpecification{ // Required
-				&ec2.SpotFleetLaunchSpecification{ // Required
+				{ // Required
 					AddressingType: aws.String("String"),
 					BlockDeviceMappings: []*ec2.BlockDeviceMapping{
-						&ec2.BlockDeviceMapping{ // Required
+						{ // Required
 							DeviceName: aws.String("String"),
 							Ebs: &ec2.EbsBlockDevice{
 								DeleteOnTermination: aws.Bool(true),
@@ -5051,7 +5051,7 @@ func ExampleEC2_RequestSpotFleet() {
 						Enabled: aws.Bool(true),
 					},
 					NetworkInterfaces: []*ec2.InstanceNetworkInterfaceSpecification{
-						&ec2.InstanceNetworkInterfaceSpecification{ // Required
+						{ // Required
 							AssociatePublicIpAddress: aws.Bool(true),
 							DeleteOnTermination:      aws.Bool(true),
 							Description:              aws.String("String"),
@@ -5063,7 +5063,7 @@ func ExampleEC2_RequestSpotFleet() {
 							NetworkInterfaceId: aws.String("String"),
 							PrivateIpAddress:   aws.String("String"),
 							PrivateIpAddresses: []*ec2.PrivateIpAddressSpecification{
-								&ec2.PrivateIpAddressSpecification{ // Required
+								{ // Required
 									PrivateIpAddress: aws.String("String"), // Required
 									Primary:          aws.Bool(true),
 								},
@@ -5080,7 +5080,7 @@ func ExampleEC2_RequestSpotFleet() {
 					},
 					RamdiskId: aws.String("String"),
 					SecurityGroups: []*ec2.GroupIdentifier{
-						&ec2.GroupIdentifier{ // Required
+						{ // Required
 							GroupId:   aws.String("String"),
 							GroupName: aws.String("String"),
 						},
@@ -5131,7 +5131,7 @@ func ExampleEC2_RequestSpotInstances() {
 		LaunchSpecification: &ec2.RequestSpotLaunchSpecification{
 			AddressingType: aws.String("String"),
 			BlockDeviceMappings: []*ec2.BlockDeviceMapping{
-				&ec2.BlockDeviceMapping{ // Required
+				{ // Required
 					DeviceName: aws.String("String"),
 					Ebs: &ec2.EbsBlockDevice{
 						DeleteOnTermination: aws.Bool(true),
@@ -5159,7 +5159,7 @@ func ExampleEC2_RequestSpotInstances() {
 				Enabled: aws.Bool(true), // Required
 			},
 			NetworkInterfaces: []*ec2.InstanceNetworkInterfaceSpecification{
-				&ec2.InstanceNetworkInterfaceSpecification{ // Required
+				{ // Required
 					AssociatePublicIpAddress: aws.Bool(true),
 					DeleteOnTermination:      aws.Bool(true),
 					Description:              aws.String("String"),
@@ -5171,7 +5171,7 @@ func ExampleEC2_RequestSpotInstances() {
 					NetworkInterfaceId: aws.String("String"),
 					PrivateIpAddress:   aws.String("String"),
 					PrivateIpAddresses: []*ec2.PrivateIpAddressSpecification{
-						&ec2.PrivateIpAddressSpecification{ // Required
+						{ // Required
 							PrivateIpAddress: aws.String("String"), // Required
 							Primary:          aws.Bool(true),
 						},
@@ -5328,24 +5328,24 @@ func ExampleEC2_RevokeSecurityGroupEgress() {
 		DryRun:   aws.Bool(true),
 		FromPort: aws.Int64(1),
 		IpPermissions: []*ec2.IpPermission{
-			&ec2.IpPermission{ // Required
+			{ // Required
 				FromPort:   aws.Int64(1),
 				IpProtocol: aws.String("String"),
 				IpRanges: []*ec2.IpRange{
-					&ec2.IpRange{ // Required
+					{ // Required
 						CidrIp: aws.String("String"),
 					},
 					// More values...
 				},
 				PrefixListIds: []*ec2.PrefixListId{
-					&ec2.PrefixListId{ // Required
+					{ // Required
 						PrefixListId: aws.String("String"),
 					},
 					// More values...
 				},
 				ToPort: aws.Int64(1),
 				UserIdGroupPairs: []*ec2.UserIdGroupPair{
-					&ec2.UserIdGroupPair{ // Required
+					{ // Required
 						GroupId:       aws.String("String"),
 						GroupName:     aws.String("String"),
 						PeeringStatus: aws.String("String"),
@@ -5386,24 +5386,24 @@ func ExampleEC2_RevokeSecurityGroupIngress() {
 		GroupId:   aws.String("String"),
 		GroupName: aws.String("String"),
 		IpPermissions: []*ec2.IpPermission{
-			&ec2.IpPermission{ // Required
+			{ // Required
 				FromPort:   aws.Int64(1),
 				IpProtocol: aws.String("String"),
 				IpRanges: []*ec2.IpRange{
-					&ec2.IpRange{ // Required
+					{ // Required
 						CidrIp: aws.String("String"),
 					},
 					// More values...
 				},
 				PrefixListIds: []*ec2.PrefixListId{
-					&ec2.PrefixListId{ // Required
+					{ // Required
 						PrefixListId: aws.String("String"),
 					},
 					// More values...
 				},
 				ToPort: aws.Int64(1),
 				UserIdGroupPairs: []*ec2.UserIdGroupPair{
-					&ec2.UserIdGroupPair{ // Required
+					{ // Required
 						GroupId:       aws.String("String"),
 						GroupName:     aws.String("String"),
 						PeeringStatus: aws.String("String"),
@@ -5443,7 +5443,7 @@ func ExampleEC2_RunInstances() {
 		MinCount:       aws.Int64(1),         // Required
 		AdditionalInfo: aws.String("String"),
 		BlockDeviceMappings: []*ec2.BlockDeviceMapping{
-			&ec2.BlockDeviceMapping{ // Required
+			{ // Required
 				DeviceName: aws.String("String"),
 				Ebs: &ec2.EbsBlockDevice{
 					DeleteOnTermination: aws.Bool(true),
@@ -5474,7 +5474,7 @@ func ExampleEC2_RunInstances() {
 			Enabled: aws.Bool(true), // Required
 		},
 		NetworkInterfaces: []*ec2.InstanceNetworkInterfaceSpecification{
-			&ec2.InstanceNetworkInterfaceSpecification{ // Required
+			{ // Required
 				AssociatePublicIpAddress: aws.Bool(true),
 				DeleteOnTermination:      aws.Bool(true),
 				Description:              aws.String("String"),
@@ -5486,7 +5486,7 @@ func ExampleEC2_RunInstances() {
 				NetworkInterfaceId: aws.String("String"),
 				PrivateIpAddress:   aws.String("String"),
 				PrivateIpAddresses: []*ec2.PrivateIpAddressSpecification{
-					&ec2.PrivateIpAddressSpecification{ // Required
+					{ // Required
 						PrivateIpAddress: aws.String("String"), // Required
 						Primary:          aws.Bool(true),
 					},
@@ -5537,7 +5537,7 @@ func ExampleEC2_RunScheduledInstances() {
 		LaunchSpecification: &ec2.ScheduledInstancesLaunchSpecification{ // Required
 			ImageId: aws.String("String"), // Required
 			BlockDeviceMappings: []*ec2.ScheduledInstancesBlockDeviceMapping{
-				&ec2.ScheduledInstancesBlockDeviceMapping{ // Required
+				{ // Required
 					DeviceName: aws.String("String"),
 					Ebs: &ec2.ScheduledInstancesEbs{
 						DeleteOnTermination: aws.Bool(true),
@@ -5564,7 +5564,7 @@ func ExampleEC2_RunScheduledInstances() {
 				Enabled: aws.Bool(true),
 			},
 			NetworkInterfaces: []*ec2.ScheduledInstancesNetworkInterface{
-				&ec2.ScheduledInstancesNetworkInterface{ // Required
+				{ // Required
 					AssociatePublicIpAddress: aws.Bool(true),
 					DeleteOnTermination:      aws.Bool(true),
 					Description:              aws.String("String"),
@@ -5576,7 +5576,7 @@ func ExampleEC2_RunScheduledInstances() {
 					NetworkInterfaceId: aws.String("String"),
 					PrivateIpAddress:   aws.String("String"),
 					PrivateIpAddressConfigs: []*ec2.ScheduledInstancesPrivateIpAddressConfig{
-						&ec2.ScheduledInstancesPrivateIpAddressConfig{ // Required
+						{ // Required
 							Primary:          aws.Bool(true),
 							PrivateIpAddress: aws.String("String"),
 						},

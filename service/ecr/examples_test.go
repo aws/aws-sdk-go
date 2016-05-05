@@ -44,7 +44,7 @@ func ExampleECR_BatchDeleteImage() {
 
 	params := &ecr.BatchDeleteImageInput{
 		ImageIds: []*ecr.ImageIdentifier{ // Required
-			&ecr.ImageIdentifier{ // Required
+			{ // Required
 				ImageDigest: aws.String("ImageDigest"),
 				ImageTag:    aws.String("ImageTag"),
 			},
@@ -71,7 +71,7 @@ func ExampleECR_BatchGetImage() {
 
 	params := &ecr.BatchGetImageInput{
 		ImageIds: []*ecr.ImageIdentifier{ // Required
-			&ecr.ImageIdentifier{ // Required
+			{ // Required
 				ImageDigest: aws.String("ImageDigest"),
 				ImageTag:    aws.String("ImageTag"),
 			},

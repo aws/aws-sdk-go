@@ -108,7 +108,7 @@ func ExampleAutoScaling_CreateAutoScalingGroup() {
 		NewInstancesProtectedFromScaleIn: aws.Bool(true),
 		PlacementGroup:                   aws.String("XmlStringMaxLen255"),
 		Tags: []*autoscaling.Tag{
-			&autoscaling.Tag{ // Required
+			{ // Required
 				Key:               aws.String("TagKey"), // Required
 				PropagateAtLaunch: aws.Bool(true),
 				ResourceId:        aws.String("XmlString"),
@@ -143,7 +143,7 @@ func ExampleAutoScaling_CreateLaunchConfiguration() {
 		LaunchConfigurationName:  aws.String("XmlStringMaxLen255"), // Required
 		AssociatePublicIpAddress: aws.Bool(true),
 		BlockDeviceMappings: []*autoscaling.BlockDeviceMapping{
-			&autoscaling.BlockDeviceMapping{ // Required
+			{ // Required
 				DeviceName: aws.String("XmlStringMaxLen255"), // Required
 				Ebs: &autoscaling.Ebs{
 					DeleteOnTermination: aws.Bool(true),
@@ -200,7 +200,7 @@ func ExampleAutoScaling_CreateOrUpdateTags() {
 
 	params := &autoscaling.CreateOrUpdateTagsInput{
 		Tags: []*autoscaling.Tag{ // Required
-			&autoscaling.Tag{ // Required
+			{ // Required
 				Key:               aws.String("TagKey"), // Required
 				PropagateAtLaunch: aws.Bool(true),
 				ResourceId:        aws.String("XmlString"),
@@ -347,7 +347,7 @@ func ExampleAutoScaling_DeleteTags() {
 
 	params := &autoscaling.DeleteTagsInput{
 		Tags: []*autoscaling.Tag{ // Required
-			&autoscaling.Tag{ // Required
+			{ // Required
 				Key:               aws.String("TagKey"), // Required
 				PropagateAtLaunch: aws.Bool(true),
 				ResourceId:        aws.String("XmlString"),
@@ -698,7 +698,7 @@ func ExampleAutoScaling_DescribeTags() {
 
 	params := &autoscaling.DescribeTagsInput{
 		Filters: []*autoscaling.Filter{
-			&autoscaling.Filter{ // Required
+			{ // Required
 				Name: aws.String("XmlString"),
 				Values: []*string{
 					aws.String("XmlString"), // Required
@@ -969,7 +969,7 @@ func ExampleAutoScaling_PutScalingPolicy() {
 		PolicyType:              aws.String("XmlStringMaxLen64"),
 		ScalingAdjustment:       aws.Int64(1),
 		StepAdjustments: []*autoscaling.StepAdjustment{
-			&autoscaling.StepAdjustment{ // Required
+			{ // Required
 				ScalingAdjustment:        aws.Int64(1), // Required
 				MetricIntervalLowerBound: aws.Float64(1.0),
 				MetricIntervalUpperBound: aws.Float64(1.0),

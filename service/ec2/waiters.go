@@ -12,13 +12,13 @@ func (c *EC2) WaitUntilBundleTaskComplete(input *DescribeBundleTasksInput) error
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "pathAll",
 				Argument: "BundleTasks[].State",
 				Expected: "complete",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "BundleTasks[].State",
@@ -41,7 +41,7 @@ func (c *EC2) WaitUntilConversionTaskCancelled(input *DescribeConversionTasksInp
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "pathAll",
 				Argument: "ConversionTasks[].State",
@@ -64,19 +64,19 @@ func (c *EC2) WaitUntilConversionTaskCompleted(input *DescribeConversionTasksInp
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "pathAll",
 				Argument: "ConversionTasks[].State",
 				Expected: "completed",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "ConversionTasks[].State",
 				Expected: "cancelled",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "ConversionTasks[].State",
@@ -99,7 +99,7 @@ func (c *EC2) WaitUntilConversionTaskDeleted(input *DescribeConversionTasksInput
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "pathAll",
 				Argument: "ConversionTasks[].State",
@@ -122,19 +122,19 @@ func (c *EC2) WaitUntilCustomerGatewayAvailable(input *DescribeCustomerGatewaysI
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "pathAll",
 				Argument: "CustomerGateways[].State",
 				Expected: "available",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "CustomerGateways[].State",
 				Expected: "deleted",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "CustomerGateways[].State",
@@ -157,7 +157,7 @@ func (c *EC2) WaitUntilExportTaskCancelled(input *DescribeExportTasksInput) erro
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "pathAll",
 				Argument: "ExportTasks[].State",
@@ -180,7 +180,7 @@ func (c *EC2) WaitUntilExportTaskCompleted(input *DescribeExportTasksInput) erro
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "pathAll",
 				Argument: "ExportTasks[].State",
@@ -203,13 +203,13 @@ func (c *EC2) WaitUntilImageAvailable(input *DescribeImagesInput) error {
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "pathAll",
 				Argument: "Images[].State",
 				Expected: "available",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "Images[].State",
@@ -232,13 +232,13 @@ func (c *EC2) WaitUntilImageExists(input *DescribeImagesInput) error {
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "path",
 				Argument: "length(Images[]) > `0`",
 				Expected: true,
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "retry",
 				Matcher:  "error",
 				Argument: "",
@@ -261,13 +261,13 @@ func (c *EC2) WaitUntilInstanceExists(input *DescribeInstancesInput) error {
 		Delay:       5,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "path",
 				Argument: "length(Reservations[]) > `0`",
 				Expected: true,
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "retry",
 				Matcher:  "error",
 				Argument: "",
@@ -290,31 +290,31 @@ func (c *EC2) WaitUntilInstanceRunning(input *DescribeInstancesInput) error {
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "pathAll",
 				Argument: "Reservations[].Instances[].State.Name",
 				Expected: "running",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "Reservations[].Instances[].State.Name",
 				Expected: "shutting-down",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "Reservations[].Instances[].State.Name",
 				Expected: "terminated",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "Reservations[].Instances[].State.Name",
 				Expected: "stopping",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "retry",
 				Matcher:  "error",
 				Argument: "",
@@ -337,13 +337,13 @@ func (c *EC2) WaitUntilInstanceStatusOk(input *DescribeInstanceStatusInput) erro
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "pathAll",
 				Argument: "InstanceStatuses[].InstanceStatus.Status",
 				Expected: "ok",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "retry",
 				Matcher:  "error",
 				Argument: "",
@@ -366,19 +366,19 @@ func (c *EC2) WaitUntilInstanceStopped(input *DescribeInstancesInput) error {
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "pathAll",
 				Argument: "Reservations[].Instances[].State.Name",
 				Expected: "stopped",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "Reservations[].Instances[].State.Name",
 				Expected: "pending",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "Reservations[].Instances[].State.Name",
@@ -401,19 +401,19 @@ func (c *EC2) WaitUntilInstanceTerminated(input *DescribeInstancesInput) error {
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "pathAll",
 				Argument: "Reservations[].Instances[].State.Name",
 				Expected: "terminated",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "Reservations[].Instances[].State.Name",
 				Expected: "pending",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "Reservations[].Instances[].State.Name",
@@ -436,13 +436,13 @@ func (c *EC2) WaitUntilKeyPairExists(input *DescribeKeyPairsInput) error {
 		Delay:       5,
 		MaxAttempts: 6,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "pathAll",
 				Argument: "length(KeyPairs[].KeyName) > `0`",
 				Expected: true,
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "retry",
 				Matcher:  "error",
 				Argument: "",
@@ -465,31 +465,31 @@ func (c *EC2) WaitUntilNatGatewayAvailable(input *DescribeNatGatewaysInput) erro
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "pathAll",
 				Argument: "NatGateways[].State",
 				Expected: "available",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "NatGateways[].State",
 				Expected: "failed",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "NatGateways[].State",
 				Expected: "deleting",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "NatGateways[].State",
 				Expected: "deleted",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "retry",
 				Matcher:  "error",
 				Argument: "",
@@ -512,13 +512,13 @@ func (c *EC2) WaitUntilNetworkInterfaceAvailable(input *DescribeNetworkInterface
 		Delay:       20,
 		MaxAttempts: 10,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "pathAll",
 				Argument: "NetworkInterfaces[].Status",
 				Expected: "available",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "error",
 				Argument: "",
@@ -541,7 +541,7 @@ func (c *EC2) WaitUntilPasswordDataAvailable(input *GetPasswordDataInput) error 
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "path",
 				Argument: "length(PasswordData) > `0`",
@@ -564,7 +564,7 @@ func (c *EC2) WaitUntilSnapshotCompleted(input *DescribeSnapshotsInput) error {
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "pathAll",
 				Argument: "Snapshots[].State",
@@ -587,31 +587,31 @@ func (c *EC2) WaitUntilSpotInstanceRequestFulfilled(input *DescribeSpotInstanceR
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "pathAll",
 				Argument: "SpotInstanceRequests[].Status.Code",
 				Expected: "fulfilled",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "SpotInstanceRequests[].Status.Code",
 				Expected: "schedule-expired",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "SpotInstanceRequests[].Status.Code",
 				Expected: "canceled-before-fulfillment",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "SpotInstanceRequests[].Status.Code",
 				Expected: "bad-parameters",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "SpotInstanceRequests[].Status.Code",
@@ -634,7 +634,7 @@ func (c *EC2) WaitUntilSubnetAvailable(input *DescribeSubnetsInput) error {
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "pathAll",
 				Argument: "Subnets[].State",
@@ -657,7 +657,7 @@ func (c *EC2) WaitUntilSystemStatusOk(input *DescribeInstanceStatusInput) error 
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "pathAll",
 				Argument: "InstanceStatuses[].SystemStatus.Status",
@@ -680,13 +680,13 @@ func (c *EC2) WaitUntilVolumeAvailable(input *DescribeVolumesInput) error {
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "pathAll",
 				Argument: "Volumes[].State",
 				Expected: "available",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "Volumes[].State",
@@ -709,13 +709,13 @@ func (c *EC2) WaitUntilVolumeDeleted(input *DescribeVolumesInput) error {
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "pathAll",
 				Argument: "Volumes[].State",
 				Expected: "deleted",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "error",
 				Argument: "",
@@ -738,13 +738,13 @@ func (c *EC2) WaitUntilVolumeInUse(input *DescribeVolumesInput) error {
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "pathAll",
 				Argument: "Volumes[].State",
 				Expected: "in-use",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "Volumes[].State",
@@ -767,7 +767,7 @@ func (c *EC2) WaitUntilVpcAvailable(input *DescribeVpcsInput) error {
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "pathAll",
 				Argument: "Vpcs[].State",
@@ -790,13 +790,13 @@ func (c *EC2) WaitUntilVpcPeeringConnectionExists(input *DescribeVpcPeeringConne
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "status",
 				Argument: "",
 				Expected: 200,
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "retry",
 				Matcher:  "error",
 				Argument: "",
@@ -819,19 +819,19 @@ func (c *EC2) WaitUntilVpnConnectionAvailable(input *DescribeVpnConnectionsInput
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "pathAll",
 				Argument: "VpnConnections[].State",
 				Expected: "available",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "VpnConnections[].State",
 				Expected: "deleting",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "VpnConnections[].State",
@@ -854,13 +854,13 @@ func (c *EC2) WaitUntilVpnConnectionDeleted(input *DescribeVpnConnectionsInput) 
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "pathAll",
 				Argument: "VpnConnections[].State",
 				Expected: "deleted",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "VpnConnections[].State",

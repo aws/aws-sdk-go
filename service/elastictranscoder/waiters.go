@@ -12,19 +12,19 @@ func (c *ElasticTranscoder) WaitUntilJobComplete(input *ReadJobInput) error {
 		Delay:       30,
 		MaxAttempts: 120,
 		Acceptors: []waiter.WaitAcceptor{
-			waiter.WaitAcceptor{
+			{
 				State:    "success",
 				Matcher:  "path",
 				Argument: "Job.Status",
 				Expected: "Complete",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "path",
 				Argument: "Job.Status",
 				Expected: "Canceled",
 			},
-			waiter.WaitAcceptor{
+			{
 				State:    "failure",
 				Matcher:  "path",
 				Argument: "Job.Status",
