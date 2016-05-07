@@ -218,7 +218,7 @@ func (e *Encoder) encode(av *dynamodb.AttributeValue, v reflect.Value, fieldTag 
 func (e *Encoder) encodeStruct(av *dynamodb.AttributeValue, v reflect.Value) error {
 
 	// To maintain backwards compatibility with ConvertTo family of methods which
-	// converted time.Time structs to strings (using JSON encoding/decoding)
+	// converted time.Time structs to strings
 	if t, ok := v.Interface().(time.Time); ok {
 		s := t.Format(time.RFC3339Nano)
 		av.S = &s
