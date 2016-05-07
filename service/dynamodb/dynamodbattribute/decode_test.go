@@ -26,8 +26,6 @@ func TestUnmarshalShared(t *testing.T) {
 }
 
 func TestUnmarshal(t *testing.T) {
-	testDate, _ := time.Parse(time.RFC3339, "2016-05-03T17:06:26.209072Z")
-
 	cases := []struct {
 		in               *dynamodb.AttributeValue
 		actual, expected interface{}
@@ -172,29 +170,6 @@ func TestUnmarshal(t *testing.T) {
 				Value: fmt.Sprintf("number overflow, 512"),
 				Type:  reflect.TypeOf(uint8(0)),
 			},
-		},
-		//------------
-		// time.Time fields
-		//------------
-		{
-			in:       &dynamodb.AttributeValue{S: aws.String("2016-05-03T17:06:26.209072Z")},
-			actual:   new(time.Time),
-			expected: testDate,
-		},
-		{
-			in: &dynamodb.AttributeValue{SS: []*string{
-				aws.String("2016-05-03T17:06:26.209072Z"),
-				aws.String("2016-05-04T17:06:26.209072Z"),
-			}},
-			actual:   new([]time.Time),
-			expected: []time.Time{testDate, testDate.Add(24 * time.Hour)},
-		},
-		{
-			in: &dynamodb.AttributeValue{M: map[string]*dynamodb.AttributeValue{
-				"abc": {S: aws.String("2016-05-03T17:06:26.209072Z")},
-			}},
-			actual:   &struct{ Abc time.Time }{},
-			expected: struct{ Abc time.Time }{Abc: testDate},
 		},
 	}
 
@@ -351,8 +326,6 @@ func (u *unmarshalUnmarshaler) UnmarshalDynamoDBAttributeValue(av *dynamodb.Attr
 }
 
 func TestUnmarshalUnmashaler(t *testing.T) {
-	testDate, _ := time.Parse(time.RFC3339, "2016-05-03T17:06:26.209072Z")
-
 	u := &unmarshalUnmarshaler{}
 	av := &dynamodb.AttributeValue{
 		M: map[string]*dynamodb.AttributeValue{

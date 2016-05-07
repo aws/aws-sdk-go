@@ -56,8 +56,6 @@ func (m *marshalMarshaler) MarshalDynamoDBAttributeValue(av *dynamodb.AttributeV
 }
 
 func TestMarshalMashaler(t *testing.T) {
-	testDate, _ := time.Parse(time.RFC3339, "2016-05-03T17:06:26.209072Z")
-
 	m := &marshalMarshaler{
 		Value:  "value",
 		Value2: 123,
