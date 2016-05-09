@@ -3,6 +3,7 @@ package dynamodbattribute
 import (
 	"reflect"
 	"testing"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
@@ -30,6 +31,8 @@ type testOmitEmptyStruct struct {
 }
 
 type testNamedPointer *int
+
+var testDate, _ = time.Parse(time.RFC3339, "2016-05-03T17:06:26.209072Z")
 
 var sharedTestCases = []struct {
 	in               *dynamodb.AttributeValue
@@ -174,6 +177,41 @@ var sharedTestCases = []struct {
 		in:       &dynamodb.AttributeValue{N: aws.String("123")},
 		actual:   new(testNamedPointer),
 		expected: testNamedPointer(aws.Int(123)),
+	},
+	{ // time.Time
+		in:       &dynamodb.AttributeValue{S: aws.String("2016-05-03T17:06:26.209072Z")},
+		actual:   new(time.Time),
+		expected: testDate,
+	},
+	{ // time.Time List
+		in: &dynamodb.AttributeValue{L: []*dynamodb.AttributeValue{
+			{S: aws.String("2016-05-03T17:06:26.209072Z")},
+			{S: aws.String("2016-05-04T17:06:26.209072Z")},
+		}},
+		actual:   new([]time.Time),
+		expected: []time.Time{testDate, testDate.Add(24 * time.Hour)},
+	},
+	{ // time.Time struct
+		in: &dynamodb.AttributeValue{M: map[string]*dynamodb.AttributeValue{
+			"abc": {S: aws.String("2016-05-03T17:06:26.209072Z")},
+		}},
+		actual: &struct {
+			Abc time.Time `json:"abc" dynamodbav:"abc"`
+		}{},
+		expected: struct {
+			Abc time.Time `json:"abc" dynamodbav:"abc"`
+		}{Abc: testDate},
+	},
+	{ // time.Time ptr struct
+		in: &dynamodb.AttributeValue{M: map[string]*dynamodb.AttributeValue{
+			"abc": {S: aws.String("2016-05-03T17:06:26.209072Z")},
+		}},
+		actual: &struct {
+			Abc *time.Time `json:"abc" dynamodbav:"abc"`
+		}{},
+		expected: struct {
+			Abc *time.Time `json:"abc" dynamodbav:"abc"`
+		}{Abc: &testDate},
 	},
 }
 

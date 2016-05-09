@@ -5,6 +5,7 @@ import (
 	"reflect"
 	"strconv"
 	"testing"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
@@ -269,13 +270,14 @@ func TestUnmarshalMapError(t *testing.T) {
 	}
 }
 
-type unmarhsalUnmarshaler struct {
+type unmarshalUnmarshaler struct {
 	Value  string
 	Value2 int
 	Value3 bool
+	Value4 time.Time
 }
 
-func (u *unmarhsalUnmarshaler) UnmarshalDynamoDBAttributeValue(av *dynamodb.AttributeValue) error {
+func (u *unmarshalUnmarshaler) UnmarshalDynamoDBAttributeValue(av *dynamodb.AttributeValue) error {
 	if av.M == nil {
 		return fmt.Errorf("expected AttributeValue to be map")
 	}
@@ -308,16 +310,29 @@ func (u *unmarhsalUnmarshaler) UnmarshalDynamoDBAttributeValue(av *dynamodb.Attr
 		u.Value3 = *v.BOOL
 	}
 
+	if v, ok := av.M["jkl"]; !ok {
+		return fmt.Errorf("expected `jkl` map key")
+	} else if v.S == nil {
+		return fmt.Errorf("expected `jkl` map value string")
+	} else {
+		t, err := time.Parse(time.RFC3339, *v.S)
+		if err != nil {
+			return err
+		}
+		u.Value4 = t
+	}
+
 	return nil
 }
 
 func TestUnmarshalUnmashaler(t *testing.T) {
-	u := &unmarhsalUnmarshaler{}
+	u := &unmarshalUnmarshaler{}
 	av := &dynamodb.AttributeValue{
 		M: map[string]*dynamodb.AttributeValue{
 			"abc": {S: aws.String("value")},
 			"def": {N: aws.String("123")},
 			"ghi": {BOOL: aws.Bool(true)},
+			"jkl": {S: aws.String("2016-05-03T17:06:26.209072Z")},
 		},
 	}
 
@@ -327,6 +342,7 @@ func TestUnmarshalUnmashaler(t *testing.T) {
 	assert.Equal(t, "value", u.Value)
 	assert.Equal(t, 123, u.Value2)
 	assert.Equal(t, true, u.Value3)
+	assert.Equal(t, testDate, u.Value4)
 }
 
 func TestDecodeUseNumber(t *testing.T) {
