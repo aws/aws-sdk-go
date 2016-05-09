@@ -8,6 +8,7 @@ import (
 	"sync"
 	"time"
 
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/client"
@@ -556,7 +557,7 @@ func (u *multiuploader) upload(firstBuf io.ReadSeeker) (*UploadOutput, error) {
 		}
 	}
 	return &UploadOutput{
-		Location:  *complete.Location,
+		Location:  aws.StringValue(complete.Location),
 		VersionID: complete.VersionId,
 		UploadID:  u.uploadID,
 	}, nil
