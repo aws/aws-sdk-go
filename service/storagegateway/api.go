@@ -105,13 +105,13 @@ func (c *StorageGateway) AddTagsToResourceRequest(input *AddTagsToResourceInput)
 // tag consists of a key and a value, which you define. You can add tags to
 // the following AWS Storage Gateway resources:
 //
-//  Storage gateways of all types
+//   Storage gateways of all types
 //
-//   Storage Volumes
+//     Storage Volumes
 //
-//   Virtual Tapes
+//     Virtual Tapes
 //
-//  You can create a maximum of 10 tags for each resource. Virtual tapes and
+//   You can create a maximum of 10 tags for each resource. Virtual tapes and
 // storage volumes that are recovered to a new gateway maintain their tags.
 func (c *StorageGateway) AddTagsToResource(input *AddTagsToResourceInput) (*AddTagsToResourceOutput, error) {
 	req, out := c.AddTagsToResourceRequest(input)
@@ -143,7 +143,7 @@ func (c *StorageGateway) AddUploadBufferRequest(input *AddUploadBufferInput) (re
 // gateway. This operation is supported for both the gateway-stored and gateway-cached
 // volume architectures.
 //
-//  In the request, you specify the gateway Amazon Resource Name (ARN) to which
+// In the request, you specify the gateway Amazon Resource Name (ARN) to which
 // you want to add upload buffer, and one or more disk IDs that you want to
 // configure as upload buffer.
 func (c *StorageGateway) AddUploadBuffer(input *AddUploadBufferInput) (*AddUploadBufferOutput, error) {
@@ -177,10 +177,10 @@ func (c *StorageGateway) AddWorkingStorageRequest(input *AddWorkingStorageInput)
 // This operation is deprecated in cached-volumes API version 20120630. Use
 // AddUploadBuffer instead.
 //
-// Working storage is also referred to as upload buffer. You can also use the
-// AddUploadBuffer operation to add upload buffer to a stored-volume gateway.
+//  Working storage is also referred to as upload buffer. You can also use
+// the AddUploadBuffer operation to add upload buffer to a stored-volume gateway.
 //
-// In the request, you specify the gateway Amazon Resource Name (ARN) to which
+//  In the request, you specify the gateway Amazon Resource Name (ARN) to which
 // you want to add working storage, and one or more disk IDs that you want to
 // configure as working storage.
 func (c *StorageGateway) AddWorkingStorage(input *AddWorkingStorageInput) (*AddWorkingStorageOutput, error) {
@@ -270,13 +270,14 @@ func (c *StorageGateway) CreateCachediSCSIVolumeRequest(input *CreateCachediSCSI
 // supported only for the gateway-cached volume architecture.
 //
 // Cache storage must be allocated to the gateway before you can create a cached
-// volume. Use the AddCache operation to add cache storage to a gateway.  In
-// the request, you must specify the gateway, size of the volume in bytes, the
-// iSCSI target name, an IP address on which to expose the target, and a unique
-// client token. In response, AWS Storage Gateway creates the volume and returns
-// information about it such as the volume Amazon Resource Name (ARN), its size,
-// and the iSCSI target ARN that initiators can use to connect to the volume
-// target.
+// volume. Use the AddCache operation to add cache storage to a gateway.
+//
+//  In the request, you must specify the gateway, size of the volume in bytes,
+// the iSCSI target name, an IP address on which to expose the target, and a
+// unique client token. In response, AWS Storage Gateway creates the volume
+// and returns information about it such as the volume Amazon Resource Name
+// (ARN), its size, and the iSCSI target ARN that initiators can use to connect
+// to the volume target.
 func (c *StorageGateway) CreateCachediSCSIVolume(input *CreateCachediSCSIVolumeInput) (*CreateCachediSCSIVolumeOutput, error) {
 	req, out := c.CreateCachediSCSIVolumeRequest(input)
 	err := req.Send()
@@ -324,6 +325,10 @@ func (c *StorageGateway) CreateSnapshotRequest(input *CreateSnapshotInput) (req 
 // To list or delete a snapshot, you must use the Amazon EC2 API. For more
 // information, see DescribeSnapshots or DeleteSnapshot in the EC2 API reference
 // (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_Operations.html).
+//
+//   Volume and snapshot IDs are changing to a longer length ID format. For
+// more information, see the important note on the Welcome (http://docs.aws.amazon.com/storagegateway/latest/APIReference/Welcome.html)
+// page.
 func (c *StorageGateway) CreateSnapshot(input *CreateSnapshotInput) (*CreateSnapshotOutput, error) {
 	req, out := c.CreateSnapshotRequest(input)
 	err := req.Send()
@@ -761,7 +766,7 @@ func (c *StorageGateway) DescribeCacheRequest(input *DescribeCacheInput) (req *r
 // Returns information about the cache of a gateway. This operation is supported
 // only for the gateway-cached volume architecture.
 //
-//  The response includes disk IDs that are configured as cache, and it includes
+// The response includes disk IDs that are configured as cache, and it includes
 // the amount of cache allocated and used.
 func (c *StorageGateway) DescribeCache(input *DescribeCacheInput) (*DescribeCacheOutput, error) {
 	req, out := c.DescribeCacheRequest(input)
@@ -792,7 +797,7 @@ func (c *StorageGateway) DescribeCachediSCSIVolumesRequest(input *DescribeCached
 // Returns a description of the gateway volumes specified in the request. This
 // operation is supported only for the gateway-cached volume architecture.
 //
-//  The list of gateway volumes in the request must be from one gateway. In
+// The list of gateway volumes in the request must be from one gateway. In
 // the response Amazon Storage Gateway returns volume information sorted by
 // volume Amazon Resource Name (ARN).
 func (c *StorageGateway) DescribeCachediSCSIVolumes(input *DescribeCachediSCSIVolumesInput) (*DescribeCachediSCSIVolumesOutput, error) {
@@ -1103,7 +1108,7 @@ func (c *StorageGateway) DescribeUploadBufferRequest(input *DescribeUploadBuffer
 // Returns information about the upload buffer of a gateway. This operation
 // is supported for both the gateway-stored and gateway-cached volume architectures.
 //
-//  The response includes disk IDs that are configured as upload buffer space,
+// The response includes disk IDs that are configured as upload buffer space,
 // and it includes the amount of upload buffer space allocated and used.
 func (c *StorageGateway) DescribeUploadBuffer(input *DescribeUploadBufferInput) (*DescribeUploadBufferOutput, error) {
 	req, out := c.DescribeUploadBufferRequest(input)
@@ -1180,11 +1185,12 @@ func (c *StorageGateway) DescribeWorkingStorageRequest(input *DescribeWorkingSto
 // is deprecated in cached-volumes API version (20120630). Use DescribeUploadBuffer
 // instead.
 //
-// Working storage is also referred to as upload buffer. You can also use the
-// DescribeUploadBuffer operation to add upload buffer to a stored-volume gateway.
+//  Working storage is also referred to as upload buffer. You can also use
+// the DescribeUploadBuffer operation to add upload buffer to a stored-volume
+// gateway.
 //
-// The response includes disk IDs that are configured as working storage, and
-// it includes the amount of working storage allocated and used.
+//  The response includes disk IDs that are configured as working storage,
+// and it includes the amount of working storage allocated and used.
 func (c *StorageGateway) DescribeWorkingStorage(input *DescribeWorkingStorageInput) (*DescribeWorkingStorageOutput, error) {
 	req, out := c.DescribeWorkingStorageRequest(input)
 	err := req.Send()
@@ -1334,6 +1340,43 @@ func (c *StorageGateway) ListTagsForResourceRequest(input *ListTagsForResourceIn
 // Lists the tags that have been added to the specified resource.
 func (c *StorageGateway) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opListTapes = "ListTapes"
+
+// ListTapesRequest generates a request for the ListTapes operation.
+func (c *StorageGateway) ListTapesRequest(input *ListTapesInput) (req *request.Request, output *ListTapesOutput) {
+	op := &request.Operation{
+		Name:       opListTapes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListTapesInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListTapesOutput{}
+	req.Data = output
+	return
+}
+
+// Lists virtual tapes in your virtual tape library (VTL) and your virtual tape
+// shelf (VTS). You specify the tapes to list by specifying one or more tape
+// Amazon Resource Names (ARNs). If you don't specify a tape ARN, the operation
+// lists all virtual tapes in both your VTL and VTS.
+//
+// This operation supports pagination. By default, the operation returns a
+// maximum of up to 100 tapes. You can optionally specify the Limit parameter
+// in the body to limit the number of tapes in the response. If the number of
+// tapes returned in the response is truncated, the response includes a Marker
+// element that you can use in your subsequent request to retrieve the next
+// set of tapes.
+func (c *StorageGateway) ListTapes(input *ListTapesInput) (*ListTapesOutput, error) {
+	req, out := c.ListTapesRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -1639,8 +1682,9 @@ func (c *StorageGateway) ShutdownGatewayRequest(input *ShutdownGatewayInput) (re
 // gateway's virtual machine (VM) and not the VM.
 //
 // If you want to shut down the VM, it is recommended that you first shut down
-// the gateway component in the VM to avoid unpredictable conditions. After
-// the gateway is shutdown, you cannot call any other API except StartGateway,
+// the gateway component in the VM to avoid unpredictable conditions.
+//
+//  After the gateway is shutdown, you cannot call any other API except StartGateway,
 // DescribeGatewayInformation, and ListGateways. For more information, see ActivateGateway.
 // Your applications cannot read from or write to the gateway's storage volumes,
 // and there are no snapshots taken.
@@ -1648,9 +1692,11 @@ func (c *StorageGateway) ShutdownGatewayRequest(input *ShutdownGatewayInput) (re
 // When you make a shutdown request, you will get a 200 OK success response
 // immediately. However, it might take some time for the gateway to shut down.
 // You can call the DescribeGatewayInformation API to check the status. For
-// more information, see ActivateGateway. If do not intend to use the gateway
-// again, you must delete the gateway (using DeleteGateway) to no longer pay
-// software charges associated with the gateway.
+// more information, see ActivateGateway.
+//
+//  If do not intend to use the gateway again, you must delete the gateway
+// (using DeleteGateway) to no longer pay software charges associated with the
+// gateway.
 func (c *StorageGateway) ShutdownGateway(input *ShutdownGatewayInput) (*ShutdownGatewayOutput, error) {
 	req, out := c.ShutdownGatewayRequest(input)
 	err := req.Send()
@@ -1685,8 +1731,10 @@ func (c *StorageGateway) StartGatewayRequest(input *StartGatewayInput) (req *req
 // When you make a request, you will get a 200 OK success response immediately.
 // However, it might take some time for the gateway to be ready. You should
 // call DescribeGatewayInformation and check the status before making any additional
-// API calls. For more information, see ActivateGateway. To specify which gateway
-// to start, use the Amazon Resource Name (ARN) of the gateway in your request.
+// API calls. For more information, see ActivateGateway.
+//
+//  To specify which gateway to start, use the Amazon Resource Name (ARN) of
+// the gateway in your request.
 func (c *StorageGateway) StartGateway(input *StartGatewayInput) (*StartGatewayOutput, error) {
 	req, out := c.StartGatewayRequest(input)
 	err := req.Send()
@@ -1820,11 +1868,13 @@ func (c *StorageGateway) UpdateGatewaySoftwareNowRequest(input *UpdateGatewaySof
 // When you make this request, you get a 200 OK success response immediately.
 // However, it might take some time for the update to complete. You can call
 // DescribeGatewayInformation to verify the gateway is in the STATE_RUNNING
-// state. A software update forces a system restart of your gateway. You can
-// minimize the chance of any disruption to your applications by increasing
-// your iSCSI Initiators' timeouts. For more information about increasing iSCSI
-// Initiator timeouts for Windows and Linux, see Customizing Your Windows iSCSI
-// Settings (http://docs.aws.amazon.com/storagegateway/latest/userguide/ConfiguringiSCSIClientInitiatorWindowsClient.html#CustomizeWindowsiSCSISettings)
+// state.
+//
+//  A software update forces a system restart of your gateway. You can minimize
+// the chance of any disruption to your applications by increasing your iSCSI
+// Initiators' timeouts. For more information about increasing iSCSI Initiator
+// timeouts for Windows and Linux, see Customizing Your Windows iSCSI Settings
+// (http://docs.aws.amazon.com/storagegateway/latest/userguide/ConfiguringiSCSIClientInitiatorWindowsClient.html#CustomizeWindowsiSCSISettings)
 // and Customizing Your Linux iSCSI Settings (http://docs.aws.amazon.com/storagegateway/latest/userguide/ConfiguringiSCSIClientInitiatorRedHatClient.html#CustomizeLinuxiSCSISettings),
 // respectively.
 func (c *StorageGateway) UpdateGatewaySoftwareNow(input *UpdateGatewaySoftwareNowInput) (*UpdateGatewaySoftwareNowOutput, error) {
@@ -1929,10 +1979,19 @@ func (c *StorageGateway) UpdateVTLDeviceType(input *UpdateVTLDeviceTypeInput) (*
 
 // A JSON object containing one or more of the following fields:
 //
-//   ActivateGatewayInput$ActivationKey   ActivateGatewayInput$GatewayName
-//   ActivateGatewayInput$GatewayRegion   ActivateGatewayInput$GatewayTimezone
-//   ActivateGatewayInput$GatewayType   ActivateGatewayInput$TapeDriveType
-//  ActivateGatewayInput$MediumChangerType
+//    ActivateGatewayInput$ActivationKey
+//
+//    ActivateGatewayInput$GatewayName
+//
+//    ActivateGatewayInput$GatewayRegion
+//
+//    ActivateGatewayInput$GatewayTimezone
+//
+//    ActivateGatewayInput$GatewayType
+//
+//    ActivateGatewayInput$TapeDriveType
+//
+//    ActivateGatewayInput$MediumChangerType
 type ActivateGatewayInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1954,8 +2013,8 @@ type ActivateGatewayInput struct {
 	// and endpoints for AWS Storage Gateway, see Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html#sg_region)
 	// in the Amazon Web Services Glossary.
 	//
-	// Valid Values: "us-east-1", "us-west-1", "us-west-2", "eu-west-1", "eu-central-1",
-	// "ap-northeast-1", "ap-southeast-1", "ap-southeast-2", "sa-east-1"
+	//  Valid Values: "us-east-1", "us-west-1", "us-west-2", "eu-west-1", "eu-central-1",
+	// "ap-northeast-1", "ap-northeast-2", "ap-southeast-1", "ap-southeast-2", "sa-east-1"
 	GatewayRegion *string `min:"1" type:"string" required:"true"`
 
 	// A value that indicates the time zone you want to set for the gateway. The
@@ -1971,13 +2030,13 @@ type ActivateGatewayInput struct {
 	// The value that indicates the type of medium changer to use for gateway-VTL.
 	// This field is optional.
 	//
-	// Valid Values: "STK-L700", "AWS-Gateway-VTL"
+	//  Valid Values: "STK-L700", "AWS-Gateway-VTL"
 	MediumChangerType *string `min:"2" type:"string"`
 
 	// The value that indicates the type of tape drive to use for gateway-VTL. This
 	// field is optional.
 	//
-	// Valid Values: "IBM-ULT3580-TD5"
+	//  Valid Values: "IBM-ULT3580-TD5"
 	TapeDriveType *string `min:"2" type:"string"`
 }
 
@@ -2127,7 +2186,7 @@ type AddTagsToResourceInput struct {
 	// The key-value pair that represents the tag you want to add to the resource.
 	// The value can be an empty string.
 	//
-	// Valid characters for key and value are letters, spaces, and numbers representable
+	//  Valid characters for key and value are letters, spaces, and numbers representable
 	// in UTF-8 format, and the following special characters: + - = . _ : / @.
 	Tags []*Tag `type:"list" required:"true"`
 }
@@ -2248,7 +2307,7 @@ func (s AddUploadBufferOutput) GoString() string {
 
 // A JSON object containing one or more of the following fields:
 //
-//   AddWorkingStorageInput$DiskIds
+//    AddWorkingStorageInput$DiskIds
 type AddWorkingStorageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2488,7 +2547,7 @@ type ChapInfo struct {
 
 	// The Amazon Resource Name (ARN) of the volume.
 	//
-	// Valid Values: 50 to 500 lowercase letters, numbers, periods (.), and hyphens
+	//  Valid Values: 50 to 500 lowercase letters, numbers, periods (.), and hyphens
 	// (-).
 	TargetARN *string `min:"50" type:"string"`
 }
@@ -2645,7 +2704,9 @@ func (s CreateSnapshotFromVolumeRecoveryPointOutput) GoString() string {
 
 // A JSON object containing one or more of the following fields:
 //
-//   CreateSnapshotInput$SnapshotDescription   CreateSnapshotInput$VolumeARN
+//    CreateSnapshotInput$SnapshotDescription
+//
+//    CreateSnapshotInput$VolumeARN
 type CreateSnapshotInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2716,9 +2777,15 @@ func (s CreateSnapshotOutput) GoString() string {
 
 // A JSON object containing one or more of the following fields:
 //
-//   CreateStorediSCSIVolumeInput$DiskId   CreateStorediSCSIVolumeInput$NetworkInterfaceId
-//   CreateStorediSCSIVolumeInput$PreserveExistingData   CreateStorediSCSIVolumeInput$SnapshotId
-//   CreateStorediSCSIVolumeInput$TargetName
+//    CreateStorediSCSIVolumeInput$DiskId
+//
+//    CreateStorediSCSIVolumeInput$NetworkInterfaceId
+//
+//    CreateStorediSCSIVolumeInput$PreserveExistingData
+//
+//    CreateStorediSCSIVolumeInput$SnapshotId
+//
+//    CreateStorediSCSIVolumeInput$TargetName
 type CreateStorediSCSIVolumeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2735,13 +2802,13 @@ type CreateStorediSCSIVolumeInput struct {
 	// Only IPv4 addresses are accepted. Use DescribeGatewayInformation to get a
 	// list of the network interfaces available on a gateway.
 	//
-	// Valid Values: A valid IP address.
+	//  Valid Values: A valid IP address.
 	NetworkInterfaceId *string `type:"string" required:"true"`
 
 	// Specify this field as true if you want to preserve the data on the local
 	// disk. Otherwise, specifying this field as false creates an empty volume.
 	//
-	// Valid Values: true, false
+	//  Valid Values: true, false
 	PreserveExistingData *bool `type:"boolean" required:"true"`
 
 	// The snapshot ID (e.g. "snap-1122aabb") of the snapshot to restore as the
@@ -3060,7 +3127,9 @@ func (s DeleteBandwidthRateLimitOutput) GoString() string {
 
 // A JSON object containing one or more of the following fields:
 //
-//   DeleteChapCredentialsInput$InitiatorName   DeleteChapCredentialsInput$TargetARN
+//    DeleteChapCredentialsInput$InitiatorName
+//
+//    DeleteChapCredentialsInput$TargetARN
 type DeleteChapCredentialsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3617,16 +3686,16 @@ type DescribeChapCredentialsOutput struct {
 	// pair. If no CHAP credentials are set, an empty array is returned. CHAP credential
 	// information is provided in a JSON object with the following fields:
 	//
-	//   InitiatorName: The iSCSI initiator that connects to the target.
+	//    InitiatorName: The iSCSI initiator that connects to the target.
 	//
-	//   SecretToAuthenticateInitiator: The secret key that the initiator (for
+	//    SecretToAuthenticateInitiator: The secret key that the initiator (for
 	// example, the Windows client) must provide to participate in mutual CHAP with
 	// the target.
 	//
-	//   SecretToAuthenticateTarget: The secret key that the target must provide
+	//    SecretToAuthenticateTarget: The secret key that the target must provide
 	// to participate in mutual CHAP with the initiator (e.g. Windows client).
 	//
-	//   TargetARN: The Amazon Resource Name (ARN) of the storage volume.
+	//    TargetARN: The Amazon Resource Name (ARN) of the storage volume.
 	ChapCredentials []*ChapInfo `type:"list"`
 }
 
@@ -3683,8 +3752,8 @@ type DescribeGatewayInformationOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string"`
 
-	// The unique identifier assigned to your gateway during activation. This id
-	// becomes part of the gateway Amazon Resources Name (ARN) which you use as
+	// The unique identifier assigned to your gateway during activation. This ID
+	// becomes part of the gateway Amazon Resource Name (ARN), which you use as
 	// input for other operations.
 	GatewayId *string `min:"12" type:"string"`
 
@@ -4473,6 +4542,7 @@ func (s Error) GoString() string {
 	return s.String()
 }
 
+// Describes a gateway object.
 type GatewayInfo struct {
 	_ struct{} `type:"structure"`
 
@@ -4480,10 +4550,20 @@ type GatewayInfo struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `min:"50" type:"string"`
 
+	// The unique identifier assigned to your gateway during activation. This ID
+	// becomes part of the gateway Amazon Resource Name (ARN), which you use as
+	// input for other operations.
+	GatewayId *string `min:"12" type:"string"`
+
+	// The name of the gateway.
 	GatewayName *string `type:"string"`
 
+	// The state of the gateway.
+	//
+	// Valid Values: DISABLED or ACTIVE
 	GatewayOperationalState *string `min:"2" type:"string"`
 
+	// The type of the gateway.
 	GatewayType *string `min:"2" type:"string"`
 }
 
@@ -4499,7 +4579,9 @@ func (s GatewayInfo) GoString() string {
 
 // A JSON object containing zero or more of the following fields:
 //
-//   ListGatewaysInput$Limit   ListGatewaysInput$Marker
+//    ListGatewaysInput$Limit
+//
+//    ListGatewaysInput$Marker
 type ListGatewaysInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4686,6 +4768,85 @@ func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
 
+// A JSON object that contains one or more of the following fields:
+//
+//    ListTapesInput$Limit
+//
+//    ListTapesInput$Marker
+//
+//    ListTapesInput$TapeARNs
+type ListTapesInput struct {
+	_ struct{} `type:"structure"`
+
+	// An optional number limit for the tapes in the list returned by this call.
+	Limit *int64 `min:"1" type:"integer"`
+
+	// A string that indicates the position at which to begin the returned list
+	// of tapes.
+	Marker *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of each of the tapes you want to list. If
+	// you don't specify a tape ARN, the response lists all tapes in both your VTL
+	// and VTS.
+	TapeARNs []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s ListTapesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTapesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTapesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTapesInput"}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.Marker != nil && len(*s.Marker) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Marker", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// A JSON object containing the following fields:
+//
+//    ListTapesOutput$Marker
+//
+//    ListTapesOutput$VolumeInfos
+type ListTapesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A string that indicates the position at which to begin returning the next
+	// list of tapes. Use the marker in your next request to continue pagination
+	// of tapes. If there are no more tapes to list, this element does not appear
+	// in the response body.
+	Marker *string `min:"1" type:"string"`
+
+	// An array of TapeInfo objects, where each object describes an a single tape.
+	// If there not tapes in the tape library or VTS, then the TapeInfos is an empty
+	// array.
+	TapeInfos []*TapeInfo `type:"list"`
+}
+
+// String returns the string representation
+func (s ListTapesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTapesOutput) GoString() string {
+	return s.String()
+}
+
 // ListVolumeInitiatorsInput
 type ListVolumeInitiatorsInput struct {
 	_ struct{} `type:"structure"`
@@ -4796,13 +4957,15 @@ func (s ListVolumeRecoveryPointsOutput) GoString() string {
 
 // A JSON object that contains one or more of the following fields:
 //
-//   ListVolumesInput$Limit   ListVolumesInput$Marker
+//    ListVolumesInput$Limit
+//
+//    ListVolumesInput$Marker
 type ListVolumesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `min:"50" type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string"`
 
 	// Specifies that the list of volumes returned be limited to the specified number
 	// of items.
@@ -4827,9 +4990,6 @@ func (s ListVolumesInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListVolumesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListVolumesInput"}
-	if s.GatewayARN == nil {
-		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
-	}
 	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
 		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
 	}
@@ -5457,6 +5617,37 @@ func (s TapeArchive) GoString() string {
 	return s.String()
 }
 
+// Describes a virtual tape.
+type TapeInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
+	// to return a list of gateways for your account and region.
+	GatewayARN *string `min:"50" type:"string"`
+
+	// The Amazon Resource Name (ARN) of a virtual tape.
+	TapeARN *string `min:"50" type:"string"`
+
+	// The barcode that identifies a specific virtual tape.
+	TapeBarcode *string `min:"7" type:"string"`
+
+	// The size, in bytes, of a virtual tape.
+	TapeSizeInBytes *int64 `type:"long"`
+
+	// The status of the tape.
+	TapeStatus *string `type:"string"`
+}
+
+// String returns the string representation
+func (s TapeInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TapeInfo) GoString() string {
+	return s.String()
+}
+
 // Describes a recovery point.
 type TapeRecoveryPointInfo struct {
 	_ struct{} `type:"structure"`
@@ -5489,7 +5680,9 @@ func (s TapeRecoveryPointInfo) GoString() string {
 
 // A JSON object containing one or more of the following fields:
 //
-//   UpdateBandwidthRateLimitInput$AverageDownloadRateLimitInBitsPerSec   UpdateBandwidthRateLimitInput$AverageUploadRateLimitInBitsPerSec
+//    UpdateBandwidthRateLimitInput$AverageDownloadRateLimitInBitsPerSec
+//
+//    UpdateBandwidthRateLimitInput$AverageUploadRateLimitInBitsPerSec
 type UpdateBandwidthRateLimitInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5558,8 +5751,13 @@ func (s UpdateBandwidthRateLimitOutput) GoString() string {
 
 // A JSON object containing one or more of the following fields:
 //
-//   UpdateChapCredentialsInput$InitiatorName   UpdateChapCredentialsInput$SecretToAuthenticateInitiator
-//   UpdateChapCredentialsInput$SecretToAuthenticateTarget   UpdateChapCredentialsInput$TargetARN
+//    UpdateChapCredentialsInput$InitiatorName
+//
+//    UpdateChapCredentialsInput$SecretToAuthenticateInitiator
+//
+//    UpdateChapCredentialsInput$SecretToAuthenticateTarget
+//
+//    UpdateChapCredentialsInput$TargetARN
 type UpdateChapCredentialsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5771,8 +5969,11 @@ func (s UpdateGatewaySoftwareNowOutput) GoString() string {
 
 // A JSON object containing the following fields:
 //
-//   UpdateMaintenanceStartTimeInput$DayOfWeek   UpdateMaintenanceStartTimeInput$HourOfDay
-//   UpdateMaintenanceStartTimeInput$MinuteOfHour
+//    UpdateMaintenanceStartTimeInput$DayOfWeek
+//
+//    UpdateMaintenanceStartTimeInput$HourOfDay
+//
+//    UpdateMaintenanceStartTimeInput$MinuteOfHour
 type UpdateMaintenanceStartTimeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5851,8 +6052,13 @@ func (s UpdateMaintenanceStartTimeOutput) GoString() string {
 
 // A JSON object containing one or more of the following fields:
 //
-//   UpdateSnapshotScheduleInput$Description   UpdateSnapshotScheduleInput$RecurrenceInHours
-//   UpdateSnapshotScheduleInput$StartAt   UpdateSnapshotScheduleInput$VolumeARN
+//    UpdateSnapshotScheduleInput$Description
+//
+//    UpdateSnapshotScheduleInput$RecurrenceInHours
+//
+//    UpdateSnapshotScheduleInput$StartAt
+//
+//    UpdateSnapshotScheduleInput$VolumeARN
 type UpdateSnapshotScheduleInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5932,7 +6138,7 @@ type UpdateVTLDeviceTypeInput struct {
 
 	// The type of medium changer you want to select.
 	//
-	// Valid Values: "STK-L700", "AWS-Gateway-VTL"
+	//  Valid Values: "STK-L700", "AWS-Gateway-VTL"
 	DeviceType *string `min:"2" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the medium changer you want to select.
@@ -6017,10 +6223,43 @@ func (s VTLDevice) GoString() string {
 	return s.String()
 }
 
+// Describes a storage volume object.
 type VolumeInfo struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
+	// to return a list of gateways for your account and region.
+	GatewayARN *string `min:"50" type:"string"`
+
+	// The unique identifier assigned to your gateway during activation. This ID
+	// becomes part of the gateway Amazon Resource Name (ARN), which you use as
+	// input for other operations.
+	//
+	//  Valid Values: 50 to 500 lowercase letters, numbers, periods (.), and hyphens
+	// (-).
+	GatewayId *string `min:"12" type:"string"`
+
+	// The Amazon Resource Name (ARN) for the storage volume. For example, the following
+	// is a valid ARN:
+	//
+	//  arn:aws:storagegateway:us-east-1:111122223333:gateway/sgw-12A3456B/volume/vol-1122AABB
+	//
+	//  Valid Values: 50 to 500 lowercase letters, numbers, periods (.), and hyphens
+	// (-).
 	VolumeARN *string `min:"50" type:"string"`
+
+	// The unique identifier assigned to the volume. This ID becomes part of the
+	// volume Amazon Resource Name (ARN), which you use as input for other operations.
+	//
+	//  Valid Values: 50 to 500 lowercase letters, numbers, periods (.), and hyphens
+	// (-).
+	VolumeId *string `min:"12" type:"string"`
+
+	// The size, in bytes, of the volume.
+	//
+	// Valid Values: 50 to 500 lowercase letters, numbers, periods (.), and hyphens
+	// (-).
+	VolumeSizeInBytes *int64 `type:"long"`
 
 	VolumeType *string `min:"3" type:"string"`
 }

@@ -172,6 +172,10 @@ type StorageGatewayAPI interface {
 
 	ListTagsForResource(*storagegateway.ListTagsForResourceInput) (*storagegateway.ListTagsForResourceOutput, error)
 
+	ListTapesRequest(*storagegateway.ListTapesInput) (*request.Request, *storagegateway.ListTapesOutput)
+
+	ListTapes(*storagegateway.ListTapesInput) (*storagegateway.ListTapesOutput, error)
+
 	ListVolumeInitiatorsRequest(*storagegateway.ListVolumeInitiatorsInput) (*request.Request, *storagegateway.ListVolumeInitiatorsOutput)
 
 	ListVolumeInitiators(*storagegateway.ListVolumeInitiatorsInput) (*storagegateway.ListVolumeInitiatorsOutput, error)

@@ -504,6 +504,19 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "ListTapes":{
+      "name":"ListTapes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTapesInput"},
+      "output":{"shape":"ListTapesOutput"},
+      "errors":[
+        {"shape":"InvalidGatewayRequestException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "ListVolumeInitiators":{
       "name":"ListVolumeInitiators",
       "http":{
@@ -1519,6 +1532,7 @@
     "GatewayInfo":{
       "type":"structure",
       "members":{
+        "GatewayId":{"shape":"GatewayId"},
         "GatewayARN":{"shape":"GatewayARN"},
         "GatewayType":{"shape":"GatewayType"},
         "GatewayOperationalState":{"shape":"GatewayOperationalState"},
@@ -1645,6 +1659,21 @@
         "Tags":{"shape":"Tags"}
       }
     },
+    "ListTapesInput":{
+      "type":"structure",
+      "members":{
+        "TapeARNs":{"shape":"TapeARNs"},
+        "Marker":{"shape":"Marker"},
+        "Limit":{"shape":"PositiveIntObject"}
+      }
+    },
+    "ListTapesOutput":{
+      "type":"structure",
+      "members":{
+        "TapeInfos":{"shape":"TapeInfos"},
+        "Marker":{"shape":"Marker"}
+      }
+    },
     "ListVolumeInitiatorsInput":{
       "type":"structure",
       "required":["VolumeARN"],
@@ -1674,7 +1703,6 @@
     },
     "ListVolumesInput":{
       "type":"structure",
-      "required":["GatewayARN"],
       "members":{
         "GatewayARN":{"shape":"GatewayARN"},
         "Marker":{"shape":"Marker"},
@@ -1976,6 +2004,20 @@
       "max":50,
       "min":2
     },
+    "TapeInfo":{
+      "type":"structure",
+      "members":{
+        "TapeARN":{"shape":"TapeARN"},
+        "TapeBarcode":{"shape":"TapeBarcode"},
+        "TapeSizeInBytes":{"shape":"TapeSize"},
+        "TapeStatus":{"shape":"TapeStatus"},
+        "GatewayARN":{"shape":"GatewayARN"}
+      }
+    },
+    "TapeInfos":{
+      "type":"list",
+      "member":{"shape":"TapeInfo"}
+    },
     "TapeRecoveryPointInfo":{
       "type":"structure",
       "members":{
@@ -2175,7 +2217,11 @@
       "type":"structure",
       "members":{
         "VolumeARN":{"shape":"VolumeARN"},
-        "VolumeType":{"shape":"VolumeType"}
+        "VolumeId":{"shape":"VolumeId"},
+        "GatewayARN":{"shape":"GatewayARN"},
+        "GatewayId":{"shape":"GatewayId"},
+        "VolumeType":{"shape":"VolumeType"},
+        "VolumeSizeInBytes":{"shape":"long"}
       }
     },
     "VolumeInfos":{
