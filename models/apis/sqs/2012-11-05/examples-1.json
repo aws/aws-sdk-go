@@ -27,7 +27,7 @@
           "QueueOwnerAWSAccountId": "12345678910"
         },
         "output": {
-          "QueueUrl": "https://queue.amazonaws.com/123456789101112/MyQueue"
+          "QueueUrl": "https://queue.amazonaws.com/12345678910/MyQueue"
         },
         "comments": {
           "input": {
