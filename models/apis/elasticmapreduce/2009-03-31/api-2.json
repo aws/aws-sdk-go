@@ -785,6 +785,10 @@
         "CLUSTER_TERMINATED"
       ]
     },
+    "InstanceStateList":{
+      "type":"list",
+      "member":{"shape":"InstanceState"}
+    },
     "InstanceStatus":{
       "type":"structure",
       "members":{
@@ -996,6 +1000,7 @@
         "ClusterId":{"shape":"ClusterId"},
         "InstanceGroupId":{"shape":"InstanceGroupId"},
         "InstanceGroupTypes":{"shape":"InstanceGroupTypeList"},
+        "InstanceStates":{"shape":"InstanceStateList"},
         "Marker":{"shape":"Marker"}
       }
     },

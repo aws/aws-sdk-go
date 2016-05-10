@@ -281,6 +281,10 @@ func ExampleEMR_ListInstances() {
 			aws.String("InstanceGroupType"), // Required
 			// More values...
 		},
+		InstanceStates: []*string{
+			aws.String("InstanceState"), // Required
+			// More values...
+		},
 		Marker: aws.String("Marker"),
 	}
 	resp, err := svc.ListInstances(params)

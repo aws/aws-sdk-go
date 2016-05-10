@@ -509,6 +509,7 @@
     "InstanceState": {
       "base": null,
       "refs": {
+        "InstanceStateList$member": null,
         "InstanceStatus$State": "<p>The current state of the instance.</p>"
       }
     },
@@ -522,6 +523,12 @@
       "base": null,
       "refs": {
         "InstanceStateChangeReason$Code": "<p>The programmable code for the state change reason.</p>"
+      }
+    },
+    "InstanceStateList": {
+      "base": null,
+      "refs": {
+        "ListInstancesInput$InstanceStates": "<p>A list of instance states that will filter the instances returned with this request.</p>"
       }
     },
     "InstanceStatus": {

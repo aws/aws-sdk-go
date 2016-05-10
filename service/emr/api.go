@@ -2505,6 +2505,10 @@ type ListInstancesInput struct {
 	// The type of instance group for which to list the instances.
 	InstanceGroupTypes []*string `type:"list"`
 
+	// A list of instance states that will filter the instances returned with this
+	// request.
+	InstanceStates []*string `type:"list"`
+
 	// The pagination token that indicates the next set of results to retrieve.
 	Marker *string `type:"string"`
 }
