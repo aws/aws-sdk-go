@@ -194,6 +194,19 @@ func validateURL(u string) error {
 		return fmt.Errorf("URL missing valid scheme, %s", u)
 	}
 
+	isASCII := func() bool {
+		for _, c := range u {
+			if c > 127 {
+				return false
+			}
+		}
+		return true
+	}
+
+	if !isASCII() {
+		return fmt.Errorf("URL contains non-ascii characters, and should be encoded")
+	}
+
 	q := parsed.Query()
 	for _, p := range illegalQueryParms {
 		if _, ok := q[p]; ok {

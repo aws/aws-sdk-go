@@ -126,6 +126,7 @@ var testValidURL = []struct {
 	{"https://example.com/a?b=1&Signature=something&else=b", "Signature"},
 	{"https://example.com/a?b=1&Key-Pair-Id=something&else=b", "Key-Pair-Id"},
 	{"http?://example.com/a?b=1", "URL missing valid scheme"},
+	{"http://example.com/aƛ?b=1", "URL contains non-ascii characters"},
 }
 
 func TestValidateURL(t *testing.T) {
