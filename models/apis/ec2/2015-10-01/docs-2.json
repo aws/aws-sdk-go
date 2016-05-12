@@ -115,6 +115,7 @@
     "DescribeRouteTables": "<p>Describes one or more of your route tables. </p> <p>Each subnet in your VPC must be associated with a route table. If a subnet is not explicitly associated with any route table, it is implicitly associated with the main route table. This command does not return the subnet ID for implicit associations.</p> <p>For more information about route tables, see <a href=\"http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Route_Tables.html\">Route Tables</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "DescribeScheduledInstanceAvailability": "<p>Finds available schedules that meet the specified criteria.</p> <p>You can search for an available schedule no more than 3 months in advance. You must meet the minimum required duration of 1,200 hours per year. For example, the minimum daily schedule is 4 hours, the minimum weekly schedule is 24 hours, and the minimum monthly schedule is 100 hours.</p> <p>After you find a schedule that meets your needs, call <a>PurchaseScheduledInstances</a> to purchase Scheduled Instances with that schedule.</p>",
     "DescribeScheduledInstances": "<p>Describes one or more of your Scheduled Instances.</p>",
+    "DescribeSecurityGroupReferences": "<p>[EC2-VPC only] Describes the VPCs on the other side of a VPC peering connection that are referencing the security groups you've specified in this request. </p>",
     "DescribeSecurityGroups": "<p>Describes one or more of your security groups.</p> <p>A security group is for use with instances either in the EC2-Classic platform or in a specific VPC. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html\">Amazon EC2 Security Groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i> and <a href=\"http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html\">Security Groups for Your VPC</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "DescribeSnapshotAttribute": "<p>Describes the specified attribute of the specified snapshot. You can specify only one attribute at a time.</p> <p>For more information about EBS snapshots, see <a href='http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html'>Amazon EBS Snapshots</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "DescribeSnapshots": "<p>Describes one or more of the EBS snapshots available to you. Available snapshots include public snapshots available for any AWS account to launch, private snapshots that you own, and private snapshots owned by another AWS account but for which you've been given explicit create volume permissions.</p> <p>The create volume permissions fall into the following categories:</p> <ul> <li> <p><i>public</i>: The owner of the snapshot granted create volume permissions for the snapshot to the <code>all</code> group. All AWS accounts have create volume permissions for these snapshots.</p> </li> <li> <p><i>explicit</i>: The owner of the snapshot granted create volume permissions to a specific AWS account.</p> </li> <li> <p><i>implicit</i>: An AWS account has implicit create volume permissions for all snapshots it owns.</p> </li> </ul> <p>The list of snapshots returned can be modified by specifying snapshot IDs, snapshot owners, or AWS accounts with create volume permissions. If no options are specified, Amazon EC2 returns all snapshots for which you have create volume permissions.</p> <p>If you specify one or more snapshot IDs, only snapshots that have the specified IDs are returned. If you specify an invalid snapshot ID, an error is returned. If you specify a snapshot ID for which you do not have access, it is not included in the returned results.</p> <p>If you specify one or more snapshot owners, only snapshots from the specified owners and for which you have access are returned. The results can include the AWS account IDs of the specified owners, <code>amazon</code> for snapshots owned by Amazon, or <code>self</code> for snapshots that you own.</p> <p>If you specify a list of restorable users, only snapshots with create snapshot permissions for those users are returned. You can specify AWS account IDs (if you own the snapshots), <code>self</code> for snapshots for which you own or have explicit permissions, or <code>all</code> for public snapshots.</p> <p>If you are describing a long list of snapshots, you can paginate the output to make the list more manageable. The <code>MaxResults</code> parameter sets the maximum number of results returned in a single page. If the list of results exceeds your <code>MaxResults</code> value, then that number of results is returned along with a <code>NextToken</code> value that can be passed to a subsequent <code>DescribeSnapshots</code> request to retrieve the remaining results.</p> <p>For more information about EBS snapshots, see <a href='http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html'>Amazon EBS Snapshots</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
@@ -124,6 +125,7 @@
     "DescribeSpotFleetRequests": "<p>Describes your Spot fleet requests.</p>",
     "DescribeSpotInstanceRequests": "<p>Describes the Spot instance requests that belong to your account. Spot instances are instances that Amazon EC2 launches when the bid price that you specify exceeds the current Spot price. Amazon EC2 periodically sets the Spot price based on available Spot instance capacity and current Spot instance requests. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-requests.html\">Spot Instance Requests</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>You can use <code>DescribeSpotInstanceRequests</code> to find a running Spot instance by examining the response. If the status of the Spot instance is <code>fulfilled</code>, the instance ID appears in the response and contains the identifier of the instance. Alternatively, you can use <a>DescribeInstances</a> with a filter to look for instances where the instance lifecycle is <code>spot</code>.</p>",
     "DescribeSpotPriceHistory": "<p>Describes the Spot price history. The prices returned are listed in chronological order, from the oldest to the most recent, for up to the past 90 days. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances-history.html\">Spot Instance Pricing History</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>When you specify a start and end time, this operation returns the prices of the instance types within the time range that you specified and the time when the price changed. The price is valid within the time period that you specified; the response merely indicates the last time that the price changed.</p>",
+    "DescribeStaleSecurityGroups": "<p>[EC2-VPC only] Describes the stale security group rules for security groups in a specified VPC. Rules are stale when they reference a deleted security group in a peer VPC, or a security group in a peer VPC for which the VPC peering connection has been deleted. </p>",
     "DescribeSubnets": "<p>Describes one or more of your subnets.</p> <p>For more information about subnets, see <a href=\"http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html\">Your VPC and Subnets</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "DescribeTags": "<p>Describes one or more of the tags for your EC2 resources.</p> <p>For more information about tags, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html\">Tagging Your Resources</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "DescribeVolumeAttribute": "<p>Describes the specified attribute of the specified volume. You can specify only one attribute at a time.</p> <p>For more information about EBS volumes, see <a href='http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumes.html'>Amazon EBS Volumes</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
@@ -190,7 +192,7 @@
     "RequestSpotFleet": "<p>Creates a Spot fleet request.</p> <p>You can submit a single request that includes multiple launch specifications that vary by instance type, AMI, Availability Zone, or subnet.</p> <p>By default, the Spot fleet requests Spot instances in the Spot pool where the price per unit is the lowest. Each launch specification can include its own instance weighting that reflects the value of the instance type to your application workload.</p> <p>Alternatively, you can specify that the Spot fleet distribute the target capacity across the Spot pools included in its launch specifications. By ensuring that the Spot instances in your Spot fleet are in different Spot pools, you can improve the availability of your fleet.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-requests.html\">Spot Fleet Requests</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "RequestSpotInstances": "<p>Creates a Spot instance request. Spot instances are instances that Amazon EC2 launches when the bid price that you specify exceeds the current Spot price. Amazon EC2 periodically sets the Spot price based on available Spot Instance capacity and current Spot instance requests. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-requests.html\">Spot Instance Requests</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "ResetImageAttribute": "<p>Resets an attribute of an AMI to its default value.</p> <note><p> The productCodes attribute can't be reset. </p></note>",
-    "ResetInstanceAttribute": "<p>Resets an attribute of an instance to its default value. To reset the <code>kernel</code> or <code>ramdisk</code>, the instance must be in a stopped state. To reset the <code>SourceDestCheck</code>, the instance can be either running or stopped.</p> <p>The <code>SourceDestCheck</code> attribute controls whether source/destination checking is enabled. The default value is <code>true</code>, which means checking is enabled. This value must be <code>false</code> for a NAT instance to perform NAT. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_NAT_Instance.html\">NAT Instances</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
+    "ResetInstanceAttribute": "<p>Resets an attribute of an instance to its default value. To reset the <code>kernel</code> or <code>ramdisk</code>, the instance must be in a stopped state. To reset the <code>sourceDestCheck</code>, the instance can be either running or stopped.</p> <p>The <code>sourceDestCheck</code> attribute controls whether source/destination checking is enabled. The default value is <code>true</code>, which means checking is enabled. This value must be <code>false</code> for a NAT instance to perform NAT. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_NAT_Instance.html\">NAT Instances</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "ResetNetworkInterfaceAttribute": "<p>Resets a network interface attribute. You can specify only one attribute at a time.</p>",
     "ResetSnapshotAttribute": "<p>Resets permission settings for the specified snapshot.</p> <p>For more information on modifying snapshot permissions, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modifying-snapshot-permissions.html\">Sharing Snapshots</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "RestoreAddressToClassic": "<p>Restores an Elastic IP address that was previously moved to the EC2-VPC platform back to the EC2-Classic platform. You cannot move an Elastic IP address that was originally allocated for use in EC2-VPC. The Elastic IP address must not be associated with an instance or network interface. You cannot restore an Elastic IP address that's associated with a reverse DNS record. Contact AWS account and billing support to remove the reverse DNS record. </p>",
@@ -199,7 +201,7 @@
     "RunInstances": "<p>Launches the specified number of instances using an AMI for which you have permissions.</p> <p>When you launch an instance, it enters the <code>pending</code> state. After the instance is ready for you, it enters the <code>running</code> state. To check the state of your instance, call <a>DescribeInstances</a>.</p> <p>To ensure faster instance launches, break up large requests into smaller batches. For example, create five separate launch requests for 100 instances each instead of one launch request for 500 instances.</p> <p>If you don't specify a security group when launching an instance, Amazon EC2 uses the default security group. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html\">Security Groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>[EC2-VPC only accounts] If you don't specify a subnet in the request, we choose a default subnet from your default VPC for you. </p> <p>[EC2-Classic accounts] If you're launching into EC2-Classic and you don't specify an Availability Zone, we choose one for you.</p> <p>Linux instances have access to the public key of the key pair at boot. You can use this key to provide secure access to the instance. Amazon EC2 public images use this feature to provide secure access without passwords. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html\">Key Pairs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>You can provide optional user data when launching an instance. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AESDG-chapter-instancedata.html\">Instance Metadata</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>If any of the AMIs have a product code attached for which the user has not subscribed, <code>RunInstances</code> fails.</p> <p>Some instance types can only be launched into a VPC. If you do not have a default VPC, or if you do not specify a subnet ID in the request, <code>RunInstances</code> fails. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-vpc.html#vpc-only-instance-types\">Instance Types Available Only in a VPC</a>.</p> <p>For more information about troubleshooting, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_InstanceStraightToTerminated.html\">What To Do If An Instance Immediately Terminates</a>, and <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html\">Troubleshooting Connecting to Your Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "RunScheduledInstances": "<p>Launches the specified Scheduled Instances.</p> <p>Before you can launch a Scheduled Instance, you must purchase it and obtain an identifier using <a>PurchaseScheduledInstances</a>.</p> <p>You must launch a Scheduled Instance during its scheduled time period. You can't stop or reboot a Scheduled Instance, but you can terminate it as needed. If you terminate a Scheduled Instance before the current scheduled time period ends, you can launch it again after a few minutes. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-scheduled-instances.html\">Scheduled Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "StartInstances": "<p>Starts an Amazon EBS-backed AMI that you've previously stopped.</p> <p>Instances that use Amazon EBS volumes as their root devices can be quickly stopped and started. When an instance is stopped, the compute resources are released and you are not billed for hourly instance usage. However, your root partition Amazon EBS volume remains, continues to persist your data, and you are charged for Amazon EBS volume usage. You can restart your instance at any time. Each time you transition an instance from stopped to started, Amazon EC2 charges a full instance hour, even if transitions happen multiple times within a single hour.</p> <p>Before stopping an instance, make sure it is in a state from which it can be restarted. Stopping an instance does not preserve data stored in RAM.</p> <p>Performing this operation on an instance that uses an instance store as its root device returns an error.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html\">Stopping Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
-    "StopInstances": "<p>Stops an Amazon EBS-backed instance. </p> <p>We don't charge hourly usage for a stopped instance, or data transfer fees; however, your root partition Amazon EBS volume remains, continues to persist your data, and you are charged for Amazon EBS volume usage. Each time you transition an instance from stopped to started, Amazon EC2 charges a full instance hour, even if transitions happen multiple times within a single hour.</p> <p>You can't start or stop Spot instances, and you can't stop instance store-backed instances.</p> <p>When you stop an instance, we shut it down. You can restart your instance at any time. Before stopping an instance, make sure it is in a state from which it can be restarted. Stopping an instance does not preserve data stored in RAM.</p> <p>Stopping an instance is different to rebooting or terminating it. For example, when you stop an instance, the root device and any other devices attached to the instance persist. When you terminate an instance, the root device and any other devices attached during the instance launch are automatically deleted. For more information about the differences between rebooting, stopping, and terminating instances, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html\">Instance Lifecycle</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>For more information about troubleshooting, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesStopping.html\">Troubleshooting Stopping Your Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+    "StopInstances": "<p>Stops an Amazon EBS-backed instance. </p> <p>We don't charge hourly usage for a stopped instance, or data transfer fees; however, your root partition Amazon EBS volume remains, continues to persist your data, and you are charged for Amazon EBS volume usage. Each time you transition an instance from stopped to started, Amazon EC2 charges a full instance hour, even if transitions happen multiple times within a single hour.</p> <p>You can't start or stop Spot instances, and you can't stop instance store-backed instances.</p> <p>When you stop an instance, we shut it down. You can restart your instance at any time. Before stopping an instance, make sure it is in a state from which it can be restarted. Stopping an instance does not preserve data stored in RAM.</p> <p>Stopping an instance is different to rebooting or terminating it. For example, when you stop an instance, the root device and any other devices attached to the instance persist. When you terminate an instance, the root device and any other devices attached during the instance launch are automatically deleted. For more information about the differences between rebooting, stopping, and terminating instances, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html\">Instance Lifecycle</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>When you stop an instance, we attempt to shut it down forcibly after a short while. If your instance appears stuck in the stopping state after a period of time, there may be an issue with the underlying host computer. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesStopping.html\">Troubleshooting Stopping Your Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "TerminateInstances": "<p>Shuts down one or more instances. This operation is idempotent; if you terminate an instance more than once, each call succeeds.</p> <p>Terminated instances remain visible after termination (for approximately one hour).</p> <p>By default, Amazon EC2 deletes all EBS volumes that were attached when the instance launched. Volumes attached after instance launch continue running.</p> <p>You can stop, start, and terminate EBS-backed instances. You can only terminate instance store-backed instances. What happens to an instance differs if you stop it or terminate it. For example, when you stop an instance, the root device and any other devices attached to the instance persist. When you terminate an instance, any attached EBS volumes with the <code>DeleteOnTermination</code> block device mapping parameter set to <code>true</code> are automatically deleted. For more information about the differences between stopping and terminating instances, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html\">Instance Lifecycle</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>For more information about troubleshooting, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesShuttingDown.html\">Troubleshooting Terminating Your Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "UnassignPrivateIpAddresses": "<p>Unassigns one or more secondary private IP addresses from a network interface.</p>",
     "UnmonitorInstances": "<p>Disables monitoring for a running instance. For more information about monitoring instances, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch.html\">Monitoring Your Instances and Volumes</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>"
@@ -674,6 +676,7 @@
         "DescribeRouteTablesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeScheduledInstanceAvailabilityRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeScheduledInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DescribeSecurityGroupReferencesRequest$DryRun": "<p>Checks whether you have the required permissions for the operation, without actually making the request, and provides an error response. If you have the required permissions, the error response is DryRunOperation. Otherwise, it is UnauthorizedOperation.</p>",
         "DescribeSecurityGroupsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeSnapshotAttributeRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeSnapshotsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -683,6 +686,7 @@
         "DescribeSpotFleetRequestsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeSpotInstanceRequestsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeSpotPriceHistoryRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DescribeStaleSecurityGroupsRequest$DryRun": "<p>Checks whether you have the required permissions for the operation, without actually making the request, and provides an error response. If you have the required permissions, the error response is DryRunOperation. Otherwise, it is UnauthorizedOperation.</p>",
         "DescribeSubnetsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeTagsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeVolumeAttributeRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -1922,6 +1926,16 @@
       "refs": {
       }
     },
+    "DescribeSecurityGroupReferencesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeSecurityGroupReferencesResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeSecurityGroupsRequest": {
       "base": "<p>Contains the parameters for DescribeSecurityGroups.</p>",
       "refs": {
@@ -2009,6 +2023,16 @@
     },
     "DescribeSpotPriceHistoryResult": {
       "base": "<p>Contains the output of DescribeSpotPriceHistory.</p>",
+      "refs": {
+      }
+    },
+    "DescribeStaleSecurityGroupsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeStaleSecurityGroupsResult": {
+      "base": null,
       "refs": {
       }
     },
@@ -2588,6 +2612,12 @@
         "SpotFleetLaunchSpecification$SecurityGroups": "<p>One or more security groups. When requesting instances in a VPC, you must specify the IDs of the security groups. When requesting instances in EC2-Classic, you can specify the names or the IDs of the security groups.</p>"
       }
     },
+    "GroupIds": {
+      "base": null,
+      "refs": {
+        "DescribeSecurityGroupReferencesRequest$GroupId": "<p>One or more security group IDs in your account.</p>"
+      }
+    },
     "GroupNameStringList": {
       "base": null,
       "refs": {
@@ -2865,7 +2895,7 @@
       "refs": {
         "DescribeInstanceAttributeRequest$Attribute": "<p>The instance attribute.</p>",
         "ModifyInstanceAttributeRequest$Attribute": "<p>The name of the attribute.</p>",
-        "ResetInstanceAttributeRequest$Attribute": "<p>The attribute to reset.</p>"
+        "ResetInstanceAttributeRequest$Attribute": "<p>The attribute to reset.</p> <important><p>You can only reset the following attributes: <code>kernel</code> | <code>ramdisk</code> | <code>sourceDestCheck</code>. To change an instance attribute, use <a>ModifyInstanceAttribute</a>.</p></important>"
       }
     },
     "InstanceBlockDeviceMapping": {
@@ -3134,7 +3164,7 @@
         "DescribeImportImageTasksRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>",
         "DescribeImportSnapshotTasksRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>",
         "DescribeInstanceStatusRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value. This value can be between 5 and 1000. You cannot specify this parameter and the instance IDs parameter in the same call.</p>",
-        "DescribeInstancesRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value. This value can be between 5 and 1000. You cannot specify this parameter and the instance IDs parameter in the same call.</p>",
+        "DescribeInstancesRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value. This value can be between 5 and 1000. You cannot specify this parameter and the instance IDs parameter or tag filters in the same call.</p>",
         "DescribeMovingAddressesRequest$MaxResults": "<p>The maximum number of results to return for the request in a single page. The remaining results of the initial request can be seen by sending another request with the returned <code>NextToken</code> value. This value can be between 5 and 1000; if <code>MaxResults</code> is given a value outside of this range, an error is returned.</p> <p>Default: If no value is provided, the default is 1000.</p>",
         "DescribeNatGatewaysRequest$MaxResults": "<p>The maximum number of items to return for this request. The request returns a token that you can specify in a subsequent call to get the next set of results.</p> <p>Constraint: If the value specified is greater than 1000, we return only 1000 items.</p>",
         "DescribePrefixListsRequest$MaxResults": "<p>The maximum number of items to return for this request. The request returns a token that you can specify in a subsequent call to get the next set of results.</p> <p>Constraint: If the value specified is greater than 1000, we return only 1000 items.</p>",
@@ -3210,6 +3240,8 @@
         "Snapshot$VolumeSize": "<p>The size of the volume, in GiB.</p>",
         "SpotFleetRequestConfigData$TargetCapacity": "<p>The number of units to request. You can choose to set the target capacity in terms of instances or a performance characteristic that is important to your application workload, such as vCPUs, memory, or I/O.</p>",
         "SpotInstanceRequest$BlockDurationMinutes": "<p>The duration for the Spot instance, in minutes.</p>",
+        "StaleIpPermission$FromPort": "<p>The start of the port range for the TCP and UDP protocols, or an ICMP type number. A value of <code>-1</code> indicates all ICMP types. </p>",
+        "StaleIpPermission$ToPort": "<p>The end of the port range for the TCP and UDP protocols, or an ICMP type number. A value of <code>-1</code> indicates all ICMP types. </p>",
         "Subnet$AvailableIpAddressCount": "<p>The number of unused IP addresses in the subnet. Note that the IP addresses for any stopped instances are considered unavailable.</p>",
         "VgwTelemetry$AcceptedRouteCount": "<p>The number of accepted routes.</p>",
         "Volume$Size": "<p>The size of the volume, in GiBs.</p>",
@@ -3268,6 +3300,12 @@
       "base": null,
       "refs": {
         "IpPermission$IpRanges": "<p>One or more IP ranges.</p>"
+      }
+    },
+    "IpRanges": {
+      "base": null,
+      "refs": {
+        "StaleIpPermission$IpRanges": "<p>One or more IP ranges. Not applicable for stale security group rules.</p>"
       }
     },
     "KeyNameStringList": {
@@ -3357,6 +3395,7 @@
     "MaxResults": {
       "base": null,
       "refs": {
+        "DescribeStaleSecurityGroupsRequest$MaxResults": "<p>The maximum number of items to return for this request. The request returns a token that you can specify in a subsequent call to get the next set of results.</p>",
         "DescribeVpcClassicLinkDnsSupportRequest$MaxResults": "<p>The maximum number of items to return for this request. The request returns a token that you can specify in a subsequent call to get the next set of results.</p>"
       }
     },
@@ -3539,7 +3578,7 @@
     "NatGatewayState": {
       "base": null,
       "refs": {
-        "NatGateway$State": "<p>The state of the NAT gateway.</p>"
+        "NatGateway$State": "<p>The state of the NAT gateway.</p> <ul> <li> <p><code>pending</code>: The NAT gateway is being created and is not ready to process traffic.</p> </li> <li> <p><code>failed</code>: The NAT gateway could not be created. Check the <code>failureCode</code> and <code>failureMessage</code> fields for the reason.</p> </li> <li> <p><code>available</code>: The NAT gateway is able to process traffic. This status remains until you delete the NAT gateway, and does not indicate the health of the NAT gateway.</p> </li> <li> <p><code>deleting</code>: The NAT gateway is in the process of being terminated and may still be processing traffic.</p> </li> <li> <p><code>deleted</code>: The NAT gateway has been terminated and is no longer processing traffic.</p> </li> </ul>"
       }
     },
     "NetworkAcl": {
@@ -3664,6 +3703,7 @@
     "NextToken": {
       "base": null,
       "refs": {
+        "DescribeStaleSecurityGroupsRequest$NextToken": "<p>The token for the next set of items to return. (You received this token from a prior call.)</p>",
         "DescribeVpcClassicLinkDnsSupportRequest$NextToken": "<p>The token for the next set of items to return. (You received this token from a prior call.)</p>",
         "DescribeVpcClassicLinkDnsSupportResult$NextToken": "<p>The token to use when requesting the next set of items.</p>"
       }
@@ -3796,6 +3836,12 @@
       "base": null,
       "refs": {
         "IpPermission$PrefixListIds": "<p>(Valid for <a>AuthorizeSecurityGroupEgress</a>, <a>RevokeSecurityGroupEgress</a> and <a>DescribeSecurityGroups</a> only) One or more prefix list IDs for an AWS service. In an <a>AuthorizeSecurityGroupEgress</a> request, this is the AWS service that you want to access through a VPC endpoint from instances associated with the security group.</p>"
+      }
+    },
+    "PrefixListIdSet": {
+      "base": null,
+      "refs": {
+        "StaleIpPermission$PrefixListIds": "<p>One or more prefix list IDs for an AWS service. Not applicable for stale security group rules.</p>"
       }
     },
     "PrefixListSet": {
@@ -4553,6 +4599,18 @@
         "DescribeSecurityGroupsResult$SecurityGroups": "<p>Information about one or more security groups.</p>"
       }
     },
+    "SecurityGroupReference": {
+      "base": "<p>Describes a VPC with a security group that references your security group.</p>",
+      "refs": {
+        "SecurityGroupReferences$member": null
+      }
+    },
+    "SecurityGroupReferences": {
+      "base": null,
+      "refs": {
+        "DescribeSecurityGroupReferencesResult$SecurityGroupReferenceSet": "<p>Information about the VPCs with the referencing security groups.</p>"
+      }
+    },
     "SecurityGroupStringList": {
       "base": null,
       "refs": {
@@ -4739,6 +4797,31 @@
       "base": null,
       "refs": {
         "DescribeSpotPriceHistoryResult$SpotPriceHistory": "<p>The historical Spot prices.</p>"
+      }
+    },
+    "StaleIpPermission": {
+      "base": "<p>Describes a stale rule in a security group.</p>",
+      "refs": {
+        "StaleIpPermissionSet$member": null
+      }
+    },
+    "StaleIpPermissionSet": {
+      "base": null,
+      "refs": {
+        "StaleSecurityGroup$StaleIpPermissions": "<p>Information about the stale inbound rules in the security group.</p>",
+        "StaleSecurityGroup$StaleIpPermissionsEgress": "<p>Information about the stale outbound rules in the security group.</p>"
+      }
+    },
+    "StaleSecurityGroup": {
+      "base": "<p>Describes a stale security group (a security group that contains stale rules).</p>",
+      "refs": {
+        "StaleSecurityGroupSet$member": null
+      }
+    },
+    "StaleSecurityGroupSet": {
+      "base": null,
+      "refs": {
+        "DescribeStaleSecurityGroupsResult$StaleSecurityGroupSet": "<p>Information about the stale security groups.</p>"
       }
     },
     "StartInstancesRequest": {
@@ -5058,6 +5141,8 @@
         "DescribeSpotPriceHistoryRequest$AvailabilityZone": "<p>Filters the results by the specified Availability Zone.</p>",
         "DescribeSpotPriceHistoryRequest$NextToken": "<p>The token for the next set of results.</p>",
         "DescribeSpotPriceHistoryResult$NextToken": "<p>The token required to retrieve the next set of results. This value is <code>null</code> when there are no more results to return.</p>",
+        "DescribeStaleSecurityGroupsRequest$VpcId": "<p>The ID of the VPC.</p>",
+        "DescribeStaleSecurityGroupsResult$NextToken": "<p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>",
         "DescribeTagsRequest$NextToken": "<p>The token to retrieve the next page of results.</p>",
         "DescribeTagsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return..</p>",
         "DescribeVolumeAttributeRequest$VolumeId": "<p>The ID of the volume.</p>",
@@ -5134,6 +5219,7 @@
         "GroupIdStringList$member": null,
         "GroupIdentifier$GroupName": "<p>The name of the security group.</p>",
         "GroupIdentifier$GroupId": "<p>The ID of the security group.</p>",
+        "GroupIds$member": null,
         "GroupNameStringList$member": null,
         "Host$HostId": "<p>The ID of the Dedicated host.</p>",
         "Host$HostReservationId": "<p>The reservation ID of the Dedicated host. This returns a <code>null</code> response if the Dedicated host doesn't have an associated reservation.</p>",
@@ -5269,6 +5355,7 @@
         "InternetGatewayAttachment$VpcId": "<p>The ID of the VPC.</p>",
         "IpPermission$IpProtocol": "<p>The IP protocol name (for <code>tcp</code>, <code>udp</code>, and <code>icmp</code>) or number (see <a href=\"http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml\">Protocol Numbers</a>). </p> <p>[EC2-VPC only] When you authorize or revoke security group rules, you can use <code>-1</code> to specify all.</p>",
         "IpRange$CidrIp": "<p>The CIDR range. You can either specify a CIDR range or a source security group, not both.</p>",
+        "IpRanges$member": null,
         "KeyNameStringList$member": null,
         "KeyPair$KeyName": "<p>The name of the key pair.</p>",
         "KeyPair$KeyFingerprint": "<p>The SHA-1 digest of the DER encoded private key.</p>",
@@ -5354,6 +5441,7 @@
         "PrefixList$PrefixListId": "<p>The ID of the prefix. </p>",
         "PrefixList$PrefixListName": "<p>The name of the prefix.</p>",
         "PrefixListId$PrefixListId": "<p>The ID of the prefix.</p>",
+        "PrefixListIdSet$member": null,
         "PrivateIpAddressSpecification$PrivateIpAddress": "<p>The private IP addresses.</p>",
         "PrivateIpAddressStringList$member": null,
         "ProductCode$ProductCodeId": "<p>The product code.</p>",
@@ -5526,6 +5614,9 @@
         "SecurityGroup$Description": "<p>A description of the security group.</p>",
         "SecurityGroup$VpcId": "<p>[EC2-VPC] The ID of the VPC for the security group.</p>",
         "SecurityGroupIdStringList$member": null,
+        "SecurityGroupReference$GroupId": "<p>The ID of your security group.</p>",
+        "SecurityGroupReference$ReferencingVpcId": "<p>The ID of the VPC with the referencing security group.</p>",
+        "SecurityGroupReference$VpcPeeringConnectionId": "<p>The ID of the VPC peering connection.</p>",
         "SecurityGroupStringList$member": null,
         "Snapshot$SnapshotId": "<p>The ID of the snapshot. Each snapshot receives a unique identifier when it is created.</p>",
         "Snapshot$VolumeId": "<p>The ID of the volume that was used to create the snapshot.</p>",
@@ -5586,6 +5677,11 @@
         "SpotPlacement$GroupName": "<p>The name of the placement group (for cluster instances).</p>",
         "SpotPrice$SpotPrice": "<p>The maximum price (bid) that you are willing to pay for a Spot instance.</p>",
         "SpotPrice$AvailabilityZone": "<p>The Availability Zone.</p>",
+        "StaleIpPermission$IpProtocol": "<p>The IP protocol name (for <code>tcp</code>, <code>udp</code>, and <code>icmp</code>) or number (see <a href=\"http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml\">Protocol Numbers)</a>.</p>",
+        "StaleSecurityGroup$GroupId": "<p>The ID of the security group.</p>",
+        "StaleSecurityGroup$GroupName": "<p>The name of the security group.</p>",
+        "StaleSecurityGroup$Description": "<p>The description of the security group.</p>",
+        "StaleSecurityGroup$VpcId": "<p>The ID of the VPC for the security group.</p>",
         "StartInstancesRequest$AdditionalInfo": "<p>Reserved.</p>",
         "StateReason$Code": "<p>The reason code for the state change.</p>",
         "StateReason$Message": "<p>The message for the state change.</p> <ul> <li><p><code>Server.SpotInstanceTermination</code>: A Spot instance was terminated due to an increase in the market price.</p></li> <li><p><code>Server.InternalError</code>: An internal error occurred during instance launch, resulting in termination.</p></li> <li><p><code>Server.InsufficientInstanceCapacity</code>: There was insufficient instance capacity to satisfy the launch request.</p></li> <li><p><code>Client.InternalError</code>: A client error caused the instance to terminate on launch.</p></li> <li><p><code>Client.InstanceInitiatedShutdown</code>: The instance was shut down using the <code>shutdown -h</code> command from the instance.</p></li> <li><p><code>Client.UserInitiatedShutdown</code>: The instance was shut down using the Amazon EC2 API.</p></li> <li><p><code>Client.VolumeLimitExceeded</code>: The limit on the number of EBS volumes or total storage was exceeded. Decrease usage or request an increase in your limits.</p></li> <li><p><code>Client.InvalidSnapshot.NotFound</code>: The specified snapshot was not found.</p></li> </ul>",
@@ -5609,7 +5705,7 @@
         "UserBucketDetails$S3Key": "<p>The file name of the disk image.</p>",
         "UserData$Data": "<p>The Base64-encoded MIME user data for the instance.</p>",
         "UserGroupStringList$member": null,
-        "UserIdGroupPair$UserId": "<p>The ID of an AWS account.</p> <p>[EC2-Classic] Required when adding or removing rules that reference a security group in another AWS account.</p>",
+        "UserIdGroupPair$UserId": "<p>The ID of an AWS account. For a referenced security group in another VPC, the account ID of the referenced security group is returned.</p> <p>[EC2-Classic] Required when adding or removing rules that reference a security group in another AWS account.</p>",
         "UserIdGroupPair$GroupName": "<p>The name of the security group. In a request, use this parameter for a security group in EC2-Classic or a default VPC only. For a security group in a nondefault VPC, use the security group ID.</p>",
         "UserIdGroupPair$GroupId": "<p>The ID of the security group.</p>",
         "UserIdGroupPair$VpcId": "<p>The ID of the VPC for the referenced security group, if applicable.</p>",
@@ -5849,13 +5945,20 @@
     "UserIdGroupPair": {
       "base": "<p>Describes a security group and AWS account ID pair. </p>",
       "refs": {
-        "UserIdGroupPairList$member": null
+        "UserIdGroupPairList$member": null,
+        "UserIdGroupPairSet$member": null
       }
     },
     "UserIdGroupPairList": {
       "base": null,
       "refs": {
         "IpPermission$UserIdGroupPairs": "<p>One or more security group and AWS account ID pairs.</p>"
+      }
+    },
+    "UserIdGroupPairSet": {
+      "base": null,
+      "refs": {
+        "StaleIpPermission$UserIdGroupPairs": "<p>One or more security group pairs. Returns the ID of the referenced security group and VPC, and the ID and status of the VPC peering connection.</p>"
       }
     },
     "UserIdStringList": {
@@ -5869,7 +5972,7 @@
       "base": null,
       "refs": {
         "CancelSpotFleetRequestsRequest$SpotFleetRequestIds": "<p>The IDs of the Spot fleet requests.</p>",
-        "CreateFlowLogsRequest$ResourceIds": "<p>One or more subnet, network interface, or VPC IDs.</p>",
+        "CreateFlowLogsRequest$ResourceIds": "<p>One or more subnet, network interface, or VPC IDs.</p> <p>Constraints: Maximum of 1000 resources</p>",
         "CreateFlowLogsResult$FlowLogIds": "<p>The IDs of the flow logs.</p>",
         "CreateVpcEndpointRequest$RouteTableIds": "<p>One or more route table IDs.</p>",
         "DeleteFlowLogsRequest$FlowLogIds": "<p>One or more flow log IDs.</p>",
@@ -6149,7 +6252,7 @@
     "VpcPeeringConnectionVpcInfo": {
       "base": "<p>Describes a VPC in a VPC peering connection.</p>",
       "refs": {
-        "VpcPeeringConnection$AccepterVpcInfo": "<p>Information about the peer VPC. CIDR block information is not returned when creating a VPC peering connection, or when describing a VPC peering connection that's in the <code>initiating-request</code> or <code>pending-acceptance</code> state.</p>",
+        "VpcPeeringConnection$AccepterVpcInfo": "<p>Information about the accepter VPC. CIDR block information is not returned when creating a VPC peering connection, or when describing a VPC peering connection that's in the <code>initiating-request</code> or <code>pending-acceptance</code> state.</p>",
         "VpcPeeringConnection$RequesterVpcInfo": "<p>Information about the requester VPC.</p>"
       }
     },

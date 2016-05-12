@@ -995,6 +995,15 @@
       "input":{"shape":"DescribeScheduledInstancesRequest"},
       "output":{"shape":"DescribeScheduledInstancesResult"}
     },
+    "DescribeSecurityGroupReferences":{
+      "name":"DescribeSecurityGroupReferences",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeSecurityGroupReferencesRequest"},
+      "output":{"shape":"DescribeSecurityGroupReferencesResult"}
+    },
     "DescribeSecurityGroups":{
       "name":"DescribeSecurityGroups",
       "http":{
@@ -1075,6 +1084,15 @@
       },
       "input":{"shape":"DescribeSpotPriceHistoryRequest"},
       "output":{"shape":"DescribeSpotPriceHistoryResult"}
+    },
+    "DescribeStaleSecurityGroups":{
+      "name":"DescribeStaleSecurityGroups",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeStaleSecurityGroupsRequest"},
+      "output":{"shape":"DescribeStaleSecurityGroupsResult"}
     },
     "DescribeSubnets":{
       "name":"DescribeSubnets",
@@ -5251,6 +5269,23 @@
         }
       }
     },
+    "DescribeSecurityGroupReferencesRequest":{
+      "type":"structure",
+      "required":["GroupId"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "GroupId":{"shape":"GroupIds"}
+      }
+    },
+    "DescribeSecurityGroupReferencesResult":{
+      "type":"structure",
+      "members":{
+        "SecurityGroupReferenceSet":{
+          "shape":"SecurityGroupReferences",
+          "locationName":"securityGroupReferenceSet"
+        }
+      }
+    },
     "DescribeSecurityGroupsRequest":{
       "type":"structure",
       "members":{
@@ -5586,6 +5621,29 @@
         "SpotPriceHistory":{
           "shape":"SpotPriceHistoryList",
           "locationName":"spotPriceHistorySet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "DescribeStaleSecurityGroupsRequest":{
+      "type":"structure",
+      "required":["VpcId"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "VpcId":{"shape":"String"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeStaleSecurityGroupsResult":{
+      "type":"structure",
+      "members":{
+        "StaleSecurityGroupSet":{
+          "shape":"StaleSecurityGroupSet",
+          "locationName":"staleSecurityGroupSet"
         },
         "NextToken":{
           "shape":"String",
@@ -6753,6 +6811,13 @@
       "type":"list",
       "member":{
         "shape":"GroupIdentifier",
+        "locationName":"item"
+      }
+    },
+    "GroupIds":{
+      "type":"list",
+      "member":{
+        "shape":"String",
         "locationName":"item"
       }
     },
@@ -8474,6 +8539,13 @@
         "locationName":"item"
       }
     },
+    "IpRanges":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"item"
+      }
+    },
     "KeyNameStringList":{
       "type":"list",
       "member":{
@@ -9704,6 +9776,13 @@
       "type":"list",
       "member":{
         "shape":"PrefixListId",
+        "locationName":"item"
+      }
+    },
+    "PrefixListIdSet":{
+      "type":"list",
+      "member":{
+        "shape":"String",
         "locationName":"item"
       }
     },
@@ -11707,6 +11786,34 @@
         "locationName":"item"
       }
     },
+    "SecurityGroupReference":{
+      "type":"structure",
+      "required":[
+        "GroupId",
+        "ReferencingVpcId"
+      ],
+      "members":{
+        "GroupId":{
+          "shape":"String",
+          "locationName":"groupId"
+        },
+        "ReferencingVpcId":{
+          "shape":"String",
+          "locationName":"referencingVpcId"
+        },
+        "VpcPeeringConnectionId":{
+          "shape":"String",
+          "locationName":"vpcPeeringConnectionId"
+        }
+      }
+    },
+    "SecurityGroupReferences":{
+      "type":"list",
+      "member":{
+        "shape":"SecurityGroupReference",
+        "locationName":"item"
+      }
+    },
     "SecurityGroupStringList":{
       "type":"list",
       "member":{
@@ -12306,6 +12413,79 @@
         "locationName":"item"
       }
     },
+    "StaleIpPermission":{
+      "type":"structure",
+      "members":{
+        "FromPort":{
+          "shape":"Integer",
+          "locationName":"fromPort"
+        },
+        "IpProtocol":{
+          "shape":"String",
+          "locationName":"ipProtocol"
+        },
+        "IpRanges":{
+          "shape":"IpRanges",
+          "locationName":"ipRanges"
+        },
+        "PrefixListIds":{
+          "shape":"PrefixListIdSet",
+          "locationName":"prefixListIds"
+        },
+        "ToPort":{
+          "shape":"Integer",
+          "locationName":"toPort"
+        },
+        "UserIdGroupPairs":{
+          "shape":"UserIdGroupPairSet",
+          "locationName":"groups"
+        }
+      }
+    },
+    "StaleIpPermissionSet":{
+      "type":"list",
+      "member":{
+        "shape":"StaleIpPermission",
+        "locationName":"item"
+      }
+    },
+    "StaleSecurityGroup":{
+      "type":"structure",
+      "required":["GroupId"],
+      "members":{
+        "GroupId":{
+          "shape":"String",
+          "locationName":"groupId"
+        },
+        "GroupName":{
+          "shape":"String",
+          "locationName":"groupName"
+        },
+        "Description":{
+          "shape":"String",
+          "locationName":"description"
+        },
+        "VpcId":{
+          "shape":"String",
+          "locationName":"vpcId"
+        },
+        "StaleIpPermissions":{
+          "shape":"StaleIpPermissionSet",
+          "locationName":"staleIpPermissions"
+        },
+        "StaleIpPermissionsEgress":{
+          "shape":"StaleIpPermissionSet",
+          "locationName":"staleIpPermissionsEgress"
+        }
+      }
+    },
+    "StaleSecurityGroupSet":{
+      "type":"list",
+      "member":{
+        "shape":"StaleSecurityGroup",
+        "locationName":"item"
+      }
+    },
     "StartInstancesRequest":{
       "type":"structure",
       "required":["InstanceIds"],
@@ -12620,13 +12800,13 @@
       "type":"structure",
       "required":["Error"],
       "members":{
-        "Error":{
-          "shape":"UnsuccessfulItemError",
-          "locationName":"error"
-        },
         "ResourceId":{
           "shape":"String",
           "locationName":"resourceId"
+        },
+        "Error":{
+          "shape":"UnsuccessfulItemError",
+          "locationName":"error"
         }
       }
     },
@@ -12727,6 +12907,13 @@
       }
     },
     "UserIdGroupPairList":{
+      "type":"list",
+      "member":{
+        "shape":"UserIdGroupPair",
+        "locationName":"item"
+      }
+    },
+    "UserIdGroupPairSet":{
       "type":"list",
       "member":{
         "shape":"UserIdGroupPair",
