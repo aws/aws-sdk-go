@@ -251,6 +251,35 @@ func (c *SSM) DescribeDocument(input *DescribeDocumentInput) (*DescribeDocumentO
 	return out, err
 }
 
+const opDescribeDocumentPermission = "DescribeDocumentPermission"
+
+// DescribeDocumentPermissionRequest generates a request for the DescribeDocumentPermission operation.
+func (c *SSM) DescribeDocumentPermissionRequest(input *DescribeDocumentPermissionInput) (req *request.Request, output *DescribeDocumentPermissionOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDocumentPermission,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeDocumentPermissionInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeDocumentPermissionOutput{}
+	req.Data = output
+	return
+}
+
+// Describes the permissions for an SSM document. If you created the document,
+// you are the owner. If a document is shared, it can either be shared privately
+// (by specifying a user’s AWS account ID) or publicly (All).
+func (c *SSM) DescribeDocumentPermission(input *DescribeDocumentPermissionInput) (*DescribeDocumentPermissionOutput, error) {
+	req, out := c.DescribeDocumentPermissionRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opDescribeInstanceInformation = "DescribeInstanceInformation"
 
 // DescribeInstanceInformationRequest generates a request for the DescribeInstanceInformation operation.
@@ -476,6 +505,36 @@ func (c *SSM) ListDocumentsPages(input *ListDocumentsInput, fn func(p *ListDocum
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListDocumentsOutput), lastPage)
 	})
+}
+
+const opModifyDocumentPermission = "ModifyDocumentPermission"
+
+// ModifyDocumentPermissionRequest generates a request for the ModifyDocumentPermission operation.
+func (c *SSM) ModifyDocumentPermissionRequest(input *ModifyDocumentPermissionInput) (req *request.Request, output *ModifyDocumentPermissionOutput) {
+	op := &request.Operation{
+		Name:       opModifyDocumentPermission,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ModifyDocumentPermissionInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ModifyDocumentPermissionOutput{}
+	req.Data = output
+	return
+}
+
+// Share a document publicly or privately. If you share a document privately,
+// you must specify the AWS user account IDs for those people who can use the
+// document. If you share a document publicly, you must specify All as the account
+// ID.
+func (c *SSM) ModifyDocumentPermission(input *ModifyDocumentPermissionInput) (*ModifyDocumentPermissionOutput, error) {
+	req, out := c.ModifyDocumentPermissionRequest(input)
+	err := req.Send()
+	return out, err
 }
 
 const opSendCommand = "SendCommand"
@@ -981,7 +1040,7 @@ func (s CreateAssociationBatchRequestEntry) GoString() string {
 type CreateAssociationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Windows Server instance ID.
+	// The instance ID.
 	InstanceId *string `type:"string" required:"true"`
 
 	// The name of the SSM document.
@@ -1037,8 +1096,7 @@ func (s CreateAssociationOutput) GoString() string {
 type CreateDocumentInput struct {
 	_ struct{} `type:"structure"`
 
-	// A valid JSON string. For more information about the contents of this string,
-	// see SSM Document (http://docs.aws.amazon.com/ssm/latest/APIReference/aws-ssm-document.html).
+	// A valid JSON string.
 	Content *string `min:"1" type:"string" required:"true"`
 
 	// A name for the SSM document.
@@ -1188,7 +1246,7 @@ func (s DeleteDocumentOutput) GoString() string {
 type DescribeAssociationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Windows Server instance ID.
+	// The instance ID.
 	InstanceId *string `type:"string" required:"true"`
 
 	// The name of the SSM document.
@@ -1285,6 +1343,60 @@ func (s DescribeDocumentOutput) GoString() string {
 	return s.String()
 }
 
+type DescribeDocumentPermissionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the document for which you are the owner.
+	Name *string `type:"string" required:"true"`
+
+	// The permission type for the document. The permission type can be Share.
+	PermissionType *string `type:"string" required:"true" enum:"DocumentPermissionType"`
+}
+
+// String returns the string representation
+func (s DescribeDocumentPermissionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDocumentPermissionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDocumentPermissionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDocumentPermissionInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.PermissionType == nil {
+		invalidParams.Add(request.NewErrParamRequired("PermissionType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+type DescribeDocumentPermissionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The account IDs that have permission to use this document. The ID can be
+	// either an AWS account or All.
+	AccountIds []*string `locationNameList:"AccountId" type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeDocumentPermissionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDocumentPermissionOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeInstanceInformationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1368,8 +1480,21 @@ type DocumentDescription struct {
 	// A description of the document.
 	Description *string `type:"string"`
 
+	// The Sha256 or Sha1 hash created by the system when the document was created.
+	//
+	//  Sha1 hashes have been deprecated.
+	Hash *string `type:"string"`
+
+	// Sha256 or Sha1.
+	//
+	//  Sha1 hashes have been deprecated.
+	HashType *string `type:"string" enum:"DocumentHashType"`
+
 	// The name of the SSM document.
 	Name *string `type:"string"`
+
+	// The AWS user account of the person who created the document.
+	Owner *string `type:"string"`
 
 	// A description of the parameters for a document.
 	Parameters []*DocumentParameter `locationNameList:"DocumentParameter" type:"list"`
@@ -1441,6 +1566,9 @@ type DocumentIdentifier struct {
 	// The name of the SSM document.
 	Name *string `type:"string"`
 
+	// The AWS user account of the person who created the document.
+	Owner *string `type:"string"`
+
 	// The operating system platform.
 	PlatformTypes []*string `locationNameList:"PlatformType" type:"list"`
 }
@@ -1455,6 +1583,8 @@ func (s DocumentIdentifier) GoString() string {
 	return s.String()
 }
 
+// Parameters specified in the SSM document that execute on the server when
+// the command is run.
 type DocumentParameter struct {
 	_ struct{} `type:"structure"`
 
@@ -1955,12 +2085,82 @@ func (s ListDocumentsOutput) GoString() string {
 	return s.String()
 }
 
+type ModifyDocumentPermissionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS user accounts that should have access to the document. The account
+	// IDs can either be a group of account IDs or All.
+	AccountIdsToAdd []*string `locationNameList:"AccountId" type:"list"`
+
+	// The AWS user accounts that should no longer have access to the document.
+	// The AWS user account can either be a group of account IDs or All. This action
+	// has a higher priority than AccountIdsToAdd. If you specify an account ID
+	// to add and the same ID to remove, the system removes access to the document.
+	AccountIdsToRemove []*string `locationNameList:"AccountId" type:"list"`
+
+	// The name of the document that you want to share.
+	Name *string `type:"string" required:"true"`
+
+	// The permission type for the document. The permission type can be Share.
+	PermissionType *string `type:"string" required:"true" enum:"DocumentPermissionType"`
+}
+
+// String returns the string representation
+func (s ModifyDocumentPermissionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyDocumentPermissionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifyDocumentPermissionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifyDocumentPermissionInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.PermissionType == nil {
+		invalidParams.Add(request.NewErrParamRequired("PermissionType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+type ModifyDocumentPermissionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyDocumentPermissionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyDocumentPermissionOutput) GoString() string {
+	return s.String()
+}
+
 type SendCommandInput struct {
 	_ struct{} `type:"structure"`
 
 	// User-specified information about the command, such as a brief description
 	// of what the command should do.
 	Comment *string `type:"string"`
+
+	// The Sha256 or Sha1 hash created by the system when the document was created.
+	//
+	//  Sha1 hashes have been deprecated.
+	DocumentHash *string `type:"string"`
+
+	// Sha256 or Sha1.
+	//
+	//  Sha1 hashes have been deprecated.
+	DocumentHashType *string `type:"string" enum:"DocumentHashType"`
 
 	// Required. The name of the SSM document to execute. This can be an SSM public
 	// document or a custom document.
@@ -2186,10 +2386,22 @@ const (
 )
 
 const (
+	// @enum DocumentHashType
+	DocumentHashTypeSha256 = "Sha256"
+	// @enum DocumentHashType
+	DocumentHashTypeSha1 = "Sha1"
+)
+
+const (
 	// @enum DocumentParameterType
 	DocumentParameterTypeString = "String"
 	// @enum DocumentParameterType
 	DocumentParameterTypeStringList = "StringList"
+)
+
+const (
+	// @enum DocumentPermissionType
+	DocumentPermissionTypeShare = "Share"
 )
 
 const (

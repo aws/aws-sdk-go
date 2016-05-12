@@ -20,6 +20,7 @@
       "input":{"shape":"CancelCommandRequest"},
       "output":{"shape":"CancelCommandResult"},
       "errors":[
+        {"shape":"InternalServerError"},
         {"shape":"InvalidCommandId"},
         {"shape":"InvalidInstanceId"},
         {"shape":"DuplicateInstanceId"}
@@ -104,6 +105,7 @@
       "errors":[
         {"shape":"InternalServerError"},
         {"shape":"InvalidDocument"},
+        {"shape":"InvalidDocumentOperation"},
         {"shape":"AssociatedInstances"}
       ]
     },
@@ -133,6 +135,20 @@
       "errors":[
         {"shape":"InternalServerError"},
         {"shape":"InvalidDocument"}
+      ]
+    },
+    "DescribeDocumentPermission":{
+      "name":"DescribeDocumentPermission",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeDocumentPermissionRequest"},
+      "output":{"shape":"DescribeDocumentPermissionResponse"},
+      "errors":[
+        {"shape":"InternalServerError"},
+        {"shape":"InvalidDocument"},
+        {"shape":"InvalidPermissionType"}
       ]
     },
     "DescribeInstanceInformation":{
@@ -186,6 +202,7 @@
       "input":{"shape":"ListCommandInvocationsRequest"},
       "output":{"shape":"ListCommandInvocationsResult"},
       "errors":[
+        {"shape":"InternalServerError"},
         {"shape":"InvalidCommandId"},
         {"shape":"InvalidInstanceId"},
         {"shape":"InvalidFilterKey"},
@@ -201,6 +218,7 @@
       "input":{"shape":"ListCommandsRequest"},
       "output":{"shape":"ListCommandsResult"},
       "errors":[
+        {"shape":"InternalServerError"},
         {"shape":"InvalidCommandId"},
         {"shape":"InvalidInstanceId"},
         {"shape":"InvalidFilterKey"},
@@ -221,6 +239,22 @@
         {"shape":"InvalidFilterKey"}
       ]
     },
+    "ModifyDocumentPermission":{
+      "name":"ModifyDocumentPermission",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyDocumentPermissionRequest"},
+      "output":{"shape":"ModifyDocumentPermissionResponse"},
+      "errors":[
+        {"shape":"InternalServerError"},
+        {"shape":"InvalidDocument"},
+        {"shape":"InvalidPermissionType"},
+        {"shape":"DocumentPermissionLimit"},
+        {"shape":"DocumentLimitExceeded"}
+      ]
+    },
     "SendCommand":{
       "name":"SendCommand",
       "http":{
@@ -231,11 +265,13 @@
       "output":{"shape":"SendCommandResult"},
       "errors":[
         {"shape":"DuplicateInstanceId"},
+        {"shape":"InternalServerError"},
         {"shape":"InvalidInstanceId"},
         {"shape":"InvalidDocument"},
         {"shape":"InvalidOutputFolder"},
         {"shape":"InvalidParameters"},
-        {"shape":"UnsupportedPlatformType"}
+        {"shape":"UnsupportedPlatformType"},
+        {"shape":"MaxDocumentSizeExceeded"}
       ]
     },
     "UpdateAssociationStatus":{
@@ -257,6 +293,18 @@
     }
   },
   "shapes":{
+    "AccountId":{
+      "type":"string",
+      "pattern":"(?i)all|[0-9]{12}"
+    },
+    "AccountIdList":{
+      "type":"list",
+      "member":{
+        "shape":"AccountId",
+        "locationName":"AccountId"
+      },
+      "max":20
+    },
     "AssociatedInstances":{
       "type":"structure",
       "members":{
@@ -628,11 +676,28 @@
         "AssociationDescription":{"shape":"AssociationDescription"}
       }
     },
+    "DescribeDocumentPermissionRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "PermissionType"
+      ],
+      "members":{
+        "Name":{"shape":"DocumentName"},
+        "PermissionType":{"shape":"DocumentPermissionType"}
+      }
+    },
+    "DescribeDocumentPermissionResponse":{
+      "type":"structure",
+      "members":{
+        "AccountIds":{"shape":"AccountIdList"}
+      }
+    },
     "DescribeDocumentRequest":{
       "type":"structure",
       "required":["Name"],
       "members":{
-        "Name":{"shape":"DocumentName"}
+        "Name":{"shape":"DocumentARN"}
       }
     },
     "DescribeDocumentResult":{
@@ -660,9 +725,14 @@
       }
     },
     "DescriptionInDocument":{"type":"string"},
+    "DocumentARN":{
+      "type":"string",
+      "pattern":"^[a-zA-Z0-9_\\-.:/]{3,128}$"
+    },
     "DocumentAlreadyExists":{
       "type":"structure",
       "members":{
+        "Message":{"shape":"String"}
       },
       "exception":true
     },
@@ -674,7 +744,10 @@
       "type":"structure",
       "members":{
         "Sha1":{"shape":"DocumentSha1"},
-        "Name":{"shape":"DocumentName"},
+        "Hash":{"shape":"DocumentHash"},
+        "HashType":{"shape":"DocumentHashType"},
+        "Name":{"shape":"DocumentARN"},
+        "Owner":{"shape":"DocumentOwner"},
         "CreatedDate":{"shape":"DateTime"},
         "Status":{"shape":"DocumentStatus"},
         "Description":{"shape":"DescriptionInDocument"},
@@ -713,10 +786,22 @@
       "type":"string",
       "min":1
     },
+    "DocumentHash":{
+      "type":"string",
+      "max":256
+    },
+    "DocumentHashType":{
+      "type":"string",
+      "enum":[
+        "Sha256",
+        "Sha1"
+      ]
+    },
     "DocumentIdentifier":{
       "type":"structure",
       "members":{
-        "Name":{"shape":"DocumentName"},
+        "Name":{"shape":"DocumentARN"},
+        "Owner":{"shape":"DocumentOwner"},
         "PlatformTypes":{"shape":"PlatformTypeList"}
       }
     },
@@ -730,6 +815,7 @@
     "DocumentLimitExceeded":{
       "type":"structure",
       "members":{
+        "Message":{"shape":"String"}
       },
       "exception":true
     },
@@ -737,6 +823,7 @@
       "type":"string",
       "pattern":"^[a-zA-Z0-9_\\-.]{3,128}$"
     },
+    "DocumentOwner":{"type":"string"},
     "DocumentParameter":{
       "type":"structure",
       "members":{
@@ -762,6 +849,17 @@
         "String",
         "StringList"
       ]
+    },
+    "DocumentPermissionLimit":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
+    "DocumentPermissionType":{
+      "type":"string",
+      "enum":["Share"]
     },
     "DocumentSha1":{"type":"string"},
     "DocumentStatus":{
@@ -805,13 +903,13 @@
       "type":"structure",
       "required":["Name"],
       "members":{
-        "Name":{"shape":"DocumentName"}
+        "Name":{"shape":"DocumentARN"}
       }
     },
     "GetDocumentResult":{
       "type":"structure",
       "members":{
-        "Name":{"shape":"DocumentName"},
+        "Name":{"shape":"DocumentARN"},
         "Content":{"shape":"DocumentContent"}
       }
     },
@@ -895,7 +993,7 @@
     "InternalServerError":{
       "type":"structure",
       "members":{
-        "message":{"shape":"String"}
+        "Message":{"shape":"String"}
       },
       "exception":true
     },
@@ -908,14 +1006,21 @@
     "InvalidDocument":{
       "type":"structure",
       "members":{
-        "message":{"shape":"String"}
+        "Message":{"shape":"String"}
       },
       "exception":true
     },
     "InvalidDocumentContent":{
       "type":"structure",
       "members":{
-        "message":{"shape":"String"}
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
+    "InvalidDocumentOperation":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
       },
       "exception":true
     },
@@ -928,6 +1033,7 @@
     "InvalidInstanceId":{
       "type":"structure",
       "members":{
+        "Message":{"shape":"String"}
       },
       "exception":true
     },
@@ -953,7 +1059,14 @@
     "InvalidParameters":{
       "type":"structure",
       "members":{
-        "message":{"shape":"String"}
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
+    "InvalidPermissionType":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
       },
       "exception":true
     },
@@ -1021,12 +1134,17 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListDocumentsMaxResults":{
+      "type":"integer",
+      "max":50,
+      "min":1
+    },
     "ListDocumentsRequest":{
       "type":"structure",
       "members":{
         "DocumentFilterList":{"shape":"DocumentFilterList"},
         "MaxResults":{
-          "shape":"MaxResults",
+          "shape":"ListDocumentsMaxResults",
           "box":true
         },
         "NextToken":{"shape":"NextToken"}
@@ -1042,6 +1160,7 @@
     "MaxDocumentSizeExceeded":{
       "type":"structure",
       "members":{
+        "Message":{"shape":"String"}
       },
       "exception":true
     },
@@ -1054,6 +1173,24 @@
       "type":"integer",
       "max":50,
       "min":5
+    },
+    "ModifyDocumentPermissionRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "PermissionType"
+      ],
+      "members":{
+        "Name":{"shape":"DocumentName"},
+        "PermissionType":{"shape":"DocumentPermissionType"},
+        "AccountIdsToAdd":{"shape":"AccountIdList"},
+        "AccountIdsToRemove":{"shape":"AccountIdList"}
+      }
+    },
+    "ModifyDocumentPermissionResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "NextToken":{"type":"string"},
     "ParameterName":{"type":"string"},
@@ -1107,7 +1244,9 @@
       ],
       "members":{
         "InstanceIds":{"shape":"InstanceIdList"},
-        "DocumentName":{"shape":"DocumentName"},
+        "DocumentName":{"shape":"DocumentARN"},
+        "DocumentHash":{"shape":"DocumentHash"},
+        "DocumentHashType":{"shape":"DocumentHashType"},
         "TimeoutSeconds":{
           "shape":"TimeoutSeconds",
           "box":true
@@ -1153,7 +1292,7 @@
     "UnsupportedPlatformType":{
       "type":"structure",
       "members":{
-        "message":{"shape":"String"}
+        "Message":{"shape":"String"}
       },
       "exception":true
     },
