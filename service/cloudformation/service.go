@@ -28,7 +28,7 @@ import (
 //
 // Amazon CloudFormation makes use of other AWS products. If you need additional
 // technical information about a specific AWS product, you can find the product's
-// technical documentation at http://docs.aws.amazon.com/documentation/ (http://docs.aws.amazon.com/documentation/).
+// technical documentation at http://docs.aws.amazon.com/ (http://docs.aws.amazon.com/).
 //The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
 type CloudFormation struct {
