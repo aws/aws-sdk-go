@@ -24,7 +24,6 @@ import (
 	"net/url"
 	"strings"
 	"time"
-	"unicode"
 )
 
 // An URLSigner provides URL signing utilities to sign URLs for Amazon CloudFront
@@ -185,17 +184,6 @@ func cleanURLScheme(u string) (scheme, cleanedURL string, err error) {
 
 var illegalQueryParms = []string{"Expires", "Policy", "Signature", "Key-Pair-Id"}
 
-func isASCII(u string) bool {
-	for _, c := range u {
-		if c > unicode.MaxASCII {
-			return false
-		}
-	}
-	return true
-}	
-
-
-
 func validateURL(u string) error {
 	parsed, err := url.Parse(u)
 	if err != nil {
@@ -204,11 +192,6 @@ func validateURL(u string) error {
 
 	if parsed.Scheme == "" {
 		return fmt.Errorf("URL missing valid scheme, %s", u)
-	}
-
-
-	if !isASCII(u) {
-		return fmt.Errorf("URL contains non-ascii characters, and should be encoded")
 	}
 
 	q := parsed.Query()

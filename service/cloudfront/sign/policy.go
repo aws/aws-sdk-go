@@ -13,6 +13,7 @@ import (
 	"net/url"
 	"strings"
 	"time"
+	"unicode"
 )
 
 // An AWSEpochTime wraps a time value providing JSON serialization needed for
@@ -109,6 +110,12 @@ func (p *Policy) Validate() error {
 	for i, s := range p.Statements {
 		if s.Resource == "" {
 			return fmt.Errorf("statement at index %d does not have a resource", i)
+		}
+		if !isASCII(s.Resource) {
+			return fmt.Errorf("unable to sign resource, [%s]. "+
+				"Resources must only contain ascii characters. "+
+				"Hostnames with unicode should be encoded as Punycode, (e.g. golang.org/x/net/idna), "+
+				"and URL unicode path/query characters should be escaped.", s.Resource)
 		}
 	}
 
@@ -207,4 +214,13 @@ func awsEscapeEncoded(b []byte) {
 			b[i] = r
 		}
 	}
+}
+
+func isASCII(u string) bool {
+	for _, c := range u {
+		if c > unicode.MaxASCII {
+			return false
+		}
+	}
+	return true
 }
