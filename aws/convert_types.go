@@ -311,6 +311,12 @@ func TimeValue(v *time.Time) time.Time {
 	return time.Time{}
 }
 
+// TimeUnixMilli returns a UnixTimeStamp to the millisecond
+func TimeUnixMilli(t time.Time) int64 {
+    return t.UnixNano() / int64(time.Millisecond / time.Nanosecond)
+}
+
+
 // TimeSlice converts a slice of time.Time values into a slice of
 // time.Time pointers
 func TimeSlice(src []time.Time) []*time.Time {
