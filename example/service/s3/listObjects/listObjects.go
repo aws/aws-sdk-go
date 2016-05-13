@@ -22,6 +22,7 @@ func main() {
 		Bucket: &os.Args[1],
 	}, func(p *s3.ListObjectsOutput, last bool) (shouldContinue bool) {
 		fmt.Println("Page,", i)
+		i++
 
 		for _, obj := range p.Contents {
 			fmt.Println("Object:", *obj.Key)
