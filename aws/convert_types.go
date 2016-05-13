@@ -311,10 +311,11 @@ func TimeValue(v *time.Time) time.Time {
 	return time.Time{}
 }
 
-// TimeStampGen returns the current Unix time to the Millisecond
-func TimeStampGen() int64{
-	time.Now().UnixNano() / (int64(time.Millisecond)/int64(time.Nanosecond))
+// TimeUnixMilli returns a UnixTimeStamp to the millisecond
+func TimeUnixMilli(t time.Time) int64 {
+    return t.UnixNano() / int64(time.Millisecond / time.Nanosecond)
 }
+
 
 // TimeSlice converts a slice of time.Time values into a slice of
 // time.Time pointers
