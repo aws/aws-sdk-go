@@ -22,6 +22,14 @@ type ApplicationDiscoveryServiceAPI interface {
 
 	DescribeAgents(*applicationdiscoveryservice.DescribeAgentsInput) (*applicationdiscoveryservice.DescribeAgentsOutput, error)
 
+	DescribeConfigurationsRequest(*applicationdiscoveryservice.DescribeConfigurationsInput) (*request.Request, *applicationdiscoveryservice.DescribeConfigurationsOutput)
+
+	DescribeConfigurations(*applicationdiscoveryservice.DescribeConfigurationsInput) (*applicationdiscoveryservice.DescribeConfigurationsOutput, error)
+
+	DescribeExportConfigurationsRequest(*applicationdiscoveryservice.DescribeExportConfigurationsInput) (*request.Request, *applicationdiscoveryservice.DescribeExportConfigurationsOutput)
+
+	DescribeExportConfigurations(*applicationdiscoveryservice.DescribeExportConfigurationsInput) (*applicationdiscoveryservice.DescribeExportConfigurationsOutput, error)
+
 	DescribeTagsRequest(*applicationdiscoveryservice.DescribeTagsInput) (*request.Request, *applicationdiscoveryservice.DescribeTagsOutput)
 
 	DescribeTags(*applicationdiscoveryservice.DescribeTagsInput) (*applicationdiscoveryservice.DescribeTagsOutput, error)
@@ -30,21 +38,9 @@ type ApplicationDiscoveryServiceAPI interface {
 
 	ExportConfigurations(*applicationdiscoveryservice.ExportConfigurationsInput) (*applicationdiscoveryservice.ExportConfigurationsOutput, error)
 
-	GetConfigurationAttributesRequest(*applicationdiscoveryservice.GetConfigurationAttributesInput) (*request.Request, *applicationdiscoveryservice.GetConfigurationAttributesOutput)
-
-	GetConfigurationAttributes(*applicationdiscoveryservice.GetConfigurationAttributesInput) (*applicationdiscoveryservice.GetConfigurationAttributesOutput, error)
-
-	GetExportStatusRequest(*applicationdiscoveryservice.GetExportStatusInput) (*request.Request, *applicationdiscoveryservice.GetExportStatusOutput)
-
-	GetExportStatus(*applicationdiscoveryservice.GetExportStatusInput) (*applicationdiscoveryservice.GetExportStatusOutput, error)
-
 	ListConfigurationsRequest(*applicationdiscoveryservice.ListConfigurationsInput) (*request.Request, *applicationdiscoveryservice.ListConfigurationsOutput)
 
 	ListConfigurations(*applicationdiscoveryservice.ListConfigurationsInput) (*applicationdiscoveryservice.ListConfigurationsOutput, error)
-
-	RemoveConfigurationRequest(*applicationdiscoveryservice.RemoveConfigurationInput) (*request.Request, *applicationdiscoveryservice.RemoveConfigurationOutput)
-
-	RemoveConfiguration(*applicationdiscoveryservice.RemoveConfigurationInput) (*applicationdiscoveryservice.RemoveConfigurationOutput, error)
 
 	StartDataCollectionByAgentIdsRequest(*applicationdiscoveryservice.StartDataCollectionByAgentIdsInput) (*request.Request, *applicationdiscoveryservice.StartDataCollectionByAgentIdsOutput)
 

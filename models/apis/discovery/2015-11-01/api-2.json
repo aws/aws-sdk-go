@@ -57,6 +57,37 @@
         {"shape":"ServerInternalErrorException"}
       ]
     },
+    "DescribeConfigurations":{
+      "name":"DescribeConfigurations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeConfigurationsRequest"},
+      "output":{"shape":"DescribeConfigurationsResponse"},
+      "errors":[
+        {"shape":"AuthorizationErrorException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ServerInternalErrorException"}
+      ]
+    },
+    "DescribeExportConfigurations":{
+      "name":"DescribeExportConfigurations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeExportConfigurationsRequest"},
+      "output":{"shape":"DescribeExportConfigurationsResponse"},
+      "errors":[
+        {"shape":"AuthorizationErrorException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ServerInternalErrorException"}
+      ]
+    },
     "DescribeTags":{
       "name":"DescribeTags",
       "http":{
@@ -88,37 +119,6 @@
         {"shape":"OperationNotPermittedException"}
       ]
     },
-    "GetConfigurationAttributes":{
-      "name":"GetConfigurationAttributes",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"GetConfigurationAttributesRequest"},
-      "output":{"shape":"GetConfigurationAttributesResponse"},
-      "errors":[
-        {"shape":"AuthorizationErrorException"},
-        {"shape":"InvalidParameterException"},
-        {"shape":"InvalidParameterValueException"},
-        {"shape":"ServerInternalErrorException"}
-      ]
-    },
-    "GetExportStatus":{
-      "name":"GetExportStatus",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"GetExportStatusRequest"},
-      "output":{"shape":"GetExportStatusResponse"},
-      "errors":[
-        {"shape":"AuthorizationErrorException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InvalidParameterException"},
-        {"shape":"InvalidParameterValueException"},
-        {"shape":"ServerInternalErrorException"}
-      ]
-    },
     "ListConfigurations":{
       "name":"ListConfigurations",
       "http":{
@@ -127,22 +127,6 @@
       },
       "input":{"shape":"ListConfigurationsRequest"},
       "output":{"shape":"ListConfigurationsResponse"},
-      "errors":[
-        {"shape":"AuthorizationErrorException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InvalidParameterException"},
-        {"shape":"InvalidParameterValueException"},
-        {"shape":"ServerInternalErrorException"}
-      ]
-    },
-    "RemoveConfiguration":{
-      "name":"RemoveConfiguration",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"RemoveConfigurationRequest"},
-      "output":{"shape":"RemoveConfigurationResponse"},
       "errors":[
         {"shape":"AuthorizationErrorException"},
         {"shape":"ResourceNotFoundException"},
@@ -183,17 +167,17 @@
     }
   },
   "shapes":{
-    "AgentConfigStatus":{
+    "AgentConfigurationStatus":{
       "type":"structure",
       "members":{
         "agentId":{"shape":"String"},
-        "configUpdated":{"shape":"Boolean"},
+        "operationSucceeded":{"shape":"Boolean"},
         "description":{"shape":"String"}
       }
     },
-    "AgentConfigStatusList":{
+    "AgentConfigurationStatusList":{
       "type":"list",
-      "member":{"shape":"AgentConfigStatus"}
+      "member":{"shape":"AgentConfigurationStatus"}
     },
     "AgentId":{"type":"string"},
     "AgentIds":{
@@ -237,22 +221,6 @@
       "type":"list",
       "member":{"shape":"AgentInfo"}
     },
-    "Attribute":{
-      "type":"structure",
-      "members":{
-        "Name":{"shape":"AttributeName"},
-        "Value":{"shape":"AttributeValue"}
-      }
-    },
-    "AttributeList":{
-      "type":"list",
-      "member":{
-        "shape":"Attribute",
-        "locationName":"attribute"
-      }
-    },
-    "AttributeName":{"type":"string"},
-    "AttributeValue":{"type":"string"},
     "AuthorizationErrorException":{
       "type":"structure",
       "members":{
@@ -262,17 +230,11 @@
     },
     "Boolean":{"type":"boolean"},
     "Condition":{"type":"string"},
-    "ConfigIdAttributesMap":{
-      "type":"map",
-      "key":{"shape":"ConfigurationId"},
-      "value":{"shape":"AttributeList"}
-    },
     "Configuration":{
       "type":"map",
       "key":{"shape":"String"},
       "value":{"shape":"String"}
     },
-    "ConfigurationExportId":{"type":"string"},
     "ConfigurationId":{"type":"string"},
     "ConfigurationIdList":{
       "type":"list",
@@ -292,7 +254,8 @@
         "configurationType":{"shape":"ConfigurationItemType"},
         "configurationId":{"shape":"ConfigurationId"},
         "key":{"shape":"TagKey"},
-        "value":{"shape":"TagValue"}
+        "value":{"shape":"TagValue"},
+        "timeOfCreation":{"shape":"TimeStamp"}
       }
     },
     "ConfigurationTagSet":{
@@ -306,6 +269,8 @@
       "type":"list",
       "member":{"shape":"Configuration"}
     },
+    "ConfigurationsDownloadUrl":{"type":"string"},
+    "ConfigurationsExportId":{"type":"string"},
     "CreateTagsRequest":{
       "type":"structure",
       "required":[
@@ -350,10 +315,47 @@
         "nextToken":{"shape":"NextToken"}
       }
     },
+    "DescribeConfigurationsAttribute":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"String"}
+    },
+    "DescribeConfigurationsAttributes":{
+      "type":"list",
+      "member":{"shape":"DescribeConfigurationsAttribute"}
+    },
+    "DescribeConfigurationsRequest":{
+      "type":"structure",
+      "required":["configurationIds"],
+      "members":{
+        "configurationIds":{"shape":"ConfigurationIdList"}
+      }
+    },
+    "DescribeConfigurationsResponse":{
+      "type":"structure",
+      "members":{
+        "configurations":{"shape":"DescribeConfigurationsAttributes"}
+      }
+    },
+    "DescribeExportConfigurationsRequest":{
+      "type":"structure",
+      "members":{
+        "exportIds":{"shape":"ExportIds"},
+        "maxResults":{"shape":"Integer"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeExportConfigurationsResponse":{
+      "type":"structure",
+      "members":{
+        "exportsInfo":{"shape":"ExportsInfo"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
     "DescribeTagsRequest":{
       "type":"structure",
       "members":{
-        "filter":{"shape":"TagFilters"},
+        "filters":{"shape":"TagFilters"},
         "maxResults":{"shape":"Integer"},
         "nextToken":{"shape":"NextToken"}
       }
@@ -368,13 +370,42 @@
     "ExportConfigurationsResponse":{
       "type":"structure",
       "members":{
-        "exportId":{"shape":"ConfigurationExportId"}
+        "exportId":{"shape":"ConfigurationsExportId"}
       }
     },
-    "ExportStatusMap":{
-      "type":"map",
-      "key":{"shape":"String"},
-      "value":{"shape":"String"}
+    "ExportIds":{
+      "type":"list",
+      "member":{"shape":"ConfigurationsExportId"}
+    },
+    "ExportInfo":{
+      "type":"structure",
+      "required":[
+        "exportId",
+        "exportStatus",
+        "statusMessage",
+        "exportRequestTime"
+      ],
+      "members":{
+        "exportId":{"shape":"ConfigurationsExportId"},
+        "exportStatus":{"shape":"ExportStatus"},
+        "statusMessage":{"shape":"ExportStatusMessage"},
+        "configurationsDownloadUrl":{"shape":"ConfigurationsDownloadUrl"},
+        "exportRequestTime":{"shape":"ExportRequestTime"}
+      }
+    },
+    "ExportRequestTime":{"type":"timestamp"},
+    "ExportStatus":{
+      "type":"string",
+      "enum":[
+        "FAILED",
+        "SUCCEEDED",
+        "IN_PROGRESS"
+      ]
+    },
+    "ExportStatusMessage":{"type":"string"},
+    "ExportsInfo":{
+      "type":"list",
+      "member":{"shape":"ExportInfo"}
     },
     "Filter":{
       "type":"structure",
@@ -401,33 +432,6 @@
     "Filters":{
       "type":"list",
       "member":{"shape":"Filter"}
-    },
-    "GetConfigurationAttributesRequest":{
-      "type":"structure",
-      "required":["configurationIds"],
-      "members":{
-        "configurationIds":{"shape":"ConfigurationIdList"}
-      }
-    },
-    "GetConfigurationAttributesResponse":{
-      "type":"structure",
-      "members":{
-        "configurations":{"shape":"ConfigIdAttributesMap"}
-      }
-    },
-    "GetExportStatusRequest":{
-      "type":"structure",
-      "required":["exportId"],
-      "members":{
-        "exportId":{"shape":"ConfigurationExportId"}
-      }
-    },
-    "GetExportStatusResponse":{
-      "type":"structure",
-      "members":{
-        "exportId":{"shape":"ConfigurationExportId"},
-        "exportStatusMap":{"shape":"ExportStatusMap"}
-      }
     },
     "Integer":{"type":"integer"},
     "InvalidParameterException":{
@@ -470,18 +474,6 @@
       },
       "exception":true
     },
-    "RemoveConfigurationRequest":{
-      "type":"structure",
-      "required":["configurationId"],
-      "members":{
-        "configurationId":{"shape":"ConfigurationId"}
-      }
-    },
-    "RemoveConfigurationResponse":{
-      "type":"structure",
-      "members":{
-      }
-    },
     "ResourceNotFoundException":{
       "type":"structure",
       "members":{
@@ -507,7 +499,7 @@
     "StartDataCollectionByAgentIdsResponse":{
       "type":"structure",
       "members":{
-        "agentsConfigStatus":{"shape":"AgentConfigStatusList"}
+        "agentsConfigurationStatus":{"shape":"AgentConfigurationStatusList"}
       }
     },
     "StopDataCollectionByAgentIdsRequest":{
@@ -520,7 +512,7 @@
     "StopDataCollectionByAgentIdsResponse":{
       "type":"structure",
       "members":{
-        "agentsConfigStatus":{"shape":"AgentConfigStatusList"}
+        "agentsConfigurationStatus":{"shape":"AgentConfigurationStatusList"}
       }
     },
     "String":{"type":"string"},
@@ -538,12 +530,12 @@
     "TagFilter":{
       "type":"structure",
       "required":[
-        "Name",
-        "Values"
+        "name",
+        "values"
       ],
       "members":{
-        "Name":{"shape":"FilterName"},
-        "Values":{"shape":"FilterValues"}
+        "name":{"shape":"FilterName"},
+        "values":{"shape":"FilterValues"}
       }
     },
     "TagFilters":{
@@ -558,6 +550,7 @@
         "locationName":"item"
       }
     },
-    "TagValue":{"type":"string"}
+    "TagValue":{"type":"string"},
+    "TimeStamp":{"type":"timestamp"}
   }
 }

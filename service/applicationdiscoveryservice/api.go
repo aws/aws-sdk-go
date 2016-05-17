@@ -5,6 +5,7 @@ package applicationdiscoveryservice
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
@@ -30,8 +31,9 @@ func (c *ApplicationDiscoveryService) CreateTagsRequest(input *CreateTagsInput) 
 	return
 }
 
-// Creates one or more tags for a configuration item. Tags are metadata that
-// help you categorize IT assets.
+// Creates one or more tags for configuration items. Tags are metadata that
+// help you categorize IT assets. This API accepts a list of multiple configuration
+// items.
 func (c *ApplicationDiscoveryService) CreateTags(input *CreateTagsInput) (*CreateTagsOutput, error) {
 	req, out := c.CreateTagsRequest(input)
 	err := req.Send()
@@ -58,7 +60,8 @@ func (c *ApplicationDiscoveryService) DeleteTagsRequest(input *DeleteTagsInput) 
 	return
 }
 
-// Deletes one or more tags associated with a configuration item.
+// Deletes the association between configuration items and one or more tags.
+// This API accepts a list of multiple configuration items.
 func (c *ApplicationDiscoveryService) DeleteTags(input *DeleteTagsInput) (*DeleteTagsOutput, error) {
 	req, out := c.DeleteTagsRequest(input)
 	err := req.Send()
@@ -93,6 +96,64 @@ func (c *ApplicationDiscoveryService) DescribeAgents(input *DescribeAgentsInput)
 	return out, err
 }
 
+const opDescribeConfigurations = "DescribeConfigurations"
+
+// DescribeConfigurationsRequest generates a request for the DescribeConfigurations operation.
+func (c *ApplicationDiscoveryService) DescribeConfigurationsRequest(input *DescribeConfigurationsInput) (req *request.Request, output *DescribeConfigurationsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeConfigurations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeConfigurationsInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeConfigurationsOutput{}
+	req.Data = output
+	return
+}
+
+// Retrieves a list of attributes for a specific configuration ID. For example,
+// the output for a server configuration item includes a list of attributes
+// about the server, including host name, operating system, number of network
+// cards, etc.
+func (c *ApplicationDiscoveryService) DescribeConfigurations(input *DescribeConfigurationsInput) (*DescribeConfigurationsOutput, error) {
+	req, out := c.DescribeConfigurationsRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDescribeExportConfigurations = "DescribeExportConfigurations"
+
+// DescribeExportConfigurationsRequest generates a request for the DescribeExportConfigurations operation.
+func (c *ApplicationDiscoveryService) DescribeExportConfigurationsRequest(input *DescribeExportConfigurationsInput) (req *request.Request, output *DescribeExportConfigurationsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeExportConfigurations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeExportConfigurationsInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeExportConfigurationsOutput{}
+	req.Data = output
+	return
+}
+
+// Retrieves the status of a given export process. You can retrieve status from
+// a maximum of 100 processes.
+func (c *ApplicationDiscoveryService) DescribeExportConfigurations(input *DescribeExportConfigurationsInput) (*DescribeExportConfigurationsOutput, error) {
+	req, out := c.DescribeExportConfigurationsRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opDescribeTags = "DescribeTags"
 
 // DescribeTagsRequest generates a request for the DescribeTags operation.
@@ -113,8 +174,8 @@ func (c *ApplicationDiscoveryService) DescribeTagsRequest(input *DescribeTagsInp
 	return
 }
 
-// Retrieve a list of configuration items that are tagged with a specific tag.
-// Or retrieve a list all tags assigned to a specific configuration item.
+// Retrieves a list of configuration items that are tagged with a specific tag.
+// Or retrieves a list of all tags assigned to a specific configuration item.
 func (c *ApplicationDiscoveryService) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutput, error) {
 	req, out := c.DescribeTagsRequest(input)
 	err := req.Send()
@@ -141,66 +202,13 @@ func (c *ApplicationDiscoveryService) ExportConfigurationsRequest(input *ExportC
 	return
 }
 
-// Exports the selected configurations to an Amazon S3 bucket.
+// Exports all discovered configuration data to an Amazon S3 bucket or an application
+// that enables you to view and evaluate the data. Data includes tags and tag
+// associations, processes, connections, servers, and system performance. This
+// API returns an export ID which you can query using the GetExportStatus API.
+// The system imposes a limit of two configuration exports in six hours.
 func (c *ApplicationDiscoveryService) ExportConfigurations(input *ExportConfigurationsInput) (*ExportConfigurationsOutput, error) {
 	req, out := c.ExportConfigurationsRequest(input)
-	err := req.Send()
-	return out, err
-}
-
-const opGetConfigurationAttributes = "GetConfigurationAttributes"
-
-// GetConfigurationAttributesRequest generates a request for the GetConfigurationAttributes operation.
-func (c *ApplicationDiscoveryService) GetConfigurationAttributesRequest(input *GetConfigurationAttributesInput) (req *request.Request, output *GetConfigurationAttributesOutput) {
-	op := &request.Operation{
-		Name:       opGetConfigurationAttributes,
-		HTTPMethod: "POST",
-		HTTPPath:   "/",
-	}
-
-	if input == nil {
-		input = &GetConfigurationAttributesInput{}
-	}
-
-	req = c.newRequest(op, input, output)
-	output = &GetConfigurationAttributesOutput{}
-	req.Data = output
-	return
-}
-
-// Retrieve a list of attributes for a specific configuration ID. For example,
-// the output for a server configuration item includes a list of attributes
-// about the server, including host name, operating system, number of network
-// cards, etc.
-func (c *ApplicationDiscoveryService) GetConfigurationAttributes(input *GetConfigurationAttributesInput) (*GetConfigurationAttributesOutput, error) {
-	req, out := c.GetConfigurationAttributesRequest(input)
-	err := req.Send()
-	return out, err
-}
-
-const opGetExportStatus = "GetExportStatus"
-
-// GetExportStatusRequest generates a request for the GetExportStatus operation.
-func (c *ApplicationDiscoveryService) GetExportStatusRequest(input *GetExportStatusInput) (req *request.Request, output *GetExportStatusOutput) {
-	op := &request.Operation{
-		Name:       opGetExportStatus,
-		HTTPMethod: "POST",
-		HTTPPath:   "/",
-	}
-
-	if input == nil {
-		input = &GetExportStatusInput{}
-	}
-
-	req = c.newRequest(op, input, output)
-	output = &GetExportStatusOutput{}
-	req.Data = output
-	return
-}
-
-// Retrieves the status of a given export process.
-func (c *ApplicationDiscoveryService) GetExportStatus(input *GetExportStatusInput) (*GetExportStatusOutput, error) {
-	req, out := c.GetExportStatusRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -225,36 +233,10 @@ func (c *ApplicationDiscoveryService) ListConfigurationsRequest(input *ListConfi
 	return
 }
 
-// Retrieve a list of configurations items according to the criteria you specify
+// Retrieves a list of configurations items according to the criteria you specify
 // in a filter. The filter criteria identify relationship requirements.
 func (c *ApplicationDiscoveryService) ListConfigurations(input *ListConfigurationsInput) (*ListConfigurationsOutput, error) {
 	req, out := c.ListConfigurationsRequest(input)
-	err := req.Send()
-	return out, err
-}
-
-const opRemoveConfiguration = "RemoveConfiguration"
-
-// RemoveConfigurationRequest generates a request for the RemoveConfiguration operation.
-func (c *ApplicationDiscoveryService) RemoveConfigurationRequest(input *RemoveConfigurationInput) (req *request.Request, output *RemoveConfigurationOutput) {
-	op := &request.Operation{
-		Name:       opRemoveConfiguration,
-		HTTPMethod: "POST",
-		HTTPPath:   "/",
-	}
-
-	if input == nil {
-		input = &RemoveConfigurationInput{}
-	}
-
-	req = c.newRequest(op, input, output)
-	output = &RemoveConfigurationOutput{}
-	req.Data = output
-	return
-}
-
-func (c *ApplicationDiscoveryService) RemoveConfiguration(input *RemoveConfigurationInput) (*RemoveConfigurationOutput, error) {
-	req, out := c.RemoveConfigurationRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -280,7 +262,7 @@ func (c *ApplicationDiscoveryService) StartDataCollectionByAgentIdsRequest(input
 }
 
 // Instructs the specified agents to start collecting data. Agents can reside
-// on host servers or virtual machines in your data center or on AWS EC2 instances.
+// on host servers or virtual machines in your data center.
 func (c *ApplicationDiscoveryService) StartDataCollectionByAgentIds(input *StartDataCollectionByAgentIdsInput) (*StartDataCollectionByAgentIdsOutput, error) {
 	req, out := c.StartDataCollectionByAgentIdsRequest(input)
 	err := req.Send()
@@ -317,32 +299,34 @@ func (c *ApplicationDiscoveryService) StopDataCollectionByAgentIds(input *StopDa
 // Information about agents that were instructed to start collecting data. Information
 // includes the agent ID, a description of the operation, and whether or not
 // the agent configuration was updated.
-type AgentConfigStatus struct {
+type AgentConfigurationStatus struct {
 	_ struct{} `type:"structure"`
 
 	// The agent ID.
 	AgentId *string `locationName:"agentId" type:"string"`
 
-	// Information about whether or not the agent configuration was updated.
-	ConfigUpdated *bool `locationName:"configUpdated" type:"boolean"`
-
 	// A description of the operation performed.
 	Description *string `locationName:"description" type:"string"`
+
+	// Information about the status of the StartDataCollection and StopDataCollection
+	// operations. The system has recorded the data collection operation. The agent
+	// receives this command the next time it polls for a new command.
+	OperationSucceeded *bool `locationName:"operationSucceeded" type:"boolean"`
 }
 
 // String returns the string representation
-func (s AgentConfigStatus) String() string {
+func (s AgentConfigurationStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s AgentConfigStatus) GoString() string {
+func (s AgentConfigurationStatus) GoString() string {
 	return s.String()
 }
 
 // Information about agents associated with the user’s AWS account. Information
-// includes agent IDs, IP addresses, MAC addresses, agent health, hostname where
-// the agent resides, and agent version for each agent.
+// includes agent IDs, IP addresses, media access control (MAC) addresses, agent
+// health, hostname where the agent resides, and agent version for each agent.
 type AgentInfo struct {
 	_ struct{} `type:"structure"`
 
@@ -352,16 +336,17 @@ type AgentInfo struct {
 	// Network details about the host where the agent resides.
 	AgentNetworkInfoList []*AgentNetworkInfo `locationName:"agentNetworkInfoList" type:"list"`
 
+	// This data type is currently not valid.
 	ConnectorId *string `locationName:"connectorId" type:"string"`
 
 	// The health of the agent.
 	Health *string `locationName:"health" type:"string" enum:"AgentStatus"`
 
-	// The name of the host where the agent resides. The host can be a server, virtual
-	// machine, or an AWS EC2 instance.
+	// The name of the host where the agent resides. The host can be a server or
+	// virtual machine.
 	HostName *string `locationName:"hostName" type:"string"`
 
-	// The agent version
+	// The agent version.
 	Version *string `locationName:"version" type:"string"`
 }
 
@@ -396,29 +381,6 @@ func (s AgentNetworkInfo) GoString() string {
 	return s.String()
 }
 
-// A specific detail about a configuration item. For example, the output for
-// a server configuration item includes a list of attributes about the server,
-// including host name, operating system, number of network cards, etc.
-type Attribute struct {
-	_ struct{} `type:"structure"`
-
-	// The name of the attribute.
-	Name *string `type:"string"`
-
-	// A specific attribute type. For example key = serverType and value = web server.
-	Value *string `type:"string"`
-}
-
-// String returns the string representation
-func (s Attribute) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation
-func (s Attribute) GoString() string {
-	return s.String()
-}
-
 // Tags for a configuration item. Tags are metadata that help you categorize
 // IT assets.
 type ConfigurationTag struct {
@@ -428,11 +390,15 @@ type ConfigurationTag struct {
 	// of keys and values.
 	ConfigurationId *string `locationName:"configurationId" type:"string"`
 
-	// A descriptor. For example, serverType.
+	// A type of IT asset that you want to tag.
 	ConfigurationType *string `locationName:"configurationType" type:"string" enum:"ConfigurationItemType"`
 
-	// A type of tag to filter on. For example serverType.
+	// A type of tag to filter on. For example, serverType.
 	Key *string `locationName:"key" type:"string"`
+
+	// The time the configuration tag was created in Coordinated Universal Time
+	// (UTC).
+	TimeOfCreation *time.Time `locationName:"timeOfCreation" type:"timestamp" timestampFormat:"unix"`
 
 	// A value to filter on. For example key = serverType and value = web server.
 	Value *string `locationName:"value" type:"string"`
@@ -455,7 +421,7 @@ type CreateTagsInput struct {
 	ConfigurationIds []*string `locationName:"configurationIds" type:"list" required:"true"`
 
 	// Tags that you want to associate with one or more configuration items. Specify
-	// the tags that you want to create in a key,value format. For example:
+	// the tags that you want to create in a key-value format. For example:
 	//
 	//  {"key": "serverType", "value": "webServer"}
 	Tags []*Tag `locationName:"tags" locationNameList:"item" type:"list" required:"true"`
@@ -518,7 +484,7 @@ type DeleteTagsInput struct {
 	ConfigurationIds []*string `locationName:"configurationIds" type:"list" required:"true"`
 
 	// Tags that you want to delete from one or more configuration items. Specify
-	// the tags that you want to delete in a key, value format. For example:
+	// the tags that you want to delete in a key-value format. For example:
 	//
 	//  {"key": "serverType", "value": "webServer"}
 	Tags []*Tag `locationName:"tags" locationNameList:"item" type:"list"`
@@ -579,7 +545,7 @@ type DescribeAgentsInput struct {
 	// account.
 	AgentIds []*string `locationName:"agentIds" type:"list"`
 
-	// The total number of items to return. The maximum value is 100.
+	// The total number of agents to return. The maximum value is 100.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
 	// A token to start the list. Use this token to get the next set of results.
@@ -601,8 +567,8 @@ type DescribeAgentsOutput struct {
 
 	// Lists AWS agents by ID or lists all agents associated with your user account
 	// if you did not specify an agent ID. The output includes agent IDs, IP addresses,
-	// MAC addresses, agent health, host name where the agent resides, and the version
-	// number of each agent.
+	// media access control (MAC) addresses, agent health, host name where the agent
+	// resides, and the version number of each agent.
 	AgentsInfo []*AgentInfo `locationName:"agentsInfo" type:"list"`
 
 	// The call returns a token. Use this token to get the next set of results.
@@ -619,16 +585,110 @@ func (s DescribeAgentsOutput) GoString() string {
 	return s.String()
 }
 
+type DescribeConfigurationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// One or more configuration IDs.
+	ConfigurationIds []*string `locationName:"configurationIds" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeConfigurationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeConfigurationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeConfigurationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeConfigurationsInput"}
+	if s.ConfigurationIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigurationIds"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+type DescribeConfigurationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A key in the response map. The value is an array of data.
+	Configurations []map[string]*string `locationName:"configurations" type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeConfigurationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeConfigurationsOutput) GoString() string {
+	return s.String()
+}
+
+type DescribeExportConfigurationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier that you can use to query the export status.
+	ExportIds []*string `locationName:"exportIds" type:"list"`
+
+	// The maximum number of results that you want to display as a part of the query.
+	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+
+	// A token to get the next set of results. For example, if you specified 100
+	// IDs for DescribeConfigurationsRequest$configurationIds but set DescribeExportConfigurationsRequest$maxResults
+	// to 10, you will get results in a set of 10. Use the token in the query to
+	// get the next set of 10.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeExportConfigurationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeExportConfigurationsInput) GoString() string {
+	return s.String()
+}
+
+type DescribeExportConfigurationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns export details. When the status is complete, the response includes
+	// a URL for an Amazon S3 bucket where you can view the data in a CSV file.
+	ExportsInfo []*ExportInfo `locationName:"exportsInfo" type:"list"`
+
+	// A token to get the next set of results. For example, if you specified 100
+	// IDs for DescribeConfigurationsRequest$configurationIds but set DescribeExportConfigurationsRequest$maxResults
+	// to 10, you will get results in a set of 10. Use the token in the query to
+	// get the next set of 10.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeExportConfigurationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeExportConfigurationsOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeTagsInput struct {
 	_ struct{} `type:"structure"`
 
-	// You can filter the list using a key, value format. For example:
-	//
-	//  {"key": "serverType", "value": "webServer"}
-	//
-	// You can separate these items by using logical operators. Allowed filters
-	// include tagkey, tagValue, and configid.
-	Filter []*TagFilter `locationName:"filter" type:"list"`
+	// You can filter the list using a key-value format. You can separate these
+	// items by using logical operators. Allowed filters include tagKey, tagValue,
+	// and configurationId.
+	Filters []*TagFilter `locationName:"filters" type:"list"`
 
 	// The total number of items to return. The maximum value is 100.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
@@ -650,13 +710,13 @@ func (s DescribeTagsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeTagsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeTagsInput"}
-	if s.Filter != nil {
-		for i, v := range s.Filter {
+	if s.Filters != nil {
+		for i, v := range s.Filters {
 			if v == nil {
 				continue
 			}
 			if err := v.Validate(); err != nil {
-				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filter", i), err.(request.ErrInvalidParams))
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -673,8 +733,8 @@ type DescribeTagsOutput struct {
 	// The call returns a token. Use this token to get the next set of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// Depending on the input, a list of configuration items tagged with a specific
-	// tag, or a list of tags for a specific configuration item.
+	// Depending on the input, this is a list of configuration items tagged with
+	// a specific tag, or a list of tags for a specific configuration item.
 	Tags []*ConfigurationTag `locationName:"tags" locationNameList:"item" type:"list"`
 }
 
@@ -705,7 +765,7 @@ func (s ExportConfigurationsInput) GoString() string {
 type ExportConfigurationsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique identifier which you can use to query the export status.
+	// A unique identifier that you can use to query the export status.
 	ExportId *string `locationName:"exportId" type:"string"`
 }
 
@@ -719,17 +779,129 @@ func (s ExportConfigurationsOutput) GoString() string {
 	return s.String()
 }
 
-// A means of limiting responses.
+// Information regarding the export status of the discovered data. The value
+// is an array of objects.
+type ExportInfo struct {
+	_ struct{} `type:"structure"`
+
+	// A URL for an Amazon S3 bucket where you can review the configuration data.
+	// The URL is displayed only if the export succeeded.
+	ConfigurationsDownloadUrl *string `locationName:"configurationsDownloadUrl" type:"string"`
+
+	// A unique identifier that you can use to query the export.
+	ExportId *string `locationName:"exportId" type:"string" required:"true"`
+
+	// The time the configuration data export was initiated.
+	ExportRequestTime *time.Time `locationName:"exportRequestTime" type:"timestamp" timestampFormat:"unix" required:"true"`
+
+	// The status of the configuration data export. The status can succeed, fail,
+	// or be in-progress.
+	ExportStatus *string `locationName:"exportStatus" type:"string" required:"true" enum:"ExportStatus"`
+
+	// Helpful status messages for API callers. For example: Too many exports in
+	// the last 6 hours. Export in progress. Export was successful.
+	StatusMessage *string `locationName:"statusMessage" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ExportInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExportInfo) GoString() string {
+	return s.String()
+}
+
+// A filter that can use conditional operators.
 type Filter struct {
 	_ struct{} `type:"structure"`
 
-	// A conditional operator for the filter.
+	// A conditional operator. The following operators are valid: EQUALS, NOT_EQUALS,
+	// CONTAINS, NOT_CONTAINS. If you specify multiple filters, the system utilizes
+	// all filters as though concatenated by AND. If you specify multiple values
+	// for a particular filter, the system differentiates the values using OR. Calling
+	// either DescribeConfigurations or ListConfigurations returns attributes of
+	// matching configuration items.
 	Condition *string `locationName:"condition" type:"string" required:"true"`
 
-	// The name of the filter you want to use.
+	// The name of the filter. The following filter names are allowed for SERVER
+	// configuration items.
+	//
+	//  Server     server.hostName
+	//
+	//    server.osName
+	//
+	//    server.osVersion
+	//
+	//    server.configurationid
+	//
+	//    server.agentid
+	//
+	//   The name of the filter. The following filter names are allowed for PROCESS
+	// configuration items.
+	//
+	//  Process     process.configurationid
+	//
+	//    process.name
+	//
+	//    process.commandLine
+	//
+	//    server.configurationid
+	//
+	//    server.hostName
+	//
+	//    server.osName
+	//
+	//    server.osVersion
+	//
+	//    server.agentId
+	//
+	//   The name of the filter. The following filter names are allowed for CONNECTION
+	// configuration items.
+	//
+	//  Connection     connection.sourceIp
+	//
+	//    connection.destinationIp
+	//
+	//    connection.destinationPort
+	//
+	//    sourceProcess.configurationId
+	//
+	//    sourceProcess.name
+	//
+	//    sourceProcess.commandLine
+	//
+	//    destinationProcess.configurationId
+	//
+	//    destinationProcess.name
+	//
+	//    destinationProcess.commandLine
+	//
+	//    sourceServer.configurationId
+	//
+	//    sourceServer.hostName
+	//
+	//    sourceServer.osName
+	//
+	//    sourceServer.osVersion
+	//
+	//    sourceServer.agentId
+	//
+	//    destinationServer.configurationId
+	//
+	//    destinationServer.hostName
+	//
+	//    destinationServer.osName
+	//
+	//    destinationServer.osVersion
+	//
+	//    destinationServer.agentId
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// The value you want to filter on.
+	// A string value that you want to filter on. For example, if you choose the
+	// destinationServer.osVersion filter name, you could specify Ubuntu for the
+	// value.
 	Values []*string `locationName:"values" locationNameList:"item" type:"list" required:"true"`
 }
 
@@ -762,115 +934,17 @@ func (s *Filter) Validate() error {
 	return nil
 }
 
-type GetConfigurationAttributesInput struct {
-	_ struct{} `type:"structure"`
-
-	// One or more configuration IDs.
-	ConfigurationIds []*string `locationName:"configurationIds" type:"list" required:"true"`
-}
-
-// String returns the string representation
-func (s GetConfigurationAttributesInput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation
-func (s GetConfigurationAttributesInput) GoString() string {
-	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *GetConfigurationAttributesInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "GetConfigurationAttributesInput"}
-	if s.ConfigurationIds == nil {
-		invalidParams.Add(request.NewErrParamRequired("ConfigurationIds"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
-}
-
-type GetConfigurationAttributesOutput struct {
-	_ struct{} `type:"structure"`
-
-	// Returns configuration details, including the configuration ID, attribute
-	// names, and attribute values.
-	Configurations map[string][]*Attribute `locationName:"configurations" type:"map"`
-}
-
-// String returns the string representation
-func (s GetConfigurationAttributesOutput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation
-func (s GetConfigurationAttributesOutput) GoString() string {
-	return s.String()
-}
-
-type GetExportStatusInput struct {
-	_ struct{} `type:"structure"`
-
-	// A unique identifier which you can use to query the export status.
-	ExportId *string `locationName:"exportId" type:"string" required:"true"`
-}
-
-// String returns the string representation
-func (s GetExportStatusInput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation
-func (s GetExportStatusInput) GoString() string {
-	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *GetExportStatusInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "GetExportStatusInput"}
-	if s.ExportId == nil {
-		invalidParams.Add(request.NewErrParamRequired("ExportId"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
-}
-
-type GetExportStatusOutput struct {
-	_ struct{} `type:"structure"`
-
-	// Returns configuration details, including the configuration ID, attribute
-	// names, and attribute values.
-	ExportId *string `locationName:"exportId" type:"string"`
-
-	// Returns export details. When the status is complete, the response includes
-	// a URL for an Amazon S3 bucket where you can view the data in a CSV file.
-	ExportStatusMap map[string]*string `locationName:"exportStatusMap" type:"map"`
-}
-
-// String returns the string representation
-func (s GetExportStatusOutput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation
-func (s GetExportStatusOutput) GoString() string {
-	return s.String()
-}
-
 type ListConfigurationsInput struct {
 	_ struct{} `type:"structure"`
 
 	// A valid configuration identified by the Discovery Service.
 	ConfigurationType *string `locationName:"configurationType" type:"string" required:"true" enum:"ConfigurationItemType"`
 
-	// You can filter the list using a key, value format. For example:
+	// You can filter the list using a key-value format. For example:
 	//
 	//  {"key": "serverType", "value": "webServer"}
+	//
+	// You can separate these items by using logical operators.
 	Filters []*Filter `locationName:"filters" type:"list"`
 
 	// The total number of items to return. The maximum value is 100.
@@ -916,7 +990,8 @@ func (s *ListConfigurationsInput) Validate() error {
 type ListConfigurationsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Returns a list of configuration item IDs.
+	// Returns configuration details, including the configuration ID, attribute
+	// names, and attribute values.
 	Configurations []map[string]*string `locationName:"configurations" type:"list"`
 
 	// The call returns a token. Use this token to get the next set of results.
@@ -933,53 +1008,16 @@ func (s ListConfigurationsOutput) GoString() string {
 	return s.String()
 }
 
-type RemoveConfigurationInput struct {
-	_ struct{} `type:"structure"`
-
-	ConfigurationId *string `locationName:"configurationId" type:"string" required:"true"`
-}
-
-// String returns the string representation
-func (s RemoveConfigurationInput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation
-func (s RemoveConfigurationInput) GoString() string {
-	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *RemoveConfigurationInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "RemoveConfigurationInput"}
-	if s.ConfigurationId == nil {
-		invalidParams.Add(request.NewErrParamRequired("ConfigurationId"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
-}
-
-type RemoveConfigurationOutput struct {
-	_ struct{} `type:"structure"`
-}
-
-// String returns the string representation
-func (s RemoveConfigurationOutput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation
-func (s RemoveConfigurationOutput) GoString() string {
-	return s.String()
-}
-
 type StartDataCollectionByAgentIdsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The IDs of the agents that you want to start collecting data.
+	// The IDs of the agents that you want to start collecting data. If you send
+	// a request to an AWS agent ID that you do not have permission to contact,
+	// according to your AWS account, the service does not throw an exception. Instead,
+	// it returns the error in the Description field. If you send a request to multiple
+	// agents and you do not have permission to contact some of those agents, the
+	// system does not throw an exception. Instead, the system shows Failed in the
+	// Description field.
 	AgentIds []*string `locationName:"agentIds" type:"list" required:"true"`
 }
 
@@ -1012,7 +1050,7 @@ type StartDataCollectionByAgentIdsOutput struct {
 	// Information about agents that were instructed to start collecting data. Information
 	// includes the agent ID, a description of the operation performed, and whether
 	// or not the agent configuration was updated.
-	AgentsConfigStatus []*AgentConfigStatus `locationName:"agentsConfigStatus" type:"list"`
+	AgentsConfigurationStatus []*AgentConfigurationStatus `locationName:"agentsConfigurationStatus" type:"list"`
 }
 
 // String returns the string representation
@@ -1061,7 +1099,7 @@ type StopDataCollectionByAgentIdsOutput struct {
 	// Information about agents that were instructed to stop collecting data. Information
 	// includes the agent ID, a description of the operation performed, and whether
 	// or not the agent configuration was updated.
-	AgentsConfigStatus []*AgentConfigStatus `locationName:"agentsConfigStatus" type:"list"`
+	AgentsConfigurationStatus []*AgentConfigurationStatus `locationName:"agentsConfigurationStatus" type:"list"`
 }
 
 // String returns the string representation
@@ -1111,15 +1149,15 @@ func (s *Tag) Validate() error {
 	return nil
 }
 
-// A means of limiting responses when searching for tags.
+// The name of a tag filter. Valid names are: tagKey, tagValue, configurationId.
 type TagFilter struct {
 	_ struct{} `type:"structure"`
 
 	// A name of a tag filter.
-	Name *string `type:"string" required:"true"`
+	Name *string `locationName:"name" type:"string" required:"true"`
 
 	// Values of a tag filter.
-	Values []*string `locationNameList:"item" type:"list" required:"true"`
+	Values []*string `locationName:"values" locationNameList:"item" type:"list" required:"true"`
 }
 
 // String returns the string representation
@@ -1170,4 +1208,13 @@ const (
 	ConfigurationItemTypeProcess = "PROCESS"
 	// @enum ConfigurationItemType
 	ConfigurationItemTypeConnection = "CONNECTION"
+)
+
+const (
+	// @enum ExportStatus
+	ExportStatusFailed = "FAILED"
+	// @enum ExportStatus
+	ExportStatusSucceeded = "SUCCEEDED"
+	// @enum ExportStatus
+	ExportStatusInProgress = "IN_PROGRESS"
 )

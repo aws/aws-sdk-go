@@ -97,11 +97,57 @@ func ExampleApplicationDiscoveryService_DescribeAgents() {
 	fmt.Println(resp)
 }
 
+func ExampleApplicationDiscoveryService_DescribeConfigurations() {
+	svc := applicationdiscoveryservice.New(session.New())
+
+	params := &applicationdiscoveryservice.DescribeConfigurationsInput{
+		ConfigurationIds: []*string{ // Required
+			aws.String("ConfigurationId"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.DescribeConfigurations(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleApplicationDiscoveryService_DescribeExportConfigurations() {
+	svc := applicationdiscoveryservice.New(session.New())
+
+	params := &applicationdiscoveryservice.DescribeExportConfigurationsInput{
+		ExportIds: []*string{
+			aws.String("ConfigurationsExportId"), // Required
+			// More values...
+		},
+		MaxResults: aws.Int64(1),
+		NextToken:  aws.String("NextToken"),
+	}
+	resp, err := svc.DescribeExportConfigurations(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleApplicationDiscoveryService_DescribeTags() {
 	svc := applicationdiscoveryservice.New(session.New())
 
 	params := &applicationdiscoveryservice.DescribeTagsInput{
-		Filter: []*applicationdiscoveryservice.TagFilter{
+		Filters: []*applicationdiscoveryservice.TagFilter{
 			{ // Required
 				Name: aws.String("FilterName"), // Required
 				Values: []*string{ // Required
@@ -144,47 +190,6 @@ func ExampleApplicationDiscoveryService_ExportConfigurations() {
 	fmt.Println(resp)
 }
 
-func ExampleApplicationDiscoveryService_GetConfigurationAttributes() {
-	svc := applicationdiscoveryservice.New(session.New())
-
-	params := &applicationdiscoveryservice.GetConfigurationAttributesInput{
-		ConfigurationIds: []*string{ // Required
-			aws.String("ConfigurationId"), // Required
-			// More values...
-		},
-	}
-	resp, err := svc.GetConfigurationAttributes(params)
-
-	if err != nil {
-		// Print the error, cast err to awserr.Error to get the Code and
-		// Message from an error.
-		fmt.Println(err.Error())
-		return
-	}
-
-	// Pretty-print the response data.
-	fmt.Println(resp)
-}
-
-func ExampleApplicationDiscoveryService_GetExportStatus() {
-	svc := applicationdiscoveryservice.New(session.New())
-
-	params := &applicationdiscoveryservice.GetExportStatusInput{
-		ExportId: aws.String("ConfigurationExportId"), // Required
-	}
-	resp, err := svc.GetExportStatus(params)
-
-	if err != nil {
-		// Print the error, cast err to awserr.Error to get the Code and
-		// Message from an error.
-		fmt.Println(err.Error())
-		return
-	}
-
-	// Pretty-print the response data.
-	fmt.Println(resp)
-}
-
 func ExampleApplicationDiscoveryService_ListConfigurations() {
 	svc := applicationdiscoveryservice.New(session.New())
 
@@ -205,25 +210,6 @@ func ExampleApplicationDiscoveryService_ListConfigurations() {
 		NextToken:  aws.String("NextToken"),
 	}
 	resp, err := svc.ListConfigurations(params)
-
-	if err != nil {
-		// Print the error, cast err to awserr.Error to get the Code and
-		// Message from an error.
-		fmt.Println(err.Error())
-		return
-	}
-
-	// Pretty-print the response data.
-	fmt.Println(resp)
-}
-
-func ExampleApplicationDiscoveryService_RemoveConfiguration() {
-	svc := applicationdiscoveryservice.New(session.New())
-
-	params := &applicationdiscoveryservice.RemoveConfigurationInput{
-		ConfigurationId: aws.String("ConfigurationId"), // Required
-	}
-	resp, err := svc.RemoveConfiguration(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
