@@ -15,6 +15,32 @@ import (
 var _ time.Duration
 var _ bytes.Buffer
 
+func ExampleWorkSpaces_CreateTags() {
+	svc := workspaces.New(session.New())
+
+	params := &workspaces.CreateTagsInput{
+		ResourceId: aws.String("NonEmptyString"), // Required
+		Tags: []*workspaces.Tag{ // Required
+			{ // Required
+				Key:   aws.String("TagKey"), // Required
+				Value: aws.String("TagValue"),
+			},
+			// More values...
+		},
+	}
+	resp, err := svc.CreateTags(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleWorkSpaces_CreateWorkspaces() {
 	svc := workspaces.New(session.New())
 
@@ -25,6 +51,13 @@ func ExampleWorkSpaces_CreateWorkspaces() {
 				DirectoryId:                 aws.String("DirectoryId"), // Required
 				UserName:                    aws.String("UserName"),    // Required
 				RootVolumeEncryptionEnabled: aws.Bool(true),
+				Tags: []*workspaces.Tag{
+					{ // Required
+						Key:   aws.String("TagKey"), // Required
+						Value: aws.String("TagValue"),
+					},
+					// More values...
+				},
 				UserVolumeEncryptionEnabled: aws.Bool(true),
 				VolumeEncryptionKey:         aws.String("VolumeEncryptionKey"),
 			},
@@ -32,6 +65,48 @@ func ExampleWorkSpaces_CreateWorkspaces() {
 		},
 	}
 	resp, err := svc.CreateWorkspaces(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleWorkSpaces_DeleteTags() {
+	svc := workspaces.New(session.New())
+
+	params := &workspaces.DeleteTagsInput{
+		ResourceId: aws.String("NonEmptyString"), // Required
+		TagKeys: []*string{ // Required
+			aws.String("NonEmptyString"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.DeleteTags(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleWorkSpaces_DescribeTags() {
+	svc := workspaces.New(session.New())
+
+	params := &workspaces.DescribeTagsInput{
+		ResourceId: aws.String("NonEmptyString"), // Required
+	}
+	resp, err := svc.DescribeTags(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and

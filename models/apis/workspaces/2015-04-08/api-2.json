@@ -4,12 +4,26 @@
     "apiVersion":"2015-04-08",
     "endpointPrefix":"workspaces",
     "jsonVersion":"1.1",
+    "protocol":"json",
     "serviceFullName":"Amazon WorkSpaces",
     "signatureVersion":"v4",
-    "targetPrefix":"WorkspacesService",
-    "protocol":"json"
+    "targetPrefix":"WorkspacesService"
   },
   "operations":{
+    "CreateTags":{
+      "name":"CreateTags",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateTagsRequest"},
+      "output":{"shape":"CreateTagsResult"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"ResourceLimitExceededException"}
+      ]
+    },
     "CreateWorkspaces":{
       "name":"CreateWorkspaces",
       "http":{
@@ -19,10 +33,33 @@
       "input":{"shape":"CreateWorkspacesRequest"},
       "output":{"shape":"CreateWorkspacesResult"},
       "errors":[
-        {
-          "shape":"ResourceLimitExceededException",
-          "exception":true
-        }
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"InvalidParameterValuesException"}
+      ]
+    },
+    "DeleteTags":{
+      "name":"DeleteTags",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteTagsRequest"},
+      "output":{"shape":"DeleteTagsResult"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValuesException"}
+      ]
+    },
+    "DescribeTags":{
+      "name":"DescribeTags",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeTagsRequest"},
+      "output":{"shape":"DescribeTagsResult"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DescribeWorkspaceBundles":{
@@ -34,10 +71,7 @@
       "input":{"shape":"DescribeWorkspaceBundlesRequest"},
       "output":{"shape":"DescribeWorkspaceBundlesResult"},
       "errors":[
-        {
-          "shape":"InvalidParameterValuesException",
-          "exception":true
-        }
+        {"shape":"InvalidParameterValuesException"}
       ]
     },
     "DescribeWorkspaceDirectories":{
@@ -49,10 +83,7 @@
       "input":{"shape":"DescribeWorkspaceDirectoriesRequest"},
       "output":{"shape":"DescribeWorkspaceDirectoriesResult"},
       "errors":[
-        {
-          "shape":"InvalidParameterValuesException",
-          "exception":true
-        }
+        {"shape":"InvalidParameterValuesException"}
       ]
     },
     "DescribeWorkspaces":{
@@ -64,14 +95,8 @@
       "input":{"shape":"DescribeWorkspacesRequest"},
       "output":{"shape":"DescribeWorkspacesResult"},
       "errors":[
-        {
-          "shape":"InvalidParameterValuesException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceUnavailableException",
-          "exception":true
-        }
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"ResourceUnavailableException"}
       ]
     },
     "RebootWorkspaces":{
@@ -116,8 +141,8 @@
     "BundleIdList":{
       "type":"list",
       "member":{"shape":"BundleId"},
-      "min":1,
-      "max":25
+      "max":25,
+      "min":1
     },
     "BundleList":{
       "type":"list",
@@ -139,6 +164,22 @@
       }
     },
     "ComputerName":{"type":"string"},
+    "CreateTagsRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceId",
+        "Tags"
+      ],
+      "members":{
+        "ResourceId":{"shape":"NonEmptyString"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateTagsResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "CreateWorkspacesRequest":{
       "type":"structure",
       "required":["Workspaces"],
@@ -162,6 +203,35 @@
         "DefaultOu":{"shape":"DefaultOu"},
         "CustomSecurityGroupId":{"shape":"SecurityGroupId"},
         "UserEnabledAsLocalAdministrator":{"shape":"BooleanObject"}
+      }
+    },
+    "DeleteTagsRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceId",
+        "TagKeys"
+      ],
+      "members":{
+        "ResourceId":{"shape":"NonEmptyString"},
+        "TagKeys":{"shape":"TagKeyList"}
+      }
+    },
+    "DeleteTagsResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DescribeTagsRequest":{
+      "type":"structure",
+      "required":["ResourceId"],
+      "members":{
+        "ResourceId":{"shape":"NonEmptyString"}
+      }
+    },
+    "DescribeTagsResult":{
+      "type":"structure",
+      "members":{
+        "TagList":{"shape":"TagList"}
       }
     },
     "DescribeWorkspaceBundlesRequest":{
@@ -219,8 +289,8 @@
     "DirectoryIdList":{
       "type":"list",
       "member":{"shape":"DirectoryId"},
-      "min":1,
-      "max":25
+      "max":25,
+      "min":1
     },
     "DirectoryList":{
       "type":"list",
@@ -275,8 +345,8 @@
     "IpAddress":{"type":"string"},
     "Limit":{
       "type":"integer",
-      "min":1,
-      "max":25
+      "max":25,
+      "min":1
     },
     "NonEmptyString":{
       "type":"string",
@@ -284,8 +354,8 @@
     },
     "PaginationToken":{
       "type":"string",
-      "min":1,
-      "max":63
+      "max":63,
+      "min":1
     },
     "RebootRequest":{
       "type":"structure",
@@ -297,8 +367,8 @@
     "RebootWorkspaceRequests":{
       "type":"list",
       "member":{"shape":"RebootRequest"},
-      "min":1,
-      "max":25
+      "max":25,
+      "min":1
     },
     "RebootWorkspacesRequest":{
       "type":"structure",
@@ -323,8 +393,8 @@
     "RebuildWorkspaceRequests":{
       "type":"list",
       "member":{"shape":"RebuildRequest"},
-      "min":1,
-      "max":1
+      "max":1,
+      "min":1
     },
     "RebuildWorkspacesRequest":{
       "type":"structure",
@@ -341,13 +411,21 @@
     },
     "RegistrationCode":{
       "type":"string",
-      "min":1,
-      "max":20
+      "max":20,
+      "min":1
     },
     "ResourceLimitExceededException":{
       "type":"structure",
       "members":{
         "message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
+    },
+    "ResourceNotFoundException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ExceptionMessage"},
+        "ResourceId":{"shape":"NonEmptyString"}
       },
       "exception":true
     },
@@ -371,6 +449,31 @@
       "type":"list",
       "member":{"shape":"SubnetId"}
     },
+    "Tag":{
+      "type":"structure",
+      "required":["Key"],
+      "members":{
+        "Key":{"shape":"TagKey"},
+        "Value":{"shape":"TagValue"}
+      }
+    },
+    "TagKey":{
+      "type":"string",
+      "max":127,
+      "min":1
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"NonEmptyString"}
+    },
+    "TagList":{
+      "type":"list",
+      "member":{"shape":"Tag"}
+    },
+    "TagValue":{
+      "type":"string",
+      "max":255
+    },
     "TerminateRequest":{
       "type":"structure",
       "required":["WorkspaceId"],
@@ -381,8 +484,8 @@
     "TerminateWorkspaceRequests":{
       "type":"list",
       "member":{"shape":"TerminateRequest"},
-      "min":1,
-      "max":25
+      "max":25,
+      "min":1
     },
     "TerminateWorkspacesRequest":{
       "type":"structure",
@@ -399,8 +502,8 @@
     },
     "UserName":{
       "type":"string",
-      "min":1,
-      "max":63
+      "max":63,
+      "min":1
     },
     "UserStorage":{
       "type":"structure",
@@ -480,8 +583,8 @@
     "WorkspaceIdList":{
       "type":"list",
       "member":{"shape":"WorkspaceId"},
-      "min":1,
-      "max":25
+      "max":25,
+      "min":1
     },
     "WorkspaceList":{
       "type":"list",
@@ -500,14 +603,15 @@
         "BundleId":{"shape":"BundleId"},
         "VolumeEncryptionKey":{"shape":"VolumeEncryptionKey"},
         "UserVolumeEncryptionEnabled":{"shape":"BooleanObject"},
-        "RootVolumeEncryptionEnabled":{"shape":"BooleanObject"}
+        "RootVolumeEncryptionEnabled":{"shape":"BooleanObject"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "WorkspaceRequestList":{
       "type":"list",
       "member":{"shape":"WorkspaceRequest"},
-      "min":1,
-      "max":25
+      "max":25,
+      "min":1
     },
     "WorkspaceState":{
       "type":"string",
