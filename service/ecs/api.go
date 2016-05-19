@@ -585,7 +585,11 @@ func (c *ECS) ListTaskDefinitionFamiliesRequest(input *ListTaskDefinitionFamilie
 
 // Returns a list of task definition families that are registered to your account
 // (which may include task definition families that no longer have any ACTIVE
-// task definitions). You can filter the results with the familyPrefix parameter.
+// task definition revisions).
+//
+// You can filter out task definition families that do not contain any ACTIVE
+// task definition revisions by setting the status parameter to ACTIVE. You
+// can also filter the results with the familyPrefix parameter.
 func (c *ECS) ListTaskDefinitionFamilies(input *ListTaskDefinitionFamiliesInput) (*ListTaskDefinitionFamiliesOutput, error) {
 	req, out := c.ListTaskDefinitionFamiliesRequest(input)
 	err := req.Send()
@@ -1616,26 +1620,23 @@ type CreateServiceInput struct {
 	// keep running on your cluster.
 	DesiredCount *int64 `locationName:"desiredCount" type:"integer" required:"true"`
 
-	// A load balancer object representing the load balancer to use with your service.
-	//
-	// For Elastic Load Balancing standard load balancers, this object must contain
-	// the load balancer name, the container name (as it appears in a container
-	// definition), and the container port to access from the load balancer. When
-	// a task from this service is placed on a container instance, the container
-	// instance is registered with the load balancer specified here.
-	//
-	// For Elastic Load Balancing application load balancers, this object must
-	// contain the load balancer target group ARN, the container name (as it appears
-	// in a container definition), and the container port to access from the load
-	// balancer. When a task from this service is placed on a container instance,
-	// the container instance and port combination is registered as a target in
-	// the target group specified here.
+	// A list of load balancer objects, containing the load balancer name, the container
+	// name (as it appears in a container definition), and the container port to
+	// access from the load balancer.
 	LoadBalancers []*LoadBalancer `locationName:"loadBalancers" type:"list"`
 
-	// The name or full Amazon Resource Name (ARN) of the IAM role that allows your
-	// Amazon ECS container agent to make calls to your load balancer on your behalf.
-	// This parameter is only required if you are using a load balancer with your
-	// service.
+	// The name or full Amazon Resource Name (ARN) of the IAM role that allows Amazon
+	// ECS to make calls to your load balancer on your behalf. This parameter is
+	// required if you are using a load balancer with your service. If you specify
+	// the role parameter, you must also specify a load balancer object with the
+	// loadBalancers parameter.
+	//
+	// If your specified role has a path other than /, then you must either specify
+	// the full role ARN (this is recommended) or prefix the role name with the
+	// path. For example, if a role with the name bar has a path of /foo/ then you
+	// would specify /foo/bar as the role name. For more information, see Friendly
+	// Names and Paths (http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-friendly-names)
+	// in the IAM User Guide.
 	Role *string `locationName:"role" type:"string"`
 
 	// The name of your service. Up to 255 letters (uppercase and lowercase), numbers,
@@ -2401,6 +2402,9 @@ type ListClustersInput struct {
 	// where maxResults was used and the results exceeded the value of that parameter.
 	// Pagination continues from the end of the previous results that returned the
 	// nextToken value. This value is null when there are no more results to return.
+	//
+	//  This token should be treated as an opaque identifier that is only used
+	// to retrieve the next items in a list and not for other programmatic purposes.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -2461,6 +2465,9 @@ type ListContainerInstancesInput struct {
 	// parameter. Pagination continues from the end of the previous results that
 	// returned the nextToken value. This value is null when there are no more results
 	// to return.
+	//
+	//  This token should be treated as an opaque identifier that is only used
+	// to retrieve the next items in a list and not for other programmatic purposes.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -2519,6 +2526,9 @@ type ListServicesInput struct {
 	// where maxResults was used and the results exceeded the value of that parameter.
 	// Pagination continues from the end of the previous results that returned the
 	// nextToken value. This value is null when there are no more results to return.
+	//
+	//  This token should be treated as an opaque identifier that is only used
+	// to retrieve the next items in a list and not for other programmatic purposes.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -2579,7 +2589,19 @@ type ListTaskDefinitionFamiliesInput struct {
 	// parameter. Pagination continues from the end of the previous results that
 	// returned the nextToken value. This value is null when there are no more results
 	// to return.
+	//
+	//  This token should be treated as an opaque identifier that is only used
+	// to retrieve the next items in a list and not for other programmatic purposes.
 	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The task definition family status with which to filter the ListTaskDefinitionFamilies
+	// results. By default, both ACTIVE and INACTIVE task definition families are
+	// listed. If this parameter is set to ACTIVE, only task definition families
+	// that have an ACTIVE task definition revision are returned. If this parameter
+	// is set to INACTIVE, only task definition families that do not have any ACTIVE
+	// task definition revisions are returned. If you paginate the resulting output,
+	// be sure to keep the status value constant in each subsequent request.
+	Status *string `locationName:"status" type:"string" enum:"TaskDefinitionFamilyStatus"`
 }
 
 // String returns the string representation
@@ -2638,6 +2660,9 @@ type ListTaskDefinitionsInput struct {
 	// parameter. Pagination continues from the end of the previous results that
 	// returned the nextToken value. This value is null when there are no more results
 	// to return.
+	//
+	//  This token should be treated as an opaque identifier that is only used
+	// to retrieve the next items in a list and not for other programmatic purposes.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The order in which to sort the results. Valid values are ASC and DESC. By
@@ -2726,6 +2751,9 @@ type ListTasksInput struct {
 	// where maxResults was used and the results exceeded the value of that parameter.
 	// Pagination continues from the end of the previous results that returned the
 	// nextToken value. This value is null when there are no more results to return.
+	//
+	//  This token should be treated as an opaque identifier that is only used
+	// to retrieve the next items in a list and not for other programmatic purposes.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The name of the service with which to filter the ListTasks results. Specifying
@@ -2802,11 +2830,22 @@ func (s LoadBalancer) GoString() string {
 type LogConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The log driver to use for the container. This parameter requires version
-	// 1.18 of the Docker Remote API or greater on your container instance. To check
-	// the Docker Remote API version on your container instance, log into your container
-	// instance and run the following command: sudo docker version | grep "Server
-	// API version"
+	// The log driver to use for the container. The valid values listed for this
+	// parameter are log drivers that the Amazon ECS container agent can communicate
+	// with by default.
+	//
+	//  If you have a custom driver that is not listed above that you would like
+	// to work with the Amazon ECS container agent, you can fork the Amazon ECS
+	// container agent project that is available on GitHub (https://github.com/aws/amazon-ecs-agent)
+	// and customize it to work with that driver. We encourage you to submit pull
+	// requests for changes that you would like to have included. However, Amazon
+	// Web Services does not currently provide support for running modified copies
+	// of this software.
+	//
+	//  This parameter requires version 1.18 of the Docker Remote API or greater
+	// on your container instance. To check the Docker Remote API version on your
+	// container instance, log into your container instance and run the following
+	// command: sudo docker version | grep "Server API version"
 	LogDriver *string `locationName:"logDriver" type:"string" required:"true" enum:"LogDriver"`
 
 	// The configuration options to send to the log driver. This parameter requires
@@ -2908,8 +2947,8 @@ type PortMapping struct {
 	// assigned host port. If you specify a container port and not a host port,
 	// your container automatically receives a host port in the ephemeral port range
 	// (for more information, see hostPort). Port mappings that are automatically
-	// assigned in this way do not count toward the 50 reserved ports limit of a
-	// container instance.
+	// assigned in this way do not count toward the 100 reserved ports limit of
+	// a container instance.
 	ContainerPort *int64 `locationName:"containerPort" type:"integer"`
 
 	// The port number on the container instance to reserve for your container.
@@ -2931,9 +2970,9 @@ type PortMapping struct {
 	// specified in a running task is also reserved while the task is running (after
 	// a task stops, the host port is released).The current reserved ports are displayed
 	// in the remainingResources of DescribeContainerInstances output, and a container
-	// instance may have up to 50 reserved ports at a time, including the default
-	// reserved ports (automatically assigned ports do not count toward the 50 reserved
-	// ports limit).
+	// instance may have up to 100 reserved ports at a time, including the default
+	// reserved ports (automatically assigned ports do not count toward the 100
+	// reserved ports limit).
 	HostPort *int64 `locationName:"hostPort" type:"integer"`
 
 	// The protocol used for the port mapping. Valid values are tcp and udp. The
@@ -3167,7 +3206,8 @@ type RunTaskInput struct {
 	// trigger a task to run a batch process job, you could apply a unique identifier
 	// for that job to your task with the startedBy parameter. You can then identify
 	// which tasks belong to that job by filtering the results of a ListTasks call
-	// with the startedBy value.
+	// with the startedBy value. Up to 36 letters (uppercase and lowercase), numbers,
+	// hyphens, and underscores are allowed.
 	//
 	// If a task is started by an Amazon ECS service, then the startedBy parameter
 	// contains the deployment ID of the service that starts it.
@@ -3230,6 +3270,7 @@ type Service struct {
 	// The Amazon Resource Name (ARN) of the cluster that hosts the service.
 	ClusterArn *string `locationName:"clusterArn" type:"string"`
 
+	// The Unix time in seconds and milliseconds when the service was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"unix"`
 
 	// Optional deployment parameters that control how many tasks run during the
@@ -3248,9 +3289,9 @@ type Service struct {
 	// are displayed.
 	Events []*ServiceEvent `locationName:"events" type:"list"`
 
-	// A list of Elastic Load Balancing load balancer objects, containing the load
-	// balancer name, the container name (as it appears in a container definition),
-	// and the container port to access from the load balancer.
+	// A list of load balancer objects, containing the load balancer name, the container
+	// name (as it appears in a container definition), and the container port to
+	// access from the load balancer.
 	LoadBalancers []*LoadBalancer `locationName:"loadBalancers" type:"list"`
 
 	// The number of tasks in the cluster that are in the PENDING state.
@@ -3258,7 +3299,7 @@ type Service struct {
 
 	// The Amazon Resource Name (ARN) of the IAM role associated with the service
 	// that allows the Amazon ECS container agent to register container instances
-	// with an Elastic Load Balancing load balancer.
+	// with a load balancer.
 	RoleArn *string `locationName:"roleArn" type:"string"`
 
 	// The number of tasks in the cluster that are in the RUNNING state.
@@ -3349,7 +3390,8 @@ type StartTaskInput struct {
 	// trigger a task to run a batch process job, you could apply a unique identifier
 	// for that job to your task with the startedBy parameter. You can then identify
 	// which tasks belong to that job by filtering the results of a ListTasks call
-	// with the startedBy value.
+	// with the startedBy value. Up to 36 letters (uppercase and lowercase), numbers,
+	// hyphens, and underscores are allowed.
 	//
 	// If a task is started by an Amazon ECS service, then the startedBy parameter
 	// contains the deployment ID of the service that starts it.
@@ -3972,6 +4014,15 @@ const (
 	SortOrderAsc = "ASC"
 	// @enum SortOrder
 	SortOrderDesc = "DESC"
+)
+
+const (
+	// @enum TaskDefinitionFamilyStatus
+	TaskDefinitionFamilyStatusActive = "ACTIVE"
+	// @enum TaskDefinitionFamilyStatus
+	TaskDefinitionFamilyStatusInactive = "INACTIVE"
+	// @enum TaskDefinitionFamilyStatus
+	TaskDefinitionFamilyStatusAll = "ALL"
 )
 
 const (

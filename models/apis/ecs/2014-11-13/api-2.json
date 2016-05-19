@@ -878,6 +878,7 @@
       "type":"structure",
       "members":{
         "familyPrefix":{"shape":"String"},
+        "status":{"shape":"TaskDefinitionFamilyStatus"},
         "nextToken":{"shape":"String"},
         "maxResults":{"shape":"BoxedInteger"}
       }
@@ -1250,6 +1251,14 @@
         "status":{"shape":"TaskDefinitionStatus"},
         "requiresAttributes":{"shape":"RequiresAttributes"}
       }
+    },
+    "TaskDefinitionFamilyStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "INACTIVE",
+        "ALL"
+      ]
     },
     "TaskDefinitionStatus":{
       "type":"string",
