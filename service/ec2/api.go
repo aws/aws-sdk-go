@@ -27763,6 +27763,14 @@ const (
 	// @enum InstanceType
 	InstanceTypeCr18xlarge = "cr1.8xlarge"
 	// @enum InstanceType
+	InstanceTypeX14xlarge = "x1.4xlarge"
+	// @enum InstanceType
+	InstanceTypeX18xlarge = "x1.8xlarge"
+	// @enum InstanceType
+	InstanceTypeX116xlarge = "x1.16xlarge"
+	// @enum InstanceType
+	InstanceTypeX132xlarge = "x1.32xlarge"
+	// @enum InstanceType
 	InstanceTypeI2Xlarge = "i2.xlarge"
 	// @enum InstanceType
 	InstanceTypeI22xlarge = "i2.2xlarge"
