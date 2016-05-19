@@ -97,6 +97,9 @@ func ExampleFirehose_CreateDeliveryStream() {
 				LogGroupName:  aws.String("LogGroupName"),
 				LogStreamName: aws.String("LogStreamName"),
 			},
+			RetryOptions: &firehose.RedshiftRetryOptions{
+				DurationInSeconds: aws.Int64(1),
+			},
 		},
 		S3DestinationConfiguration: &firehose.S3DestinationConfiguration{
 			BucketARN: aws.String("BucketARN"), // Required
@@ -300,7 +303,10 @@ func ExampleFirehose_UpdateDestination() {
 				DataTableColumns: aws.String("DataTableColumns"),
 			},
 			Password: aws.String("Password"),
-			RoleARN:  aws.String("RoleARN"),
+			RetryOptions: &firehose.RedshiftRetryOptions{
+				DurationInSeconds: aws.Int64(1),
+			},
+			RoleARN: aws.String("RoleARN"),
 			S3Update: &firehose.S3DestinationUpdate{
 				BucketARN: aws.String("BucketARN"),
 				BufferingHints: &firehose.BufferingHints{

@@ -560,6 +560,7 @@
         "CopyCommand":{"shape":"CopyCommand"},
         "Username":{"shape":"Username"},
         "Password":{"shape":"Password"},
+        "RetryOptions":{"shape":"RedshiftRetryOptions"},
         "S3Configuration":{"shape":"S3DestinationConfiguration"},
         "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"}
       }
@@ -578,6 +579,7 @@
         "ClusterJDBCURL":{"shape":"ClusterJDBCURL"},
         "CopyCommand":{"shape":"CopyCommand"},
         "Username":{"shape":"Username"},
+        "RetryOptions":{"shape":"RedshiftRetryOptions"},
         "S3DestinationDescription":{"shape":"S3DestinationDescription"},
         "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"}
       }
@@ -590,8 +592,20 @@
         "CopyCommand":{"shape":"CopyCommand"},
         "Username":{"shape":"Username"},
         "Password":{"shape":"Password"},
+        "RetryOptions":{"shape":"RedshiftRetryOptions"},
         "S3Update":{"shape":"S3DestinationUpdate"},
         "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"}
+      }
+    },
+    "RedshiftRetryDurationInSeconds":{
+      "type":"integer",
+      "max":7200,
+      "min":0
+    },
+    "RedshiftRetryOptions":{
+      "type":"structure",
+      "members":{
+        "DurationInSeconds":{"shape":"RedshiftRetryDurationInSeconds"}
       }
     },
     "ResourceInUseException":{
