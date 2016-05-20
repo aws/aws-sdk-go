@@ -16,9 +16,13 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/client"
+	"github.com/aws/aws-sdk-go/aws/client/metadata"
 	"github.com/aws/aws-sdk-go/aws/credentials"
+	"github.com/aws/aws-sdk-go/aws/defaults"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/awstesting"
+	"github.com/aws/aws-sdk-go/private/endpoints"
 )
 
 type testData struct {
@@ -377,4 +381,19 @@ func TestRequestRecoverTimeoutWithNilResponse(t *testing.T) {
 	assert.Nil(t, err)
 	assert.Equal(t, 1, int(r.RetryCount))
 	assert.Equal(t, "valid", out.Data)
+}
+
+func TestRequestInvalidEndpoint(t *testing.T) {
+	endpoint, _ := endpoints.NormalizeEndpoint("localhost:80 ", "test-service", "test-region", false)
+	r := request.New(
+		aws.Config{},
+		metadata.ClientInfo{Endpoint: endpoint},
+		defaults.Handlers(),
+		client.DefaultRetryer{},
+		&request.Operation{},
+		nil,
+		nil,
+	)
+
+	assert.Error(t, r.Error)
 }
