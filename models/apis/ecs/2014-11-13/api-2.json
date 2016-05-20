@@ -878,6 +878,7 @@
       "type":"structure",
       "members":{
         "familyPrefix":{"shape":"String"},
+        "status":{"shape":"TaskDefinitionFamilyStatus"},
         "nextToken":{"shape":"String"},
         "maxResults":{"shape":"BoxedInteger"}
       }
@@ -958,7 +959,8 @@
         "syslog",
         "journald",
         "gelf",
-        "fluentd"
+        "fluentd",
+        "awslogs"
       ]
     },
     "Long":{"type":"long"},
@@ -1107,7 +1109,8 @@
         "deploymentConfiguration":{"shape":"DeploymentConfiguration"},
         "deployments":{"shape":"Deployments"},
         "roleArn":{"shape":"String"},
-        "events":{"shape":"ServiceEvents"}
+        "events":{"shape":"ServiceEvents"},
+        "createdAt":{"shape":"Timestamp"}
       }
     },
     "ServiceEvent":{
@@ -1248,6 +1251,14 @@
         "status":{"shape":"TaskDefinitionStatus"},
         "requiresAttributes":{"shape":"RequiresAttributes"}
       }
+    },
+    "TaskDefinitionFamilyStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "INACTIVE",
+        "ALL"
+      ]
     },
     "TaskDefinitionStatus":{
       "type":"string",

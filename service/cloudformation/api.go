@@ -37,7 +37,7 @@ func (c *CloudFormation) CancelUpdateStackRequest(input *CancelUpdateStackInput)
 // Cancels an update on the specified stack. If the call completes successfully,
 // the stack rolls back the update and reverts to the previous stack configuration.
 //
-// You can cancel only stacks that are in the UPDATE_IN_PROGRESS state.
+//  You can cancel only stacks that are in the UPDATE_IN_PROGRESS state.
 func (c *CloudFormation) CancelUpdateStack(input *CancelUpdateStackInput) (*CancelUpdateStackOutput, error) {
 	req, out := c.CancelUpdateStackRequest(input)
 	err := req.Send()
@@ -298,12 +298,12 @@ func (c *CloudFormation) DescribeStackEventsRequest(input *DescribeStackEventsIn
 	return
 }
 
-// Returns all stack related events for a specified stack. For more information
-// about a stack's event history, go to Stacks (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/concept-stack.html)
+// Returns all stack related events for a specified stack in reverse chronological
+// order. For more information about a stack's event history, go to Stacks (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/concept-stack.html)
 // in the AWS CloudFormation User Guide.
 //
-// You can list events for stacks that have failed to create or have been deleted
-// by specifying the unique stack identifier (stack ID).
+//  You can list events for stacks that have failed to create or have been
+// deleted by specifying the unique stack identifier (stack ID).
 func (c *CloudFormation) DescribeStackEvents(input *DescribeStackEventsInput) (*DescribeStackEventsOutput, error) {
 	req, out := c.DescribeStackEventsRequest(input)
 	err := req.Send()
@@ -373,17 +373,18 @@ func (c *CloudFormation) DescribeStackResourcesRequest(input *DescribeStackResou
 // returned. If PhysicalResourceId is specified, the associated resources of
 // the stack that the resource belongs to are returned.
 //
-// Only the first 100 resources will be returned. If your stack has more resources
-// than this, you should use ListStackResources instead. For deleted stacks,
-// DescribeStackResources returns resource information for up to 90 days after
-// the stack has been deleted.
+//  Only the first 100 resources will be returned. If your stack has more resources
+// than this, you should use ListStackResources instead.
+//
+//  For deleted stacks, DescribeStackResources returns resource information
+// for up to 90 days after the stack has been deleted.
 //
 // You must specify either StackName or PhysicalResourceId, but not both. In
 // addition, you can specify LogicalResourceId to filter the returned result.
 // For more information about resources, the LogicalResourceId and PhysicalResourceId,
 // go to the AWS CloudFormation User Guide (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/).
 //
-// A ValidationError is returned if you specify both StackName and PhysicalResourceId
+//  A ValidationError is returned if you specify both StackName and PhysicalResourceId
 // in the same request.
 func (c *CloudFormation) DescribeStackResources(input *DescribeStackResourcesInput) (*DescribeStackResourcesOutput, error) {
 	req, out := c.DescribeStackResourcesRequest(input)
@@ -554,7 +555,7 @@ func (c *CloudFormation) GetTemplateRequest(input *GetTemplateInput) (req *reque
 // For deleted stacks, GetTemplate returns the template for up to 90 days after
 // the stack has been deleted.
 //
-//  If the template does not exist, a ValidationError is returned.
+//   If the template does not exist, a ValidationError is returned.
 func (c *CloudFormation) GetTemplate(input *GetTemplateInput) (*GetTemplateOutput, error) {
 	req, out := c.GetTemplateRequest(input)
 	err := req.Send()
@@ -947,6 +948,13 @@ type ChangeSetSummary struct {
 	// Descriptive information about the change set.
 	Description *string `min:"1" type:"string"`
 
+	// If the change set execution status is AVAILABLE, you can execute the change
+	// set. If you can’t execute the change set, the status indicates why. For example,
+	// a change set might be in an UNAVAILABLE state because AWS CloudFormation
+	// is still creating it or in an OBSOLETE state because the stack was already
+	// updated.
+	ExecutionStatus *string `type:"string" enum:"ExecutionStatus"`
+
 	// The ID of the stack with which the change set is associated.
 	StackId *string `type:"string"`
 
@@ -1210,7 +1218,7 @@ type CreateStackInput struct {
 	DisableRollback *bool `type:"boolean"`
 
 	// The Simple Notification Service (SNS) topic ARNs to publish stack related
-	// events. You can find your SNS topic ARNs using the SNS console (http://console.aws.amazon.com/sns)
+	// events. You can find your SNS topic ARNs using the SNS console (https://console.aws.amazon.com/sns)
 	// or your Command Line Interface (CLI).
 	NotificationARNs []*string `type:"list"`
 
@@ -1230,9 +1238,9 @@ type CreateStackInput struct {
 	// create stack action, such as AWS::EC2::Instance, AWS::EC2::*, or Custom::MyCustomInstance.
 	// Use the following syntax to describe template resource types: AWS::* (for
 	// all AWS resource), Custom::* (for all custom resources), Custom::logical_ID
-	// (for a specific custom resource), AWS::service_name::* (for all resources
+	//  (for a specific custom resource), AWS::service_name::* (for all resources
 	// of a particular AWS service), and AWS::service_name::resource_logical_ID
-	// (for a specific AWS resource).
+	//  (for a specific AWS resource).
 	//
 	// If the list of resource types doesn't include a resource that you're creating,
 	// the stack creation fails. By default, AWS CloudFormation grants permissions
@@ -1245,8 +1253,8 @@ type CreateStackInput struct {
 	// The name that is associated with the stack. The name must be unique in the
 	// region in which you are creating the stack.
 	//
-	// A stack name can contain only alphanumeric characters (case sensitive) and
-	// hyphens. It must start with an alphabetic character and cannot be longer
+	//  A stack name can contain only alphanumeric characters (case sensitive)
+	// and hyphens. It must start with an alphabetic character and cannot be longer
 	// than 128 characters.
 	StackName *string `type:"string" required:"true"`
 
@@ -1584,6 +1592,13 @@ type DescribeChangeSetOutput struct {
 	// Information about the change set.
 	Description *string `min:"1" type:"string"`
 
+	// If the change set execution status is AVAILABLE, you can execute the change
+	// set. If you can’t execute the change set, the status indicates why. For example,
+	// a change set might be in an UNAVAILABLE state because AWS CloudFormation
+	// is still creating it or in an OBSOLETE state because the stack was already
+	// updated.
+	ExecutionStatus *string `type:"string" enum:"ExecutionStatus"`
+
 	// If the output exceeds 1 MB, a string that identifies the next page of changes.
 	// If there is no additional page, this value is null.
 	NextToken *string `min:"1" type:"string"`
@@ -1637,9 +1652,12 @@ type DescribeStackEventsInput struct {
 	// The name or the unique stack ID that is associated with the stack, which
 	// are not always interchangeable:
 	//
-	//  Running stacks: You can specify either the stack's name or its unique stack
-	// ID. Deleted stacks: You must specify the unique stack ID.  Default: There
-	// is no default value.
+	//   Running stacks: You can specify either the stack's name or its unique
+	// stack ID.
+	//
+	//   Deleted stacks: You must specify the unique stack ID.
+	//
+	//   Default: There is no default value.
 	StackName *string `type:"string"`
 }
 
@@ -1700,9 +1718,12 @@ type DescribeStackResourceInput struct {
 	// The name or the unique stack ID that is associated with the stack, which
 	// are not always interchangeable:
 	//
-	//  Running stacks: You can specify either the stack's name or its unique stack
-	// ID. Deleted stacks: You must specify the unique stack ID.  Default: There
-	// is no default value.
+	//   Running stacks: You can specify either the stack's name or its unique
+	// stack ID.
+	//
+	//   Deleted stacks: You must specify the unique stack ID.
+	//
+	//   Default: There is no default value.
 	StackName *string `type:"string" required:"true"`
 }
 
@@ -1777,9 +1798,12 @@ type DescribeStackResourcesInput struct {
 	// The name or the unique stack ID that is associated with the stack, which
 	// are not always interchangeable:
 	//
-	//  Running stacks: You can specify either the stack's name or its unique stack
-	// ID. Deleted stacks: You must specify the unique stack ID.  Default: There
-	// is no default value.
+	//   Running stacks: You can specify either the stack's name or its unique
+	// stack ID.
+	//
+	//   Deleted stacks: You must specify the unique stack ID.
+	//
+	//   Default: There is no default value.
 	//
 	// Required: Conditional. If you do not specify StackName, you must specify
 	// PhysicalResourceId.
@@ -1824,9 +1848,12 @@ type DescribeStacksInput struct {
 	// The name or the unique stack ID that is associated with the stack, which
 	// are not always interchangeable:
 	//
-	//  Running stacks: You can specify either the stack's name or its unique stack
-	// ID. Deleted stacks: You must specify the unique stack ID.  Default: There
-	// is no default value.
+	//   Running stacks: You can specify either the stack's name or its unique
+	// stack ID.
+	//
+	//   Deleted stacks: You must specify the unique stack ID.
+	//
+	//   Default: There is no default value.
 	StackName *string `type:"string"`
 }
 
@@ -1875,6 +1902,7 @@ func (s DescribeStacksOutput) GoString() string {
 	return s.String()
 }
 
+// The input for an EstimateTemplateCost action.
 type EstimateTemplateCostInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2061,9 +2089,12 @@ type GetTemplateInput struct {
 	// The name or the unique stack ID that is associated with the stack, which
 	// are not always interchangeable:
 	//
-	//  Running stacks: You can specify either the stack's name or its unique stack
-	// ID. Deleted stacks: You must specify the unique stack ID.  Default: There
-	// is no default value.
+	//   Running stacks: You can specify either the stack's name or its unique
+	// stack ID.
+	//
+	//   Deleted stacks: You must specify the unique stack ID.
+	//
+	//   Default: There is no default value.
 	StackName *string `type:"string" required:"true"`
 }
 
@@ -2291,9 +2322,12 @@ type ListStackResourcesInput struct {
 	// The name or the unique stack ID that is associated with the stack, which
 	// are not always interchangeable:
 	//
-	//  Running stacks: You can specify either the stack's name or its unique stack
-	// ID. Deleted stacks: You must specify the unique stack ID.  Default: There
-	// is no default value.
+	//   Running stacks: You can specify either the stack's name or its unique
+	// stack ID.
+	//
+	//   Deleted stacks: You must specify the unique stack ID.
+	//
+	//   Default: There is no default value.
 	StackName *string `type:"string" required:"true"`
 }
 
@@ -2578,17 +2612,23 @@ type ResourceChangeDetail struct {
 	// The group to which the CausingEntity value belongs. There are five entity
 	// groups:
 	//
-	//  ResourceReference entities are Ref intrinsic functions that refer to resources
-	// in the template, such as { "Ref" : "MyEC2InstanceResource" }. ParameterReference
-	// entities are Ref intrinsic functions that get template parameter values,
-	// such as { "Ref" : "MyPasswordParameter" }. ResourceAttribute entities are
-	// Fn::GetAtt intrinsic functions that get resource attribute values, such as
-	// { "Fn::GetAtt" : [ "MyEC2InstanceResource", "PublicDnsName" ] }. DirectModification
-	// entities are changes that are made directly to the template. Automatic entities
-	// are AWS::CloudFormation::Stack resource types, which are also known as nested
-	// stacks. If you made no changes to the AWS::CloudFormation::Stack resource,
-	// AWS CloudFormation sets the ChangeSource to Automatic because the nested
-	// stack's template might have changed. Changes to a nested stack's template
+	//    ResourceReference entities are Ref intrinsic functions that refer to
+	// resources in the template, such as { "Ref" : "MyEC2InstanceResource" }.
+	//
+	//    ParameterReference entities are Ref intrinsic functions that get template
+	// parameter values, such as { "Ref" : "MyPasswordParameter" }.
+	//
+	//    ResourceAttribute entities are Fn::GetAtt intrinsic functions that get
+	// resource attribute values, such as { "Fn::GetAtt" : [ "MyEC2InstanceResource",
+	// "PublicDnsName" ] }.
+	//
+	//    DirectModification entities are changes that are made directly to the
+	// template.
+	//
+	//    Automatic entities are AWS::CloudFormation::Stack resource types, which
+	// are also known as nested stacks. If you made no changes to the AWS::CloudFormation::Stack
+	// resource, AWS CloudFormation sets the ChangeSource to Automatic because the
+	// nested stack's template might have changed. Changes to a nested stack's template
 	// aren't visible to AWS CloudFormation until you run an update on the parent
 	// stack.
 	ChangeSource *string `type:"string" enum:"ChangeSource"`
@@ -2809,7 +2849,9 @@ type Stack struct {
 
 	// Boolean to enable or disable rollback on stack creation failures:
 	//
-	//   true: disable rollback false: enable rollback
+	//    true: disable rollback
+	//
+	//    false: enable rollback
 	DisableRollback *bool `type:"boolean"`
 
 	// The time the stack was last updated. This field will only be returned if
@@ -3126,7 +3168,7 @@ func (s TemplateParameter) GoString() string {
 	return s.String()
 }
 
-// The input for UpdateStack action.
+// The input for an UpdateStack action.
 type UpdateStackInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3284,7 +3326,7 @@ func (s *UpdateStackInput) Validate() error {
 	return nil
 }
 
-// The output for a UpdateStack action.
+// The output for an UpdateStack action.
 type UpdateStackOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3433,6 +3475,21 @@ const (
 	EvaluationTypeStatic = "Static"
 	// @enum EvaluationType
 	EvaluationTypeDynamic = "Dynamic"
+)
+
+const (
+	// @enum ExecutionStatus
+	ExecutionStatusUnavailable = "UNAVAILABLE"
+	// @enum ExecutionStatus
+	ExecutionStatusAvailable = "AVAILABLE"
+	// @enum ExecutionStatus
+	ExecutionStatusExecuteInProgress = "EXECUTE_IN_PROGRESS"
+	// @enum ExecutionStatus
+	ExecutionStatusExecuteComplete = "EXECUTE_COMPLETE"
+	// @enum ExecutionStatus
+	ExecutionStatusExecuteFailed = "EXECUTE_FAILED"
+	// @enum ExecutionStatus
+	ExecutionStatusObsolete = "OBSOLETE"
 )
 
 const (

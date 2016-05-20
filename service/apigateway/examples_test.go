@@ -1192,6 +1192,7 @@ func ExampleAPIGateway_PutIntegration() {
 		CacheNamespace:        aws.String("String"),
 		Credentials:           aws.String("String"),
 		IntegrationHttpMethod: aws.String("String"),
+		PassthroughBehavior:   aws.String("String"),
 		RequestParameters: map[string]*string{
 			"Key": aws.String("String"), // Required
 			// More values...

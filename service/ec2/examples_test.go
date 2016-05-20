@@ -3003,6 +3003,29 @@ func ExampleEC2_DescribeScheduledInstances() {
 	fmt.Println(resp)
 }
 
+func ExampleEC2_DescribeSecurityGroupReferences() {
+	svc := ec2.New(session.New())
+
+	params := &ec2.DescribeSecurityGroupReferencesInput{
+		GroupId: []*string{ // Required
+			aws.String("String"), // Required
+			// More values...
+		},
+		DryRun: aws.Bool(true),
+	}
+	resp, err := svc.DescribeSecurityGroupReferences(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleEC2_DescribeSecurityGroups() {
 	svc := ec2.New(session.New())
 
@@ -3257,6 +3280,28 @@ func ExampleEC2_DescribeSpotPriceHistory() {
 		StartTime: aws.Time(time.Now()),
 	}
 	resp, err := svc.DescribeSpotPriceHistory(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleEC2_DescribeStaleSecurityGroups() {
+	svc := ec2.New(session.New())
+
+	params := &ec2.DescribeStaleSecurityGroupsInput{
+		VpcId:      aws.String("String"), // Required
+		DryRun:     aws.Bool(true),
+		MaxResults: aws.Int64(1),
+		NextToken:  aws.String("NextToken"),
+	}
+	resp, err := svc.DescribeStaleSecurityGroups(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and

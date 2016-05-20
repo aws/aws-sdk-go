@@ -98,9 +98,10 @@ func ExampleKMS_CreateKey() {
 	svc := kms.New(session.New())
 
 	params := &kms.CreateKeyInput{
-		Description: aws.String("DescriptionType"),
-		KeyUsage:    aws.String("KeyUsageType"),
-		Policy:      aws.String("PolicyType"),
+		BypassPolicyLockoutSafetyCheck: aws.Bool(true),
+		Description:                    aws.String("DescriptionType"),
+		KeyUsage:                       aws.String("KeyUsageType"),
+		Policy:                         aws.String("PolicyType"),
 	}
 	resp, err := svc.CreateKey(params)
 
@@ -511,9 +512,10 @@ func ExampleKMS_PutKeyPolicy() {
 	svc := kms.New(session.New())
 
 	params := &kms.PutKeyPolicyInput{
-		KeyId:      aws.String("KeyIdType"),      // Required
-		Policy:     aws.String("PolicyType"),     // Required
-		PolicyName: aws.String("PolicyNameType"), // Required
+		KeyId:                          aws.String("KeyIdType"),      // Required
+		Policy:                         aws.String("PolicyType"),     // Required
+		PolicyName:                     aws.String("PolicyNameType"), // Required
+		BypassPolicyLockoutSafetyCheck: aws.Bool(true),
 	}
 	resp, err := svc.PutKeyPolicy(params)
 

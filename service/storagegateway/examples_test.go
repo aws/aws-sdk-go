@@ -813,6 +813,30 @@ func ExampleStorageGateway_ListTagsForResource() {
 	fmt.Println(resp)
 }
 
+func ExampleStorageGateway_ListTapes() {
+	svc := storagegateway.New(session.New())
+
+	params := &storagegateway.ListTapesInput{
+		Limit:  aws.Int64(1),
+		Marker: aws.String("Marker"),
+		TapeARNs: []*string{
+			aws.String("TapeARN"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.ListTapes(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleStorageGateway_ListVolumeInitiators() {
 	svc := storagegateway.New(session.New())
 
@@ -855,7 +879,7 @@ func ExampleStorageGateway_ListVolumes() {
 	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.ListVolumesInput{
-		GatewayARN: aws.String("GatewayARN"), // Required
+		GatewayARN: aws.String("GatewayARN"),
 		Limit:      aws.Int64(1),
 		Marker:     aws.String("Marker"),
 	}

@@ -40,6 +40,7 @@
     "ListMultipartUploads": "This operation lists in-progress multipart uploads.",
     "ListObjectVersions": "Returns metadata about all of the versions of objects in a bucket.",
     "ListObjects": "Returns some or all (up to 1000) of the objects in a bucket. You can use the request parameters as selection criteria to return a subset of the objects in a bucket.",
+    "ListObjectsV2": "Returns some or all (up to 1000) of the objects in a bucket. You can use the request parameters as selection criteria to return a subset of the objects in a bucket. Note: ListObjectsV2 is the revised List Objects API and we recommend you use this revised API for new application development.",
     "ListParts": "Lists the parts that have been uploaded for a specific multipart upload.",
     "PutBucketAccelerateConfiguration": "Sets the accelerate configuration of an existing bucket.",
     "PutBucketAcl": "Sets the permissions on a bucket using access control lists (ACL).",
@@ -259,6 +260,8 @@
         "ListObjectVersionsRequest$Bucket": null,
         "ListObjectsOutput$Name": null,
         "ListObjectsRequest$Bucket": null,
+        "ListObjectsV2Output$Name": "Name of the bucket to list.",
+        "ListObjectsV2Request$Bucket": "Name of the bucket to list.",
         "ListPartsOutput$Bucket": "Name of the bucket to which the multipart upload was initiated.",
         "ListPartsRequest$Bucket": null,
         "PutBucketAccelerateConfigurationRequest$Bucket": "Name of the bucket for which the accelerate configuration is set.",
@@ -359,7 +362,8 @@
       "refs": {
         "ListMultipartUploadsOutput$CommonPrefixes": null,
         "ListObjectVersionsOutput$CommonPrefixes": null,
-        "ListObjectsOutput$CommonPrefixes": null
+        "ListObjectsOutput$CommonPrefixes": null,
+        "ListObjectsV2Output$CommonPrefixes": "CommonPrefixes contains all (if there are any) keys between Prefix and the next occurrence of the string specified by delimiter"
       }
     },
     "CompleteMultipartUploadOutput": {
@@ -724,7 +728,9 @@
         "ListObjectVersionsOutput$Delimiter": null,
         "ListObjectVersionsRequest$Delimiter": "A delimiter is a character you use to group keys.",
         "ListObjectsOutput$Delimiter": null,
-        "ListObjectsRequest$Delimiter": "A delimiter is a character you use to group keys."
+        "ListObjectsRequest$Delimiter": "A delimiter is a character you use to group keys.",
+        "ListObjectsV2Output$Delimiter": "A delimiter is a character you use to group keys.",
+        "ListObjectsV2Request$Delimiter": "A delimiter is a character you use to group keys."
       }
     },
     "Destination": {
@@ -771,7 +777,9 @@
         "ListObjectVersionsOutput$EncodingType": "Encoding type used by Amazon S3 to encode object keys in the response.",
         "ListObjectVersionsRequest$EncodingType": null,
         "ListObjectsOutput$EncodingType": "Encoding type used by Amazon S3 to encode object keys in the response.",
-        "ListObjectsRequest$EncodingType": null
+        "ListObjectsRequest$EncodingType": null,
+        "ListObjectsV2Output$EncodingType": "Encoding type used by Amazon S3 to encode object keys in the response.",
+        "ListObjectsV2Request$EncodingType": "Encoding type used by Amazon S3 to encode object keys in the response."
       }
     },
     "Error": {
@@ -856,6 +864,12 @@
       "base": null,
       "refs": {
         "CORSRule$ExposeHeaders": "One or more headers in the response that you want customers to be able to access from their applications (for example, from a JavaScript XMLHttpRequest object)."
+      }
+    },
+    "FetchOwner": {
+      "base": null,
+      "refs": {
+        "ListObjectsV2Request$FetchOwner": "The owner field is not present in listV2 by default, if you want to return owner field with each key in the result then set the fetch owner field to true"
       }
     },
     "FilterRule": {
@@ -1226,7 +1240,14 @@
         "ListMultipartUploadsOutput$IsTruncated": "Indicates whether the returned list of multipart uploads is truncated. A value of true indicates that the list was truncated. The list can be truncated if the number of multipart uploads exceeds the limit allowed or specified by max uploads.",
         "ListObjectVersionsOutput$IsTruncated": "A flag that indicates whether or not Amazon S3 returned all of the results that satisfied the search criteria. If your results were truncated, you can make a follow-up paginated request using the NextKeyMarker and NextVersionIdMarker response parameters as a starting place in another request to return the rest of the results.",
         "ListObjectsOutput$IsTruncated": "A flag that indicates whether or not Amazon S3 returned all of the results that satisfied the search criteria.",
+        "ListObjectsV2Output$IsTruncated": "A flag that indicates whether or not Amazon S3 returned all of the results that satisfied the search criteria.",
         "ListPartsOutput$IsTruncated": "Indicates whether the returned list of parts is truncated."
+      }
+    },
+    "KeyCount": {
+      "base": null,
+      "refs": {
+        "ListObjectsV2Output$KeyCount": "KeyCount is the number of keys returned with this request. KeyCount will always be less than equals to MaxKeys field. Say you ask for 50 keys, your result will include less than equals 50 keys"
       }
     },
     "KeyMarker": {
@@ -1336,6 +1357,16 @@
       "refs": {
       }
     },
+    "ListObjectsV2Output": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListObjectsV2Request": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListPartsOutput": {
       "base": null,
       "refs": {
@@ -1399,7 +1430,9 @@
         "ListObjectVersionsOutput$MaxKeys": null,
         "ListObjectVersionsRequest$MaxKeys": "Sets the maximum number of keys returned in the response. The response might contain fewer keys but will never contain more.",
         "ListObjectsOutput$MaxKeys": null,
-        "ListObjectsRequest$MaxKeys": "Sets the maximum number of keys returned in the response. The response might contain fewer keys but will never contain more."
+        "ListObjectsRequest$MaxKeys": "Sets the maximum number of keys returned in the response. The response might contain fewer keys but will never contain more.",
+        "ListObjectsV2Output$MaxKeys": "Sets the maximum number of keys returned in the response. The response might contain fewer keys but will never contain more.",
+        "ListObjectsV2Request$MaxKeys": "Sets the maximum number of keys returned in the response. The response might contain fewer keys but will never contain more."
       }
     },
     "MaxParts": {
@@ -1499,6 +1532,12 @@
       "base": null,
       "refs": {
         "ListPartsOutput$NextPartNumberMarker": "When a list is truncated, this element specifies the last part in the list, as well as the value to use for the part-number-marker request parameter in a subsequent request."
+      }
+    },
+    "NextToken": {
+      "base": null,
+      "refs": {
+        "ListObjectsV2Output$NextContinuationToken": "NextContinuationToken is sent when isTruncated is true which means there are more keys in the bucket that can be listed. The next list requests to Amazon S3 can be continued with this NextContinuationToken. NextContinuationToken is obfuscated and is not a real key"
       }
     },
     "NextUploadIdMarker": {
@@ -1646,7 +1685,8 @@
     "ObjectList": {
       "base": null,
       "refs": {
-        "ListObjectsOutput$Contents": null
+        "ListObjectsOutput$Contents": null,
+        "ListObjectsV2Output$Contents": "Metadata about each object returned."
       }
     },
     "ObjectNotInActiveTierError": {
@@ -1773,6 +1813,8 @@
         "ListObjectVersionsRequest$Prefix": "Limits the response to keys that begin with the specified prefix.",
         "ListObjectsOutput$Prefix": null,
         "ListObjectsRequest$Prefix": "Limits the response to keys that begin with the specified prefix.",
+        "ListObjectsV2Output$Prefix": "Limits the response to keys that begin with the specified prefix.",
+        "ListObjectsV2Request$Prefix": "Limits the response to keys that begin with the specified prefix.",
         "ReplicationRule$Prefix": "Object keyname prefix identifying one or more objects to which the rule applies. Maximum prefix length can be up to 1,024 characters. Overlapping prefixes are not supported.",
         "Rule$Prefix": "Prefix identifying one or more objects to which the rule applies."
       }
@@ -2204,6 +2246,13 @@
         "Part$Size": "Size of the uploaded part data."
       }
     },
+    "StartAfter": {
+      "base": null,
+      "refs": {
+        "ListObjectsV2Output$StartAfter": "StartAfter is where you want Amazon S3 to start listing from. Amazon S3 starts listing after this specified key. StartAfter can be any key in the bucket",
+        "ListObjectsV2Request$StartAfter": "StartAfter is where you want Amazon S3 to start listing from. Amazon S3 starts listing after this specified key. StartAfter can be any key in the bucket"
+      }
+    },
     "StorageClass": {
       "base": null,
       "refs": {
@@ -2264,6 +2313,13 @@
       "base": null,
       "refs": {
         "LoggingEnabled$TargetPrefix": "This element lets you specify a prefix for the keys that the log files will be stored under."
+      }
+    },
+    "Token": {
+      "base": null,
+      "refs": {
+        "ListObjectsV2Output$ContinuationToken": "ContinuationToken indicates Amazon S3 that the list is being continued on this bucket with a token. ContinuationToken is obfuscated and is not a real key",
+        "ListObjectsV2Request$ContinuationToken": "ContinuationToken indicates Amazon S3 that the list is being continued on this bucket with a token. ContinuationToken is obfuscated and is not a real key"
       }
     },
     "TopicArn": {

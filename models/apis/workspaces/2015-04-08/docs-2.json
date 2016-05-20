@@ -1,7 +1,11 @@
 {
   "version": "2.0",
+  "service": "<fullname>Amazon WorkSpaces Service</fullname> <p>This is the <i>Amazon WorkSpaces API Reference</i>. This guide provides detailed information about Amazon WorkSpaces operations, data types, parameters, and errors.</p>",
   "operations": {
+    "CreateTags": "<p>Creates tags for a WorkSpace.</p>",
     "CreateWorkspaces": "<p>Creates one or more WorkSpaces.</p> <note> <p>This operation is asynchronous and returns before the WorkSpaces are created.</p> </note>",
+    "DeleteTags": "<p>Deletes tags from a WorkSpace.</p>",
+    "DescribeTags": "<p>Describes tags for a WorkSpace.</p>",
     "DescribeWorkspaceBundles": "<p>Obtains information about the WorkSpace bundles that are available to your account in the specified region.</p> <p>You can filter the results with either the <code>BundleIds</code> parameter, or the <code>Owner</code> parameter, but not both.</p> <p>This operation supports pagination with the use of the <code>NextToken</code> request and response parameters. If more results are available, the <code>NextToken</code> response member contains a token that you pass in the next call to this operation to retrieve the next set of items.</p>",
     "DescribeWorkspaceDirectories": "<p>Retrieves information about the AWS Directory Service directories in the region that are registered with Amazon WorkSpaces and are available to your account.</p> <p>This operation supports pagination with the use of the <code>NextToken</code> request and response parameters. If more results are available, the <code>NextToken</code> response member contains a token that you pass in the next call to this operation to retrieve the next set of items.</p>",
     "DescribeWorkspaces": "<p>Obtains information about the specified WorkSpaces. </p> <p>Only one of the filter parameters, such as <code>BundleId</code>, <code>DirectoryId</code>, or <code>WorkspaceIds</code>, can be specified at a time.</p> <p>This operation supports pagination with the use of the <code>NextToken</code> request and response parameters. If more results are available, the <code>NextToken</code> response member contains a token that you pass in the next call to this operation to retrieve the next set of items.</p>",
@@ -9,7 +13,6 @@
     "RebuildWorkspaces": "<p>Rebuilds the specified WorkSpaces.</p> <p>Rebuilding a WorkSpace is a potentially destructive action that can result in the loss of data. Rebuilding a WorkSpace causes the following to occur:</p> <ul> <li>The system is restored to the image of the bundle that the WorkSpace is created from. Any applications that have been installed, or system settings that have been made since the WorkSpace was created will be lost.</li> <li>The data drive (D drive) is re-created from the last automatic snapshot taken of the data drive. The current contents of the data drive are overwritten. Automatic snapshots of the data drive are taken every 12 hours, so the snapshot can be as much as 12 hours old.</li> </ul> <p>To be able to rebuild a WorkSpace, the WorkSpace must have a <b>State</b> of <code>AVAILABLE</code> or <code>ERROR</code>.</p> <note> <p>This operation is asynchronous and will return before the WorkSpaces have been completely rebuilt.</p> </note>",
     "TerminateWorkspaces": "<p>Terminates the specified WorkSpaces.</p> <p>Terminating a WorkSpace is a permanent action and cannot be undone. The user's data is not maintained and will be destroyed. If you need to archive any user data, contact Amazon Web Services before terminating the WorkSpace.</p> <p>You can terminate a WorkSpace that is in any state except <code>SUSPENDED</code>.</p> <note> <p>This operation is asynchronous and will return before the WorkSpaces have been completely terminated.</p> </note>"
   },
-  "service": "<fullname>Amazon WorkSpaces Service</fullname> <p>This is the <i>Amazon WorkSpaces API Reference</i>. This guide provides detailed information about Amazon WorkSpaces operations, data types, parameters, and errors.</p>",
   "shapes": {
     "ARN": {
       "base": null,
@@ -60,7 +63,7 @@
     "BundleOwner": {
       "base": null,
       "refs": {
-        "DescribeWorkspaceBundlesRequest$Owner": "<p>The owner of the bundles to retrieve. This parameter cannot be combined with any other filter parameter.</p> <p>This contains one of the following values:</p> <ul> <li>null - Retrieves the bundles that belong to the account making the call.</li> <li> <code>AMAZON</code> - Retrieves the bundles that are provided by AWS.</li> </ul>",
+        "DescribeWorkspaceBundlesRequest$Owner": "<p>The owner of the bundles to retrieve. This parameter cannot be combined with any other filter parameter.</p> <p>This contains one of the following values:</p> <ul> <li>null - Retrieves the bundles that belong to the account making the call.</li> <li><code>AMAZON</code> - Retrieves the bundles that are provided by AWS.</li> </ul>",
         "WorkspaceBundle$Owner": "<p>The owner of the bundle. This contains the owner's account identifier, or <code>AMAZON</code> if the bundle is provided by AWS.</p>"
       }
     },
@@ -80,6 +83,16 @@
       "base": null,
       "refs": {
         "Workspace$ComputerName": "<p>The name of the WorkSpace as seen by the operating system.</p>"
+      }
+    },
+    "CreateTagsRequest": {
+      "base": "<p>The request of the create tags action.</p>",
+      "refs": {
+      }
+    },
+    "CreateTagsResult": {
+      "base": "<p>The result of the create tags action.</p>",
+      "refs": {
       }
     },
     "CreateWorkspacesRequest": {
@@ -102,6 +115,26 @@
       "base": "<p>Contains default WorkSpace creation information.</p>",
       "refs": {
         "WorkspaceDirectory$WorkspaceCreationProperties": "<p>A structure that specifies the default creation properties for all WorkSpaces in the directory.</p>"
+      }
+    },
+    "DeleteTagsRequest": {
+      "base": "<p>The request of the delete tags action.</p>",
+      "refs": {
+      }
+    },
+    "DeleteTagsResult": {
+      "base": "<p>The result of the delete tags action.</p>",
+      "refs": {
+      }
+    },
+    "DescribeTagsRequest": {
+      "base": "<p>The request of the describe tags action.</p>",
+      "refs": {
+      }
+    },
+    "DescribeTagsResult": {
+      "base": "<p>The result of the describe tags action.</p>",
+      "refs": {
       }
     },
     "DescribeWorkspaceBundlesRequest": {
@@ -189,6 +222,7 @@
       "refs": {
         "InvalidParameterValuesException$message": "<p>The exception error message.</p>",
         "ResourceLimitExceededException$message": "<p>The exception error message.</p>",
+        "ResourceNotFoundException$message": "<p>The resource could not be found.</p>",
         "ResourceUnavailableException$message": "<p>The exception error message.</p>"
       }
     },
@@ -251,7 +285,12 @@
     "NonEmptyString": {
       "base": null,
       "refs": {
+        "CreateTagsRequest$ResourceId": "<p>The resource ID of the request.</p>",
+        "DeleteTagsRequest$ResourceId": "<p>The resource ID of the request.</p>",
+        "DescribeTagsRequest$ResourceId": "<p>The resource ID of the request.</p>",
+        "ResourceNotFoundException$ResourceId": "<p>The resource could not be found.</p>",
         "ResourceUnavailableException$ResourceId": "<p>The identifier of the resource that is not available.</p>",
+        "TagKeyList$member": null,
         "UserStorage$Capacity": "<p>The amount of user storage for the bundle.</p>",
         "WorkspaceBundle$Name": "<p>The name of the bundle.</p>"
       }
@@ -322,6 +361,11 @@
       "refs": {
       }
     },
+    "ResourceNotFoundException": {
+      "base": "<p>The resource could not be found.</p>",
+      "refs": {
+      }
+    },
     "ResourceUnavailableException": {
       "base": "<p>The specified resource is not available.</p>",
       "refs": {
@@ -345,6 +389,38 @@
       "base": null,
       "refs": {
         "WorkspaceDirectory$SubnetIds": "<p>An array of strings that contains the identifiers of the subnets used with the directory.</p>"
+      }
+    },
+    "Tag": {
+      "base": "<p>Describes the tag of the WorkSpace.</p>",
+      "refs": {
+        "TagList$member": null
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "Tag$Key": "<p>The key of the tag.</p>"
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "DeleteTagsRequest$TagKeys": "<p>The tag keys of the request.</p>"
+      }
+    },
+    "TagList": {
+      "base": null,
+      "refs": {
+        "CreateTagsRequest$Tags": "<p>The tags of the request.</p>",
+        "DescribeTagsResult$TagList": "<p>The list of tags.</p>",
+        "WorkspaceRequest$Tags": "<p>The tags of the WorkSpace request.</p>"
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "Tag$Value": "<p>The value of the tag.</p>"
       }
     },
     "TerminateRequest": {

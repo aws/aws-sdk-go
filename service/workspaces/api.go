@@ -10,6 +10,33 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 )
 
+const opCreateTags = "CreateTags"
+
+// CreateTagsRequest generates a request for the CreateTags operation.
+func (c *WorkSpaces) CreateTagsRequest(input *CreateTagsInput) (req *request.Request, output *CreateTagsOutput) {
+	op := &request.Operation{
+		Name:       opCreateTags,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateTagsInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &CreateTagsOutput{}
+	req.Data = output
+	return
+}
+
+// Creates tags for a WorkSpace.
+func (c *WorkSpaces) CreateTags(input *CreateTagsInput) (*CreateTagsOutput, error) {
+	req, out := c.CreateTagsRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opCreateWorkspaces = "CreateWorkspaces"
 
 // CreateWorkspacesRequest generates a request for the CreateWorkspaces operation.
@@ -35,6 +62,60 @@ func (c *WorkSpaces) CreateWorkspacesRequest(input *CreateWorkspacesInput) (req 
 //  This operation is asynchronous and returns before the WorkSpaces are created.
 func (c *WorkSpaces) CreateWorkspaces(input *CreateWorkspacesInput) (*CreateWorkspacesOutput, error) {
 	req, out := c.CreateWorkspacesRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDeleteTags = "DeleteTags"
+
+// DeleteTagsRequest generates a request for the DeleteTags operation.
+func (c *WorkSpaces) DeleteTagsRequest(input *DeleteTagsInput) (req *request.Request, output *DeleteTagsOutput) {
+	op := &request.Operation{
+		Name:       opDeleteTags,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteTagsInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DeleteTagsOutput{}
+	req.Data = output
+	return
+}
+
+// Deletes tags from a WorkSpace.
+func (c *WorkSpaces) DeleteTags(input *DeleteTagsInput) (*DeleteTagsOutput, error) {
+	req, out := c.DeleteTagsRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDescribeTags = "DescribeTags"
+
+// DescribeTagsRequest generates a request for the DescribeTags operation.
+func (c *WorkSpaces) DescribeTagsRequest(input *DescribeTagsInput) (req *request.Request, output *DescribeTagsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeTags,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeTagsInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeTagsOutput{}
+	req.Data = output
+	return
+}
+
+// Describes tags for a WorkSpace.
+func (c *WorkSpaces) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutput, error) {
+	req, out := c.DescribeTagsRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -315,6 +396,71 @@ func (s ComputeType) GoString() string {
 	return s.String()
 }
 
+// The request of the create tags action.
+type CreateTagsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The resource ID of the request.
+	ResourceId *string `min:"1" type:"string" required:"true"`
+
+	// The tags of the request.
+	Tags []*Tag `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateTagsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateTagsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateTagsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateTagsInput"}
+	if s.ResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+	if s.ResourceId != nil && len(*s.ResourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// The result of the create tags action.
+type CreateTagsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateTagsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateTagsOutput) GoString() string {
+	return s.String()
+}
+
 // Contains the inputs for the CreateWorkspaces operation.
 type CreateWorkspacesInput struct {
 	_ struct{} `type:"structure"`
@@ -417,6 +563,113 @@ func (s DefaultWorkspaceCreationProperties) GoString() string {
 	return s.String()
 }
 
+// The request of the delete tags action.
+type DeleteTagsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The resource ID of the request.
+	ResourceId *string `min:"1" type:"string" required:"true"`
+
+	// The tag keys of the request.
+	TagKeys []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteTagsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteTagsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteTagsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteTagsInput"}
+	if s.ResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+	if s.ResourceId != nil && len(*s.ResourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 1))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// The result of the delete tags action.
+type DeleteTagsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteTagsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteTagsOutput) GoString() string {
+	return s.String()
+}
+
+// The request of the describe tags action.
+type DescribeTagsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The resource ID of the request.
+	ResourceId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeTagsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTagsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeTagsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeTagsInput"}
+	if s.ResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+	if s.ResourceId != nil && len(*s.ResourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// The result of the describe tags action.
+type DescribeTagsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of tags.
+	TagList []*Tag `type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeTagsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTagsOutput) GoString() string {
+	return s.String()
+}
+
 // Contains the inputs for the DescribeWorkspaceBundles operation.
 type DescribeWorkspaceBundlesInput struct {
 	_ struct{} `type:"structure"`
@@ -435,7 +688,7 @@ type DescribeWorkspaceBundlesInput struct {
 	// This contains one of the following values:
 	//
 	//  null - Retrieves the bundles that belong to the account making the call.
-	//  AMAZON - Retrieves the bundles that are provided by AWS.
+	// AMAZON - Retrieves the bundles that are provided by AWS.
 	Owner *string `type:"string"`
 }
 
@@ -881,6 +1134,43 @@ func (s RebuildWorkspacesOutput) GoString() string {
 	return s.String()
 }
 
+// Describes the tag of the WorkSpace.
+type Tag struct {
+	_ struct{} `type:"structure"`
+
+	// The key of the tag.
+	Key *string `min:"1" type:"string" required:"true"`
+
+	// The value of the tag.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation
+func (s Tag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Tag) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Tag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Tag"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Contains information used with the TerminateWorkspaces operation to terminate
 // a WorkSpace.
 type TerminateRequest struct {
@@ -1158,6 +1448,9 @@ type WorkspaceRequest struct {
 	// Specifies whether the data stored on the root volume, or C: drive, is encrypted.
 	RootVolumeEncryptionEnabled *bool `type:"boolean"`
 
+	// The tags of the WorkSpace request.
+	Tags []*Tag `type:"list"`
+
 	// The username that the WorkSpace is assigned to. This username must exist
 	// in the AWS Directory Service directory specified by the DirectoryId member.
 	UserName *string `min:"1" type:"string" required:"true"`
@@ -1193,6 +1486,16 @@ func (s *WorkspaceRequest) Validate() error {
 	}
 	if s.UserName != nil && len(*s.UserName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("UserName", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {

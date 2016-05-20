@@ -32,6 +32,8 @@ func (c *DirectConnect) AllocateConnectionOnInterconnectRequest(input *AllocateC
 //
 // Allocates a VLAN number and a specified amount of bandwidth for use by a
 // hosted connection on the given interconnect.
+//
+//  This is intended for use by AWS Direct Connect partners only.
 func (c *DirectConnect) AllocateConnectionOnInterconnect(input *AllocateConnectionOnInterconnectInput) (*Connection, error) {
 	req, out := c.AllocateConnectionOnInterconnectRequest(input)
 	err := req.Send()
@@ -272,6 +274,8 @@ func (c *DirectConnect) CreateInterconnectRequest(input *CreateInterconnectInput
 // customer can then connect to AWS resources by creating a virtual interface
 // on their connection, using the VLAN assigned to them by the AWS Direct Connect
 // partner.
+//
+//  This is intended for use by AWS Direct Connect partners only.
 func (c *DirectConnect) CreateInterconnect(input *CreateInterconnectInput) (*Interconnect, error) {
 	req, out := c.CreateInterconnectRequest(input)
 	err := req.Send()
@@ -390,6 +394,8 @@ func (c *DirectConnect) DeleteInterconnectRequest(input *DeleteInterconnectInput
 }
 
 // Deletes the specified interconnect.
+//
+//  This is intended for use by AWS Direct Connect partners only.
 func (c *DirectConnect) DeleteInterconnect(input *DeleteInterconnectInput) (*DeleteInterconnectOutput, error) {
 	req, out := c.DeleteInterconnectRequest(input)
 	err := req.Send()
@@ -473,6 +479,8 @@ func (c *DirectConnect) DescribeConnectionsOnInterconnectRequest(input *Describe
 }
 
 // Return a list of connections that have been provisioned on the given interconnect.
+//
+//  This is intended for use by AWS Direct Connect partners only.
 func (c *DirectConnect) DescribeConnectionsOnInterconnect(input *DescribeConnectionsOnInterconnectInput) (*Connections, error) {
 	req, out := c.DescribeConnectionsOnInterconnectRequest(input)
 	err := req.Send()
@@ -617,6 +625,8 @@ type AllocateConnectionOnInterconnectInput struct {
 	// Example: "500Mbps"
 	//
 	// Default: None
+	//
+	// Values: 50M, 100M, 200M, 300M, 400M, or 500M
 	Bandwidth *string `locationName:"bandwidth" type:"string" required:"true"`
 
 	// Name of the provisioned connection.
@@ -830,17 +840,28 @@ func (s *ConfirmConnectionInput) Validate() error {
 type ConfirmConnectionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// State of the connection.  Ordering: The initial state of a hosted connection
-	// provisioned on an interconnect. The connection stays in the ordering state
-	// until the owner of the hosted connection confirms or declines the connection
-	// order. Requested: The initial state of a standard connection. The connection
+	// State of the connection.
+	//
+	//    Ordering: The initial state of a hosted connection provisioned on an
+	// interconnect. The connection stays in the ordering state until the owner
+	// of the hosted connection confirms or declines the connection order.
+	//
+	//    Requested: The initial state of a standard connection. The connection
 	// stays in the requested state until the Letter of Authorization (LOA) is sent
-	// to the customer. Pending: The connection has been approved, and is being
-	// initialized. Available: The network link is up, and the connection is ready
-	// for use. Down: The network link is down. Deleting: The connection is in the
-	// process of being deleted. Deleted: The connection has been deleted. Rejected:
-	// A hosted connection in the 'Ordering' state will enter the 'Rejected' state
-	// if it is deleted by the end customer.
+	// to the customer.
+	//
+	//    Pending: The connection has been approved, and is being initialized.
+	//
+	//    Available: The network link is up, and the connection is ready for use.
+	//
+	//    Down: The network link is down.
+	//
+	//    Deleting: The connection is in the process of being deleted.
+	//
+	//    Deleted: The connection has been deleted.
+	//
+	//    Rejected: A hosted connection in the 'Ordering' state will enter the
+	// 'Rejected' state if it is deleted by the end customer.
 	ConnectionState *string `locationName:"connectionState" type:"string" enum:"ConnectionState"`
 }
 
@@ -905,22 +926,34 @@ func (s *ConfirmPrivateVirtualInterfaceInput) Validate() error {
 type ConfirmPrivateVirtualInterfaceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// State of the virtual interface.  Confirming: The creation of the virtual
-	// interface is pending confirmation from the virtual interface owner. If the
-	// owner of the virtual interface is different from the owner of the connection
-	// on which it is provisioned, then the virtual interface will remain in this
-	// state until it is confirmed by the virtual interface owner. Verifying: This
-	// state only applies to public virtual interfaces. Each public virtual interface
-	// needs validation before the virtual interface can be created. Pending: A
-	// virtual interface is in this state from the time that it is created until
-	// the virtual interface is ready to forward traffic. Available: A virtual interface
-	// that is able to forward traffic. Down: A virtual interface that is BGP down.
-	// Deleting: A virtual interface is in this state immediately after calling
-	// DeleteVirtualInterface until it can no longer forward traffic. Deleted: A
-	// virtual interface that cannot forward traffic. Rejected: The virtual interface
-	// owner has declined creation of the virtual interface. If a virtual interface
-	// in the 'Confirming' state is deleted by the virtual interface owner, the
-	// virtual interface will enter the 'Rejected' state.
+	// State of the virtual interface.
+	//
+	//    Confirming: The creation of the virtual interface is pending confirmation
+	// from the virtual interface owner. If the owner of the virtual interface is
+	// different from the owner of the connection on which it is provisioned, then
+	// the virtual interface will remain in this state until it is confirmed by
+	// the virtual interface owner.
+	//
+	//    Verifying: This state only applies to public virtual interfaces. Each
+	// public virtual interface needs validation before the virtual interface can
+	// be created.
+	//
+	//    Pending: A virtual interface is in this state from the time that it is
+	// created until the virtual interface is ready to forward traffic.
+	//
+	//    Available: A virtual interface that is able to forward traffic.
+	//
+	//    Down: A virtual interface that is BGP down.
+	//
+	//    Deleting: A virtual interface is in this state immediately after calling
+	// DeleteVirtualInterface until it can no longer forward traffic.
+	//
+	//    Deleted: A virtual interface that cannot forward traffic.
+	//
+	//    Rejected: The virtual interface owner has declined creation of the virtual
+	// interface. If a virtual interface in the 'Confirming' state is deleted by
+	// the virtual interface owner, the virtual interface will enter the 'Rejected'
+	// state.
 	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string" enum:"VirtualInterfaceState"`
 }
 
@@ -973,22 +1006,34 @@ func (s *ConfirmPublicVirtualInterfaceInput) Validate() error {
 type ConfirmPublicVirtualInterfaceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// State of the virtual interface.  Confirming: The creation of the virtual
-	// interface is pending confirmation from the virtual interface owner. If the
-	// owner of the virtual interface is different from the owner of the connection
-	// on which it is provisioned, then the virtual interface will remain in this
-	// state until it is confirmed by the virtual interface owner. Verifying: This
-	// state only applies to public virtual interfaces. Each public virtual interface
-	// needs validation before the virtual interface can be created. Pending: A
-	// virtual interface is in this state from the time that it is created until
-	// the virtual interface is ready to forward traffic. Available: A virtual interface
-	// that is able to forward traffic. Down: A virtual interface that is BGP down.
-	// Deleting: A virtual interface is in this state immediately after calling
-	// DeleteVirtualInterface until it can no longer forward traffic. Deleted: A
-	// virtual interface that cannot forward traffic. Rejected: The virtual interface
-	// owner has declined creation of the virtual interface. If a virtual interface
-	// in the 'Confirming' state is deleted by the virtual interface owner, the
-	// virtual interface will enter the 'Rejected' state.
+	// State of the virtual interface.
+	//
+	//    Confirming: The creation of the virtual interface is pending confirmation
+	// from the virtual interface owner. If the owner of the virtual interface is
+	// different from the owner of the connection on which it is provisioned, then
+	// the virtual interface will remain in this state until it is confirmed by
+	// the virtual interface owner.
+	//
+	//    Verifying: This state only applies to public virtual interfaces. Each
+	// public virtual interface needs validation before the virtual interface can
+	// be created.
+	//
+	//    Pending: A virtual interface is in this state from the time that it is
+	// created until the virtual interface is ready to forward traffic.
+	//
+	//    Available: A virtual interface that is able to forward traffic.
+	//
+	//    Down: A virtual interface that is BGP down.
+	//
+	//    Deleting: A virtual interface is in this state immediately after calling
+	// DeleteVirtualInterface until it can no longer forward traffic.
+	//
+	//    Deleted: A virtual interface that cannot forward traffic.
+	//
+	//    Rejected: The virtual interface owner has declined creation of the virtual
+	// interface. If a virtual interface in the 'Confirming' state is deleted by
+	// the virtual interface owner, the virtual interface will enter the 'Rejected'
+	// state.
 	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string" enum:"VirtualInterfaceState"`
 }
 
@@ -1028,17 +1073,28 @@ type Connection struct {
 	// Default: None
 	ConnectionName *string `locationName:"connectionName" type:"string"`
 
-	// State of the connection.  Ordering: The initial state of a hosted connection
-	// provisioned on an interconnect. The connection stays in the ordering state
-	// until the owner of the hosted connection confirms or declines the connection
-	// order. Requested: The initial state of a standard connection. The connection
+	// State of the connection.
+	//
+	//    Ordering: The initial state of a hosted connection provisioned on an
+	// interconnect. The connection stays in the ordering state until the owner
+	// of the hosted connection confirms or declines the connection order.
+	//
+	//    Requested: The initial state of a standard connection. The connection
 	// stays in the requested state until the Letter of Authorization (LOA) is sent
-	// to the customer. Pending: The connection has been approved, and is being
-	// initialized. Available: The network link is up, and the connection is ready
-	// for use. Down: The network link is down. Deleting: The connection is in the
-	// process of being deleted. Deleted: The connection has been deleted. Rejected:
-	// A hosted connection in the 'Ordering' state will enter the 'Rejected' state
-	// if it is deleted by the end customer.
+	// to the customer.
+	//
+	//    Pending: The connection has been approved, and is being initialized.
+	//
+	//    Available: The network link is up, and the connection is ready for use.
+	//
+	//    Down: The network link is down.
+	//
+	//    Deleting: The connection is in the process of being deleted.
+	//
+	//    Deleted: The connection has been deleted.
+	//
+	//    Rejected: A hosted connection in the 'Ordering' state will enter the
+	// 'Rejected' state if it is deleted by the end customer.
 	ConnectionState *string `locationName:"connectionState" type:"string" enum:"ConnectionState"`
 
 	// Where the connection is located.
@@ -1048,8 +1104,10 @@ type Connection struct {
 	// Default: None
 	Location *string `locationName:"location" type:"string"`
 
+	// The AWS account that will own the new connection.
 	OwnerAccount *string `locationName:"ownerAccount" type:"string"`
 
+	// The name of the AWS Direct Connect service provider associated with the connection.
 	PartnerName *string `locationName:"partnerName" type:"string"`
 
 	// The AWS region where the connection is located.
@@ -1373,12 +1431,22 @@ func (s *DeleteInterconnectInput) Validate() error {
 type DeleteInterconnectOutput struct {
 	_ struct{} `type:"structure"`
 
-	// State of the interconnect.  Requested: The initial state of an interconnect.
-	// The interconnect stays in the requested state until the Letter of Authorization
-	// (LOA) is sent to the customer. Pending: The interconnect has been approved,
-	// and is being initialized. Available: The network link is up, and the interconnect
-	// is ready for use. Down: The network link is down. Deleting: The interconnect
-	// is in the process of being deleted. Deleted: The interconnect has been deleted.
+	// State of the interconnect.
+	//
+	//    Requested: The initial state of an interconnect. The interconnect stays
+	// in the requested state until the Letter of Authorization (LOA) is sent to
+	// the customer.
+	//
+	//    Pending>: The interconnect has been approved, and is being initialized.
+	//
+	//    Available: The network link is up, and the interconnect is ready for
+	// use.
+	//
+	//    Down: The network link is down.
+	//
+	//    Deleting: The interconnect is in the process of being deleted.
+	//
+	//    Deleted: The interconnect has been deleted.
 	InterconnectState *string `locationName:"interconnectState" type:"string" enum:"InterconnectState"`
 }
 
@@ -1431,22 +1499,34 @@ func (s *DeleteVirtualInterfaceInput) Validate() error {
 type DeleteVirtualInterfaceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// State of the virtual interface.  Confirming: The creation of the virtual
-	// interface is pending confirmation from the virtual interface owner. If the
-	// owner of the virtual interface is different from the owner of the connection
-	// on which it is provisioned, then the virtual interface will remain in this
-	// state until it is confirmed by the virtual interface owner. Verifying: This
-	// state only applies to public virtual interfaces. Each public virtual interface
-	// needs validation before the virtual interface can be created. Pending: A
-	// virtual interface is in this state from the time that it is created until
-	// the virtual interface is ready to forward traffic. Available: A virtual interface
-	// that is able to forward traffic. Down: A virtual interface that is BGP down.
-	// Deleting: A virtual interface is in this state immediately after calling
-	// DeleteVirtualInterface until it can no longer forward traffic. Deleted: A
-	// virtual interface that cannot forward traffic. Rejected: The virtual interface
-	// owner has declined creation of the virtual interface. If a virtual interface
-	// in the 'Confirming' state is deleted by the virtual interface owner, the
-	// virtual interface will enter the 'Rejected' state.
+	// State of the virtual interface.
+	//
+	//    Confirming: The creation of the virtual interface is pending confirmation
+	// from the virtual interface owner. If the owner of the virtual interface is
+	// different from the owner of the connection on which it is provisioned, then
+	// the virtual interface will remain in this state until it is confirmed by
+	// the virtual interface owner.
+	//
+	//    Verifying: This state only applies to public virtual interfaces. Each
+	// public virtual interface needs validation before the virtual interface can
+	// be created.
+	//
+	//    Pending: A virtual interface is in this state from the time that it is
+	// created until the virtual interface is ready to forward traffic.
+	//
+	//    Available: A virtual interface that is able to forward traffic.
+	//
+	//    Down: A virtual interface that is BGP down.
+	//
+	//    Deleting: A virtual interface is in this state immediately after calling
+	// DeleteVirtualInterface until it can no longer forward traffic.
+	//
+	//    Deleted: A virtual interface that cannot forward traffic.
+	//
+	//    Rejected: The virtual interface owner has declined creation of the virtual
+	// interface. If a virtual interface in the 'Confirming' state is deleted by
+	// the virtual interface owner, the virtual interface will enter the 'Rejected'
+	// state.
 	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string" enum:"VirtualInterfaceState"`
 }
 
@@ -1702,12 +1782,22 @@ type Interconnect struct {
 	// Example: "1G Interconnect to AWS"
 	InterconnectName *string `locationName:"interconnectName" type:"string"`
 
-	// State of the interconnect.  Requested: The initial state of an interconnect.
-	// The interconnect stays in the requested state until the Letter of Authorization
-	// (LOA) is sent to the customer. Pending: The interconnect has been approved,
-	// and is being initialized. Available: The network link is up, and the interconnect
-	// is ready for use. Down: The network link is down. Deleting: The interconnect
-	// is in the process of being deleted. Deleted: The interconnect has been deleted.
+	// State of the interconnect.
+	//
+	//    Requested: The initial state of an interconnect. The interconnect stays
+	// in the requested state until the Letter of Authorization (LOA) is sent to
+	// the customer.
+	//
+	//    Pending>: The interconnect has been approved, and is being initialized.
+	//
+	//    Available: The network link is up, and the interconnect is ready for
+	// use.
+	//
+	//    Down: The network link is down.
+	//
+	//    Deleting: The interconnect is in the process of being deleted.
+	//
+	//    Deleted: The interconnect has been deleted.
 	InterconnectState *string `locationName:"interconnectState" type:"string" enum:"InterconnectState"`
 
 	// Where the connection is located.
@@ -2087,11 +2177,16 @@ type VirtualGateway struct {
 	// Example: vgw-123er56
 	VirtualGatewayId *string `locationName:"virtualGatewayId" type:"string"`
 
-	// State of the virtual private gateway.  Pending: This is the initial state
-	// after calling CreateVpnGateway. Available: Ready for use by a private virtual
-	// interface. Deleting: This is the initial state after calling DeleteVpnGateway.
-	// Deleted: In this state, a private virtual interface is unable to send traffic
-	// over this gateway.
+	// State of the virtual private gateway.
+	//
+	//    Pending: This is the initial state after calling CreateVpnGateway.
+	//
+	//    Available: Ready for use by a private virtual interface.
+	//
+	//    Deleting: This is the initial state after calling DeleteVpnGateway.
+	//
+	//    Deleted: In this state, a private virtual interface is unable to send
+	// traffic over this gateway.
 	VirtualGatewayState *string `locationName:"virtualGatewayState" type:"string"`
 }
 
@@ -2147,6 +2242,7 @@ type VirtualInterface struct {
 	// Default: None
 	Location *string `locationName:"location" type:"string"`
 
+	// The AWS account that will own the new virtual interface.
 	OwnerAccount *string `locationName:"ownerAccount" type:"string"`
 
 	// A list of routes to be advertised to the AWS network in this region (public
@@ -2171,22 +2267,34 @@ type VirtualInterface struct {
 	// Example: "My VPC"
 	VirtualInterfaceName *string `locationName:"virtualInterfaceName" type:"string"`
 
-	// State of the virtual interface.  Confirming: The creation of the virtual
-	// interface is pending confirmation from the virtual interface owner. If the
-	// owner of the virtual interface is different from the owner of the connection
-	// on which it is provisioned, then the virtual interface will remain in this
-	// state until it is confirmed by the virtual interface owner. Verifying: This
-	// state only applies to public virtual interfaces. Each public virtual interface
-	// needs validation before the virtual interface can be created. Pending: A
-	// virtual interface is in this state from the time that it is created until
-	// the virtual interface is ready to forward traffic. Available: A virtual interface
-	// that is able to forward traffic. Down: A virtual interface that is BGP down.
-	// Deleting: A virtual interface is in this state immediately after calling
-	// DeleteVirtualInterface until it can no longer forward traffic. Deleted: A
-	// virtual interface that cannot forward traffic. Rejected: The virtual interface
-	// owner has declined creation of the virtual interface. If a virtual interface
-	// in the 'Confirming' state is deleted by the virtual interface owner, the
-	// virtual interface will enter the 'Rejected' state.
+	// State of the virtual interface.
+	//
+	//    Confirming: The creation of the virtual interface is pending confirmation
+	// from the virtual interface owner. If the owner of the virtual interface is
+	// different from the owner of the connection on which it is provisioned, then
+	// the virtual interface will remain in this state until it is confirmed by
+	// the virtual interface owner.
+	//
+	//    Verifying: This state only applies to public virtual interfaces. Each
+	// public virtual interface needs validation before the virtual interface can
+	// be created.
+	//
+	//    Pending: A virtual interface is in this state from the time that it is
+	// created until the virtual interface is ready to forward traffic.
+	//
+	//    Available: A virtual interface that is able to forward traffic.
+	//
+	//    Down: A virtual interface that is BGP down.
+	//
+	//    Deleting: A virtual interface is in this state immediately after calling
+	// DeleteVirtualInterface until it can no longer forward traffic.
+	//
+	//    Deleted: A virtual interface that cannot forward traffic.
+	//
+	//    Rejected: The virtual interface owner has declined creation of the virtual
+	// interface. If a virtual interface in the 'Confirming' state is deleted by
+	// the virtual interface owner, the virtual interface will enter the 'Rejected'
+	// state.
 	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string" enum:"VirtualInterfaceState"`
 
 	// The type of virtual interface.
@@ -2211,17 +2319,28 @@ func (s VirtualInterface) GoString() string {
 	return s.String()
 }
 
-// State of the connection.  Ordering: The initial state of a hosted connection
-// provisioned on an interconnect. The connection stays in the ordering state
-// until the owner of the hosted connection confirms or declines the connection
-// order. Requested: The initial state of a standard connection. The connection
+// State of the connection.
+//
+//    Ordering: The initial state of a hosted connection provisioned on an
+// interconnect. The connection stays in the ordering state until the owner
+// of the hosted connection confirms or declines the connection order.
+//
+//    Requested: The initial state of a standard connection. The connection
 // stays in the requested state until the Letter of Authorization (LOA) is sent
-// to the customer. Pending: The connection has been approved, and is being
-// initialized. Available: The network link is up, and the connection is ready
-// for use. Down: The network link is down. Deleting: The connection is in the
-// process of being deleted. Deleted: The connection has been deleted. Rejected:
-// A hosted connection in the 'Ordering' state will enter the 'Rejected' state
-// if it is deleted by the end customer.
+// to the customer.
+//
+//    Pending: The connection has been approved, and is being initialized.
+//
+//    Available: The network link is up, and the connection is ready for use.
+//
+//    Down: The network link is down.
+//
+//    Deleting: The connection is in the process of being deleted.
+//
+//    Deleted: The connection has been deleted.
+//
+//    Rejected: A hosted connection in the 'Ordering' state will enter the
+// 'Rejected' state if it is deleted by the end customer.
 const (
 	// @enum ConnectionState
 	ConnectionStateOrdering = "ordering"
@@ -2241,12 +2360,22 @@ const (
 	ConnectionStateRejected = "rejected"
 )
 
-// State of the interconnect.  Requested: The initial state of an interconnect.
-// The interconnect stays in the requested state until the Letter of Authorization
-// (LOA) is sent to the customer. Pending: The interconnect has been approved,
-// and is being initialized. Available: The network link is up, and the interconnect
-// is ready for use. Down: The network link is down. Deleting: The interconnect
-// is in the process of being deleted. Deleted: The interconnect has been deleted.
+// State of the interconnect.
+//
+//    Requested: The initial state of an interconnect. The interconnect stays
+// in the requested state until the Letter of Authorization (LOA) is sent to
+// the customer.
+//
+//    Pending>: The interconnect has been approved, and is being initialized.
+//
+//    Available: The network link is up, and the interconnect is ready for
+// use.
+//
+//    Down: The network link is down.
+//
+//    Deleting: The interconnect is in the process of being deleted.
+//
+//    Deleted: The interconnect has been deleted.
 const (
 	// @enum InterconnectState
 	InterconnectStateRequested = "requested"
@@ -2262,22 +2391,34 @@ const (
 	InterconnectStateDeleted = "deleted"
 )
 
-// State of the virtual interface.  Confirming: The creation of the virtual
-// interface is pending confirmation from the virtual interface owner. If the
-// owner of the virtual interface is different from the owner of the connection
-// on which it is provisioned, then the virtual interface will remain in this
-// state until it is confirmed by the virtual interface owner. Verifying: This
-// state only applies to public virtual interfaces. Each public virtual interface
-// needs validation before the virtual interface can be created. Pending: A
-// virtual interface is in this state from the time that it is created until
-// the virtual interface is ready to forward traffic. Available: A virtual interface
-// that is able to forward traffic. Down: A virtual interface that is BGP down.
-// Deleting: A virtual interface is in this state immediately after calling
-// DeleteVirtualInterface until it can no longer forward traffic. Deleted: A
-// virtual interface that cannot forward traffic. Rejected: The virtual interface
-// owner has declined creation of the virtual interface. If a virtual interface
-// in the 'Confirming' state is deleted by the virtual interface owner, the
-// virtual interface will enter the 'Rejected' state.
+// State of the virtual interface.
+//
+//    Confirming: The creation of the virtual interface is pending confirmation
+// from the virtual interface owner. If the owner of the virtual interface is
+// different from the owner of the connection on which it is provisioned, then
+// the virtual interface will remain in this state until it is confirmed by
+// the virtual interface owner.
+//
+//    Verifying: This state only applies to public virtual interfaces. Each
+// public virtual interface needs validation before the virtual interface can
+// be created.
+//
+//    Pending: A virtual interface is in this state from the time that it is
+// created until the virtual interface is ready to forward traffic.
+//
+//    Available: A virtual interface that is able to forward traffic.
+//
+//    Down: A virtual interface that is BGP down.
+//
+//    Deleting: A virtual interface is in this state immediately after calling
+// DeleteVirtualInterface until it can no longer forward traffic.
+//
+//    Deleted: A virtual interface that cannot forward traffic.
+//
+//    Rejected: The virtual interface owner has declined creation of the virtual
+// interface. If a virtual interface in the 'Confirming' state is deleted by
+// the virtual interface owner, the virtual interface will enter the 'Rejected'
+// state.
 const (
 	// @enum VirtualInterfaceState
 	VirtualInterfaceStateConfirming = "confirming"

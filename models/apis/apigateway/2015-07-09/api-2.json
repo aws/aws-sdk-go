@@ -90,6 +90,7 @@
       "errors":[
         {"shape":"UnauthorizedException"},
         {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -335,6 +336,7 @@
         {"shape":"UnauthorizedException"},
         {"shape":"NotFoundException"},
         {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -844,6 +846,7 @@
       "errors":[
         {"shape":"UnauthorizedException"},
         {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
         {"shape":"NotFoundException"},
         {"shape":"TooManyRequestsException"}
       ]
@@ -913,6 +916,7 @@
       "errors":[
         {"shape":"UnauthorizedException"},
         {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
         {"shape":"BadRequestException"},
         {"shape":"TooManyRequestsException"}
       ]
@@ -1051,6 +1055,7 @@
         {"shape":"UnauthorizedException"},
         {"shape":"NotFoundException"},
         {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -1081,6 +1086,7 @@
       "errors":[
         {"shape":"UnauthorizedException"},
         {"shape":"NotFoundException"},
+        {"shape":"ConflictException"},
         {"shape":"BadRequestException"},
         {"shape":"TooManyRequestsException"}
       ]
@@ -1097,6 +1103,7 @@
         {"shape":"UnauthorizedException"},
         {"shape":"NotFoundException"},
         {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -1130,6 +1137,7 @@
         {"shape":"UnauthorizedException"},
         {"shape":"NotFoundException"},
         {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -2417,6 +2425,7 @@
         "credentials":{"shape":"String"},
         "requestParameters":{"shape":"MapOfStringToString"},
         "requestTemplates":{"shape":"MapOfStringToString"},
+        "passthroughBehavior":{"shape":"String"},
         "cacheNamespace":{"shape":"String"},
         "cacheKeyParameters":{"shape":"ListOfString"},
         "integrationResponses":{"shape":"MapOfIntegrationResponse"}
@@ -2670,6 +2679,7 @@
         "credentials":{"shape":"String"},
         "requestParameters":{"shape":"MapOfStringToString"},
         "requestTemplates":{"shape":"MapOfStringToString"},
+        "passthroughBehavior":{"shape":"String"},
         "cacheNamespace":{"shape":"String"},
         "cacheKeyParameters":{"shape":"ListOfString"}
       }

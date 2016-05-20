@@ -103,12 +103,14 @@ func (c *SQS) ChangeMessageVisibilityRequest(input *ChangeMessageVisibilityInput
 //
 // If you attempt to set the VisibilityTimeout to an amount more than the maximum
 // time left, Amazon SQS returns an error. It will not automatically recalculate
-// and increase the timeout to the maximum time remaining. Unlike with a queue,
-// when you change the visibility timeout for a specific message, that timeout
-// value is applied immediately but is not saved in memory for that message.
-// If you don't delete a message after it is received, the visibility timeout
-// for the message the next time it is received reverts to the original timeout
-// value, not the value you set with the ChangeMessageVisibility action.
+// and increase the timeout to the maximum time remaining.
+//
+// Unlike with a queue, when you change the visibility timeout for a specific
+// message, that timeout value is applied immediately but is not saved in memory
+// for that message. If you don't delete a message after it is received, the
+// visibility timeout for the message the next time it is received reverts to
+// the original timeout value, not the value you set with the ChangeMessageVisibility
+// action.
 func (c *SQS) ChangeMessageVisibility(input *ChangeMessageVisibilityInput) (*ChangeMessageVisibilityOutput, error) {
 	req, out := c.ChangeMessageVisibilityRequest(input)
 	err := req.Send()
@@ -142,10 +144,11 @@ func (c *SQS) ChangeMessageVisibilityBatchRequest(input *ChangeMessageVisibility
 //
 // Because the batch request can result in a combination of successful and
 // unsuccessful actions, you should check for batch errors even when the call
-// returns an HTTP status code of 200. Some API actions take lists of parameters.
-// These lists are specified using the param.n notation. Values of n are integers
-// starting from 1. For example, a parameter list with two elements looks like
-// this:
+// returns an HTTP status code of 200.
+//
+// Some API actions take lists of parameters. These lists are specified using
+// the param.n notation. Values of n are integers starting from 1. For example,
+// a parameter list with two elements looks like this:
 func (c *SQS) ChangeMessageVisibilityBatch(input *ChangeMessageVisibilityBatchInput) (*ChangeMessageVisibilityBatchOutput, error) {
 	req, out := c.ChangeMessageVisibilityBatchRequest(input)
 	err := req.Send()
@@ -182,7 +185,7 @@ func (c *SQS) CreateQueueRequest(input *CreateQueueInput) (req *request.Request,
 //
 //  You may pass one or more attributes in the request. If you do not provide
 // a value for any attribute, the queue will have the default value for that
-// attribute. Permitted attributes are the same that can be set using SetQueueAttributes.
+// attribute.
 //
 // Use GetQueueUrl to get a queue's URL. GetQueueUrl requires only the QueueName
 // parameter.
@@ -351,39 +354,11 @@ func (c *SQS) GetQueueAttributesRequest(input *GetQueueAttributesInput) (req *re
 	return
 }
 
-// Gets attributes for the specified queue. The following attributes are supported:
-//  All - returns all values. ApproximateNumberOfMessages - returns the approximate
-// number of visible messages in a queue. For more information, see Resources
-// Required to Process Messages (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ApproximateNumber.html)
-// in the Amazon SQS Developer Guide. ApproximateNumberOfMessagesNotVisible
-// - returns the approximate number of messages that are not timed-out and not
-// deleted. For more information, see Resources Required to Process Messages
-// (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ApproximateNumber.html)
-// in the Amazon SQS Developer Guide. VisibilityTimeout - returns the visibility
-// timeout for the queue. For more information about visibility timeout, see
-// Visibility Timeout (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html)
-// in the Amazon SQS Developer Guide. CreatedTimestamp - returns the time when
-// the queue was created (epoch time in seconds). LastModifiedTimestamp - returns
-// the time when the queue was last changed (epoch time in seconds). Policy
-// - returns the queue's policy. MaximumMessageSize - returns the limit of how
-// many bytes a message can contain before Amazon SQS rejects it. MessageRetentionPeriod
-// - returns the number of seconds Amazon SQS retains a message. QueueArn -
-// returns the queue's Amazon resource name (ARN). ApproximateNumberOfMessagesDelayed
-// - returns the approximate number of messages that are pending to be added
-// to the queue. DelaySeconds - returns the default delay on the queue in seconds.
-// ReceiveMessageWaitTimeSeconds - returns the time for which a ReceiveMessage
-// call will wait for a message to arrive. RedrivePolicy - returns the parameters
-// for dead letter queue functionality of the source queue. For more information
-// about RedrivePolicy and dead letter queues, see Using Amazon SQS Dead Letter
-// Queues (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSDeadLetterQueue.html)
-// in the Amazon SQS Developer Guide.
+// Gets attributes for the specified queue.
 //
-// Going forward, new attributes might be added. If you are writing code that
-// calls this action, we recommend that you structure your code so that it can
-// handle new attributes gracefully. Some API actions take lists of parameters.
-// These lists are specified using the param.n notation. Values of n are integers
-// starting from 1. For example, a parameter list with two elements looks like
-// this:
+// Some API actions take lists of parameters. These lists are specified using
+// the param.n notation. Values of n are integers starting from 1. For example,
+// a parameter list with two elements looks like this:
 func (c *SQS) GetQueueAttributes(input *GetQueueAttributesInput) (*GetQueueAttributesOutput, error) {
 	req, out := c.GetQueueAttributesRequest(input)
 	err := req.Send()
@@ -509,12 +484,13 @@ func (c *SQS) PurgeQueueRequest(input *PurgeQueueInput) (req *request.Request, o
 // Deletes the messages in a queue specified by the queue URL.
 //
 // When you use the PurgeQueue API, the deleted messages in the queue cannot
-// be retrieved. When you purge a queue, the message deletion process takes
-// up to 60 seconds. All messages sent to the queue before calling PurgeQueue
-// will be deleted; messages sent to the queue while it is being purged may
-// be deleted. While the queue is being purged, messages sent to the queue before
-// PurgeQueue was called may be received, but will be deleted within the next
-// minute.
+// be retrieved.
+//
+// When you purge a queue, the message deletion process takes up to 60 seconds.
+// All messages sent to the queue before calling PurgeQueue will be deleted;
+// messages sent to the queue while it is being purged may be deleted. While
+// the queue is being purged, messages sent to the queue before PurgeQueue was
+// called may be received, but will be deleted within the next minute.
 func (c *SQS) PurgeQueue(input *PurgeQueueInput) (*PurgeQueueOutput, error) {
 	req, out := c.PurgeQueueRequest(input)
 	err := req.Send()
@@ -692,15 +668,17 @@ func (c *SQS) SendMessageBatchRequest(input *SendMessageBatchInput) (req *reques
 // your message, according to the W3C XML specification. For more information,
 // go to http://www.faqs.org/rfcs/rfc1321.html (http://www.faqs.org/rfcs/rfc1321.html).
 // If you send any characters that are not included in the list, your request
-// will be rejected. #x9 | #xA | #xD | [#x20 to #xD7FF] | [#xE000 to #xFFFD]
-// | [#x10000 to #x10FFFF]
+// will be rejected.
+//
+// #x9 | #xA | #xD | [#x20 to #xD7FF] | [#xE000 to #xFFFD] | [#x10000 to #x10FFFF]
 //
 //   Because the batch request can result in a combination of successful and
 // unsuccessful actions, you should check for batch errors even when the call
-// returns an HTTP status code of 200.  Some API actions take lists of parameters.
-// These lists are specified using the param.n notation. Values of n are integers
-// starting from 1. For example, a parameter list with two elements looks like
-// this:
+// returns an HTTP status code of 200.
+//
+//  Some API actions take lists of parameters. These lists are specified using
+// the param.n notation. Values of n are integers starting from 1. For example,
+// a parameter list with two elements looks like this:
 func (c *SQS) SendMessageBatch(input *SendMessageBatchInput) (*SendMessageBatchOutput, error) {
 	req, out := c.SendMessageBatchRequest(input)
 	err := req.Send()
@@ -770,6 +748,8 @@ type AddPermissionInput struct {
 	Label *string `type:"string" required:"true"`
 
 	// The URL of the Amazon SQS queue to take action on.
+	//
+	// Queue URLs are case-sensitive.
 	QueueUrl *string `type:"string" required:"true"`
 }
 
@@ -855,6 +835,8 @@ type ChangeMessageVisibilityBatchInput struct {
 	Entries []*ChangeMessageVisibilityBatchRequestEntry `locationNameList:"ChangeMessageVisibilityBatchRequestEntry" type:"list" flattened:"true" required:"true"`
 
 	// The URL of the Amazon SQS queue to take action on.
+	//
+	// Queue URLs are case-sensitive.
 	QueueUrl *string `type:"string" required:"true"`
 }
 
@@ -990,6 +972,8 @@ type ChangeMessageVisibilityInput struct {
 	_ struct{} `type:"structure"`
 
 	// The URL of the Amazon SQS queue to take action on.
+	//
+	// Queue URLs are case-sensitive.
 	QueueUrl *string `type:"string" required:"true"`
 
 	// The receipt handle associated with the message whose visibility timeout should
@@ -1052,26 +1036,44 @@ type CreateQueueInput struct {
 	// The following lists the names, descriptions, and values of the special request
 	// parameters the CreateQueue action uses:
 	//
-	//   DelaySeconds - The time in seconds that the delivery of all messages in
+	//  DelaySeconds - The time in seconds that the delivery of all messages in
 	// the queue will be delayed. An integer from 0 to 900 (15 minutes). The default
-	// for this attribute is 0 (zero). MaximumMessageSize - The limit of how many
-	// bytes a message can contain before Amazon SQS rejects it. An integer from
-	// 1024 bytes (1 KiB) up to 262144 bytes (256 KiB). The default for this attribute
-	// is 262144 (256 KiB). MessageRetentionPeriod - The number of seconds Amazon
-	// SQS retains a message. Integer representing seconds, from 60 (1 minute) to
-	// 1209600 (14 days). The default for this attribute is 345600 (4 days). Policy
-	// - The queue's policy. A valid AWS policy. For more information about policy
-	// structure, see Overview of AWS IAM Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/PoliciesOverview.html)
-	// in the Amazon IAM User Guide. ReceiveMessageWaitTimeSeconds - The time for
-	// which a ReceiveMessage call will wait for a message to arrive. An integer
-	// from 0 to 20 (seconds). The default for this attribute is 0.  VisibilityTimeout
-	// - The visibility timeout for the queue. An integer from 0 to 43200 (12 hours).
-	// The default for this attribute is 30. For more information about visibility
-	// timeout, see Visibility Timeout (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html)
+	// for this attribute is 0 (zero).
+	//
+	// MaximumMessageSize - The limit of how many bytes a message can contain before
+	// Amazon SQS rejects it. An integer from 1024 bytes (1 KiB) up to 262144 bytes
+	// (256 KiB). The default for this attribute is 262144 (256 KiB).
+	//
+	// MessageRetentionPeriod - The number of seconds Amazon SQS retains a message.
+	// Integer representing seconds, from 60 (1 minute) to 1209600 (14 days). The
+	// default for this attribute is 345600 (4 days).
+	//
+	// Policy - The queue's policy. A valid AWS policy. For more information about
+	// policy structure, see Overview of AWS IAM Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/PoliciesOverview.html)
+	// in the Amazon IAM User Guide.
+	//
+	// ReceiveMessageWaitTimeSeconds - The time for which a ReceiveMessage call
+	// will wait for a message to arrive. An integer from 0 to 20 (seconds). The
+	// default for this attribute is 0.
+	//
+	// RedrivePolicy - The parameters for dead letter queue functionality of the
+	// source queue. For more information about RedrivePolicy and dead letter queues,
+	// see Using Amazon SQS Dead Letter Queues (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSDeadLetterQueue.html)
 	// in the Amazon SQS Developer Guide.
+	//
+	// VisibilityTimeout - The visibility timeout for the queue. An integer from
+	// 0 to 43200 (12 hours). The default for this attribute is 30. For more information
+	// about visibility timeout, see Visibility Timeout (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html)
+	// in the Amazon SQS Developer Guide.
+	//
+	//  Any other valid special request parameters that are specified (such as
+	// ApproximateNumberOfMessages, ApproximateNumberOfMessagesDelayed, ApproximateNumberOfMessagesNotVisible,
+	// CreatedTimestamp, LastModifiedTimestamp, and QueueArn) will be ignored.
 	Attributes map[string]*string `locationName:"Attribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
 
 	// The name for the queue to be created.
+	//
+	// Queue names are case-sensitive.
 	QueueName *string `type:"string" required:"true"`
 }
 
@@ -1123,6 +1125,8 @@ type DeleteMessageBatchInput struct {
 	Entries []*DeleteMessageBatchRequestEntry `locationNameList:"DeleteMessageBatchRequestEntry" type:"list" flattened:"true" required:"true"`
 
 	// The URL of the Amazon SQS queue to take action on.
+	//
+	// Queue URLs are case-sensitive.
 	QueueUrl *string `type:"string" required:"true"`
 }
 
@@ -1246,6 +1250,8 @@ type DeleteMessageInput struct {
 	_ struct{} `type:"structure"`
 
 	// The URL of the Amazon SQS queue to take action on.
+	//
+	// Queue URLs are case-sensitive.
 	QueueUrl *string `type:"string" required:"true"`
 
 	// The receipt handle associated with the message to delete.
@@ -1296,6 +1302,8 @@ type DeleteQueueInput struct {
 	_ struct{} `type:"structure"`
 
 	// The URL of the Amazon SQS queue to take action on.
+	//
+	// Queue URLs are case-sensitive.
 	QueueUrl *string `type:"string" required:"true"`
 }
 
@@ -1339,10 +1347,62 @@ func (s DeleteQueueOutput) GoString() string {
 type GetQueueAttributesInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of attributes to retrieve information for.
+	// A list of attributes to retrieve information for. The following attributes
+	// are supported:
+	//
+	//  All - returns all values.
+	//
+	// ApproximateNumberOfMessages - returns the approximate number of visible
+	// messages in a queue. For more information, see Resources Required to Process
+	// Messages (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ApproximateNumber.html)
+	// in the Amazon SQS Developer Guide.
+	//
+	// ApproximateNumberOfMessagesNotVisible - returns the approximate number of
+	// messages that are not timed-out and not deleted. For more information, see
+	// Resources Required to Process Messages (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ApproximateNumber.html)
+	// in the Amazon SQS Developer Guide.
+	//
+	// VisibilityTimeout - returns the visibility timeout for the queue. For more
+	// information about visibility timeout, see Visibility Timeout (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html)
+	// in the Amazon SQS Developer Guide.
+	//
+	// CreatedTimestamp - returns the time when the queue was created (epoch time
+	// in seconds).
+	//
+	// LastModifiedTimestamp - returns the time when the queue was last changed
+	// (epoch time in seconds).
+	//
+	// Policy - returns the queue's policy.
+	//
+	// MaximumMessageSize - returns the limit of how many bytes a message can contain
+	// before Amazon SQS rejects it.
+	//
+	// MessageRetentionPeriod - returns the number of seconds Amazon SQS retains
+	// a message.
+	//
+	// QueueArn - returns the queue's Amazon resource name (ARN).
+	//
+	// ApproximateNumberOfMessagesDelayed - returns the approximate number of messages
+	// that are pending to be added to the queue.
+	//
+	// DelaySeconds - returns the default delay on the queue in seconds.
+	//
+	// ReceiveMessageWaitTimeSeconds - returns the time for which a ReceiveMessage
+	// call will wait for a message to arrive.
+	//
+	// RedrivePolicy - returns the parameters for dead letter queue functionality
+	// of the source queue. For more information about RedrivePolicy and dead letter
+	// queues, see Using Amazon SQS Dead Letter Queues (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSDeadLetterQueue.html)
+	// in the Amazon SQS Developer Guide.
+	//
+	//  Going forward, new attributes might be added. If you are writing code that
+	// calls this action, we recommend that you structure your code so that it can
+	// handle new attributes gracefully.
 	AttributeNames []*string `locationNameList:"AttributeName" type:"list" flattened:"true"`
 
 	// The URL of the Amazon SQS queue to take action on.
+	//
+	// Queue URLs are case-sensitive.
 	QueueUrl *string `type:"string" required:"true"`
 }
 
@@ -1392,6 +1452,8 @@ type GetQueueUrlInput struct {
 
 	// The name of the queue whose URL must be fetched. Maximum 80 characters; alphanumeric
 	// characters, hyphens (-), and underscores (_) are allowed.
+	//
+	// Queue names are case-sensitive.
 	QueueName *string `type:"string" required:"true"`
 
 	// The AWS account ID of the account that created the queue.
@@ -1444,6 +1506,8 @@ type ListDeadLetterSourceQueuesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The queue URL of a dead letter queue.
+	//
+	// Queue URLs are case-sensitive.
 	QueueUrl *string `type:"string" required:"true"`
 }
 
@@ -1494,6 +1558,8 @@ type ListQueuesInput struct {
 
 	// A string to use for filtering the list results. Only those queues whose name
 	// begins with the specified string are returned.
+	//
+	// Queue names are case-sensitive.
 	QueueNamePrefix *string `type:"string"`
 }
 
@@ -1592,8 +1658,10 @@ type MessageAttributeValue struct {
 	BinaryValue []byte `type:"blob"`
 
 	// Amazon SQS supports the following logical data types: String, Number, and
-	// Binary. In addition, you can append your own custom labels. For more information,
-	// see Message Attribute Data Types (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributes.DataTypes).
+	// Binary. For the Number data type, you must use StringValue.
+	//
+	// You can also append custom labels. For more information, see Message Attribute
+	// Data Types (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributes.DataTypes).
 	DataType *string `type:"string" required:"true"`
 
 	// Not implemented. Reserved for future use.
@@ -1632,6 +1700,8 @@ type PurgeQueueInput struct {
 
 	// The queue URL of the queue to delete the messages from when using the PurgeQueue
 	// API.
+	//
+	// Queue URLs are case-sensitive.
 	QueueUrl *string `type:"string" required:"true"`
 }
 
@@ -1675,18 +1745,28 @@ func (s PurgeQueueOutput) GoString() string {
 type ReceiveMessageInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of attributes that need to be returned along with each message.
+	// A list of attributes that need to be returned along with each message. These
+	// attributes include:
 	//
-	//  The following lists the names and descriptions of the attributes that can
-	// be returned:
+	//  All - returns all values.
 	//
-	//  All - returns all values. ApproximateFirstReceiveTimestamp - returns the
-	// time when the message was first received from the queue (epoch time in milliseconds).
+	// ApproximateFirstReceiveTimestamp - returns the time when the message was
+	// first received from the queue (epoch time in milliseconds).
+	//
 	// ApproximateReceiveCount - returns the number of times a message has been
-	// received from the queue but not deleted. SenderId - returns the AWS account
-	// number (or the IP address, if anonymous access is allowed) of the sender.
-	// SentTimestamp - returns the time when the message was sent to the queue (epoch
-	// time in milliseconds).
+	// received from the queue but not deleted.
+	//
+	// SenderId - returns the AWS account number (or the IP address, if anonymous
+	// access is allowed) of the sender.
+	//
+	// SentTimestamp - returns the time when the message was sent to the queue
+	// (epoch time in milliseconds).
+	//
+	//  Any other valid special request parameters that are specified (such as
+	// ApproximateNumberOfMessages, ApproximateNumberOfMessagesDelayed, ApproximateNumberOfMessagesNotVisible,
+	// CreatedTimestamp, DelaySeconds, LastModifiedTimestamp, MaximumMessageSize,
+	// MessageRetentionPeriod, Policy, QueueArn, ReceiveMessageWaitTimeSeconds,
+	// RedrivePolicy, and VisibilityTimeout) will be ignored.
 	AttributeNames []*string `locationNameList:"AttributeName" type:"list" flattened:"true"`
 
 	// The maximum number of messages to return. Amazon SQS never returns more messages
@@ -1707,11 +1787,13 @@ type ReceiveMessageInput struct {
 	//
 	// When using ReceiveMessage, you can send a list of attribute names to receive,
 	// or you can return all of the attributes by specifying "All" or ".*" in your
-	// request. You can also use "foo.*" to return all message attributes starting
-	// with the "foo" prefix.
+	// request. You can also use "bar.*" to return all message attributes starting
+	// with the "bar" prefix.
 	MessageAttributeNames []*string `locationNameList:"MessageAttributeName" type:"list" flattened:"true"`
 
 	// The URL of the Amazon SQS queue to take action on.
+	//
+	// Queue URLs are case-sensitive.
 	QueueUrl *string `type:"string" required:"true"`
 
 	// The duration (in seconds) that the received messages are hidden from subsequent
@@ -1773,6 +1855,8 @@ type RemovePermissionInput struct {
 	Label *string `type:"string" required:"true"`
 
 	// The URL of the Amazon SQS queue to take action on.
+	//
+	// Queue URLs are case-sensitive.
 	QueueUrl *string `type:"string" required:"true"`
 }
 
@@ -1823,6 +1907,8 @@ type SendMessageBatchInput struct {
 	Entries []*SendMessageBatchRequestEntry `locationNameList:"SendMessageBatchRequestEntry" type:"list" flattened:"true" required:"true"`
 
 	// The URL of the Amazon SQS queue to take action on.
+	//
+	// Queue URLs are case-sensitive.
 	QueueUrl *string `type:"string" required:"true"`
 }
 
@@ -1993,6 +2079,8 @@ type SendMessageInput struct {
 	MessageBody *string `type:"string" required:"true"`
 
 	// The URL of the Amazon SQS queue to take action on.
+	//
+	// Queue URLs are case-sensitive.
 	QueueUrl *string `type:"string" required:"true"`
 }
 
@@ -2072,28 +2160,43 @@ type SetQueueAttributesInput struct {
 	// The following lists the names, descriptions, and values of the special request
 	// parameters the SetQueueAttributes action uses:
 	//
-	//   DelaySeconds - The time in seconds that the delivery of all messages in
+	//  DelaySeconds - The time in seconds that the delivery of all messages in
 	// the queue will be delayed. An integer from 0 to 900 (15 minutes). The default
-	// for this attribute is 0 (zero). MaximumMessageSize - The limit of how many
-	// bytes a message can contain before Amazon SQS rejects it. An integer from
-	// 1024 bytes (1 KiB) up to 262144 bytes (256 KiB). The default for this attribute
-	// is 262144 (256 KiB). MessageRetentionPeriod - The number of seconds Amazon
-	// SQS retains a message. Integer representing seconds, from 60 (1 minute) to
-	// 1209600 (14 days). The default for this attribute is 345600 (4 days). Policy
-	// - The queue's policy. A valid AWS policy. For more information about policy
-	// structure, see Overview of AWS IAM Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/PoliciesOverview.html)
-	// in the Amazon IAM User Guide. ReceiveMessageWaitTimeSeconds - The time for
-	// which a ReceiveMessage call will wait for a message to arrive. An integer
-	// from 0 to 20 (seconds). The default for this attribute is 0.  VisibilityTimeout
-	// - The visibility timeout for the queue. An integer from 0 to 43200 (12 hours).
-	// The default for this attribute is 30. For more information about visibility
-	// timeout, see Visibility Timeout in the Amazon SQS Developer Guide. RedrivePolicy
-	// - The parameters for dead letter queue functionality of the source queue.
-	// For more information about RedrivePolicy and dead letter queues, see Using
-	// Amazon SQS Dead Letter Queues in the Amazon SQS Developer Guide.
+	// for this attribute is 0 (zero).
+	//
+	// MaximumMessageSize - The limit of how many bytes a message can contain before
+	// Amazon SQS rejects it. An integer from 1024 bytes (1 KiB) up to 262144 bytes
+	// (256 KiB). The default for this attribute is 262144 (256 KiB).
+	//
+	// MessageRetentionPeriod - The number of seconds Amazon SQS retains a message.
+	// Integer representing seconds, from 60 (1 minute) to 1209600 (14 days). The
+	// default for this attribute is 345600 (4 days).
+	//
+	// Policy - The queue's policy. A valid AWS policy. For more information about
+	// policy structure, see Overview of AWS IAM Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/PoliciesOverview.html)
+	// in the Amazon IAM User Guide.
+	//
+	// ReceiveMessageWaitTimeSeconds - The time for which a ReceiveMessage call
+	// will wait for a message to arrive. An integer from 0 to 20 (seconds). The
+	// default for this attribute is 0.
+	//
+	// VisibilityTimeout - The visibility timeout for the queue. An integer from
+	// 0 to 43200 (12 hours). The default for this attribute is 30. For more information
+	// about visibility timeout, see Visibility Timeout in the Amazon SQS Developer
+	// Guide.
+	//
+	// RedrivePolicy - The parameters for dead letter queue functionality of the
+	// source queue. For more information about RedrivePolicy and dead letter queues,
+	// see Using Amazon SQS Dead Letter Queues in the Amazon SQS Developer Guide.
+	//
+	//  Any other valid special request parameters that are specified (such as
+	// ApproximateNumberOfMessages, ApproximateNumberOfMessagesDelayed, ApproximateNumberOfMessagesNotVisible,
+	// CreatedTimestamp, LastModifiedTimestamp, and QueueArn) will be ignored.
 	Attributes map[string]*string `locationName:"Attribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true" required:"true"`
 
 	// The URL of the Amazon SQS queue to take action on.
+	//
+	// Queue URLs are case-sensitive.
 	QueueUrl *string `type:"string" required:"true"`
 }
 

@@ -180,9 +180,29 @@ func ExampleSSM_DescribeDocument() {
 	svc := ssm.New(session.New())
 
 	params := &ssm.DescribeDocumentInput{
-		Name: aws.String("DocumentName"), // Required
+		Name: aws.String("DocumentARN"), // Required
 	}
 	resp, err := svc.DescribeDocument(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleSSM_DescribeDocumentPermission() {
+	svc := ssm.New(session.New())
+
+	params := &ssm.DescribeDocumentPermissionInput{
+		Name:           aws.String("DocumentName"),           // Required
+		PermissionType: aws.String("DocumentPermissionType"), // Required
+	}
+	resp, err := svc.DescribeDocumentPermission(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -229,7 +249,7 @@ func ExampleSSM_GetDocument() {
 	svc := ssm.New(session.New())
 
 	params := &ssm.GetDocumentInput{
-		Name: aws.String("DocumentName"), // Required
+		Name: aws.String("DocumentARN"), // Required
 	}
 	resp, err := svc.GetDocument(params)
 
@@ -357,16 +377,46 @@ func ExampleSSM_ListDocuments() {
 	fmt.Println(resp)
 }
 
+func ExampleSSM_ModifyDocumentPermission() {
+	svc := ssm.New(session.New())
+
+	params := &ssm.ModifyDocumentPermissionInput{
+		Name:           aws.String("DocumentName"),           // Required
+		PermissionType: aws.String("DocumentPermissionType"), // Required
+		AccountIdsToAdd: []*string{
+			aws.String("AccountId"), // Required
+			// More values...
+		},
+		AccountIdsToRemove: []*string{
+			aws.String("AccountId"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.ModifyDocumentPermission(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleSSM_SendCommand() {
 	svc := ssm.New(session.New())
 
 	params := &ssm.SendCommandInput{
-		DocumentName: aws.String("DocumentName"), // Required
+		DocumentName: aws.String("DocumentARN"), // Required
 		InstanceIds: []*string{ // Required
 			aws.String("InstanceId"), // Required
 			// More values...
 		},
 		Comment:            aws.String("Comment"),
+		DocumentHash:       aws.String("DocumentHash"),
+		DocumentHashType:   aws.String("DocumentHashType"),
 		OutputS3BucketName: aws.String("S3BucketName"),
 		OutputS3KeyPrefix:  aws.String("S3KeyPrefix"),
 		Parameters: map[string][]*string{
