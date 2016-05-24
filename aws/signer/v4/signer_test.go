@@ -1,4 +1,4 @@
-package v4
+package v4_test
 
 import (
 	"net/http"
@@ -13,6 +13,14 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/awstesting"
 )
+
+func TestNameRequired(t *testing.T) {
+	assert.Fail(t, "NYI")
+}
+
+func TestRegionRequired(t *testing.T) {
+	assert.Fail(t, "NYI")
+}
 
 func buildSigner(serviceName string, region string, signTime time.Time, expireTime time.Duration, body string) signer {
 	endpoint := "https://" + serviceName + "." + region + ".amazonaws.com"
@@ -115,7 +123,7 @@ func TestAnonymousCredentials(t *testing.T) {
 		nil,
 		nil,
 	)
-	Sign(r)
+	SignAwsRequest(r)
 
 	urlQ := r.HTTPRequest.URL.Query()
 	assert.Empty(t, urlQ.Get("X-Amz-Signature"))
@@ -143,10 +151,10 @@ func TestIgnoreResignRequestWithValidCreds(t *testing.T) {
 		nil,
 	)
 
-	Sign(r)
+	SignAwsRequest(r)
 	sig := r.HTTPRequest.Header.Get("Authorization")
 
-	Sign(r)
+	SignAwsRequest(r)
 	assert.Equal(t, sig, r.HTTPRequest.Header.Get("Authorization"))
 }
 
@@ -166,10 +174,10 @@ func TestIgnorePreResignRequestWithValidCreds(t *testing.T) {
 	)
 	r.ExpireTime = time.Minute * 10
 
-	Sign(r)
+	SignAwsRequest(r)
 	sig := r.HTTPRequest.Header.Get("X-Amz-Signature")
 
-	Sign(r)
+	SignAwsRequest(r)
 	assert.Equal(t, sig, r.HTTPRequest.Header.Get("X-Amz-Signature"))
 }
 
@@ -185,7 +193,7 @@ func TestResignRequestExpiredCreds(t *testing.T) {
 		nil,
 		nil,
 	)
-	Sign(r)
+	SignAwsRequest(r)
 	querySig := r.HTTPRequest.Header.Get("Authorization")
 	var origSignedHeaders string
 	for _, p := range strings.Split(querySig, ", ") {
@@ -199,7 +207,7 @@ func TestResignRequestExpiredCreds(t *testing.T) {
 
 	creds.Expire()
 
-	Sign(r)
+	SignAwsRequest(r)
 	updatedQuerySig := r.HTTPRequest.Header.Get("Authorization")
 	assert.NotEqual(t, querySig, updatedQuerySig)
 
@@ -233,7 +241,7 @@ func TestPreResignRequestExpiredCreds(t *testing.T) {
 	)
 	r.ExpireTime = time.Minute * 10
 
-	Sign(r)
+	SignAwsRequest(r)
 	querySig := r.HTTPRequest.URL.Query().Get("X-Amz-Signature")
 	signedHeaders := r.HTTPRequest.URL.Query().Get("X-Amz-SignedHeaders")
 	assert.NotEmpty(t, signedHeaders)
@@ -241,7 +249,7 @@ func TestPreResignRequestExpiredCreds(t *testing.T) {
 	creds.Expire()
 	r.Time = time.Now().Add(time.Hour * 48)
 
-	Sign(r)
+	SignAwsRequest(r)
 	assert.NotEqual(t, querySig, r.HTTPRequest.URL.Query().Get("X-Amz-Signature"))
 	resignedHeaders := r.HTTPRequest.URL.Query().Get("X-Amz-SignedHeaders")
 	assert.Equal(t, signedHeaders, resignedHeaders)
@@ -261,13 +269,13 @@ func TestResignRequestExpiredRequest(t *testing.T) {
 		nil,
 	)
 
-	Sign(r)
+	SignAwsRequest(r)
 	querySig := r.HTTPRequest.Header.Get("Authorization")
 
 	// Simulate the request occured 15 minutes in the past
 	r.Time = r.Time.Add(-15 * time.Minute)
 
-	Sign(r)
+	SignAwsRequest(r)
 	assert.NotEqual(t, querySig, r.HTTPRequest.Header.Get("Authorization"))
 }
 
