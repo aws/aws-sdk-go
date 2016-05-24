@@ -238,9 +238,10 @@ func ExampleRDS_CreateDBCluster() {
 		KmsKeyId:                    aws.String("String"),
 		OptionGroupName:             aws.String("String"),
 		Port:                        aws.Int64(1),
-		PreferredBackupWindow:      aws.String("String"),
-		PreferredMaintenanceWindow: aws.String("String"),
-		StorageEncrypted:           aws.Bool(true),
+		PreferredBackupWindow:       aws.String("String"),
+		PreferredMaintenanceWindow:  aws.String("String"),
+		ReplicationSourceIdentifier: aws.String("String"),
+		StorageEncrypted:            aws.Bool(true),
 		Tags: []*rds.Tag{
 			{ // Required
 				Key:   aws.String("String"),
@@ -911,6 +912,25 @@ func ExampleRDS_DescribeDBClusterParameters() {
 	fmt.Println(resp)
 }
 
+func ExampleRDS_DescribeDBClusterSnapshotAttributes() {
+	svc := rds.New(session.New())
+
+	params := &rds.DescribeDBClusterSnapshotAttributesInput{
+		DBClusterSnapshotIdentifier: aws.String("String"), // Required
+	}
+	resp, err := svc.DescribeDBClusterSnapshotAttributes(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleRDS_DescribeDBClusterSnapshots() {
 	svc := rds.New(session.New())
 
@@ -927,9 +947,11 @@ func ExampleRDS_DescribeDBClusterSnapshots() {
 			},
 			// More values...
 		},
-		Marker:       aws.String("String"),
-		MaxRecords:   aws.Int64(1),
-		SnapshotType: aws.String("String"),
+		IncludePublic: aws.Bool(true),
+		IncludeShared: aws.Bool(true),
+		Marker:        aws.String("String"),
+		MaxRecords:    aws.Int64(1),
+		SnapshotType:  aws.String("String"),
 	}
 	resp, err := svc.DescribeDBClusterSnapshots(params)
 
@@ -1173,7 +1195,7 @@ func ExampleRDS_DescribeDBSnapshotAttributes() {
 	svc := rds.New(session.New())
 
 	params := &rds.DescribeDBSnapshotAttributesInput{
-		DBSnapshotIdentifier: aws.String("String"),
+		DBSnapshotIdentifier: aws.String("String"), // Required
 	}
 	resp, err := svc.DescribeDBSnapshotAttributes(params)
 
@@ -1755,6 +1777,34 @@ func ExampleRDS_ModifyDBClusterParameterGroup() {
 	fmt.Println(resp)
 }
 
+func ExampleRDS_ModifyDBClusterSnapshotAttribute() {
+	svc := rds.New(session.New())
+
+	params := &rds.ModifyDBClusterSnapshotAttributeInput{
+		AttributeName:               aws.String("String"), // Required
+		DBClusterSnapshotIdentifier: aws.String("String"), // Required
+		ValuesToAdd: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+		ValuesToRemove: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.ModifyDBClusterSnapshotAttribute(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleRDS_ModifyDBInstance() {
 	svc := rds.New(session.New())
 
@@ -1847,8 +1897,8 @@ func ExampleRDS_ModifyDBSnapshotAttribute() {
 	svc := rds.New(session.New())
 
 	params := &rds.ModifyDBSnapshotAttributeInput{
+		AttributeName:        aws.String("String"), // Required
 		DBSnapshotIdentifier: aws.String("String"), // Required
-		AttributeName:        aws.String("String"),
 		ValuesToAdd: []*string{
 			aws.String("String"), // Required
 			// More values...

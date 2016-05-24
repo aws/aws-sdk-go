@@ -577,6 +577,21 @@
         {"shape":"DBParameterGroupNotFoundFault"}
       ]
     },
+    "DescribeDBClusterSnapshotAttributes":{
+      "name":"DescribeDBClusterSnapshotAttributes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeDBClusterSnapshotAttributesMessage"},
+      "output":{
+        "shape":"DescribeDBClusterSnapshotAttributesResult",
+        "resultWrapper":"DescribeDBClusterSnapshotAttributesResult"
+      },
+      "errors":[
+        {"shape":"DBClusterSnapshotNotFoundFault"}
+      ]
+    },
     "DescribeDBClusterSnapshots":{
       "name":"DescribeDBClusterSnapshots",
       "http":{
@@ -973,6 +988,23 @@
       "errors":[
         {"shape":"DBParameterGroupNotFoundFault"},
         {"shape":"InvalidDBParameterGroupStateFault"}
+      ]
+    },
+    "ModifyDBClusterSnapshotAttribute":{
+      "name":"ModifyDBClusterSnapshotAttribute",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyDBClusterSnapshotAttributeMessage"},
+      "output":{
+        "shape":"ModifyDBClusterSnapshotAttributeResult",
+        "resultWrapper":"ModifyDBClusterSnapshotAttributeResult"
+      },
+      "errors":[
+        {"shape":"DBClusterSnapshotNotFoundFault"},
+        {"shape":"InvalidDBClusterSnapshotStateFault"},
+        {"shape":"SharedSnapshotQuotaExceededFault"}
       ]
     },
     "ModifyDBInstance":{
@@ -1649,6 +1681,7 @@
         "OptionGroupName":{"shape":"String"},
         "PreferredBackupWindow":{"shape":"String"},
         "PreferredMaintenanceWindow":{"shape":"String"},
+        "ReplicationSourceIdentifier":{"shape":"String"},
         "Tags":{"shape":"TagList"},
         "StorageEncrypted":{"shape":"BooleanOptional"},
         "KmsKeyId":{"shape":"String"}
@@ -2091,6 +2124,28 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "DBClusterSnapshotAttribute":{
+      "type":"structure",
+      "members":{
+        "AttributeName":{"shape":"String"},
+        "AttributeValues":{"shape":"AttributeValueList"}
+      }
+    },
+    "DBClusterSnapshotAttributeList":{
+      "type":"list",
+      "member":{
+        "shape":"DBClusterSnapshotAttribute",
+        "locationName":"DBClusterSnapshotAttribute"
+      }
+    },
+    "DBClusterSnapshotAttributesResult":{
+      "type":"structure",
+      "members":{
+        "DBClusterSnapshotIdentifier":{"shape":"String"},
+        "DBClusterSnapshotAttributes":{"shape":"DBClusterSnapshotAttributeList"}
+      },
+      "wrapper":true
     },
     "DBClusterSnapshotList":{
       "type":"list",
@@ -2760,6 +2815,19 @@
         "Marker":{"shape":"String"}
       }
     },
+    "DescribeDBClusterSnapshotAttributesMessage":{
+      "type":"structure",
+      "required":["DBClusterSnapshotIdentifier"],
+      "members":{
+        "DBClusterSnapshotIdentifier":{"shape":"String"}
+      }
+    },
+    "DescribeDBClusterSnapshotAttributesResult":{
+      "type":"structure",
+      "members":{
+        "DBClusterSnapshotAttributesResult":{"shape":"DBClusterSnapshotAttributesResult"}
+      }
+    },
     "DescribeDBClusterSnapshotsMessage":{
       "type":"structure",
       "members":{
@@ -2768,7 +2836,9 @@
         "SnapshotType":{"shape":"String"},
         "Filters":{"shape":"FilterList"},
         "MaxRecords":{"shape":"IntegerOptional"},
-        "Marker":{"shape":"String"}
+        "Marker":{"shape":"String"},
+        "IncludeShared":{"shape":"Boolean"},
+        "IncludePublic":{"shape":"Boolean"}
       }
     },
     "DescribeDBClustersMessage":{
@@ -2868,6 +2938,7 @@
     },
     "DescribeDBSnapshotAttributesMessage":{
       "type":"structure",
+      "required":["DBSnapshotIdentifier"],
       "members":{
         "DBSnapshotIdentifier":{"shape":"String"}
       }
@@ -3519,6 +3590,25 @@
         "DBCluster":{"shape":"DBCluster"}
       }
     },
+    "ModifyDBClusterSnapshotAttributeMessage":{
+      "type":"structure",
+      "required":[
+        "DBClusterSnapshotIdentifier",
+        "AttributeName"
+      ],
+      "members":{
+        "DBClusterSnapshotIdentifier":{"shape":"String"},
+        "AttributeName":{"shape":"String"},
+        "ValuesToAdd":{"shape":"AttributeValueList"},
+        "ValuesToRemove":{"shape":"AttributeValueList"}
+      }
+    },
+    "ModifyDBClusterSnapshotAttributeResult":{
+      "type":"structure",
+      "members":{
+        "DBClusterSnapshotAttributesResult":{"shape":"DBClusterSnapshotAttributesResult"}
+      }
+    },
     "ModifyDBInstanceMessage":{
       "type":"structure",
       "required":["DBInstanceIdentifier"],
@@ -3574,7 +3664,10 @@
     },
     "ModifyDBSnapshotAttributeMessage":{
       "type":"structure",
-      "required":["DBSnapshotIdentifier"],
+      "required":[
+        "DBSnapshotIdentifier",
+        "AttributeName"
+      ],
       "members":{
         "DBSnapshotIdentifier":{"shape":"String"},
         "AttributeName":{"shape":"String"},
