@@ -5369,6 +5369,36 @@ func (c *EC2) GetConsoleOutput(input *GetConsoleOutputInput) (*GetConsoleOutputO
 	return out, err
 }
 
+const opGetConsoleScreenshot = "GetConsoleScreenshot"
+
+// GetConsoleScreenshotRequest generates a request for the GetConsoleScreenshot operation.
+func (c *EC2) GetConsoleScreenshotRequest(input *GetConsoleScreenshotInput) (req *request.Request, output *GetConsoleScreenshotOutput) {
+	op := &request.Operation{
+		Name:       opGetConsoleScreenshot,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetConsoleScreenshotInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &GetConsoleScreenshotOutput{}
+	req.Data = output
+	return
+}
+
+// Retrieve a JPG-format screenshot of an instance to help with troubleshooting.
+//
+// For API calls, the returned content is base64-encoded. For command line
+// tools, the decoding is performed for you.
+func (c *EC2) GetConsoleScreenshot(input *GetConsoleScreenshotInput) (*GetConsoleScreenshotOutput, error) {
+	req, out := c.GetConsoleScreenshotRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opGetPasswordData = "GetPasswordData"
 
 // GetPasswordDataRequest generates a request for the GetPasswordData operation.
@@ -6130,9 +6160,7 @@ func (c *EC2) MoveAddressToVpcRequest(input *MoveAddressToVpcInput) (req *reques
 // Elastic IP address is moved, it is no longer available for use in the EC2-Classic
 // platform, unless you move it back using the RestoreAddressToClassic request.
 // You cannot move an Elastic IP address that was originally allocated for use
-// in the EC2-VPC platform to the EC2-Classic platform. You cannot migrate an
-// Elastic IP address that's associated with a reverse DNS record. Contact AWS
-// account and billing support to remove the reverse DNS record.
+// in the EC2-VPC platform to the EC2-Classic platform.
 func (c *EC2) MoveAddressToVpc(input *MoveAddressToVpcInput) (*MoveAddressToVpcOutput, error) {
 	req, out := c.MoveAddressToVpcRequest(input)
 	err := req.Send()
@@ -6817,9 +6845,7 @@ func (c *EC2) RestoreAddressToClassicRequest(input *RestoreAddressToClassicInput
 // Restores an Elastic IP address that was previously moved to the EC2-VPC platform
 // back to the EC2-Classic platform. You cannot move an Elastic IP address that
 // was originally allocated for use in EC2-VPC. The Elastic IP address must
-// not be associated with an instance or network interface. You cannot restore
-// an Elastic IP address that's associated with a reverse DNS record. Contact
-// AWS account and billing support to remove the reverse DNS record.
+// not be associated with an instance or network interface.
 func (c *EC2) RestoreAddressToClassic(input *RestoreAddressToClassicInput) (*RestoreAddressToClassicOutput, error) {
 	req, out := c.RestoreAddressToClassicRequest(input)
 	err := req.Send()
@@ -6935,6 +6961,10 @@ func (c *EC2) RunInstancesRequest(input *RunInstancesInput) (req *request.Reques
 // To ensure faster instance launches, break up large requests into smaller
 // batches. For example, create five separate launch requests for 100 instances
 // each instead of one launch request for 500 instances.
+//
+// To tag your instance, ensure that it is running as CreateTags requires a
+// resource ID. For more information about tagging, see Tagging Your Amazon
+// EC2 Resources (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html).
 //
 // If you don't specify a security group when launching an instance, Amazon
 // EC2 uses the default security group. For more information, see Security Groups
@@ -9883,7 +9913,8 @@ type CreateNetworkAclEntryInput struct {
 	// The rule number for the entry (for example, 100). ACL entries are processed
 	// in ascending order by rule number.
 	//
-	// Constraints: Positive integer from 1 to 32766
+	// Constraints: Positive integer from 1 to 32766. The range 32767 to 65535
+	// is reserved for internal use.
 	RuleNumber *int64 `locationName:"ruleNumber" type:"integer" required:"true"`
 }
 
@@ -18595,6 +18626,68 @@ func (s GetConsoleOutputOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for the request.
+type GetConsoleScreenshotInput struct {
+	_ struct{} `type:"structure"`
+
+	// Checks whether you have the required permissions for the action, without
+	// actually making the request, and provides an error response. If you have
+	// the required permissions, the error response is DryRunOperation. Otherwise,
+	// it is UnauthorizedOperation.
+	DryRun *bool `type:"boolean"`
+
+	// The ID of the instance.
+	InstanceId *string `type:"string" required:"true"`
+
+	// When set to true, acts as keystroke input and wakes up an instance that's
+	// in standby or "sleep" mode.
+	WakeUp *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s GetConsoleScreenshotInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetConsoleScreenshotInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetConsoleScreenshotInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetConsoleScreenshotInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// Contains the output of the request.
+type GetConsoleScreenshotOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The data that comprises the image.
+	ImageData *string `locationName:"imageData" type:"string"`
+
+	// The ID of the instance.
+	InstanceId *string `locationName:"instanceId" type:"string"`
+}
+
+// String returns the string representation
+func (s GetConsoleScreenshotOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetConsoleScreenshotOutput) GoString() string {
+	return s.String()
+}
+
 // Contains the parameters for GetPasswordData.
 type GetPasswordDataInput struct {
 	_ struct{} `type:"structure"`
@@ -21670,6 +21763,11 @@ type NatGateway struct {
 	// The ID of the NAT gateway.
 	NatGatewayId *string `locationName:"natGatewayId" type:"string"`
 
+	// Reserved. If you need to sustain traffic greater than the documented limits
+	// (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html),
+	// contact us through the Support Center (https://console.aws.amazon.com/support/home?).
+	ProvisionedBandwidth *ProvisionedBandwidth `locationName:"provisionedBandwidth" type:"structure"`
+
 	// The state of the NAT gateway.
 	//
 	//   pending: The NAT gateway is being created and is not ready to process
@@ -22376,6 +22474,48 @@ func (s PropagatingVgw) String() string {
 
 // GoString returns the string representation
 func (s PropagatingVgw) GoString() string {
+	return s.String()
+}
+
+// Reserved. If you need to sustain traffic greater than the documented limits
+// (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html),
+// contact us through the Support Center (https://console.aws.amazon.com/support/home?).
+type ProvisionedBandwidth struct {
+	_ struct{} `type:"structure"`
+
+	// Reserved. If you need to sustain traffic greater than the documented limits
+	// (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html),
+	// contact us through the Support Center (https://console.aws.amazon.com/support/home?).
+	ProvisionTime *time.Time `locationName:"provisionTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Reserved. If you need to sustain traffic greater than the documented limits
+	// (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html),
+	// contact us through the Support Center (https://console.aws.amazon.com/support/home?).
+	Provisioned *string `locationName:"provisioned" type:"string"`
+
+	// Reserved. If you need to sustain traffic greater than the documented limits
+	// (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html),
+	// contact us through the Support Center (https://console.aws.amazon.com/support/home?).
+	RequestTime *time.Time `locationName:"requestTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Reserved. If you need to sustain traffic greater than the documented limits
+	// (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html),
+	// contact us through the Support Center (https://console.aws.amazon.com/support/home?).
+	Requested *string `locationName:"requested" type:"string"`
+
+	// Reserved. If you need to sustain traffic greater than the documented limits
+	// (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html),
+	// contact us through the Support Center (https://console.aws.amazon.com/support/home?).
+	Status *string `locationName:"status" type:"string"`
+}
+
+// String returns the string representation
+func (s ProvisionedBandwidth) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ProvisionedBandwidth) GoString() string {
 	return s.String()
 }
 

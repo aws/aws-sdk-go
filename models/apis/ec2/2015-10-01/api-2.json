@@ -1347,6 +1347,15 @@
       "input":{"shape":"GetConsoleOutputRequest"},
       "output":{"shape":"GetConsoleOutputResult"}
     },
+    "GetConsoleScreenshot":{
+      "name":"GetConsoleScreenshot",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetConsoleScreenshotRequest"},
+      "output":{"shape":"GetConsoleScreenshotResult"}
+    },
     "GetPasswordData":{
       "name":"GetPasswordData",
       "http":{
@@ -6759,6 +6768,28 @@
         }
       }
     },
+    "GetConsoleScreenshotRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "InstanceId":{"shape":"String"},
+        "WakeUp":{"shape":"Boolean"}
+      }
+    },
+    "GetConsoleScreenshotResult":{
+      "type":"structure",
+      "members":{
+        "InstanceId":{
+          "shape":"String",
+          "locationName":"instanceId"
+        },
+        "ImageData":{
+          "shape":"String",
+          "locationName":"imageData"
+        }
+      }
+    },
     "GetPasswordDataRequest":{
       "type":"structure",
       "required":["InstanceId"],
@@ -9208,6 +9239,10 @@
         "FailureMessage":{
           "shape":"String",
           "locationName":"failureMessage"
+        },
+        "ProvisionedBandwidth":{
+          "shape":"ProvisionedBandwidth",
+          "locationName":"provisionedBandwidth"
         }
       }
     },
@@ -9956,6 +9991,31 @@
       "member":{
         "shape":"PropagatingVgw",
         "locationName":"item"
+      }
+    },
+    "ProvisionedBandwidth":{
+      "type":"structure",
+      "members":{
+        "Provisioned":{
+          "shape":"String",
+          "locationName":"provisioned"
+        },
+        "Requested":{
+          "shape":"String",
+          "locationName":"requested"
+        },
+        "RequestTime":{
+          "shape":"DateTime",
+          "locationName":"requestTime"
+        },
+        "ProvisionTime":{
+          "shape":"DateTime",
+          "locationName":"provisionTime"
+        },
+        "Status":{
+          "shape":"String",
+          "locationName":"status"
+        }
       }
     },
     "PublicIpStringList":{
@@ -12804,13 +12864,13 @@
       "type":"structure",
       "required":["Error"],
       "members":{
-        "ResourceId":{
-          "shape":"String",
-          "locationName":"resourceId"
-        },
         "Error":{
           "shape":"UnsuccessfulItemError",
           "locationName":"error"
+        },
+        "ResourceId":{
+          "shape":"String",
+          "locationName":"resourceId"
         }
       }
     },
