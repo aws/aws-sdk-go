@@ -12,7 +12,7 @@ a > img {
 
 body {
 	margin: 0;
-	font-family: Arial, sans-serif;
+	font-family: HelveticaNeueBold,Helvetica,Helvetica,Arial,sans-serif;
 	font-size: 16px;
 	background-color: #fff;
 	line-height: 1.3em;
@@ -78,6 +78,14 @@ pre {
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
+}
+.title {
+	font-family: HelveticaNeueBold,Helvetica,Helvetica,Arial,sans-serif;
+	text-shadow: rgba(0,0,0,0.8) 0 -1px 0;
+	color: #fff;
+	-webkit-font-smoothing: antialiased;
+	margin:20px;
+	display:inherit;
 }
 
 h1,
@@ -162,12 +170,21 @@ div#fixed {
 	height: 100%;
 }
 
+div .top_link {
+	float:right;
+	overflow:auto;
+	display:inline;
+	padding-top:2px;
+}
+
 .pkg-dir {
 	width: 20%;
+	max-width:400px;
+	min-width:325px;
 	height: calc(100% - 64px);
 	position: relative;
 	background: #F6F6F6;
-	overflow:auto;
+	overflow:hidden;
 	float: left;
 	display: inline-block;
 	box-sizing: border-box;
@@ -199,7 +216,7 @@ div#fixed {
 }
 
 div#topbar {
-	background: #222;
+	background: #444;
 	height: 64px;
 	overflow: hidden;
 	position: relative;
@@ -207,11 +224,9 @@ div#topbar {
 
 div#page {
 	box-sizing: border-box;
-	width:80%;
 	height:calc(100% - 64px);
-	float:right;
-	display:inline-block;
-	overflow:auto
+	overflow:auto;
+	max-width:1600px;
 }
 div#page > .container,
 div#topbar > .container {
@@ -714,6 +729,10 @@ a.error {
 		display: none;
 	}
 
+	.title {
+		margin:5px;
+	}
+
 	div#page {
 		box-sizing: border-box;
 		width:100%;
@@ -751,6 +770,9 @@ a.error {
 
 	div#mobile_container {
 		display:inline-block;
+		width: 100%;
+		padding-left:20px;
+		padding-top:10px;
 	}
 }
 
@@ -765,6 +787,10 @@ a.error {
 	div#about {
 		max-width: 500px;
 		text-align: center;
+	}
+
+	.title {
+		margin:5px;
 	}
 
 	.pkg-dir {
@@ -808,6 +834,10 @@ a.error {
 
 	div#menu > input {
 		font-size: 14px;
+	}
+
+	.title {
+		margin:5px;
 	}
 
 	.pkg-dir {
@@ -919,6 +949,10 @@ a.error {
 		display: none;
 	}
 
+	.title {
+		margin:5px;
+	}
+
 	div#page {
 		box-sizing: border-box;
 		width:100%;
@@ -958,6 +992,10 @@ a.error {
 
 	.pkg-dir {
 		display: none;
+	}
+
+	.title {
+		margin:5px;
 	}
 
 	div#page {
