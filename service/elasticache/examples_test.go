@@ -68,6 +68,7 @@ func ExampleElastiCache_CopySnapshot() {
 	params := &elasticache.CopySnapshotInput{
 		SourceSnapshotName: aws.String("String"), // Required
 		TargetSnapshotName: aws.String("String"), // Required
+		TargetBucket:       aws.String("String"),
 	}
 	resp, err := svc.CopySnapshot(params)
 
@@ -921,7 +922,7 @@ func ExampleElastiCache_ResetCacheParameterGroup() {
 
 	params := &elasticache.ResetCacheParameterGroupInput{
 		CacheParameterGroupName: aws.String("String"), // Required
-		ParameterNameValues: []*elasticache.ParameterNameValue{ // Required
+		ParameterNameValues: []*elasticache.ParameterNameValue{
 			{ // Required
 				ParameterName:  aws.String("String"),
 				ParameterValue: aws.String("String"),
