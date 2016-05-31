@@ -640,6 +640,10 @@ type EC2API interface {
 
 	GetConsoleOutput(*ec2.GetConsoleOutputInput) (*ec2.GetConsoleOutputOutput, error)
 
+	GetConsoleScreenshotRequest(*ec2.GetConsoleScreenshotInput) (*request.Request, *ec2.GetConsoleScreenshotOutput)
+
+	GetConsoleScreenshot(*ec2.GetConsoleScreenshotInput) (*ec2.GetConsoleScreenshotOutput, error)
+
 	GetPasswordDataRequest(*ec2.GetPasswordDataInput) (*request.Request, *ec2.GetPasswordDataOutput)
 
 	GetPasswordData(*ec2.GetPasswordDataInput) (*ec2.GetPasswordDataOutput, error)

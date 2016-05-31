@@ -4041,6 +4041,27 @@ func ExampleEC2_GetConsoleOutput() {
 	fmt.Println(resp)
 }
 
+func ExampleEC2_GetConsoleScreenshot() {
+	svc := ec2.New(session.New())
+
+	params := &ec2.GetConsoleScreenshotInput{
+		InstanceId: aws.String("String"), // Required
+		DryRun:     aws.Bool(true),
+		WakeUp:     aws.Bool(true),
+	}
+	resp, err := svc.GetConsoleScreenshot(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleEC2_GetPasswordData() {
 	svc := ec2.New(session.New())
 

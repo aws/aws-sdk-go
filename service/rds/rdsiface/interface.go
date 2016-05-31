@@ -142,6 +142,10 @@ type RDSAPI interface {
 
 	DescribeDBClusterParameters(*rds.DescribeDBClusterParametersInput) (*rds.DescribeDBClusterParametersOutput, error)
 
+	DescribeDBClusterSnapshotAttributesRequest(*rds.DescribeDBClusterSnapshotAttributesInput) (*request.Request, *rds.DescribeDBClusterSnapshotAttributesOutput)
+
+	DescribeDBClusterSnapshotAttributes(*rds.DescribeDBClusterSnapshotAttributesInput) (*rds.DescribeDBClusterSnapshotAttributesOutput, error)
+
 	DescribeDBClusterSnapshotsRequest(*rds.DescribeDBClusterSnapshotsInput) (*request.Request, *rds.DescribeDBClusterSnapshotsOutput)
 
 	DescribeDBClusterSnapshots(*rds.DescribeDBClusterSnapshotsInput) (*rds.DescribeDBClusterSnapshotsOutput, error)
@@ -283,6 +287,10 @@ type RDSAPI interface {
 	ModifyDBClusterParameterGroupRequest(*rds.ModifyDBClusterParameterGroupInput) (*request.Request, *rds.DBClusterParameterGroupNameMessage)
 
 	ModifyDBClusterParameterGroup(*rds.ModifyDBClusterParameterGroupInput) (*rds.DBClusterParameterGroupNameMessage, error)
+
+	ModifyDBClusterSnapshotAttributeRequest(*rds.ModifyDBClusterSnapshotAttributeInput) (*request.Request, *rds.ModifyDBClusterSnapshotAttributeOutput)
+
+	ModifyDBClusterSnapshotAttribute(*rds.ModifyDBClusterSnapshotAttributeInput) (*rds.ModifyDBClusterSnapshotAttributeOutput, error)
 
 	ModifyDBInstanceRequest(*rds.ModifyDBInstanceInput) (*request.Request, *rds.ModifyDBInstanceOutput)
 

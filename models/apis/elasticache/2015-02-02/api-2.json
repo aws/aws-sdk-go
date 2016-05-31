@@ -924,7 +924,8 @@
         "AllowedValues":{"shape":"String"},
         "IsModifiable":{"shape":"Boolean"},
         "MinimumEngineVersion":{"shape":"String"},
-        "CacheNodeTypeSpecificValues":{"shape":"CacheNodeTypeSpecificValueList"}
+        "CacheNodeTypeSpecificValues":{"shape":"CacheNodeTypeSpecificValueList"},
+        "ChangeType":{"shape":"ChangeType"}
       }
     },
     "CacheNodeTypeSpecificParametersList":{
@@ -1183,6 +1184,13 @@
       },
       "exception":true
     },
+    "ChangeType":{
+      "type":"string",
+      "enum":[
+        "immediate",
+        "requires-reboot"
+      ]
+    },
     "ClusterIdList":{
       "type":"list",
       "member":{
@@ -1209,7 +1217,8 @@
       ],
       "members":{
         "SourceSnapshotName":{"shape":"String"},
-        "TargetSnapshotName":{"shape":"String"}
+        "TargetSnapshotName":{"shape":"String"},
+        "TargetBucket":{"shape":"String"}
       }
     },
     "CopySnapshotResult":{
@@ -1931,7 +1940,8 @@
         "DataType":{"shape":"String"},
         "AllowedValues":{"shape":"String"},
         "IsModifiable":{"shape":"Boolean"},
-        "MinimumEngineVersion":{"shape":"String"}
+        "MinimumEngineVersion":{"shape":"String"},
+        "ChangeType":{"shape":"ChangeType"}
       }
     },
     "ParameterNameValue":{
@@ -2199,10 +2209,7 @@
     },
     "ResetCacheParameterGroupMessage":{
       "type":"structure",
-      "required":[
-        "CacheParameterGroupName",
-        "ParameterNameValues"
-      ],
+      "required":["CacheParameterGroupName"],
       "members":{
         "CacheParameterGroupName":{"shape":"String"},
         "ResetAllParameters":{"shape":"Boolean"},
