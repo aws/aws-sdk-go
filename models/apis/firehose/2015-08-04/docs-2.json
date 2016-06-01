@@ -67,8 +67,8 @@
       "base": null,
       "refs": {
         "S3DestinationConfiguration$CompressionFormat": "<p>The compression format. If no value is specified, the default is <code>UNCOMPRESSED</code>.</p> <p>The compression formats <code>SNAPPY</code> or <code>ZIP</code> cannot be specified for Amazon Redshift destinations because they are not supported by the Amazon Redshift <code>COPY</code> operation that reads from the S3 bucket.</p>",
-        "S3DestinationDescription$CompressionFormat": "<p>The compression format. If no value is specified, the default is <code>NOCOMPRESSION</code>.</p>",
-        "S3DestinationUpdate$CompressionFormat": "<p>The compression format. If no value is specified, the default is <code>NOCOMPRESSION</code>.</p> <p>The compression formats <code>SNAPPY</code> or <code>ZIP</code> cannot be specified for Amazon Redshift destinations because they are not supported by the Amazon Redshift <code>COPY</code> operation that reads from the S3 bucket.</p>"
+        "S3DestinationDescription$CompressionFormat": "<p>The compression format. If no value is specified, the default is <code>UNCOMPRESSED</code>.</p>",
+        "S3DestinationUpdate$CompressionFormat": "<p>The compression format. If no value is specified, the default is <code>UNCOMPRESSED</code>.</p> <p>The compression formats <code>SNAPPY</code> or <code>ZIP</code> cannot be specified for Amazon Redshift destinations because they are not supported by the Amazon Redshift <code>COPY</code> operation that reads from the S3 bucket.</p>"
       }
     },
     "ConcurrentModificationException": {
