@@ -751,9 +751,7 @@ type PutScalingPolicyInput struct {
 
 	// The configuration for the step scaling policy. This parameter is required
 	// if you are creating a new policy. For more information, see StepScalingPolicyConfiguration
-	// (http://docs.aws.amazon.com/http:/docs.aws.amazon.com/ApplicationAutoScaling/latest/APIReference/API_StepScalingPolicyConfiguration.html)
-	// and StepAdjustment (http://docs.aws.amazon.com/http:/docs.aws.amazon.com/ApplicationAutoScaling/latest/APIReference/API_StepAdjustment.html)
-	// in the Application Auto Scaling API Reference.
+	// and StepAdjustment.
 	StepScalingPolicyConfiguration *StepScalingPolicyConfiguration `type:"structure"`
 }
 
