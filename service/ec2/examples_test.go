@@ -5164,9 +5164,11 @@ func ExampleEC2_RequestSpotFleet() {
 			AllocationStrategy:               aws.String("AllocationStrategy"),
 			ClientToken:                      aws.String("String"),
 			ExcessCapacityTerminationPolicy:  aws.String("ExcessCapacityTerminationPolicy"),
+			FulfilledCapacity:                aws.Float64(1.0),
 			TerminateInstancesWithExpiration: aws.Bool(true),
-			ValidFrom:                        aws.Time(time.Now()),
-			ValidUntil:                       aws.Time(time.Now()),
+			Type:       aws.String("FleetType"),
+			ValidFrom:  aws.Time(time.Now()),
+			ValidUntil: aws.Time(time.Now()),
 		},
 		DryRun: aws.Bool(true),
 	}

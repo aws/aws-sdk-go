@@ -27,6 +27,14 @@ import (
 //   Scale your resources in response to CloudWatch alarms
 //
 //   View history of your scaling events
+//
+//   Application Auto Scaling is available in the following regions:
+//
+//    us-east-1
+//
+//    us-west-2
+//
+//    eu-west-1
 //The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
 type ApplicationAutoScaling struct {
