@@ -74,7 +74,9 @@ func verifyReceiveMessage(r *request.Request) {
 		for _, msg := range out.Messages {
 			err := checksumsMatch(msg.Body, msg.MD5OfBody)
 			if err != nil {
-				ids = append(ids, *msg.MessageId)
+				if msg.MessageId != nil {
+					ids = append(ids, *msg.MessageId)
+				}
 			}
 		}
 		if len(ids) > 0 {
