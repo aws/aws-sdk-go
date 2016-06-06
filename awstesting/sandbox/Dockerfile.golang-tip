@@ -6,9 +6,8 @@ FROM buildpack-deps:wheezy-scm
 ENV GOLANG_VERSION tip
 ENV GOLANG_SRC_REPO_URL https://go.googlesource.com/go
 
-ENV GOLANG_BOOTSTRAP_VERSION 1.6.2
-ENV GOLANG_BOOTSTRAP_URL https://golang.org/dl/go$GOLANG_BOOTSTRAP_VERSION.linux-amd64.tar.gz
-ENV GOLANG_BOOTSTRAP_SHA256 e40c36ae71756198478624ed1bb4ce17597b3c19d243f3f0899bb5740d56212a
+ENV GOLANG_BOOTSTRAP_URL https://storage.googleapis.com/golang/go1.4.3.linux-amd64.tar.gz
+ENV GOLANG_BOOTSTRAP_SHA256 ce3140662f45356eb78bc16a88fc7cfb29fb00e18d7c632608245b789b2086d2
 ENV GOLANG_BOOTSTRAP_PATH /usr/local/bootstrap
 
 # gcc for cgo
