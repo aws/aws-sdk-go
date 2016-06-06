@@ -4,18 +4,11 @@ package s3crypto
 import (
 	"bytes"
 	"encoding/base64"
-	"fmt"
 	"io/ioutil"
-	"math/rand"
 
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/s3"
-)
-
-const (
-	ivSize  = 16
-	keySize = 32
 )
 
 // Client supports client level encryption and decryption to S3.
@@ -25,7 +18,7 @@ type Client struct {
 	cfg      Config
 	// masterKey will hold either a master symmetric key or a KMS client
 	// for encrypting the envelope key
-	masterKey Cipher
+	MasterKey Cipher
 }
 
 // Config used to customize the Client
@@ -34,17 +27,17 @@ type Config struct {
 
 // NewClient will return a crypto client and set an aes cbc encrypter
 // as one of the fields.
-func NewClient(masterKey Cipher, p client.ConfigProvider, options ...func(*Config)) (*Client, error) {
+func NewClient(masterKey Cipher, p client.ConfigProvider, options ...func(*Config)) *Client {
 	client := &Client{}
 
 	client.s3client = s3.New(p)
-	client.masterKey = masterKey
+	client.MasterKey = masterKey
 
 	for _, option := range options {
 		option(&client.cfg)
 	}
 
-	return client, nil
+	return client
 }
 
 // PutObjectInput for the PutObjectRequest
@@ -56,13 +49,12 @@ type PutObjectInput struct {
 
 // PutObjectRequest will call the S3's PutObjectRequest and then save the envelope
 // to the appropriate place.
-func (client *Client) PutObjectRequest(f CipherConstructor, input *PutObjectInput) (*request.Request, *s3.PutObjectOutput) {
+func (client *Client) PutObjectRequest(constructor CipherConstructor, input *PutObjectInput) (*request.Request, *s3.PutObjectOutput) {
 	req, out := client.s3client.PutObjectRequest(input.S3PutObjectInput)
 
-	// TODO: Generalize this
-	iv := generateRandBytes(ivSize)
-	key := generateRandBytes(keySize)
-	enc, err := f(key, iv)
+	key := []byte{}
+	iv := []byte{}
+	enc, err := constructor(key, iv)
 
 	req.Handlers.Build.PushFront(func(r *request.Request) {
 		if err != nil {
@@ -82,12 +74,10 @@ func (client *Client) PutObjectRequest(f CipherConstructor, input *PutObjectInpu
 	req.Handlers.Build.PushBack(func(r *request.Request) {
 		env := Envelope{
 			MaterialDesc: input.MaterialDesc,
-			Meta: meta{ // TODO: Consider rethinking of putting this data elsewhere
-				*input.S3PutObjectInput.Bucket,
-				req,
-				*input.S3PutObjectInput.Key,
-			},
 		}
+		env.Meta.Bucket = *input.S3PutObjectInput.Bucket
+		env.Meta.Request = req
+		env.Meta.ObjectKey = *input.S3PutObjectInput.Key
 		err := client.saveEnvelope(input.SaveStrategy, env, key, iv)
 		r.Error = err
 	})
@@ -130,14 +120,12 @@ func (client *Client) GetObjectRequest(f CipherConstructor, input *GetObjectInpu
 				r.Error = err
 				return
 			}
-			key = decryptWithGCM(key)
 			iv, err = base64.StdEncoding.DecodeString(r.HTTPResponse.Header.Get("X-Amz-Meta-X-Amz-Iv"))
 			if err != nil {
 				r.Error = err
 				return
 			}
-			fmt.Println("KEY", key, len(key))
-			encKey, err = client.masterKey.Decrypt(bytes.NewReader(key))
+			encKey, err = client.MasterKey.Decrypt(bytes.NewReader(key))
 			if err != nil {
 				r.Error = err
 				return
@@ -149,10 +137,8 @@ func (client *Client) GetObjectRequest(f CipherConstructor, input *GetObjectInpu
 			}
 		}
 
-		fmt.Println(key, len(key))
 		cipher, err := f(key, iv)
 		if err != nil {
-			fmt.Println(err)
 			r.Error = err
 			return
 		}
@@ -178,7 +164,7 @@ func (client *Client) GetObject(f CipherConstructor, input *GetObjectInput) (*s3
 // in S3 or add it to the request's header. The bootstrapping would encrypt the randomly
 // generated symmetric key, base64 encode the iv, and lastly set the material description.
 func (client *Client) saveEnvelope(strat SaveStrategy, env Envelope, envKey, envIv []byte) error {
-	encKey, err := client.masterKey.Encrypt(bytes.NewReader(envKey))
+	encKey, err := client.MasterKey.Encrypt(bytes.NewReader(envKey))
 	if err != nil {
 		return err
 	}
@@ -197,26 +183,6 @@ func (client *Client) saveEnvelope(strat SaveStrategy, env Envelope, envKey, env
 
 	strat.Save(env)
 	return nil
-}
-
-func generateRandBytes(size int) []byte {
-	b := make([]byte, size)
-	rmd := size % 4
-
-	for i := 0; i+4 < size; i += 4 {
-		bytes := rand.Uint32()
-		for j := 0; j < 4; j++ {
-			b[i+j] = byte(bytes & 0xFF)
-			bytes >>= 8
-		}
-	}
-
-	bytes := rand.Uint32()
-	for i := 0; i < rmd; i++ {
-		b[i] = byte(bytes & 0xFF)
-		bytes >>= 8
-	}
-	return b
 }
 
 //DONE Generate a random symmetric envelope key and initialization vector.

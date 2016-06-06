@@ -22,13 +22,11 @@ type Envelope struct {
 	CipherKey []byte `json:"x-amz-key"`
 	// MaterialDesc is a description to distinguish from other envelopes.
 	MaterialDesc string `json:"x-amz-matdesc"`
-	Meta         meta   `json:"-"`
-}
-
-type meta struct {
-	Bucket    string
-	Request   *request.Request
-	ObjectKey string
+	Meta         struct {
+		Bucket    string
+		Request   *request.Request
+		ObjectKey string
+	} `json:"-"`
 }
 
 // SaveStrategy is how the data's metadata wants to be saved

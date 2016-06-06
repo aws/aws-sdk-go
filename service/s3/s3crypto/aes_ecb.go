@@ -13,7 +13,7 @@ type AESECB struct {
 	block cipher.Block
 }
 
-// NewAESCBC creates a new AES CBC cypto handler. It suffices
+// NewAESECB creates a new AES CBC cypto handler. It suffices
 // both interfaces of Encrypter and Decrypter
 func NewAESECB(key []byte) (Cipher, error) {
 	block, err := aes.NewCipher(key)
@@ -33,7 +33,7 @@ func (c *AESECB) Encrypt(data io.Reader) (*bytes.Reader, error) {
 
 	ciphertext := make([]byte, len(plaintext))
 	blockSize := c.block.BlockSize()
-	plaintext = PadPKCS7(plaintext, blockSize)
+	plaintext = PadPKCS5(plaintext, blockSize)
 	for i := 0; len(plaintext) > 0; i++ {
 		c.block.Encrypt(ciphertext[blockSize*i:blockSize*(i+1)], plaintext[:blockSize])
 		plaintext = plaintext[blockSize:]
@@ -54,5 +54,6 @@ func (c *AESECB) Decrypt(data io.Reader) (*bytes.Reader, error) {
 		c.block.Decrypt(plaintext[blockSize*i:blockSize*(i+1)], ciphertext[:blockSize])
 		ciphertext = ciphertext[blockSize:]
 	}
+	plaintext = UnpadPKCS5(plaintext, blockSize)
 	return bytes.NewReader(plaintext), nil
 }

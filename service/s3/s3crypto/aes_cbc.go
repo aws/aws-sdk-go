@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"crypto/aes"
 	"crypto/cipher"
+	"crypto/rand"
 	"io"
 	"io/ioutil"
 )
@@ -16,9 +17,24 @@ type AESCBC struct {
 	decrypter cipher.BlockMode
 }
 
+const cbcKeySize = 32
+const cbcIvSize = 16
+
 // NewAESCBC creates a new AES CBC cypto handler. It suffices
 // both interfaces of Encrypter and Decrypter
+// If an empty key or iv is provided, a randomly generated
+// key and iv is provided to the cipher
+//
+// TODO: See if there is a better way of randomly generating
+// keys and iv
 func NewAESCBC(key, iv []byte) (Cipher, error) {
+	if len(key) == 0 {
+		key = make([]byte, cbcKeySize)
+		iv = make([]byte, cbcIvSize)
+		rand.Read(key)
+		rand.Read(iv)
+	}
+
 	block, err := aes.NewCipher(padAESKey(key))
 	if err != nil {
 		return nil, err
@@ -38,7 +54,7 @@ func (c *AESCBC) Encrypt(data io.Reader) (*bytes.Reader, error) {
 	//encrypter := cipher.NewCBCEncrypter(c.block, c.iv)
 
 	ciphertext := make([]byte, len(plaintext))
-	plaintext = PadPKCS7(plaintext, c.encrypter.BlockSize())
+	plaintext = PadPKCS5(plaintext, c.encrypter.BlockSize())
 	c.encrypter.CryptBlocks(ciphertext, plaintext)
 	return bytes.NewReader(ciphertext), nil
 }
@@ -50,5 +66,6 @@ func (c *AESCBC) Decrypt(data io.Reader) (*bytes.Reader, error) {
 		return bytes.NewReader([]byte{}), err
 	}
 	c.decrypter.CryptBlocks(ciphertext, ciphertext)
+	ciphertext = UnpadPKCS5(ciphertext, c.block.BlockSize())
 	return bytes.NewReader(ciphertext), nil
 }

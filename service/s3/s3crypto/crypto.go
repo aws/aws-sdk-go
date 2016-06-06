@@ -21,4 +21,5 @@ type Decrypter interface {
 	Decrypt(io.Reader) (*bytes.Reader, error)
 }
 
+// CipherConstructor is constructors for symmetric keys
 type CipherConstructor func(key, iv []byte) (Cipher, error)

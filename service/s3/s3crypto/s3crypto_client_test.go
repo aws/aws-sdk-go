@@ -38,10 +38,8 @@ func TestEnvelopeSaveToHeader(t *testing.T) {
 		IV:           iv,
 		CipherKey:    key,
 		MaterialDesc: "Testing123",
-		Meta: meta{
-			Request: &req,
-		},
 	}
+	env.Meta.Request = &req
 
 	strat := headerSaveStrategy{}
 	strat.Save(env)
@@ -89,14 +87,3 @@ func TestSaveToS3(t *testing.T) {
 	})
 	t.Log(tout, err)
 }*/
-
-func TestGenerateBytes(t *testing.T) {
-	iv := generateRandBytes(16)
-	assert.Equal(t, len(iv), 16)
-
-	iv = generateRandBytes(15)
-	assert.Equal(t, len(iv), 15)
-
-	iv = generateRandBytes(17)
-	assert.Equal(t, len(iv), 17)
-}
