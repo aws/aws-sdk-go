@@ -97,6 +97,7 @@ func aescbcEncrypt(t *testing.T, iv, key, plaintext, expected []byte) {
 
 	ciphertext, err := ioutil.ReadAll(cipherdata)
 	assert.Nil(t, err)
+	t.Log("LOG", ciphertext, expected)
 	assert.Equal(t, len(ciphertext), len(expected))
 	assert.True(t, bytes.Equal(ciphertext, expected))
 }

@@ -1,8 +1,9 @@
 package s3crypto
 
-import "bytes"
-import "io/ioutil"
-import "fmt"
+import (
+	"bytes"
+	"io/ioutil"
+)
 
 func padAESKey(key []byte) []byte {
 	padded := []byte{}
@@ -26,7 +27,7 @@ func padAESKey(key []byte) []byte {
 // 0 0 0 0 0 0 0 ... 0 0 0
 // padding the bytes with the number of bytes missing, len(data)%blocksize
 // 0 0 0 0 0 0 0 ... 0 0 0 6 6 6 6 6 6
-func PadPKCS7(data []byte, blocksize int) []byte {
+func PadPKCS5(data []byte, blocksize int) []byte {
 	padAmount := len(data) % blocksize
 
 	// Here we do not want to pad something when not necessary
@@ -40,18 +41,25 @@ func PadPKCS7(data []byte, blocksize int) []byte {
 }
 
 // UnpadPKCS5 unpad using PKCS5
-func UnpadPKCS7(src []byte, blocksize int) []byte {
+func UnpadPKCS5(src []byte, blocksize int) []byte {
 	length := len(src)
+	count := src[length-1]
+
+	// Verify correct padding. If it isnt, we assume that it hasn't been padded
+	for i := 1; i <= int(count); i++ {
+		if src[length-i] != count {
+			return src
+		}
+	}
 	unpadding := int(src[length-1])
 	return src[:(length - unpadding)]
 }
 
 func decryptWithGCM(data []byte) []byte {
 	gcm, err := NewAESGCM(make([]byte, 32), make([]byte, 12))
-	fmt.Println(err)
+	_ = err
 	out, err := gcm.Decrypt(bytes.NewReader(data))
-	fmt.Println(err)
+	_ = err
 	b, err := ioutil.ReadAll(out)
-	fmt.Println(err)
 	return b
 }
