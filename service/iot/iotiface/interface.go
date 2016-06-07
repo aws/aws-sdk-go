@@ -146,6 +146,10 @@ type IoTAPI interface {
 
 	ListPolicies(*iot.ListPoliciesInput) (*iot.ListPoliciesOutput, error)
 
+	ListPolicyPrincipalsRequest(*iot.ListPolicyPrincipalsInput) (*request.Request, *iot.ListPolicyPrincipalsOutput)
+
+	ListPolicyPrincipals(*iot.ListPolicyPrincipalsInput) (*iot.ListPolicyPrincipalsOutput, error)
+
 	ListPolicyVersionsRequest(*iot.ListPolicyVersionsInput) (*request.Request, *iot.ListPolicyVersionsOutput)
 
 	ListPolicyVersions(*iot.ListPolicyVersionsInput) (*iot.ListPolicyVersionsOutput, error)

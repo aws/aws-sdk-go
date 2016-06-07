@@ -5,7 +5,7 @@
     "AttachPrincipalPolicy": "<p>Attaches the specified policy to the specified principal (certificate or other credential).</p>",
     "AttachThingPrincipal": "<p>Attaches the specified principal to the specified thing.</p>",
     "CancelCertificateTransfer": "<p>Cancels a pending transfer for the specified certificate.</p> <p><b>Note</b> Only the transfer source account can use this operation to cancel a transfer. (Transfer destinations can use <a>RejectCertificateTransfer</a> instead.) After transfer, AWS IoT returns the certificate to the source account in the INACTIVE state. After the destination account has accepted the transfer, the transfer cannot be cancelled.</p> <p>After a certificate transfer is cancelled, the status of the certificate changes from PENDING_TRANSFER to INACTIVE.</p>",
-    "CreateCertificateFromCsr": "<p>Creates an X.509 certificate using the specified certificate signing request.</p> <p><b>Note</b> Reusing the same certificate signing request (CSR) results in a distinct certificate.</p> <p>You can create multiple certificates in a batch by creating a directory, copying multiple .csr files into that directory, and then specifying that directory on the command line. The following commands show how to create a batch of certificates given a batch of CSRs. </p> <p>Assuming a set of CSRs are located inside of the directory my-csr-directory:</p>&gt; <p>On Linux and OS X, the command is:</p> <p>$ ls my-csr-directory/ | xargs -I {} aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/{}</p> <p> This command lists all of the CSRs in my-csr-directory and pipes each CSR file name to the aws iot create-certificate-from-csr AWS CLI command to create a certificate for the corresponding CSR. </p> <p> The aws iot create-certificate-from-csr part of the command can also be run in parallel to speed up the certificate creation process: </p> <p> $ ls my-csr-directory/ | xargs -P 10 -I {} aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/{} </p> <p> On Windows PowerShell, the command to create certificates for all CSRs in my-csr-directory is: </p> <p> &gt; ls -Name my-csr-directory | %{aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/$_} </p> <p> On a Windows command prompt, the command to create certificates for all CSRs in my-csr-directory is: </p> <p> &gt; forfiles /p my-csr-directory /c \"cmd /c aws iot create-certificate-from-csr --certificate-signing-request file://@path\"</p>",
+    "CreateCertificateFromCsr": "<p>Creates an X.509 certificate using the specified certificate signing request.</p> <p><b>Note</b> Reusing the same certificate signing request (CSR) results in a distinct certificate.</p> <p>You can create multiple certificates in a batch by creating a directory, copying multiple .csr files into that directory, and then specifying that directory on the command line. The following commands show how to create a batch of certificates given a batch of CSRs. </p> <p>Assuming a set of CSRs are located inside of the directory my-csr-directory:</p> <p>On Linux and OS X, the command is:</p> <p>$ ls my-csr-directory/ | xargs -I {} aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/{}</p> <p> This command lists all of the CSRs in my-csr-directory and pipes each CSR file name to the aws iot create-certificate-from-csr AWS CLI command to create a certificate for the corresponding CSR. </p> <p> The aws iot create-certificate-from-csr part of the command can also be run in parallel to speed up the certificate creation process: </p> <p> $ ls my-csr-directory/ | xargs -P 10 -I {} aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/{} </p> <p> On Windows PowerShell, the command to create certificates for all CSRs in my-csr-directory is: </p> <p> &gt; ls -Name my-csr-directory | %{aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/$_} </p> <p> On a Windows command prompt, the command to create certificates for all CSRs in my-csr-directory is: </p> <p> &gt; forfiles /p my-csr-directory /c \"cmd /c aws iot create-certificate-from-csr --certificate-signing-request file://@path\"</p>",
     "CreateKeysAndCertificate": "<p>Creates a 2048-bit RSA key pair and issues an X.509 certificate using the issued public key.</p> <p><b>Note</b> This is the only time AWS IoT issues the private key for this certificate, so it is important to keep it in a secure location.</p>",
     "CreatePolicy": "<p>Creates an AWS IoT policy.</p> <p>The created policy is the default version for the policy. This operation creates a policy version with a version identifier of <b>1</b> and sets <b>1</b> as the policy's default version.</p>",
     "CreatePolicyVersion": "<p>Creates a new version of the specified AWS IoT policy. To update a policy, create a new policy version. A managed policy can have up to five versions. If the policy has five versions, you must use <a>DeletePolicyVersion</a> to delete an existing version before you create a new one.</p> <p>Optionally, you can set the new version as the policy's default version. The default version is the operative version (that is, the version that is in effect for the certificates to which the policy is attached).</p>",
@@ -20,7 +20,7 @@
     "DeleteTopicRule": "<p>Deletes the specified rule.</p>",
     "DescribeCACertificate": "<p>Describes a registered CA certificate.</p>",
     "DescribeCertificate": "<p>Gets information about the specified certificate.</p>",
-    "DescribeEndpoint": "<p>Returns a unique endpoint specific to the AWS account making the call. You specify the following URI when updating state information for your thing: https://<i>endpoint</i>/things/<i>thingName</i>/shadow.</p>",
+    "DescribeEndpoint": "<p>Returns a unique endpoint specific to the AWS account making the call.</p>",
     "DescribeThing": "<p>Gets information about the specified thing.</p>",
     "DetachPrincipalPolicy": "<p>Removes the specified policy from the specified certificate.</p>",
     "DetachThingPrincipal": "<p>Detaches the specified principal from the specified thing.</p>",
@@ -35,7 +35,8 @@
     "ListCertificates": "<p>Lists the certificates registered in your AWS account.</p> <p>The results are paginated with a default page size of 25. You can use the returned marker to retrieve additional results.</p>",
     "ListCertificatesByCA": "<p>List the device certificates signed by the specified CA certificate.</p>",
     "ListPolicies": "<p>Lists your policies.</p>",
-    "ListPolicyVersions": "<p>Lists the versions of the specified policy, and identifies the default version.</p>",
+    "ListPolicyPrincipals": "<p>Lists the principals associated with the specified policy.</p>",
+    "ListPolicyVersions": "<p>Lists the versions of the specified policy and identifies the default version.</p>",
     "ListPrincipalPolicies": "<p>Lists the policies attached to the specified principal. If you use an Cognito identity, the ID must be in <a href=\"http://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetCredentialsForIdentity.html#API_GetCredentialsForIdentity_RequestSyntax\">AmazonCognito Identity format</a>.</p>",
     "ListPrincipalThings": "<p>Lists the things associated with the specified principal.</p>",
     "ListThingPrincipals": "<p>Lists the principals associated with the specified thing.</p>",
@@ -85,6 +86,7 @@
         "ListCertificatesByCARequest$ascendingOrder": "<p>Specifies the order for results. If True, the results are returned in ascending order, based on the creation date.</p>",
         "ListCertificatesRequest$ascendingOrder": "<p>Specifies the order for results. If True, the results are returned in ascending order, based on the creation date.</p>",
         "ListPoliciesRequest$ascendingOrder": "<p>Specifies the order for results. If true, the results are returned in ascending creation order.</p>",
+        "ListPolicyPrincipalsRequest$ascendingOrder": "<p>Specifies the order for results. If true, the results are returned in ascending creation order.</p>",
         "ListPrincipalPoliciesRequest$ascendingOrder": "<p>Specifies the order for results. If true, results are returned in ascending creation order.</p>"
       }
     },
@@ -187,9 +189,9 @@
     "CACertificateStatus": {
       "base": null,
       "refs": {
-        "CACertificate$status": "<p>The status of the CA certificate.</p>",
+        "CACertificate$status": "<p>The status of the CA certificate. </p> <p>The status value REGISTER_INACTIVE is deprecated and should not be used.</p>",
         "CACertificateDescription$status": "<p>The status of a CA certificate.</p>",
-        "UpdateCACertificateRequest$newStatus": "<p>The updated status of the CA certificate.</p>"
+        "UpdateCACertificateRequest$newStatus": "<p>The updated status of the CA certificate.</p> <p><b>Note:</b> The status value REGISTER_INACTIVE is deprecated and should not be used.</p>"
       }
     },
     "CACertificates": {
@@ -286,9 +288,9 @@
     "CertificateStatus": {
       "base": null,
       "refs": {
-        "Certificate$status": "<p>The status of the certificate.</p>",
+        "Certificate$status": "<p>The status of the certificate.</p> <p>The status value REGISTER_INACTIVE is deprecated and should not be used.</p>",
         "CertificateDescription$status": "<p>The status of the certificate.</p>",
-        "UpdateCertificateRequest$newStatus": "<p>The new status.</p> <p><b>Note:</b> Setting the status to PENDING_TRANSFER will result in an exception being thrown. PENDING_TRANSFER is a status used internally by AWS IoT. It is not intended for developer use.</p>"
+        "UpdateCertificateRequest$newStatus": "<p>The new status.</p> <p><b>Note:</b> Setting the status to PENDING_TRANSFER will result in an exception being thrown. PENDING_TRANSFER is a status used internally by AWS IoT. It is not intended for developer use.</p> <p><b>Note:</b> The status value REGISTER_INACTIVE is deprecated and should not be used.</p>"
       }
     },
     "CertificateValidationException": {
@@ -531,6 +533,13 @@
         "Action$dynamoDB": "<p>Write to a DynamoDB table.</p>"
       }
     },
+    "DynamoKeyType": {
+      "base": null,
+      "refs": {
+        "DynamoDBAction$hashKeyType": "<p>The hash key type. Valid values are \"STRING\" or \"NUMBER\"</p>",
+        "DynamoDBAction$rangeKeyType": "<p>The range key type. Valid values are \"STRING\" or \"NUMBER\"</p>"
+      }
+    },
     "ElasticsearchAction": {
       "base": "<p>Describes an action that writes data to an Amazon Elasticsearch Service; domain.</p>",
       "refs": {
@@ -747,6 +756,16 @@
       "refs": {
       }
     },
+    "ListPolicyPrincipalsRequest": {
+      "base": "<p>The input for the ListPolicyPrincipals operation.</p>",
+      "refs": {
+      }
+    },
+    "ListPolicyPrincipalsResponse": {
+      "base": "<p>The output from the ListPolicyPrincipals operation.</p>",
+      "refs": {
+      }
+    },
     "ListPolicyVersionsRequest": {
       "base": "<p>The input for the ListPolicyVersions operation.</p>",
       "refs": {
@@ -836,6 +855,8 @@
         "ListCertificatesResponse$nextMarker": "<p>The marker for the next set of results, or null if there are no additional results.</p>",
         "ListPoliciesRequest$marker": "<p>The marker for the next set of results.</p>",
         "ListPoliciesResponse$nextMarker": "<p>The marker for the next set of results, or null if there are no additional results.</p>",
+        "ListPolicyPrincipalsRequest$marker": "<p>The marker for the next set of results.</p>",
+        "ListPolicyPrincipalsResponse$nextMarker": "<p>The marker for the next set of results, or null if there are no additional results.</p>",
         "ListPrincipalPoliciesRequest$marker": "<p>The marker for the next set of results.</p>",
         "ListPrincipalPoliciesResponse$nextMarker": "<p>The marker for the next set of results, or null if there are no additional results.</p>"
       }
@@ -911,6 +932,7 @@
         "ListCertificatesByCARequest$pageSize": "<p>The result page size.</p>",
         "ListCertificatesRequest$pageSize": "<p>The result page size.</p>",
         "ListPoliciesRequest$pageSize": "<p>The result page size.</p>",
+        "ListPolicyPrincipalsRequest$pageSize": "<p>The result page size.</p>",
         "ListPrincipalPoliciesRequest$pageSize": "<p>The result page size.</p>"
       }
     },
@@ -974,6 +996,7 @@
         "GetPolicyResponse$policyName": "<p>The policy name.</p>",
         "GetPolicyVersionRequest$policyName": "<p>The name of the policy.</p>",
         "GetPolicyVersionResponse$policyName": "<p>The policy name.</p>",
+        "ListPolicyPrincipalsRequest$policyName": "<p>The policy name.</p>",
         "ListPolicyVersionsRequest$policyName": "<p>The policy name.</p>",
         "Policy$policyName": "<p>The policy name.</p>",
         "SetDefaultPolicyVersionRequest$policyName": "<p>The policy name.</p>"
@@ -1010,7 +1033,7 @@
         "AttachPrincipalPolicyRequest$principal": "<p>The principal, which can be a certificate ARN (as returned from the CreateCertificate operation) or an Amazon Cognito ID.</p>",
         "AttachThingPrincipalRequest$principal": "<p>The principal (certificate or other credential).</p>",
         "DetachPrincipalPolicyRequest$principal": "<p>The principal.</p> <p>If the principal is a certificate, specify the certificate ARN. If the principal is an Amazon Cognito identity, specify the identity ID.</p>",
-        "DetachThingPrincipalRequest$principal": "<p>The principal.</p>",
+        "DetachThingPrincipalRequest$principal": "<p>The principal.</p> <p>If the principal is a certificate, specify the certificate ARN. If the principal is an Amazon Cognito identity, specify the identity ID.</p>",
         "ListPrincipalPoliciesRequest$principal": "<p>The principal.</p>",
         "ListPrincipalThingsRequest$principal": "<p>The principal.</p>"
       }
@@ -1024,6 +1047,7 @@
     "Principals": {
       "base": null,
       "refs": {
+        "ListPolicyPrincipalsResponse$principals": "<p>The descriptions of the principals.</p>",
         "ListThingPrincipalsResponse$principals": "<p>The principals.</p>"
       }
     },
