@@ -4,8 +4,11 @@
 package smoke
 
 import (
+	"bytes"
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"reflect"
 	"regexp"
@@ -19,6 +22,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/service/s3"
+	"github.com/aws/aws-sdk-go/service/s3/s3crypto"
 )
 
 // Session is a shared session for all integration smoke tests to use.
@@ -127,6 +132,87 @@ func init() {
 		err, ok := gucumber.World["error"].(awserr.Error)
 		assert.False(gucumber.T, ok, "error returned")
 		assert.NoError(gucumber.T, err)
+	})
+
+	When(`^I get all fixtures for "(.+?)" "(.+?)" from "(.+?)"$`,
+		func(t, cekAlg, bucket string) {
+			prefix := "plaintext_test_case_"
+			baseFolder := "crypto_tests/" + cekAlg
+			s3Client := World["client"].(*s3.S3)
+
+			out, err := s3Client.ListObjects(&s3.ListObjectsInput{
+				Bucket: aws.String(bucket),
+				Prefix: aws.String(baseFolder + "/" + prefix),
+			})
+			assert.NoError(T, err)
+
+			cases := []string{}
+			plaintexts := [][]byte{}
+			for _, obj := range out.Contents {
+				plaintextKey := obj.Key
+				ptObj, err := s3Client.GetObject(&s3.GetObjectInput{
+					Bucket: aws.String(bucket),
+					Key:    plaintextKey,
+				})
+				assert.NoError(T, err)
+				caseKey := strings.TrimPrefix(*plaintextKey, baseFolder+"/"+prefix)
+				cases = append(cases, caseKey)
+				plaintext, err := ioutil.ReadAll(ptObj.Body)
+				assert.NoError(T, err)
+				plaintexts = append(plaintexts, plaintext)
+			}
+			World["cases"] = cases
+			World["baseFolder"] = baseFolder
+			World["bucket"] = bucket
+			World["plaintexts"] = plaintexts
+		})
+
+	Then(`^I decrypt each fixture against "(.+?)" "(.+?)"$`, func(language, version string) {
+		cases := World["cases"].([]string)
+		baseFolder := World["baseFolder"].(string)
+		bucket := World["bucket"].(string)
+		prefix := "ciphertext_test_case_"
+		s3Client := World["client"].(*s3.S3)
+		s3CryptoClient := World["cryptoClient"].(*s3crypto.Client)
+		language = "language_" + language
+
+		ciphertexts := [][]byte{}
+		for _, caseKey := range cases {
+			cipherKey := baseFolder + "/" + version + "/" + language + "/" + prefix + caseKey
+
+			// To get metadata for encryption key
+			ctObj, err := s3Client.GetObject(&s3.GetObjectInput{
+				Bucket: aws.String(bucket),
+				Key:    &cipherKey,
+			})
+			assert.NoError(T, err)
+
+			masterkeyB64 := ctObj.Metadata["Masterkey"]
+			masterkey, err := base64.StdEncoding.DecodeString(*masterkeyB64)
+			assert.NoError(T, err)
+			cipher, err := s3crypto.NewAESECB(masterkey)
+			s3CryptoClient.MasterKey = cipher
+			ctObj, err = s3CryptoClient.GetObject(s3crypto.NewAESCBC, &s3crypto.GetObjectInput{
+				S3GetObjectInput: &s3.GetObjectInput{
+					Bucket: aws.String(bucket),
+					Key:    &cipherKey,
+				},
+			})
+			assert.NoError(T, err)
+
+			ciphertext, err := ioutil.ReadAll(ctObj.Body)
+			assert.NoError(T, err)
+			ciphertexts = append(ciphertexts, ciphertext)
+		}
+		World["ciphertexts"] = ciphertexts
+	})
+
+	And(`^I compare the decrypted ciphertext to the plaintext$`, func() {
+		plaintexts := World["plaintexts"].([][]byte)
+		ciphertexts := World["ciphertexts"].([][]byte)
+		for i := 0; i < len(plaintexts); i++ {
+			assert.True(T, bytes.Equal(ciphertexts[i], plaintexts[i]))
+		}
 	})
 }
 

@@ -20,7 +20,7 @@ func TestNewClient(t *testing.T) {
 	sess := session.New(&aws.Config{
 		Region: aws.String("us-west-2"),
 	})
-	svc, err := NewClient(cipher, sess)
+	svc := NewClient(cipher, sess)
 
 	assert.Nil(t, err)
 	assert.NotNil(t, svc)
