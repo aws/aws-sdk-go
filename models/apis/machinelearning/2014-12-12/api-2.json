@@ -10,6 +10,41 @@
     "protocol":"json"
   },
   "operations":{
+    "AddTags":{
+      "name":"AddTags",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AddTagsInput"},
+      "output":{"shape":"AddTagsOutput"},
+      "errors":[
+        {
+          "shape":"InvalidInputException",
+          "error":{"httpStatusCode":400},
+          "exception":true
+        },
+        {
+          "shape":"InvalidTagException",
+          "exception":true
+        },
+        {
+          "shape":"TagLimitExceededException",
+          "exception":true
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "error":{"httpStatusCode":404},
+          "exception":true
+        },
+        {
+          "shape":"InternalServerException",
+          "error":{"httpStatusCode":500},
+          "exception":true,
+          "fault":true
+        }
+      ]
+    },
     "CreateBatchPrediction":{
       "name":"CreateBatchPrediction",
       "http":{
@@ -334,6 +369,37 @@
         }
       ]
     },
+    "DeleteTags":{
+      "name":"DeleteTags",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteTagsInput"},
+      "output":{"shape":"DeleteTagsOutput"},
+      "errors":[
+        {
+          "shape":"InvalidInputException",
+          "error":{"httpStatusCode":400},
+          "exception":true
+        },
+        {
+          "shape":"InvalidTagException",
+          "exception":true
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "error":{"httpStatusCode":404},
+          "exception":true
+        },
+        {
+          "shape":"InternalServerException",
+          "error":{"httpStatusCode":500},
+          "exception":true,
+          "fault":true
+        }
+      ]
+    },
     "DescribeBatchPredictions":{
       "name":"DescribeBatchPredictions",
       "http":{
@@ -412,6 +478,33 @@
         {
           "shape":"InvalidInputException",
           "error":{"httpStatusCode":400},
+          "exception":true
+        },
+        {
+          "shape":"InternalServerException",
+          "error":{"httpStatusCode":500},
+          "exception":true,
+          "fault":true
+        }
+      ]
+    },
+    "DescribeTags":{
+      "name":"DescribeTags",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeTagsInput"},
+      "output":{"shape":"DescribeTagsOutput"},
+      "errors":[
+        {
+          "shape":"InvalidInputException",
+          "error":{"httpStatusCode":400},
+          "exception":true
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "error":{"httpStatusCode":404},
           "exception":true
         },
         {
@@ -677,6 +770,26 @@
     }
   },
   "shapes":{
+    "AddTagsInput":{
+      "type":"structure",
+      "required":[
+        "Tags",
+        "ResourceId",
+        "ResourceType"
+      ],
+      "members":{
+        "Tags":{"shape":"TagList"},
+        "ResourceId":{"shape":"EntityId"},
+        "ResourceType":{"shape":"TaggableResourceType"}
+      }
+    },
+    "AddTagsOutput":{
+      "type":"structure",
+      "members":{
+        "ResourceId":{"shape":"EntityId"},
+        "ResourceType":{"shape":"TaggableResourceType"}
+      }
+    },
     "Algorithm":{
       "type":"string",
       "enum":["sgd"]
@@ -970,6 +1083,26 @@
         "RealtimeEndpointInfo":{"shape":"RealtimeEndpointInfo"}
       }
     },
+    "DeleteTagsInput":{
+      "type":"structure",
+      "required":[
+        "TagKeys",
+        "ResourceId",
+        "ResourceType"
+      ],
+      "members":{
+        "TagKeys":{"shape":"TagKeyList"},
+        "ResourceId":{"shape":"EntityId"},
+        "ResourceType":{"shape":"TaggableResourceType"}
+      }
+    },
+    "DeleteTagsOutput":{
+      "type":"structure",
+      "members":{
+        "ResourceId":{"shape":"EntityId"},
+        "ResourceType":{"shape":"TaggableResourceType"}
+      }
+    },
     "DescribeBatchPredictionsInput":{
       "type":"structure",
       "members":{
@@ -1060,6 +1193,25 @@
       "members":{
         "Results":{"shape":"MLModels"},
         "NextToken":{"shape":"StringType"}
+      }
+    },
+    "DescribeTagsInput":{
+      "type":"structure",
+      "required":[
+        "ResourceId",
+        "ResourceType"
+      ],
+      "members":{
+        "ResourceId":{"shape":"EntityId"},
+        "ResourceType":{"shape":"TaggableResourceType"}
+      }
+    },
+    "DescribeTagsOutput":{
+      "type":"structure",
+      "members":{
+        "ResourceId":{"shape":"EntityId"},
+        "ResourceType":{"shape":"TaggableResourceType"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "DetailsAttributes":{
@@ -1303,6 +1455,13 @@
         "code":{"shape":"ErrorCode"}
       },
       "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "InvalidTagException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
       "exception":true
     },
     "Label":{
@@ -1629,7 +1788,7 @@
     "RoleARN":{
       "type":"string",
       "min":1,
-      "max":100
+      "max":110
     },
     "S3DataSpec":{
       "type":"structure",
@@ -1661,6 +1820,49 @@
       ]
     },
     "StringType":{"type":"string"},
+    "Tag":{
+      "type":"structure",
+      "members":{
+        "Key":{"shape":"TagKey"},
+        "Value":{"shape":"TagValue"}
+      }
+    },
+    "TagKey":{
+      "type":"string",
+      "min":1,
+      "max":128,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"}
+    },
+    "TagLimitExceededException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "TagList":{
+      "type":"list",
+      "member":{"shape":"Tag"}
+    },
+    "TagValue":{
+      "type":"string",
+      "min":0,
+      "max":256,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+    },
+    "TaggableResourceType":{
+      "type":"string",
+      "enum":[
+        "BatchPrediction",
+        "DataSource",
+        "Evaluation",
+        "MLModel"
+      ]
+    },
     "TrainingParameters":{
       "type":"map",
       "key":{"shape":"StringType"},
