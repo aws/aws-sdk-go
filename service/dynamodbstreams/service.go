@@ -11,29 +11,22 @@ import (
 	"github.com/aws/aws-sdk-go/private/signer/v4"
 )
 
-// This is the Amazon DynamoDB Streams API Reference. This guide describes the
-// low-level API actions for accessing streams and processing stream records.
-// For information about application development with DynamoDB Streams, see
-// the Amazon DynamoDB Developer Guide (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide//Streams.html).
+// Amazon DynamoDB Streams provides API actions for accessing streams and processing
+// stream records. To learn more about application development with Streams,
+// see Capturing Table Activity with DynamoDB Streams (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html)
+// in the Amazon DynamoDB Developer Guide.
 //
-// Note that this document is intended for use with the following DynamoDB
-// documentation:
+// The following are short descriptions of each low-level DynamoDB Streams
+// action:
 //
-//    Amazon DynamoDB Developer Guide (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/)
+//    DescribeStream - Returns detailed information about a particular stream.
 //
-//    Amazon DynamoDB API Reference (http://docs.aws.amazon.com/amazondynamodb/latest/APIReference/)
+//    GetRecords - Retrieves the stream records from within a shard.
 //
-//   The following are short descriptions of each low-level DynamoDB Streams
-// API action, organized by function.
-//
-//  DescribeStream - Returns detailed information about a particular stream.
-//
-//  GetRecords - Retrieves the stream records from within a shard.
-//
-//   GetShardIterator - Returns information on how to retrieve the streams
+//    GetShardIterator - Returns information on how to retrieve the streams
 // record from a shard with a given shard ID.
 //
-//   ListStreams - Returns a list of all the streams associated with the current
+//    ListStreams - Returns a list of all the streams associated with the current
 // AWS account and endpoint.
 //The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.

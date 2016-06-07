@@ -4,11 +4,11 @@
     "apiVersion":"2012-08-10",
     "endpointPrefix":"streams.dynamodb",
     "jsonVersion":"1.0",
+    "protocol":"json",
     "serviceFullName":"Amazon DynamoDB Streams",
     "signatureVersion":"v4",
     "signingName":"dynamodb",
-    "targetPrefix":"DynamoDBStreams_20120810",
-    "protocol":"json"
+    "targetPrefix":"DynamoDBStreams_20120810"
   },
   "operations":{
     "DescribeStream":{
@@ -20,15 +20,8 @@
       "input":{"shape":"DescribeStreamInput"},
       "output":{"shape":"DescribeStreamOutput"},
       "errors":[
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"InternalServerError",
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerError"}
       ]
     },
     "GetRecords":{
@@ -40,27 +33,11 @@
       "input":{"shape":"GetRecordsInput"},
       "output":{"shape":"GetRecordsOutput"},
       "errors":[
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"InternalServerError",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"ExpiredIteratorException",
-          "exception":true
-        },
-        {
-          "shape":"TrimmedDataAccessException",
-          "exception":true
-        }
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalServerError"},
+        {"shape":"ExpiredIteratorException"},
+        {"shape":"TrimmedDataAccessException"}
       ]
     },
     "GetShardIterator":{
@@ -72,19 +49,9 @@
       "input":{"shape":"GetShardIteratorInput"},
       "output":{"shape":"GetShardIteratorOutput"},
       "errors":[
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"InternalServerError",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"TrimmedDataAccessException",
-          "exception":true
-        }
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerError"},
+        {"shape":"TrimmedDataAccessException"}
       ]
     },
     "ListStreams":{
@@ -96,15 +63,8 @@
       "input":{"shape":"ListStreamsInput"},
       "output":{"shape":"ListStreamsOutput"},
       "errors":[
-        {
-          "shape":"ResourceNotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"InternalServerError",
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerError"}
       ]
     }
   },
@@ -209,13 +169,13 @@
     "KeySchema":{
       "type":"list",
       "member":{"shape":"KeySchemaElement"},
-      "min":1,
-      "max":2
+      "max":2,
+      "min":1
     },
     "KeySchemaAttributeName":{
       "type":"string",
-      "min":1,
-      "max":255
+      "max":255,
+      "min":1
     },
     "KeySchemaElement":{
       "type":"structure",
@@ -312,8 +272,8 @@
     },
     "SequenceNumber":{
       "type":"string",
-      "min":21,
-      "max":40
+      "max":40,
+      "min":21
     },
     "SequenceNumberRange":{
       "type":"structure",
@@ -336,13 +296,13 @@
     },
     "ShardId":{
       "type":"string",
-      "min":28,
-      "max":65
+      "max":65,
+      "min":28
     },
     "ShardIterator":{
       "type":"string",
-      "min":1,
-      "max":2048
+      "max":2048,
+      "min":1
     },
     "ShardIteratorType":{
       "type":"string",
@@ -363,8 +323,8 @@
     },
     "StreamArn":{
       "type":"string",
-      "min":37,
-      "max":1024
+      "max":1024,
+      "min":37
     },
     "StreamDescription":{
       "type":"structure",
@@ -387,6 +347,7 @@
     "StreamRecord":{
       "type":"structure",
       "members":{
+        "ApproximateCreationDateTime":{"shape":"Date"},
         "Keys":{"shape":"AttributeMap"},
         "NewImage":{"shape":"AttributeMap"},
         "OldImage":{"shape":"AttributeMap"},
@@ -421,8 +382,8 @@
     },
     "TableName":{
       "type":"string",
-      "min":3,
       "max":255,
+      "min":3,
       "pattern":"[a-zA-Z0-9_.-]+"
     },
     "TrimmedDataAccessException":{
