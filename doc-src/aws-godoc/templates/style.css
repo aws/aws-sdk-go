@@ -226,13 +226,10 @@ div#page {
 	box-sizing: border-box;
 	height:calc(100% - 64px);
 	overflow:auto;
-	max-width:1600px;
 }
 div#page > .container,
 div#topbar > .container {
 	text-align: left;
-	margin-left: auto;
-	margin-right: auto;
 	padding: 0 20px;
 }
 div#topbar > .container,
