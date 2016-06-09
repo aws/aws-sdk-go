@@ -222,13 +222,15 @@ func ExampleIoT_CreateTopicRule() {
 						MetricTimestamp: aws.String("MetricTimestamp"),
 					},
 					DynamoDB: &iot.DynamoDBAction{
-						HashKeyField:  aws.String("HashKeyField"),  // Required
-						HashKeyValue:  aws.String("HashKeyValue"),  // Required
-						RangeKeyField: aws.String("RangeKeyField"), // Required
-						RangeKeyValue: aws.String("RangeKeyValue"), // Required
-						RoleArn:       aws.String("AwsArn"),        // Required
-						TableName:     aws.String("TableName"),     // Required
+						HashKeyField:  aws.String("HashKeyField"), // Required
+						HashKeyValue:  aws.String("HashKeyValue"), // Required
+						RoleArn:       aws.String("AwsArn"),       // Required
+						TableName:     aws.String("TableName"),    // Required
+						HashKeyType:   aws.String("DynamoKeyType"),
 						PayloadField:  aws.String("PayloadField"),
+						RangeKeyField: aws.String("RangeKeyField"),
+						RangeKeyType:  aws.String("DynamoKeyType"),
+						RangeKeyValue: aws.String("RangeKeyValue"),
 					},
 					Elasticsearch: &iot.ElasticsearchAction{
 						Endpoint: aws.String("ElasticsearchEndpoint"), // Required
@@ -751,6 +753,28 @@ func ExampleIoT_ListPolicies() {
 	fmt.Println(resp)
 }
 
+func ExampleIoT_ListPolicyPrincipals() {
+	svc := iot.New(session.New())
+
+	params := &iot.ListPolicyPrincipalsInput{
+		PolicyName:     aws.String("PolicyName"), // Required
+		AscendingOrder: aws.Bool(true),
+		Marker:         aws.String("Marker"),
+		PageSize:       aws.Int64(1),
+	}
+	resp, err := svc.ListPolicyPrincipals(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleIoT_ListPolicyVersions() {
 	svc := iot.New(session.New())
 
@@ -961,13 +985,15 @@ func ExampleIoT_ReplaceTopicRule() {
 						MetricTimestamp: aws.String("MetricTimestamp"),
 					},
 					DynamoDB: &iot.DynamoDBAction{
-						HashKeyField:  aws.String("HashKeyField"),  // Required
-						HashKeyValue:  aws.String("HashKeyValue"),  // Required
-						RangeKeyField: aws.String("RangeKeyField"), // Required
-						RangeKeyValue: aws.String("RangeKeyValue"), // Required
-						RoleArn:       aws.String("AwsArn"),        // Required
-						TableName:     aws.String("TableName"),     // Required
+						HashKeyField:  aws.String("HashKeyField"), // Required
+						HashKeyValue:  aws.String("HashKeyValue"), // Required
+						RoleArn:       aws.String("AwsArn"),       // Required
+						TableName:     aws.String("TableName"),    // Required
+						HashKeyType:   aws.String("DynamoKeyType"),
 						PayloadField:  aws.String("PayloadField"),
+						RangeKeyField: aws.String("RangeKeyField"),
+						RangeKeyType:  aws.String("DynamoKeyType"),
+						RangeKeyValue: aws.String("RangeKeyValue"),
 					},
 					Elasticsearch: &iot.ElasticsearchAction{
 						Endpoint: aws.String("ElasticsearchEndpoint"), // Required

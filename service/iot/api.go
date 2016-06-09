@@ -173,7 +173,7 @@ func (c *IoT) CreateCertificateFromCsrRequest(input *CreateCertificateFromCsrInp
 //
 // Assuming a set of CSRs are located inside of the directory my-csr-directory:
 //
-// > On Linux and OS X, the command is:
+// On Linux and OS X, the command is:
 //
 // $ ls my-csr-directory/ | xargs -I {} aws iot create-certificate-from-csr
 // --certificate-signing-request file://my-csr-directory/{}
@@ -366,7 +366,7 @@ func (c *IoT) DeleteCACertificateRequest(input *DeleteCACertificateInput) (req *
 	op := &request.Operation{
 		Name:       opDeleteCACertificate,
 		HTTPMethod: "DELETE",
-		HTTPPath:   "/cacertificate/{certificateId}",
+		HTTPPath:   "/cacertificate/{caCertificateId}",
 	}
 
 	if input == nil {
@@ -581,7 +581,7 @@ func (c *IoT) DescribeCACertificateRequest(input *DescribeCACertificateInput) (r
 	op := &request.Operation{
 		Name:       opDescribeCACertificate,
 		HTTPMethod: "GET",
-		HTTPPath:   "/cacertificate/{certificateId}",
+		HTTPPath:   "/cacertificate/{caCertificateId}",
 	}
 
 	if input == nil {
@@ -648,9 +648,7 @@ func (c *IoT) DescribeEndpointRequest(input *DescribeEndpointInput) (req *reques
 	return
 }
 
-// Returns a unique endpoint specific to the AWS account making the call. You
-// specify the following URI when updating state information for your thing:
-// https://endpoint/things/thingName/shadow.
+// Returns a unique endpoint specific to the AWS account making the call.
 func (c *IoT) DescribeEndpoint(input *DescribeEndpointInput) (*DescribeEndpointOutput, error) {
 	req, out := c.DescribeEndpointRequest(input)
 	err := req.Send()
@@ -1048,6 +1046,33 @@ func (c *IoT) ListPolicies(input *ListPoliciesInput) (*ListPoliciesOutput, error
 	return out, err
 }
 
+const opListPolicyPrincipals = "ListPolicyPrincipals"
+
+// ListPolicyPrincipalsRequest generates a request for the ListPolicyPrincipals operation.
+func (c *IoT) ListPolicyPrincipalsRequest(input *ListPolicyPrincipalsInput) (req *request.Request, output *ListPolicyPrincipalsOutput) {
+	op := &request.Operation{
+		Name:       opListPolicyPrincipals,
+		HTTPMethod: "GET",
+		HTTPPath:   "/policy-principals",
+	}
+
+	if input == nil {
+		input = &ListPolicyPrincipalsInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListPolicyPrincipalsOutput{}
+	req.Data = output
+	return
+}
+
+// Lists the principals associated with the specified policy.
+func (c *IoT) ListPolicyPrincipals(input *ListPolicyPrincipalsInput) (*ListPolicyPrincipalsOutput, error) {
+	req, out := c.ListPolicyPrincipalsRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opListPolicyVersions = "ListPolicyVersions"
 
 // ListPolicyVersionsRequest generates a request for the ListPolicyVersions operation.
@@ -1068,7 +1093,7 @@ func (c *IoT) ListPolicyVersionsRequest(input *ListPolicyVersionsInput) (req *re
 	return
 }
 
-// Lists the versions of the specified policy, and identifies the default version.
+// Lists the versions of the specified policy and identifies the default version.
 func (c *IoT) ListPolicyVersions(input *ListPolicyVersionsInput) (*ListPolicyVersionsOutput, error) {
 	req, out := c.ListPolicyVersionsRequest(input)
 	err := req.Send()
@@ -1448,7 +1473,7 @@ func (c *IoT) UpdateCACertificateRequest(input *UpdateCACertificateInput) (req *
 	op := &request.Operation{
 		Name:       opUpdateCACertificate,
 		HTTPMethod: "PUT",
-		HTTPPath:   "/cacertificate/{certificateId}",
+		HTTPPath:   "/cacertificate/{caCertificateId}",
 	}
 
 	if input == nil {
@@ -1841,6 +1866,8 @@ type CACertificate struct {
 	CreationDate *time.Time `locationName:"creationDate" type:"timestamp" timestampFormat:"unix"`
 
 	// The status of the CA certificate.
+	//
+	// The status value REGISTER_INACTIVE is deprecated and should not be used.
 	Status *string `locationName:"status" type:"string" enum:"CACertificateStatus"`
 }
 
@@ -1949,6 +1976,8 @@ type Certificate struct {
 	CreationDate *time.Time `locationName:"creationDate" type:"timestamp" timestampFormat:"unix"`
 
 	// The status of the certificate.
+	//
+	// The status value REGISTER_INACTIVE is deprecated and should not be used.
 	Status *string `locationName:"status" type:"string" enum:"CertificateStatus"`
 }
 
@@ -2488,7 +2517,7 @@ type DeleteCACertificateInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the certificate to delete.
-	CertificateId *string `location:"uri" locationName:"certificateId" min:"64" type:"string" required:"true"`
+	CertificateId *string `location:"uri" locationName:"caCertificateId" min:"64" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -2814,7 +2843,7 @@ type DescribeCACertificateInput struct {
 	_ struct{} `type:"structure"`
 
 	// The CA certificate identifier.
-	CertificateId *string `location:"uri" locationName:"certificateId" min:"64" type:"string" required:"true"`
+	CertificateId *string `location:"uri" locationName:"caCertificateId" min:"64" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -3067,6 +3096,9 @@ type DetachThingPrincipalInput struct {
 	_ struct{} `type:"structure"`
 
 	// The principal.
+	//
+	// If the principal is a certificate, specify the certificate ARN. If the principal
+	// is an Amazon Cognito identity, specify the identity ID.
 	Principal *string `location:"header" locationName:"x-amzn-principal" type:"string" required:"true"`
 
 	// The name of the thing.
@@ -3188,6 +3220,9 @@ type DynamoDBAction struct {
 	// The hash key name.
 	HashKeyField *string `locationName:"hashKeyField" type:"string" required:"true"`
 
+	// The hash key type. Valid values are "STRING" or "NUMBER"
+	HashKeyType *string `locationName:"hashKeyType" type:"string" enum:"DynamoKeyType"`
+
 	// The hash key value.
 	HashKeyValue *string `locationName:"hashKeyValue" type:"string" required:"true"`
 
@@ -3195,10 +3230,13 @@ type DynamoDBAction struct {
 	PayloadField *string `locationName:"payloadField" type:"string"`
 
 	// The range key name.
-	RangeKeyField *string `locationName:"rangeKeyField" type:"string" required:"true"`
+	RangeKeyField *string `locationName:"rangeKeyField" type:"string"`
+
+	// The range key type. Valid values are "STRING" or "NUMBER"
+	RangeKeyType *string `locationName:"rangeKeyType" type:"string" enum:"DynamoKeyType"`
 
 	// The range key value.
-	RangeKeyValue *string `locationName:"rangeKeyValue" type:"string" required:"true"`
+	RangeKeyValue *string `locationName:"rangeKeyValue" type:"string"`
 
 	// The ARN of the IAM role that grants access to the DynamoDB table.
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
@@ -3225,12 +3263,6 @@ func (s *DynamoDBAction) Validate() error {
 	}
 	if s.HashKeyValue == nil {
 		invalidParams.Add(request.NewErrParamRequired("HashKeyValue"))
-	}
-	if s.RangeKeyField == nil {
-		invalidParams.Add(request.NewErrParamRequired("RangeKeyField"))
-	}
-	if s.RangeKeyValue == nil {
-		invalidParams.Add(request.NewErrParamRequired("RangeKeyValue"))
 	}
 	if s.RoleArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
@@ -3978,6 +4010,75 @@ func (s ListPoliciesOutput) String() string {
 
 // GoString returns the string representation
 func (s ListPoliciesOutput) GoString() string {
+	return s.String()
+}
+
+// The input for the ListPolicyPrincipals operation.
+type ListPolicyPrincipalsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the order for results. If true, the results are returned in ascending
+	// creation order.
+	AscendingOrder *bool `location:"querystring" locationName:"isAscendingOrder" type:"boolean"`
+
+	// The marker for the next set of results.
+	Marker *string `location:"querystring" locationName:"marker" type:"string"`
+
+	// The result page size.
+	PageSize *int64 `location:"querystring" locationName:"pageSize" min:"1" type:"integer"`
+
+	// The policy name.
+	PolicyName *string `location:"header" locationName:"x-amzn-iot-policy" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListPolicyPrincipalsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListPolicyPrincipalsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListPolicyPrincipalsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListPolicyPrincipalsInput"}
+	if s.PageSize != nil && *s.PageSize < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("PageSize", 1))
+	}
+	if s.PolicyName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyName"))
+	}
+	if s.PolicyName != nil && len(*s.PolicyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// The output from the ListPolicyPrincipals operation.
+type ListPolicyPrincipalsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The marker for the next set of results, or null if there are no additional
+	// results.
+	NextMarker *string `locationName:"nextMarker" type:"string"`
+
+	// The descriptions of the principals.
+	Principals []*string `locationName:"principals" type:"list"`
+}
+
+// String returns the string representation
+func (s ListPolicyPrincipalsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListPolicyPrincipalsOutput) GoString() string {
 	return s.String()
 }
 
@@ -5164,9 +5265,12 @@ type UpdateCACertificateInput struct {
 	_ struct{} `type:"structure"`
 
 	// The CA certificate identifier.
-	CertificateId *string `location:"uri" locationName:"certificateId" min:"64" type:"string" required:"true"`
+	CertificateId *string `location:"uri" locationName:"caCertificateId" min:"64" type:"string" required:"true"`
 
 	// The updated status of the CA certificate.
+	//
+	// Note: The status value REGISTER_INACTIVE is deprecated and should not be
+	// used.
 	NewStatus *string `location:"querystring" locationName:"newStatus" type:"string" required:"true" enum:"CACertificateStatus"`
 }
 
@@ -5225,6 +5329,9 @@ type UpdateCertificateInput struct {
 	// Note: Setting the status to PENDING_TRANSFER will result in an exception
 	// being thrown. PENDING_TRANSFER is a status used internally by AWS IoT. It
 	// is not intended for developer use.
+	//
+	// Note: The status value REGISTER_INACTIVE is deprecated and should not be
+	// used.
 	NewStatus *string `location:"querystring" locationName:"newStatus" type:"string" required:"true" enum:"CertificateStatus"`
 }
 
@@ -5345,6 +5452,13 @@ const (
 	CertificateStatusPendingTransfer = "PENDING_TRANSFER"
 	// @enum CertificateStatus
 	CertificateStatusRegisterInactive = "REGISTER_INACTIVE"
+)
+
+const (
+	// @enum DynamoKeyType
+	DynamoKeyTypeString = "STRING"
+	// @enum DynamoKeyType
+	DynamoKeyTypeNumber = "NUMBER"
 )
 
 const (

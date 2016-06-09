@@ -454,7 +454,7 @@
       "name":"DeleteCACertificate",
       "http":{
         "method":"DELETE",
-        "requestUri":"/cacertificate/{certificateId}"
+        "requestUri":"/cacertificate/{caCertificateId}"
       },
       "input":{"shape":"DeleteCACertificateRequest"},
       "output":{"shape":"DeleteCACertificateResponse"},
@@ -761,7 +761,7 @@
       "name":"DescribeCACertificate",
       "http":{
         "method":"GET",
-        "requestUri":"/cacertificate/{certificateId}"
+        "requestUri":"/cacertificate/{caCertificateId}"
       },
       "input":{"shape":"DescribeCACertificateRequest"},
       "output":{"shape":"DescribeCACertificateResponse"},
@@ -1206,6 +1206,11 @@
           "error":{"httpStatusCode":500},
           "exception":true,
           "fault":true
+        },
+        {
+          "shape":"InvalidRequestException",
+          "error":{"httpStatusCode":400},
+          "exception":true
         }
       ]
     },
@@ -1365,6 +1370,49 @@
       "input":{"shape":"ListPoliciesRequest"},
       "output":{"shape":"ListPoliciesResponse"},
       "errors":[
+        {
+          "shape":"InvalidRequestException",
+          "error":{"httpStatusCode":400},
+          "exception":true
+        },
+        {
+          "shape":"ThrottlingException",
+          "error":{"httpStatusCode":429},
+          "exception":true
+        },
+        {
+          "shape":"UnauthorizedException",
+          "error":{"httpStatusCode":401},
+          "exception":true
+        },
+        {
+          "shape":"ServiceUnavailableException",
+          "error":{"httpStatusCode":503},
+          "exception":true,
+          "fault":true
+        },
+        {
+          "shape":"InternalFailureException",
+          "error":{"httpStatusCode":500},
+          "exception":true,
+          "fault":true
+        }
+      ]
+    },
+    "ListPolicyPrincipals":{
+      "name":"ListPolicyPrincipals",
+      "http":{
+        "method":"GET",
+        "requestUri":"/policy-principals"
+      },
+      "input":{"shape":"ListPolicyPrincipalsRequest"},
+      "output":{"shape":"ListPolicyPrincipalsResponse"},
+      "errors":[
+        {
+          "shape":"ResourceNotFoundException",
+          "error":{"httpStatusCode":404},
+          "exception":true
+        },
         {
           "shape":"InvalidRequestException",
           "error":{"httpStatusCode":400},
@@ -1948,7 +1996,7 @@
       "name":"UpdateCACertificate",
       "http":{
         "method":"PUT",
-        "requestUri":"/cacertificate/{certificateId}"
+        "requestUri":"/cacertificate/{caCertificateId}"
       },
       "input":{"shape":"UpdateCACertificateRequest"},
       "errors":[
@@ -2479,7 +2527,7 @@
         "certificateId":{
           "shape":"CertificateId",
           "location":"uri",
-          "locationName":"certificateId"
+          "locationName":"caCertificateId"
         }
       }
     },
@@ -2582,7 +2630,7 @@
         "certificateId":{
           "shape":"CertificateId",
           "location":"uri",
-          "locationName":"certificateId"
+          "locationName":"caCertificateId"
         }
       }
     },
@@ -2700,19 +2748,26 @@
         "tableName",
         "roleArn",
         "hashKeyField",
-        "hashKeyValue",
-        "rangeKeyField",
-        "rangeKeyValue"
+        "hashKeyValue"
       ],
       "members":{
         "tableName":{"shape":"TableName"},
         "roleArn":{"shape":"AwsArn"},
         "hashKeyField":{"shape":"HashKeyField"},
         "hashKeyValue":{"shape":"HashKeyValue"},
+        "hashKeyType":{"shape":"DynamoKeyType"},
         "rangeKeyField":{"shape":"RangeKeyField"},
         "rangeKeyValue":{"shape":"RangeKeyValue"},
+        "rangeKeyType":{"shape":"DynamoKeyType"},
         "payloadField":{"shape":"PayloadField"}
       }
+    },
+    "DynamoKeyType":{
+      "type":"string",
+      "enum":[
+        "STRING",
+        "NUMBER"
+      ]
     },
     "ElasticsearchAction":{
       "type":"structure",
@@ -3028,6 +3083,39 @@
       "type":"structure",
       "members":{
         "policies":{"shape":"Policies"},
+        "nextMarker":{"shape":"Marker"}
+      }
+    },
+    "ListPolicyPrincipalsRequest":{
+      "type":"structure",
+      "required":["policyName"],
+      "members":{
+        "policyName":{
+          "shape":"PolicyName",
+          "location":"header",
+          "locationName":"x-amzn-iot-policy"
+        },
+        "marker":{
+          "shape":"Marker",
+          "location":"querystring",
+          "locationName":"marker"
+        },
+        "pageSize":{
+          "shape":"PageSize",
+          "location":"querystring",
+          "locationName":"pageSize"
+        },
+        "ascendingOrder":{
+          "shape":"AscendingOrder",
+          "location":"querystring",
+          "locationName":"isAscendingOrder"
+        }
+      }
+    },
+    "ListPolicyPrincipalsResponse":{
+      "type":"structure",
+      "members":{
+        "principals":{"shape":"Principals"},
         "nextMarker":{"shape":"Marker"}
       }
     },
@@ -3648,7 +3736,7 @@
         "certificateId":{
           "shape":"CertificateId",
           "location":"uri",
-          "locationName":"certificateId"
+          "locationName":"caCertificateId"
         },
         "newStatus":{
           "shape":"CACertificateStatus",

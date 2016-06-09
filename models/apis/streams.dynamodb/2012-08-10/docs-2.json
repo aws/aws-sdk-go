@@ -1,12 +1,12 @@
 {
   "version": "2.0",
+  "service": "<fullname>Amazon DynamoDB</fullname> <p>Amazon DynamoDB Streams provides API actions for accessing streams and processing stream records. To learn more about application development with Streams, see <a href=\"http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html\">Capturing Table Activity with DynamoDB Streams</a> in the Amazon DynamoDB Developer Guide.</p> <p>The following are short descriptions of each low-level DynamoDB Streams action:</p> <ul> <li> <p> <i>DescribeStream</i> - Returns detailed information about a particular stream.</p> </li> <li> <p> <i>GetRecords</i> - Retrieves the stream records from within a shard.</p> </li> <li> <p> <i>GetShardIterator</i> - Returns information on how to retrieve the streams record from a shard with a given shard ID.</p> </li> <li> <p> <i>ListStreams</i> - Returns a list of all the streams associated with the current AWS account and endpoint.</p> </li> </ul>",
   "operations": {
-    "DescribeStream": "<p>Returns information about a stream, including the current status of the stream, its Amazon Resource Name (ARN), the composition of its shards, and its corresponding DynamoDB table.</p> <note><p>You can call <i>DescribeStream</i> at a maximum rate of 10 times per second.</p></note> <p>Each shard in the stream has a <code>SequenceNumberRange</code> associated with it. If the <code>SequenceNumberRange</code> has a <code>StartingSequenceNumber</code> but no <code>EndingSequenceNumber</code>, then the shard is still open (able to receive more stream records). If both <code>StartingSequenceNumber</code> and <code>EndingSequenceNumber</code> are present, the that shared is closed and can no longer receive more data.</p>",
-    "GetRecords": "<p>Retrieves the stream records from a given shard.</p> <p>Specify a shard iterator using the <code>ShardIterator</code> parameter. The shard iterator specifies the position in the shard from which you want to start reading stream records sequentially. If there are no stream records available in the portion of the shard that the iterator points to, <code>GetRecords</code> returns an empty list. Note that it might take multiple calls to get to a portion of the shard that contains stream records.</p> <note><p><function>GetRecords</function> can retrieve a maximum of 1 MB of data or 2000 stream records, whichever comes first.</p></note>",
-    "GetShardIterator": "<p>Returns a shard iterator. A shard iterator provides information about how to retrieve the stream records from within a shard. Use the shard iterator in a subsequent <code>GetRecords</code> request to read the stream records from the shard.</p> <note><p>A shard iterator expires 15 minutes after it is returned to the requester.</p></note>",
-    "ListStreams": "<p>Returns an array of stream ARNs associated with the current account and endpoint. If the <code>TableName</code> parameter is present, then <i>ListStreams</i> will return only the streams ARNs for that table.</p> <note><p>You can call <i>ListStreams</i> at a maximum rate of 5 times per second.</p></note>"
+    "DescribeStream": "<p>Returns information about a stream, including the current status of the stream, its Amazon Resource Name (ARN), the composition of its shards, and its corresponding DynamoDB table.</p> <note> <p>You can call <i>DescribeStream</i> at a maximum rate of 10 times per second.</p> </note> <p>Each shard in the stream has a <code>SequenceNumberRange</code> associated with it. If the <code>SequenceNumberRange</code> has a <code>StartingSequenceNumber</code> but no <code>EndingSequenceNumber</code>, then the shard is still open (able to receive more stream records). If both <code>StartingSequenceNumber</code> and <code>EndingSequenceNumber</code> are present, then that shard is closed and can no longer receive more data.</p>",
+    "GetRecords": "<p>Retrieves the stream records from a given shard.</p> <p>Specify a shard iterator using the <code>ShardIterator</code> parameter. The shard iterator specifies the position in the shard from which you want to start reading stream records sequentially. If there are no stream records available in the portion of the shard that the iterator points to, <code>GetRecords</code> returns an empty list. Note that it might take multiple calls to get to a portion of the shard that contains stream records.</p> <note> <p> <code>GetRecords</code> can retrieve a maximum of 1 MB of data or 1000 stream records, whichever comes first.</p> </note>",
+    "GetShardIterator": "<p>Returns a shard iterator. A shard iterator provides information about how to retrieve the stream records from within a shard. Use the shard iterator in a subsequent <code>GetRecords</code> request to read the stream records from the shard.</p> <note> <p>A shard iterator expires 15 minutes after it is returned to the requester.</p> </note>",
+    "ListStreams": "<p>Returns an array of stream ARNs associated with the current account and endpoint. If the <code>TableName</code> parameter is present, then <i>ListStreams</i> will return only the streams ARNs for that table.</p> <note> <p>You can call <i>ListStreams</i> at a maximum rate of 5 times per second.</p> </note>"
   },
-  "service": "<fullname>Amazon DynamoDB Streams</fullname> <p>This is the Amazon DynamoDB Streams API Reference. This guide describes the low-level API actions for accessing streams and processing stream records. For information about application development with DynamoDB Streams, see the <a href=\"http://docs.aws.amazon.com/amazondynamodb/latest/developerguide//Streams.html\">Amazon DynamoDB Developer Guide</a>.</p> <p>Note that this document is intended for use with the following DynamoDB documentation:</p> <ul> <li> <p> <a href=\"http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/\">Amazon DynamoDB Developer Guide</a> </p> </li> <li> <p> <a href=\"http://docs.aws.amazon.com/amazondynamodb/latest/APIReference/\">Amazon DynamoDB API Reference</a> </p> </li> </ul> <p>The following are short descriptions of each low-level DynamoDB Streams API action, organized by function.</p> <ul> <li><p><i>DescribeStream</i> - Returns detailed information about a particular stream.</p></li> <li> <p><i>GetRecords</i> - Retrieves the stream records from within a shard.</p> </li> <li> <p><i>GetShardIterator</i> - Returns information on how to retrieve the streams record from a shard with a given shard ID.</p> </li> <li> <p><i>ListStreams</i> - Returns a list of all the streams associated with the current AWS account and endpoint.</p> </li> </ul>",
   "shapes": {
     "AttributeMap": {
       "base": null,
@@ -24,7 +24,7 @@
       }
     },
     "AttributeValue": {
-      "base": "<p>Represents the data for an attribute. You can set one, and only one, of the elements.</p> <p>Each attribute in an item is a name-value pair. An attribute can be single-valued or multi-valued set. For example, a book item can have title and authors attributes. Each book has one title but can have many authors. The multi-valued attribute is a set; duplicate values are not allowed. </p>",
+      "base": "<p>Represents the data for an attribute. You can set one, and only one, of the elements.</p> <p>Each attribute in an item is a name-value pair. An attribute can be single-valued or multi-valued set. For example, a book item can have title and authors attributes. Each book has one title but can have many authors. The multi-valued attribute is a set; duplicate values are not allowed.</p>",
       "refs": {
         "AttributeMap$value": null,
         "ListAttributeValue$member": null,
@@ -47,13 +47,14 @@
     "BooleanAttributeValue": {
       "base": null,
       "refs": {
-        "AttributeValue$BOOL": "<p> A Boolean data type.</p>"
+        "AttributeValue$BOOL": "<p>A Boolean data type.</p>"
       }
     },
     "Date": {
       "base": null,
       "refs": {
-        "StreamDescription$CreationRequestDateTime": "<p>The date and time when the request to create this stream was issued.</p>"
+        "StreamDescription$CreationRequestDateTime": "<p>The date and time when the request to create this stream was issued.</p>",
+        "StreamRecord$ApproximateCreationDateTime": "<p>The approximate date and time when the stream record was created, in <a href=\"http://www.epochconverter.com/\">UNIX epoch time</a> format.</p>"
       }
     },
     "DescribeStreamInput": {
@@ -119,7 +120,7 @@
       }
     },
     "KeySchemaElement": {
-      "base": "<p>Represents <i>a single element</i> of a key schema. A key schema specifies the attributes that make up the primary key of a table, or the key attributes of an index.</p> <p>A <i>KeySchemaElement</i> represents exactly one attribute of the primary key. For example, a hash type primary key would be represented by one <i>KeySchemaElement</i>. A hash-and-range type primary key would require one <i>KeySchemaElement</i> for the hash attribute, and another <i>KeySchemaElement</i> for the range attribute.</p>",
+      "base": "<p>Represents <i>a single element</i> of a key schema. A key schema specifies the attributes that make up the primary key of a table, or the key attributes of an index.</p> <p>A <i>KeySchemaElement</i> represents exactly one attribute of the primary key. For example, a simple primary key (partition key) would be represented by one <i>KeySchemaElement</i>. A composite primary key (partition key and sort key) would require one <i>KeySchemaElement</i> for the partition key, and another <i>KeySchemaElement</i> for the sort key.</p> <note> <p>The partition key of an item is also known as its <i>hash attribute</i>. The term \"hash attribute\" derives from DynamoDB's usage of an internal hash function to evenly distribute data items across partitions, based on their partition key values.</p> <p>The sort key of an item is also known as its <i>range attribute</i>. The term \"range attribute\" derives from the way DynamoDB stores items with the same partition key physically close together, in sorted order by the sort key value.</p> </note>",
       "refs": {
         "KeySchema$member": null
       }
@@ -179,7 +180,7 @@
     "OperationType": {
       "base": null,
       "refs": {
-        "Record$eventName": "<p>The type of data modification that was performed on the DynamoDB table:</p> <ul> <li><p><code>INSERT</code> - a new item was added to the table.</p></li> <li><p><code>MODIFY</code> - one or more of the item's attributes were updated.</p></li> <li><p><code>REMOVE</code> - the item was deleted from the table</p></li> </ul>"
+        "Record$eventName": "<p>The type of data modification that was performed on the DynamoDB table:</p> <ul> <li> <p> <code>INSERT</code> - a new item was added to the table.</p> </li> <li> <p> <code>MODIFY</code> - one or more of an existing item's attributes were modified.</p> </li> <li> <p> <code>REMOVE</code> - the item was deleted from the table</p> </li> </ul>"
       }
     },
     "PositiveIntegerObject": {
@@ -209,7 +210,7 @@
       }
     },
     "ResourceNotFoundException": {
-      "base": "<p>The operation tried to access a nonexistent stream. </p>",
+      "base": "<p>The operation tried to access a nonexistent stream.</p>",
       "refs": {
       }
     },
@@ -261,7 +262,7 @@
     "ShardIteratorType": {
       "base": null,
       "refs": {
-        "GetShardIteratorInput$ShardIteratorType": "<p>Determines how the shard iterator is used to start reading stream records from the shard:</p> <ul> <li> <p><code>AT_SEQUENCE_NUMBER</code> - Start reading exactly from the position denoted by a specific sequence number.</p> </li> <li> <p><code>AFTER_SEQUENCE_NUMBER</code> - Start reading right after the position denoted by a specific sequence number.</p> </li> <li> <p><code>TRIM_HORIZON</code> - Start reading at the last (untrimmed) stream record, which is the oldest record in the shard. In DynamoDB Streams, there is a 24 hour limit on data retention. Stream records whose age exceeds this limit are subject to removal (trimming) from the stream.</p> </li> <li> <p><code>LATEST</code> - Start reading just after the most recent stream record in the shard, so that you always read the most recent data in the shard.</p> </li> </ul>"
+        "GetShardIteratorInput$ShardIteratorType": "<p>Determines how the shard iterator is used to start reading stream records from the shard:</p> <ul> <li> <p> <code>AT_SEQUENCE_NUMBER</code> - Start reading exactly from the position denoted by a specific sequence number.</p> </li> <li> <p> <code>AFTER_SEQUENCE_NUMBER</code> - Start reading right after the position denoted by a specific sequence number.</p> </li> <li> <p> <code>TRIM_HORIZON</code> - Start reading at the last (untrimmed) stream record, which is the oldest record in the shard. In DynamoDB Streams, there is a 24 hour limit on data retention. Stream records whose age exceeds this limit are subject to removal (trimming) from the stream.</p> </li> <li> <p> <code>LATEST</code> - Start reading just after the most recent stream record in the shard, so that you always read the most recent data in the shard.</p> </li> </ul>"
       }
     },
     "Stream": {
@@ -302,25 +303,25 @@
     "StreamStatus": {
       "base": null,
       "refs": {
-        "StreamDescription$StreamStatus": "<p>Indicates the current status of the stream:</p> <ul> <li><p><code>ENABLING</code> - Streams is currently being enabled on the DynamoDB table.</p></li> <li><p><code>ENABLING</code> - the stream is enabled.</p></li> <li><p><code>DISABLING</code> - Streams is currently being disabled on the DynamoDB table.</p></li> <li><p><code>DISABLED</code> - the stream is disabled.</p></li> </ul>"
+        "StreamDescription$StreamStatus": "<p>Indicates the current status of the stream:</p> <ul> <li> <p> <code>ENABLING</code> - Streams is currently being enabled on the DynamoDB table.</p> </li> <li> <p> <code>ENABLED</code> - the stream is enabled.</p> </li> <li> <p> <code>DISABLING</code> - Streams is currently being disabled on the DynamoDB table.</p> </li> <li> <p> <code>DISABLED</code> - the stream is disabled.</p> </li> </ul>"
       }
     },
     "StreamViewType": {
       "base": null,
       "refs": {
-        "StreamDescription$StreamViewType": "<p>Indicates the format of the records within this stream:</p> <ul> <li><p><code>KEYS_ONLY</code> - only the key attributes of items that were modified in the DynamoDB table.</p></li> <li><p><code>NEW_IMAGE</code> - entire item from the table, as it appeared after they were modified.</p></li> <li><p><code>OLD_IMAGE</code> - entire item from the table, as it appeared before they were modified.</p></li> <li><p><code>NEW_AND_OLD_IMAGES</code> - both the new and the old images of the items from the table.</p></li> </ul>",
-        "StreamRecord$StreamViewType": "<p>The type of data from the modified DynamoDB item that was captured in this stream record:</p> <ul> <li><p><code>KEYS_ONLY</code> - only the key attributes of the modified item.</p></li> <li><p><code>NEW_IMAGE</code> - the entire item, as it appears after it was modified.</p></li> <li><p><code>OLD_IMAGE</code> - the entire item, as it appeared before it was modified.</p></li> <li><p><code>NEW_AND_OLD_IMAGES</code> — both the new and the old item images of the item.</p></li> </ul>"
+        "StreamDescription$StreamViewType": "<p>Indicates the format of the records within this stream:</p> <ul> <li> <p> <code>KEYS_ONLY</code> - only the key attributes of items that were modified in the DynamoDB table.</p> </li> <li> <p> <code>NEW_IMAGE</code> - entire items from the table, as they appeared after they were modified.</p> </li> <li> <p> <code>OLD_IMAGE</code> - entire items from the table, as they appeared before they were modified.</p> </li> <li> <p> <code>NEW_AND_OLD_IMAGES</code> - both the new and the old images of the items from the table.</p> </li> </ul>",
+        "StreamRecord$StreamViewType": "<p>The type of data from the modified DynamoDB item that was captured in this stream record:</p> <ul> <li> <p> <code>KEYS_ONLY</code> - only the key attributes of the modified item.</p> </li> <li> <p> <code>NEW_IMAGE</code> - the entire item, as it appeared after it was modified.</p> </li> <li> <p> <code>OLD_IMAGE</code> - the entire item, as it appeared before it was modified.</p> </li> <li> <p> <code>NEW_AND_OLD_IMAGES</code> - both the new and the old item images of the item.</p> </li> </ul>"
       }
     },
     "String": {
       "base": null,
       "refs": {
         "Record$eventID": "<p>A globally unique identifier for the event that was recorded in this stream record.</p>",
-        "Record$eventVersion": "<p>The version number of the stream record format. Currently, this is <i>1.0</i>.</p>",
+        "Record$eventVersion": "<p>The version number of the stream record format. This number is updated whenever the structure of <i>Record</i> is modified.</p> <p>Client applications must not assume that <i>eventVersion</i> will remain at a particular value, as this number is subject to change at any time. In general, <i>eventVersion</i> will only increase as the low-level DynamoDB Streams API evolves.</p>",
         "Record$eventSource": "<p>The AWS service from which the stream record originated. For DynamoDB Streams, this is <i>aws:dynamodb</i>.</p>",
         "Record$awsRegion": "<p>The region in which the <i>GetRecords</i> request was received.</p>",
-        "Stream$StreamLabel": "<p>A timestamp, in ISO 8601 format, for this stream.</p> <p>Note that <i>LatestStreamLabel</i> is not a unique identifier for the stream, because it is possible that a stream from another table might have the same timestamp. However, the combination of the following three elements is guaranteed to be unique:</p> <ul> <li><p>the AWS customer ID.</p></li> <li><p>the table name</p></li> <li><p>the <i>StreamLabel</i></p></li> </ul>",
-        "StreamDescription$StreamLabel": "<p>A timestamp, in ISO 8601 format, for this stream.</p> <p>Note that <i>LatestStreamLabel</i> is not a unique identifier for the stream, because it is possible that a stream from another table might have the same timestamp. However, the combination of the following three elements is guaranteed to be unique:</p> <ul> <li><p>the AWS customer ID.</p></li> <li><p>the table name</p></li> <li><p>the <i>StreamLabel</i></p></li> </ul>"
+        "Stream$StreamLabel": "<p>A timestamp, in ISO 8601 format, for this stream.</p> <p>Note that <i>LatestStreamLabel</i> is not a unique identifier for the stream, because it is possible that a stream from another table might have the same timestamp. However, the combination of the following three elements is guaranteed to be unique:</p> <ul> <li> <p>the AWS customer ID.</p> </li> <li> <p>the table name</p> </li> <li> <p>the <i>StreamLabel</i> </p> </li> </ul>",
+        "StreamDescription$StreamLabel": "<p>A timestamp, in ISO 8601 format, for this stream.</p> <p>Note that <i>LatestStreamLabel</i> is not a unique identifier for the stream, because it is possible that a stream from another table might have the same timestamp. However, the combination of the following three elements is guaranteed to be unique:</p> <ul> <li> <p>the AWS customer ID.</p> </li> <li> <p>the table name</p> </li> <li> <p>the <i>StreamLabel</i> </p> </li> </ul>"
       }
     },
     "StringAttributeValue": {
@@ -345,7 +346,7 @@
       }
     },
     "TrimmedDataAccessException": {
-      "base": "<p>The operation attempted to read past the oldest stream record in a shard.</p> <p>In DynamoDB Streams, there is a 24 hour limit on data retention. Stream records whose age exceeds this limit are subject to removal (trimming) from the stream. You might receive a TrimmedDataAccessException if:</p> <ul> <li>You request a shard iterator with a sequence number older than the trim point (24 hours).</li> <li>You obtain a shard iterator, but before you use the iterator in a <i>GetRecords</i> request, a stream record in the shard exceeds the 24 hour period and is trimmed. This causes the iterator to access a record that no longer exists.</li> </ul>",
+      "base": "<p>The operation attempted to read past the oldest stream record in a shard.</p> <p>In DynamoDB Streams, there is a 24 hour limit on data retention. Stream records whose age exceeds this limit are subject to removal (trimming) from the stream. You might receive a TrimmedDataAccessException if:</p> <ul> <li><p>You request a shard iterator with a sequence number older than the trim point (24 hours).</p> </li> <li><p>You obtain a shard iterator, but before you use the iterator in a <i>GetRecords</i> request, a stream record in the shard exceeds the 24 hour period and is trimmed. This causes the iterator to access a record that no longer exists.</p> </li> </ul>",
       "refs": {
       }
     }

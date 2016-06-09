@@ -15,6 +15,33 @@ import (
 var _ time.Duration
 var _ bytes.Buffer
 
+func ExampleMachineLearning_AddTags() {
+	svc := machinelearning.New(session.New())
+
+	params := &machinelearning.AddTagsInput{
+		ResourceId:   aws.String("EntityId"),             // Required
+		ResourceType: aws.String("TaggableResourceType"), // Required
+		Tags: []*machinelearning.Tag{ // Required
+			{ // Required
+				Key:   aws.String("TagKey"),
+				Value: aws.String("TagValue"),
+			},
+			// More values...
+		},
+	}
+	resp, err := svc.AddTags(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleMachineLearning_CreateBatchPrediction() {
 	svc := machinelearning.New(session.New())
 
@@ -310,6 +337,30 @@ func ExampleMachineLearning_DeleteRealtimeEndpoint() {
 	fmt.Println(resp)
 }
 
+func ExampleMachineLearning_DeleteTags() {
+	svc := machinelearning.New(session.New())
+
+	params := &machinelearning.DeleteTagsInput{
+		ResourceId:   aws.String("EntityId"),             // Required
+		ResourceType: aws.String("TaggableResourceType"), // Required
+		TagKeys: []*string{ // Required
+			aws.String("TagKey"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.DeleteTags(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleMachineLearning_DescribeBatchPredictions() {
 	svc := machinelearning.New(session.New())
 
@@ -414,6 +465,26 @@ func ExampleMachineLearning_DescribeMLModels() {
 		SortOrder:      aws.String("SortOrder"),
 	}
 	resp, err := svc.DescribeMLModels(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleMachineLearning_DescribeTags() {
+	svc := machinelearning.New(session.New())
+
+	params := &machinelearning.DescribeTagsInput{
+		ResourceId:   aws.String("EntityId"),             // Required
+		ResourceType: aws.String("TaggableResourceType"), // Required
+	}
+	resp, err := svc.DescribeTags(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
