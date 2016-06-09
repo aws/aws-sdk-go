@@ -54,7 +54,7 @@ unit: get-deps-tests build verify
 
 unit-with-race-cover: get-deps-tests build verify
 	@echo "go test SDK and vendor packages"
-	@go test -v -race -cpu=1,2,4 -covermode=atomic $(SDK_ONLY_PKGS)
+	@go test -race -cpu=1,2,4 $(SDK_ONLY_PKGS)
 
 integration: get-deps-tests integ-custom smoke-tests performance
 
