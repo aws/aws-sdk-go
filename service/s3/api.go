@@ -1132,6 +1132,12 @@ func (c *S3) ListObjectsV2Request(input *ListObjectsV2Input) (req *request.Reque
 		Name:       opListObjectsV2,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{Bucket}?list-type=2",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"ContinuationToken"},
+			OutputTokens:    []string{"NextContinuationToken"},
+			LimitToken:      "MaxKeys",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -1152,6 +1158,14 @@ func (c *S3) ListObjectsV2(input *ListObjectsV2Input) (*ListObjectsV2Output, err
 	req, out := c.ListObjectsV2Request(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *S3) ListObjectsV2Pages(input *ListObjectsV2Input, fn func(p *ListObjectsV2Output, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListObjectsV2Request(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListObjectsV2Output), lastPage)
+	})
 }
 
 const opListParts = "ListParts"
@@ -4248,7 +4262,7 @@ type GetObjectOutput struct {
 	ContentLanguage *string `location:"header" locationName:"Content-Language" type:"string"`
 
 	// Size of the body in bytes.
-	ContentLength *int64 `location:"header" locationName:"Content-Length" type:"integer"`
+	ContentLength *int64 `location:"header" locationName:"Content-Length" type:"long"`
 
 	// The portion of the object returned in the response.
 	ContentRange *string `location:"header" locationName:"Content-Range" type:"string"`
@@ -4617,7 +4631,7 @@ type HeadObjectOutput struct {
 	ContentLanguage *string `location:"header" locationName:"Content-Language" type:"string"`
 
 	// Size of the body in bytes.
-	ContentLength *int64 `location:"header" locationName:"Content-Length" type:"integer"`
+	ContentLength *int64 `location:"header" locationName:"Content-Length" type:"long"`
 
 	// A standard MIME type describing the format of the object data.
 	ContentType *string `location:"header" locationName:"Content-Type" type:"string"`
@@ -5314,7 +5328,7 @@ type ListObjectsV2Input struct {
 
 	// StartAfter is where you want Amazon S3 to start listing from. Amazon S3 starts
 	// listing after this specified key. StartAfter can be any key in the bucket
-	StartAfter *string `location:"querystring" locationName:"start-key" type:"string"`
+	StartAfter *string `location:"querystring" locationName:"start-after" type:"string"`
 }
 
 // String returns the string representation
@@ -6757,7 +6771,7 @@ type PutObjectInput struct {
 
 	// Size of the body in bytes. This parameter is useful when the size of the
 	// body cannot be determined automatically.
-	ContentLength *int64 `location:"header" locationName:"Content-Length" type:"integer"`
+	ContentLength *int64 `location:"header" locationName:"Content-Length" type:"long"`
 
 	// A standard MIME type describing the format of the object data.
 	ContentType *string `location:"header" locationName:"Content-Type" type:"string"`
@@ -7749,7 +7763,7 @@ type UploadPartInput struct {
 
 	// Size of the body in bytes. This parameter is useful when the size of the
 	// body cannot be determined automatically.
-	ContentLength *int64 `location:"header" locationName:"Content-Length" type:"integer"`
+	ContentLength *int64 `location:"header" locationName:"Content-Length" type:"long"`
 
 	// Object key for which the multipart upload was initiated.
 	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`

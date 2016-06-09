@@ -963,7 +963,7 @@
     "ContentDisposition":{"type":"string"},
     "ContentEncoding":{"type":"string"},
     "ContentLanguage":{"type":"string"},
-    "ContentLength":{"type":"integer"},
+    "ContentLength":{"type":"long"},
     "ContentMD5":{"type":"string"},
     "ContentRange":{"type":"string"},
     "ContentType":{"type":"string"},
@@ -2913,7 +2913,7 @@
         "StartAfter":{
           "shape":"StartAfter",
           "location":"querystring",
-          "locationName":"start-key"
+          "locationName":"start-after"
         }
       }
     },
