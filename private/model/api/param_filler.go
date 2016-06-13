@@ -5,7 +5,6 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/aws/aws-sdk-go/awstesting"
 	"github.com/aws/aws-sdk-go/private/util"
 )
 
@@ -102,7 +101,7 @@ func (f paramFiller) paramsStructStruct(value map[string]interface{}, shape *Sha
 // paramsStructMap returns the string representation of a map of values
 func (f paramFiller) paramsStructMap(value map[string]interface{}, shape *Shape) string {
 	out := f.typeName(shape) + "{\n"
-	keys := awstesting.SortedKeys(value)
+	keys := util.SortedKeys(value)
 	for _, k := range keys {
 		v := value[k]
 		out += fmt.Sprintf("%q: %s,\n", k, f.paramsStructAny(v, shape.ValueRef.Shape))
