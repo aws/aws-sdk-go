@@ -17,7 +17,7 @@ import (
 // websites and applications. For general information about using ACM and for
 // more information about using the console, see the AWS Certificate Manager
 // User Guide (http://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html).
-// For more information about using the ACM API, see the  AWS Certificate Manager
+// For more information about using the ACM API, see the AWS Certificate Manager
 // API Reference (http://docs.aws.amazon.com/acm/latest/APIReference/Welcome.html).
 //The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.

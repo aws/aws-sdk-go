@@ -40,7 +40,7 @@ func (c *ACM) AddTagsToCertificateRequest(input *AddTagsToCertificateInput) (req
 // and an optional value. You specify the certificate on input by its Amazon
 // Resource Name (ARN). You specify the tag by using a key-value pair.
 //
-//  You can apply a tag to just one certificate if you want to identify a specific
+// You can apply a tag to just one certificate if you want to identify a specific
 // characteristic of that certificate, or you can apply the same tag to multiple
 // certificates if you want to filter for a common relationship among those
 // certificates. Similarly, you can apply the same tag to multiple resources
@@ -86,9 +86,9 @@ func (c *ACM) DeleteCertificateRequest(input *DeleteCertificateInput) (req *requ
 // by calling the GetCertificate action. The certificate will not be available
 // for use by other AWS services.
 //
-// You cannot delete an ACM Certificate that is being used by another AWS service.
-// To delete a certificate that is in use, the certificate association must
-// first be removed.
+//  You cannot delete an ACM Certificate that is being used by another AWS
+// service. To delete a certificate that is in use, the certificate association
+// must first be removed.
 func (c *ACM) DeleteCertificate(input *DeleteCertificateInput) (*DeleteCertificateOutput, error) {
 	req, out := c.DeleteCertificateRequest(input)
 	err := req.Send()
@@ -187,12 +187,9 @@ func (c *ACM) ListCertificatesRequest(input *ListCertificatesInput) (req *reques
 	return
 }
 
-// Retrieves a list of the ACM Certificate ARNs, and the domain name for each
-// ARN, owned by the calling account. You can filter the list based on the CertificateStatuses
-// parameter, and you can display up to MaxItems certificates at one time. If
-// you have more than MaxItems certificates, use the NextToken marker from the
-// response object in your next call to the ListCertificates action to retrieve
-// the next set of certificate ARNs.
+// Retrieves a list of ACM Certificates and the domain name for each. You can
+// optionally filter the list to return only the certificates that match the
+// specified status.
 func (c *ACM) ListCertificates(input *ListCertificatesInput) (*ListCertificatesOutput, error) {
 	req, out := c.ListCertificatesRequest(input)
 	err := req.Send()
@@ -299,7 +296,7 @@ func (c *ACM) RequestCertificateRequest(input *RequestCertificateInput) (req *re
 // site by using other names. For each domain name you specify, email is sent
 // to the domain owner to request approval to issue the certificate. After receiving
 // approval from the domain owner, the ACM Certificate is issued. For more information,
-// see the  AWS Certificate Manager User Guide  (http://docs.aws.amazon.com/acm/latest/userguide/overview.html).
+// see the AWS Certificate Manager User Guide  (http://docs.aws.amazon.com/acm/latest/userguide/overview.html).
 func (c *ACM) RequestCertificate(input *RequestCertificateInput) (*RequestCertificateOutput, error) {
 	req, out := c.RequestCertificateRequest(input)
 	err := req.Send()
@@ -351,7 +348,7 @@ type AddTagsToCertificateInput struct {
 	//
 	//  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	//
-	//  For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
+	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
 	CertificateArn *string `min:"20" type:"string" required:"true"`
 
@@ -415,98 +412,62 @@ func (s AddTagsToCertificateOutput) GoString() string {
 	return s.String()
 }
 
-// This structure is returned in the response object of the DescribeCertificate
-// action.
+// Contains detailed metadata about an ACM Certificate. This structure is returned
+// in the response to a DescribeCertificate request.
 type CertificateDetail struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon Resource Name (ARN) of the certificate. This is of the form:
-	//
-	//  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
-	//
-	//  For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
-	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+	// The Amazon Resource Name (ARN) of the certificate. For more information about
+	// ARNs, see Amazon Resource Names (ARNs) and AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
 	CertificateArn *string `min:"20" type:"string"`
 
-	// Time at which the certificate was requested.
+	// The time at which the certificate was requested.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	// Fully qualified domain name (FQDN), such as www.example.com or example.com,
-	// for the certificate.
+	// The fully qualified domain name (FQDN) for the certificate, such as www.example.com
+	// or example.com.
 	DomainName *string `min:"1" type:"string"`
 
-	// References a DomainValidation structure that contains the domain name in
-	// the certificate and the email address that can be used for validation.
+	// Contains information about the email address or addresses used for domain
+	// validation.
 	DomainValidationOptions []*DomainValidation `min:"1" type:"list"`
 
-	// List that identifies ARNs that are using the certificate. A single ACM Certificate
+	// A list of ARNs for the resources that are using the certificate. An ACM Certificate
 	// can be used by multiple AWS resources.
 	InUseBy []*string `type:"list"`
 
-	// Time at which the certificate was issued.
+	// The time at which the certificate was issued.
 	IssuedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The X.500 distinguished name of the CA that issued and signed the certificate.
 	Issuer *string `type:"string"`
 
-	// Asymmetric algorithm used to generate the public and private key pair. Currently
-	// the only supported value is RSA_2048.
+	// The algorithm used to generate the key pair (the public and private key).
+	// Currently the only supported value is RSA_2048.
 	KeyAlgorithm *string `type:"string" enum:"KeyAlgorithm"`
 
-	// Time after which the certificate is not valid.
+	// The time after which the certificate is not valid.
 	NotAfter *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	// Time before which the certificate is not valid.
+	// The time before which the certificate is not valid.
 	NotBefore *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	// A RevocationReason enumeration value that indicates why the certificate was
-	// revoked. This value exists only if the certificate has been revoked. This
-	// can be one of the following vales:  UNSPECIFIED
-	//
-	// KEY_COMPROMISE
-	//
-	// CA_COMPROMISE
-	//
-	// AFFILIATION_CHANGED
-	//
-	// SUPERCEDED
-	//
-	// CESSATION_OF_OPERATION
-	//
-	// CERTIFICATE_HOLD
-	//
-	// REMOVE_FROM_CRL
-	//
-	// PRIVILEGE_WITHDRAWN
-	//
-	// A_A_COMPROMISE
+	// The reason the certificate was revoked. This value exists only when the certificate
+	// status is REVOKED.
 	RevocationReason *string `type:"string" enum:"RevocationReason"`
 
-	// The time, if any, at which the certificate was revoked. This value exists
-	// only if the certificate has been revoked.
+	// The time at which the certificate was revoked. This value exists only when
+	// the certificate status is REVOKED.
 	RevokedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	// String that contains the serial number of the certificate.
+	// The serial number of the certificate.
 	Serial *string `type:"string"`
 
-	// Algorithm used to generate a signature. Currently the only supported value
-	// is SHA256WITHRSA.
+	// The algorithm used to generate a signature. Currently the only supported
+	// value is SHA256WITHRSA.
 	SignatureAlgorithm *string `type:"string"`
 
-	// A CertificateStatus enumeration value that can contain one of the following:
-	//  PENDING_VALIDATION
-	//
-	// ISSUED
-	//
-	// INACTIVE
-	//
-	// EXPIRED
-	//
-	// REVOKED
-	//
-	// FAILED
-	//
-	// VALIDATION_TIMED_OUT
+	// The status of the certificate.
 	Status *string `type:"string" enum:"CertificateStatus"`
 
 	// The X.500 distinguished name of the entity associated with the public key
@@ -539,7 +500,7 @@ type CertificateSummary struct {
 	//
 	//  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	//
-	//  For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
+	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
 	CertificateArn *string `min:"20" type:"string"`
 
@@ -566,7 +527,7 @@ type DeleteCertificateInput struct {
 	//
 	//  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	//
-	//  For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
+	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
 	CertificateArn *string `min:"20" type:"string" required:"true"`
 }
@@ -618,7 +579,7 @@ type DescribeCertificateInput struct {
 	//
 	//  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	//
-	//  For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
+	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
 	CertificateArn *string `min:"20" type:"string" required:"true"`
 }
@@ -672,7 +633,7 @@ func (s DescribeCertificateOutput) GoString() string {
 type DomainValidation struct {
 	_ struct{} `type:"structure"`
 
-	// Fully Qualified Domain Name (FQDN) of the form www.example.com or example.com
+	// Fully Qualified Domain Name (FQDN) of the form www.example.com or  example.com.
 	DomainName *string `min:"1" type:"string" required:"true"`
 
 	// The base validation domain that acts as the suffix of the email addresses
@@ -706,15 +667,17 @@ type DomainValidationOption struct {
 	// example, if you requested a certificate for site.subdomain.example.com and
 	// specify a ValidationDomain of subdomain.example.com, ACM sends email to the
 	// domain registrant, technical contact, and administrative contact in WHOIS
-	// for the base domain and the following five addresses:  admin@subdomain.example.com
+	// for the base domain and the following five addresses:
 	//
-	// administrator@subdomain.example.com
+	//   admin@subdomain.example.com
 	//
-	// hostmaster@subdomain.example.com
+	//   administrator@subdomain.example.com
 	//
-	// postmaster@subdomain.example.com
+	//   hostmaster@subdomain.example.com
 	//
-	// webmaster@subdomain.example.com
+	//   postmaster@subdomain.example.com
+	//
+	//   webmaster@subdomain.example.com
 	ValidationDomain *string `min:"1" type:"string" required:"true"`
 }
 
@@ -757,7 +720,7 @@ type GetCertificateInput struct {
 	//
 	//  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	//
-	//  For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
+	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
 	CertificateArn *string `min:"20" type:"string" required:"true"`
 }
@@ -813,34 +776,18 @@ func (s GetCertificateOutput) GoString() string {
 type ListCertificatesInput struct {
 	_ struct{} `type:"structure"`
 
-	// Identifies the statuses of the ACM Certificates for which you want to retrieve
-	// the ARNs. This can be one or more of the following values:  PENDING_VALIDATION
-	//
-	// ISSUED
-	//
-	// INACTIVE
-	//
-	// EXPIRED
-	//
-	// VALIDATION_TIMED_OUT
-	//
-	// REVOKED
-	//
-	// FAILED
+	// The status or statuses on which to filter the list of ACM Certificates.
 	CertificateStatuses []*string `type:"list"`
 
-	// Specify this parameter when paginating results to indicate the maximum number
-	// of ACM Certificates that you want to display for each response. If there
-	// are additional certificates beyond the maximum you specify, use the NextToken
-	// value in your next call to the ListCertificates action.
+	// Use this parameter when paginating results to specify the maximum number
+	// of items to return in the response. If additional items exist beyond the
+	// number you specify, the NextToken element is sent in the response. Use this
+	// NextToken value in a subsequent request to retrieve additional items.
 	MaxItems *int64 `min:"1" type:"integer"`
 
-	// String that contains an opaque marker of the next ACM Certificate ARN to
-	// be displayed. Use this parameter when paginating results, and only in a subsequent
-	// request after you've received a response where the results have been truncated.
-	// Set it to an empty string the first time you call this action, and set it
-	// to the value of the NextToken element you receive in the response object
-	// for subsequent calls.
+	// Use this parameter only when paginating results and only in a subsequent
+	// request after you receive a response with truncated results. Set it to the
+	// value of NextToken from the response you just received.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -873,11 +820,11 @@ func (s *ListCertificatesInput) Validate() error {
 type ListCertificatesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of the certificate ARNs.
+	// A list of ACM Certificates.
 	CertificateSummaryList []*CertificateSummary `type:"list"`
 
-	// If the list has been truncated, this value is present and should be used
-	// for the NextToken input parameter on your next call to ListCertificates.
+	// When the list is truncated, this value is present and contains the value
+	// to use for the NextToken parameter in a subsequent pagination request.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -899,7 +846,7 @@ type ListTagsForCertificateInput struct {
 	//
 	//  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	//
-	//  For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
+	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
 	CertificateArn *string `min:"20" type:"string" required:"true"`
 }
@@ -955,7 +902,7 @@ type RemoveTagsFromCertificateInput struct {
 	//
 	//  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	//
-	//  For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
+	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
 	CertificateArn *string `min:"20" type:"string" required:"true"`
 
@@ -1033,15 +980,17 @@ type RequestCertificateInput struct {
 	// or a superdomain of the Domain value. For example, if you requested a certificate
 	// for test.example.com and specify DomainValidationOptions of example.com,
 	// ACM sends email to the domain registrant, technical contact, and administrative
-	// contact in WHOIS and the following five addresses:  admin@example.com
+	// contact in WHOIS and the following five addresses:
 	//
-	// administrator@example.com
+	//   admin@example.com
 	//
-	// hostmaster@example.com
+	//   administrator@example.com
 	//
-	// postmaster@example.com
+	//   hostmaster@example.com
 	//
-	// webmaster@example.com
+	//   postmaster@example.com
+	//
+	//   webmaster@example.com
 	DomainValidationOptions []*DomainValidationOption `min:"1" type:"list"`
 
 	// Customer chosen string that can be used to distinguish between calls to RequestCertificate.
@@ -1132,7 +1081,7 @@ type ResendValidationEmailInput struct {
 	// the request is made. By default, using this parameter causes email to be
 	// sent to all top-level domains you specified in the certificate request.
 	//
-	//  The ARN must be of the form:
+	// The ARN must be of the form:
 	//
 	//  arn:aws:acm:us-east-1:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	CertificateArn *string `min:"20" type:"string" required:"true"`
@@ -1146,15 +1095,17 @@ type ResendValidationEmailInput struct {
 	// or a superdomain of the Domain value. For example, if you requested a certificate
 	// for site.subdomain.example.com and specify a ValidationDomain of subdomain.example.com,
 	// ACM sends email to the domain registrant, technical contact, and administrative
-	// contact in WHOIS and the following five addresses:  admin@subdomain.example.com
+	// contact in WHOIS and the following five addresses:
 	//
-	// administrator@subdomain.example.com
+	//   admin@subdomain.example.com
 	//
-	// hostmaster@subdomain.example.com
+	//   administrator@subdomain.example.com
 	//
-	// postmaster@subdomain.example.com
+	//   hostmaster@subdomain.example.com
 	//
-	// webmaster@subdomain.example.com
+	//   postmaster@subdomain.example.com
+	//
+	//   webmaster@subdomain.example.com
 	ValidationDomain *string `min:"1" type:"string" required:"true"`
 }
 
