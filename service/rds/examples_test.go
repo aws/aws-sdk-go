@@ -2045,6 +2045,25 @@ func ExampleRDS_PromoteReadReplica() {
 	fmt.Println(resp)
 }
 
+func ExampleRDS_PromoteReadReplicaDBCluster() {
+	svc := rds.New(session.New())
+
+	params := &rds.PromoteReadReplicaDBClusterInput{
+		DBClusterIdentifier: aws.String("String"), // Required
+	}
+	resp, err := svc.PromoteReadReplicaDBCluster(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleRDS_PurchaseReservedDBInstancesOffering() {
 	svc := rds.New(session.New())
 

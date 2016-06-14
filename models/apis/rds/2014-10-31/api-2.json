@@ -1141,6 +1141,22 @@
         {"shape":"DBInstanceNotFoundFault"}
       ]
     },
+    "PromoteReadReplicaDBCluster":{
+      "name":"PromoteReadReplicaDBCluster",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PromoteReadReplicaDBClusterMessage"},
+      "output":{
+        "shape":"PromoteReadReplicaDBClusterResult",
+        "resultWrapper":"PromoteReadReplicaDBClusterResult"
+      },
+      "errors":[
+        {"shape":"DBClusterNotFoundFault"},
+        {"shape":"InvalidDBClusterStateFault"}
+      ]
+    },
     "PurchaseReservedDBInstancesOffering":{
       "name":"PurchaseReservedDBInstancesOffering",
       "http":{
@@ -1957,6 +1973,8 @@
         "DBClusterOptionGroupMemberships":{"shape":"DBClusterOptionGroupMemberships"},
         "PreferredBackupWindow":{"shape":"String"},
         "PreferredMaintenanceWindow":{"shape":"String"},
+        "ReplicationSourceIdentifier":{"shape":"String"},
+        "ReadReplicaIdentifiers":{"shape":"ReadReplicaIdentifierList"},
         "DBClusterMembers":{"shape":"DBClusterMemberList"},
         "VpcSecurityGroups":{"shape":"VpcSecurityGroupMembershipList"},
         "HostedZoneId":{"shape":"String"},
@@ -4044,6 +4062,19 @@
       },
       "exception":true
     },
+    "PromoteReadReplicaDBClusterMessage":{
+      "type":"structure",
+      "required":["DBClusterIdentifier"],
+      "members":{
+        "DBClusterIdentifier":{"shape":"String"}
+      }
+    },
+    "PromoteReadReplicaDBClusterResult":{
+      "type":"structure",
+      "members":{
+        "DBCluster":{"shape":"DBCluster"}
+      }
+    },
     "PromoteReadReplicaMessage":{
       "type":"structure",
       "required":["DBInstanceIdentifier"],
@@ -4091,6 +4122,13 @@
       "member":{
         "shape":"String",
         "locationName":"ReadReplicaDBInstanceIdentifier"
+      }
+    },
+    "ReadReplicaIdentifierList":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"ReadReplicaIdentifier"
       }
     },
     "RebootDBInstanceMessage":{

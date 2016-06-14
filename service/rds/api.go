@@ -757,16 +757,28 @@ func (c *RDS) DeleteDBInstanceRequest(input *DeleteDBInstanceInput) (req *reques
 // The DeleteDBInstance action deletes a previously provisioned DB instance.
 // When you delete a DB instance, all automated backups for that instance are
 // deleted and cannot be recovered. Manual DB snapshots of the DB instance to
-// be deleted are not deleted.
+// be deleted by DeleteDBInstance are not deleted.
 //
-//  If a final DB snapshot is requested the status of the RDS instance will
-// be deleting until the DB snapshot is created. The API action DescribeDBInstance
+//  If you request a final DB snapshot the status of the Amazon RDS DB instance
+// is deleting until the DB snapshot is created. The API action DescribeDBInstance
 // is used to monitor the status of this operation. The action cannot be canceled
 // or reverted once submitted.
 //
 // Note that when a DB instance is in a failure state and has a status of failed,
-// incompatible-restore, or incompatible-network, it can only be deleted when
+// incompatible-restore, or incompatible-network, you can only delete it when
 // the SkipFinalSnapshot parameter is set to true.
+//
+// If the specified DB instance is part of an Amazon Aurora DB cluster, you
+// cannot delete the DB instance if the following are true:
+//
+//   The DB cluster is a Read Replica of another Amazon Aurora DB cluster.
+//
+//   The DB instance is the only instance in the DB cluster.
+//
+//   To delete a DB instance in this case, first call the PromoteReadReplicaDBCluster
+// API action to promote the DB cluster so it's no longer a Read Replica. After
+// the promotion completes, then call the DeleteDBInstance API action to delete
+// the final instance in the DB cluster.
 func (c *RDS) DeleteDBInstance(input *DeleteDBInstanceInput) (*DeleteDBInstanceOutput, error) {
 	req, out := c.DeleteDBInstanceRequest(input)
 	err := req.Send()
@@ -2439,6 +2451,33 @@ func (c *RDS) PromoteReadReplicaRequest(input *PromoteReadReplicaInput) (req *re
 // are taken based on your backup settings.
 func (c *RDS) PromoteReadReplica(input *PromoteReadReplicaInput) (*PromoteReadReplicaOutput, error) {
 	req, out := c.PromoteReadReplicaRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opPromoteReadReplicaDBCluster = "PromoteReadReplicaDBCluster"
+
+// PromoteReadReplicaDBClusterRequest generates a request for the PromoteReadReplicaDBCluster operation.
+func (c *RDS) PromoteReadReplicaDBClusterRequest(input *PromoteReadReplicaDBClusterInput) (req *request.Request, output *PromoteReadReplicaDBClusterOutput) {
+	op := &request.Operation{
+		Name:       opPromoteReadReplicaDBCluster,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PromoteReadReplicaDBClusterInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &PromoteReadReplicaDBClusterOutput{}
+	req.Data = output
+	return
+}
+
+// Promotes a Read Replica DB cluster to a standalone DB cluster.
+func (c *RDS) PromoteReadReplicaDBCluster(input *PromoteReadReplicaDBClusterInput) (*PromoteReadReplicaDBClusterOutput, error) {
+	req, out := c.PromoteReadReplicaDBClusterRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -5138,8 +5177,8 @@ type CreateDBSubnetGroupInput struct {
 
 	// The name for the DB subnet group. This value is stored as a lowercase string.
 	//
-	// Constraints: Must contain no more than 255 alphanumeric characters, periods,
-	// underscores, spaces, or hyphens. Must not be default.
+	// Constraints: Must contain no more than 255 alphanumeric characters. Cannot
+	// contain periods, underscores, spaces, or hyphens. Must not be default.
 	//
 	// Example: mySubnetgroup
 	DBSubnetGroupName *string `type:"string" required:"true"`
@@ -5253,7 +5292,8 @@ type CreateEventSubscriptionInput struct {
 	// parameter to db-instance. if this value is not specified, all events are
 	// returned.
 	//
-	// Valid values: db-instance | db-parameter-group | db-security-group | db-snapshot
+	// Valid values: db-instance | db-cluster | db-parameter-group | db-security-group
+	// | db-snapshot | db-cluster-snapshot
 	SourceType *string `type:"string"`
 
 	// The name of the subscription.
@@ -5488,6 +5528,14 @@ type DBCluster struct {
 	// Specifies the weekly time range during which system maintenance can occur,
 	// in Universal Coordinated Time (UTC).
 	PreferredMaintenanceWindow *string `type:"string"`
+
+	// Contains one or more identifiers of the Read Replicas associated with this
+	// DB cluster.
+	ReadReplicaIdentifiers []*string `locationNameList:"ReadReplicaIdentifier" type:"list"`
+
+	// Contains the identifier of the source DB cluster if this DB cluster is a
+	// Read Replica.
+	ReplicationSourceIdentifier *string `type:"string"`
 
 	// Specifies the current state of this DB cluster.
 	Status *string `type:"string"`
@@ -11564,6 +11612,79 @@ func (s PendingModifiedValues) String() string {
 
 // GoString returns the string representation
 func (s PendingModifiedValues) GoString() string {
+	return s.String()
+}
+
+type PromoteReadReplicaDBClusterInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the DB cluster Read Replica to promote. This parameter
+	// is not case-sensitive.
+	//
+	// Constraints:
+	//
+	//   Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//
+	//   First character must be a letter.
+	//
+	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//
+	//   Example: my-cluster-replica1
+	DBClusterIdentifier *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s PromoteReadReplicaDBClusterInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PromoteReadReplicaDBClusterInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PromoteReadReplicaDBClusterInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PromoteReadReplicaDBClusterInput"}
+	if s.DBClusterIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("DBClusterIdentifier"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+type PromoteReadReplicaDBClusterOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the result of a successful invocation of the following actions:
+	//
+	//    CreateDBCluster
+	//
+	//    DeleteDBCluster
+	//
+	//    FailoverDBCluster
+	//
+	//    ModifyDBCluster
+	//
+	//    RestoreDBClusterFromSnapshot
+	//
+	//    RestoreDBClusterToPointInTime
+	//
+	//   This data type is used as a response element in the DescribeDBClusters
+	// action.
+	DBCluster *DBCluster `type:"structure"`
+}
+
+// String returns the string representation
+func (s PromoteReadReplicaDBClusterOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PromoteReadReplicaDBClusterOutput) GoString() string {
 	return s.String()
 }
 

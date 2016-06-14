@@ -320,6 +320,10 @@ type RDSAPI interface {
 
 	PromoteReadReplica(*rds.PromoteReadReplicaInput) (*rds.PromoteReadReplicaOutput, error)
 
+	PromoteReadReplicaDBClusterRequest(*rds.PromoteReadReplicaDBClusterInput) (*request.Request, *rds.PromoteReadReplicaDBClusterOutput)
+
+	PromoteReadReplicaDBCluster(*rds.PromoteReadReplicaDBClusterInput) (*rds.PromoteReadReplicaDBClusterOutput, error)
+
 	PurchaseReservedDBInstancesOfferingRequest(*rds.PurchaseReservedDBInstancesOfferingInput) (*request.Request, *rds.PurchaseReservedDBInstancesOfferingOutput)
 
 	PurchaseReservedDBInstancesOffering(*rds.PurchaseReservedDBInstancesOfferingInput) (*rds.PurchaseReservedDBInstancesOfferingOutput, error)

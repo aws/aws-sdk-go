@@ -24,7 +24,7 @@
     "DeleteDBCluster": "<p>The DeleteDBCluster action deletes a previously provisioned DB cluster. When you delete a DB cluster, all automated backups for that DB cluster are deleted and cannot be recovered. Manual DB cluster snapshots of the specified DB cluster are not deleted.</p> <p/> <p>For more information on Amazon Aurora, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html\">Aurora on Amazon RDS</a> in the <i>Amazon RDS User Guide.</i> </p>",
     "DeleteDBClusterParameterGroup": "<p>Deletes a specified DB cluster parameter group. The DB cluster parameter group to be deleted cannot be associated with any DB clusters.</p> <p>For more information on Amazon Aurora, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html\">Aurora on Amazon RDS</a> in the <i>Amazon RDS User Guide.</i> </p>",
     "DeleteDBClusterSnapshot": "<p>Deletes a DB cluster snapshot. If the snapshot is being copied, the copy operation is terminated.</p> <note> <p>The DB cluster snapshot must be in the <code>available</code> state to be deleted.</p> </note> <p>For more information on Amazon Aurora, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html\">Aurora on Amazon RDS</a> in the <i>Amazon RDS User Guide.</i> </p>",
-    "DeleteDBInstance": "<p>The DeleteDBInstance action deletes a previously provisioned DB instance. When you delete a DB instance, all automated backups for that instance are deleted and cannot be recovered. Manual DB snapshots of the DB instance to be deleted are not deleted.</p> <p> If a final DB snapshot is requested the status of the RDS instance will be <code>deleting</code> until the DB snapshot is created. The API action <code>DescribeDBInstance</code> is used to monitor the status of this operation. The action cannot be canceled or reverted once submitted. </p> <p>Note that when a DB instance is in a failure state and has a status of <code>failed</code>, <code>incompatible-restore</code>, or <code>incompatible-network</code>, it can only be deleted when the <code>SkipFinalSnapshot</code> parameter is set to <code>true</code>.</p>",
+    "DeleteDBInstance": "<p>The DeleteDBInstance action deletes a previously provisioned DB instance. When you delete a DB instance, all automated backups for that instance are deleted and cannot be recovered. Manual DB snapshots of the DB instance to be deleted by <code>DeleteDBInstance</code> are not deleted.</p> <p> If you request a final DB snapshot the status of the Amazon RDS DB instance is <code>deleting</code> until the DB snapshot is created. The API action <code>DescribeDBInstance</code> is used to monitor the status of this operation. The action cannot be canceled or reverted once submitted. </p> <p>Note that when a DB instance is in a failure state and has a status of <code>failed</code>, <code>incompatible-restore</code>, or <code>incompatible-network</code>, you can only delete it when the <code>SkipFinalSnapshot</code> parameter is set to <code>true</code>.</p> <p>If the specified DB instance is part of an Amazon Aurora DB cluster, you cannot delete the DB instance if the following are true:</p> <ul> <li> <p>The DB cluster is a Read Replica of another Amazon Aurora DB cluster.</p> </li> <li> <p>The DB instance is the only instance in the DB cluster.</p> </li> </ul> <p>To delete a DB instance in this case, first call the <a>PromoteReadReplicaDBCluster</a> API action to promote the DB cluster so it's no longer a Read Replica. After the promotion completes, then call the <code>DeleteDBInstance</code> API action to delete the final instance in the DB cluster.</p>",
     "DeleteDBParameterGroup": "<p>Deletes a specified DBParameterGroup. The DBParameterGroup to be deleted cannot be associated with any DB instances.</p>",
     "DeleteDBSecurityGroup": "<p>Deletes a DB security group.</p> <note> <p>The specified DB security group must not be associated with any DB instances.</p> </note>",
     "DeleteDBSnapshot": "<p>Deletes a DBSnapshot. If the snapshot is being copied, the copy operation is terminated.</p> <note> <p>The DBSnapshot must be in the <code>available</code> state to be deleted.</p> </note>",
@@ -71,6 +71,7 @@
     "ModifyEventSubscription": "<p>Modifies an existing RDS event notification subscription. Note that you cannot modify the source identifiers using this call; to change source identifiers for a subscription, use the <a>AddSourceIdentifierToSubscription</a> and <a>RemoveSourceIdentifierFromSubscription</a> calls.</p> <p>You can see a list of the event categories for a given SourceType in the <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.html\">Events</a> topic in the Amazon RDS User Guide or by using the <b>DescribeEventCategories</b> action.</p>",
     "ModifyOptionGroup": "<p>Modifies an existing option group.</p>",
     "PromoteReadReplica": "<p>Promotes a Read Replica DB instance to a standalone DB instance.</p> <note> <p>We recommend that you enable automated backups on your Read Replica before promoting the Read Replica. This ensures that no backup is taken during the promotion process. Once the instance is promoted to a primary instance, backups are taken based on your backup settings.</p> </note>",
+    "PromoteReadReplicaDBCluster": "<p>Promotes a Read Replica DB cluster to a standalone DB cluster.</p>",
     "PurchaseReservedDBInstancesOffering": "<p>Purchases a reserved DB instance offering.</p>",
     "RebootDBInstance": "<p>Rebooting a DB instance restarts the database engine service. A reboot also applies to the DB instance any modifications to the associated DB parameter group that were pending. Rebooting a DB instance results in a momentary outage of the instance, during which the DB instance status is set to rebooting. If the RDS instance is configured for MultiAZ, it is possible that the reboot will be conducted through a failover. An Amazon RDS event is created when the reboot is completed.</p> <p>If your DB instance is deployed in multiple Availability Zones, you can force a failover from one AZ to the other during the reboot. You might force a failover to test the availability of your DB instance deployment or to restore operations to the original AZ after a failover occurs.</p> <p>The time required to reboot is a function of the specific database engine's crash recovery process. To improve the reboot time, we recommend that you reduce database activities as much as possible during the reboot process to reduce rollback activity for in-transit transactions.</p>",
     "RemoveSourceIdentifierFromSubscription": "<p>Removes a source identifier from an existing RDS event notification subscription.</p>",
@@ -464,6 +465,7 @@
         "DeleteDBClusterResult$DBCluster": null,
         "FailoverDBClusterResult$DBCluster": null,
         "ModifyDBClusterResult$DBCluster": null,
+        "PromoteReadReplicaDBClusterResult$DBCluster": null,
         "RestoreDBClusterFromSnapshotResult$DBCluster": null,
         "RestoreDBClusterToPointInTimeResult$DBCluster": null
       }
@@ -1822,6 +1824,16 @@
       "refs": {
       }
     },
+    "PromoteReadReplicaDBClusterMessage": {
+      "base": "<p/>",
+      "refs": {
+      }
+    },
+    "PromoteReadReplicaDBClusterResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "PromoteReadReplicaMessage": {
       "base": "<p/>",
       "refs": {
@@ -1851,6 +1863,12 @@
       "base": null,
       "refs": {
         "DBInstance$ReadReplicaDBInstanceIdentifiers": "<p>Contains one or more identifiers of the Read Replicas associated with this DB instance.</p>"
+      }
+    },
+    "ReadReplicaIdentifierList": {
+      "base": null,
+      "refs": {
+        "DBCluster$ReadReplicaIdentifiers": "<p>Contains one or more identifiers of the Read Replicas associated with this DB cluster.</p>"
       }
     },
     "RebootDBInstanceMessage": {
@@ -2164,11 +2182,11 @@
         "CreateDBSecurityGroupMessage$DBSecurityGroupDescription": "<p>The description for the DB security group.</p>",
         "CreateDBSnapshotMessage$DBSnapshotIdentifier": "<p>The identifier for the DB snapshot.</p> <p>Constraints:</p> <ul> <li> <p>Cannot be null, empty, or blank</p> </li> <li> <p>Must contain from 1 to 255 alphanumeric characters or hyphens</p> </li> <li> <p>First character must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens</p> </li> </ul> <p>Example: <code>my-snapshot-id</code> </p>",
         "CreateDBSnapshotMessage$DBInstanceIdentifier": "<p>The DB instance identifier. This is the unique key that identifies a DB instance.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63 alphanumeric characters or hyphens</p> </li> <li> <p>First character must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens</p> </li> </ul>",
-        "CreateDBSubnetGroupMessage$DBSubnetGroupName": "<p>The name for the DB subnet group. This value is stored as a lowercase string.</p> <p>Constraints: Must contain no more than 255 alphanumeric characters, periods, underscores, spaces, or hyphens. Must not be default.</p> <p>Example: <code>mySubnetgroup</code> </p>",
+        "CreateDBSubnetGroupMessage$DBSubnetGroupName": "<p>The name for the DB subnet group. This value is stored as a lowercase string.</p> <p>Constraints: Must contain no more than 255 alphanumeric characters. Cannot contain periods, underscores, spaces, or hyphens. Must not be <code>default</code>.</p> <p>Example: <code>mySubnetgroup</code> </p>",
         "CreateDBSubnetGroupMessage$DBSubnetGroupDescription": "<p>The description for the DB subnet group.</p>",
         "CreateEventSubscriptionMessage$SubscriptionName": "<p>The name of the subscription.</p> <p>Constraints: The name must be less than 255 characters.</p>",
         "CreateEventSubscriptionMessage$SnsTopicArn": "<p>The Amazon Resource Name (ARN) of the SNS topic created for event notification. The ARN is created by Amazon SNS when you create a topic and subscribe to it.</p>",
-        "CreateEventSubscriptionMessage$SourceType": "<p>The type of source that will be generating the events. For example, if you want to be notified of events generated by a DB instance, you would set this parameter to db-instance. if this value is not specified, all events are returned.</p> <p>Valid values: db-instance | db-parameter-group | db-security-group | db-snapshot</p>",
+        "CreateEventSubscriptionMessage$SourceType": "<p>The type of source that will be generating the events. For example, if you want to be notified of events generated by a DB instance, you would set this parameter to db-instance. if this value is not specified, all events are returned.</p> <p>Valid values: <code>db-instance</code> | <code>db-cluster</code> | <code>db-parameter-group</code> | <code>db-security-group</code> | <code>db-snapshot</code> | <code>db-cluster-snapshot</code> </p>",
         "CreateOptionGroupMessage$OptionGroupName": "<p>Specifies the name of the option group to be created.</p> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255 alphanumeric characters or hyphens</p> </li> <li> <p>First character must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens</p> </li> </ul> <p>Example: <code>myoptiongroup</code> </p>",
         "CreateOptionGroupMessage$EngineName": "<p>Specifies the name of the engine that this option group should be associated with.</p>",
         "CreateOptionGroupMessage$MajorEngineVersion": "<p>Specifies the major version of the engine that this option group should be associated with.</p>",
@@ -2186,6 +2204,7 @@
         "DBCluster$MasterUsername": "<p>Contains the master username for the DB cluster.</p>",
         "DBCluster$PreferredBackupWindow": "<p>Specifies the daily time range during which automated backups are created if automated backups are enabled, as determined by the <code>BackupRetentionPeriod</code>. </p>",
         "DBCluster$PreferredMaintenanceWindow": "<p>Specifies the weekly time range during which system maintenance can occur, in Universal Coordinated Time (UTC).</p>",
+        "DBCluster$ReplicationSourceIdentifier": "<p>Contains the identifier of the source DB cluster if this DB cluster is a Read Replica.</p>",
         "DBCluster$HostedZoneId": "<p>Specifies the ID that Amazon Route 53 assigns when you create a hosted zone.</p>",
         "DBCluster$KmsKeyId": "<p>If <code>StorageEncrypted</code> is true, the KMS key identifier for the encrypted DB cluster.</p>",
         "DBCluster$DbClusterResourceId": "<p>The region-unique, immutable identifier for the DB cluster. This identifier is found in AWS CloudTrail log entries whenever the KMS key for the DB cluster is accessed.</p>",
@@ -2498,11 +2517,13 @@
         "PendingModifiedValues$DBInstanceIdentifier": "<p> Contains the new <code>DBInstanceIdentifier</code> for the DB instance that will be applied or is in progress. </p>",
         "PendingModifiedValues$StorageType": "<p>Specifies the storage type to be associated with the DB instance.</p>",
         "PendingModifiedValues$CACertificateIdentifier": "<p>Specifies the identifier of the CA certificate for the DB instance.</p>",
+        "PromoteReadReplicaDBClusterMessage$DBClusterIdentifier": "<p>The identifier of the DB cluster Read Replica to promote. This parameter is not case-sensitive. </p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63 alphanumeric characters or hyphens.</p> </li> <li> <p>First character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens.</p> </li> </ul> <p>Example: <code>my-cluster-replica1</code> </p>",
         "PromoteReadReplicaMessage$DBInstanceIdentifier": "<p>The DB instance identifier. This value is stored as a lowercase string.</p> <p>Constraints:</p> <ul> <li> <p>Must be the identifier for an existing Read Replica DB instance</p> </li> <li> <p>Must contain from 1 to 63 alphanumeric characters or hyphens</p> </li> <li> <p>First character must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens</p> </li> </ul> <p>Example: <code>mydbinstance</code> </p>",
         "PromoteReadReplicaMessage$PreferredBackupWindow": "<p> The daily time range during which automated backups are created if automated backups are enabled, using the <code>BackupRetentionPeriod</code> parameter. </p> <p> Default: A 30-minute window selected at random from an 8-hour block of time per region. To see the time blocks available, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/AdjustingTheMaintenanceWindow.html\"> Adjusting the Preferred Maintenance Window</a> in the <i>Amazon RDS User Guide.</i> </p> <p>Constraints:</p> <ul> <li> <p>Must be in the format <code>hh24:mi-hh24:mi</code>.</p> </li> <li> <p>Times should be in Universal Coordinated Time (UTC).</p> </li> <li> <p>Must not conflict with the preferred maintenance window.</p> </li> <li> <p>Must be at least 30 minutes.</p> </li> </ul>",
         "PurchaseReservedDBInstancesOfferingMessage$ReservedDBInstancesOfferingId": "<p>The ID of the Reserved DB instance offering to purchase.</p> <p>Example: 438012d3-4052-4cc7-b2e3-8d3372e0e706</p>",
         "PurchaseReservedDBInstancesOfferingMessage$ReservedDBInstanceId": "<p>Customer-specified identifier to track this reservation.</p> <p>Example: myreservationID</p>",
         "ReadReplicaDBInstanceIdentifierList$member": null,
+        "ReadReplicaIdentifierList$member": null,
         "RebootDBInstanceMessage$DBInstanceIdentifier": "<p>The DB instance identifier. This parameter is stored as a lowercase string.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63 alphanumeric characters or hyphens</p> </li> <li> <p>First character must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens</p> </li> </ul>",
         "RecurringCharge$RecurringChargeFrequency": "<p>The frequency of the recurring charge.</p>",
         "RemoveSourceIdentifierFromSubscriptionMessage$SubscriptionName": "<p>The name of the RDS event notification subscription you want to remove a source identifier from.</p>",
