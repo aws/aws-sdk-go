@@ -55,6 +55,7 @@
         {"shape":"InvalidParameterCombinationException"},
         {"shape":"KmsKeyNotFoundException"},
         {"shape":"KmsKeyDisabledException"},
+        {"shape":"KmsException"},
         {"shape":"InvalidCloudWatchLogsLogGroupArnException"},
         {"shape":"InvalidCloudWatchLogsRoleArnException"},
         {"shape":"CloudWatchLogsDeliveryUnavailableException"},
@@ -230,6 +231,7 @@
         {"shape":"InvalidHomeRegionException"},
         {"shape":"KmsKeyNotFoundException"},
         {"shape":"KmsKeyDisabledException"},
+        {"shape":"KmsException"},
         {"shape":"InvalidCloudWatchLogsLogGroupArnException"},
         {"shape":"InvalidCloudWatchLogsRoleArnException"},
         {"shape":"CloudWatchLogsDeliveryUnavailableException"},
@@ -484,10 +486,17 @@
       },
       "exception":true
     },
+    "KmsException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "KmsKeyDisabledException":{
       "type":"structure",
       "members":{
       },
+      "deprecated":true,
       "exception":true
     },
     "KmsKeyNotFoundException":{

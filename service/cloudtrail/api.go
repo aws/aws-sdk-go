@@ -601,8 +601,7 @@ type CreateTrailOutput struct {
 	//  arn:aws:sns:us-east-1:123456789012:MyTopic
 	SnsTopicARN *string `type:"string"`
 
-	// Specifies the name of the Amazon SNS topic that CloudTrail uses to send notifications
-	// when log files are delivered.
+	// This field is deprecated. Use SnsTopicARN.
 	SnsTopicName *string `deprecated:"true" type:"string"`
 
 	// Specifies the ARN of the trail that was created. The format of a trail ARN
@@ -1459,8 +1458,7 @@ type Trail struct {
 	//  arn:aws:sns:us-east-1:123456789012:MyTopic
 	SnsTopicARN *string `type:"string"`
 
-	// Specifies the name of the Amazon SNS topic that CloudTrail uses to send notifications
-	// when log files are delivered.
+	// This field is deprecated. Use SnsTopicARN.
 	SnsTopicName *string `deprecated:"true" type:"string"`
 
 	// Specifies the ARN of the trail. The format of a trail ARN is:
@@ -1636,8 +1634,7 @@ type UpdateTrailOutput struct {
 	//  arn:aws:sns:us-east-1:123456789012:MyTopic
 	SnsTopicARN *string `type:"string"`
 
-	// Specifies the name of the Amazon SNS topic that CloudTrail uses to send notifications
-	// when log files are delivered.
+	// This field is deprecated. Use SnsTopicARN.
 	SnsTopicName *string `deprecated:"true" type:"string"`
 
 	// Specifies the ARN of the trail that was updated. The format of a trail ARN
