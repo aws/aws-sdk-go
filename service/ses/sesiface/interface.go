@@ -144,6 +144,10 @@ type SESAPI interface {
 
 	SetIdentityFeedbackForwardingEnabled(*ses.SetIdentityFeedbackForwardingEnabledInput) (*ses.SetIdentityFeedbackForwardingEnabledOutput, error)
 
+	SetIdentityHeadersInNotificationsEnabledRequest(*ses.SetIdentityHeadersInNotificationsEnabledInput) (*request.Request, *ses.SetIdentityHeadersInNotificationsEnabledOutput)
+
+	SetIdentityHeadersInNotificationsEnabled(*ses.SetIdentityHeadersInNotificationsEnabledInput) (*ses.SetIdentityHeadersInNotificationsEnabledOutput, error)
+
 	SetIdentityMailFromDomainRequest(*ses.SetIdentityMailFromDomainInput) (*request.Request, *ses.SetIdentityMailFromDomainOutput)
 
 	SetIdentityMailFromDomain(*ses.SetIdentityMailFromDomainInput) (*ses.SetIdentityMailFromDomainOutput, error)

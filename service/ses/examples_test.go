@@ -802,6 +802,27 @@ func ExampleSES_SetIdentityFeedbackForwardingEnabled() {
 	fmt.Println(resp)
 }
 
+func ExampleSES_SetIdentityHeadersInNotificationsEnabled() {
+	svc := ses.New(session.New())
+
+	params := &ses.SetIdentityHeadersInNotificationsEnabledInput{
+		Enabled:          aws.Bool(true),                 // Required
+		Identity:         aws.String("Identity"),         // Required
+		NotificationType: aws.String("NotificationType"), // Required
+	}
+	resp, err := svc.SetIdentityHeadersInNotificationsEnabled(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleSES_SetIdentityMailFromDomain() {
 	svc := ses.New(session.New())
 
