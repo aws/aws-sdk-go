@@ -6,8 +6,6 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
-	"net/url"
-	"reflect"
 	"strings"
 	"time"
 
@@ -77,13 +75,10 @@ func New(cfg aws.Config, clientInfo metadata.ClientInfo, handlers Handlers,
 		p = "/"
 	}
 
-	httpReq, _ := http.NewRequest(method, "", nil)
-
-	var err error
-	httpReq.URL, err = url.Parse(clientInfo.Endpoint + p)
+	httpReq, err := http.NewRequest(method, clientInfo.Endpoint+p, nil)
 	if err != nil {
-		httpReq.URL = &url.URL{}
 		err = awserr.New("InvalidEndpointURL", "invalid endpoint uri", err)
+		return &Request{Error: err}
 	}
 
 	r := &Request{
@@ -93,12 +88,9 @@ func New(cfg aws.Config, clientInfo metadata.ClientInfo, handlers Handlers,
 
 		Retryer:     retryer,
 		Time:        time.Now(),
-		ExpireTime:  0,
 		Operation:   operation,
 		HTTPRequest: httpReq,
-		Body:        nil,
 		Params:      params,
-		Error:       err,
 		Data:        data,
 	}
 	r.SetBufferBody([]byte{})
@@ -115,14 +107,14 @@ func (r *Request) WillRetry() bool {
 // and the parameters are valid. False is returned if no parameters are
 // provided or invalid.
 func (r *Request) ParamsFilled() bool {
-	return r.Params != nil && reflect.ValueOf(r.Params).Elem().IsValid()
+	return r.Params != nil
 }
 
 // DataFilled returns true if the request's data for response deserialization
 // target has been set and is a valid. False is returned if data is not
 // set, or is invalid.
 func (r *Request) DataFilled() bool {
-	return r.Data != nil && reflect.ValueOf(r.Data).Elem().IsValid()
+	return r.Data != nil
 }
 
 // SetBufferBody will set the request's body bytes that will be sent to
