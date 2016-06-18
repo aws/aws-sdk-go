@@ -90,7 +90,7 @@ func initHandlers(s *Session) {
 func (s *Session) Copy(cfgs ...*aws.Config) *Session {
 	newSession := &Session{
 		Config:   s.Config.Copy(cfgs...),
-		Handlers: s.Handlers.Copy(),
+		Handlers: s.Handlers,
 	}
 
 	initHandlers(newSession)

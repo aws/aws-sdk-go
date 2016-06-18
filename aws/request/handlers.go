@@ -20,22 +20,6 @@ type Handlers struct {
 	AfterRetry       HandlerList
 }
 
-// Copy returns of this handler's lists.
-func (h *Handlers) Copy() Handlers {
-	return Handlers{
-		Validate:         h.Validate.copy(),
-		Build:            h.Build.copy(),
-		Sign:             h.Sign.copy(),
-		Send:             h.Send.copy(),
-		ValidateResponse: h.ValidateResponse.copy(),
-		Unmarshal:        h.Unmarshal.copy(),
-		UnmarshalError:   h.UnmarshalError.copy(),
-		UnmarshalMeta:    h.UnmarshalMeta.copy(),
-		Retry:            h.Retry.copy(),
-		AfterRetry:       h.AfterRetry.copy(),
-	}
-}
-
 // Clear removes callback functions for all handlers
 func (h *Handlers) Clear() {
 	h.Validate.Clear()
