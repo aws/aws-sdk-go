@@ -61,20 +61,56 @@ func (w *Waiter) Wait() error {
 					break
 				}
 				result = true
-				for _, val := range vals {
-					if !awsutil.DeepEqual(val, a.Expected) {
-						result = false
-						break
+				if exp, ok := a.Expected.(string); ok {
+					for _, val := range vals {
+						if got, ok := val.(*string); ok {
+							if exp != *got {
+								result = false
+								break
+							}
+						} else {
+							result = false
+							break
+						}
 					}
+				} else if exp, ok := a.Expected.(int); ok {
+					for _, val := range vals {
+						if got, ok := val.(*int); ok {
+							if exp != *got {
+								result = false
+								break
+							}
+						} else {
+							result = false
+							break
+						}
+					}
+				} else {
+					panic("Unexpected type for expected value")
 				}
 			case "pathAny":
 				// Only a single match needs to equal for the result to match
 				vals, _ = awsutil.ValuesAtPath(req.Data, a.Argument)
-				for _, val := range vals {
-					if awsutil.DeepEqual(val, a.Expected) {
-						result = true
-						break
+				if exp, ok := a.Expected.(string); ok {
+					for _, val := range vals {
+						if got, ok := val.(*string); ok {
+							if exp == *got {
+								result = true
+								break
+							}
+						}
 					}
+				} else if exp, ok := a.Expected.(int); ok {
+					for _, val := range vals {
+						if got, ok := val.(*int); ok {
+							if exp == *got {
+								result = true
+								break
+							}
+						}
+					}
+				} else {
+					panic("Unexpected type for expected value")
 				}
 			case "status":
 				s := a.Expected.(int)
