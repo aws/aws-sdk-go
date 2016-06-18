@@ -84,8 +84,7 @@ func New(cfg aws.Config, clientInfo metadata.ClientInfo, handlers Handlers,
 	r := &Request{
 		Config:     cfg,
 		ClientInfo: clientInfo,
-		Handlers:   handlers.Copy(),
-
+		Handlers:   handlers,
 		Retryer:     retryer,
 		Time:        time.Now(),
 		Operation:   operation,
