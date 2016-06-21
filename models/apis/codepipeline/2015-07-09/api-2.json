@@ -294,6 +294,22 @@
         {"shape":"InvalidClientTokenException"}
       ]
     },
+    "RetryStageExecution":{
+      "name":"RetryStageExecution",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RetryStageExecutionInput"},
+      "output":{"shape":"RetryStageExecutionOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"PipelineNotFoundException"},
+        {"shape":"StageNotFoundException"},
+        {"shape":"StageNotRetryableException"},
+        {"shape":"NotLatestPipelineExecutionException"}
+      ]
+    },
     "StartPipelineExecution":{
       "name":"StartPipelineExecution",
       "http":{
@@ -387,7 +403,8 @@
         "Build",
         "Deploy",
         "Test",
-        "Invoke"
+        "Invoke",
+        "Approval"
       ]
     },
     "ActionConfiguration":{
@@ -445,7 +462,7 @@
     },
     "ActionConfigurationValue":{
       "type":"string",
-      "max":250,
+      "max":500,
       "min":1
     },
     "ActionContext":{
@@ -1096,6 +1113,12 @@
     },
     "NextToken":{"type":"string"},
     "Nonce":{"type":"string"},
+    "NotLatestPipelineExecutionException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "OutputArtifact":{
       "type":"structure",
       "required":["name"],
@@ -1291,6 +1314,27 @@
       "max":1,
       "min":0
     },
+    "RetryStageExecutionInput":{
+      "type":"structure",
+      "required":[
+        "pipelineName",
+        "stageName",
+        "pipelineExecutionId",
+        "retryMode"
+      ],
+      "members":{
+        "pipelineName":{"shape":"PipelineName"},
+        "stageName":{"shape":"StageName"},
+        "pipelineExecutionId":{"shape":"PipelineExecutionId"},
+        "retryMode":{"shape":"StageRetryMode"}
+      }
+    },
+    "RetryStageExecutionOutput":{
+      "type":"structure",
+      "members":{
+        "pipelineExecutionId":{"shape":"PipelineExecutionId"}
+      }
+    },
     "Revision":{
       "type":"string",
       "max":1500,
@@ -1303,7 +1347,8 @@
     },
     "RoleArn":{
       "type":"string",
-      "pattern":"arn:[^:]+:iam::[0-9]{12}:role/.*"
+      "max":1024,
+      "pattern":"arn:aws(-[\\w]+)*:iam::[0-9]{12}:role/.*"
     },
     "S3ArtifactLocation":{
       "type":"structure",
@@ -1346,6 +1391,25 @@
         "actions":{"shape":"StageActionDeclarationList"}
       }
     },
+    "StageExecution":{
+      "type":"structure",
+      "required":[
+        "pipelineExecutionId",
+        "status"
+      ],
+      "members":{
+        "pipelineExecutionId":{"shape":"PipelineExecutionId"},
+        "status":{"shape":"StageExecutionStatus"}
+      }
+    },
+    "StageExecutionStatus":{
+      "type":"string",
+      "enum":[
+        "InProgress",
+        "Failed",
+        "Succeeded"
+      ]
+    },
     "StageName":{
       "type":"string",
       "max":100,
@@ -1358,12 +1422,23 @@
       },
       "exception":true
     },
+    "StageNotRetryableException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "StageRetryMode":{
+      "type":"string",
+      "enum":["FAILED_ACTIONS"]
+    },
     "StageState":{
       "type":"structure",
       "members":{
         "stageName":{"shape":"StageName"},
         "inboundTransitionState":{"shape":"TransitionState"},
-        "actionStates":{"shape":"ActionStateList"}
+        "actionStates":{"shape":"ActionStateList"},
+        "latestExecution":{"shape":"StageExecution"}
       }
     },
     "StageStateList":{

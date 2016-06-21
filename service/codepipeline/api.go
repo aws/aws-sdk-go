@@ -149,7 +149,7 @@ func (c *CodePipeline) DeleteCustomActionTypeRequest(input *DeleteCustomActionTy
 // Marks a custom action as deleted. PollForJobs for the custom action will
 // fail after the action is marked for deletion. Only used for custom actions.
 //
-// You cannot recreate a custom action after it has been deleted unless you
+//  You cannot recreate a custom action after it has been deleted unless you
 // increase the version number of the action.
 func (c *CodePipeline) DeleteCustomActionType(input *DeleteCustomActionTypeInput) (*DeleteCustomActionTypeOutput, error) {
 	req, out := c.DeleteCustomActionTypeRequest(input)
@@ -267,7 +267,7 @@ func (c *CodePipeline) GetJobDetailsRequest(input *GetJobDetailsInput) (req *req
 
 // Returns information about a job. Only used for custom actions.
 //
-// When this API is called, AWS CodePipeline returns temporary credentials
+//  When this API is called, AWS CodePipeline returns temporary credentials
 // for the Amazon S3 bucket used to store artifacts for the pipeline, if the
 // action requires access to that Amazon S3 bucket for input or output artifacts.
 // Additionally, this API returns any secret values defined for the action.
@@ -326,8 +326,8 @@ func (c *CodePipeline) GetPipelineStateRequest(input *GetPipelineStateInput) (re
 	return
 }
 
-// Returns information about the state of a pipeline, including the stages,
-// actions, and details about the last run of the pipeline.
+// Returns information about the state of a pipeline, including the stages and
+// actions.
 func (c *CodePipeline) GetPipelineState(input *GetPipelineStateInput) (*GetPipelineStateOutput, error) {
 	req, out := c.GetPipelineStateRequest(input)
 	err := req.Send()
@@ -357,7 +357,7 @@ func (c *CodePipeline) GetThirdPartyJobDetailsRequest(input *GetThirdPartyJobDet
 // Requests the details of a job for a third party action. Only used for partner
 // actions.
 //
-// When this API is called, AWS CodePipeline returns temporary credentials
+//  When this API is called, AWS CodePipeline returns temporary credentials
 // for the Amazon S3 bucket used to store artifacts for the pipeline, if the
 // action requires access to that Amazon S3 bucket for input or output artifacts.
 // Additionally, this API returns any secret values defined for the action.
@@ -444,7 +444,7 @@ func (c *CodePipeline) PollForJobsRequest(input *PollForJobsInput) (req *request
 
 // Returns information about any jobs for AWS CodePipeline to act upon.
 //
-// When this API is called, AWS CodePipeline returns temporary credentials
+//  When this API is called, AWS CodePipeline returns temporary credentials
 // for the Amazon S3 bucket used to store artifacts for the pipeline, if the
 // action requires access to that Amazon S3 bucket for input or output artifacts.
 // Additionally, this API returns any secret values defined for the action.
@@ -477,7 +477,7 @@ func (c *CodePipeline) PollForThirdPartyJobsRequest(input *PollForThirdPartyJobs
 // Determines whether there are any third party jobs for a job worker to act
 // on. Only used for partner actions.
 //
-// When this API is called, AWS CodePipeline returns temporary credentials
+//  When this API is called, AWS CodePipeline returns temporary credentials
 // for the Amazon S3 bucket used to store artifacts for the pipeline, if the
 // action requires access to that Amazon S3 bucket for input or output artifacts.
 func (c *CodePipeline) PollForThirdPartyJobs(input *PollForThirdPartyJobsInput) (*PollForThirdPartyJobsOutput, error) {
@@ -629,6 +629,33 @@ func (c *CodePipeline) PutThirdPartyJobSuccessResultRequest(input *PutThirdParty
 // a job worker. Only used for partner actions.
 func (c *CodePipeline) PutThirdPartyJobSuccessResult(input *PutThirdPartyJobSuccessResultInput) (*PutThirdPartyJobSuccessResultOutput, error) {
 	req, out := c.PutThirdPartyJobSuccessResultRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opRetryStageExecution = "RetryStageExecution"
+
+// RetryStageExecutionRequest generates a request for the RetryStageExecution operation.
+func (c *CodePipeline) RetryStageExecutionRequest(input *RetryStageExecutionInput) (req *request.Request, output *RetryStageExecutionOutput) {
+	op := &request.Operation{
+		Name:       opRetryStageExecution,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RetryStageExecutionInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &RetryStageExecutionOutput{}
+	req.Data = output
+	return
+}
+
+// Resumes the pipeline execution by retrying the last failed actions in a stage.
+func (c *CodePipeline) RetryStageExecution(input *RetryStageExecutionInput) (*RetryStageExecutionOutput, error) {
+	req, out := c.RetryStageExecutionRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -1043,7 +1070,7 @@ func (s *ActionDeclaration) Validate() error {
 	return nil
 }
 
-// Represents information about how an action runs.
+// Represents information about the run of an action.
 type ActionExecution struct {
 	_ struct{} `type:"structure"`
 
@@ -1147,7 +1174,7 @@ type ActionState struct {
 	// deployment group details page.
 	EntityUrl *string `locationName:"entityUrl" min:"1" type:"string"`
 
-	// Represents information about how an action runs.
+	// Represents information about the run of an action.
 	LatestExecution *ActionExecution `locationName:"latestExecution" type:"structure"`
 
 	// A URL link for more information about the revision, such as a commit details
@@ -1497,13 +1524,13 @@ type CreateCustomActionTypeInput struct {
 
 	// The category of the custom action, such as a source action or a build action.
 	//
-	// Although Source is listed as a valid value, it is not currently functional.
+	//  Although Source is listed as a valid value, it is not currently functional.
 	// This value is reserved for future use.
 	Category *string `locationName:"category" type:"string" required:"true" enum:"ActionCategory"`
 
 	// The configuration properties for the custom action.
 	//
-	// You can refer to a name in the configuration properties of the custom action
+	//  You can refer to a name in the configuration properties of the custom action
 	// within the URL templates by following the format of {Config:name}, as long
 	// as the configuration property is both required and not secret. For more information,
 	// see Create a Custom Action for a Pipeline (http://docs.aws.amazon.com/codepipeline/latest/userguide/how-to-create-custom-action.html).
@@ -2270,7 +2297,7 @@ type GetPipelineStateOutput struct {
 
 	// The version number of the pipeline.
 	//
-	// A newly-created pipeline is always assigned a version number of 1.
+	//  A newly-created pipeline is always assigned a version number of 1.
 	PipelineVersion *int64 `locationName:"pipelineVersion" min:"1" type:"integer"`
 
 	// A list of the pipeline stage output information, including stage name, state,
@@ -3236,6 +3263,81 @@ func (s PutThirdPartyJobSuccessResultOutput) GoString() string {
 	return s.String()
 }
 
+// Represents the input of a retry stage execution operation.
+type RetryStageExecutionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the pipeline execution in the failed stage to be retried. Use the
+	// GetPipelineState action to retrieve the current pipelineExecutionId of the
+	// failed stage
+	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string" required:"true"`
+
+	// The name of the pipeline that contains the failed stage.
+	PipelineName *string `locationName:"pipelineName" min:"1" type:"string" required:"true"`
+
+	// The scope of the retry attempt. Currently, the only supported value is FAILED_ACTIONS.
+	RetryMode *string `locationName:"retryMode" type:"string" required:"true" enum:"StageRetryMode"`
+
+	// The name of the failed stage to be retried.
+	StageName *string `locationName:"stageName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s RetryStageExecutionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RetryStageExecutionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RetryStageExecutionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RetryStageExecutionInput"}
+	if s.PipelineExecutionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineExecutionId"))
+	}
+	if s.PipelineName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineName"))
+	}
+	if s.PipelineName != nil && len(*s.PipelineName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PipelineName", 1))
+	}
+	if s.RetryMode == nil {
+		invalidParams.Add(request.NewErrParamRequired("RetryMode"))
+	}
+	if s.StageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StageName"))
+	}
+	if s.StageName != nil && len(*s.StageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StageName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// Represents the output of a retry stage execution operation.
+type RetryStageExecutionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the current workflow execution in the failed stage.
+	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string"`
+}
+
+// String returns the string representation
+func (s RetryStageExecutionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RetryStageExecutionOutput) GoString() string {
+	return s.String()
+}
+
 // The location of the Amazon S3 bucket that contains a revision.
 type S3ArtifactLocation struct {
 	_ struct{} `type:"structure"`
@@ -3339,6 +3441,28 @@ func (s *StageDeclaration) Validate() error {
 	return nil
 }
 
+// Represents information about the run of a stage.
+type StageExecution struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the pipeline execution associated with the stage.
+	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string" required:"true"`
+
+	// The status of the stage, or for a completed stage, the last status of the
+	// stage.
+	Status *string `locationName:"status" type:"string" required:"true" enum:"StageExecutionStatus"`
+}
+
+// String returns the string representation
+func (s StageExecution) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StageExecution) GoString() string {
+	return s.String()
+}
+
 // Represents information about the state of the stage.
 type StageState struct {
 	_ struct{} `type:"structure"`
@@ -3348,6 +3472,10 @@ type StageState struct {
 
 	// The state of the inbound transition, which is either enabled or disabled.
 	InboundTransitionState *TransitionState `locationName:"inboundTransitionState" type:"structure"`
+
+	// Information about the latest execution in the stage, including its ID and
+	// status.
+	LatestExecution *StageExecution `locationName:"latestExecution" type:"structure"`
 
 	// The name of the stage.
 	StageName *string `locationName:"stageName" min:"1" type:"string"`
@@ -3609,6 +3737,8 @@ const (
 	ActionCategoryTest = "Test"
 	// @enum ActionCategory
 	ActionCategoryInvoke = "Invoke"
+	// @enum ActionCategory
+	ActionCategoryApproval = "Approval"
 )
 
 const (
@@ -3688,6 +3818,20 @@ const (
 	JobStatusSucceeded = "Succeeded"
 	// @enum JobStatus
 	JobStatusFailed = "Failed"
+)
+
+const (
+	// @enum StageExecutionStatus
+	StageExecutionStatusInProgress = "InProgress"
+	// @enum StageExecutionStatus
+	StageExecutionStatusFailed = "Failed"
+	// @enum StageExecutionStatus
+	StageExecutionStatusSucceeded = "Succeeded"
+)
+
+const (
+	// @enum StageRetryMode
+	StageRetryModeFailedActions = "FAILED_ACTIONS"
 )
 
 const (

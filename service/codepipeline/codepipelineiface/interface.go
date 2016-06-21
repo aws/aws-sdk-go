@@ -94,6 +94,10 @@ type CodePipelineAPI interface {
 
 	PutThirdPartyJobSuccessResult(*codepipeline.PutThirdPartyJobSuccessResultInput) (*codepipeline.PutThirdPartyJobSuccessResultOutput, error)
 
+	RetryStageExecutionRequest(*codepipeline.RetryStageExecutionInput) (*request.Request, *codepipeline.RetryStageExecutionOutput)
+
+	RetryStageExecution(*codepipeline.RetryStageExecutionInput) (*codepipeline.RetryStageExecutionOutput, error)
+
 	StartPipelineExecutionRequest(*codepipeline.StartPipelineExecutionInput) (*request.Request, *codepipeline.StartPipelineExecutionOutput)
 
 	StartPipelineExecution(*codepipeline.StartPipelineExecutionInput) (*codepipeline.StartPipelineExecutionOutput, error)

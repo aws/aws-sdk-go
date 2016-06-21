@@ -565,6 +565,28 @@ func ExampleCodePipeline_PutThirdPartyJobSuccessResult() {
 	fmt.Println(resp)
 }
 
+func ExampleCodePipeline_RetryStageExecution() {
+	svc := codepipeline.New(session.New())
+
+	params := &codepipeline.RetryStageExecutionInput{
+		PipelineExecutionId: aws.String("PipelineExecutionId"), // Required
+		PipelineName:        aws.String("PipelineName"),        // Required
+		RetryMode:           aws.String("StageRetryMode"),      // Required
+		StageName:           aws.String("StageName"),           // Required
+	}
+	resp, err := svc.RetryStageExecution(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleCodePipeline_StartPipelineExecution() {
 	svc := codepipeline.New(session.New())
 
