@@ -26,13 +26,20 @@ import (
 // Line Interface (CLI) or by using one of the AWS SDKs to implement applications
 // in your preferred language. For more information, see:
 //
-//   AWS CLI (http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)
-//   AWS SDK for Java (http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/opsworks/AWSOpsWorksClient.html)
-//   AWS SDK for .NET (http://docs.aws.amazon.com/sdkfornet/latest/apidocs/html/N_Amazon_OpsWorks.htm)
-//   AWS SDK for PHP 2 (http://docs.aws.amazon.com/aws-sdk-php-2/latest/class-Aws.OpsWorks.OpsWorksClient.html)
-//   AWS SDK for Ruby (http://docs.aws.amazon.com/AWSRubySDK/latest/AWS/OpsWorks/Client.html)
-//   AWS SDK for Node.js (http://aws.amazon.com/documentation/sdkforjavascript/)
-//   AWS SDK for Python(Boto) (http://docs.pythonboto.org/en/latest/ref/opsworks.html)
+//    AWS CLI (http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)
+//
+//    AWS SDK for Java (http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/opsworks/AWSOpsWorksClient.html)
+//
+//    AWS SDK for .NET (http://docs.aws.amazon.com/sdkfornet/latest/apidocs/html/N_Amazon_OpsWorks.htm)
+//
+//    AWS SDK for PHP 2 (http://docs.aws.amazon.com/aws-sdk-php-2/latest/class-Aws.OpsWorks.OpsWorksClient.html)
+//
+//    AWS SDK for Ruby (http://docs.aws.amazon.com/sdkforruby/api/)
+//
+//    AWS SDK for Node.js (http://aws.amazon.com/documentation/sdkforjavascript/)
+//
+//    AWS SDK for Python(Boto) (http://docs.pythonboto.org/en/latest/ref/opsworks.html)
+//
 //    Endpoints
 //
 // AWS OpsWorks supports only one endpoint, opsworks.us-east-1.amazonaws.com
@@ -43,10 +50,10 @@ import (
 //
 // When you call CreateStack, CloneStack, or UpdateStack we recommend you use
 // the ConfigurationManager parameter to specify the Chef version. The recommended
-// value for Linux stacks is currently 12 (the default is 11.4). Windows stacks
-// use Chef 12.2. For more information, see Chef Versions (http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook-chef11.html).
+// and default value for Linux stacks is currently 12. Windows stacks use Chef
+// 12.2. For more information, see Chef Versions (http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook-chef11.html).
 //
-// You can specify Chef 12, 11.10, or 11.4 for your Linux stack. We recommend
+//  You can specify Chef 12, 11.10, or 11.4 for your Linux stack. We recommend
 // migrating your existing Linux stacks to Chef 12 as soon as possible.
 //The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.

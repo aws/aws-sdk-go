@@ -36,13 +36,16 @@ func (c *OpsWorks) AssignInstanceRequest(input *AssignInstanceInput) (req *reque
 
 // Assign a registered instance to a layer.
 //
-//  You can assign registered on-premises instances to any layer type. You
-// can assign registered Amazon EC2 instances only to custom layers. You cannot
-// use this action with instances that were created with AWS OpsWorks.  Required
-// Permissions: To use this action, an AWS Identity and Access Management (IAM)
-// user must have a Manage permissions level for the stack or an attached policy
-// that explicitly grants permissions. For more information on user permissions,
-// see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
+//   You can assign registered on-premises instances to any layer type.
+//
+//   You can assign registered Amazon EC2 instances only to custom layers.
+//
+//   You cannot use this action with instances that were created with AWS OpsWorks.
+//
+//    Required Permissions: To use this action, an AWS Identity and Access
+// Management (IAM) user must have a Manage permissions level for the stack
+// or an attached policy that explicitly grants permissions. For more information
+// on user permissions, see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) AssignInstance(input *AssignInstanceInput) (*AssignInstanceOutput, error) {
 	req, out := c.AssignInstanceRequest(input)
 	err := req.Send()
@@ -77,7 +80,7 @@ func (c *OpsWorks) AssignVolumeRequest(input *AssignVolumeInput) (req *request.R
 // point before calling AssignVolume. For more information, see Resource Management
 // (http://docs.aws.amazon.com/opsworks/latest/userguide/resources.html).
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -113,7 +116,7 @@ func (c *OpsWorks) AssociateElasticIpRequest(input *AssociateElasticIpInput) (re
 // instance. The address must first be registered with the stack by calling
 // RegisterElasticIp. For more information, see Resource Management (http://docs.aws.amazon.com/opsworks/latest/userguide/resources.html).
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -152,7 +155,7 @@ func (c *OpsWorks) AttachElasticLoadBalancerRequest(input *AttachElasticLoadBala
 // the Elastic Load Balancing console, API, or CLI. For more information, see
 //  Elastic Load Balancing Developer Guide (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/Welcome.html).
 //
-//  Required Permissions: To use this action, an IAM user must have a Manage
+//   Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -186,7 +189,7 @@ func (c *OpsWorks) CloneStackRequest(input *CloneStackInput) (req *request.Reque
 // (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-cloning.html).
 // By default, all parameters are set to the values used by the parent stack.
 //
-// Required Permissions: To use this action, an IAM user must have an attached
+//  Required Permissions: To use this action, an IAM user must have an attached
 // policy that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) CloneStack(input *CloneStackInput) (*CloneStackOutput, error) {
@@ -218,7 +221,7 @@ func (c *OpsWorks) CreateAppRequest(input *CreateAppInput) (req *request.Request
 // Creates an app for a specified stack. For more information, see Creating
 // Apps (http://docs.aws.amazon.com/opsworks/latest/userguide/workingapps-creating.html).
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -252,7 +255,7 @@ func (c *OpsWorks) CreateDeploymentRequest(input *CreateDeploymentInput) (req *r
 // (http://docs.aws.amazon.com/opsworks/latest/userguide/workingapps-deploying.html)
 // and Run Stack Commands (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-commands.html).
 //
-// Required Permissions: To use this action, an IAM user must have a Deploy
+//  Required Permissions: To use this action, an IAM user must have a Deploy
 // or Manage permissions level for the stack, or an attached policy that explicitly
 // grants permissions. For more information on user permissions, see Managing
 // User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -285,7 +288,7 @@ func (c *OpsWorks) CreateInstanceRequest(input *CreateInstanceInput) (req *reque
 // Creates an instance in a specified stack. For more information, see Adding
 // an Instance to a Layer (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-add.html).
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -324,7 +327,7 @@ func (c *OpsWorks) CreateLayerRequest(input *CreateLayerInput) (req *request.Req
 // of custom layers, so you can call CreateLayer as many times as you like for
 // that layer type.
 //
-//  Required Permissions: To use this action, an IAM user must have a Manage
+//   Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -356,7 +359,7 @@ func (c *OpsWorks) CreateStackRequest(input *CreateStackInput) (req *request.Req
 
 // Creates a new stack. For more information, see Create a New Stack (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-edit.html).
 //
-// Required Permissions: To use this action, an IAM user must have an attached
+//  Required Permissions: To use this action, an IAM user must have an attached
 // policy that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) CreateStack(input *CreateStackInput) (*CreateStackOutput, error) {
@@ -387,7 +390,7 @@ func (c *OpsWorks) CreateUserProfileRequest(input *CreateUserProfileInput) (req 
 
 // Creates a new user profile.
 //
-// Required Permissions: To use this action, an IAM user must have an attached
+//  Required Permissions: To use this action, an IAM user must have an attached
 // policy that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) CreateUserProfile(input *CreateUserProfileInput) (*CreateUserProfileOutput, error) {
@@ -420,7 +423,7 @@ func (c *OpsWorks) DeleteAppRequest(input *DeleteAppInput) (req *request.Request
 
 // Deletes a specified app.
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -457,7 +460,7 @@ func (c *OpsWorks) DeleteInstanceRequest(input *DeleteInstanceInput) (req *reque
 //
 // For more information, see Deleting Instances (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-delete.html).
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -493,7 +496,7 @@ func (c *OpsWorks) DeleteLayerRequest(input *DeleteLayerInput) (req *request.Req
 // instances or unassign registered instances. For more information, see How
 // to Delete a Layer (http://docs.aws.amazon.com/opsworks/latest/userguide/workinglayers-basics-delete.html).
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -529,7 +532,7 @@ func (c *OpsWorks) DeleteStackRequest(input *DeleteStackInput) (req *request.Req
 // apps or deregister registered instances. For more information, see Shut Down
 // a Stack (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-shutting.html).
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -563,7 +566,7 @@ func (c *OpsWorks) DeleteUserProfileRequest(input *DeleteUserProfileInput) (req 
 
 // Deletes a user profile.
 //
-// Required Permissions: To use this action, an IAM user must have an attached
+//  Required Permissions: To use this action, an IAM user must have an attached
 // policy that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DeleteUserProfile(input *DeleteUserProfileInput) (*DeleteUserProfileOutput, error) {
@@ -597,9 +600,10 @@ func (c *OpsWorks) DeregisterEcsClusterRequest(input *DeregisterEcsClusterInput)
 // Deregisters a specified Amazon ECS cluster from a stack. For more information,
 // see  Resource Management (http://docs.aws.amazon.com/opsworks/latest/userguide/workinglayers-ecscluster.html#workinglayers-ecscluster-delete).
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack or an attached policy that explicitly grants
-// permissions. For more information on user permissions, see .
+// permissions. For more information on user permissions, see http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html
+// (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DeregisterEcsCluster(input *DeregisterEcsClusterInput) (*DeregisterEcsClusterOutput, error) {
 	req, out := c.DeregisterEcsClusterRequest(input)
 	err := req.Send()
@@ -631,7 +635,7 @@ func (c *OpsWorks) DeregisterElasticIpRequest(input *DeregisterElasticIpInput) (
 // Deregisters a specified Elastic IP address. The address can then be registered
 // by another stack. For more information, see Resource Management (http://docs.aws.amazon.com/opsworks/latest/userguide/resources.html).
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -667,7 +671,7 @@ func (c *OpsWorks) DeregisterInstanceRequest(input *DeregisterInstanceInput) (re
 // the instance from the stack and returns it to your control. This action can
 // not be used with instances that were created with AWS OpsWorks.
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -701,7 +705,7 @@ func (c *OpsWorks) DeregisterRdsDbInstanceRequest(input *DeregisterRdsDbInstance
 
 // Deregisters an Amazon RDS instance.
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -736,7 +740,7 @@ func (c *OpsWorks) DeregisterVolumeRequest(input *DeregisterVolumeInput) (req *r
 // Deregisters an Amazon EBS volume. The volume can then be registered by another
 // stack. For more information, see Resource Management (http://docs.aws.amazon.com/opsworks/latest/userguide/resources.html).
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -799,7 +803,7 @@ func (c *OpsWorks) DescribeAppsRequest(input *DescribeAppsInput) (req *request.R
 //
 //  You must specify at least one of the parameters.
 //
-//  Required Permissions: To use this action, an IAM user must have a Show,
+//   Required Permissions: To use this action, an IAM user must have a Show,
 // Deploy, or Manage permissions level for the stack, or an attached policy
 // that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -833,7 +837,7 @@ func (c *OpsWorks) DescribeCommandsRequest(input *DescribeCommandsInput) (req *r
 //
 //  You must specify at least one of the parameters.
 //
-//  Required Permissions: To use this action, an IAM user must have a Show,
+//   Required Permissions: To use this action, an IAM user must have a Show,
 // Deploy, or Manage permissions level for the stack, or an attached policy
 // that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -867,7 +871,7 @@ func (c *OpsWorks) DescribeDeploymentsRequest(input *DescribeDeploymentsInput) (
 //
 //  You must specify at least one of the parameters.
 //
-//  Required Permissions: To use this action, an IAM user must have a Show,
+//   Required Permissions: To use this action, an IAM user must have a Show,
 // Deploy, or Manage permissions level for the stack, or an attached policy
 // that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -908,7 +912,7 @@ func (c *OpsWorks) DescribeEcsClustersRequest(input *DescribeEcsClustersInput) (
 // the response. However, AWS OpsWorks currently supports only one cluster per
 // layer, so the result set has a maximum of one element.
 //
-// Required Permissions: To use this action, an IAM user must have a Show,
+//  Required Permissions: To use this action, an IAM user must have a Show,
 // Deploy, or Manage permissions level for the stack or an attached policy that
 // explicitly grants permission. For more information on user permissions, see
 // Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -950,7 +954,7 @@ func (c *OpsWorks) DescribeElasticIpsRequest(input *DescribeElasticIpsInput) (re
 //
 //  You must specify at least one of the parameters.
 //
-//  Required Permissions: To use this action, an IAM user must have a Show,
+//   Required Permissions: To use this action, an IAM user must have a Show,
 // Deploy, or Manage permissions level for the stack, or an attached policy
 // that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -984,7 +988,7 @@ func (c *OpsWorks) DescribeElasticLoadBalancersRequest(input *DescribeElasticLoa
 //
 //  You must specify at least one of the parameters.
 //
-//  Required Permissions: To use this action, an IAM user must have a Show,
+//   Required Permissions: To use this action, an IAM user must have a Show,
 // Deploy, or Manage permissions level for the stack, or an attached policy
 // that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -1018,7 +1022,7 @@ func (c *OpsWorks) DescribeInstancesRequest(input *DescribeInstancesInput) (req 
 //
 //  You must specify at least one of the parameters.
 //
-//  Required Permissions: To use this action, an IAM user must have a Show,
+//   Required Permissions: To use this action, an IAM user must have a Show,
 // Deploy, or Manage permissions level for the stack, or an attached policy
 // that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -1052,7 +1056,7 @@ func (c *OpsWorks) DescribeLayersRequest(input *DescribeLayersInput) (req *reque
 //
 //  You must specify at least one of the parameters.
 //
-//  Required Permissions: To use this action, an IAM user must have a Show,
+//   Required Permissions: To use this action, an IAM user must have a Show,
 // Deploy, or Manage permissions level for the stack, or an attached policy
 // that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -1086,7 +1090,7 @@ func (c *OpsWorks) DescribeLoadBasedAutoScalingRequest(input *DescribeLoadBasedA
 //
 //  You must specify at least one of the parameters.
 //
-//  Required Permissions: To use this action, an IAM user must have a Show,
+//   Required Permissions: To use this action, an IAM user must have a Show,
 // Deploy, or Manage permissions level for the stack, or an attached policy
 // that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -1118,7 +1122,7 @@ func (c *OpsWorks) DescribeMyUserProfileRequest(input *DescribeMyUserProfileInpu
 
 // Describes a user's SSH information.
 //
-// Required Permissions: To use this action, an IAM user must have self-management
+//  Required Permissions: To use this action, an IAM user must have self-management
 // enabled or an attached policy that explicitly grants permissions. For more
 // information on user permissions, see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DescribeMyUserProfile(input *DescribeMyUserProfileInput) (*DescribeMyUserProfileOutput, error) {
@@ -1149,7 +1153,7 @@ func (c *OpsWorks) DescribePermissionsRequest(input *DescribePermissionsInput) (
 
 // Describes the permissions for a specified stack.
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -1183,7 +1187,7 @@ func (c *OpsWorks) DescribeRaidArraysRequest(input *DescribeRaidArraysInput) (re
 //
 //  You must specify at least one of the parameters.
 //
-//  Required Permissions: To use this action, an IAM user must have a Show,
+//   Required Permissions: To use this action, an IAM user must have a Show,
 // Deploy, or Manage permissions level for the stack, or an attached policy
 // that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -1215,7 +1219,7 @@ func (c *OpsWorks) DescribeRdsDbInstancesRequest(input *DescribeRdsDbInstancesIn
 
 // Describes Amazon RDS instances.
 //
-// Required Permissions: To use this action, an IAM user must have a Show,
+//  Required Permissions: To use this action, an IAM user must have a Show,
 // Deploy, or Manage permissions level for the stack, or an attached policy
 // that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -1247,7 +1251,7 @@ func (c *OpsWorks) DescribeServiceErrorsRequest(input *DescribeServiceErrorsInpu
 
 // Describes AWS OpsWorks service errors.
 //
-// Required Permissions: To use this action, an IAM user must have a Show,
+//  Required Permissions: To use this action, an IAM user must have a Show,
 // Deploy, or Manage permissions level for the stack, or an attached policy
 // that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -1279,7 +1283,7 @@ func (c *OpsWorks) DescribeStackProvisioningParametersRequest(input *DescribeSta
 
 // Requests a description of a stack's provisioning parameters.
 //
-// Required Permissions: To use this action, an IAM user must have a Show,
+//  Required Permissions: To use this action, an IAM user must have a Show,
 // Deploy, or Manage permissions level for the stack or an attached policy that
 // explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -1312,7 +1316,7 @@ func (c *OpsWorks) DescribeStackSummaryRequest(input *DescribeStackSummaryInput)
 // Describes the number of layers and apps in a specified stack, and the number
 // of instances in each state, such as running_setup or online.
 //
-// Required Permissions: To use this action, an IAM user must have a Show,
+//  Required Permissions: To use this action, an IAM user must have a Show,
 // Deploy, or Manage permissions level for the stack, or an attached policy
 // that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -1344,7 +1348,7 @@ func (c *OpsWorks) DescribeStacksRequest(input *DescribeStacksInput) (req *reque
 
 // Requests a description of one or more stacks.
 //
-// Required Permissions: To use this action, an IAM user must have a Show,
+//  Required Permissions: To use this action, an IAM user must have a Show,
 // Deploy, or Manage permissions level for the stack, or an attached policy
 // that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -1378,7 +1382,7 @@ func (c *OpsWorks) DescribeTimeBasedAutoScalingRequest(input *DescribeTimeBasedA
 //
 //  You must specify at least one of the parameters.
 //
-//  Required Permissions: To use this action, an IAM user must have a Show,
+//   Required Permissions: To use this action, an IAM user must have a Show,
 // Deploy, or Manage permissions level for the stack, or an attached policy
 // that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -1410,7 +1414,7 @@ func (c *OpsWorks) DescribeUserProfilesRequest(input *DescribeUserProfilesInput)
 
 // Describe specified users.
 //
-// Required Permissions: To use this action, an IAM user must have an attached
+//  Required Permissions: To use this action, an IAM user must have an attached
 // policy that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DescribeUserProfiles(input *DescribeUserProfilesInput) (*DescribeUserProfilesOutput, error) {
@@ -1443,7 +1447,7 @@ func (c *OpsWorks) DescribeVolumesRequest(input *DescribeVolumesInput) (req *req
 //
 //  You must specify at least one of the parameters.
 //
-//  Required Permissions: To use this action, an IAM user must have a Show,
+//   Required Permissions: To use this action, an IAM user must have a Show,
 // Deploy, or Manage permissions level for the stack, or an attached policy
 // that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -1477,7 +1481,7 @@ func (c *OpsWorks) DetachElasticLoadBalancerRequest(input *DetachElasticLoadBala
 
 // Detaches a specified Elastic Load Balancing instance from its layer.
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -1513,7 +1517,7 @@ func (c *OpsWorks) DisassociateElasticIpRequest(input *DisassociateElasticIpInpu
 // registered with the stack. For more information, see Resource Management
 // (http://docs.aws.amazon.com/opsworks/latest/userguide/resources.html).
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -1546,7 +1550,7 @@ func (c *OpsWorks) GetHostnameSuggestionRequest(input *GetHostnameSuggestionInpu
 // Gets a generated host name for the specified layer, based on the current
 // host name theme.
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -1576,8 +1580,9 @@ func (c *OpsWorks) GrantAccessRequest(input *GrantAccessInput) (req *request.Req
 	return
 }
 
-// This action can be used only with Windows stacks. Grants RDP access to a
-// Windows instance for a specified time period.
+// This action can be used only with Windows stacks.
+//
+//  Grants RDP access to a Windows instance for a specified time period.
 func (c *OpsWorks) GrantAccess(input *GrantAccessInput) (*GrantAccessOutput, error) {
 	req, out := c.GrantAccessRequest(input)
 	err := req.Send()
@@ -1609,7 +1614,7 @@ func (c *OpsWorks) RebootInstanceRequest(input *RebootInstanceInput) (req *reque
 // Reboots a specified instance. For more information, see Starting, Stopping,
 // and Rebooting Instances (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-starting.html).
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -1643,7 +1648,7 @@ func (c *OpsWorks) RegisterEcsClusterRequest(input *RegisterEcsClusterInput) (re
 // one cluster with a stack. A cluster can be registered with only one stack.
 // For more information, see  Resource Management (http://docs.aws.amazon.com/opsworks/latest/userguide/workinglayers-ecscluster.html).
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see  Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -1678,7 +1683,7 @@ func (c *OpsWorks) RegisterElasticIpRequest(input *RegisterElasticIpInput) (req 
 // you must first deregister it by calling DeregisterElasticIp. For more information,
 // see Resource Management (http://docs.aws.amazon.com/opsworks/latest/userguide/resources.html).
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -1711,13 +1716,14 @@ func (c *OpsWorks) RegisterInstanceRequest(input *RegisterInstanceInput) (req *r
 // Registers instances with a specified stack that were created outside of AWS
 // OpsWorks.
 //
-// We do not recommend using this action to register instances. The complete
+//  We do not recommend using this action to register instances. The complete
 // registration operation has two primary steps, installing the AWS OpsWorks
 // agent on the instance and registering the instance with the stack. RegisterInstance
 // handles only the second step. You should instead use the AWS CLI register
 // command, which performs the entire registration operation. For more information,
 // see  Registering an Instance with an AWS OpsWorks Stack (http://docs.aws.amazon.com/opsworks/latest/userguide/registered-instances-register.html).
-// Required Permissions: To use this action, an IAM user must have a Manage
+//
+//   Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -1751,7 +1757,7 @@ func (c *OpsWorks) RegisterRdsDbInstanceRequest(input *RegisterRdsDbInstanceInpu
 
 // Registers an Amazon RDS instance with a stack.
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -1786,7 +1792,7 @@ func (c *OpsWorks) RegisterVolumeRequest(input *RegisterVolumeInput) (req *reque
 // first deregister it by calling DeregisterVolume. For more information, see
 // Resource Management (http://docs.aws.amazon.com/opsworks/latest/userguide/resources.html).
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -1827,7 +1833,7 @@ func (c *OpsWorks) SetLoadBasedAutoScalingRequest(input *SetLoadBasedAutoScaling
 // from that set, so you must ensure that you have created enough instances
 // to handle the maximum anticipated load.
 //
-//  Required Permissions: To use this action, an IAM user must have a Manage
+//   Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -1862,7 +1868,7 @@ func (c *OpsWorks) SetPermissionRequest(input *SetPermissionInput) (req *request
 // Specifies a user's permissions. For more information, see Security and Permissions
 // (http://docs.aws.amazon.com/opsworks/latest/userguide/workingsecurity.html).
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -1898,7 +1904,7 @@ func (c *OpsWorks) SetTimeBasedAutoScalingRequest(input *SetTimeBasedAutoScaling
 // For more information, see Managing Load with Time-based and Load-based Instances
 // (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-autoscaling.html).
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -1933,7 +1939,7 @@ func (c *OpsWorks) StartInstanceRequest(input *StartInstanceInput) (req *request
 // Starts a specified instance. For more information, see Starting, Stopping,
 // and Rebooting Instances (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-starting.html).
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -1967,7 +1973,7 @@ func (c *OpsWorks) StartStackRequest(input *StartStackInput) (req *request.Reque
 
 // Starts a stack's instances.
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -2004,7 +2010,7 @@ func (c *OpsWorks) StopInstanceRequest(input *StopInstanceInput) (req *request.R
 // EBS-backed instance without losing data. For more information, see Starting,
 // Stopping, and Rebooting Instances (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-starting.html).
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -2038,7 +2044,7 @@ func (c *OpsWorks) StopStackRequest(input *StopStackInput) (req *request.Request
 
 // Stops a specified stack.
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -2075,7 +2081,7 @@ func (c *OpsWorks) UnassignInstanceRequest(input *UnassignInstanceInput) (req *r
 // as needed. You cannot use this action with instances that were created with
 // AWS OpsWorks.
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -2110,7 +2116,7 @@ func (c *OpsWorks) UnassignVolumeRequest(input *UnassignVolumeInput) (req *reque
 // Unassigns an assigned Amazon EBS volume. The volume remains registered with
 // the stack. For more information, see Resource Management (http://docs.aws.amazon.com/opsworks/latest/userguide/resources.html).
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -2144,7 +2150,7 @@ func (c *OpsWorks) UpdateAppRequest(input *UpdateAppInput) (req *request.Request
 
 // Updates a specified app.
 //
-// Required Permissions: To use this action, an IAM user must have a Deploy
+//  Required Permissions: To use this action, an IAM user must have a Deploy
 // or Manage permissions level for the stack, or an attached policy that explicitly
 // grants permissions. For more information on user permissions, see Managing
 // User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -2179,7 +2185,7 @@ func (c *OpsWorks) UpdateElasticIpRequest(input *UpdateElasticIpInput) (req *req
 // Updates a registered Elastic IP address's name. For more information, see
 // Resource Management (http://docs.aws.amazon.com/opsworks/latest/userguide/resources.html).
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -2213,7 +2219,7 @@ func (c *OpsWorks) UpdateInstanceRequest(input *UpdateInstanceInput) (req *reque
 
 // Updates a specified instance.
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -2247,7 +2253,7 @@ func (c *OpsWorks) UpdateLayerRequest(input *UpdateLayerInput) (req *request.Req
 
 // Updates a specified layer.
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -2281,7 +2287,7 @@ func (c *OpsWorks) UpdateMyUserProfileRequest(input *UpdateMyUserProfileInput) (
 
 // Updates a user's SSH public key.
 //
-// Required Permissions: To use this action, an IAM user must have self-management
+//  Required Permissions: To use this action, an IAM user must have self-management
 // enabled or an attached policy that explicitly grants permissions. For more
 // information on user permissions, see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) UpdateMyUserProfile(input *UpdateMyUserProfileInput) (*UpdateMyUserProfileOutput, error) {
@@ -2314,7 +2320,7 @@ func (c *OpsWorks) UpdateRdsDbInstanceRequest(input *UpdateRdsDbInstanceInput) (
 
 // Updates an Amazon RDS instance.
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -2348,7 +2354,7 @@ func (c *OpsWorks) UpdateStackRequest(input *UpdateStackInput) (req *request.Req
 
 // Updates a specified stack.
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -2382,7 +2388,7 @@ func (c *OpsWorks) UpdateUserProfileRequest(input *UpdateUserProfileInput) (req 
 
 // Updates a specified user profile.
 //
-// Required Permissions: To use this action, an IAM user must have an attached
+//  Required Permissions: To use this action, an IAM user must have an attached
 // policy that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) UpdateUserProfile(input *UpdateUserProfileInput) (*UpdateUserProfileOutput, error) {
@@ -2416,7 +2422,7 @@ func (c *OpsWorks) UpdateVolumeRequest(input *UpdateVolumeInput) (req *request.R
 // Updates an Amazon EBS volume's name or mount point. For more information,
 // see Resource Management (http://docs.aws.amazon.com/opsworks/latest/userguide/resources.html).
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
+//  Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
@@ -2482,9 +2488,9 @@ type App struct {
 	// see  Environment Variables (http://docs.aws.amazon.com/opsworks/latest/userguide/workingapps-creating.html#workingapps-creating-environment).
 	//
 	//  There is no specific limit on the number of environment variables. However,
-	// the size of the associated data structure - which includes the variables'
-	// names, values, and protected flag values - cannot exceed 10 KB (10240 Bytes).
-	// This limit should accommodate most if not all use cases, but if you do exceed
+	// the size of the associated data structure - which includes the variable names,
+	// values, and protected flag values - cannot exceed 10 KB (10240 Bytes). This
+	// limit should accommodate most if not all use cases, but if you do exceed
 	// it, you will cause an exception (API) with an "Environment: is too large
 	// (maximum is 10KB)" message.
 	Environment []*EnvironmentVariable `type:"list"`
@@ -2720,7 +2726,7 @@ type AutoScalingThresholds struct {
 	// takes a list of up to five alarm names, which are case sensitive and must
 	// be in the same region as the stack.
 	//
-	// To use custom alarms, you must update your service role to allow cloudwatch:DescribeAlarms.
+	//  To use custom alarms, you must update your service role to allow cloudwatch:DescribeAlarms.
 	// You can either have AWS OpsWorks update the role for you when you first use
 	// this feature or you can edit the role manually. For more information, see
 	// Allowing AWS OpsWorks to Act on Your Behalf (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-servicerole.html).
@@ -2840,16 +2846,20 @@ type CloneStackInput struct {
 
 	// The default AWS OpsWorks agent version. You have the following options:
 	//
-	//  Auto-update - Set this parameter to LATEST. AWS OpsWorks automatically
+	//   Auto-update - Set this parameter to LATEST. AWS OpsWorks automatically
 	// installs new agent versions on the stack's instances as soon as they are
-	// available. Fixed version - Set this parameter to your preferred agent version.
-	// To update the agent version, you must edit the stack configuration and specify
-	// a new version. AWS OpsWorks then automatically installs that version on the
-	// stack's instances.  The default setting is LATEST. To specify an agent version,
-	// you must use the complete version number, not the abbreviated number shown
-	// on the console. For a list of available agent version numbers, call DescribeAgentVersions.
+	// available.
 	//
-	// You can also specify an agent version when you create or update an instance,
+	//   Fixed version - Set this parameter to your preferred agent version. To
+	// update the agent version, you must edit the stack configuration and specify
+	// a new version. AWS OpsWorks then automatically installs that version on the
+	// stack's instances.
+	//
+	//   The default setting is LATEST. To specify an agent version, you must use
+	// the complete version number, not the abbreviated number shown on the console.
+	// For a list of available agent version numbers, call DescribeAgentVersions.
+	//
+	//  You can also specify an agent version when you create or update an instance,
 	// which overrides the stack's default setting.
 	AgentVersion *string `type:"string"`
 
@@ -2871,7 +2881,7 @@ type CloneStackInput struct {
 	// The configuration manager. When you clone a stack we recommend that you use
 	// the configuration manager to specify the Chef version: 12, 11.10, or 11.4
 	// for Linux stacks, or 12.2 for Windows stacks. The default value for Linux
-	// stacks is currently 11.4.
+	// stacks is currently 12.
 	ConfigurationManager *StackConfigurationManager `type:"structure"`
 
 	// Contains the information required to retrieve an app or cookbook from a repository.
@@ -2902,15 +2912,26 @@ type CloneStackInput struct {
 
 	// The stack's operating system, which must be set to one of the following.
 	//
-	//  A supported Linux operating system: An Amazon Linux version, such as Amazon
-	// Linux 2015.03, Red Hat Enterprise Linux 7, Ubuntu 12.04 LTS, or Ubuntu 14.04
-	// LTS. Microsoft Windows Server 2012 R2 Base. A custom AMI: Custom. You specify
-	// the custom AMI you want to use when you create instances. For more information
-	// on how to use custom AMIs with OpsWorks, see Using Custom AMIs (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
-	//  The default option is the parent stack's operating system. For more information
+	//   A supported Linux operating system: An Amazon Linux version, such as Amazon
+	// Linux 2016.03, Amazon Linux 2015.09, or Amazon Linux 2015.03.
+	//
+	//   A supported Ubuntu operating system, such as Ubuntu 16.04 LTS, Ubuntu
+	// 14.04 LTS, or Ubuntu 12.04 LTS.
+	//
+	//    Red Hat Enterprise Linux 7
+	//
+	//    Microsoft Windows Server 2012 R2 Base, Microsoft Windows Server 2012
+	// R2 with SQL Server Express, Microsoft Windows Server 2012 R2 with SQL Server
+	// Standard, or Microsoft Windows Server 2012 R2 with SQL Server Web.
+	//
+	//   A custom AMI: Custom. You specify the custom AMI you want to use when
+	// you create instances. For more information on how to use custom AMIs with
+	// OpsWorks, see Using Custom AMIs (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
+	//
+	//   The default option is the parent stack's operating system. For more information
 	// on the supported operating systems, see AWS OpsWorks Operating Systems (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
 	//
-	// You can specify a different Linux operating system for the cloned stack,
+	//  You can specify a different Linux operating system for the cloned stack,
 	// but you cannot change from Linux to Windows or Windows to Linux.
 	DefaultOs *string `type:"string"`
 
@@ -2941,8 +2962,28 @@ type CloneStackInput struct {
 	// HostnameTheme is set to Layer_Dependent, which creates host names by appending
 	// integers to the layer's short name. The other themes are:
 	//
-	//   Baked_Goods   Clouds   Europe_Cities   Fruits   Greek_Deities   Legendary_creatures_from_Japan
-	//   Planets_and_Moons   Roman_Deities   Scottish_Islands   US_Cities   Wild_Cats
+	//    Baked_Goods
+	//
+	//    Clouds
+	//
+	//    Europe_Cities
+	//
+	//    Fruits
+	//
+	//    Greek_Deities
+	//
+	//    Legendary_creatures_from_Japan
+	//
+	//    Planets_and_Moons
+	//
+	//    Roman_Deities
+	//
+	//    Scottish_Islands
+	//
+	//    US_Cities
+	//
+	//    Wild_Cats
+	//
 	//   To obtain a generated host name, call GetHostNameSuggestion, which returns
 	// a host name based on the current theme.
 	HostnameTheme *string `type:"string"`
@@ -2980,36 +3021,44 @@ type CloneStackInput struct {
 	// you can instead provide your own custom security groups. UseOpsworksSecurityGroups
 	// has the following settings:
 	//
-	//  True - AWS OpsWorks automatically associates the appropriate built-in security
-	// group with each layer (default setting). You can associate additional security
-	// groups with a layer after you create it but you cannot delete the built-in
-	// security group.  False - AWS OpsWorks does not associate built-in security
-	// groups with layers. You must create appropriate Amazon Elastic Compute Cloud
-	// (Amazon EC2) security groups and associate a security group with each layer
-	// that you create. However, you can still manually associate a built-in security
+	//   True - AWS OpsWorks automatically associates the appropriate built-in
+	// security group with each layer (default setting). You can associate additional
+	// security groups with a layer after you create it but you cannot delete the
+	// built-in security group.
+	//
+	//   False - AWS OpsWorks does not associate built-in security groups with
+	// layers. You must create appropriate Amazon Elastic Compute Cloud (Amazon
+	// EC2) security groups and associate a security group with each layer that
+	// you create. However, you can still manually associate a built-in security
 	// group with a layer on creation; custom security groups are required only
-	// for those layers that need custom settings.   For more information, see Create
-	// a New Stack (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-creating.html).
+	// for those layers that need custom settings.
+	//
+	//   For more information, see Create a New Stack (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-creating.html).
 	UseOpsworksSecurityGroups *bool `type:"boolean"`
 
 	// The ID of the VPC that the cloned stack is to be launched into. It must be
 	// in the specified region. All instances are launched into this VPC, and you
 	// cannot change the ID later.
 	//
-	//  If your account supports EC2 Classic, the default value is no VPC. If your
-	// account does not support EC2 Classic, the default value is the default VPC
-	// for the specified region.  If the VPC ID corresponds to a default VPC and
-	// you have specified either the DefaultAvailabilityZone or the DefaultSubnetId
-	// parameter only, AWS OpsWorks infers the value of the other parameter. If
-	// you specify neither parameter, AWS OpsWorks sets these parameters to the
-	// first valid Availability Zone for the specified region and the corresponding
-	// default VPC subnet ID, respectively.
+	//   If your account supports EC2 Classic, the default value is no VPC.
+	//
+	//   If your account does not support EC2 Classic, the default value is the
+	// default VPC for the specified region.
+	//
+	//   If the VPC ID corresponds to a default VPC and you have specified either
+	// the DefaultAvailabilityZone or the DefaultSubnetId parameter only, AWS OpsWorks
+	// infers the value of the other parameter. If you specify neither parameter,
+	// AWS OpsWorks sets these parameters to the first valid Availability Zone for
+	// the specified region and the corresponding default VPC subnet ID, respectively.
 	//
 	// If you specify a nondefault VPC ID, note the following:
 	//
-	//  It must belong to a VPC in your account that is in the specified region.
-	// You must specify a value for DefaultSubnetId.  For more information on how
-	// to use AWS OpsWorks with a VPC, see Running a Stack in a VPC (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-vpc.html).
+	//   It must belong to a VPC in your account that is in the specified region.
+	//
+	//   You must specify a value for DefaultSubnetId.
+	//
+	//   For more information on how to use AWS OpsWorks with a VPC, see Running
+	// a Stack in a VPC (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-vpc.html).
 	// For more information on default VPC and EC2 Classic, see Supported Platforms
 	// (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html).
 	VpcId *string `type:"string"`
@@ -3089,13 +3138,36 @@ type Command struct {
 
 	// The command status:
 	//
-	//  failed successful skipped pending
+	//   failed
+	//
+	//   successful
+	//
+	//   skipped
+	//
+	//   pending
 	Status *string `type:"string"`
 
 	// The command type:
 	//
-	//   deploy   rollback   start   stop   restart   undeploy   update_dependencies
-	//   install_dependencies   update_custom_cookbooks   execute_recipes
+	//    deploy
+	//
+	//    rollback
+	//
+	//    start
+	//
+	//    stop
+	//
+	//    restart
+	//
+	//    undeploy
+	//
+	//    update_dependencies
+	//
+	//    install_dependencies
+	//
+	//    update_custom_cookbooks
+	//
+	//    execute_recipes
 	Type *string `type:"string"`
 }
 
@@ -3136,14 +3208,14 @@ type CreateAppInput struct {
 	// are defined on the associated app server instance. For more information,
 	// see  Environment Variables (http://docs.aws.amazon.com/opsworks/latest/userguide/workingapps-creating.html#workingapps-creating-environment).
 	//
-	//  There is no specific limit on the number of environment variables. However,
+	// There is no specific limit on the number of environment variables. However,
 	// the size of the associated data structure - which includes the variables'
 	// names, values, and protected flag values - cannot exceed 10 KB (10240 Bytes).
 	// This limit should accommodate most if not all use cases. Exceeding it will
 	// cause an exception with the message, "Environment: is too large (maximum
 	// is 10KB)."
 	//
-	// This parameter is supported only by Chef 11.10 stacks. If you have specified
+	//  This parameter is supported only by Chef 11.10 stacks. If you have specified
 	// one or more environment variables, you cannot modify the stack's Chef version.
 	Environment []*EnvironmentVariable `type:"list"`
 
@@ -3318,20 +3390,23 @@ type CreateInstanceInput struct {
 
 	// The default AWS OpsWorks agent version. You have the following options:
 	//
-	//  INHERIT - Use the stack's default agent version setting. version_number
-	// - Use the specified agent version. This value overrides the stack's default
-	// setting. To update the agent version, edit the instance configuration and
-	// specify a new version. AWS OpsWorks then automatically installs that version
-	// on the instance.  The default setting is INHERIT. To specify an agent version,
-	// you must use the complete version number, not the abbreviated number shown
-	// on the console. For a list of available agent version numbers, call DescribeAgentVersions.
+	//    INHERIT - Use the stack's default agent version setting.
+	//
+	//    version_number - Use the specified agent version. This value overrides
+	// the stack's default setting. To update the agent version, edit the instance
+	// configuration and specify a new version. AWS OpsWorks then automatically
+	// installs that version on the instance.
+	//
+	//   The default setting is INHERIT. To specify an agent version, you must
+	// use the complete version number, not the abbreviated number shown on the
+	// console. For a list of available agent version numbers, call DescribeAgentVersions.
 	AgentVersion *string `type:"string"`
 
 	// A custom AMI ID to be used to create the instance. The AMI should be based
 	// on one of the supported operating systems. For more information, see Using
 	// Custom AMIs (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
 	//
-	// If you specify a custom AMI, you must set Os to Custom.
+	//  If you specify a custom AMI, you must set Os to Custom.
 	AmiId *string `type:"string"`
 
 	// The instance architecture. The default option is x86_64. Instance types do
@@ -3382,11 +3457,23 @@ type CreateInstanceInput struct {
 
 	// The instance's operating system, which must be set to one of the following.
 	//
-	//  A supported Linux operating system: An Amazon Linux version, such as Amazon
-	// Linux 2015.03, Red Hat Enterprise Linux 7, Ubuntu 12.04 LTS, or Ubuntu 14.04
-	// LTS. Microsoft Windows Server 2012 R2 Base. A custom AMI: Custom.  For more
-	// information on the supported operating systems, see AWS OpsWorks Operating
-	// Systems (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
+	//   A supported Linux operating system: An Amazon Linux version, such as Amazon
+	// Linux 2016.03, Amazon Linux 2015.09, or Amazon Linux 2015.03.
+	//
+	//   A supported Ubuntu operating system, such as Ubuntu 16.04 LTS, Ubuntu
+	// 14.04 LTS, or Ubuntu 12.04 LTS.
+	//
+	//    Red Hat Enterprise Linux 7
+	//
+	//   A supported Windows operating system, such as Microsoft Windows Server
+	// 2012 R2 Base, Microsoft Windows Server 2012 R2 with SQL Server Express, Microsoft
+	// Windows Server 2012 R2 with SQL Server Standard, or Microsoft Windows Server
+	// 2012 R2 with SQL Server Web.
+	//
+	//   A custom AMI: Custom.
+	//
+	//   For more information on the supported operating systems, see AWS OpsWorks
+	// Operating Systems (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
 	//
 	// The default option is the current Amazon Linux version. If you set this
 	// parameter to Custom, you must use the CreateInstance action's AmiId parameter
@@ -3418,10 +3505,10 @@ type CreateInstanceInput struct {
 	// Because there are costs associated with changes in tenancy options, we recommend
 	// that you research tenancy options before choosing them for your instances.
 	// For more information about dedicated hosts, see Dedicated Hosts Overview
-	// (https://aws.amazon.com/ec2/dedicated-hosts/) and Amazon EC2 Dedicated Hosts
-	// (https://aws.amazon.com/ec2/dedicated-hosts/). For more information about
+	// (http://aws.amazon.com/ec2/dedicated-hosts/) and Amazon EC2 Dedicated Hosts
+	// (http://aws.amazon.com/ec2/dedicated-hosts/). For more information about
 	// dedicated instances, see Dedicated Instances (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/dedicated-instance.html)
-	// and Amazon EC2 Dedicated Instances (https://aws.amazon.com/ec2/purchasing-options/dedicated-instances/).
+	// and Amazon EC2 Dedicated Instances (http://aws.amazon.com/ec2/purchasing-options/dedicated-instances/).
 	Tenancy *string `type:"string"`
 
 	// The instance's virtualization type, paravirtual or hvm.
@@ -3547,7 +3634,8 @@ type CreateLayerInput struct {
 	StackId *string `type:"string" required:"true"`
 
 	// The layer type. A stack cannot have more than one built-in layer of the same
-	// type. It can have any number of custom layers.
+	// type. It can have any number of custom layers. Built-in layers are not available
+	// in Chef 12 stacks.
 	Type *string `type:"string" required:"true" enum:"LayerType"`
 
 	// Whether to use Amazon EBS-optimized instances.
@@ -3622,17 +3710,21 @@ type CreateStackInput struct {
 
 	// The default AWS OpsWorks agent version. You have the following options:
 	//
-	//  Auto-update - Set this parameter to LATEST. AWS OpsWorks automatically
+	//   Auto-update - Set this parameter to LATEST. AWS OpsWorks automatically
 	// installs new agent versions on the stack's instances as soon as they are
-	// available. Fixed version - Set this parameter to your preferred agent version.
-	// To update the agent version, you must edit the stack configuration and specify
-	// a new version. AWS OpsWorks then automatically installs that version on the
-	// stack's instances.  The default setting is the most recent release of the
-	// agent. To specify an agent version, you must use the complete version number,
-	// not the abbreviated number shown on the console. For a list of available
-	// agent version numbers, call DescribeAgentVersions.
+	// available.
 	//
-	// You can also specify an agent version when you create or update an instance,
+	//   Fixed version - Set this parameter to your preferred agent version. To
+	// update the agent version, you must edit the stack configuration and specify
+	// a new version. AWS OpsWorks then automatically installs that version on the
+	// stack's instances.
+	//
+	//   The default setting is the most recent release of the agent. To specify
+	// an agent version, you must use the complete version number, not the abbreviated
+	// number shown on the console. For a list of available agent version numbers,
+	// call DescribeAgentVersions.
+	//
+	//  You can also specify an agent version when you create or update an instance,
 	// which overrides the stack's default setting.
 	AgentVersion *string `type:"string"`
 
@@ -3681,12 +3773,23 @@ type CreateStackInput struct {
 	// unless you specify a different operating system when you create the instance.
 	// You can specify one of the following.
 	//
-	//  A supported Linux operating system: An Amazon Linux version, such as Amazon
-	// Linux 2015.03, Red Hat Enterprise Linux 7, Ubuntu 12.04 LTS, or Ubuntu 14.04
-	// LTS. Microsoft Windows Server 2012 R2 Base. A custom AMI: Custom. You specify
-	// the custom AMI you want to use when you create instances. For more information,
-	// see  Using Custom AMIs (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
-	//  The default option is the current Amazon Linux version. For more information
+	//   A supported Linux operating system: An Amazon Linux version, such as Amazon
+	// Linux 2016.03, Amazon Linux 2015.09, or Amazon Linux 2015.03.
+	//
+	//   A supported Ubuntu operating system, such as Ubuntu 16.04 LTS, Ubuntu
+	// 14.04 LTS, or Ubuntu 12.04 LTS.
+	//
+	//    Red Hat Enterprise Linux 7
+	//
+	//   A supported Windows operating system, such as Microsoft Windows Server
+	// 2012 R2 Base, Microsoft Windows Server 2012 R2 with SQL Server Express, Microsoft
+	// Windows Server 2012 R2 with SQL Server Standard, or Microsoft Windows Server
+	// 2012 R2 with SQL Server Web.
+	//
+	//   A custom AMI: Custom. You specify the custom AMI you want to use when
+	// you create instances. For more information, see  Using Custom AMIs (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
+	//
+	//   The default option is the current Amazon Linux version. For more information
 	// on the supported operating systems, see AWS OpsWorks Operating Systems (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
 	DefaultOs *string `type:"string"`
 
@@ -3718,8 +3821,28 @@ type CreateStackInput struct {
 	// is set to Layer_Dependent, which creates host names by appending integers
 	// to the layer's short name. The other themes are:
 	//
-	//   Baked_Goods   Clouds   Europe_Cities   Fruits   Greek_Deities   Legendary_creatures_from_Japan
-	//   Planets_and_Moons   Roman_Deities   Scottish_Islands   US_Cities   Wild_Cats
+	//    Baked_Goods
+	//
+	//    Clouds
+	//
+	//    Europe_Cities
+	//
+	//    Fruits
+	//
+	//    Greek_Deities
+	//
+	//    Legendary_creatures_from_Japan
+	//
+	//    Planets_and_Moons
+	//
+	//    Roman_Deities
+	//
+	//    Scottish_Islands
+	//
+	//    US_Cities
+	//
+	//    Wild_Cats
+	//
 	//   To obtain a generated host name, call GetHostNameSuggestion, which returns
 	// a host name based on the current theme.
 	HostnameTheme *string `type:"string"`
@@ -3748,14 +3871,17 @@ type CreateStackInput struct {
 	// you can instead provide your own custom security groups. UseOpsworksSecurityGroups
 	// has the following settings:
 	//
-	//  True - AWS OpsWorks automatically associates the appropriate built-in security
-	// group with each layer (default setting). You can associate additional security
-	// groups with a layer after you create it, but you cannot delete the built-in
-	// security group.  False - AWS OpsWorks does not associate built-in security
-	// groups with layers. You must create appropriate EC2 security groups and associate
-	// a security group with each layer that you create. However, you can still
-	// manually associate a built-in security group with a layer on creation; custom
-	// security groups are required only for those layers that need custom settings.
+	//   True - AWS OpsWorks automatically associates the appropriate built-in
+	// security group with each layer (default setting). You can associate additional
+	// security groups with a layer after you create it, but you cannot delete the
+	// built-in security group.
+	//
+	//   False - AWS OpsWorks does not associate built-in security groups with
+	// layers. You must create appropriate EC2 security groups and associate a security
+	// group with each layer that you create. However, you can still manually associate
+	// a built-in security group with a layer on creation; custom security groups
+	// are required only for those layers that need custom settings.
+	//
 	//   For more information, see Create a New Stack (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-creating.html).
 	UseOpsworksSecurityGroups *bool `type:"boolean"`
 
@@ -3763,20 +3889,25 @@ type CreateStackInput struct {
 	// in the stack's region. All instances are launched into this VPC. You cannot
 	// change the ID later.
 	//
-	//  If your account supports EC2-Classic, the default value is no VPC. If your
-	// account does not support EC2-Classic, the default value is the default VPC
-	// for the specified region.  If the VPC ID corresponds to a default VPC and
-	// you have specified either the DefaultAvailabilityZone or the DefaultSubnetId
-	// parameter only, AWS OpsWorks infers the value of the other parameter. If
-	// you specify neither parameter, AWS OpsWorks sets these parameters to the
-	// first valid Availability Zone for the specified region and the corresponding
-	// default VPC subnet ID, respectively.
+	//   If your account supports EC2-Classic, the default value is no VPC.
+	//
+	//   If your account does not support EC2-Classic, the default value is the
+	// default VPC for the specified region.
+	//
+	//   If the VPC ID corresponds to a default VPC and you have specified either
+	// the DefaultAvailabilityZone or the DefaultSubnetId parameter only, AWS OpsWorks
+	// infers the value of the other parameter. If you specify neither parameter,
+	// AWS OpsWorks sets these parameters to the first valid Availability Zone for
+	// the specified region and the corresponding default VPC subnet ID, respectively.
 	//
 	// If you specify a nondefault VPC ID, note the following:
 	//
-	//  It must belong to a VPC in your account that is in the specified region.
-	// You must specify a value for DefaultSubnetId.  For more information on how
-	// to use AWS OpsWorks with a VPC, see Running a Stack in a VPC (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-vpc.html).
+	//   It must belong to a VPC in your account that is in the specified region.
+	//
+	//   You must specify a value for DefaultSubnetId.
+	//
+	//   For more information on how to use AWS OpsWorks with a VPC, see Running
+	// a Stack in a VPC (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-vpc.html).
 	// For more information on default VPC and EC2-Classic, see Supported Platforms
 	// (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html).
 	VpcId *string `type:"string"`
@@ -4193,7 +4324,11 @@ type Deployment struct {
 
 	// The deployment status:
 	//
-	//  running successful failed
+	//   running
+	//
+	//   successful
+	//
+	//   failed
 	Status *string `type:"string"`
 }
 
@@ -4219,39 +4354,55 @@ type DeploymentCommand struct {
 	//
 	// The update_dependencies command takes two arguments:
 	//
-	//  upgrade_os_to - Specifies the desired Amazon Linux version for instances
+	//    upgrade_os_to - Specifies the desired Amazon Linux version for instances
 	// whose OS you want to upgrade, such as Amazon Linux 2014.09. You must also
-	// set the allow_reboot argument to true. allow_reboot - Specifies whether to
-	// allow AWS OpsWorks to reboot the instances if necessary, after installing
-	// the updates. This argument can be set to either true or false. The default
-	// value is false.  For example, to upgrade an instance to Amazon Linux 2014.09,
-	// set Args to the following.
+	// set the allow_reboot argument to true.
 	//
-	//  { "upgrade_os_to":["Amazon Linux 2014.09"], "allow_reboot":["true"] }
+	//    allow_reboot - Specifies whether to allow AWS OpsWorks to reboot the
+	// instances if necessary, after installing the updates. This argument can be
+	// set to either true or false. The default value is false.
+	//
+	//   For example, to upgrade an instance to Amazon Linux 2014.09, set Args
+	// to the following.
+	//
+	//   { "upgrade_os_to":["Amazon Linux 2014.09"], "allow_reboot":["true"] }
 	Args map[string][]*string `type:"map"`
 
 	// Specifies the operation. You can specify only one command.
 	//
 	// For stacks, the following commands are available:
 	//
-	//  execute_recipes: Execute one or more recipes. To specify the recipes, set
-	// an Args parameter named recipes to the list of recipes to be executed. For
-	// example, to execute phpapp::appsetup, set Args to {"recipes":["phpapp::appsetup"]}.
-	// install_dependencies: Install the stack's dependencies. update_custom_cookbooks:
-	// Update the stack's custom cookbooks. update_dependencies: Update the stack's
-	// dependencies.  The update_dependencies and install_dependencies commands
-	// are supported only for Linux instances. You can run the commands successfully
-	// on Windows instances, but they do nothing. For apps, the following commands
-	// are available:
+	//    execute_recipes: Execute one or more recipes. To specify the recipes,
+	// set an Args parameter named recipes to the list of recipes to be executed.
+	// For example, to execute phpapp::appsetup, set Args to {"recipes":["phpapp::appsetup"]}.
 	//
-	//  deploy: Deploy an app. Ruby on Rails apps have an optional Args parameter
+	//    install_dependencies: Install the stack's dependencies.
+	//
+	//    update_custom_cookbooks: Update the stack's custom cookbooks.
+	//
+	//    update_dependencies: Update the stack's dependencies.
+	//
+	//    The update_dependencies and install_dependencies commands are supported
+	// only for Linux instances. You can run the commands successfully on Windows
+	// instances, but they do nothing.
+	//
+	//  For apps, the following commands are available:
+	//
+	//    deploy: Deploy an app. Ruby on Rails apps have an optional Args parameter
 	// named migrate. Set Args to {"migrate":["true"]} to migrate the database.
-	// The default setting is {"migrate":["false"]}. rollback Roll the app back
-	// to the previous version. When you update an app, AWS OpsWorks stores the
-	// previous version, up to a maximum of five versions. You can use this command
-	// to roll an app back as many as four versions. start: Start the app's web
-	// or application server. stop: Stop the app's web or application server. restart:
-	// Restart the app's web or application server. undeploy: Undeploy the app.
+	// The default setting is {"migrate":["false"]}.
+	//
+	//    rollback Roll the app back to the previous version. When you update an
+	// app, AWS OpsWorks stores the previous version, up to a maximum of five versions.
+	// You can use this command to roll an app back as many as four versions.
+	//
+	//    start: Start the app's web or application server.
+	//
+	//    stop: Stop the app's web or application server.
+	//
+	//    restart: Restart the app's web or application server.
+	//
+	//    undeploy: Undeploy the app.
 	Name *string `type:"string" required:"true" enum:"DeploymentCommandName"`
 }
 
@@ -5008,12 +5159,15 @@ type DescribePermissionsOutput struct {
 
 	// An array of Permission objects that describe the stack permissions.
 	//
-	//  If the request object contains only a stack ID, the array contains a Permission
-	// object with permissions for each of the stack IAM ARNs. If the request object
-	// contains only an IAM ARN, the array contains a Permission object with permissions
-	// for each of the user's stack IDs. If the request contains a stack ID and
-	// an IAM ARN, the array contains a single Permission object with permissions
-	// for the specified stack and IAM ARN.
+	//   If the request object contains only a stack ID, the array contains a Permission
+	// object with permissions for each of the stack IAM ARNs.
+	//
+	//   If the request object contains only an IAM ARN, the array contains a Permission
+	// object with permissions for each of the user's stack IDs.
+	//
+	//   If the request contains a stack ID and an IAM ARN, the array contains
+	// a single Permission object with permissions for the specified stack and IAM
+	// ARN.
 	Permissions []*Permission `type:"list"`
 }
 
@@ -5948,9 +6102,35 @@ type Instance struct {
 
 	// The instance status:
 	//
-	//   booting   connection_lost   online   pending   rebooting   requested
-	//  running_setup   setup_failed   shutting_down   start_failed   stopped
-	// stopping   terminated   terminating
+	//    booting
+	//
+	//    connection_lost
+	//
+	//    online
+	//
+	//    pending
+	//
+	//    rebooting
+	//
+	//    requested
+	//
+	//    running_setup
+	//
+	//    setup_failed
+	//
+	//    shutting_down
+	//
+	//    start_failed
+	//
+	//    stop_failed
+	//
+	//    stopped
+	//
+	//    stopping
+	//
+	//    terminated
+	//
+	//    terminating
 	Status *string `type:"string"`
 
 	// The instance's subnet ID; applicable only if the stack is running in a VPC.
@@ -6236,8 +6416,18 @@ type Permission struct {
 
 	// The user's permission level, which must be the following:
 	//
-	//   deny   show   deploy   manage   iam_only   For more information on the
-	// permissions associated with these levels, see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html)
+	//    deny
+	//
+	//    show
+	//
+	//    deploy
+	//
+	//    manage
+	//
+	//    iam_only
+	//
+	//   For more information on the permissions associated with these levels,
+	// see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html)
 	Level *string `type:"string"`
 
 	// A stack ID.
@@ -6891,8 +7081,18 @@ type SetPermissionInput struct {
 	// The user's permission level, which must be set to one of the following strings.
 	// You cannot set your own permissions level.
 	//
-	//   deny   show   deploy   manage   iam_only   For more information on the
-	// permissions associated with these levels, see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
+	//    deny
+	//
+	//    show
+	//
+	//    deploy
+	//
+	//    manage
+	//
+	//    iam_only
+	//
+	//   For more information on the permissions associated with these levels,
+	// see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 	Level *string `type:"string"`
 
 	// The stack ID.
@@ -7017,9 +7217,13 @@ type Source struct {
 
 	// When included in a request, the parameter depends on the repository type.
 	//
-	//  For Amazon S3 bundles, set Password to the appropriate IAM secret access
-	// key. For HTTP bundles and Subversion repositories, set Password to the password.
-	//  For more information on how to safely handle IAM credentials, see .
+	//   For Amazon S3 bundles, set Password to the appropriate IAM secret access
+	// key.
+	//
+	//   For HTTP bundles and Subversion repositories, set Password to the password.
+	//
+	//   For more information on how to safely handle IAM credentials, see http://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html
+	// (http://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html).
 	//
 	// In responses, AWS OpsWorks returns *****FILTERED***** instead of the actual
 	// value.
@@ -7045,8 +7249,10 @@ type Source struct {
 
 	// This parameter depends on the repository type.
 	//
-	//  For Amazon S3 bundles, set Username to the appropriate IAM access key ID.
-	// For HTTP bundles, Git repositories, and Subversion repositories, set Username
+	//   For Amazon S3 bundles, set Username to the appropriate IAM access key
+	// ID.
+	//
+	//   For HTTP bundles, Git repositories, and Subversion repositories, set Username
 	// to the user name.
 	Username *string `type:"string"`
 }
@@ -7606,14 +7812,14 @@ type UpdateAppInput struct {
 	// are defined on the associated app server instances.For more information,
 	// see  Environment Variables (http://docs.aws.amazon.com/opsworks/latest/userguide/workingapps-creating.html#workingapps-creating-environment).
 	//
-	//  There is no specific limit on the number of environment variables. However,
+	// There is no specific limit on the number of environment variables. However,
 	// the size of the associated data structure - which includes the variables'
 	// names, values, and protected flag values - cannot exceed 10 KB (10240 Bytes).
 	// This limit should accommodate most if not all use cases. Exceeding it will
 	// cause an exception with the message, "Environment: is too large (maximum
 	// is 10KB)."
 	//
-	// This parameter is supported only by Chef 11.10 stacks. If you have specified
+	//  This parameter is supported only by Chef 11.10 stacks. If you have specified
 	// one or more environment variables, you cannot modify the stack's Chef version.
 	Environment []*EnvironmentVariable `type:"list"`
 
@@ -7731,21 +7937,23 @@ type UpdateInstanceInput struct {
 
 	// The default AWS OpsWorks agent version. You have the following options:
 	//
-	//  INHERIT - Use the stack's default agent version setting. version_number
-	// - Use the specified agent version. This value overrides the stack's default
-	// setting. To update the agent version, you must edit the instance configuration
-	// and specify a new version. AWS OpsWorks then automatically installs that
-	// version on the instance.  The default setting is INHERIT. To specify an agent
-	// version, you must use the complete version number, not the abbreviated number
-	// shown on the console. For a list of available agent version numbers, call
-	// DescribeAgentVersions.
+	//    INHERIT - Use the stack's default agent version setting.
+	//
+	//    version_number - Use the specified agent version. This value overrides
+	// the stack's default setting. To update the agent version, you must edit the
+	// instance configuration and specify a new version. AWS OpsWorks then automatically
+	// installs that version on the instance.
+	//
+	//   The default setting is INHERIT. To specify an agent version, you must
+	// use the complete version number, not the abbreviated number shown on the
+	// console. For a list of available agent version numbers, call DescribeAgentVersions.
 	AgentVersion *string `type:"string"`
 
 	// A custom AMI ID to be used to create the instance. The AMI must be based
 	// on one of the supported operating systems. For more information, see Instances
 	// (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html)
 	//
-	// If you specify a custom AMI, you must set Os to Custom.
+	//  If you specify a custom AMI, you must set Os to Custom.
 	AmiId *string `type:"string"`
 
 	// The instance architecture. Instance types do not necessarily support both
@@ -7789,11 +7997,23 @@ type UpdateInstanceInput struct {
 
 	// The instance's operating system, which must be set to one of the following.
 	//
-	//  A supported Linux operating system: An Amazon Linux version, such as Amazon
-	// Linux 2015.03, Red Hat Enterprise Linux 7, Ubuntu 12.04 LTS, or Ubuntu 14.04
-	// LTS. Microsoft Windows Server 2012 R2 Base. A custom AMI: Custom.  For more
-	// information on the supported operating systems, see AWS OpsWorks Operating
-	// Systems (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
+	//   A supported Linux operating system: An Amazon Linux version, such as Amazon
+	// Linux 2016.03, Amazon Linux 2015.09, or Amazon Linux 2015.03.
+	//
+	//   A supported Ubuntu operating system, such as Ubuntu 16.04 LTS, Ubuntu
+	// 14.04 LTS, or Ubuntu 12.04 LTS.
+	//
+	//    Red Hat Enterprise Linux 7
+	//
+	//   A supported Windows operating system, such as Microsoft Windows Server
+	// 2012 R2 Base, Microsoft Windows Server 2012 R2 with SQL Server Express, Microsoft
+	// Windows Server 2012 R2 with SQL Server Standard, or Microsoft Windows Server
+	// 2012 R2 with SQL Server Web.
+	//
+	//   A custom AMI: Custom.
+	//
+	//   For more information on the supported operating systems, see AWS OpsWorks
+	// Operating Systems (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
 	//
 	// The default option is the current Amazon Linux version. If you set this
 	// parameter to Custom, you must use the AmiId parameter to specify the custom
@@ -7802,7 +8022,7 @@ type UpdateInstanceInput struct {
 	// For more information on how to use custom AMIs with OpsWorks, see Using Custom
 	// AMIs (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
 	//
-	// You can specify a different Linux operating system for the updated stack,
+	//  You can specify a different Linux operating system for the updated stack,
 	// but you cannot change from Linux to Windows or Windows to Linux.
 	Os *string `type:"string"`
 
@@ -8051,16 +8271,20 @@ type UpdateStackInput struct {
 
 	// The default AWS OpsWorks agent version. You have the following options:
 	//
-	//  Auto-update - Set this parameter to LATEST. AWS OpsWorks automatically
+	//   Auto-update - Set this parameter to LATEST. AWS OpsWorks automatically
 	// installs new agent versions on the stack's instances as soon as they are
-	// available. Fixed version - Set this parameter to your preferred agent version.
-	// To update the agent version, you must edit the stack configuration and specify
-	// a new version. AWS OpsWorks then automatically installs that version on the
-	// stack's instances.  The default setting is LATEST. To specify an agent version,
-	// you must use the complete version number, not the abbreviated number shown
-	// on the console. For a list of available agent version numbers, call DescribeAgentVersions.
+	// available.
 	//
-	// You can also specify an agent version when you create or update an instance,
+	//   Fixed version - Set this parameter to your preferred agent version. To
+	// update the agent version, you must edit the stack configuration and specify
+	// a new version. AWS OpsWorks then automatically installs that version on the
+	// stack's instances.
+	//
+	//   The default setting is LATEST. To specify an agent version, you must use
+	// the complete version number, not the abbreviated number shown on the console.
+	// For a list of available agent version numbers, call DescribeAgentVersions.
+	//
+	//  You can also specify an agent version when you create or update an instance,
 	// which overrides the stack's default setting.
 	AgentVersion *string `type:"string"`
 
@@ -8107,12 +8331,24 @@ type UpdateStackInput struct {
 
 	// The stack's operating system, which must be set to one of the following:
 	//
-	//  A supported Linux operating system: An Amazon Linux version, such as Amazon
-	// Linux 2015.03, Red Hat Enterprise Linux 7, Ubuntu 12.04 LTS, or Ubuntu 14.04
-	// LTS. Microsoft Windows Server 2012 R2 Base. A custom AMI: Custom. You specify
-	// the custom AMI you want to use when you create instances. For more information
-	// on how to use custom AMIs with OpsWorks, see Using Custom AMIs (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
-	//  The default option is the stack's current operating system. For more information
+	//   A supported Linux operating system: An Amazon Linux version, such as Amazon
+	// Linux 2016.03, Amazon Linux 2015.09, or Amazon Linux 2015.03.
+	//
+	//   A supported Ubuntu operating system, such as Ubuntu 16.04 LTS, Ubuntu
+	// 14.04 LTS, or Ubuntu 12.04 LTS.
+	//
+	//    Red Hat Enterprise Linux 7
+	//
+	//   A supported Windows operating system, such as Microsoft Windows Server
+	// 2012 R2 Base, Microsoft Windows Server 2012 R2 with SQL Server Express, Microsoft
+	// Windows Server 2012 R2 with SQL Server Standard, or Microsoft Windows Server
+	// 2012 R2 with SQL Server Web.
+	//
+	//   A custom AMI: Custom. You specify the custom AMI you want to use when
+	// you create instances. For more information on how to use custom AMIs with
+	// OpsWorks, see Using Custom AMIs (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
+	//
+	//   The default option is the stack's current operating system. For more information
 	// on the supported operating systems, see AWS OpsWorks Operating Systems (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
 	DefaultOs *string `type:"string"`
 
@@ -8143,8 +8379,28 @@ type UpdateStackInput struct {
 	// HostnameTheme is set to Layer_Dependent, which creates host names by appending
 	// integers to the layer's short name. The other themes are:
 	//
-	//   Baked_Goods   Clouds   Europe_Cities   Fruits   Greek_Deities   Legendary_creatures_from_Japan
-	//   Planets_and_Moons   Roman_Deities   Scottish_Islands   US_Cities   Wild_Cats
+	//    Baked_Goods
+	//
+	//    Clouds
+	//
+	//    Europe_Cities
+	//
+	//    Fruits
+	//
+	//    Greek_Deities
+	//
+	//    Legendary_creatures_from_Japan
+	//
+	//    Planets_and_Moons
+	//
+	//    Roman_Deities
+	//
+	//    Scottish_Islands
+	//
+	//    US_Cities
+	//
+	//    Wild_Cats
+	//
 	//   To obtain a generated host name, call GetHostNameSuggestion, which returns
 	// a host name based on the current theme.
 	HostnameTheme *string `type:"string"`
@@ -8169,15 +8425,18 @@ type UpdateStackInput struct {
 	// allows you to provide your own custom security groups instead of using the
 	// built-in groups. UseOpsworksSecurityGroups has the following settings:
 	//
-	//  True - AWS OpsWorks automatically associates the appropriate built-in security
-	// group with each layer (default setting). You can associate additional security
-	// groups with a layer after you create it, but you cannot delete the built-in
-	// security group.  False - AWS OpsWorks does not associate built-in security
-	// groups with layers. You must create appropriate EC2 security groups and associate
-	// a security group with each layer that you create. However, you can still
-	// manually associate a built-in security group with a layer on. Custom security
-	// groups are required only for those layers that need custom settings.   For
-	// more information, see Create a New Stack (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-creating.html).
+	//   True - AWS OpsWorks automatically associates the appropriate built-in
+	// security group with each layer (default setting). You can associate additional
+	// security groups with a layer after you create it, but you cannot delete the
+	// built-in security group.
+	//
+	//   False - AWS OpsWorks does not associate built-in security groups with
+	// layers. You must create appropriate EC2 security groups and associate a security
+	// group with each layer that you create. However, you can still manually associate
+	// a built-in security group with a layer on. Custom security groups are required
+	// only for those layers that need custom settings.
+	//
+	//   For more information, see Create a New Stack (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-creating.html).
 	UseOpsworksSecurityGroups *bool `type:"boolean"`
 }
 
@@ -8434,8 +8693,11 @@ type VolumeConfiguration struct {
 
 	// The volume type:
 	//
-	//  standard - Magnetic io1 - Provisioned IOPS (SSD) gp2 - General Purpose
-	// (SSD)
+	//    standard - Magnetic
+	//
+	//    io1 - Provisioned IOPS (SSD)
+	//
+	//    gp2 - General Purpose (SSD)
 	VolumeType *string `type:"string"`
 }
 
@@ -8471,12 +8733,16 @@ func (s *VolumeConfiguration) Validate() error {
 // Describes a time-based instance's auto scaling schedule. The schedule consists
 // of a set of key-value pairs.
 //
-//  The key is the time period (a UTC hour) and must be an integer from 0 -
-// 23. The value indicates whether the instance should be online or offline
-// for the specified period, and must be set to "on" or "off"  The default setting
-// for all time periods is off, so you use the following parameters primarily
-// to specify the online periods. You don't have to explicitly specify offline
-// periods unless you want to change an online period to an offline period.
+//   The key is the time period (a UTC hour) and must be an integer from 0
+// - 23.
+//
+//   The value indicates whether the instance should be online or offline for
+// the specified period, and must be set to "on" or "off"
+//
+//   The default setting for all time periods is off, so you use the following
+// parameters primarily to specify the online periods. You don't have to explicitly
+// specify offline periods unless you want to change an online period to an
+// offline period.
 //
 // The following example specifies that the instance should be online for four
 // hours, from UTC 1200 - 1600. It will be off for the remainder of the day.
