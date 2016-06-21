@@ -511,6 +511,23 @@
         }
       ]
     },
+    "VpcExists": {
+      "operation": "DescribeVpcs",
+      "delay": 1,
+      "maxAttempts": 5,
+      "acceptors": [
+        {
+          "matcher": "status",
+          "expected": 200,
+          "state": "success"
+        },
+        {
+          "matcher": "error",
+          "expected": "InvalidVpcID.NotFound",
+          "state": "retry"
+        }
+      ]
+    },
     "VpnConnectionAvailable": {
       "delay": 15,
       "operation": "DescribeVpnConnections",
