@@ -24,6 +24,9 @@ const (
 	authHeaderPrefix = "AWS4-HMAC-SHA256"
 	timeFormat       = "20060102T150405Z"
 	shortTimeFormat  = "20060102"
+
+	// EmptyStringSHA256 is a SHA256 of an empty string
+	EmptyStringSHA256 = `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`
 )
 
 var ignoredHeaders = rules{
@@ -391,7 +394,7 @@ func (v4 *signer) bodyDigest() string {
 		if v4.isPresign && v4.ServiceName == "s3" {
 			hash = "UNSIGNED-PAYLOAD"
 		} else if v4.Body == nil {
-			hash = hex.EncodeToString(makeSha256([]byte{}))
+			hash = EmptyStringSHA256
 		} else {
 			hash = hex.EncodeToString(makeSha256Reader(v4.Body))
 		}
