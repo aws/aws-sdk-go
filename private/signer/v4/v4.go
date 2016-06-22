@@ -249,12 +249,10 @@ func (v4 *signer) build() {
 	if v4.isPresign {
 		v4.Request.URL.RawQuery += "&X-Amz-Signature=" + v4.signature
 	} else {
-		parts := []string{
-			authHeaderPrefix + " Credential=" + v4.CredValues.AccessKeyID + "/" + v4.credentialString,
-			"SignedHeaders=" + v4.signedHeaders,
-			"Signature=" + v4.signature,
-		}
-		v4.Request.Header.Set("Authorization", strings.Join(parts, ", "))
+		authorization := authHeaderPrefix + " Credential=" + v4.CredValues.AccessKeyID + "/" + v4.credentialString + ", " +
+			"SignedHeaders=" + v4.signedHeaders + ", " +
+			"Signature=" + v4.signature
+		v4.Request.Header.Set("Authorization", authorization)
 	}
 }
 
@@ -272,12 +270,10 @@ func (v4 *signer) buildTime() {
 }
 
 func (v4 *signer) buildCredentialString() {
-	v4.credentialString = strings.Join([]string{
-		v4.formattedShortTime,
-		v4.Region,
-		v4.ServiceName,
-		"aws4_request",
-	}, "/")
+	v4.credentialString = v4.formattedShortTime + "/" +
+		v4.Region + "/" +
+		v4.ServiceName + "/" +
+		"aws4_request"
 
 	if v4.isPresign {
 		v4.Query.Set("X-Amz-Credential", v4.CredValues.AccessKeyID+"/"+v4.credentialString)
@@ -297,6 +293,7 @@ func buildQuery(r rule, header http.Header) (url.Values, http.Header) {
 
 	return query, unsignedHeaders
 }
+
 func (v4 *signer) buildCanonicalHeaders(r rule, header http.Header) {
 	var headers []string
 	headers = append(headers, "host")
@@ -356,23 +353,20 @@ func (v4 *signer) buildCanonicalString() {
 		uri = rest.EscapePath(uri, false)
 	}
 
-	v4.canonicalString = strings.Join([]string{
-		v4.Request.Method,
-		uri,
-		v4.Request.URL.RawQuery,
-		v4.canonicalHeaders + "\n",
-		v4.signedHeaders,
-		v4.bodyDigest(),
-	}, "\n")
+	v4.canonicalString = v4.Request.Method + "\n" +
+		uri + "\n" +
+		v4.Request.URL.RawQuery + "\n" +
+		v4.canonicalHeaders + "\n\n" +
+		v4.signedHeaders + "\n" +
+		v4.bodyDigest()
+
 }
 
 func (v4 *signer) buildStringToSign() {
-	v4.stringToSign = strings.Join([]string{
-		authHeaderPrefix,
-		v4.formattedTime,
-		v4.credentialString,
-		hex.EncodeToString(makeSha256([]byte(v4.canonicalString))),
-	}, "\n")
+	v4.stringToSign = authHeaderPrefix + "\n" +
+		v4.formattedTime + "\n" +
+		v4.credentialString + "\n" +
+		hex.EncodeToString(makeSha256([]byte(v4.canonicalString)))
 }
 
 func (v4 *signer) buildSignature() {
