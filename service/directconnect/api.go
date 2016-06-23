@@ -4,6 +4,8 @@
 package directconnect
 
 import (
+	"time"
+
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 )
@@ -429,6 +431,39 @@ func (c *DirectConnect) DeleteVirtualInterface(input *DeleteVirtualInterfaceInpu
 	return out, err
 }
 
+const opDescribeConnectionLoa = "DescribeConnectionLoa"
+
+// DescribeConnectionLoaRequest generates a request for the DescribeConnectionLoa operation.
+func (c *DirectConnect) DescribeConnectionLoaRequest(input *DescribeConnectionLoaInput) (req *request.Request, output *DescribeConnectionLoaOutput) {
+	op := &request.Operation{
+		Name:       opDescribeConnectionLoa,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeConnectionLoaInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeConnectionLoaOutput{}
+	req.Data = output
+	return
+}
+
+// Returns the LOA-CFA for a Connection.
+//
+// The Letter of Authorization - Connecting Facility Assignment (LOA-CFA) is
+// a document that your APN partner or service provider uses when establishing
+// your cross connect to AWS at the colocation facility. For more information,
+// see Requesting Cross Connects at AWS Direct Connect Locations (http://docs.aws.amazon.com/directconnect/latest/UserGuide/Colocation.html)
+// in the AWS Direct Connect user guide.
+func (c *DirectConnect) DescribeConnectionLoa(input *DescribeConnectionLoaInput) (*DescribeConnectionLoaOutput, error) {
+	req, out := c.DescribeConnectionLoaRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opDescribeConnections = "DescribeConnections"
 
 // DescribeConnectionsRequest generates a request for the DescribeConnections operation.
@@ -483,6 +518,39 @@ func (c *DirectConnect) DescribeConnectionsOnInterconnectRequest(input *Describe
 //  This is intended for use by AWS Direct Connect partners only.
 func (c *DirectConnect) DescribeConnectionsOnInterconnect(input *DescribeConnectionsOnInterconnectInput) (*Connections, error) {
 	req, out := c.DescribeConnectionsOnInterconnectRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDescribeInterconnectLoa = "DescribeInterconnectLoa"
+
+// DescribeInterconnectLoaRequest generates a request for the DescribeInterconnectLoa operation.
+func (c *DirectConnect) DescribeInterconnectLoaRequest(input *DescribeInterconnectLoaInput) (req *request.Request, output *DescribeInterconnectLoaOutput) {
+	op := &request.Operation{
+		Name:       opDescribeInterconnectLoa,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeInterconnectLoaInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeInterconnectLoaOutput{}
+	req.Data = output
+	return
+}
+
+// Returns the LOA-CFA for an Interconnect.
+//
+// The Letter of Authorization - Connecting Facility Assignment (LOA-CFA) is
+// a document that is used when establishing your cross connect to AWS at the
+// colocation facility. For more information, see Requesting Cross Connects
+// at AWS Direct Connect Locations (http://docs.aws.amazon.com/directconnect/latest/UserGuide/Colocation.html)
+// in the AWS Direct Connect user guide.
+func (c *DirectConnect) DescribeInterconnectLoa(input *DescribeInterconnectLoaInput) (*DescribeInterconnectLoaOutput, error) {
+	req, out := c.DescribeInterconnectLoaRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -1097,6 +1165,9 @@ type Connection struct {
 	// 'Rejected' state if it is deleted by the end customer.
 	ConnectionState *string `locationName:"connectionState" type:"string" enum:"ConnectionState"`
 
+	// The time of the most recent call to DescribeConnectionLoa for this Connection.
+	LoaIssueTime *time.Time `locationName:"loaIssueTime" type:"timestamp" timestampFormat:"unix"`
+
 	// Where the connection is located.
 	//
 	// Example: EqSV5
@@ -1540,6 +1611,73 @@ func (s DeleteVirtualInterfaceOutput) GoString() string {
 	return s.String()
 }
 
+// Container for the parameters to the DescribeConnectionLoa operation.
+type DescribeConnectionLoaInput struct {
+	_ struct{} `type:"structure"`
+
+	// ID of the connection.
+	//
+	// Example: dxcon-fg5678gh
+	//
+	// Default: None
+	ConnectionId *string `locationName:"connectionId" type:"string" required:"true"`
+
+	// A standard media type indicating the content type of the LOA-CFA document.
+	// Currently, the only supported value is "application/pdf".
+	//
+	// Default: application/pdf
+	LoaContentType *string `locationName:"loaContentType" type:"string" enum:"LoaContentType"`
+
+	// The name of the APN partner or service provider who establishes connectivity
+	// on your behalf. If you supply this parameter, the LOA-CFA lists the provider
+	// name alongside your company name as the requester of the cross connect.
+	//
+	// Default: None
+	ProviderName *string `locationName:"providerName" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeConnectionLoaInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeConnectionLoaInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeConnectionLoaInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeConnectionLoaInput"}
+	if s.ConnectionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectionId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// The response received when DescribeConnectionLoa is called.
+type DescribeConnectionLoaOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A structure containing the Letter of Authorization - Connecting Facility
+	// Assignment (LOA-CFA) for a connection.
+	Loa *Loa `locationName:"loa" type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeConnectionLoaOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeConnectionLoaOutput) GoString() string {
+	return s.String()
+}
+
 // Container for the parameters to the DescribeConnections operation.
 type DescribeConnectionsInput struct {
 	_ struct{} `type:"structure"`
@@ -1595,6 +1733,71 @@ func (s *DescribeConnectionsOnInterconnectInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// Container for the parameters to the DescribeInterconnectLoa operation.
+type DescribeInterconnectLoaInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the interconnect.
+	//
+	// Example: dxcon-abc123
+	InterconnectId *string `locationName:"interconnectId" type:"string" required:"true"`
+
+	// A standard media type indicating the content type of the LOA-CFA document.
+	// Currently, the only supported value is "application/pdf".
+	//
+	// Default: application/pdf
+	LoaContentType *string `locationName:"loaContentType" type:"string" enum:"LoaContentType"`
+
+	// The name of the service provider who establishes connectivity on your behalf.
+	// If you supply this parameter, the LOA-CFA lists the provider name alongside
+	// your company name as the requester of the cross connect.
+	//
+	// Default: None
+	ProviderName *string `locationName:"providerName" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeInterconnectLoaInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeInterconnectLoaInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeInterconnectLoaInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeInterconnectLoaInput"}
+	if s.InterconnectId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InterconnectId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// The response received when DescribeInterconnectLoa is called.
+type DescribeInterconnectLoaOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A structure containing the Letter of Authorization - Connecting Facility
+	// Assignment (LOA-CFA) for a connection.
+	Loa *Loa `locationName:"loa" type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeInterconnectLoaOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeInterconnectLoaOutput) GoString() string {
+	return s.String()
 }
 
 // Container for the parameters to the DescribeInterconnects operation.
@@ -1800,6 +2003,9 @@ type Interconnect struct {
 	//    Deleted: The interconnect has been deleted.
 	InterconnectState *string `locationName:"interconnectState" type:"string" enum:"InterconnectState"`
 
+	// The time of the most recent call to DescribeInterconnectLoa for this Interconnect.
+	LoaIssueTime *time.Time `locationName:"loaIssueTime" type:"timestamp" timestampFormat:"unix"`
+
 	// Where the connection is located.
 	//
 	// Example: EqSV5
@@ -1822,6 +2028,33 @@ func (s Interconnect) String() string {
 
 // GoString returns the string representation
 func (s Interconnect) GoString() string {
+	return s.String()
+}
+
+// A structure containing the Letter of Authorization - Connecting Facility
+// Assignment (LOA-CFA) for a connection.
+type Loa struct {
+	_ struct{} `type:"structure"`
+
+	// The binary contents of the LOA-CFA document.
+	//
+	// LoaContent is automatically base64 encoded/decoded by the SDK.
+	LoaContent []byte `locationName:"loaContent" type:"blob"`
+
+	// A standard media type indicating the content type of the LOA-CFA document.
+	// Currently, the only supported value is "application/pdf".
+	//
+	// Default: application/pdf
+	LoaContentType *string `locationName:"loaContentType" type:"string" enum:"LoaContentType"`
+}
+
+// String returns the string representation
+func (s Loa) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Loa) GoString() string {
 	return s.String()
 }
 
@@ -2391,6 +2624,15 @@ const (
 	InterconnectStateDeleted = "deleted"
 )
 
+// A standard media type indicating the content type of the LOA-CFA document.
+// Currently, the only supported value is "application/pdf".
+//
+// Default: application/pdf
+const (
+	// @enum LoaContentType
+	LoaContentTypeApplicationPdf = "application/pdf"
+)
+
 // State of the virtual interface.
 //
 //    Confirming: The creation of the virtual interface is pending confirmation
@@ -2428,6 +2670,8 @@ const (
 	VirtualInterfaceStatePending = "pending"
 	// @enum VirtualInterfaceState
 	VirtualInterfaceStateAvailable = "available"
+	// @enum VirtualInterfaceState
+	VirtualInterfaceStateDown = "down"
 	// @enum VirtualInterfaceState
 	VirtualInterfaceStateDeleting = "deleting"
 	// @enum VirtualInterfaceState

@@ -318,6 +318,27 @@ func ExampleDirectConnect_DeleteVirtualInterface() {
 	fmt.Println(resp)
 }
 
+func ExampleDirectConnect_DescribeConnectionLoa() {
+	svc := directconnect.New(session.New())
+
+	params := &directconnect.DescribeConnectionLoaInput{
+		ConnectionId:   aws.String("ConnectionId"), // Required
+		LoaContentType: aws.String("LoaContentType"),
+		ProviderName:   aws.String("ProviderName"),
+	}
+	resp, err := svc.DescribeConnectionLoa(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleDirectConnect_DescribeConnections() {
 	svc := directconnect.New(session.New())
 
@@ -344,6 +365,27 @@ func ExampleDirectConnect_DescribeConnectionsOnInterconnect() {
 		InterconnectId: aws.String("InterconnectId"), // Required
 	}
 	resp, err := svc.DescribeConnectionsOnInterconnect(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleDirectConnect_DescribeInterconnectLoa() {
+	svc := directconnect.New(session.New())
+
+	params := &directconnect.DescribeInterconnectLoaInput{
+		InterconnectId: aws.String("InterconnectId"), // Required
+		LoaContentType: aws.String("LoaContentType"),
+		ProviderName:   aws.String("ProviderName"),
+	}
+	resp, err := svc.DescribeInterconnectLoa(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and

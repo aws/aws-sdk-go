@@ -179,6 +179,19 @@
         {"shape":"DirectConnectClientException"}
       ]
     },
+    "DescribeConnectionLoa":{
+      "name":"DescribeConnectionLoa",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeConnectionLoaRequest"},
+      "output":{"shape":"DescribeConnectionLoaResponse"},
+      "errors":[
+        {"shape":"DirectConnectServerException"},
+        {"shape":"DirectConnectClientException"}
+      ]
+    },
     "DescribeConnections":{
       "name":"DescribeConnections",
       "http":{
@@ -200,6 +213,19 @@
       },
       "input":{"shape":"DescribeConnectionsOnInterconnectRequest"},
       "output":{"shape":"Connections"},
+      "errors":[
+        {"shape":"DirectConnectServerException"},
+        {"shape":"DirectConnectClientException"}
+      ]
+    },
+    "DescribeInterconnectLoa":{
+      "name":"DescribeInterconnectLoa",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeInterconnectLoaRequest"},
+      "output":{"shape":"DescribeInterconnectLoaResponse"},
       "errors":[
         {"shape":"DirectConnectServerException"},
         {"shape":"DirectConnectClientException"}
@@ -359,7 +385,8 @@
         "location":{"shape":"LocationCode"},
         "bandwidth":{"shape":"Bandwidth"},
         "vlan":{"shape":"VLAN"},
-        "partnerName":{"shape":"PartnerName"}
+        "partnerName":{"shape":"PartnerName"},
+        "loaIssueTime":{"shape":"LoaIssueTime"}
       }
     },
     "ConnectionId":{"type":"string"},
@@ -469,6 +496,21 @@
         "virtualInterfaceState":{"shape":"VirtualInterfaceState"}
       }
     },
+    "DescribeConnectionLoaRequest":{
+      "type":"structure",
+      "required":["connectionId"],
+      "members":{
+        "connectionId":{"shape":"ConnectionId"},
+        "providerName":{"shape":"ProviderName"},
+        "loaContentType":{"shape":"LoaContentType"}
+      }
+    },
+    "DescribeConnectionLoaResponse":{
+      "type":"structure",
+      "members":{
+        "loa":{"shape":"Loa"}
+      }
+    },
     "DescribeConnectionsOnInterconnectRequest":{
       "type":"structure",
       "required":["interconnectId"],
@@ -480,6 +522,21 @@
       "type":"structure",
       "members":{
         "connectionId":{"shape":"ConnectionId"}
+      }
+    },
+    "DescribeInterconnectLoaRequest":{
+      "type":"structure",
+      "required":["interconnectId"],
+      "members":{
+        "interconnectId":{"shape":"InterconnectId"},
+        "providerName":{"shape":"ProviderName"},
+        "loaContentType":{"shape":"LoaContentType"}
+      }
+    },
+    "DescribeInterconnectLoaResponse":{
+      "type":"structure",
+      "members":{
+        "loa":{"shape":"Loa"}
       }
     },
     "DescribeInterconnectsRequest":{
@@ -518,7 +575,8 @@
         "interconnectState":{"shape":"InterconnectState"},
         "region":{"shape":"Region"},
         "location":{"shape":"LocationCode"},
-        "bandwidth":{"shape":"Bandwidth"}
+        "bandwidth":{"shape":"Bandwidth"},
+        "loaIssueTime":{"shape":"LoaIssueTime"}
       }
     },
     "InterconnectId":{"type":"string"},
@@ -544,6 +602,19 @@
         "interconnects":{"shape":"InterconnectList"}
       }
     },
+    "Loa":{
+      "type":"structure",
+      "members":{
+        "loaContent":{"shape":"LoaContent"},
+        "loaContentType":{"shape":"LoaContentType"}
+      }
+    },
+    "LoaContent":{"type":"blob"},
+    "LoaContentType":{
+      "type":"string",
+      "enum":["application/pdf"]
+    },
+    "LoaIssueTime":{"type":"timestamp"},
     "Location":{
       "type":"structure",
       "members":{
@@ -639,6 +710,7 @@
     },
     "OwnerAccount":{"type":"string"},
     "PartnerName":{"type":"string"},
+    "ProviderName":{"type":"string"},
     "Region":{"type":"string"},
     "RouteFilterPrefix":{
       "type":"structure",
@@ -704,6 +776,7 @@
         "verifying",
         "pending",
         "available",
+        "down",
         "deleting",
         "deleted",
         "rejected"
