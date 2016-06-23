@@ -33,6 +33,10 @@ func ExampleCognitoIdentity_CreateIdentityPool() {
 			aws.String("ARNString"), // Required
 			// More values...
 		},
+		SamlProviderARNs: []*string{
+			aws.String("ARNString"), // Required
+			// More values...
+		},
 		SupportedLoginProviders: map[string]*string{
 			"Key": aws.String("IdentityProviderId"), // Required
 			// More values...
@@ -134,7 +138,8 @@ func ExampleCognitoIdentity_GetCredentialsForIdentity() {
 	svc := cognitoidentity.New(session.New())
 
 	params := &cognitoidentity.GetCredentialsForIdentityInput{
-		IdentityId: aws.String("IdentityId"), // Required
+		IdentityId:    aws.String("IdentityId"), // Required
+		CustomRoleArn: aws.String("ARNString"),
 		Logins: map[string]*string{
 			"Key": aws.String("IdentityProviderToken"), // Required
 			// More values...
@@ -419,6 +424,10 @@ func ExampleCognitoIdentity_UpdateIdentityPool() {
 		},
 		DeveloperProviderName: aws.String("DeveloperProviderName"),
 		OpenIdConnectProviderARNs: []*string{
+			aws.String("ARNString"), // Required
+			// More values...
+		},
+		SamlProviderARNs: []*string{
 			aws.String("ARNString"), // Required
 			// More values...
 		},

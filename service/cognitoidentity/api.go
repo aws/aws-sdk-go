@@ -597,7 +597,7 @@ type CreateIdentityPoolInput struct {
 	// TRUE if the identity pool supports unauthenticated logins.
 	AllowUnauthenticatedIdentities *bool `type:"boolean" required:"true"`
 
-	// A list representing a Cognito User Identity Pool and its client ID.
+	// An array of Amazon Cognito Identity user pools.
 	CognitoIdentityProviders []*Provider `type:"list"`
 
 	// The "domain" by which Cognito will refer to your users. This name acts as
@@ -614,6 +614,10 @@ type CreateIdentityPoolInput struct {
 
 	// A list of OpendID Connect provider ARNs.
 	OpenIdConnectProviderARNs []*string `type:"list"`
+
+	// An array of Amazon Resource Names (ARNs) of the SAML provider for your identity
+	// pool.
+	SamlProviderARNs []*string `type:"list"`
 
 	// Optional key:value pairs mapping provider names to provider app IDs.
 	SupportedLoginProviders map[string]*string `type:"map"`
@@ -861,6 +865,12 @@ func (s *DescribeIdentityPoolInput) Validate() error {
 type GetCredentialsForIdentityInput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the role to be assumed when multiple roles
+	// were received in the token from the identity provider. For example, a SAML-based
+	// identity provider. This parameter is optional for identity providers that
+	// do not support role customization.
+	CustomRoleArn *string `min:"20" type:"string"`
+
 	// A unique identifier in the format REGION:GUID.
 	IdentityId *string `min:"1" type:"string" required:"true"`
 
@@ -881,6 +891,9 @@ func (s GetCredentialsForIdentityInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GetCredentialsForIdentityInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetCredentialsForIdentityInput"}
+	if s.CustomRoleArn != nil && len(*s.CustomRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomRoleArn", 20))
+	}
 	if s.IdentityId == nil {
 		invalidParams.Add(request.NewErrParamRequired("IdentityId"))
 	}
@@ -928,7 +941,6 @@ type GetIdInput struct {
 	// A set of optional name-value pairs that map provider names to provider tokens.
 	//
 	// The available provider names for Logins are as follows:  Facebook: graph.facebook.com
-	// Amazon Cognito Identity Provider: cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789
 	// Google: accounts.google.com Amazon: www.amazon.com Twitter: api.twitter.com
 	// Digits: www.digits.com
 	Logins map[string]*string `type:"map"`
@@ -1134,9 +1146,8 @@ type GetOpenIdTokenInput struct {
 
 	// A set of optional name-value pairs that map provider names to provider tokens.
 	// When using graph.facebook.com and www.amazon.com, supply the access_token
-	// returned from the provider's authflow. For accounts.google.com, an Amazon
-	// Cognito Identity Provider, or any other OpenId Connect provider, always include
-	// the id_token.
+	// returned from the provider's authflow. For accounts.google.com or any other
+	// OpenId Connect provider, always include the id_token.
 	Logins map[string]*string `type:"map"`
 }
 
@@ -1222,7 +1233,7 @@ type IdentityPool struct {
 	// TRUE if the identity pool supports unauthenticated logins.
 	AllowUnauthenticatedIdentities *bool `type:"boolean" required:"true"`
 
-	// A list representing a Cognito User Identity Pool and its client ID.
+	// A list representing an Amazon Cognito Identity User Pool and its client ID.
 	CognitoIdentityProviders []*Provider `type:"list"`
 
 	// The "domain" by which Cognito will refer to your users.
@@ -1236,6 +1247,10 @@ type IdentityPool struct {
 
 	// A list of OpendID Connect provider ARNs.
 	OpenIdConnectProviderARNs []*string `type:"list"`
+
+	// An array of Amazon Resource Names (ARNs) of the SAML provider for your identity
+	// pool.
+	SamlProviderARNs []*string `type:"list"`
 
 	// Optional key:value pairs mapping provider names to provider app IDs.
 	SupportedLoginProviders map[string]*string `type:"map"`
@@ -1628,14 +1643,16 @@ func (s MergeDeveloperIdentitiesOutput) GoString() string {
 	return s.String()
 }
 
-// A provider representing a Cognito User Identity Pool and its client ID.
+// A provider representing an Amazon Cognito Identity User Pool and its client
+// ID.
 type Provider struct {
 	_ struct{} `type:"structure"`
 
-	// The client ID for the Cognito User Identity Pool.
+	// The client ID for the Amazon Cognito Identity User Pool.
 	ClientId *string `min:"1" type:"string"`
 
-	// The provider name for a Cognito User Identity Pool. For example, cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789.
+	// The provider name for an Amazon Cognito Identity User Pool. For example,
+	// cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789.
 	ProviderName *string `min:"1" type:"string"`
 }
 
