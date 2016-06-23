@@ -347,7 +347,7 @@ func (a *API) ServiceGoCode() string {
 		a.imports["github.com/aws/aws-sdk-go/private/signer/v2"] = true
 		a.imports["github.com/aws/aws-sdk-go/aws/corehandlers"] = true
 	} else {
-		a.imports["github.com/aws/aws-sdk-go/private/signer/v4"] = true
+		a.imports["github.com/aws/aws-sdk-go/aws/signer/v4"] = true
 	}
 	a.imports["github.com/aws/aws-sdk-go/private/protocol/"+a.ProtocolPackage()] = true
 

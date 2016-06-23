@@ -17,11 +17,11 @@ import (
 	"github.com/aws/aws-sdk-go/aws/client/metadata"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/aws/signer/v4"
 	"github.com/aws/aws-sdk-go/awstesting"
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 	"github.com/aws/aws-sdk-go/private/protocol/xml/xmlutil"
-	"github.com/aws/aws-sdk-go/private/signer/v4"
 	"github.com/aws/aws-sdk-go/private/util"
 	"github.com/stretchr/testify/assert"
 )
@@ -82,7 +82,7 @@ func newInputService1ProtocolTestClient(cfg aws.Config, handlers request.Handler
 	}
 
 	// Handlers
-	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Sign.PushBackNamed(v4.SignRequestHandler)
 	svc.Handlers.Build.PushBackNamed(jsonrpc.BuildHandler)
 	svc.Handlers.Unmarshal.PushBackNamed(jsonrpc.UnmarshalHandler)
 	svc.Handlers.UnmarshalMeta.PushBackNamed(jsonrpc.UnmarshalMetaHandler)
@@ -175,7 +175,7 @@ func newInputService2ProtocolTestClient(cfg aws.Config, handlers request.Handler
 	}
 
 	// Handlers
-	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Sign.PushBackNamed(v4.SignRequestHandler)
 	svc.Handlers.Build.PushBackNamed(jsonrpc.BuildHandler)
 	svc.Handlers.Unmarshal.PushBackNamed(jsonrpc.UnmarshalHandler)
 	svc.Handlers.UnmarshalMeta.PushBackNamed(jsonrpc.UnmarshalMetaHandler)
@@ -267,7 +267,7 @@ func newInputService3ProtocolTestClient(cfg aws.Config, handlers request.Handler
 	}
 
 	// Handlers
-	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Sign.PushBackNamed(v4.SignRequestHandler)
 	svc.Handlers.Build.PushBackNamed(jsonrpc.BuildHandler)
 	svc.Handlers.Unmarshal.PushBackNamed(jsonrpc.UnmarshalHandler)
 	svc.Handlers.UnmarshalMeta.PushBackNamed(jsonrpc.UnmarshalMetaHandler)
@@ -392,7 +392,7 @@ func newInputService4ProtocolTestClient(cfg aws.Config, handlers request.Handler
 	}
 
 	// Handlers
-	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Sign.PushBackNamed(v4.SignRequestHandler)
 	svc.Handlers.Build.PushBackNamed(jsonrpc.BuildHandler)
 	svc.Handlers.Unmarshal.PushBackNamed(jsonrpc.UnmarshalHandler)
 	svc.Handlers.UnmarshalMeta.PushBackNamed(jsonrpc.UnmarshalMetaHandler)
@@ -485,7 +485,7 @@ func newInputService5ProtocolTestClient(cfg aws.Config, handlers request.Handler
 	}
 
 	// Handlers
-	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Sign.PushBackNamed(v4.SignRequestHandler)
 	svc.Handlers.Build.PushBackNamed(jsonrpc.BuildHandler)
 	svc.Handlers.Unmarshal.PushBackNamed(jsonrpc.UnmarshalHandler)
 	svc.Handlers.UnmarshalMeta.PushBackNamed(jsonrpc.UnmarshalMetaHandler)
@@ -739,7 +739,7 @@ func newInputService6ProtocolTestClient(cfg aws.Config, handlers request.Handler
 	}
 
 	// Handlers
-	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Sign.PushBackNamed(v4.SignRequestHandler)
 	svc.Handlers.Build.PushBackNamed(jsonrpc.BuildHandler)
 	svc.Handlers.Unmarshal.PushBackNamed(jsonrpc.UnmarshalHandler)
 	svc.Handlers.UnmarshalMeta.PushBackNamed(jsonrpc.UnmarshalMetaHandler)
@@ -832,7 +832,7 @@ func newInputService7ProtocolTestClient(cfg aws.Config, handlers request.Handler
 	}
 
 	// Handlers
-	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Sign.PushBackNamed(v4.SignRequestHandler)
 	svc.Handlers.Build.PushBackNamed(jsonrpc.BuildHandler)
 	svc.Handlers.Unmarshal.PushBackNamed(jsonrpc.UnmarshalHandler)
 	svc.Handlers.UnmarshalMeta.PushBackNamed(jsonrpc.UnmarshalMetaHandler)
