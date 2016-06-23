@@ -1,6 +1,7 @@
 package v4
 
 import (
+	"io"
 	"net/http"
 	"strings"
 	"testing"
@@ -14,7 +15,36 @@ import (
 	"github.com/aws/aws-sdk-go/awstesting"
 )
 
-func buildSigner(serviceName string, region string, signTime time.Time, expireTime time.Duration, body string) signer {
+func TestStripExcessHeaders(t *testing.T) {
+	vals := []string{
+		"123",
+		"1 2 3",
+		"  1 2 3",
+		"1  2 3",
+		"1  23",
+		"1  2  3",
+		"1  2  ",
+		" 1  2  ",
+	}
+
+	expected := []string{
+		"123",
+		"1 2 3",
+		"1 2 3",
+		"1 2 3",
+		"1 23",
+		"1 2 3",
+		"1 2",
+		"1 2",
+	}
+
+	newVals := stripExcessSpaces(vals)
+	for i := 0; i < len(newVals); i++ {
+		assert.Equal(t, newVals[i], expected[i])
+	}
+}
+
+func buildRequest(serviceName, region, body string) (*http.Request, io.ReadSeeker) {
 	endpoint := "https://" + serviceName + "." + region + ".amazonaws.com"
 	reader := strings.NewReader(body)
 	req, _ := http.NewRequest("POST", endpoint, reader)
@@ -25,15 +55,11 @@ func buildSigner(serviceName string, region string, signTime time.Time, expireTi
 	req.Header.Add("X-Amz-Meta-Other-Header", "some-value=!@#$%^&* (+)")
 	req.Header.Add("X-Amz-Meta-Other-Header_With_Underscore", "some-value=!@#$%^&* (+)")
 	req.Header.Add("X-amz-Meta-Other-Header_With_Underscore", "some-value=!@#$%^&* (+)")
+	return req, reader
+}
 
-	return signer{
-		Request:     req,
-		Time:        signTime,
-		ExpireTime:  expireTime,
-		Query:       req.URL.Query(),
-		Body:        reader,
-		ServiceName: serviceName,
-		Region:      region,
+func buildSigner() Signer {
+	return Signer{
 		Credentials: credentials.NewStaticCredentials("AKID", "SECRET", "SESSION"),
 	}
 }
@@ -52,8 +78,10 @@ func assertEqual(t *testing.T, expected, given string) {
 }
 
 func TestPresignRequest(t *testing.T) {
-	signer := buildSigner("dynamodb", "us-east-1", time.Unix(0, 0), 300*time.Second, "{}")
-	signer.sign()
+	req, body := buildRequest("dynamodb", "us-east-1", "{}")
+
+	signer := buildSigner()
+	signer.Presign(req, body, "dynamodb", "us-east-1", 300*time.Second, time.Unix(0, 0))
 
 	expectedDate := "19700101T000000Z"
 	expectedHeaders := "content-length;content-type;host;x-amz-meta-other-header;x-amz-meta-other-header_with_underscore"
@@ -61,7 +89,7 @@ func TestPresignRequest(t *testing.T) {
 	expectedCred := "AKID/19700101/us-east-1/dynamodb/aws4_request"
 	expectedTarget := "prefix.Operation"
 
-	q := signer.Request.URL.Query()
+	q := req.URL.Query()
 	assert.Equal(t, expectedSig, q.Get("X-Amz-Signature"))
 	assert.Equal(t, expectedCred, q.Get("X-Amz-Credential"))
 	assert.Equal(t, expectedHeaders, q.Get("X-Amz-SignedHeaders"))
@@ -71,55 +99,40 @@ func TestPresignRequest(t *testing.T) {
 }
 
 func TestSignRequest(t *testing.T) {
-	signer := buildSigner("dynamodb", "us-east-1", time.Unix(0, 0), 0, "{}")
-	signer.sign()
+	req, body := buildRequest("dynamodb", "us-east-1", "{}")
+	signer := buildSigner()
+	signer.Sign(req, body, "dynamodb", "us-east-1", time.Unix(0, 0))
 
 	expectedDate := "19700101T000000Z"
 	expectedSig := "AWS4-HMAC-SHA256 Credential=AKID/19700101/us-east-1/dynamodb/aws4_request, SignedHeaders=content-length;content-type;host;x-amz-date;x-amz-meta-other-header;x-amz-meta-other-header_with_underscore;x-amz-security-token;x-amz-target, Signature=ea766cabd2ec977d955a3c2bae1ae54f4515d70752f2207618396f20aa85bd21"
 
-	q := signer.Request.Header
+	q := req.Header
 	assert.Equal(t, expectedSig, q.Get("Authorization"))
 	assert.Equal(t, expectedDate, q.Get("X-Amz-Date"))
 }
 
-func TestSignEmptyBody(t *testing.T) {
-	signer := buildSigner("dynamodb", "us-east-1", time.Now(), 0, "")
-	signer.Body = nil
-	signer.sign()
-	hash := signer.Request.Header.Get("X-Amz-Content-Sha256")
-	assert.Equal(t, "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", hash)
-}
-
 func TestSignBody(t *testing.T) {
-	signer := buildSigner("dynamodb", "us-east-1", time.Now(), 0, "hello")
-	signer.sign()
-	hash := signer.Request.Header.Get("X-Amz-Content-Sha256")
+	req, body := buildRequest("dynamodb", "us-east-1", "hello")
+	signer := buildSigner()
+	signer.Sign(req, body, "dynamodb", "us-east-1", time.Now())
+	hash := req.Header.Get("X-Amz-Content-Sha256")
 	assert.Equal(t, "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824", hash)
-}
-
-func TestSignSeekedBody(t *testing.T) {
-	signer := buildSigner("dynamodb", "us-east-1", time.Now(), 0, "   hello")
-	signer.Body.Read(make([]byte, 3)) // consume first 3 bytes so body is now "hello"
-	signer.sign()
-	hash := signer.Request.Header.Get("X-Amz-Content-Sha256")
-	assert.Equal(t, "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824", hash)
-
-	start, _ := signer.Body.Seek(0, 1)
-	assert.Equal(t, int64(3), start)
 }
 
 func TestPresignEmptyBodyS3(t *testing.T) {
-	signer := buildSigner("s3", "us-east-1", time.Now(), 5*time.Minute, "hello")
-	signer.sign()
-	hash := signer.Request.Header.Get("X-Amz-Content-Sha256")
+	req, body := buildRequest("s3", "us-east-1", "hello")
+	signer := buildSigner()
+	signer.Presign(req, body, "s3", "us-east-1", 5*time.Minute, time.Now())
+	hash := req.Header.Get("X-Amz-Content-Sha256")
 	assert.Equal(t, "UNSIGNED-PAYLOAD", hash)
 }
 
 func TestSignPrecomputedBodyChecksum(t *testing.T) {
-	signer := buildSigner("dynamodb", "us-east-1", time.Now(), 0, "hello")
-	signer.Request.Header.Set("X-Amz-Content-Sha256", "PRECOMPUTED")
-	signer.sign()
-	hash := signer.Request.Header.Get("X-Amz-Content-Sha256")
+	req, body := buildRequest("dynamodb", "us-east-1", "hello")
+	req.Header.Set("X-Amz-Content-Sha256", "PRECOMPUTED")
+	signer := buildSigner()
+	signer.Sign(req, body, "dynamodb", "us-east-1", time.Now())
+	hash := req.Header.Get("X-Amz-Content-Sha256")
 	assert.Equal(t, "PRECOMPUTED", hash)
 }
 
@@ -290,45 +303,18 @@ func TestResignRequestExpiredRequest(t *testing.T) {
 	assert.NotEqual(t, querySig, r.HTTPRequest.Header.Get("Authorization"))
 }
 
-func TestStripExcessHeaders(t *testing.T) {
-	vals := []string{
-		"123",
-		"1 2 3",
-		"  1 2 3",
-		"1  2 3",
-		"1  23",
-		"1  2  3",
-		"1  2  ",
-		" 1  2  ",
-	}
-
-	expected := []string{
-		"123",
-		"1 2 3",
-		"1 2 3",
-		"1 2 3",
-		"1 23",
-		"1 2 3",
-		"1 2",
-		"1 2",
-	}
-
-	newVals := stripExcessSpaces(vals)
-	for i := 0; i < len(newVals); i++ {
-		assert.Equal(t, newVals[i], expected[i])
-	}
-}
-
 func BenchmarkPresignRequest(b *testing.B) {
-	signer := buildSigner("dynamodb", "us-east-1", time.Now(), 300*time.Second, "{}")
+	signer := buildSigner()
+	req, body := buildRequest("dynamodb", "us-east-1", "{}")
 	for i := 0; i < b.N; i++ {
-		signer.sign()
+		signer.Presign(req, body, "dynamodb", "us-east-1", 300*time.Second, time.Now())
 	}
 }
 
 func BenchmarkSignRequest(b *testing.B) {
-	signer := buildSigner("dynamodb", "us-east-1", time.Now(), 0, "{}")
+	signer := buildSigner()
+	req, body := buildRequest("dynamodb", "us-east-1", "{}")
 	for i := 0; i < b.N; i++ {
-		signer.sign()
+		signer.Sign(req, body, "dynamodb", "us-east-1", time.Now())
 	}
 }
