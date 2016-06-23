@@ -4509,9 +4509,7 @@ type CreateDBInstanceInput struct {
 	MonitoringRoleArn *string `type:"string"`
 
 	// Specifies if the DB instance is a Multi-AZ deployment. You cannot set the
-	// AvailabilityZone parameter if the MultiAZ parameter is set to true. Do not
-	// set this value if you want a Multi-AZ deployment for a SQL Server DB instance.
-	// Multi-AZ for SQL Server is set using the Mirroring option in an option group.
+	// AvailabilityZone parameter if the MultiAZ parameter is set to true.
 	MultiAZ *bool `type:"boolean"`
 
 	// Indicates that the DB instance should be associated with the specified option
@@ -10609,10 +10607,7 @@ type ModifyDBInstanceInput struct {
 	// does not result in an outage and the change is applied during the next maintenance
 	// window unless the ApplyImmediately parameter is set to true for this request.
 	//
-	// Constraints: Cannot be specified if the DB instance is a Read Replica. This
-	// parameter cannot be used with SQL Server DB instances. Multi-AZ for SQL Server
-	// DB instances is set using the Mirroring option in an option group associated
-	// with the DB instance.
+	// Constraints: Cannot be specified if the DB instance is a Read Replica.
 	MultiAZ *bool `type:"boolean"`
 
 	// The new DB instance identifier for the DB instance when renaming a DB instance.
