@@ -2196,6 +2196,26 @@ func ExampleEC2_DescribeIdFormat() {
 	fmt.Println(resp)
 }
 
+func ExampleEC2_DescribeIdentityIdFormat() {
+	svc := ec2.New(session.New())
+
+	params := &ec2.DescribeIdentityIdFormatInput{
+		PrincipalArn: aws.String("String"), // Required
+		Resource:     aws.String("String"),
+	}
+	resp, err := svc.DescribeIdentityIdFormat(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleEC2_DescribeImageAttribute() {
 	svc := ec2.New(session.New())
 
@@ -4308,6 +4328,27 @@ func ExampleEC2_ModifyIdFormat() {
 		UseLongIds: aws.Bool(true),       // Required
 	}
 	resp, err := svc.ModifyIdFormat(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleEC2_ModifyIdentityIdFormat() {
+	svc := ec2.New(session.New())
+
+	params := &ec2.ModifyIdentityIdFormatInput{
+		PrincipalArn: aws.String("String"), // Required
+		Resource:     aws.String("String"), // Required
+		UseLongIds:   aws.Bool(true),       // Required
+	}
+	resp, err := svc.ModifyIdentityIdFormat(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
