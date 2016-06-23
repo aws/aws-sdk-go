@@ -1,4 +1,7 @@
 // Package v4 implements signing for AWS V4 signer
+//
+// Provides request signing for request that need to be signed with
+// AWS V4 Signatures.
 package v4
 
 import (
@@ -88,15 +91,34 @@ var allowedQueryHoisting = inclusiveRules{
 	patterns{"X-Amz-"},
 }
 
-// Signer applies AWS v4 signing to given request
+// Signer applies AWS v4 signing to given request. Use this to sign requests
+// that need to be signed with AWS V4 Signatures.
 type Signer struct {
-	Credentials           *credentials.Credentials
-	Debug                 aws.LogLevelType
-	Logger                aws.Logger
+	// The authentication credentials the request will be signed against.
+	// This value must be set to sign requests.
+	Credentials *credentials.Credentials
+
+	// Sets the log level the signer should use when reporting information to
+	// the logger. If the logger is nil nothing will be logged. See
+	// aws.LogLevelType for more information on available logging levels
+	//
+	// By default nothing will be logged.
+	Debug aws.LogLevelType
+
+	// The logger loging information will be written to. If there the logger
+	// is nil, nothing will be logged.
+	Logger aws.Logger
+
+	// Disables the Signer's moving HTTP header key/value pairs from the HTTP
+	// request header to the request's query string. This is most commonly used
+	// with pre-signed requests preventing headers from being added to the
+	// request's query string.
 	DisableHeaderHoisting bool
 }
 
-// NewSigner creates a new Signer
+// NewSigner returns a Signer pointer configured with the credentials and optional
+// option values provided. If not options are provided the Signer will use its
+// default configuration.
 func NewSigner(credentials *credentials.Credentials, options ...func(*Signer)) *Signer {
 	v4 := &Signer{
 		Credentials: credentials,
@@ -133,16 +155,59 @@ type signingCtx struct {
 	authorization    string
 }
 
-// Sign signs AWS v4 requests
+// Sign signs AWS v4 requests with the provided body, service name, region the
+// request is made to, and time the request is signed at. The signTime allows
+// you to specify that a request is signed for the future, and cannot be
+// used until then.
 //
-// The requests body needs to be passed in as an io.ReadSeeker to support hashing the body.
+// Returns a list of HTTP headers that were included in the signature or an
+// error if signing the request failed. Generally for signed requests this value
+// is not needed as the full request context will be captured by the http.Request
+// value. It is included for reference though.
+//
+// Sign differs from Presign in that it will sign the request using HTTP
+// header values. This type of signing is intended for http.Request values that
+// will not be shared, or are shared in a way the header values on the request
+// will not be lost.
+//
+// The requests body is an io.ReadSeeker so the SHA256 of the body can be
+// generated. To bypass the signer computing the hash you can set the
+// "X-Amz-Content-Sha256" header with a precomputed value. The signer will
+// only compute the hash if the request header value is empty.
 func (v4 Signer) Sign(r *http.Request, body io.ReadSeeker, service, region string, signTime time.Time) (http.Header, error) {
 	return v4.signWithBody(r, body, service, region, 0, signTime)
 }
 
-// Presign presigns AWS v4 requests
+// Presign signs AWS v4 requests with the provided body, service name, region
+// the request is made to, and time the request is signed at. The signTime
+// allows you to specify that a request is signed for the future, and cannot
+// be used until then.
 //
-// The requests body needs to be passed in as an io.ReadSeeker to support hashing the body.
+// Returns a list of HTTP headers that were included in the signature or an
+// error if signing the request failed. For presigned requests these headers
+// and their values must be included on the HTTP request when it is made. This
+// is helpful to know what header values need to be shared with the party the
+// presigned request will be distributed to.
+//
+// Presign differs from Sign in that it will sign the request using query string
+// instead of header values. This allows you to share the Presigned Request's
+// URL with third parties, or distribute it throughout your system with minimal
+// dependencies.
+//
+// Presign also takes an exp value which is the duration the
+// signed request will be valid after the signing time. This is allows you to
+// set when the request will expire.
+//
+// The requests body is an io.ReadSeeker so the SHA256 of the body can be
+// generated. To bypass the signer computing the hash you can set the
+// "X-Amz-Content-Sha256" header with a precomputed value. The signer will
+// only compute the hash if the request header value is empty.
+//
+// Presigning a S3 request will not compute the body's SHA256 hash by default.
+// This is done due to the general use case for S3 presigned URLs is to share
+// PUT/GET capabilities. If you would like to include the body's SHA256 in the
+// presigned request's signature you can set the "X-Amz-Content-Sha256"
+// HTTP header and that will be included in the request's signature.
 func (v4 Signer) Presign(r *http.Request, body io.ReadSeeker, service, region string, exp time.Duration, signTime time.Time) (http.Header, error) {
 	return v4.signWithBody(r, body, service, region, exp, signTime)
 }
@@ -216,11 +281,24 @@ func (ctx *signingCtx) assignAmzQueryValues() {
 	}
 }
 
-// Sign AWS SDK service requests with version 4.
+// SignRequestHandler is a named request handler the SDK will use to sign
+// service client request with using the V4 signature.
+var SignRequestHandler = request.NamedHandler{
+	Name: "v4.SignRequestHandler", Fn: SignSDKRequest,
+}
+
+// SignSDKRequest signs an AWS request with the V4 signature. This
+// request handler is bested used only with the SDK's built in service client's
+// API operation requests.
 //
-// Signing is skipped if the credentials is the credentials.AnonymousCredentials
-// object.
-func Sign(req *request.Request) {
+// This function should not be used on its on its own, but in conjunction with
+// an AWS service client's API operation call. To sign a standalone request
+// not created by a service client's API operation method use the "Sign" or
+// "Presign" functions of the "Signer" type.
+//
+// If the credentials of the request's config are set to
+// credentials.AnonymousCredentials the request will not be signed.
+func SignSDKRequest(req *request.Request) {
 	// If the request does not need to be signed ignore the signing of the
 	// request if the AnonymousCredentials object is used.
 	if req.Config.Credentials == credentials.AnonymousCredentials {

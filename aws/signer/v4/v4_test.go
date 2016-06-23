@@ -147,7 +147,7 @@ func TestAnonymousCredentials(t *testing.T) {
 		nil,
 		nil,
 	)
-	Sign(r)
+	SignSDKRequest(r)
 
 	urlQ := r.HTTPRequest.URL.Query()
 	assert.Empty(t, urlQ.Get("X-Amz-Signature"))
@@ -175,10 +175,10 @@ func TestIgnoreResignRequestWithValidCreds(t *testing.T) {
 		nil,
 	)
 
-	Sign(r)
+	SignSDKRequest(r)
 	sig := r.HTTPRequest.Header.Get("Authorization")
 
-	Sign(r)
+	SignSDKRequest(r)
 	assert.Equal(t, sig, r.HTTPRequest.Header.Get("Authorization"))
 }
 
@@ -198,10 +198,10 @@ func TestIgnorePreResignRequestWithValidCreds(t *testing.T) {
 	)
 	r.ExpireTime = time.Minute * 10
 
-	Sign(r)
+	SignSDKRequest(r)
 	sig := r.HTTPRequest.Header.Get("X-Amz-Signature")
 
-	Sign(r)
+	SignSDKRequest(r)
 	assert.Equal(t, sig, r.HTTPRequest.Header.Get("X-Amz-Signature"))
 }
 
@@ -217,7 +217,7 @@ func TestResignRequestExpiredCreds(t *testing.T) {
 		nil,
 		nil,
 	)
-	Sign(r)
+	SignSDKRequest(r)
 	querySig := r.HTTPRequest.Header.Get("Authorization")
 	var origSignedHeaders string
 	for _, p := range strings.Split(querySig, ", ") {
@@ -231,7 +231,7 @@ func TestResignRequestExpiredCreds(t *testing.T) {
 
 	creds.Expire()
 
-	Sign(r)
+	SignSDKRequest(r)
 	updatedQuerySig := r.HTTPRequest.Header.Get("Authorization")
 	assert.NotEqual(t, querySig, updatedQuerySig)
 
@@ -265,7 +265,7 @@ func TestPreResignRequestExpiredCreds(t *testing.T) {
 	)
 	r.ExpireTime = time.Minute * 10
 
-	Sign(r)
+	SignSDKRequest(r)
 	querySig := r.HTTPRequest.URL.Query().Get("X-Amz-Signature")
 	signedHeaders := r.HTTPRequest.URL.Query().Get("X-Amz-SignedHeaders")
 	assert.NotEmpty(t, signedHeaders)
@@ -273,7 +273,7 @@ func TestPreResignRequestExpiredCreds(t *testing.T) {
 	creds.Expire()
 	r.Time = time.Now().Add(time.Hour * 48)
 
-	Sign(r)
+	SignSDKRequest(r)
 	assert.NotEqual(t, querySig, r.HTTPRequest.URL.Query().Get("X-Amz-Signature"))
 	resignedHeaders := r.HTTPRequest.URL.Query().Get("X-Amz-SignedHeaders")
 	assert.Equal(t, signedHeaders, resignedHeaders)
@@ -293,13 +293,13 @@ func TestResignRequestExpiredRequest(t *testing.T) {
 		nil,
 	)
 
-	Sign(r)
+	SignSDKRequest(r)
 	querySig := r.HTTPRequest.Header.Get("Authorization")
 
 	// Simulate the request occured 15 minutes in the past
 	r.Time = r.Time.Add(-15 * time.Minute)
 
-	Sign(r)
+	SignSDKRequest(r)
 	assert.NotEqual(t, querySig, r.HTTPRequest.Header.Get("Authorization"))
 }
 

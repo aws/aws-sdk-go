@@ -12,5 +12,5 @@ import (
 // Signing is skipped if the credentials is the credentials.AnonymousCredentials
 // object.
 func Sign(req *request.Request) {
-	v4.Sign(req)
+	v4.SignSDKRequest(req)
 }

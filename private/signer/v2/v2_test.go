@@ -163,7 +163,7 @@ func TestGet(t *testing.T) {
 	assert.Equal("GET", r.HTTPRequest.Method)
 	assert.Equal("", r.HTTPRequest.URL.Query().Get("Signature"))
 
-	Sign(r)
+	SignSDKRequest(r)
 	assert.NoError(r.Error)
 	t.Logf("Signature: %s", r.HTTPRequest.URL.Query().Get("Signature"))
 	assert.NotEqual("", r.HTTPRequest.URL.Query().Get("Signature"))
@@ -186,7 +186,7 @@ func TestAnonymousCredentials(t *testing.T) {
 	)
 	r.Build()
 
-	Sign(r)
+	SignSDKRequest(r)
 
 	req := r.HTTPRequest
 	req.ParseForm()
