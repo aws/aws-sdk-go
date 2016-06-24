@@ -15,7 +15,28 @@ import (
 
 const opAcknowledgeJob = "AcknowledgeJob"
 
-// AcknowledgeJobRequest generates a request for the AcknowledgeJob operation.
+// AcknowledgeJobRequest generates a "aws/request.Request" representing the
+// client's request for the AcknowledgeJob operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AcknowledgeJob method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AcknowledgeJobRequest method.
+//    req, resp := client.AcknowledgeJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) AcknowledgeJobRequest(input *AcknowledgeJobInput) (req *request.Request, output *AcknowledgeJobOutput) {
 	op := &request.Operation{
 		Name:       opAcknowledgeJob,
@@ -43,7 +64,28 @@ func (c *CodePipeline) AcknowledgeJob(input *AcknowledgeJobInput) (*AcknowledgeJ
 
 const opAcknowledgeThirdPartyJob = "AcknowledgeThirdPartyJob"
 
-// AcknowledgeThirdPartyJobRequest generates a request for the AcknowledgeThirdPartyJob operation.
+// AcknowledgeThirdPartyJobRequest generates a "aws/request.Request" representing the
+// client's request for the AcknowledgeThirdPartyJob operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AcknowledgeThirdPartyJob method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AcknowledgeThirdPartyJobRequest method.
+//    req, resp := client.AcknowledgeThirdPartyJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) AcknowledgeThirdPartyJobRequest(input *AcknowledgeThirdPartyJobInput) (req *request.Request, output *AcknowledgeThirdPartyJobOutput) {
 	op := &request.Operation{
 		Name:       opAcknowledgeThirdPartyJob,
@@ -71,7 +113,28 @@ func (c *CodePipeline) AcknowledgeThirdPartyJob(input *AcknowledgeThirdPartyJobI
 
 const opCreateCustomActionType = "CreateCustomActionType"
 
-// CreateCustomActionTypeRequest generates a request for the CreateCustomActionType operation.
+// CreateCustomActionTypeRequest generates a "aws/request.Request" representing the
+// client's request for the CreateCustomActionType operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateCustomActionType method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateCustomActionTypeRequest method.
+//    req, resp := client.CreateCustomActionTypeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) CreateCustomActionTypeRequest(input *CreateCustomActionTypeInput) (req *request.Request, output *CreateCustomActionTypeOutput) {
 	op := &request.Operation{
 		Name:       opCreateCustomActionType,
@@ -99,7 +162,28 @@ func (c *CodePipeline) CreateCustomActionType(input *CreateCustomActionTypeInput
 
 const opCreatePipeline = "CreatePipeline"
 
-// CreatePipelineRequest generates a request for the CreatePipeline operation.
+// CreatePipelineRequest generates a "aws/request.Request" representing the
+// client's request for the CreatePipeline operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreatePipeline method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreatePipelineRequest method.
+//    req, resp := client.CreatePipelineRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) CreatePipelineRequest(input *CreatePipelineInput) (req *request.Request, output *CreatePipelineOutput) {
 	op := &request.Operation{
 		Name:       opCreatePipeline,
@@ -126,7 +210,28 @@ func (c *CodePipeline) CreatePipeline(input *CreatePipelineInput) (*CreatePipeli
 
 const opDeleteCustomActionType = "DeleteCustomActionType"
 
-// DeleteCustomActionTypeRequest generates a request for the DeleteCustomActionType operation.
+// DeleteCustomActionTypeRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteCustomActionType operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteCustomActionType method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteCustomActionTypeRequest method.
+//    req, resp := client.DeleteCustomActionTypeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) DeleteCustomActionTypeRequest(input *DeleteCustomActionTypeInput) (req *request.Request, output *DeleteCustomActionTypeOutput) {
 	op := &request.Operation{
 		Name:       opDeleteCustomActionType,
@@ -159,7 +264,28 @@ func (c *CodePipeline) DeleteCustomActionType(input *DeleteCustomActionTypeInput
 
 const opDeletePipeline = "DeletePipeline"
 
-// DeletePipelineRequest generates a request for the DeletePipeline operation.
+// DeletePipelineRequest generates a "aws/request.Request" representing the
+// client's request for the DeletePipeline operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeletePipeline method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeletePipelineRequest method.
+//    req, resp := client.DeletePipelineRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) DeletePipelineRequest(input *DeletePipelineInput) (req *request.Request, output *DeletePipelineOutput) {
 	op := &request.Operation{
 		Name:       opDeletePipeline,
@@ -188,7 +314,28 @@ func (c *CodePipeline) DeletePipeline(input *DeletePipelineInput) (*DeletePipeli
 
 const opDisableStageTransition = "DisableStageTransition"
 
-// DisableStageTransitionRequest generates a request for the DisableStageTransition operation.
+// DisableStageTransitionRequest generates a "aws/request.Request" representing the
+// client's request for the DisableStageTransition operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DisableStageTransition method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DisableStageTransitionRequest method.
+//    req, resp := client.DisableStageTransitionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) DisableStageTransitionRequest(input *DisableStageTransitionInput) (req *request.Request, output *DisableStageTransitionOutput) {
 	op := &request.Operation{
 		Name:       opDisableStageTransition,
@@ -218,7 +365,28 @@ func (c *CodePipeline) DisableStageTransition(input *DisableStageTransitionInput
 
 const opEnableStageTransition = "EnableStageTransition"
 
-// EnableStageTransitionRequest generates a request for the EnableStageTransition operation.
+// EnableStageTransitionRequest generates a "aws/request.Request" representing the
+// client's request for the EnableStageTransition operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the EnableStageTransition method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the EnableStageTransitionRequest method.
+//    req, resp := client.EnableStageTransitionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) EnableStageTransitionRequest(input *EnableStageTransitionInput) (req *request.Request, output *EnableStageTransitionOutput) {
 	op := &request.Operation{
 		Name:       opEnableStageTransition,
@@ -247,7 +415,28 @@ func (c *CodePipeline) EnableStageTransition(input *EnableStageTransitionInput) 
 
 const opGetJobDetails = "GetJobDetails"
 
-// GetJobDetailsRequest generates a request for the GetJobDetails operation.
+// GetJobDetailsRequest generates a "aws/request.Request" representing the
+// client's request for the GetJobDetails operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetJobDetails method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetJobDetailsRequest method.
+//    req, resp := client.GetJobDetailsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) GetJobDetailsRequest(input *GetJobDetailsInput) (req *request.Request, output *GetJobDetailsOutput) {
 	op := &request.Operation{
 		Name:       opGetJobDetails,
@@ -279,7 +468,28 @@ func (c *CodePipeline) GetJobDetails(input *GetJobDetailsInput) (*GetJobDetailsO
 
 const opGetPipeline = "GetPipeline"
 
-// GetPipelineRequest generates a request for the GetPipeline operation.
+// GetPipelineRequest generates a "aws/request.Request" representing the
+// client's request for the GetPipeline operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetPipeline method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetPipelineRequest method.
+//    req, resp := client.GetPipelineRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) GetPipelineRequest(input *GetPipelineInput) (req *request.Request, output *GetPipelineOutput) {
 	op := &request.Operation{
 		Name:       opGetPipeline,
@@ -308,7 +518,28 @@ func (c *CodePipeline) GetPipeline(input *GetPipelineInput) (*GetPipelineOutput,
 
 const opGetPipelineState = "GetPipelineState"
 
-// GetPipelineStateRequest generates a request for the GetPipelineState operation.
+// GetPipelineStateRequest generates a "aws/request.Request" representing the
+// client's request for the GetPipelineState operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetPipelineState method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetPipelineStateRequest method.
+//    req, resp := client.GetPipelineStateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) GetPipelineStateRequest(input *GetPipelineStateInput) (req *request.Request, output *GetPipelineStateOutput) {
 	op := &request.Operation{
 		Name:       opGetPipelineState,
@@ -336,7 +567,28 @@ func (c *CodePipeline) GetPipelineState(input *GetPipelineStateInput) (*GetPipel
 
 const opGetThirdPartyJobDetails = "GetThirdPartyJobDetails"
 
-// GetThirdPartyJobDetailsRequest generates a request for the GetThirdPartyJobDetails operation.
+// GetThirdPartyJobDetailsRequest generates a "aws/request.Request" representing the
+// client's request for the GetThirdPartyJobDetails operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetThirdPartyJobDetails method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetThirdPartyJobDetailsRequest method.
+//    req, resp := client.GetThirdPartyJobDetailsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) GetThirdPartyJobDetailsRequest(input *GetThirdPartyJobDetailsInput) (req *request.Request, output *GetThirdPartyJobDetailsOutput) {
 	op := &request.Operation{
 		Name:       opGetThirdPartyJobDetails,
@@ -369,7 +621,28 @@ func (c *CodePipeline) GetThirdPartyJobDetails(input *GetThirdPartyJobDetailsInp
 
 const opListActionTypes = "ListActionTypes"
 
-// ListActionTypesRequest generates a request for the ListActionTypes operation.
+// ListActionTypesRequest generates a "aws/request.Request" representing the
+// client's request for the ListActionTypes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListActionTypes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListActionTypesRequest method.
+//    req, resp := client.ListActionTypesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) ListActionTypesRequest(input *ListActionTypesInput) (req *request.Request, output *ListActionTypesOutput) {
 	op := &request.Operation{
 		Name:       opListActionTypes,
@@ -397,7 +670,28 @@ func (c *CodePipeline) ListActionTypes(input *ListActionTypesInput) (*ListAction
 
 const opListPipelines = "ListPipelines"
 
-// ListPipelinesRequest generates a request for the ListPipelines operation.
+// ListPipelinesRequest generates a "aws/request.Request" representing the
+// client's request for the ListPipelines operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListPipelines method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListPipelinesRequest method.
+//    req, resp := client.ListPipelinesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) ListPipelinesRequest(input *ListPipelinesInput) (req *request.Request, output *ListPipelinesOutput) {
 	op := &request.Operation{
 		Name:       opListPipelines,
@@ -424,7 +718,28 @@ func (c *CodePipeline) ListPipelines(input *ListPipelinesInput) (*ListPipelinesO
 
 const opPollForJobs = "PollForJobs"
 
-// PollForJobsRequest generates a request for the PollForJobs operation.
+// PollForJobsRequest generates a "aws/request.Request" representing the
+// client's request for the PollForJobs operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the PollForJobs method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PollForJobsRequest method.
+//    req, resp := client.PollForJobsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) PollForJobsRequest(input *PollForJobsInput) (req *request.Request, output *PollForJobsOutput) {
 	op := &request.Operation{
 		Name:       opPollForJobs,
@@ -456,7 +771,28 @@ func (c *CodePipeline) PollForJobs(input *PollForJobsInput) (*PollForJobsOutput,
 
 const opPollForThirdPartyJobs = "PollForThirdPartyJobs"
 
-// PollForThirdPartyJobsRequest generates a request for the PollForThirdPartyJobs operation.
+// PollForThirdPartyJobsRequest generates a "aws/request.Request" representing the
+// client's request for the PollForThirdPartyJobs operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the PollForThirdPartyJobs method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PollForThirdPartyJobsRequest method.
+//    req, resp := client.PollForThirdPartyJobsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) PollForThirdPartyJobsRequest(input *PollForThirdPartyJobsInput) (req *request.Request, output *PollForThirdPartyJobsOutput) {
 	op := &request.Operation{
 		Name:       opPollForThirdPartyJobs,
@@ -488,7 +824,28 @@ func (c *CodePipeline) PollForThirdPartyJobs(input *PollForThirdPartyJobsInput) 
 
 const opPutActionRevision = "PutActionRevision"
 
-// PutActionRevisionRequest generates a request for the PutActionRevision operation.
+// PutActionRevisionRequest generates a "aws/request.Request" representing the
+// client's request for the PutActionRevision operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the PutActionRevision method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PutActionRevisionRequest method.
+//    req, resp := client.PutActionRevisionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) PutActionRevisionRequest(input *PutActionRevisionInput) (req *request.Request, output *PutActionRevisionOutput) {
 	op := &request.Operation{
 		Name:       opPutActionRevision,
@@ -515,7 +872,28 @@ func (c *CodePipeline) PutActionRevision(input *PutActionRevisionInput) (*PutAct
 
 const opPutJobFailureResult = "PutJobFailureResult"
 
-// PutJobFailureResultRequest generates a request for the PutJobFailureResult operation.
+// PutJobFailureResultRequest generates a "aws/request.Request" representing the
+// client's request for the PutJobFailureResult operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the PutJobFailureResult method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PutJobFailureResultRequest method.
+//    req, resp := client.PutJobFailureResultRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) PutJobFailureResultRequest(input *PutJobFailureResultInput) (req *request.Request, output *PutJobFailureResultOutput) {
 	op := &request.Operation{
 		Name:       opPutJobFailureResult,
@@ -545,7 +923,28 @@ func (c *CodePipeline) PutJobFailureResult(input *PutJobFailureResultInput) (*Pu
 
 const opPutJobSuccessResult = "PutJobSuccessResult"
 
-// PutJobSuccessResultRequest generates a request for the PutJobSuccessResult operation.
+// PutJobSuccessResultRequest generates a "aws/request.Request" representing the
+// client's request for the PutJobSuccessResult operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the PutJobSuccessResult method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PutJobSuccessResultRequest method.
+//    req, resp := client.PutJobSuccessResultRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) PutJobSuccessResultRequest(input *PutJobSuccessResultInput) (req *request.Request, output *PutJobSuccessResultOutput) {
 	op := &request.Operation{
 		Name:       opPutJobSuccessResult,
@@ -575,7 +974,28 @@ func (c *CodePipeline) PutJobSuccessResult(input *PutJobSuccessResultInput) (*Pu
 
 const opPutThirdPartyJobFailureResult = "PutThirdPartyJobFailureResult"
 
-// PutThirdPartyJobFailureResultRequest generates a request for the PutThirdPartyJobFailureResult operation.
+// PutThirdPartyJobFailureResultRequest generates a "aws/request.Request" representing the
+// client's request for the PutThirdPartyJobFailureResult operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the PutThirdPartyJobFailureResult method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PutThirdPartyJobFailureResultRequest method.
+//    req, resp := client.PutThirdPartyJobFailureResultRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) PutThirdPartyJobFailureResultRequest(input *PutThirdPartyJobFailureResultInput) (req *request.Request, output *PutThirdPartyJobFailureResultOutput) {
 	op := &request.Operation{
 		Name:       opPutThirdPartyJobFailureResult,
@@ -605,7 +1025,28 @@ func (c *CodePipeline) PutThirdPartyJobFailureResult(input *PutThirdPartyJobFail
 
 const opPutThirdPartyJobSuccessResult = "PutThirdPartyJobSuccessResult"
 
-// PutThirdPartyJobSuccessResultRequest generates a request for the PutThirdPartyJobSuccessResult operation.
+// PutThirdPartyJobSuccessResultRequest generates a "aws/request.Request" representing the
+// client's request for the PutThirdPartyJobSuccessResult operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the PutThirdPartyJobSuccessResult method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PutThirdPartyJobSuccessResultRequest method.
+//    req, resp := client.PutThirdPartyJobSuccessResultRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) PutThirdPartyJobSuccessResultRequest(input *PutThirdPartyJobSuccessResultInput) (req *request.Request, output *PutThirdPartyJobSuccessResultOutput) {
 	op := &request.Operation{
 		Name:       opPutThirdPartyJobSuccessResult,
@@ -635,7 +1076,28 @@ func (c *CodePipeline) PutThirdPartyJobSuccessResult(input *PutThirdPartyJobSucc
 
 const opRetryStageExecution = "RetryStageExecution"
 
-// RetryStageExecutionRequest generates a request for the RetryStageExecution operation.
+// RetryStageExecutionRequest generates a "aws/request.Request" representing the
+// client's request for the RetryStageExecution operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RetryStageExecution method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RetryStageExecutionRequest method.
+//    req, resp := client.RetryStageExecutionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) RetryStageExecutionRequest(input *RetryStageExecutionInput) (req *request.Request, output *RetryStageExecutionOutput) {
 	op := &request.Operation{
 		Name:       opRetryStageExecution,
@@ -662,7 +1124,28 @@ func (c *CodePipeline) RetryStageExecution(input *RetryStageExecutionInput) (*Re
 
 const opStartPipelineExecution = "StartPipelineExecution"
 
-// StartPipelineExecutionRequest generates a request for the StartPipelineExecution operation.
+// StartPipelineExecutionRequest generates a "aws/request.Request" representing the
+// client's request for the StartPipelineExecution operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the StartPipelineExecution method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the StartPipelineExecutionRequest method.
+//    req, resp := client.StartPipelineExecutionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) StartPipelineExecutionRequest(input *StartPipelineExecutionInput) (req *request.Request, output *StartPipelineExecutionOutput) {
 	op := &request.Operation{
 		Name:       opStartPipelineExecution,
@@ -690,7 +1173,28 @@ func (c *CodePipeline) StartPipelineExecution(input *StartPipelineExecutionInput
 
 const opUpdatePipeline = "UpdatePipeline"
 
-// UpdatePipelineRequest generates a request for the UpdatePipeline operation.
+// UpdatePipelineRequest generates a "aws/request.Request" representing the
+// client's request for the UpdatePipeline operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdatePipeline method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdatePipelineRequest method.
+//    req, resp := client.UpdatePipelineRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) UpdatePipelineRequest(input *UpdatePipelineInput) (req *request.Request, output *UpdatePipelineOutput) {
 	op := &request.Operation{
 		Name:       opUpdatePipeline,

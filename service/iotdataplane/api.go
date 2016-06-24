@@ -12,7 +12,28 @@ import (
 
 const opDeleteThingShadow = "DeleteThingShadow"
 
-// DeleteThingShadowRequest generates a request for the DeleteThingShadow operation.
+// DeleteThingShadowRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteThingShadow operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteThingShadow method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteThingShadowRequest method.
+//    req, resp := client.DeleteThingShadowRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *IoTDataPlane) DeleteThingShadowRequest(input *DeleteThingShadowInput) (req *request.Request, output *DeleteThingShadowOutput) {
 	op := &request.Operation{
 		Name:       opDeleteThingShadow,
@@ -42,7 +63,28 @@ func (c *IoTDataPlane) DeleteThingShadow(input *DeleteThingShadowInput) (*Delete
 
 const opGetThingShadow = "GetThingShadow"
 
-// GetThingShadowRequest generates a request for the GetThingShadow operation.
+// GetThingShadowRequest generates a "aws/request.Request" representing the
+// client's request for the GetThingShadow operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetThingShadow method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetThingShadowRequest method.
+//    req, resp := client.GetThingShadowRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *IoTDataPlane) GetThingShadowRequest(input *GetThingShadowInput) (req *request.Request, output *GetThingShadowOutput) {
 	op := &request.Operation{
 		Name:       opGetThingShadow,
@@ -72,7 +114,28 @@ func (c *IoTDataPlane) GetThingShadow(input *GetThingShadowInput) (*GetThingShad
 
 const opPublish = "Publish"
 
-// PublishRequest generates a request for the Publish operation.
+// PublishRequest generates a "aws/request.Request" representing the
+// client's request for the Publish operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the Publish method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PublishRequest method.
+//    req, resp := client.PublishRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *IoTDataPlane) PublishRequest(input *PublishInput) (req *request.Request, output *PublishOutput) {
 	op := &request.Operation{
 		Name:       opPublish,
@@ -104,7 +167,28 @@ func (c *IoTDataPlane) Publish(input *PublishInput) (*PublishOutput, error) {
 
 const opUpdateThingShadow = "UpdateThingShadow"
 
-// UpdateThingShadowRequest generates a request for the UpdateThingShadow operation.
+// UpdateThingShadowRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateThingShadow operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateThingShadow method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateThingShadowRequest method.
+//    req, resp := client.UpdateThingShadowRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *IoTDataPlane) UpdateThingShadowRequest(input *UpdateThingShadowInput) (req *request.Request, output *UpdateThingShadowOutput) {
 	op := &request.Operation{
 		Name:       opUpdateThingShadow,

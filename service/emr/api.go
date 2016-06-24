@@ -15,7 +15,28 @@ import (
 
 const opAddInstanceGroups = "AddInstanceGroups"
 
-// AddInstanceGroupsRequest generates a request for the AddInstanceGroups operation.
+// AddInstanceGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the AddInstanceGroups operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AddInstanceGroups method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AddInstanceGroupsRequest method.
+//    req, resp := client.AddInstanceGroupsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *EMR) AddInstanceGroupsRequest(input *AddInstanceGroupsInput) (req *request.Request, output *AddInstanceGroupsOutput) {
 	op := &request.Operation{
 		Name:       opAddInstanceGroups,
@@ -42,7 +63,28 @@ func (c *EMR) AddInstanceGroups(input *AddInstanceGroupsInput) (*AddInstanceGrou
 
 const opAddJobFlowSteps = "AddJobFlowSteps"
 
-// AddJobFlowStepsRequest generates a request for the AddJobFlowSteps operation.
+// AddJobFlowStepsRequest generates a "aws/request.Request" representing the
+// client's request for the AddJobFlowSteps operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AddJobFlowSteps method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AddJobFlowStepsRequest method.
+//    req, resp := client.AddJobFlowStepsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *EMR) AddJobFlowStepsRequest(input *AddJobFlowStepsInput) (req *request.Request, output *AddJobFlowStepsOutput) {
 	op := &request.Operation{
 		Name:       opAddJobFlowSteps,
@@ -92,7 +134,28 @@ func (c *EMR) AddJobFlowSteps(input *AddJobFlowStepsInput) (*AddJobFlowStepsOutp
 
 const opAddTags = "AddTags"
 
-// AddTagsRequest generates a request for the AddTags operation.
+// AddTagsRequest generates a "aws/request.Request" representing the
+// client's request for the AddTags operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AddTags method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AddTagsRequest method.
+//    req, resp := client.AddTagsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *EMR) AddTagsRequest(input *AddTagsInput) (req *request.Request, output *AddTagsOutput) {
 	op := &request.Operation{
 		Name:       opAddTags,
@@ -122,7 +185,28 @@ func (c *EMR) AddTags(input *AddTagsInput) (*AddTagsOutput, error) {
 
 const opDescribeCluster = "DescribeCluster"
 
-// DescribeClusterRequest generates a request for the DescribeCluster operation.
+// DescribeClusterRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeCluster operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeCluster method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeClusterRequest method.
+//    req, resp := client.DescribeClusterRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *EMR) DescribeClusterRequest(input *DescribeClusterInput) (req *request.Request, output *DescribeClusterOutput) {
 	op := &request.Operation{
 		Name:       opDescribeCluster,
@@ -150,7 +234,28 @@ func (c *EMR) DescribeCluster(input *DescribeClusterInput) (*DescribeClusterOutp
 
 const opDescribeJobFlows = "DescribeJobFlows"
 
-// DescribeJobFlowsRequest generates a request for the DescribeJobFlows operation.
+// DescribeJobFlowsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeJobFlows operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeJobFlows method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeJobFlowsRequest method.
+//    req, resp := client.DescribeJobFlowsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *EMR) DescribeJobFlowsRequest(input *DescribeJobFlowsInput) (req *request.Request, output *DescribeJobFlowsOutput) {
 	if c.Client.Config.Logger != nil {
 		c.Client.Config.Logger.Log("This operation, DescribeJobFlows, has been deprecated")
@@ -197,7 +302,28 @@ func (c *EMR) DescribeJobFlows(input *DescribeJobFlowsInput) (*DescribeJobFlowsO
 
 const opDescribeStep = "DescribeStep"
 
-// DescribeStepRequest generates a request for the DescribeStep operation.
+// DescribeStepRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeStep operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeStep method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeStepRequest method.
+//    req, resp := client.DescribeStepRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *EMR) DescribeStepRequest(input *DescribeStepInput) (req *request.Request, output *DescribeStepOutput) {
 	op := &request.Operation{
 		Name:       opDescribeStep,
@@ -224,7 +350,28 @@ func (c *EMR) DescribeStep(input *DescribeStepInput) (*DescribeStepOutput, error
 
 const opListBootstrapActions = "ListBootstrapActions"
 
-// ListBootstrapActionsRequest generates a request for the ListBootstrapActions operation.
+// ListBootstrapActionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListBootstrapActions operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListBootstrapActions method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListBootstrapActionsRequest method.
+//    req, resp := client.ListBootstrapActionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *EMR) ListBootstrapActionsRequest(input *ListBootstrapActionsInput) (req *request.Request, output *ListBootstrapActionsOutput) {
 	op := &request.Operation{
 		Name:       opListBootstrapActions,
@@ -255,6 +402,23 @@ func (c *EMR) ListBootstrapActions(input *ListBootstrapActionsInput) (*ListBoots
 	return out, err
 }
 
+// ListBootstrapActionsPages iterates over the pages of a ListBootstrapActions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListBootstrapActions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListBootstrapActions operation.
+//    pageNum := 0
+//    err := client.ListBootstrapActionsPages(params,
+//        func(page *ListBootstrapActionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *EMR) ListBootstrapActionsPages(input *ListBootstrapActionsInput, fn func(p *ListBootstrapActionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListBootstrapActionsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -265,7 +429,28 @@ func (c *EMR) ListBootstrapActionsPages(input *ListBootstrapActionsInput, fn fun
 
 const opListClusters = "ListClusters"
 
-// ListClustersRequest generates a request for the ListClusters operation.
+// ListClustersRequest generates a "aws/request.Request" representing the
+// client's request for the ListClusters operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListClusters method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListClustersRequest method.
+//    req, resp := client.ListClustersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *EMR) ListClustersRequest(input *ListClustersInput) (req *request.Request, output *ListClustersOutput) {
 	op := &request.Operation{
 		Name:       opListClusters,
@@ -300,6 +485,23 @@ func (c *EMR) ListClusters(input *ListClustersInput) (*ListClustersOutput, error
 	return out, err
 }
 
+// ListClustersPages iterates over the pages of a ListClusters operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListClusters method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListClusters operation.
+//    pageNum := 0
+//    err := client.ListClustersPages(params,
+//        func(page *ListClustersOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *EMR) ListClustersPages(input *ListClustersInput, fn func(p *ListClustersOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListClustersRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -310,7 +512,28 @@ func (c *EMR) ListClustersPages(input *ListClustersInput, fn func(p *ListCluster
 
 const opListInstanceGroups = "ListInstanceGroups"
 
-// ListInstanceGroupsRequest generates a request for the ListInstanceGroups operation.
+// ListInstanceGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the ListInstanceGroups operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListInstanceGroups method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListInstanceGroupsRequest method.
+//    req, resp := client.ListInstanceGroupsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *EMR) ListInstanceGroupsRequest(input *ListInstanceGroupsInput) (req *request.Request, output *ListInstanceGroupsOutput) {
 	op := &request.Operation{
 		Name:       opListInstanceGroups,
@@ -341,6 +564,23 @@ func (c *EMR) ListInstanceGroups(input *ListInstanceGroupsInput) (*ListInstanceG
 	return out, err
 }
 
+// ListInstanceGroupsPages iterates over the pages of a ListInstanceGroups operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListInstanceGroups method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListInstanceGroups operation.
+//    pageNum := 0
+//    err := client.ListInstanceGroupsPages(params,
+//        func(page *ListInstanceGroupsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *EMR) ListInstanceGroupsPages(input *ListInstanceGroupsInput, fn func(p *ListInstanceGroupsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListInstanceGroupsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -351,7 +591,28 @@ func (c *EMR) ListInstanceGroupsPages(input *ListInstanceGroupsInput, fn func(p 
 
 const opListInstances = "ListInstances"
 
-// ListInstancesRequest generates a request for the ListInstances operation.
+// ListInstancesRequest generates a "aws/request.Request" representing the
+// client's request for the ListInstances operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListInstances method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListInstancesRequest method.
+//    req, resp := client.ListInstancesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *EMR) ListInstancesRequest(input *ListInstancesInput) (req *request.Request, output *ListInstancesOutput) {
 	op := &request.Operation{
 		Name:       opListInstances,
@@ -386,6 +647,23 @@ func (c *EMR) ListInstances(input *ListInstancesInput) (*ListInstancesOutput, er
 	return out, err
 }
 
+// ListInstancesPages iterates over the pages of a ListInstances operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListInstances method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListInstances operation.
+//    pageNum := 0
+//    err := client.ListInstancesPages(params,
+//        func(page *ListInstancesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *EMR) ListInstancesPages(input *ListInstancesInput, fn func(p *ListInstancesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListInstancesRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -396,7 +674,28 @@ func (c *EMR) ListInstancesPages(input *ListInstancesInput, fn func(p *ListInsta
 
 const opListSteps = "ListSteps"
 
-// ListStepsRequest generates a request for the ListSteps operation.
+// ListStepsRequest generates a "aws/request.Request" representing the
+// client's request for the ListSteps operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListSteps method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListStepsRequest method.
+//    req, resp := client.ListStepsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *EMR) ListStepsRequest(input *ListStepsInput) (req *request.Request, output *ListStepsOutput) {
 	op := &request.Operation{
 		Name:       opListSteps,
@@ -427,6 +726,23 @@ func (c *EMR) ListSteps(input *ListStepsInput) (*ListStepsOutput, error) {
 	return out, err
 }
 
+// ListStepsPages iterates over the pages of a ListSteps operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListSteps method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListSteps operation.
+//    pageNum := 0
+//    err := client.ListStepsPages(params,
+//        func(page *ListStepsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *EMR) ListStepsPages(input *ListStepsInput, fn func(p *ListStepsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListStepsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -437,7 +753,28 @@ func (c *EMR) ListStepsPages(input *ListStepsInput, fn func(p *ListStepsOutput, 
 
 const opModifyInstanceGroups = "ModifyInstanceGroups"
 
-// ModifyInstanceGroupsRequest generates a request for the ModifyInstanceGroups operation.
+// ModifyInstanceGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyInstanceGroups operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ModifyInstanceGroups method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ModifyInstanceGroupsRequest method.
+//    req, resp := client.ModifyInstanceGroupsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *EMR) ModifyInstanceGroupsRequest(input *ModifyInstanceGroupsInput) (req *request.Request, output *ModifyInstanceGroupsOutput) {
 	op := &request.Operation{
 		Name:       opModifyInstanceGroups,
@@ -469,7 +806,28 @@ func (c *EMR) ModifyInstanceGroups(input *ModifyInstanceGroupsInput) (*ModifyIns
 
 const opRemoveTags = "RemoveTags"
 
-// RemoveTagsRequest generates a request for the RemoveTags operation.
+// RemoveTagsRequest generates a "aws/request.Request" representing the
+// client's request for the RemoveTags operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RemoveTags method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RemoveTagsRequest method.
+//    req, resp := client.RemoveTagsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *EMR) RemoveTagsRequest(input *RemoveTagsInput) (req *request.Request, output *RemoveTagsOutput) {
 	op := &request.Operation{
 		Name:       opRemoveTags,
@@ -501,7 +859,28 @@ func (c *EMR) RemoveTags(input *RemoveTagsInput) (*RemoveTagsOutput, error) {
 
 const opRunJobFlow = "RunJobFlow"
 
-// RunJobFlowRequest generates a request for the RunJobFlow operation.
+// RunJobFlowRequest generates a "aws/request.Request" representing the
+// client's request for the RunJobFlow operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RunJobFlow method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RunJobFlowRequest method.
+//    req, resp := client.RunJobFlowRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *EMR) RunJobFlowRequest(input *RunJobFlowInput) (req *request.Request, output *RunJobFlowOutput) {
 	op := &request.Operation{
 		Name:       opRunJobFlow,
@@ -550,7 +929,28 @@ func (c *EMR) RunJobFlow(input *RunJobFlowInput) (*RunJobFlowOutput, error) {
 
 const opSetTerminationProtection = "SetTerminationProtection"
 
-// SetTerminationProtectionRequest generates a request for the SetTerminationProtection operation.
+// SetTerminationProtectionRequest generates a "aws/request.Request" representing the
+// client's request for the SetTerminationProtection operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SetTerminationProtection method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SetTerminationProtectionRequest method.
+//    req, resp := client.SetTerminationProtectionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *EMR) SetTerminationProtectionRequest(input *SetTerminationProtectionInput) (req *request.Request, output *SetTerminationProtectionOutput) {
 	op := &request.Operation{
 		Name:       opSetTerminationProtection,
@@ -595,7 +995,28 @@ func (c *EMR) SetTerminationProtection(input *SetTerminationProtectionInput) (*S
 
 const opSetVisibleToAllUsers = "SetVisibleToAllUsers"
 
-// SetVisibleToAllUsersRequest generates a request for the SetVisibleToAllUsers operation.
+// SetVisibleToAllUsersRequest generates a "aws/request.Request" representing the
+// client's request for the SetVisibleToAllUsers operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SetVisibleToAllUsers method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SetVisibleToAllUsersRequest method.
+//    req, resp := client.SetVisibleToAllUsersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *EMR) SetVisibleToAllUsersRequest(input *SetVisibleToAllUsersInput) (req *request.Request, output *SetVisibleToAllUsersOutput) {
 	op := &request.Operation{
 		Name:       opSetVisibleToAllUsers,
@@ -629,7 +1050,28 @@ func (c *EMR) SetVisibleToAllUsers(input *SetVisibleToAllUsersInput) (*SetVisibl
 
 const opTerminateJobFlows = "TerminateJobFlows"
 
-// TerminateJobFlowsRequest generates a request for the TerminateJobFlows operation.
+// TerminateJobFlowsRequest generates a "aws/request.Request" representing the
+// client's request for the TerminateJobFlows operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the TerminateJobFlows method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the TerminateJobFlowsRequest method.
+//    req, resp := client.TerminateJobFlowsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *EMR) TerminateJobFlowsRequest(input *TerminateJobFlowsInput) (req *request.Request, output *TerminateJobFlowsOutput) {
 	op := &request.Operation{
 		Name:       opTerminateJobFlows,

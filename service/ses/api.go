@@ -15,7 +15,28 @@ import (
 
 const opCloneReceiptRuleSet = "CloneReceiptRuleSet"
 
-// CloneReceiptRuleSetRequest generates a request for the CloneReceiptRuleSet operation.
+// CloneReceiptRuleSetRequest generates a "aws/request.Request" representing the
+// client's request for the CloneReceiptRuleSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CloneReceiptRuleSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CloneReceiptRuleSetRequest method.
+//    req, resp := client.CloneReceiptRuleSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) CloneReceiptRuleSetRequest(input *CloneReceiptRuleSetInput) (req *request.Request, output *CloneReceiptRuleSetOutput) {
 	op := &request.Operation{
 		Name:       opCloneReceiptRuleSet,
@@ -49,7 +70,28 @@ func (c *SES) CloneReceiptRuleSet(input *CloneReceiptRuleSetInput) (*CloneReceip
 
 const opCreateReceiptFilter = "CreateReceiptFilter"
 
-// CreateReceiptFilterRequest generates a request for the CreateReceiptFilter operation.
+// CreateReceiptFilterRequest generates a "aws/request.Request" representing the
+// client's request for the CreateReceiptFilter operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateReceiptFilter method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateReceiptFilterRequest method.
+//    req, resp := client.CreateReceiptFilterRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) CreateReceiptFilterRequest(input *CreateReceiptFilterInput) (req *request.Request, output *CreateReceiptFilterOutput) {
 	op := &request.Operation{
 		Name:       opCreateReceiptFilter,
@@ -81,7 +123,28 @@ func (c *SES) CreateReceiptFilter(input *CreateReceiptFilterInput) (*CreateRecei
 
 const opCreateReceiptRule = "CreateReceiptRule"
 
-// CreateReceiptRuleRequest generates a request for the CreateReceiptRule operation.
+// CreateReceiptRuleRequest generates a "aws/request.Request" representing the
+// client's request for the CreateReceiptRule operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateReceiptRule method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateReceiptRuleRequest method.
+//    req, resp := client.CreateReceiptRuleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) CreateReceiptRuleRequest(input *CreateReceiptRuleInput) (req *request.Request, output *CreateReceiptRuleOutput) {
 	op := &request.Operation{
 		Name:       opCreateReceiptRule,
@@ -113,7 +176,28 @@ func (c *SES) CreateReceiptRule(input *CreateReceiptRuleInput) (*CreateReceiptRu
 
 const opCreateReceiptRuleSet = "CreateReceiptRuleSet"
 
-// CreateReceiptRuleSetRequest generates a request for the CreateReceiptRuleSet operation.
+// CreateReceiptRuleSetRequest generates a "aws/request.Request" representing the
+// client's request for the CreateReceiptRuleSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateReceiptRuleSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateReceiptRuleSetRequest method.
+//    req, resp := client.CreateReceiptRuleSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) CreateReceiptRuleSetRequest(input *CreateReceiptRuleSetInput) (req *request.Request, output *CreateReceiptRuleSetOutput) {
 	op := &request.Operation{
 		Name:       opCreateReceiptRuleSet,
@@ -145,7 +229,28 @@ func (c *SES) CreateReceiptRuleSet(input *CreateReceiptRuleSetInput) (*CreateRec
 
 const opDeleteIdentity = "DeleteIdentity"
 
-// DeleteIdentityRequest generates a request for the DeleteIdentity operation.
+// DeleteIdentityRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteIdentity operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteIdentity method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteIdentityRequest method.
+//    req, resp := client.DeleteIdentityRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) DeleteIdentityRequest(input *DeleteIdentityInput) (req *request.Request, output *DeleteIdentityOutput) {
 	op := &request.Operation{
 		Name:       opDeleteIdentity,
@@ -175,7 +280,28 @@ func (c *SES) DeleteIdentity(input *DeleteIdentityInput) (*DeleteIdentityOutput,
 
 const opDeleteIdentityPolicy = "DeleteIdentityPolicy"
 
-// DeleteIdentityPolicyRequest generates a request for the DeleteIdentityPolicy operation.
+// DeleteIdentityPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteIdentityPolicy operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteIdentityPolicy method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteIdentityPolicyRequest method.
+//    req, resp := client.DeleteIdentityPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) DeleteIdentityPolicyRequest(input *DeleteIdentityPolicyInput) (req *request.Request, output *DeleteIdentityPolicyOutput) {
 	op := &request.Operation{
 		Name:       opDeleteIdentityPolicy,
@@ -213,7 +339,28 @@ func (c *SES) DeleteIdentityPolicy(input *DeleteIdentityPolicyInput) (*DeleteIde
 
 const opDeleteReceiptFilter = "DeleteReceiptFilter"
 
-// DeleteReceiptFilterRequest generates a request for the DeleteReceiptFilter operation.
+// DeleteReceiptFilterRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteReceiptFilter operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteReceiptFilter method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteReceiptFilterRequest method.
+//    req, resp := client.DeleteReceiptFilterRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) DeleteReceiptFilterRequest(input *DeleteReceiptFilterInput) (req *request.Request, output *DeleteReceiptFilterOutput) {
 	op := &request.Operation{
 		Name:       opDeleteReceiptFilter,
@@ -245,7 +392,28 @@ func (c *SES) DeleteReceiptFilter(input *DeleteReceiptFilterInput) (*DeleteRecei
 
 const opDeleteReceiptRule = "DeleteReceiptRule"
 
-// DeleteReceiptRuleRequest generates a request for the DeleteReceiptRule operation.
+// DeleteReceiptRuleRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteReceiptRule operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteReceiptRule method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteReceiptRuleRequest method.
+//    req, resp := client.DeleteReceiptRuleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) DeleteReceiptRuleRequest(input *DeleteReceiptRuleInput) (req *request.Request, output *DeleteReceiptRuleOutput) {
 	op := &request.Operation{
 		Name:       opDeleteReceiptRule,
@@ -277,7 +445,28 @@ func (c *SES) DeleteReceiptRule(input *DeleteReceiptRuleInput) (*DeleteReceiptRu
 
 const opDeleteReceiptRuleSet = "DeleteReceiptRuleSet"
 
-// DeleteReceiptRuleSetRequest generates a request for the DeleteReceiptRuleSet operation.
+// DeleteReceiptRuleSetRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteReceiptRuleSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteReceiptRuleSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteReceiptRuleSetRequest method.
+//    req, resp := client.DeleteReceiptRuleSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) DeleteReceiptRuleSetRequest(input *DeleteReceiptRuleSetInput) (req *request.Request, output *DeleteReceiptRuleSetOutput) {
 	op := &request.Operation{
 		Name:       opDeleteReceiptRuleSet,
@@ -311,7 +500,28 @@ func (c *SES) DeleteReceiptRuleSet(input *DeleteReceiptRuleSetInput) (*DeleteRec
 
 const opDeleteVerifiedEmailAddress = "DeleteVerifiedEmailAddress"
 
-// DeleteVerifiedEmailAddressRequest generates a request for the DeleteVerifiedEmailAddress operation.
+// DeleteVerifiedEmailAddressRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteVerifiedEmailAddress operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteVerifiedEmailAddress method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteVerifiedEmailAddressRequest method.
+//    req, resp := client.DeleteVerifiedEmailAddressRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) DeleteVerifiedEmailAddressRequest(input *DeleteVerifiedEmailAddressInput) (req *request.Request, output *DeleteVerifiedEmailAddressOutput) {
 	op := &request.Operation{
 		Name:       opDeleteVerifiedEmailAddress,
@@ -345,7 +555,28 @@ func (c *SES) DeleteVerifiedEmailAddress(input *DeleteVerifiedEmailAddressInput)
 
 const opDescribeActiveReceiptRuleSet = "DescribeActiveReceiptRuleSet"
 
-// DescribeActiveReceiptRuleSetRequest generates a request for the DescribeActiveReceiptRuleSet operation.
+// DescribeActiveReceiptRuleSetRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeActiveReceiptRuleSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeActiveReceiptRuleSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeActiveReceiptRuleSetRequest method.
+//    req, resp := client.DescribeActiveReceiptRuleSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) DescribeActiveReceiptRuleSetRequest(input *DescribeActiveReceiptRuleSetInput) (req *request.Request, output *DescribeActiveReceiptRuleSetOutput) {
 	op := &request.Operation{
 		Name:       opDescribeActiveReceiptRuleSet,
@@ -378,7 +609,28 @@ func (c *SES) DescribeActiveReceiptRuleSet(input *DescribeActiveReceiptRuleSetIn
 
 const opDescribeReceiptRule = "DescribeReceiptRule"
 
-// DescribeReceiptRuleRequest generates a request for the DescribeReceiptRule operation.
+// DescribeReceiptRuleRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeReceiptRule operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeReceiptRule method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeReceiptRuleRequest method.
+//    req, resp := client.DescribeReceiptRuleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) DescribeReceiptRuleRequest(input *DescribeReceiptRuleInput) (req *request.Request, output *DescribeReceiptRuleOutput) {
 	op := &request.Operation{
 		Name:       opDescribeReceiptRule,
@@ -410,7 +662,28 @@ func (c *SES) DescribeReceiptRule(input *DescribeReceiptRuleInput) (*DescribeRec
 
 const opDescribeReceiptRuleSet = "DescribeReceiptRuleSet"
 
-// DescribeReceiptRuleSetRequest generates a request for the DescribeReceiptRuleSet operation.
+// DescribeReceiptRuleSetRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeReceiptRuleSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeReceiptRuleSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeReceiptRuleSetRequest method.
+//    req, resp := client.DescribeReceiptRuleSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) DescribeReceiptRuleSetRequest(input *DescribeReceiptRuleSetInput) (req *request.Request, output *DescribeReceiptRuleSetOutput) {
 	op := &request.Operation{
 		Name:       opDescribeReceiptRuleSet,
@@ -442,7 +715,28 @@ func (c *SES) DescribeReceiptRuleSet(input *DescribeReceiptRuleSetInput) (*Descr
 
 const opGetIdentityDkimAttributes = "GetIdentityDkimAttributes"
 
-// GetIdentityDkimAttributesRequest generates a request for the GetIdentityDkimAttributes operation.
+// GetIdentityDkimAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the GetIdentityDkimAttributes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetIdentityDkimAttributes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetIdentityDkimAttributesRequest method.
+//    req, resp := client.GetIdentityDkimAttributesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) GetIdentityDkimAttributesRequest(input *GetIdentityDkimAttributesInput) (req *request.Request, output *GetIdentityDkimAttributesOutput) {
 	op := &request.Operation{
 		Name:       opGetIdentityDkimAttributes,
@@ -490,7 +784,28 @@ func (c *SES) GetIdentityDkimAttributes(input *GetIdentityDkimAttributesInput) (
 
 const opGetIdentityMailFromDomainAttributes = "GetIdentityMailFromDomainAttributes"
 
-// GetIdentityMailFromDomainAttributesRequest generates a request for the GetIdentityMailFromDomainAttributes operation.
+// GetIdentityMailFromDomainAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the GetIdentityMailFromDomainAttributes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetIdentityMailFromDomainAttributes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetIdentityMailFromDomainAttributesRequest method.
+//    req, resp := client.GetIdentityMailFromDomainAttributesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) GetIdentityMailFromDomainAttributesRequest(input *GetIdentityMailFromDomainAttributesInput) (req *request.Request, output *GetIdentityMailFromDomainAttributesOutput) {
 	op := &request.Operation{
 		Name:       opGetIdentityMailFromDomainAttributes,
@@ -521,7 +836,28 @@ func (c *SES) GetIdentityMailFromDomainAttributes(input *GetIdentityMailFromDoma
 
 const opGetIdentityNotificationAttributes = "GetIdentityNotificationAttributes"
 
-// GetIdentityNotificationAttributesRequest generates a request for the GetIdentityNotificationAttributes operation.
+// GetIdentityNotificationAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the GetIdentityNotificationAttributes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetIdentityNotificationAttributes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetIdentityNotificationAttributesRequest method.
+//    req, resp := client.GetIdentityNotificationAttributesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) GetIdentityNotificationAttributesRequest(input *GetIdentityNotificationAttributesInput) (req *request.Request, output *GetIdentityNotificationAttributesOutput) {
 	op := &request.Operation{
 		Name:       opGetIdentityNotificationAttributes,
@@ -555,7 +891,28 @@ func (c *SES) GetIdentityNotificationAttributes(input *GetIdentityNotificationAt
 
 const opGetIdentityPolicies = "GetIdentityPolicies"
 
-// GetIdentityPoliciesRequest generates a request for the GetIdentityPolicies operation.
+// GetIdentityPoliciesRequest generates a "aws/request.Request" representing the
+// client's request for the GetIdentityPolicies operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetIdentityPolicies method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetIdentityPoliciesRequest method.
+//    req, resp := client.GetIdentityPoliciesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) GetIdentityPoliciesRequest(input *GetIdentityPoliciesInput) (req *request.Request, output *GetIdentityPoliciesOutput) {
 	op := &request.Operation{
 		Name:       opGetIdentityPolicies,
@@ -594,7 +951,28 @@ func (c *SES) GetIdentityPolicies(input *GetIdentityPoliciesInput) (*GetIdentity
 
 const opGetIdentityVerificationAttributes = "GetIdentityVerificationAttributes"
 
-// GetIdentityVerificationAttributesRequest generates a request for the GetIdentityVerificationAttributes operation.
+// GetIdentityVerificationAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the GetIdentityVerificationAttributes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetIdentityVerificationAttributes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetIdentityVerificationAttributesRequest method.
+//    req, resp := client.GetIdentityVerificationAttributesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) GetIdentityVerificationAttributesRequest(input *GetIdentityVerificationAttributesInput) (req *request.Request, output *GetIdentityVerificationAttributesOutput) {
 	op := &request.Operation{
 		Name:       opGetIdentityVerificationAttributes,
@@ -626,7 +1004,28 @@ func (c *SES) GetIdentityVerificationAttributes(input *GetIdentityVerificationAt
 
 const opGetSendQuota = "GetSendQuota"
 
-// GetSendQuotaRequest generates a request for the GetSendQuota operation.
+// GetSendQuotaRequest generates a "aws/request.Request" representing the
+// client's request for the GetSendQuota operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetSendQuota method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetSendQuotaRequest method.
+//    req, resp := client.GetSendQuotaRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) GetSendQuotaRequest(input *GetSendQuotaInput) (req *request.Request, output *GetSendQuotaOutput) {
 	op := &request.Operation{
 		Name:       opGetSendQuota,
@@ -655,7 +1054,28 @@ func (c *SES) GetSendQuota(input *GetSendQuotaInput) (*GetSendQuotaOutput, error
 
 const opGetSendStatistics = "GetSendStatistics"
 
-// GetSendStatisticsRequest generates a request for the GetSendStatistics operation.
+// GetSendStatisticsRequest generates a "aws/request.Request" representing the
+// client's request for the GetSendStatistics operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetSendStatistics method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetSendStatisticsRequest method.
+//    req, resp := client.GetSendStatisticsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) GetSendStatisticsRequest(input *GetSendStatisticsInput) (req *request.Request, output *GetSendStatisticsOutput) {
 	op := &request.Operation{
 		Name:       opGetSendStatistics,
@@ -687,7 +1107,28 @@ func (c *SES) GetSendStatistics(input *GetSendStatisticsInput) (*GetSendStatisti
 
 const opListIdentities = "ListIdentities"
 
-// ListIdentitiesRequest generates a request for the ListIdentities operation.
+// ListIdentitiesRequest generates a "aws/request.Request" representing the
+// client's request for the ListIdentities operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListIdentities method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListIdentitiesRequest method.
+//    req, resp := client.ListIdentitiesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) ListIdentitiesRequest(input *ListIdentitiesInput) (req *request.Request, output *ListIdentitiesOutput) {
 	op := &request.Operation{
 		Name:       opListIdentities,
@@ -721,6 +1162,23 @@ func (c *SES) ListIdentities(input *ListIdentitiesInput) (*ListIdentitiesOutput,
 	return out, err
 }
 
+// ListIdentitiesPages iterates over the pages of a ListIdentities operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListIdentities method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListIdentities operation.
+//    pageNum := 0
+//    err := client.ListIdentitiesPages(params,
+//        func(page *ListIdentitiesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *SES) ListIdentitiesPages(input *ListIdentitiesInput, fn func(p *ListIdentitiesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListIdentitiesRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -731,7 +1189,28 @@ func (c *SES) ListIdentitiesPages(input *ListIdentitiesInput, fn func(p *ListIde
 
 const opListIdentityPolicies = "ListIdentityPolicies"
 
-// ListIdentityPoliciesRequest generates a request for the ListIdentityPolicies operation.
+// ListIdentityPoliciesRequest generates a "aws/request.Request" representing the
+// client's request for the ListIdentityPolicies operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListIdentityPolicies method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListIdentityPoliciesRequest method.
+//    req, resp := client.ListIdentityPoliciesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) ListIdentityPoliciesRequest(input *ListIdentityPoliciesInput) (req *request.Request, output *ListIdentityPoliciesOutput) {
 	op := &request.Operation{
 		Name:       opListIdentityPolicies,
@@ -769,7 +1248,28 @@ func (c *SES) ListIdentityPolicies(input *ListIdentityPoliciesInput) (*ListIdent
 
 const opListReceiptFilters = "ListReceiptFilters"
 
-// ListReceiptFiltersRequest generates a request for the ListReceiptFilters operation.
+// ListReceiptFiltersRequest generates a "aws/request.Request" representing the
+// client's request for the ListReceiptFilters operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListReceiptFilters method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListReceiptFiltersRequest method.
+//    req, resp := client.ListReceiptFiltersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) ListReceiptFiltersRequest(input *ListReceiptFiltersInput) (req *request.Request, output *ListReceiptFiltersOutput) {
 	op := &request.Operation{
 		Name:       opListReceiptFilters,
@@ -801,7 +1301,28 @@ func (c *SES) ListReceiptFilters(input *ListReceiptFiltersInput) (*ListReceiptFi
 
 const opListReceiptRuleSets = "ListReceiptRuleSets"
 
-// ListReceiptRuleSetsRequest generates a request for the ListReceiptRuleSets operation.
+// ListReceiptRuleSetsRequest generates a "aws/request.Request" representing the
+// client's request for the ListReceiptRuleSets operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListReceiptRuleSets method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListReceiptRuleSetsRequest method.
+//    req, resp := client.ListReceiptRuleSetsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) ListReceiptRuleSetsRequest(input *ListReceiptRuleSetsInput) (req *request.Request, output *ListReceiptRuleSetsOutput) {
 	op := &request.Operation{
 		Name:       opListReceiptRuleSets,
@@ -836,7 +1357,28 @@ func (c *SES) ListReceiptRuleSets(input *ListReceiptRuleSetsInput) (*ListReceipt
 
 const opListVerifiedEmailAddresses = "ListVerifiedEmailAddresses"
 
-// ListVerifiedEmailAddressesRequest generates a request for the ListVerifiedEmailAddresses operation.
+// ListVerifiedEmailAddressesRequest generates a "aws/request.Request" representing the
+// client's request for the ListVerifiedEmailAddresses operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListVerifiedEmailAddresses method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListVerifiedEmailAddressesRequest method.
+//    req, resp := client.ListVerifiedEmailAddressesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) ListVerifiedEmailAddressesRequest(input *ListVerifiedEmailAddressesInput) (req *request.Request, output *ListVerifiedEmailAddressesOutput) {
 	op := &request.Operation{
 		Name:       opListVerifiedEmailAddresses,
@@ -868,7 +1410,28 @@ func (c *SES) ListVerifiedEmailAddresses(input *ListVerifiedEmailAddressesInput)
 
 const opPutIdentityPolicy = "PutIdentityPolicy"
 
-// PutIdentityPolicyRequest generates a request for the PutIdentityPolicy operation.
+// PutIdentityPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the PutIdentityPolicy operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the PutIdentityPolicy method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PutIdentityPolicyRequest method.
+//    req, resp := client.PutIdentityPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) PutIdentityPolicyRequest(input *PutIdentityPolicyInput) (req *request.Request, output *PutIdentityPolicyOutput) {
 	op := &request.Operation{
 		Name:       opPutIdentityPolicy,
@@ -905,7 +1468,28 @@ func (c *SES) PutIdentityPolicy(input *PutIdentityPolicyInput) (*PutIdentityPoli
 
 const opReorderReceiptRuleSet = "ReorderReceiptRuleSet"
 
-// ReorderReceiptRuleSetRequest generates a request for the ReorderReceiptRuleSet operation.
+// ReorderReceiptRuleSetRequest generates a "aws/request.Request" representing the
+// client's request for the ReorderReceiptRuleSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ReorderReceiptRuleSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ReorderReceiptRuleSetRequest method.
+//    req, resp := client.ReorderReceiptRuleSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) ReorderReceiptRuleSetRequest(input *ReorderReceiptRuleSetInput) (req *request.Request, output *ReorderReceiptRuleSetOutput) {
 	op := &request.Operation{
 		Name:       opReorderReceiptRuleSet,
@@ -941,7 +1525,28 @@ func (c *SES) ReorderReceiptRuleSet(input *ReorderReceiptRuleSetInput) (*Reorder
 
 const opSendBounce = "SendBounce"
 
-// SendBounceRequest generates a request for the SendBounce operation.
+// SendBounceRequest generates a "aws/request.Request" representing the
+// client's request for the SendBounce operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SendBounce method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SendBounceRequest method.
+//    req, resp := client.SendBounceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) SendBounceRequest(input *SendBounceInput) (req *request.Request, output *SendBounceOutput) {
 	op := &request.Operation{
 		Name:       opSendBounce,
@@ -978,7 +1583,28 @@ func (c *SES) SendBounce(input *SendBounceInput) (*SendBounceOutput, error) {
 
 const opSendEmail = "SendEmail"
 
-// SendEmailRequest generates a request for the SendEmail operation.
+// SendEmailRequest generates a "aws/request.Request" representing the
+// client's request for the SendEmail operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SendEmail method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SendEmailRequest method.
+//    req, resp := client.SendEmailRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) SendEmailRequest(input *SendEmailInput) (req *request.Request, output *SendEmailOutput) {
 	op := &request.Operation{
 		Name:       opSendEmail,
@@ -1028,7 +1654,28 @@ func (c *SES) SendEmail(input *SendEmailInput) (*SendEmailOutput, error) {
 
 const opSendRawEmail = "SendRawEmail"
 
-// SendRawEmailRequest generates a request for the SendRawEmail operation.
+// SendRawEmailRequest generates a "aws/request.Request" representing the
+// client's request for the SendRawEmail operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SendRawEmail method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SendRawEmailRequest method.
+//    req, resp := client.SendRawEmailRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) SendRawEmailRequest(input *SendRawEmailInput) (req *request.Request, output *SendRawEmailOutput) {
 	op := &request.Operation{
 		Name:       opSendRawEmail,
@@ -1108,7 +1755,28 @@ func (c *SES) SendRawEmail(input *SendRawEmailInput) (*SendRawEmailOutput, error
 
 const opSetActiveReceiptRuleSet = "SetActiveReceiptRuleSet"
 
-// SetActiveReceiptRuleSetRequest generates a request for the SetActiveReceiptRuleSet operation.
+// SetActiveReceiptRuleSetRequest generates a "aws/request.Request" representing the
+// client's request for the SetActiveReceiptRuleSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SetActiveReceiptRuleSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SetActiveReceiptRuleSetRequest method.
+//    req, resp := client.SetActiveReceiptRuleSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) SetActiveReceiptRuleSetRequest(input *SetActiveReceiptRuleSetInput) (req *request.Request, output *SetActiveReceiptRuleSetOutput) {
 	op := &request.Operation{
 		Name:       opSetActiveReceiptRuleSet,
@@ -1143,7 +1811,28 @@ func (c *SES) SetActiveReceiptRuleSet(input *SetActiveReceiptRuleSetInput) (*Set
 
 const opSetIdentityDkimEnabled = "SetIdentityDkimEnabled"
 
-// SetIdentityDkimEnabledRequest generates a request for the SetIdentityDkimEnabled operation.
+// SetIdentityDkimEnabledRequest generates a "aws/request.Request" representing the
+// client's request for the SetIdentityDkimEnabled operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SetIdentityDkimEnabled method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SetIdentityDkimEnabledRequest method.
+//    req, resp := client.SetIdentityDkimEnabledRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) SetIdentityDkimEnabledRequest(input *SetIdentityDkimEnabledInput) (req *request.Request, output *SetIdentityDkimEnabledOutput) {
 	op := &request.Operation{
 		Name:       opSetIdentityDkimEnabled,
@@ -1186,7 +1875,28 @@ func (c *SES) SetIdentityDkimEnabled(input *SetIdentityDkimEnabledInput) (*SetId
 
 const opSetIdentityFeedbackForwardingEnabled = "SetIdentityFeedbackForwardingEnabled"
 
-// SetIdentityFeedbackForwardingEnabledRequest generates a request for the SetIdentityFeedbackForwardingEnabled operation.
+// SetIdentityFeedbackForwardingEnabledRequest generates a "aws/request.Request" representing the
+// client's request for the SetIdentityFeedbackForwardingEnabled operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SetIdentityFeedbackForwardingEnabled method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SetIdentityFeedbackForwardingEnabledRequest method.
+//    req, resp := client.SetIdentityFeedbackForwardingEnabledRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) SetIdentityFeedbackForwardingEnabledRequest(input *SetIdentityFeedbackForwardingEnabledInput) (req *request.Request, output *SetIdentityFeedbackForwardingEnabledOutput) {
 	op := &request.Operation{
 		Name:       opSetIdentityFeedbackForwardingEnabled,
@@ -1224,7 +1934,28 @@ func (c *SES) SetIdentityFeedbackForwardingEnabled(input *SetIdentityFeedbackFor
 
 const opSetIdentityHeadersInNotificationsEnabled = "SetIdentityHeadersInNotificationsEnabled"
 
-// SetIdentityHeadersInNotificationsEnabledRequest generates a request for the SetIdentityHeadersInNotificationsEnabled operation.
+// SetIdentityHeadersInNotificationsEnabledRequest generates a "aws/request.Request" representing the
+// client's request for the SetIdentityHeadersInNotificationsEnabled operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SetIdentityHeadersInNotificationsEnabled method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SetIdentityHeadersInNotificationsEnabledRequest method.
+//    req, resp := client.SetIdentityHeadersInNotificationsEnabledRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) SetIdentityHeadersInNotificationsEnabledRequest(input *SetIdentityHeadersInNotificationsEnabledInput) (req *request.Request, output *SetIdentityHeadersInNotificationsEnabledOutput) {
 	op := &request.Operation{
 		Name:       opSetIdentityHeadersInNotificationsEnabled,
@@ -1258,7 +1989,28 @@ func (c *SES) SetIdentityHeadersInNotificationsEnabled(input *SetIdentityHeaders
 
 const opSetIdentityMailFromDomain = "SetIdentityMailFromDomain"
 
-// SetIdentityMailFromDomainRequest generates a request for the SetIdentityMailFromDomain operation.
+// SetIdentityMailFromDomainRequest generates a "aws/request.Request" representing the
+// client's request for the SetIdentityMailFromDomain operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SetIdentityMailFromDomain method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SetIdentityMailFromDomainRequest method.
+//    req, resp := client.SetIdentityMailFromDomainRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) SetIdentityMailFromDomainRequest(input *SetIdentityMailFromDomainInput) (req *request.Request, output *SetIdentityMailFromDomainOutput) {
 	op := &request.Operation{
 		Name:       opSetIdentityMailFromDomain,
@@ -1293,7 +2045,28 @@ func (c *SES) SetIdentityMailFromDomain(input *SetIdentityMailFromDomainInput) (
 
 const opSetIdentityNotificationTopic = "SetIdentityNotificationTopic"
 
-// SetIdentityNotificationTopicRequest generates a request for the SetIdentityNotificationTopic operation.
+// SetIdentityNotificationTopicRequest generates a "aws/request.Request" representing the
+// client's request for the SetIdentityNotificationTopic operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SetIdentityNotificationTopic method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SetIdentityNotificationTopicRequest method.
+//    req, resp := client.SetIdentityNotificationTopicRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) SetIdentityNotificationTopicRequest(input *SetIdentityNotificationTopicInput) (req *request.Request, output *SetIdentityNotificationTopicOutput) {
 	op := &request.Operation{
 		Name:       opSetIdentityNotificationTopic,
@@ -1331,7 +2104,28 @@ func (c *SES) SetIdentityNotificationTopic(input *SetIdentityNotificationTopicIn
 
 const opSetReceiptRulePosition = "SetReceiptRulePosition"
 
-// SetReceiptRulePositionRequest generates a request for the SetReceiptRulePosition operation.
+// SetReceiptRulePositionRequest generates a "aws/request.Request" representing the
+// client's request for the SetReceiptRulePosition operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SetReceiptRulePosition method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SetReceiptRulePositionRequest method.
+//    req, resp := client.SetReceiptRulePositionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) SetReceiptRulePositionRequest(input *SetReceiptRulePositionInput) (req *request.Request, output *SetReceiptRulePositionOutput) {
 	op := &request.Operation{
 		Name:       opSetReceiptRulePosition,
@@ -1363,7 +2157,28 @@ func (c *SES) SetReceiptRulePosition(input *SetReceiptRulePositionInput) (*SetRe
 
 const opUpdateReceiptRule = "UpdateReceiptRule"
 
-// UpdateReceiptRuleRequest generates a request for the UpdateReceiptRule operation.
+// UpdateReceiptRuleRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateReceiptRule operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateReceiptRule method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateReceiptRuleRequest method.
+//    req, resp := client.UpdateReceiptRuleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) UpdateReceiptRuleRequest(input *UpdateReceiptRuleInput) (req *request.Request, output *UpdateReceiptRuleOutput) {
 	op := &request.Operation{
 		Name:       opUpdateReceiptRule,
@@ -1395,7 +2210,28 @@ func (c *SES) UpdateReceiptRule(input *UpdateReceiptRuleInput) (*UpdateReceiptRu
 
 const opVerifyDomainDkim = "VerifyDomainDkim"
 
-// VerifyDomainDkimRequest generates a request for the VerifyDomainDkim operation.
+// VerifyDomainDkimRequest generates a "aws/request.Request" representing the
+// client's request for the VerifyDomainDkim operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the VerifyDomainDkim method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the VerifyDomainDkimRequest method.
+//    req, resp := client.VerifyDomainDkimRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) VerifyDomainDkimRequest(input *VerifyDomainDkimInput) (req *request.Request, output *VerifyDomainDkimOutput) {
 	op := &request.Operation{
 		Name:       opVerifyDomainDkim,
@@ -1436,7 +2272,28 @@ func (c *SES) VerifyDomainDkim(input *VerifyDomainDkimInput) (*VerifyDomainDkimO
 
 const opVerifyDomainIdentity = "VerifyDomainIdentity"
 
-// VerifyDomainIdentityRequest generates a request for the VerifyDomainIdentity operation.
+// VerifyDomainIdentityRequest generates a "aws/request.Request" representing the
+// client's request for the VerifyDomainIdentity operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the VerifyDomainIdentity method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the VerifyDomainIdentityRequest method.
+//    req, resp := client.VerifyDomainIdentityRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) VerifyDomainIdentityRequest(input *VerifyDomainIdentityInput) (req *request.Request, output *VerifyDomainIdentityOutput) {
 	op := &request.Operation{
 		Name:       opVerifyDomainIdentity,
@@ -1465,7 +2322,28 @@ func (c *SES) VerifyDomainIdentity(input *VerifyDomainIdentityInput) (*VerifyDom
 
 const opVerifyEmailAddress = "VerifyEmailAddress"
 
-// VerifyEmailAddressRequest generates a request for the VerifyEmailAddress operation.
+// VerifyEmailAddressRequest generates a "aws/request.Request" representing the
+// client's request for the VerifyEmailAddress operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the VerifyEmailAddress method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the VerifyEmailAddressRequest method.
+//    req, resp := client.VerifyEmailAddressRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) VerifyEmailAddressRequest(input *VerifyEmailAddressInput) (req *request.Request, output *VerifyEmailAddressOutput) {
 	op := &request.Operation{
 		Name:       opVerifyEmailAddress,
@@ -1500,7 +2378,28 @@ func (c *SES) VerifyEmailAddress(input *VerifyEmailAddressInput) (*VerifyEmailAd
 
 const opVerifyEmailIdentity = "VerifyEmailIdentity"
 
-// VerifyEmailIdentityRequest generates a request for the VerifyEmailIdentity operation.
+// VerifyEmailIdentityRequest generates a "aws/request.Request" representing the
+// client's request for the VerifyEmailIdentity operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the VerifyEmailIdentity method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the VerifyEmailIdentityRequest method.
+//    req, resp := client.VerifyEmailIdentityRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SES) VerifyEmailIdentityRequest(input *VerifyEmailIdentityInput) (req *request.Request, output *VerifyEmailIdentityOutput) {
 	op := &request.Operation{
 		Name:       opVerifyEmailIdentity,

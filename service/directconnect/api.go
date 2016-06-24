@@ -12,7 +12,28 @@ import (
 
 const opAllocateConnectionOnInterconnect = "AllocateConnectionOnInterconnect"
 
-// AllocateConnectionOnInterconnectRequest generates a request for the AllocateConnectionOnInterconnect operation.
+// AllocateConnectionOnInterconnectRequest generates a "aws/request.Request" representing the
+// client's request for the AllocateConnectionOnInterconnect operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AllocateConnectionOnInterconnect method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AllocateConnectionOnInterconnectRequest method.
+//    req, resp := client.AllocateConnectionOnInterconnectRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DirectConnect) AllocateConnectionOnInterconnectRequest(input *AllocateConnectionOnInterconnectInput) (req *request.Request, output *Connection) {
 	op := &request.Operation{
 		Name:       opAllocateConnectionOnInterconnect,
@@ -44,7 +65,28 @@ func (c *DirectConnect) AllocateConnectionOnInterconnect(input *AllocateConnecti
 
 const opAllocatePrivateVirtualInterface = "AllocatePrivateVirtualInterface"
 
-// AllocatePrivateVirtualInterfaceRequest generates a request for the AllocatePrivateVirtualInterface operation.
+// AllocatePrivateVirtualInterfaceRequest generates a "aws/request.Request" representing the
+// client's request for the AllocatePrivateVirtualInterface operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AllocatePrivateVirtualInterface method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AllocatePrivateVirtualInterfaceRequest method.
+//    req, resp := client.AllocatePrivateVirtualInterfaceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DirectConnect) AllocatePrivateVirtualInterfaceRequest(input *AllocatePrivateVirtualInterfaceInput) (req *request.Request, output *VirtualInterface) {
 	op := &request.Operation{
 		Name:       opAllocatePrivateVirtualInterface,
@@ -79,7 +121,28 @@ func (c *DirectConnect) AllocatePrivateVirtualInterface(input *AllocatePrivateVi
 
 const opAllocatePublicVirtualInterface = "AllocatePublicVirtualInterface"
 
-// AllocatePublicVirtualInterfaceRequest generates a request for the AllocatePublicVirtualInterface operation.
+// AllocatePublicVirtualInterfaceRequest generates a "aws/request.Request" representing the
+// client's request for the AllocatePublicVirtualInterface operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AllocatePublicVirtualInterface method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AllocatePublicVirtualInterfaceRequest method.
+//    req, resp := client.AllocatePublicVirtualInterfaceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DirectConnect) AllocatePublicVirtualInterfaceRequest(input *AllocatePublicVirtualInterfaceInput) (req *request.Request, output *VirtualInterface) {
 	op := &request.Operation{
 		Name:       opAllocatePublicVirtualInterface,
@@ -114,7 +177,28 @@ func (c *DirectConnect) AllocatePublicVirtualInterface(input *AllocatePublicVirt
 
 const opConfirmConnection = "ConfirmConnection"
 
-// ConfirmConnectionRequest generates a request for the ConfirmConnection operation.
+// ConfirmConnectionRequest generates a "aws/request.Request" representing the
+// client's request for the ConfirmConnection operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ConfirmConnection method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ConfirmConnectionRequest method.
+//    req, resp := client.ConfirmConnectionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DirectConnect) ConfirmConnectionRequest(input *ConfirmConnectionInput) (req *request.Request, output *ConfirmConnectionOutput) {
 	op := &request.Operation{
 		Name:       opConfirmConnection,
@@ -145,7 +229,28 @@ func (c *DirectConnect) ConfirmConnection(input *ConfirmConnectionInput) (*Confi
 
 const opConfirmPrivateVirtualInterface = "ConfirmPrivateVirtualInterface"
 
-// ConfirmPrivateVirtualInterfaceRequest generates a request for the ConfirmPrivateVirtualInterface operation.
+// ConfirmPrivateVirtualInterfaceRequest generates a "aws/request.Request" representing the
+// client's request for the ConfirmPrivateVirtualInterface operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ConfirmPrivateVirtualInterface method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ConfirmPrivateVirtualInterfaceRequest method.
+//    req, resp := client.ConfirmPrivateVirtualInterfaceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DirectConnect) ConfirmPrivateVirtualInterfaceRequest(input *ConfirmPrivateVirtualInterfaceInput) (req *request.Request, output *ConfirmPrivateVirtualInterfaceOutput) {
 	op := &request.Operation{
 		Name:       opConfirmPrivateVirtualInterface,
@@ -176,7 +281,28 @@ func (c *DirectConnect) ConfirmPrivateVirtualInterface(input *ConfirmPrivateVirt
 
 const opConfirmPublicVirtualInterface = "ConfirmPublicVirtualInterface"
 
-// ConfirmPublicVirtualInterfaceRequest generates a request for the ConfirmPublicVirtualInterface operation.
+// ConfirmPublicVirtualInterfaceRequest generates a "aws/request.Request" representing the
+// client's request for the ConfirmPublicVirtualInterface operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ConfirmPublicVirtualInterface method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ConfirmPublicVirtualInterfaceRequest method.
+//    req, resp := client.ConfirmPublicVirtualInterfaceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DirectConnect) ConfirmPublicVirtualInterfaceRequest(input *ConfirmPublicVirtualInterfaceInput) (req *request.Request, output *ConfirmPublicVirtualInterfaceOutput) {
 	op := &request.Operation{
 		Name:       opConfirmPublicVirtualInterface,
@@ -206,7 +332,28 @@ func (c *DirectConnect) ConfirmPublicVirtualInterface(input *ConfirmPublicVirtua
 
 const opCreateConnection = "CreateConnection"
 
-// CreateConnectionRequest generates a request for the CreateConnection operation.
+// CreateConnectionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateConnection operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateConnection method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateConnectionRequest method.
+//    req, resp := client.CreateConnectionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DirectConnect) CreateConnectionRequest(input *CreateConnectionInput) (req *request.Request, output *Connection) {
 	op := &request.Operation{
 		Name:       opCreateConnection,
@@ -242,7 +389,28 @@ func (c *DirectConnect) CreateConnection(input *CreateConnectionInput) (*Connect
 
 const opCreateInterconnect = "CreateInterconnect"
 
-// CreateInterconnectRequest generates a request for the CreateInterconnect operation.
+// CreateInterconnectRequest generates a "aws/request.Request" representing the
+// client's request for the CreateInterconnect operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateInterconnect method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateInterconnectRequest method.
+//    req, resp := client.CreateInterconnectRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DirectConnect) CreateInterconnectRequest(input *CreateInterconnectInput) (req *request.Request, output *Interconnect) {
 	op := &request.Operation{
 		Name:       opCreateInterconnect,
@@ -286,7 +454,28 @@ func (c *DirectConnect) CreateInterconnect(input *CreateInterconnectInput) (*Int
 
 const opCreatePrivateVirtualInterface = "CreatePrivateVirtualInterface"
 
-// CreatePrivateVirtualInterfaceRequest generates a request for the CreatePrivateVirtualInterface operation.
+// CreatePrivateVirtualInterfaceRequest generates a "aws/request.Request" representing the
+// client's request for the CreatePrivateVirtualInterface operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreatePrivateVirtualInterface method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreatePrivateVirtualInterfaceRequest method.
+//    req, resp := client.CreatePrivateVirtualInterfaceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DirectConnect) CreatePrivateVirtualInterfaceRequest(input *CreatePrivateVirtualInterfaceInput) (req *request.Request, output *VirtualInterface) {
 	op := &request.Operation{
 		Name:       opCreatePrivateVirtualInterface,
@@ -315,7 +504,28 @@ func (c *DirectConnect) CreatePrivateVirtualInterface(input *CreatePrivateVirtua
 
 const opCreatePublicVirtualInterface = "CreatePublicVirtualInterface"
 
-// CreatePublicVirtualInterfaceRequest generates a request for the CreatePublicVirtualInterface operation.
+// CreatePublicVirtualInterfaceRequest generates a "aws/request.Request" representing the
+// client's request for the CreatePublicVirtualInterface operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreatePublicVirtualInterface method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreatePublicVirtualInterfaceRequest method.
+//    req, resp := client.CreatePublicVirtualInterfaceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DirectConnect) CreatePublicVirtualInterfaceRequest(input *CreatePublicVirtualInterfaceInput) (req *request.Request, output *VirtualInterface) {
 	op := &request.Operation{
 		Name:       opCreatePublicVirtualInterface,
@@ -345,7 +555,28 @@ func (c *DirectConnect) CreatePublicVirtualInterface(input *CreatePublicVirtualI
 
 const opDeleteConnection = "DeleteConnection"
 
-// DeleteConnectionRequest generates a request for the DeleteConnection operation.
+// DeleteConnectionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteConnection operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteConnection method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteConnectionRequest method.
+//    req, resp := client.DeleteConnectionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DirectConnect) DeleteConnectionRequest(input *DeleteConnectionInput) (req *request.Request, output *Connection) {
 	op := &request.Operation{
 		Name:       opDeleteConnection,
@@ -377,7 +608,28 @@ func (c *DirectConnect) DeleteConnection(input *DeleteConnectionInput) (*Connect
 
 const opDeleteInterconnect = "DeleteInterconnect"
 
-// DeleteInterconnectRequest generates a request for the DeleteInterconnect operation.
+// DeleteInterconnectRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteInterconnect operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteInterconnect method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteInterconnectRequest method.
+//    req, resp := client.DeleteInterconnectRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DirectConnect) DeleteInterconnectRequest(input *DeleteInterconnectInput) (req *request.Request, output *DeleteInterconnectOutput) {
 	op := &request.Operation{
 		Name:       opDeleteInterconnect,
@@ -406,7 +658,28 @@ func (c *DirectConnect) DeleteInterconnect(input *DeleteInterconnectInput) (*Del
 
 const opDeleteVirtualInterface = "DeleteVirtualInterface"
 
-// DeleteVirtualInterfaceRequest generates a request for the DeleteVirtualInterface operation.
+// DeleteVirtualInterfaceRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteVirtualInterface operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteVirtualInterface method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteVirtualInterfaceRequest method.
+//    req, resp := client.DeleteVirtualInterfaceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DirectConnect) DeleteVirtualInterfaceRequest(input *DeleteVirtualInterfaceInput) (req *request.Request, output *DeleteVirtualInterfaceOutput) {
 	op := &request.Operation{
 		Name:       opDeleteVirtualInterface,
@@ -433,7 +706,28 @@ func (c *DirectConnect) DeleteVirtualInterface(input *DeleteVirtualInterfaceInpu
 
 const opDescribeConnectionLoa = "DescribeConnectionLoa"
 
-// DescribeConnectionLoaRequest generates a request for the DescribeConnectionLoa operation.
+// DescribeConnectionLoaRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeConnectionLoa operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeConnectionLoa method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeConnectionLoaRequest method.
+//    req, resp := client.DescribeConnectionLoaRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DirectConnect) DescribeConnectionLoaRequest(input *DescribeConnectionLoaInput) (req *request.Request, output *DescribeConnectionLoaOutput) {
 	op := &request.Operation{
 		Name:       opDescribeConnectionLoa,
@@ -466,7 +760,28 @@ func (c *DirectConnect) DescribeConnectionLoa(input *DescribeConnectionLoaInput)
 
 const opDescribeConnections = "DescribeConnections"
 
-// DescribeConnectionsRequest generates a request for the DescribeConnections operation.
+// DescribeConnectionsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeConnections operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeConnections method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeConnectionsRequest method.
+//    req, resp := client.DescribeConnectionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DirectConnect) DescribeConnectionsRequest(input *DescribeConnectionsInput) (req *request.Request, output *Connections) {
 	op := &request.Operation{
 		Name:       opDescribeConnections,
@@ -495,7 +810,28 @@ func (c *DirectConnect) DescribeConnections(input *DescribeConnectionsInput) (*C
 
 const opDescribeConnectionsOnInterconnect = "DescribeConnectionsOnInterconnect"
 
-// DescribeConnectionsOnInterconnectRequest generates a request for the DescribeConnectionsOnInterconnect operation.
+// DescribeConnectionsOnInterconnectRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeConnectionsOnInterconnect operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeConnectionsOnInterconnect method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeConnectionsOnInterconnectRequest method.
+//    req, resp := client.DescribeConnectionsOnInterconnectRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DirectConnect) DescribeConnectionsOnInterconnectRequest(input *DescribeConnectionsOnInterconnectInput) (req *request.Request, output *Connections) {
 	op := &request.Operation{
 		Name:       opDescribeConnectionsOnInterconnect,
@@ -524,7 +860,28 @@ func (c *DirectConnect) DescribeConnectionsOnInterconnect(input *DescribeConnect
 
 const opDescribeInterconnectLoa = "DescribeInterconnectLoa"
 
-// DescribeInterconnectLoaRequest generates a request for the DescribeInterconnectLoa operation.
+// DescribeInterconnectLoaRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeInterconnectLoa operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeInterconnectLoa method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeInterconnectLoaRequest method.
+//    req, resp := client.DescribeInterconnectLoaRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DirectConnect) DescribeInterconnectLoaRequest(input *DescribeInterconnectLoaInput) (req *request.Request, output *DescribeInterconnectLoaOutput) {
 	op := &request.Operation{
 		Name:       opDescribeInterconnectLoa,
@@ -557,7 +914,28 @@ func (c *DirectConnect) DescribeInterconnectLoa(input *DescribeInterconnectLoaIn
 
 const opDescribeInterconnects = "DescribeInterconnects"
 
-// DescribeInterconnectsRequest generates a request for the DescribeInterconnects operation.
+// DescribeInterconnectsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeInterconnects operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeInterconnects method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeInterconnectsRequest method.
+//    req, resp := client.DescribeInterconnectsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DirectConnect) DescribeInterconnectsRequest(input *DescribeInterconnectsInput) (req *request.Request, output *DescribeInterconnectsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeInterconnects,
@@ -586,7 +964,28 @@ func (c *DirectConnect) DescribeInterconnects(input *DescribeInterconnectsInput)
 
 const opDescribeLocations = "DescribeLocations"
 
-// DescribeLocationsRequest generates a request for the DescribeLocations operation.
+// DescribeLocationsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeLocations operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeLocations method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeLocationsRequest method.
+//    req, resp := client.DescribeLocationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DirectConnect) DescribeLocationsRequest(input *DescribeLocationsInput) (req *request.Request, output *DescribeLocationsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeLocations,
@@ -615,7 +1014,28 @@ func (c *DirectConnect) DescribeLocations(input *DescribeLocationsInput) (*Descr
 
 const opDescribeVirtualGateways = "DescribeVirtualGateways"
 
-// DescribeVirtualGatewaysRequest generates a request for the DescribeVirtualGateways operation.
+// DescribeVirtualGatewaysRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeVirtualGateways operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeVirtualGateways method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeVirtualGatewaysRequest method.
+//    req, resp := client.DescribeVirtualGatewaysRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DirectConnect) DescribeVirtualGatewaysRequest(input *DescribeVirtualGatewaysInput) (req *request.Request, output *DescribeVirtualGatewaysOutput) {
 	op := &request.Operation{
 		Name:       opDescribeVirtualGateways,
@@ -648,7 +1068,28 @@ func (c *DirectConnect) DescribeVirtualGateways(input *DescribeVirtualGatewaysIn
 
 const opDescribeVirtualInterfaces = "DescribeVirtualInterfaces"
 
-// DescribeVirtualInterfacesRequest generates a request for the DescribeVirtualInterfaces operation.
+// DescribeVirtualInterfacesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeVirtualInterfaces operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeVirtualInterfaces method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeVirtualInterfacesRequest method.
+//    req, resp := client.DescribeVirtualInterfacesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DirectConnect) DescribeVirtualInterfacesRequest(input *DescribeVirtualInterfacesInput) (req *request.Request, output *DescribeVirtualInterfacesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeVirtualInterfaces,

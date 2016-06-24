@@ -14,7 +14,28 @@ import (
 
 const opAddTagsToResource = "AddTagsToResource"
 
-// AddTagsToResourceRequest generates a request for the AddTagsToResource operation.
+// AddTagsToResourceRequest generates a "aws/request.Request" representing the
+// client's request for the AddTagsToResource operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AddTagsToResource method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AddTagsToResourceRequest method.
+//    req, resp := client.AddTagsToResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *request.Request, output *TagListMessage) {
 	op := &request.Operation{
 		Name:       opAddTagsToResource,
@@ -52,7 +73,28 @@ func (c *ElastiCache) AddTagsToResource(input *AddTagsToResourceInput) (*TagList
 
 const opAuthorizeCacheSecurityGroupIngress = "AuthorizeCacheSecurityGroupIngress"
 
-// AuthorizeCacheSecurityGroupIngressRequest generates a request for the AuthorizeCacheSecurityGroupIngress operation.
+// AuthorizeCacheSecurityGroupIngressRequest generates a "aws/request.Request" representing the
+// client's request for the AuthorizeCacheSecurityGroupIngress operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AuthorizeCacheSecurityGroupIngress method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AuthorizeCacheSecurityGroupIngressRequest method.
+//    req, resp := client.AuthorizeCacheSecurityGroupIngressRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) AuthorizeCacheSecurityGroupIngressRequest(input *AuthorizeCacheSecurityGroupIngressInput) (req *request.Request, output *AuthorizeCacheSecurityGroupIngressOutput) {
 	op := &request.Operation{
 		Name:       opAuthorizeCacheSecurityGroupIngress,
@@ -84,7 +126,28 @@ func (c *ElastiCache) AuthorizeCacheSecurityGroupIngress(input *AuthorizeCacheSe
 
 const opCopySnapshot = "CopySnapshot"
 
-// CopySnapshotRequest generates a request for the CopySnapshot operation.
+// CopySnapshotRequest generates a "aws/request.Request" representing the
+// client's request for the CopySnapshot operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CopySnapshot method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CopySnapshotRequest method.
+//    req, resp := client.CopySnapshotRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) CopySnapshotRequest(input *CopySnapshotInput) (req *request.Request, output *CopySnapshotOutput) {
 	op := &request.Operation{
 		Name:       opCopySnapshot,
@@ -123,7 +186,28 @@ func (c *ElastiCache) CopySnapshot(input *CopySnapshotInput) (*CopySnapshotOutpu
 
 const opCreateCacheCluster = "CreateCacheCluster"
 
-// CreateCacheClusterRequest generates a request for the CreateCacheCluster operation.
+// CreateCacheClusterRequest generates a "aws/request.Request" representing the
+// client's request for the CreateCacheCluster operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateCacheCluster method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateCacheClusterRequest method.
+//    req, resp := client.CreateCacheClusterRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) CreateCacheClusterRequest(input *CreateCacheClusterInput) (req *request.Request, output *CreateCacheClusterOutput) {
 	op := &request.Operation{
 		Name:       opCreateCacheCluster,
@@ -152,7 +236,28 @@ func (c *ElastiCache) CreateCacheCluster(input *CreateCacheClusterInput) (*Creat
 
 const opCreateCacheParameterGroup = "CreateCacheParameterGroup"
 
-// CreateCacheParameterGroupRequest generates a request for the CreateCacheParameterGroup operation.
+// CreateCacheParameterGroupRequest generates a "aws/request.Request" representing the
+// client's request for the CreateCacheParameterGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateCacheParameterGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateCacheParameterGroupRequest method.
+//    req, resp := client.CreateCacheParameterGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) CreateCacheParameterGroupRequest(input *CreateCacheParameterGroupInput) (req *request.Request, output *CreateCacheParameterGroupOutput) {
 	op := &request.Operation{
 		Name:       opCreateCacheParameterGroup,
@@ -181,7 +286,28 @@ func (c *ElastiCache) CreateCacheParameterGroup(input *CreateCacheParameterGroup
 
 const opCreateCacheSecurityGroup = "CreateCacheSecurityGroup"
 
-// CreateCacheSecurityGroupRequest generates a request for the CreateCacheSecurityGroup operation.
+// CreateCacheSecurityGroupRequest generates a "aws/request.Request" representing the
+// client's request for the CreateCacheSecurityGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateCacheSecurityGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateCacheSecurityGroupRequest method.
+//    req, resp := client.CreateCacheSecurityGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) CreateCacheSecurityGroupRequest(input *CreateCacheSecurityGroupInput) (req *request.Request, output *CreateCacheSecurityGroupOutput) {
 	op := &request.Operation{
 		Name:       opCreateCacheSecurityGroup,
@@ -214,7 +340,28 @@ func (c *ElastiCache) CreateCacheSecurityGroup(input *CreateCacheSecurityGroupIn
 
 const opCreateCacheSubnetGroup = "CreateCacheSubnetGroup"
 
-// CreateCacheSubnetGroupRequest generates a request for the CreateCacheSubnetGroup operation.
+// CreateCacheSubnetGroupRequest generates a "aws/request.Request" representing the
+// client's request for the CreateCacheSubnetGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateCacheSubnetGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateCacheSubnetGroupRequest method.
+//    req, resp := client.CreateCacheSubnetGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) CreateCacheSubnetGroupRequest(input *CreateCacheSubnetGroupInput) (req *request.Request, output *CreateCacheSubnetGroupOutput) {
 	op := &request.Operation{
 		Name:       opCreateCacheSubnetGroup,
@@ -244,7 +391,28 @@ func (c *ElastiCache) CreateCacheSubnetGroup(input *CreateCacheSubnetGroupInput)
 
 const opCreateReplicationGroup = "CreateReplicationGroup"
 
-// CreateReplicationGroupRequest generates a request for the CreateReplicationGroup operation.
+// CreateReplicationGroupRequest generates a "aws/request.Request" representing the
+// client's request for the CreateReplicationGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateReplicationGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateReplicationGroupRequest method.
+//    req, resp := client.CreateReplicationGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) CreateReplicationGroupRequest(input *CreateReplicationGroupInput) (req *request.Request, output *CreateReplicationGroupOutput) {
 	op := &request.Operation{
 		Name:       opCreateReplicationGroup,
@@ -281,7 +449,28 @@ func (c *ElastiCache) CreateReplicationGroup(input *CreateReplicationGroupInput)
 
 const opCreateSnapshot = "CreateSnapshot"
 
-// CreateSnapshotRequest generates a request for the CreateSnapshot operation.
+// CreateSnapshotRequest generates a "aws/request.Request" representing the
+// client's request for the CreateSnapshot operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateSnapshot method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateSnapshotRequest method.
+//    req, resp := client.CreateSnapshotRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) CreateSnapshotRequest(input *CreateSnapshotInput) (req *request.Request, output *CreateSnapshotOutput) {
 	op := &request.Operation{
 		Name:       opCreateSnapshot,
@@ -309,7 +498,28 @@ func (c *ElastiCache) CreateSnapshot(input *CreateSnapshotInput) (*CreateSnapsho
 
 const opDeleteCacheCluster = "DeleteCacheCluster"
 
-// DeleteCacheClusterRequest generates a request for the DeleteCacheCluster operation.
+// DeleteCacheClusterRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteCacheCluster operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteCacheCluster method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteCacheClusterRequest method.
+//    req, resp := client.DeleteCacheClusterRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) DeleteCacheClusterRequest(input *DeleteCacheClusterInput) (req *request.Request, output *DeleteCacheClusterOutput) {
 	op := &request.Operation{
 		Name:       opDeleteCacheCluster,
@@ -343,7 +553,28 @@ func (c *ElastiCache) DeleteCacheCluster(input *DeleteCacheClusterInput) (*Delet
 
 const opDeleteCacheParameterGroup = "DeleteCacheParameterGroup"
 
-// DeleteCacheParameterGroupRequest generates a request for the DeleteCacheParameterGroup operation.
+// DeleteCacheParameterGroupRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteCacheParameterGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteCacheParameterGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteCacheParameterGroupRequest method.
+//    req, resp := client.DeleteCacheParameterGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) DeleteCacheParameterGroupRequest(input *DeleteCacheParameterGroupInput) (req *request.Request, output *DeleteCacheParameterGroupOutput) {
 	op := &request.Operation{
 		Name:       opDeleteCacheParameterGroup,
@@ -374,7 +605,28 @@ func (c *ElastiCache) DeleteCacheParameterGroup(input *DeleteCacheParameterGroup
 
 const opDeleteCacheSecurityGroup = "DeleteCacheSecurityGroup"
 
-// DeleteCacheSecurityGroupRequest generates a request for the DeleteCacheSecurityGroup operation.
+// DeleteCacheSecurityGroupRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteCacheSecurityGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteCacheSecurityGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteCacheSecurityGroupRequest method.
+//    req, resp := client.DeleteCacheSecurityGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) DeleteCacheSecurityGroupRequest(input *DeleteCacheSecurityGroupInput) (req *request.Request, output *DeleteCacheSecurityGroupOutput) {
 	op := &request.Operation{
 		Name:       opDeleteCacheSecurityGroup,
@@ -406,7 +658,28 @@ func (c *ElastiCache) DeleteCacheSecurityGroup(input *DeleteCacheSecurityGroupIn
 
 const opDeleteCacheSubnetGroup = "DeleteCacheSubnetGroup"
 
-// DeleteCacheSubnetGroupRequest generates a request for the DeleteCacheSubnetGroup operation.
+// DeleteCacheSubnetGroupRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteCacheSubnetGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteCacheSubnetGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteCacheSubnetGroupRequest method.
+//    req, resp := client.DeleteCacheSubnetGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) DeleteCacheSubnetGroupRequest(input *DeleteCacheSubnetGroupInput) (req *request.Request, output *DeleteCacheSubnetGroupOutput) {
 	op := &request.Operation{
 		Name:       opDeleteCacheSubnetGroup,
@@ -438,7 +711,28 @@ func (c *ElastiCache) DeleteCacheSubnetGroup(input *DeleteCacheSubnetGroupInput)
 
 const opDeleteReplicationGroup = "DeleteReplicationGroup"
 
-// DeleteReplicationGroupRequest generates a request for the DeleteReplicationGroup operation.
+// DeleteReplicationGroupRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteReplicationGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteReplicationGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteReplicationGroupRequest method.
+//    req, resp := client.DeleteReplicationGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) DeleteReplicationGroupRequest(input *DeleteReplicationGroupInput) (req *request.Request, output *DeleteReplicationGroupOutput) {
 	op := &request.Operation{
 		Name:       opDeleteReplicationGroup,
@@ -472,7 +766,28 @@ func (c *ElastiCache) DeleteReplicationGroup(input *DeleteReplicationGroupInput)
 
 const opDeleteSnapshot = "DeleteSnapshot"
 
-// DeleteSnapshotRequest generates a request for the DeleteSnapshot operation.
+// DeleteSnapshotRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteSnapshot operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteSnapshot method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteSnapshotRequest method.
+//    req, resp := client.DeleteSnapshotRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) DeleteSnapshotRequest(input *DeleteSnapshotInput) (req *request.Request, output *DeleteSnapshotOutput) {
 	op := &request.Operation{
 		Name:       opDeleteSnapshot,
@@ -501,7 +816,28 @@ func (c *ElastiCache) DeleteSnapshot(input *DeleteSnapshotInput) (*DeleteSnapsho
 
 const opDescribeCacheClusters = "DescribeCacheClusters"
 
-// DescribeCacheClustersRequest generates a request for the DescribeCacheClusters operation.
+// DescribeCacheClustersRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeCacheClusters operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeCacheClusters method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeCacheClustersRequest method.
+//    req, resp := client.DescribeCacheClustersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) DescribeCacheClustersRequest(input *DescribeCacheClustersInput) (req *request.Request, output *DescribeCacheClustersOutput) {
 	op := &request.Operation{
 		Name:       opDescribeCacheClusters,
@@ -553,6 +889,23 @@ func (c *ElastiCache) DescribeCacheClusters(input *DescribeCacheClustersInput) (
 	return out, err
 }
 
+// DescribeCacheClustersPages iterates over the pages of a DescribeCacheClusters operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeCacheClusters method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeCacheClusters operation.
+//    pageNum := 0
+//    err := client.DescribeCacheClustersPages(params,
+//        func(page *DescribeCacheClustersOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *ElastiCache) DescribeCacheClustersPages(input *DescribeCacheClustersInput, fn func(p *DescribeCacheClustersOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeCacheClustersRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -563,7 +916,28 @@ func (c *ElastiCache) DescribeCacheClustersPages(input *DescribeCacheClustersInp
 
 const opDescribeCacheEngineVersions = "DescribeCacheEngineVersions"
 
-// DescribeCacheEngineVersionsRequest generates a request for the DescribeCacheEngineVersions operation.
+// DescribeCacheEngineVersionsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeCacheEngineVersions operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeCacheEngineVersions method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeCacheEngineVersionsRequest method.
+//    req, resp := client.DescribeCacheEngineVersionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) DescribeCacheEngineVersionsRequest(input *DescribeCacheEngineVersionsInput) (req *request.Request, output *DescribeCacheEngineVersionsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeCacheEngineVersions,
@@ -595,6 +969,23 @@ func (c *ElastiCache) DescribeCacheEngineVersions(input *DescribeCacheEngineVers
 	return out, err
 }
 
+// DescribeCacheEngineVersionsPages iterates over the pages of a DescribeCacheEngineVersions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeCacheEngineVersions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeCacheEngineVersions operation.
+//    pageNum := 0
+//    err := client.DescribeCacheEngineVersionsPages(params,
+//        func(page *DescribeCacheEngineVersionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *ElastiCache) DescribeCacheEngineVersionsPages(input *DescribeCacheEngineVersionsInput, fn func(p *DescribeCacheEngineVersionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeCacheEngineVersionsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -605,7 +996,28 @@ func (c *ElastiCache) DescribeCacheEngineVersionsPages(input *DescribeCacheEngin
 
 const opDescribeCacheParameterGroups = "DescribeCacheParameterGroups"
 
-// DescribeCacheParameterGroupsRequest generates a request for the DescribeCacheParameterGroups operation.
+// DescribeCacheParameterGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeCacheParameterGroups operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeCacheParameterGroups method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeCacheParameterGroupsRequest method.
+//    req, resp := client.DescribeCacheParameterGroupsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) DescribeCacheParameterGroupsRequest(input *DescribeCacheParameterGroupsInput) (req *request.Request, output *DescribeCacheParameterGroupsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeCacheParameterGroups,
@@ -638,6 +1050,23 @@ func (c *ElastiCache) DescribeCacheParameterGroups(input *DescribeCacheParameter
 	return out, err
 }
 
+// DescribeCacheParameterGroupsPages iterates over the pages of a DescribeCacheParameterGroups operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeCacheParameterGroups method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeCacheParameterGroups operation.
+//    pageNum := 0
+//    err := client.DescribeCacheParameterGroupsPages(params,
+//        func(page *DescribeCacheParameterGroupsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *ElastiCache) DescribeCacheParameterGroupsPages(input *DescribeCacheParameterGroupsInput, fn func(p *DescribeCacheParameterGroupsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeCacheParameterGroupsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -648,7 +1077,28 @@ func (c *ElastiCache) DescribeCacheParameterGroupsPages(input *DescribeCachePara
 
 const opDescribeCacheParameters = "DescribeCacheParameters"
 
-// DescribeCacheParametersRequest generates a request for the DescribeCacheParameters operation.
+// DescribeCacheParametersRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeCacheParameters operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeCacheParameters method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeCacheParametersRequest method.
+//    req, resp := client.DescribeCacheParametersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) DescribeCacheParametersRequest(input *DescribeCacheParametersInput) (req *request.Request, output *DescribeCacheParametersOutput) {
 	op := &request.Operation{
 		Name:       opDescribeCacheParameters,
@@ -680,6 +1130,23 @@ func (c *ElastiCache) DescribeCacheParameters(input *DescribeCacheParametersInpu
 	return out, err
 }
 
+// DescribeCacheParametersPages iterates over the pages of a DescribeCacheParameters operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeCacheParameters method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeCacheParameters operation.
+//    pageNum := 0
+//    err := client.DescribeCacheParametersPages(params,
+//        func(page *DescribeCacheParametersOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *ElastiCache) DescribeCacheParametersPages(input *DescribeCacheParametersInput, fn func(p *DescribeCacheParametersOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeCacheParametersRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -690,7 +1157,28 @@ func (c *ElastiCache) DescribeCacheParametersPages(input *DescribeCacheParameter
 
 const opDescribeCacheSecurityGroups = "DescribeCacheSecurityGroups"
 
-// DescribeCacheSecurityGroupsRequest generates a request for the DescribeCacheSecurityGroups operation.
+// DescribeCacheSecurityGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeCacheSecurityGroups operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeCacheSecurityGroups method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeCacheSecurityGroupsRequest method.
+//    req, resp := client.DescribeCacheSecurityGroupsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) DescribeCacheSecurityGroupsRequest(input *DescribeCacheSecurityGroupsInput) (req *request.Request, output *DescribeCacheSecurityGroupsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeCacheSecurityGroups,
@@ -723,6 +1211,23 @@ func (c *ElastiCache) DescribeCacheSecurityGroups(input *DescribeCacheSecurityGr
 	return out, err
 }
 
+// DescribeCacheSecurityGroupsPages iterates over the pages of a DescribeCacheSecurityGroups operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeCacheSecurityGroups method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeCacheSecurityGroups operation.
+//    pageNum := 0
+//    err := client.DescribeCacheSecurityGroupsPages(params,
+//        func(page *DescribeCacheSecurityGroupsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *ElastiCache) DescribeCacheSecurityGroupsPages(input *DescribeCacheSecurityGroupsInput, fn func(p *DescribeCacheSecurityGroupsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeCacheSecurityGroupsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -733,7 +1238,28 @@ func (c *ElastiCache) DescribeCacheSecurityGroupsPages(input *DescribeCacheSecur
 
 const opDescribeCacheSubnetGroups = "DescribeCacheSubnetGroups"
 
-// DescribeCacheSubnetGroupsRequest generates a request for the DescribeCacheSubnetGroups operation.
+// DescribeCacheSubnetGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeCacheSubnetGroups operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeCacheSubnetGroups method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeCacheSubnetGroupsRequest method.
+//    req, resp := client.DescribeCacheSubnetGroupsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) DescribeCacheSubnetGroupsRequest(input *DescribeCacheSubnetGroupsInput) (req *request.Request, output *DescribeCacheSubnetGroupsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeCacheSubnetGroups,
@@ -766,6 +1292,23 @@ func (c *ElastiCache) DescribeCacheSubnetGroups(input *DescribeCacheSubnetGroups
 	return out, err
 }
 
+// DescribeCacheSubnetGroupsPages iterates over the pages of a DescribeCacheSubnetGroups operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeCacheSubnetGroups method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeCacheSubnetGroups operation.
+//    pageNum := 0
+//    err := client.DescribeCacheSubnetGroupsPages(params,
+//        func(page *DescribeCacheSubnetGroupsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *ElastiCache) DescribeCacheSubnetGroupsPages(input *DescribeCacheSubnetGroupsInput, fn func(p *DescribeCacheSubnetGroupsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeCacheSubnetGroupsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -776,7 +1319,28 @@ func (c *ElastiCache) DescribeCacheSubnetGroupsPages(input *DescribeCacheSubnetG
 
 const opDescribeEngineDefaultParameters = "DescribeEngineDefaultParameters"
 
-// DescribeEngineDefaultParametersRequest generates a request for the DescribeEngineDefaultParameters operation.
+// DescribeEngineDefaultParametersRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeEngineDefaultParameters operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeEngineDefaultParameters method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeEngineDefaultParametersRequest method.
+//    req, resp := client.DescribeEngineDefaultParametersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) DescribeEngineDefaultParametersRequest(input *DescribeEngineDefaultParametersInput) (req *request.Request, output *DescribeEngineDefaultParametersOutput) {
 	op := &request.Operation{
 		Name:       opDescribeEngineDefaultParameters,
@@ -808,6 +1372,23 @@ func (c *ElastiCache) DescribeEngineDefaultParameters(input *DescribeEngineDefau
 	return out, err
 }
 
+// DescribeEngineDefaultParametersPages iterates over the pages of a DescribeEngineDefaultParameters operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeEngineDefaultParameters method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeEngineDefaultParameters operation.
+//    pageNum := 0
+//    err := client.DescribeEngineDefaultParametersPages(params,
+//        func(page *DescribeEngineDefaultParametersOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *ElastiCache) DescribeEngineDefaultParametersPages(input *DescribeEngineDefaultParametersInput, fn func(p *DescribeEngineDefaultParametersOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeEngineDefaultParametersRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -818,7 +1399,28 @@ func (c *ElastiCache) DescribeEngineDefaultParametersPages(input *DescribeEngine
 
 const opDescribeEvents = "DescribeEvents"
 
-// DescribeEventsRequest generates a request for the DescribeEvents operation.
+// DescribeEventsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeEvents operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeEvents method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeEventsRequest method.
+//    req, resp := client.DescribeEventsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) DescribeEventsRequest(input *DescribeEventsInput) (req *request.Request, output *DescribeEventsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeEvents,
@@ -855,6 +1457,23 @@ func (c *ElastiCache) DescribeEvents(input *DescribeEventsInput) (*DescribeEvent
 	return out, err
 }
 
+// DescribeEventsPages iterates over the pages of a DescribeEvents operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeEvents method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeEvents operation.
+//    pageNum := 0
+//    err := client.DescribeEventsPages(params,
+//        func(page *DescribeEventsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *ElastiCache) DescribeEventsPages(input *DescribeEventsInput, fn func(p *DescribeEventsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeEventsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -865,7 +1484,28 @@ func (c *ElastiCache) DescribeEventsPages(input *DescribeEventsInput, fn func(p 
 
 const opDescribeReplicationGroups = "DescribeReplicationGroups"
 
-// DescribeReplicationGroupsRequest generates a request for the DescribeReplicationGroups operation.
+// DescribeReplicationGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeReplicationGroups operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeReplicationGroups method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeReplicationGroupsRequest method.
+//    req, resp := client.DescribeReplicationGroupsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) DescribeReplicationGroupsRequest(input *DescribeReplicationGroupsInput) (req *request.Request, output *DescribeReplicationGroupsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeReplicationGroups,
@@ -898,6 +1538,23 @@ func (c *ElastiCache) DescribeReplicationGroups(input *DescribeReplicationGroups
 	return out, err
 }
 
+// DescribeReplicationGroupsPages iterates over the pages of a DescribeReplicationGroups operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeReplicationGroups method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeReplicationGroups operation.
+//    pageNum := 0
+//    err := client.DescribeReplicationGroupsPages(params,
+//        func(page *DescribeReplicationGroupsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *ElastiCache) DescribeReplicationGroupsPages(input *DescribeReplicationGroupsInput, fn func(p *DescribeReplicationGroupsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeReplicationGroupsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -908,7 +1565,28 @@ func (c *ElastiCache) DescribeReplicationGroupsPages(input *DescribeReplicationG
 
 const opDescribeReservedCacheNodes = "DescribeReservedCacheNodes"
 
-// DescribeReservedCacheNodesRequest generates a request for the DescribeReservedCacheNodes operation.
+// DescribeReservedCacheNodesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeReservedCacheNodes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeReservedCacheNodes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeReservedCacheNodesRequest method.
+//    req, resp := client.DescribeReservedCacheNodesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) DescribeReservedCacheNodesRequest(input *DescribeReservedCacheNodesInput) (req *request.Request, output *DescribeReservedCacheNodesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeReservedCacheNodes,
@@ -940,6 +1618,23 @@ func (c *ElastiCache) DescribeReservedCacheNodes(input *DescribeReservedCacheNod
 	return out, err
 }
 
+// DescribeReservedCacheNodesPages iterates over the pages of a DescribeReservedCacheNodes operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeReservedCacheNodes method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeReservedCacheNodes operation.
+//    pageNum := 0
+//    err := client.DescribeReservedCacheNodesPages(params,
+//        func(page *DescribeReservedCacheNodesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *ElastiCache) DescribeReservedCacheNodesPages(input *DescribeReservedCacheNodesInput, fn func(p *DescribeReservedCacheNodesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeReservedCacheNodesRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -950,7 +1645,28 @@ func (c *ElastiCache) DescribeReservedCacheNodesPages(input *DescribeReservedCac
 
 const opDescribeReservedCacheNodesOfferings = "DescribeReservedCacheNodesOfferings"
 
-// DescribeReservedCacheNodesOfferingsRequest generates a request for the DescribeReservedCacheNodesOfferings operation.
+// DescribeReservedCacheNodesOfferingsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeReservedCacheNodesOfferings operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeReservedCacheNodesOfferings method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeReservedCacheNodesOfferingsRequest method.
+//    req, resp := client.DescribeReservedCacheNodesOfferingsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) DescribeReservedCacheNodesOfferingsRequest(input *DescribeReservedCacheNodesOfferingsInput) (req *request.Request, output *DescribeReservedCacheNodesOfferingsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeReservedCacheNodesOfferings,
@@ -982,6 +1698,23 @@ func (c *ElastiCache) DescribeReservedCacheNodesOfferings(input *DescribeReserve
 	return out, err
 }
 
+// DescribeReservedCacheNodesOfferingsPages iterates over the pages of a DescribeReservedCacheNodesOfferings operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeReservedCacheNodesOfferings method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeReservedCacheNodesOfferings operation.
+//    pageNum := 0
+//    err := client.DescribeReservedCacheNodesOfferingsPages(params,
+//        func(page *DescribeReservedCacheNodesOfferingsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *ElastiCache) DescribeReservedCacheNodesOfferingsPages(input *DescribeReservedCacheNodesOfferingsInput, fn func(p *DescribeReservedCacheNodesOfferingsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeReservedCacheNodesOfferingsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -992,7 +1725,28 @@ func (c *ElastiCache) DescribeReservedCacheNodesOfferingsPages(input *DescribeRe
 
 const opDescribeSnapshots = "DescribeSnapshots"
 
-// DescribeSnapshotsRequest generates a request for the DescribeSnapshots operation.
+// DescribeSnapshotsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeSnapshots operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeSnapshots method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeSnapshotsRequest method.
+//    req, resp := client.DescribeSnapshotsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (req *request.Request, output *DescribeSnapshotsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeSnapshots,
@@ -1026,6 +1780,23 @@ func (c *ElastiCache) DescribeSnapshots(input *DescribeSnapshotsInput) (*Describ
 	return out, err
 }
 
+// DescribeSnapshotsPages iterates over the pages of a DescribeSnapshots operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeSnapshots method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeSnapshots operation.
+//    pageNum := 0
+//    err := client.DescribeSnapshotsPages(params,
+//        func(page *DescribeSnapshotsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *ElastiCache) DescribeSnapshotsPages(input *DescribeSnapshotsInput, fn func(p *DescribeSnapshotsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeSnapshotsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -1036,7 +1807,28 @@ func (c *ElastiCache) DescribeSnapshotsPages(input *DescribeSnapshotsInput, fn f
 
 const opListAllowedNodeTypeModifications = "ListAllowedNodeTypeModifications"
 
-// ListAllowedNodeTypeModificationsRequest generates a request for the ListAllowedNodeTypeModifications operation.
+// ListAllowedNodeTypeModificationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAllowedNodeTypeModifications operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListAllowedNodeTypeModifications method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListAllowedNodeTypeModificationsRequest method.
+//    req, resp := client.ListAllowedNodeTypeModificationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) ListAllowedNodeTypeModificationsRequest(input *ListAllowedNodeTypeModificationsInput) (req *request.Request, output *ListAllowedNodeTypeModificationsOutput) {
 	op := &request.Operation{
 		Name:       opListAllowedNodeTypeModifications,
@@ -1069,7 +1861,28 @@ func (c *ElastiCache) ListAllowedNodeTypeModifications(input *ListAllowedNodeTyp
 
 const opListTagsForResource = "ListTagsForResource"
 
-// ListTagsForResourceRequest generates a request for the ListTagsForResource operation.
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListTagsForResource method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListTagsForResourceRequest method.
+//    req, resp := client.ListTagsForResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *TagListMessage) {
 	op := &request.Operation{
 		Name:       opListTagsForResource,
@@ -1103,7 +1916,28 @@ func (c *ElastiCache) ListTagsForResource(input *ListTagsForResourceInput) (*Tag
 
 const opModifyCacheCluster = "ModifyCacheCluster"
 
-// ModifyCacheClusterRequest generates a request for the ModifyCacheCluster operation.
+// ModifyCacheClusterRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyCacheCluster operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ModifyCacheCluster method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ModifyCacheClusterRequest method.
+//    req, resp := client.ModifyCacheClusterRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) ModifyCacheClusterRequest(input *ModifyCacheClusterInput) (req *request.Request, output *ModifyCacheClusterOutput) {
 	op := &request.Operation{
 		Name:       opModifyCacheCluster,
@@ -1132,7 +1966,28 @@ func (c *ElastiCache) ModifyCacheCluster(input *ModifyCacheClusterInput) (*Modif
 
 const opModifyCacheParameterGroup = "ModifyCacheParameterGroup"
 
-// ModifyCacheParameterGroupRequest generates a request for the ModifyCacheParameterGroup operation.
+// ModifyCacheParameterGroupRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyCacheParameterGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ModifyCacheParameterGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ModifyCacheParameterGroupRequest method.
+//    req, resp := client.ModifyCacheParameterGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) ModifyCacheParameterGroupRequest(input *ModifyCacheParameterGroupInput) (req *request.Request, output *CacheParameterGroupNameMessage) {
 	op := &request.Operation{
 		Name:       opModifyCacheParameterGroup,
@@ -1161,7 +2016,28 @@ func (c *ElastiCache) ModifyCacheParameterGroup(input *ModifyCacheParameterGroup
 
 const opModifyCacheSubnetGroup = "ModifyCacheSubnetGroup"
 
-// ModifyCacheSubnetGroupRequest generates a request for the ModifyCacheSubnetGroup operation.
+// ModifyCacheSubnetGroupRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyCacheSubnetGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ModifyCacheSubnetGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ModifyCacheSubnetGroupRequest method.
+//    req, resp := client.ModifyCacheSubnetGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) ModifyCacheSubnetGroupRequest(input *ModifyCacheSubnetGroupInput) (req *request.Request, output *ModifyCacheSubnetGroupOutput) {
 	op := &request.Operation{
 		Name:       opModifyCacheSubnetGroup,
@@ -1188,7 +2064,28 @@ func (c *ElastiCache) ModifyCacheSubnetGroup(input *ModifyCacheSubnetGroupInput)
 
 const opModifyReplicationGroup = "ModifyReplicationGroup"
 
-// ModifyReplicationGroupRequest generates a request for the ModifyReplicationGroup operation.
+// ModifyReplicationGroupRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyReplicationGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ModifyReplicationGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ModifyReplicationGroupRequest method.
+//    req, resp := client.ModifyReplicationGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) ModifyReplicationGroupRequest(input *ModifyReplicationGroupInput) (req *request.Request, output *ModifyReplicationGroupOutput) {
 	op := &request.Operation{
 		Name:       opModifyReplicationGroup,
@@ -1216,7 +2113,28 @@ func (c *ElastiCache) ModifyReplicationGroup(input *ModifyReplicationGroupInput)
 
 const opPurchaseReservedCacheNodesOffering = "PurchaseReservedCacheNodesOffering"
 
-// PurchaseReservedCacheNodesOfferingRequest generates a request for the PurchaseReservedCacheNodesOffering operation.
+// PurchaseReservedCacheNodesOfferingRequest generates a "aws/request.Request" representing the
+// client's request for the PurchaseReservedCacheNodesOffering operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the PurchaseReservedCacheNodesOffering method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PurchaseReservedCacheNodesOfferingRequest method.
+//    req, resp := client.PurchaseReservedCacheNodesOfferingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) PurchaseReservedCacheNodesOfferingRequest(input *PurchaseReservedCacheNodesOfferingInput) (req *request.Request, output *PurchaseReservedCacheNodesOfferingOutput) {
 	op := &request.Operation{
 		Name:       opPurchaseReservedCacheNodesOffering,
@@ -1244,7 +2162,28 @@ func (c *ElastiCache) PurchaseReservedCacheNodesOffering(input *PurchaseReserved
 
 const opRebootCacheCluster = "RebootCacheCluster"
 
-// RebootCacheClusterRequest generates a request for the RebootCacheCluster operation.
+// RebootCacheClusterRequest generates a "aws/request.Request" representing the
+// client's request for the RebootCacheCluster operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RebootCacheCluster method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RebootCacheClusterRequest method.
+//    req, resp := client.RebootCacheClusterRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) RebootCacheClusterRequest(input *RebootCacheClusterInput) (req *request.Request, output *RebootCacheClusterOutput) {
 	op := &request.Operation{
 		Name:       opRebootCacheCluster,
@@ -1280,7 +2219,28 @@ func (c *ElastiCache) RebootCacheCluster(input *RebootCacheClusterInput) (*Reboo
 
 const opRemoveTagsFromResource = "RemoveTagsFromResource"
 
-// RemoveTagsFromResourceRequest generates a request for the RemoveTagsFromResource operation.
+// RemoveTagsFromResourceRequest generates a "aws/request.Request" representing the
+// client's request for the RemoveTagsFromResource operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RemoveTagsFromResource method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RemoveTagsFromResourceRequest method.
+//    req, resp := client.RemoveTagsFromResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceInput) (req *request.Request, output *TagListMessage) {
 	op := &request.Operation{
 		Name:       opRemoveTagsFromResource,
@@ -1308,7 +2268,28 @@ func (c *ElastiCache) RemoveTagsFromResource(input *RemoveTagsFromResourceInput)
 
 const opResetCacheParameterGroup = "ResetCacheParameterGroup"
 
-// ResetCacheParameterGroupRequest generates a request for the ResetCacheParameterGroup operation.
+// ResetCacheParameterGroupRequest generates a "aws/request.Request" representing the
+// client's request for the ResetCacheParameterGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ResetCacheParameterGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ResetCacheParameterGroupRequest method.
+//    req, resp := client.ResetCacheParameterGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) ResetCacheParameterGroupRequest(input *ResetCacheParameterGroupInput) (req *request.Request, output *CacheParameterGroupNameMessage) {
 	op := &request.Operation{
 		Name:       opResetCacheParameterGroup,
@@ -1338,7 +2319,28 @@ func (c *ElastiCache) ResetCacheParameterGroup(input *ResetCacheParameterGroupIn
 
 const opRevokeCacheSecurityGroupIngress = "RevokeCacheSecurityGroupIngress"
 
-// RevokeCacheSecurityGroupIngressRequest generates a request for the RevokeCacheSecurityGroupIngress operation.
+// RevokeCacheSecurityGroupIngressRequest generates a "aws/request.Request" representing the
+// client's request for the RevokeCacheSecurityGroupIngress operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RevokeCacheSecurityGroupIngress method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RevokeCacheSecurityGroupIngressRequest method.
+//    req, resp := client.RevokeCacheSecurityGroupIngressRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ElastiCache) RevokeCacheSecurityGroupIngressRequest(input *RevokeCacheSecurityGroupIngressInput) (req *request.Request, output *RevokeCacheSecurityGroupIngressOutput) {
 	op := &request.Operation{
 		Name:       opRevokeCacheSecurityGroupIngress,

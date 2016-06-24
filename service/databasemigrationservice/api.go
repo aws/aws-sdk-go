@@ -13,7 +13,28 @@ import (
 
 const opAddTagsToResource = "AddTagsToResource"
 
-// AddTagsToResourceRequest generates a request for the AddTagsToResource operation.
+// AddTagsToResourceRequest generates a "aws/request.Request" representing the
+// client's request for the AddTagsToResource operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AddTagsToResource method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AddTagsToResourceRequest method.
+//    req, resp := client.AddTagsToResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DatabaseMigrationService) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *request.Request, output *AddTagsToResourceOutput) {
 	op := &request.Operation{
 		Name:       opAddTagsToResource,
@@ -43,7 +64,28 @@ func (c *DatabaseMigrationService) AddTagsToResource(input *AddTagsToResourceInp
 
 const opCreateEndpoint = "CreateEndpoint"
 
-// CreateEndpointRequest generates a request for the CreateEndpoint operation.
+// CreateEndpointRequest generates a "aws/request.Request" representing the
+// client's request for the CreateEndpoint operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateEndpoint method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateEndpointRequest method.
+//    req, resp := client.CreateEndpointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DatabaseMigrationService) CreateEndpointRequest(input *CreateEndpointInput) (req *request.Request, output *CreateEndpointOutput) {
 	op := &request.Operation{
 		Name:       opCreateEndpoint,
@@ -70,7 +112,28 @@ func (c *DatabaseMigrationService) CreateEndpoint(input *CreateEndpointInput) (*
 
 const opCreateReplicationInstance = "CreateReplicationInstance"
 
-// CreateReplicationInstanceRequest generates a request for the CreateReplicationInstance operation.
+// CreateReplicationInstanceRequest generates a "aws/request.Request" representing the
+// client's request for the CreateReplicationInstance operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateReplicationInstance method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateReplicationInstanceRequest method.
+//    req, resp := client.CreateReplicationInstanceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DatabaseMigrationService) CreateReplicationInstanceRequest(input *CreateReplicationInstanceInput) (req *request.Request, output *CreateReplicationInstanceOutput) {
 	op := &request.Operation{
 		Name:       opCreateReplicationInstance,
@@ -97,7 +160,28 @@ func (c *DatabaseMigrationService) CreateReplicationInstance(input *CreateReplic
 
 const opCreateReplicationSubnetGroup = "CreateReplicationSubnetGroup"
 
-// CreateReplicationSubnetGroupRequest generates a request for the CreateReplicationSubnetGroup operation.
+// CreateReplicationSubnetGroupRequest generates a "aws/request.Request" representing the
+// client's request for the CreateReplicationSubnetGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateReplicationSubnetGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateReplicationSubnetGroupRequest method.
+//    req, resp := client.CreateReplicationSubnetGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DatabaseMigrationService) CreateReplicationSubnetGroupRequest(input *CreateReplicationSubnetGroupInput) (req *request.Request, output *CreateReplicationSubnetGroupOutput) {
 	op := &request.Operation{
 		Name:       opCreateReplicationSubnetGroup,
@@ -124,7 +208,28 @@ func (c *DatabaseMigrationService) CreateReplicationSubnetGroup(input *CreateRep
 
 const opCreateReplicationTask = "CreateReplicationTask"
 
-// CreateReplicationTaskRequest generates a request for the CreateReplicationTask operation.
+// CreateReplicationTaskRequest generates a "aws/request.Request" representing the
+// client's request for the CreateReplicationTask operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateReplicationTask method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateReplicationTaskRequest method.
+//    req, resp := client.CreateReplicationTaskRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DatabaseMigrationService) CreateReplicationTaskRequest(input *CreateReplicationTaskInput) (req *request.Request, output *CreateReplicationTaskOutput) {
 	op := &request.Operation{
 		Name:       opCreateReplicationTask,
@@ -151,7 +256,28 @@ func (c *DatabaseMigrationService) CreateReplicationTask(input *CreateReplicatio
 
 const opDeleteEndpoint = "DeleteEndpoint"
 
-// DeleteEndpointRequest generates a request for the DeleteEndpoint operation.
+// DeleteEndpointRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteEndpoint operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteEndpoint method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteEndpointRequest method.
+//    req, resp := client.DeleteEndpointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DatabaseMigrationService) DeleteEndpointRequest(input *DeleteEndpointInput) (req *request.Request, output *DeleteEndpointOutput) {
 	op := &request.Operation{
 		Name:       opDeleteEndpoint,
@@ -181,7 +307,28 @@ func (c *DatabaseMigrationService) DeleteEndpoint(input *DeleteEndpointInput) (*
 
 const opDeleteReplicationInstance = "DeleteReplicationInstance"
 
-// DeleteReplicationInstanceRequest generates a request for the DeleteReplicationInstance operation.
+// DeleteReplicationInstanceRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteReplicationInstance operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteReplicationInstance method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteReplicationInstanceRequest method.
+//    req, resp := client.DeleteReplicationInstanceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DatabaseMigrationService) DeleteReplicationInstanceRequest(input *DeleteReplicationInstanceInput) (req *request.Request, output *DeleteReplicationInstanceOutput) {
 	op := &request.Operation{
 		Name:       opDeleteReplicationInstance,
@@ -211,7 +358,28 @@ func (c *DatabaseMigrationService) DeleteReplicationInstance(input *DeleteReplic
 
 const opDeleteReplicationSubnetGroup = "DeleteReplicationSubnetGroup"
 
-// DeleteReplicationSubnetGroupRequest generates a request for the DeleteReplicationSubnetGroup operation.
+// DeleteReplicationSubnetGroupRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteReplicationSubnetGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteReplicationSubnetGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteReplicationSubnetGroupRequest method.
+//    req, resp := client.DeleteReplicationSubnetGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DatabaseMigrationService) DeleteReplicationSubnetGroupRequest(input *DeleteReplicationSubnetGroupInput) (req *request.Request, output *DeleteReplicationSubnetGroupOutput) {
 	op := &request.Operation{
 		Name:       opDeleteReplicationSubnetGroup,
@@ -238,7 +406,28 @@ func (c *DatabaseMigrationService) DeleteReplicationSubnetGroup(input *DeleteRep
 
 const opDeleteReplicationTask = "DeleteReplicationTask"
 
-// DeleteReplicationTaskRequest generates a request for the DeleteReplicationTask operation.
+// DeleteReplicationTaskRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteReplicationTask operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteReplicationTask method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteReplicationTaskRequest method.
+//    req, resp := client.DeleteReplicationTaskRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DatabaseMigrationService) DeleteReplicationTaskRequest(input *DeleteReplicationTaskInput) (req *request.Request, output *DeleteReplicationTaskOutput) {
 	op := &request.Operation{
 		Name:       opDeleteReplicationTask,
@@ -265,7 +454,28 @@ func (c *DatabaseMigrationService) DeleteReplicationTask(input *DeleteReplicatio
 
 const opDescribeAccountAttributes = "DescribeAccountAttributes"
 
-// DescribeAccountAttributesRequest generates a request for the DescribeAccountAttributes operation.
+// DescribeAccountAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAccountAttributes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeAccountAttributes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeAccountAttributesRequest method.
+//    req, resp := client.DescribeAccountAttributesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DatabaseMigrationService) DescribeAccountAttributesRequest(input *DescribeAccountAttributesInput) (req *request.Request, output *DescribeAccountAttributesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeAccountAttributes,
@@ -297,7 +507,28 @@ func (c *DatabaseMigrationService) DescribeAccountAttributes(input *DescribeAcco
 
 const opDescribeConnections = "DescribeConnections"
 
-// DescribeConnectionsRequest generates a request for the DescribeConnections operation.
+// DescribeConnectionsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeConnections operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeConnections method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeConnectionsRequest method.
+//    req, resp := client.DescribeConnectionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DatabaseMigrationService) DescribeConnectionsRequest(input *DescribeConnectionsInput) (req *request.Request, output *DescribeConnectionsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeConnections,
@@ -325,7 +556,28 @@ func (c *DatabaseMigrationService) DescribeConnections(input *DescribeConnection
 
 const opDescribeEndpointTypes = "DescribeEndpointTypes"
 
-// DescribeEndpointTypesRequest generates a request for the DescribeEndpointTypes operation.
+// DescribeEndpointTypesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeEndpointTypes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeEndpointTypes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeEndpointTypesRequest method.
+//    req, resp := client.DescribeEndpointTypesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DatabaseMigrationService) DescribeEndpointTypesRequest(input *DescribeEndpointTypesInput) (req *request.Request, output *DescribeEndpointTypesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeEndpointTypes,
@@ -352,7 +604,28 @@ func (c *DatabaseMigrationService) DescribeEndpointTypes(input *DescribeEndpoint
 
 const opDescribeEndpoints = "DescribeEndpoints"
 
-// DescribeEndpointsRequest generates a request for the DescribeEndpoints operation.
+// DescribeEndpointsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeEndpoints operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeEndpoints method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeEndpointsRequest method.
+//    req, resp := client.DescribeEndpointsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DatabaseMigrationService) DescribeEndpointsRequest(input *DescribeEndpointsInput) (req *request.Request, output *DescribeEndpointsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeEndpoints,
@@ -379,7 +652,28 @@ func (c *DatabaseMigrationService) DescribeEndpoints(input *DescribeEndpointsInp
 
 const opDescribeOrderableReplicationInstances = "DescribeOrderableReplicationInstances"
 
-// DescribeOrderableReplicationInstancesRequest generates a request for the DescribeOrderableReplicationInstances operation.
+// DescribeOrderableReplicationInstancesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeOrderableReplicationInstances operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeOrderableReplicationInstances method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeOrderableReplicationInstancesRequest method.
+//    req, resp := client.DescribeOrderableReplicationInstancesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DatabaseMigrationService) DescribeOrderableReplicationInstancesRequest(input *DescribeOrderableReplicationInstancesInput) (req *request.Request, output *DescribeOrderableReplicationInstancesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeOrderableReplicationInstances,
@@ -407,7 +701,28 @@ func (c *DatabaseMigrationService) DescribeOrderableReplicationInstances(input *
 
 const opDescribeRefreshSchemasStatus = "DescribeRefreshSchemasStatus"
 
-// DescribeRefreshSchemasStatusRequest generates a request for the DescribeRefreshSchemasStatus operation.
+// DescribeRefreshSchemasStatusRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeRefreshSchemasStatus operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeRefreshSchemasStatus method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeRefreshSchemasStatusRequest method.
+//    req, resp := client.DescribeRefreshSchemasStatusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DatabaseMigrationService) DescribeRefreshSchemasStatusRequest(input *DescribeRefreshSchemasStatusInput) (req *request.Request, output *DescribeRefreshSchemasStatusOutput) {
 	op := &request.Operation{
 		Name:       opDescribeRefreshSchemasStatus,
@@ -434,7 +749,28 @@ func (c *DatabaseMigrationService) DescribeRefreshSchemasStatus(input *DescribeR
 
 const opDescribeReplicationInstances = "DescribeReplicationInstances"
 
-// DescribeReplicationInstancesRequest generates a request for the DescribeReplicationInstances operation.
+// DescribeReplicationInstancesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeReplicationInstances operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeReplicationInstances method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeReplicationInstancesRequest method.
+//    req, resp := client.DescribeReplicationInstancesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DatabaseMigrationService) DescribeReplicationInstancesRequest(input *DescribeReplicationInstancesInput) (req *request.Request, output *DescribeReplicationInstancesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeReplicationInstances,
@@ -462,7 +798,28 @@ func (c *DatabaseMigrationService) DescribeReplicationInstances(input *DescribeR
 
 const opDescribeReplicationSubnetGroups = "DescribeReplicationSubnetGroups"
 
-// DescribeReplicationSubnetGroupsRequest generates a request for the DescribeReplicationSubnetGroups operation.
+// DescribeReplicationSubnetGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeReplicationSubnetGroups operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeReplicationSubnetGroups method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeReplicationSubnetGroupsRequest method.
+//    req, resp := client.DescribeReplicationSubnetGroupsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DatabaseMigrationService) DescribeReplicationSubnetGroupsRequest(input *DescribeReplicationSubnetGroupsInput) (req *request.Request, output *DescribeReplicationSubnetGroupsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeReplicationSubnetGroups,
@@ -489,7 +846,28 @@ func (c *DatabaseMigrationService) DescribeReplicationSubnetGroups(input *Descri
 
 const opDescribeReplicationTasks = "DescribeReplicationTasks"
 
-// DescribeReplicationTasksRequest generates a request for the DescribeReplicationTasks operation.
+// DescribeReplicationTasksRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeReplicationTasks operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeReplicationTasks method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeReplicationTasksRequest method.
+//    req, resp := client.DescribeReplicationTasksRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DatabaseMigrationService) DescribeReplicationTasksRequest(input *DescribeReplicationTasksInput) (req *request.Request, output *DescribeReplicationTasksOutput) {
 	op := &request.Operation{
 		Name:       opDescribeReplicationTasks,
@@ -517,7 +895,28 @@ func (c *DatabaseMigrationService) DescribeReplicationTasks(input *DescribeRepli
 
 const opDescribeSchemas = "DescribeSchemas"
 
-// DescribeSchemasRequest generates a request for the DescribeSchemas operation.
+// DescribeSchemasRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeSchemas operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeSchemas method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeSchemasRequest method.
+//    req, resp := client.DescribeSchemasRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DatabaseMigrationService) DescribeSchemasRequest(input *DescribeSchemasInput) (req *request.Request, output *DescribeSchemasOutput) {
 	op := &request.Operation{
 		Name:       opDescribeSchemas,
@@ -544,7 +943,28 @@ func (c *DatabaseMigrationService) DescribeSchemas(input *DescribeSchemasInput) 
 
 const opDescribeTableStatistics = "DescribeTableStatistics"
 
-// DescribeTableStatisticsRequest generates a request for the DescribeTableStatistics operation.
+// DescribeTableStatisticsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeTableStatistics operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeTableStatistics method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeTableStatisticsRequest method.
+//    req, resp := client.DescribeTableStatisticsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DatabaseMigrationService) DescribeTableStatisticsRequest(input *DescribeTableStatisticsInput) (req *request.Request, output *DescribeTableStatisticsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeTableStatistics,
@@ -572,7 +992,28 @@ func (c *DatabaseMigrationService) DescribeTableStatistics(input *DescribeTableS
 
 const opListTagsForResource = "ListTagsForResource"
 
-// ListTagsForResourceRequest generates a request for the ListTagsForResource operation.
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListTagsForResource method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListTagsForResourceRequest method.
+//    req, resp := client.ListTagsForResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DatabaseMigrationService) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
 	op := &request.Operation{
 		Name:       opListTagsForResource,
@@ -599,7 +1040,28 @@ func (c *DatabaseMigrationService) ListTagsForResource(input *ListTagsForResourc
 
 const opModifyEndpoint = "ModifyEndpoint"
 
-// ModifyEndpointRequest generates a request for the ModifyEndpoint operation.
+// ModifyEndpointRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyEndpoint operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ModifyEndpoint method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ModifyEndpointRequest method.
+//    req, resp := client.ModifyEndpointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DatabaseMigrationService) ModifyEndpointRequest(input *ModifyEndpointInput) (req *request.Request, output *ModifyEndpointOutput) {
 	op := &request.Operation{
 		Name:       opModifyEndpoint,
@@ -626,7 +1088,28 @@ func (c *DatabaseMigrationService) ModifyEndpoint(input *ModifyEndpointInput) (*
 
 const opModifyReplicationInstance = "ModifyReplicationInstance"
 
-// ModifyReplicationInstanceRequest generates a request for the ModifyReplicationInstance operation.
+// ModifyReplicationInstanceRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyReplicationInstance operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ModifyReplicationInstance method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ModifyReplicationInstanceRequest method.
+//    req, resp := client.ModifyReplicationInstanceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DatabaseMigrationService) ModifyReplicationInstanceRequest(input *ModifyReplicationInstanceInput) (req *request.Request, output *ModifyReplicationInstanceOutput) {
 	op := &request.Operation{
 		Name:       opModifyReplicationInstance,
@@ -657,7 +1140,28 @@ func (c *DatabaseMigrationService) ModifyReplicationInstance(input *ModifyReplic
 
 const opModifyReplicationSubnetGroup = "ModifyReplicationSubnetGroup"
 
-// ModifyReplicationSubnetGroupRequest generates a request for the ModifyReplicationSubnetGroup operation.
+// ModifyReplicationSubnetGroupRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyReplicationSubnetGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ModifyReplicationSubnetGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ModifyReplicationSubnetGroupRequest method.
+//    req, resp := client.ModifyReplicationSubnetGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DatabaseMigrationService) ModifyReplicationSubnetGroupRequest(input *ModifyReplicationSubnetGroupInput) (req *request.Request, output *ModifyReplicationSubnetGroupOutput) {
 	op := &request.Operation{
 		Name:       opModifyReplicationSubnetGroup,
@@ -684,7 +1188,28 @@ func (c *DatabaseMigrationService) ModifyReplicationSubnetGroup(input *ModifyRep
 
 const opRefreshSchemas = "RefreshSchemas"
 
-// RefreshSchemasRequest generates a request for the RefreshSchemas operation.
+// RefreshSchemasRequest generates a "aws/request.Request" representing the
+// client's request for the RefreshSchemas operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RefreshSchemas method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RefreshSchemasRequest method.
+//    req, resp := client.RefreshSchemasRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DatabaseMigrationService) RefreshSchemasRequest(input *RefreshSchemasInput) (req *request.Request, output *RefreshSchemasOutput) {
 	op := &request.Operation{
 		Name:       opRefreshSchemas,
@@ -713,7 +1238,28 @@ func (c *DatabaseMigrationService) RefreshSchemas(input *RefreshSchemasInput) (*
 
 const opRemoveTagsFromResource = "RemoveTagsFromResource"
 
-// RemoveTagsFromResourceRequest generates a request for the RemoveTagsFromResource operation.
+// RemoveTagsFromResourceRequest generates a "aws/request.Request" representing the
+// client's request for the RemoveTagsFromResource operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RemoveTagsFromResource method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RemoveTagsFromResourceRequest method.
+//    req, resp := client.RemoveTagsFromResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DatabaseMigrationService) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceInput) (req *request.Request, output *RemoveTagsFromResourceOutput) {
 	op := &request.Operation{
 		Name:       opRemoveTagsFromResource,
@@ -740,7 +1286,28 @@ func (c *DatabaseMigrationService) RemoveTagsFromResource(input *RemoveTagsFromR
 
 const opStartReplicationTask = "StartReplicationTask"
 
-// StartReplicationTaskRequest generates a request for the StartReplicationTask operation.
+// StartReplicationTaskRequest generates a "aws/request.Request" representing the
+// client's request for the StartReplicationTask operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the StartReplicationTask method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the StartReplicationTaskRequest method.
+//    req, resp := client.StartReplicationTaskRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DatabaseMigrationService) StartReplicationTaskRequest(input *StartReplicationTaskInput) (req *request.Request, output *StartReplicationTaskOutput) {
 	op := &request.Operation{
 		Name:       opStartReplicationTask,
@@ -767,7 +1334,28 @@ func (c *DatabaseMigrationService) StartReplicationTask(input *StartReplicationT
 
 const opStopReplicationTask = "StopReplicationTask"
 
-// StopReplicationTaskRequest generates a request for the StopReplicationTask operation.
+// StopReplicationTaskRequest generates a "aws/request.Request" representing the
+// client's request for the StopReplicationTask operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the StopReplicationTask method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the StopReplicationTaskRequest method.
+//    req, resp := client.StopReplicationTaskRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DatabaseMigrationService) StopReplicationTaskRequest(input *StopReplicationTaskInput) (req *request.Request, output *StopReplicationTaskOutput) {
 	op := &request.Operation{
 		Name:       opStopReplicationTask,
@@ -794,7 +1382,28 @@ func (c *DatabaseMigrationService) StopReplicationTask(input *StopReplicationTas
 
 const opTestConnection = "TestConnection"
 
-// TestConnectionRequest generates a request for the TestConnection operation.
+// TestConnectionRequest generates a "aws/request.Request" representing the
+// client's request for the TestConnection operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the TestConnection method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the TestConnectionRequest method.
+//    req, resp := client.TestConnectionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DatabaseMigrationService) TestConnectionRequest(input *TestConnectionInput) (req *request.Request, output *TestConnectionOutput) {
 	op := &request.Operation{
 		Name:       opTestConnection,

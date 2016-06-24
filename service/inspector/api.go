@@ -15,7 +15,28 @@ import (
 
 const opAddAttributesToFindings = "AddAttributesToFindings"
 
-// AddAttributesToFindingsRequest generates a request for the AddAttributesToFindings operation.
+// AddAttributesToFindingsRequest generates a "aws/request.Request" representing the
+// client's request for the AddAttributesToFindings operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AddAttributesToFindings method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AddAttributesToFindingsRequest method.
+//    req, resp := client.AddAttributesToFindingsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Inspector) AddAttributesToFindingsRequest(input *AddAttributesToFindingsInput) (req *request.Request, output *AddAttributesToFindingsOutput) {
 	op := &request.Operation{
 		Name:       opAddAttributesToFindings,
@@ -43,7 +64,28 @@ func (c *Inspector) AddAttributesToFindings(input *AddAttributesToFindingsInput)
 
 const opCreateAssessmentTarget = "CreateAssessmentTarget"
 
-// CreateAssessmentTargetRequest generates a request for the CreateAssessmentTarget operation.
+// CreateAssessmentTargetRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAssessmentTarget operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateAssessmentTarget method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateAssessmentTargetRequest method.
+//    req, resp := client.CreateAssessmentTargetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Inspector) CreateAssessmentTargetRequest(input *CreateAssessmentTargetInput) (req *request.Request, output *CreateAssessmentTargetOutput) {
 	op := &request.Operation{
 		Name:       opCreateAssessmentTarget,
@@ -73,7 +115,28 @@ func (c *Inspector) CreateAssessmentTarget(input *CreateAssessmentTargetInput) (
 
 const opCreateAssessmentTemplate = "CreateAssessmentTemplate"
 
-// CreateAssessmentTemplateRequest generates a request for the CreateAssessmentTemplate operation.
+// CreateAssessmentTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAssessmentTemplate operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateAssessmentTemplate method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateAssessmentTemplateRequest method.
+//    req, resp := client.CreateAssessmentTemplateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Inspector) CreateAssessmentTemplateRequest(input *CreateAssessmentTemplateInput) (req *request.Request, output *CreateAssessmentTemplateOutput) {
 	op := &request.Operation{
 		Name:       opCreateAssessmentTemplate,
@@ -101,7 +164,28 @@ func (c *Inspector) CreateAssessmentTemplate(input *CreateAssessmentTemplateInpu
 
 const opCreateResourceGroup = "CreateResourceGroup"
 
-// CreateResourceGroupRequest generates a request for the CreateResourceGroup operation.
+// CreateResourceGroupRequest generates a "aws/request.Request" representing the
+// client's request for the CreateResourceGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateResourceGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateResourceGroupRequest method.
+//    req, resp := client.CreateResourceGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Inspector) CreateResourceGroupRequest(input *CreateResourceGroupInput) (req *request.Request, output *CreateResourceGroupOutput) {
 	op := &request.Operation{
 		Name:       opCreateResourceGroup,
@@ -131,7 +215,28 @@ func (c *Inspector) CreateResourceGroup(input *CreateResourceGroupInput) (*Creat
 
 const opDeleteAssessmentRun = "DeleteAssessmentRun"
 
-// DeleteAssessmentRunRequest generates a request for the DeleteAssessmentRun operation.
+// DeleteAssessmentRunRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAssessmentRun operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteAssessmentRun method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteAssessmentRunRequest method.
+//    req, resp := client.DeleteAssessmentRunRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Inspector) DeleteAssessmentRunRequest(input *DeleteAssessmentRunInput) (req *request.Request, output *DeleteAssessmentRunOutput) {
 	op := &request.Operation{
 		Name:       opDeleteAssessmentRun,
@@ -161,7 +266,28 @@ func (c *Inspector) DeleteAssessmentRun(input *DeleteAssessmentRunInput) (*Delet
 
 const opDeleteAssessmentTarget = "DeleteAssessmentTarget"
 
-// DeleteAssessmentTargetRequest generates a request for the DeleteAssessmentTarget operation.
+// DeleteAssessmentTargetRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAssessmentTarget operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteAssessmentTarget method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteAssessmentTargetRequest method.
+//    req, resp := client.DeleteAssessmentTargetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Inspector) DeleteAssessmentTargetRequest(input *DeleteAssessmentTargetInput) (req *request.Request, output *DeleteAssessmentTargetOutput) {
 	op := &request.Operation{
 		Name:       opDeleteAssessmentTarget,
@@ -191,7 +317,28 @@ func (c *Inspector) DeleteAssessmentTarget(input *DeleteAssessmentTargetInput) (
 
 const opDeleteAssessmentTemplate = "DeleteAssessmentTemplate"
 
-// DeleteAssessmentTemplateRequest generates a request for the DeleteAssessmentTemplate operation.
+// DeleteAssessmentTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAssessmentTemplate operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteAssessmentTemplate method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteAssessmentTemplateRequest method.
+//    req, resp := client.DeleteAssessmentTemplateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Inspector) DeleteAssessmentTemplateRequest(input *DeleteAssessmentTemplateInput) (req *request.Request, output *DeleteAssessmentTemplateOutput) {
 	op := &request.Operation{
 		Name:       opDeleteAssessmentTemplate,
@@ -221,7 +368,28 @@ func (c *Inspector) DeleteAssessmentTemplate(input *DeleteAssessmentTemplateInpu
 
 const opDescribeAssessmentRuns = "DescribeAssessmentRuns"
 
-// DescribeAssessmentRunsRequest generates a request for the DescribeAssessmentRuns operation.
+// DescribeAssessmentRunsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAssessmentRuns operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeAssessmentRuns method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeAssessmentRunsRequest method.
+//    req, resp := client.DescribeAssessmentRunsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Inspector) DescribeAssessmentRunsRequest(input *DescribeAssessmentRunsInput) (req *request.Request, output *DescribeAssessmentRunsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeAssessmentRuns,
@@ -249,7 +417,28 @@ func (c *Inspector) DescribeAssessmentRuns(input *DescribeAssessmentRunsInput) (
 
 const opDescribeAssessmentTargets = "DescribeAssessmentTargets"
 
-// DescribeAssessmentTargetsRequest generates a request for the DescribeAssessmentTargets operation.
+// DescribeAssessmentTargetsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAssessmentTargets operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeAssessmentTargets method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeAssessmentTargetsRequest method.
+//    req, resp := client.DescribeAssessmentTargetsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Inspector) DescribeAssessmentTargetsRequest(input *DescribeAssessmentTargetsInput) (req *request.Request, output *DescribeAssessmentTargetsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeAssessmentTargets,
@@ -277,7 +466,28 @@ func (c *Inspector) DescribeAssessmentTargets(input *DescribeAssessmentTargetsIn
 
 const opDescribeAssessmentTemplates = "DescribeAssessmentTemplates"
 
-// DescribeAssessmentTemplatesRequest generates a request for the DescribeAssessmentTemplates operation.
+// DescribeAssessmentTemplatesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAssessmentTemplates operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeAssessmentTemplates method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeAssessmentTemplatesRequest method.
+//    req, resp := client.DescribeAssessmentTemplatesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Inspector) DescribeAssessmentTemplatesRequest(input *DescribeAssessmentTemplatesInput) (req *request.Request, output *DescribeAssessmentTemplatesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeAssessmentTemplates,
@@ -305,7 +515,28 @@ func (c *Inspector) DescribeAssessmentTemplates(input *DescribeAssessmentTemplat
 
 const opDescribeCrossAccountAccessRole = "DescribeCrossAccountAccessRole"
 
-// DescribeCrossAccountAccessRoleRequest generates a request for the DescribeCrossAccountAccessRole operation.
+// DescribeCrossAccountAccessRoleRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeCrossAccountAccessRole operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeCrossAccountAccessRole method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeCrossAccountAccessRoleRequest method.
+//    req, resp := client.DescribeCrossAccountAccessRoleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Inspector) DescribeCrossAccountAccessRoleRequest(input *DescribeCrossAccountAccessRoleInput) (req *request.Request, output *DescribeCrossAccountAccessRoleOutput) {
 	op := &request.Operation{
 		Name:       opDescribeCrossAccountAccessRole,
@@ -332,7 +563,28 @@ func (c *Inspector) DescribeCrossAccountAccessRole(input *DescribeCrossAccountAc
 
 const opDescribeFindings = "DescribeFindings"
 
-// DescribeFindingsRequest generates a request for the DescribeFindings operation.
+// DescribeFindingsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFindings operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeFindings method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeFindingsRequest method.
+//    req, resp := client.DescribeFindingsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Inspector) DescribeFindingsRequest(input *DescribeFindingsInput) (req *request.Request, output *DescribeFindingsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeFindings,
@@ -359,7 +611,28 @@ func (c *Inspector) DescribeFindings(input *DescribeFindingsInput) (*DescribeFin
 
 const opDescribeResourceGroups = "DescribeResourceGroups"
 
-// DescribeResourceGroupsRequest generates a request for the DescribeResourceGroups operation.
+// DescribeResourceGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeResourceGroups operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeResourceGroups method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeResourceGroupsRequest method.
+//    req, resp := client.DescribeResourceGroupsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Inspector) DescribeResourceGroupsRequest(input *DescribeResourceGroupsInput) (req *request.Request, output *DescribeResourceGroupsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeResourceGroups,
@@ -387,7 +660,28 @@ func (c *Inspector) DescribeResourceGroups(input *DescribeResourceGroupsInput) (
 
 const opDescribeRulesPackages = "DescribeRulesPackages"
 
-// DescribeRulesPackagesRequest generates a request for the DescribeRulesPackages operation.
+// DescribeRulesPackagesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeRulesPackages operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeRulesPackages method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeRulesPackagesRequest method.
+//    req, resp := client.DescribeRulesPackagesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Inspector) DescribeRulesPackagesRequest(input *DescribeRulesPackagesInput) (req *request.Request, output *DescribeRulesPackagesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeRulesPackages,
@@ -415,7 +709,28 @@ func (c *Inspector) DescribeRulesPackages(input *DescribeRulesPackagesInput) (*D
 
 const opGetTelemetryMetadata = "GetTelemetryMetadata"
 
-// GetTelemetryMetadataRequest generates a request for the GetTelemetryMetadata operation.
+// GetTelemetryMetadataRequest generates a "aws/request.Request" representing the
+// client's request for the GetTelemetryMetadata operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetTelemetryMetadata method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetTelemetryMetadataRequest method.
+//    req, resp := client.GetTelemetryMetadataRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Inspector) GetTelemetryMetadataRequest(input *GetTelemetryMetadataInput) (req *request.Request, output *GetTelemetryMetadataOutput) {
 	op := &request.Operation{
 		Name:       opGetTelemetryMetadata,
@@ -443,7 +758,28 @@ func (c *Inspector) GetTelemetryMetadata(input *GetTelemetryMetadataInput) (*Get
 
 const opListAssessmentRunAgents = "ListAssessmentRunAgents"
 
-// ListAssessmentRunAgentsRequest generates a request for the ListAssessmentRunAgents operation.
+// ListAssessmentRunAgentsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAssessmentRunAgents operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListAssessmentRunAgents method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListAssessmentRunAgentsRequest method.
+//    req, resp := client.ListAssessmentRunAgentsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Inspector) ListAssessmentRunAgentsRequest(input *ListAssessmentRunAgentsInput) (req *request.Request, output *ListAssessmentRunAgentsOutput) {
 	op := &request.Operation{
 		Name:       opListAssessmentRunAgents,
@@ -471,7 +807,28 @@ func (c *Inspector) ListAssessmentRunAgents(input *ListAssessmentRunAgentsInput)
 
 const opListAssessmentRuns = "ListAssessmentRuns"
 
-// ListAssessmentRunsRequest generates a request for the ListAssessmentRuns operation.
+// ListAssessmentRunsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAssessmentRuns operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListAssessmentRuns method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListAssessmentRunsRequest method.
+//    req, resp := client.ListAssessmentRunsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Inspector) ListAssessmentRunsRequest(input *ListAssessmentRunsInput) (req *request.Request, output *ListAssessmentRunsOutput) {
 	op := &request.Operation{
 		Name:       opListAssessmentRuns,
@@ -499,7 +856,28 @@ func (c *Inspector) ListAssessmentRuns(input *ListAssessmentRunsInput) (*ListAss
 
 const opListAssessmentTargets = "ListAssessmentTargets"
 
-// ListAssessmentTargetsRequest generates a request for the ListAssessmentTargets operation.
+// ListAssessmentTargetsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAssessmentTargets operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListAssessmentTargets method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListAssessmentTargetsRequest method.
+//    req, resp := client.ListAssessmentTargetsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Inspector) ListAssessmentTargetsRequest(input *ListAssessmentTargetsInput) (req *request.Request, output *ListAssessmentTargetsOutput) {
 	op := &request.Operation{
 		Name:       opListAssessmentTargets,
@@ -528,7 +906,28 @@ func (c *Inspector) ListAssessmentTargets(input *ListAssessmentTargetsInput) (*L
 
 const opListAssessmentTemplates = "ListAssessmentTemplates"
 
-// ListAssessmentTemplatesRequest generates a request for the ListAssessmentTemplates operation.
+// ListAssessmentTemplatesRequest generates a "aws/request.Request" representing the
+// client's request for the ListAssessmentTemplates operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListAssessmentTemplates method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListAssessmentTemplatesRequest method.
+//    req, resp := client.ListAssessmentTemplatesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Inspector) ListAssessmentTemplatesRequest(input *ListAssessmentTemplatesInput) (req *request.Request, output *ListAssessmentTemplatesOutput) {
 	op := &request.Operation{
 		Name:       opListAssessmentTemplates,
@@ -556,7 +955,28 @@ func (c *Inspector) ListAssessmentTemplates(input *ListAssessmentTemplatesInput)
 
 const opListEventSubscriptions = "ListEventSubscriptions"
 
-// ListEventSubscriptionsRequest generates a request for the ListEventSubscriptions operation.
+// ListEventSubscriptionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListEventSubscriptions operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListEventSubscriptions method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListEventSubscriptionsRequest method.
+//    req, resp := client.ListEventSubscriptionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Inspector) ListEventSubscriptionsRequest(input *ListEventSubscriptionsInput) (req *request.Request, output *ListEventSubscriptionsOutput) {
 	op := &request.Operation{
 		Name:       opListEventSubscriptions,
@@ -585,7 +1005,28 @@ func (c *Inspector) ListEventSubscriptions(input *ListEventSubscriptionsInput) (
 
 const opListFindings = "ListFindings"
 
-// ListFindingsRequest generates a request for the ListFindings operation.
+// ListFindingsRequest generates a "aws/request.Request" representing the
+// client's request for the ListFindings operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListFindings method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListFindingsRequest method.
+//    req, resp := client.ListFindingsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Inspector) ListFindingsRequest(input *ListFindingsInput) (req *request.Request, output *ListFindingsOutput) {
 	op := &request.Operation{
 		Name:       opListFindings,
@@ -613,7 +1054,28 @@ func (c *Inspector) ListFindings(input *ListFindingsInput) (*ListFindingsOutput,
 
 const opListRulesPackages = "ListRulesPackages"
 
-// ListRulesPackagesRequest generates a request for the ListRulesPackages operation.
+// ListRulesPackagesRequest generates a "aws/request.Request" representing the
+// client's request for the ListRulesPackages operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListRulesPackages method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListRulesPackagesRequest method.
+//    req, resp := client.ListRulesPackagesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Inspector) ListRulesPackagesRequest(input *ListRulesPackagesInput) (req *request.Request, output *ListRulesPackagesOutput) {
 	op := &request.Operation{
 		Name:       opListRulesPackages,
@@ -640,7 +1102,28 @@ func (c *Inspector) ListRulesPackages(input *ListRulesPackagesInput) (*ListRules
 
 const opListTagsForResource = "ListTagsForResource"
 
-// ListTagsForResourceRequest generates a request for the ListTagsForResource operation.
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListTagsForResource method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListTagsForResourceRequest method.
+//    req, resp := client.ListTagsForResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Inspector) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
 	op := &request.Operation{
 		Name:       opListTagsForResource,
@@ -667,7 +1150,28 @@ func (c *Inspector) ListTagsForResource(input *ListTagsForResourceInput) (*ListT
 
 const opPreviewAgents = "PreviewAgents"
 
-// PreviewAgentsRequest generates a request for the PreviewAgents operation.
+// PreviewAgentsRequest generates a "aws/request.Request" representing the
+// client's request for the PreviewAgents operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the PreviewAgents method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PreviewAgentsRequest method.
+//    req, resp := client.PreviewAgentsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Inspector) PreviewAgentsRequest(input *PreviewAgentsInput) (req *request.Request, output *PreviewAgentsOutput) {
 	op := &request.Operation{
 		Name:       opPreviewAgents,
@@ -695,7 +1199,28 @@ func (c *Inspector) PreviewAgents(input *PreviewAgentsInput) (*PreviewAgentsOutp
 
 const opRegisterCrossAccountAccessRole = "RegisterCrossAccountAccessRole"
 
-// RegisterCrossAccountAccessRoleRequest generates a request for the RegisterCrossAccountAccessRole operation.
+// RegisterCrossAccountAccessRoleRequest generates a "aws/request.Request" representing the
+// client's request for the RegisterCrossAccountAccessRole operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RegisterCrossAccountAccessRole method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RegisterCrossAccountAccessRoleRequest method.
+//    req, resp := client.RegisterCrossAccountAccessRoleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Inspector) RegisterCrossAccountAccessRoleRequest(input *RegisterCrossAccountAccessRoleInput) (req *request.Request, output *RegisterCrossAccountAccessRoleOutput) {
 	op := &request.Operation{
 		Name:       opRegisterCrossAccountAccessRole,
@@ -725,7 +1250,28 @@ func (c *Inspector) RegisterCrossAccountAccessRole(input *RegisterCrossAccountAc
 
 const opRemoveAttributesFromFindings = "RemoveAttributesFromFindings"
 
-// RemoveAttributesFromFindingsRequest generates a request for the RemoveAttributesFromFindings operation.
+// RemoveAttributesFromFindingsRequest generates a "aws/request.Request" representing the
+// client's request for the RemoveAttributesFromFindings operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RemoveAttributesFromFindings method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RemoveAttributesFromFindingsRequest method.
+//    req, resp := client.RemoveAttributesFromFindingsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Inspector) RemoveAttributesFromFindingsRequest(input *RemoveAttributesFromFindingsInput) (req *request.Request, output *RemoveAttributesFromFindingsOutput) {
 	op := &request.Operation{
 		Name:       opRemoveAttributesFromFindings,
@@ -754,7 +1300,28 @@ func (c *Inspector) RemoveAttributesFromFindings(input *RemoveAttributesFromFind
 
 const opSetTagsForResource = "SetTagsForResource"
 
-// SetTagsForResourceRequest generates a request for the SetTagsForResource operation.
+// SetTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the SetTagsForResource operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SetTagsForResource method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SetTagsForResourceRequest method.
+//    req, resp := client.SetTagsForResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Inspector) SetTagsForResourceRequest(input *SetTagsForResourceInput) (req *request.Request, output *SetTagsForResourceOutput) {
 	op := &request.Operation{
 		Name:       opSetTagsForResource,
@@ -784,7 +1351,28 @@ func (c *Inspector) SetTagsForResource(input *SetTagsForResourceInput) (*SetTags
 
 const opStartAssessmentRun = "StartAssessmentRun"
 
-// StartAssessmentRunRequest generates a request for the StartAssessmentRun operation.
+// StartAssessmentRunRequest generates a "aws/request.Request" representing the
+// client's request for the StartAssessmentRun operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the StartAssessmentRun method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the StartAssessmentRunRequest method.
+//    req, resp := client.StartAssessmentRunRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Inspector) StartAssessmentRunRequest(input *StartAssessmentRunInput) (req *request.Request, output *StartAssessmentRunOutput) {
 	op := &request.Operation{
 		Name:       opStartAssessmentRun,
@@ -813,7 +1401,28 @@ func (c *Inspector) StartAssessmentRun(input *StartAssessmentRunInput) (*StartAs
 
 const opStopAssessmentRun = "StopAssessmentRun"
 
-// StopAssessmentRunRequest generates a request for the StopAssessmentRun operation.
+// StopAssessmentRunRequest generates a "aws/request.Request" representing the
+// client's request for the StopAssessmentRun operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the StopAssessmentRun method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the StopAssessmentRunRequest method.
+//    req, resp := client.StopAssessmentRunRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Inspector) StopAssessmentRunRequest(input *StopAssessmentRunInput) (req *request.Request, output *StopAssessmentRunOutput) {
 	op := &request.Operation{
 		Name:       opStopAssessmentRun,
@@ -842,7 +1451,28 @@ func (c *Inspector) StopAssessmentRun(input *StopAssessmentRunInput) (*StopAsses
 
 const opSubscribeToEvent = "SubscribeToEvent"
 
-// SubscribeToEventRequest generates a request for the SubscribeToEvent operation.
+// SubscribeToEventRequest generates a "aws/request.Request" representing the
+// client's request for the SubscribeToEvent operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SubscribeToEvent method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SubscribeToEventRequest method.
+//    req, resp := client.SubscribeToEventRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Inspector) SubscribeToEventRequest(input *SubscribeToEventInput) (req *request.Request, output *SubscribeToEventOutput) {
 	op := &request.Operation{
 		Name:       opSubscribeToEvent,
@@ -872,7 +1502,28 @@ func (c *Inspector) SubscribeToEvent(input *SubscribeToEventInput) (*SubscribeTo
 
 const opUnsubscribeFromEvent = "UnsubscribeFromEvent"
 
-// UnsubscribeFromEventRequest generates a request for the UnsubscribeFromEvent operation.
+// UnsubscribeFromEventRequest generates a "aws/request.Request" representing the
+// client's request for the UnsubscribeFromEvent operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UnsubscribeFromEvent method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UnsubscribeFromEventRequest method.
+//    req, resp := client.UnsubscribeFromEventRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Inspector) UnsubscribeFromEventRequest(input *UnsubscribeFromEventInput) (req *request.Request, output *UnsubscribeFromEventOutput) {
 	op := &request.Operation{
 		Name:       opUnsubscribeFromEvent,
@@ -902,7 +1553,28 @@ func (c *Inspector) UnsubscribeFromEvent(input *UnsubscribeFromEventInput) (*Uns
 
 const opUpdateAssessmentTarget = "UpdateAssessmentTarget"
 
-// UpdateAssessmentTargetRequest generates a request for the UpdateAssessmentTarget operation.
+// UpdateAssessmentTargetRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateAssessmentTarget operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateAssessmentTarget method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateAssessmentTargetRequest method.
+//    req, resp := client.UpdateAssessmentTargetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Inspector) UpdateAssessmentTargetRequest(input *UpdateAssessmentTargetInput) (req *request.Request, output *UpdateAssessmentTargetOutput) {
 	op := &request.Operation{
 		Name:       opUpdateAssessmentTarget,

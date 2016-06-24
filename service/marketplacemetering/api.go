@@ -12,7 +12,28 @@ import (
 
 const opMeterUsage = "MeterUsage"
 
-// MeterUsageRequest generates a request for the MeterUsage operation.
+// MeterUsageRequest generates a "aws/request.Request" representing the
+// client's request for the MeterUsage operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the MeterUsage method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the MeterUsageRequest method.
+//    req, resp := client.MeterUsageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *MarketplaceMetering) MeterUsageRequest(input *MeterUsageInput) (req *request.Request, output *MeterUsageOutput) {
 	op := &request.Operation{
 		Name:       opMeterUsage,

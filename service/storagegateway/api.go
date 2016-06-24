@@ -13,7 +13,28 @@ import (
 
 const opActivateGateway = "ActivateGateway"
 
-// ActivateGatewayRequest generates a request for the ActivateGateway operation.
+// ActivateGatewayRequest generates a "aws/request.Request" representing the
+// client's request for the ActivateGateway operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ActivateGateway method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ActivateGatewayRequest method.
+//    req, resp := client.ActivateGatewayRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) ActivateGatewayRequest(input *ActivateGatewayInput) (req *request.Request, output *ActivateGatewayOutput) {
 	op := &request.Operation{
 		Name:       opActivateGateway,
@@ -48,7 +69,28 @@ func (c *StorageGateway) ActivateGateway(input *ActivateGatewayInput) (*Activate
 
 const opAddCache = "AddCache"
 
-// AddCacheRequest generates a request for the AddCache operation.
+// AddCacheRequest generates a "aws/request.Request" representing the
+// client's request for the AddCache operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AddCache method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AddCacheRequest method.
+//    req, resp := client.AddCacheRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) AddCacheRequest(input *AddCacheInput) (req *request.Request, output *AddCacheOutput) {
 	op := &request.Operation{
 		Name:       opAddCache,
@@ -81,7 +123,28 @@ func (c *StorageGateway) AddCache(input *AddCacheInput) (*AddCacheOutput, error)
 
 const opAddTagsToResource = "AddTagsToResource"
 
-// AddTagsToResourceRequest generates a request for the AddTagsToResource operation.
+// AddTagsToResourceRequest generates a "aws/request.Request" representing the
+// client's request for the AddTagsToResource operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AddTagsToResource method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AddTagsToResourceRequest method.
+//    req, resp := client.AddTagsToResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *request.Request, output *AddTagsToResourceOutput) {
 	op := &request.Operation{
 		Name:       opAddTagsToResource,
@@ -121,7 +184,28 @@ func (c *StorageGateway) AddTagsToResource(input *AddTagsToResourceInput) (*AddT
 
 const opAddUploadBuffer = "AddUploadBuffer"
 
-// AddUploadBufferRequest generates a request for the AddUploadBuffer operation.
+// AddUploadBufferRequest generates a "aws/request.Request" representing the
+// client's request for the AddUploadBuffer operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AddUploadBuffer method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AddUploadBufferRequest method.
+//    req, resp := client.AddUploadBufferRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) AddUploadBufferRequest(input *AddUploadBufferInput) (req *request.Request, output *AddUploadBufferOutput) {
 	op := &request.Operation{
 		Name:       opAddUploadBuffer,
@@ -154,7 +238,28 @@ func (c *StorageGateway) AddUploadBuffer(input *AddUploadBufferInput) (*AddUploa
 
 const opAddWorkingStorage = "AddWorkingStorage"
 
-// AddWorkingStorageRequest generates a request for the AddWorkingStorage operation.
+// AddWorkingStorageRequest generates a "aws/request.Request" representing the
+// client's request for the AddWorkingStorage operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AddWorkingStorage method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AddWorkingStorageRequest method.
+//    req, resp := client.AddWorkingStorageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) AddWorkingStorageRequest(input *AddWorkingStorageInput) (req *request.Request, output *AddWorkingStorageOutput) {
 	op := &request.Operation{
 		Name:       opAddWorkingStorage,
@@ -191,7 +296,28 @@ func (c *StorageGateway) AddWorkingStorage(input *AddWorkingStorageInput) (*AddW
 
 const opCancelArchival = "CancelArchival"
 
-// CancelArchivalRequest generates a request for the CancelArchival operation.
+// CancelArchivalRequest generates a "aws/request.Request" representing the
+// client's request for the CancelArchival operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CancelArchival method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CancelArchivalRequest method.
+//    req, resp := client.CancelArchivalRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) CancelArchivalRequest(input *CancelArchivalInput) (req *request.Request, output *CancelArchivalOutput) {
 	op := &request.Operation{
 		Name:       opCancelArchival,
@@ -219,7 +345,28 @@ func (c *StorageGateway) CancelArchival(input *CancelArchivalInput) (*CancelArch
 
 const opCancelRetrieval = "CancelRetrieval"
 
-// CancelRetrievalRequest generates a request for the CancelRetrieval operation.
+// CancelRetrievalRequest generates a "aws/request.Request" representing the
+// client's request for the CancelRetrieval operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CancelRetrieval method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CancelRetrievalRequest method.
+//    req, resp := client.CancelRetrievalRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) CancelRetrievalRequest(input *CancelRetrievalInput) (req *request.Request, output *CancelRetrievalOutput) {
 	op := &request.Operation{
 		Name:       opCancelRetrieval,
@@ -248,7 +395,28 @@ func (c *StorageGateway) CancelRetrieval(input *CancelRetrievalInput) (*CancelRe
 
 const opCreateCachediSCSIVolume = "CreateCachediSCSIVolume"
 
-// CreateCachediSCSIVolumeRequest generates a request for the CreateCachediSCSIVolume operation.
+// CreateCachediSCSIVolumeRequest generates a "aws/request.Request" representing the
+// client's request for the CreateCachediSCSIVolume operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateCachediSCSIVolume method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateCachediSCSIVolumeRequest method.
+//    req, resp := client.CreateCachediSCSIVolumeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) CreateCachediSCSIVolumeRequest(input *CreateCachediSCSIVolumeInput) (req *request.Request, output *CreateCachediSCSIVolumeOutput) {
 	op := &request.Operation{
 		Name:       opCreateCachediSCSIVolume,
@@ -286,7 +454,28 @@ func (c *StorageGateway) CreateCachediSCSIVolume(input *CreateCachediSCSIVolumeI
 
 const opCreateSnapshot = "CreateSnapshot"
 
-// CreateSnapshotRequest generates a request for the CreateSnapshot operation.
+// CreateSnapshotRequest generates a "aws/request.Request" representing the
+// client's request for the CreateSnapshot operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateSnapshot method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateSnapshotRequest method.
+//    req, resp := client.CreateSnapshotRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) CreateSnapshotRequest(input *CreateSnapshotInput) (req *request.Request, output *CreateSnapshotOutput) {
 	op := &request.Operation{
 		Name:       opCreateSnapshot,
@@ -337,7 +526,28 @@ func (c *StorageGateway) CreateSnapshot(input *CreateSnapshotInput) (*CreateSnap
 
 const opCreateSnapshotFromVolumeRecoveryPoint = "CreateSnapshotFromVolumeRecoveryPoint"
 
-// CreateSnapshotFromVolumeRecoveryPointRequest generates a request for the CreateSnapshotFromVolumeRecoveryPoint operation.
+// CreateSnapshotFromVolumeRecoveryPointRequest generates a "aws/request.Request" representing the
+// client's request for the CreateSnapshotFromVolumeRecoveryPoint operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateSnapshotFromVolumeRecoveryPoint method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateSnapshotFromVolumeRecoveryPointRequest method.
+//    req, resp := client.CreateSnapshotFromVolumeRecoveryPointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) CreateSnapshotFromVolumeRecoveryPointRequest(input *CreateSnapshotFromVolumeRecoveryPointInput) (req *request.Request, output *CreateSnapshotFromVolumeRecoveryPointOutput) {
 	op := &request.Operation{
 		Name:       opCreateSnapshotFromVolumeRecoveryPoint,
@@ -380,7 +590,28 @@ func (c *StorageGateway) CreateSnapshotFromVolumeRecoveryPoint(input *CreateSnap
 
 const opCreateStorediSCSIVolume = "CreateStorediSCSIVolume"
 
-// CreateStorediSCSIVolumeRequest generates a request for the CreateStorediSCSIVolume operation.
+// CreateStorediSCSIVolumeRequest generates a "aws/request.Request" representing the
+// client's request for the CreateStorediSCSIVolume operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateStorediSCSIVolume method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateStorediSCSIVolumeRequest method.
+//    req, resp := client.CreateStorediSCSIVolumeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) CreateStorediSCSIVolumeRequest(input *CreateStorediSCSIVolumeInput) (req *request.Request, output *CreateStorediSCSIVolumeOutput) {
 	op := &request.Operation{
 		Name:       opCreateStorediSCSIVolume,
@@ -419,7 +650,28 @@ func (c *StorageGateway) CreateStorediSCSIVolume(input *CreateStorediSCSIVolumeI
 
 const opCreateTapeWithBarcode = "CreateTapeWithBarcode"
 
-// CreateTapeWithBarcodeRequest generates a request for the CreateTapeWithBarcode operation.
+// CreateTapeWithBarcodeRequest generates a "aws/request.Request" representing the
+// client's request for the CreateTapeWithBarcode operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateTapeWithBarcode method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateTapeWithBarcodeRequest method.
+//    req, resp := client.CreateTapeWithBarcodeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) CreateTapeWithBarcodeRequest(input *CreateTapeWithBarcodeInput) (req *request.Request, output *CreateTapeWithBarcodeOutput) {
 	op := &request.Operation{
 		Name:       opCreateTapeWithBarcode,
@@ -450,7 +702,28 @@ func (c *StorageGateway) CreateTapeWithBarcode(input *CreateTapeWithBarcodeInput
 
 const opCreateTapes = "CreateTapes"
 
-// CreateTapesRequest generates a request for the CreateTapes operation.
+// CreateTapesRequest generates a "aws/request.Request" representing the
+// client's request for the CreateTapes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateTapes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateTapesRequest method.
+//    req, resp := client.CreateTapesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) CreateTapesRequest(input *CreateTapesInput) (req *request.Request, output *CreateTapesOutput) {
 	op := &request.Operation{
 		Name:       opCreateTapes,
@@ -481,7 +754,28 @@ func (c *StorageGateway) CreateTapes(input *CreateTapesInput) (*CreateTapesOutpu
 
 const opDeleteBandwidthRateLimit = "DeleteBandwidthRateLimit"
 
-// DeleteBandwidthRateLimitRequest generates a request for the DeleteBandwidthRateLimit operation.
+// DeleteBandwidthRateLimitRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteBandwidthRateLimit operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteBandwidthRateLimit method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteBandwidthRateLimitRequest method.
+//    req, resp := client.DeleteBandwidthRateLimitRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) DeleteBandwidthRateLimitRequest(input *DeleteBandwidthRateLimitInput) (req *request.Request, output *DeleteBandwidthRateLimitOutput) {
 	op := &request.Operation{
 		Name:       opDeleteBandwidthRateLimit,
@@ -512,7 +806,28 @@ func (c *StorageGateway) DeleteBandwidthRateLimit(input *DeleteBandwidthRateLimi
 
 const opDeleteChapCredentials = "DeleteChapCredentials"
 
-// DeleteChapCredentialsRequest generates a request for the DeleteChapCredentials operation.
+// DeleteChapCredentialsRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteChapCredentials operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteChapCredentials method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteChapCredentialsRequest method.
+//    req, resp := client.DeleteChapCredentialsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) DeleteChapCredentialsRequest(input *DeleteChapCredentialsInput) (req *request.Request, output *DeleteChapCredentialsOutput) {
 	op := &request.Operation{
 		Name:       opDeleteChapCredentials,
@@ -540,7 +855,28 @@ func (c *StorageGateway) DeleteChapCredentials(input *DeleteChapCredentialsInput
 
 const opDeleteGateway = "DeleteGateway"
 
-// DeleteGatewayRequest generates a request for the DeleteGateway operation.
+// DeleteGatewayRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteGateway operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteGateway method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteGatewayRequest method.
+//    req, resp := client.DeleteGatewayRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) DeleteGatewayRequest(input *DeleteGatewayInput) (req *request.Request, output *DeleteGatewayOutput) {
 	op := &request.Operation{
 		Name:       opDeleteGateway,
@@ -582,7 +918,28 @@ func (c *StorageGateway) DeleteGateway(input *DeleteGatewayInput) (*DeleteGatewa
 
 const opDeleteSnapshotSchedule = "DeleteSnapshotSchedule"
 
-// DeleteSnapshotScheduleRequest generates a request for the DeleteSnapshotSchedule operation.
+// DeleteSnapshotScheduleRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteSnapshotSchedule operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteSnapshotSchedule method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteSnapshotScheduleRequest method.
+//    req, resp := client.DeleteSnapshotScheduleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) DeleteSnapshotScheduleRequest(input *DeleteSnapshotScheduleInput) (req *request.Request, output *DeleteSnapshotScheduleOutput) {
 	op := &request.Operation{
 		Name:       opDeleteSnapshotSchedule,
@@ -618,7 +975,28 @@ func (c *StorageGateway) DeleteSnapshotSchedule(input *DeleteSnapshotScheduleInp
 
 const opDeleteTape = "DeleteTape"
 
-// DeleteTapeRequest generates a request for the DeleteTape operation.
+// DeleteTapeRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteTape operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteTape method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteTapeRequest method.
+//    req, resp := client.DeleteTapeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) DeleteTapeRequest(input *DeleteTapeInput) (req *request.Request, output *DeleteTapeOutput) {
 	op := &request.Operation{
 		Name:       opDeleteTape,
@@ -645,7 +1023,28 @@ func (c *StorageGateway) DeleteTape(input *DeleteTapeInput) (*DeleteTapeOutput, 
 
 const opDeleteTapeArchive = "DeleteTapeArchive"
 
-// DeleteTapeArchiveRequest generates a request for the DeleteTapeArchive operation.
+// DeleteTapeArchiveRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteTapeArchive operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteTapeArchive method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteTapeArchiveRequest method.
+//    req, resp := client.DeleteTapeArchiveRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) DeleteTapeArchiveRequest(input *DeleteTapeArchiveInput) (req *request.Request, output *DeleteTapeArchiveOutput) {
 	op := &request.Operation{
 		Name:       opDeleteTapeArchive,
@@ -672,7 +1071,28 @@ func (c *StorageGateway) DeleteTapeArchive(input *DeleteTapeArchiveInput) (*Dele
 
 const opDeleteVolume = "DeleteVolume"
 
-// DeleteVolumeRequest generates a request for the DeleteVolume operation.
+// DeleteVolumeRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteVolume operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteVolume method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteVolumeRequest method.
+//    req, resp := client.DeleteVolumeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) DeleteVolumeRequest(input *DeleteVolumeInput) (req *request.Request, output *DeleteVolumeOutput) {
 	op := &request.Operation{
 		Name:       opDeleteVolume,
@@ -712,7 +1132,28 @@ func (c *StorageGateway) DeleteVolume(input *DeleteVolumeInput) (*DeleteVolumeOu
 
 const opDescribeBandwidthRateLimit = "DescribeBandwidthRateLimit"
 
-// DescribeBandwidthRateLimitRequest generates a request for the DescribeBandwidthRateLimit operation.
+// DescribeBandwidthRateLimitRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeBandwidthRateLimit operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeBandwidthRateLimit method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeBandwidthRateLimitRequest method.
+//    req, resp := client.DescribeBandwidthRateLimitRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) DescribeBandwidthRateLimitRequest(input *DescribeBandwidthRateLimitInput) (req *request.Request, output *DescribeBandwidthRateLimitOutput) {
 	op := &request.Operation{
 		Name:       opDescribeBandwidthRateLimit,
@@ -745,7 +1186,28 @@ func (c *StorageGateway) DescribeBandwidthRateLimit(input *DescribeBandwidthRate
 
 const opDescribeCache = "DescribeCache"
 
-// DescribeCacheRequest generates a request for the DescribeCache operation.
+// DescribeCacheRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeCache operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeCache method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeCacheRequest method.
+//    req, resp := client.DescribeCacheRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) DescribeCacheRequest(input *DescribeCacheInput) (req *request.Request, output *DescribeCacheOutput) {
 	op := &request.Operation{
 		Name:       opDescribeCache,
@@ -776,7 +1238,28 @@ func (c *StorageGateway) DescribeCache(input *DescribeCacheInput) (*DescribeCach
 
 const opDescribeCachediSCSIVolumes = "DescribeCachediSCSIVolumes"
 
-// DescribeCachediSCSIVolumesRequest generates a request for the DescribeCachediSCSIVolumes operation.
+// DescribeCachediSCSIVolumesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeCachediSCSIVolumes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeCachediSCSIVolumes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeCachediSCSIVolumesRequest method.
+//    req, resp := client.DescribeCachediSCSIVolumesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) DescribeCachediSCSIVolumesRequest(input *DescribeCachediSCSIVolumesInput) (req *request.Request, output *DescribeCachediSCSIVolumesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeCachediSCSIVolumes,
@@ -808,7 +1291,28 @@ func (c *StorageGateway) DescribeCachediSCSIVolumes(input *DescribeCachediSCSIVo
 
 const opDescribeChapCredentials = "DescribeChapCredentials"
 
-// DescribeChapCredentialsRequest generates a request for the DescribeChapCredentials operation.
+// DescribeChapCredentialsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeChapCredentials operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeChapCredentials method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeChapCredentialsRequest method.
+//    req, resp := client.DescribeChapCredentialsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) DescribeChapCredentialsRequest(input *DescribeChapCredentialsInput) (req *request.Request, output *DescribeChapCredentialsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeChapCredentials,
@@ -836,7 +1340,28 @@ func (c *StorageGateway) DescribeChapCredentials(input *DescribeChapCredentialsI
 
 const opDescribeGatewayInformation = "DescribeGatewayInformation"
 
-// DescribeGatewayInformationRequest generates a request for the DescribeGatewayInformation operation.
+// DescribeGatewayInformationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeGatewayInformation operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeGatewayInformation method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeGatewayInformationRequest method.
+//    req, resp := client.DescribeGatewayInformationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) DescribeGatewayInformationRequest(input *DescribeGatewayInformationInput) (req *request.Request, output *DescribeGatewayInformationOutput) {
 	op := &request.Operation{
 		Name:       opDescribeGatewayInformation,
@@ -866,7 +1391,28 @@ func (c *StorageGateway) DescribeGatewayInformation(input *DescribeGatewayInform
 
 const opDescribeMaintenanceStartTime = "DescribeMaintenanceStartTime"
 
-// DescribeMaintenanceStartTimeRequest generates a request for the DescribeMaintenanceStartTime operation.
+// DescribeMaintenanceStartTimeRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeMaintenanceStartTime operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeMaintenanceStartTime method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeMaintenanceStartTimeRequest method.
+//    req, resp := client.DescribeMaintenanceStartTimeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) DescribeMaintenanceStartTimeRequest(input *DescribeMaintenanceStartTimeInput) (req *request.Request, output *DescribeMaintenanceStartTimeOutput) {
 	op := &request.Operation{
 		Name:       opDescribeMaintenanceStartTime,
@@ -894,7 +1440,28 @@ func (c *StorageGateway) DescribeMaintenanceStartTime(input *DescribeMaintenance
 
 const opDescribeSnapshotSchedule = "DescribeSnapshotSchedule"
 
-// DescribeSnapshotScheduleRequest generates a request for the DescribeSnapshotSchedule operation.
+// DescribeSnapshotScheduleRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeSnapshotSchedule operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeSnapshotSchedule method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeSnapshotScheduleRequest method.
+//    req, resp := client.DescribeSnapshotScheduleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) DescribeSnapshotScheduleRequest(input *DescribeSnapshotScheduleInput) (req *request.Request, output *DescribeSnapshotScheduleOutput) {
 	op := &request.Operation{
 		Name:       opDescribeSnapshotSchedule,
@@ -923,7 +1490,28 @@ func (c *StorageGateway) DescribeSnapshotSchedule(input *DescribeSnapshotSchedul
 
 const opDescribeStorediSCSIVolumes = "DescribeStorediSCSIVolumes"
 
-// DescribeStorediSCSIVolumesRequest generates a request for the DescribeStorediSCSIVolumes operation.
+// DescribeStorediSCSIVolumesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeStorediSCSIVolumes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeStorediSCSIVolumes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeStorediSCSIVolumesRequest method.
+//    req, resp := client.DescribeStorediSCSIVolumesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) DescribeStorediSCSIVolumesRequest(input *DescribeStorediSCSIVolumesInput) (req *request.Request, output *DescribeStorediSCSIVolumesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeStorediSCSIVolumes,
@@ -953,7 +1541,28 @@ func (c *StorageGateway) DescribeStorediSCSIVolumes(input *DescribeStorediSCSIVo
 
 const opDescribeTapeArchives = "DescribeTapeArchives"
 
-// DescribeTapeArchivesRequest generates a request for the DescribeTapeArchives operation.
+// DescribeTapeArchivesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeTapeArchives operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeTapeArchives method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeTapeArchivesRequest method.
+//    req, resp := client.DescribeTapeArchivesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) DescribeTapeArchivesRequest(input *DescribeTapeArchivesInput) (req *request.Request, output *DescribeTapeArchivesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeTapeArchives,
@@ -988,6 +1597,23 @@ func (c *StorageGateway) DescribeTapeArchives(input *DescribeTapeArchivesInput) 
 	return out, err
 }
 
+// DescribeTapeArchivesPages iterates over the pages of a DescribeTapeArchives operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeTapeArchives method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeTapeArchives operation.
+//    pageNum := 0
+//    err := client.DescribeTapeArchivesPages(params,
+//        func(page *DescribeTapeArchivesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *StorageGateway) DescribeTapeArchivesPages(input *DescribeTapeArchivesInput, fn func(p *DescribeTapeArchivesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeTapeArchivesRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -998,7 +1624,28 @@ func (c *StorageGateway) DescribeTapeArchivesPages(input *DescribeTapeArchivesIn
 
 const opDescribeTapeRecoveryPoints = "DescribeTapeRecoveryPoints"
 
-// DescribeTapeRecoveryPointsRequest generates a request for the DescribeTapeRecoveryPoints operation.
+// DescribeTapeRecoveryPointsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeTapeRecoveryPoints operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeTapeRecoveryPoints method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeTapeRecoveryPointsRequest method.
+//    req, resp := client.DescribeTapeRecoveryPointsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) DescribeTapeRecoveryPointsRequest(input *DescribeTapeRecoveryPointsInput) (req *request.Request, output *DescribeTapeRecoveryPointsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeTapeRecoveryPoints,
@@ -1034,6 +1681,23 @@ func (c *StorageGateway) DescribeTapeRecoveryPoints(input *DescribeTapeRecoveryP
 	return out, err
 }
 
+// DescribeTapeRecoveryPointsPages iterates over the pages of a DescribeTapeRecoveryPoints operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeTapeRecoveryPoints method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeTapeRecoveryPoints operation.
+//    pageNum := 0
+//    err := client.DescribeTapeRecoveryPointsPages(params,
+//        func(page *DescribeTapeRecoveryPointsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *StorageGateway) DescribeTapeRecoveryPointsPages(input *DescribeTapeRecoveryPointsInput, fn func(p *DescribeTapeRecoveryPointsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeTapeRecoveryPointsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -1044,7 +1708,28 @@ func (c *StorageGateway) DescribeTapeRecoveryPointsPages(input *DescribeTapeReco
 
 const opDescribeTapes = "DescribeTapes"
 
-// DescribeTapesRequest generates a request for the DescribeTapes operation.
+// DescribeTapesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeTapes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeTapes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeTapesRequest method.
+//    req, resp := client.DescribeTapesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) DescribeTapesRequest(input *DescribeTapesInput) (req *request.Request, output *DescribeTapesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeTapes,
@@ -1077,6 +1762,23 @@ func (c *StorageGateway) DescribeTapes(input *DescribeTapesInput) (*DescribeTape
 	return out, err
 }
 
+// DescribeTapesPages iterates over the pages of a DescribeTapes operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeTapes method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeTapes operation.
+//    pageNum := 0
+//    err := client.DescribeTapesPages(params,
+//        func(page *DescribeTapesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *StorageGateway) DescribeTapesPages(input *DescribeTapesInput, fn func(p *DescribeTapesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeTapesRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -1087,7 +1789,28 @@ func (c *StorageGateway) DescribeTapesPages(input *DescribeTapesInput, fn func(p
 
 const opDescribeUploadBuffer = "DescribeUploadBuffer"
 
-// DescribeUploadBufferRequest generates a request for the DescribeUploadBuffer operation.
+// DescribeUploadBufferRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeUploadBuffer operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeUploadBuffer method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeUploadBufferRequest method.
+//    req, resp := client.DescribeUploadBufferRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) DescribeUploadBufferRequest(input *DescribeUploadBufferInput) (req *request.Request, output *DescribeUploadBufferOutput) {
 	op := &request.Operation{
 		Name:       opDescribeUploadBuffer,
@@ -1118,7 +1841,28 @@ func (c *StorageGateway) DescribeUploadBuffer(input *DescribeUploadBufferInput) 
 
 const opDescribeVTLDevices = "DescribeVTLDevices"
 
-// DescribeVTLDevicesRequest generates a request for the DescribeVTLDevices operation.
+// DescribeVTLDevicesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeVTLDevices operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeVTLDevices method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeVTLDevicesRequest method.
+//    req, resp := client.DescribeVTLDevicesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) DescribeVTLDevicesRequest(input *DescribeVTLDevicesInput) (req *request.Request, output *DescribeVTLDevicesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeVTLDevices,
@@ -1152,6 +1896,23 @@ func (c *StorageGateway) DescribeVTLDevices(input *DescribeVTLDevicesInput) (*De
 	return out, err
 }
 
+// DescribeVTLDevicesPages iterates over the pages of a DescribeVTLDevices operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeVTLDevices method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeVTLDevices operation.
+//    pageNum := 0
+//    err := client.DescribeVTLDevicesPages(params,
+//        func(page *DescribeVTLDevicesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *StorageGateway) DescribeVTLDevicesPages(input *DescribeVTLDevicesInput, fn func(p *DescribeVTLDevicesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeVTLDevicesRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -1162,7 +1923,28 @@ func (c *StorageGateway) DescribeVTLDevicesPages(input *DescribeVTLDevicesInput,
 
 const opDescribeWorkingStorage = "DescribeWorkingStorage"
 
-// DescribeWorkingStorageRequest generates a request for the DescribeWorkingStorage operation.
+// DescribeWorkingStorageRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeWorkingStorage operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeWorkingStorage method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeWorkingStorageRequest method.
+//    req, resp := client.DescribeWorkingStorageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) DescribeWorkingStorageRequest(input *DescribeWorkingStorageInput) (req *request.Request, output *DescribeWorkingStorageOutput) {
 	op := &request.Operation{
 		Name:       opDescribeWorkingStorage,
@@ -1199,7 +1981,28 @@ func (c *StorageGateway) DescribeWorkingStorage(input *DescribeWorkingStorageInp
 
 const opDisableGateway = "DisableGateway"
 
-// DisableGatewayRequest generates a request for the DisableGateway operation.
+// DisableGatewayRequest generates a "aws/request.Request" representing the
+// client's request for the DisableGateway operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DisableGateway method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DisableGatewayRequest method.
+//    req, resp := client.DisableGatewayRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) DisableGatewayRequest(input *DisableGatewayInput) (req *request.Request, output *DisableGatewayOutput) {
 	op := &request.Operation{
 		Name:       opDisableGateway,
@@ -1232,7 +2035,28 @@ func (c *StorageGateway) DisableGateway(input *DisableGatewayInput) (*DisableGat
 
 const opListGateways = "ListGateways"
 
-// ListGatewaysRequest generates a request for the ListGateways operation.
+// ListGatewaysRequest generates a "aws/request.Request" representing the
+// client's request for the ListGateways operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListGateways method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListGatewaysRequest method.
+//    req, resp := client.ListGatewaysRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) ListGatewaysRequest(input *ListGatewaysInput) (req *request.Request, output *ListGatewaysOutput) {
 	op := &request.Operation{
 		Name:       opListGateways,
@@ -1273,6 +2097,23 @@ func (c *StorageGateway) ListGateways(input *ListGatewaysInput) (*ListGatewaysOu
 	return out, err
 }
 
+// ListGatewaysPages iterates over the pages of a ListGateways operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListGateways method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListGateways operation.
+//    pageNum := 0
+//    err := client.ListGatewaysPages(params,
+//        func(page *ListGatewaysOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *StorageGateway) ListGatewaysPages(input *ListGatewaysInput, fn func(p *ListGatewaysOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListGatewaysRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -1283,7 +2124,28 @@ func (c *StorageGateway) ListGatewaysPages(input *ListGatewaysInput, fn func(p *
 
 const opListLocalDisks = "ListLocalDisks"
 
-// ListLocalDisksRequest generates a request for the ListLocalDisks operation.
+// ListLocalDisksRequest generates a "aws/request.Request" representing the
+// client's request for the ListLocalDisks operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListLocalDisks method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListLocalDisksRequest method.
+//    req, resp := client.ListLocalDisksRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) ListLocalDisksRequest(input *ListLocalDisksInput) (req *request.Request, output *ListLocalDisksOutput) {
 	op := &request.Operation{
 		Name:       opListLocalDisks,
@@ -1319,7 +2181,28 @@ func (c *StorageGateway) ListLocalDisks(input *ListLocalDisksInput) (*ListLocalD
 
 const opListTagsForResource = "ListTagsForResource"
 
-// ListTagsForResourceRequest generates a request for the ListTagsForResource operation.
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListTagsForResource method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListTagsForResourceRequest method.
+//    req, resp := client.ListTagsForResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
 	op := &request.Operation{
 		Name:       opListTagsForResource,
@@ -1346,7 +2229,28 @@ func (c *StorageGateway) ListTagsForResource(input *ListTagsForResourceInput) (*
 
 const opListTapes = "ListTapes"
 
-// ListTapesRequest generates a request for the ListTapes operation.
+// ListTapesRequest generates a "aws/request.Request" representing the
+// client's request for the ListTapes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListTapes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListTapesRequest method.
+//    req, resp := client.ListTapesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) ListTapesRequest(input *ListTapesInput) (req *request.Request, output *ListTapesOutput) {
 	op := &request.Operation{
 		Name:       opListTapes,
@@ -1383,7 +2287,28 @@ func (c *StorageGateway) ListTapes(input *ListTapesInput) (*ListTapesOutput, err
 
 const opListVolumeInitiators = "ListVolumeInitiators"
 
-// ListVolumeInitiatorsRequest generates a request for the ListVolumeInitiators operation.
+// ListVolumeInitiatorsRequest generates a "aws/request.Request" representing the
+// client's request for the ListVolumeInitiators operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListVolumeInitiators method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListVolumeInitiatorsRequest method.
+//    req, resp := client.ListVolumeInitiatorsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) ListVolumeInitiatorsRequest(input *ListVolumeInitiatorsInput) (req *request.Request, output *ListVolumeInitiatorsOutput) {
 	op := &request.Operation{
 		Name:       opListVolumeInitiators,
@@ -1411,7 +2336,28 @@ func (c *StorageGateway) ListVolumeInitiators(input *ListVolumeInitiatorsInput) 
 
 const opListVolumeRecoveryPoints = "ListVolumeRecoveryPoints"
 
-// ListVolumeRecoveryPointsRequest generates a request for the ListVolumeRecoveryPoints operation.
+// ListVolumeRecoveryPointsRequest generates a "aws/request.Request" representing the
+// client's request for the ListVolumeRecoveryPoints operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListVolumeRecoveryPoints method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListVolumeRecoveryPointsRequest method.
+//    req, resp := client.ListVolumeRecoveryPointsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) ListVolumeRecoveryPointsRequest(input *ListVolumeRecoveryPointsInput) (req *request.Request, output *ListVolumeRecoveryPointsOutput) {
 	op := &request.Operation{
 		Name:       opListVolumeRecoveryPoints,
@@ -1444,7 +2390,28 @@ func (c *StorageGateway) ListVolumeRecoveryPoints(input *ListVolumeRecoveryPoint
 
 const opListVolumes = "ListVolumes"
 
-// ListVolumesRequest generates a request for the ListVolumes operation.
+// ListVolumesRequest generates a "aws/request.Request" representing the
+// client's request for the ListVolumes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListVolumes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListVolumesRequest method.
+//    req, resp := client.ListVolumesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) ListVolumesRequest(input *ListVolumesInput) (req *request.Request, output *ListVolumesOutput) {
 	op := &request.Operation{
 		Name:       opListVolumes,
@@ -1484,6 +2451,23 @@ func (c *StorageGateway) ListVolumes(input *ListVolumesInput) (*ListVolumesOutpu
 	return out, err
 }
 
+// ListVolumesPages iterates over the pages of a ListVolumes operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListVolumes method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListVolumes operation.
+//    pageNum := 0
+//    err := client.ListVolumesPages(params,
+//        func(page *ListVolumesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *StorageGateway) ListVolumesPages(input *ListVolumesInput, fn func(p *ListVolumesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListVolumesRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -1494,7 +2478,28 @@ func (c *StorageGateway) ListVolumesPages(input *ListVolumesInput, fn func(p *Li
 
 const opRemoveTagsFromResource = "RemoveTagsFromResource"
 
-// RemoveTagsFromResourceRequest generates a request for the RemoveTagsFromResource operation.
+// RemoveTagsFromResourceRequest generates a "aws/request.Request" representing the
+// client's request for the RemoveTagsFromResource operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RemoveTagsFromResource method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RemoveTagsFromResourceRequest method.
+//    req, resp := client.RemoveTagsFromResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceInput) (req *request.Request, output *RemoveTagsFromResourceOutput) {
 	op := &request.Operation{
 		Name:       opRemoveTagsFromResource,
@@ -1521,7 +2526,28 @@ func (c *StorageGateway) RemoveTagsFromResource(input *RemoveTagsFromResourceInp
 
 const opResetCache = "ResetCache"
 
-// ResetCacheRequest generates a request for the ResetCache operation.
+// ResetCacheRequest generates a "aws/request.Request" representing the
+// client's request for the ResetCache operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ResetCache method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ResetCacheRequest method.
+//    req, resp := client.ResetCacheRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) ResetCacheRequest(input *ResetCacheInput) (req *request.Request, output *ResetCacheOutput) {
 	op := &request.Operation{
 		Name:       opResetCache,
@@ -1558,7 +2584,28 @@ func (c *StorageGateway) ResetCache(input *ResetCacheInput) (*ResetCacheOutput, 
 
 const opRetrieveTapeArchive = "RetrieveTapeArchive"
 
-// RetrieveTapeArchiveRequest generates a request for the RetrieveTapeArchive operation.
+// RetrieveTapeArchiveRequest generates a "aws/request.Request" representing the
+// client's request for the RetrieveTapeArchive operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RetrieveTapeArchive method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RetrieveTapeArchiveRequest method.
+//    req, resp := client.RetrieveTapeArchiveRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) RetrieveTapeArchiveRequest(input *RetrieveTapeArchiveInput) (req *request.Request, output *RetrieveTapeArchiveOutput) {
 	op := &request.Operation{
 		Name:       opRetrieveTapeArchive,
@@ -1592,7 +2639,28 @@ func (c *StorageGateway) RetrieveTapeArchive(input *RetrieveTapeArchiveInput) (*
 
 const opRetrieveTapeRecoveryPoint = "RetrieveTapeRecoveryPoint"
 
-// RetrieveTapeRecoveryPointRequest generates a request for the RetrieveTapeRecoveryPoint operation.
+// RetrieveTapeRecoveryPointRequest generates a "aws/request.Request" representing the
+// client's request for the RetrieveTapeRecoveryPoint operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RetrieveTapeRecoveryPoint method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RetrieveTapeRecoveryPointRequest method.
+//    req, resp := client.RetrieveTapeRecoveryPointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) RetrieveTapeRecoveryPointRequest(input *RetrieveTapeRecoveryPointInput) (req *request.Request, output *RetrieveTapeRecoveryPointOutput) {
 	op := &request.Operation{
 		Name:       opRetrieveTapeRecoveryPoint,
@@ -1627,7 +2695,28 @@ func (c *StorageGateway) RetrieveTapeRecoveryPoint(input *RetrieveTapeRecoveryPo
 
 const opSetLocalConsolePassword = "SetLocalConsolePassword"
 
-// SetLocalConsolePasswordRequest generates a request for the SetLocalConsolePassword operation.
+// SetLocalConsolePasswordRequest generates a "aws/request.Request" representing the
+// client's request for the SetLocalConsolePassword operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SetLocalConsolePassword method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SetLocalConsolePasswordRequest method.
+//    req, resp := client.SetLocalConsolePasswordRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) SetLocalConsolePasswordRequest(input *SetLocalConsolePasswordInput) (req *request.Request, output *SetLocalConsolePasswordOutput) {
 	op := &request.Operation{
 		Name:       opSetLocalConsolePassword,
@@ -1657,7 +2746,28 @@ func (c *StorageGateway) SetLocalConsolePassword(input *SetLocalConsolePasswordI
 
 const opShutdownGateway = "ShutdownGateway"
 
-// ShutdownGatewayRequest generates a request for the ShutdownGateway operation.
+// ShutdownGatewayRequest generates a "aws/request.Request" representing the
+// client's request for the ShutdownGateway operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ShutdownGateway method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ShutdownGatewayRequest method.
+//    req, resp := client.ShutdownGatewayRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) ShutdownGatewayRequest(input *ShutdownGatewayInput) (req *request.Request, output *ShutdownGatewayOutput) {
 	op := &request.Operation{
 		Name:       opShutdownGateway,
@@ -1705,7 +2815,28 @@ func (c *StorageGateway) ShutdownGateway(input *ShutdownGatewayInput) (*Shutdown
 
 const opStartGateway = "StartGateway"
 
-// StartGatewayRequest generates a request for the StartGateway operation.
+// StartGatewayRequest generates a "aws/request.Request" representing the
+// client's request for the StartGateway operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the StartGateway method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the StartGatewayRequest method.
+//    req, resp := client.StartGatewayRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) StartGatewayRequest(input *StartGatewayInput) (req *request.Request, output *StartGatewayOutput) {
 	op := &request.Operation{
 		Name:       opStartGateway,
@@ -1743,7 +2874,28 @@ func (c *StorageGateway) StartGateway(input *StartGatewayInput) (*StartGatewayOu
 
 const opUpdateBandwidthRateLimit = "UpdateBandwidthRateLimit"
 
-// UpdateBandwidthRateLimitRequest generates a request for the UpdateBandwidthRateLimit operation.
+// UpdateBandwidthRateLimitRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateBandwidthRateLimit operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateBandwidthRateLimit method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateBandwidthRateLimitRequest method.
+//    req, resp := client.UpdateBandwidthRateLimitRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) UpdateBandwidthRateLimitRequest(input *UpdateBandwidthRateLimitInput) (req *request.Request, output *UpdateBandwidthRateLimitOutput) {
 	op := &request.Operation{
 		Name:       opUpdateBandwidthRateLimit,
@@ -1779,7 +2931,28 @@ func (c *StorageGateway) UpdateBandwidthRateLimit(input *UpdateBandwidthRateLimi
 
 const opUpdateChapCredentials = "UpdateChapCredentials"
 
-// UpdateChapCredentialsRequest generates a request for the UpdateChapCredentials operation.
+// UpdateChapCredentialsRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateChapCredentials operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateChapCredentials method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateChapCredentialsRequest method.
+//    req, resp := client.UpdateChapCredentialsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) UpdateChapCredentialsRequest(input *UpdateChapCredentialsInput) (req *request.Request, output *UpdateChapCredentialsOutput) {
 	op := &request.Operation{
 		Name:       opUpdateChapCredentials,
@@ -1811,7 +2984,28 @@ func (c *StorageGateway) UpdateChapCredentials(input *UpdateChapCredentialsInput
 
 const opUpdateGatewayInformation = "UpdateGatewayInformation"
 
-// UpdateGatewayInformationRequest generates a request for the UpdateGatewayInformation operation.
+// UpdateGatewayInformationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateGatewayInformation operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateGatewayInformation method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateGatewayInformationRequest method.
+//    req, resp := client.UpdateGatewayInformationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) UpdateGatewayInformationRequest(input *UpdateGatewayInformationInput) (req *request.Request, output *UpdateGatewayInformationOutput) {
 	op := &request.Operation{
 		Name:       opUpdateGatewayInformation,
@@ -1844,7 +3038,28 @@ func (c *StorageGateway) UpdateGatewayInformation(input *UpdateGatewayInformatio
 
 const opUpdateGatewaySoftwareNow = "UpdateGatewaySoftwareNow"
 
-// UpdateGatewaySoftwareNowRequest generates a request for the UpdateGatewaySoftwareNow operation.
+// UpdateGatewaySoftwareNowRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateGatewaySoftwareNow operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateGatewaySoftwareNow method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateGatewaySoftwareNowRequest method.
+//    req, resp := client.UpdateGatewaySoftwareNowRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) UpdateGatewaySoftwareNowRequest(input *UpdateGatewaySoftwareNowInput) (req *request.Request, output *UpdateGatewaySoftwareNowOutput) {
 	op := &request.Operation{
 		Name:       opUpdateGatewaySoftwareNow,
@@ -1885,7 +3100,28 @@ func (c *StorageGateway) UpdateGatewaySoftwareNow(input *UpdateGatewaySoftwareNo
 
 const opUpdateMaintenanceStartTime = "UpdateMaintenanceStartTime"
 
-// UpdateMaintenanceStartTimeRequest generates a request for the UpdateMaintenanceStartTime operation.
+// UpdateMaintenanceStartTimeRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateMaintenanceStartTime operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateMaintenanceStartTime method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateMaintenanceStartTimeRequest method.
+//    req, resp := client.UpdateMaintenanceStartTimeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) UpdateMaintenanceStartTimeRequest(input *UpdateMaintenanceStartTimeInput) (req *request.Request, output *UpdateMaintenanceStartTimeOutput) {
 	op := &request.Operation{
 		Name:       opUpdateMaintenanceStartTime,
@@ -1914,7 +3150,28 @@ func (c *StorageGateway) UpdateMaintenanceStartTime(input *UpdateMaintenanceStar
 
 const opUpdateSnapshotSchedule = "UpdateSnapshotSchedule"
 
-// UpdateSnapshotScheduleRequest generates a request for the UpdateSnapshotSchedule operation.
+// UpdateSnapshotScheduleRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateSnapshotSchedule operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateSnapshotSchedule method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateSnapshotScheduleRequest method.
+//    req, resp := client.UpdateSnapshotScheduleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) UpdateSnapshotScheduleRequest(input *UpdateSnapshotScheduleInput) (req *request.Request, output *UpdateSnapshotScheduleOutput) {
 	op := &request.Operation{
 		Name:       opUpdateSnapshotSchedule,
@@ -1949,7 +3206,28 @@ func (c *StorageGateway) UpdateSnapshotSchedule(input *UpdateSnapshotScheduleInp
 
 const opUpdateVTLDeviceType = "UpdateVTLDeviceType"
 
-// UpdateVTLDeviceTypeRequest generates a request for the UpdateVTLDeviceType operation.
+// UpdateVTLDeviceTypeRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateVTLDeviceType operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateVTLDeviceType method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateVTLDeviceTypeRequest method.
+//    req, resp := client.UpdateVTLDeviceTypeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *StorageGateway) UpdateVTLDeviceTypeRequest(input *UpdateVTLDeviceTypeInput) (req *request.Request, output *UpdateVTLDeviceTypeOutput) {
 	op := &request.Operation{
 		Name:       opUpdateVTLDeviceType,

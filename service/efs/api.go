@@ -15,7 +15,28 @@ import (
 
 const opCreateFileSystem = "CreateFileSystem"
 
-// CreateFileSystemRequest generates a request for the CreateFileSystem operation.
+// CreateFileSystemRequest generates a "aws/request.Request" representing the
+// client's request for the CreateFileSystem operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateFileSystem method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateFileSystemRequest method.
+//    req, resp := client.CreateFileSystemRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *EFS) CreateFileSystemRequest(input *CreateFileSystemInput) (req *request.Request, output *FileSystemDescription) {
 	op := &request.Operation{
 		Name:       opCreateFileSystem,
@@ -72,7 +93,28 @@ func (c *EFS) CreateFileSystem(input *CreateFileSystemInput) (*FileSystemDescrip
 
 const opCreateMountTarget = "CreateMountTarget"
 
-// CreateMountTargetRequest generates a request for the CreateMountTarget operation.
+// CreateMountTargetRequest generates a "aws/request.Request" representing the
+// client's request for the CreateMountTarget operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateMountTarget method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateMountTargetRequest method.
+//    req, resp := client.CreateMountTargetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *EFS) CreateMountTargetRequest(input *CreateMountTargetInput) (req *request.Request, output *MountTargetDescription) {
 	op := &request.Operation{
 		Name:       opCreateMountTarget,
@@ -174,7 +216,28 @@ func (c *EFS) CreateMountTarget(input *CreateMountTargetInput) (*MountTargetDesc
 
 const opCreateTags = "CreateTags"
 
-// CreateTagsRequest generates a request for the CreateTags operation.
+// CreateTagsRequest generates a "aws/request.Request" representing the
+// client's request for the CreateTags operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateTags method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateTagsRequest method.
+//    req, resp := client.CreateTagsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *EFS) CreateTagsRequest(input *CreateTagsInput) (req *request.Request, output *CreateTagsOutput) {
 	op := &request.Operation{
 		Name:       opCreateTags,
@@ -210,7 +273,28 @@ func (c *EFS) CreateTags(input *CreateTagsInput) (*CreateTagsOutput, error) {
 
 const opDeleteFileSystem = "DeleteFileSystem"
 
-// DeleteFileSystemRequest generates a request for the DeleteFileSystem operation.
+// DeleteFileSystemRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteFileSystem operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteFileSystem method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteFileSystemRequest method.
+//    req, resp := client.DeleteFileSystemRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *EFS) DeleteFileSystemRequest(input *DeleteFileSystemInput) (req *request.Request, output *DeleteFileSystemOutput) {
 	op := &request.Operation{
 		Name:       opDeleteFileSystem,
@@ -252,7 +336,28 @@ func (c *EFS) DeleteFileSystem(input *DeleteFileSystemInput) (*DeleteFileSystemO
 
 const opDeleteMountTarget = "DeleteMountTarget"
 
-// DeleteMountTargetRequest generates a request for the DeleteMountTarget operation.
+// DeleteMountTargetRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteMountTarget operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteMountTarget method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteMountTargetRequest method.
+//    req, resp := client.DeleteMountTargetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *EFS) DeleteMountTargetRequest(input *DeleteMountTargetInput) (req *request.Request, output *DeleteMountTargetOutput) {
 	op := &request.Operation{
 		Name:       opDeleteMountTarget,
@@ -302,7 +407,28 @@ func (c *EFS) DeleteMountTarget(input *DeleteMountTargetInput) (*DeleteMountTarg
 
 const opDeleteTags = "DeleteTags"
 
-// DeleteTagsRequest generates a request for the DeleteTags operation.
+// DeleteTagsRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteTags operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteTags method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteTagsRequest method.
+//    req, resp := client.DeleteTagsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *EFS) DeleteTagsRequest(input *DeleteTagsInput) (req *request.Request, output *DeleteTagsOutput) {
 	op := &request.Operation{
 		Name:       opDeleteTags,
@@ -338,7 +464,28 @@ func (c *EFS) DeleteTags(input *DeleteTagsInput) (*DeleteTagsOutput, error) {
 
 const opDescribeFileSystems = "DescribeFileSystems"
 
-// DescribeFileSystemsRequest generates a request for the DescribeFileSystems operation.
+// DescribeFileSystemsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFileSystems operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeFileSystems method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeFileSystemsRequest method.
+//    req, resp := client.DescribeFileSystemsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *EFS) DescribeFileSystemsRequest(input *DescribeFileSystemsInput) (req *request.Request, output *DescribeFileSystemsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeFileSystems,
@@ -390,7 +537,28 @@ func (c *EFS) DescribeFileSystems(input *DescribeFileSystemsInput) (*DescribeFil
 
 const opDescribeMountTargetSecurityGroups = "DescribeMountTargetSecurityGroups"
 
-// DescribeMountTargetSecurityGroupsRequest generates a request for the DescribeMountTargetSecurityGroups operation.
+// DescribeMountTargetSecurityGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeMountTargetSecurityGroups operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeMountTargetSecurityGroups method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeMountTargetSecurityGroupsRequest method.
+//    req, resp := client.DescribeMountTargetSecurityGroupsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *EFS) DescribeMountTargetSecurityGroupsRequest(input *DescribeMountTargetSecurityGroupsInput) (req *request.Request, output *DescribeMountTargetSecurityGroupsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeMountTargetSecurityGroups,
@@ -425,7 +593,28 @@ func (c *EFS) DescribeMountTargetSecurityGroups(input *DescribeMountTargetSecuri
 
 const opDescribeMountTargets = "DescribeMountTargets"
 
-// DescribeMountTargetsRequest generates a request for the DescribeMountTargets operation.
+// DescribeMountTargetsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeMountTargets operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeMountTargets method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeMountTargetsRequest method.
+//    req, resp := client.DescribeMountTargetsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *EFS) DescribeMountTargetsRequest(input *DescribeMountTargetsInput) (req *request.Request, output *DescribeMountTargetsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeMountTargets,
@@ -458,7 +647,28 @@ func (c *EFS) DescribeMountTargets(input *DescribeMountTargetsInput) (*DescribeM
 
 const opDescribeTags = "DescribeTags"
 
-// DescribeTagsRequest generates a request for the DescribeTags operation.
+// DescribeTagsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeTags operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeTags method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeTagsRequest method.
+//    req, resp := client.DescribeTagsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *EFS) DescribeTagsRequest(input *DescribeTagsInput) (req *request.Request, output *DescribeTagsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeTags,
@@ -491,7 +701,28 @@ func (c *EFS) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutput, error
 
 const opModifyMountTargetSecurityGroups = "ModifyMountTargetSecurityGroups"
 
-// ModifyMountTargetSecurityGroupsRequest generates a request for the ModifyMountTargetSecurityGroups operation.
+// ModifyMountTargetSecurityGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyMountTargetSecurityGroups operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ModifyMountTargetSecurityGroups method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ModifyMountTargetSecurityGroupsRequest method.
+//    req, resp := client.ModifyMountTargetSecurityGroupsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *EFS) ModifyMountTargetSecurityGroupsRequest(input *ModifyMountTargetSecurityGroupsInput) (req *request.Request, output *ModifyMountTargetSecurityGroupsOutput) {
 	op := &request.Operation{
 		Name:       opModifyMountTargetSecurityGroups,

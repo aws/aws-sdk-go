@@ -15,7 +15,28 @@ import (
 
 const opAddTagsToCertificate = "AddTagsToCertificate"
 
-// AddTagsToCertificateRequest generates a request for the AddTagsToCertificate operation.
+// AddTagsToCertificateRequest generates a "aws/request.Request" representing the
+// client's request for the AddTagsToCertificate operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AddTagsToCertificate method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AddTagsToCertificateRequest method.
+//    req, resp := client.AddTagsToCertificateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ACM) AddTagsToCertificateRequest(input *AddTagsToCertificateInput) (req *request.Request, output *AddTagsToCertificateOutput) {
 	op := &request.Operation{
 		Name:       opAddTagsToCertificate,
@@ -60,7 +81,28 @@ func (c *ACM) AddTagsToCertificate(input *AddTagsToCertificateInput) (*AddTagsTo
 
 const opDeleteCertificate = "DeleteCertificate"
 
-// DeleteCertificateRequest generates a request for the DeleteCertificate operation.
+// DeleteCertificateRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteCertificate operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteCertificate method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteCertificateRequest method.
+//    req, resp := client.DeleteCertificateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ACM) DeleteCertificateRequest(input *DeleteCertificateInput) (req *request.Request, output *DeleteCertificateOutput) {
 	op := &request.Operation{
 		Name:       opDeleteCertificate,
@@ -97,7 +139,28 @@ func (c *ACM) DeleteCertificate(input *DeleteCertificateInput) (*DeleteCertifica
 
 const opDescribeCertificate = "DescribeCertificate"
 
-// DescribeCertificateRequest generates a request for the DescribeCertificate operation.
+// DescribeCertificateRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeCertificate operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeCertificate method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeCertificateRequest method.
+//    req, resp := client.DescribeCertificateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ACM) DescribeCertificateRequest(input *DescribeCertificateInput) (req *request.Request, output *DescribeCertificateOutput) {
 	op := &request.Operation{
 		Name:       opDescribeCertificate,
@@ -128,7 +191,28 @@ func (c *ACM) DescribeCertificate(input *DescribeCertificateInput) (*DescribeCer
 
 const opGetCertificate = "GetCertificate"
 
-// GetCertificateRequest generates a request for the GetCertificate operation.
+// GetCertificateRequest generates a "aws/request.Request" representing the
+// client's request for the GetCertificate operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetCertificate method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetCertificateRequest method.
+//    req, resp := client.GetCertificateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ACM) GetCertificateRequest(input *GetCertificateInput) (req *request.Request, output *GetCertificateOutput) {
 	op := &request.Operation{
 		Name:       opGetCertificate,
@@ -163,7 +247,28 @@ func (c *ACM) GetCertificate(input *GetCertificateInput) (*GetCertificateOutput,
 
 const opListCertificates = "ListCertificates"
 
-// ListCertificatesRequest generates a request for the ListCertificates operation.
+// ListCertificatesRequest generates a "aws/request.Request" representing the
+// client's request for the ListCertificates operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListCertificates method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListCertificatesRequest method.
+//    req, resp := client.ListCertificatesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ACM) ListCertificatesRequest(input *ListCertificatesInput) (req *request.Request, output *ListCertificatesOutput) {
 	op := &request.Operation{
 		Name:       opListCertificates,
@@ -196,6 +301,23 @@ func (c *ACM) ListCertificates(input *ListCertificatesInput) (*ListCertificatesO
 	return out, err
 }
 
+// ListCertificatesPages iterates over the pages of a ListCertificates operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCertificates method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListCertificates operation.
+//    pageNum := 0
+//    err := client.ListCertificatesPages(params,
+//        func(page *ListCertificatesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *ACM) ListCertificatesPages(input *ListCertificatesInput, fn func(p *ListCertificatesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListCertificatesRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -206,7 +328,28 @@ func (c *ACM) ListCertificatesPages(input *ListCertificatesInput, fn func(p *Lis
 
 const opListTagsForCertificate = "ListTagsForCertificate"
 
-// ListTagsForCertificateRequest generates a request for the ListTagsForCertificate operation.
+// ListTagsForCertificateRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForCertificate operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListTagsForCertificate method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListTagsForCertificateRequest method.
+//    req, resp := client.ListTagsForCertificateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ACM) ListTagsForCertificateRequest(input *ListTagsForCertificateInput) (req *request.Request, output *ListTagsForCertificateOutput) {
 	op := &request.Operation{
 		Name:       opListTagsForCertificate,
@@ -236,7 +379,28 @@ func (c *ACM) ListTagsForCertificate(input *ListTagsForCertificateInput) (*ListT
 
 const opRemoveTagsFromCertificate = "RemoveTagsFromCertificate"
 
-// RemoveTagsFromCertificateRequest generates a request for the RemoveTagsFromCertificate operation.
+// RemoveTagsFromCertificateRequest generates a "aws/request.Request" representing the
+// client's request for the RemoveTagsFromCertificate operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RemoveTagsFromCertificate method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RemoveTagsFromCertificateRequest method.
+//    req, resp := client.RemoveTagsFromCertificateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ACM) RemoveTagsFromCertificateRequest(input *RemoveTagsFromCertificateInput) (req *request.Request, output *RemoveTagsFromCertificateOutput) {
 	op := &request.Operation{
 		Name:       opRemoveTagsFromCertificate,
@@ -272,7 +436,28 @@ func (c *ACM) RemoveTagsFromCertificate(input *RemoveTagsFromCertificateInput) (
 
 const opRequestCertificate = "RequestCertificate"
 
-// RequestCertificateRequest generates a request for the RequestCertificate operation.
+// RequestCertificateRequest generates a "aws/request.Request" representing the
+// client's request for the RequestCertificate operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RequestCertificate method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RequestCertificateRequest method.
+//    req, resp := client.RequestCertificateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ACM) RequestCertificateRequest(input *RequestCertificateInput) (req *request.Request, output *RequestCertificateOutput) {
 	op := &request.Operation{
 		Name:       opRequestCertificate,
@@ -305,7 +490,28 @@ func (c *ACM) RequestCertificate(input *RequestCertificateInput) (*RequestCertif
 
 const opResendValidationEmail = "ResendValidationEmail"
 
-// ResendValidationEmailRequest generates a request for the ResendValidationEmail operation.
+// ResendValidationEmailRequest generates a "aws/request.Request" representing the
+// client's request for the ResendValidationEmail operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ResendValidationEmail method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ResendValidationEmailRequest method.
+//    req, resp := client.ResendValidationEmailRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ACM) ResendValidationEmailRequest(input *ResendValidationEmailInput) (req *request.Request, output *ResendValidationEmailOutput) {
 	op := &request.Operation{
 		Name:       opResendValidationEmail,

@@ -13,7 +13,28 @@ import (
 
 const opDescribeStream = "DescribeStream"
 
-// DescribeStreamRequest generates a request for the DescribeStream operation.
+// DescribeStreamRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeStream operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeStream method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeStreamRequest method.
+//    req, resp := client.DescribeStreamRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DynamoDBStreams) DescribeStreamRequest(input *DescribeStreamInput) (req *request.Request, output *DescribeStreamOutput) {
 	op := &request.Operation{
 		Name:       opDescribeStream,
@@ -50,7 +71,28 @@ func (c *DynamoDBStreams) DescribeStream(input *DescribeStreamInput) (*DescribeS
 
 const opGetRecords = "GetRecords"
 
-// GetRecordsRequest generates a request for the GetRecords operation.
+// GetRecordsRequest generates a "aws/request.Request" representing the
+// client's request for the GetRecords operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetRecords method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetRecordsRequest method.
+//    req, resp := client.GetRecordsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DynamoDBStreams) GetRecordsRequest(input *GetRecordsInput) (req *request.Request, output *GetRecordsOutput) {
 	op := &request.Operation{
 		Name:       opGetRecords,
@@ -87,7 +129,28 @@ func (c *DynamoDBStreams) GetRecords(input *GetRecordsInput) (*GetRecordsOutput,
 
 const opGetShardIterator = "GetShardIterator"
 
-// GetShardIteratorRequest generates a request for the GetShardIterator operation.
+// GetShardIteratorRequest generates a "aws/request.Request" representing the
+// client's request for the GetShardIterator operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetShardIterator method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetShardIteratorRequest method.
+//    req, resp := client.GetShardIteratorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DynamoDBStreams) GetShardIteratorRequest(input *GetShardIteratorInput) (req *request.Request, output *GetShardIteratorOutput) {
 	op := &request.Operation{
 		Name:       opGetShardIterator,
@@ -118,7 +181,28 @@ func (c *DynamoDBStreams) GetShardIterator(input *GetShardIteratorInput) (*GetSh
 
 const opListStreams = "ListStreams"
 
-// ListStreamsRequest generates a request for the ListStreams operation.
+// ListStreamsRequest generates a "aws/request.Request" representing the
+// client's request for the ListStreams operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListStreams method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListStreamsRequest method.
+//    req, resp := client.ListStreamsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *DynamoDBStreams) ListStreamsRequest(input *ListStreamsInput) (req *request.Request, output *ListStreamsOutput) {
 	op := &request.Operation{
 		Name:       opListStreams,

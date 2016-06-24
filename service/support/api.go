@@ -10,7 +10,28 @@ import (
 
 const opAddAttachmentsToSet = "AddAttachmentsToSet"
 
-// AddAttachmentsToSetRequest generates a request for the AddAttachmentsToSet operation.
+// AddAttachmentsToSetRequest generates a "aws/request.Request" representing the
+// client's request for the AddAttachmentsToSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AddAttachmentsToSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AddAttachmentsToSetRequest method.
+//    req, resp := client.AddAttachmentsToSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Support) AddAttachmentsToSetRequest(input *AddAttachmentsToSetInput) (req *request.Request, output *AddAttachmentsToSetOutput) {
 	op := &request.Operation{
 		Name:       opAddAttachmentsToSet,
@@ -46,7 +67,28 @@ func (c *Support) AddAttachmentsToSet(input *AddAttachmentsToSetInput) (*AddAtta
 
 const opAddCommunicationToCase = "AddCommunicationToCase"
 
-// AddCommunicationToCaseRequest generates a request for the AddCommunicationToCase operation.
+// AddCommunicationToCaseRequest generates a "aws/request.Request" representing the
+// client's request for the AddCommunicationToCase operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AddCommunicationToCase method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AddCommunicationToCaseRequest method.
+//    req, resp := client.AddCommunicationToCaseRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Support) AddCommunicationToCaseRequest(input *AddCommunicationToCaseInput) (req *request.Request, output *AddCommunicationToCaseOutput) {
 	op := &request.Operation{
 		Name:       opAddCommunicationToCase,
@@ -80,7 +122,28 @@ func (c *Support) AddCommunicationToCase(input *AddCommunicationToCaseInput) (*A
 
 const opCreateCase = "CreateCase"
 
-// CreateCaseRequest generates a request for the CreateCase operation.
+// CreateCaseRequest generates a "aws/request.Request" representing the
+// client's request for the CreateCase operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateCase method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateCaseRequest method.
+//    req, resp := client.CreateCaseRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Support) CreateCaseRequest(input *CreateCaseInput) (req *request.Request, output *CreateCaseOutput) {
 	op := &request.Operation{
 		Name:       opCreateCase,
@@ -136,7 +199,28 @@ func (c *Support) CreateCase(input *CreateCaseInput) (*CreateCaseOutput, error) 
 
 const opDescribeAttachment = "DescribeAttachment"
 
-// DescribeAttachmentRequest generates a request for the DescribeAttachment operation.
+// DescribeAttachmentRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAttachment operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeAttachment method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeAttachmentRequest method.
+//    req, resp := client.DescribeAttachmentRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Support) DescribeAttachmentRequest(input *DescribeAttachmentInput) (req *request.Request, output *DescribeAttachmentOutput) {
 	op := &request.Operation{
 		Name:       opDescribeAttachment,
@@ -166,7 +250,28 @@ func (c *Support) DescribeAttachment(input *DescribeAttachmentInput) (*DescribeA
 
 const opDescribeCases = "DescribeCases"
 
-// DescribeCasesRequest generates a request for the DescribeCases operation.
+// DescribeCasesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeCases operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeCases method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeCasesRequest method.
+//    req, resp := client.DescribeCasesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Support) DescribeCasesRequest(input *DescribeCasesInput) (req *request.Request, output *DescribeCasesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeCases,
@@ -210,6 +315,23 @@ func (c *Support) DescribeCases(input *DescribeCasesInput) (*DescribeCasesOutput
 	return out, err
 }
 
+// DescribeCasesPages iterates over the pages of a DescribeCases operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeCases method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeCases operation.
+//    pageNum := 0
+//    err := client.DescribeCasesPages(params,
+//        func(page *DescribeCasesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *Support) DescribeCasesPages(input *DescribeCasesInput, fn func(p *DescribeCasesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeCasesRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -220,7 +342,28 @@ func (c *Support) DescribeCasesPages(input *DescribeCasesInput, fn func(p *Descr
 
 const opDescribeCommunications = "DescribeCommunications"
 
-// DescribeCommunicationsRequest generates a request for the DescribeCommunications operation.
+// DescribeCommunicationsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeCommunications operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeCommunications method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeCommunicationsRequest method.
+//    req, resp := client.DescribeCommunicationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Support) DescribeCommunicationsRequest(input *DescribeCommunicationsInput) (req *request.Request, output *DescribeCommunicationsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeCommunications,
@@ -260,6 +403,23 @@ func (c *Support) DescribeCommunications(input *DescribeCommunicationsInput) (*D
 	return out, err
 }
 
+// DescribeCommunicationsPages iterates over the pages of a DescribeCommunications operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeCommunications method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeCommunications operation.
+//    pageNum := 0
+//    err := client.DescribeCommunicationsPages(params,
+//        func(page *DescribeCommunicationsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *Support) DescribeCommunicationsPages(input *DescribeCommunicationsInput, fn func(p *DescribeCommunicationsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeCommunicationsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -270,7 +430,28 @@ func (c *Support) DescribeCommunicationsPages(input *DescribeCommunicationsInput
 
 const opDescribeServices = "DescribeServices"
 
-// DescribeServicesRequest generates a request for the DescribeServices operation.
+// DescribeServicesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeServices operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeServices method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeServicesRequest method.
+//    req, resp := client.DescribeServicesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Support) DescribeServicesRequest(input *DescribeServicesInput) (req *request.Request, output *DescribeServicesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeServices,
@@ -307,7 +488,28 @@ func (c *Support) DescribeServices(input *DescribeServicesInput) (*DescribeServi
 
 const opDescribeSeverityLevels = "DescribeSeverityLevels"
 
-// DescribeSeverityLevelsRequest generates a request for the DescribeSeverityLevels operation.
+// DescribeSeverityLevelsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeSeverityLevels operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeSeverityLevels method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeSeverityLevelsRequest method.
+//    req, resp := client.DescribeSeverityLevelsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Support) DescribeSeverityLevelsRequest(input *DescribeSeverityLevelsInput) (req *request.Request, output *DescribeSeverityLevelsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeSeverityLevels,
@@ -336,7 +538,28 @@ func (c *Support) DescribeSeverityLevels(input *DescribeSeverityLevelsInput) (*D
 
 const opDescribeTrustedAdvisorCheckRefreshStatuses = "DescribeTrustedAdvisorCheckRefreshStatuses"
 
-// DescribeTrustedAdvisorCheckRefreshStatusesRequest generates a request for the DescribeTrustedAdvisorCheckRefreshStatuses operation.
+// DescribeTrustedAdvisorCheckRefreshStatusesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeTrustedAdvisorCheckRefreshStatuses operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeTrustedAdvisorCheckRefreshStatuses method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeTrustedAdvisorCheckRefreshStatusesRequest method.
+//    req, resp := client.DescribeTrustedAdvisorCheckRefreshStatusesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Support) DescribeTrustedAdvisorCheckRefreshStatusesRequest(input *DescribeTrustedAdvisorCheckRefreshStatusesInput) (req *request.Request, output *DescribeTrustedAdvisorCheckRefreshStatusesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeTrustedAdvisorCheckRefreshStatuses,
@@ -364,7 +587,28 @@ func (c *Support) DescribeTrustedAdvisorCheckRefreshStatuses(input *DescribeTrus
 
 const opDescribeTrustedAdvisorCheckResult = "DescribeTrustedAdvisorCheckResult"
 
-// DescribeTrustedAdvisorCheckResultRequest generates a request for the DescribeTrustedAdvisorCheckResult operation.
+// DescribeTrustedAdvisorCheckResultRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeTrustedAdvisorCheckResult operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeTrustedAdvisorCheckResult method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeTrustedAdvisorCheckResultRequest method.
+//    req, resp := client.DescribeTrustedAdvisorCheckResultRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Support) DescribeTrustedAdvisorCheckResultRequest(input *DescribeTrustedAdvisorCheckResultInput) (req *request.Request, output *DescribeTrustedAdvisorCheckResultOutput) {
 	op := &request.Operation{
 		Name:       opDescribeTrustedAdvisorCheckResult,
@@ -402,7 +646,28 @@ func (c *Support) DescribeTrustedAdvisorCheckResult(input *DescribeTrustedAdviso
 
 const opDescribeTrustedAdvisorCheckSummaries = "DescribeTrustedAdvisorCheckSummaries"
 
-// DescribeTrustedAdvisorCheckSummariesRequest generates a request for the DescribeTrustedAdvisorCheckSummaries operation.
+// DescribeTrustedAdvisorCheckSummariesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeTrustedAdvisorCheckSummaries operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeTrustedAdvisorCheckSummaries method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeTrustedAdvisorCheckSummariesRequest method.
+//    req, resp := client.DescribeTrustedAdvisorCheckSummariesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Support) DescribeTrustedAdvisorCheckSummariesRequest(input *DescribeTrustedAdvisorCheckSummariesInput) (req *request.Request, output *DescribeTrustedAdvisorCheckSummariesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeTrustedAdvisorCheckSummaries,
@@ -432,7 +697,28 @@ func (c *Support) DescribeTrustedAdvisorCheckSummaries(input *DescribeTrustedAdv
 
 const opDescribeTrustedAdvisorChecks = "DescribeTrustedAdvisorChecks"
 
-// DescribeTrustedAdvisorChecksRequest generates a request for the DescribeTrustedAdvisorChecks operation.
+// DescribeTrustedAdvisorChecksRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeTrustedAdvisorChecks operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeTrustedAdvisorChecks method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeTrustedAdvisorChecksRequest method.
+//    req, resp := client.DescribeTrustedAdvisorChecksRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Support) DescribeTrustedAdvisorChecksRequest(input *DescribeTrustedAdvisorChecksInput) (req *request.Request, output *DescribeTrustedAdvisorChecksOutput) {
 	op := &request.Operation{
 		Name:       opDescribeTrustedAdvisorChecks,
@@ -462,7 +748,28 @@ func (c *Support) DescribeTrustedAdvisorChecks(input *DescribeTrustedAdvisorChec
 
 const opRefreshTrustedAdvisorCheck = "RefreshTrustedAdvisorCheck"
 
-// RefreshTrustedAdvisorCheckRequest generates a request for the RefreshTrustedAdvisorCheck operation.
+// RefreshTrustedAdvisorCheckRequest generates a "aws/request.Request" representing the
+// client's request for the RefreshTrustedAdvisorCheck operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RefreshTrustedAdvisorCheck method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RefreshTrustedAdvisorCheckRequest method.
+//    req, resp := client.RefreshTrustedAdvisorCheckRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Support) RefreshTrustedAdvisorCheckRequest(input *RefreshTrustedAdvisorCheckInput) (req *request.Request, output *RefreshTrustedAdvisorCheckOutput) {
 	op := &request.Operation{
 		Name:       opRefreshTrustedAdvisorCheck,
@@ -498,7 +805,28 @@ func (c *Support) RefreshTrustedAdvisorCheck(input *RefreshTrustedAdvisorCheckIn
 
 const opResolveCase = "ResolveCase"
 
-// ResolveCaseRequest generates a request for the ResolveCase operation.
+// ResolveCaseRequest generates a "aws/request.Request" representing the
+// client's request for the ResolveCase operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ResolveCase method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ResolveCaseRequest method.
+//    req, resp := client.ResolveCaseRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Support) ResolveCaseRequest(input *ResolveCaseInput) (req *request.Request, output *ResolveCaseOutput) {
 	op := &request.Operation{
 		Name:       opResolveCase,

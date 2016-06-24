@@ -13,7 +13,28 @@ import (
 
 const opCreateByteMatchSet = "CreateByteMatchSet"
 
-// CreateByteMatchSetRequest generates a request for the CreateByteMatchSet operation.
+// CreateByteMatchSetRequest generates a "aws/request.Request" representing the
+// client's request for the CreateByteMatchSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateByteMatchSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateByteMatchSetRequest method.
+//    req, resp := client.CreateByteMatchSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) CreateByteMatchSetRequest(input *CreateByteMatchSetInput) (req *request.Request, output *CreateByteMatchSetOutput) {
 	op := &request.Operation{
 		Name:       opCreateByteMatchSet,
@@ -55,7 +76,28 @@ func (c *WAF) CreateByteMatchSet(input *CreateByteMatchSetInput) (*CreateByteMat
 
 const opCreateIPSet = "CreateIPSet"
 
-// CreateIPSetRequest generates a request for the CreateIPSet operation.
+// CreateIPSetRequest generates a "aws/request.Request" representing the
+// client's request for the CreateIPSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateIPSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateIPSetRequest method.
+//    req, resp := client.CreateIPSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) CreateIPSetRequest(input *CreateIPSetInput) (req *request.Request, output *CreateIPSetOutput) {
 	op := &request.Operation{
 		Name:       opCreateIPSet,
@@ -97,7 +139,28 @@ func (c *WAF) CreateIPSet(input *CreateIPSetInput) (*CreateIPSetOutput, error) {
 
 const opCreateRule = "CreateRule"
 
-// CreateRuleRequest generates a request for the CreateRule operation.
+// CreateRuleRequest generates a "aws/request.Request" representing the
+// client's request for the CreateRule operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateRule method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateRuleRequest method.
+//    req, resp := client.CreateRuleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) CreateRuleRequest(input *CreateRuleInput) (req *request.Request, output *CreateRuleOutput) {
 	op := &request.Operation{
 		Name:       opCreateRule,
@@ -147,7 +210,28 @@ func (c *WAF) CreateRule(input *CreateRuleInput) (*CreateRuleOutput, error) {
 
 const opCreateSizeConstraintSet = "CreateSizeConstraintSet"
 
-// CreateSizeConstraintSetRequest generates a request for the CreateSizeConstraintSet operation.
+// CreateSizeConstraintSetRequest generates a "aws/request.Request" representing the
+// client's request for the CreateSizeConstraintSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateSizeConstraintSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateSizeConstraintSetRequest method.
+//    req, resp := client.CreateSizeConstraintSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) CreateSizeConstraintSetRequest(input *CreateSizeConstraintSetInput) (req *request.Request, output *CreateSizeConstraintSetOutput) {
 	op := &request.Operation{
 		Name:       opCreateSizeConstraintSet,
@@ -190,7 +274,28 @@ func (c *WAF) CreateSizeConstraintSet(input *CreateSizeConstraintSetInput) (*Cre
 
 const opCreateSqlInjectionMatchSet = "CreateSqlInjectionMatchSet"
 
-// CreateSqlInjectionMatchSetRequest generates a request for the CreateSqlInjectionMatchSet operation.
+// CreateSqlInjectionMatchSetRequest generates a "aws/request.Request" representing the
+// client's request for the CreateSqlInjectionMatchSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateSqlInjectionMatchSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateSqlInjectionMatchSetRequest method.
+//    req, resp := client.CreateSqlInjectionMatchSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) CreateSqlInjectionMatchSetRequest(input *CreateSqlInjectionMatchSetInput) (req *request.Request, output *CreateSqlInjectionMatchSetOutput) {
 	op := &request.Operation{
 		Name:       opCreateSqlInjectionMatchSet,
@@ -230,7 +335,28 @@ func (c *WAF) CreateSqlInjectionMatchSet(input *CreateSqlInjectionMatchSetInput)
 
 const opCreateWebACL = "CreateWebACL"
 
-// CreateWebACLRequest generates a request for the CreateWebACL operation.
+// CreateWebACLRequest generates a "aws/request.Request" representing the
+// client's request for the CreateWebACL operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateWebACL method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateWebACLRequest method.
+//    req, resp := client.CreateWebACLRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) CreateWebACLRequest(input *CreateWebACLInput) (req *request.Request, output *CreateWebACLOutput) {
 	op := &request.Operation{
 		Name:       opCreateWebACL,
@@ -278,7 +404,28 @@ func (c *WAF) CreateWebACL(input *CreateWebACLInput) (*CreateWebACLOutput, error
 
 const opCreateXssMatchSet = "CreateXssMatchSet"
 
-// CreateXssMatchSetRequest generates a request for the CreateXssMatchSet operation.
+// CreateXssMatchSetRequest generates a "aws/request.Request" representing the
+// client's request for the CreateXssMatchSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateXssMatchSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateXssMatchSetRequest method.
+//    req, resp := client.CreateXssMatchSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) CreateXssMatchSetRequest(input *CreateXssMatchSetInput) (req *request.Request, output *CreateXssMatchSetOutput) {
 	op := &request.Operation{
 		Name:       opCreateXssMatchSet,
@@ -319,7 +466,28 @@ func (c *WAF) CreateXssMatchSet(input *CreateXssMatchSetInput) (*CreateXssMatchS
 
 const opDeleteByteMatchSet = "DeleteByteMatchSet"
 
-// DeleteByteMatchSetRequest generates a request for the DeleteByteMatchSet operation.
+// DeleteByteMatchSetRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteByteMatchSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteByteMatchSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteByteMatchSetRequest method.
+//    req, resp := client.DeleteByteMatchSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) DeleteByteMatchSetRequest(input *DeleteByteMatchSetInput) (req *request.Request, output *DeleteByteMatchSetOutput) {
 	op := &request.Operation{
 		Name:       opDeleteByteMatchSet,
@@ -357,7 +525,28 @@ func (c *WAF) DeleteByteMatchSet(input *DeleteByteMatchSetInput) (*DeleteByteMat
 
 const opDeleteIPSet = "DeleteIPSet"
 
-// DeleteIPSetRequest generates a request for the DeleteIPSet operation.
+// DeleteIPSetRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteIPSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteIPSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteIPSetRequest method.
+//    req, resp := client.DeleteIPSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) DeleteIPSetRequest(input *DeleteIPSetInput) (req *request.Request, output *DeleteIPSetOutput) {
 	op := &request.Operation{
 		Name:       opDeleteIPSet,
@@ -394,7 +583,28 @@ func (c *WAF) DeleteIPSet(input *DeleteIPSetInput) (*DeleteIPSetOutput, error) {
 
 const opDeleteRule = "DeleteRule"
 
-// DeleteRuleRequest generates a request for the DeleteRule operation.
+// DeleteRuleRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteRule operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteRule method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteRuleRequest method.
+//    req, resp := client.DeleteRuleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) DeleteRuleRequest(input *DeleteRuleInput) (req *request.Request, output *DeleteRuleOutput) {
 	op := &request.Operation{
 		Name:       opDeleteRule,
@@ -431,7 +641,28 @@ func (c *WAF) DeleteRule(input *DeleteRuleInput) (*DeleteRuleOutput, error) {
 
 const opDeleteSizeConstraintSet = "DeleteSizeConstraintSet"
 
-// DeleteSizeConstraintSetRequest generates a request for the DeleteSizeConstraintSet operation.
+// DeleteSizeConstraintSetRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteSizeConstraintSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteSizeConstraintSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteSizeConstraintSetRequest method.
+//    req, resp := client.DeleteSizeConstraintSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) DeleteSizeConstraintSetRequest(input *DeleteSizeConstraintSetInput) (req *request.Request, output *DeleteSizeConstraintSetOutput) {
 	op := &request.Operation{
 		Name:       opDeleteSizeConstraintSet,
@@ -469,7 +700,28 @@ func (c *WAF) DeleteSizeConstraintSet(input *DeleteSizeConstraintSetInput) (*Del
 
 const opDeleteSqlInjectionMatchSet = "DeleteSqlInjectionMatchSet"
 
-// DeleteSqlInjectionMatchSetRequest generates a request for the DeleteSqlInjectionMatchSet operation.
+// DeleteSqlInjectionMatchSetRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteSqlInjectionMatchSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteSqlInjectionMatchSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteSqlInjectionMatchSetRequest method.
+//    req, resp := client.DeleteSqlInjectionMatchSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) DeleteSqlInjectionMatchSetRequest(input *DeleteSqlInjectionMatchSetInput) (req *request.Request, output *DeleteSqlInjectionMatchSetOutput) {
 	op := &request.Operation{
 		Name:       opDeleteSqlInjectionMatchSet,
@@ -508,7 +760,28 @@ func (c *WAF) DeleteSqlInjectionMatchSet(input *DeleteSqlInjectionMatchSetInput)
 
 const opDeleteWebACL = "DeleteWebACL"
 
-// DeleteWebACLRequest generates a request for the DeleteWebACL operation.
+// DeleteWebACLRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteWebACL operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteWebACL method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteWebACLRequest method.
+//    req, resp := client.DeleteWebACLRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) DeleteWebACLRequest(input *DeleteWebACLInput) (req *request.Request, output *DeleteWebACLOutput) {
 	op := &request.Operation{
 		Name:       opDeleteWebACL,
@@ -542,7 +815,28 @@ func (c *WAF) DeleteWebACL(input *DeleteWebACLInput) (*DeleteWebACLOutput, error
 
 const opDeleteXssMatchSet = "DeleteXssMatchSet"
 
-// DeleteXssMatchSetRequest generates a request for the DeleteXssMatchSet operation.
+// DeleteXssMatchSetRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteXssMatchSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteXssMatchSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteXssMatchSetRequest method.
+//    req, resp := client.DeleteXssMatchSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) DeleteXssMatchSetRequest(input *DeleteXssMatchSetInput) (req *request.Request, output *DeleteXssMatchSetOutput) {
 	op := &request.Operation{
 		Name:       opDeleteXssMatchSet,
@@ -580,7 +874,28 @@ func (c *WAF) DeleteXssMatchSet(input *DeleteXssMatchSetInput) (*DeleteXssMatchS
 
 const opGetByteMatchSet = "GetByteMatchSet"
 
-// GetByteMatchSetRequest generates a request for the GetByteMatchSet operation.
+// GetByteMatchSetRequest generates a "aws/request.Request" representing the
+// client's request for the GetByteMatchSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetByteMatchSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetByteMatchSetRequest method.
+//    req, resp := client.GetByteMatchSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) GetByteMatchSetRequest(input *GetByteMatchSetInput) (req *request.Request, output *GetByteMatchSetOutput) {
 	op := &request.Operation{
 		Name:       opGetByteMatchSet,
@@ -607,7 +922,28 @@ func (c *WAF) GetByteMatchSet(input *GetByteMatchSetInput) (*GetByteMatchSetOutp
 
 const opGetChangeToken = "GetChangeToken"
 
-// GetChangeTokenRequest generates a request for the GetChangeToken operation.
+// GetChangeTokenRequest generates a "aws/request.Request" representing the
+// client's request for the GetChangeToken operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetChangeToken method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetChangeTokenRequest method.
+//    req, resp := client.GetChangeTokenRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) GetChangeTokenRequest(input *GetChangeTokenInput) (req *request.Request, output *GetChangeTokenOutput) {
 	op := &request.Operation{
 		Name:       opGetChangeToken,
@@ -648,7 +984,28 @@ func (c *WAF) GetChangeToken(input *GetChangeTokenInput) (*GetChangeTokenOutput,
 
 const opGetChangeTokenStatus = "GetChangeTokenStatus"
 
-// GetChangeTokenStatusRequest generates a request for the GetChangeTokenStatus operation.
+// GetChangeTokenStatusRequest generates a "aws/request.Request" representing the
+// client's request for the GetChangeTokenStatus operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetChangeTokenStatus method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetChangeTokenStatusRequest method.
+//    req, resp := client.GetChangeTokenStatusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) GetChangeTokenStatusRequest(input *GetChangeTokenStatusInput) (req *request.Request, output *GetChangeTokenStatusOutput) {
 	op := &request.Operation{
 		Name:       opGetChangeTokenStatus,
@@ -681,7 +1038,28 @@ func (c *WAF) GetChangeTokenStatus(input *GetChangeTokenStatusInput) (*GetChange
 
 const opGetIPSet = "GetIPSet"
 
-// GetIPSetRequest generates a request for the GetIPSet operation.
+// GetIPSetRequest generates a "aws/request.Request" representing the
+// client's request for the GetIPSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetIPSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetIPSetRequest method.
+//    req, resp := client.GetIPSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) GetIPSetRequest(input *GetIPSetInput) (req *request.Request, output *GetIPSetOutput) {
 	op := &request.Operation{
 		Name:       opGetIPSet,
@@ -708,7 +1086,28 @@ func (c *WAF) GetIPSet(input *GetIPSetInput) (*GetIPSetOutput, error) {
 
 const opGetRule = "GetRule"
 
-// GetRuleRequest generates a request for the GetRule operation.
+// GetRuleRequest generates a "aws/request.Request" representing the
+// client's request for the GetRule operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetRule method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetRuleRequest method.
+//    req, resp := client.GetRuleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) GetRuleRequest(input *GetRuleInput) (req *request.Request, output *GetRuleOutput) {
 	op := &request.Operation{
 		Name:       opGetRule,
@@ -736,7 +1135,28 @@ func (c *WAF) GetRule(input *GetRuleInput) (*GetRuleOutput, error) {
 
 const opGetSampledRequests = "GetSampledRequests"
 
-// GetSampledRequestsRequest generates a request for the GetSampledRequests operation.
+// GetSampledRequestsRequest generates a "aws/request.Request" representing the
+// client's request for the GetSampledRequests operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetSampledRequests method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetSampledRequestsRequest method.
+//    req, resp := client.GetSampledRequestsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) GetSampledRequestsRequest(input *GetSampledRequestsInput) (req *request.Request, output *GetSampledRequestsOutput) {
 	op := &request.Operation{
 		Name:       opGetSampledRequests,
@@ -773,7 +1193,28 @@ func (c *WAF) GetSampledRequests(input *GetSampledRequestsInput) (*GetSampledReq
 
 const opGetSizeConstraintSet = "GetSizeConstraintSet"
 
-// GetSizeConstraintSetRequest generates a request for the GetSizeConstraintSet operation.
+// GetSizeConstraintSetRequest generates a "aws/request.Request" representing the
+// client's request for the GetSizeConstraintSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetSizeConstraintSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetSizeConstraintSetRequest method.
+//    req, resp := client.GetSizeConstraintSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) GetSizeConstraintSetRequest(input *GetSizeConstraintSetInput) (req *request.Request, output *GetSizeConstraintSetOutput) {
 	op := &request.Operation{
 		Name:       opGetSizeConstraintSet,
@@ -800,7 +1241,28 @@ func (c *WAF) GetSizeConstraintSet(input *GetSizeConstraintSetInput) (*GetSizeCo
 
 const opGetSqlInjectionMatchSet = "GetSqlInjectionMatchSet"
 
-// GetSqlInjectionMatchSetRequest generates a request for the GetSqlInjectionMatchSet operation.
+// GetSqlInjectionMatchSetRequest generates a "aws/request.Request" representing the
+// client's request for the GetSqlInjectionMatchSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetSqlInjectionMatchSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetSqlInjectionMatchSetRequest method.
+//    req, resp := client.GetSqlInjectionMatchSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) GetSqlInjectionMatchSetRequest(input *GetSqlInjectionMatchSetInput) (req *request.Request, output *GetSqlInjectionMatchSetOutput) {
 	op := &request.Operation{
 		Name:       opGetSqlInjectionMatchSet,
@@ -827,7 +1289,28 @@ func (c *WAF) GetSqlInjectionMatchSet(input *GetSqlInjectionMatchSetInput) (*Get
 
 const opGetWebACL = "GetWebACL"
 
-// GetWebACLRequest generates a request for the GetWebACL operation.
+// GetWebACLRequest generates a "aws/request.Request" representing the
+// client's request for the GetWebACL operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetWebACL method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetWebACLRequest method.
+//    req, resp := client.GetWebACLRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) GetWebACLRequest(input *GetWebACLInput) (req *request.Request, output *GetWebACLOutput) {
 	op := &request.Operation{
 		Name:       opGetWebACL,
@@ -854,7 +1337,28 @@ func (c *WAF) GetWebACL(input *GetWebACLInput) (*GetWebACLOutput, error) {
 
 const opGetXssMatchSet = "GetXssMatchSet"
 
-// GetXssMatchSetRequest generates a request for the GetXssMatchSet operation.
+// GetXssMatchSetRequest generates a "aws/request.Request" representing the
+// client's request for the GetXssMatchSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetXssMatchSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetXssMatchSetRequest method.
+//    req, resp := client.GetXssMatchSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) GetXssMatchSetRequest(input *GetXssMatchSetInput) (req *request.Request, output *GetXssMatchSetOutput) {
 	op := &request.Operation{
 		Name:       opGetXssMatchSet,
@@ -881,7 +1385,28 @@ func (c *WAF) GetXssMatchSet(input *GetXssMatchSetInput) (*GetXssMatchSetOutput,
 
 const opListByteMatchSets = "ListByteMatchSets"
 
-// ListByteMatchSetsRequest generates a request for the ListByteMatchSets operation.
+// ListByteMatchSetsRequest generates a "aws/request.Request" representing the
+// client's request for the ListByteMatchSets operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListByteMatchSets method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListByteMatchSetsRequest method.
+//    req, resp := client.ListByteMatchSetsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) ListByteMatchSetsRequest(input *ListByteMatchSetsInput) (req *request.Request, output *ListByteMatchSetsOutput) {
 	op := &request.Operation{
 		Name:       opListByteMatchSets,
@@ -908,7 +1433,28 @@ func (c *WAF) ListByteMatchSets(input *ListByteMatchSetsInput) (*ListByteMatchSe
 
 const opListIPSets = "ListIPSets"
 
-// ListIPSetsRequest generates a request for the ListIPSets operation.
+// ListIPSetsRequest generates a "aws/request.Request" representing the
+// client's request for the ListIPSets operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListIPSets method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListIPSetsRequest method.
+//    req, resp := client.ListIPSetsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) ListIPSetsRequest(input *ListIPSetsInput) (req *request.Request, output *ListIPSetsOutput) {
 	op := &request.Operation{
 		Name:       opListIPSets,
@@ -935,7 +1481,28 @@ func (c *WAF) ListIPSets(input *ListIPSetsInput) (*ListIPSetsOutput, error) {
 
 const opListRules = "ListRules"
 
-// ListRulesRequest generates a request for the ListRules operation.
+// ListRulesRequest generates a "aws/request.Request" representing the
+// client's request for the ListRules operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListRules method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListRulesRequest method.
+//    req, resp := client.ListRulesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) ListRulesRequest(input *ListRulesInput) (req *request.Request, output *ListRulesOutput) {
 	op := &request.Operation{
 		Name:       opListRules,
@@ -962,7 +1529,28 @@ func (c *WAF) ListRules(input *ListRulesInput) (*ListRulesOutput, error) {
 
 const opListSizeConstraintSets = "ListSizeConstraintSets"
 
-// ListSizeConstraintSetsRequest generates a request for the ListSizeConstraintSets operation.
+// ListSizeConstraintSetsRequest generates a "aws/request.Request" representing the
+// client's request for the ListSizeConstraintSets operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListSizeConstraintSets method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListSizeConstraintSetsRequest method.
+//    req, resp := client.ListSizeConstraintSetsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) ListSizeConstraintSetsRequest(input *ListSizeConstraintSetsInput) (req *request.Request, output *ListSizeConstraintSetsOutput) {
 	op := &request.Operation{
 		Name:       opListSizeConstraintSets,
@@ -989,7 +1577,28 @@ func (c *WAF) ListSizeConstraintSets(input *ListSizeConstraintSetsInput) (*ListS
 
 const opListSqlInjectionMatchSets = "ListSqlInjectionMatchSets"
 
-// ListSqlInjectionMatchSetsRequest generates a request for the ListSqlInjectionMatchSets operation.
+// ListSqlInjectionMatchSetsRequest generates a "aws/request.Request" representing the
+// client's request for the ListSqlInjectionMatchSets operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListSqlInjectionMatchSets method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListSqlInjectionMatchSetsRequest method.
+//    req, resp := client.ListSqlInjectionMatchSetsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) ListSqlInjectionMatchSetsRequest(input *ListSqlInjectionMatchSetsInput) (req *request.Request, output *ListSqlInjectionMatchSetsOutput) {
 	op := &request.Operation{
 		Name:       opListSqlInjectionMatchSets,
@@ -1016,7 +1625,28 @@ func (c *WAF) ListSqlInjectionMatchSets(input *ListSqlInjectionMatchSetsInput) (
 
 const opListWebACLs = "ListWebACLs"
 
-// ListWebACLsRequest generates a request for the ListWebACLs operation.
+// ListWebACLsRequest generates a "aws/request.Request" representing the
+// client's request for the ListWebACLs operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListWebACLs method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListWebACLsRequest method.
+//    req, resp := client.ListWebACLsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) ListWebACLsRequest(input *ListWebACLsInput) (req *request.Request, output *ListWebACLsOutput) {
 	op := &request.Operation{
 		Name:       opListWebACLs,
@@ -1043,7 +1673,28 @@ func (c *WAF) ListWebACLs(input *ListWebACLsInput) (*ListWebACLsOutput, error) {
 
 const opListXssMatchSets = "ListXssMatchSets"
 
-// ListXssMatchSetsRequest generates a request for the ListXssMatchSets operation.
+// ListXssMatchSetsRequest generates a "aws/request.Request" representing the
+// client's request for the ListXssMatchSets operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListXssMatchSets method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListXssMatchSetsRequest method.
+//    req, resp := client.ListXssMatchSetsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) ListXssMatchSetsRequest(input *ListXssMatchSetsInput) (req *request.Request, output *ListXssMatchSetsOutput) {
 	op := &request.Operation{
 		Name:       opListXssMatchSets,
@@ -1070,7 +1721,28 @@ func (c *WAF) ListXssMatchSets(input *ListXssMatchSetsInput) (*ListXssMatchSetsO
 
 const opUpdateByteMatchSet = "UpdateByteMatchSet"
 
-// UpdateByteMatchSetRequest generates a request for the UpdateByteMatchSet operation.
+// UpdateByteMatchSetRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateByteMatchSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateByteMatchSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateByteMatchSetRequest method.
+//    req, resp := client.UpdateByteMatchSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) UpdateByteMatchSetRequest(input *UpdateByteMatchSetInput) (req *request.Request, output *UpdateByteMatchSetOutput) {
 	op := &request.Operation{
 		Name:       opUpdateByteMatchSet,
@@ -1122,7 +1794,28 @@ func (c *WAF) UpdateByteMatchSet(input *UpdateByteMatchSetInput) (*UpdateByteMat
 
 const opUpdateIPSet = "UpdateIPSet"
 
-// UpdateIPSetRequest generates a request for the UpdateIPSet operation.
+// UpdateIPSetRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateIPSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateIPSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateIPSetRequest method.
+//    req, resp := client.UpdateIPSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) UpdateIPSetRequest(input *UpdateIPSetInput) (req *request.Request, output *UpdateIPSetOutput) {
 	op := &request.Operation{
 		Name:       opUpdateIPSet,
@@ -1177,7 +1870,28 @@ func (c *WAF) UpdateIPSet(input *UpdateIPSetInput) (*UpdateIPSetOutput, error) {
 
 const opUpdateRule = "UpdateRule"
 
-// UpdateRuleRequest generates a request for the UpdateRule operation.
+// UpdateRuleRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateRule operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateRule method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateRuleRequest method.
+//    req, resp := client.UpdateRuleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) UpdateRuleRequest(input *UpdateRuleInput) (req *request.Request, output *UpdateRuleOutput) {
 	op := &request.Operation{
 		Name:       opUpdateRule,
@@ -1227,7 +1941,28 @@ func (c *WAF) UpdateRule(input *UpdateRuleInput) (*UpdateRuleOutput, error) {
 
 const opUpdateSizeConstraintSet = "UpdateSizeConstraintSet"
 
-// UpdateSizeConstraintSetRequest generates a request for the UpdateSizeConstraintSet operation.
+// UpdateSizeConstraintSetRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateSizeConstraintSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateSizeConstraintSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateSizeConstraintSetRequest method.
+//    req, resp := client.UpdateSizeConstraintSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) UpdateSizeConstraintSetRequest(input *UpdateSizeConstraintSetInput) (req *request.Request, output *UpdateSizeConstraintSetOutput) {
 	op := &request.Operation{
 		Name:       opUpdateSizeConstraintSet,
@@ -1281,7 +2016,28 @@ func (c *WAF) UpdateSizeConstraintSet(input *UpdateSizeConstraintSetInput) (*Upd
 
 const opUpdateSqlInjectionMatchSet = "UpdateSqlInjectionMatchSet"
 
-// UpdateSqlInjectionMatchSetRequest generates a request for the UpdateSqlInjectionMatchSet operation.
+// UpdateSqlInjectionMatchSetRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateSqlInjectionMatchSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateSqlInjectionMatchSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateSqlInjectionMatchSetRequest method.
+//    req, resp := client.UpdateSqlInjectionMatchSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) UpdateSqlInjectionMatchSetRequest(input *UpdateSqlInjectionMatchSetInput) (req *request.Request, output *UpdateSqlInjectionMatchSetOutput) {
 	op := &request.Operation{
 		Name:       opUpdateSqlInjectionMatchSet,
@@ -1330,7 +2086,28 @@ func (c *WAF) UpdateSqlInjectionMatchSet(input *UpdateSqlInjectionMatchSetInput)
 
 const opUpdateWebACL = "UpdateWebACL"
 
-// UpdateWebACLRequest generates a request for the UpdateWebACL operation.
+// UpdateWebACLRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateWebACL operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateWebACL method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateWebACLRequest method.
+//    req, resp := client.UpdateWebACLRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) UpdateWebACLRequest(input *UpdateWebACLInput) (req *request.Request, output *UpdateWebACLOutput) {
 	op := &request.Operation{
 		Name:       opUpdateWebACL,
@@ -1387,7 +2164,28 @@ func (c *WAF) UpdateWebACL(input *UpdateWebACLInput) (*UpdateWebACLOutput, error
 
 const opUpdateXssMatchSet = "UpdateXssMatchSet"
 
-// UpdateXssMatchSetRequest generates a request for the UpdateXssMatchSet operation.
+// UpdateXssMatchSetRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateXssMatchSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateXssMatchSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateXssMatchSetRequest method.
+//    req, resp := client.UpdateXssMatchSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *WAF) UpdateXssMatchSetRequest(input *UpdateXssMatchSetInput) (req *request.Request, output *UpdateXssMatchSetOutput) {
 	op := &request.Operation{
 		Name:       opUpdateXssMatchSet,
