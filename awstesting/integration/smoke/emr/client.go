@@ -1,3 +1,6 @@
+
+// +build testing 
+
 //Package emr provides gucumber integration tests support.
 package emr
 

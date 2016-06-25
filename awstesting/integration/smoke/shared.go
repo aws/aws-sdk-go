@@ -1,3 +1,6 @@
+
+// +build testing 
+
 // Package smoke contains shared step definitions that are used across integration tests
 package smoke
 

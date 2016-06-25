@@ -1,3 +1,6 @@
+
+// +build testing 
+
 //Package simpledb provides gucumber integration tests support.
 package simpledb
 

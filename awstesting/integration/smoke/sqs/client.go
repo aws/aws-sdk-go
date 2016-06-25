@@ -1,3 +1,6 @@
+
+// +build testing 
+
 //Package sqs provides gucumber integration tests support.
 package sqs
 

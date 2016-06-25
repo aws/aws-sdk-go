@@ -1,3 +1,6 @@
+
+// +build testing 
+
 //Package codepipeline provides gucumber integration tests support.
 package codepipeline
 

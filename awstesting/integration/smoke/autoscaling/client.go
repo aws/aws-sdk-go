@@ -1,3 +1,6 @@
+
+// +build testing 
+
 //Package autoscaling provides gucumber integration tests support.
 package autoscaling
 

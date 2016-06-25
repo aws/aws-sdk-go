@@ -1,3 +1,6 @@
+
+// +build testing 
+
 //Package elasticache provides gucumber integration tests support.
 package elasticache
 

@@ -1,3 +1,6 @@
+
+// +build testing 
+
 package performance
 
 import (

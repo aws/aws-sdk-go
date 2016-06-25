@@ -1,3 +1,6 @@
+
+// +build testing 
+
 // +build integration
 
 // Package s3manager provides

@@ -1,3 +1,6 @@
+
+// +build testing 
+
 //Package cloudwatchlogs provides gucumber integration tests support.
 package cloudwatchlogs
 

@@ -1,3 +1,6 @@
+
+// +build testing 
+
 //Package ec2 provides gucumber integration tests support.
 package ec2
 
