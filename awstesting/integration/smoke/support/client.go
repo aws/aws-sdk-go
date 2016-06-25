@@ -1,3 +1,5 @@
+// +build integration
+
 //Package support provides gucumber integration tests support.
 package support
 

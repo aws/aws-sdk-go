@@ -1,3 +1,5 @@
+// +build integration
+
 //Package lambda provides gucumber integration tests support.
 package lambda
 

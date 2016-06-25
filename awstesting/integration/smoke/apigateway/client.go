@@ -1,3 +1,5 @@
+// +build integration
+
 //Package apigateway provides gucumber integration tests support.
 package apigateway
 

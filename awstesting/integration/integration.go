@@ -1,3 +1,5 @@
+// +build integration
+
 // Package integration performs initialization and validation for integration
 // tests.
 package integration

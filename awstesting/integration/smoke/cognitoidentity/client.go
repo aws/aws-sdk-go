@@ -1,3 +1,5 @@
+// +build integration
+
 //Package cognitoidentity provides gucumber integration tests support.
 package cognitoidentity
 

@@ -1,3 +1,5 @@
+// +build integration
+
 //Package performance provides gucumber integration tests support.
 package performance
 

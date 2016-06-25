@@ -1,3 +1,5 @@
+// +build integration
+
 //Package codecommit provides gucumber integration tests support.
 package codecommit
 
