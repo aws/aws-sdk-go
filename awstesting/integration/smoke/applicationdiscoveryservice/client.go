@@ -1,3 +1,6 @@
+
+// +build testing 
+
 //Package applicationdiscoveryservice provides gucumber integration tests support.
 package applicationdiscoveryservice
 

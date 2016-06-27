@@ -1,3 +1,6 @@
+
+// +build testing 
+
 //Package dynamodbstreams provides gucumber integration tests support.
 package dynamodbstreams
 

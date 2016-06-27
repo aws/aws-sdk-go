@@ -1,3 +1,6 @@
+
+// +build testing 
+
 //Package datapipeline provides gucumber integration tests support.
 package datapipeline
 

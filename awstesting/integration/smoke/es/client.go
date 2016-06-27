@@ -1,3 +1,6 @@
+
+// +build testing 
+
 //Package es provides gucumber integration tests support.
 package es
 

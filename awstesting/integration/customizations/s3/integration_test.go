@@ -1,3 +1,6 @@
+
+// +build testing 
+
 // +build integration
 
 // Package s3_test runs integration tests for S3

@@ -1,3 +1,6 @@
+
+// +build testing 
+
 //Package ses provides gucumber integration tests support.
 package ses
 

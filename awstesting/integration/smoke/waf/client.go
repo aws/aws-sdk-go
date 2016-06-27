@@ -1,3 +1,6 @@
+
+// +build testing 
+
 //Package waf provides gucumber integration tests support.
 package waf
 

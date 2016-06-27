@@ -1,3 +1,6 @@
+
+// +build testing 
+
 //Package storagegateway provides gucumber integration tests support.
 package storagegateway
 

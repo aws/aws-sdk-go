@@ -1,3 +1,6 @@
+
+// +build testing 
+
 package awstesting_test
 
 import (

@@ -1,3 +1,6 @@
+
+// +build testing 
+
 //Package configservice provides gucumber integration tests support.
 package configservice
 

@@ -1,3 +1,6 @@
+
+// +build testing 
+
 //Package redshift provides gucumber integration tests support.
 package redshift
 

@@ -1,3 +1,6 @@
+
+// +build testing 
+
 //Package workspaces provides gucumber integration tests support.
 package workspaces
 

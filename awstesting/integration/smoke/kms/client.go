@@ -1,3 +1,6 @@
+
+// +build testing 
+
 //Package kms provides gucumber integration tests support.
 package kms
 

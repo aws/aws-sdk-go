@@ -1,3 +1,6 @@
+
+// +build testing 
+
 //Package glacier provides gucumber integration tests support.
 package glacier
 

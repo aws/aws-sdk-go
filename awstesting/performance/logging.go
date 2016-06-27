@@ -1,3 +1,6 @@
+
+// +build testing 
+
 // Package performance contains shared step definitions that are used for performance testing
 package performance
 

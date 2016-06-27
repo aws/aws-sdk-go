@@ -1,3 +1,6 @@
+
+// +build testing 
+
 //Package codedeploy provides gucumber integration tests support.
 package codedeploy
 

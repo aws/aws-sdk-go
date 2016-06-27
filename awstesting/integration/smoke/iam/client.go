@@ -1,3 +1,6 @@
+
+// +build testing 
+
 //Package iam provides gucumber integration tests support.
 package iam
 
