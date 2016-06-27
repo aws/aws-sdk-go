@@ -13,7 +13,28 @@ import (
 
 const opAddTags = "AddTags"
 
-// AddTagsRequest generates a request for the AddTags operation.
+// AddTagsRequest generates a "aws/request.Request" representing the
+// client's request for the AddTags operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AddTags method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AddTagsRequest method.
+//    req, resp := client.AddTagsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *MachineLearning) AddTagsRequest(input *AddTagsInput) (req *request.Request, output *AddTagsOutput) {
 	op := &request.Operation{
 		Name:       opAddTags,
@@ -42,7 +63,28 @@ func (c *MachineLearning) AddTags(input *AddTagsInput) (*AddTagsOutput, error) {
 
 const opCreateBatchPrediction = "CreateBatchPrediction"
 
-// CreateBatchPredictionRequest generates a request for the CreateBatchPrediction operation.
+// CreateBatchPredictionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateBatchPrediction operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateBatchPrediction method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateBatchPredictionRequest method.
+//    req, resp := client.CreateBatchPredictionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *MachineLearning) CreateBatchPredictionRequest(input *CreateBatchPredictionInput) (req *request.Request, output *CreateBatchPredictionOutput) {
 	op := &request.Operation{
 		Name:       opCreateBatchPrediction,
@@ -82,7 +124,28 @@ func (c *MachineLearning) CreateBatchPrediction(input *CreateBatchPredictionInpu
 
 const opCreateDataSourceFromRDS = "CreateDataSourceFromRDS"
 
-// CreateDataSourceFromRDSRequest generates a request for the CreateDataSourceFromRDS operation.
+// CreateDataSourceFromRDSRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDataSourceFromRDS operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateDataSourceFromRDS method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateDataSourceFromRDSRequest method.
+//    req, resp := client.CreateDataSourceFromRDSRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *MachineLearning) CreateDataSourceFromRDSRequest(input *CreateDataSourceFromRDSInput) (req *request.Request, output *CreateDataSourceFromRDSOutput) {
 	op := &request.Operation{
 		Name:       opCreateDataSourceFromRDS,
@@ -122,7 +185,28 @@ func (c *MachineLearning) CreateDataSourceFromRDS(input *CreateDataSourceFromRDS
 
 const opCreateDataSourceFromRedshift = "CreateDataSourceFromRedshift"
 
-// CreateDataSourceFromRedshiftRequest generates a request for the CreateDataSourceFromRedshift operation.
+// CreateDataSourceFromRedshiftRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDataSourceFromRedshift operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateDataSourceFromRedshift method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateDataSourceFromRedshiftRequest method.
+//    req, resp := client.CreateDataSourceFromRedshiftRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *MachineLearning) CreateDataSourceFromRedshiftRequest(input *CreateDataSourceFromRedshiftInput) (req *request.Request, output *CreateDataSourceFromRedshiftOutput) {
 	op := &request.Operation{
 		Name:       opCreateDataSourceFromRedshift,
@@ -181,7 +265,28 @@ func (c *MachineLearning) CreateDataSourceFromRedshift(input *CreateDataSourceFr
 
 const opCreateDataSourceFromS3 = "CreateDataSourceFromS3"
 
-// CreateDataSourceFromS3Request generates a request for the CreateDataSourceFromS3 operation.
+// CreateDataSourceFromS3Request generates a "aws/request.Request" representing the
+// client's request for the CreateDataSourceFromS3 operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateDataSourceFromS3 method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateDataSourceFromS3Request method.
+//    req, resp := client.CreateDataSourceFromS3Request(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *MachineLearning) CreateDataSourceFromS3Request(input *CreateDataSourceFromS3Input) (req *request.Request, output *CreateDataSourceFromS3Output) {
 	op := &request.Operation{
 		Name:       opCreateDataSourceFromS3,
@@ -235,7 +340,28 @@ func (c *MachineLearning) CreateDataSourceFromS3(input *CreateDataSourceFromS3In
 
 const opCreateEvaluation = "CreateEvaluation"
 
-// CreateEvaluationRequest generates a request for the CreateEvaluation operation.
+// CreateEvaluationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateEvaluation operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateEvaluation method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateEvaluationRequest method.
+//    req, resp := client.CreateEvaluationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *MachineLearning) CreateEvaluationRequest(input *CreateEvaluationInput) (req *request.Request, output *CreateEvaluationOutput) {
 	op := &request.Operation{
 		Name:       opCreateEvaluation,
@@ -277,7 +403,28 @@ func (c *MachineLearning) CreateEvaluation(input *CreateEvaluationInput) (*Creat
 
 const opCreateMLModel = "CreateMLModel"
 
-// CreateMLModelRequest generates a request for the CreateMLModel operation.
+// CreateMLModelRequest generates a "aws/request.Request" representing the
+// client's request for the CreateMLModel operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateMLModel method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateMLModelRequest method.
+//    req, resp := client.CreateMLModelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *MachineLearning) CreateMLModelRequest(input *CreateMLModelInput) (req *request.Request, output *CreateMLModelOutput) {
 	op := &request.Operation{
 		Name:       opCreateMLModel,
@@ -320,7 +467,28 @@ func (c *MachineLearning) CreateMLModel(input *CreateMLModelInput) (*CreateMLMod
 
 const opCreateRealtimeEndpoint = "CreateRealtimeEndpoint"
 
-// CreateRealtimeEndpointRequest generates a request for the CreateRealtimeEndpoint operation.
+// CreateRealtimeEndpointRequest generates a "aws/request.Request" representing the
+// client's request for the CreateRealtimeEndpoint operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateRealtimeEndpoint method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateRealtimeEndpointRequest method.
+//    req, resp := client.CreateRealtimeEndpointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *MachineLearning) CreateRealtimeEndpointRequest(input *CreateRealtimeEndpointInput) (req *request.Request, output *CreateRealtimeEndpointOutput) {
 	op := &request.Operation{
 		Name:       opCreateRealtimeEndpoint,
@@ -349,7 +517,28 @@ func (c *MachineLearning) CreateRealtimeEndpoint(input *CreateRealtimeEndpointIn
 
 const opDeleteBatchPrediction = "DeleteBatchPrediction"
 
-// DeleteBatchPredictionRequest generates a request for the DeleteBatchPrediction operation.
+// DeleteBatchPredictionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteBatchPrediction operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteBatchPrediction method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteBatchPredictionRequest method.
+//    req, resp := client.DeleteBatchPredictionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *MachineLearning) DeleteBatchPredictionRequest(input *DeleteBatchPredictionInput) (req *request.Request, output *DeleteBatchPredictionOutput) {
 	op := &request.Operation{
 		Name:       opDeleteBatchPrediction,
@@ -381,7 +570,28 @@ func (c *MachineLearning) DeleteBatchPrediction(input *DeleteBatchPredictionInpu
 
 const opDeleteDataSource = "DeleteDataSource"
 
-// DeleteDataSourceRequest generates a request for the DeleteDataSource operation.
+// DeleteDataSourceRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDataSource operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteDataSource method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteDataSourceRequest method.
+//    req, resp := client.DeleteDataSourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *MachineLearning) DeleteDataSourceRequest(input *DeleteDataSourceInput) (req *request.Request, output *DeleteDataSourceOutput) {
 	op := &request.Operation{
 		Name:       opDeleteDataSource,
@@ -413,7 +623,28 @@ func (c *MachineLearning) DeleteDataSource(input *DeleteDataSourceInput) (*Delet
 
 const opDeleteEvaluation = "DeleteEvaluation"
 
-// DeleteEvaluationRequest generates a request for the DeleteEvaluation operation.
+// DeleteEvaluationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteEvaluation operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteEvaluation method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteEvaluationRequest method.
+//    req, resp := client.DeleteEvaluationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *MachineLearning) DeleteEvaluationRequest(input *DeleteEvaluationInput) (req *request.Request, output *DeleteEvaluationOutput) {
 	op := &request.Operation{
 		Name:       opDeleteEvaluation,
@@ -445,7 +676,28 @@ func (c *MachineLearning) DeleteEvaluation(input *DeleteEvaluationInput) (*Delet
 
 const opDeleteMLModel = "DeleteMLModel"
 
-// DeleteMLModelRequest generates a request for the DeleteMLModel operation.
+// DeleteMLModelRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteMLModel operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteMLModel method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteMLModelRequest method.
+//    req, resp := client.DeleteMLModelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *MachineLearning) DeleteMLModelRequest(input *DeleteMLModelInput) (req *request.Request, output *DeleteMLModelOutput) {
 	op := &request.Operation{
 		Name:       opDeleteMLModel,
@@ -477,7 +729,28 @@ func (c *MachineLearning) DeleteMLModel(input *DeleteMLModelInput) (*DeleteMLMod
 
 const opDeleteRealtimeEndpoint = "DeleteRealtimeEndpoint"
 
-// DeleteRealtimeEndpointRequest generates a request for the DeleteRealtimeEndpoint operation.
+// DeleteRealtimeEndpointRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteRealtimeEndpoint operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteRealtimeEndpoint method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteRealtimeEndpointRequest method.
+//    req, resp := client.DeleteRealtimeEndpointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *MachineLearning) DeleteRealtimeEndpointRequest(input *DeleteRealtimeEndpointInput) (req *request.Request, output *DeleteRealtimeEndpointOutput) {
 	op := &request.Operation{
 		Name:       opDeleteRealtimeEndpoint,
@@ -504,7 +777,28 @@ func (c *MachineLearning) DeleteRealtimeEndpoint(input *DeleteRealtimeEndpointIn
 
 const opDeleteTags = "DeleteTags"
 
-// DeleteTagsRequest generates a request for the DeleteTags operation.
+// DeleteTagsRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteTags operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteTags method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteTagsRequest method.
+//    req, resp := client.DeleteTagsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *MachineLearning) DeleteTagsRequest(input *DeleteTagsInput) (req *request.Request, output *DeleteTagsOutput) {
 	op := &request.Operation{
 		Name:       opDeleteTags,
@@ -534,7 +828,28 @@ func (c *MachineLearning) DeleteTags(input *DeleteTagsInput) (*DeleteTagsOutput,
 
 const opDescribeBatchPredictions = "DescribeBatchPredictions"
 
-// DescribeBatchPredictionsRequest generates a request for the DescribeBatchPredictions operation.
+// DescribeBatchPredictionsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeBatchPredictions operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeBatchPredictions method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeBatchPredictionsRequest method.
+//    req, resp := client.DescribeBatchPredictionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *MachineLearning) DescribeBatchPredictionsRequest(input *DescribeBatchPredictionsInput) (req *request.Request, output *DescribeBatchPredictionsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeBatchPredictions,
@@ -566,6 +881,23 @@ func (c *MachineLearning) DescribeBatchPredictions(input *DescribeBatchPredictio
 	return out, err
 }
 
+// DescribeBatchPredictionsPages iterates over the pages of a DescribeBatchPredictions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeBatchPredictions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeBatchPredictions operation.
+//    pageNum := 0
+//    err := client.DescribeBatchPredictionsPages(params,
+//        func(page *DescribeBatchPredictionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *MachineLearning) DescribeBatchPredictionsPages(input *DescribeBatchPredictionsInput, fn func(p *DescribeBatchPredictionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeBatchPredictionsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -576,7 +908,28 @@ func (c *MachineLearning) DescribeBatchPredictionsPages(input *DescribeBatchPred
 
 const opDescribeDataSources = "DescribeDataSources"
 
-// DescribeDataSourcesRequest generates a request for the DescribeDataSources operation.
+// DescribeDataSourcesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDataSources operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeDataSources method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeDataSourcesRequest method.
+//    req, resp := client.DescribeDataSourcesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *MachineLearning) DescribeDataSourcesRequest(input *DescribeDataSourcesInput) (req *request.Request, output *DescribeDataSourcesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeDataSources,
@@ -607,6 +960,23 @@ func (c *MachineLearning) DescribeDataSources(input *DescribeDataSourcesInput) (
 	return out, err
 }
 
+// DescribeDataSourcesPages iterates over the pages of a DescribeDataSources operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeDataSources method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeDataSources operation.
+//    pageNum := 0
+//    err := client.DescribeDataSourcesPages(params,
+//        func(page *DescribeDataSourcesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *MachineLearning) DescribeDataSourcesPages(input *DescribeDataSourcesInput, fn func(p *DescribeDataSourcesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeDataSourcesRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -617,7 +987,28 @@ func (c *MachineLearning) DescribeDataSourcesPages(input *DescribeDataSourcesInp
 
 const opDescribeEvaluations = "DescribeEvaluations"
 
-// DescribeEvaluationsRequest generates a request for the DescribeEvaluations operation.
+// DescribeEvaluationsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeEvaluations operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeEvaluations method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeEvaluationsRequest method.
+//    req, resp := client.DescribeEvaluationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *MachineLearning) DescribeEvaluationsRequest(input *DescribeEvaluationsInput) (req *request.Request, output *DescribeEvaluationsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeEvaluations,
@@ -649,6 +1040,23 @@ func (c *MachineLearning) DescribeEvaluations(input *DescribeEvaluationsInput) (
 	return out, err
 }
 
+// DescribeEvaluationsPages iterates over the pages of a DescribeEvaluations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeEvaluations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeEvaluations operation.
+//    pageNum := 0
+//    err := client.DescribeEvaluationsPages(params,
+//        func(page *DescribeEvaluationsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *MachineLearning) DescribeEvaluationsPages(input *DescribeEvaluationsInput, fn func(p *DescribeEvaluationsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeEvaluationsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -659,7 +1067,28 @@ func (c *MachineLearning) DescribeEvaluationsPages(input *DescribeEvaluationsInp
 
 const opDescribeMLModels = "DescribeMLModels"
 
-// DescribeMLModelsRequest generates a request for the DescribeMLModels operation.
+// DescribeMLModelsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeMLModels operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeMLModels method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeMLModelsRequest method.
+//    req, resp := client.DescribeMLModelsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *MachineLearning) DescribeMLModelsRequest(input *DescribeMLModelsInput) (req *request.Request, output *DescribeMLModelsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeMLModels,
@@ -690,6 +1119,23 @@ func (c *MachineLearning) DescribeMLModels(input *DescribeMLModelsInput) (*Descr
 	return out, err
 }
 
+// DescribeMLModelsPages iterates over the pages of a DescribeMLModels operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeMLModels method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeMLModels operation.
+//    pageNum := 0
+//    err := client.DescribeMLModelsPages(params,
+//        func(page *DescribeMLModelsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *MachineLearning) DescribeMLModelsPages(input *DescribeMLModelsInput, fn func(p *DescribeMLModelsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeMLModelsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -700,7 +1146,28 @@ func (c *MachineLearning) DescribeMLModelsPages(input *DescribeMLModelsInput, fn
 
 const opDescribeTags = "DescribeTags"
 
-// DescribeTagsRequest generates a request for the DescribeTags operation.
+// DescribeTagsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeTags operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeTags method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeTagsRequest method.
+//    req, resp := client.DescribeTagsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *MachineLearning) DescribeTagsRequest(input *DescribeTagsInput) (req *request.Request, output *DescribeTagsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeTags,
@@ -727,7 +1194,28 @@ func (c *MachineLearning) DescribeTags(input *DescribeTagsInput) (*DescribeTagsO
 
 const opGetBatchPrediction = "GetBatchPrediction"
 
-// GetBatchPredictionRequest generates a request for the GetBatchPrediction operation.
+// GetBatchPredictionRequest generates a "aws/request.Request" representing the
+// client's request for the GetBatchPrediction operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetBatchPrediction method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetBatchPredictionRequest method.
+//    req, resp := client.GetBatchPredictionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *MachineLearning) GetBatchPredictionRequest(input *GetBatchPredictionInput) (req *request.Request, output *GetBatchPredictionOutput) {
 	op := &request.Operation{
 		Name:       opGetBatchPrediction,
@@ -755,7 +1243,28 @@ func (c *MachineLearning) GetBatchPrediction(input *GetBatchPredictionInput) (*G
 
 const opGetDataSource = "GetDataSource"
 
-// GetDataSourceRequest generates a request for the GetDataSource operation.
+// GetDataSourceRequest generates a "aws/request.Request" representing the
+// client's request for the GetDataSource operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetDataSource method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetDataSourceRequest method.
+//    req, resp := client.GetDataSourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *MachineLearning) GetDataSourceRequest(input *GetDataSourceInput) (req *request.Request, output *GetDataSourceOutput) {
 	op := &request.Operation{
 		Name:       opGetDataSource,
@@ -787,7 +1296,28 @@ func (c *MachineLearning) GetDataSource(input *GetDataSourceInput) (*GetDataSour
 
 const opGetEvaluation = "GetEvaluation"
 
-// GetEvaluationRequest generates a request for the GetEvaluation operation.
+// GetEvaluationRequest generates a "aws/request.Request" representing the
+// client's request for the GetEvaluation operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetEvaluation method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetEvaluationRequest method.
+//    req, resp := client.GetEvaluationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *MachineLearning) GetEvaluationRequest(input *GetEvaluationInput) (req *request.Request, output *GetEvaluationOutput) {
 	op := &request.Operation{
 		Name:       opGetEvaluation,
@@ -815,7 +1345,28 @@ func (c *MachineLearning) GetEvaluation(input *GetEvaluationInput) (*GetEvaluati
 
 const opGetMLModel = "GetMLModel"
 
-// GetMLModelRequest generates a request for the GetMLModel operation.
+// GetMLModelRequest generates a "aws/request.Request" representing the
+// client's request for the GetMLModel operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetMLModel method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetMLModelRequest method.
+//    req, resp := client.GetMLModelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *MachineLearning) GetMLModelRequest(input *GetMLModelInput) (req *request.Request, output *GetMLModelOutput) {
 	op := &request.Operation{
 		Name:       opGetMLModel,
@@ -845,7 +1396,28 @@ func (c *MachineLearning) GetMLModel(input *GetMLModelInput) (*GetMLModelOutput,
 
 const opPredict = "Predict"
 
-// PredictRequest generates a request for the Predict operation.
+// PredictRequest generates a "aws/request.Request" representing the
+// client's request for the Predict operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the Predict method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PredictRequest method.
+//    req, resp := client.PredictRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *MachineLearning) PredictRequest(input *PredictInput) (req *request.Request, output *PredictOutput) {
 	op := &request.Operation{
 		Name:       opPredict,
@@ -875,7 +1447,28 @@ func (c *MachineLearning) Predict(input *PredictInput) (*PredictOutput, error) {
 
 const opUpdateBatchPrediction = "UpdateBatchPrediction"
 
-// UpdateBatchPredictionRequest generates a request for the UpdateBatchPrediction operation.
+// UpdateBatchPredictionRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateBatchPrediction operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateBatchPrediction method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateBatchPredictionRequest method.
+//    req, resp := client.UpdateBatchPredictionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *MachineLearning) UpdateBatchPredictionRequest(input *UpdateBatchPredictionInput) (req *request.Request, output *UpdateBatchPredictionOutput) {
 	op := &request.Operation{
 		Name:       opUpdateBatchPrediction,
@@ -905,7 +1498,28 @@ func (c *MachineLearning) UpdateBatchPrediction(input *UpdateBatchPredictionInpu
 
 const opUpdateDataSource = "UpdateDataSource"
 
-// UpdateDataSourceRequest generates a request for the UpdateDataSource operation.
+// UpdateDataSourceRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateDataSource operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateDataSource method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateDataSourceRequest method.
+//    req, resp := client.UpdateDataSourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *MachineLearning) UpdateDataSourceRequest(input *UpdateDataSourceInput) (req *request.Request, output *UpdateDataSourceOutput) {
 	op := &request.Operation{
 		Name:       opUpdateDataSource,
@@ -935,7 +1549,28 @@ func (c *MachineLearning) UpdateDataSource(input *UpdateDataSourceInput) (*Updat
 
 const opUpdateEvaluation = "UpdateEvaluation"
 
-// UpdateEvaluationRequest generates a request for the UpdateEvaluation operation.
+// UpdateEvaluationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateEvaluation operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateEvaluation method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateEvaluationRequest method.
+//    req, resp := client.UpdateEvaluationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *MachineLearning) UpdateEvaluationRequest(input *UpdateEvaluationInput) (req *request.Request, output *UpdateEvaluationOutput) {
 	op := &request.Operation{
 		Name:       opUpdateEvaluation,
@@ -965,7 +1600,28 @@ func (c *MachineLearning) UpdateEvaluation(input *UpdateEvaluationInput) (*Updat
 
 const opUpdateMLModel = "UpdateMLModel"
 
-// UpdateMLModelRequest generates a request for the UpdateMLModel operation.
+// UpdateMLModelRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateMLModel operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateMLModel method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateMLModelRequest method.
+//    req, resp := client.UpdateMLModelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *MachineLearning) UpdateMLModelRequest(input *UpdateMLModelInput) (req *request.Request, output *UpdateMLModelOutput) {
 	op := &request.Operation{
 		Name:       opUpdateMLModel,

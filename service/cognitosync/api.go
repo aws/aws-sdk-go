@@ -15,7 +15,28 @@ import (
 
 const opBulkPublish = "BulkPublish"
 
-// BulkPublishRequest generates a request for the BulkPublish operation.
+// BulkPublishRequest generates a "aws/request.Request" representing the
+// client's request for the BulkPublish operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the BulkPublish method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the BulkPublishRequest method.
+//    req, resp := client.BulkPublishRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoSync) BulkPublishRequest(input *BulkPublishInput) (req *request.Request, output *BulkPublishOutput) {
 	op := &request.Operation{
 		Name:       opBulkPublish,
@@ -48,7 +69,28 @@ func (c *CognitoSync) BulkPublish(input *BulkPublishInput) (*BulkPublishOutput, 
 
 const opDeleteDataset = "DeleteDataset"
 
-// DeleteDatasetRequest generates a request for the DeleteDataset operation.
+// DeleteDatasetRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDataset operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteDataset method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteDatasetRequest method.
+//    req, resp := client.DeleteDatasetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoSync) DeleteDatasetRequest(input *DeleteDatasetInput) (req *request.Request, output *DeleteDatasetOutput) {
 	op := &request.Operation{
 		Name:       opDeleteDataset,
@@ -81,7 +123,28 @@ func (c *CognitoSync) DeleteDataset(input *DeleteDatasetInput) (*DeleteDatasetOu
 
 const opDescribeDataset = "DescribeDataset"
 
-// DescribeDatasetRequest generates a request for the DescribeDataset operation.
+// DescribeDatasetRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDataset operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeDataset method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeDatasetRequest method.
+//    req, resp := client.DescribeDatasetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoSync) DescribeDatasetRequest(input *DescribeDatasetInput) (req *request.Request, output *DescribeDatasetOutput) {
 	op := &request.Operation{
 		Name:       opDescribeDataset,
@@ -114,7 +177,28 @@ func (c *CognitoSync) DescribeDataset(input *DescribeDatasetInput) (*DescribeDat
 
 const opDescribeIdentityPoolUsage = "DescribeIdentityPoolUsage"
 
-// DescribeIdentityPoolUsageRequest generates a request for the DescribeIdentityPoolUsage operation.
+// DescribeIdentityPoolUsageRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeIdentityPoolUsage operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeIdentityPoolUsage method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeIdentityPoolUsageRequest method.
+//    req, resp := client.DescribeIdentityPoolUsageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoSync) DescribeIdentityPoolUsageRequest(input *DescribeIdentityPoolUsageInput) (req *request.Request, output *DescribeIdentityPoolUsageOutput) {
 	op := &request.Operation{
 		Name:       opDescribeIdentityPoolUsage,
@@ -145,7 +229,28 @@ func (c *CognitoSync) DescribeIdentityPoolUsage(input *DescribeIdentityPoolUsage
 
 const opDescribeIdentityUsage = "DescribeIdentityUsage"
 
-// DescribeIdentityUsageRequest generates a request for the DescribeIdentityUsage operation.
+// DescribeIdentityUsageRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeIdentityUsage operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeIdentityUsage method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeIdentityUsageRequest method.
+//    req, resp := client.DescribeIdentityUsageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoSync) DescribeIdentityUsageRequest(input *DescribeIdentityUsageInput) (req *request.Request, output *DescribeIdentityUsageOutput) {
 	op := &request.Operation{
 		Name:       opDescribeIdentityUsage,
@@ -176,7 +281,28 @@ func (c *CognitoSync) DescribeIdentityUsage(input *DescribeIdentityUsageInput) (
 
 const opGetBulkPublishDetails = "GetBulkPublishDetails"
 
-// GetBulkPublishDetailsRequest generates a request for the GetBulkPublishDetails operation.
+// GetBulkPublishDetailsRequest generates a "aws/request.Request" representing the
+// client's request for the GetBulkPublishDetails operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetBulkPublishDetails method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetBulkPublishDetailsRequest method.
+//    req, resp := client.GetBulkPublishDetailsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoSync) GetBulkPublishDetailsRequest(input *GetBulkPublishDetailsInput) (req *request.Request, output *GetBulkPublishDetailsOutput) {
 	op := &request.Operation{
 		Name:       opGetBulkPublishDetails,
@@ -206,7 +332,28 @@ func (c *CognitoSync) GetBulkPublishDetails(input *GetBulkPublishDetailsInput) (
 
 const opGetCognitoEvents = "GetCognitoEvents"
 
-// GetCognitoEventsRequest generates a request for the GetCognitoEvents operation.
+// GetCognitoEventsRequest generates a "aws/request.Request" representing the
+// client's request for the GetCognitoEvents operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetCognitoEvents method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetCognitoEventsRequest method.
+//    req, resp := client.GetCognitoEventsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoSync) GetCognitoEventsRequest(input *GetCognitoEventsInput) (req *request.Request, output *GetCognitoEventsOutput) {
 	op := &request.Operation{
 		Name:       opGetCognitoEvents,
@@ -237,7 +384,28 @@ func (c *CognitoSync) GetCognitoEvents(input *GetCognitoEventsInput) (*GetCognit
 
 const opGetIdentityPoolConfiguration = "GetIdentityPoolConfiguration"
 
-// GetIdentityPoolConfigurationRequest generates a request for the GetIdentityPoolConfiguration operation.
+// GetIdentityPoolConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the GetIdentityPoolConfiguration operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetIdentityPoolConfiguration method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetIdentityPoolConfigurationRequest method.
+//    req, resp := client.GetIdentityPoolConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoSync) GetIdentityPoolConfigurationRequest(input *GetIdentityPoolConfigurationInput) (req *request.Request, output *GetIdentityPoolConfigurationOutput) {
 	op := &request.Operation{
 		Name:       opGetIdentityPoolConfiguration,
@@ -267,7 +435,28 @@ func (c *CognitoSync) GetIdentityPoolConfiguration(input *GetIdentityPoolConfigu
 
 const opListDatasets = "ListDatasets"
 
-// ListDatasetsRequest generates a request for the ListDatasets operation.
+// ListDatasetsRequest generates a "aws/request.Request" representing the
+// client's request for the ListDatasets operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListDatasets method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListDatasetsRequest method.
+//    req, resp := client.ListDatasetsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoSync) ListDatasetsRequest(input *ListDatasetsInput) (req *request.Request, output *ListDatasetsOutput) {
 	op := &request.Operation{
 		Name:       opListDatasets,
@@ -300,7 +489,28 @@ func (c *CognitoSync) ListDatasets(input *ListDatasetsInput) (*ListDatasetsOutpu
 
 const opListIdentityPoolUsage = "ListIdentityPoolUsage"
 
-// ListIdentityPoolUsageRequest generates a request for the ListIdentityPoolUsage operation.
+// ListIdentityPoolUsageRequest generates a "aws/request.Request" representing the
+// client's request for the ListIdentityPoolUsage operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListIdentityPoolUsage method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListIdentityPoolUsageRequest method.
+//    req, resp := client.ListIdentityPoolUsageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoSync) ListIdentityPoolUsageRequest(input *ListIdentityPoolUsageInput) (req *request.Request, output *ListIdentityPoolUsageOutput) {
 	op := &request.Operation{
 		Name:       opListIdentityPoolUsage,
@@ -331,7 +541,28 @@ func (c *CognitoSync) ListIdentityPoolUsage(input *ListIdentityPoolUsageInput) (
 
 const opListRecords = "ListRecords"
 
-// ListRecordsRequest generates a request for the ListRecords operation.
+// ListRecordsRequest generates a "aws/request.Request" representing the
+// client's request for the ListRecords operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListRecords method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListRecordsRequest method.
+//    req, resp := client.ListRecordsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoSync) ListRecordsRequest(input *ListRecordsInput) (req *request.Request, output *ListRecordsOutput) {
 	op := &request.Operation{
 		Name:       opListRecords,
@@ -365,7 +596,28 @@ func (c *CognitoSync) ListRecords(input *ListRecordsInput) (*ListRecordsOutput, 
 
 const opRegisterDevice = "RegisterDevice"
 
-// RegisterDeviceRequest generates a request for the RegisterDevice operation.
+// RegisterDeviceRequest generates a "aws/request.Request" representing the
+// client's request for the RegisterDevice operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RegisterDevice method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RegisterDeviceRequest method.
+//    req, resp := client.RegisterDeviceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoSync) RegisterDeviceRequest(input *RegisterDeviceInput) (req *request.Request, output *RegisterDeviceOutput) {
 	op := &request.Operation{
 		Name:       opRegisterDevice,
@@ -395,7 +647,28 @@ func (c *CognitoSync) RegisterDevice(input *RegisterDeviceInput) (*RegisterDevic
 
 const opSetCognitoEvents = "SetCognitoEvents"
 
-// SetCognitoEventsRequest generates a request for the SetCognitoEvents operation.
+// SetCognitoEventsRequest generates a "aws/request.Request" representing the
+// client's request for the SetCognitoEvents operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SetCognitoEvents method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SetCognitoEventsRequest method.
+//    req, resp := client.SetCognitoEventsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoSync) SetCognitoEventsRequest(input *SetCognitoEventsInput) (req *request.Request, output *SetCognitoEventsOutput) {
 	op := &request.Operation{
 		Name:       opSetCognitoEvents,
@@ -430,7 +703,28 @@ func (c *CognitoSync) SetCognitoEvents(input *SetCognitoEventsInput) (*SetCognit
 
 const opSetIdentityPoolConfiguration = "SetIdentityPoolConfiguration"
 
-// SetIdentityPoolConfigurationRequest generates a request for the SetIdentityPoolConfiguration operation.
+// SetIdentityPoolConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the SetIdentityPoolConfiguration operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SetIdentityPoolConfiguration method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SetIdentityPoolConfigurationRequest method.
+//    req, resp := client.SetIdentityPoolConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoSync) SetIdentityPoolConfigurationRequest(input *SetIdentityPoolConfigurationInput) (req *request.Request, output *SetIdentityPoolConfigurationOutput) {
 	op := &request.Operation{
 		Name:       opSetIdentityPoolConfiguration,
@@ -460,7 +754,28 @@ func (c *CognitoSync) SetIdentityPoolConfiguration(input *SetIdentityPoolConfigu
 
 const opSubscribeToDataset = "SubscribeToDataset"
 
-// SubscribeToDatasetRequest generates a request for the SubscribeToDataset operation.
+// SubscribeToDatasetRequest generates a "aws/request.Request" representing the
+// client's request for the SubscribeToDataset operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SubscribeToDataset method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SubscribeToDatasetRequest method.
+//    req, resp := client.SubscribeToDatasetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoSync) SubscribeToDatasetRequest(input *SubscribeToDatasetInput) (req *request.Request, output *SubscribeToDatasetOutput) {
 	op := &request.Operation{
 		Name:       opSubscribeToDataset,
@@ -491,7 +806,28 @@ func (c *CognitoSync) SubscribeToDataset(input *SubscribeToDatasetInput) (*Subsc
 
 const opUnsubscribeFromDataset = "UnsubscribeFromDataset"
 
-// UnsubscribeFromDatasetRequest generates a request for the UnsubscribeFromDataset operation.
+// UnsubscribeFromDatasetRequest generates a "aws/request.Request" representing the
+// client's request for the UnsubscribeFromDataset operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UnsubscribeFromDataset method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UnsubscribeFromDatasetRequest method.
+//    req, resp := client.UnsubscribeFromDatasetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoSync) UnsubscribeFromDatasetRequest(input *UnsubscribeFromDatasetInput) (req *request.Request, output *UnsubscribeFromDatasetOutput) {
 	op := &request.Operation{
 		Name:       opUnsubscribeFromDataset,
@@ -522,7 +858,28 @@ func (c *CognitoSync) UnsubscribeFromDataset(input *UnsubscribeFromDatasetInput)
 
 const opUpdateRecords = "UpdateRecords"
 
-// UpdateRecordsRequest generates a request for the UpdateRecords operation.
+// UpdateRecordsRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateRecords operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateRecords method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateRecordsRequest method.
+//    req, resp := client.UpdateRecordsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoSync) UpdateRecordsRequest(input *UpdateRecordsInput) (req *request.Request, output *UpdateRecordsOutput) {
 	op := &request.Operation{
 		Name:       opUpdateRecords,

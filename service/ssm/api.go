@@ -13,7 +13,28 @@ import (
 
 const opCancelCommand = "CancelCommand"
 
-// CancelCommandRequest generates a request for the CancelCommand operation.
+// CancelCommandRequest generates a "aws/request.Request" representing the
+// client's request for the CancelCommand operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CancelCommand method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CancelCommandRequest method.
+//    req, resp := client.CancelCommandRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) CancelCommandRequest(input *CancelCommandInput) (req *request.Request, output *CancelCommandOutput) {
 	op := &request.Operation{
 		Name:       opCancelCommand,
@@ -41,7 +62,28 @@ func (c *SSM) CancelCommand(input *CancelCommandInput) (*CancelCommandOutput, er
 
 const opCreateAssociation = "CreateAssociation"
 
-// CreateAssociationRequest generates a request for the CreateAssociation operation.
+// CreateAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAssociation operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateAssociation method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateAssociationRequest method.
+//    req, resp := client.CreateAssociationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) CreateAssociationRequest(input *CreateAssociationInput) (req *request.Request, output *CreateAssociationOutput) {
 	op := &request.Operation{
 		Name:       opCreateAssociation,
@@ -74,7 +116,28 @@ func (c *SSM) CreateAssociation(input *CreateAssociationInput) (*CreateAssociati
 
 const opCreateAssociationBatch = "CreateAssociationBatch"
 
-// CreateAssociationBatchRequest generates a request for the CreateAssociationBatch operation.
+// CreateAssociationBatchRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAssociationBatch operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateAssociationBatch method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateAssociationBatchRequest method.
+//    req, resp := client.CreateAssociationBatchRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) CreateAssociationBatchRequest(input *CreateAssociationBatchInput) (req *request.Request, output *CreateAssociationBatchOutput) {
 	op := &request.Operation{
 		Name:       opCreateAssociationBatch,
@@ -107,7 +170,28 @@ func (c *SSM) CreateAssociationBatch(input *CreateAssociationBatchInput) (*Creat
 
 const opCreateDocument = "CreateDocument"
 
-// CreateDocumentRequest generates a request for the CreateDocument operation.
+// CreateDocumentRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDocument operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateDocument method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateDocumentRequest method.
+//    req, resp := client.CreateDocumentRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) CreateDocumentRequest(input *CreateDocumentInput) (req *request.Request, output *CreateDocumentOutput) {
 	op := &request.Operation{
 		Name:       opCreateDocument,
@@ -137,7 +221,28 @@ func (c *SSM) CreateDocument(input *CreateDocumentInput) (*CreateDocumentOutput,
 
 const opDeleteAssociation = "DeleteAssociation"
 
-// DeleteAssociationRequest generates a request for the DeleteAssociation operation.
+// DeleteAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAssociation operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteAssociation method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteAssociationRequest method.
+//    req, resp := client.DeleteAssociationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) DeleteAssociationRequest(input *DeleteAssociationInput) (req *request.Request, output *DeleteAssociationOutput) {
 	op := &request.Operation{
 		Name:       opDeleteAssociation,
@@ -169,7 +274,28 @@ func (c *SSM) DeleteAssociation(input *DeleteAssociationInput) (*DeleteAssociati
 
 const opDeleteDocument = "DeleteDocument"
 
-// DeleteDocumentRequest generates a request for the DeleteDocument operation.
+// DeleteDocumentRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDocument operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteDocument method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteDocumentRequest method.
+//    req, resp := client.DeleteDocumentRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) DeleteDocumentRequest(input *DeleteDocumentInput) (req *request.Request, output *DeleteDocumentOutput) {
 	op := &request.Operation{
 		Name:       opDeleteDocument,
@@ -199,7 +325,28 @@ func (c *SSM) DeleteDocument(input *DeleteDocumentInput) (*DeleteDocumentOutput,
 
 const opDescribeAssociation = "DescribeAssociation"
 
-// DescribeAssociationRequest generates a request for the DescribeAssociation operation.
+// DescribeAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAssociation operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeAssociation method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeAssociationRequest method.
+//    req, resp := client.DescribeAssociationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) DescribeAssociationRequest(input *DescribeAssociationInput) (req *request.Request, output *DescribeAssociationOutput) {
 	op := &request.Operation{
 		Name:       opDescribeAssociation,
@@ -226,7 +373,28 @@ func (c *SSM) DescribeAssociation(input *DescribeAssociationInput) (*DescribeAss
 
 const opDescribeDocument = "DescribeDocument"
 
-// DescribeDocumentRequest generates a request for the DescribeDocument operation.
+// DescribeDocumentRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDocument operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeDocument method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeDocumentRequest method.
+//    req, resp := client.DescribeDocumentRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) DescribeDocumentRequest(input *DescribeDocumentInput) (req *request.Request, output *DescribeDocumentOutput) {
 	op := &request.Operation{
 		Name:       opDescribeDocument,
@@ -253,7 +421,28 @@ func (c *SSM) DescribeDocument(input *DescribeDocumentInput) (*DescribeDocumentO
 
 const opDescribeDocumentPermission = "DescribeDocumentPermission"
 
-// DescribeDocumentPermissionRequest generates a request for the DescribeDocumentPermission operation.
+// DescribeDocumentPermissionRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDocumentPermission operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeDocumentPermission method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeDocumentPermissionRequest method.
+//    req, resp := client.DescribeDocumentPermissionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) DescribeDocumentPermissionRequest(input *DescribeDocumentPermissionInput) (req *request.Request, output *DescribeDocumentPermissionOutput) {
 	op := &request.Operation{
 		Name:       opDescribeDocumentPermission,
@@ -282,7 +471,28 @@ func (c *SSM) DescribeDocumentPermission(input *DescribeDocumentPermissionInput)
 
 const opDescribeInstanceInformation = "DescribeInstanceInformation"
 
-// DescribeInstanceInformationRequest generates a request for the DescribeInstanceInformation operation.
+// DescribeInstanceInformationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeInstanceInformation operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeInstanceInformation method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeInstanceInformationRequest method.
+//    req, resp := client.DescribeInstanceInformationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) DescribeInstanceInformationRequest(input *DescribeInstanceInformationInput) (req *request.Request, output *DescribeInstanceInformationOutput) {
 	op := &request.Operation{
 		Name:       opDescribeInstanceInformation,
@@ -314,7 +524,28 @@ func (c *SSM) DescribeInstanceInformation(input *DescribeInstanceInformationInpu
 
 const opGetDocument = "GetDocument"
 
-// GetDocumentRequest generates a request for the GetDocument operation.
+// GetDocumentRequest generates a "aws/request.Request" representing the
+// client's request for the GetDocument operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetDocument method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetDocumentRequest method.
+//    req, resp := client.GetDocumentRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) GetDocumentRequest(input *GetDocumentInput) (req *request.Request, output *GetDocumentOutput) {
 	op := &request.Operation{
 		Name:       opGetDocument,
@@ -341,7 +572,28 @@ func (c *SSM) GetDocument(input *GetDocumentInput) (*GetDocumentOutput, error) {
 
 const opListAssociations = "ListAssociations"
 
-// ListAssociationsRequest generates a request for the ListAssociations operation.
+// ListAssociationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAssociations operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListAssociations method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListAssociationsRequest method.
+//    req, resp := client.ListAssociationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) ListAssociationsRequest(input *ListAssociationsInput) (req *request.Request, output *ListAssociationsOutput) {
 	op := &request.Operation{
 		Name:       opListAssociations,
@@ -372,6 +624,23 @@ func (c *SSM) ListAssociations(input *ListAssociationsInput) (*ListAssociationsO
 	return out, err
 }
 
+// ListAssociationsPages iterates over the pages of a ListAssociations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAssociations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListAssociations operation.
+//    pageNum := 0
+//    err := client.ListAssociationsPages(params,
+//        func(page *ListAssociationsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *SSM) ListAssociationsPages(input *ListAssociationsInput, fn func(p *ListAssociationsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListAssociationsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -382,7 +651,28 @@ func (c *SSM) ListAssociationsPages(input *ListAssociationsInput, fn func(p *Lis
 
 const opListCommandInvocations = "ListCommandInvocations"
 
-// ListCommandInvocationsRequest generates a request for the ListCommandInvocations operation.
+// ListCommandInvocationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListCommandInvocations operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListCommandInvocations method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListCommandInvocationsRequest method.
+//    req, resp := client.ListCommandInvocationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) ListCommandInvocationsRequest(input *ListCommandInvocationsInput) (req *request.Request, output *ListCommandInvocationsOutput) {
 	op := &request.Operation{
 		Name:       opListCommandInvocations,
@@ -417,6 +707,23 @@ func (c *SSM) ListCommandInvocations(input *ListCommandInvocationsInput) (*ListC
 	return out, err
 }
 
+// ListCommandInvocationsPages iterates over the pages of a ListCommandInvocations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCommandInvocations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListCommandInvocations operation.
+//    pageNum := 0
+//    err := client.ListCommandInvocationsPages(params,
+//        func(page *ListCommandInvocationsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *SSM) ListCommandInvocationsPages(input *ListCommandInvocationsInput, fn func(p *ListCommandInvocationsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListCommandInvocationsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -427,7 +734,28 @@ func (c *SSM) ListCommandInvocationsPages(input *ListCommandInvocationsInput, fn
 
 const opListCommands = "ListCommands"
 
-// ListCommandsRequest generates a request for the ListCommands operation.
+// ListCommandsRequest generates a "aws/request.Request" representing the
+// client's request for the ListCommands operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListCommands method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListCommandsRequest method.
+//    req, resp := client.ListCommandsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) ListCommandsRequest(input *ListCommandsInput) (req *request.Request, output *ListCommandsOutput) {
 	op := &request.Operation{
 		Name:       opListCommands,
@@ -458,6 +786,23 @@ func (c *SSM) ListCommands(input *ListCommandsInput) (*ListCommandsOutput, error
 	return out, err
 }
 
+// ListCommandsPages iterates over the pages of a ListCommands operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCommands method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListCommands operation.
+//    pageNum := 0
+//    err := client.ListCommandsPages(params,
+//        func(page *ListCommandsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *SSM) ListCommandsPages(input *ListCommandsInput, fn func(p *ListCommandsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListCommandsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -468,7 +813,28 @@ func (c *SSM) ListCommandsPages(input *ListCommandsInput, fn func(p *ListCommand
 
 const opListDocuments = "ListDocuments"
 
-// ListDocumentsRequest generates a request for the ListDocuments operation.
+// ListDocumentsRequest generates a "aws/request.Request" representing the
+// client's request for the ListDocuments operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListDocuments method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListDocumentsRequest method.
+//    req, resp := client.ListDocumentsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) ListDocumentsRequest(input *ListDocumentsInput) (req *request.Request, output *ListDocumentsOutput) {
 	op := &request.Operation{
 		Name:       opListDocuments,
@@ -499,6 +865,23 @@ func (c *SSM) ListDocuments(input *ListDocumentsInput) (*ListDocumentsOutput, er
 	return out, err
 }
 
+// ListDocumentsPages iterates over the pages of a ListDocuments operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDocuments method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListDocuments operation.
+//    pageNum := 0
+//    err := client.ListDocumentsPages(params,
+//        func(page *ListDocumentsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *SSM) ListDocumentsPages(input *ListDocumentsInput, fn func(p *ListDocumentsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListDocumentsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -509,7 +892,28 @@ func (c *SSM) ListDocumentsPages(input *ListDocumentsInput, fn func(p *ListDocum
 
 const opModifyDocumentPermission = "ModifyDocumentPermission"
 
-// ModifyDocumentPermissionRequest generates a request for the ModifyDocumentPermission operation.
+// ModifyDocumentPermissionRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyDocumentPermission operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ModifyDocumentPermission method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ModifyDocumentPermissionRequest method.
+//    req, resp := client.ModifyDocumentPermissionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) ModifyDocumentPermissionRequest(input *ModifyDocumentPermissionInput) (req *request.Request, output *ModifyDocumentPermissionOutput) {
 	op := &request.Operation{
 		Name:       opModifyDocumentPermission,
@@ -539,7 +943,28 @@ func (c *SSM) ModifyDocumentPermission(input *ModifyDocumentPermissionInput) (*M
 
 const opSendCommand = "SendCommand"
 
-// SendCommandRequest generates a request for the SendCommand operation.
+// SendCommandRequest generates a "aws/request.Request" representing the
+// client's request for the SendCommand operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SendCommand method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SendCommandRequest method.
+//    req, resp := client.SendCommandRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) SendCommandRequest(input *SendCommandInput) (req *request.Request, output *SendCommandOutput) {
 	op := &request.Operation{
 		Name:       opSendCommand,
@@ -566,7 +991,28 @@ func (c *SSM) SendCommand(input *SendCommandInput) (*SendCommandOutput, error) {
 
 const opUpdateAssociationStatus = "UpdateAssociationStatus"
 
-// UpdateAssociationStatusRequest generates a request for the UpdateAssociationStatus operation.
+// UpdateAssociationStatusRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateAssociationStatus operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateAssociationStatus method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateAssociationStatusRequest method.
+//    req, resp := client.UpdateAssociationStatusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) UpdateAssociationStatusRequest(input *UpdateAssociationStatusInput) (req *request.Request, output *UpdateAssociationStatusOutput) {
 	op := &request.Operation{
 		Name:       opUpdateAssociationStatus,

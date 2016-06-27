@@ -12,7 +12,28 @@ import (
 
 const opBuildSuggesters = "BuildSuggesters"
 
-// BuildSuggestersRequest generates a request for the BuildSuggesters operation.
+// BuildSuggestersRequest generates a "aws/request.Request" representing the
+// client's request for the BuildSuggesters operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the BuildSuggesters method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the BuildSuggestersRequest method.
+//    req, resp := client.BuildSuggestersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudSearch) BuildSuggestersRequest(input *BuildSuggestersInput) (req *request.Request, output *BuildSuggestersOutput) {
 	op := &request.Operation{
 		Name:       opBuildSuggesters,
@@ -41,7 +62,28 @@ func (c *CloudSearch) BuildSuggesters(input *BuildSuggestersInput) (*BuildSugges
 
 const opCreateDomain = "CreateDomain"
 
-// CreateDomainRequest generates a request for the CreateDomain operation.
+// CreateDomainRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDomain operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateDomain method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateDomainRequest method.
+//    req, resp := client.CreateDomainRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudSearch) CreateDomainRequest(input *CreateDomainInput) (req *request.Request, output *CreateDomainOutput) {
 	op := &request.Operation{
 		Name:       opCreateDomain,
@@ -70,7 +112,28 @@ func (c *CloudSearch) CreateDomain(input *CreateDomainInput) (*CreateDomainOutpu
 
 const opDefineAnalysisScheme = "DefineAnalysisScheme"
 
-// DefineAnalysisSchemeRequest generates a request for the DefineAnalysisScheme operation.
+// DefineAnalysisSchemeRequest generates a "aws/request.Request" representing the
+// client's request for the DefineAnalysisScheme operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DefineAnalysisScheme method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DefineAnalysisSchemeRequest method.
+//    req, resp := client.DefineAnalysisSchemeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudSearch) DefineAnalysisSchemeRequest(input *DefineAnalysisSchemeInput) (req *request.Request, output *DefineAnalysisSchemeOutput) {
 	op := &request.Operation{
 		Name:       opDefineAnalysisScheme,
@@ -100,7 +163,28 @@ func (c *CloudSearch) DefineAnalysisScheme(input *DefineAnalysisSchemeInput) (*D
 
 const opDefineExpression = "DefineExpression"
 
-// DefineExpressionRequest generates a request for the DefineExpression operation.
+// DefineExpressionRequest generates a "aws/request.Request" representing the
+// client's request for the DefineExpression operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DefineExpression method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DefineExpressionRequest method.
+//    req, resp := client.DefineExpressionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudSearch) DefineExpressionRequest(input *DefineExpressionInput) (req *request.Request, output *DefineExpressionOutput) {
 	op := &request.Operation{
 		Name:       opDefineExpression,
@@ -130,7 +214,28 @@ func (c *CloudSearch) DefineExpression(input *DefineExpressionInput) (*DefineExp
 
 const opDefineIndexField = "DefineIndexField"
 
-// DefineIndexFieldRequest generates a request for the DefineIndexField operation.
+// DefineIndexFieldRequest generates a "aws/request.Request" representing the
+// client's request for the DefineIndexField operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DefineIndexField method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DefineIndexFieldRequest method.
+//    req, resp := client.DefineIndexFieldRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudSearch) DefineIndexFieldRequest(input *DefineIndexFieldInput) (req *request.Request, output *DefineIndexFieldOutput) {
 	op := &request.Operation{
 		Name:       opDefineIndexField,
@@ -164,7 +269,28 @@ func (c *CloudSearch) DefineIndexField(input *DefineIndexFieldInput) (*DefineInd
 
 const opDefineSuggester = "DefineSuggester"
 
-// DefineSuggesterRequest generates a request for the DefineSuggester operation.
+// DefineSuggesterRequest generates a "aws/request.Request" representing the
+// client's request for the DefineSuggester operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DefineSuggester method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DefineSuggesterRequest method.
+//    req, resp := client.DefineSuggesterRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudSearch) DefineSuggesterRequest(input *DefineSuggesterInput) (req *request.Request, output *DefineSuggesterOutput) {
 	op := &request.Operation{
 		Name:       opDefineSuggester,
@@ -196,7 +322,28 @@ func (c *CloudSearch) DefineSuggester(input *DefineSuggesterInput) (*DefineSugge
 
 const opDeleteAnalysisScheme = "DeleteAnalysisScheme"
 
-// DeleteAnalysisSchemeRequest generates a request for the DeleteAnalysisScheme operation.
+// DeleteAnalysisSchemeRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAnalysisScheme operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteAnalysisScheme method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteAnalysisSchemeRequest method.
+//    req, resp := client.DeleteAnalysisSchemeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudSearch) DeleteAnalysisSchemeRequest(input *DeleteAnalysisSchemeInput) (req *request.Request, output *DeleteAnalysisSchemeOutput) {
 	op := &request.Operation{
 		Name:       opDeleteAnalysisScheme,
@@ -225,7 +372,28 @@ func (c *CloudSearch) DeleteAnalysisScheme(input *DeleteAnalysisSchemeInput) (*D
 
 const opDeleteDomain = "DeleteDomain"
 
-// DeleteDomainRequest generates a request for the DeleteDomain operation.
+// DeleteDomainRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDomain operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteDomain method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteDomainRequest method.
+//    req, resp := client.DeleteDomainRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudSearch) DeleteDomainRequest(input *DeleteDomainInput) (req *request.Request, output *DeleteDomainOutput) {
 	op := &request.Operation{
 		Name:       opDeleteDomain,
@@ -255,7 +423,28 @@ func (c *CloudSearch) DeleteDomain(input *DeleteDomainInput) (*DeleteDomainOutpu
 
 const opDeleteExpression = "DeleteExpression"
 
-// DeleteExpressionRequest generates a request for the DeleteExpression operation.
+// DeleteExpressionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteExpression operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteExpression method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteExpressionRequest method.
+//    req, resp := client.DeleteExpressionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudSearch) DeleteExpressionRequest(input *DeleteExpressionInput) (req *request.Request, output *DeleteExpressionOutput) {
 	op := &request.Operation{
 		Name:       opDeleteExpression,
@@ -284,7 +473,28 @@ func (c *CloudSearch) DeleteExpression(input *DeleteExpressionInput) (*DeleteExp
 
 const opDeleteIndexField = "DeleteIndexField"
 
-// DeleteIndexFieldRequest generates a request for the DeleteIndexField operation.
+// DeleteIndexFieldRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteIndexField operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteIndexField method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteIndexFieldRequest method.
+//    req, resp := client.DeleteIndexFieldRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudSearch) DeleteIndexFieldRequest(input *DeleteIndexFieldInput) (req *request.Request, output *DeleteIndexFieldOutput) {
 	op := &request.Operation{
 		Name:       opDeleteIndexField,
@@ -313,7 +523,28 @@ func (c *CloudSearch) DeleteIndexField(input *DeleteIndexFieldInput) (*DeleteInd
 
 const opDeleteSuggester = "DeleteSuggester"
 
-// DeleteSuggesterRequest generates a request for the DeleteSuggester operation.
+// DeleteSuggesterRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteSuggester operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteSuggester method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteSuggesterRequest method.
+//    req, resp := client.DeleteSuggesterRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudSearch) DeleteSuggesterRequest(input *DeleteSuggesterInput) (req *request.Request, output *DeleteSuggesterOutput) {
 	op := &request.Operation{
 		Name:       opDeleteSuggester,
@@ -342,7 +573,28 @@ func (c *CloudSearch) DeleteSuggester(input *DeleteSuggesterInput) (*DeleteSugge
 
 const opDescribeAnalysisSchemes = "DescribeAnalysisSchemes"
 
-// DescribeAnalysisSchemesRequest generates a request for the DescribeAnalysisSchemes operation.
+// DescribeAnalysisSchemesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAnalysisSchemes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeAnalysisSchemes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeAnalysisSchemesRequest method.
+//    req, resp := client.DescribeAnalysisSchemesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudSearch) DescribeAnalysisSchemesRequest(input *DescribeAnalysisSchemesInput) (req *request.Request, output *DescribeAnalysisSchemesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeAnalysisSchemes,
@@ -375,7 +627,28 @@ func (c *CloudSearch) DescribeAnalysisSchemes(input *DescribeAnalysisSchemesInpu
 
 const opDescribeAvailabilityOptions = "DescribeAvailabilityOptions"
 
-// DescribeAvailabilityOptionsRequest generates a request for the DescribeAvailabilityOptions operation.
+// DescribeAvailabilityOptionsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAvailabilityOptions operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeAvailabilityOptions method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeAvailabilityOptionsRequest method.
+//    req, resp := client.DescribeAvailabilityOptionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudSearch) DescribeAvailabilityOptionsRequest(input *DescribeAvailabilityOptionsInput) (req *request.Request, output *DescribeAvailabilityOptionsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeAvailabilityOptions,
@@ -406,7 +679,28 @@ func (c *CloudSearch) DescribeAvailabilityOptions(input *DescribeAvailabilityOpt
 
 const opDescribeDomains = "DescribeDomains"
 
-// DescribeDomainsRequest generates a request for the DescribeDomains operation.
+// DescribeDomainsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDomains operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeDomains method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeDomainsRequest method.
+//    req, resp := client.DescribeDomainsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudSearch) DescribeDomainsRequest(input *DescribeDomainsInput) (req *request.Request, output *DescribeDomainsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeDomains,
@@ -438,7 +732,28 @@ func (c *CloudSearch) DescribeDomains(input *DescribeDomainsInput) (*DescribeDom
 
 const opDescribeExpressions = "DescribeExpressions"
 
-// DescribeExpressionsRequest generates a request for the DescribeExpressions operation.
+// DescribeExpressionsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeExpressions operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeExpressions method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeExpressionsRequest method.
+//    req, resp := client.DescribeExpressionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudSearch) DescribeExpressionsRequest(input *DescribeExpressionsInput) (req *request.Request, output *DescribeExpressionsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeExpressions,
@@ -470,7 +785,28 @@ func (c *CloudSearch) DescribeExpressions(input *DescribeExpressionsInput) (*Des
 
 const opDescribeIndexFields = "DescribeIndexFields"
 
-// DescribeIndexFieldsRequest generates a request for the DescribeIndexFields operation.
+// DescribeIndexFieldsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeIndexFields operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeIndexFields method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeIndexFieldsRequest method.
+//    req, resp := client.DescribeIndexFieldsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudSearch) DescribeIndexFieldsRequest(input *DescribeIndexFieldsInput) (req *request.Request, output *DescribeIndexFieldsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeIndexFields,
@@ -502,7 +838,28 @@ func (c *CloudSearch) DescribeIndexFields(input *DescribeIndexFieldsInput) (*Des
 
 const opDescribeScalingParameters = "DescribeScalingParameters"
 
-// DescribeScalingParametersRequest generates a request for the DescribeScalingParameters operation.
+// DescribeScalingParametersRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeScalingParameters operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeScalingParameters method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeScalingParametersRequest method.
+//    req, resp := client.DescribeScalingParametersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudSearch) DescribeScalingParametersRequest(input *DescribeScalingParametersInput) (req *request.Request, output *DescribeScalingParametersOutput) {
 	op := &request.Operation{
 		Name:       opDescribeScalingParameters,
@@ -532,7 +889,28 @@ func (c *CloudSearch) DescribeScalingParameters(input *DescribeScalingParameters
 
 const opDescribeServiceAccessPolicies = "DescribeServiceAccessPolicies"
 
-// DescribeServiceAccessPoliciesRequest generates a request for the DescribeServiceAccessPolicies operation.
+// DescribeServiceAccessPoliciesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeServiceAccessPolicies operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeServiceAccessPolicies method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeServiceAccessPoliciesRequest method.
+//    req, resp := client.DescribeServiceAccessPoliciesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudSearch) DescribeServiceAccessPoliciesRequest(input *DescribeServiceAccessPoliciesInput) (req *request.Request, output *DescribeServiceAccessPoliciesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeServiceAccessPolicies,
@@ -564,7 +942,28 @@ func (c *CloudSearch) DescribeServiceAccessPolicies(input *DescribeServiceAccess
 
 const opDescribeSuggesters = "DescribeSuggesters"
 
-// DescribeSuggestersRequest generates a request for the DescribeSuggesters operation.
+// DescribeSuggestersRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeSuggesters operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeSuggesters method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeSuggestersRequest method.
+//    req, resp := client.DescribeSuggestersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudSearch) DescribeSuggestersRequest(input *DescribeSuggestersInput) (req *request.Request, output *DescribeSuggestersOutput) {
 	op := &request.Operation{
 		Name:       opDescribeSuggesters,
@@ -597,7 +996,28 @@ func (c *CloudSearch) DescribeSuggesters(input *DescribeSuggestersInput) (*Descr
 
 const opIndexDocuments = "IndexDocuments"
 
-// IndexDocumentsRequest generates a request for the IndexDocuments operation.
+// IndexDocumentsRequest generates a "aws/request.Request" representing the
+// client's request for the IndexDocuments operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the IndexDocuments method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the IndexDocumentsRequest method.
+//    req, resp := client.IndexDocumentsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudSearch) IndexDocumentsRequest(input *IndexDocumentsInput) (req *request.Request, output *IndexDocumentsOutput) {
 	op := &request.Operation{
 		Name:       opIndexDocuments,
@@ -626,7 +1046,28 @@ func (c *CloudSearch) IndexDocuments(input *IndexDocumentsInput) (*IndexDocument
 
 const opListDomainNames = "ListDomainNames"
 
-// ListDomainNamesRequest generates a request for the ListDomainNames operation.
+// ListDomainNamesRequest generates a "aws/request.Request" representing the
+// client's request for the ListDomainNames operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListDomainNames method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListDomainNamesRequest method.
+//    req, resp := client.ListDomainNamesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudSearch) ListDomainNamesRequest(input *ListDomainNamesInput) (req *request.Request, output *ListDomainNamesOutput) {
 	op := &request.Operation{
 		Name:       opListDomainNames,
@@ -653,7 +1094,28 @@ func (c *CloudSearch) ListDomainNames(input *ListDomainNamesInput) (*ListDomainN
 
 const opUpdateAvailabilityOptions = "UpdateAvailabilityOptions"
 
-// UpdateAvailabilityOptionsRequest generates a request for the UpdateAvailabilityOptions operation.
+// UpdateAvailabilityOptionsRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateAvailabilityOptions operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateAvailabilityOptions method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateAvailabilityOptionsRequest method.
+//    req, resp := client.UpdateAvailabilityOptionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudSearch) UpdateAvailabilityOptionsRequest(input *UpdateAvailabilityOptionsInput) (req *request.Request, output *UpdateAvailabilityOptionsOutput) {
 	op := &request.Operation{
 		Name:       opUpdateAvailabilityOptions,
@@ -685,7 +1147,28 @@ func (c *CloudSearch) UpdateAvailabilityOptions(input *UpdateAvailabilityOptions
 
 const opUpdateScalingParameters = "UpdateScalingParameters"
 
-// UpdateScalingParametersRequest generates a request for the UpdateScalingParameters operation.
+// UpdateScalingParametersRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateScalingParameters operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateScalingParameters method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateScalingParametersRequest method.
+//    req, resp := client.UpdateScalingParametersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudSearch) UpdateScalingParametersRequest(input *UpdateScalingParametersInput) (req *request.Request, output *UpdateScalingParametersOutput) {
 	op := &request.Operation{
 		Name:       opUpdateScalingParameters,
@@ -719,7 +1202,28 @@ func (c *CloudSearch) UpdateScalingParameters(input *UpdateScalingParametersInpu
 
 const opUpdateServiceAccessPolicies = "UpdateServiceAccessPolicies"
 
-// UpdateServiceAccessPoliciesRequest generates a request for the UpdateServiceAccessPolicies operation.
+// UpdateServiceAccessPoliciesRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateServiceAccessPolicies operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateServiceAccessPolicies method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateServiceAccessPoliciesRequest method.
+//    req, resp := client.UpdateServiceAccessPoliciesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudSearch) UpdateServiceAccessPoliciesRequest(input *UpdateServiceAccessPoliciesInput) (req *request.Request, output *UpdateServiceAccessPoliciesOutput) {
 	op := &request.Operation{
 		Name:       opUpdateServiceAccessPolicies,

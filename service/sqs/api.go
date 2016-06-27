@@ -14,7 +14,28 @@ import (
 
 const opAddPermission = "AddPermission"
 
-// AddPermissionRequest generates a request for the AddPermission operation.
+// AddPermissionRequest generates a "aws/request.Request" representing the
+// client's request for the AddPermission operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AddPermission method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AddPermissionRequest method.
+//    req, resp := client.AddPermissionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SQS) AddPermissionRequest(input *AddPermissionInput) (req *request.Request, output *AddPermissionOutput) {
 	op := &request.Operation{
 		Name:       opAddPermission,
@@ -58,7 +79,28 @@ func (c *SQS) AddPermission(input *AddPermissionInput) (*AddPermissionOutput, er
 
 const opChangeMessageVisibility = "ChangeMessageVisibility"
 
-// ChangeMessageVisibilityRequest generates a request for the ChangeMessageVisibility operation.
+// ChangeMessageVisibilityRequest generates a "aws/request.Request" representing the
+// client's request for the ChangeMessageVisibility operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ChangeMessageVisibility method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ChangeMessageVisibilityRequest method.
+//    req, resp := client.ChangeMessageVisibilityRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SQS) ChangeMessageVisibilityRequest(input *ChangeMessageVisibilityInput) (req *request.Request, output *ChangeMessageVisibilityOutput) {
 	op := &request.Operation{
 		Name:       opChangeMessageVisibility,
@@ -119,7 +161,28 @@ func (c *SQS) ChangeMessageVisibility(input *ChangeMessageVisibilityInput) (*Cha
 
 const opChangeMessageVisibilityBatch = "ChangeMessageVisibilityBatch"
 
-// ChangeMessageVisibilityBatchRequest generates a request for the ChangeMessageVisibilityBatch operation.
+// ChangeMessageVisibilityBatchRequest generates a "aws/request.Request" representing the
+// client's request for the ChangeMessageVisibilityBatch operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ChangeMessageVisibilityBatch method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ChangeMessageVisibilityBatchRequest method.
+//    req, resp := client.ChangeMessageVisibilityBatchRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SQS) ChangeMessageVisibilityBatchRequest(input *ChangeMessageVisibilityBatchInput) (req *request.Request, output *ChangeMessageVisibilityBatchOutput) {
 	op := &request.Operation{
 		Name:       opChangeMessageVisibilityBatch,
@@ -157,7 +220,28 @@ func (c *SQS) ChangeMessageVisibilityBatch(input *ChangeMessageVisibilityBatchIn
 
 const opCreateQueue = "CreateQueue"
 
-// CreateQueueRequest generates a request for the CreateQueue operation.
+// CreateQueueRequest generates a "aws/request.Request" representing the
+// client's request for the CreateQueue operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateQueue method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateQueueRequest method.
+//    req, resp := client.CreateQueueRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SQS) CreateQueueRequest(input *CreateQueueInput) (req *request.Request, output *CreateQueueOutput) {
 	op := &request.Operation{
 		Name:       opCreateQueue,
@@ -206,7 +290,28 @@ func (c *SQS) CreateQueue(input *CreateQueueInput) (*CreateQueueOutput, error) {
 
 const opDeleteMessage = "DeleteMessage"
 
-// DeleteMessageRequest generates a request for the DeleteMessage operation.
+// DeleteMessageRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteMessage operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteMessage method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteMessageRequest method.
+//    req, resp := client.DeleteMessageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SQS) DeleteMessageRequest(input *DeleteMessageInput) (req *request.Request, output *DeleteMessageOutput) {
 	op := &request.Operation{
 		Name:       opDeleteMessage,
@@ -254,7 +359,28 @@ func (c *SQS) DeleteMessage(input *DeleteMessageInput) (*DeleteMessageOutput, er
 
 const opDeleteMessageBatch = "DeleteMessageBatch"
 
-// DeleteMessageBatchRequest generates a request for the DeleteMessageBatch operation.
+// DeleteMessageBatchRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteMessageBatch operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteMessageBatch method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteMessageBatchRequest method.
+//    req, resp := client.DeleteMessageBatchRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SQS) DeleteMessageBatchRequest(input *DeleteMessageBatchInput) (req *request.Request, output *DeleteMessageBatchOutput) {
 	op := &request.Operation{
 		Name:       opDeleteMessageBatch,
@@ -291,7 +417,28 @@ func (c *SQS) DeleteMessageBatch(input *DeleteMessageBatchInput) (*DeleteMessage
 
 const opDeleteQueue = "DeleteQueue"
 
-// DeleteQueueRequest generates a request for the DeleteQueue operation.
+// DeleteQueueRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteQueue operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteQueue method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteQueueRequest method.
+//    req, resp := client.DeleteQueueRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SQS) DeleteQueueRequest(input *DeleteQueueInput) (req *request.Request, output *DeleteQueueOutput) {
 	op := &request.Operation{
 		Name:       opDeleteQueue,
@@ -336,7 +483,28 @@ func (c *SQS) DeleteQueue(input *DeleteQueueInput) (*DeleteQueueOutput, error) {
 
 const opGetQueueAttributes = "GetQueueAttributes"
 
-// GetQueueAttributesRequest generates a request for the GetQueueAttributes operation.
+// GetQueueAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the GetQueueAttributes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetQueueAttributes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetQueueAttributesRequest method.
+//    req, resp := client.GetQueueAttributesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SQS) GetQueueAttributesRequest(input *GetQueueAttributesInput) (req *request.Request, output *GetQueueAttributesOutput) {
 	op := &request.Operation{
 		Name:       opGetQueueAttributes,
@@ -367,7 +535,28 @@ func (c *SQS) GetQueueAttributes(input *GetQueueAttributesInput) (*GetQueueAttri
 
 const opGetQueueUrl = "GetQueueUrl"
 
-// GetQueueUrlRequest generates a request for the GetQueueUrl operation.
+// GetQueueUrlRequest generates a "aws/request.Request" representing the
+// client's request for the GetQueueUrl operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetQueueUrl method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetQueueUrlRequest method.
+//    req, resp := client.GetQueueUrlRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SQS) GetQueueUrlRequest(input *GetQueueUrlInput) (req *request.Request, output *GetQueueUrlOutput) {
 	op := &request.Operation{
 		Name:       opGetQueueUrl,
@@ -401,7 +590,28 @@ func (c *SQS) GetQueueUrl(input *GetQueueUrlInput) (*GetQueueUrlOutput, error) {
 
 const opListDeadLetterSourceQueues = "ListDeadLetterSourceQueues"
 
-// ListDeadLetterSourceQueuesRequest generates a request for the ListDeadLetterSourceQueues operation.
+// ListDeadLetterSourceQueuesRequest generates a "aws/request.Request" representing the
+// client's request for the ListDeadLetterSourceQueues operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListDeadLetterSourceQueues method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListDeadLetterSourceQueuesRequest method.
+//    req, resp := client.ListDeadLetterSourceQueuesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SQS) ListDeadLetterSourceQueuesRequest(input *ListDeadLetterSourceQueuesInput) (req *request.Request, output *ListDeadLetterSourceQueuesOutput) {
 	op := &request.Operation{
 		Name:       opListDeadLetterSourceQueues,
@@ -432,7 +642,28 @@ func (c *SQS) ListDeadLetterSourceQueues(input *ListDeadLetterSourceQueuesInput)
 
 const opListQueues = "ListQueues"
 
-// ListQueuesRequest generates a request for the ListQueues operation.
+// ListQueuesRequest generates a "aws/request.Request" representing the
+// client's request for the ListQueues operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListQueues method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListQueuesRequest method.
+//    req, resp := client.ListQueuesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SQS) ListQueuesRequest(input *ListQueuesInput) (req *request.Request, output *ListQueuesOutput) {
 	op := &request.Operation{
 		Name:       opListQueues,
@@ -461,7 +692,28 @@ func (c *SQS) ListQueues(input *ListQueuesInput) (*ListQueuesOutput, error) {
 
 const opPurgeQueue = "PurgeQueue"
 
-// PurgeQueueRequest generates a request for the PurgeQueue operation.
+// PurgeQueueRequest generates a "aws/request.Request" representing the
+// client's request for the PurgeQueue operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the PurgeQueue method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PurgeQueueRequest method.
+//    req, resp := client.PurgeQueueRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SQS) PurgeQueueRequest(input *PurgeQueueInput) (req *request.Request, output *PurgeQueueOutput) {
 	op := &request.Operation{
 		Name:       opPurgeQueue,
@@ -499,7 +751,28 @@ func (c *SQS) PurgeQueue(input *PurgeQueueInput) (*PurgeQueueOutput, error) {
 
 const opReceiveMessage = "ReceiveMessage"
 
-// ReceiveMessageRequest generates a request for the ReceiveMessage operation.
+// ReceiveMessageRequest generates a "aws/request.Request" representing the
+// client's request for the ReceiveMessage operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ReceiveMessage method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ReceiveMessageRequest method.
+//    req, resp := client.ReceiveMessageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SQS) ReceiveMessageRequest(input *ReceiveMessageInput) (req *request.Request, output *ReceiveMessageOutput) {
 	op := &request.Operation{
 		Name:       opReceiveMessage,
@@ -567,7 +840,28 @@ func (c *SQS) ReceiveMessage(input *ReceiveMessageInput) (*ReceiveMessageOutput,
 
 const opRemovePermission = "RemovePermission"
 
-// RemovePermissionRequest generates a request for the RemovePermission operation.
+// RemovePermissionRequest generates a "aws/request.Request" representing the
+// client's request for the RemovePermission operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RemovePermission method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RemovePermissionRequest method.
+//    req, resp := client.RemovePermissionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SQS) RemovePermissionRequest(input *RemovePermissionInput) (req *request.Request, output *RemovePermissionOutput) {
 	op := &request.Operation{
 		Name:       opRemovePermission,
@@ -597,7 +891,28 @@ func (c *SQS) RemovePermission(input *RemovePermissionInput) (*RemovePermissionO
 
 const opSendMessage = "SendMessage"
 
-// SendMessageRequest generates a request for the SendMessage operation.
+// SendMessageRequest generates a "aws/request.Request" representing the
+// client's request for the SendMessage operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SendMessage method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SendMessageRequest method.
+//    req, resp := client.SendMessageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SQS) SendMessageRequest(input *SendMessageInput) (req *request.Request, output *SendMessageOutput) {
 	op := &request.Operation{
 		Name:       opSendMessage,
@@ -635,7 +950,28 @@ func (c *SQS) SendMessage(input *SendMessageInput) (*SendMessageOutput, error) {
 
 const opSendMessageBatch = "SendMessageBatch"
 
-// SendMessageBatchRequest generates a request for the SendMessageBatch operation.
+// SendMessageBatchRequest generates a "aws/request.Request" representing the
+// client's request for the SendMessageBatch operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SendMessageBatch method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SendMessageBatchRequest method.
+//    req, resp := client.SendMessageBatchRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SQS) SendMessageBatchRequest(input *SendMessageBatchInput) (req *request.Request, output *SendMessageBatchOutput) {
 	op := &request.Operation{
 		Name:       opSendMessageBatch,
@@ -687,7 +1023,28 @@ func (c *SQS) SendMessageBatch(input *SendMessageBatchInput) (*SendMessageBatchO
 
 const opSetQueueAttributes = "SetQueueAttributes"
 
-// SetQueueAttributesRequest generates a request for the SetQueueAttributes operation.
+// SetQueueAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the SetQueueAttributes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SetQueueAttributes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SetQueueAttributesRequest method.
+//    req, resp := client.SetQueueAttributesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SQS) SetQueueAttributesRequest(input *SetQueueAttributesInput) (req *request.Request, output *SetQueueAttributesOutput) {
 	op := &request.Operation{
 		Name:       opSetQueueAttributes,

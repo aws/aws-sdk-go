@@ -99,7 +99,28 @@ func (c *OutputService1ProtocolTest) newRequest(op *request.Operation, params, d
 
 const opOutputService1TestCaseOperation1 = "OperationName"
 
-// OutputService1TestCaseOperation1Request generates a request for the OutputService1TestCaseOperation1 operation.
+// OutputService1TestCaseOperation1Request generates a "aws/request.Request" representing the
+// client's request for the OutputService1TestCaseOperation1 operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the OutputService1TestCaseOperation1 method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the OutputService1TestCaseOperation1Request method.
+//    req, resp := client.OutputService1TestCaseOperation1Request(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1Request(input *OutputService1TestShapeOutputService1TestCaseOperation1Input) (req *request.Request, output *OutputService1TestShapeOutputService1TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name: opOutputService1TestCaseOperation1,
@@ -203,7 +224,28 @@ func (c *OutputService2ProtocolTest) newRequest(op *request.Operation, params, d
 
 const opOutputService2TestCaseOperation1 = "OperationName"
 
-// OutputService2TestCaseOperation1Request generates a request for the OutputService2TestCaseOperation1 operation.
+// OutputService2TestCaseOperation1Request generates a "aws/request.Request" representing the
+// client's request for the OutputService2TestCaseOperation1 operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the OutputService2TestCaseOperation1 method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the OutputService2TestCaseOperation1Request method.
+//    req, resp := client.OutputService2TestCaseOperation1Request(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *OutputService2ProtocolTest) OutputService2TestCaseOperation1Request(input *OutputService2TestShapeOutputService2TestCaseOperation1Input) (req *request.Request, output *OutputService2TestShapeOutputService2TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name: opOutputService2TestCaseOperation1,
@@ -293,7 +335,28 @@ func (c *OutputService3ProtocolTest) newRequest(op *request.Operation, params, d
 
 const opOutputService3TestCaseOperation1 = "OperationName"
 
-// OutputService3TestCaseOperation1Request generates a request for the OutputService3TestCaseOperation1 operation.
+// OutputService3TestCaseOperation1Request generates a "aws/request.Request" representing the
+// client's request for the OutputService3TestCaseOperation1 operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the OutputService3TestCaseOperation1 method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the OutputService3TestCaseOperation1Request method.
+//    req, resp := client.OutputService3TestCaseOperation1Request(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *OutputService3ProtocolTest) OutputService3TestCaseOperation1Request(input *OutputService3TestShapeOutputService3TestCaseOperation1Input) (req *request.Request, output *OutputService3TestShapeOutputService3TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name: opOutputService3TestCaseOperation1,
@@ -382,7 +445,28 @@ func (c *OutputService4ProtocolTest) newRequest(op *request.Operation, params, d
 
 const opOutputService4TestCaseOperation1 = "OperationName"
 
-// OutputService4TestCaseOperation1Request generates a request for the OutputService4TestCaseOperation1 operation.
+// OutputService4TestCaseOperation1Request generates a "aws/request.Request" representing the
+// client's request for the OutputService4TestCaseOperation1 operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the OutputService4TestCaseOperation1 method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the OutputService4TestCaseOperation1Request method.
+//    req, resp := client.OutputService4TestCaseOperation1Request(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *OutputService4ProtocolTest) OutputService4TestCaseOperation1Request(input *OutputService4TestShapeOutputService4TestCaseOperation1Input) (req *request.Request, output *OutputService4TestShapeOutputService4TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name: opOutputService4TestCaseOperation1,
@@ -470,7 +554,28 @@ func (c *OutputService5ProtocolTest) newRequest(op *request.Operation, params, d
 
 const opOutputService5TestCaseOperation1 = "OperationName"
 
-// OutputService5TestCaseOperation1Request generates a request for the OutputService5TestCaseOperation1 operation.
+// OutputService5TestCaseOperation1Request generates a "aws/request.Request" representing the
+// client's request for the OutputService5TestCaseOperation1 operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the OutputService5TestCaseOperation1 method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the OutputService5TestCaseOperation1Request method.
+//    req, resp := client.OutputService5TestCaseOperation1Request(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *OutputService5ProtocolTest) OutputService5TestCaseOperation1Request(input *OutputService5TestShapeOutputService5TestCaseOperation1Input) (req *request.Request, output *OutputService5TestShapeOutputService5TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name: opOutputService5TestCaseOperation1,
@@ -558,7 +663,28 @@ func (c *OutputService6ProtocolTest) newRequest(op *request.Operation, params, d
 
 const opOutputService6TestCaseOperation1 = "OperationName"
 
-// OutputService6TestCaseOperation1Request generates a request for the OutputService6TestCaseOperation1 operation.
+// OutputService6TestCaseOperation1Request generates a "aws/request.Request" representing the
+// client's request for the OutputService6TestCaseOperation1 operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the OutputService6TestCaseOperation1 method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the OutputService6TestCaseOperation1Request method.
+//    req, resp := client.OutputService6TestCaseOperation1Request(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *OutputService6ProtocolTest) OutputService6TestCaseOperation1Request(input *OutputService6TestShapeOutputService6TestCaseOperation1Input) (req *request.Request, output *OutputService6TestShapeOutputService6TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name: opOutputService6TestCaseOperation1,
@@ -646,7 +772,28 @@ func (c *OutputService7ProtocolTest) newRequest(op *request.Operation, params, d
 
 const opOutputService7TestCaseOperation1 = "OperationName"
 
-// OutputService7TestCaseOperation1Request generates a request for the OutputService7TestCaseOperation1 operation.
+// OutputService7TestCaseOperation1Request generates a "aws/request.Request" representing the
+// client's request for the OutputService7TestCaseOperation1 operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the OutputService7TestCaseOperation1 method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the OutputService7TestCaseOperation1Request method.
+//    req, resp := client.OutputService7TestCaseOperation1Request(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *OutputService7ProtocolTest) OutputService7TestCaseOperation1Request(input *OutputService7TestShapeOutputService7TestCaseOperation1Input) (req *request.Request, output *OutputService7TestShapeOutputService7TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name: opOutputService7TestCaseOperation1,
@@ -734,7 +881,28 @@ func (c *OutputService8ProtocolTest) newRequest(op *request.Operation, params, d
 
 const opOutputService8TestCaseOperation1 = "OperationName"
 
-// OutputService8TestCaseOperation1Request generates a request for the OutputService8TestCaseOperation1 operation.
+// OutputService8TestCaseOperation1Request generates a "aws/request.Request" representing the
+// client's request for the OutputService8TestCaseOperation1 operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the OutputService8TestCaseOperation1 method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the OutputService8TestCaseOperation1Request method.
+//    req, resp := client.OutputService8TestCaseOperation1Request(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *OutputService8ProtocolTest) OutputService8TestCaseOperation1Request(input *OutputService8TestShapeOutputService8TestCaseOperation1Input) (req *request.Request, output *OutputService8TestShapeOutputService8TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name: opOutputService8TestCaseOperation1,
@@ -832,7 +1000,28 @@ func (c *OutputService9ProtocolTest) newRequest(op *request.Operation, params, d
 
 const opOutputService9TestCaseOperation1 = "OperationName"
 
-// OutputService9TestCaseOperation1Request generates a request for the OutputService9TestCaseOperation1 operation.
+// OutputService9TestCaseOperation1Request generates a "aws/request.Request" representing the
+// client's request for the OutputService9TestCaseOperation1 operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the OutputService9TestCaseOperation1 method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the OutputService9TestCaseOperation1Request method.
+//    req, resp := client.OutputService9TestCaseOperation1Request(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *OutputService9ProtocolTest) OutputService9TestCaseOperation1Request(input *OutputService9TestShapeOutputService9TestCaseOperation1Input) (req *request.Request, output *OutputService9TestShapeOutputService9TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name: opOutputService9TestCaseOperation1,
@@ -930,7 +1119,28 @@ func (c *OutputService10ProtocolTest) newRequest(op *request.Operation, params, 
 
 const opOutputService10TestCaseOperation1 = "OperationName"
 
-// OutputService10TestCaseOperation1Request generates a request for the OutputService10TestCaseOperation1 operation.
+// OutputService10TestCaseOperation1Request generates a "aws/request.Request" representing the
+// client's request for the OutputService10TestCaseOperation1 operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the OutputService10TestCaseOperation1 method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the OutputService10TestCaseOperation1Request method.
+//    req, resp := client.OutputService10TestCaseOperation1Request(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *OutputService10ProtocolTest) OutputService10TestCaseOperation1Request(input *OutputService10TestShapeOutputService10TestCaseOperation1Input) (req *request.Request, output *OutputService10TestShapeOutputService10TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name: opOutputService10TestCaseOperation1,
@@ -1018,7 +1228,28 @@ func (c *OutputService11ProtocolTest) newRequest(op *request.Operation, params, 
 
 const opOutputService11TestCaseOperation1 = "OperationName"
 
-// OutputService11TestCaseOperation1Request generates a request for the OutputService11TestCaseOperation1 operation.
+// OutputService11TestCaseOperation1Request generates a "aws/request.Request" representing the
+// client's request for the OutputService11TestCaseOperation1 operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the OutputService11TestCaseOperation1 method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the OutputService11TestCaseOperation1Request method.
+//    req, resp := client.OutputService11TestCaseOperation1Request(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *OutputService11ProtocolTest) OutputService11TestCaseOperation1Request(input *OutputService11TestShapeOutputService11TestCaseOperation1Input) (req *request.Request, output *OutputService11TestShapeOutputService11TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name: opOutputService11TestCaseOperation1,
@@ -1112,7 +1343,28 @@ func (c *OutputService12ProtocolTest) newRequest(op *request.Operation, params, 
 
 const opOutputService12TestCaseOperation1 = "OperationName"
 
-// OutputService12TestCaseOperation1Request generates a request for the OutputService12TestCaseOperation1 operation.
+// OutputService12TestCaseOperation1Request generates a "aws/request.Request" representing the
+// client's request for the OutputService12TestCaseOperation1 operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the OutputService12TestCaseOperation1 method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the OutputService12TestCaseOperation1Request method.
+//    req, resp := client.OutputService12TestCaseOperation1Request(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation1Request(input *OutputService12TestShapeOutputService12TestCaseOperation1Input) (req *request.Request, output *OutputService12TestShapeOutputService12TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name: opOutputService12TestCaseOperation1,
@@ -1200,7 +1452,28 @@ func (c *OutputService13ProtocolTest) newRequest(op *request.Operation, params, 
 
 const opOutputService13TestCaseOperation1 = "OperationName"
 
-// OutputService13TestCaseOperation1Request generates a request for the OutputService13TestCaseOperation1 operation.
+// OutputService13TestCaseOperation1Request generates a "aws/request.Request" representing the
+// client's request for the OutputService13TestCaseOperation1 operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the OutputService13TestCaseOperation1 method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the OutputService13TestCaseOperation1Request method.
+//    req, resp := client.OutputService13TestCaseOperation1Request(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *OutputService13ProtocolTest) OutputService13TestCaseOperation1Request(input *OutputService13TestShapeOutputService13TestCaseOperation1Input) (req *request.Request, output *OutputService13TestShapeOutputService13TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name: opOutputService13TestCaseOperation1,
@@ -1288,7 +1561,28 @@ func (c *OutputService14ProtocolTest) newRequest(op *request.Operation, params, 
 
 const opOutputService14TestCaseOperation1 = "OperationName"
 
-// OutputService14TestCaseOperation1Request generates a request for the OutputService14TestCaseOperation1 operation.
+// OutputService14TestCaseOperation1Request generates a "aws/request.Request" representing the
+// client's request for the OutputService14TestCaseOperation1 operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the OutputService14TestCaseOperation1 method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the OutputService14TestCaseOperation1Request method.
+//    req, resp := client.OutputService14TestCaseOperation1Request(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *OutputService14ProtocolTest) OutputService14TestCaseOperation1Request(input *OutputService14TestShapeOutputService14TestCaseOperation1Input) (req *request.Request, output *OutputService14TestShapeOutputService14TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name: opOutputService14TestCaseOperation1,
@@ -1376,7 +1670,28 @@ func (c *OutputService15ProtocolTest) newRequest(op *request.Operation, params, 
 
 const opOutputService15TestCaseOperation1 = "OperationName"
 
-// OutputService15TestCaseOperation1Request generates a request for the OutputService15TestCaseOperation1 operation.
+// OutputService15TestCaseOperation1Request generates a "aws/request.Request" representing the
+// client's request for the OutputService15TestCaseOperation1 operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the OutputService15TestCaseOperation1 method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the OutputService15TestCaseOperation1Request method.
+//    req, resp := client.OutputService15TestCaseOperation1Request(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *OutputService15ProtocolTest) OutputService15TestCaseOperation1Request(input *OutputService15TestShapeOutputService15TestCaseOperation1Input) (req *request.Request, output *OutputService15TestShapeOutputService15TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name: opOutputService15TestCaseOperation1,

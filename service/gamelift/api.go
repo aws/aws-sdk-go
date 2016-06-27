@@ -15,7 +15,28 @@ import (
 
 const opCreateAlias = "CreateAlias"
 
-// CreateAliasRequest generates a request for the CreateAlias operation.
+// CreateAliasRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAlias operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateAlias method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateAliasRequest method.
+//    req, resp := client.CreateAliasRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) CreateAliasRequest(input *CreateAliasInput) (req *request.Request, output *CreateAliasOutput) {
 	op := &request.Operation{
 		Name:       opCreateAlias,
@@ -54,7 +75,28 @@ func (c *GameLift) CreateAlias(input *CreateAliasInput) (*CreateAliasOutput, err
 
 const opCreateBuild = "CreateBuild"
 
-// CreateBuildRequest generates a request for the CreateBuild operation.
+// CreateBuildRequest generates a "aws/request.Request" representing the
+// client's request for the CreateBuild operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateBuild method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateBuildRequest method.
+//    req, resp := client.CreateBuildRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) CreateBuildRequest(input *CreateBuildInput) (req *request.Request, output *CreateBuildOutput) {
 	op := &request.Operation{
 		Name:       opCreateBuild,
@@ -97,7 +139,28 @@ func (c *GameLift) CreateBuild(input *CreateBuildInput) (*CreateBuildOutput, err
 
 const opCreateFleet = "CreateFleet"
 
-// CreateFleetRequest generates a request for the CreateFleet operation.
+// CreateFleetRequest generates a "aws/request.Request" representing the
+// client's request for the CreateFleet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateFleet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateFleetRequest method.
+//    req, resp := client.CreateFleetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) CreateFleetRequest(input *CreateFleetInput) (req *request.Request, output *CreateFleetOutput) {
 	op := &request.Operation{
 		Name:       opCreateFleet,
@@ -154,7 +217,28 @@ func (c *GameLift) CreateFleet(input *CreateFleetInput) (*CreateFleetOutput, err
 
 const opCreateGameSession = "CreateGameSession"
 
-// CreateGameSessionRequest generates a request for the CreateGameSession operation.
+// CreateGameSessionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateGameSession operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateGameSession method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateGameSessionRequest method.
+//    req, resp := client.CreateGameSessionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) CreateGameSessionRequest(input *CreateGameSessionInput) (req *request.Request, output *CreateGameSessionOutput) {
 	op := &request.Operation{
 		Name:       opCreateGameSession,
@@ -193,7 +277,28 @@ func (c *GameLift) CreateGameSession(input *CreateGameSessionInput) (*CreateGame
 
 const opCreatePlayerSession = "CreatePlayerSession"
 
-// CreatePlayerSessionRequest generates a request for the CreatePlayerSession operation.
+// CreatePlayerSessionRequest generates a "aws/request.Request" representing the
+// client's request for the CreatePlayerSession operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreatePlayerSession method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreatePlayerSessionRequest method.
+//    req, resp := client.CreatePlayerSessionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) CreatePlayerSessionRequest(input *CreatePlayerSessionInput) (req *request.Request, output *CreatePlayerSessionOutput) {
 	op := &request.Operation{
 		Name:       opCreatePlayerSession,
@@ -226,7 +331,28 @@ func (c *GameLift) CreatePlayerSession(input *CreatePlayerSessionInput) (*Create
 
 const opCreatePlayerSessions = "CreatePlayerSessions"
 
-// CreatePlayerSessionsRequest generates a request for the CreatePlayerSessions operation.
+// CreatePlayerSessionsRequest generates a "aws/request.Request" representing the
+// client's request for the CreatePlayerSessions operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreatePlayerSessions method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreatePlayerSessionsRequest method.
+//    req, resp := client.CreatePlayerSessionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) CreatePlayerSessionsRequest(input *CreatePlayerSessionsInput) (req *request.Request, output *CreatePlayerSessionsOutput) {
 	op := &request.Operation{
 		Name:       opCreatePlayerSessions,
@@ -261,7 +387,28 @@ func (c *GameLift) CreatePlayerSessions(input *CreatePlayerSessionsInput) (*Crea
 
 const opDeleteAlias = "DeleteAlias"
 
-// DeleteAliasRequest generates a request for the DeleteAlias operation.
+// DeleteAliasRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAlias operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteAlias method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteAliasRequest method.
+//    req, resp := client.DeleteAliasRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) DeleteAliasRequest(input *DeleteAliasInput) (req *request.Request, output *DeleteAliasOutput) {
 	op := &request.Operation{
 		Name:       opDeleteAlias,
@@ -292,7 +439,28 @@ func (c *GameLift) DeleteAlias(input *DeleteAliasInput) (*DeleteAliasOutput, err
 
 const opDeleteBuild = "DeleteBuild"
 
-// DeleteBuildRequest generates a request for the DeleteBuild operation.
+// DeleteBuildRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteBuild operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteBuild method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteBuildRequest method.
+//    req, resp := client.DeleteBuildRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) DeleteBuildRequest(input *DeleteBuildInput) (req *request.Request, output *DeleteBuildOutput) {
 	op := &request.Operation{
 		Name:       opDeleteBuild,
@@ -326,7 +494,28 @@ func (c *GameLift) DeleteBuild(input *DeleteBuildInput) (*DeleteBuildOutput, err
 
 const opDeleteFleet = "DeleteFleet"
 
-// DeleteFleetRequest generates a request for the DeleteFleet operation.
+// DeleteFleetRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteFleet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteFleet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteFleetRequest method.
+//    req, resp := client.DeleteFleetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) DeleteFleetRequest(input *DeleteFleetInput) (req *request.Request, output *DeleteFleetOutput) {
 	op := &request.Operation{
 		Name:       opDeleteFleet,
@@ -359,7 +548,28 @@ func (c *GameLift) DeleteFleet(input *DeleteFleetInput) (*DeleteFleetOutput, err
 
 const opDeleteScalingPolicy = "DeleteScalingPolicy"
 
-// DeleteScalingPolicyRequest generates a request for the DeleteScalingPolicy operation.
+// DeleteScalingPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteScalingPolicy operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteScalingPolicy method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteScalingPolicyRequest method.
+//    req, resp := client.DeleteScalingPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) DeleteScalingPolicyRequest(input *DeleteScalingPolicyInput) (req *request.Request, output *DeleteScalingPolicyOutput) {
 	op := &request.Operation{
 		Name:       opDeleteScalingPolicy,
@@ -390,7 +600,28 @@ func (c *GameLift) DeleteScalingPolicy(input *DeleteScalingPolicyInput) (*Delete
 
 const opDescribeAlias = "DescribeAlias"
 
-// DescribeAliasRequest generates a request for the DescribeAlias operation.
+// DescribeAliasRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAlias operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeAlias method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeAliasRequest method.
+//    req, resp := client.DescribeAliasRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) DescribeAliasRequest(input *DescribeAliasInput) (req *request.Request, output *DescribeAliasOutput) {
 	op := &request.Operation{
 		Name:       opDescribeAlias,
@@ -418,7 +649,28 @@ func (c *GameLift) DescribeAlias(input *DescribeAliasInput) (*DescribeAliasOutpu
 
 const opDescribeBuild = "DescribeBuild"
 
-// DescribeBuildRequest generates a request for the DescribeBuild operation.
+// DescribeBuildRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeBuild operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeBuild method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeBuildRequest method.
+//    req, resp := client.DescribeBuildRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) DescribeBuildRequest(input *DescribeBuildInput) (req *request.Request, output *DescribeBuildOutput) {
 	op := &request.Operation{
 		Name:       opDescribeBuild,
@@ -446,7 +698,28 @@ func (c *GameLift) DescribeBuild(input *DescribeBuildInput) (*DescribeBuildOutpu
 
 const opDescribeEC2InstanceLimits = "DescribeEC2InstanceLimits"
 
-// DescribeEC2InstanceLimitsRequest generates a request for the DescribeEC2InstanceLimits operation.
+// DescribeEC2InstanceLimitsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeEC2InstanceLimits operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeEC2InstanceLimits method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeEC2InstanceLimitsRequest method.
+//    req, resp := client.DescribeEC2InstanceLimitsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) DescribeEC2InstanceLimitsRequest(input *DescribeEC2InstanceLimitsInput) (req *request.Request, output *DescribeEC2InstanceLimitsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeEC2InstanceLimits,
@@ -478,7 +751,28 @@ func (c *GameLift) DescribeEC2InstanceLimits(input *DescribeEC2InstanceLimitsInp
 
 const opDescribeFleetAttributes = "DescribeFleetAttributes"
 
-// DescribeFleetAttributesRequest generates a request for the DescribeFleetAttributes operation.
+// DescribeFleetAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFleetAttributes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeFleetAttributes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeFleetAttributesRequest method.
+//    req, resp := client.DescribeFleetAttributesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) DescribeFleetAttributesRequest(input *DescribeFleetAttributesInput) (req *request.Request, output *DescribeFleetAttributesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeFleetAttributes,
@@ -515,7 +809,28 @@ func (c *GameLift) DescribeFleetAttributes(input *DescribeFleetAttributesInput) 
 
 const opDescribeFleetCapacity = "DescribeFleetCapacity"
 
-// DescribeFleetCapacityRequest generates a request for the DescribeFleetCapacity operation.
+// DescribeFleetCapacityRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFleetCapacity operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeFleetCapacity method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeFleetCapacityRequest method.
+//    req, resp := client.DescribeFleetCapacityRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) DescribeFleetCapacityRequest(input *DescribeFleetCapacityInput) (req *request.Request, output *DescribeFleetCapacityOutput) {
 	op := &request.Operation{
 		Name:       opDescribeFleetCapacity,
@@ -553,7 +868,28 @@ func (c *GameLift) DescribeFleetCapacity(input *DescribeFleetCapacityInput) (*De
 
 const opDescribeFleetEvents = "DescribeFleetEvents"
 
-// DescribeFleetEventsRequest generates a request for the DescribeFleetEvents operation.
+// DescribeFleetEventsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFleetEvents operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeFleetEvents method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeFleetEventsRequest method.
+//    req, resp := client.DescribeFleetEventsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) DescribeFleetEventsRequest(input *DescribeFleetEventsInput) (req *request.Request, output *DescribeFleetEventsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeFleetEvents,
@@ -583,7 +919,28 @@ func (c *GameLift) DescribeFleetEvents(input *DescribeFleetEventsInput) (*Descri
 
 const opDescribeFleetPortSettings = "DescribeFleetPortSettings"
 
-// DescribeFleetPortSettingsRequest generates a request for the DescribeFleetPortSettings operation.
+// DescribeFleetPortSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFleetPortSettings operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeFleetPortSettings method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeFleetPortSettingsRequest method.
+//    req, resp := client.DescribeFleetPortSettingsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) DescribeFleetPortSettingsRequest(input *DescribeFleetPortSettingsInput) (req *request.Request, output *DescribeFleetPortSettingsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeFleetPortSettings,
@@ -614,7 +971,28 @@ func (c *GameLift) DescribeFleetPortSettings(input *DescribeFleetPortSettingsInp
 
 const opDescribeFleetUtilization = "DescribeFleetUtilization"
 
-// DescribeFleetUtilizationRequest generates a request for the DescribeFleetUtilization operation.
+// DescribeFleetUtilizationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFleetUtilization operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeFleetUtilization method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeFleetUtilizationRequest method.
+//    req, resp := client.DescribeFleetUtilizationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) DescribeFleetUtilizationRequest(input *DescribeFleetUtilizationInput) (req *request.Request, output *DescribeFleetUtilizationOutput) {
 	op := &request.Operation{
 		Name:       opDescribeFleetUtilization,
@@ -650,7 +1028,28 @@ func (c *GameLift) DescribeFleetUtilization(input *DescribeFleetUtilizationInput
 
 const opDescribeGameSessionDetails = "DescribeGameSessionDetails"
 
-// DescribeGameSessionDetailsRequest generates a request for the DescribeGameSessionDetails operation.
+// DescribeGameSessionDetailsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeGameSessionDetails operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeGameSessionDetails method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeGameSessionDetailsRequest method.
+//    req, resp := client.DescribeGameSessionDetailsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) DescribeGameSessionDetailsRequest(input *DescribeGameSessionDetailsInput) (req *request.Request, output *DescribeGameSessionDetailsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeGameSessionDetails,
@@ -687,7 +1086,28 @@ func (c *GameLift) DescribeGameSessionDetails(input *DescribeGameSessionDetailsI
 
 const opDescribeGameSessions = "DescribeGameSessions"
 
-// DescribeGameSessionsRequest generates a request for the DescribeGameSessions operation.
+// DescribeGameSessionsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeGameSessions operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeGameSessions method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeGameSessionsRequest method.
+//    req, resp := client.DescribeGameSessionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) DescribeGameSessionsRequest(input *DescribeGameSessionsInput) (req *request.Request, output *DescribeGameSessionsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeGameSessions,
@@ -723,7 +1143,28 @@ func (c *GameLift) DescribeGameSessions(input *DescribeGameSessionsInput) (*Desc
 
 const opDescribePlayerSessions = "DescribePlayerSessions"
 
-// DescribePlayerSessionsRequest generates a request for the DescribePlayerSessions operation.
+// DescribePlayerSessionsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribePlayerSessions operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribePlayerSessions method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribePlayerSessionsRequest method.
+//    req, resp := client.DescribePlayerSessionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) DescribePlayerSessionsRequest(input *DescribePlayerSessionsInput) (req *request.Request, output *DescribePlayerSessionsOutput) {
 	op := &request.Operation{
 		Name:       opDescribePlayerSessions,
@@ -761,7 +1202,28 @@ func (c *GameLift) DescribePlayerSessions(input *DescribePlayerSessionsInput) (*
 
 const opDescribeScalingPolicies = "DescribeScalingPolicies"
 
-// DescribeScalingPoliciesRequest generates a request for the DescribeScalingPolicies operation.
+// DescribeScalingPoliciesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeScalingPolicies operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeScalingPolicies method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeScalingPoliciesRequest method.
+//    req, resp := client.DescribeScalingPoliciesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) DescribeScalingPoliciesRequest(input *DescribeScalingPoliciesInput) (req *request.Request, output *DescribeScalingPoliciesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeScalingPolicies,
@@ -793,7 +1255,28 @@ func (c *GameLift) DescribeScalingPolicies(input *DescribeScalingPoliciesInput) 
 
 const opGetGameSessionLogUrl = "GetGameSessionLogUrl"
 
-// GetGameSessionLogUrlRequest generates a request for the GetGameSessionLogUrl operation.
+// GetGameSessionLogUrlRequest generates a "aws/request.Request" representing the
+// client's request for the GetGameSessionLogUrl operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetGameSessionLogUrl method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetGameSessionLogUrlRequest method.
+//    req, resp := client.GetGameSessionLogUrlRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) GetGameSessionLogUrlRequest(input *GetGameSessionLogUrlInput) (req *request.Request, output *GetGameSessionLogUrlOutput) {
 	op := &request.Operation{
 		Name:       opGetGameSessionLogUrl,
@@ -826,7 +1309,28 @@ func (c *GameLift) GetGameSessionLogUrl(input *GetGameSessionLogUrlInput) (*GetG
 
 const opListAliases = "ListAliases"
 
-// ListAliasesRequest generates a request for the ListAliases operation.
+// ListAliasesRequest generates a "aws/request.Request" representing the
+// client's request for the ListAliases operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListAliases method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListAliasesRequest method.
+//    req, resp := client.ListAliasesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) ListAliasesRequest(input *ListAliasesInput) (req *request.Request, output *ListAliasesOutput) {
 	op := &request.Operation{
 		Name:       opListAliases,
@@ -857,7 +1361,28 @@ func (c *GameLift) ListAliases(input *ListAliasesInput) (*ListAliasesOutput, err
 
 const opListBuilds = "ListBuilds"
 
-// ListBuildsRequest generates a request for the ListBuilds operation.
+// ListBuildsRequest generates a "aws/request.Request" representing the
+// client's request for the ListBuilds operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListBuilds method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListBuildsRequest method.
+//    req, resp := client.ListBuildsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) ListBuildsRequest(input *ListBuildsInput) (req *request.Request, output *ListBuildsOutput) {
 	op := &request.Operation{
 		Name:       opListBuilds,
@@ -888,7 +1413,28 @@ func (c *GameLift) ListBuilds(input *ListBuildsInput) (*ListBuildsOutput, error)
 
 const opListFleets = "ListFleets"
 
-// ListFleetsRequest generates a request for the ListFleets operation.
+// ListFleetsRequest generates a "aws/request.Request" representing the
+// client's request for the ListFleets operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListFleets method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListFleetsRequest method.
+//    req, resp := client.ListFleetsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) ListFleetsRequest(input *ListFleetsInput) (req *request.Request, output *ListFleetsOutput) {
 	op := &request.Operation{
 		Name:       opListFleets,
@@ -919,7 +1465,28 @@ func (c *GameLift) ListFleets(input *ListFleetsInput) (*ListFleetsOutput, error)
 
 const opPutScalingPolicy = "PutScalingPolicy"
 
-// PutScalingPolicyRequest generates a request for the PutScalingPolicy operation.
+// PutScalingPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the PutScalingPolicy operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the PutScalingPolicy method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PutScalingPolicyRequest method.
+//    req, resp := client.PutScalingPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) PutScalingPolicyRequest(input *PutScalingPolicyInput) (req *request.Request, output *PutScalingPolicyOutput) {
 	op := &request.Operation{
 		Name:       opPutScalingPolicy,
@@ -967,7 +1534,28 @@ func (c *GameLift) PutScalingPolicy(input *PutScalingPolicyInput) (*PutScalingPo
 
 const opRequestUploadCredentials = "RequestUploadCredentials"
 
-// RequestUploadCredentialsRequest generates a request for the RequestUploadCredentials operation.
+// RequestUploadCredentialsRequest generates a "aws/request.Request" representing the
+// client's request for the RequestUploadCredentials operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RequestUploadCredentials method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RequestUploadCredentialsRequest method.
+//    req, resp := client.RequestUploadCredentialsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) RequestUploadCredentialsRequest(input *RequestUploadCredentialsInput) (req *request.Request, output *RequestUploadCredentialsOutput) {
 	op := &request.Operation{
 		Name:       opRequestUploadCredentials,
@@ -1006,7 +1594,28 @@ func (c *GameLift) RequestUploadCredentials(input *RequestUploadCredentialsInput
 
 const opResolveAlias = "ResolveAlias"
 
-// ResolveAliasRequest generates a request for the ResolveAlias operation.
+// ResolveAliasRequest generates a "aws/request.Request" representing the
+// client's request for the ResolveAlias operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ResolveAlias method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ResolveAliasRequest method.
+//    req, resp := client.ResolveAliasRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) ResolveAliasRequest(input *ResolveAliasInput) (req *request.Request, output *ResolveAliasOutput) {
 	op := &request.Operation{
 		Name:       opResolveAlias,
@@ -1033,7 +1642,28 @@ func (c *GameLift) ResolveAlias(input *ResolveAliasInput) (*ResolveAliasOutput, 
 
 const opUpdateAlias = "UpdateAlias"
 
-// UpdateAliasRequest generates a request for the UpdateAlias operation.
+// UpdateAliasRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateAlias operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateAlias method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateAliasRequest method.
+//    req, resp := client.UpdateAliasRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) UpdateAliasRequest(input *UpdateAliasInput) (req *request.Request, output *UpdateAliasOutput) {
 	op := &request.Operation{
 		Name:       opUpdateAlias,
@@ -1063,7 +1693,28 @@ func (c *GameLift) UpdateAlias(input *UpdateAliasInput) (*UpdateAliasOutput, err
 
 const opUpdateBuild = "UpdateBuild"
 
-// UpdateBuildRequest generates a request for the UpdateBuild operation.
+// UpdateBuildRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateBuild operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateBuild method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateBuildRequest method.
+//    req, resp := client.UpdateBuildRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) UpdateBuildRequest(input *UpdateBuildInput) (req *request.Request, output *UpdateBuildOutput) {
 	op := &request.Operation{
 		Name:       opUpdateBuild,
@@ -1093,7 +1744,28 @@ func (c *GameLift) UpdateBuild(input *UpdateBuildInput) (*UpdateBuildOutput, err
 
 const opUpdateFleetAttributes = "UpdateFleetAttributes"
 
-// UpdateFleetAttributesRequest generates a request for the UpdateFleetAttributes operation.
+// UpdateFleetAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateFleetAttributes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateFleetAttributes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateFleetAttributesRequest method.
+//    req, resp := client.UpdateFleetAttributesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) UpdateFleetAttributesRequest(input *UpdateFleetAttributesInput) (req *request.Request, output *UpdateFleetAttributesOutput) {
 	op := &request.Operation{
 		Name:       opUpdateFleetAttributes,
@@ -1122,7 +1794,28 @@ func (c *GameLift) UpdateFleetAttributes(input *UpdateFleetAttributesInput) (*Up
 
 const opUpdateFleetCapacity = "UpdateFleetCapacity"
 
-// UpdateFleetCapacityRequest generates a request for the UpdateFleetCapacity operation.
+// UpdateFleetCapacityRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateFleetCapacity operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateFleetCapacity method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateFleetCapacityRequest method.
+//    req, resp := client.UpdateFleetCapacityRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) UpdateFleetCapacityRequest(input *UpdateFleetCapacityInput) (req *request.Request, output *UpdateFleetCapacityOutput) {
 	op := &request.Operation{
 		Name:       opUpdateFleetCapacity,
@@ -1164,7 +1857,28 @@ func (c *GameLift) UpdateFleetCapacity(input *UpdateFleetCapacityInput) (*Update
 
 const opUpdateFleetPortSettings = "UpdateFleetPortSettings"
 
-// UpdateFleetPortSettingsRequest generates a request for the UpdateFleetPortSettings operation.
+// UpdateFleetPortSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateFleetPortSettings operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateFleetPortSettings method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateFleetPortSettingsRequest method.
+//    req, resp := client.UpdateFleetPortSettingsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) UpdateFleetPortSettingsRequest(input *UpdateFleetPortSettingsInput) (req *request.Request, output *UpdateFleetPortSettingsOutput) {
 	op := &request.Operation{
 		Name:       opUpdateFleetPortSettings,
@@ -1196,7 +1910,28 @@ func (c *GameLift) UpdateFleetPortSettings(input *UpdateFleetPortSettingsInput) 
 
 const opUpdateGameSession = "UpdateGameSession"
 
-// UpdateGameSessionRequest generates a request for the UpdateGameSession operation.
+// UpdateGameSessionRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateGameSession operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateGameSession method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateGameSessionRequest method.
+//    req, resp := client.UpdateGameSessionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *GameLift) UpdateGameSessionRequest(input *UpdateGameSessionInput) (req *request.Request, output *UpdateGameSessionOutput) {
 	op := &request.Operation{
 		Name:       opUpdateGameSession,

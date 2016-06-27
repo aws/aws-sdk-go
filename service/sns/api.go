@@ -14,7 +14,28 @@ import (
 
 const opAddPermission = "AddPermission"
 
-// AddPermissionRequest generates a request for the AddPermission operation.
+// AddPermissionRequest generates a "aws/request.Request" representing the
+// client's request for the AddPermission operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AddPermission method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AddPermissionRequest method.
+//    req, resp := client.AddPermissionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SNS) AddPermissionRequest(input *AddPermissionInput) (req *request.Request, output *AddPermissionOutput) {
 	op := &request.Operation{
 		Name:       opAddPermission,
@@ -44,7 +65,28 @@ func (c *SNS) AddPermission(input *AddPermissionInput) (*AddPermissionOutput, er
 
 const opConfirmSubscription = "ConfirmSubscription"
 
-// ConfirmSubscriptionRequest generates a request for the ConfirmSubscription operation.
+// ConfirmSubscriptionRequest generates a "aws/request.Request" representing the
+// client's request for the ConfirmSubscription operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ConfirmSubscription method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ConfirmSubscriptionRequest method.
+//    req, resp := client.ConfirmSubscriptionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SNS) ConfirmSubscriptionRequest(input *ConfirmSubscriptionInput) (req *request.Request, output *ConfirmSubscriptionOutput) {
 	op := &request.Operation{
 		Name:       opConfirmSubscription,
@@ -75,7 +117,28 @@ func (c *SNS) ConfirmSubscription(input *ConfirmSubscriptionInput) (*ConfirmSubs
 
 const opCreatePlatformApplication = "CreatePlatformApplication"
 
-// CreatePlatformApplicationRequest generates a request for the CreatePlatformApplication operation.
+// CreatePlatformApplicationRequest generates a "aws/request.Request" representing the
+// client's request for the CreatePlatformApplication operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreatePlatformApplication method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreatePlatformApplicationRequest method.
+//    req, resp := client.CreatePlatformApplicationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SNS) CreatePlatformApplicationRequest(input *CreatePlatformApplicationInput) (req *request.Request, output *CreatePlatformApplicationOutput) {
 	op := &request.Operation{
 		Name:       opCreatePlatformApplication,
@@ -114,7 +177,28 @@ func (c *SNS) CreatePlatformApplication(input *CreatePlatformApplicationInput) (
 
 const opCreatePlatformEndpoint = "CreatePlatformEndpoint"
 
-// CreatePlatformEndpointRequest generates a request for the CreatePlatformEndpoint operation.
+// CreatePlatformEndpointRequest generates a "aws/request.Request" representing the
+// client's request for the CreatePlatformEndpoint operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreatePlatformEndpoint method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreatePlatformEndpointRequest method.
+//    req, resp := client.CreatePlatformEndpointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SNS) CreatePlatformEndpointRequest(input *CreatePlatformEndpointInput) (req *request.Request, output *CreatePlatformEndpointOutput) {
 	op := &request.Operation{
 		Name:       opCreatePlatformEndpoint,
@@ -154,7 +238,28 @@ func (c *SNS) CreatePlatformEndpoint(input *CreatePlatformEndpointInput) (*Creat
 
 const opCreateTopic = "CreateTopic"
 
-// CreateTopicRequest generates a request for the CreateTopic operation.
+// CreateTopicRequest generates a "aws/request.Request" representing the
+// client's request for the CreateTopic operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateTopic method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateTopicRequest method.
+//    req, resp := client.CreateTopicRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SNS) CreateTopicRequest(input *CreateTopicInput) (req *request.Request, output *CreateTopicOutput) {
 	op := &request.Operation{
 		Name:       opCreateTopic,
@@ -185,7 +290,28 @@ func (c *SNS) CreateTopic(input *CreateTopicInput) (*CreateTopicOutput, error) {
 
 const opDeleteEndpoint = "DeleteEndpoint"
 
-// DeleteEndpointRequest generates a request for the DeleteEndpoint operation.
+// DeleteEndpointRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteEndpoint operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteEndpoint method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteEndpointRequest method.
+//    req, resp := client.DeleteEndpointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SNS) DeleteEndpointRequest(input *DeleteEndpointInput) (req *request.Request, output *DeleteEndpointOutput) {
 	op := &request.Operation{
 		Name:       opDeleteEndpoint,
@@ -215,7 +341,28 @@ func (c *SNS) DeleteEndpoint(input *DeleteEndpointInput) (*DeleteEndpointOutput,
 
 const opDeletePlatformApplication = "DeletePlatformApplication"
 
-// DeletePlatformApplicationRequest generates a request for the DeletePlatformApplication operation.
+// DeletePlatformApplicationRequest generates a "aws/request.Request" representing the
+// client's request for the DeletePlatformApplication operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeletePlatformApplication method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeletePlatformApplicationRequest method.
+//    req, resp := client.DeletePlatformApplicationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SNS) DeletePlatformApplicationRequest(input *DeletePlatformApplicationInput) (req *request.Request, output *DeletePlatformApplicationOutput) {
 	op := &request.Operation{
 		Name:       opDeletePlatformApplication,
@@ -246,7 +393,28 @@ func (c *SNS) DeletePlatformApplication(input *DeletePlatformApplicationInput) (
 
 const opDeleteTopic = "DeleteTopic"
 
-// DeleteTopicRequest generates a request for the DeleteTopic operation.
+// DeleteTopicRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteTopic operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteTopic method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteTopicRequest method.
+//    req, resp := client.DeleteTopicRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SNS) DeleteTopicRequest(input *DeleteTopicInput) (req *request.Request, output *DeleteTopicOutput) {
 	op := &request.Operation{
 		Name:       opDeleteTopic,
@@ -278,7 +446,28 @@ func (c *SNS) DeleteTopic(input *DeleteTopicInput) (*DeleteTopicOutput, error) {
 
 const opGetEndpointAttributes = "GetEndpointAttributes"
 
-// GetEndpointAttributesRequest generates a request for the GetEndpointAttributes operation.
+// GetEndpointAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the GetEndpointAttributes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetEndpointAttributes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetEndpointAttributesRequest method.
+//    req, resp := client.GetEndpointAttributesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SNS) GetEndpointAttributesRequest(input *GetEndpointAttributesInput) (req *request.Request, output *GetEndpointAttributesOutput) {
 	op := &request.Operation{
 		Name:       opGetEndpointAttributes,
@@ -307,7 +496,28 @@ func (c *SNS) GetEndpointAttributes(input *GetEndpointAttributesInput) (*GetEndp
 
 const opGetPlatformApplicationAttributes = "GetPlatformApplicationAttributes"
 
-// GetPlatformApplicationAttributesRequest generates a request for the GetPlatformApplicationAttributes operation.
+// GetPlatformApplicationAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the GetPlatformApplicationAttributes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetPlatformApplicationAttributes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetPlatformApplicationAttributesRequest method.
+//    req, resp := client.GetPlatformApplicationAttributesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SNS) GetPlatformApplicationAttributesRequest(input *GetPlatformApplicationAttributesInput) (req *request.Request, output *GetPlatformApplicationAttributesOutput) {
 	op := &request.Operation{
 		Name:       opGetPlatformApplicationAttributes,
@@ -336,7 +546,28 @@ func (c *SNS) GetPlatformApplicationAttributes(input *GetPlatformApplicationAttr
 
 const opGetSubscriptionAttributes = "GetSubscriptionAttributes"
 
-// GetSubscriptionAttributesRequest generates a request for the GetSubscriptionAttributes operation.
+// GetSubscriptionAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the GetSubscriptionAttributes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetSubscriptionAttributes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetSubscriptionAttributesRequest method.
+//    req, resp := client.GetSubscriptionAttributesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SNS) GetSubscriptionAttributesRequest(input *GetSubscriptionAttributesInput) (req *request.Request, output *GetSubscriptionAttributesOutput) {
 	op := &request.Operation{
 		Name:       opGetSubscriptionAttributes,
@@ -363,7 +594,28 @@ func (c *SNS) GetSubscriptionAttributes(input *GetSubscriptionAttributesInput) (
 
 const opGetTopicAttributes = "GetTopicAttributes"
 
-// GetTopicAttributesRequest generates a request for the GetTopicAttributes operation.
+// GetTopicAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the GetTopicAttributes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetTopicAttributes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetTopicAttributesRequest method.
+//    req, resp := client.GetTopicAttributesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SNS) GetTopicAttributesRequest(input *GetTopicAttributesInput) (req *request.Request, output *GetTopicAttributesOutput) {
 	op := &request.Operation{
 		Name:       opGetTopicAttributes,
@@ -391,7 +643,28 @@ func (c *SNS) GetTopicAttributes(input *GetTopicAttributesInput) (*GetTopicAttri
 
 const opListEndpointsByPlatformApplication = "ListEndpointsByPlatformApplication"
 
-// ListEndpointsByPlatformApplicationRequest generates a request for the ListEndpointsByPlatformApplication operation.
+// ListEndpointsByPlatformApplicationRequest generates a "aws/request.Request" representing the
+// client's request for the ListEndpointsByPlatformApplication operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListEndpointsByPlatformApplication method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListEndpointsByPlatformApplicationRequest method.
+//    req, resp := client.ListEndpointsByPlatformApplicationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SNS) ListEndpointsByPlatformApplicationRequest(input *ListEndpointsByPlatformApplicationInput) (req *request.Request, output *ListEndpointsByPlatformApplicationOutput) {
 	op := &request.Operation{
 		Name:       opListEndpointsByPlatformApplication,
@@ -429,6 +702,23 @@ func (c *SNS) ListEndpointsByPlatformApplication(input *ListEndpointsByPlatformA
 	return out, err
 }
 
+// ListEndpointsByPlatformApplicationPages iterates over the pages of a ListEndpointsByPlatformApplication operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListEndpointsByPlatformApplication method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListEndpointsByPlatformApplication operation.
+//    pageNum := 0
+//    err := client.ListEndpointsByPlatformApplicationPages(params,
+//        func(page *ListEndpointsByPlatformApplicationOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *SNS) ListEndpointsByPlatformApplicationPages(input *ListEndpointsByPlatformApplicationInput, fn func(p *ListEndpointsByPlatformApplicationOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListEndpointsByPlatformApplicationRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -439,7 +729,28 @@ func (c *SNS) ListEndpointsByPlatformApplicationPages(input *ListEndpointsByPlat
 
 const opListPlatformApplications = "ListPlatformApplications"
 
-// ListPlatformApplicationsRequest generates a request for the ListPlatformApplications operation.
+// ListPlatformApplicationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListPlatformApplications operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListPlatformApplications method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListPlatformApplicationsRequest method.
+//    req, resp := client.ListPlatformApplicationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SNS) ListPlatformApplicationsRequest(input *ListPlatformApplicationsInput) (req *request.Request, output *ListPlatformApplicationsOutput) {
 	op := &request.Operation{
 		Name:       opListPlatformApplications,
@@ -477,6 +788,23 @@ func (c *SNS) ListPlatformApplications(input *ListPlatformApplicationsInput) (*L
 	return out, err
 }
 
+// ListPlatformApplicationsPages iterates over the pages of a ListPlatformApplications operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListPlatformApplications method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListPlatformApplications operation.
+//    pageNum := 0
+//    err := client.ListPlatformApplicationsPages(params,
+//        func(page *ListPlatformApplicationsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *SNS) ListPlatformApplicationsPages(input *ListPlatformApplicationsInput, fn func(p *ListPlatformApplicationsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListPlatformApplicationsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -487,7 +815,28 @@ func (c *SNS) ListPlatformApplicationsPages(input *ListPlatformApplicationsInput
 
 const opListSubscriptions = "ListSubscriptions"
 
-// ListSubscriptionsRequest generates a request for the ListSubscriptions operation.
+// ListSubscriptionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListSubscriptions operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListSubscriptions method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListSubscriptionsRequest method.
+//    req, resp := client.ListSubscriptionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SNS) ListSubscriptionsRequest(input *ListSubscriptionsInput) (req *request.Request, output *ListSubscriptionsOutput) {
 	op := &request.Operation{
 		Name:       opListSubscriptions,
@@ -521,6 +870,23 @@ func (c *SNS) ListSubscriptions(input *ListSubscriptionsInput) (*ListSubscriptio
 	return out, err
 }
 
+// ListSubscriptionsPages iterates over the pages of a ListSubscriptions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListSubscriptions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListSubscriptions operation.
+//    pageNum := 0
+//    err := client.ListSubscriptionsPages(params,
+//        func(page *ListSubscriptionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *SNS) ListSubscriptionsPages(input *ListSubscriptionsInput, fn func(p *ListSubscriptionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListSubscriptionsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -531,7 +897,28 @@ func (c *SNS) ListSubscriptionsPages(input *ListSubscriptionsInput, fn func(p *L
 
 const opListSubscriptionsByTopic = "ListSubscriptionsByTopic"
 
-// ListSubscriptionsByTopicRequest generates a request for the ListSubscriptionsByTopic operation.
+// ListSubscriptionsByTopicRequest generates a "aws/request.Request" representing the
+// client's request for the ListSubscriptionsByTopic operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListSubscriptionsByTopic method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListSubscriptionsByTopicRequest method.
+//    req, resp := client.ListSubscriptionsByTopicRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SNS) ListSubscriptionsByTopicRequest(input *ListSubscriptionsByTopicInput) (req *request.Request, output *ListSubscriptionsByTopicOutput) {
 	op := &request.Operation{
 		Name:       opListSubscriptionsByTopic,
@@ -565,6 +952,23 @@ func (c *SNS) ListSubscriptionsByTopic(input *ListSubscriptionsByTopicInput) (*L
 	return out, err
 }
 
+// ListSubscriptionsByTopicPages iterates over the pages of a ListSubscriptionsByTopic operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListSubscriptionsByTopic method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListSubscriptionsByTopic operation.
+//    pageNum := 0
+//    err := client.ListSubscriptionsByTopicPages(params,
+//        func(page *ListSubscriptionsByTopicOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *SNS) ListSubscriptionsByTopicPages(input *ListSubscriptionsByTopicInput, fn func(p *ListSubscriptionsByTopicOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListSubscriptionsByTopicRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -575,7 +979,28 @@ func (c *SNS) ListSubscriptionsByTopicPages(input *ListSubscriptionsByTopicInput
 
 const opListTopics = "ListTopics"
 
-// ListTopicsRequest generates a request for the ListTopics operation.
+// ListTopicsRequest generates a "aws/request.Request" representing the
+// client's request for the ListTopics operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListTopics method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListTopicsRequest method.
+//    req, resp := client.ListTopicsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SNS) ListTopicsRequest(input *ListTopicsInput) (req *request.Request, output *ListTopicsOutput) {
 	op := &request.Operation{
 		Name:       opListTopics,
@@ -608,6 +1033,23 @@ func (c *SNS) ListTopics(input *ListTopicsInput) (*ListTopicsOutput, error) {
 	return out, err
 }
 
+// ListTopicsPages iterates over the pages of a ListTopics operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListTopics method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListTopics operation.
+//    pageNum := 0
+//    err := client.ListTopicsPages(params,
+//        func(page *ListTopicsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *SNS) ListTopicsPages(input *ListTopicsInput, fn func(p *ListTopicsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListTopicsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -618,7 +1060,28 @@ func (c *SNS) ListTopicsPages(input *ListTopicsInput, fn func(p *ListTopicsOutpu
 
 const opPublish = "Publish"
 
-// PublishRequest generates a request for the Publish operation.
+// PublishRequest generates a "aws/request.Request" representing the
+// client's request for the Publish operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the Publish method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PublishRequest method.
+//    req, resp := client.PublishRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SNS) PublishRequest(input *PublishInput) (req *request.Request, output *PublishOutput) {
 	op := &request.Operation{
 		Name:       opPublish,
@@ -654,7 +1117,28 @@ func (c *SNS) Publish(input *PublishInput) (*PublishOutput, error) {
 
 const opRemovePermission = "RemovePermission"
 
-// RemovePermissionRequest generates a request for the RemovePermission operation.
+// RemovePermissionRequest generates a "aws/request.Request" representing the
+// client's request for the RemovePermission operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RemovePermission method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RemovePermissionRequest method.
+//    req, resp := client.RemovePermissionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SNS) RemovePermissionRequest(input *RemovePermissionInput) (req *request.Request, output *RemovePermissionOutput) {
 	op := &request.Operation{
 		Name:       opRemovePermission,
@@ -683,7 +1167,28 @@ func (c *SNS) RemovePermission(input *RemovePermissionInput) (*RemovePermissionO
 
 const opSetEndpointAttributes = "SetEndpointAttributes"
 
-// SetEndpointAttributesRequest generates a request for the SetEndpointAttributes operation.
+// SetEndpointAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the SetEndpointAttributes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SetEndpointAttributes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SetEndpointAttributesRequest method.
+//    req, resp := client.SetEndpointAttributesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SNS) SetEndpointAttributesRequest(input *SetEndpointAttributesInput) (req *request.Request, output *SetEndpointAttributesOutput) {
 	op := &request.Operation{
 		Name:       opSetEndpointAttributes,
@@ -714,7 +1219,28 @@ func (c *SNS) SetEndpointAttributes(input *SetEndpointAttributesInput) (*SetEndp
 
 const opSetPlatformApplicationAttributes = "SetPlatformApplicationAttributes"
 
-// SetPlatformApplicationAttributesRequest generates a request for the SetPlatformApplicationAttributes operation.
+// SetPlatformApplicationAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the SetPlatformApplicationAttributes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SetPlatformApplicationAttributes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SetPlatformApplicationAttributesRequest method.
+//    req, resp := client.SetPlatformApplicationAttributesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SNS) SetPlatformApplicationAttributesRequest(input *SetPlatformApplicationAttributesInput) (req *request.Request, output *SetPlatformApplicationAttributesOutput) {
 	op := &request.Operation{
 		Name:       opSetPlatformApplicationAttributes,
@@ -745,7 +1271,28 @@ func (c *SNS) SetPlatformApplicationAttributes(input *SetPlatformApplicationAttr
 
 const opSetSubscriptionAttributes = "SetSubscriptionAttributes"
 
-// SetSubscriptionAttributesRequest generates a request for the SetSubscriptionAttributes operation.
+// SetSubscriptionAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the SetSubscriptionAttributes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SetSubscriptionAttributes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SetSubscriptionAttributesRequest method.
+//    req, resp := client.SetSubscriptionAttributesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SNS) SetSubscriptionAttributesRequest(input *SetSubscriptionAttributesInput) (req *request.Request, output *SetSubscriptionAttributesOutput) {
 	op := &request.Operation{
 		Name:       opSetSubscriptionAttributes,
@@ -774,7 +1321,28 @@ func (c *SNS) SetSubscriptionAttributes(input *SetSubscriptionAttributesInput) (
 
 const opSetTopicAttributes = "SetTopicAttributes"
 
-// SetTopicAttributesRequest generates a request for the SetTopicAttributes operation.
+// SetTopicAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the SetTopicAttributes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SetTopicAttributes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SetTopicAttributesRequest method.
+//    req, resp := client.SetTopicAttributesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SNS) SetTopicAttributesRequest(input *SetTopicAttributesInput) (req *request.Request, output *SetTopicAttributesOutput) {
 	op := &request.Operation{
 		Name:       opSetTopicAttributes,
@@ -803,7 +1371,28 @@ func (c *SNS) SetTopicAttributes(input *SetTopicAttributesInput) (*SetTopicAttri
 
 const opSubscribe = "Subscribe"
 
-// SubscribeRequest generates a request for the Subscribe operation.
+// SubscribeRequest generates a "aws/request.Request" representing the
+// client's request for the Subscribe operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the Subscribe method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SubscribeRequest method.
+//    req, resp := client.SubscribeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SNS) SubscribeRequest(input *SubscribeInput) (req *request.Request, output *SubscribeOutput) {
 	op := &request.Operation{
 		Name:       opSubscribe,
@@ -833,7 +1422,28 @@ func (c *SNS) Subscribe(input *SubscribeInput) (*SubscribeOutput, error) {
 
 const opUnsubscribe = "Unsubscribe"
 
-// UnsubscribeRequest generates a request for the Unsubscribe operation.
+// UnsubscribeRequest generates a "aws/request.Request" representing the
+// client's request for the Unsubscribe operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the Unsubscribe method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UnsubscribeRequest method.
+//    req, resp := client.UnsubscribeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SNS) UnsubscribeRequest(input *UnsubscribeInput) (req *request.Request, output *UnsubscribeOutput) {
 	op := &request.Operation{
 		Name:       opUnsubscribe,

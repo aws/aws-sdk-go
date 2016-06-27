@@ -13,7 +13,28 @@ import (
 
 const opDeleteScalingPolicy = "DeleteScalingPolicy"
 
-// DeleteScalingPolicyRequest generates a request for the DeleteScalingPolicy operation.
+// DeleteScalingPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteScalingPolicy operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteScalingPolicy method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteScalingPolicyRequest method.
+//    req, resp := client.DeleteScalingPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ApplicationAutoScaling) DeleteScalingPolicyRequest(input *DeleteScalingPolicyInput) (req *request.Request, output *DeleteScalingPolicyOutput) {
 	op := &request.Operation{
 		Name:       opDeleteScalingPolicy,
@@ -47,7 +68,28 @@ func (c *ApplicationAutoScaling) DeleteScalingPolicy(input *DeleteScalingPolicyI
 
 const opDeregisterScalableTarget = "DeregisterScalableTarget"
 
-// DeregisterScalableTargetRequest generates a request for the DeregisterScalableTarget operation.
+// DeregisterScalableTargetRequest generates a "aws/request.Request" representing the
+// client's request for the DeregisterScalableTarget operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeregisterScalableTarget method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeregisterScalableTargetRequest method.
+//    req, resp := client.DeregisterScalableTargetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ApplicationAutoScaling) DeregisterScalableTargetRequest(input *DeregisterScalableTargetInput) (req *request.Request, output *DeregisterScalableTargetOutput) {
 	op := &request.Operation{
 		Name:       opDeregisterScalableTarget,
@@ -79,7 +121,28 @@ func (c *ApplicationAutoScaling) DeregisterScalableTarget(input *DeregisterScala
 
 const opDescribeScalableTargets = "DescribeScalableTargets"
 
-// DescribeScalableTargetsRequest generates a request for the DescribeScalableTargets operation.
+// DescribeScalableTargetsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeScalableTargets operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeScalableTargets method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeScalableTargetsRequest method.
+//    req, resp := client.DescribeScalableTargetsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ApplicationAutoScaling) DescribeScalableTargetsRequest(input *DescribeScalableTargetsInput) (req *request.Request, output *DescribeScalableTargetsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeScalableTargets,
@@ -118,6 +181,23 @@ func (c *ApplicationAutoScaling) DescribeScalableTargets(input *DescribeScalable
 	return out, err
 }
 
+// DescribeScalableTargetsPages iterates over the pages of a DescribeScalableTargets operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeScalableTargets method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeScalableTargets operation.
+//    pageNum := 0
+//    err := client.DescribeScalableTargetsPages(params,
+//        func(page *DescribeScalableTargetsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *ApplicationAutoScaling) DescribeScalableTargetsPages(input *DescribeScalableTargetsInput, fn func(p *DescribeScalableTargetsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeScalableTargetsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -128,7 +208,28 @@ func (c *ApplicationAutoScaling) DescribeScalableTargetsPages(input *DescribeSca
 
 const opDescribeScalingActivities = "DescribeScalingActivities"
 
-// DescribeScalingActivitiesRequest generates a request for the DescribeScalingActivities operation.
+// DescribeScalingActivitiesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeScalingActivities operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeScalingActivities method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeScalingActivitiesRequest method.
+//    req, resp := client.DescribeScalingActivitiesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ApplicationAutoScaling) DescribeScalingActivitiesRequest(input *DescribeScalingActivitiesInput) (req *request.Request, output *DescribeScalingActivitiesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeScalingActivities,
@@ -168,6 +269,23 @@ func (c *ApplicationAutoScaling) DescribeScalingActivities(input *DescribeScalin
 	return out, err
 }
 
+// DescribeScalingActivitiesPages iterates over the pages of a DescribeScalingActivities operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeScalingActivities method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeScalingActivities operation.
+//    pageNum := 0
+//    err := client.DescribeScalingActivitiesPages(params,
+//        func(page *DescribeScalingActivitiesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *ApplicationAutoScaling) DescribeScalingActivitiesPages(input *DescribeScalingActivitiesInput, fn func(p *DescribeScalingActivitiesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeScalingActivitiesRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -178,7 +296,28 @@ func (c *ApplicationAutoScaling) DescribeScalingActivitiesPages(input *DescribeS
 
 const opDescribeScalingPolicies = "DescribeScalingPolicies"
 
-// DescribeScalingPoliciesRequest generates a request for the DescribeScalingPolicies operation.
+// DescribeScalingPoliciesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeScalingPolicies operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeScalingPolicies method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeScalingPoliciesRequest method.
+//    req, resp := client.DescribeScalingPoliciesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ApplicationAutoScaling) DescribeScalingPoliciesRequest(input *DescribeScalingPoliciesInput) (req *request.Request, output *DescribeScalingPoliciesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeScalingPolicies,
@@ -216,6 +355,23 @@ func (c *ApplicationAutoScaling) DescribeScalingPolicies(input *DescribeScalingP
 	return out, err
 }
 
+// DescribeScalingPoliciesPages iterates over the pages of a DescribeScalingPolicies operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeScalingPolicies method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeScalingPolicies operation.
+//    pageNum := 0
+//    err := client.DescribeScalingPoliciesPages(params,
+//        func(page *DescribeScalingPoliciesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *ApplicationAutoScaling) DescribeScalingPoliciesPages(input *DescribeScalingPoliciesInput, fn func(p *DescribeScalingPoliciesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeScalingPoliciesRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -226,7 +382,28 @@ func (c *ApplicationAutoScaling) DescribeScalingPoliciesPages(input *DescribeSca
 
 const opPutScalingPolicy = "PutScalingPolicy"
 
-// PutScalingPolicyRequest generates a request for the PutScalingPolicy operation.
+// PutScalingPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the PutScalingPolicy operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the PutScalingPolicy method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PutScalingPolicyRequest method.
+//    req, resp := client.PutScalingPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ApplicationAutoScaling) PutScalingPolicyRequest(input *PutScalingPolicyInput) (req *request.Request, output *PutScalingPolicyOutput) {
 	op := &request.Operation{
 		Name:       opPutScalingPolicy,
@@ -265,7 +442,28 @@ func (c *ApplicationAutoScaling) PutScalingPolicy(input *PutScalingPolicyInput) 
 
 const opRegisterScalableTarget = "RegisterScalableTarget"
 
-// RegisterScalableTargetRequest generates a request for the RegisterScalableTarget operation.
+// RegisterScalableTargetRequest generates a "aws/request.Request" representing the
+// client's request for the RegisterScalableTarget operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RegisterScalableTarget method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RegisterScalableTargetRequest method.
+//    req, resp := client.RegisterScalableTargetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ApplicationAutoScaling) RegisterScalableTargetRequest(input *RegisterScalableTargetInput) (req *request.Request, output *RegisterScalableTargetOutput) {
 	op := &request.Operation{
 		Name:       opRegisterScalableTarget,
