@@ -5493,6 +5493,12 @@ func (c *EC2) DescribeInstancesRequest(input *DescribeInstancesInput) (req *requ
 //
 // Recently terminated instances might appear in the returned results. This
 // interval is usually less than one hour.
+//
+// If you describe instances in the rare case where an Availability Zone is
+// experiencing a service disruption and you specify instance IDs that are in
+// the affected zone, or do not specify any instance IDs at all, the call fails.
+// If you describe instances and specify only instance IDs that are in an unaffected
+// zone, the call works normally.
 func (c *EC2) DescribeInstances(input *DescribeInstancesInput) (*DescribeInstancesOutput, error) {
 	req, out := c.DescribeInstancesRequest(input)
 	err := req.Send()
@@ -17928,7 +17934,8 @@ type DescribeImageAttributeOutput struct {
 	// The RAM disk ID.
 	RamdiskId *AttributeValue `locationName:"ramdisk" type:"structure"`
 
-	// Describes a value for a resource attribute that is a String.
+	// Indicates whether enhanced networking with the Intel 82599 Virtual Function
+	// interface is enabled.
 	SriovNetSupport *AttributeValue `locationName:"sriovNetSupport" type:"structure"`
 }
 
@@ -18188,6 +18195,8 @@ type DescribeInstanceAttributeInput struct {
 	_ struct{} `type:"structure"`
 
 	// The instance attribute.
+	//
+	// Note: The enaSupport attribute is not supported at this time.
 	Attribute *string `locationName:"attribute" type:"string" required:"true" enum:"InstanceAttributeName"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -18240,6 +18249,9 @@ type DescribeInstanceAttributeOutput struct {
 	// Indicates whether the instance is optimized for EBS I/O.
 	EbsOptimized *AttributeBooleanValue `locationName:"ebsOptimized" type:"structure"`
 
+	// Indicates whether enhanced networking with ENA is enabled.
+	EnaSupport *AttributeBooleanValue `locationName:"enaSupport" type:"structure"`
+
 	// The security groups associated with the instance.
 	Groups []*GroupIdentifier `locationName:"groupSet" locationNameList:"item" type:"list"`
 
@@ -18270,7 +18282,8 @@ type DescribeInstanceAttributeOutput struct {
 	// must be false for a NAT instance to perform NAT.
 	SourceDestCheck *AttributeBooleanValue `locationName:"sourceDestCheck" type:"structure"`
 
-	// Describes a value for a resource attribute that is a String.
+	// Indicates whether enhanced networking with the Intel 82599 Virtual Function
+	// interface is enabled.
 	SriovNetSupport *AttributeValue `locationName:"sriovNetSupport" type:"structure"`
 
 	// The user data.
@@ -23650,6 +23663,9 @@ type Image struct {
 	// The description of the AMI that was provided during image creation.
 	Description *string `locationName:"description" type:"string"`
 
+	// Specifies whether enhanced networking with ENA is enabled.
+	EnaSupport *bool `locationName:"enaSupport" type:"boolean"`
+
 	// The hypervisor type of the image.
 	Hypervisor *string `locationName:"hypervisor" type:"string" enum:"HypervisorType"`
 
@@ -23698,7 +23714,8 @@ type Image struct {
 	// an instance store volume.
 	RootDeviceType *string `locationName:"rootDeviceType" type:"string" enum:"DeviceType"`
 
-	// Specifies whether enhanced networking is enabled.
+	// Specifies whether enhanced networking with the Intel 82599 Virtual Function
+	// interface is enabled.
 	SriovNetSupport *string `locationName:"sriovNetSupport" type:"string"`
 
 	// The current state of the AMI. If the state is available, the image is successfully
@@ -24397,6 +24414,9 @@ type Instance struct {
 	// Optimized instance.
 	EbsOptimized *bool `locationName:"ebsOptimized" type:"boolean"`
 
+	// Specifies whether enhanced networking with ENA is enabled.
+	EnaSupport *bool `locationName:"enaSupport" type:"boolean"`
+
 	// The hypervisor type of the instance.
 	Hypervisor *string `locationName:"hypervisor" type:"string" enum:"HypervisorType"`
 
@@ -24481,7 +24501,8 @@ type Instance struct {
 	// If the request is a Spot instance request, the ID of the request.
 	SpotInstanceRequestId *string `locationName:"spotInstanceRequestId" type:"string"`
 
-	// Specifies whether enhanced networking is enabled.
+	// Specifies whether enhanced networking with the Intel 82599 Virtual Function
+	// interface is enabled.
 	SriovNetSupport *string `locationName:"sriovNetSupport" type:"string"`
 
 	// The current state of the instance.
@@ -25574,6 +25595,12 @@ type ModifyInstanceAttributeInput struct {
 	// Optimized instance.
 	EbsOptimized *AttributeBooleanValue `locationName:"ebsOptimized" type:"structure"`
 
+	// Set to true to enable enhanced networking with ENA for the instance.
+	//
+	// This option is supported only for HVM instances. Specifying this option
+	// with a PV instance can make it unreachable.
+	EnaSupport *AttributeBooleanValue `locationName:"enaSupport" type:"structure"`
+
 	// [EC2-VPC] Changes the security groups of the instance. You must specify at
 	// least one security group, even if it's just the default security group for
 	// the VPC. You must specify the security group ID, not the security group name.
@@ -25606,9 +25633,11 @@ type ModifyInstanceAttributeInput struct {
 	// value must be false for a NAT instance to perform NAT.
 	SourceDestCheck *AttributeBooleanValue `type:"structure"`
 
-	// Set to simple to enable enhanced networking for the instance.
+	// Set to simple to enable enhanced networking with the Intel 82599 Virtual
+	// Function interface for the instance.
 	//
-	// There is no way to disable enhanced networking at this time.
+	// There is no way to disable enhanced networking with the Intel 82599 Virtual
+	// Function interface at this time.
 	//
 	// This option is supported only for HVM instances. Specifying this option
 	// with a PV instance can make it unreachable.
@@ -27525,6 +27554,13 @@ type RegisterImageInput struct {
 	// it is UnauthorizedOperation.
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
+	// Set to true to enable enhanced networking with ENA for the AMI and any instances
+	// that you launch from the AMI.
+	//
+	// This option is supported only for HVM AMIs. Specifying this option with
+	// a PV AMI can make instances launched from the AMI unreachable.
+	EnaSupport *bool `locationName:"enaSupport" type:"boolean"`
+
 	// The full path to your AMI manifest in Amazon S3 storage.
 	ImageLocation *string `type:"string"`
 
@@ -27544,8 +27580,9 @@ type RegisterImageInput struct {
 	// The name of the root device (for example, /dev/sda1, or /dev/xvda).
 	RootDeviceName *string `locationName:"rootDeviceName" type:"string"`
 
-	// Set to simple to enable enhanced networking for the AMI and any instances
-	// that you launch from the AMI.
+	// Set to simple to enable enhanced networking with the Intel 82599 Virtual
+	// Function interface for the AMI and any instances that you launch from the
+	// AMI.
 	//
 	// There is no way to disable sriovNetSupport at this time.
 	//
@@ -32573,6 +32610,8 @@ const (
 	InstanceAttributeNameEbsOptimized = "ebsOptimized"
 	// @enum InstanceAttributeName
 	InstanceAttributeNameSriovNetSupport = "sriovNetSupport"
+	// @enum InstanceAttributeName
+	InstanceAttributeNameEnaSupport = "enaSupport"
 )
 
 const (

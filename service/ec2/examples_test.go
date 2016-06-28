@@ -4440,6 +4440,9 @@ func ExampleEC2_ModifyInstanceAttribute() {
 		EbsOptimized: &ec2.AttributeBooleanValue{
 			Value: aws.Bool(true),
 		},
+		EnaSupport: &ec2.AttributeBooleanValue{
+			Value: aws.Bool(true),
+		},
 		Groups: []*string{
 			aws.String("String"), // Required
 			// More values...
@@ -4905,6 +4908,7 @@ func ExampleEC2_RegisterImage() {
 		},
 		Description:        aws.String("String"),
 		DryRun:             aws.Bool(true),
+		EnaSupport:         aws.Bool(true),
 		ImageLocation:      aws.String("String"),
 		KernelId:           aws.String("String"),
 		RamdiskId:          aws.String("String"),

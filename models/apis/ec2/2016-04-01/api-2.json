@@ -7156,6 +7156,10 @@
           "shape":"String",
           "locationName":"sriovNetSupport"
         },
+        "EnaSupport":{
+          "shape":"Boolean",
+          "locationName":"enaSupport"
+        },
         "StateReason":{
           "shape":"StateReason",
           "locationName":"stateReason"
@@ -7888,6 +7892,10 @@
         "SriovNetSupport":{
           "shape":"String",
           "locationName":"sriovNetSupport"
+        },
+        "EnaSupport":{
+          "shape":"Boolean",
+          "locationName":"enaSupport"
         }
       }
     },
@@ -7942,6 +7950,10 @@
           "shape":"AttributeValue",
           "locationName":"sriovNetSupport"
         },
+        "EnaSupport":{
+          "shape":"AttributeBooleanValue",
+          "locationName":"enaSupport"
+        },
         "SourceDestCheck":{
           "shape":"AttributeBooleanValue",
           "locationName":"sourceDestCheck"
@@ -7967,7 +7979,8 @@
         "sourceDestCheck",
         "groupSet",
         "ebsOptimized",
-        "sriovNetSupport"
+        "sriovNetSupport",
+        "enaSupport"
       ]
     },
     "InstanceBlockDeviceMapping":{
@@ -8947,6 +8960,10 @@
         "SriovNetSupport":{
           "shape":"AttributeValue",
           "locationName":"sriovNetSupport"
+        },
+        "EnaSupport":{
+          "shape":"AttributeBooleanValue",
+          "locationName":"enaSupport"
         }
       }
     },
@@ -10297,6 +10314,10 @@
         "SriovNetSupport":{
           "shape":"String",
           "locationName":"sriovNetSupport"
+        },
+        "EnaSupport":{
+          "shape":"Boolean",
+          "locationName":"enaSupport"
         }
       }
     },
