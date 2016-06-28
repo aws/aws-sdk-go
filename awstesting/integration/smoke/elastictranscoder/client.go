@@ -6,7 +6,7 @@ package elastictranscoder
 import (
 	"github.com/aws/aws-sdk-go/awstesting/integration/smoke"
 	"github.com/aws/aws-sdk-go/service/elastictranscoder"
-	. "github.com/lsegal/gucumber"
+	. "github.com/gucumber/gucumber"
 )
 
 func init() {

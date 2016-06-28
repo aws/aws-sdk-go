@@ -12,7 +12,7 @@ import (
 	"strconv"
 	"strings"
 
-	. "github.com/lsegal/gucumber"
+	. "github.com/gucumber/gucumber"
 	"github.com/stretchr/testify/assert"
 
 	"github.com/aws/aws-sdk-go/aws"

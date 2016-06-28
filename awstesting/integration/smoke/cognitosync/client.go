@@ -6,7 +6,7 @@ package cognitosync
 import (
 	"github.com/aws/aws-sdk-go/awstesting/integration/smoke"
 	"github.com/aws/aws-sdk-go/service/cognitosync"
-	. "github.com/lsegal/gucumber"
+	. "github.com/gucumber/gucumber"
 )
 
 func init() {
