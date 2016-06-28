@@ -40,7 +40,7 @@ func TestStripExcessHeaders(t *testing.T) {
 
 	newVals := stripExcessSpaces(vals)
 	for i := 0; i < len(newVals); i++ {
-		assert.Equal(t, newVals[i], expected[i])
+		assert.Equal(t, expected[i], newVals[i], "test: %d", i)
 	}
 }
 
@@ -316,5 +316,18 @@ func BenchmarkSignRequest(b *testing.B) {
 	req, body := buildRequest("dynamodb", "us-east-1", "{}")
 	for i := 0; i < b.N; i++ {
 		signer.Sign(req, body, "dynamodb", "us-east-1", time.Now())
+	}
+}
+
+func BenchmarkStripExcessSpaces(b *testing.B) {
+	vals := []string{
+		`AWS4-HMAC-SHA256 Credential=AKIDFAKEIDFAKEID/20160628/us-west-2/s3/aws4_request, SignedHeaders=host;x-amz-date, Signature=1234567890abcdef1234567890abcdef1234567890abcdef`,
+		`123   321   123   321`,
+		`   123   321   123   321   `,
+	}
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		stripExcessSpaces(vals)
 	}
 }
