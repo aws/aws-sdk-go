@@ -5,6 +5,7 @@
 package v4
 
 import (
+	"bytes"
 	"crypto/hmac"
 	"crypto/sha256"
 	"encoding/hex"
@@ -566,22 +567,49 @@ func makeSha256Reader(reader io.ReadSeeker) []byte {
 	return hash.Sum(nil)
 }
 
+const doubleSpaces = "  "
+
+var doubleSpaceBytes = []byte(doubleSpaces)
+
 func stripExcessSpaces(headerVals []string) []string {
 	vals := make([]string, len(headerVals))
 	for i, str := range headerVals {
-		stripped := ""
-		found := false
-		str = strings.TrimSpace(str)
-		for _, c := range str {
-			if !found && c == ' ' {
-				stripped += string(c)
-				found = true
-			} else if c != ' ' {
-				stripped += string(c)
-				found = false
+		// Trim leading and trailing spaces
+		trimmed := strings.TrimSpace(str)
+
+		idx := strings.Index(trimmed, doubleSpaces)
+		var buf []byte
+		for idx > -1 {
+			// Multiple adjacent spaces found
+			if buf == nil {
+				// first time create the buffer
+				buf = []byte(trimmed)
+			}
+
+			stripToIdx := -1
+			for j := idx + 1; j < len(buf); j++ {
+				if buf[j] != ' ' {
+					buf = append(buf[:idx+1], buf[j:]...)
+					stripToIdx = j
+					break
+				}
+			}
+
+			if stripToIdx >= 0 {
+				idx = bytes.Index(buf[stripToIdx:], doubleSpaceBytes)
+				if idx >= 0 {
+					idx += stripToIdx
+				}
+			} else {
+				idx = -1
 			}
 		}
-		vals[i] = stripped
+
+		if buf != nil {
+			vals[i] = string(buf)
+		} else {
+			vals[i] = trimmed
+		}
 	}
 	return vals
 }
