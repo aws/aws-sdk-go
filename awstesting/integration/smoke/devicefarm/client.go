@@ -1,3 +1,5 @@
+// +build integration
+
 //Package devicefarm provides gucumber integration tests support.
 package devicefarm
 

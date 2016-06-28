@@ -1,3 +1,5 @@
+// +build integration
+
 //Package cloudhsm provides gucumber integration tests support.
 package cloudhsm
 

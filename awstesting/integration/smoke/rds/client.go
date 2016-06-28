@@ -1,3 +1,5 @@
+// +build integration
+
 //Package rds provides gucumber integration tests support.
 package rds
 
