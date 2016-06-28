@@ -2753,6 +2753,7 @@
       "members":{
         "tableName":{"shape":"TableName"},
         "roleArn":{"shape":"AwsArn"},
+        "operation":{"shape":"DynamoOperation"},
         "hashKeyField":{"shape":"HashKeyField"},
         "hashKeyValue":{"shape":"HashKeyValue"},
         "hashKeyType":{"shape":"DynamoKeyType"},
@@ -2769,6 +2770,7 @@
         "NUMBER"
       ]
     },
+    "DynamoOperation":{"type":"string"},
     "ElasticsearchAction":{
       "type":"structure",
       "required":[

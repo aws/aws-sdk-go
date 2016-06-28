@@ -540,6 +540,12 @@
         "DynamoDBAction$rangeKeyType": "<p>The range key type. Valid values are \"STRING\" or \"NUMBER\"</p>"
       }
     },
+    "DynamoOperation": {
+      "base": null,
+      "refs": {
+        "DynamoDBAction$operation": "<p>The type of operation to be performed. This follows the substitution template, so it can be <code>${operation}</code>, but the substitution must result in one of the following: <code>INSERT</code>, <code>UPDATE</code>, or <code>DELETE</code>.</p>"
+      }
+    },
     "ElasticsearchAction": {
       "base": "<p>Describes an action that writes data to an Amazon Elasticsearch Service; domain.</p>",
       "refs": {

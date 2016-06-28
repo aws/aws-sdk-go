@@ -227,6 +227,7 @@ func ExampleIoT_CreateTopicRule() {
 						RoleArn:       aws.String("AwsArn"),       // Required
 						TableName:     aws.String("TableName"),    // Required
 						HashKeyType:   aws.String("DynamoKeyType"),
+						Operation:     aws.String("DynamoOperation"),
 						PayloadField:  aws.String("PayloadField"),
 						RangeKeyField: aws.String("RangeKeyField"),
 						RangeKeyType:  aws.String("DynamoKeyType"),
@@ -990,6 +991,7 @@ func ExampleIoT_ReplaceTopicRule() {
 						RoleArn:       aws.String("AwsArn"),       // Required
 						TableName:     aws.String("TableName"),    // Required
 						HashKeyType:   aws.String("DynamoKeyType"),
+						Operation:     aws.String("DynamoOperation"),
 						PayloadField:  aws.String("PayloadField"),
 						RangeKeyField: aws.String("RangeKeyField"),
 						RangeKeyType:  aws.String("DynamoKeyType"),

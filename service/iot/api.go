@@ -4297,6 +4297,11 @@ type DynamoDBAction struct {
 	// The hash key value.
 	HashKeyValue *string `locationName:"hashKeyValue" type:"string" required:"true"`
 
+	// The type of operation to be performed. This follows the substitution template,
+	// so it can be ${operation}, but the substitution must result in one of the
+	// following: INSERT, UPDATE, or DELETE.
+	Operation *string `locationName:"operation" type:"string"`
+
 	// The action payload. This name can be customized.
 	PayloadField *string `locationName:"payloadField" type:"string"`
 
