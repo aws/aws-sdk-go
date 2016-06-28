@@ -225,7 +225,8 @@
         {"shape":"NoSuchHostedZone"},
         {"shape":"HostedZoneNotEmpty"},
         {"shape":"PriorRequestNotComplete"},
-        {"shape":"InvalidInput"}
+        {"shape":"InvalidInput"},
+        {"shape":"InvalidDomainName"}
       ]
     },
     "DeleteReusableDelegationSet":{
@@ -2787,7 +2788,8 @@
         "ap-northeast-1",
         "ap-northeast-2",
         "sa-east-1",
-        "cn-north-1"
+        "cn-north-1",
+        "ap-south-1"
       ],
       "max":64,
       "min":1
@@ -3222,6 +3224,7 @@
         "eu-central-1",
         "ap-southeast-1",
         "ap-southeast-2",
+        "ap-south-1",
         "ap-northeast-1",
         "ap-northeast-2",
         "sa-east-1",

@@ -637,14 +637,10 @@ func (c *Route53) DeleteHostedZoneRequest(input *DeleteHostedZoneInput) (req *re
 // This action deletes a hosted zone. To delete a hosted zone, send a DELETE
 // request to the /Route 53 API version/hostedzone/hosted zone ID resource.
 //
-// For more information about deleting a hosted zone, see Deleting a Hosted
-// Zone (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DeleteHostedZone.html)
-// in the Amazon Route 53 Developer Guide.
-//
-//  You can delete a hosted zone only if there are no resource record sets
-// other than the default SOA record and NS resource record sets. If your hosted
-// zone contains other resource record sets, you must delete them before you
-// can delete your hosted zone. If you try to delete a hosted zone that contains
+// You can delete a hosted zone only if there are no resource record sets other
+// than the default SOA record and NS resource record sets. If your hosted zone
+// contains other resource record sets, you must delete them before you can
+// delete your hosted zone. If you try to delete a hosted zone that contains
 // other resource record sets, Amazon Route 53 will deny your request with a
 // HostedZoneNotEmpty error. For information about deleting records from your
 // hosted zone, see ChangeResourceRecordSets.
@@ -2030,44 +2026,39 @@ func (c *Route53) ListResourceRecordSetsRequest(input *ListResourceRecordSetsInp
 	return
 }
 
-// Imagine all the resource record sets in a zone listed out in front of you.
-// Imagine them sorted lexicographically first by DNS name (with the labels
-// reversed, like "com.amazon.www" for example), and secondarily, lexicographically
-// by record type. This operation retrieves at most MaxItems resource record
-// sets from this list, in order, starting at a position specified by the Name
-// and Type arguments:
+// List the resource record sets in a specified hosted zone. Send a GET request
+// to the 2013-04-01/hostedzone/hosted zone ID/rrset resource.
 //
-//  If both Name and Type are omitted, this means start the results at the
-// first RRSET in the HostedZone. If Name is specified but Type is omitted,
-// this means start the results at the first RRSET in the list whose name is
-// greater than or equal to Name.  If both Name and Type are specified, this
-// means start the results at the first RRSET in the list whose name is greater
-// than or equal to Name and whose type is greater than or equal to Type. It
-// is an error to specify the Type but not the Name.  Use ListResourceRecordSets
-// to retrieve a single known record set by specifying the record set's name
-// and type, and setting MaxItems = 1
+// ListResourceRecordSets returns up to 100 resource record sets at a time
+// in ASCII order, beginning at a position specified by the name and type elements.
+// The action sorts results first by DNS name with the labels reversed, for
+// example:
 //
-// To retrieve all the records in a HostedZone, first pause any processes making
-// calls to ChangeResourceRecordSets. Initially call ListResourceRecordSets
-// without a Name and Type to get the first page of record sets. For subsequent
-// calls, set Name and Type to the NextName and NextType values returned by
-// the previous response.
+// com.example.www.
 //
-// In the presence of concurrent ChangeResourceRecordSets calls, there is no
-// consistency of results across calls to ListResourceRecordSets. The only way
-// to get a consistent multi-page snapshot of all RRSETs in a zone is to stop
-// making changes while pagination is in progress.
+// Note the trailing dot, which can change the sort order in some circumstances.
+// When multiple records have the same DNS name, the action sorts results by
+// the record type.
 //
-// However, the results from ListResourceRecordSets are consistent within a
-// page. If MakeChange calls are taking place concurrently, the result of each
-// one will either be completely visible in your results or not at all. You
-// will not see partial changes, or changes that do not ultimately succeed.
-// (This follows from the fact that MakeChange is atomic)
+// You can use the name and type elements to adjust the beginning position
+// of the list of resource record sets returned:
 //
-// The results from ListResourceRecordSets are strongly consistent with ChangeResourceRecordSets.
-// To be precise, if a single process makes a call to ChangeResourceRecordSets
-// and receives a successful response, the effects of that change will be visible
-// in a subsequent call to ListResourceRecordSets by that process.
+//  If you do not specify Name or Type: The results begin with the first resource
+// record set that the hosted zone contains. If you specify Name but not Type:
+// The results begin with the first resource record set in the list whose name
+// is greater than or equal to Name. If you specify Type but not Name: Amazon
+// Route 53 returns the InvalidInput error. If you specify both Name and Type:
+// The results begin with the first resource record set in the list whose name
+// is greater than or equal to Name, and whose type is greater than or equal
+// to Type.  This action returns the most current version of the records. This
+// includes records that are PENDING, and that are not yet available on all
+// Amazon Route 53 DNS servers.
+//
+// To ensure that you get an accurate listing of the resource record sets for
+// a hosted zone at a point in time, do not submit a ChangeResourceRecordSets
+// request while you are paging through the results of a ListResourceRecordSets
+// request. If you do, some pages may display results without the latest changes
+// while other pages display results with the latest changes.
 func (c *Route53) ListResourceRecordSets(input *ListResourceRecordSetsInput) (*ListResourceRecordSetsOutput, error) {
 	req, out := c.ListResourceRecordSetsRequest(input)
 	err := req.Send()
@@ -2924,10 +2915,7 @@ func (s *AlarmIdentifier) Validate() error {
 // record sets in the same private hosted zone. Creating alias resource record
 // sets for CloudFront distributions, ELB load balancers, and Amazon S3 buckets
 // is not supported. You can't create alias resource record sets for failover,
-// geolocation, or latency resource record sets in a private hosted zone.  For
-// more information and an example, see Example: Creating Alias Resource Record
-// Sets (http://docs.aws.amazon.com/Route53/latest/APIReference/CreateAliasRRSAPI.html)
-// in the Amazon Route 53 API Reference.
+// geolocation, or latency resource record sets in a private hosted zone.
 type AliasTarget struct {
 	_ struct{} `type:"structure"`
 
@@ -2959,9 +2947,7 @@ type AliasTarget struct {
 	// S3 (http://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html) in
 	// the Amazon Simple Storage Service Developer Guide. Another Amazon Route 53
 	// resource record set: Specify the value of the Name element for a resource
-	// record set in the current hosted zone.  For more information and an example,
-	// see Example: Creating Alias Resource Record Sets (http://docs.aws.amazon.com/Route53/latest/APIReference/CreateAliasRRSAPI.html)
-	// in the Amazon Route 53 API Reference.
+	// record set in the current hosted zone.
 	DNSName *string `type:"string" required:"true"`
 
 	// Alias resource record sets only: If you set the value of EvaluateTargetHealth
@@ -2994,19 +2980,17 @@ type AliasTarget struct {
 	// record set or a group of resource record sets (for example, a group of weighted
 	// resource record sets), but it is not another alias resource record set, we
 	// recommend that you associate a health check with all of the resource record
-	// sets in the alias target. For more information, see What Happens When You
-	// Omit Health Checks? (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-complex-configs.html#dns-failover-complex-configs-hc-omitting)
-	// in the Amazon Route 53 Developer Guide. If you specify an ELB load balancer
-	// in AliasTarget, Elastic Load Balancing routes queries only to the healthy
-	// Amazon EC2 instances that are registered with the load balancer. If no Amazon
-	// EC2 instances are healthy or if the load balancer itself is unhealthy, and
-	// if EvaluateTargetHealth is true for the corresponding alias resource record
-	// set, Amazon Route 53 routes queries to other resources. When you create a
-	// load balancer, you configure settings for Elastic Load Balancing health checks;
-	// they're not Amazon Route 53 health checks, but they perform a similar function.
-	// Do not create Amazon Route 53 health checks for the Amazon EC2 instances
-	// that you register with an ELB load balancer. For more information, see How
-	// Health Checks Work in More Complex Amazon Route 53 Configurations (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-complex-configs.html)
+	// sets in the alias target. If you specify an ELB load balancer in AliasTarget,
+	// Elastic Load Balancing routes queries only to the healthy Amazon EC2 instances
+	// that are registered with the load balancer. If no Amazon EC2 instances are
+	// healthy or if the load balancer itself is unhealthy, and if EvaluateTargetHealth
+	// is true for the corresponding alias resource record set, Amazon Route 53
+	// routes queries to other resources. When you create a load balancer, you configure
+	// settings for Elastic Load Balancing health checks; they're not Amazon Route
+	// 53 health checks, but they perform a similar function. Do not create Amazon
+	// Route 53 health checks for the Amazon EC2 instances that you register with
+	// an ELB load balancer. For more information, see How Health Checks Work in
+	// More Complex Amazon Route 53 Configurations (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-complex-configs.html)
 	// in the Amazon Route 53 Developer Guide.  We recommend that you set EvaluateTargetHealth
 	// to true only when you have enough idle capacity to handle the failure of
 	// one or more endpoints.
@@ -3032,9 +3016,7 @@ type AliasTarget struct {
 	// in the Amazon Web Services General Reference. Another Amazon Route 53 resource
 	// record set in your hosted zone: Specify the hosted zone ID of your hosted
 	// zone. (An alias resource record set cannot reference a resource record set
-	// in a different hosted zone.)  For more information and an example, see Example:
-	// Creating Alias Resource Record Sets (http://docs.aws.amazon.com/Route53/latest/APIReference/CreateAliasRRSAPI.html)
-	// in the Amazon Route 53 API Reference.
+	// in a different hosted zone.)
 	HostedZoneId *string `type:"string" required:"true"`
 }
 
@@ -3766,7 +3748,9 @@ type CreateTrafficPolicyInput struct {
 	// Any comments that you want to include about the traffic policy.
 	Comment *string `type:"string"`
 
-	// The definition of this traffic policy in JSON format.
+	// The definition of this traffic policy in JSON format. For more information,
+	// see Traffic Policy Document Format (http://docs.aws.amazon.com/Route53/latest/APIReference/api-policies-traffic-policy-document-format.html)
+	// in the Amazon Route 53 API Reference.
 	Document *string `type:"string" required:"true"`
 
 	// The name of the traffic policy.
@@ -3917,7 +3901,9 @@ type CreateTrafficPolicyVersionInput struct {
 
 	// The definition of a new traffic policy version, in JSON format. You must
 	// specify the full definition of the new traffic policy. You cannot specify
-	// just the differences between the new version and a previous version.
+	// just the differences between the new version and a previous version. For
+	// more information, see Traffic Policy Document Format (http://docs.aws.amazon.com/Route53/latest/APIReference/api-policies-traffic-policy-document-format.html)
+	// in the Amazon Route 53 API Reference.
 	Document *string `type:"string" required:"true"`
 
 	// The ID of the traffic policy for which you want to create a new version.
@@ -5421,6 +5407,12 @@ type HostedZoneConfig struct {
 	// XML document.
 	Comment *string `type:"string"`
 
+	// GetHostedZone and ListHostedZone responses: A Boolean value that indicates
+	// whether a hosted zone is private.
+	//
+	// CreateHostedZone requests: When you're creating a private hosted zone (when
+	// you specify values for VPCId and VPCRegion), you can optionally specify true
+	// for PrivateZone.
 	PrivateZone *bool `type:"boolean"`
 }
 
@@ -5682,9 +5674,8 @@ type ListGeoLocationsOutput struct {
 
 	// A flag that indicates whether there are more geo locations to be listed.
 	// If your results were truncated, you can make a follow-up request for the
-	// next page of results by using the values included in the ListGeoLocationsResponse$NextContinentCode,
-	// ListGeoLocationsResponse$NextCountryCode and ListGeoLocationsResponse$NextSubdivisionCode
-	// elements.
+	// next page of results by using the values included in the NextContinentCode,
+	// NextCountryCode, and NextSubdivisionCode elements.
 	//
 	// Valid Values: true | false
 	IsTruncated *bool `type:"boolean" required:"true"`
@@ -5694,18 +5685,18 @@ type ListGeoLocationsOutput struct {
 	MaxItems *string `type:"string" required:"true"`
 
 	// If the results were truncated, the continent code of the next geo location
-	// in the list. This element is present only if ListGeoLocationsResponse$IsTruncated
-	// is true and the next geo location to list is a continent location.
+	// in the list. This element is present only if IsTruncated is true and the
+	// next geo location to list is a continent location.
 	NextContinentCode *string `min:"2" type:"string"`
 
 	// If the results were truncated, the country code of the next geo location
-	// in the list. This element is present only if ListGeoLocationsResponse$IsTruncated
-	// is true and the next geo location to list is not a continent location.
+	// in the list. This element is present only if IsTruncated is true and the
+	// next geo location to list is not a continent location.
 	NextCountryCode *string `min:"1" type:"string"`
 
 	// If the results were truncated, the subdivision code of the next geo location
-	// in the list. This element is present only if ListGeoLocationsResponse$IsTruncated
-	// is true and the next geo location has a subdivision.
+	// in the list. This element is present only if IsTruncated is true and the
+	// next geo location has a subdivision.
 	NextSubdivisionCode *string `min:"1" type:"string"`
 }
 
@@ -5773,14 +5764,14 @@ type ListHealthChecksOutput struct {
 
 	// The maximum number of health checks to be included in the response body.
 	// If the number of health checks associated with this AWS account exceeds MaxItems,
-	// the value of ListHealthChecksResponse$IsTruncated in the response is true.
-	// Call ListHealthChecks again and specify the value of ListHealthChecksResponse$NextMarker
-	// in the ListHostedZonesRequest$Marker element to get the next page of results.
+	// the value of IsTruncated in the response is true. Call ListHealthChecks again
+	// and specify the value of NextMarker from the last response in the Marker
+	// element of the next request to get the next page of results.
 	MaxItems *string `type:"string" required:"true"`
 
-	// Indicates where to continue listing health checks. If ListHealthChecksResponse$IsTruncated
-	// is true, make another request to ListHealthChecks and include the value of
-	// the NextMarker element in the Marker element to get the next page of results.
+	// Indicates where to continue listing health checks. If IsTruncated is true,
+	// make another request to ListHealthChecks and include the value of the NextMarker
+	// element in the Marker element to get the next page of results.
 	NextMarker *string `type:"string"`
 }
 
@@ -5802,10 +5793,6 @@ func (s ListHealthChecksOutput) GoString() string {
 // of the page that is displayed by using the MaxItems parameter. You can use
 // the DNSName and HostedZoneId parameters to control the hosted zone that the
 // list begins with.
-//
-// For more information about listing hosted zones, see Listing the Hosted
-// Zones for an AWS Account (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ListInfoOnHostedZone.html)
-// in the Amazon Route 53 Developer Guide.
 type ListHostedZonesByNameInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5859,24 +5846,23 @@ type ListHostedZonesByNameOutput struct {
 
 	// The maximum number of hosted zones to be included in the response body. If
 	// the number of hosted zones associated with this AWS account exceeds MaxItems,
-	// the value of ListHostedZonesByNameResponse$IsTruncated in the response is
-	// true. Call ListHostedZonesByName again and specify the value of ListHostedZonesByNameResponse$NextDNSName
-	// and ListHostedZonesByNameResponse$NextHostedZoneId elements respectively
-	// to get the next page of results.
+	// the value of IsTruncated in the ListHostedZonesByNameResponse is true. Call
+	// ListHostedZonesByName again and specify the value of NextDNSName and NextHostedZoneId
+	// elements from the previous response to get the next page of results.
 	MaxItems *string `type:"string" required:"true"`
 
-	// If ListHostedZonesByNameResponse$IsTruncated is true, there are more hosted
-	// zones associated with the current AWS account. To get the next page of results,
-	// make another request to ListHostedZonesByName. Specify the value of ListHostedZonesByNameResponse$NextDNSName
-	// in the ListHostedZonesByNameRequest$DNSName element and ListHostedZonesByNameResponse$NextHostedZoneId
-	// in the ListHostedZonesByNameRequest$HostedZoneId element.
+	// If the value of IsTruncated in the ListHostedZonesByNameResponse is true,
+	// there are more hosted zones associated with the current AWS account. To get
+	// the next page of results, make another request to ListHostedZonesByName.
+	// Specify the value of NextDNSName in the DNSName parameter. Specify NextHostedZoneId
+	// in the HostedZoneId parameter.
 	NextDNSName *string `type:"string"`
 
-	// If ListHostedZonesByNameResponse$IsTruncated is true, there are more hosted
-	// zones associated with the current AWS account. To get the next page of results,
-	// make another request to ListHostedZonesByName. Specify the value of ListHostedZonesByNameResponse$NextDNSName
-	// in the ListHostedZonesByNameRequest$DNSName element and ListHostedZonesByNameResponse$NextHostedZoneId
-	// in the ListHostedZonesByNameRequest$HostedZoneId element.
+	// If the value of IsTruncated in the ListHostedZonesByNameResponse is true,
+	// there are more hosted zones associated with the current AWS account. To get
+	// the next page of results, make another request to ListHostedZonesByName.
+	// Specify the value of NextDNSName in the DNSName parameter. Specify NextHostedZoneId
+	// in the HostedZoneId parameter.
 	NextHostedZoneId *string `type:"string"`
 }
 
@@ -5896,12 +5882,10 @@ func (s ListHostedZonesByNameOutput) GoString() string {
 // the list of hosted zones is displayed on a single page. You can control the
 // length of the page that is displayed by using the MaxItems parameter. You
 // can use the Marker parameter to control the hosted zone that the list begins
-// with. For more information about listing hosted zones, see Listing the Hosted
-// Zones for an AWS Account (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ListInfoOnHostedZone.html)
-// in the Amazon Route 53 Developer Guide.
+// with.
 //
-//  Amazon Route 53 returns a maximum of 100 items. If you set MaxItems to
-// a value greater than 100, Amazon Route 53 returns only the first 100.
+// Amazon Route 53 returns a maximum of 100 items. If you set MaxItems to a
+// value greater than 100, Amazon Route 53 returns only the first 100.
 type ListHostedZonesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5948,14 +5932,14 @@ type ListHostedZonesOutput struct {
 
 	// The maximum number of hosted zones to be included in the response body. If
 	// the number of hosted zones associated with this AWS account exceeds MaxItems,
-	// the value of ListHostedZonesResponse$IsTruncated in the response is true.
-	// Call ListHostedZones again and specify the value of ListHostedZonesResponse$NextMarker
-	// in the ListHostedZonesRequest$Marker element to get the next page of results.
+	// the value of IsTruncated in the response is true. Call ListHostedZones again
+	// and specify the value of NextMarker in the Marker parameter to get the next
+	// page of results.
 	MaxItems *string `type:"string" required:"true"`
 
-	// Indicates where to continue listing hosted zones. If ListHostedZonesResponse$IsTruncated
-	// is true, make another request to ListHostedZones and include the value of
-	// the NextMarker element in the Marker element to get the next page of results.
+	// Indicates where to continue listing hosted zones. If IsTruncated is true,
+	// make another request to ListHostedZones and include the value of the NextMarker
+	// element in the Marker element to get the next page of results.
 	NextMarker *string `type:"string"`
 }
 
@@ -5981,9 +5965,9 @@ type ListResourceRecordSetsInput struct {
 	MaxItems *string `location:"querystring" locationName:"maxitems" type:"string"`
 
 	// Weighted resource record sets only: If results were truncated for a given
-	// DNS name and type, specify the value of ListResourceRecordSetsResponse$NextRecordIdentifier
-	// from the previous response to get the next resource record set that has the
-	// current DNS name and type.
+	// DNS name and type, specify the value of NextRecordIdentifier from the previous
+	// response to get the next resource record set that has the current DNS name
+	// and type.
 	StartRecordIdentifier *string `location:"querystring" locationName:"identifier" min:"1" type:"string"`
 
 	// The first name in the lexicographic ordering of domain names that you want
@@ -6038,8 +6022,7 @@ type ListResourceRecordSetsOutput struct {
 
 	// A flag that indicates whether there are more resource record sets to be listed.
 	// If your results were truncated, you can make a follow-up request for the
-	// next page of results by using the ListResourceRecordSetsResponse$NextRecordName
-	// element.
+	// next page of results by using the NextRecordName element.
 	//
 	// Valid Values: true | false
 	IsTruncated *bool `type:"boolean" required:"true"`
@@ -6054,13 +6037,11 @@ type ListResourceRecordSetsOutput struct {
 	NextRecordIdentifier *string `min:"1" type:"string"`
 
 	// If the results were truncated, the name of the next record in the list. This
-	// element is present only if ListResourceRecordSetsResponse$IsTruncated is
-	// true.
+	// element is present only if IsTruncated is true.
 	NextRecordName *string `type:"string"`
 
 	// If the results were truncated, the type of the next record in the list. This
-	// element is present only if ListResourceRecordSetsResponse$IsTruncated is
-	// true.
+	// element is present only if IsTruncated is true.
 	NextRecordType *string `type:"string" enum:"RRType"`
 
 	// A complex type that contains information about the resource record sets that
@@ -6133,16 +6114,16 @@ type ListReusableDelegationSetsOutput struct {
 
 	// The maximum number of reusable delegation sets to be included in the response
 	// body. If the number of reusable delegation sets associated with this AWS
-	// account exceeds MaxItems, the value of ListReusablDelegationSetsResponse$IsTruncated
-	// in the response is true. Call ListReusableDelegationSets again and specify
-	// the value of ListReusableDelegationSetsResponse$NextMarker in the ListReusableDelegationSetsRequest$Marker
-	// element to get the next page of results.
+	// account exceeds MaxItems, the value of IsTruncated in the response is true.
+	// To get the next page of results, call ListReusableDelegationSets again and
+	// specify the value of NextMarker from the previous response in the Marker
+	// element of the request.
 	MaxItems *string `type:"string" required:"true"`
 
-	// Indicates where to continue listing reusable delegation sets. If ListReusableDelegationSetsResponse$IsTruncated
+	// Indicates where to continue listing reusable delegation sets. If IsTruncated
 	// is true, make another request to ListReusableDelegationSets and include the
-	// value of the NextMarker element in the Marker element to get the next page
-	// of results.
+	// value of the NextMarker element in the Marker element of the previous response
+	// to get the next page of results.
 	NextMarker *string `type:"string"`
 }
 
@@ -6976,13 +6957,14 @@ type ResourceRecordSet struct {
 
 	// The cache time to live for the current resource record set. Note the following:
 	//
-	//  If you're creating an alias resource record set, omit TTL. Amazon Route
-	// 53 uses the value of TTL for the alias target.  If you're associating this
-	// resource record set with a health check (if you're adding a HealthCheckId
-	// element), we recommend that you specify a TTL of 60 seconds or less so clients
-	// respond quickly to changes in health status. All of the resource record sets
-	// in a group of weighted, latency, geolocation, or failover resource record
-	// sets must have the same value for TTL. If a group of weighted resource record
+	//  If you're creating a non-alias resource record set, TTL is required.  If
+	// you're creating an alias resource record set, omit TTL. Amazon Route 53 uses
+	// the value of TTL for the alias target.  If you're associating this resource
+	// record set with a health check (if you're adding a HealthCheckId element),
+	// we recommend that you specify a TTL of 60 seconds or less so clients respond
+	// quickly to changes in health status. All of the resource record sets in a
+	// group of weighted, latency, geolocation, or failover resource record sets
+	// must have the same value for TTL. If a group of weighted resource record
 	// sets includes one or more weighted alias resource record sets for which the
 	// alias target is an ELB load balancer, we recommend that you specify a TTL
 	// of 60 seconds for all of the non-alias weighted resource record sets that
@@ -7796,6 +7778,8 @@ const (
 	ResourceRecordSetRegionSaEast1 = "sa-east-1"
 	// @enum ResourceRecordSetRegion
 	ResourceRecordSetRegionCnNorth1 = "cn-north-1"
+	// @enum ResourceRecordSetRegion
+	ResourceRecordSetRegionApSouth1 = "ap-south-1"
 )
 
 const (
@@ -7833,6 +7817,8 @@ const (
 	VPCRegionApSoutheast1 = "ap-southeast-1"
 	// @enum VPCRegion
 	VPCRegionApSoutheast2 = "ap-southeast-2"
+	// @enum VPCRegion
+	VPCRegionApSouth1 = "ap-south-1"
 	// @enum VPCRegion
 	VPCRegionApNortheast1 = "ap-northeast-1"
 	// @enum VPCRegion
