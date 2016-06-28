@@ -63,6 +63,59 @@ func (c *SNS) AddPermission(input *AddPermissionInput) (*AddPermissionOutput, er
 	return out, err
 }
 
+const opCheckIfPhoneNumberIsOptedOut = "CheckIfPhoneNumberIsOptedOut"
+
+// CheckIfPhoneNumberIsOptedOutRequest generates a "aws/request.Request" representing the
+// client's request for the CheckIfPhoneNumberIsOptedOut operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CheckIfPhoneNumberIsOptedOut method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CheckIfPhoneNumberIsOptedOutRequest method.
+//    req, resp := client.CheckIfPhoneNumberIsOptedOutRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *SNS) CheckIfPhoneNumberIsOptedOutRequest(input *CheckIfPhoneNumberIsOptedOutInput) (req *request.Request, output *CheckIfPhoneNumberIsOptedOutOutput) {
+	op := &request.Operation{
+		Name:       opCheckIfPhoneNumberIsOptedOut,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CheckIfPhoneNumberIsOptedOutInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &CheckIfPhoneNumberIsOptedOutOutput{}
+	req.Data = output
+	return
+}
+
+// Accepts a phone number and indicates whether the phone holder has opted out
+// of receiving SMS messages from your account. You cannot send SMS messages
+// to a number that is opted out.
+//
+// To resume sending messages, you can opt in the number by using the OptInPhoneNumber
+// action.
+func (c *SNS) CheckIfPhoneNumberIsOptedOut(input *CheckIfPhoneNumberIsOptedOutInput) (*CheckIfPhoneNumberIsOptedOutOutput, error) {
+	req, out := c.CheckIfPhoneNumberIsOptedOutRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opConfirmSubscription = "ConfirmSubscription"
 
 // ConfirmSubscriptionRequest generates a "aws/request.Request" representing the
@@ -163,12 +216,25 @@ func (c *SNS) CreatePlatformApplicationRequest(input *CreatePlatformApplicationI
 // from the notification service. For APNS/APNS_SANDBOX, PlatformPrincipal is
 // "SSL certificate". For GCM, PlatformPrincipal is not applicable. For ADM,
 // PlatformPrincipal is "client id". The PlatformCredential is also received
-// from the notification service. For APNS/APNS_SANDBOX, PlatformCredential
-// is "private key". For GCM, PlatformCredential is "API key". For ADM, PlatformCredential
-// is "client secret". The PlatformApplicationArn that is returned when using
-// CreatePlatformApplication is then used as an attribute for the CreatePlatformEndpoint
-// action. For more information, see Using Amazon SNS Mobile Push Notifications
-// (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
+// from the notification service. For WNS, PlatformPrincipal is "Package Security
+// Identifier". For MPNS, PlatformPrincipal is "TLS certificate". For Baidu,
+// PlatformPrincipal is "API key".
+//
+// For APNS/APNS_SANDBOX, PlatformCredential is "private key". For GCM, PlatformCredential
+// is "API key". For ADM, PlatformCredential is "client secret". For WNS, PlatformCredential
+// is "secret key". For MPNS, PlatformCredential is "private key". For Baidu,
+// PlatformCredential is "secret key". The PlatformApplicationArn that is returned
+// when using CreatePlatformApplication is then used as an attribute for the
+// CreatePlatformEndpoint action. For more information, see Using Amazon SNS
+// Mobile Push Notifications (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
+// For more information about obtaining the PlatformPrincipal and PlatformCredential
+// for each of the supported push notification services, see Getting Started
+// with Apple Push Notification Service (http://docs.aws.amazon.com/sns/latest/dg/mobile-push-apns.html),
+// Getting Started with Amazon Device Messaging (http://docs.aws.amazon.com/sns/latest/dg/mobile-push-adm.html),
+// Getting Started with Baidu Cloud Push (http://docs.aws.amazon.com/sns/latest/dg/mobile-push-baidu.html),
+// Getting Started with Google Cloud Messaging for Android (http://docs.aws.amazon.com/sns/latest/dg/mobile-push-gcm.html),
+// Getting Started with MPNS (http://docs.aws.amazon.com/sns/latest/dg/mobile-push-mpns.html),
+// or Getting Started with WNS (http://docs.aws.amazon.com/sns/latest/dg/mobile-push-wns.html).
 func (c *SNS) CreatePlatformApplication(input *CreatePlatformApplicationInput) (*CreatePlatformApplicationOutput, error) {
 	req, out := c.CreatePlatformApplicationRequest(input)
 	err := req.Send()
@@ -278,7 +344,7 @@ func (c *SNS) CreateTopicRequest(input *CreateTopicInput) (req *request.Request,
 }
 
 // Creates a topic to which notifications can be published. Users can create
-// at most 3000 topics. For more information, see http://aws.amazon.com/sns
+// at most 100,000 topics. For more information, see http://aws.amazon.com/sns
 // (http://aws.amazon.com/sns/). This action is idempotent, so if the requester
 // already owns a topic with the specified name, that topic's ARN is returned
 // without creating a new topic.
@@ -331,8 +397,12 @@ func (c *SNS) DeleteEndpointRequest(input *DeleteEndpointInput) (req *request.Re
 	return
 }
 
-// Deletes the endpoint from Amazon SNS. This action is idempotent. For more
-// information, see Using Amazon SNS Mobile Push Notifications (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
+// Deletes the endpoint for a device and mobile app from Amazon SNS. This action
+// is idempotent. For more information, see Using Amazon SNS Mobile Push Notifications
+// (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
+//
+// When you delete an endpoint that is also subscribed to a topic, then you
+// must also unsubscribe the endpoint from the topic.
 func (c *SNS) DeleteEndpoint(input *DeleteEndpointInput) (*DeleteEndpointOutput, error) {
 	req, out := c.DeleteEndpointRequest(input)
 	err := req.Send()
@@ -544,6 +614,56 @@ func (c *SNS) GetPlatformApplicationAttributes(input *GetPlatformApplicationAttr
 	return out, err
 }
 
+const opGetSMSAttributes = "GetSMSAttributes"
+
+// GetSMSAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the GetSMSAttributes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetSMSAttributes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetSMSAttributesRequest method.
+//    req, resp := client.GetSMSAttributesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *SNS) GetSMSAttributesRequest(input *GetSMSAttributesInput) (req *request.Request, output *GetSMSAttributesOutput) {
+	op := &request.Operation{
+		Name:       opGetSMSAttributes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetSMSAttributesInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &GetSMSAttributesOutput{}
+	req.Data = output
+	return
+}
+
+// Returns the settings for sending SMS messages from your account.
+//
+// These settings are set with the SetSMSAttributes action.
+func (c *SNS) GetSMSAttributes(input *GetSMSAttributesInput) (*GetSMSAttributesOutput, error) {
+	req, out := c.GetSMSAttributesRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opGetSubscriptionAttributes = "GetSubscriptionAttributes"
 
 // GetSubscriptionAttributesRequest generates a "aws/request.Request" representing the
@@ -725,6 +845,62 @@ func (c *SNS) ListEndpointsByPlatformApplicationPages(input *ListEndpointsByPlat
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListEndpointsByPlatformApplicationOutput), lastPage)
 	})
+}
+
+const opListPhoneNumbersOptedOut = "ListPhoneNumbersOptedOut"
+
+// ListPhoneNumbersOptedOutRequest generates a "aws/request.Request" representing the
+// client's request for the ListPhoneNumbersOptedOut operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListPhoneNumbersOptedOut method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListPhoneNumbersOptedOutRequest method.
+//    req, resp := client.ListPhoneNumbersOptedOutRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *SNS) ListPhoneNumbersOptedOutRequest(input *ListPhoneNumbersOptedOutInput) (req *request.Request, output *ListPhoneNumbersOptedOutOutput) {
+	op := &request.Operation{
+		Name:       opListPhoneNumbersOptedOut,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListPhoneNumbersOptedOutInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListPhoneNumbersOptedOutOutput{}
+	req.Data = output
+	return
+}
+
+// Returns a list of phone numbers that are opted out, meaning you cannot send
+// SMS messages to them.
+//
+// The results for ListPhoneNumbersOptedOut are paginated, and each page returns
+// up to 100 phone numbers. If additional phone numbers are available after
+// the first page of results, then a NextToken string will be returned. To receive
+// the next page, you call ListPhoneNumbersOptedOut again using the NextToken
+// string received from the previous call. When there are no more records to
+// return, NextToken will be null.
+func (c *SNS) ListPhoneNumbersOptedOut(input *ListPhoneNumbersOptedOutInput) (*ListPhoneNumbersOptedOutOutput, error) {
+	req, out := c.ListPhoneNumbersOptedOutRequest(input)
+	err := req.Send()
+	return out, err
 }
 
 const opListPlatformApplications = "ListPlatformApplications"
@@ -1058,6 +1234,57 @@ func (c *SNS) ListTopicsPages(input *ListTopicsInput, fn func(p *ListTopicsOutpu
 	})
 }
 
+const opOptInPhoneNumber = "OptInPhoneNumber"
+
+// OptInPhoneNumberRequest generates a "aws/request.Request" representing the
+// client's request for the OptInPhoneNumber operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the OptInPhoneNumber method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the OptInPhoneNumberRequest method.
+//    req, resp := client.OptInPhoneNumberRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *SNS) OptInPhoneNumberRequest(input *OptInPhoneNumberInput) (req *request.Request, output *OptInPhoneNumberOutput) {
+	op := &request.Operation{
+		Name:       opOptInPhoneNumber,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &OptInPhoneNumberInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &OptInPhoneNumberOutput{}
+	req.Data = output
+	return
+}
+
+// Use this request to opt in a phone number that is opted out, which enables
+// you to resume sending SMS messages to the number.
+//
+// You can opt in a phone number only once every 30 days.
+func (c *SNS) OptInPhoneNumber(input *OptInPhoneNumberInput) (*OptInPhoneNumberOutput, error) {
+	req, out := c.OptInPhoneNumberRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opPublish = "Publish"
 
 // PublishRequest generates a "aws/request.Request" representing the
@@ -1102,13 +1329,16 @@ func (c *SNS) PublishRequest(input *PublishInput) (req *request.Request, output 
 // Sends a message to all of a topic's subscribed endpoints. When a messageId
 // is returned, the message has been saved and Amazon SNS will attempt to deliver
 // it to the topic's subscribers shortly. The format of the outgoing message
-// to each subscribed endpoint depends on the notification protocol selected.
+// to each subscribed endpoint depends on the notification protocol.
 //
 // To use the Publish action for sending a message to a mobile endpoint, such
-// as an app on a Kindle device or mobile phone, you must specify the EndpointArn.
-// The EndpointArn is returned when making a call with the CreatePlatformEndpoint
-// action. The second example below shows a request and response for publishing
-// to a mobile endpoint.
+// as an app on a Kindle device or mobile phone, you must specify the EndpointArn
+// for the TargetArn parameter. The EndpointArn is returned when making a call
+// with the CreatePlatformEndpoint action. The second example below shows a
+// request and response for publishing to a mobile endpoint.
+//
+// For more information about formatting messages, see Send Custom Platform-Specific
+// Payloads in Messages to Mobile Devices (http://docs.aws.amazon.com/sns/latest/dg/mobile-push-send-custommessage.html).
 func (c *SNS) Publish(input *PublishInput) (*PublishOutput, error) {
 	req, out := c.PublishRequest(input)
 	err := req.Send()
@@ -1263,8 +1493,64 @@ func (c *SNS) SetPlatformApplicationAttributesRequest(input *SetPlatformApplicat
 // Sets the attributes of the platform application object for the supported
 // push notification services, such as APNS and GCM. For more information, see
 // Using Amazon SNS Mobile Push Notifications (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
+// For information on configuring attributes for message delivery status, see
+// Using Amazon SNS Application Attributes for Message Delivery Status (http://docs.aws.amazon.com/sns/latest/dg/sns-msg-status.html).
 func (c *SNS) SetPlatformApplicationAttributes(input *SetPlatformApplicationAttributesInput) (*SetPlatformApplicationAttributesOutput, error) {
 	req, out := c.SetPlatformApplicationAttributesRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opSetSMSAttributes = "SetSMSAttributes"
+
+// SetSMSAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the SetSMSAttributes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SetSMSAttributes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SetSMSAttributesRequest method.
+//    req, resp := client.SetSMSAttributesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *SNS) SetSMSAttributesRequest(input *SetSMSAttributesInput) (req *request.Request, output *SetSMSAttributesOutput) {
+	op := &request.Operation{
+		Name:       opSetSMSAttributes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &SetSMSAttributesInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &SetSMSAttributesOutput{}
+	req.Data = output
+	return
+}
+
+// Use this request to set the default settings for sending SMS messages and
+// receiving daily SMS usage reports.
+//
+// You can override some of these settings for a single message when you use
+// the Publish action with the MessageAttributes.entry.N parameter. For more
+// information, see Sending an SMS Message (http://docs.aws.amazon.com/sns/latest/dg/sms_publish-to-phone.html)
+// in the Amazon SNS Developer Guide.
+func (c *SNS) SetSMSAttributes(input *SetSMSAttributesInput) (*SetSMSAttributesOutput, error) {
+	req, out := c.SetSMSAttributesRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -1538,6 +1824,61 @@ func (s AddPermissionOutput) String() string {
 
 // GoString returns the string representation
 func (s AddPermissionOutput) GoString() string {
+	return s.String()
+}
+
+// The input for the CheckIfPhoneNumberIsOptedOut action.
+type CheckIfPhoneNumberIsOptedOutInput struct {
+	_ struct{} `type:"structure"`
+
+	// The phone number for which you want to check the opt out status.
+	PhoneNumber *string `locationName:"phoneNumber" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CheckIfPhoneNumberIsOptedOutInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CheckIfPhoneNumberIsOptedOutInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CheckIfPhoneNumberIsOptedOutInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CheckIfPhoneNumberIsOptedOutInput"}
+	if s.PhoneNumber == nil {
+		invalidParams.Add(request.NewErrParamRequired("PhoneNumber"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// The response from the CheckIfPhoneNumberIsOptedOut action.
+type CheckIfPhoneNumberIsOptedOutOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether the phone number is opted out:
+	//
+	//  true – The phone number is opted out, meaning you cannot publish SMS messages
+	// to it.
+	//
+	// false – The phone number is opted in, meaning you can publish SMS messages
+	// to it.
+	IsOptedOut *bool `locationName:"isOptedOut" type:"boolean"`
+}
+
+// String returns the string representation
+func (s CheckIfPhoneNumberIsOptedOutOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CheckIfPhoneNumberIsOptedOutOutput) GoString() string {
 	return s.String()
 }
 
@@ -1978,15 +2319,18 @@ type GetEndpointAttributesOutput struct {
 
 	// Attributes include the following:
 	//
-	//   CustomUserData -- arbitrary user data to associate with the endpoint.
-	// Amazon SNS does not use this data. The data must be in UTF-8 format and less
-	// than 2KB.  Enabled -- flag that enables/disables delivery to the endpoint.
-	// Amazon SNS will set this to false when a notification service indicates to
-	// Amazon SNS that the endpoint is invalid. Users can set it back to true, typically
-	// after updating Token.  Token -- device token, also referred to as a registration
-	// id, for an app and mobile device. This is returned from the notification
-	// service when an app and mobile device are registered with the notification
-	// service.
+	//  CustomUserData -- arbitrary user data to associate with the endpoint. Amazon
+	// SNS does not use this data. The data must be in UTF-8 format and less than
+	// 2KB.
+	//
+	// Enabled -- flag that enables/disables delivery to the endpoint. Amazon SNS
+	// will set this to false when a notification service indicates to Amazon SNS
+	// that the endpoint is invalid. Users can set it back to true, typically after
+	// updating Token.
+	//
+	// Token -- device token, also referred to as a registration id, for an app
+	// and mobile device. This is returned from the notification service when an
+	// app and mobile device are registered with the notification service.
 	Attributes map[string]*string `type:"map"`
 }
 
@@ -2037,13 +2381,18 @@ type GetPlatformApplicationAttributesOutput struct {
 
 	// Attributes include the following:
 	//
-	//   EventEndpointCreated -- Topic ARN to which EndpointCreated event notifications
-	// should be sent.  EventEndpointDeleted -- Topic ARN to which EndpointDeleted
-	// event notifications should be sent.  EventEndpointUpdated -- Topic ARN to
-	// which EndpointUpdate event notifications should be sent.  EventDeliveryFailure
-	// -- Topic ARN to which DeliveryFailure event notifications should be sent
-	// upon Direct Publish delivery failure (permanent) to one of the application's
-	// endpoints.
+	//  EventEndpointCreated -- Topic ARN to which EndpointCreated event notifications
+	// should be sent.
+	//
+	// EventEndpointDeleted -- Topic ARN to which EndpointDeleted event notifications
+	// should be sent.
+	//
+	// EventEndpointUpdated -- Topic ARN to which EndpointUpdate event notifications
+	// should be sent.
+	//
+	// EventDeliveryFailure -- Topic ARN to which DeliveryFailure event notifications
+	// should be sent upon Direct Publish delivery failure (permanent) to one of
+	// the application's endpoints.
 	Attributes map[string]*string `type:"map"`
 }
 
@@ -2054,6 +2403,47 @@ func (s GetPlatformApplicationAttributesOutput) String() string {
 
 // GoString returns the string representation
 func (s GetPlatformApplicationAttributesOutput) GoString() string {
+	return s.String()
+}
+
+// The input for the GetSMSAttributes request.
+type GetSMSAttributesInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the individual attribute names, such as MonthlySpendLimit, for
+	// which you want values.
+	//
+	// For all attribute names, see SetSMSAttributes (http://docs.aws.amazon.com/sns/latest/api/API_SetSMSAttributes.html).
+	//
+	// If you don't use this parameter, Amazon SNS returns all SMS attributes.
+	Attributes []*string `locationName:"attributes" type:"list"`
+}
+
+// String returns the string representation
+func (s GetSMSAttributesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetSMSAttributesInput) GoString() string {
+	return s.String()
+}
+
+// The response from the GetSMSAttributes request.
+type GetSMSAttributesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The SMS attribute names and their values.
+	Attributes map[string]*string `locationName:"attributes" type:"map"`
+}
+
+// String returns the string representation
+func (s GetSMSAttributesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetSMSAttributesOutput) GoString() string {
 	return s.String()
 }
 
@@ -2095,13 +2485,21 @@ type GetSubscriptionAttributesOutput struct {
 	// A map of the subscription's attributes. Attributes in this map include the
 	// following:
 	//
-	//   SubscriptionArn -- the subscription's ARN  TopicArn -- the topic ARN that
-	// the subscription is associated with  Owner -- the AWS account ID of the subscription's
-	// owner  ConfirmationWasAuthenticated -- true if the subscription confirmation
-	// request was authenticated  DeliveryPolicy -- the JSON serialization of the
-	// subscription's delivery policy  EffectiveDeliveryPolicy -- the JSON serialization
-	// of the effective delivery policy that takes into account the topic delivery
-	// policy and account system defaults
+	//   SubscriptionArn -- the subscription's ARN
+	//
+	//   TopicArn -- the topic ARN that the subscription is associated with
+	//
+	//   Owner -- the AWS account ID of the subscription's owner
+	//
+	//   ConfirmationWasAuthenticated -- true if the subscription confirmation
+	// request was authenticated
+	//
+	//   DeliveryPolicy -- the JSON serialization of the subscription's delivery
+	// policy
+	//
+	//   EffectiveDeliveryPolicy -- the JSON serialization of the effective delivery
+	// policy that takes into account the topic delivery policy and account system
+	// defaults
 	Attributes map[string]*string `type:"map"`
 }
 
@@ -2152,16 +2550,27 @@ type GetTopicAttributesOutput struct {
 
 	// A map of the topic's attributes. Attributes in this map include the following:
 	//
-	//   TopicArn -- the topic's ARN  Owner -- the AWS account ID of the topic's
-	// owner  Policy -- the JSON serialization of the topic's access control policy
-	//  DisplayName -- the human-readable name used in the "From" field for notifications
-	// to email and email-json endpoints  SubscriptionsPending -- the number of
-	// subscriptions pending confirmation on this topic  SubscriptionsConfirmed
-	// -- the number of confirmed subscriptions on this topic  SubscriptionsDeleted
-	// -- the number of deleted subscriptions on this topic  DeliveryPolicy -- the
-	// JSON serialization of the topic's delivery policy  EffectiveDeliveryPolicy
-	// -- the JSON serialization of the effective delivery policy that takes into
-	// account system defaults
+	//  TopicArn -- the topic's ARN
+	//
+	// Owner -- the AWS account ID of the topic's owner
+	//
+	// Policy -- the JSON serialization of the topic's access control policy
+	//
+	// DisplayName -- the human-readable name used in the "From" field for notifications
+	// to email and email-json endpoints
+	//
+	// SubscriptionsPending -- the number of subscriptions pending confirmation
+	// on this topic
+	//
+	// SubscriptionsConfirmed -- the number of confirmed subscriptions on this
+	// topic
+	//
+	// SubscriptionsDeleted -- the number of deleted subscriptions on this topic
+	//
+	// DeliveryPolicy -- the JSON serialization of the topic's delivery policy
+	//
+	// EffectiveDeliveryPolicy -- the JSON serialization of the effective delivery
+	// policy that takes into account system defaults
 	Attributes map[string]*string `type:"map"`
 }
 
@@ -2230,6 +2639,49 @@ func (s ListEndpointsByPlatformApplicationOutput) String() string {
 
 // GoString returns the string representation
 func (s ListEndpointsByPlatformApplicationOutput) GoString() string {
+	return s.String()
+}
+
+// The input for the ListPhoneNumbersOptedOut action.
+type ListPhoneNumbersOptedOutInput struct {
+	_ struct{} `type:"structure"`
+
+	// A NextToken string is used when you call the ListPhoneNumbersOptedOut action
+	// to retrieve additional records that are available after the first page of
+	// results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListPhoneNumbersOptedOutInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListPhoneNumbersOptedOutInput) GoString() string {
+	return s.String()
+}
+
+// The response from the ListPhoneNumbersOptedOut action.
+type ListPhoneNumbersOptedOutOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A NextToken string is returned when you call the ListPhoneNumbersOptedOut
+	// action if additional records are available after the first page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// A list of phone numbers that are opted out of receiving SMS messages. The
+	// list is paginated, and each page can contain up to 100 phone numbers.
+	PhoneNumbers []*string `locationName:"phoneNumbers" type:"list"`
+}
+
+// String returns the string representation
+func (s ListPhoneNumbersOptedOutOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListPhoneNumbersOptedOutOutput) GoString() string {
 	return s.String()
 }
 
@@ -2459,6 +2911,52 @@ func (s *MessageAttributeValue) Validate() error {
 	return nil
 }
 
+// Input for the OptInPhoneNumber action.
+type OptInPhoneNumberInput struct {
+	_ struct{} `type:"structure"`
+
+	// The phone number to opt in.
+	PhoneNumber *string `locationName:"phoneNumber" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s OptInPhoneNumberInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OptInPhoneNumberInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OptInPhoneNumberInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OptInPhoneNumberInput"}
+	if s.PhoneNumber == nil {
+		invalidParams.Add(request.NewErrParamRequired("PhoneNumber"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// The response for the OptInPhoneNumber action.
+type OptInPhoneNumberOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s OptInPhoneNumberOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OptInPhoneNumberOutput) GoString() string {
+	return s.String()
+}
+
 // Platform application object.
 type PlatformApplication struct {
 	_ struct{} `type:"structure"`
@@ -2497,17 +2995,30 @@ type PublishInput struct {
 	// Constraints: Messages must be UTF-8 encoded strings at most 256 KB in size
 	// (262144 bytes, not 262144 characters).
 	//
-	// JSON-specific constraints:  Keys in the JSON object that correspond to supported
-	// transport protocols must have simple JSON string values.  The values will
-	// be parsed (unescaped) before they are used in outgoing messages. Outbound
-	// notifications are JSON encoded (meaning that the characters will be reescaped
-	// for sending). Values have a minimum length of 0 (the empty string, "", is
-	// allowed). Values have a maximum length bounded by the overall message size
-	// (so, including multiple protocols may limit message sizes). Non-string values
-	// will cause the key to be ignored. Keys that do not correspond to supported
-	// transport protocols are ignored. Duplicate keys are not allowed. Failure
-	// to parse or validate any key or value in the message will cause the Publish
-	// call to return an error (no partial delivery).
+	// JSON-specific constraints:
+	//
+	//   Keys in the JSON object that correspond to supported transport protocols
+	// must have simple JSON string values.
+	//
+	//   The values will be parsed (unescaped) before they are used in outgoing
+	// messages.
+	//
+	//   Outbound notifications are JSON encoded (meaning that the characters will
+	// be reescaped for sending).
+	//
+	//   Values have a minimum length of 0 (the empty string, "", is allowed).
+	//
+	//   Values have a maximum length bounded by the overall message size (so,
+	// including multiple protocols may limit message sizes).
+	//
+	//   Non-string values will cause the key to be ignored.
+	//
+	//   Keys that do not correspond to supported transport protocols are ignored.
+	//
+	//   Duplicate keys are not allowed.
+	//
+	//   Failure to parse or validate any key or value in the message will cause
+	// the Publish call to return an error (no partial delivery).
 	Message *string `type:"string" required:"true"`
 
 	// Message attributes for Publish action.
@@ -2518,10 +3029,13 @@ type PublishInput struct {
 	// message to your SMS subscribers and a longer message to your email subscribers.
 	// If you set MessageStructure to json, the value of the Message parameter must:
 	//
-	//  be a syntactically valid JSON object; and contain at least a top-level
-	// JSON key of "default" with a value that is a string.   You can define other
-	// top-level keys that define the message you want to send to a specific transport
-	// protocol (e.g., "http").
+	//   be a syntactically valid JSON object; and
+	//
+	//   contain at least a top-level JSON key of "default" with a value that is
+	// a string.
+	//
+	//    You can define other top-level keys that define the message you want
+	// to send to a specific transport protocol (e.g., "http").
 	//
 	// For information about sending different messages for each protocol using
 	// the AWS Management Console, go to Create Different Messages for Each Protocol
@@ -2530,6 +3044,12 @@ type PublishInput struct {
 	//
 	// Valid value: json
 	MessageStructure *string `type:"string"`
+
+	// The phone number to which you want to deliver an SMS message. Use E.164 format.
+	//
+	// If you don't specify a value for the PhoneNumber parameter, you must specify
+	// a value for the TargetArn or TopicArn parameters.
+	PhoneNumber *string `type:"string"`
 
 	// Optional parameter to be used as the "Subject" line when the message is delivered
 	// to email endpoints. This field will also be included, if present, in the
@@ -2541,9 +3061,15 @@ type PublishInput struct {
 	Subject *string `type:"string"`
 
 	// Either TopicArn or EndpointArn, but not both.
+	//
+	// If you don't specify a value for the TargetArn parameter, you must specify
+	// a value for the PhoneNumber or TopicArn parameters.
 	TargetArn *string `type:"string"`
 
 	// The topic you want to publish to.
+	//
+	// If you don't specify a value for the TopicArn parameter, you must specify
+	// a value for the PhoneNumber or TargetArn parameters.
 	TopicArn *string `type:"string"`
 }
 
@@ -2657,15 +3183,18 @@ type SetEndpointAttributesInput struct {
 
 	// A map of the endpoint attributes. Attributes in this map include the following:
 	//
-	//   CustomUserData -- arbitrary user data to associate with the endpoint.
-	// Amazon SNS does not use this data. The data must be in UTF-8 format and less
-	// than 2KB.  Enabled -- flag that enables/disables delivery to the endpoint.
-	// Amazon SNS will set this to false when a notification service indicates to
-	// Amazon SNS that the endpoint is invalid. Users can set it back to true, typically
-	// after updating Token.  Token -- device token, also referred to as a registration
-	// id, for an app and mobile device. This is returned from the notification
-	// service when an app and mobile device are registered with the notification
-	// service.
+	//  CustomUserData -- arbitrary user data to associate with the endpoint. Amazon
+	// SNS does not use this data. The data must be in UTF-8 format and less than
+	// 2KB.
+	//
+	// Enabled -- flag that enables/disables delivery to the endpoint. Amazon SNS
+	// will set this to false when a notification service indicates to Amazon SNS
+	// that the endpoint is invalid. Users can set it back to true, typically after
+	// updating Token.
+	//
+	// Token -- device token, also referred to as a registration id, for an app
+	// and mobile device. This is returned from the notification service when an
+	// app and mobile device are registered with the notification service.
 	Attributes map[string]*string `type:"map" required:"true"`
 
 	// EndpointArn used for SetEndpointAttributes action.
@@ -2719,18 +3248,35 @@ type SetPlatformApplicationAttributesInput struct {
 	// A map of the platform application attributes. Attributes in this map include
 	// the following:
 	//
-	//   PlatformCredential -- The credential received from the notification service.
-	// For APNS/APNS_SANDBOX, PlatformCredential is "private key". For GCM, PlatformCredential
-	// is "API key". For ADM, PlatformCredential is "client secret".  PlatformPrincipal
-	// -- The principal received from the notification service. For APNS/APNS_SANDBOX,
-	// PlatformPrincipal is "SSL certificate". For GCM, PlatformPrincipal is not
-	// applicable. For ADM, PlatformPrincipal is "client id".  EventEndpointCreated
-	// -- Topic ARN to which EndpointCreated event notifications should be sent.
-	//  EventEndpointDeleted -- Topic ARN to which EndpointDeleted event notifications
-	// should be sent.  EventEndpointUpdated -- Topic ARN to which EndpointUpdate
-	// event notifications should be sent.  EventDeliveryFailure -- Topic ARN to
-	// which DeliveryFailure event notifications should be sent upon Direct Publish
-	// delivery failure (permanent) to one of the application's endpoints.
+	//  PlatformCredential -- The credential received from the notification service.
+	// For APNS/APNS_SANDBOX, PlatformCredential is private key. For GCM, PlatformCredential
+	// is "API key". For ADM, PlatformCredential is "client secret".
+	//
+	// PlatformPrincipal -- The principal received from the notification service.
+	// For APNS/APNS_SANDBOX, PlatformPrincipal is SSL certificate. For GCM, PlatformPrincipal
+	// is not applicable. For ADM, PlatformPrincipal is "client id".
+	//
+	// EventEndpointCreated -- Topic ARN to which EndpointCreated event notifications
+	// should be sent.
+	//
+	// EventEndpointDeleted -- Topic ARN to which EndpointDeleted event notifications
+	// should be sent.
+	//
+	// EventEndpointUpdated -- Topic ARN to which EndpointUpdate event notifications
+	// should be sent.
+	//
+	// EventDeliveryFailure -- Topic ARN to which DeliveryFailure event notifications
+	// should be sent upon Direct Publish delivery failure (permanent) to one of
+	// the application's endpoints.
+	//
+	// SuccessFeedbackRoleArn -- IAM role ARN used to give Amazon SNS write access
+	// to use CloudWatch Logs on your behalf.
+	//
+	// FailureFeedbackRoleArn -- IAM role ARN used to give Amazon SNS write access
+	// to use CloudWatch Logs on your behalf.
+	//
+	// SuccessFeedbackSampleRate -- Sample rate percentage (0-100) of successfully
+	// delivered messages.
 	Attributes map[string]*string `type:"map" required:"true"`
 
 	// PlatformApplicationArn for SetPlatformApplicationAttributes action.
@@ -2774,6 +3320,119 @@ func (s SetPlatformApplicationAttributesOutput) String() string {
 
 // GoString returns the string representation
 func (s SetPlatformApplicationAttributesOutput) GoString() string {
+	return s.String()
+}
+
+// The input for the SetSMSAttributes action.
+type SetSMSAttributesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The default settings for sending SMS messages from your account. You can
+	// set values for the following attribute names:
+	//
+	// MonthlySpendLimit – The maximum amount in USD that you are willing to spend
+	// each month to send SMS messages. When Amazon SNS determines that sending
+	// an SMS message would incur a cost that exceeds this limit, it stops sending
+	// SMS messages within minutes.
+	//
+	//  Amazon SNS stops sending SMS messages within minutes of the limit being
+	// crossed. During that interval, if you continue to send SMS messages, you
+	// will incur costs that exceed your limit.
+	//
+	//  DeliveryStatusIAMRole – The ARN of the IAM role that allows Amazon SNS
+	// to write logs about SMS deliveries in CloudWatch Logs. For each SMS message
+	// that you send, Amazon SNS writes a log that includes the message price, the
+	// success or failure status, the reason for failure (if the message failed),
+	// the message dwell time, and other information.
+	//
+	// DeliveryStatusSuccessSamplingRate – The percentage of successful SMS deliveries
+	// for which Amazon SNS will write logs in CloudWatch Logs. The value can be
+	// an integer from 0 - 100. For example, to write logs only for failed deliveries,
+	// set this value to 0. To write logs for 10% of your successful deliveries,
+	// set it to 10.
+	//
+	// DefaultSenderID – A string, such as your business brand, that is displayed
+	// as the sender on the receiving device. Support for sender IDs varies by country.
+	// The sender ID can be 1 - 11 alphanumeric characters, and it must contain
+	// at least one letter.
+	//
+	// DefaultSMSType – The type of SMS message that you will send by default.
+	// You can assign the following values:
+	//
+	//   Promotional – Noncritical messages, such as marketing messages. Amazon
+	// SNS optimizes the message delivery to incur the lowest cost.
+	//
+	//   Transactional – (Default) Critical messages that support customer transactions,
+	// such as one-time passcodes for multi-factor authentication. Amazon SNS optimizes
+	// the message delivery to achieve the highest reliability.
+	//
+	//   UsageReportS3Bucket – The name of the Amazon S3 bucket to receive daily
+	// SMS usage reports from Amazon SNS. Each day, Amazon SNS will deliver a usage
+	// report as a CSV file to the bucket. The report includes the following information
+	// for each SMS message that was successfully delivered by your account:
+	//
+	//   Time that the message was published (in UTC)
+	//
+	//   Message ID
+	//
+	//   Destination phone number
+	//
+	//   Message type
+	//
+	//   Delivery status
+	//
+	//   Message price (in USD)
+	//
+	//   Part number (a message is split into multiple parts if it is too long
+	// for a single message)
+	//
+	//   Total number of parts
+	//
+	//   To receive the report, the bucket must have a policy that allows the Amazon
+	// SNS service principle to perform the s3:PutObject and s3:GetBucketLocation
+	// actions.
+	//
+	// For an example bucket policy and usage report, see Viewing Statistics About
+	// SMS Message Delivery (http://docs.aws.amazon.com/sns/latest/dg/sms_stats.html)
+	// in the Amazon SNS Developer Guide.
+	Attributes map[string]*string `locationName:"attributes" type:"map" required:"true"`
+}
+
+// String returns the string representation
+func (s SetSMSAttributesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SetSMSAttributesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SetSMSAttributesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SetSMSAttributesInput"}
+	if s.Attributes == nil {
+		invalidParams.Add(request.NewErrParamRequired("Attributes"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// The response for the SetSMSAttributes action.
+type SetSMSAttributesOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s SetSMSAttributesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SetSMSAttributesOutput) GoString() string {
 	return s.String()
 }
 
@@ -2897,23 +3556,43 @@ type SubscribeInput struct {
 
 	// The endpoint that you want to receive notifications. Endpoints vary by protocol:
 	//
-	//  For the http protocol, the endpoint is an URL beginning with "http://"
-	// For the https protocol, the endpoint is a URL beginning with "https://" For
-	// the email protocol, the endpoint is an email address For the email-json protocol,
-	// the endpoint is an email address For the sms protocol, the endpoint is a
-	// phone number of an SMS-enabled device For the sqs protocol, the endpoint
-	// is the ARN of an Amazon SQS queue For the application protocol, the endpoint
-	// is the EndpointArn of a mobile app and device.
+	//   For the http protocol, the endpoint is an URL beginning with "http://"
+	//
+	//   For the https protocol, the endpoint is a URL beginning with "https://"
+	//
+	//   For the email protocol, the endpoint is an email address
+	//
+	//   For the email-json protocol, the endpoint is an email address
+	//
+	//   For the sms protocol, the endpoint is a phone number of an SMS-enabled
+	// device
+	//
+	//   For the sqs protocol, the endpoint is the ARN of an Amazon SQS queue
+	//
+	//   For the application protocol, the endpoint is the EndpointArn of a mobile
+	// app and device.
+	//
+	//   For the lambda protocol, the endpoint is the ARN of an AWS Lambda function.
 	Endpoint *string `type:"string"`
 
 	// The protocol you want to use. Supported protocols include:
 	//
-	//   http -- delivery of JSON-encoded message via HTTP POST  https -- delivery
-	// of JSON-encoded message via HTTPS POST  email -- delivery of message via
-	// SMTP  email-json -- delivery of JSON-encoded message via SMTP  sms -- delivery
-	// of message via SMS  sqs -- delivery of JSON-encoded message to an Amazon
-	// SQS queue  application -- delivery of JSON-encoded message to an EndpointArn
-	// for a mobile app and device.
+	//   http -- delivery of JSON-encoded message via HTTP POST
+	//
+	//   https -- delivery of JSON-encoded message via HTTPS POST
+	//
+	//   email -- delivery of message via SMTP
+	//
+	//   email-json -- delivery of JSON-encoded message via SMTP
+	//
+	//   sms -- delivery of message via SMS
+	//
+	//   sqs -- delivery of JSON-encoded message to an Amazon SQS queue
+	//
+	//   application -- delivery of JSON-encoded message to an EndpointArn for
+	// a mobile app and device.
+	//
+	//   lambda -- delivery of JSON-encoded message to an AWS Lambda function.
 	Protocol *string `type:"string" required:"true"`
 
 	// The ARN of the topic you want to subscribe to.

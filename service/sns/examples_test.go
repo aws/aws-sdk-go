@@ -43,6 +43,25 @@ func ExampleSNS_AddPermission() {
 	fmt.Println(resp)
 }
 
+func ExampleSNS_CheckIfPhoneNumberIsOptedOut() {
+	svc := sns.New(session.New())
+
+	params := &sns.CheckIfPhoneNumberIsOptedOutInput{
+		PhoneNumber: aws.String("PhoneNumber"), // Required
+	}
+	resp, err := svc.CheckIfPhoneNumberIsOptedOut(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleSNS_ConfirmSubscription() {
 	svc := sns.New(session.New())
 
@@ -227,6 +246,28 @@ func ExampleSNS_GetPlatformApplicationAttributes() {
 	fmt.Println(resp)
 }
 
+func ExampleSNS_GetSMSAttributes() {
+	svc := sns.New(session.New())
+
+	params := &sns.GetSMSAttributesInput{
+		Attributes: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.GetSMSAttributes(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleSNS_GetSubscriptionAttributes() {
 	svc := sns.New(session.New())
 
@@ -273,6 +314,25 @@ func ExampleSNS_ListEndpointsByPlatformApplication() {
 		NextToken:              aws.String("String"),
 	}
 	resp, err := svc.ListEndpointsByPlatformApplication(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleSNS_ListPhoneNumbersOptedOut() {
+	svc := sns.New(session.New())
+
+	params := &sns.ListPhoneNumbersOptedOutInput{
+		NextToken: aws.String("string"),
+	}
+	resp, err := svc.ListPhoneNumbersOptedOut(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -362,6 +422,25 @@ func ExampleSNS_ListTopics() {
 	fmt.Println(resp)
 }
 
+func ExampleSNS_OptInPhoneNumber() {
+	svc := sns.New(session.New())
+
+	params := &sns.OptInPhoneNumberInput{
+		PhoneNumber: aws.String("PhoneNumber"), // Required
+	}
+	resp, err := svc.OptInPhoneNumber(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleSNS_Publish() {
 	svc := sns.New(session.New())
 
@@ -376,6 +455,7 @@ func ExampleSNS_Publish() {
 			// More values...
 		},
 		MessageStructure: aws.String("messageStructure"),
+		PhoneNumber:      aws.String("String"),
 		Subject:          aws.String("subject"),
 		TargetArn:        aws.String("String"),
 		TopicArn:         aws.String("topicARN"),
@@ -447,6 +527,28 @@ func ExampleSNS_SetPlatformApplicationAttributes() {
 		PlatformApplicationArn: aws.String("String"), // Required
 	}
 	resp, err := svc.SetPlatformApplicationAttributes(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleSNS_SetSMSAttributes() {
+	svc := sns.New(session.New())
+
+	params := &sns.SetSMSAttributesInput{
+		Attributes: map[string]*string{ // Required
+			"Key": aws.String("String"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.SetSMSAttributes(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
