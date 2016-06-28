@@ -312,10 +312,6 @@
         {
           "shape":"InvalidRequestException",
           "exception":true
-        },
-        {
-          "shape":"InvalidFleetStatusException",
-          "exception":true
         }
       ]
     },
@@ -654,6 +650,34 @@
         },
         {
           "shape":"UnauthorizedException",
+          "exception":true
+        }
+      ]
+    },
+    "DescribeRuntimeConfiguration":{
+      "name":"DescribeRuntimeConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeRuntimeConfigurationInput"},
+      "output":{"shape":"DescribeRuntimeConfigurationOutput"},
+      "errors":[
+        {
+          "shape":"UnauthorizedException",
+          "exception":true
+        },
+        {
+          "shape":"NotFoundException",
+          "exception":true
+        },
+        {
+          "shape":"InternalServiceException",
+          "exception":true,
+          "fault":true
+        },
+        {
+          "shape":"InvalidRequestException",
           "exception":true
         }
       ]
@@ -1089,6 +1113,38 @@
           "exception":true
         }
       ]
+    },
+    "UpdateRuntimeConfiguration":{
+      "name":"UpdateRuntimeConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateRuntimeConfigurationInput"},
+      "output":{"shape":"UpdateRuntimeConfigurationOutput"},
+      "errors":[
+        {
+          "shape":"UnauthorizedException",
+          "exception":true
+        },
+        {
+          "shape":"NotFoundException",
+          "exception":true
+        },
+        {
+          "shape":"InternalServiceException",
+          "exception":true,
+          "fault":true
+        },
+        {
+          "shape":"InvalidRequestException",
+          "exception":true
+        },
+        {
+          "shape":"InvalidFleetStatusException",
+          "exception":true
+        }
+      ]
     }
   },
   "shapes":{
@@ -1202,7 +1258,6 @@
       "required":[
         "Name",
         "BuildId",
-        "ServerLaunchPath",
         "EC2InstanceType"
       ],
       "members":{
@@ -1214,7 +1269,8 @@
         "LogPaths":{"shape":"StringList"},
         "EC2InstanceType":{"shape":"EC2InstanceType"},
         "EC2InboundPermissions":{"shape":"IpPermissionsList"},
-        "NewGameSessionProtectionPolicy":{"shape":"ProtectionPolicy"}
+        "NewGameSessionProtectionPolicy":{"shape":"ProtectionPolicy"},
+        "RuntimeConfiguration":{"shape":"RuntimeConfiguration"}
       }
     },
     "CreateFleetOutput":{
@@ -1474,6 +1530,19 @@
         "NextToken":{"shape":"NonZeroAndMaxString"}
       }
     },
+    "DescribeRuntimeConfigurationInput":{
+      "type":"structure",
+      "required":["FleetId"],
+      "members":{
+        "FleetId":{"shape":"FleetId"}
+      }
+    },
+    "DescribeRuntimeConfigurationOutput":{
+      "type":"structure",
+      "members":{
+        "RuntimeConfiguration":{"shape":"RuntimeConfiguration"}
+      }
+    },
     "DescribeScalingPoliciesInput":{
       "type":"structure",
       "required":["FleetId"],
@@ -1652,6 +1721,7 @@
       "type":"structure",
       "members":{
         "FleetId":{"shape":"FleetId"},
+        "ActiveServerProcessCount":{"shape":"WholeNumber"},
         "ActiveGameSessionCount":{"shape":"WholeNumber"},
         "CurrentPlayerSessionCount":{"shape":"WholeNumber"},
         "MaximumPlayerSessionCount":{"shape":"WholeNumber"}
@@ -1699,6 +1769,7 @@
         "Status":{"shape":"GameSessionStatus"},
         "GameProperties":{"shape":"GamePropertyList"},
         "IpAddress":{"shape":"IpAddress"},
+        "Port":{"shape":"PortNumber"},
         "PlayerSessionCreationPolicy":{"shape":"PlayerSessionCreationPolicy"}
       }
     },
@@ -1908,7 +1979,8 @@
         "CreationTime":{"shape":"Timestamp"},
         "TerminationTime":{"shape":"Timestamp"},
         "Status":{"shape":"PlayerSessionStatus"},
-        "IpAddress":{"shape":"IpAddress"}
+        "IpAddress":{"shape":"IpAddress"},
+        "Port":{"shape":"PortNumber"}
       }
     },
     "PlayerSessionCreationPolicy":{
@@ -2026,6 +2098,12 @@
         "TERMINAL"
       ]
     },
+    "RuntimeConfiguration":{
+      "type":"structure",
+      "members":{
+        "ServerProcesses":{"shape":"ServerProcessList"}
+      }
+    },
     "S3Location":{
       "type":"structure",
       "members":{
@@ -2071,6 +2149,24 @@
         "DELETED",
         "ERROR"
       ]
+    },
+    "ServerProcess":{
+      "type":"structure",
+      "required":[
+        "LaunchPath",
+        "ConcurrentExecutions"
+      ],
+      "members":{
+        "LaunchPath":{"shape":"NonZeroAndMaxString"},
+        "Parameters":{"shape":"NonZeroAndMaxString"},
+        "ConcurrentExecutions":{"shape":"PositiveInteger"}
+      }
+    },
+    "ServerProcessList":{
+      "type":"list",
+      "member":{"shape":"ServerProcess"},
+      "min":1,
+      "max":50
     },
     "StringList":{
       "type":"list",
@@ -2184,6 +2280,23 @@
       "type":"structure",
       "members":{
         "GameSession":{"shape":"GameSession"}
+      }
+    },
+    "UpdateRuntimeConfigurationInput":{
+      "type":"structure",
+      "required":[
+        "FleetId",
+        "RuntimeConfiguration"
+      ],
+      "members":{
+        "FleetId":{"shape":"FleetId"},
+        "RuntimeConfiguration":{"shape":"RuntimeConfiguration"}
+      }
+    },
+    "UpdateRuntimeConfigurationOutput":{
+      "type":"structure",
+      "members":{
+        "RuntimeConfiguration":{"shape":"RuntimeConfiguration"}
       }
     },
     "WholeNumber":{
