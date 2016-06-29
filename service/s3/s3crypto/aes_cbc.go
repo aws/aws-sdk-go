@@ -1,24 +1,23 @@
 package s3crypto
 
 import (
-	"bytes"
 	"crypto/aes"
 	"crypto/cipher"
 	"crypto/rand"
 	"io"
-	"io/ioutil"
 )
 
 // AESCBC Symmetric encryption
 type AESCBC struct {
 	block     cipher.Block
 	iv        []byte
+	key       []byte
 	encrypter cipher.BlockMode
 	decrypter cipher.BlockMode
 }
 
 const cbcKeySize = 32
-const cbcIvSize = 16
+const cbcIVSize = 16
 
 // NewAESCBC creates a new AES CBC cypto handler. It suffices
 // both interfaces of Encrypter and Decrypter
@@ -27,45 +26,87 @@ const cbcIvSize = 16
 //
 // TODO: See if there is a better way of randomly generating
 // keys and iv
-func NewAESCBC(key, iv []byte) (Cipher, error) {
-	if len(key) == 0 {
-		key = make([]byte, cbcKeySize)
-		iv = make([]byte, cbcIvSize)
-		rand.Read(key)
-		rand.Read(iv)
+func NewAESCBC(kp *SymmetricKeyProvider) (Cipher, error) {
+	if len(kp.Key) == 0 {
+		kp.Key = make([]byte, cbcKeySize)
+		kp.IV = make([]byte, cbcIVSize)
+		rand.Read(kp.Key)
+		rand.Read(kp.IV)
 	}
 
-	block, err := aes.NewCipher(padAESKey(key))
+	block, err := aes.NewCipher(padAESKey(kp.Key))
 	if err != nil {
 		return nil, err
 	}
 
-	encrypter := cipher.NewCBCEncrypter(block, iv)
-	decrypter := cipher.NewCBCDecrypter(block, iv)
-	return &AESCBC{block, iv, encrypter, decrypter}, nil
+	encrypter := cipher.NewCBCEncrypter(block, kp.IV)
+	decrypter := cipher.NewCBCDecrypter(block, kp.IV)
+	return &AESCBC{block, kp.Key, kp.IV, encrypter, decrypter}, nil
 }
 
 // Encrypt will encrypt the data using AES CBC
-func (c *AESCBC) Encrypt(data io.Reader) (*bytes.Reader, error) {
-	plaintext, err := ioutil.ReadAll(data)
-	if err != nil {
-		return bytes.NewReader([]byte{}), err
+// TODO: Return an io.Writer? This will allow Decrypt and Encrypt
+// to behave in the same way
+func (c *AESCBC) Encrypt(src io.Reader) io.Reader {
+	reader := &cbcEncryptReader{
+		c.encrypter,
+		src,
 	}
-	//encrypter := cipher.NewCBCEncrypter(c.block, c.iv)
-
-	ciphertext := make([]byte, len(plaintext))
-	plaintext = PadPKCS5(plaintext, c.encrypter.BlockSize())
-	c.encrypter.CryptBlocks(ciphertext, plaintext)
-	return bytes.NewReader(ciphertext), nil
+	return reader
 }
 
 // Decrypt will decrypt the data using AES CBC
-func (c *AESCBC) Decrypt(data io.Reader) (*bytes.Reader, error) {
-	ciphertext, err := ioutil.ReadAll(data)
-	if err != nil {
-		return bytes.NewReader([]byte{}), err
+func (c *AESCBC) Decrypt(src io.Reader) io.Reader {
+	reader := &cbcDecryptReader{
+		c.decrypter,
+		src,
 	}
-	c.decrypter.CryptBlocks(ciphertext, ciphertext)
-	ciphertext = UnpadPKCS5(ciphertext, c.block.BlockSize())
-	return bytes.NewReader(ciphertext), nil
+	return reader
+}
+
+type cbcEncryptReader struct {
+	encrypter cipher.BlockMode
+	src       io.Reader
+}
+
+// Need to ensure each block read is a multiple of the block size
+// TODO:
+// create a blocksizeReader and wrap io.Reader in it
+func (writer *cbcEncryptReader) Read(plaintext []byte) (int, error) {
+	n, err := writer.src.Read(plaintext)
+	if err != nil {
+		return n, err
+	}
+	plaintext = PadPKCS5(plaintext[:n], writer.encrypter.BlockSize())
+
+	writer.encrypter.CryptBlocks(plaintext, plaintext)
+	return n, err
+}
+
+type cbcDecryptWriter struct {
+	decrypter cipher.BlockMode
+	dst       io.Writer
+}
+
+func (writer *cbcDecryptWriter) Write(ciphertext []byte) (int, error) {
+	writer.decrypter.CryptBlocks(ciphertext, ciphertext)
+	ciphertext = UnpadPKCS5(ciphertext, writer.decrypter.BlockSize())
+	return writer.dst.Write(ciphertext)
+}
+
+type cbcDecryptReader struct {
+	decrypter cipher.BlockMode
+	src       io.Reader
+}
+
+func (reader *cbcDecryptReader) Read(ciphertext []byte) (int, error) {
+	n, err := reader.src.Read(ciphertext)
+	if err != nil {
+		return n, err
+	}
+
+	ciphertext = ciphertext[:n]
+	reader.decrypter.CryptBlocks(ciphertext, ciphertext)
+	ciphertext = UnpadPKCS5(ciphertext, reader.decrypter.BlockSize())
+	return n, err
 }

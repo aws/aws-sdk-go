@@ -2,7 +2,6 @@ package s3crypto
 
 import (
 	"bytes"
-	"io/ioutil"
 )
 
 func padAESKey(key []byte) []byte {
@@ -53,13 +52,4 @@ func UnpadPKCS5(src []byte, blocksize int) []byte {
 	}
 	unpadding := int(src[length-1])
 	return src[:(length - unpadding)]
-}
-
-func decryptWithGCM(data []byte) []byte {
-	gcm, err := NewAESGCM(make([]byte, 32), make([]byte, 12))
-	_ = err
-	out, err := gcm.Decrypt(bytes.NewReader(data))
-	_ = err
-	b, err := ioutil.ReadAll(out)
-	return b
 }

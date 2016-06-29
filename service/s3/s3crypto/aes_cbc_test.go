@@ -63,27 +63,31 @@ func TestAES_CBC_NIST_CBCMMT256_case_9(t *testing.T) {
 }
 
 func getCipherData(t *testing.T, iv, key, plaintext []byte) (io.Reader, Cipher) {
-	c, err := NewAESCBC(key, iv)
+	kp := &SymmetricKeyProvider{key, iv}
+	c, err := NewAESCBC(kp)
 	assert.Nil(t, err)
-	cipherdata, err := c.Encrypt(bytes.NewBuffer(plaintext))
+	cipherdata := c.Encrypt(bytes.NewBuffer(plaintext))
 	assert.Nil(t, err)
 	return cipherdata, c
 }
 
 func getCipherDataParts(t *testing.T, iv, key, plaintext []byte, partSize int) (io.Reader, Cipher) {
-	c, err := NewAESCBC(key, iv)
+	kp := &SymmetricKeyProvider{key, iv}
+	c, err := NewAESCBC(kp)
 	assert.Nil(t, err)
 	cipherdata := bytes.NewBuffer([]byte{})
 	for len(plaintext) > 0 {
-		var data *bytes.Reader
+		var data io.Reader
 		if len(plaintext) >= partSize {
-			data, err = c.Encrypt(bytes.NewReader(plaintext[:partSize]))
+			data = c.Encrypt(bytes.NewReader(plaintext[:partSize]))
 		} else {
-			data, err = c.Encrypt(bytes.NewReader(plaintext[:len(plaintext)]))
+			data = c.Encrypt(bytes.NewReader(plaintext[:len(plaintext)]))
 		}
-		assert.Nil(t, err)
 
-		data.WriteTo(cipherdata)
+		b, err := ioutil.ReadAll(data)
+		assert.Nil(t, err)
+		cipherdata.Write(b)
+		//data.WriteTo(cipherdata)
 		if len(plaintext) < partSize {
 			break
 		}
@@ -113,8 +117,7 @@ func aescbcEncryptParts(t *testing.T, iv, key, plaintext, expected []byte, partS
 
 func aescbcDecrypt(t *testing.T, iv, key, plaintext []byte) {
 	cipherdata, c := getCipherData(t, iv, key, plaintext)
-	data, err := c.Decrypt(cipherdata)
-	assert.Nil(t, err)
+	data := c.Decrypt(cipherdata)
 
 	text, err := ioutil.ReadAll(data)
 	assert.Nil(t, err)
@@ -135,8 +138,7 @@ func aescbcDecryptParts(t *testing.T, iv, key, plaintext []byte, partSize int) {
 		} else {
 			n = len(text)
 		}
-		data, err := c.Decrypt(bytes.NewReader(text[:n]))
-		assert.Nil(t, err)
+		data := c.Decrypt(bytes.NewReader(text[:n]))
 		text = text[n:]
 		b, err := ioutil.ReadAll(data)
 		assert.Nil(t, err)
