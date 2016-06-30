@@ -12,19 +12,28 @@ import (
 )
 
 // This is the Amazon Simple Systems Manager (SSM) API Reference. SSM enables
-// you to remotely manage the configuration of your Amazon EC2 instance using
-// scripts or commands with either an on-demand solution called SSM Run Command
-// or a lightweight instance configuration solution called SSM Config.
+// you to remotely manage the configuration of your on-premises servers and
+// virtual machines (VMs) and your Amazon EC2 instances using scripts, commands,
+// or the Amazon EC2 console. SSM includes an on-demand solution called Amazon
+// EC2 Run Command and a lightweight instance configuration solution called
+// SSM Config.
 //
-// This references is intended to be used with the SSM User Guide for Linux
-// (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/execute-remote-commands.html)
+// This references is intended to be used with the EC2 Run Command User Guide
+// for Linux (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/execute-remote-commands.html)
 // or Windows (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/execute-remote-commands.html).
 //
-//  Run Command
+//  You must register your on-premises servers and VMs through an activation
+// process before you can configure them using Run Command. Registered servers
+// and VMs are called managed instances. For more information, see Setting Up
+// Run Command On Managed Instances (On-Premises Servers and VMs) on Linux (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/managed-instances.html)
+// or Setting Up Run Command On Managed Instances (On-Premises Servers and VMs)
+// on Windows (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/managed-instances.html).
+//
+//   Run Command
 //
 // Run Command provides an on-demand experience for executing commands. You
-// can use pre-defined Amazon SSM documents to perform the actions listed later
-// in this section, or you can create your own documents. With these documents,
+// can use pre-defined SSM documents to perform the actions listed later in
+// this section, or you can create your own documents. With these documents,
 // you can remotely configure your instances by sending commands using the Commands
 // page in the Amazon EC2 console (http://console.aws.amazon.com/ec2/), AWS
 // Tools for Windows PowerShell (http://docs.aws.amazon.com/powershell/latest/reference/items/Amazon_Simple_Systems_Management_cmdlets.html),
@@ -58,7 +67,7 @@ import (
 // SSM Config is available using the AWS CLI or the AWS Tools for Windows PowerShell.
 // For more information, see Managing Windows Instance Configuration (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-configuration-manage.html).
 //
-// SSM Config and SSM Run Command include the following pre-defined documents.
+// SSM Config and Run Command include the following pre-defined documents.
 //
 //  Linux
 //
@@ -100,7 +109,7 @@ import (
 // Linux and the EC2Config service runs in the Local System account on Windows.
 // If a user has permission to execute any of the pre-defined SSM documents
 // (any document that begins with AWS-*) then that user also has administrator
-// access to the instance. Delegate access to SSM and Run Command judiciously.
+// access to the instance. Delegate access to Run Command and SSM Config judiciously.
 // This becomes extremely important if you create your own SSM documents. Amazon
 // Web Services does not provide guidance about how to create secure SSM documents.
 // You create SSM documents and delegate access to Run Command at your own risk.
