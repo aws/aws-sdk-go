@@ -2,6 +2,7 @@ package s3crypto
 
 import (
 	//"bytes"
+	"fmt"
 	//"encoding/json"
 
 	//"github.com/aws/aws-sdk-go/aws"
@@ -138,5 +139,6 @@ func (strat *headerSaveStrategy) Save(env Envelope, input *s3.PutObjectInput) er
 	input.Metadata["X-Amz-Tag-Len"] = &env.TagLen
 	input.Metadata["X-Amz-Unencrypted-Content-Md5"] = &env.UnencryptedMD5
 	input.Metadata["X-Amz-Unencrypted-Content-Length"] = &env.UnencryptedContentLen
+	fmt.Println("INPUT!", input)
 	return nil
 }

@@ -9,18 +9,17 @@ import (
 // AESECB Symmetric encryption used for masterkey
 type AESECB struct {
 	block cipher.Block
-	MasterKey
 }
 
 // NewAESECB creates a new AES CBC cypto handler. It suffices
 // both interfaces of Encrypter and Decrypter
-func NewAESECB(key []byte) (Wrap, error) {
+func NewAESECB(key []byte) (Cipher, error) {
 	block, err := aes.NewCipher(key)
 	if err != nil {
 		return nil, err
 	}
 
-	return &AESECB{block, MasterKey{key}}, nil
+	return &AESECB{block}, nil
 }
 
 // Encrypt will encrypt the data using AES ECB

@@ -5,8 +5,8 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
 )
 
@@ -32,18 +32,27 @@ type Config struct {
 	// InstructionSuffix is the instruction file name suffix. If it is empty, then
 	// the item key will be used followed by .instruction
 	InstructionSuffix string
+	// This is used to instantiate new kms clients when calling GetObject
+	KMSSession *session.Session
+	S3Session  *session.Session
+
+	// Used for instantiating non-kms key providers when getting objects
+	MasterKey []byte
 }
 
 // TODO: Add default minimum file and if the contents is less than that, then just
 // load it all into memory
 
 // New creates a new s3crypto Client
-func New(mode CryptoMode, c client.ConfigProvider, options ...func(*Client)) *Client {
+func New(mode CryptoMode, options ...func(*Client)) *Client {
+	sess := session.New()
 	// TODO: Change this to strict authenticaton mode
 	client := &Client{
 		Config: Config{
 			Mode:         mode,
 			SaveStrategy: NewHeaderSaveStrategy(),
+			KMSSession:   sess,
+			S3Session:    sess,
 		},
 	}
 
@@ -52,7 +61,7 @@ func New(mode CryptoMode, c client.ConfigProvider, options ...func(*Client)) *Cl
 	}
 
 	// TODO: Do we want to support S3 configuration?
-	client.S3 = s3.New(c)
+	client.S3 = s3.New(client.Config.S3Session)
 	return client
 }
 
@@ -76,7 +85,6 @@ func (c *Client) PutObjectRequest(input *s3.PutObjectInput) (*request.Request, *
 			r.Error = err
 			return
 		}
-		fmt.Println("MD5", md5.GetValue())
 
 		req.HTTPRequest.Header.Set("X-Amz-Content-Sha256", fmt.Sprintf("%d", sha.GetValue()))
 
@@ -132,7 +140,10 @@ func (c *Client) GetObjectRequest(input *s3.GetObjectInput) (*request.Request, *
 			return
 		}
 
-		mode, err := modeFactory(env, c.Config.Mode)
+		// TODO: Pass just Config instead of mode
+		// If KMS should return the correct CEK algorithm with the proper
+		// KMS key provider
+		mode, err := modeFactory(env, c.Config)
 		if err != nil {
 			r.Error = err
 			return

@@ -3,7 +3,6 @@ package s3crypto
 import (
 	"crypto/aes"
 	"crypto/cipher"
-	"crypto/rand"
 	"io"
 )
 
@@ -19,6 +18,23 @@ type AESCBC struct {
 const cbcKeySize = 32
 const cbcIVSize = 16
 
+// NewAESCBCRandom ...
+func NewAESCBCRandom(kp KeyProvider) (Cipher, error) {
+	key, err := kp.GenerateKey(cbcKeySize)
+	if err != nil {
+		return nil, err
+	}
+
+	iv, err := kp.GenerateIV(cbcIVSize)
+	if err != nil {
+		return nil, err
+	}
+
+	kp.SetKey(key)
+	kp.SetIV(iv)
+	return NewAESCBC(kp)
+}
+
 // NewAESCBC creates a new AES CBC cypto handler. It suffices
 // both interfaces of Encrypter and Decrypter
 // If an empty key or iv is provided, a randomly generated
@@ -26,22 +42,15 @@ const cbcIVSize = 16
 //
 // TODO: See if there is a better way of randomly generating
 // keys and iv
-func NewAESCBC(kp *SymmetricKeyProvider) (Cipher, error) {
-	if len(kp.Key) == 0 {
-		kp.Key = make([]byte, cbcKeySize)
-		kp.IV = make([]byte, cbcIVSize)
-		rand.Read(kp.Key)
-		rand.Read(kp.IV)
-	}
-
-	block, err := aes.NewCipher(padAESKey(kp.Key))
+func NewAESCBC(kp KeyProvider) (Cipher, error) {
+	block, err := aes.NewCipher(padAESKey(kp.GetKey()))
 	if err != nil {
 		return nil, err
 	}
 
-	encrypter := cipher.NewCBCEncrypter(block, kp.IV)
-	decrypter := cipher.NewCBCDecrypter(block, kp.IV)
-	return &AESCBC{block, kp.Key, kp.IV, encrypter, decrypter}, nil
+	encrypter := cipher.NewCBCEncrypter(block, kp.GetIV())
+	decrypter := cipher.NewCBCDecrypter(block, kp.GetIV())
+	return &AESCBC{block, kp.GetKey(), kp.GetIV(), encrypter, decrypter}, nil
 }
 
 // Encrypt will encrypt the data using AES CBC

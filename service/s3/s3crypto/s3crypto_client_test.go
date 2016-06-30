@@ -18,9 +18,9 @@ import (
 
 func TestDefaultConfigValues(t *testing.T) {
 	mkey, _ := hex.DecodeString("2b7e151628aed2a6abf7158809cf4f3c")
-	masterkey, err := NewAESECB([]byte(mkey))
+	cipher, err := NewAESECB([]byte(mkey))
 	assert.Nil(t, err)
-	c := New(EncryptionOnly(masterkey), session.New())
+	c := New(EncryptionOnly(NewSymmetricKeyProvider(cipher)), func(c *Client) { c.Config.S3Session = session.New() })
 
 	assert.NotNil(t, c)
 	assert.NotNil(t, c.Config.Mode)
@@ -29,10 +29,9 @@ func TestDefaultConfigValues(t *testing.T) {
 
 func TestPutObject(t *testing.T) {
 	mkey, _ := hex.DecodeString("2b7e151628aed2a6abf7158809cf4f3c")
-	masterkey, err := NewAESECB([]byte(mkey))
+	cipher, err := NewAESECB([]byte(mkey))
 	assert.Nil(t, err)
-
-	c := New(EncryptionOnly(masterkey), session.New())
+	c := New(EncryptionOnly(NewSymmetricKeyProvider(cipher)), func(c *Client) { c.Config.S3Session = session.New() })
 
 	key := "test-key"
 	body := "test body"
@@ -55,7 +54,6 @@ func TestPutObject(t *testing.T) {
 		StatusCode: 200,
 	}
 	req.Handlers.Send.PushBack(func(r *request.Request) {
-		t.Log(input.Metadata)
 		assert.NotEmpty(t, *input.Metadata["X-Amz-Key-V2"])
 		assert.NotEmpty(t, *input.Metadata["X-Amz-Unencrypted-Content-Md5"])
 		assert.Equal(t, *input.Metadata["X-Amz-Unencrypted-Content-Length"], fmt.Sprintf("%d", len(body)))

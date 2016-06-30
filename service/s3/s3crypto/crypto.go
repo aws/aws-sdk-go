@@ -74,30 +74,3 @@ func (rc *CryptoReadCloser) Read(b []byte) (int, error) {
 	}
 	return rc.Decrypter.Read(b)
 }
-
-// SymmetricKeyProvider placeholder
-type SymmetricKeyProvider struct {
-	Key []byte
-	IV  []byte
-}
-
-// MasterKeyIface is a interface for master keys
-type MasterKeyIface interface {
-	GetMasterKey() []byte
-}
-
-// MasterKey is used for algorithms that support the Wrap interface
-type MasterKey struct {
-	Key []byte
-}
-
-// GetMasterKey returns the masterykey
-func (mk *MasterKey) GetMasterKey() []byte {
-	return mk.Key
-}
-
-// Wrap interface handles key wrapping of data
-type Wrap interface {
-	Cipher
-	MasterKeyIface
-}

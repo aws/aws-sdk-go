@@ -5,8 +5,8 @@ import (
 )
 
 type decryptionMode struct {
-	wrap Wrap
-	cek  Decrypter
+	kp  KeyProvider
+	cek Decrypter
 }
 
 // DecryptContents does not use key and iv because the decrypter was instantiated earlier

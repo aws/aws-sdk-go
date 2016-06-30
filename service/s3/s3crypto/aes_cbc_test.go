@@ -63,7 +63,7 @@ func TestAES_CBC_NIST_CBCMMT256_case_9(t *testing.T) {
 }
 
 func getCipherData(t *testing.T, iv, key, plaintext []byte) (io.Reader, Cipher) {
-	kp := &SymmetricKeyProvider{key, iv}
+	kp := &SymmetricKeyProvider{key: key, iv: iv}
 	c, err := NewAESCBC(kp)
 	assert.Nil(t, err)
 	cipherdata := c.Encrypt(bytes.NewBuffer(plaintext))
@@ -72,7 +72,7 @@ func getCipherData(t *testing.T, iv, key, plaintext []byte) (io.Reader, Cipher) 
 }
 
 func getCipherDataParts(t *testing.T, iv, key, plaintext []byte, partSize int) (io.Reader, Cipher) {
-	kp := &SymmetricKeyProvider{key, iv}
+	kp := &SymmetricKeyProvider{key: key, iv: iv}
 	c, err := NewAESCBC(kp)
 	assert.Nil(t, err)
 	cipherdata := bytes.NewBuffer([]byte{})

@@ -12,26 +12,26 @@ type EncryptionOnlyMode struct {
 	iv  []byte
 	// Cipher will hold either a master symmetric key or a KMS client
 	// for encrypting the Envelope key
-	Wrap
+	BaseKeyProvider
 }
 
 // EncryptionOnly returns a new encryption only mode structure with a specific cipher
 // for the master key
-func EncryptionOnly(wrap Wrap) CryptoMode {
-	return &EncryptionOnlyMode{Wrap: wrap}
+// TODO: Wrap may not be needed and just put master key stuff on KeyProvider
+func EncryptionOnly(kp KeyProvider) CryptoMode {
+	return &EncryptionOnlyMode{BaseKeyProvider: BaseKeyProvider{kp}}
 }
 
 // EncryptContents will generate a random key and iv and encrypt the data using cbc
 func (mode *EncryptionOnlyMode) EncryptContents(dst io.Writer, src io.Reader) error {
-	kp := &SymmetricKeyProvider{}
 	// Sets the key and iv to a randomly generated key and iv
-	cbc, err := NewAESCBC(kp)
+	cbc, err := NewAESCBCRandom(mode)
 	if err != nil {
 		return err
 	}
 
-	mode.key = kp.Key
-	mode.iv = kp.IV
+	// TODO: Don't think this is needed
+	// kp.SetEncryptedKey(mode.Wrap)
 	reader := cbc.Encrypt(src)
 	_, err = translate(dst, reader)
 	return err
@@ -39,7 +39,7 @@ func (mode *EncryptionOnlyMode) EncryptContents(dst io.Writer, src io.Reader) er
 
 // DecryptContents placeholder
 func (mode *EncryptionOnlyMode) DecryptContents(key, iv []byte, src io.ReadCloser) (io.ReadCloser, error) {
-	kp := &SymmetricKeyProvider{key, iv}
+	kp := &SymmetricKeyProvider{key: key, iv: iv}
 	cbc, err := NewAESCBC(kp)
 	if err != nil {
 		return nil, err
@@ -47,14 +47,4 @@ func (mode *EncryptionOnlyMode) DecryptContents(key, iv []byte, src io.ReadClose
 
 	reader := cbc.Decrypt(src)
 	return &CryptoReadCloser{Body: src, Decrypter: reader}, nil
-}
-
-// GetKey returns the randomly generated key
-func (mode *EncryptionOnlyMode) GetKey() []byte {
-	return mode.key
-}
-
-// GetIV returns the randomly generated iv
-func (mode *EncryptionOnlyMode) GetIV() []byte {
-	return mode.iv
 }
