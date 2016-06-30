@@ -33,7 +33,9 @@
       "errors":[
         {"shape":"KMSKeyNotAccessibleFault"},
         {"shape":"ResourceAlreadyExistsFault"},
-        {"shape":"ResourceQuotaExceededFault"}
+        {"shape":"ResourceQuotaExceededFault"},
+        {"shape":"InvalidResourceStateFault"},
+        {"shape":"ResourceNotFoundFault"}
       ]
     },
     "CreateReplicationInstance":{
@@ -503,6 +505,7 @@
         "ReplicationInstanceIdentifier":{"shape":"String"},
         "AllocatedStorage":{"shape":"IntegerOptional"},
         "ReplicationInstanceClass":{"shape":"String"},
+        "VpcSecurityGroupIds":{"shape":"VpcSecurityGroupIdList"},
         "AvailabilityZone":{"shape":"String"},
         "ReplicationSubnetGroupIdentifier":{"shape":"String"},
         "PreferredMaintenanceWindow":{"shape":"String"},
@@ -914,6 +917,7 @@
         "AllocatedStorage":{"shape":"IntegerOptional"},
         "ApplyImmediately":{"shape":"Boolean"},
         "ReplicationInstanceClass":{"shape":"String"},
+        "VpcSecurityGroupIds":{"shape":"VpcSecurityGroupIdList"},
         "PreferredMaintenanceWindow":{"shape":"String"},
         "EngineVersion":{"shape":"String"},
         "AllowMajorVersionUpgrade":{"shape":"Boolean"},
@@ -1030,6 +1034,7 @@
         "ReplicationInstanceStatus":{"shape":"String"},
         "AllocatedStorage":{"shape":"Integer"},
         "InstanceCreateTime":{"shape":"TStamp"},
+        "VpcSecurityGroups":{"shape":"VpcSecurityGroupMembershipList"},
         "AvailabilityZone":{"shape":"String"},
         "ReplicationSubnetGroup":{"shape":"ReplicationSubnetGroup"},
         "PreferredMaintenanceWindow":{"shape":"String"},
@@ -1294,6 +1299,27 @@
         "message":{"shape":"ExceptionMessage"}
       },
       "exception":true
+    },
+    "VpcSecurityGroupIdList":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"VpcSecurityGroupId"
+      }
+    },
+    "VpcSecurityGroupMembership":{
+      "type":"structure",
+      "members":{
+        "VpcSecurityGroupId":{"shape":"String"},
+        "Status":{"shape":"String"}
+      }
+    },
+    "VpcSecurityGroupMembershipList":{
+      "type":"list",
+      "member":{
+        "shape":"VpcSecurityGroupMembership",
+        "locationName":"VpcSecurityGroupMembership"
+      }
     }
   }
 }

@@ -297,7 +297,7 @@ func (c *DatabaseMigrationService) DeleteEndpointRequest(input *DeleteEndpointIn
 
 // Deletes the specified endpoint.
 //
-// All tasks associated with the endpoint must be deleted before you can delete
+//  All tasks associated with the endpoint must be deleted before you can delete
 // the endpoint.
 func (c *DatabaseMigrationService) DeleteEndpoint(input *DeleteEndpointInput) (*DeleteEndpointOutput, error) {
 	req, out := c.DeleteEndpointRequest(input)
@@ -348,7 +348,7 @@ func (c *DatabaseMigrationService) DeleteReplicationInstanceRequest(input *Delet
 
 // Deletes the specified replication instance.
 //
-// You must delete any migration tasks that are associated with the replication
+//  You must delete any migration tasks that are associated with the replication
 // instance before you can delete it.
 func (c *DatabaseMigrationService) DeleteReplicationInstance(input *DeleteReplicationInstanceInput) (*DeleteReplicationInstanceOutput, error) {
 	req, out := c.DeleteReplicationInstanceRequest(input)
@@ -1572,7 +1572,7 @@ type CreateEndpointInput struct {
 	EndpointType *string `type:"string" required:"true" enum:"ReplicationEndpointTypeValue"`
 
 	// The type of engine for the endpoint. Valid values include MYSQL, ORACLE,
-	// POSTGRES, MARIADB, AURORA, SQLSERVER.
+	// POSTGRES, MARIADB, AURORA, REDSHIFT, and SQLSERVER.
 	EngineName *string `type:"string" required:"true"`
 
 	// Additional attributes associated with the connection.
@@ -1674,7 +1674,7 @@ type CreateReplicationInstanceInput struct {
 
 	// The EC2 Availability Zone that the replication instance will be created in.
 	//
-	//  Default: A random, system-chosen Availability Zone in the endpoint's region.
+	// Default: A random, system-chosen Availability Zone in the endpoint's region.
 	//
 	//  Example: us-east-1d
 	AvailabilityZone *string `type:"string"`
@@ -1694,8 +1694,8 @@ type CreateReplicationInstanceInput struct {
 	//
 	//  Format: ddd:hh24:mi-ddd:hh24:mi
 	//
-	//  Default: A 30-minute window selected at random from an 8-hour block of
-	// time per region, occurring on a random day of the week.
+	// Default: A 30-minute window selected at random from an 8-hour block of time
+	// per region, occurring on a random day of the week.
 	//
 	// Valid Days: Mon, Tue, Wed, Thu, Fri, Sat, Sun
 	//
@@ -1719,9 +1719,13 @@ type CreateReplicationInstanceInput struct {
 	//
 	// Constraints:
 	//
-	//  Must contain from 1 to 63 alphanumeric characters or hyphens. First character
-	// must be a letter. Cannot end with a hyphen or contain two consecutive hyphens.
-	//  Example: myrepinstance
+	//   Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//
+	//   First character must be a letter.
+	//
+	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//
+	//   Example: myrepinstance
 	ReplicationInstanceIdentifier *string `type:"string" required:"true"`
 
 	// A subnet group to associate with the replication instance.
@@ -1729,6 +1733,11 @@ type CreateReplicationInstanceInput struct {
 
 	// Tags to be associated with the replication instance.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
+
+	// Specifies the VPC security group to be used with the replication instance.
+	// The VPC security group must work with the VPC containing the replication
+	// instance.
+	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
 }
 
 // String returns the string representation
@@ -1858,8 +1867,11 @@ type CreateReplicationTaskInput struct {
 	//
 	// Constraints:
 	//
-	//  Must contain from 1 to 63 alphanumeric characters or hyphens. First character
-	// must be a letter. Cannot end with a hyphen or contain two consecutive hyphens.
+	//   Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//
+	//   First character must be a letter.
+	//
+	//   Cannot end with a hyphen or contain two consecutive hyphens.
 	ReplicationTaskIdentifier *string `type:"string" required:"true"`
 
 	// Settings for the task, such as target metadata settings.
@@ -2986,7 +2998,7 @@ type ModifyEndpointInput struct {
 	EndpointType *string `type:"string" enum:"ReplicationEndpointTypeValue"`
 
 	// The type of engine for the endpoint. Valid values include MYSQL, ORACLE,
-	// POSTGRES.
+	// POSTGRES, MARIADB, AURORA, REDSHIFT, and SQLSERVER.
 	EngineName *string `type:"string"`
 
 	// Additional attributes associated with the connection.
@@ -3105,6 +3117,11 @@ type ModifyReplicationInstanceInput struct {
 	// The replication instance identifier. This parameter is stored as a lowercase
 	// string.
 	ReplicationInstanceIdentifier *string `type:"string"`
+
+	// Specifies the VPC security group to be used with the replication instance.
+	// The VPC security group must work with the VPC containing the replication
+	// instance.
+	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
 }
 
 // String returns the string representation
@@ -3430,9 +3447,13 @@ type ReplicationInstance struct {
 	//
 	// Constraints:
 	//
-	//  Must contain from 1 to 63 alphanumeric characters or hyphens. First character
-	// must be a letter. Cannot end with a hyphen or contain two consecutive hyphens.
-	//  Example: myrepinstance
+	//   Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//
+	//   First character must be a letter.
+	//
+	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//
+	//   Example: myrepinstance
 	ReplicationInstanceIdentifier *string `type:"string"`
 
 	// The private IP address of the replication instance.
@@ -3446,6 +3467,9 @@ type ReplicationInstance struct {
 
 	// The subnet group for the replication instance.
 	ReplicationSubnetGroup *ReplicationSubnetGroup `type:"structure"`
+
+	// The VPC security group for the instance.
+	VpcSecurityGroups []*VpcSecurityGroupMembership `locationNameList:"VpcSecurityGroupMembership" type:"list"`
 }
 
 // String returns the string representation
@@ -3536,8 +3560,11 @@ type ReplicationTask struct {
 	//
 	// Constraints:
 	//
-	//  Must contain from 1 to 63 alphanumeric characters or hyphens. First character
-	// must be a letter. Cannot end with a hyphen or contain two consecutive hyphens.
+	//   Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//
+	//   First character must be a letter.
+	//
+	//   Cannot end with a hyphen or contain two consecutive hyphens.
 	ReplicationTaskIdentifier *string `type:"string"`
 
 	// The settings for the replication task.
@@ -3872,6 +3899,26 @@ func (s TestConnectionOutput) String() string {
 
 // GoString returns the string representation
 func (s TestConnectionOutput) GoString() string {
+	return s.String()
+}
+
+type VpcSecurityGroupMembership struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the VPC security group.
+	Status *string `type:"string"`
+
+	// The VPC security group Id.
+	VpcSecurityGroupId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s VpcSecurityGroupMembership) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VpcSecurityGroupMembership) GoString() string {
 	return s.String()
 }
 

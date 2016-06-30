@@ -97,6 +97,10 @@ func ExampleDatabaseMigrationService_CreateReplicationInstance() {
 			},
 			// More values...
 		},
+		VpcSecurityGroupIds: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
 	}
 	resp, err := svc.CreateReplicationInstance(params)
 
@@ -589,6 +593,10 @@ func ExampleDatabaseMigrationService_ModifyReplicationInstance() {
 		PreferredMaintenanceWindow:    aws.String("String"),
 		ReplicationInstanceClass:      aws.String("String"),
 		ReplicationInstanceIdentifier: aws.String("String"),
+		VpcSecurityGroupIds: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
 	}
 	resp, err := svc.ModifyReplicationInstance(params)
 
