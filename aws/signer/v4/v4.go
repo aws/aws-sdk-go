@@ -325,9 +325,20 @@ func SignSDKRequest(req *request.Request) {
 		v4.DisableHeaderHoisting = req.NotHoist
 	})
 
-	signedHeaders, err := v4.signWithBody(req.HTTPRequest, req.Body, name, region, req.ExpireTime, req.Time)
+	signingTime := req.Time
+	if !req.LastSignedAt.IsZero() {
+		signingTime = req.LastSignedAt
+	}
+
+	signedHeaders, err := v4.signWithBody(req.HTTPRequest, req.Body, name, region, req.ExpireTime, signingTime)
+	if err != nil {
+		req.Error = err
+		req.SignedHeaderVals = nil
+		return
+	}
+
 	req.SignedHeaderVals = signedHeaders
-	req.Error = err
+	req.LastSignedAt = curTimeFn()
 }
 
 const logSignInfoMsg = `DEBUG: Request Signiture:

@@ -228,6 +228,7 @@ func TestResignRequestExpiredCreds(t *testing.T) {
 	}
 	assert.NotEmpty(t, origSignedHeaders)
 	assert.NotContains(t, origSignedHeaders, "authorization")
+	origSignedAt := r.LastSignedAt
 
 	creds.Expire()
 
@@ -244,6 +245,7 @@ func TestResignRequestExpiredCreds(t *testing.T) {
 	}
 	assert.NotEmpty(t, updatedSignedHeaders)
 	assert.NotContains(t, updatedQuerySig, "authorization")
+	assert.NotEqual(t, origSignedAt, r.LastSignedAt)
 }
 
 func TestPreResignRequestExpiredCreds(t *testing.T) {
@@ -269,6 +271,7 @@ func TestPreResignRequestExpiredCreds(t *testing.T) {
 	querySig := r.HTTPRequest.URL.Query().Get("X-Amz-Signature")
 	signedHeaders := r.HTTPRequest.URL.Query().Get("X-Amz-SignedHeaders")
 	assert.NotEmpty(t, signedHeaders)
+	origSignedAt := r.LastSignedAt
 
 	creds.Expire()
 	r.Time = time.Now().Add(time.Hour * 48)
@@ -278,6 +281,7 @@ func TestPreResignRequestExpiredCreds(t *testing.T) {
 	resignedHeaders := r.HTTPRequest.URL.Query().Get("X-Amz-SignedHeaders")
 	assert.Equal(t, signedHeaders, resignedHeaders)
 	assert.NotContains(t, signedHeaders, "x-amz-signedHeaders")
+	assert.NotEqual(t, origSignedAt, r.LastSignedAt)
 }
 
 func TestResignRequestExpiredRequest(t *testing.T) {
@@ -295,12 +299,14 @@ func TestResignRequestExpiredRequest(t *testing.T) {
 
 	SignSDKRequest(r)
 	querySig := r.HTTPRequest.Header.Get("Authorization")
+	origSignedAt := r.LastSignedAt
 
 	// Simulate the request occured 15 minutes in the past
 	r.Time = r.Time.Add(-15 * time.Minute)
 
 	SignSDKRequest(r)
 	assert.NotEqual(t, querySig, r.HTTPRequest.Header.Get("Authorization"))
+	assert.NotEqual(t, origSignedAt, r.LastSignedAt)
 }
 
 func BenchmarkPresignRequest(b *testing.B) {
