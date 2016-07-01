@@ -4,12 +4,13 @@ import (
 	"io"
 )
 
-// Cipher placeholder
+// Cipher interface allows for either encryption and decryption of an object
 type Cipher interface {
 	Encrypter
 	Decrypter
 }
 
+// TODO: Not used yet
 const defaultWriteBufferLimit = 1024 * 1000
 
 // Encrypter interface with only the encrypt method
@@ -22,10 +23,9 @@ type Decrypter interface {
 	Decrypt(io.Reader) io.Reader
 }
 
-// CipherConstructor is constructors for symmetric keys
-type CipherConstructor func(key, iv []byte) (Cipher, error)
-
 // Copy from package io golang stdlib
+// Removes length errors since we expect dst to sometimes be smaller
+// or larger depending on the cipher.
 func translate(dst io.Writer, src io.Reader) (written int64, err error) {
 	buf := make([]byte, 32*1024)
 	for {
@@ -54,20 +54,21 @@ func translate(dst io.Writer, src io.Reader) (written int64, err error) {
 	return written, err
 }
 
-// CryptoReadCloser placeholder
+// CryptoReadCloser handles closing of the body and allowing reads from the decrypted
+// content.
 type CryptoReadCloser struct {
 	Body      io.ReadCloser
 	Decrypter io.Reader
-	Pipe      io.Reader
 	isClosed  bool
 }
 
-// Close placeholder
+// Close lets the CryptoReadCloser satisfy io.ReadCloser interface
 func (rc *CryptoReadCloser) Close() error {
 	rc.isClosed = true
 	return rc.Body.Close()
 }
 
+// Read lets the CryptoReadCloser satisfy io.ReadCloser interface
 func (rc *CryptoReadCloser) Read(b []byte) (int, error) {
 	if rc.isClosed {
 		return 0, io.EOF

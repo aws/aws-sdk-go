@@ -76,14 +76,11 @@ func EncodeMeta(reader HashReader, mode CryptoMode) (Envelope, error) {
 	md5 := []byte{}
 	contentLength := 0
 	if reader != nil {
-		fmt.Println("LEAD HERE")
 		md5 = reader.GetValue()
 		contentLength = reader.GetContentLength()
 	}
-	fmt.Println("LEAD HERE", md5)
 
 	md5Str := base64.StdEncoding.EncodeToString(md5)
-	fmt.Println("LEAD HERE", md5Str)
 
 	return Envelope{
 		CipherKey:             key,

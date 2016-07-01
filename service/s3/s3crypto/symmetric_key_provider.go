@@ -47,7 +47,8 @@ func (kp *SymmetricKeyProvider) GetEncryptedKey() ([]byte, error) {
 // GetDecryptedKey placeholder
 func (kp *SymmetricKeyProvider) GetDecryptedKey() ([]byte, error) {
 	dst := kp.Decrypt(bytes.NewBuffer(kp.encryptedKey))
-	return ioutil.ReadAll(dst)
+	b, err := ioutil.ReadAll(dst)
+	return b, err
 }
 
 // GetIV placeholder

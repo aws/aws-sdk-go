@@ -43,7 +43,10 @@ type Config struct {
 // TODO: Add default minimum file and if the contents is less than that, then just
 // load it all into memory
 
-// New creates a new s3crypto Client
+// New placeholder
+// TODO: Change master cipher to be not ECB
+// cipher := NewAESECB(masterkey)
+// svc := New(EncryptionOnly(NewSymmetricKeyProvider(cipher))
 func New(mode CryptoMode, options ...func(*Client)) *Client {
 	sess := session.New()
 	// TODO: Change this to strict authenticaton mode
@@ -96,7 +99,6 @@ func (c *Client) PutObjectRequest(input *s3.PutObjectInput) (*request.Request, *
 			r.Error = err
 			return
 		}
-		fmt.Println("ENVELOPE", env)
 		err = c.Config.SaveStrategy.Save(env, input)
 		r.Error = err
 	})
@@ -125,9 +127,8 @@ func (c *Client) PutObject(input *s3.PutObjectInput) (*s3.PutObjectOutput, error
 // GetObjectRequest placeholder
 func (c *Client) GetObjectRequest(input *s3.GetObjectInput) (*request.Request, *s3.GetObjectOutput) {
 	req, out := c.S3.GetObjectRequest(input)
-
 	// TODO: Put handler logic into own functions
-	req.Handlers.Send.PushBack(func(r *request.Request) {
+	req.Handlers.Unmarshal.PushBack(func(r *request.Request) {
 		env, err := c.getEnvelope(input, r)
 		if err != nil {
 			r.Error = err

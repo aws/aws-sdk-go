@@ -1,6 +1,7 @@
 package s3crypto_test
 
 import (
+	"encoding/base64"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -20,4 +21,22 @@ func TestSymmetricKeyProviderGenerates(t *testing.T) {
 	kp.SetIV(iv)
 	assert.Equal(t, len(iv), len(kp.GetIV()))
 	assert.Equal(t, 16, len(kp.GetIV()))
+}
+
+func TestSymmetricKeyDecryption(t *testing.T) {
+	mkey, _ := base64.StdEncoding.DecodeString("w1WLio3agRWRTSJK/Ouh8NHoqRQ6fn5WbSXDTHjXMSo=")
+	cipher, err := s3crypto.NewAESECB(mkey)
+	assert.Nil(t, err)
+	kp := &s3crypto.SymmetricKeyProvider{
+		Cipher: cipher,
+	}
+	encryptedKey, _ := base64.StdEncoding.DecodeString("QCwoHJ/cOGmhQeNZ0GAeep+ysKWpqOY7w63kijvBCv+mCQMmX+H4u8HtGLdU3LFj")
+	kp.SetEncryptedKey(encryptedKey)
+	val, err := kp.GetDecryptedKey()
+	assert.Nil(t, err)
+	iv, _ := base64.StdEncoding.DecodeString("qxKNPKvYnj28sgP0OQ6ItQ==")
+	kp.SetKey(val)
+	kp.SetIV(iv)
+	cipher, err = s3crypto.NewAESCBC(kp)
+	assert.Nil(t, err)
 }

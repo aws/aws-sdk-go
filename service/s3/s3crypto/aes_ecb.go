@@ -47,7 +47,7 @@ func (reader *ecbEncryptReader) Read(plaintext []byte) (int, error) {
 		data = data[blockSize:]
 	}
 	plaintext = append(plaintext[:0], ciphertext...)
-	return n, err
+	return len(plaintext), err
 }
 
 // Decrypt will decrypt the data using AES ECB
@@ -77,5 +77,5 @@ func (reader *ecbDecryptReader) Read(ciphertext []byte) (int, error) {
 	}
 	plaintext = UnpadPKCS5(plaintext, blockSize)
 	ciphertext = append(ciphertext[:0], plaintext...)
-	return n, err
+	return len(ciphertext), err
 }

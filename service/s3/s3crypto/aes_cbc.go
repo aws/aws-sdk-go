@@ -89,7 +89,7 @@ func (writer *cbcEncryptReader) Read(plaintext []byte) (int, error) {
 	plaintext = PadPKCS5(plaintext[:n], writer.encrypter.BlockSize())
 
 	writer.encrypter.CryptBlocks(plaintext, plaintext)
-	return n, err
+	return len(plaintext), err
 }
 
 type cbcDecryptWriter struct {
@@ -117,5 +117,5 @@ func (reader *cbcDecryptReader) Read(ciphertext []byte) (int, error) {
 	ciphertext = ciphertext[:n]
 	reader.decrypter.CryptBlocks(ciphertext, ciphertext)
 	ciphertext = UnpadPKCS5(ciphertext, reader.decrypter.BlockSize())
-	return n, err
+	return len(ciphertext), err
 }
