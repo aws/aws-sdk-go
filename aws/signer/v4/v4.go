@@ -118,6 +118,11 @@ type Signer struct {
 	// with pre-signed requests preventing headers from being added to the
 	// request's query string.
 	DisableHeaderHoisting bool
+
+	// currentTimeFn returns the time value which represents the current time.
+	// This value should only be used for testing. If it is nil the default
+	// time.Now will be used.
+	currentTimeFn func() time.Time
 }
 
 // NewSigner returns a Signer pointer configured with the credentials and optional
@@ -217,6 +222,11 @@ func (v4 Signer) Presign(r *http.Request, body io.ReadSeeker, service, region st
 }
 
 func (v4 Signer) signWithBody(r *http.Request, body io.ReadSeeker, service, region string, exp time.Duration, signTime time.Time) (http.Header, error) {
+	currentTimeFn := v4.currentTimeFn
+	if currentTimeFn == nil {
+		currentTimeFn = time.Now
+	}
+
 	ctx := &signingCtx{
 		Request:     r,
 		Body:        body,
@@ -229,12 +239,12 @@ func (v4 Signer) signWithBody(r *http.Request, body io.ReadSeeker, service, regi
 	}
 
 	if ctx.isRequestSigned() {
-		if !v4.Credentials.IsExpired() && time.Now().Before(ctx.Time.Add(10*time.Minute)) {
+		if !v4.Credentials.IsExpired() && currentTimeFn().Before(ctx.Time.Add(10*time.Minute)) {
 			// If the request is already signed, and the credentials have not
 			// expired, and the request is not too old ignore the signing request.
 			return ctx.SignedHeaderVals, nil
 		}
-		ctx.Time = time.Now()
+		ctx.Time = currentTimeFn()
 		ctx.handlePresignRemoval()
 	}
 
@@ -303,6 +313,9 @@ var SignRequestHandler = request.NamedHandler{
 // If the credentials of the request's config are set to
 // credentials.AnonymousCredentials the request will not be signed.
 func SignSDKRequest(req *request.Request) {
+	signSDKRequestWithCurrTime(req, time.Now)
+}
+func signSDKRequestWithCurrTime(req *request.Request, curTimeFn func() time.Time) {
 	// If the request does not need to be signed ignore the signing of the
 	// request if the AnonymousCredentials object is used.
 	if req.Config.Credentials == credentials.AnonymousCredentials {
@@ -323,6 +336,7 @@ func SignSDKRequest(req *request.Request) {
 		v4.Debug = req.Config.LogLevel.Value()
 		v4.Logger = req.Config.Logger
 		v4.DisableHeaderHoisting = req.NotHoist
+		v4.currentTimeFn = curTimeFn
 	})
 
 	signingTime := req.Time
