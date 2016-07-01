@@ -112,9 +112,9 @@ func TestSignRequest(t *testing.T) {
 }
 
 func TestSignBody(t *testing.T) {
-	req, body := buildRequest("dynamodb", "us-east-1", "hello")
+	req, body := buildRequest("s3", "us-east-1", "hello")
 	signer := buildSigner()
-	signer.Sign(req, body, "dynamodb", "us-east-1", time.Now())
+	signer.Sign(req, body, "s3", "us-east-1", time.Now())
 	hash := req.Header.Get("X-Amz-Content-Sha256")
 	assert.Equal(t, "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824", hash)
 }

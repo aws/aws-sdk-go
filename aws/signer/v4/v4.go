@@ -155,6 +155,7 @@ type signingCtx struct {
 	formattedTime      string
 	formattedShortTime string
 
+	bodyDigest       string
 	signedHeaders    string
 	canonicalHeaders string
 	canonicalString  string
@@ -389,6 +390,7 @@ func (ctx *signingCtx) build(disableHeaderHoisting bool) {
 		}
 	}
 
+	ctx.buildBodyDigest()
 	ctx.buildCanonicalHeaders(ignoredHeaders, unsignedHeaders)
 	ctx.buildCanonicalString() // depends on canon headers / signed headers
 	ctx.buildStringToSign()    // depends on canon string
@@ -510,7 +512,7 @@ func (ctx *signingCtx) buildCanonicalString() {
 		ctx.Request.URL.RawQuery,
 		ctx.canonicalHeaders + "\n",
 		ctx.signedHeaders,
-		ctx.bodyDigest(),
+		ctx.bodyDigest,
 	}, "\n")
 }
 
@@ -533,7 +535,7 @@ func (ctx *signingCtx) buildSignature() {
 	ctx.signature = hex.EncodeToString(signature)
 }
 
-func (ctx *signingCtx) bodyDigest() string {
+func (ctx *signingCtx) buildBodyDigest() {
 	hash := ctx.Request.Header.Get("X-Amz-Content-Sha256")
 	if hash == "" {
 		if ctx.isPresign && ctx.ServiceName == "s3" {
@@ -543,9 +545,11 @@ func (ctx *signingCtx) bodyDigest() string {
 		} else {
 			hash = hex.EncodeToString(makeSha256Reader(ctx.Body))
 		}
-		ctx.Request.Header.Add("X-Amz-Content-Sha256", hash)
+		if ctx.ServiceName == "s3" {
+			ctx.Request.Header.Set("X-Amz-Content-Sha256", hash)
+		}
 	}
-	return hash
+	ctx.bodyDigest = hash
 }
 
 // isRequestSigned returns if the request is currently signed or presigned
