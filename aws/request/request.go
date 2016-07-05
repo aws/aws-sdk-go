@@ -39,6 +39,7 @@ type Request struct {
 	RetryDelay       time.Duration
 	NotHoist         bool
 	SignedHeaderVals http.Header
+	LastSignedAt     time.Time
 
 	built bool
 }
