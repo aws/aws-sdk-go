@@ -259,8 +259,8 @@ var sharedTestCases = []struct {
 			Value6: []testAliasedInt{1, 2, 3},
 			Value7: []testAliasedString{"1", "2", "3"},
 			Value8: []testAliasedByteSlice{
-				testAliasedByteSlice{0, 1, 2},
-				testAliasedByteSlice{3, 4, 5},
+				{0, 1, 2},
+				{3, 4, 5},
 			},
 			Value9:  []testAliasedInt{1, 2, 3},
 			Value10: []testAliasedString{"1", "2", "3"},
