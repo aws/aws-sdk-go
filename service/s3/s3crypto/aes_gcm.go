@@ -51,7 +51,7 @@ func (reader *gcmEncryptReader) Read(data []byte) (int, error) {
 	if rLen == 0 {
 		b, err := ioutil.ReadAll(reader.src)
 		if err != nil {
-			return 0, err
+			return len(b), err
 		}
 		reader.data = reader.encrypter.Seal(nil, reader.nonce, b, nil)
 		// prevent infinite loops
@@ -99,7 +99,7 @@ func (reader *gcmDecryptReader) Read(data []byte) (int, error) {
 	if rLen == 0 {
 		b, err := ioutil.ReadAll(reader.src)
 		if err != nil {
-			return 0, err
+			return len(b), err
 		}
 		reader.data, err = reader.decrypter.Open(nil, reader.nonce, b, nil)
 		if err != nil {
