@@ -129,9 +129,6 @@ func (c *Client) PutObject(input *s3.PutObjectInput) (*s3.PutObjectOutput, error
 	return out, req.Send()
 }
 
-/*
- */
-
 // GetObjectRequest placeholder
 func (c *Client) GetObjectRequest(input *s3.GetObjectInput) (*request.Request, *s3.GetObjectOutput) {
 	req, out := c.S3.GetObjectRequest(input)
@@ -143,7 +140,6 @@ func (c *Client) GetObjectRequest(input *s3.GetObjectInput) (*request.Request, *
 			return
 		}
 
-		// TODO: Pass just Config instead of mode
 		// If KMS should return the correct CEK algorithm with the proper
 		// KMS key provider
 		mode, err := modeFactory(env, c.Config)
