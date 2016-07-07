@@ -63,13 +63,21 @@ func New(mode CryptoMode, options ...func(*Client)) *Client {
 		option(client)
 	}
 
-	// TODO: Do we want to support S3 configuration?
 	client.S3 = s3.New(client.Config.S3Session)
 	return client
 }
 
 // PutObjectRequest creates a temp file to encrypt the contents into. It then streams
 // that data to S3.
+//
+// cipher := NewAESECB(masterkey)
+// svc := s3cryto.New(s3crypto.EncryptionOnly(s3crypto.NewSymmetricKeyProvider(cipher))
+// req, out := svc.PutObjectRequest(&s3.PutObjectInput {
+//	Bucket: aws.String("my_bucket"),
+//	Key: aws.String("object_key"),
+//	Body: strings.NewReader("WHATEVER"),
+// })
+// err := req.Send()
 func (c *Client) PutObjectRequest(input *s3.PutObjectInput) (*request.Request, *s3.PutObjectOutput) {
 	req, out := c.S3.PutObjectRequest(input)
 

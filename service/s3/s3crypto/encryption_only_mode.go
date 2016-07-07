@@ -33,7 +33,7 @@ func (mode *EncryptionOnlyMode) EncryptContents(dst io.Writer, src io.Reader) er
 	// TODO: Don't think this is needed
 	// kp.SetEncryptedKey(mode.Wrap)
 	reader := cbc.Encrypt(src)
-	_, err = translate(dst, reader)
+	_, err = io.Copy(dst, reader)
 	return err
 }
 

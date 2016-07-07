@@ -39,9 +39,6 @@ func NewAESCBCRandom(kp KeyProvider) (Cipher, error) {
 // both interfaces of Encrypter and Decrypter
 // If an empty key or iv is provided, a randomly generated
 // key and iv is provided to the cipher
-//
-// TODO: See if there is a better way of randomly generating
-// keys and iv
 func NewAESCBC(kp KeyProvider) (Cipher, error) {
 	block, err := aes.NewCipher(padAESKey(kp.GetKey()))
 	if err != nil {
@@ -54,12 +51,10 @@ func NewAESCBC(kp KeyProvider) (Cipher, error) {
 }
 
 // Encrypt will encrypt the data using AES CBC
-// TODO: Return an io.Writer? This will allow Decrypt and Encrypt
-// to behave in the same way
 func (c *AESCBC) Encrypt(src io.Reader) io.Reader {
 	reader := &cbcEncryptReader{
-		c.encrypter,
-		src,
+		encrypter: c.encrypter,
+		src:       src,
 	}
 	return reader
 }
@@ -67,8 +62,8 @@ func (c *AESCBC) Encrypt(src io.Reader) io.Reader {
 // Decrypt will decrypt the data using AES CBC
 func (c *AESCBC) Decrypt(src io.Reader) io.Reader {
 	reader := &cbcDecryptReader{
-		c.decrypter,
-		src,
+		decrypter: c.decrypter,
+		src:       src,
 	}
 	return reader
 }
@@ -76,46 +71,83 @@ func (c *AESCBC) Decrypt(src io.Reader) io.Reader {
 type cbcEncryptReader struct {
 	encrypter cipher.BlockMode
 	src       io.Reader
+	buffer
 }
 
 // Need to ensure each block read is a multiple of the block size
-// TODO:
-// create a blocksizeReader and wrap io.Reader in it
-func (writer *cbcEncryptReader) Read(plaintext []byte) (int, error) {
-	n, err := writer.src.Read(plaintext)
-	if err != nil {
+func (reader *cbcEncryptReader) Read(data []byte) (int, error) {
+	// Drain body til we have one block left then append any new data
+	blockSize := reader.encrypter.BlockSize()
+	if reader.size > blockSize {
+		return reader.drainBody(&data, blockSize), nil
+	}
+
+	ciphertext := make([]byte, bufSize)
+	n, err := reader.src.Read(ciphertext)
+	if err != nil && err != io.EOF {
 		return n, err
 	}
-	plaintext = PadPKCS5(plaintext[:n], writer.encrypter.BlockSize())
 
-	writer.encrypter.CryptBlocks(plaintext, plaintext)
-	return len(plaintext), err
-}
+	ciphertext = PadPKCS5(ciphertext[:n], blockSize)
+	reader.encrypter.CryptBlocks(ciphertext, ciphertext)
 
-type cbcDecryptWriter struct {
-	decrypter cipher.BlockMode
-	dst       io.Writer
-}
+	if lastBlock := (n == 0 || err == io.EOF); lastBlock {
+		return reader.finalize(lastBlock, &ciphertext, &data, blockSize), err
+	}
 
-func (writer *cbcDecryptWriter) Write(ciphertext []byte) (int, error) {
-	writer.decrypter.CryptBlocks(ciphertext, ciphertext)
-	ciphertext = UnpadPKCS5(ciphertext, writer.decrypter.BlockSize())
-	return writer.dst.Write(ciphertext)
+	cLen := len(ciphertext)
+	// Buffer has too much data in it.
+	if reader.size+cLen > bufSize {
+		return reader.appendToBuffer(&data, ciphertext), nil
+	}
+
+	for i := 0; i < cLen; i++ {
+		reader.data[reader.size+i] = ciphertext[i]
+	}
+	reader.size += cLen
+
+	return 0, nil
 }
 
 type cbcDecryptReader struct {
 	decrypter cipher.BlockMode
 	src       io.Reader
+	buffer
 }
 
-func (reader *cbcDecryptReader) Read(ciphertext []byte) (int, error) {
-	n, err := reader.src.Read(ciphertext)
-	if err != nil {
+func (reader *cbcDecryptReader) Read(data []byte) (int, error) {
+	blockSize := reader.decrypter.BlockSize()
+	if reader.size > blockSize {
+		n := reader.drainBody(&data, blockSize)
+		return n, nil
+	}
+
+	plaintext := make([]byte, bufSize)
+
+	n, err := reader.src.Read(plaintext)
+	if err != nil && err != io.EOF {
 		return n, err
 	}
 
-	ciphertext = ciphertext[:n]
-	reader.decrypter.CryptBlocks(ciphertext, ciphertext)
-	ciphertext = UnpadPKCS5(ciphertext, reader.decrypter.BlockSize())
-	return len(ciphertext), err
+	plaintext = plaintext[:n]
+	reader.decrypter.CryptBlocks(plaintext, plaintext)
+	plaintext = UnpadPKCS5(plaintext, reader.decrypter.BlockSize())
+
+	if lastBlock := (n == 0 || err == io.EOF); lastBlock {
+		n = reader.finalize(lastBlock, &plaintext, &data, blockSize)
+		return n, err
+	}
+
+	pLen := len(plaintext)
+	// Buffer has too much data in it.
+	if reader.size+pLen > bufSize {
+		return reader.appendToBuffer(&data, plaintext), nil
+	}
+
+	for i := 0; i < pLen; i++ {
+		reader.data[reader.size+i] = plaintext[i]
+	}
+	reader.size += pLen
+
+	return 0, nil
 }

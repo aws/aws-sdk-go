@@ -42,6 +42,9 @@ func PadPKCS5(data []byte, blocksize int) []byte {
 // UnpadPKCS5 unpad using PKCS5
 func UnpadPKCS5(src []byte, blocksize int) []byte {
 	length := len(src)
+	if length < 1 {
+		return src
+	}
 	count := src[length-1]
 
 	// Verify correct padding. If it isnt, we assume that it hasn't been padded
