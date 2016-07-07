@@ -69,6 +69,65 @@ func (c *ConfigService) DeleteConfigRule(input *DeleteConfigRuleInput) (*DeleteC
 	return out, err
 }
 
+const opDeleteConfigurationRecorder = "DeleteConfigurationRecorder"
+
+// DeleteConfigurationRecorderRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteConfigurationRecorder operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteConfigurationRecorder method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteConfigurationRecorderRequest method.
+//    req, resp := client.DeleteConfigurationRecorderRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *ConfigService) DeleteConfigurationRecorderRequest(input *DeleteConfigurationRecorderInput) (req *request.Request, output *DeleteConfigurationRecorderOutput) {
+	op := &request.Operation{
+		Name:       opDeleteConfigurationRecorder,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteConfigurationRecorderInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(jsonrpc.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	output = &DeleteConfigurationRecorderOutput{}
+	req.Data = output
+	return
+}
+
+// Deletes the configuration recorder.
+//
+// After the configuration recorder is deleted, AWS Config will not record
+// resource configuration changes until you create a new configuration recorder.
+//
+// This action does not delete the configuration information that was previously
+// recorded. You will be able to access the previously recorded information
+// by using the GetResourceConfigHistory action, but you will not be able to
+// access this information in the AWS Config console until you create a new
+// configuration recorder.
+func (c *ConfigService) DeleteConfigurationRecorder(input *DeleteConfigurationRecorderInput) (*DeleteConfigurationRecorderOutput, error) {
+	req, out := c.DeleteConfigurationRecorderRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opDeleteDeliveryChannel = "DeleteDeliveryChannel"
 
 // DeleteDeliveryChannelRequest generates a "aws/request.Request" representing the
@@ -112,12 +171,10 @@ func (c *ConfigService) DeleteDeliveryChannelRequest(input *DeleteDeliveryChanne
 	return
 }
 
-// Deletes the specified delivery channel.
+// Deletes the delivery channel.
 //
-// The delivery channel cannot be deleted if it is the only delivery channel
-// and the configuration recorder is still running. To delete the delivery channel,
-// stop the running configuration recorder using the StopConfigurationRecorder
-// action.
+// Before you can delete the delivery channel, you must stop the configuration
+// recorder by using the StopConfigurationRecorder action.
 func (c *ConfigService) DeleteDeliveryChannel(input *DeleteDeliveryChannelInput) (*DeleteDeliveryChannelOutput, error) {
 	req, out := c.DeleteDeliveryChannelRequest(input)
 	err := req.Send()
@@ -228,6 +285,7 @@ func (c *ConfigService) DescribeComplianceByConfigRuleRequest(input *DescribeCom
 //
 // If AWS Config has no current evaluation results for the rule, it returns
 // INSUFFICIENT_DATA. This result might indicate one of the following conditions:
+//
 //  AWS Config has never invoked an evaluation for the rule. To check whether
 // it has, use the DescribeConfigRuleEvaluationStatus action to get the LastSuccessfulInvocationTime
 // and LastFailedInvocationTime. The rule's AWS Lambda function is failing to
@@ -294,16 +352,17 @@ func (c *ConfigService) DescribeComplianceByResourceRequest(input *DescribeCompl
 //
 // If AWS Config has no current evaluation results for the resource, it returns
 // INSUFFICIENT_DATA. This result might indicate one of the following conditions
-// about the rules that evaluate the resource:  AWS Config has never invoked
-// an evaluation for the rule. To check whether it has, use the DescribeConfigRuleEvaluationStatus
-// action to get the LastSuccessfulInvocationTime and LastFailedInvocationTime.
-// The rule's AWS Lambda function is failing to send evaluation results to AWS
-// Config. Verify that the role that you assigned to your configuration recorder
-// includes the config:PutEvaluations permission. If the rule is a customer
-// managed rule, verify that the AWS Lambda execution role includes the config:PutEvaluations
-// permission. The rule's AWS Lambda function has returned NOT_APPLICABLE for
-// all evaluation results. This can occur if the resources were deleted or removed
-// from the rule's scope.
+// about the rules that evaluate the resource:
+//
+//  AWS Config has never invoked an evaluation for the rule. To check whether
+// it has, use the DescribeConfigRuleEvaluationStatus action to get the LastSuccessfulInvocationTime
+// and LastFailedInvocationTime. The rule's AWS Lambda function is failing to
+// send evaluation results to AWS Config. Verify that the role that you assigned
+// to your configuration recorder includes the config:PutEvaluations permission.
+// If the rule is a customer managed rule, verify that the AWS Lambda execution
+// role includes the config:PutEvaluations permission. The rule's AWS Lambda
+// function has returned NOT_APPLICABLE for all evaluation results. This can
+// occur if the resources were deleted or removed from the rule's scope.
 func (c *ConfigService) DescribeComplianceByResource(input *DescribeComplianceByResourceInput) (*DescribeComplianceByResourceOutput, error) {
 	req, out := c.DescribeComplianceByResourceRequest(input)
 	err := req.Send()
@@ -454,7 +513,7 @@ func (c *ConfigService) DescribeConfigurationRecorderStatusRequest(input *Descri
 // configuration recorder is not specified, this action returns the status of
 // all configuration recorder associated with the account.
 //
-// Currently, you can specify only one configuration recorder per account.
+//  Currently, you can specify only one configuration recorder per account.
 func (c *ConfigService) DescribeConfigurationRecorderStatus(input *DescribeConfigurationRecorderStatusInput) (*DescribeConfigurationRecorderStatusOutput, error) {
 	req, out := c.DescribeConfigurationRecorderStatusRequest(input)
 	err := req.Send()
@@ -558,7 +617,7 @@ func (c *ConfigService) DescribeDeliveryChannelStatusRequest(input *DescribeDeli
 // channel is not specified, this action returns the current status of all delivery
 // channels associated with the account.
 //
-// Currently, you can specify only one delivery channel per account.
+//  Currently, you can specify only one delivery channel per account.
 func (c *ConfigService) DescribeDeliveryChannelStatus(input *DescribeDeliveryChannelStatusInput) (*DescribeDeliveryChannelStatusOutput, error) {
 	req, out := c.DescribeDeliveryChannelStatusRequest(input)
 	err := req.Send()
@@ -955,12 +1014,13 @@ func (c *ConfigService) ListDiscoveredResourcesRequest(input *ListDiscoveredReso
 // recording. You can narrow the results to include only resources that have
 // specific resource IDs or a resource name.
 //
-// You can specify either resource IDs or a resource name but not both in the
-// same request. The response is paginated, and by default AWS Config lists
-// 100 resource identifiers on each page. You can customize this number with
-// the limit parameter. The response includes a nextToken string, and to get
-// the next page of results, run the request again and enter this string for
-// the nextToken parameter.
+//  You can specify either resource IDs or a resource name but not both in
+// the same request.
+//
+//  The response is paginated, and by default AWS Config lists 100 resource
+// identifiers on each page. You can customize this number with the limit parameter.
+// The response includes a nextToken string, and to get the next page of results,
+// run the request again and enter this string for the nextToken parameter.
 func (c *ConfigService) ListDiscoveredResources(input *ListDiscoveredResourcesInput) (*ListDiscoveredResourcesOutput, error) {
 	req, out := c.ListDiscoveredResourcesRequest(input)
 	err := req.Send()
@@ -1150,8 +1210,11 @@ func (c *ConfigService) PutDeliveryChannelRequest(input *PutDeliveryChannelInput
 	return
 }
 
-// Creates a new delivery channel object to deliver the configuration information
-// to an Amazon S3 bucket, and to an Amazon SNS topic.
+// Creates a delivery channel object to deliver configuration information to
+// an Amazon S3 bucket and Amazon SNS topic.
+//
+// Before you can create a delivery channel, you must create a configuration
+// recorder.
 //
 // You can use this action to change the Amazon S3 bucket or an Amazon SNS
 // topic of the existing delivery channel. To change the Amazon S3 bucket or
@@ -1160,7 +1223,7 @@ func (c *ConfigService) PutDeliveryChannelRequest(input *PutDeliveryChannelInput
 // the S3 bucket or the SNS topic, this action will keep the existing value
 // for the parameter that is not changed.
 //
-//  Currently, you can specify only one delivery channel per account.
+//  You can have only one delivery channel per AWS account.
 func (c *ConfigService) PutDeliveryChannel(input *PutDeliveryChannelInput) (*PutDeliveryChannelOutput, error) {
 	req, out := c.PutDeliveryChannelRequest(input)
 	err := req.Send()
@@ -1686,8 +1749,7 @@ func (s ConfigRuleEvaluationStatus) GoString() string {
 type ConfigSnapshotDeliveryProperties struct {
 	_ struct{} `type:"structure"`
 
-	// The frequency with which a AWS Config recurringly delivers configuration
-	// snapshots.
+	// The frequency with which AWS Config recurringly delivers configuration snapshots.
 	DeliveryFrequency *string `locationName:"deliveryFrequency" type:"string" enum:"MaximumExecutionFrequency"`
 }
 
@@ -1941,6 +2003,56 @@ func (s DeleteConfigRuleOutput) GoString() string {
 	return s.String()
 }
 
+// The request object for the DeleteConfigurationRecorder action.
+type DeleteConfigurationRecorderInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the configuration recorder to be deleted. You can retrieve the
+	// name of your configuration recorder by using the DescribeConfigurationRecorders
+	// action.
+	ConfigurationRecorderName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteConfigurationRecorderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteConfigurationRecorderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteConfigurationRecorderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteConfigurationRecorderInput"}
+	if s.ConfigurationRecorderName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigurationRecorderName"))
+	}
+	if s.ConfigurationRecorderName != nil && len(*s.ConfigurationRecorderName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationRecorderName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+type DeleteConfigurationRecorderOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteConfigurationRecorderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteConfigurationRecorderOutput) GoString() string {
+	return s.String()
+}
+
 // The input for the DeleteDeliveryChannel action. The action accepts the following
 // data in JSON format.
 type DeleteDeliveryChannelInput struct {
@@ -2042,8 +2154,8 @@ func (s DeliverConfigSnapshotOutput) GoString() string {
 	return s.String()
 }
 
-// A logical container used for storing the configuration changes of an AWS
-// resource.
+// The channel through which AWS Config delivers notifications and updated configuration
+// states.
 type DeliveryChannel struct {
 	_ struct{} `type:"structure"`
 
@@ -2051,20 +2163,32 @@ type DeliveryChannel struct {
 	// S3 bucket in your delivery channel.
 	ConfigSnapshotDeliveryProperties *ConfigSnapshotDeliveryProperties `locationName:"configSnapshotDeliveryProperties" type:"structure"`
 
-	// The name of the delivery channel. By default, AWS Config automatically assigns
-	// the name "default" when creating the delivery channel. You cannot change
-	// the assigned name.
+	// The name of the delivery channel. By default, AWS Config assigns the name
+	// "default" when creating the delivery channel. To change the delivery channel
+	// name, you must use the DeleteDeliveryChannel action to delete your current
+	// delivery channel, and then you must use the PutDeliveryChannel command to
+	// create a delivery channel that has the desired name.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	// The name of the Amazon S3 bucket used to store configuration history for
-	// the delivery channel.
+	// The name of the Amazon S3 bucket to which AWS Config delivers configuration
+	// snapshots and configuration history files.
+	//
+	// If you specify a bucket that belongs to another AWS account, that bucket
+	// must have policies that grant access permissions to AWS Config. For more
+	// information, see Permissions for the Amazon S3 Bucket (http://docs.aws.amazon.com/config/latest/developerguide/s3-bucket-policy.html)
+	// in the AWS Config Developer Guide.
 	S3BucketName *string `locationName:"s3BucketName" type:"string"`
 
 	// The prefix for the specified Amazon S3 bucket.
 	S3KeyPrefix *string `locationName:"s3KeyPrefix" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the SNS topic that AWS Config delivers
-	// notifications to.
+	// The Amazon Resource Name (ARN) of the Amazon SNS topic to which AWS Config
+	// sends notifications about configuration changes.
+	//
+	// If you choose a topic from another account, the topic must have policies
+	// that grant access permissions to AWS Config. For more information, see Permissions
+	// for the Amazon SNS Topic (http://docs.aws.amazon.com/config/latest/developerguide/sns-topic-policy.html)
+	// in the AWS Config Developer Guide.
 	SnsTopicARN *string `locationName:"snsTopicARN" type:"string"`
 }
 
@@ -3245,14 +3369,15 @@ func (s PutEvaluationsOutput) GoString() string {
 // types of global resources (for example, IAM resources). Global resources
 // are not tied to an individual region and can be used in all regions.
 //
-// The configuration details for any global resource are the same in all regions.
+//  The configuration details for any global resource are the same in all regions.
 // If you customize AWS Config in multiple regions to record global resources,
 // it will create multiple configuration items each time a global resource changes:
 // one configuration item for each region. These configuration items will contain
 // identical data. To prevent duplicate configuration items, you should consider
 // customizing AWS Config in only one region to record global resources, unless
-// you want the configuration items to be available in multiple regions. If
-// you don't want AWS Config to record all resources, you can specify which
+// you want the configuration items to be available in multiple regions.
+//
+//  If you don't want AWS Config to record all resources, you can specify which
 // types of resources it will record with the resourceTypes parameter.
 //
 // For a list of supported resource types, see Supported resource types (http://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html#supported-resources).
