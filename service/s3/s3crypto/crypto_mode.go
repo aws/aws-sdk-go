@@ -9,13 +9,14 @@ import (
 // CryptoMode placeholder
 type CryptoMode interface {
 	EncryptContents(io.Writer, io.Reader) error
-	DecryptMode
+	DecryptContents([]byte, []byte, io.ReadCloser) (io.ReadCloser, error)
 	GetKeyProvider() KeyProvider
 }
 
 // DecryptMode is meant to used only in reading objects from s3
 type DecryptMode interface {
 	DecryptContents([]byte, []byte, io.ReadCloser) (io.ReadCloser, error)
+	GetKeyProvider() KeyProvider
 }
 
 func modeFactory(env *Envelope, cfg Config) (DecryptMode, error) {
@@ -96,7 +97,7 @@ func EncodeMeta(reader HashReader, mode CryptoMode) (Envelope, error) {
 
 // DecodeMeta will return the metaobject with keys as decrypted values, if they were encrypted
 // or base64 encoded.
-func DecodeMeta(env *Envelope, mode CryptoMode) error {
+func DecodeMeta(env *Envelope, mode DecryptMode) error {
 	kp := mode.GetKeyProvider()
 	key, err := base64.StdEncoding.DecodeString(env.CipherKey)
 	if err != nil {

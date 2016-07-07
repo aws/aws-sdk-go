@@ -14,3 +14,7 @@ func (mode *decryptionMode) DecryptContents(key, iv []byte, src io.ReadCloser) (
 	reader := mode.cek.Decrypt(src)
 	return &CryptoReadCloser{Body: src, Decrypter: reader}, nil
 }
+
+func (mode *decryptionMode) GetKeyProvider() KeyProvider {
+	return mode.kp
+}

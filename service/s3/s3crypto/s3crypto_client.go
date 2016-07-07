@@ -143,16 +143,16 @@ func (c *Client) GetObjectRequest(input *s3.GetObjectInput) (*request.Request, *
 			return
 		}
 
-		err = DecodeMeta(env, c.Config.Mode)
+		// TODO: Pass just Config instead of mode
+		// If KMS should return the correct CEK algorithm with the proper
+		// KMS key provider
+		mode, err := modeFactory(env, c.Config)
 		if err != nil {
 			r.Error = err
 			return
 		}
 
-		// TODO: Pass just Config instead of mode
-		// If KMS should return the correct CEK algorithm with the proper
-		// KMS key provider
-		mode, err := modeFactory(env, c.Config)
+		err = DecodeMeta(env, mode)
 		if err != nil {
 			r.Error = err
 			return
