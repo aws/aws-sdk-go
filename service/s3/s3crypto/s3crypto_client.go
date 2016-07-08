@@ -47,6 +47,7 @@ type Config struct {
 // TODO: Change master cipher to be not ECB
 // cipher := NewAESECB(masterkey)
 // svc := New(EncryptionOnly(NewSymmetricKeyProvider(cipher))
+// TODO: Consider what to do with masterkey
 func New(mode CryptoMode, options ...func(*Client)) *Client {
 	sess := session.New()
 	// TODO: Change this to strict authenticaton mode
@@ -102,7 +103,7 @@ func (c *Client) PutObjectRequest(input *s3.PutObjectInput) (*request.Request, *
 		f.Seek(0, 0)
 		input.Body = f
 
-		env, err := EncodeMeta(md5, c.Config.Mode)
+		env, err := EncodeMeta(md5, c.Config.Mode.GetKeyProvider())
 		if err != nil {
 			r.Error = err
 			return
@@ -131,6 +132,7 @@ func (c *Client) PutObject(input *s3.PutObjectInput) (*s3.PutObjectOutput, error
 
 // GetObjectRequest placeholder
 func (c *Client) GetObjectRequest(input *s3.GetObjectInput) (*request.Request, *s3.GetObjectOutput) {
+	fmt.Println("MASTERKEY 0", c.Config.MasterKey)
 	req, out := c.S3.GetObjectRequest(input)
 	// TODO: Put handler logic into own functions
 	req.Handlers.Unmarshal.PushBack(func(r *request.Request) {
@@ -142,13 +144,8 @@ func (c *Client) GetObjectRequest(input *s3.GetObjectInput) (*request.Request, *
 
 		// If KMS should return the correct CEK algorithm with the proper
 		// KMS key provider
+		fmt.Println("MASTERKEY 1", c.Config.MasterKey)
 		mode, err := modeFactory(env, c.Config)
-		if err != nil {
-			r.Error = err
-			return
-		}
-
-		err = DecodeMeta(env, mode)
 		if err != nil {
 			r.Error = err
 			return

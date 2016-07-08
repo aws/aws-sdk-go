@@ -73,7 +73,10 @@ func TestGetObject_V1_WRAP_ECB_CONTENT_CBC(t *testing.T) {
 	ciphertext, _ := hex.DecodeString("bb6d801fa7bc7ed756db8d69f9db17ee406af3f32e8800fc39f10291e682509e781641cd03b9d8bd77332080fad72857e3ddbdd88c70862e6f41b46f5e2920d249fe2ae911a50fe609a1833beaa0ba9a")
 	cipher, err := NewAESECB([]byte(mkey))
 	assert.Nil(t, err)
-	c := New(EncryptionOnly(NewSymmetricKeyProvider(cipher)), func(c *Client) { c.Config.S3Session = session.New() })
+	c := New(EncryptionOnly(NewSymmetricKeyProvider(cipher)), func(c *Client) {
+		c.Config.S3Session = session.New()
+		c.Config.MasterKey = mkey
+	})
 
 	key := "test-key"
 	input := &s3.GetObjectInput{

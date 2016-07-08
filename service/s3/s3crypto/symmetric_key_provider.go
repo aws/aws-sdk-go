@@ -61,10 +61,6 @@ func (kp *SymmetricKeyProvider) SetIV(b []byte) {
 	kp.iv = b
 }
 
-// EncryptKey will also set the encrypted key?
-func (kp *SymmetricKeyProvider) EncryptKey(cipher Encrypter) {
-}
-
 // SetEncryptedKey placeholder
 func (kp *SymmetricKeyProvider) SetEncryptedKey(key []byte) {
 	kp.encryptedKey = key

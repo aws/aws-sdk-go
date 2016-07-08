@@ -9,15 +9,20 @@ import (
 )
 
 func TestModeFactory(t *testing.T) {
+	masterkey, _ := base64.StdEncoding.DecodeString("w1WLio3agRWRTSJK/Ouh8NHoqRQ6fn5WbSXDTHjXMSo=")
 	cfg := Config{
-		MasterKey: []byte("00000000000000000000000000000000"),
+		MasterKey: masterkey,
 	}
 	env := Envelope{
-		WrapAlg: "ecb",
+		WrapAlg:   "ecb",
+		CipherKey: "QCwoHJ/cOGmhQeNZ0GAeep+ysKWpqOY7w63kijvBCv+mCQMmX+H4u8HtGLdU3LFj",
+		IV:        "qxKNPKvYnj28sgP0OQ6ItQ==",
 	}
+
 	mode, err := modeFactory(&env, cfg)
-	_, ok := mode.(*decryptionMode)
 	assert.Nil(t, err)
+
+	_, ok := mode.(*decryptionMode)
 	assert.True(t, ok)
 }
 
@@ -57,22 +62,18 @@ func TestDecodeMetaV1(t *testing.T) {
 	cipher, err := NewAESECB(masterkey)
 	assert.Nil(t, err)
 	kp := NewSymmetricKeyProvider(cipher)
-	cfg := Config{
-		MasterKey: masterkey,
-		Mode:      EncryptionOnly(kp),
-	}
 	env := Envelope{
 		CipherKey: "QCwoHJ/cOGmhQeNZ0GAeep+ysKWpqOY7w63kijvBCv+mCQMmX+H4u8HtGLdU3LFj",
 		IV:        "qxKNPKvYnj28sgP0OQ6ItQ==",
 		MatDesc:   "{}",
 		version:   1,
 	}
-	mode, err := modeFactory(&env, cfg)
 	assert.Nil(t, err)
 
-	err = DecodeMeta(&env, mode)
+	err = DecodeMeta(&env, kp)
 	assert.Nil(t, err)
-	expectedKey, err := hex.DecodeString("783b935dca5f2328294dd56243b0b4f516014129b5ff6f145d4bb3f59c7abcae")
+
+	expectedKey, _ := hex.DecodeString("783b935dca5f2328294dd56243b0b4f516014129b5ff6f145d4bb3f59c7abcae")
 	expectedIV, _ := base64.StdEncoding.DecodeString("qxKNPKvYnj28sgP0OQ6ItQ==")
 	assert.Nil(t, err)
 	assert.Equal(t, len(expectedKey), len([]byte(env.CipherKey)))

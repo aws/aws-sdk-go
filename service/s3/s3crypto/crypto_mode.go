@@ -20,16 +20,21 @@ type DecryptMode interface {
 }
 
 func modeFactory(env *Envelope, cfg Config) (DecryptMode, error) {
-	// If the envelope version is 1, then we
-	// default to whatever mode the user specified when constructing the
-	// client.
-	if env.version == 1 {
-		return cfg.Mode, nil
-	}
 	kp, err := keyProviderFactory(env, cfg)
+	fmt.Println("ERROR 1", err)
 	if err != nil {
 		return nil, err
 	}
+
+	err = DecodeMeta(env, kp)
+	fmt.Println("ERROR 2", err)
+	if err != nil {
+		return nil, err
+	}
+
+	kp.SetKey([]byte(env.CipherKey))
+	kp.SetIV([]byte(env.IV))
+
 	cek, err := cekFactory(env, kp)
 	if err != nil {
 		return nil, err
@@ -38,14 +43,16 @@ func modeFactory(env *Envelope, cfg Config) (DecryptMode, error) {
 }
 
 // wrapFactory will build a new CryptoMode based off the wrapping algorithm
+// TODO: Have the Cipher constructors return errs instead of panicing on invalid
+// key and iv lengths
 func keyProviderFactory(env *Envelope, cfg Config) (KeyProvider, error) {
 
 	switch env.WrapAlg {
 	case "kms":
 		return NewKMSKeyProvider(cfg.KMSSession)
-	// TODO: How do we get the master key here elegantly
 	case "rsa":
-	case "ecb":
+	case "ecb", "":
+		fmt.Println("MASTER", cfg.MasterKey)
 		cipher, err := NewAESECB(cfg.MasterKey)
 		if err != nil {
 			return nil, err
@@ -58,15 +65,14 @@ func keyProviderFactory(env *Envelope, cfg Config) (KeyProvider, error) {
 
 func cekFactory(env *Envelope, kp KeyProvider) (Decrypter, error) {
 	switch env.CEKAlg {
-	case "AES/CBC/PKCS5Padding":
+	case "AES/CBC/PKCS5Padding", "":
 		return NewAESCBC(kp)
 	}
 	return nil, nil
 }
 
 // EncodeMeta will return the meta object to be saved
-func EncodeMeta(reader HashReader, mode CryptoMode) (Envelope, error) {
-	kp := mode.GetKeyProvider()
+func EncodeMeta(reader HashReader, kp KeyProvider) (Envelope, error) {
 	iv := base64.StdEncoding.EncodeToString(kp.GetIV())
 	keyBytes, err := kp.GetEncryptedKey()
 	if err != nil {
@@ -97,8 +103,7 @@ func EncodeMeta(reader HashReader, mode CryptoMode) (Envelope, error) {
 
 // DecodeMeta will return the metaobject with keys as decrypted values, if they were encrypted
 // or base64 encoded.
-func DecodeMeta(env *Envelope, mode DecryptMode) error {
-	kp := mode.GetKeyProvider()
+func DecodeMeta(env *Envelope, kp KeyProvider) error {
 	key, err := base64.StdEncoding.DecodeString(env.CipherKey)
 	if err != nil {
 		return err
@@ -109,11 +114,13 @@ func DecodeMeta(env *Envelope, mode DecryptMode) error {
 	if err != nil {
 		return err
 	}
-	env.CipherKey = string(keyBytes)
+
 	iv, err := base64.StdEncoding.DecodeString(env.IV)
 	if err != nil {
 		return err
 	}
+
+	env.CipherKey = string(keyBytes)
 	env.IV = string(iv)
 	return nil
 }
