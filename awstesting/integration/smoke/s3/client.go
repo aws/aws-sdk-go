@@ -13,10 +13,13 @@ import (
 
 func init() {
 	Before("@s3", func() {
-		World["cryptoClient"] = s3crypto.NewClient(nil, session.New(&aws.Config{
-			Region:      aws.String("us-west-2"),
-			Credentials: credentials.NewSharedCredentials("", "integration"),
-		}))
+		c := s3crypto.New(nil, func(c *s3crypto.Client) {
+			c.Config.S3Session = session.New(&aws.Config{
+				Region:      aws.String("us-west-2"),
+				Credentials: credentials.NewSharedCredentials("", "integration"),
+			})
+		})
+		World["cryptoClient"] = c
 
 		World["client"] = s3.New(session.New(&aws.Config{
 			Region:      aws.String("us-west-2"),

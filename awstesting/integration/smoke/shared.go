@@ -190,14 +190,13 @@ func init() {
 			masterkeyB64 := ctObj.Metadata["Masterkey"]
 			masterkey, err := base64.StdEncoding.DecodeString(*masterkeyB64)
 			assert.NoError(T, err)
-			cipher, err := s3crypto.NewAESECB(masterkey)
-			s3CryptoClient.MasterKey = cipher
-			ctObj, err = s3CryptoClient.GetObject(s3crypto.NewAESCBC, &s3crypto.GetObjectInput{
-				S3GetObjectInput: &s3.GetObjectInput{
-					Bucket: aws.String(bucket),
-					Key:    &cipherKey,
-				},
-			})
+
+			s3CryptoClient.Config.MasterKey = masterkey
+			ctObj, err = s3CryptoClient.GetObject(&s3.GetObjectInput{
+				Bucket: aws.String(bucket),
+				Key:    &cipherKey,
+			},
+			)
 			assert.NoError(T, err)
 
 			ciphertext, err := ioutil.ReadAll(ctObj.Body)

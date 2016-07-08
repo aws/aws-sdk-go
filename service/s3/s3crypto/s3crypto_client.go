@@ -163,5 +163,6 @@ func (c *Client) GetObjectRequest(input *s3.GetObjectInput) (*request.Request, *
 
 // GetObject placeholder
 func (c *Client) GetObject(input *s3.GetObjectInput) (*s3.GetObjectOutput, error) {
-	return nil, nil
+	req, out := c.GetObjectRequest(input)
+	return out, req.Send()
 }

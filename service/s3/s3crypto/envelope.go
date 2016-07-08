@@ -86,6 +86,7 @@ func NewS3SaveStrategy(p client.ConfigProvider, suffix *string) SaveStrategy {
 }
 
 // Save will save the envelope contents to s3.
+// TODO: Reimplement
 func (strat *s3SaveStrategy) Save(env Envelope, input *s3.PutObjectInput) error {
 	/*env.Meta.Request.Handlers.Send.PushFront(func(r *request.Request) {
 		b, err := json.Marshal(env)

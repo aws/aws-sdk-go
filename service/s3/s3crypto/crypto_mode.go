@@ -2,6 +2,7 @@ package s3crypto
 
 import (
 	"encoding/base64"
+	"errors"
 	"fmt"
 	"io"
 )
@@ -60,7 +61,7 @@ func keyProviderFactory(env *Envelope, cfg Config) (KeyProvider, error) {
 		return NewSymmetricKeyProvider(cipher), nil
 	case "aeswrap":
 	}
-	return nil, nil
+	return nil, errors.New("INVALID WRAP")
 }
 
 func cekFactory(env *Envelope, kp KeyProvider) (Decrypter, error) {
@@ -68,7 +69,7 @@ func cekFactory(env *Envelope, kp KeyProvider) (Decrypter, error) {
 	case "AES/CBC/PKCS5Padding", "":
 		return NewAESCBC(kp)
 	}
-	return nil, nil
+	return nil, errors.New("INVALID CEK")
 }
 
 // EncodeMeta will return the meta object to be saved
@@ -76,7 +77,7 @@ func EncodeMeta(reader HashReader, kp KeyProvider) (Envelope, error) {
 	iv := base64.StdEncoding.EncodeToString(kp.GetIV())
 	keyBytes, err := kp.GetEncryptedKey()
 	if err != nil {
-		return Envelope{}, nil
+		return Envelope{}, errors.New("INVALID ENVELOPE")
 	}
 	key := base64.StdEncoding.EncodeToString(keyBytes)
 
