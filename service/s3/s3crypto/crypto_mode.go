@@ -2,9 +2,10 @@ package s3crypto
 
 import (
 	"encoding/base64"
-	"errors"
 	"fmt"
 	"io"
+
+	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
 // CryptoMode placeholder
@@ -22,13 +23,11 @@ type DecryptMode interface {
 
 func modeFactory(env *Envelope, cfg Config) (DecryptMode, error) {
 	kp, err := keyProviderFactory(env, cfg)
-	fmt.Println("ERROR 1", err)
 	if err != nil {
 		return nil, err
 	}
 
 	err = DecodeMeta(env, kp)
-	fmt.Println("ERROR 2", err)
 	if err != nil {
 		return nil, err
 	}
@@ -53,7 +52,6 @@ func keyProviderFactory(env *Envelope, cfg Config) (KeyProvider, error) {
 		return NewKMSKeyProvider(cfg.KMSSession)
 	case "rsa":
 	case "ecb", "":
-		fmt.Println("MASTER", cfg.MasterKey)
 		cipher, err := NewAESECB(cfg.MasterKey)
 		if err != nil {
 			return nil, err
@@ -61,7 +59,11 @@ func keyProviderFactory(env *Envelope, cfg Config) (KeyProvider, error) {
 		return NewSymmetricKeyProvider(cipher), nil
 	case "aeswrap":
 	}
-	return nil, errors.New("INVALID WRAP")
+	return nil, awserr.New(
+		"InvalidWrap",
+		"wrap algorithm isn't supported: "+env.WrapAlg,
+		nil,
+	)
 }
 
 func cekFactory(env *Envelope, kp KeyProvider) (Decrypter, error) {
@@ -69,7 +71,11 @@ func cekFactory(env *Envelope, kp KeyProvider) (Decrypter, error) {
 	case "AES/CBC/PKCS5Padding", "":
 		return NewAESCBC(kp)
 	}
-	return nil, errors.New("INVALID CEK")
+	return nil, awserr.New(
+		"InvalidCEK",
+		"cek algorithm isn't supported: "+env.CEKAlg,
+		nil,
+	)
 }
 
 // EncodeMeta will return the meta object to be saved
@@ -77,7 +83,7 @@ func EncodeMeta(reader HashReader, kp KeyProvider) (Envelope, error) {
 	iv := base64.StdEncoding.EncodeToString(kp.GetIV())
 	keyBytes, err := kp.GetEncryptedKey()
 	if err != nil {
-		return Envelope{}, errors.New("INVALID ENVELOPE")
+		return Envelope{}, err
 	}
 	key := base64.StdEncoding.EncodeToString(keyBytes)
 

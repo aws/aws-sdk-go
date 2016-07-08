@@ -132,9 +132,7 @@ func (c *Client) PutObject(input *s3.PutObjectInput) (*s3.PutObjectOutput, error
 
 // GetObjectRequest placeholder
 func (c *Client) GetObjectRequest(input *s3.GetObjectInput) (*request.Request, *s3.GetObjectOutput) {
-	fmt.Println("MASTERKEY 0", c.Config.MasterKey)
 	req, out := c.S3.GetObjectRequest(input)
-	// TODO: Put handler logic into own functions
 	req.Handlers.Unmarshal.PushBack(func(r *request.Request) {
 		env, err := c.getEnvelope(input, r)
 		if err != nil {
@@ -144,7 +142,6 @@ func (c *Client) GetObjectRequest(input *s3.GetObjectInput) (*request.Request, *
 
 		// If KMS should return the correct CEK algorithm with the proper
 		// KMS key provider
-		fmt.Println("MASTERKEY 1", c.Config.MasterKey)
 		mode, err := modeFactory(env, c.Config)
 		if err != nil {
 			r.Error = err
