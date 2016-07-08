@@ -91,7 +91,16 @@ func buildLocationElements(r *request.Request, v reflect.Value) {
 		}
 	}
 
-	r.HTTPRequest.URL.RawQuery = query.Encode()
+	if r.HTTPRequest.Method == "POST" {
+		query.Add("format", "sdk")
+		query.Add("pretty", "true")
+		body := []byte(query.Encode())
+		r.SetBufferBody(body)
+		r.HTTPRequest.Header.Add("Content-Length", strconv.Itoa(len(body)))
+		r.HTTPRequest.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+	} else {
+		r.HTTPRequest.URL.RawQuery = query.Encode()
+	}
 	updatePath(r.HTTPRequest.URL, r.HTTPRequest.URL.Path)
 }
 
