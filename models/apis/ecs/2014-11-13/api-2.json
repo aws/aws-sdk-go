@@ -1245,6 +1245,7 @@
       "members":{
         "taskDefinitionArn":{"shape":"String"},
         "containerDefinitions":{"shape":"ContainerDefinitions"},
+        "taskRoleArn":{"shape":"String"},
         "family":{"shape":"String"},
         "revision":{"shape":"Integer"},
         "volumes":{"shape":"VolumeList"},

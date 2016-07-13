@@ -1264,9 +1264,10 @@ func (c *ECS) RegisterTaskDefinitionRequest(input *RegisterTaskDefinitionInput) 
 }
 
 // Registers a new task definition from the supplied family and containerDefinitions.
-// Optionally, you can add data volumes to your containers with the volumes
-// parameter. For more information about task definition parameters and defaults,
-// see Amazon ECS Task Definitions (http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_defintions.html)
+// Optionally, you can add a task-level IAM role taskRoleArn or data volumes
+// to your containers with the volumes parameter. For more information about
+// task definition parameters and defaults, see Amazon ECS Task Definitions
+// (http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_defintions.html)
 // in the Amazon EC2 Container Service Developer Guide.
 func (c *ECS) RegisterTaskDefinition(input *RegisterTaskDefinitionInput) (*RegisterTaskDefinitionOutput, error) {
 	req, out := c.RegisterTaskDefinitionRequest(input)
@@ -4363,6 +4364,11 @@ type TaskDefinition struct {
 
 	// The full Amazon Resource Name (ARN) of the task definition.
 	TaskDefinitionArn *string `locationName:"taskDefinitionArn" type:"string"`
+
+	// The full Amazon Resource Name (ARN) of an IAM role that allows the containers
+	// in the task permission to call the AWS APIs that are specified in its associated
+	// policies on your behalf.
+	TaskRoleArn *string `locationName:"taskRoleArn" type:"string"`
 
 	// The list of volumes in a task. For more information about volume definition
 	// parameters and defaults, see Amazon ECS Task Definitions (http://docs.aws.amazon.com/http:/docs.aws.amazon.com/AmazonECS/latest/developerguidetask_defintions.html)
