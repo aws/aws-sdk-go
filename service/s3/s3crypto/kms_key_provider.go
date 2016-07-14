@@ -1,6 +1,8 @@
 package s3crypto
 
 import (
+	"encoding/json"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/kms"
@@ -13,13 +15,20 @@ type KMSKeyProvider struct {
 	kms          *kms.KMS
 	key          []byte
 	encryptedKey []byte
-	kmsKeyID     []byte
 	iv           []byte
+	matdesc      map[string]interface{}
 }
 
 // NewKMSKeyProvider placeholder
-func NewKMSKeyProvider(sess *session.Session) (KeyProvider, error) {
+func NewKMSKeyProvider(sess *session.Session, matdesc string) (KeyProvider, error) {
+	m := make(map[string]interface{})
+	err := json.Unmarshal([]byte(matdesc), &m)
+	if err != nil {
+		return nil, err
+	}
+
 	kp := &KMSKeyProvider{}
+	kp.matdesc = m
 	kp.kms = kms.New(sess)
 	return kp, nil
 }
@@ -39,24 +48,25 @@ func (kp *KMSKeyProvider) GetIV() []byte {
 	return kp.iv
 }
 
-// SetIV returns key
+// SetIV sets iv
 func (kp *KMSKeyProvider) SetIV(iv []byte) {
 	kp.iv = iv
 }
 
 // GetEncryptedKey returns key
-func (kp *KMSKeyProvider) GetEncryptedKey() ([]byte, error) {
+func (kp *KMSKeyProvider) GetEncryptedKey(key []byte) ([]byte, error) {
 	return kp.encryptedKey, nil
 }
 
 // GetDecryptedKey makes a call to KMS to decrypt the key
-func (kp *KMSKeyProvider) GetDecryptedKey() ([]byte, error) {
-	kmsID := aws.String(string(kp.kmsKeyID))
+func (kp *KMSKeyProvider) GetDecryptedKey(key []byte) ([]byte, error) {
+	kmsID := kp.matdesc["kms_cmk_id"].(string)
 	out, err := kp.kms.Decrypt(&kms.DecryptInput{
 		EncryptionContext: map[string]*string{
-			"kms_cmk_id": kmsID,
+			"kms_cmk_id": &kmsID,
 		},
-		CiphertextBlob: kp.encryptedKey,
+		CiphertextBlob: key,
+		GrantTokens:    []*string{},
 	})
 	if err != nil {
 		return nil, err
@@ -66,7 +76,7 @@ func (kp *KMSKeyProvider) GetDecryptedKey() ([]byte, error) {
 
 // GenerateKey place holder
 func (kp *KMSKeyProvider) GenerateKey(n int) ([]byte, error) {
-	kmsID := aws.String(string(kp.kmsKeyID))
+	kmsID := aws.String(kp.matdesc["kms_cmk_id"].(string))
 	out, err := kp.kms.GenerateDataKey(&kms.GenerateDataKeyInput{
 		EncryptionContext: map[string]*string{
 			"kms_cmk_id": kmsID,
@@ -83,9 +93,4 @@ func (kp *KMSKeyProvider) GenerateKey(n int) ([]byte, error) {
 // GenerateIV placeholder
 func (kp *KMSKeyProvider) GenerateIV(n int) ([]byte, error) {
 	return generateBytes(n), nil
-}
-
-// SetEncryptedKey ...
-func (kp *KMSKeyProvider) SetEncryptedKey(key []byte) {
-	kp.encryptedKey = key
 }

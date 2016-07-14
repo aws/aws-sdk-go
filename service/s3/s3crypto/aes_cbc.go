@@ -76,37 +76,33 @@ type cbcEncryptReader struct {
 
 // Need to ensure each block read is a multiple of the block size
 func (reader *cbcEncryptReader) Read(data []byte) (int, error) {
-	// Drain body til we have one block left then append any new data
 	blockSize := reader.encrypter.BlockSize()
-	if reader.size > blockSize {
-		return reader.drainBody(&data, blockSize), nil
-	}
-
 	ciphertext := make([]byte, bufSize)
 	n, err := reader.src.Read(ciphertext)
-	if err != nil && err != io.EOF {
-		return n, err
+	reader.data = append(reader.data, ciphertext[:n]...)
+
+	if v := len(reader.data); v > 0 {
+		size := len(data)
+		if len(reader.data) < size {
+			size = len(reader.data)
+		}
+
+		// Incase padded data is larger than len(data)
+		if size > blockSize {
+			size -= size % blockSize
+		}
+
+		ciphertext := make([]byte, size)
+		ciphertext = PadPKCS5(reader.data[:size], blockSize)
+		reader.encrypter.CryptBlocks(ciphertext, ciphertext)
+		copy(data, ciphertext)
+		reader.data = reader.data[size:]
+		if len(reader.data) == 0 && err == io.EOF {
+			return len(ciphertext), err
+		}
+		return len(ciphertext), nil
 	}
-
-	ciphertext = PadPKCS5(ciphertext[:n], blockSize)
-	reader.encrypter.CryptBlocks(ciphertext, ciphertext)
-
-	if lastBlock := (n == 0 || err == io.EOF); lastBlock {
-		return reader.finalize(lastBlock, &ciphertext, &data, blockSize), err
-	}
-
-	cLen := len(ciphertext)
-	// Buffer has too much data in it.
-	if reader.size+cLen > bufSize {
-		return reader.appendToBuffer(&data, ciphertext), nil
-	}
-
-	for i := 0; i < cLen; i++ {
-		reader.data[reader.size+i] = ciphertext[i]
-	}
-	reader.size += cLen
-
-	return 0, nil
+	return 0, err
 }
 
 type cbcDecryptReader struct {
@@ -116,38 +112,26 @@ type cbcDecryptReader struct {
 }
 
 func (reader *cbcDecryptReader) Read(data []byte) (int, error) {
-	blockSize := reader.decrypter.BlockSize()
-	if reader.size > blockSize {
-		n := reader.drainBody(&data, blockSize)
-		return n, nil
-	}
-
 	plaintext := make([]byte, bufSize)
-
 	n, err := reader.src.Read(plaintext)
-	if err != nil && err != io.EOF {
-		return n, err
+	reader.data = append(reader.data, plaintext[:n]...)
+
+	blockSize := reader.decrypter.BlockSize()
+	// we can check if v%blockSize, because data is always padded on encrypt
+	if v := len(reader.data); v > 0 && v%blockSize == 0 {
+		size := len(data)
+		if len(reader.data) < size {
+			size = len(reader.data)
+		}
+		plaintext := make([]byte, size)
+		reader.decrypter.CryptBlocks(plaintext, reader.data[:size])
+		plaintext = UnpadPKCS5(plaintext, blockSize)
+		copy(data, plaintext)
+		reader.data = reader.data[size:]
+		if len(reader.data) == 0 && err == io.EOF {
+			return len(plaintext), err
+		}
+		return len(plaintext), nil
 	}
-
-	plaintext = plaintext[:n]
-	reader.decrypter.CryptBlocks(plaintext, plaintext)
-	plaintext = UnpadPKCS5(plaintext, reader.decrypter.BlockSize())
-
-	if lastBlock := (n == 0 || err == io.EOF); lastBlock {
-		n = reader.finalize(lastBlock, &plaintext, &data, blockSize)
-		return n, err
-	}
-
-	pLen := len(plaintext)
-	// Buffer has too much data in it.
-	if reader.size+pLen > bufSize {
-		return reader.appendToBuffer(&data, plaintext), nil
-	}
-
-	for i := 0; i < pLen; i++ {
-		reader.data[reader.size+i] = plaintext[i]
-	}
-	reader.size += pLen
-
-	return 0, nil
+	return 0, err
 }

@@ -3,6 +3,7 @@ package s3crypto
 import (
 	"bytes"
 	"encoding/hex"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"testing"
@@ -102,6 +103,7 @@ func aescbcEncrypt(t *testing.T, iv, key, plaintext, expected []byte) {
 	ciphertext, err := ioutil.ReadAll(cipherdata)
 	assert.Nil(t, err)
 	assert.Equal(t, len(ciphertext), len(expected))
+	fmt.Printf("%x\n%x\ndata\n", ciphertext, expected)
 	assert.True(t, bytes.Equal(ciphertext, expected))
 }
 

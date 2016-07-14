@@ -49,7 +49,7 @@ func keyProviderFactory(env *Envelope, cfg Config) (KeyProvider, error) {
 
 	switch env.WrapAlg {
 	case "kms":
-		return NewKMSKeyProvider(cfg.KMSSession)
+		return NewKMSKeyProvider(cfg.KMSSession, env.MatDesc)
 	case "rsa":
 	case "ecb", "":
 		cipher, err := NewAESECB(cfg.MasterKey)
@@ -81,7 +81,7 @@ func cekFactory(env *Envelope, kp KeyProvider) (Decrypter, error) {
 // EncodeMeta will return the meta object to be saved
 func EncodeMeta(reader HashReader, kp KeyProvider) (Envelope, error) {
 	iv := base64.StdEncoding.EncodeToString(kp.GetIV())
-	keyBytes, err := kp.GetEncryptedKey()
+	keyBytes, err := kp.GetEncryptedKey(kp.GetKey())
 	if err != nil {
 		return Envelope{}, err
 	}
@@ -115,9 +115,9 @@ func DecodeMeta(env *Envelope, kp KeyProvider) error {
 	if err != nil {
 		return err
 	}
-	kp.SetEncryptedKey(key)
+	//kp.SetEncryptedKey(key)
 
-	keyBytes, err := kp.GetDecryptedKey()
+	keyBytes, err := kp.GetDecryptedKey(key)
 	if err != nil {
 		return err
 	}

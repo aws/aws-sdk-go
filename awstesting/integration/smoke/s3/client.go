@@ -18,6 +18,10 @@ func init() {
 				Region:      aws.String("us-west-2"),
 				Credentials: credentials.NewSharedCredentials("", "integration"),
 			})
+			c.Config.KMSSession = session.New((&aws.Config{
+				Region:      aws.String("us-east-1"),
+				Credentials: credentials.NewSharedCredentials("", "integration"),
+			}).WithLogLevel(aws.LogDebugWithRequestRetries | aws.LogDebugWithRequestErrors | aws.LogDebugWithHTTPBody))
 		})
 		World["cryptoClient"] = c
 

@@ -4,6 +4,7 @@ import (
 	"crypto/aes"
 	"crypto/cipher"
 	"io"
+	"io/ioutil"
 )
 
 // AESECB Symmetric encryption used for masterkey
@@ -35,42 +36,31 @@ type ecbEncryptReader struct {
 
 func (reader *ecbEncryptReader) Read(data []byte) (int, error) {
 	blockSize := reader.block.BlockSize()
-	// Drain body til we have one block left then append any new data
-	if reader.size > blockSize {
-		return reader.drainBody(&data, blockSize), nil
+	if len(reader.data) == 0 {
+		plaintext, err := ioutil.ReadAll(reader.src)
+		if err != nil {
+			return 0, err
+		}
+		ciphertext := make([]byte, len(plaintext))
+		for i := 0; len(plaintext) > 0; i++ {
+			reader.block.Encrypt(ciphertext[blockSize*i:blockSize*(i+1)], plaintext[:blockSize])
+			plaintext = plaintext[blockSize:]
+		}
+		ciphertext = PadPKCS5(ciphertext, blockSize)
+		reader.data = ciphertext
 	}
 
-	plaintext := make([]byte, bufSize)
-	n, err := reader.src.Read(plaintext)
-	if err != nil && err != io.EOF {
-		return n, err
+	size := len(data)
+	if size > len(reader.data) {
+		size = len(reader.data)
 	}
 
-	plaintext = plaintext[:n]
-	ciphertext := make([]byte, n)
-
-	for i := 0; len(plaintext) > 0; i++ {
-		reader.block.Encrypt(ciphertext[blockSize*i:blockSize*(i+1)], plaintext[:blockSize])
-		plaintext = plaintext[blockSize:]
+	copy(data, reader.data[:size])
+	reader.data = reader.data[size:]
+	if len(reader.data) == 0 {
+		return size, io.EOF
 	}
-	ciphertext = PadPKCS5(ciphertext, blockSize)
-
-	// Nothing has been read, unpad and return EOF.
-	if lastBlock := n == 0 || err == io.EOF; lastBlock {
-		return reader.finalize(lastBlock, &ciphertext, &data, blockSize), err
-	}
-
-	cLen := len(ciphertext)
-	// Buffer has too much data in it.
-	if reader.size+cLen > bufSize {
-		return reader.appendToBuffer(&data, ciphertext), nil
-	}
-
-	for i := 0; i < cLen; i++ {
-		reader.data[reader.size+i] = ciphertext[i]
-	}
-	reader.size += cLen
-	return 0, nil
+	return size, nil
 }
 
 // Decrypt will decrypt the data using AES ECB
@@ -86,38 +76,29 @@ type ecbDecryptReader struct {
 
 func (reader *ecbDecryptReader) Read(data []byte) (int, error) {
 	blockSize := reader.block.BlockSize()
-	// Drain body til we have one block left then append any new data
-	if reader.size > blockSize {
-		return reader.drainBody(&data, blockSize), nil
+	if len(reader.data) == 0 {
+		ciphertext, err := ioutil.ReadAll(reader.src)
+		if err != nil {
+			return 0, err
+		}
+		plaintext := make([]byte, len(ciphertext))
+		for i := 0; len(ciphertext) > 0; i++ {
+			reader.block.Decrypt(plaintext[blockSize*i:blockSize*(i+1)], ciphertext[:blockSize])
+			ciphertext = ciphertext[blockSize:]
+		}
+		plaintext = UnpadPKCS5(plaintext, blockSize)
+		reader.data = plaintext
 	}
 
-	ciphertext := make([]byte, bufSize)
-	n, err := reader.src.Read(ciphertext)
-	if err != nil && err != io.EOF {
-		return n, err
+	size := len(data)
+	if size > len(reader.data) {
+		size = len(reader.data)
 	}
 
-	ciphertext = ciphertext[:n]
-	plaintext := make([]byte, n)
-	for i := 0; len(ciphertext) > 0; i++ {
-		reader.block.Decrypt(plaintext[blockSize*i:blockSize*(i+1)], ciphertext[:blockSize])
-		ciphertext = ciphertext[blockSize:]
+	copy(data, reader.data[:size])
+	reader.data = reader.data[size:]
+	if len(reader.data) == 0 {
+		return size, io.EOF
 	}
-	plaintext = UnpadPKCS5(plaintext, blockSize)
-
-	if lastBlock := n == 0 || err == io.EOF; lastBlock {
-		return reader.finalize(lastBlock, &ciphertext, &data, blockSize), err
-	}
-
-	pLen := len(plaintext)
-	// Buffer has too much data in it.
-	if reader.size+pLen > bufSize {
-		return reader.appendToBuffer(&data, plaintext), nil
-	}
-
-	for i := 0; i < pLen; i++ {
-		reader.data[reader.size+i] = plaintext[i]
-	}
-	reader.size += pLen
-	return 0, nil
+	return size, nil
 }

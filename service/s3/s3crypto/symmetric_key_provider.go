@@ -7,9 +7,8 @@ import (
 
 // SymmetricKeyProvider placeholder
 type SymmetricKeyProvider struct {
-	key          []byte
-	encryptedKey []byte
-	iv           []byte
+	key []byte
+	iv  []byte
 	Cipher
 }
 
@@ -39,14 +38,14 @@ func (kp *SymmetricKeyProvider) SetKey(key []byte) {
 }
 
 // GetEncryptedKey placeholder
-func (kp *SymmetricKeyProvider) GetEncryptedKey() ([]byte, error) {
-	dst := kp.Encrypt(bytes.NewBuffer(kp.key))
+func (kp *SymmetricKeyProvider) GetEncryptedKey(key []byte) ([]byte, error) {
+	dst := kp.Encrypt(bytes.NewBuffer(key))
 	return ioutil.ReadAll(dst)
 }
 
 // GetDecryptedKey placeholder
-func (kp *SymmetricKeyProvider) GetDecryptedKey() ([]byte, error) {
-	dst := kp.Decrypt(bytes.NewBuffer(kp.encryptedKey))
+func (kp *SymmetricKeyProvider) GetDecryptedKey(key []byte) ([]byte, error) {
+	dst := kp.Decrypt(bytes.NewBuffer(key))
 	b, err := ioutil.ReadAll(dst)
 	return b, err
 }
@@ -59,9 +58,4 @@ func (kp *SymmetricKeyProvider) GetIV() []byte {
 // SetIV placeholder
 func (kp *SymmetricKeyProvider) SetIV(b []byte) {
 	kp.iv = b
-}
-
-// SetEncryptedKey placeholder
-func (kp *SymmetricKeyProvider) SetEncryptedKey(key []byte) {
-	kp.encryptedKey = key
 }

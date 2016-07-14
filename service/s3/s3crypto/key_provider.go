@@ -12,7 +12,7 @@ type KeyProvider interface {
 type EncrypterKeyProvider interface {
 	GenerateKey(int) ([]byte, error)
 	GenerateIV(int) ([]byte, error)
-	GetEncryptedKey() ([]byte, error)
+	GetEncryptedKey(key []byte) ([]byte, error)
 	GetIV() []byte
 	SetIV([]byte)
 	GetKey() []byte
@@ -21,8 +21,7 @@ type EncrypterKeyProvider interface {
 
 // DecrypterKeyProvider placeholder
 type DecrypterKeyProvider interface {
-	SetEncryptedKey([]byte)
-	GetDecryptedKey() ([]byte, error)
+	GetDecryptedKey([]byte) ([]byte, error)
 }
 
 func generateBytes(n int) []byte {

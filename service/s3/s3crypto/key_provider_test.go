@@ -31,8 +31,7 @@ func TestSymmetricKeyDecryption(t *testing.T) {
 		Cipher: cipher,
 	}
 	encryptedKey, _ := base64.StdEncoding.DecodeString("QCwoHJ/cOGmhQeNZ0GAeep+ysKWpqOY7w63kijvBCv+mCQMmX+H4u8HtGLdU3LFj")
-	kp.SetEncryptedKey(encryptedKey)
-	val, err := kp.GetDecryptedKey()
+	val, err := kp.GetDecryptedKey(encryptedKey)
 	assert.Nil(t, err)
 	iv, _ := base64.StdEncoding.DecodeString("qxKNPKvYnj28sgP0OQ6ItQ==")
 	kp.SetKey(val)

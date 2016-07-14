@@ -1,6 +1,10 @@
 package s3crypto
 
 import (
+	"bytes"
+	"encoding/json"
+
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/s3"
@@ -88,30 +92,24 @@ func NewS3SaveStrategy(p client.ConfigProvider, suffix *string) SaveStrategy {
 // Save will save the envelope contents to s3.
 // TODO: Reimplement
 func (strat *s3SaveStrategy) Save(env Envelope, input *s3.PutObjectInput) error {
-	/*env.Meta.Request.Handlers.Send.PushFront(func(r *request.Request) {
-		b, err := json.Marshal(env)
-		if err != nil {
-			r.Error = err
-			return
-		}
+	b, err := json.Marshal(env)
+	if err != nil {
+		return err
+	}
 
-		instInput := s3.PutObjectInput{
-			Bucket: &env.Meta.Bucket,
-			Body:   bytes.NewReader(b),
-		}
+	instInput := s3.PutObjectInput{
+		Bucket: input.Bucket,
+		Body:   bytes.NewReader(b),
+	}
 
-		if strat.InstructionFileSuffix == nil {
-			instInput.Key = aws.String(env.Meta.ObjectKey + instructionKey)
-		} else {
-			instInput.Key = aws.String(env.Meta.ObjectKey + instructionKey + "-" + *strat.InstructionFileSuffix)
-		}
+	if strat.InstructionFileSuffix == nil {
+		instInput.Key = aws.String(*input.Key + instructionKey)
+	} else {
+		instInput.Key = aws.String(*input.Key + instructionKey + "-" + *strat.InstructionFileSuffix)
+	}
 
-		_, err = strat.client.PutObject(&instInput)
-		if err != nil {
-			r.Error = err
-		}
-	})*/
-	return nil
+	_, err = strat.client.PutObject(&instInput)
+	return err
 }
 
 type headerSaveStrategy struct{}

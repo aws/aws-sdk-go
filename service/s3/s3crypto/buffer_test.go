@@ -35,8 +35,7 @@ func TestAppendToBufferGreaterSize(t *testing.T) {
 	appendData := bytes.Repeat([]byte{'a'}, bufSize*2)
 	size := b.appendToBuffer(&data, appendData)
 
-	assert.Equal(t, bufSize, size)
-	assert.Equal(t, appendData[:bufSize], data[:size])
-	assert.Equal(t, len(appendData[bufSize:]), len(b.data))
-	assert.Equal(t, appendData[bufSize:], b.data[:b.size])
+	assert.Equal(t, bufSize*2, size)
+	assert.Equal(t, appendData[:bufSize*2], data[:size])
+	assert.Equal(t, 0, len(b.data))
 }

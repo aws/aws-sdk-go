@@ -43,6 +43,8 @@ func TestPutObject(t *testing.T) {
 		Body:   strings.NewReader(body),
 	}
 
+	t.Log("WEEEEEE", []byte(body))
+
 	req, out := c.PutObjectRequest(input)
 
 	assert.NotNil(t, out)
@@ -114,6 +116,7 @@ func TestGetObject_V1_WRAP_ECB_CONTENT_CBC(t *testing.T) {
 	plaintext, err := ioutil.ReadAll(out.Body)
 	assert.Nil(t, err)
 	expectedPlaintext, _ := hex.DecodeString("34c9e4da626670368a1ca2d371309b7d1bc5bbe32f66cad0bad61bf3f12e7d0cae732165bff9acadfa8ad68a2d0249498108f6488477ac0836b4c2f3db0d982a")
+	fmt.Printf("DATA\n%x\n%x\n", expectedPlaintext, plaintext)
 	assert.Equal(t, len(expectedPlaintext), len(plaintext))
 	assert.Equal(t, expectedPlaintext, plaintext)
 }

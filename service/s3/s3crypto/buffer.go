@@ -5,66 +5,52 @@ import ()
 const bufSize = 2048
 
 type buffer struct {
-	data [bufSize]byte
-	size int
+	data []byte
 }
 
 // appendToBuffer takes a byte array that we will add to the end of the reader's
 // buffer and will change the size of the reader as fit
 // May have issues with padding if pLen isn't blocksize or more
 func (buf *buffer) appendToBuffer(data *[]byte, b []byte) int {
-	pLen := len(b)
-	rem := bufSize - buf.size
-	if bLen := len(b); rem > bLen {
-		rem = bLen
-	}
+	buf.data = append(buf.data, b...)
 
-	for i := 0; i < rem; i++ {
-		buf.data[buf.size+i] = b[i]
+	max := len(b)
+	dLen := len(*data)
+	if max > dLen {
+		max = dLen
 	}
-	buf.size += rem
-	b = b[rem:]
-	copy(*data, buf.data[:buf.size])
-	tmpSize := buf.size
+	copy(*data, buf.data[:max])
 
-	buf.size = pLen - rem
-	for i := 0; i < buf.size; i++ {
-		buf.data[i] = b[i]
-	}
-	return tmpSize
+	// shift bytes
+	buf.data = buf.data[max:]
+
+	return max
 }
 
 func (buf *buffer) drainBody(data *[]byte, blockSize int) int {
-	cutoff, dLen := buf.size-blockSize, len(*data)
+	cutoff, dLen := len(buf.data)-blockSize, len(*data)
 	if cutoff > dLen {
 		cutoff = dLen
 	}
 
 	copy(*data, buf.data[:cutoff])
-	for i := 0; cutoff+i < buf.size; i++ {
-		buf.data[i] = buf.data[cutoff+i]
-	}
-	buf.size -= cutoff
+	buf.data = buf.data[cutoff:]
 	return cutoff
 }
 
 // Called when nothing has been read or io.EOF was returned. Meaning we are at the end
 // of the reads
 func (buf *buffer) finalize(lastBlock bool, dst *[]byte, data *[]byte, blockSize int) int {
-	*dst = append(buf.data[:buf.size], (*dst)...)
+	*dst = append(buf.data, (*dst)...)
 	cLen, dLen := len(*dst), len(*data)
 	if cLen <= dLen {
 		copy(*data, *dst)
-		buf.size = 0
 		return cLen
 	}
 
 	copy(*data, (*dst)[:dLen])
 	*dst = (*dst)[dLen:]
 	cLen = len(*dst)
-	for i := 0; i < cLen; i++ {
-		buf.data[i] = (*dst)[i]
-	}
-	buf.size = cLen
+	buf.data = (*data)
 	return dLen
 }

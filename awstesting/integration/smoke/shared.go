@@ -134,8 +134,8 @@ func init() {
 		assert.NoError(gucumber.T, err)
 	})
 
-	When(`^I get all fixtures for "(.+?)" "(.+?)" from "(.+?)"$`,
-		func(t, cekAlg, bucket string) {
+	When(`^I get all fixtures for "(.+?)" from "(.+?)"$`,
+		func(cekAlg, bucket string) {
 			prefix := "plaintext_test_case_"
 			baseFolder := "crypto_tests/" + cekAlg
 			s3Client := World["client"].(*s3.S3)
@@ -146,8 +146,7 @@ func init() {
 			})
 			assert.NoError(T, err)
 
-			cases := []string{}
-			plaintexts := [][]byte{}
+			plaintexts := make(map[string][]byte)
 			for _, obj := range out.Contents {
 				plaintextKey := obj.Key
 				ptObj, err := s3Client.GetObject(&s3.GetObjectInput{
@@ -156,36 +155,38 @@ func init() {
 				})
 				assert.NoError(T, err)
 				caseKey := strings.TrimPrefix(*plaintextKey, baseFolder+"/"+prefix)
-				cases = append(cases, caseKey)
 				plaintext, err := ioutil.ReadAll(ptObj.Body)
 				assert.NoError(T, err)
-				plaintexts = append(plaintexts, plaintext)
+
+				plaintexts[caseKey] = plaintext
 			}
-			World["cases"] = cases
 			World["baseFolder"] = baseFolder
 			World["bucket"] = bucket
 			World["plaintexts"] = plaintexts
 		})
 
-	Then(`^I decrypt each fixture against "(.+?)" "(.+?)"$`, func(language, version string) {
-		cases := World["cases"].([]string)
+	Then(`^I decrypt each fixture against "(.+?)" "(.+?)"$`, func(lang, version string) {
+		plaintexts := World["plaintexts"].(map[string][]byte)
 		baseFolder := World["baseFolder"].(string)
 		bucket := World["bucket"].(string)
 		prefix := "ciphertext_test_case_"
 		s3Client := World["client"].(*s3.S3)
 		s3CryptoClient := World["cryptoClient"].(*s3crypto.Client)
-		language = "language_" + language
+		language := "language_" + lang
 
-		ciphertexts := [][]byte{}
-		for _, caseKey := range cases {
+		ciphertexts := make(map[string][]byte)
+		for caseKey := range plaintexts {
 			cipherKey := baseFolder + "/" + version + "/" + language + "/" + prefix + caseKey
+			fmt.Println("Grabbing cipher key:", cipherKey)
 
 			// To get metadata for encryption key
 			ctObj, err := s3Client.GetObject(&s3.GetObjectInput{
 				Bucket: aws.String(bucket),
 				Key:    &cipherKey,
 			})
-			assert.NoError(T, err)
+			if err != nil {
+				continue
+			}
 
 			masterkeyB64 := ctObj.Metadata["Masterkey"]
 			masterkey, err := base64.StdEncoding.DecodeString(*masterkeyB64)
@@ -199,18 +200,21 @@ func init() {
 			)
 			assert.NoError(T, err)
 
+			fmt.Println("CT OBJECT", ctObj)
 			ciphertext, err := ioutil.ReadAll(ctObj.Body)
 			assert.NoError(T, err)
-			ciphertexts = append(ciphertexts, ciphertext)
+			ciphertexts[caseKey] = ciphertext
 		}
 		World["ciphertexts"] = ciphertexts
 	})
 
 	And(`^I compare the decrypted ciphertext to the plaintext$`, func() {
-		plaintexts := World["plaintexts"].([][]byte)
-		ciphertexts := World["ciphertexts"].([][]byte)
-		for i := 0; i < len(plaintexts); i++ {
-			assert.True(T, bytes.Equal(ciphertexts[i], plaintexts[i]))
+		plaintexts := World["plaintexts"].(map[string][]byte)
+		ciphertexts := World["ciphertexts"].(map[string][]byte)
+		for caseKey, ciphertext := range ciphertexts {
+			fmt.Println("CASE ", caseKey, len(plaintexts[caseKey]), len(ciphertext))
+			assert.Equal(T, len(plaintexts[caseKey]), len(ciphertext))
+			assert.True(T, bytes.Equal(plaintexts[caseKey], ciphertext))
 		}
 	})
 }

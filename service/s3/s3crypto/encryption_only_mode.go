@@ -1,6 +1,7 @@
 package s3crypto
 
 import (
+	"fmt"
 	"io"
 )
 
@@ -33,7 +34,8 @@ func (mode *EncryptionOnlyMode) EncryptContents(dst io.Writer, src io.Reader) er
 	// TODO: Don't think this is needed
 	// kp.SetEncryptedKey(mode.Wrap)
 	reader := cbc.Encrypt(src)
-	_, err = io.Copy(dst, reader)
+	n, err := io.Copy(dst, reader)
+	fmt.Println("TET", n, err)
 	return err
 }
 
