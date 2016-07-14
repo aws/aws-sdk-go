@@ -7,6 +7,8 @@ import (
 )
 
 // AESCBC Symmetric encryption
+// AESCBC is susceptible to Oracle Padding attacks. It is strongly
+// preferred the use of AES GCM or AES CBC+Mac or AES CTR+Mac
 type AESCBC struct {
 	block     cipher.Block
 	iv        []byte

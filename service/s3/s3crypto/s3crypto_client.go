@@ -47,7 +47,6 @@ type Config struct {
 // TODO: Change master cipher to be not ECB
 // cipher := NewAESECB(masterkey)
 // svc := New(EncryptionOnly(NewSymmetricKeyProvider(cipher))
-// TODO: Consider what to do with masterkey
 func New(mode CryptoMode, options ...func(*Client)) *Client {
 	sess := session.New()
 	// TODO: Change this to strict authenticaton mode
@@ -103,7 +102,7 @@ func (c *Client) PutObjectRequest(input *s3.PutObjectInput) (*request.Request, *
 		f.Seek(0, 0)
 		input.Body = f
 
-		env, err := EncodeMeta(md5, c.Config.Mode.GetKeyProvider())
+		env, err := EncodeMeta(md5, c.Config.Mode)
 		if err != nil {
 			r.Error = err
 			return
@@ -112,8 +111,6 @@ func (c *Client) PutObjectRequest(input *s3.PutObjectInput) (*request.Request, *
 		r.Error = err
 	})
 
-	// TODO: May need to add a new handler that cleans up even if an error occurs, otherwise
-	// this file will still exist upon error in the build handler
 	fn := func(r *request.Request) {
 		// Close the temp file and cleanup
 		f.Close()

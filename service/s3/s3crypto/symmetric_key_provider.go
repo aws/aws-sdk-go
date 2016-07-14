@@ -9,12 +9,12 @@ import (
 type SymmetricKeyProvider struct {
 	key []byte
 	iv  []byte
-	Cipher
+	Wrap
 }
 
 // NewSymmetricKeyProvider ...
-func NewSymmetricKeyProvider(master Cipher) KeyProvider {
-	return &SymmetricKeyProvider{Cipher: master}
+func NewSymmetricKeyProvider(master Wrap) KeyProvider {
+	return &SymmetricKeyProvider{Wrap: master}
 }
 
 // GenerateKey placeholder

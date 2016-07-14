@@ -28,7 +28,7 @@ func TestSymmetricKeyDecryption(t *testing.T) {
 	cipher, err := s3crypto.NewAESECB(mkey)
 	assert.Nil(t, err)
 	kp := &s3crypto.SymmetricKeyProvider{
-		Cipher: cipher,
+		Wrap: cipher,
 	}
 	encryptedKey, _ := base64.StdEncoding.DecodeString("QCwoHJ/cOGmhQeNZ0GAeep+ysKWpqOY7w63kijvBCv+mCQMmX+H4u8HtGLdU3LFj")
 	val, err := kp.GetDecryptedKey(encryptedKey)
@@ -36,6 +36,6 @@ func TestSymmetricKeyDecryption(t *testing.T) {
 	iv, _ := base64.StdEncoding.DecodeString("qxKNPKvYnj28sgP0OQ6ItQ==")
 	kp.SetKey(val)
 	kp.SetIV(iv)
-	cipher, err = s3crypto.NewAESCBC(kp)
+	_, err = s3crypto.NewAESCBC(kp)
 	assert.Nil(t, err)
 }

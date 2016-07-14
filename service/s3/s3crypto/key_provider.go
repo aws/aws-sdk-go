@@ -17,6 +17,7 @@ type EncrypterKeyProvider interface {
 	SetIV([]byte)
 	GetKey() []byte
 	SetKey([]byte)
+	GetCipherName() string
 }
 
 // DecrypterKeyProvider placeholder

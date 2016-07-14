@@ -17,6 +17,7 @@ type KMSKeyProvider struct {
 	encryptedKey []byte
 	iv           []byte
 	matdesc      map[string]interface{}
+	CipherName
 }
 
 // NewKMSKeyProvider placeholder
@@ -30,6 +31,7 @@ func NewKMSKeyProvider(sess *session.Session, matdesc string) (KeyProvider, erro
 	kp := &KMSKeyProvider{}
 	kp.matdesc = m
 	kp.kms = kms.New(sess)
+	kp.Algorithm = "kms"
 	return kp, nil
 }
 

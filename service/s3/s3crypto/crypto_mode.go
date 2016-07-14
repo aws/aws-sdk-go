@@ -13,6 +13,7 @@ type CryptoMode interface {
 	EncryptContents(io.Writer, io.Reader) error
 	DecryptContents([]byte, []byte, io.ReadCloser) (io.ReadCloser, error)
 	GetKeyProvider() KeyProvider
+	GetCipherName() string
 }
 
 // DecryptMode is meant to used only in reading objects from s3
@@ -61,7 +62,7 @@ func keyProviderFactory(env *Envelope, cfg Config) (KeyProvider, error) {
 	}
 	return nil, awserr.New(
 		"InvalidWrap",
-		"wrap algorithm isn't supported: "+env.WrapAlg,
+		"wrap algorithm isn't supported, "+env.WrapAlg,
 		nil,
 	)
 }
@@ -73,13 +74,14 @@ func cekFactory(env *Envelope, kp KeyProvider) (Decrypter, error) {
 	}
 	return nil, awserr.New(
 		"InvalidCEK",
-		"cek algorithm isn't supported: "+env.CEKAlg,
+		"cek algorithm isn't supported, "+env.CEKAlg,
 		nil,
 	)
 }
 
 // EncodeMeta will return the meta object to be saved
-func EncodeMeta(reader HashReader, kp KeyProvider) (Envelope, error) {
+func EncodeMeta(reader HashReader, mode CryptoMode) (Envelope, error) {
+	kp := mode.GetKeyProvider()
 	iv := base64.StdEncoding.EncodeToString(kp.GetIV())
 	keyBytes, err := kp.GetEncryptedKey(kp.GetKey())
 	if err != nil {
@@ -99,9 +101,9 @@ func EncodeMeta(reader HashReader, kp KeyProvider) (Envelope, error) {
 	return Envelope{
 		CipherKey:             key,
 		IV:                    iv,
-		MatDesc:               "{}",
-		WrapAlg:               "keywrap", // TODO: Remove this hard coded value and replace with MasterKey.DescribeAlg()
-		CEKAlg:                "cbc",
+		MatDesc:               "{}", // TODO: Add merging of mat desc
+		WrapAlg:               kp.GetCipherName(),
+		CEKAlg:                mode.GetCipherName(),
 		TagLen:                "0",
 		UnencryptedMD5:        md5Str,
 		UnencryptedContentLen: fmt.Sprintf("%d", contentLength),

@@ -10,6 +10,12 @@ type Cipher interface {
 	Decrypter
 }
 
+// Wrap placeholder
+type Wrap interface {
+	Cipher
+	GetCipherName() string
+}
+
 // TODO: Not used yet
 const defaultWriteBufferLimit = 1024 * 1000
 
@@ -43,4 +49,14 @@ func (rc *CryptoReadCloser) Read(b []byte) (int, error) {
 		return 0, io.EOF
 	}
 	return rc.Decrypter.Read(b)
+}
+
+// CipherName ...
+type CipherName struct {
+	Algorithm string
+}
+
+// GetCipherName ...
+func (da *CipherName) GetCipherName() string {
+	return da.Algorithm
 }

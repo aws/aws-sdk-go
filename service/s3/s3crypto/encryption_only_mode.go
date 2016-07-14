@@ -1,7 +1,6 @@
 package s3crypto
 
 import (
-	"fmt"
 	"io"
 )
 
@@ -14,13 +13,18 @@ type EncryptionOnlyMode struct {
 	// Cipher will hold either a master symmetric key or a KMS client
 	// for encrypting the Envelope key
 	BaseKeyProvider
+
+	// This is the CEK algorithm used
+	CipherName
 }
 
 // EncryptionOnly returns a new encryption only mode structure with a specific cipher
 // for the master key
-// TODO: Wrap may not be needed and just put master key stuff on KeyProvider
 func EncryptionOnly(kp KeyProvider) CryptoMode {
-	return &EncryptionOnlyMode{BaseKeyProvider: BaseKeyProvider{kp}}
+	return &EncryptionOnlyMode{
+		BaseKeyProvider: BaseKeyProvider{kp},
+		CipherName:      CipherName{"AES/CBC/PKCS5Padding"},
+	}
 }
 
 // EncryptContents will generate a random key and iv and encrypt the data using cbc
@@ -31,11 +35,8 @@ func (mode *EncryptionOnlyMode) EncryptContents(dst io.Writer, src io.Reader) er
 		return err
 	}
 
-	// TODO: Don't think this is needed
-	// kp.SetEncryptedKey(mode.Wrap)
 	reader := cbc.Encrypt(src)
-	n, err := io.Copy(dst, reader)
-	fmt.Println("TET", n, err)
+	_, err = io.Copy(dst, reader)
 	return err
 }
 
