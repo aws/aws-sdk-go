@@ -11,9 +11,95 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 )
 
+const opAddTagsToResource = "AddTagsToResource"
+
+// AddTagsToResourceRequest generates a "aws/request.Request" representing the
+// client's request for the AddTagsToResource operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AddTagsToResource method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AddTagsToResourceRequest method.
+//    req, resp := client.AddTagsToResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *SSM) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *request.Request, output *AddTagsToResourceOutput) {
+	op := &request.Operation{
+		Name:       opAddTagsToResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AddTagsToResourceInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &AddTagsToResourceOutput{}
+	req.Data = output
+	return
+}
+
+// Adds or overwrites one or more tags for the specified resource. Tags are
+// metadata that you assign to your managed instances. Tags enable you to categorize
+// your managed instances in different ways, for example, by purpose, owner,
+// or environment. Each tag consists of a key and an optional value, both of
+// which you define. For example, you could define a set of tags for your account's
+// managed instances that helps you track each instance's owner and stack level.
+// For example: Key=Owner and Value=DbAdmin, SysAdmin, or Dev. Or Key=Stack
+// and Value=Production, Pre-Production, or Test. Each resource can have a maximum
+// of 10 tags.
+//
+//  We recommend that you devise a set of tag keys that meets your needs for
+// each resource type. Using a consistent set of tag keys makes it easier for
+// you to manage your resources. You can search and filter the resources based
+// on the tags you add. Tags don't have any semantic meaning to Amazon EC2 and
+// are interpreted strictly as a string of characters.
+//
+// For more information about tags, see Tagging Your Amazon EC2 Resources (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html)
+// in the Amazon EC2 User Guide.
+func (c *SSM) AddTagsToResource(input *AddTagsToResourceInput) (*AddTagsToResourceOutput, error) {
+	req, out := c.AddTagsToResourceRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opCancelCommand = "CancelCommand"
 
-// CancelCommandRequest generates a request for the CancelCommand operation.
+// CancelCommandRequest generates a "aws/request.Request" representing the
+// client's request for the CancelCommand operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CancelCommand method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CancelCommandRequest method.
+//    req, resp := client.CancelCommandRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) CancelCommandRequest(input *CancelCommandInput) (req *request.Request, output *CancelCommandOutput) {
 	op := &request.Operation{
 		Name:       opCancelCommand,
@@ -39,9 +125,84 @@ func (c *SSM) CancelCommand(input *CancelCommandInput) (*CancelCommandOutput, er
 	return out, err
 }
 
+const opCreateActivation = "CreateActivation"
+
+// CreateActivationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateActivation operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateActivation method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateActivationRequest method.
+//    req, resp := client.CreateActivationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *SSM) CreateActivationRequest(input *CreateActivationInput) (req *request.Request, output *CreateActivationOutput) {
+	op := &request.Operation{
+		Name:       opCreateActivation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateActivationInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &CreateActivationOutput{}
+	req.Data = output
+	return
+}
+
+// Registers your on-premises server or virtual machine with Amazon EC2 so that
+// you can manage these resources using Run Command. An on-premises server or
+// virtual machine that has been registered with EC2 is called a managed instance.
+// For more information about activations, see Setting Up Managed Instances
+// (Linux) (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/managed-instances.html)
+// or Setting Up Managed Instances (Windows) (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/managed-instances.html)
+// in the Amazon EC2 User Guide.
+func (c *SSM) CreateActivation(input *CreateActivationInput) (*CreateActivationOutput, error) {
+	req, out := c.CreateActivationRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opCreateAssociation = "CreateAssociation"
 
-// CreateAssociationRequest generates a request for the CreateAssociation operation.
+// CreateAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAssociation operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateAssociation method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateAssociationRequest method.
+//    req, resp := client.CreateAssociationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) CreateAssociationRequest(input *CreateAssociationInput) (req *request.Request, output *CreateAssociationOutput) {
 	op := &request.Operation{
 		Name:       opCreateAssociation,
@@ -74,7 +235,28 @@ func (c *SSM) CreateAssociation(input *CreateAssociationInput) (*CreateAssociati
 
 const opCreateAssociationBatch = "CreateAssociationBatch"
 
-// CreateAssociationBatchRequest generates a request for the CreateAssociationBatch operation.
+// CreateAssociationBatchRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAssociationBatch operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateAssociationBatch method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateAssociationBatchRequest method.
+//    req, resp := client.CreateAssociationBatchRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) CreateAssociationBatchRequest(input *CreateAssociationBatchInput) (req *request.Request, output *CreateAssociationBatchOutput) {
 	op := &request.Operation{
 		Name:       opCreateAssociationBatch,
@@ -107,7 +289,28 @@ func (c *SSM) CreateAssociationBatch(input *CreateAssociationBatchInput) (*Creat
 
 const opCreateDocument = "CreateDocument"
 
-// CreateDocumentRequest generates a request for the CreateDocument operation.
+// CreateDocumentRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDocument operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateDocument method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateDocumentRequest method.
+//    req, resp := client.CreateDocumentRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) CreateDocumentRequest(input *CreateDocumentInput) (req *request.Request, output *CreateDocumentOutput) {
 	op := &request.Operation{
 		Name:       opCreateDocument,
@@ -135,9 +338,81 @@ func (c *SSM) CreateDocument(input *CreateDocumentInput) (*CreateDocumentOutput,
 	return out, err
 }
 
+const opDeleteActivation = "DeleteActivation"
+
+// DeleteActivationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteActivation operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteActivation method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteActivationRequest method.
+//    req, resp := client.DeleteActivationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *SSM) DeleteActivationRequest(input *DeleteActivationInput) (req *request.Request, output *DeleteActivationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteActivation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteActivationInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DeleteActivationOutput{}
+	req.Data = output
+	return
+}
+
+// Deletes an activation. You are not required to delete an activation. If you
+// delete an activation, you can no longer use it to register additional managed
+// instances. Deleting an activation does not de-register managed instances.
+// You must manually de-register managed instances.
+func (c *SSM) DeleteActivation(input *DeleteActivationInput) (*DeleteActivationOutput, error) {
+	req, out := c.DeleteActivationRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opDeleteAssociation = "DeleteAssociation"
 
-// DeleteAssociationRequest generates a request for the DeleteAssociation operation.
+// DeleteAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAssociation operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteAssociation method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteAssociationRequest method.
+//    req, resp := client.DeleteAssociationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) DeleteAssociationRequest(input *DeleteAssociationInput) (req *request.Request, output *DeleteAssociationOutput) {
 	op := &request.Operation{
 		Name:       opDeleteAssociation,
@@ -169,7 +444,28 @@ func (c *SSM) DeleteAssociation(input *DeleteAssociationInput) (*DeleteAssociati
 
 const opDeleteDocument = "DeleteDocument"
 
-// DeleteDocumentRequest generates a request for the DeleteDocument operation.
+// DeleteDocumentRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDocument operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteDocument method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteDocumentRequest method.
+//    req, resp := client.DeleteDocumentRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) DeleteDocumentRequest(input *DeleteDocumentInput) (req *request.Request, output *DeleteDocumentOutput) {
 	op := &request.Operation{
 		Name:       opDeleteDocument,
@@ -197,9 +493,161 @@ func (c *SSM) DeleteDocument(input *DeleteDocumentInput) (*DeleteDocumentOutput,
 	return out, err
 }
 
+const opDeregisterManagedInstance = "DeregisterManagedInstance"
+
+// DeregisterManagedInstanceRequest generates a "aws/request.Request" representing the
+// client's request for the DeregisterManagedInstance operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeregisterManagedInstance method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeregisterManagedInstanceRequest method.
+//    req, resp := client.DeregisterManagedInstanceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *SSM) DeregisterManagedInstanceRequest(input *DeregisterManagedInstanceInput) (req *request.Request, output *DeregisterManagedInstanceOutput) {
+	op := &request.Operation{
+		Name:       opDeregisterManagedInstance,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeregisterManagedInstanceInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DeregisterManagedInstanceOutput{}
+	req.Data = output
+	return
+}
+
+// Removes the server or virtual machine from the list of registered servers.
+// You can reregister the instance again at any time. If you don’t plan to use
+// Run Command on the server, we suggest uninstalling the SSM agent first.
+func (c *SSM) DeregisterManagedInstance(input *DeregisterManagedInstanceInput) (*DeregisterManagedInstanceOutput, error) {
+	req, out := c.DeregisterManagedInstanceRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDescribeActivations = "DescribeActivations"
+
+// DescribeActivationsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeActivations operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeActivations method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeActivationsRequest method.
+//    req, resp := client.DescribeActivationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *SSM) DescribeActivationsRequest(input *DescribeActivationsInput) (req *request.Request, output *DescribeActivationsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeActivations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeActivationsInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeActivationsOutput{}
+	req.Data = output
+	return
+}
+
+// Details about the activation, including: the date and time the activation
+// was created, the expiration date, the IAM role assigned to the instances
+// in the activation, and the number of instances activated by this registration.
+func (c *SSM) DescribeActivations(input *DescribeActivationsInput) (*DescribeActivationsOutput, error) {
+	req, out := c.DescribeActivationsRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+// DescribeActivationsPages iterates over the pages of a DescribeActivations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeActivations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeActivations operation.
+//    pageNum := 0
+//    err := client.DescribeActivationsPages(params,
+//        func(page *DescribeActivationsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *SSM) DescribeActivationsPages(input *DescribeActivationsInput, fn func(p *DescribeActivationsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeActivationsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeActivationsOutput), lastPage)
+	})
+}
+
 const opDescribeAssociation = "DescribeAssociation"
 
-// DescribeAssociationRequest generates a request for the DescribeAssociation operation.
+// DescribeAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAssociation operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeAssociation method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeAssociationRequest method.
+//    req, resp := client.DescribeAssociationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) DescribeAssociationRequest(input *DescribeAssociationInput) (req *request.Request, output *DescribeAssociationOutput) {
 	op := &request.Operation{
 		Name:       opDescribeAssociation,
@@ -226,7 +674,28 @@ func (c *SSM) DescribeAssociation(input *DescribeAssociationInput) (*DescribeAss
 
 const opDescribeDocument = "DescribeDocument"
 
-// DescribeDocumentRequest generates a request for the DescribeDocument operation.
+// DescribeDocumentRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDocument operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeDocument method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeDocumentRequest method.
+//    req, resp := client.DescribeDocumentRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) DescribeDocumentRequest(input *DescribeDocumentInput) (req *request.Request, output *DescribeDocumentOutput) {
 	op := &request.Operation{
 		Name:       opDescribeDocument,
@@ -253,7 +722,28 @@ func (c *SSM) DescribeDocument(input *DescribeDocumentInput) (*DescribeDocumentO
 
 const opDescribeDocumentPermission = "DescribeDocumentPermission"
 
-// DescribeDocumentPermissionRequest generates a request for the DescribeDocumentPermission operation.
+// DescribeDocumentPermissionRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDocumentPermission operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeDocumentPermission method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeDocumentPermissionRequest method.
+//    req, resp := client.DescribeDocumentPermissionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) DescribeDocumentPermissionRequest(input *DescribeDocumentPermissionInput) (req *request.Request, output *DescribeDocumentPermissionOutput) {
 	op := &request.Operation{
 		Name:       opDescribeDocumentPermission,
@@ -282,7 +772,28 @@ func (c *SSM) DescribeDocumentPermission(input *DescribeDocumentPermissionInput)
 
 const opDescribeInstanceInformation = "DescribeInstanceInformation"
 
-// DescribeInstanceInformationRequest generates a request for the DescribeInstanceInformation operation.
+// DescribeInstanceInformationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeInstanceInformation operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeInstanceInformation method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeInstanceInformationRequest method.
+//    req, resp := client.DescribeInstanceInformationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) DescribeInstanceInformationRequest(input *DescribeInstanceInformationInput) (req *request.Request, output *DescribeInstanceInformationOutput) {
 	op := &request.Operation{
 		Name:       opDescribeInstanceInformation,
@@ -314,7 +825,28 @@ func (c *SSM) DescribeInstanceInformation(input *DescribeInstanceInformationInpu
 
 const opGetDocument = "GetDocument"
 
-// GetDocumentRequest generates a request for the GetDocument operation.
+// GetDocumentRequest generates a "aws/request.Request" representing the
+// client's request for the GetDocument operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetDocument method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetDocumentRequest method.
+//    req, resp := client.GetDocumentRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) GetDocumentRequest(input *GetDocumentInput) (req *request.Request, output *GetDocumentOutput) {
 	op := &request.Operation{
 		Name:       opGetDocument,
@@ -341,7 +873,28 @@ func (c *SSM) GetDocument(input *GetDocumentInput) (*GetDocumentOutput, error) {
 
 const opListAssociations = "ListAssociations"
 
-// ListAssociationsRequest generates a request for the ListAssociations operation.
+// ListAssociationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAssociations operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListAssociations method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListAssociationsRequest method.
+//    req, resp := client.ListAssociationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) ListAssociationsRequest(input *ListAssociationsInput) (req *request.Request, output *ListAssociationsOutput) {
 	op := &request.Operation{
 		Name:       opListAssociations,
@@ -372,6 +925,23 @@ func (c *SSM) ListAssociations(input *ListAssociationsInput) (*ListAssociationsO
 	return out, err
 }
 
+// ListAssociationsPages iterates over the pages of a ListAssociations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAssociations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListAssociations operation.
+//    pageNum := 0
+//    err := client.ListAssociationsPages(params,
+//        func(page *ListAssociationsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *SSM) ListAssociationsPages(input *ListAssociationsInput, fn func(p *ListAssociationsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListAssociationsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -382,7 +952,28 @@ func (c *SSM) ListAssociationsPages(input *ListAssociationsInput, fn func(p *Lis
 
 const opListCommandInvocations = "ListCommandInvocations"
 
-// ListCommandInvocationsRequest generates a request for the ListCommandInvocations operation.
+// ListCommandInvocationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListCommandInvocations operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListCommandInvocations method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListCommandInvocationsRequest method.
+//    req, resp := client.ListCommandInvocationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) ListCommandInvocationsRequest(input *ListCommandInvocationsInput) (req *request.Request, output *ListCommandInvocationsOutput) {
 	op := &request.Operation{
 		Name:       opListCommandInvocations,
@@ -417,6 +1008,23 @@ func (c *SSM) ListCommandInvocations(input *ListCommandInvocationsInput) (*ListC
 	return out, err
 }
 
+// ListCommandInvocationsPages iterates over the pages of a ListCommandInvocations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCommandInvocations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListCommandInvocations operation.
+//    pageNum := 0
+//    err := client.ListCommandInvocationsPages(params,
+//        func(page *ListCommandInvocationsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *SSM) ListCommandInvocationsPages(input *ListCommandInvocationsInput, fn func(p *ListCommandInvocationsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListCommandInvocationsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -427,7 +1035,28 @@ func (c *SSM) ListCommandInvocationsPages(input *ListCommandInvocationsInput, fn
 
 const opListCommands = "ListCommands"
 
-// ListCommandsRequest generates a request for the ListCommands operation.
+// ListCommandsRequest generates a "aws/request.Request" representing the
+// client's request for the ListCommands operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListCommands method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListCommandsRequest method.
+//    req, resp := client.ListCommandsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) ListCommandsRequest(input *ListCommandsInput) (req *request.Request, output *ListCommandsOutput) {
 	op := &request.Operation{
 		Name:       opListCommands,
@@ -458,6 +1087,23 @@ func (c *SSM) ListCommands(input *ListCommandsInput) (*ListCommandsOutput, error
 	return out, err
 }
 
+// ListCommandsPages iterates over the pages of a ListCommands operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCommands method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListCommands operation.
+//    pageNum := 0
+//    err := client.ListCommandsPages(params,
+//        func(page *ListCommandsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *SSM) ListCommandsPages(input *ListCommandsInput, fn func(p *ListCommandsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListCommandsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -468,7 +1114,28 @@ func (c *SSM) ListCommandsPages(input *ListCommandsInput, fn func(p *ListCommand
 
 const opListDocuments = "ListDocuments"
 
-// ListDocumentsRequest generates a request for the ListDocuments operation.
+// ListDocumentsRequest generates a "aws/request.Request" representing the
+// client's request for the ListDocuments operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListDocuments method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListDocumentsRequest method.
+//    req, resp := client.ListDocumentsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) ListDocumentsRequest(input *ListDocumentsInput) (req *request.Request, output *ListDocumentsOutput) {
 	op := &request.Operation{
 		Name:       opListDocuments,
@@ -499,6 +1166,23 @@ func (c *SSM) ListDocuments(input *ListDocumentsInput) (*ListDocumentsOutput, er
 	return out, err
 }
 
+// ListDocumentsPages iterates over the pages of a ListDocuments operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDocuments method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListDocuments operation.
+//    pageNum := 0
+//    err := client.ListDocumentsPages(params,
+//        func(page *ListDocumentsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *SSM) ListDocumentsPages(input *ListDocumentsInput, fn func(p *ListDocumentsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListDocumentsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -507,9 +1191,78 @@ func (c *SSM) ListDocumentsPages(input *ListDocumentsInput, fn func(p *ListDocum
 	})
 }
 
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListTagsForResource method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListTagsForResourceRequest method.
+//    req, resp := client.ListTagsForResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *SSM) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListTagsForResourceOutput{}
+	req.Data = output
+	return
+}
+
+// Returns a list of the tags assigned to the specified resource.
+func (c *SSM) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opModifyDocumentPermission = "ModifyDocumentPermission"
 
-// ModifyDocumentPermissionRequest generates a request for the ModifyDocumentPermission operation.
+// ModifyDocumentPermissionRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyDocumentPermission operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ModifyDocumentPermission method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ModifyDocumentPermissionRequest method.
+//    req, resp := client.ModifyDocumentPermissionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) ModifyDocumentPermissionRequest(input *ModifyDocumentPermissionInput) (req *request.Request, output *ModifyDocumentPermissionOutput) {
 	op := &request.Operation{
 		Name:       opModifyDocumentPermission,
@@ -537,9 +1290,78 @@ func (c *SSM) ModifyDocumentPermission(input *ModifyDocumentPermissionInput) (*M
 	return out, err
 }
 
+const opRemoveTagsFromResource = "RemoveTagsFromResource"
+
+// RemoveTagsFromResourceRequest generates a "aws/request.Request" representing the
+// client's request for the RemoveTagsFromResource operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RemoveTagsFromResource method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RemoveTagsFromResourceRequest method.
+//    req, resp := client.RemoveTagsFromResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *SSM) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceInput) (req *request.Request, output *RemoveTagsFromResourceOutput) {
+	op := &request.Operation{
+		Name:       opRemoveTagsFromResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RemoveTagsFromResourceInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &RemoveTagsFromResourceOutput{}
+	req.Data = output
+	return
+}
+
+// Removes all tags from the specified resource.
+func (c *SSM) RemoveTagsFromResource(input *RemoveTagsFromResourceInput) (*RemoveTagsFromResourceOutput, error) {
+	req, out := c.RemoveTagsFromResourceRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opSendCommand = "SendCommand"
 
-// SendCommandRequest generates a request for the SendCommand operation.
+// SendCommandRequest generates a "aws/request.Request" representing the
+// client's request for the SendCommand operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SendCommand method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SendCommandRequest method.
+//    req, resp := client.SendCommandRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) SendCommandRequest(input *SendCommandInput) (req *request.Request, output *SendCommandOutput) {
 	op := &request.Operation{
 		Name:       opSendCommand,
@@ -566,7 +1388,28 @@ func (c *SSM) SendCommand(input *SendCommandInput) (*SendCommandOutput, error) {
 
 const opUpdateAssociationStatus = "UpdateAssociationStatus"
 
-// UpdateAssociationStatusRequest generates a request for the UpdateAssociationStatus operation.
+// UpdateAssociationStatusRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateAssociationStatus operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateAssociationStatus method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateAssociationStatusRequest method.
+//    req, resp := client.UpdateAssociationStatusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *SSM) UpdateAssociationStatusRequest(input *UpdateAssociationStatusInput) (req *request.Request, output *UpdateAssociationStatusOutput) {
 	op := &request.Operation{
 		Name:       opUpdateAssociationStatus,
@@ -589,6 +1432,169 @@ func (c *SSM) UpdateAssociationStatus(input *UpdateAssociationStatusInput) (*Upd
 	req, out := c.UpdateAssociationStatusRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+const opUpdateManagedInstanceRole = "UpdateManagedInstanceRole"
+
+// UpdateManagedInstanceRoleRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateManagedInstanceRole operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateManagedInstanceRole method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateManagedInstanceRoleRequest method.
+//    req, resp := client.UpdateManagedInstanceRoleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *SSM) UpdateManagedInstanceRoleRequest(input *UpdateManagedInstanceRoleInput) (req *request.Request, output *UpdateManagedInstanceRoleOutput) {
+	op := &request.Operation{
+		Name:       opUpdateManagedInstanceRole,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateManagedInstanceRoleInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &UpdateManagedInstanceRoleOutput{}
+	req.Data = output
+	return
+}
+
+// Assigns or changes an Amazon Identity and Access Management (IAM) role to
+// the managed instance.
+func (c *SSM) UpdateManagedInstanceRole(input *UpdateManagedInstanceRoleInput) (*UpdateManagedInstanceRoleOutput, error) {
+	req, out := c.UpdateManagedInstanceRoleRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+// An activation registers one or more on-premises servers or virtual machines
+// (VMs) with AWS so that you can configure those servers or VMs using Run Command.
+// A server or VM that has been registered with AWS is called a managed instance.
+type Activation struct {
+	_ struct{} `type:"structure"`
+
+	// The ID created by SSM when you submitted the activation.
+	ActivationId *string `type:"string"`
+
+	// The date the activation was created.
+	CreatedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// A name for the managed instance when it is created.
+	DefaultInstanceName *string `type:"string"`
+
+	// A user defined description of the activation.
+	Description *string `type:"string"`
+
+	// The date when this activation can no longer be used to register managed instances.
+	ExpirationDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// Whether or not the activation is expired.
+	Expired *bool `type:"boolean"`
+
+	// The Amazon Identity and Access Management (IAM) role to assign to the managed
+	// instance.
+	IamRole *string `type:"string"`
+
+	// The maximum number of managed instances that can be registered using this
+	// activation.
+	RegistrationLimit *int64 `min:"1" type:"integer"`
+
+	// The number of managed instances already registered with this activation.
+	RegistrationsCount *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation
+func (s Activation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Activation) GoString() string {
+	return s.String()
+}
+
+type AddTagsToResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The resource ID you want to tag.
+	ResourceId *string `type:"string" required:"true"`
+
+	// Specifies the type of resource you are tagging.
+	ResourceType *string `type:"string" required:"true" enum:"ResourceTypeForTagging"`
+
+	// One or more tags. The value parameter is required, but if you don't want
+	// the tag to have a value, specify the parameter with no value, and we set
+	// the value to an empty string.
+	Tags []*Tag `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s AddTagsToResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddTagsToResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddTagsToResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddTagsToResourceInput"}
+	if s.ResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+type AddTagsToResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s AddTagsToResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddTagsToResourceOutput) GoString() string {
+	return s.String()
 }
 
 // Describes an association of an SSM document and an instance.
@@ -963,6 +1969,78 @@ func (s CommandPlugin) GoString() string {
 	return s.String()
 }
 
+type CreateActivationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the registered, managed instance as it will appear in the Amazon
+	// EC2 console or when you use the AWS command line tools to list EC2 resources.
+	DefaultInstanceName *string `type:"string"`
+
+	// A user-defined description of the resource that you want to register with
+	// Amazon EC2.
+	Description *string `type:"string"`
+
+	// The date by which this activation request should expire. The default value
+	// is 24 hours.
+	ExpirationDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The Amazon Identity and Access Management (IAM) role that you want to assign
+	// to the managed instance.
+	IamRole *string `type:"string" required:"true"`
+
+	// Specify the maximum number of managed instances you want to register. The
+	// default value is 1 instance.
+	RegistrationLimit *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation
+func (s CreateActivationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateActivationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateActivationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateActivationInput"}
+	if s.IamRole == nil {
+		invalidParams.Add(request.NewErrParamRequired("IamRole"))
+	}
+	if s.RegistrationLimit != nil && *s.RegistrationLimit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("RegistrationLimit", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+type CreateActivationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The code the system generates when it processes the activation. The activation
+	// code functions like a password to validate the activation ID.
+	ActivationCode *string `min:"20" type:"string"`
+
+	// The ID number generated by the system when it processed the activation. The
+	// activation ID functions like a user name.
+	ActivationId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateActivationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateActivationOutput) GoString() string {
+	return s.String()
+}
+
 type CreateAssociationBatchInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1149,6 +2227,50 @@ func (s CreateDocumentOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteActivationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the activation that you want to delete.
+	ActivationId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteActivationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteActivationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteActivationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteActivationInput"}
+	if s.ActivationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActivationId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+type DeleteActivationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteActivationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteActivationOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteAssociationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1240,6 +2362,131 @@ func (s DeleteDocumentOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteDocumentOutput) GoString() string {
+	return s.String()
+}
+
+type DeregisterManagedInstanceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID assigned to the managed instance when you registered it using the
+	// activation process.
+	InstanceId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeregisterManagedInstanceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeregisterManagedInstanceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeregisterManagedInstanceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeregisterManagedInstanceInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+type DeregisterManagedInstanceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeregisterManagedInstanceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeregisterManagedInstanceOutput) GoString() string {
+	return s.String()
+}
+
+// Filter for the DescribeActivation API.
+type DescribeActivationsFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the filter.
+	FilterKey *string `type:"string" enum:"DescribeActivationsFilterKeys"`
+
+	// The filter values.
+	FilterValues []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeActivationsFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeActivationsFilter) GoString() string {
+	return s.String()
+}
+
+type DescribeActivationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A filter to view information about your activations.
+	Filters []*DescribeActivationsFilter `type:"list"`
+
+	// The maximum number of items to return for this call. The call also returns
+	// a token that you can specify in a subsequent call to get the next set of
+	// results.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A token to start the list. Use this token to get the next set of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeActivationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeActivationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeActivationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeActivationsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+type DescribeActivationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of activations for your AWS account.
+	ActivationList []*Activation `type:"list"`
+
+	// The token for the next set of items to return. Use this token to get the
+	// next set of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeActivationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeActivationsOutput) GoString() string {
 	return s.String()
 }
 
@@ -1691,8 +2938,21 @@ func (s GetDocumentOutput) GoString() string {
 type InstanceInformation struct {
 	_ struct{} `type:"structure"`
 
+	// The activation ID created by SSM when the server or VM was registered.
+	ActivationId *string `type:"string"`
+
 	// The version of the SSM agent running on your instance.
 	AgentVersion *string `type:"string"`
+
+	// The fully qualified host name of the managed instance.
+	ComputerName *string `min:"1" type:"string"`
+
+	// The IP address of the managed instance.
+	IPAddress *string `min:"1" type:"string"`
+
+	// The Amazon Identity and Access Management (IAM) role assigned to EC2 instances
+	// or managed instances.
+	IamRole *string `type:"string"`
 
 	// The instance ID.
 	InstanceId *string `type:"string"`
@@ -1702,6 +2962,9 @@ type InstanceInformation struct {
 
 	// The date and time when agent last pinged SSM service.
 	LastPingDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The name of the managed instance.
+	Name *string `type:"string"`
 
 	// Connection status of the SSM agent.
 	PingStatus *string `type:"string" enum:"PingStatus"`
@@ -1714,6 +2977,12 @@ type InstanceInformation struct {
 
 	// The version of the OS platform running on your instance.
 	PlatformVersion *string `type:"string"`
+
+	// The date the server or VM was registered with AWS as a managed instance.
+	RegistrationDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The type of instance. Instances are either EC2 instances or managed instances.
+	ResourceType *string `type:"string" enum:"ResourceType"`
 }
 
 // String returns the string representation
@@ -2085,6 +3354,59 @@ func (s ListDocumentsOutput) GoString() string {
 	return s.String()
 }
 
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The resource ID for which you want to see a list of tags.
+	ResourceId *string `type:"string" required:"true"`
+
+	// Returns a list of tags for a specific resource type.
+	ResourceType *string `type:"string" required:"true" enum:"ResourceTypeForTagging"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of tags.
+	TagList []*Tag `type:"list"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
 type ModifyDocumentPermissionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2145,6 +3467,62 @@ func (s ModifyDocumentPermissionOutput) GoString() string {
 	return s.String()
 }
 
+type RemoveTagsFromResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The resource ID for which you want to remove tags.
+	ResourceId *string `type:"string" required:"true"`
+
+	// The type of resource of which you want to remove a tag.
+	ResourceType *string `type:"string" required:"true" enum:"ResourceTypeForTagging"`
+
+	// Tag keys that you want to remove from the specified resource.
+	TagKeys []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s RemoveTagsFromResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveTagsFromResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RemoveTagsFromResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RemoveTagsFromResourceInput"}
+	if s.ResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+type RemoveTagsFromResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s RemoveTagsFromResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveTagsFromResourceOutput) GoString() string {
+	return s.String()
+}
+
 type SendCommandInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2166,7 +3544,8 @@ type SendCommandInput struct {
 	// document or a custom document.
 	DocumentName *string `type:"string" required:"true"`
 
-	// Required. The instance IDs where the command should execute.
+	// Required. The instance IDs where the command should execute. You can specify
+	// a maximum of 50 IDs.
 	InstanceIds []*string `min:"1" type:"list" required:"true"`
 
 	// The name of the S3 bucket where command execution responses should be stored.
@@ -2238,6 +3617,51 @@ func (s SendCommandOutput) GoString() string {
 	return s.String()
 }
 
+// Metadata that you assign to your managed instances. Tags enable you to categorize
+// your managed instances in different ways, for example, by purpose, owner,
+// or environment.
+type Tag struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the tag.
+	Key *string `min:"1" type:"string" required:"true"`
+
+	// The value of the tag.
+	Value *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s Tag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Tag) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Tag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Tag"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 type UpdateAssociationStatusInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2299,6 +3723,56 @@ func (s UpdateAssociationStatusOutput) String() string {
 
 // GoString returns the string representation
 func (s UpdateAssociationStatusOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateManagedInstanceRoleInput struct {
+	_ struct{} `type:"structure"`
+
+	// The IAM role you want to assign or change.
+	IamRole *string `type:"string" required:"true"`
+
+	// The ID of the managed instance where you want to update the role.
+	InstanceId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateManagedInstanceRoleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateManagedInstanceRoleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateManagedInstanceRoleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateManagedInstanceRoleInput"}
+	if s.IamRole == nil {
+		invalidParams.Add(request.NewErrParamRequired("IamRole"))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+type UpdateManagedInstanceRoleOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateManagedInstanceRoleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateManagedInstanceRoleOutput) GoString() string {
 	return s.String()
 }
 
@@ -2377,6 +3851,15 @@ const (
 )
 
 const (
+	// @enum DescribeActivationsFilterKeys
+	DescribeActivationsFilterKeysActivationIds = "ActivationIds"
+	// @enum DescribeActivationsFilterKeys
+	DescribeActivationsFilterKeysDefaultInstanceName = "DefaultInstanceName"
+	// @enum DescribeActivationsFilterKeys
+	DescribeActivationsFilterKeysIamRole = "IamRole"
+)
+
+const (
 	// @enum DocumentFilterKey
 	DocumentFilterKeyName = "Name"
 	// @enum DocumentFilterKey
@@ -2431,6 +3914,12 @@ const (
 	InstanceInformationFilterKeyPingStatus = "PingStatus"
 	// @enum InstanceInformationFilterKey
 	InstanceInformationFilterKeyPlatformTypes = "PlatformTypes"
+	// @enum InstanceInformationFilterKey
+	InstanceInformationFilterKeyActivationIds = "ActivationIds"
+	// @enum InstanceInformationFilterKey
+	InstanceInformationFilterKeyIamRole = "IamRole"
+	// @enum InstanceInformationFilterKey
+	InstanceInformationFilterKeyResourceType = "ResourceType"
 )
 
 const (
@@ -2447,4 +3936,18 @@ const (
 	PlatformTypeWindows = "Windows"
 	// @enum PlatformType
 	PlatformTypeLinux = "Linux"
+)
+
+const (
+	// @enum ResourceType
+	ResourceTypeManagedInstance = "ManagedInstance"
+	// @enum ResourceType
+	ResourceTypeDocument = "Document"
+	// @enum ResourceType
+	ResourceTypeEc2instance = "EC2Instance"
+)
+
+const (
+	// @enum ResourceTypeForTagging
+	ResourceTypeForTaggingManagedInstance = "ManagedInstance"
 )

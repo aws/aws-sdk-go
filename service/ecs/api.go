@@ -13,7 +13,28 @@ import (
 
 const opCreateCluster = "CreateCluster"
 
-// CreateClusterRequest generates a request for the CreateCluster operation.
+// CreateClusterRequest generates a "aws/request.Request" representing the
+// client's request for the CreateCluster operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateCluster method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateClusterRequest method.
+//    req, resp := client.CreateClusterRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ECS) CreateClusterRequest(input *CreateClusterInput) (req *request.Request, output *CreateClusterOutput) {
 	op := &request.Operation{
 		Name:       opCreateCluster,
@@ -42,7 +63,28 @@ func (c *ECS) CreateCluster(input *CreateClusterInput) (*CreateClusterOutput, er
 
 const opCreateService = "CreateService"
 
-// CreateServiceRequest generates a request for the CreateService operation.
+// CreateServiceRequest generates a "aws/request.Request" representing the
+// client's request for the CreateService operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateService method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateServiceRequest method.
+//    req, resp := client.CreateServiceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ECS) CreateServiceRequest(input *CreateServiceInput) (req *request.Request, output *CreateServiceOutput) {
 	op := &request.Operation{
 		Name:       opCreateService,
@@ -117,7 +159,28 @@ func (c *ECS) CreateService(input *CreateServiceInput) (*CreateServiceOutput, er
 
 const opDeleteCluster = "DeleteCluster"
 
-// DeleteClusterRequest generates a request for the DeleteCluster operation.
+// DeleteClusterRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteCluster operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteCluster method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteClusterRequest method.
+//    req, resp := client.DeleteClusterRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ECS) DeleteClusterRequest(input *DeleteClusterInput) (req *request.Request, output *DeleteClusterOutput) {
 	op := &request.Operation{
 		Name:       opDeleteCluster,
@@ -146,7 +209,28 @@ func (c *ECS) DeleteCluster(input *DeleteClusterInput) (*DeleteClusterOutput, er
 
 const opDeleteService = "DeleteService"
 
-// DeleteServiceRequest generates a request for the DeleteService operation.
+// DeleteServiceRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteService operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteService method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteServiceRequest method.
+//    req, resp := client.DeleteServiceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ECS) DeleteServiceRequest(input *DeleteServiceInput) (req *request.Request, output *DeleteServiceOutput) {
 	op := &request.Operation{
 		Name:       opDeleteService,
@@ -186,7 +270,28 @@ func (c *ECS) DeleteService(input *DeleteServiceInput) (*DeleteServiceOutput, er
 
 const opDeregisterContainerInstance = "DeregisterContainerInstance"
 
-// DeregisterContainerInstanceRequest generates a request for the DeregisterContainerInstance operation.
+// DeregisterContainerInstanceRequest generates a "aws/request.Request" representing the
+// client's request for the DeregisterContainerInstance operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeregisterContainerInstance method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeregisterContainerInstanceRequest method.
+//    req, resp := client.DeregisterContainerInstanceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ECS) DeregisterContainerInstanceRequest(input *DeregisterContainerInstanceInput) (req *request.Request, output *DeregisterContainerInstanceOutput) {
 	op := &request.Operation{
 		Name:       opDeregisterContainerInstance,
@@ -228,7 +333,28 @@ func (c *ECS) DeregisterContainerInstance(input *DeregisterContainerInstanceInpu
 
 const opDeregisterTaskDefinition = "DeregisterTaskDefinition"
 
-// DeregisterTaskDefinitionRequest generates a request for the DeregisterTaskDefinition operation.
+// DeregisterTaskDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the DeregisterTaskDefinition operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeregisterTaskDefinition method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeregisterTaskDefinitionRequest method.
+//    req, resp := client.DeregisterTaskDefinitionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ECS) DeregisterTaskDefinitionRequest(input *DeregisterTaskDefinitionInput) (req *request.Request, output *DeregisterTaskDefinitionOutput) {
 	op := &request.Operation{
 		Name:       opDeregisterTaskDefinition,
@@ -264,7 +390,28 @@ func (c *ECS) DeregisterTaskDefinition(input *DeregisterTaskDefinitionInput) (*D
 
 const opDescribeClusters = "DescribeClusters"
 
-// DescribeClustersRequest generates a request for the DescribeClusters operation.
+// DescribeClustersRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeClusters operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeClusters method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeClustersRequest method.
+//    req, resp := client.DescribeClustersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ECS) DescribeClustersRequest(input *DescribeClustersInput) (req *request.Request, output *DescribeClustersOutput) {
 	op := &request.Operation{
 		Name:       opDescribeClusters,
@@ -291,7 +438,28 @@ func (c *ECS) DescribeClusters(input *DescribeClustersInput) (*DescribeClustersO
 
 const opDescribeContainerInstances = "DescribeContainerInstances"
 
-// DescribeContainerInstancesRequest generates a request for the DescribeContainerInstances operation.
+// DescribeContainerInstancesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeContainerInstances operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeContainerInstances method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeContainerInstancesRequest method.
+//    req, resp := client.DescribeContainerInstancesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ECS) DescribeContainerInstancesRequest(input *DescribeContainerInstancesInput) (req *request.Request, output *DescribeContainerInstancesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeContainerInstances,
@@ -319,7 +487,28 @@ func (c *ECS) DescribeContainerInstances(input *DescribeContainerInstancesInput)
 
 const opDescribeServices = "DescribeServices"
 
-// DescribeServicesRequest generates a request for the DescribeServices operation.
+// DescribeServicesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeServices operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeServices method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeServicesRequest method.
+//    req, resp := client.DescribeServicesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ECS) DescribeServicesRequest(input *DescribeServicesInput) (req *request.Request, output *DescribeServicesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeServices,
@@ -346,7 +535,28 @@ func (c *ECS) DescribeServices(input *DescribeServicesInput) (*DescribeServicesO
 
 const opDescribeTaskDefinition = "DescribeTaskDefinition"
 
-// DescribeTaskDefinitionRequest generates a request for the DescribeTaskDefinition operation.
+// DescribeTaskDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeTaskDefinition operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeTaskDefinition method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeTaskDefinitionRequest method.
+//    req, resp := client.DescribeTaskDefinitionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ECS) DescribeTaskDefinitionRequest(input *DescribeTaskDefinitionInput) (req *request.Request, output *DescribeTaskDefinitionOutput) {
 	op := &request.Operation{
 		Name:       opDescribeTaskDefinition,
@@ -378,7 +588,28 @@ func (c *ECS) DescribeTaskDefinition(input *DescribeTaskDefinitionInput) (*Descr
 
 const opDescribeTasks = "DescribeTasks"
 
-// DescribeTasksRequest generates a request for the DescribeTasks operation.
+// DescribeTasksRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeTasks operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeTasks method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeTasksRequest method.
+//    req, resp := client.DescribeTasksRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ECS) DescribeTasksRequest(input *DescribeTasksInput) (req *request.Request, output *DescribeTasksOutput) {
 	op := &request.Operation{
 		Name:       opDescribeTasks,
@@ -405,7 +636,28 @@ func (c *ECS) DescribeTasks(input *DescribeTasksInput) (*DescribeTasksOutput, er
 
 const opDiscoverPollEndpoint = "DiscoverPollEndpoint"
 
-// DiscoverPollEndpointRequest generates a request for the DiscoverPollEndpoint operation.
+// DiscoverPollEndpointRequest generates a "aws/request.Request" representing the
+// client's request for the DiscoverPollEndpoint operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DiscoverPollEndpoint method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DiscoverPollEndpointRequest method.
+//    req, resp := client.DiscoverPollEndpointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ECS) DiscoverPollEndpointRequest(input *DiscoverPollEndpointInput) (req *request.Request, output *DiscoverPollEndpointOutput) {
 	op := &request.Operation{
 		Name:       opDiscoverPollEndpoint,
@@ -436,7 +688,28 @@ func (c *ECS) DiscoverPollEndpoint(input *DiscoverPollEndpointInput) (*DiscoverP
 
 const opListClusters = "ListClusters"
 
-// ListClustersRequest generates a request for the ListClusters operation.
+// ListClustersRequest generates a "aws/request.Request" representing the
+// client's request for the ListClusters operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListClusters method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListClustersRequest method.
+//    req, resp := client.ListClustersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ECS) ListClustersRequest(input *ListClustersInput) (req *request.Request, output *ListClustersOutput) {
 	op := &request.Operation{
 		Name:       opListClusters,
@@ -467,6 +740,23 @@ func (c *ECS) ListClusters(input *ListClustersInput) (*ListClustersOutput, error
 	return out, err
 }
 
+// ListClustersPages iterates over the pages of a ListClusters operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListClusters method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListClusters operation.
+//    pageNum := 0
+//    err := client.ListClustersPages(params,
+//        func(page *ListClustersOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *ECS) ListClustersPages(input *ListClustersInput, fn func(p *ListClustersOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListClustersRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -477,7 +767,28 @@ func (c *ECS) ListClustersPages(input *ListClustersInput, fn func(p *ListCluster
 
 const opListContainerInstances = "ListContainerInstances"
 
-// ListContainerInstancesRequest generates a request for the ListContainerInstances operation.
+// ListContainerInstancesRequest generates a "aws/request.Request" representing the
+// client's request for the ListContainerInstances operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListContainerInstances method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListContainerInstancesRequest method.
+//    req, resp := client.ListContainerInstancesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ECS) ListContainerInstancesRequest(input *ListContainerInstancesInput) (req *request.Request, output *ListContainerInstancesOutput) {
 	op := &request.Operation{
 		Name:       opListContainerInstances,
@@ -508,6 +819,23 @@ func (c *ECS) ListContainerInstances(input *ListContainerInstancesInput) (*ListC
 	return out, err
 }
 
+// ListContainerInstancesPages iterates over the pages of a ListContainerInstances operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListContainerInstances method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListContainerInstances operation.
+//    pageNum := 0
+//    err := client.ListContainerInstancesPages(params,
+//        func(page *ListContainerInstancesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *ECS) ListContainerInstancesPages(input *ListContainerInstancesInput, fn func(p *ListContainerInstancesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListContainerInstancesRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -518,7 +846,28 @@ func (c *ECS) ListContainerInstancesPages(input *ListContainerInstancesInput, fn
 
 const opListServices = "ListServices"
 
-// ListServicesRequest generates a request for the ListServices operation.
+// ListServicesRequest generates a "aws/request.Request" representing the
+// client's request for the ListServices operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListServices method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListServicesRequest method.
+//    req, resp := client.ListServicesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ECS) ListServicesRequest(input *ListServicesInput) (req *request.Request, output *ListServicesOutput) {
 	op := &request.Operation{
 		Name:       opListServices,
@@ -549,6 +898,23 @@ func (c *ECS) ListServices(input *ListServicesInput) (*ListServicesOutput, error
 	return out, err
 }
 
+// ListServicesPages iterates over the pages of a ListServices operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListServices method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListServices operation.
+//    pageNum := 0
+//    err := client.ListServicesPages(params,
+//        func(page *ListServicesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *ECS) ListServicesPages(input *ListServicesInput, fn func(p *ListServicesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListServicesRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -559,7 +925,28 @@ func (c *ECS) ListServicesPages(input *ListServicesInput, fn func(p *ListService
 
 const opListTaskDefinitionFamilies = "ListTaskDefinitionFamilies"
 
-// ListTaskDefinitionFamiliesRequest generates a request for the ListTaskDefinitionFamilies operation.
+// ListTaskDefinitionFamiliesRequest generates a "aws/request.Request" representing the
+// client's request for the ListTaskDefinitionFamilies operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListTaskDefinitionFamilies method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListTaskDefinitionFamiliesRequest method.
+//    req, resp := client.ListTaskDefinitionFamiliesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ECS) ListTaskDefinitionFamiliesRequest(input *ListTaskDefinitionFamiliesInput) (req *request.Request, output *ListTaskDefinitionFamiliesOutput) {
 	op := &request.Operation{
 		Name:       opListTaskDefinitionFamilies,
@@ -596,6 +983,23 @@ func (c *ECS) ListTaskDefinitionFamilies(input *ListTaskDefinitionFamiliesInput)
 	return out, err
 }
 
+// ListTaskDefinitionFamiliesPages iterates over the pages of a ListTaskDefinitionFamilies operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListTaskDefinitionFamilies method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListTaskDefinitionFamilies operation.
+//    pageNum := 0
+//    err := client.ListTaskDefinitionFamiliesPages(params,
+//        func(page *ListTaskDefinitionFamiliesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *ECS) ListTaskDefinitionFamiliesPages(input *ListTaskDefinitionFamiliesInput, fn func(p *ListTaskDefinitionFamiliesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListTaskDefinitionFamiliesRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -606,7 +1010,28 @@ func (c *ECS) ListTaskDefinitionFamiliesPages(input *ListTaskDefinitionFamiliesI
 
 const opListTaskDefinitions = "ListTaskDefinitions"
 
-// ListTaskDefinitionsRequest generates a request for the ListTaskDefinitions operation.
+// ListTaskDefinitionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListTaskDefinitions operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListTaskDefinitions method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListTaskDefinitionsRequest method.
+//    req, resp := client.ListTaskDefinitionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ECS) ListTaskDefinitionsRequest(input *ListTaskDefinitionsInput) (req *request.Request, output *ListTaskDefinitionsOutput) {
 	op := &request.Operation{
 		Name:       opListTaskDefinitions,
@@ -639,6 +1064,23 @@ func (c *ECS) ListTaskDefinitions(input *ListTaskDefinitionsInput) (*ListTaskDef
 	return out, err
 }
 
+// ListTaskDefinitionsPages iterates over the pages of a ListTaskDefinitions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListTaskDefinitions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListTaskDefinitions operation.
+//    pageNum := 0
+//    err := client.ListTaskDefinitionsPages(params,
+//        func(page *ListTaskDefinitionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *ECS) ListTaskDefinitionsPages(input *ListTaskDefinitionsInput, fn func(p *ListTaskDefinitionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListTaskDefinitionsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -649,7 +1091,28 @@ func (c *ECS) ListTaskDefinitionsPages(input *ListTaskDefinitionsInput, fn func(
 
 const opListTasks = "ListTasks"
 
-// ListTasksRequest generates a request for the ListTasks operation.
+// ListTasksRequest generates a "aws/request.Request" representing the
+// client's request for the ListTasks operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListTasks method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListTasksRequest method.
+//    req, resp := client.ListTasksRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ECS) ListTasksRequest(input *ListTasksInput) (req *request.Request, output *ListTasksOutput) {
 	op := &request.Operation{
 		Name:       opListTasks,
@@ -676,12 +1139,32 @@ func (c *ECS) ListTasksRequest(input *ListTasksInput) (req *request.Request, out
 // Returns a list of tasks for a specified cluster. You can filter the results
 // by family name, by a particular container instance, or by the desired status
 // of the task with the family, containerInstance, and desiredStatus parameters.
+//
+// Recently-stopped tasks might appear in the returned results. Currently,
+// stopped tasks appear in the returned results for at least one hour.
 func (c *ECS) ListTasks(input *ListTasksInput) (*ListTasksOutput, error) {
 	req, out := c.ListTasksRequest(input)
 	err := req.Send()
 	return out, err
 }
 
+// ListTasksPages iterates over the pages of a ListTasks operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListTasks method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListTasks operation.
+//    pageNum := 0
+//    err := client.ListTasksPages(params,
+//        func(page *ListTasksOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *ECS) ListTasksPages(input *ListTasksInput, fn func(p *ListTasksOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListTasksRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -692,7 +1175,28 @@ func (c *ECS) ListTasksPages(input *ListTasksInput, fn func(p *ListTasksOutput, 
 
 const opRegisterContainerInstance = "RegisterContainerInstance"
 
-// RegisterContainerInstanceRequest generates a request for the RegisterContainerInstance operation.
+// RegisterContainerInstanceRequest generates a "aws/request.Request" representing the
+// client's request for the RegisterContainerInstance operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RegisterContainerInstance method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RegisterContainerInstanceRequest method.
+//    req, resp := client.RegisterContainerInstanceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ECS) RegisterContainerInstanceRequest(input *RegisterContainerInstanceInput) (req *request.Request, output *RegisterContainerInstanceOutput) {
 	op := &request.Operation{
 		Name:       opRegisterContainerInstance,
@@ -723,7 +1227,28 @@ func (c *ECS) RegisterContainerInstance(input *RegisterContainerInstanceInput) (
 
 const opRegisterTaskDefinition = "RegisterTaskDefinition"
 
-// RegisterTaskDefinitionRequest generates a request for the RegisterTaskDefinition operation.
+// RegisterTaskDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the RegisterTaskDefinition operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RegisterTaskDefinition method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RegisterTaskDefinitionRequest method.
+//    req, resp := client.RegisterTaskDefinitionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ECS) RegisterTaskDefinitionRequest(input *RegisterTaskDefinitionInput) (req *request.Request, output *RegisterTaskDefinitionOutput) {
 	op := &request.Operation{
 		Name:       opRegisterTaskDefinition,
@@ -746,6 +1271,13 @@ func (c *ECS) RegisterTaskDefinitionRequest(input *RegisterTaskDefinitionInput) 
 // parameter. For more information about task definition parameters and defaults,
 // see Amazon ECS Task Definitions (http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_defintions.html)
 // in the Amazon EC2 Container Service Developer Guide.
+//
+// You may also specify an IAM role for your task with the taskRoleArn parameter.
+// When you specify an IAM role for a task, its containers can then use the
+// latest versions of the AWS CLI or SDKs to make API requests to the AWS services
+// that are specified in the IAM policy associated with the role. For more information,
+// see IAM Roles for Tasks (http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html)
+// in the Amazon EC2 Container Service Developer Guide.
 func (c *ECS) RegisterTaskDefinition(input *RegisterTaskDefinitionInput) (*RegisterTaskDefinitionOutput, error) {
 	req, out := c.RegisterTaskDefinitionRequest(input)
 	err := req.Send()
@@ -754,7 +1286,28 @@ func (c *ECS) RegisterTaskDefinition(input *RegisterTaskDefinitionInput) (*Regis
 
 const opRunTask = "RunTask"
 
-// RunTaskRequest generates a request for the RunTask operation.
+// RunTaskRequest generates a "aws/request.Request" representing the
+// client's request for the RunTask operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RunTask method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RunTaskRequest method.
+//    req, resp := client.RunTaskRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ECS) RunTaskRequest(input *RunTaskInput) (req *request.Request, output *RunTaskOutput) {
 	op := &request.Operation{
 		Name:       opRunTask,
@@ -785,7 +1338,28 @@ func (c *ECS) RunTask(input *RunTaskInput) (*RunTaskOutput, error) {
 
 const opStartTask = "StartTask"
 
-// StartTaskRequest generates a request for the StartTask operation.
+// StartTaskRequest generates a "aws/request.Request" representing the
+// client's request for the StartTask operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the StartTask method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the StartTaskRequest method.
+//    req, resp := client.StartTaskRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ECS) StartTaskRequest(input *StartTaskInput) (req *request.Request, output *StartTaskOutput) {
 	op := &request.Operation{
 		Name:       opStartTask,
@@ -816,7 +1390,28 @@ func (c *ECS) StartTask(input *StartTaskInput) (*StartTaskOutput, error) {
 
 const opStopTask = "StopTask"
 
-// StopTaskRequest generates a request for the StopTask operation.
+// StopTaskRequest generates a "aws/request.Request" representing the
+// client's request for the StopTask operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the StopTask method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the StopTaskRequest method.
+//    req, resp := client.StopTaskRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ECS) StopTaskRequest(input *StopTaskInput) (req *request.Request, output *StopTaskOutput) {
 	op := &request.Operation{
 		Name:       opStopTask,
@@ -849,7 +1444,28 @@ func (c *ECS) StopTask(input *StopTaskInput) (*StopTaskOutput, error) {
 
 const opSubmitContainerStateChange = "SubmitContainerStateChange"
 
-// SubmitContainerStateChangeRequest generates a request for the SubmitContainerStateChange operation.
+// SubmitContainerStateChangeRequest generates a "aws/request.Request" representing the
+// client's request for the SubmitContainerStateChange operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SubmitContainerStateChange method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SubmitContainerStateChangeRequest method.
+//    req, resp := client.SubmitContainerStateChangeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ECS) SubmitContainerStateChangeRequest(input *SubmitContainerStateChangeInput) (req *request.Request, output *SubmitContainerStateChangeOutput) {
 	op := &request.Operation{
 		Name:       opSubmitContainerStateChange,
@@ -879,7 +1495,28 @@ func (c *ECS) SubmitContainerStateChange(input *SubmitContainerStateChangeInput)
 
 const opSubmitTaskStateChange = "SubmitTaskStateChange"
 
-// SubmitTaskStateChangeRequest generates a request for the SubmitTaskStateChange operation.
+// SubmitTaskStateChangeRequest generates a "aws/request.Request" representing the
+// client's request for the SubmitTaskStateChange operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SubmitTaskStateChange method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SubmitTaskStateChangeRequest method.
+//    req, resp := client.SubmitTaskStateChangeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ECS) SubmitTaskStateChangeRequest(input *SubmitTaskStateChangeInput) (req *request.Request, output *SubmitTaskStateChangeOutput) {
 	op := &request.Operation{
 		Name:       opSubmitTaskStateChange,
@@ -909,7 +1546,28 @@ func (c *ECS) SubmitTaskStateChange(input *SubmitTaskStateChangeInput) (*SubmitT
 
 const opUpdateContainerAgent = "UpdateContainerAgent"
 
-// UpdateContainerAgentRequest generates a request for the UpdateContainerAgent operation.
+// UpdateContainerAgentRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateContainerAgent operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateContainerAgent method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateContainerAgentRequest method.
+//    req, resp := client.UpdateContainerAgentRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ECS) UpdateContainerAgentRequest(input *UpdateContainerAgentInput) (req *request.Request, output *UpdateContainerAgentOutput) {
 	op := &request.Operation{
 		Name:       opUpdateContainerAgent,
@@ -946,7 +1604,28 @@ func (c *ECS) UpdateContainerAgent(input *UpdateContainerAgentInput) (*UpdateCon
 
 const opUpdateService = "UpdateService"
 
-// UpdateServiceRequest generates a request for the UpdateService operation.
+// UpdateServiceRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateService operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateService method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateServiceRequest method.
+//    req, resp := client.UpdateServiceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ECS) UpdateServiceRequest(input *UpdateServiceInput) (req *request.Request, output *UpdateServiceOutput) {
 	op := &request.Operation{
 		Name:       opUpdateService,
@@ -1185,12 +1864,12 @@ type ContainerDefinition struct {
 	// 2 (including null), the behavior varies based on your Amazon ECS container
 	// agent version:
 	//
-	//   Agent versions less than or equal to 1.1.0: Null and zero CPU values are
-	// passed to Docker as 0, which Docker then converts to 1,024 CPU shares. CPU
-	// values of 1 are passed to Docker as 1, which the Linux kernel converts to
-	// 2 CPU shares.
+	//    Agent versions less than or equal to 1.1.0: Null and zero CPU values
+	// are passed to Docker as 0, which Docker then converts to 1,024 CPU shares.
+	// CPU values of 1 are passed to Docker as 1, which the Linux kernel converts
+	// to 2 CPU shares.
 	//
-	//   Agent versions greater than or equal to 1.2.0: Null, zero, and CPU values
+	//    Agent versions greater than or equal to 1.2.0: Null, zero, and CPU values
 	// of 1 are passed to Docker as 2.
 	Cpu *int64 `locationName:"cpu" type:"integer"`
 
@@ -1292,14 +1971,14 @@ type ContainerDefinition struct {
 	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.19/)
 	// and the IMAGE parameter of docker run (https://docs.docker.com/reference/commandline/run/).
 	//
-	//  Images in official repositories on Docker Hub use a single name (for example,
+	//   Images in official repositories on Docker Hub use a single name (for example,
 	// ubuntu or mongo).
 	//
-	//  Images in other repositories on Docker Hub are qualified with an organization
+	//   Images in other repositories on Docker Hub are qualified with an organization
 	// name (for example, amazon/amazon-ecs-agent).
 	//
-	//  Images in other online repositories are qualified further by a domain name
-	// (for example, quay.io/assemblyline/ubuntu).
+	//   Images in other online repositories are qualified further by a domain
+	// name (for example, quay.io/assemblyline/ubuntu).
 	Image *string `locationName:"image" type:"string"`
 
 	// The link parameter allows containers to communicate with each other without
@@ -1986,8 +2665,9 @@ func (s DeregisterTaskDefinitionOutput) GoString() string {
 type DescribeClustersInput struct {
 	_ struct{} `type:"structure"`
 
-	// A space-separated list of cluster names or full cluster Amazon Resource Name
-	// (ARN) entries. If you do not specify a cluster, the default cluster is assumed.
+	// A space-separated list of up to 100 cluster names or full cluster Amazon
+	// Resource Name (ARN) entries. If you do not specify a cluster, the default
+	// cluster is assumed.
 	Clusters []*string `locationName:"clusters" type:"list"`
 }
 
@@ -2731,7 +3411,12 @@ type ListTasksInput struct {
 	// The task status with which to filter the ListTasks results. Specifying a
 	// desiredStatus of STOPPED limits the results to tasks that are in the STOPPED
 	// status, which can be useful for debugging tasks that are not starting properly
-	// or have died or finished. The default status filter is RUNNING.
+	// or have died or finished. The default status filter is status filter is RUNNING,
+	// which shows tasks that ECS has set the desired status to RUNNING.
+	//
+	//  Although you can filter results based on a desired status of PENDING, this
+	// will not return any results because ECS never sets the desired status of
+	// a task to that value (only a task's lastStatus may have a value of PENDING).
 	DesiredStatus *string `locationName:"desiredStatus" type:"string" enum:"DesiredStatus"`
 
 	// The name of the family with which to filter the ListTasks results. Specifying
@@ -3082,6 +3767,11 @@ type RegisterTaskDefinitionInput struct {
 	// for your task definition. Up to 255 letters (uppercase and lowercase), numbers,
 	// hyphens, and underscores are allowed.
 	Family *string `locationName:"family" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the IAM role that containers in this task
+	// can assume. All containers in this task are granted the permissions that
+	// are specified in this role.
+	TaskRoleArn *string `locationName:"taskRoleArn" type:"string"`
 
 	// A list of volume definitions in JSON format that containers in your task
 	// may use.
@@ -3695,6 +4385,11 @@ type TaskDefinition struct {
 	// The full Amazon Resource Name (ARN) of the task definition.
 	TaskDefinitionArn *string `locationName:"taskDefinitionArn" type:"string"`
 
+	// The Amazon Resource Name (ARN) of the IAM role that containers in this task
+	// can assume. All containers in this task are granted the permissions that
+	// are specified in this role.
+	TaskRoleArn *string `locationName:"taskRoleArn" type:"string"`
+
 	// The list of volumes in a task. For more information about volume definition
 	// parameters and defaults, see Amazon ECS Task Definitions (http://docs.aws.amazon.com/http:/docs.aws.amazon.com/AmazonECS/latest/developerguidetask_defintions.html)
 	// in the Amazon EC2 Container Service Developer Guide.
@@ -3717,6 +4412,11 @@ type TaskOverride struct {
 
 	// One or more container overrides sent to a task.
 	ContainerOverrides []*ContainerOverride `locationName:"containerOverrides" type:"list"`
+
+	// The Amazon Resource Name (ARN) of the IAM role that containers in this task
+	// can assume. All containers in this task are granted the permissions that
+	// are specified in this role.
+	TaskRoleArn *string `locationName:"taskRoleArn" type:"string"`
 }
 
 // String returns the string representation

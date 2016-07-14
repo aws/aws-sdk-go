@@ -11,6 +11,20 @@
     "targetPrefix":"AmazonSSM"
   },
   "operations":{
+    "AddTagsToResource":{
+      "name":"AddTagsToResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AddTagsToResourceRequest"},
+      "output":{"shape":"AddTagsToResourceResult"},
+      "errors":[
+        {"shape":"InvalidResourceType"},
+        {"shape":"InvalidResourceId"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "CancelCommand":{
       "name":"CancelCommand",
       "http":{
@@ -24,6 +38,18 @@
         {"shape":"InvalidCommandId"},
         {"shape":"InvalidInstanceId"},
         {"shape":"DuplicateInstanceId"}
+      ]
+    },
+    "CreateActivation":{
+      "name":"CreateActivation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateActivationRequest"},
+      "output":{"shape":"CreateActivationResult"},
+      "errors":[
+        {"shape":"InternalServerError"}
       ]
     },
     "CreateAssociation":{
@@ -78,6 +104,20 @@
         {"shape":"DocumentLimitExceeded"}
       ]
     },
+    "DeleteActivation":{
+      "name":"DeleteActivation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteActivationRequest"},
+      "output":{"shape":"DeleteActivationResult"},
+      "errors":[
+        {"shape":"InvalidActivationId"},
+        {"shape":"InvalidActivation"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "DeleteAssociation":{
       "name":"DeleteAssociation",
       "http":{
@@ -107,6 +147,33 @@
         {"shape":"InvalidDocument"},
         {"shape":"InvalidDocumentOperation"},
         {"shape":"AssociatedInstances"}
+      ]
+    },
+    "DeregisterManagedInstance":{
+      "name":"DeregisterManagedInstance",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeregisterManagedInstanceRequest"},
+      "output":{"shape":"DeregisterManagedInstanceResult"},
+      "errors":[
+        {"shape":"InvalidInstanceId"},
+        {"shape":"InternalServerError"}
+      ]
+    },
+    "DescribeActivations":{
+      "name":"DescribeActivations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeActivationsRequest"},
+      "output":{"shape":"DescribeActivationsResult"},
+      "errors":[
+        {"shape":"InvalidFilter"},
+        {"shape":"InvalidNextToken"},
+        {"shape":"InternalServerError"}
       ]
     },
     "DescribeAssociation":{
@@ -239,6 +306,20 @@
         {"shape":"InvalidFilterKey"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResult"},
+      "errors":[
+        {"shape":"InvalidResourceType"},
+        {"shape":"InvalidResourceId"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "ModifyDocumentPermission":{
       "name":"ModifyDocumentPermission",
       "http":{
@@ -253,6 +334,20 @@
         {"shape":"InvalidPermissionType"},
         {"shape":"DocumentPermissionLimit"},
         {"shape":"DocumentLimitExceeded"}
+      ]
+    },
+    "RemoveTagsFromResource":{
+      "name":"RemoveTagsFromResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RemoveTagsFromResourceRequest"},
+      "output":{"shape":"RemoveTagsFromResourceResult"},
+      "errors":[
+        {"shape":"InvalidResourceType"},
+        {"shape":"InvalidResourceId"},
+        {"shape":"InternalServerError"}
       ]
     },
     "SendCommand":{
@@ -290,6 +385,19 @@
         {"shape":"StatusUnchanged"},
         {"shape":"TooManyUpdates"}
       ]
+    },
+    "UpdateManagedInstanceRole":{
+      "name":"UpdateManagedInstanceRole",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateManagedInstanceRoleRequest"},
+      "output":{"shape":"UpdateManagedInstanceRoleResult"},
+      "errors":[
+        {"shape":"InvalidInstanceId"},
+        {"shape":"InternalServerError"}
+      ]
     }
   },
   "shapes":{
@@ -304,6 +412,56 @@
         "locationName":"AccountId"
       },
       "max":20
+    },
+    "Activation":{
+      "type":"structure",
+      "members":{
+        "ActivationId":{"shape":"ActivationId"},
+        "Description":{"shape":"ActivationDescription"},
+        "DefaultInstanceName":{"shape":"DefaultInstanceName"},
+        "IamRole":{"shape":"IamRole"},
+        "RegistrationLimit":{"shape":"RegistrationLimit"},
+        "RegistrationsCount":{"shape":"RegistrationsCount"},
+        "ExpirationDate":{"shape":"ExpirationDate"},
+        "Expired":{"shape":"Boolean"},
+        "CreatedDate":{"shape":"CreatedDate"}
+      }
+    },
+    "ActivationCode":{
+      "type":"string",
+      "max":250,
+      "min":20
+    },
+    "ActivationDescription":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
+    "ActivationId":{
+      "type":"string",
+      "pattern":"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "ActivationList":{
+      "type":"list",
+      "member":{"shape":"Activation"}
+    },
+    "AddTagsToResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceType",
+        "ResourceId",
+        "Tags"
+      ],
+      "members":{
+        "ResourceType":{"shape":"ResourceTypeForTagging"},
+        "ResourceId":{"shape":"ResourceId"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "AddTagsToResourceResult":{
+      "type":"structure",
+      "members":{
+      }
     },
     "AssociatedInstances":{
       "type":"structure",
@@ -566,6 +724,32 @@
       "type":"string",
       "max":100
     },
+    "ComputerName":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
+    "CreateActivationRequest":{
+      "type":"structure",
+      "required":["IamRole"],
+      "members":{
+        "Description":{"shape":"ActivationDescription"},
+        "DefaultInstanceName":{"shape":"DefaultInstanceName"},
+        "IamRole":{"shape":"IamRole"},
+        "RegistrationLimit":{
+          "shape":"RegistrationLimit",
+          "box":true
+        },
+        "ExpirationDate":{"shape":"ExpirationDate"}
+      }
+    },
+    "CreateActivationResult":{
+      "type":"structure",
+      "members":{
+        "ActivationId":{"shape":"ActivationId"},
+        "ActivationCode":{"shape":"ActivationCode"}
+      }
+    },
     "CreateAssociationBatchRequest":{
       "type":"structure",
       "required":["Entries"],
@@ -630,7 +814,26 @@
         "DocumentDescription":{"shape":"DocumentDescription"}
       }
     },
+    "CreatedDate":{"type":"timestamp"},
     "DateTime":{"type":"timestamp"},
+    "DefaultInstanceName":{
+      "type":"string",
+      "max":256,
+      "min":0,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+    },
+    "DeleteActivationRequest":{
+      "type":"structure",
+      "required":["ActivationId"],
+      "members":{
+        "ActivationId":{"shape":"ActivationId"}
+      }
+    },
+    "DeleteActivationResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteAssociationRequest":{
       "type":"structure",
       "required":[
@@ -657,6 +860,55 @@
     "DeleteDocumentResult":{
       "type":"structure",
       "members":{
+      }
+    },
+    "DeregisterManagedInstanceRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{"shape":"ManagedInstanceId"}
+      }
+    },
+    "DeregisterManagedInstanceResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DescribeActivationsFilter":{
+      "type":"structure",
+      "members":{
+        "FilterKey":{"shape":"DescribeActivationsFilterKeys"},
+        "FilterValues":{"shape":"StringList"}
+      }
+    },
+    "DescribeActivationsFilterKeys":{
+      "type":"string",
+      "enum":[
+        "ActivationIds",
+        "DefaultInstanceName",
+        "IamRole"
+      ]
+    },
+    "DescribeActivationsFilterList":{
+      "type":"list",
+      "member":{"shape":"DescribeActivationsFilter"}
+    },
+    "DescribeActivationsRequest":{
+      "type":"structure",
+      "members":{
+        "Filters":{"shape":"DescribeActivationsFilterList"},
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true
+        },
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeActivationsResult":{
+      "type":"structure",
+      "members":{
+        "ActivationList":{"shape":"ActivationList"},
+        "NextToken":{"shape":"NextToken"}
       }
     },
     "DescribeAssociationRequest":{
@@ -876,6 +1128,7 @@
       },
       "exception":true
     },
+    "ExpirationDate":{"type":"timestamp"},
     "FailedCreateAssociation":{
       "type":"structure",
       "members":{
@@ -913,9 +1166,18 @@
         "Content":{"shape":"DocumentContent"}
       }
     },
+    "IPAddress":{
+      "type":"string",
+      "max":46,
+      "min":1
+    },
+    "IamRole":{
+      "type":"string",
+      "max":64
+    },
     "InstanceId":{
       "type":"string",
-      "pattern":"(^i-(\\w{8}|\\w{17})$)|(^op-\\w{17}$)"
+      "pattern":"(^i-(\\w{8}|\\w{17})$)|(^mi-\\w{17}$)"
     },
     "InstanceIdList":{
       "type":"list",
@@ -939,7 +1201,17 @@
         },
         "PlatformType":{"shape":"PlatformType"},
         "PlatformName":{"shape":"String"},
-        "PlatformVersion":{"shape":"String"}
+        "PlatformVersion":{"shape":"String"},
+        "ActivationId":{"shape":"ActivationId"},
+        "IamRole":{"shape":"IamRole"},
+        "RegistrationDate":{
+          "shape":"DateTime",
+          "box":true
+        },
+        "ResourceType":{"shape":"ResourceType"},
+        "Name":{"shape":"String"},
+        "IPAddress":{"shape":"IPAddress"},
+        "ComputerName":{"shape":"ComputerName"}
       }
     },
     "InstanceInformationFilter":{
@@ -959,7 +1231,10 @@
         "InstanceIds",
         "AgentVersion",
         "PingStatus",
-        "PlatformTypes"
+        "PlatformTypes",
+        "ActivationIds",
+        "IamRole",
+        "ResourceType"
       ]
     },
     "InstanceInformationFilterList":{
@@ -997,6 +1272,20 @@
       },
       "exception":true
     },
+    "InvalidActivation":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
+    "InvalidActivationId":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
     "InvalidCommandId":{
       "type":"structure",
       "members":{
@@ -1018,6 +1307,13 @@
       "exception":true
     },
     "InvalidDocumentOperation":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
+    "InvalidFilter":{
       "type":"structure",
       "members":{
         "Message":{"shape":"String"}
@@ -1070,9 +1366,25 @@
       },
       "exception":true
     },
+    "InvalidResourceId":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "InvalidResourceType":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "InvocationTraceOutput":{
       "type":"string",
       "max":2500
+    },
+    "KeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"}
     },
     "ListAssociationsRequest":{
       "type":"structure",
@@ -1134,17 +1446,12 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
-    "ListDocumentsMaxResults":{
-      "type":"integer",
-      "max":50,
-      "min":1
-    },
     "ListDocumentsRequest":{
       "type":"structure",
       "members":{
         "DocumentFilterList":{"shape":"DocumentFilterList"},
         "MaxResults":{
-          "shape":"ListDocumentsMaxResults",
+          "shape":"MaxResults",
           "box":true
         },
         "NextToken":{"shape":"NextToken"}
@@ -1157,6 +1464,27 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceType",
+        "ResourceId"
+      ],
+      "members":{
+        "ResourceType":{"shape":"ResourceTypeForTagging"},
+        "ResourceId":{"shape":"ResourceId"}
+      }
+    },
+    "ListTagsForResourceResult":{
+      "type":"structure",
+      "members":{
+        "TagList":{"shape":"TagList"}
+      }
+    },
+    "ManagedInstanceId":{
+      "type":"string",
+      "pattern":"^mi-[0-9a-f]{17}$"
+    },
     "MaxDocumentSizeExceeded":{
       "type":"structure",
       "members":{
@@ -1166,7 +1494,7 @@
     },
     "MaxResults":{
       "type":"integer",
-      "max":25,
+      "max":50,
       "min":1
     },
     "MaxResultsEC2Compatible":{
@@ -1226,6 +1554,50 @@
         "locationName":"PlatformType"
       }
     },
+    "RegistrationLimit":{
+      "type":"integer",
+      "max":1000,
+      "min":1
+    },
+    "RegistrationsCount":{
+      "type":"integer",
+      "max":1000,
+      "min":1
+    },
+    "RemoveTagsFromResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceType",
+        "ResourceId",
+        "TagKeys"
+      ],
+      "members":{
+        "ResourceType":{"shape":"ResourceTypeForTagging"},
+        "ResourceId":{"shape":"ResourceId"},
+        "TagKeys":{"shape":"KeyList"}
+      }
+    },
+    "RemoveTagsFromResourceResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "ResourceId":{
+      "type":"string",
+      "pattern":"^mi-[0-9a-f]{17}$"
+    },
+    "ResourceType":{
+      "type":"string",
+      "enum":[
+        "ManagedInstance",
+        "Document",
+        "EC2Instance"
+      ]
+    },
+    "ResourceTypeForTagging":{
+      "type":"string",
+      "enum":["ManagedInstance"]
+    },
     "ResponseCode":{"type":"integer"},
     "S3BucketName":{
       "type":"string",
@@ -1278,6 +1650,37 @@
       "exception":true
     },
     "String":{"type":"string"},
+    "StringList":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
+    "Tag":{
+      "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
+      "members":{
+        "Key":{"shape":"TagKey"},
+        "Value":{"shape":"TagValue"}
+      }
+    },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^(?!^(?i)aws:)(?=^[\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*$).*$"
+    },
+    "TagList":{
+      "type":"list",
+      "member":{"shape":"Tag"}
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+    },
     "TimeoutSeconds":{
       "type":"integer",
       "max":2592000,
@@ -1313,6 +1716,22 @@
       "type":"structure",
       "members":{
         "AssociationDescription":{"shape":"AssociationDescription"}
+      }
+    },
+    "UpdateManagedInstanceRoleRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "IamRole"
+      ],
+      "members":{
+        "InstanceId":{"shape":"ManagedInstanceId"},
+        "IamRole":{"shape":"IamRole"}
+      }
+    },
+    "UpdateManagedInstanceRoleResult":{
+      "type":"structure",
+      "members":{
       }
     },
     "Version":{

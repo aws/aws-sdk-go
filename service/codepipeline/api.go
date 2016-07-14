@@ -15,7 +15,28 @@ import (
 
 const opAcknowledgeJob = "AcknowledgeJob"
 
-// AcknowledgeJobRequest generates a request for the AcknowledgeJob operation.
+// AcknowledgeJobRequest generates a "aws/request.Request" representing the
+// client's request for the AcknowledgeJob operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AcknowledgeJob method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AcknowledgeJobRequest method.
+//    req, resp := client.AcknowledgeJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) AcknowledgeJobRequest(input *AcknowledgeJobInput) (req *request.Request, output *AcknowledgeJobOutput) {
 	op := &request.Operation{
 		Name:       opAcknowledgeJob,
@@ -43,7 +64,28 @@ func (c *CodePipeline) AcknowledgeJob(input *AcknowledgeJobInput) (*AcknowledgeJ
 
 const opAcknowledgeThirdPartyJob = "AcknowledgeThirdPartyJob"
 
-// AcknowledgeThirdPartyJobRequest generates a request for the AcknowledgeThirdPartyJob operation.
+// AcknowledgeThirdPartyJobRequest generates a "aws/request.Request" representing the
+// client's request for the AcknowledgeThirdPartyJob operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AcknowledgeThirdPartyJob method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AcknowledgeThirdPartyJobRequest method.
+//    req, resp := client.AcknowledgeThirdPartyJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) AcknowledgeThirdPartyJobRequest(input *AcknowledgeThirdPartyJobInput) (req *request.Request, output *AcknowledgeThirdPartyJobOutput) {
 	op := &request.Operation{
 		Name:       opAcknowledgeThirdPartyJob,
@@ -71,7 +113,28 @@ func (c *CodePipeline) AcknowledgeThirdPartyJob(input *AcknowledgeThirdPartyJobI
 
 const opCreateCustomActionType = "CreateCustomActionType"
 
-// CreateCustomActionTypeRequest generates a request for the CreateCustomActionType operation.
+// CreateCustomActionTypeRequest generates a "aws/request.Request" representing the
+// client's request for the CreateCustomActionType operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateCustomActionType method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateCustomActionTypeRequest method.
+//    req, resp := client.CreateCustomActionTypeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) CreateCustomActionTypeRequest(input *CreateCustomActionTypeInput) (req *request.Request, output *CreateCustomActionTypeOutput) {
 	op := &request.Operation{
 		Name:       opCreateCustomActionType,
@@ -99,7 +162,28 @@ func (c *CodePipeline) CreateCustomActionType(input *CreateCustomActionTypeInput
 
 const opCreatePipeline = "CreatePipeline"
 
-// CreatePipelineRequest generates a request for the CreatePipeline operation.
+// CreatePipelineRequest generates a "aws/request.Request" representing the
+// client's request for the CreatePipeline operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreatePipeline method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreatePipelineRequest method.
+//    req, resp := client.CreatePipelineRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) CreatePipelineRequest(input *CreatePipelineInput) (req *request.Request, output *CreatePipelineOutput) {
 	op := &request.Operation{
 		Name:       opCreatePipeline,
@@ -126,7 +210,28 @@ func (c *CodePipeline) CreatePipeline(input *CreatePipelineInput) (*CreatePipeli
 
 const opDeleteCustomActionType = "DeleteCustomActionType"
 
-// DeleteCustomActionTypeRequest generates a request for the DeleteCustomActionType operation.
+// DeleteCustomActionTypeRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteCustomActionType operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteCustomActionType method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteCustomActionTypeRequest method.
+//    req, resp := client.DeleteCustomActionTypeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) DeleteCustomActionTypeRequest(input *DeleteCustomActionTypeInput) (req *request.Request, output *DeleteCustomActionTypeOutput) {
 	op := &request.Operation{
 		Name:       opDeleteCustomActionType,
@@ -149,7 +254,7 @@ func (c *CodePipeline) DeleteCustomActionTypeRequest(input *DeleteCustomActionTy
 // Marks a custom action as deleted. PollForJobs for the custom action will
 // fail after the action is marked for deletion. Only used for custom actions.
 //
-// You cannot recreate a custom action after it has been deleted unless you
+//  You cannot recreate a custom action after it has been deleted unless you
 // increase the version number of the action.
 func (c *CodePipeline) DeleteCustomActionType(input *DeleteCustomActionTypeInput) (*DeleteCustomActionTypeOutput, error) {
 	req, out := c.DeleteCustomActionTypeRequest(input)
@@ -159,7 +264,28 @@ func (c *CodePipeline) DeleteCustomActionType(input *DeleteCustomActionTypeInput
 
 const opDeletePipeline = "DeletePipeline"
 
-// DeletePipelineRequest generates a request for the DeletePipeline operation.
+// DeletePipelineRequest generates a "aws/request.Request" representing the
+// client's request for the DeletePipeline operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeletePipeline method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeletePipelineRequest method.
+//    req, resp := client.DeletePipelineRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) DeletePipelineRequest(input *DeletePipelineInput) (req *request.Request, output *DeletePipelineOutput) {
 	op := &request.Operation{
 		Name:       opDeletePipeline,
@@ -188,7 +314,28 @@ func (c *CodePipeline) DeletePipeline(input *DeletePipelineInput) (*DeletePipeli
 
 const opDisableStageTransition = "DisableStageTransition"
 
-// DisableStageTransitionRequest generates a request for the DisableStageTransition operation.
+// DisableStageTransitionRequest generates a "aws/request.Request" representing the
+// client's request for the DisableStageTransition operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DisableStageTransition method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DisableStageTransitionRequest method.
+//    req, resp := client.DisableStageTransitionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) DisableStageTransitionRequest(input *DisableStageTransitionInput) (req *request.Request, output *DisableStageTransitionOutput) {
 	op := &request.Operation{
 		Name:       opDisableStageTransition,
@@ -218,7 +365,28 @@ func (c *CodePipeline) DisableStageTransition(input *DisableStageTransitionInput
 
 const opEnableStageTransition = "EnableStageTransition"
 
-// EnableStageTransitionRequest generates a request for the EnableStageTransition operation.
+// EnableStageTransitionRequest generates a "aws/request.Request" representing the
+// client's request for the EnableStageTransition operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the EnableStageTransition method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the EnableStageTransitionRequest method.
+//    req, resp := client.EnableStageTransitionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) EnableStageTransitionRequest(input *EnableStageTransitionInput) (req *request.Request, output *EnableStageTransitionOutput) {
 	op := &request.Operation{
 		Name:       opEnableStageTransition,
@@ -247,7 +415,28 @@ func (c *CodePipeline) EnableStageTransition(input *EnableStageTransitionInput) 
 
 const opGetJobDetails = "GetJobDetails"
 
-// GetJobDetailsRequest generates a request for the GetJobDetails operation.
+// GetJobDetailsRequest generates a "aws/request.Request" representing the
+// client's request for the GetJobDetails operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetJobDetails method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetJobDetailsRequest method.
+//    req, resp := client.GetJobDetailsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) GetJobDetailsRequest(input *GetJobDetailsInput) (req *request.Request, output *GetJobDetailsOutput) {
 	op := &request.Operation{
 		Name:       opGetJobDetails,
@@ -267,7 +456,7 @@ func (c *CodePipeline) GetJobDetailsRequest(input *GetJobDetailsInput) (req *req
 
 // Returns information about a job. Only used for custom actions.
 //
-// When this API is called, AWS CodePipeline returns temporary credentials
+//  When this API is called, AWS CodePipeline returns temporary credentials
 // for the Amazon S3 bucket used to store artifacts for the pipeline, if the
 // action requires access to that Amazon S3 bucket for input or output artifacts.
 // Additionally, this API returns any secret values defined for the action.
@@ -279,7 +468,28 @@ func (c *CodePipeline) GetJobDetails(input *GetJobDetailsInput) (*GetJobDetailsO
 
 const opGetPipeline = "GetPipeline"
 
-// GetPipelineRequest generates a request for the GetPipeline operation.
+// GetPipelineRequest generates a "aws/request.Request" representing the
+// client's request for the GetPipeline operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetPipeline method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetPipelineRequest method.
+//    req, resp := client.GetPipelineRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) GetPipelineRequest(input *GetPipelineInput) (req *request.Request, output *GetPipelineOutput) {
 	op := &request.Operation{
 		Name:       opGetPipeline,
@@ -308,7 +518,28 @@ func (c *CodePipeline) GetPipeline(input *GetPipelineInput) (*GetPipelineOutput,
 
 const opGetPipelineState = "GetPipelineState"
 
-// GetPipelineStateRequest generates a request for the GetPipelineState operation.
+// GetPipelineStateRequest generates a "aws/request.Request" representing the
+// client's request for the GetPipelineState operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetPipelineState method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetPipelineStateRequest method.
+//    req, resp := client.GetPipelineStateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) GetPipelineStateRequest(input *GetPipelineStateInput) (req *request.Request, output *GetPipelineStateOutput) {
 	op := &request.Operation{
 		Name:       opGetPipelineState,
@@ -326,8 +557,8 @@ func (c *CodePipeline) GetPipelineStateRequest(input *GetPipelineStateInput) (re
 	return
 }
 
-// Returns information about the state of a pipeline, including the stages,
-// actions, and details about the last run of the pipeline.
+// Returns information about the state of a pipeline, including the stages and
+// actions.
 func (c *CodePipeline) GetPipelineState(input *GetPipelineStateInput) (*GetPipelineStateOutput, error) {
 	req, out := c.GetPipelineStateRequest(input)
 	err := req.Send()
@@ -336,7 +567,28 @@ func (c *CodePipeline) GetPipelineState(input *GetPipelineStateInput) (*GetPipel
 
 const opGetThirdPartyJobDetails = "GetThirdPartyJobDetails"
 
-// GetThirdPartyJobDetailsRequest generates a request for the GetThirdPartyJobDetails operation.
+// GetThirdPartyJobDetailsRequest generates a "aws/request.Request" representing the
+// client's request for the GetThirdPartyJobDetails operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetThirdPartyJobDetails method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetThirdPartyJobDetailsRequest method.
+//    req, resp := client.GetThirdPartyJobDetailsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) GetThirdPartyJobDetailsRequest(input *GetThirdPartyJobDetailsInput) (req *request.Request, output *GetThirdPartyJobDetailsOutput) {
 	op := &request.Operation{
 		Name:       opGetThirdPartyJobDetails,
@@ -357,7 +609,7 @@ func (c *CodePipeline) GetThirdPartyJobDetailsRequest(input *GetThirdPartyJobDet
 // Requests the details of a job for a third party action. Only used for partner
 // actions.
 //
-// When this API is called, AWS CodePipeline returns temporary credentials
+//  When this API is called, AWS CodePipeline returns temporary credentials
 // for the Amazon S3 bucket used to store artifacts for the pipeline, if the
 // action requires access to that Amazon S3 bucket for input or output artifacts.
 // Additionally, this API returns any secret values defined for the action.
@@ -369,7 +621,28 @@ func (c *CodePipeline) GetThirdPartyJobDetails(input *GetThirdPartyJobDetailsInp
 
 const opListActionTypes = "ListActionTypes"
 
-// ListActionTypesRequest generates a request for the ListActionTypes operation.
+// ListActionTypesRequest generates a "aws/request.Request" representing the
+// client's request for the ListActionTypes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListActionTypes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListActionTypesRequest method.
+//    req, resp := client.ListActionTypesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) ListActionTypesRequest(input *ListActionTypesInput) (req *request.Request, output *ListActionTypesOutput) {
 	op := &request.Operation{
 		Name:       opListActionTypes,
@@ -397,7 +670,28 @@ func (c *CodePipeline) ListActionTypes(input *ListActionTypesInput) (*ListAction
 
 const opListPipelines = "ListPipelines"
 
-// ListPipelinesRequest generates a request for the ListPipelines operation.
+// ListPipelinesRequest generates a "aws/request.Request" representing the
+// client's request for the ListPipelines operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListPipelines method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListPipelinesRequest method.
+//    req, resp := client.ListPipelinesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) ListPipelinesRequest(input *ListPipelinesInput) (req *request.Request, output *ListPipelinesOutput) {
 	op := &request.Operation{
 		Name:       opListPipelines,
@@ -424,7 +718,28 @@ func (c *CodePipeline) ListPipelines(input *ListPipelinesInput) (*ListPipelinesO
 
 const opPollForJobs = "PollForJobs"
 
-// PollForJobsRequest generates a request for the PollForJobs operation.
+// PollForJobsRequest generates a "aws/request.Request" representing the
+// client's request for the PollForJobs operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the PollForJobs method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PollForJobsRequest method.
+//    req, resp := client.PollForJobsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) PollForJobsRequest(input *PollForJobsInput) (req *request.Request, output *PollForJobsOutput) {
 	op := &request.Operation{
 		Name:       opPollForJobs,
@@ -444,7 +759,7 @@ func (c *CodePipeline) PollForJobsRequest(input *PollForJobsInput) (req *request
 
 // Returns information about any jobs for AWS CodePipeline to act upon.
 //
-// When this API is called, AWS CodePipeline returns temporary credentials
+//  When this API is called, AWS CodePipeline returns temporary credentials
 // for the Amazon S3 bucket used to store artifacts for the pipeline, if the
 // action requires access to that Amazon S3 bucket for input or output artifacts.
 // Additionally, this API returns any secret values defined for the action.
@@ -456,7 +771,28 @@ func (c *CodePipeline) PollForJobs(input *PollForJobsInput) (*PollForJobsOutput,
 
 const opPollForThirdPartyJobs = "PollForThirdPartyJobs"
 
-// PollForThirdPartyJobsRequest generates a request for the PollForThirdPartyJobs operation.
+// PollForThirdPartyJobsRequest generates a "aws/request.Request" representing the
+// client's request for the PollForThirdPartyJobs operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the PollForThirdPartyJobs method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PollForThirdPartyJobsRequest method.
+//    req, resp := client.PollForThirdPartyJobsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) PollForThirdPartyJobsRequest(input *PollForThirdPartyJobsInput) (req *request.Request, output *PollForThirdPartyJobsOutput) {
 	op := &request.Operation{
 		Name:       opPollForThirdPartyJobs,
@@ -477,7 +813,7 @@ func (c *CodePipeline) PollForThirdPartyJobsRequest(input *PollForThirdPartyJobs
 // Determines whether there are any third party jobs for a job worker to act
 // on. Only used for partner actions.
 //
-// When this API is called, AWS CodePipeline returns temporary credentials
+//  When this API is called, AWS CodePipeline returns temporary credentials
 // for the Amazon S3 bucket used to store artifacts for the pipeline, if the
 // action requires access to that Amazon S3 bucket for input or output artifacts.
 func (c *CodePipeline) PollForThirdPartyJobs(input *PollForThirdPartyJobsInput) (*PollForThirdPartyJobsOutput, error) {
@@ -488,7 +824,28 @@ func (c *CodePipeline) PollForThirdPartyJobs(input *PollForThirdPartyJobsInput) 
 
 const opPutActionRevision = "PutActionRevision"
 
-// PutActionRevisionRequest generates a request for the PutActionRevision operation.
+// PutActionRevisionRequest generates a "aws/request.Request" representing the
+// client's request for the PutActionRevision operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the PutActionRevision method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PutActionRevisionRequest method.
+//    req, resp := client.PutActionRevisionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) PutActionRevisionRequest(input *PutActionRevisionInput) (req *request.Request, output *PutActionRevisionOutput) {
 	op := &request.Operation{
 		Name:       opPutActionRevision,
@@ -513,9 +870,79 @@ func (c *CodePipeline) PutActionRevision(input *PutActionRevisionInput) (*PutAct
 	return out, err
 }
 
+const opPutApprovalResult = "PutApprovalResult"
+
+// PutApprovalResultRequest generates a "aws/request.Request" representing the
+// client's request for the PutApprovalResult operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the PutApprovalResult method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PutApprovalResultRequest method.
+//    req, resp := client.PutApprovalResultRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *CodePipeline) PutApprovalResultRequest(input *PutApprovalResultInput) (req *request.Request, output *PutApprovalResultOutput) {
+	op := &request.Operation{
+		Name:       opPutApprovalResult,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutApprovalResultInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &PutApprovalResultOutput{}
+	req.Data = output
+	return
+}
+
+// Provides the response to a manual approval request to AWS CodePipeline. Valid
+// responses include Approved and Rejected.
+func (c *CodePipeline) PutApprovalResult(input *PutApprovalResultInput) (*PutApprovalResultOutput, error) {
+	req, out := c.PutApprovalResultRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opPutJobFailureResult = "PutJobFailureResult"
 
-// PutJobFailureResultRequest generates a request for the PutJobFailureResult operation.
+// PutJobFailureResultRequest generates a "aws/request.Request" representing the
+// client's request for the PutJobFailureResult operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the PutJobFailureResult method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PutJobFailureResultRequest method.
+//    req, resp := client.PutJobFailureResultRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) PutJobFailureResultRequest(input *PutJobFailureResultInput) (req *request.Request, output *PutJobFailureResultOutput) {
 	op := &request.Operation{
 		Name:       opPutJobFailureResult,
@@ -545,7 +972,28 @@ func (c *CodePipeline) PutJobFailureResult(input *PutJobFailureResultInput) (*Pu
 
 const opPutJobSuccessResult = "PutJobSuccessResult"
 
-// PutJobSuccessResultRequest generates a request for the PutJobSuccessResult operation.
+// PutJobSuccessResultRequest generates a "aws/request.Request" representing the
+// client's request for the PutJobSuccessResult operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the PutJobSuccessResult method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PutJobSuccessResultRequest method.
+//    req, resp := client.PutJobSuccessResultRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) PutJobSuccessResultRequest(input *PutJobSuccessResultInput) (req *request.Request, output *PutJobSuccessResultOutput) {
 	op := &request.Operation{
 		Name:       opPutJobSuccessResult,
@@ -575,7 +1023,28 @@ func (c *CodePipeline) PutJobSuccessResult(input *PutJobSuccessResultInput) (*Pu
 
 const opPutThirdPartyJobFailureResult = "PutThirdPartyJobFailureResult"
 
-// PutThirdPartyJobFailureResultRequest generates a request for the PutThirdPartyJobFailureResult operation.
+// PutThirdPartyJobFailureResultRequest generates a "aws/request.Request" representing the
+// client's request for the PutThirdPartyJobFailureResult operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the PutThirdPartyJobFailureResult method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PutThirdPartyJobFailureResultRequest method.
+//    req, resp := client.PutThirdPartyJobFailureResultRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) PutThirdPartyJobFailureResultRequest(input *PutThirdPartyJobFailureResultInput) (req *request.Request, output *PutThirdPartyJobFailureResultOutput) {
 	op := &request.Operation{
 		Name:       opPutThirdPartyJobFailureResult,
@@ -605,7 +1074,28 @@ func (c *CodePipeline) PutThirdPartyJobFailureResult(input *PutThirdPartyJobFail
 
 const opPutThirdPartyJobSuccessResult = "PutThirdPartyJobSuccessResult"
 
-// PutThirdPartyJobSuccessResultRequest generates a request for the PutThirdPartyJobSuccessResult operation.
+// PutThirdPartyJobSuccessResultRequest generates a "aws/request.Request" representing the
+// client's request for the PutThirdPartyJobSuccessResult operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the PutThirdPartyJobSuccessResult method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PutThirdPartyJobSuccessResultRequest method.
+//    req, resp := client.PutThirdPartyJobSuccessResultRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) PutThirdPartyJobSuccessResultRequest(input *PutThirdPartyJobSuccessResultInput) (req *request.Request, output *PutThirdPartyJobSuccessResultOutput) {
 	op := &request.Operation{
 		Name:       opPutThirdPartyJobSuccessResult,
@@ -633,9 +1123,78 @@ func (c *CodePipeline) PutThirdPartyJobSuccessResult(input *PutThirdPartyJobSucc
 	return out, err
 }
 
+const opRetryStageExecution = "RetryStageExecution"
+
+// RetryStageExecutionRequest generates a "aws/request.Request" representing the
+// client's request for the RetryStageExecution operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RetryStageExecution method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RetryStageExecutionRequest method.
+//    req, resp := client.RetryStageExecutionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *CodePipeline) RetryStageExecutionRequest(input *RetryStageExecutionInput) (req *request.Request, output *RetryStageExecutionOutput) {
+	op := &request.Operation{
+		Name:       opRetryStageExecution,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RetryStageExecutionInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &RetryStageExecutionOutput{}
+	req.Data = output
+	return
+}
+
+// Resumes the pipeline execution by retrying the last failed actions in a stage.
+func (c *CodePipeline) RetryStageExecution(input *RetryStageExecutionInput) (*RetryStageExecutionOutput, error) {
+	req, out := c.RetryStageExecutionRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opStartPipelineExecution = "StartPipelineExecution"
 
-// StartPipelineExecutionRequest generates a request for the StartPipelineExecution operation.
+// StartPipelineExecutionRequest generates a "aws/request.Request" representing the
+// client's request for the StartPipelineExecution operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the StartPipelineExecution method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the StartPipelineExecutionRequest method.
+//    req, resp := client.StartPipelineExecutionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) StartPipelineExecutionRequest(input *StartPipelineExecutionInput) (req *request.Request, output *StartPipelineExecutionOutput) {
 	op := &request.Operation{
 		Name:       opStartPipelineExecution,
@@ -663,7 +1222,28 @@ func (c *CodePipeline) StartPipelineExecution(input *StartPipelineExecutionInput
 
 const opUpdatePipeline = "UpdatePipeline"
 
-// UpdatePipelineRequest generates a request for the UpdatePipeline operation.
+// UpdatePipelineRequest generates a "aws/request.Request" representing the
+// client's request for the UpdatePipeline operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdatePipeline method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdatePipelineRequest method.
+//    req, resp := client.UpdatePipelineRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CodePipeline) UpdatePipelineRequest(input *UpdatePipelineInput) (req *request.Request, output *UpdatePipelineOutput) {
 	op := &request.Operation{
 		Name:       opUpdatePipeline,
@@ -1043,7 +1623,7 @@ func (s *ActionDeclaration) Validate() error {
 	return nil
 }
 
-// Represents information about how an action runs.
+// Represents information about the run of an action.
 type ActionExecution struct {
 	_ struct{} `type:"structure"`
 
@@ -1060,6 +1640,9 @@ type ActionExecution struct {
 	// The last status change of the action.
 	LastStatusChange *time.Time `locationName:"lastStatusChange" type:"timestamp" timestampFormat:"unix"`
 
+	// The ARN of the user who last changed the pipeline.
+	LastUpdatedBy *string `locationName:"lastUpdatedBy" type:"string"`
+
 	// A percentage of completeness of the action as it runs.
 	PercentComplete *int64 `locationName:"percentComplete" type:"integer"`
 
@@ -1069,6 +1652,12 @@ type ActionExecution struct {
 
 	// A summary of the run of the action.
 	Summary *string `locationName:"summary" type:"string"`
+
+	// The system-generated token used to identify a unique approval request. The
+	// token for each open approval request can be obtained using the GetPipelineState
+	// command and is used to validate that the approval request corresponding to
+	// this token is still valid.
+	Token *string `locationName:"token" type:"string"`
 }
 
 // String returns the string representation
@@ -1147,7 +1736,7 @@ type ActionState struct {
 	// deployment group details page.
 	EntityUrl *string `locationName:"entityUrl" min:"1" type:"string"`
 
-	// Represents information about how an action runs.
+	// Represents information about the run of an action.
 	LatestExecution *ActionExecution `locationName:"latestExecution" type:"structure"`
 
 	// A URL link for more information about the revision, such as a commit details
@@ -1306,6 +1895,43 @@ func (s *ActionTypeSettings) Validate() error {
 	}
 	if s.ThirdPartyConfigurationUrl != nil && len(*s.ThirdPartyConfigurationUrl) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ThirdPartyConfigurationUrl", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// Represents information about the result of an approval request.
+type ApprovalResult struct {
+	_ struct{} `type:"structure"`
+
+	// The response submitted by a reviewer assigned to an approval action request.
+	Status *string `locationName:"status" type:"string" required:"true" enum:"ApprovalStatus"`
+
+	// The summary of the current status of the approval request.
+	Summary *string `locationName:"summary" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ApprovalResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ApprovalResult) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ApprovalResult) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ApprovalResult"}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+	if s.Summary == nil {
+		invalidParams.Add(request.NewErrParamRequired("Summary"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -1497,13 +2123,13 @@ type CreateCustomActionTypeInput struct {
 
 	// The category of the custom action, such as a source action or a build action.
 	//
-	// Although Source is listed as a valid value, it is not currently functional.
+	//  Although Source is listed as a valid value, it is not currently functional.
 	// This value is reserved for future use.
 	Category *string `locationName:"category" type:"string" required:"true" enum:"ActionCategory"`
 
 	// The configuration properties for the custom action.
 	//
-	// You can refer to a name in the configuration properties of the custom action
+	//  You can refer to a name in the configuration properties of the custom action
 	// within the URL templates by following the format of {Config:name}, as long
 	// as the configuration property is both required and not secret. For more information,
 	// see Create a Custom Action for a Pipeline (http://docs.aws.amazon.com/codepipeline/latest/userguide/how-to-create-custom-action.html).
@@ -2270,7 +2896,7 @@ type GetPipelineStateOutput struct {
 
 	// The version number of the pipeline.
 	//
-	// A newly-created pipeline is always assigned a version number of 1.
+	//  A newly-created pipeline is always assigned a version number of 1.
 	PipelineVersion *int64 `locationName:"pipelineVersion" min:"1" type:"integer"`
 
 	// A list of the pipeline stage output information, including stage name, state,
@@ -2960,6 +3586,93 @@ func (s PutActionRevisionOutput) GoString() string {
 	return s.String()
 }
 
+// Represents the input of a put approval result action.
+type PutApprovalResultInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the action for which approval is requested.
+	ActionName *string `locationName:"actionName" min:"1" type:"string" required:"true"`
+
+	// The name of the pipeline that contains the action.
+	PipelineName *string `locationName:"pipelineName" min:"1" type:"string" required:"true"`
+
+	// Represents information about the result of the approval request.
+	Result *ApprovalResult `locationName:"result" type:"structure" required:"true"`
+
+	// The name of the stage that contains the action.
+	StageName *string `locationName:"stageName" min:"1" type:"string" required:"true"`
+
+	// The system-generated token used to identify a unique approval request. The
+	// token for each open approval request can be obtained using the GetPipelineState
+	// action and is used to validate that the approval request corresponding to
+	// this token is still valid.
+	Token *string `locationName:"token" type:"string"`
+}
+
+// String returns the string representation
+func (s PutApprovalResultInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutApprovalResultInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutApprovalResultInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutApprovalResultInput"}
+	if s.ActionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActionName"))
+	}
+	if s.ActionName != nil && len(*s.ActionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ActionName", 1))
+	}
+	if s.PipelineName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineName"))
+	}
+	if s.PipelineName != nil && len(*s.PipelineName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PipelineName", 1))
+	}
+	if s.Result == nil {
+		invalidParams.Add(request.NewErrParamRequired("Result"))
+	}
+	if s.StageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StageName"))
+	}
+	if s.StageName != nil && len(*s.StageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StageName", 1))
+	}
+	if s.Result != nil {
+		if err := s.Result.Validate(); err != nil {
+			invalidParams.AddNested("Result", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// Represents the output of a put approval result action.
+type PutApprovalResultOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp showing when the approval or rejection was submitted.
+	ApprovedAt *time.Time `locationName:"approvedAt" type:"timestamp" timestampFormat:"unix"`
+}
+
+// String returns the string representation
+func (s PutApprovalResultOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutApprovalResultOutput) GoString() string {
+	return s.String()
+}
+
 // Represents the input of a put job failure result action.
 type PutJobFailureResultInput struct {
 	_ struct{} `type:"structure"`
@@ -3236,6 +3949,81 @@ func (s PutThirdPartyJobSuccessResultOutput) GoString() string {
 	return s.String()
 }
 
+// Represents the input of a retry stage execution action.
+type RetryStageExecutionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the pipeline execution in the failed stage to be retried. Use the
+	// GetPipelineState action to retrieve the current pipelineExecutionId of the
+	// failed stage
+	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string" required:"true"`
+
+	// The name of the pipeline that contains the failed stage.
+	PipelineName *string `locationName:"pipelineName" min:"1" type:"string" required:"true"`
+
+	// The scope of the retry attempt. Currently, the only supported value is FAILED_ACTIONS.
+	RetryMode *string `locationName:"retryMode" type:"string" required:"true" enum:"StageRetryMode"`
+
+	// The name of the failed stage to be retried.
+	StageName *string `locationName:"stageName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s RetryStageExecutionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RetryStageExecutionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RetryStageExecutionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RetryStageExecutionInput"}
+	if s.PipelineExecutionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineExecutionId"))
+	}
+	if s.PipelineName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineName"))
+	}
+	if s.PipelineName != nil && len(*s.PipelineName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PipelineName", 1))
+	}
+	if s.RetryMode == nil {
+		invalidParams.Add(request.NewErrParamRequired("RetryMode"))
+	}
+	if s.StageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StageName"))
+	}
+	if s.StageName != nil && len(*s.StageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StageName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// Represents the output of a retry stage execution action.
+type RetryStageExecutionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the current workflow execution in the failed stage.
+	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string"`
+}
+
+// String returns the string representation
+func (s RetryStageExecutionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RetryStageExecutionOutput) GoString() string {
+	return s.String()
+}
+
 // The location of the Amazon S3 bucket that contains a revision.
 type S3ArtifactLocation struct {
 	_ struct{} `type:"structure"`
@@ -3339,6 +4127,28 @@ func (s *StageDeclaration) Validate() error {
 	return nil
 }
 
+// Represents information about the run of a stage.
+type StageExecution struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the pipeline execution associated with the stage.
+	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string" required:"true"`
+
+	// The status of the stage, or for a completed stage, the last status of the
+	// stage.
+	Status *string `locationName:"status" type:"string" required:"true" enum:"StageExecutionStatus"`
+}
+
+// String returns the string representation
+func (s StageExecution) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StageExecution) GoString() string {
+	return s.String()
+}
+
 // Represents information about the state of the stage.
 type StageState struct {
 	_ struct{} `type:"structure"`
@@ -3348,6 +4158,10 @@ type StageState struct {
 
 	// The state of the inbound transition, which is either enabled or disabled.
 	InboundTransitionState *TransitionState `locationName:"inboundTransitionState" type:"structure"`
+
+	// Information about the latest execution in the stage, including its ID and
+	// status.
+	LatestExecution *StageExecution `locationName:"latestExecution" type:"structure"`
 
 	// The name of the stage.
 	StageName *string `locationName:"stageName" min:"1" type:"string"`
@@ -3609,6 +4423,8 @@ const (
 	ActionCategoryTest = "Test"
 	// @enum ActionCategory
 	ActionCategoryInvoke = "Invoke"
+	// @enum ActionCategory
+	ActionCategoryApproval = "Approval"
 )
 
 const (
@@ -3636,6 +4452,13 @@ const (
 	ActionOwnerThirdParty = "ThirdParty"
 	// @enum ActionOwner
 	ActionOwnerCustom = "Custom"
+)
+
+const (
+	// @enum ApprovalStatus
+	ApprovalStatusApproved = "Approved"
+	// @enum ApprovalStatus
+	ApprovalStatusRejected = "Rejected"
 )
 
 const (
@@ -3688,6 +4511,20 @@ const (
 	JobStatusSucceeded = "Succeeded"
 	// @enum JobStatus
 	JobStatusFailed = "Failed"
+)
+
+const (
+	// @enum StageExecutionStatus
+	StageExecutionStatusInProgress = "InProgress"
+	// @enum StageExecutionStatus
+	StageExecutionStatusFailed = "Failed"
+	// @enum StageExecutionStatus
+	StageExecutionStatusSucceeded = "Succeeded"
+)
+
+const (
+	// @enum StageRetryMode
+	StageRetryModeFailedActions = "FAILED_ACTIONS"
 )
 
 const (

@@ -1,3 +1,5 @@
+// +build integration
+
 //Package directoryservice provides gucumber integration tests support.
 package directoryservice
 

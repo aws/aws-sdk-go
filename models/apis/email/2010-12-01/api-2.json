@@ -456,6 +456,18 @@
         "resultWrapper":"SetIdentityFeedbackForwardingEnabledResult"
       }
     },
+    "SetIdentityHeadersInNotificationsEnabled":{
+      "name":"SetIdentityHeadersInNotificationsEnabled",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SetIdentityHeadersInNotificationsEnabledRequest"},
+      "output":{
+        "shape":"SetIdentityHeadersInNotificationsEnabledResponse",
+        "resultWrapper":"SetIdentityHeadersInNotificationsEnabledResult"
+      }
+    },
     "SetIdentityMailFromDomain":{
       "name":"SetIdentityMailFromDomain",
       "http":{
@@ -1033,7 +1045,10 @@
         "BounceTopic":{"shape":"NotificationTopic"},
         "ComplaintTopic":{"shape":"NotificationTopic"},
         "DeliveryTopic":{"shape":"NotificationTopic"},
-        "ForwardingEnabled":{"shape":"Enabled"}
+        "ForwardingEnabled":{"shape":"Enabled"},
+        "HeadersInBounceNotificationsEnabled":{"shape":"Enabled"},
+        "HeadersInComplaintNotificationsEnabled":{"shape":"Enabled"},
+        "HeadersInDeliveryNotificationsEnabled":{"shape":"Enabled"}
       }
     },
     "IdentityType":{
@@ -1591,6 +1606,24 @@
       }
     },
     "SetIdentityFeedbackForwardingEnabledResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "SetIdentityHeadersInNotificationsEnabledRequest":{
+      "type":"structure",
+      "required":[
+        "Identity",
+        "NotificationType",
+        "Enabled"
+      ],
+      "members":{
+        "Identity":{"shape":"Identity"},
+        "NotificationType":{"shape":"NotificationType"},
+        "Enabled":{"shape":"Enabled"}
+      }
+    },
+    "SetIdentityHeadersInNotificationsEnabledResponse":{
       "type":"structure",
       "members":{
       }

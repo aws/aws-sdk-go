@@ -1,3 +1,5 @@
+// +build integration
+
 //Package ecs provides gucumber integration tests support.
 package ecs
 

@@ -1,3 +1,5 @@
+// +build integration
+
 //Package elastictranscoder provides gucumber integration tests support.
 package elastictranscoder
 

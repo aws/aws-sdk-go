@@ -7,16 +7,16 @@ import (
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/client/metadata"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/aws/signer/v4"
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
-	"github.com/aws/aws-sdk-go/private/signer/v4"
 )
 
 // AWS Database Migration Service (AWS DMS) can migrate your data to and from
 // the most widely used commercial and open-source databases such as Oracle,
-// PostgreSQL, Microsoft SQL Server, MariaDB, Amazon Aurora, and MySQL. The
-// service supports homogeneous migrations such as Oracle to Oracle, as well
-// as heterogeneous migrations between different database platforms, such as
-// Oracle to MySQL or SQL Server to PostgreSQL.
+// PostgreSQL, Microsoft SQL Server, Amazon Redshift, MariaDB, Amazon Aurora,
+// and MySQL. The service supports homogeneous migrations such as Oracle to
+// Oracle, as well as heterogeneous migrations between different database platforms,
+// such as Oracle to MySQL or SQL Server to PostgreSQL.
 //The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
 type DatabaseMigrationService struct {
@@ -65,7 +65,7 @@ func newClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegio
 	}
 
 	// Handlers
-	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Sign.PushBackNamed(v4.SignRequestHandler)
 	svc.Handlers.Build.PushBackNamed(jsonrpc.BuildHandler)
 	svc.Handlers.Unmarshal.PushBackNamed(jsonrpc.UnmarshalHandler)
 	svc.Handlers.UnmarshalMeta.PushBackNamed(jsonrpc.UnmarshalMetaHandler)

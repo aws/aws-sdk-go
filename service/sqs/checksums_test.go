@@ -140,6 +140,7 @@ func TestRecieveMessageChecksumInvalid(t *testing.T) {
 				{Body: aws.String("test"), MD5OfBody: &md5},
 				{Body: aws.String("test"), MD5OfBody: aws.String("000"), MessageId: aws.String("123")},
 				{Body: aws.String("test"), MD5OfBody: aws.String("000"), MessageId: aws.String("456")},
+				{Body: aws.String("test"), MD5OfBody: aws.String("000")},
 				{Body: aws.String("test"), MD5OfBody: &md5},
 			},
 		}

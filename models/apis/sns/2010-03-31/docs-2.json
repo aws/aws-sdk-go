@@ -1,32 +1,38 @@
 {
+  "version": "2.0",
+  "service": "<fullname>Amazon Simple Notification Service</fullname> <p>Amazon Simple Notification Service (Amazon SNS) is a web service that enables you to build distributed web-enabled applications. Applications can use Amazon SNS to easily push real-time notification messages to interested subscribers over multiple delivery protocols. For more information about this product see <a href=\"http://aws.amazon.com/sns/\">http://aws.amazon.com/sns</a>. For detailed information about Amazon SNS features and their associated API calls, see the <a href=\"http://docs.aws.amazon.com/sns/latest/dg/\">Amazon SNS Developer Guide</a>. </p> <p>We also provide SDKs that enable you to access Amazon SNS from your preferred programming language. The SDKs contain functionality that automatically takes care of tasks such as: cryptographically signing your service requests, retrying requests, and handling error responses. For a list of available SDKs, go to <a href=\"http://aws.amazon.com/tools/\">Tools for Amazon Web Services</a>. </p>",
   "operations": {
     "AddPermission": "<p>Adds a statement to a topic's access control policy, granting access for the specified AWS accounts to the specified actions.</p>",
+    "CheckIfPhoneNumberIsOptedOut": "<p>Accepts a phone number and indicates whether the phone holder has opted out of receiving SMS messages from your account. You cannot send SMS messages to a number that is opted out.</p> <p>To resume sending messages, you can opt in the number by using the <code>OptInPhoneNumber</code> action.</p>",
     "ConfirmSubscription": "<p>Verifies an endpoint owner's intent to receive messages by validating the token sent to the endpoint by an earlier <code>Subscribe</code> action. If the token is valid, the action creates a new subscription and returns its Amazon Resource Name (ARN). This call requires an AWS signature only when the <code>AuthenticateOnUnsubscribe</code> flag is set to \"true\".</p>",
-    "CreatePlatformApplication": "<p>Creates a platform application object for one of the supported push notification services, such as APNS and GCM, to which devices and mobile apps may register. You must specify PlatformPrincipal and PlatformCredential attributes when using the <code>CreatePlatformApplication</code> action. The PlatformPrincipal is received from the notification service. For APNS/APNS_SANDBOX, PlatformPrincipal is \"SSL certificate\". For GCM, PlatformPrincipal is not applicable. For ADM, PlatformPrincipal is \"client id\". The PlatformCredential is also received from the notification service. For APNS/APNS_SANDBOX, PlatformCredential is \"private key\". For GCM, PlatformCredential is \"API key\". For ADM, PlatformCredential is \"client secret\". The PlatformApplicationArn that is returned when using <code>CreatePlatformApplication</code> is then used as an attribute for the <code>CreatePlatformEndpoint</code> action. For more information, see <a href=\"http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html\">Using Amazon SNS Mobile Push Notifications</a>. </p>",
+    "CreatePlatformApplication": "<p>Creates a platform application object for one of the supported push notification services, such as APNS and GCM, to which devices and mobile apps may register. You must specify PlatformPrincipal and PlatformCredential attributes when using the <code>CreatePlatformApplication</code> action. The PlatformPrincipal is received from the notification service. For APNS/APNS_SANDBOX, PlatformPrincipal is \"SSL certificate\". For GCM, PlatformPrincipal is not applicable. For ADM, PlatformPrincipal is \"client id\". The PlatformCredential is also received from the notification service. For WNS, PlatformPrincipal is \"Package Security Identifier\". For MPNS, PlatformPrincipal is \"TLS certificate\". For Baidu, PlatformPrincipal is \"API key\".</p> <p>For APNS/APNS_SANDBOX, PlatformCredential is \"private key\". For GCM, PlatformCredential is \"API key\". For ADM, PlatformCredential is \"client secret\". For WNS, PlatformCredential is \"secret key\". For MPNS, PlatformCredential is \"private key\". For Baidu, PlatformCredential is \"secret key\". The PlatformApplicationArn that is returned when using <code>CreatePlatformApplication</code> is then used as an attribute for the <code>CreatePlatformEndpoint</code> action. For more information, see <a href=\"http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html\">Using Amazon SNS Mobile Push Notifications</a>. For more information about obtaining the PlatformPrincipal and PlatformCredential for each of the supported push notification services, see <a href=\"http://docs.aws.amazon.com/sns/latest/dg/mobile-push-apns.html\">Getting Started with Apple Push Notification Service</a>, <a href=\"http://docs.aws.amazon.com/sns/latest/dg/mobile-push-adm.html\">Getting Started with Amazon Device Messaging</a>, <a href=\"http://docs.aws.amazon.com/sns/latest/dg/mobile-push-baidu.html\">Getting Started with Baidu Cloud Push</a>, <a href=\"http://docs.aws.amazon.com/sns/latest/dg/mobile-push-gcm.html\">Getting Started with Google Cloud Messaging for Android</a>, <a href=\"http://docs.aws.amazon.com/sns/latest/dg/mobile-push-mpns.html\">Getting Started with MPNS</a>, or <a href=\"http://docs.aws.amazon.com/sns/latest/dg/mobile-push-wns.html\">Getting Started with WNS</a>. </p>",
     "CreatePlatformEndpoint": "<p>Creates an endpoint for a device and mobile app on one of the supported push notification services, such as GCM and APNS. <code>CreatePlatformEndpoint</code> requires the PlatformApplicationArn that is returned from <code>CreatePlatformApplication</code>. The EndpointArn that is returned when using <code>CreatePlatformEndpoint</code> can then be used by the <code>Publish</code> action to send a message to a mobile app or by the <code>Subscribe</code> action for subscription to a topic. The <code>CreatePlatformEndpoint</code> action is idempotent, so if the requester already owns an endpoint with the same device token and attributes, that endpoint's ARN is returned without creating a new endpoint. For more information, see <a href=\"http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html\">Using Amazon SNS Mobile Push Notifications</a>. </p> <p>When using <code>CreatePlatformEndpoint</code> with Baidu, two attributes must be provided: ChannelId and UserId. The token field must also contain the ChannelId. For more information, see <a href=\"http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePushBaiduEndpoint.html\">Creating an Amazon SNS Endpoint for Baidu</a>. </p>",
-    "CreateTopic": "<p>Creates a topic to which notifications can be published. Users can create at most 3000 topics. For more information, see <a href=\"http://aws.amazon.com/sns/\">http://aws.amazon.com/sns</a>. This action is idempotent, so if the requester already owns a topic with the specified name, that topic's ARN is returned without creating a new topic.</p>",
-    "DeleteEndpoint": "<p>Deletes the endpoint from Amazon SNS. This action is idempotent. For more information, see <a href=\"http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html\">Using Amazon SNS Mobile Push Notifications</a>. </p>",
+    "CreateTopic": "<p>Creates a topic to which notifications can be published. Users can create at most 100,000 topics. For more information, see <a href=\"http://aws.amazon.com/sns/\">http://aws.amazon.com/sns</a>. This action is idempotent, so if the requester already owns a topic with the specified name, that topic's ARN is returned without creating a new topic.</p>",
+    "DeleteEndpoint": "<p>Deletes the endpoint for a device and mobile app from Amazon SNS. This action is idempotent. For more information, see <a href=\"http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html\">Using Amazon SNS Mobile Push Notifications</a>. </p> <p>When you delete an endpoint that is also subscribed to a topic, then you must also unsubscribe the endpoint from the topic. </p>",
     "DeletePlatformApplication": "<p>Deletes a platform application object for one of the supported push notification services, such as APNS and GCM. For more information, see <a href=\"http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html\">Using Amazon SNS Mobile Push Notifications</a>. </p>",
     "DeleteTopic": "<p>Deletes a topic and all its subscriptions. Deleting a topic might prevent some messages previously sent to the topic from being delivered to subscribers. This action is idempotent, so deleting a topic that does not exist does not result in an error.</p>",
     "GetEndpointAttributes": "<p>Retrieves the endpoint attributes for a device on one of the supported push notification services, such as GCM and APNS. For more information, see <a href=\"http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html\">Using Amazon SNS Mobile Push Notifications</a>. </p>",
     "GetPlatformApplicationAttributes": "<p>Retrieves the attributes of the platform application object for the supported push notification services, such as APNS and GCM. For more information, see <a href=\"http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html\">Using Amazon SNS Mobile Push Notifications</a>. </p>",
+    "GetSMSAttributes": "<p>Returns the settings for sending SMS messages from your account.</p> <p>These settings are set with the <code>SetSMSAttributes</code> action.</p>",
     "GetSubscriptionAttributes": "<p>Returns all of the properties of a subscription.</p>",
     "GetTopicAttributes": "<p>Returns all of the properties of a topic. Topic properties returned might differ based on the authorization of the user. </p>",
     "ListEndpointsByPlatformApplication": "<p>Lists the endpoints and endpoint attributes for devices in a supported push notification service, such as GCM and APNS. The results for <code>ListEndpointsByPlatformApplication</code> are paginated and return a limited list of endpoints, up to 100. If additional records are available after the first page results, then a NextToken string will be returned. To receive the next page, you call <code>ListEndpointsByPlatformApplication</code> again using the NextToken string received from the previous call. When there are no more records to return, NextToken will be null. For more information, see <a href=\"http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html\">Using Amazon SNS Mobile Push Notifications</a>. </p>",
+    "ListPhoneNumbersOptedOut": "<p>Returns a list of phone numbers that are opted out, meaning you cannot send SMS messages to them.</p> <p>The results for <code>ListPhoneNumbersOptedOut</code> are paginated, and each page returns up to 100 phone numbers. If additional phone numbers are available after the first page of results, then a <code>NextToken</code> string will be returned. To receive the next page, you call <code>ListPhoneNumbersOptedOut</code> again using the <code>NextToken</code> string received from the previous call. When there are no more records to return, <code>NextToken</code> will be null.</p>",
     "ListPlatformApplications": "<p>Lists the platform application objects for the supported push notification services, such as APNS and GCM. The results for <code>ListPlatformApplications</code> are paginated and return a limited list of applications, up to 100. If additional records are available after the first page results, then a NextToken string will be returned. To receive the next page, you call <code>ListPlatformApplications</code> using the NextToken string received from the previous call. When there are no more records to return, NextToken will be null. For more information, see <a href=\"http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html\">Using Amazon SNS Mobile Push Notifications</a>. </p>",
     "ListSubscriptions": "<p>Returns a list of the requester's subscriptions. Each call returns a limited list of subscriptions, up to 100. If there are more subscriptions, a <code>NextToken</code> is also returned. Use the <code>NextToken</code> parameter in a new <code>ListSubscriptions</code> call to get further results.</p>",
     "ListSubscriptionsByTopic": "<p>Returns a list of the subscriptions to a specific topic. Each call returns a limited list of subscriptions, up to 100. If there are more subscriptions, a <code>NextToken</code> is also returned. Use the <code>NextToken</code> parameter in a new <code>ListSubscriptionsByTopic</code> call to get further results.</p>",
     "ListTopics": "<p>Returns a list of the requester's topics. Each call returns a limited list of topics, up to 100. If there are more topics, a <code>NextToken</code> is also returned. Use the <code>NextToken</code> parameter in a new <code>ListTopics</code> call to get further results.</p>",
-    "Publish": "<p>Sends a message to all of a topic's subscribed endpoints. When a <code>messageId</code> is returned, the message has been saved and Amazon SNS will attempt to deliver it to the topic's subscribers shortly. The format of the outgoing message to each subscribed endpoint depends on the notification protocol selected.</p> <p>To use the <code>Publish</code> action for sending a message to a mobile endpoint, such as an app on a Kindle device or mobile phone, you must specify the EndpointArn. The EndpointArn is returned when making a call with the <code>CreatePlatformEndpoint</code> action. The second example below shows a request and response for publishing to a mobile endpoint. </p>",
+    "OptInPhoneNumber": "<p>Use this request to opt in a phone number that is opted out, which enables you to resume sending SMS messages to the number.</p> <p>You can opt in a phone number only once every 30 days.</p>",
+    "Publish": "<p>Sends a message to all of a topic's subscribed endpoints. When a <code>messageId</code> is returned, the message has been saved and Amazon SNS will attempt to deliver it to the topic's subscribers shortly. The format of the outgoing message to each subscribed endpoint depends on the notification protocol.</p> <p>To use the <code>Publish</code> action for sending a message to a mobile endpoint, such as an app on a Kindle device or mobile phone, you must specify the EndpointArn for the TargetArn parameter. The EndpointArn is returned when making a call with the <code>CreatePlatformEndpoint</code> action. The second example below shows a request and response for publishing to a mobile endpoint. </p> <p>For more information about formatting messages, see <a href=\"http://docs.aws.amazon.com/sns/latest/dg/mobile-push-send-custommessage.html\">Send Custom Platform-Specific Payloads in Messages to Mobile Devices</a>. </p>",
     "RemovePermission": "<p>Removes a statement from a topic's access control policy.</p>",
     "SetEndpointAttributes": "<p>Sets the attributes for an endpoint for a device on one of the supported push notification services, such as GCM and APNS. For more information, see <a href=\"http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html\">Using Amazon SNS Mobile Push Notifications</a>. </p>",
-    "SetPlatformApplicationAttributes": "<p>Sets the attributes of the platform application object for the supported push notification services, such as APNS and GCM. For more information, see <a href=\"http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html\">Using Amazon SNS Mobile Push Notifications</a>. </p>",
+    "SetPlatformApplicationAttributes": "<p>Sets the attributes of the platform application object for the supported push notification services, such as APNS and GCM. For more information, see <a href=\"http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html\">Using Amazon SNS Mobile Push Notifications</a>. For information on configuring attributes for message delivery status, see <a href=\"http://docs.aws.amazon.com/sns/latest/dg/sns-msg-status.html\">Using Amazon SNS Application Attributes for Message Delivery Status</a>. </p>",
+    "SetSMSAttributes": "<p>Use this request to set the default settings for sending SMS messages and receiving daily SMS usage reports.</p> <p>You can override some of these settings for a single message when you use the <code>Publish</code> action with the <code>MessageAttributes.entry.N</code> parameter. For more information, see <a href=\"http://docs.aws.amazon.com/sns/latest/dg/sms_publish-to-phone.html\">Sending an SMS Message</a> in the <i>Amazon SNS Developer Guide</i>.</p>",
     "SetSubscriptionAttributes": "<p>Allows a subscription owner to set an attribute of the topic to a new value.</p>",
     "SetTopicAttributes": "<p>Allows a topic owner to set an attribute of the topic to a new value.</p>",
     "Subscribe": "<p>Prepares to subscribe an endpoint by sending the endpoint a confirmation message. To actually create a subscription, the endpoint owner must call the <code>ConfirmSubscription</code> action with the token from the confirmation message. Confirmation tokens are valid for three days.</p>",
     "Unsubscribe": "<p>Deletes a subscription. If the subscription requires authentication for deletion, only the owner of the subscription or the topic's owner can unsubscribe, and an AWS signature is required. If the <code>Unsubscribe</code> call does not require authentication and the requester is not the subscription owner, a final cancellation message is delivered to the endpoint, so that the endpoint owner can easily resubscribe to the topic if the <code>Unsubscribe</code> request was unintended.</p>"
   },
-  "service": "<fullname>Amazon Simple Notification Service</fullname> <p>Amazon Simple Notification Service (Amazon SNS) is a web service that enables you to build distributed web-enabled applications. Applications can use Amazon SNS to easily push real-time notification messages to interested subscribers over multiple delivery protocols. For more information about this product see <a href=\"http://aws.amazon.com/sns/\">http://aws.amazon.com/sns</a>. For detailed information about Amazon SNS features and their associated API calls, see the <a href=\"http://docs.aws.amazon.com/sns/latest/dg/\">Amazon SNS Developer Guide</a>. </p> <p>We also provide SDKs that enable you to access Amazon SNS from your preferred programming language. The SDKs contain functionality that automatically takes care of tasks such as: cryptographically signing your service requests, retrying requests, and handling error responses. For a list of available SDKs, go to <a href=\"http://aws.amazon.com/tools/\">Tools for Amazon Web Services</a>. </p>",
   "shapes": {
     "ActionsList": {
       "base": null,
@@ -50,13 +56,23 @@
         "MessageAttributeValue$BinaryValue": "<p>Binary type attributes can store any binary data, for example, compressed data, encrypted data, or images.</p>"
       }
     },
+    "CheckIfPhoneNumberIsOptedOutInput": {
+      "base": "<p>The input for the <code>CheckIfPhoneNumberIsOptedOut</code> action.</p>",
+      "refs": {
+      }
+    },
+    "CheckIfPhoneNumberIsOptedOutResponse": {
+      "base": "<p>The response from the <code>CheckIfPhoneNumberIsOptedOut</code> action.</p>",
+      "refs": {
+      }
+    },
     "ConfirmSubscriptionInput": {
-      "base": "Input for ConfirmSubscription action.",
+      "base": "<p>Input for ConfirmSubscription action.</p>",
       "refs": {
       }
     },
     "ConfirmSubscriptionResponse": {
-      "base": "Response for ConfirmSubscriptions action.",
+      "base": "<p>Response for ConfirmSubscriptions action.</p>",
       "refs": {
       }
     },
@@ -142,6 +158,16 @@
       "refs": {
       }
     },
+    "GetSMSAttributesInput": {
+      "base": "<p>The input for the <code>GetSMSAttributes</code> request.</p>",
+      "refs": {
+      }
+    },
+    "GetSMSAttributesResponse": {
+      "base": "<p>The response from the <code>GetSMSAttributes</code> request.</p>",
+      "refs": {
+      }
+    },
     "GetSubscriptionAttributesInput": {
       "base": "<p>Input for GetSubscriptionAttributes.</p>",
       "refs": {
@@ -199,6 +225,16 @@
         "ListPlatformApplicationsResponse$PlatformApplications": "<p>Platform applications returned when calling ListPlatformApplications action.</p>"
       }
     },
+    "ListPhoneNumbersOptedOutInput": {
+      "base": "<p>The input for the <code>ListPhoneNumbersOptedOut</code> action.</p>",
+      "refs": {
+      }
+    },
+    "ListPhoneNumbersOptedOutResponse": {
+      "base": "<p>The response from the <code>ListPhoneNumbersOptedOut</code> action.</p>",
+      "refs": {
+      }
+    },
     "ListPlatformApplicationsInput": {
       "base": "<p>Input for ListPlatformApplications action.</p>",
       "refs": {
@@ -207,6 +243,12 @@
     "ListPlatformApplicationsResponse": {
       "base": "<p>Response for ListPlatformApplications action.</p>",
       "refs": {
+      }
+    },
+    "ListString": {
+      "base": null,
+      "refs": {
+        "GetSMSAttributesInput$attributes": "<p>A list of the individual attribute names, such as <code>MonthlySpendLimit</code>, for which you want values.</p> <p>For all attribute names, see <a href=\"http://docs.aws.amazon.com/sns/latest/api/API_SetSMSAttributes.html\">SetSMSAttributes</a>.</p> <p>If you don't use this parameter, Amazon SNS returns all SMS attributes.</p>"
       }
     },
     "ListSubscriptionsByTopicInput": {
@@ -220,7 +262,7 @@
       }
     },
     "ListSubscriptionsInput": {
-      "base": "Input for ListSubscriptions action.",
+      "base": "<p>Input for ListSubscriptions action.</p>",
       "refs": {
       }
     },
@@ -245,11 +287,13 @@
         "CreatePlatformApplicationInput$Attributes": "<p>For a list of attributes, see <a href=\"http://docs.aws.amazon.com/sns/latest/api/API_SetPlatformApplicationAttributes.html\">SetPlatformApplicationAttributes</a></p>",
         "CreatePlatformEndpointInput$Attributes": "<p>For a list of attributes, see <a href=\"http://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html\">SetEndpointAttributes</a>.</p>",
         "Endpoint$Attributes": "<p>Attributes for endpoint.</p>",
-        "GetEndpointAttributesResponse$Attributes": "<p>Attributes include the following:</p> <ul> <li> <code>CustomUserData</code> -- arbitrary user data to associate with the endpoint. Amazon SNS does not use this data. The data must be in UTF-8 format and less than 2KB.</li> <li> <code>Enabled</code> -- flag that enables/disables delivery to the endpoint. Amazon SNS will set this to false when a notification service indicates to Amazon SNS that the endpoint is invalid. Users can set it back to true, typically after updating Token.</li> <li> <code>Token</code> -- device token, also referred to as a registration id, for an app and mobile device. This is returned from the notification service when an app and mobile device are registered with the notification service.</li> </ul>",
-        "GetPlatformApplicationAttributesResponse$Attributes": "<p>Attributes include the following:</p> <ul> <li> <code>EventEndpointCreated</code> -- Topic ARN to which EndpointCreated event notifications should be sent.</li> <li> <code>EventEndpointDeleted</code> -- Topic ARN to which EndpointDeleted event notifications should be sent.</li> <li> <code>EventEndpointUpdated</code> -- Topic ARN to which EndpointUpdate event notifications should be sent.</li> <li> <code>EventDeliveryFailure</code> -- Topic ARN to which DeliveryFailure event notifications should be sent upon Direct Publish delivery failure (permanent) to one of the application's endpoints.</li> </ul>",
+        "GetEndpointAttributesResponse$Attributes": "<p>Attributes include the following:</p> <ul> <li><p><code>CustomUserData</code> -- arbitrary user data to associate with the endpoint. Amazon SNS does not use this data. The data must be in UTF-8 format and less than 2KB.</p></li> <li><p><code>Enabled</code> -- flag that enables/disables delivery to the endpoint. Amazon SNS will set this to false when a notification service indicates to Amazon SNS that the endpoint is invalid. Users can set it back to true, typically after updating Token.</p></li> <li><p><code>Token</code> -- device token, also referred to as a registration id, for an app and mobile device. This is returned from the notification service when an app and mobile device are registered with the notification service.</p></li> </ul>",
+        "GetPlatformApplicationAttributesResponse$Attributes": "<p>Attributes include the following:</p> <ul> <li><p><code>EventEndpointCreated</code> -- Topic ARN to which EndpointCreated event notifications should be sent.</p></li> <li><p><code>EventEndpointDeleted</code> -- Topic ARN to which EndpointDeleted event notifications should be sent.</p></li> <li><p><code>EventEndpointUpdated</code> -- Topic ARN to which EndpointUpdate event notifications should be sent.</p></li> <li><p><code>EventDeliveryFailure</code> -- Topic ARN to which DeliveryFailure event notifications should be sent upon Direct Publish delivery failure (permanent) to one of the application's endpoints.</p></li> </ul>",
+        "GetSMSAttributesResponse$attributes": "<p>The SMS attribute names and their values.</p>",
         "PlatformApplication$Attributes": "<p>Attributes for platform application object.</p>",
-        "SetEndpointAttributesInput$Attributes": "<p>A map of the endpoint attributes. Attributes in this map include the following:</p> <ul> <li> <code>CustomUserData</code> -- arbitrary user data to associate with the endpoint. Amazon SNS does not use this data. The data must be in UTF-8 format and less than 2KB.</li> <li> <code>Enabled</code> -- flag that enables/disables delivery to the endpoint. Amazon SNS will set this to false when a notification service indicates to Amazon SNS that the endpoint is invalid. Users can set it back to true, typically after updating Token.</li> <li> <code>Token</code> -- device token, also referred to as a registration id, for an app and mobile device. This is returned from the notification service when an app and mobile device are registered with the notification service.</li> </ul>",
-        "SetPlatformApplicationAttributesInput$Attributes": "<p>A map of the platform application attributes. Attributes in this map include the following:</p> <ul> <li> <code>PlatformCredential</code> -- The credential received from the notification service. For APNS/APNS_SANDBOX, PlatformCredential is \"private key\". For GCM, PlatformCredential is \"API key\". For ADM, PlatformCredential is \"client secret\".</li> <li> <code>PlatformPrincipal</code> -- The principal received from the notification service. For APNS/APNS_SANDBOX, PlatformPrincipal is \"SSL certificate\". For GCM, PlatformPrincipal is not applicable. For ADM, PlatformPrincipal is \"client id\".</li> <li> <code>EventEndpointCreated</code> -- Topic ARN to which EndpointCreated event notifications should be sent.</li> <li> <code>EventEndpointDeleted</code> -- Topic ARN to which EndpointDeleted event notifications should be sent.</li> <li> <code>EventEndpointUpdated</code> -- Topic ARN to which EndpointUpdate event notifications should be sent.</li> <li> <code>EventDeliveryFailure</code> -- Topic ARN to which DeliveryFailure event notifications should be sent upon Direct Publish delivery failure (permanent) to one of the application's endpoints.</li> </ul>"
+        "SetEndpointAttributesInput$Attributes": "<p>A map of the endpoint attributes. Attributes in this map include the following:</p> <ul> <li><p><code>CustomUserData</code> -- arbitrary user data to associate with the endpoint. Amazon SNS does not use this data. The data must be in UTF-8 format and less than 2KB.</p></li> <li><p><code>Enabled</code> -- flag that enables/disables delivery to the endpoint. Amazon SNS will set this to false when a notification service indicates to Amazon SNS that the endpoint is invalid. Users can set it back to true, typically after updating Token.</p></li> <li><p><code>Token</code> -- device token, also referred to as a registration id, for an app and mobile device. This is returned from the notification service when an app and mobile device are registered with the notification service.</p></li> </ul>",
+        "SetPlatformApplicationAttributesInput$Attributes": "<p>A map of the platform application attributes. Attributes in this map include the following:</p> <ul> <li><p><code>PlatformCredential</code> -- The credential received from the notification service. For APNS/APNS_SANDBOX, PlatformCredential is private key. For GCM, PlatformCredential is \"API key\". For ADM, PlatformCredential is \"client secret\".</p></li> <li><p><code>PlatformPrincipal</code> -- The principal received from the notification service. For APNS/APNS_SANDBOX, PlatformPrincipal is SSL certificate. For GCM, PlatformPrincipal is not applicable. For ADM, PlatformPrincipal is \"client id\".</p></li> <li><p><code>EventEndpointCreated</code> -- Topic ARN to which EndpointCreated event notifications should be sent.</p></li> <li><p><code>EventEndpointDeleted</code> -- Topic ARN to which EndpointDeleted event notifications should be sent.</p></li> <li><p><code>EventEndpointUpdated</code> -- Topic ARN to which EndpointUpdate event notifications should be sent.</p></li> <li><p><code>EventDeliveryFailure</code> -- Topic ARN to which DeliveryFailure event notifications should be sent upon Direct Publish delivery failure (permanent) to one of the application's endpoints.</p></li> <li><p><code>SuccessFeedbackRoleArn</code> -- IAM role ARN used to give Amazon SNS write access to use CloudWatch Logs on your behalf.</p></li> <li><p><code>FailureFeedbackRoleArn</code> -- IAM role ARN used to give Amazon SNS write access to use CloudWatch Logs on your behalf.</p></li> <li><p><code>SuccessFeedbackSampleRate</code> -- Sample rate percentage (0-100) of successfully delivered messages.</p></li> </ul>",
+        "SetSMSAttributesInput$attributes": "<p>The default settings for sending SMS messages from your account. You can set values for the following attribute names:</p> <p><code>MonthlySpendLimit</code> – The maximum amount in USD that you are willing to spend each month to send SMS messages. When Amazon SNS determines that sending an SMS message would incur a cost that exceeds this limit, it stops sending SMS messages within minutes.</p> <important> <p>Amazon SNS stops sending SMS messages within minutes of the limit being crossed. During that interval, if you continue to send SMS messages, you will incur costs that exceed your limit.</p> </important> <p><code>DeliveryStatusIAMRole</code> – The ARN of the IAM role that allows Amazon SNS to write logs about SMS deliveries in CloudWatch Logs. For each SMS message that you send, Amazon SNS writes a log that includes the message price, the success or failure status, the reason for failure (if the message failed), the message dwell time, and other information.</p> <p><code>DeliveryStatusSuccessSamplingRate</code> – The percentage of successful SMS deliveries for which Amazon SNS will write logs in CloudWatch Logs. The value can be an integer from 0 - 100. For example, to write logs only for failed deliveries, set this value to <code>0</code>. To write logs for 10% of your successful deliveries, set it to <code>10</code>.</p> <p><code>DefaultSenderID</code> – A string, such as your business brand, that is displayed as the sender on the receiving device. Support for sender IDs varies by country. The sender ID can be 1 - 11 alphanumeric characters, and it must contain at least one letter.</p> <p><code>DefaultSMSType</code> – The type of SMS message that you will send by default. You can assign the following values:</p> <ul> <li> <p><code>Promotional</code> – Noncritical messages, such as marketing messages. Amazon SNS optimizes the message delivery to incur the lowest cost.</p> </li> <li> <p><code>Transactional</code> – (Default) Critical messages that support customer transactions, such as one-time passcodes for multi-factor authentication. Amazon SNS optimizes the message delivery to achieve the highest reliability.</p> </li> </ul> <p><code>UsageReportS3Bucket</code> – The name of the Amazon S3 bucket to receive daily SMS usage reports from Amazon SNS. Each day, Amazon SNS will deliver a usage report as a CSV file to the bucket. The report includes the following information for each SMS message that was successfully delivered by your account:</p> <ul> <li> <p>Time that the message was published (in UTC)</p> </li> <li> <p>Message ID</p> </li> <li> <p>Destination phone number</p> </li> <li> <p>Message type</p> </li> <li> <p>Delivery status</p> </li> <li> <p>Message price (in USD)</p> </li> <li> <p>Part number (a message is split into multiple parts if it is too long for a single message)</p> </li> <li> <p>Total number of parts</p> </li> </ul> <p>To receive the report, the bucket must have a policy that allows the Amazon SNS service principle to perform the <code>s3:PutObject</code> and <code>s3:GetBucketLocation</code> actions.</p> <p>For an example bucket policy and usage report, see <a href=\"http://docs.aws.amazon.com/sns/latest/dg/sms_stats.html\">Viewing Statistics About SMS Message Delivery</a> in the <i>Amazon SNS Developer Guide</i>.</p>"
       }
     },
     "MessageAttributeMap": {
@@ -267,6 +311,30 @@
     "NotFoundException": {
       "base": "<p>Indicates that the requested resource does not exist.</p>",
       "refs": {
+      }
+    },
+    "OptInPhoneNumberInput": {
+      "base": "<p>Input for the OptInPhoneNumber action.</p>",
+      "refs": {
+      }
+    },
+    "OptInPhoneNumberResponse": {
+      "base": "<p>The response for the OptInPhoneNumber action.</p>",
+      "refs": {
+      }
+    },
+    "PhoneNumber": {
+      "base": null,
+      "refs": {
+        "CheckIfPhoneNumberIsOptedOutInput$phoneNumber": "<p>The phone number for which you want to check the opt out status.</p>",
+        "OptInPhoneNumberInput$phoneNumber": "<p>The phone number to opt in.</p>",
+        "PhoneNumberList$member": null
+      }
+    },
+    "PhoneNumberList": {
+      "base": null,
+      "refs": {
+        "ListPhoneNumbersOptedOutResponse$phoneNumbers": "<p>A list of phone numbers that are opted out of receiving SMS messages. The list is paginated, and each page can contain up to 100 phone numbers.</p>"
       }
     },
     "PlatformApplication": {
@@ -305,6 +373,16 @@
       "refs": {
       }
     },
+    "SetSMSAttributesInput": {
+      "base": "<p>The input for the SetSMSAttributes action.</p>",
+      "refs": {
+      }
+    },
+    "SetSMSAttributesResponse": {
+      "base": "<p>The response for the SetSMSAttributes action.</p>",
+      "refs": {
+      }
+    },
     "SetSubscriptionAttributesInput": {
       "base": "<p>Input for SetSubscriptionAttributes action.</p>",
       "refs": {
@@ -335,24 +413,26 @@
         "ListEndpointsByPlatformApplicationResponse$NextToken": "<p>NextToken string is returned when calling ListEndpointsByPlatformApplication action if additional records are available after the first page results.</p>",
         "ListPlatformApplicationsInput$NextToken": "<p>NextToken string is used when calling ListPlatformApplications action to retrieve additional records that are available after the first page results.</p>",
         "ListPlatformApplicationsResponse$NextToken": "<p>NextToken string is returned when calling ListPlatformApplications action if additional records are available after the first page results.</p>",
+        "ListString$member": null,
         "MapStringToString$key": null,
         "MapStringToString$value": null,
         "MessageAttributeMap$key": null,
         "MessageAttributeValue$DataType": "<p>Amazon SNS supports the following logical data types: String, Number, and Binary. For more information, see <a href=\"http://docs.aws.amazon.com/sns/latest/dg/SNSMessageAttributes.html#SNSMessageAttributes.DataTypes\">Message Attribute Data Types</a>.</p>",
         "MessageAttributeValue$StringValue": "<p>Strings are Unicode with UTF8 binary encoding. For a list of code values, see <a href=\"http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters\">http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters</a>.</p>",
         "PlatformApplication$PlatformApplicationArn": "<p>PlatformApplicationArn for platform application object.</p>",
-        "PublishInput$TargetArn": "<p>Either TopicArn or EndpointArn, but not both.</p>",
+        "PublishInput$TargetArn": "<p>Either TopicArn or EndpointArn, but not both.</p> <p>If you don't specify a value for the <code>TargetArn</code> parameter, you must specify a value for the <code>PhoneNumber</code> or <code>TopicArn</code> parameters.</p>",
+        "PublishInput$PhoneNumber": "<p>The phone number to which you want to deliver an SMS message. Use E.164 format.</p> <p>If you don't specify a value for the <code>PhoneNumber</code> parameter, you must specify a value for the <code>TargetArn</code> or <code>TopicArn</code> parameters.</p>",
         "SetEndpointAttributesInput$EndpointArn": "<p>EndpointArn used for SetEndpointAttributes action.</p>",
         "SetPlatformApplicationAttributesInput$PlatformApplicationArn": "<p>PlatformApplicationArn for SetPlatformApplicationAttributes action.</p>"
       }
     },
     "SubscribeInput": {
-      "base": "Input for Subscribe action.",
+      "base": "<p>Input for Subscribe action.</p>",
       "refs": {
       }
     },
     "SubscribeResponse": {
-      "base": "Response for Subscribe action.",
+      "base": "<p>Response for Subscribe action.</p>",
       "refs": {
       }
     },
@@ -365,7 +445,7 @@
     "SubscriptionAttributesMap": {
       "base": null,
       "refs": {
-        "GetSubscriptionAttributesResponse$Attributes": "<p>A map of the subscription's attributes. Attributes in this map include the following:</p> <ul> <li> <code>SubscriptionArn</code> -- the subscription's ARN</li> <li> <code>TopicArn</code> -- the topic ARN that the subscription is associated with</li> <li> <code>Owner</code> -- the AWS account ID of the subscription's owner</li> <li> <code>ConfirmationWasAuthenticated</code> -- true if the subscription confirmation request was authenticated</li> <li> <code>DeliveryPolicy</code> -- the JSON serialization of the subscription's delivery policy</li> <li> <code>EffectiveDeliveryPolicy</code> -- the JSON serialization of the effective delivery policy that takes into account the topic delivery policy and account system defaults</li> </ul>"
+        "GetSubscriptionAttributesResponse$Attributes": "<p>A map of the subscription's attributes. Attributes in this map include the following:</p> <ul> <li> <p><code>SubscriptionArn</code> -- the subscription's ARN</p> </li> <li> <p><code>TopicArn</code> -- the topic ARN that the subscription is associated with</p> </li> <li> <p><code>Owner</code> -- the AWS account ID of the subscription's owner</p> </li> <li> <p><code>ConfirmationWasAuthenticated</code> -- true if the subscription confirmation request was authenticated</p> </li> <li> <p><code>DeliveryPolicy</code> -- the JSON serialization of the subscription's delivery policy</p> </li> <li> <p><code>EffectiveDeliveryPolicy</code> -- the JSON serialization of the effective delivery policy that takes into account the topic delivery policy and account system defaults</p> </li> </ul>"
       }
     },
     "SubscriptionLimitExceededException": {
@@ -380,6 +460,11 @@
         "ListSubscriptionsResponse$Subscriptions": "<p>A list of subscriptions.</p>"
       }
     },
+    "ThrottledException": {
+      "base": "<p>Indicates that the rate at which requests have been submitted for this action exceeds the limit for your account.</p>",
+      "refs": {
+      }
+    },
     "Topic": {
       "base": "<p>A wrapper type for the topic's Amazon Resource Name (ARN). To retrieve a topic's attributes, use <code>GetTopicAttributes</code>.</p>",
       "refs": {
@@ -389,7 +474,7 @@
     "TopicAttributesMap": {
       "base": null,
       "refs": {
-        "GetTopicAttributesResponse$Attributes": "<p>A map of the topic's attributes. Attributes in this map include the following:</p> <ul> <li> <code>TopicArn</code> -- the topic's ARN</li> <li> <code>Owner</code> -- the AWS account ID of the topic's owner</li> <li> <code>Policy</code> -- the JSON serialization of the topic's access control policy</li> <li> <code>DisplayName</code> -- the human-readable name used in the \"From\" field for notifications to email and email-json endpoints</li> <li> <code>SubscriptionsPending</code> -- the number of subscriptions pending confirmation on this topic</li> <li> <code>SubscriptionsConfirmed</code> -- the number of confirmed subscriptions on this topic</li> <li> <code>SubscriptionsDeleted</code> -- the number of deleted subscriptions on this topic</li> <li> <code>DeliveryPolicy</code> -- the JSON serialization of the topic's delivery policy</li> <li> <code>EffectiveDeliveryPolicy</code> -- the JSON serialization of the effective delivery policy that takes into account system defaults</li> </ul>"
+        "GetTopicAttributesResponse$Attributes": "<p>A map of the topic's attributes. Attributes in this map include the following:</p> <ul> <li><p><code>TopicArn</code> -- the topic's ARN</p></li> <li><p><code>Owner</code> -- the AWS account ID of the topic's owner</p></li> <li><p><code>Policy</code> -- the JSON serialization of the topic's access control policy</p></li> <li><p><code>DisplayName</code> -- the human-readable name used in the \"From\" field for notifications to email and email-json endpoints</p></li> <li><p><code>SubscriptionsPending</code> -- the number of subscriptions pending confirmation on this topic</p></li> <li><p><code>SubscriptionsConfirmed</code> -- the number of confirmed subscriptions on this topic</p></li> <li><p><code>SubscriptionsDeleted</code> -- the number of deleted subscriptions on this topic</p></li> <li><p><code>DeliveryPolicy</code> -- the JSON serialization of the topic's delivery policy</p></li> <li><p><code>EffectiveDeliveryPolicy</code> -- the JSON serialization of the effective delivery policy that takes into account system defaults</p></li> </ul>"
       }
     },
     "TopicLimitExceededException": {
@@ -444,6 +529,12 @@
         "ConfirmSubscriptionInput$AuthenticateOnUnsubscribe": "<p>Disallows unauthenticated unsubscribes of the subscription. If the value of this parameter is <code>true</code> and the request has an AWS signature, then only the topic owner and the subscription owner can unsubscribe the endpoint. The unsubscribe action requires AWS authentication. </p>"
       }
     },
+    "boolean": {
+      "base": null,
+      "refs": {
+        "CheckIfPhoneNumberIsOptedOutResponse$isOptedOut": "<p>Indicates whether the phone number is opted out:</p> <ul> <li><p><code>true</code> – The phone number is opted out, meaning you cannot publish SMS messages to it.</p></li> <li><p><code>false</code> – The phone number is opted in, meaning you can publish SMS messages to it.</p></li> </ul>"
+      }
+    },
     "delegate": {
       "base": null,
       "refs": {
@@ -453,7 +544,7 @@
     "endpoint": {
       "base": null,
       "refs": {
-        "SubscribeInput$Endpoint": "<p>The endpoint that you want to receive notifications. Endpoints vary by protocol:</p> <ul> <li>For the <code>http</code> protocol, the endpoint is an URL beginning with \"http://\"</li> <li>For the <code>https</code> protocol, the endpoint is a URL beginning with \"https://\"</li> <li>For the <code>email</code> protocol, the endpoint is an email address</li> <li>For the <code>email-json</code> protocol, the endpoint is an email address</li> <li>For the <code>sms</code> protocol, the endpoint is a phone number of an SMS-enabled device</li> <li>For the <code>sqs</code> protocol, the endpoint is the ARN of an Amazon SQS queue</li> <li>For the <code>application</code> protocol, the endpoint is the EndpointArn of a mobile app and device.</li> </ul>",
+        "SubscribeInput$Endpoint": "<p>The endpoint that you want to receive notifications. Endpoints vary by protocol:</p> <ul> <li> <p>For the <code>http</code> protocol, the endpoint is an URL beginning with \"http://\"</p> </li> <li> <p>For the <code>https</code> protocol, the endpoint is a URL beginning with \"https://\"</p> </li> <li> <p>For the <code>email</code> protocol, the endpoint is an email address</p> </li> <li> <p>For the <code>email-json</code> protocol, the endpoint is an email address</p> </li> <li> <p>For the <code>sms</code> protocol, the endpoint is a phone number of an SMS-enabled device</p> </li> <li> <p>For the <code>sqs</code> protocol, the endpoint is the ARN of an Amazon SQS queue</p> </li> <li> <p>For the <code>application</code> protocol, the endpoint is the EndpointArn of a mobile app and device.</p> </li> <li> <p>For the <code>lambda</code> protocol, the endpoint is the ARN of an AWS Lambda function.</p> </li> </ul>",
         "Subscription$Endpoint": "<p>The subscription's endpoint (format depends on the protocol).</p>"
       }
     },
@@ -467,7 +558,7 @@
     "message": {
       "base": null,
       "refs": {
-        "PublishInput$Message": "<p>The message you want to send to the topic.</p> <p>If you want to send the same message to all transport protocols, include the text of the message as a String value.</p> <p>If you want to send different messages for each transport protocol, set the value of the <code>MessageStructure</code> parameter to <code>json</code> and use a JSON object for the <code>Message</code> parameter. See the Examples section for the format of the JSON object. </p> <p>Constraints: Messages must be UTF-8 encoded strings at most 256 KB in size (262144 bytes, not 262144 characters).</p> <p>JSON-specific constraints: <ul> <li>Keys in the JSON object that correspond to supported transport protocols must have simple JSON string values. </li> <li>The values will be parsed (unescaped) before they are used in outgoing messages.</li> <li>Outbound notifications are JSON encoded (meaning that the characters will be reescaped for sending).</li> <li>Values have a minimum length of 0 (the empty string, \"\", is allowed).</li> <li>Values have a maximum length bounded by the overall message size (so, including multiple protocols may limit message sizes).</li> <li>Non-string values will cause the key to be ignored.</li> <li>Keys that do not correspond to supported transport protocols are ignored.</li> <li>Duplicate keys are not allowed.</li> <li>Failure to parse or validate any key or value in the message will cause the <code>Publish</code> call to return an error (no partial delivery).</li> </ul> </p>"
+        "PublishInput$Message": "<p>The message you want to send to the topic.</p> <p>If you want to send the same message to all transport protocols, include the text of the message as a String value.</p> <p>If you want to send different messages for each transport protocol, set the value of the <code>MessageStructure</code> parameter to <code>json</code> and use a JSON object for the <code>Message</code> parameter. See the Examples section for the format of the JSON object. </p> <p>Constraints: Messages must be UTF-8 encoded strings at most 256 KB in size (262144 bytes, not 262144 characters).</p> <p>JSON-specific constraints:</p> <ul> <li> <p>Keys in the JSON object that correspond to supported transport protocols must have simple JSON string values. </p> </li> <li> <p>The values will be parsed (unescaped) before they are used in outgoing messages.</p> </li> <li> <p>Outbound notifications are JSON encoded (meaning that the characters will be reescaped for sending).</p> </li> <li> <p>Values have a minimum length of 0 (the empty string, \"\", is allowed).</p> </li> <li> <p>Values have a maximum length bounded by the overall message size (so, including multiple protocols may limit message sizes).</p> </li> <li> <p>Non-string values will cause the key to be ignored.</p> </li> <li> <p>Keys that do not correspond to supported transport protocols are ignored.</p> </li> <li> <p>Duplicate keys are not allowed.</p> </li> <li> <p>Failure to parse or validate any key or value in the message will cause the <code>Publish</code> call to return an error (no partial delivery).</p> </li> </ul>"
       }
     },
     "messageId": {
@@ -479,7 +570,7 @@
     "messageStructure": {
       "base": null,
       "refs": {
-        "PublishInput$MessageStructure": "<p>Set <code>MessageStructure</code> to <code>json</code> if you want to send a different message for each protocol. For example, using one publish action, you can send a short message to your SMS subscribers and a longer message to your email subscribers. If you set <code>MessageStructure</code> to <code>json</code>, the value of the <code>Message</code> parameter must: </p> <ul> <li>be a syntactically valid JSON object; and</li> <li>contain at least a top-level JSON key of \"default\" with a value that is a string.</li> </ul> <p> You can define other top-level keys that define the message you want to send to a specific transport protocol (e.g., \"http\"). </p> <p>For information about sending different messages for each protocol using the AWS Management Console, go to <a href=\"http://docs.aws.amazon.com/sns/latest/gsg/Publish.html#sns-message-formatting-by-protocol\">Create Different Messages for Each Protocol</a> in the <i>Amazon Simple Notification Service Getting Started Guide</i>. </p> <p>Valid value: <code>json</code></p>"
+        "PublishInput$MessageStructure": "<p>Set <code>MessageStructure</code> to <code>json</code> if you want to send a different message for each protocol. For example, using one publish action, you can send a short message to your SMS subscribers and a longer message to your email subscribers. If you set <code>MessageStructure</code> to <code>json</code>, the value of the <code>Message</code> parameter must: </p> <ul> <li> <p>be a syntactically valid JSON object; and</p> </li> <li> <p>contain at least a top-level JSON key of \"default\" with a value that is a string.</p> </li> </ul> <p> You can define other top-level keys that define the message you want to send to a specific transport protocol (e.g., \"http\"). </p> <p>For information about sending different messages for each protocol using the AWS Management Console, go to <a href=\"http://docs.aws.amazon.com/sns/latest/gsg/Publish.html#sns-message-formatting-by-protocol\">Create Different Messages for Each Protocol</a> in the <i>Amazon Simple Notification Service Getting Started Guide</i>. </p> <p>Valid value: <code>json</code></p>"
       }
     },
     "nextToken": {
@@ -496,7 +587,7 @@
     "protocol": {
       "base": null,
       "refs": {
-        "SubscribeInput$Protocol": "<p>The protocol you want to use. Supported protocols include:</p> <ul> <li> <code>http</code> -- delivery of JSON-encoded message via HTTP POST</li> <li> <code>https</code> -- delivery of JSON-encoded message via HTTPS POST</li> <li> <code>email</code> -- delivery of message via SMTP</li> <li> <code>email-json</code> -- delivery of JSON-encoded message via SMTP</li> <li> <code>sms</code> -- delivery of message via SMS</li> <li> <code>sqs</code> -- delivery of JSON-encoded message to an Amazon SQS queue</li> <li> <code>application</code> -- delivery of JSON-encoded message to an EndpointArn for a mobile app and device.</li> </ul>",
+        "SubscribeInput$Protocol": "<p>The protocol you want to use. Supported protocols include:</p> <ul> <li> <p><code>http</code> -- delivery of JSON-encoded message via HTTP POST</p> </li> <li> <p><code>https</code> -- delivery of JSON-encoded message via HTTPS POST</p> </li> <li> <p><code>email</code> -- delivery of message via SMTP</p> </li> <li> <p><code>email-json</code> -- delivery of JSON-encoded message via SMTP</p> </li> <li> <p><code>sms</code> -- delivery of message via SMS</p> </li> <li> <p><code>sqs</code> -- delivery of JSON-encoded message to an Amazon SQS queue</p> </li> <li> <p><code>application</code> -- delivery of JSON-encoded message to an EndpointArn for a mobile app and device.</p> </li> <li> <p><code>lambda</code> -- delivery of JSON-encoded message to an AWS Lambda function.</p> </li> </ul>",
         "Subscription$Protocol": "<p>The subscription's protocol.</p>"
       }
     },
@@ -508,9 +599,12 @@
         "InternalErrorException$message": null,
         "InvalidParameterException$message": null,
         "InvalidParameterValueException$message": null,
+        "ListPhoneNumbersOptedOutInput$nextToken": "<p>A <code>NextToken</code> string is used when you call the <code>ListPhoneNumbersOptedOut</code> action to retrieve additional records that are available after the first page of results.</p>",
+        "ListPhoneNumbersOptedOutResponse$nextToken": "<p>A <code>NextToken</code> string is returned when you call the <code>ListPhoneNumbersOptedOut</code> action if additional records are available after the first page of results.</p>",
         "NotFoundException$message": null,
         "PlatformApplicationDisabledException$message": "<p>Message for platform application disabled.</p>",
         "SubscriptionLimitExceededException$message": null,
+        "ThrottledException$message": null,
         "TopicLimitExceededException$message": null
       }
     },
@@ -546,7 +640,7 @@
         "DeleteTopicInput$TopicArn": "<p>The ARN of the topic you want to delete.</p>",
         "GetTopicAttributesInput$TopicArn": "<p>The ARN of the topic whose properties you want to get.</p>",
         "ListSubscriptionsByTopicInput$TopicArn": "<p>The ARN of the topic for which you wish to find subscriptions.</p>",
-        "PublishInput$TopicArn": "<p>The topic you want to publish to.</p>",
+        "PublishInput$TopicArn": "<p>The topic you want to publish to.</p> <p>If you don't specify a value for the <code>TopicArn</code> parameter, you must specify a value for the <code>PhoneNumber</code> or <code>TargetArn</code> parameters.</p>",
         "RemovePermissionInput$TopicArn": "<p>The ARN of the topic whose access control policy you wish to modify.</p>",
         "SetTopicAttributesInput$TopicArn": "<p>The ARN of the topic to modify.</p>",
         "SubscribeInput$TopicArn": "<p>The ARN of the topic you want to subscribe to.</p>",

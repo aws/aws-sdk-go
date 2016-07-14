@@ -15,7 +15,28 @@ import (
 
 const opDeleteConfigRule = "DeleteConfigRule"
 
-// DeleteConfigRuleRequest generates a request for the DeleteConfigRule operation.
+// DeleteConfigRuleRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteConfigRule operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteConfigRule method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteConfigRuleRequest method.
+//    req, resp := client.DeleteConfigRuleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ConfigService) DeleteConfigRuleRequest(input *DeleteConfigRuleInput) (req *request.Request, output *DeleteConfigRuleOutput) {
 	op := &request.Operation{
 		Name:       opDeleteConfigRule,
@@ -48,9 +69,89 @@ func (c *ConfigService) DeleteConfigRule(input *DeleteConfigRuleInput) (*DeleteC
 	return out, err
 }
 
+const opDeleteConfigurationRecorder = "DeleteConfigurationRecorder"
+
+// DeleteConfigurationRecorderRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteConfigurationRecorder operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteConfigurationRecorder method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteConfigurationRecorderRequest method.
+//    req, resp := client.DeleteConfigurationRecorderRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *ConfigService) DeleteConfigurationRecorderRequest(input *DeleteConfigurationRecorderInput) (req *request.Request, output *DeleteConfigurationRecorderOutput) {
+	op := &request.Operation{
+		Name:       opDeleteConfigurationRecorder,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteConfigurationRecorderInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(jsonrpc.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	output = &DeleteConfigurationRecorderOutput{}
+	req.Data = output
+	return
+}
+
+// Deletes the configuration recorder.
+//
+// After the configuration recorder is deleted, AWS Config will not record
+// resource configuration changes until you create a new configuration recorder.
+//
+// This action does not delete the configuration information that was previously
+// recorded. You will be able to access the previously recorded information
+// by using the GetResourceConfigHistory action, but you will not be able to
+// access this information in the AWS Config console until you create a new
+// configuration recorder.
+func (c *ConfigService) DeleteConfigurationRecorder(input *DeleteConfigurationRecorderInput) (*DeleteConfigurationRecorderOutput, error) {
+	req, out := c.DeleteConfigurationRecorderRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opDeleteDeliveryChannel = "DeleteDeliveryChannel"
 
-// DeleteDeliveryChannelRequest generates a request for the DeleteDeliveryChannel operation.
+// DeleteDeliveryChannelRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDeliveryChannel operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteDeliveryChannel method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteDeliveryChannelRequest method.
+//    req, resp := client.DeleteDeliveryChannelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ConfigService) DeleteDeliveryChannelRequest(input *DeleteDeliveryChannelInput) (req *request.Request, output *DeleteDeliveryChannelOutput) {
 	op := &request.Operation{
 		Name:       opDeleteDeliveryChannel,
@@ -70,12 +171,10 @@ func (c *ConfigService) DeleteDeliveryChannelRequest(input *DeleteDeliveryChanne
 	return
 }
 
-// Deletes the specified delivery channel.
+// Deletes the delivery channel.
 //
-// The delivery channel cannot be deleted if it is the only delivery channel
-// and the configuration recorder is still running. To delete the delivery channel,
-// stop the running configuration recorder using the StopConfigurationRecorder
-// action.
+// Before you can delete the delivery channel, you must stop the configuration
+// recorder by using the StopConfigurationRecorder action.
 func (c *ConfigService) DeleteDeliveryChannel(input *DeleteDeliveryChannelInput) (*DeleteDeliveryChannelOutput, error) {
 	req, out := c.DeleteDeliveryChannelRequest(input)
 	err := req.Send()
@@ -84,7 +183,28 @@ func (c *ConfigService) DeleteDeliveryChannel(input *DeleteDeliveryChannelInput)
 
 const opDeliverConfigSnapshot = "DeliverConfigSnapshot"
 
-// DeliverConfigSnapshotRequest generates a request for the DeliverConfigSnapshot operation.
+// DeliverConfigSnapshotRequest generates a "aws/request.Request" representing the
+// client's request for the DeliverConfigSnapshot operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeliverConfigSnapshot method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeliverConfigSnapshotRequest method.
+//    req, resp := client.DeliverConfigSnapshotRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ConfigService) DeliverConfigSnapshotRequest(input *DeliverConfigSnapshotInput) (req *request.Request, output *DeliverConfigSnapshotOutput) {
 	op := &request.Operation{
 		Name:       opDeliverConfigSnapshot,
@@ -117,7 +237,28 @@ func (c *ConfigService) DeliverConfigSnapshot(input *DeliverConfigSnapshotInput)
 
 const opDescribeComplianceByConfigRule = "DescribeComplianceByConfigRule"
 
-// DescribeComplianceByConfigRuleRequest generates a request for the DescribeComplianceByConfigRule operation.
+// DescribeComplianceByConfigRuleRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeComplianceByConfigRule operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeComplianceByConfigRule method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeComplianceByConfigRuleRequest method.
+//    req, resp := client.DescribeComplianceByConfigRuleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ConfigService) DescribeComplianceByConfigRuleRequest(input *DescribeComplianceByConfigRuleInput) (req *request.Request, output *DescribeComplianceByConfigRuleOutput) {
 	op := &request.Operation{
 		Name:       opDescribeComplianceByConfigRule,
@@ -144,6 +285,7 @@ func (c *ConfigService) DescribeComplianceByConfigRuleRequest(input *DescribeCom
 //
 // If AWS Config has no current evaluation results for the rule, it returns
 // INSUFFICIENT_DATA. This result might indicate one of the following conditions:
+//
 //  AWS Config has never invoked an evaluation for the rule. To check whether
 // it has, use the DescribeConfigRuleEvaluationStatus action to get the LastSuccessfulInvocationTime
 // and LastFailedInvocationTime. The rule's AWS Lambda function is failing to
@@ -161,7 +303,28 @@ func (c *ConfigService) DescribeComplianceByConfigRule(input *DescribeCompliance
 
 const opDescribeComplianceByResource = "DescribeComplianceByResource"
 
-// DescribeComplianceByResourceRequest generates a request for the DescribeComplianceByResource operation.
+// DescribeComplianceByResourceRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeComplianceByResource operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeComplianceByResource method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeComplianceByResourceRequest method.
+//    req, resp := client.DescribeComplianceByResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ConfigService) DescribeComplianceByResourceRequest(input *DescribeComplianceByResourceInput) (req *request.Request, output *DescribeComplianceByResourceOutput) {
 	op := &request.Operation{
 		Name:       opDescribeComplianceByResource,
@@ -189,16 +352,17 @@ func (c *ConfigService) DescribeComplianceByResourceRequest(input *DescribeCompl
 //
 // If AWS Config has no current evaluation results for the resource, it returns
 // INSUFFICIENT_DATA. This result might indicate one of the following conditions
-// about the rules that evaluate the resource:  AWS Config has never invoked
-// an evaluation for the rule. To check whether it has, use the DescribeConfigRuleEvaluationStatus
-// action to get the LastSuccessfulInvocationTime and LastFailedInvocationTime.
-// The rule's AWS Lambda function is failing to send evaluation results to AWS
-// Config. Verify that the role that you assigned to your configuration recorder
-// includes the config:PutEvaluations permission. If the rule is a customer
-// managed rule, verify that the AWS Lambda execution role includes the config:PutEvaluations
-// permission. The rule's AWS Lambda function has returned NOT_APPLICABLE for
-// all evaluation results. This can occur if the resources were deleted or removed
-// from the rule's scope.
+// about the rules that evaluate the resource:
+//
+//  AWS Config has never invoked an evaluation for the rule. To check whether
+// it has, use the DescribeConfigRuleEvaluationStatus action to get the LastSuccessfulInvocationTime
+// and LastFailedInvocationTime. The rule's AWS Lambda function is failing to
+// send evaluation results to AWS Config. Verify that the role that you assigned
+// to your configuration recorder includes the config:PutEvaluations permission.
+// If the rule is a customer managed rule, verify that the AWS Lambda execution
+// role includes the config:PutEvaluations permission. The rule's AWS Lambda
+// function has returned NOT_APPLICABLE for all evaluation results. This can
+// occur if the resources were deleted or removed from the rule's scope.
 func (c *ConfigService) DescribeComplianceByResource(input *DescribeComplianceByResourceInput) (*DescribeComplianceByResourceOutput, error) {
 	req, out := c.DescribeComplianceByResourceRequest(input)
 	err := req.Send()
@@ -207,7 +371,28 @@ func (c *ConfigService) DescribeComplianceByResource(input *DescribeComplianceBy
 
 const opDescribeConfigRuleEvaluationStatus = "DescribeConfigRuleEvaluationStatus"
 
-// DescribeConfigRuleEvaluationStatusRequest generates a request for the DescribeConfigRuleEvaluationStatus operation.
+// DescribeConfigRuleEvaluationStatusRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeConfigRuleEvaluationStatus operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeConfigRuleEvaluationStatus method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeConfigRuleEvaluationStatusRequest method.
+//    req, resp := client.DescribeConfigRuleEvaluationStatusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ConfigService) DescribeConfigRuleEvaluationStatusRequest(input *DescribeConfigRuleEvaluationStatusInput) (req *request.Request, output *DescribeConfigRuleEvaluationStatusOutput) {
 	op := &request.Operation{
 		Name:       opDescribeConfigRuleEvaluationStatus,
@@ -237,7 +422,28 @@ func (c *ConfigService) DescribeConfigRuleEvaluationStatus(input *DescribeConfig
 
 const opDescribeConfigRules = "DescribeConfigRules"
 
-// DescribeConfigRulesRequest generates a request for the DescribeConfigRules operation.
+// DescribeConfigRulesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeConfigRules operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeConfigRules method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeConfigRulesRequest method.
+//    req, resp := client.DescribeConfigRulesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ConfigService) DescribeConfigRulesRequest(input *DescribeConfigRulesInput) (req *request.Request, output *DescribeConfigRulesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeConfigRules,
@@ -264,7 +470,28 @@ func (c *ConfigService) DescribeConfigRules(input *DescribeConfigRulesInput) (*D
 
 const opDescribeConfigurationRecorderStatus = "DescribeConfigurationRecorderStatus"
 
-// DescribeConfigurationRecorderStatusRequest generates a request for the DescribeConfigurationRecorderStatus operation.
+// DescribeConfigurationRecorderStatusRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeConfigurationRecorderStatus operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeConfigurationRecorderStatus method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeConfigurationRecorderStatusRequest method.
+//    req, resp := client.DescribeConfigurationRecorderStatusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ConfigService) DescribeConfigurationRecorderStatusRequest(input *DescribeConfigurationRecorderStatusInput) (req *request.Request, output *DescribeConfigurationRecorderStatusOutput) {
 	op := &request.Operation{
 		Name:       opDescribeConfigurationRecorderStatus,
@@ -286,7 +513,7 @@ func (c *ConfigService) DescribeConfigurationRecorderStatusRequest(input *Descri
 // configuration recorder is not specified, this action returns the status of
 // all configuration recorder associated with the account.
 //
-// Currently, you can specify only one configuration recorder per account.
+//  Currently, you can specify only one configuration recorder per account.
 func (c *ConfigService) DescribeConfigurationRecorderStatus(input *DescribeConfigurationRecorderStatusInput) (*DescribeConfigurationRecorderStatusOutput, error) {
 	req, out := c.DescribeConfigurationRecorderStatusRequest(input)
 	err := req.Send()
@@ -295,7 +522,28 @@ func (c *ConfigService) DescribeConfigurationRecorderStatus(input *DescribeConfi
 
 const opDescribeConfigurationRecorders = "DescribeConfigurationRecorders"
 
-// DescribeConfigurationRecordersRequest generates a request for the DescribeConfigurationRecorders operation.
+// DescribeConfigurationRecordersRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeConfigurationRecorders operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeConfigurationRecorders method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeConfigurationRecordersRequest method.
+//    req, resp := client.DescribeConfigurationRecordersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ConfigService) DescribeConfigurationRecordersRequest(input *DescribeConfigurationRecordersInput) (req *request.Request, output *DescribeConfigurationRecordersOutput) {
 	op := &request.Operation{
 		Name:       opDescribeConfigurationRecorders,
@@ -326,7 +574,28 @@ func (c *ConfigService) DescribeConfigurationRecorders(input *DescribeConfigurat
 
 const opDescribeDeliveryChannelStatus = "DescribeDeliveryChannelStatus"
 
-// DescribeDeliveryChannelStatusRequest generates a request for the DescribeDeliveryChannelStatus operation.
+// DescribeDeliveryChannelStatusRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDeliveryChannelStatus operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeDeliveryChannelStatus method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeDeliveryChannelStatusRequest method.
+//    req, resp := client.DescribeDeliveryChannelStatusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ConfigService) DescribeDeliveryChannelStatusRequest(input *DescribeDeliveryChannelStatusInput) (req *request.Request, output *DescribeDeliveryChannelStatusOutput) {
 	op := &request.Operation{
 		Name:       opDescribeDeliveryChannelStatus,
@@ -348,7 +617,7 @@ func (c *ConfigService) DescribeDeliveryChannelStatusRequest(input *DescribeDeli
 // channel is not specified, this action returns the current status of all delivery
 // channels associated with the account.
 //
-// Currently, you can specify only one delivery channel per account.
+//  Currently, you can specify only one delivery channel per account.
 func (c *ConfigService) DescribeDeliveryChannelStatus(input *DescribeDeliveryChannelStatusInput) (*DescribeDeliveryChannelStatusOutput, error) {
 	req, out := c.DescribeDeliveryChannelStatusRequest(input)
 	err := req.Send()
@@ -357,7 +626,28 @@ func (c *ConfigService) DescribeDeliveryChannelStatus(input *DescribeDeliveryCha
 
 const opDescribeDeliveryChannels = "DescribeDeliveryChannels"
 
-// DescribeDeliveryChannelsRequest generates a request for the DescribeDeliveryChannels operation.
+// DescribeDeliveryChannelsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDeliveryChannels operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeDeliveryChannels method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeDeliveryChannelsRequest method.
+//    req, resp := client.DescribeDeliveryChannelsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ConfigService) DescribeDeliveryChannelsRequest(input *DescribeDeliveryChannelsInput) (req *request.Request, output *DescribeDeliveryChannelsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeDeliveryChannels,
@@ -388,7 +678,28 @@ func (c *ConfigService) DescribeDeliveryChannels(input *DescribeDeliveryChannels
 
 const opGetComplianceDetailsByConfigRule = "GetComplianceDetailsByConfigRule"
 
-// GetComplianceDetailsByConfigRuleRequest generates a request for the GetComplianceDetailsByConfigRule operation.
+// GetComplianceDetailsByConfigRuleRequest generates a "aws/request.Request" representing the
+// client's request for the GetComplianceDetailsByConfigRule operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetComplianceDetailsByConfigRule method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetComplianceDetailsByConfigRuleRequest method.
+//    req, resp := client.GetComplianceDetailsByConfigRuleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ConfigService) GetComplianceDetailsByConfigRuleRequest(input *GetComplianceDetailsByConfigRuleInput) (req *request.Request, output *GetComplianceDetailsByConfigRuleOutput) {
 	op := &request.Operation{
 		Name:       opGetComplianceDetailsByConfigRule,
@@ -417,7 +728,28 @@ func (c *ConfigService) GetComplianceDetailsByConfigRule(input *GetComplianceDet
 
 const opGetComplianceDetailsByResource = "GetComplianceDetailsByResource"
 
-// GetComplianceDetailsByResourceRequest generates a request for the GetComplianceDetailsByResource operation.
+// GetComplianceDetailsByResourceRequest generates a "aws/request.Request" representing the
+// client's request for the GetComplianceDetailsByResource operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetComplianceDetailsByResource method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetComplianceDetailsByResourceRequest method.
+//    req, resp := client.GetComplianceDetailsByResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ConfigService) GetComplianceDetailsByResourceRequest(input *GetComplianceDetailsByResourceInput) (req *request.Request, output *GetComplianceDetailsByResourceOutput) {
 	op := &request.Operation{
 		Name:       opGetComplianceDetailsByResource,
@@ -446,7 +778,28 @@ func (c *ConfigService) GetComplianceDetailsByResource(input *GetComplianceDetai
 
 const opGetComplianceSummaryByConfigRule = "GetComplianceSummaryByConfigRule"
 
-// GetComplianceSummaryByConfigRuleRequest generates a request for the GetComplianceSummaryByConfigRule operation.
+// GetComplianceSummaryByConfigRuleRequest generates a "aws/request.Request" representing the
+// client's request for the GetComplianceSummaryByConfigRule operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetComplianceSummaryByConfigRule method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetComplianceSummaryByConfigRuleRequest method.
+//    req, resp := client.GetComplianceSummaryByConfigRuleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ConfigService) GetComplianceSummaryByConfigRuleRequest(input *GetComplianceSummaryByConfigRuleInput) (req *request.Request, output *GetComplianceSummaryByConfigRuleOutput) {
 	op := &request.Operation{
 		Name:       opGetComplianceSummaryByConfigRule,
@@ -474,7 +827,28 @@ func (c *ConfigService) GetComplianceSummaryByConfigRule(input *GetComplianceSum
 
 const opGetComplianceSummaryByResourceType = "GetComplianceSummaryByResourceType"
 
-// GetComplianceSummaryByResourceTypeRequest generates a request for the GetComplianceSummaryByResourceType operation.
+// GetComplianceSummaryByResourceTypeRequest generates a "aws/request.Request" representing the
+// client's request for the GetComplianceSummaryByResourceType operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetComplianceSummaryByResourceType method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetComplianceSummaryByResourceTypeRequest method.
+//    req, resp := client.GetComplianceSummaryByResourceTypeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ConfigService) GetComplianceSummaryByResourceTypeRequest(input *GetComplianceSummaryByResourceTypeInput) (req *request.Request, output *GetComplianceSummaryByResourceTypeOutput) {
 	op := &request.Operation{
 		Name:       opGetComplianceSummaryByResourceType,
@@ -503,7 +877,28 @@ func (c *ConfigService) GetComplianceSummaryByResourceType(input *GetComplianceS
 
 const opGetResourceConfigHistory = "GetResourceConfigHistory"
 
-// GetResourceConfigHistoryRequest generates a request for the GetResourceConfigHistory operation.
+// GetResourceConfigHistoryRequest generates a "aws/request.Request" representing the
+// client's request for the GetResourceConfigHistory operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetResourceConfigHistory method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetResourceConfigHistoryRequest method.
+//    req, resp := client.GetResourceConfigHistoryRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ConfigService) GetResourceConfigHistoryRequest(input *GetResourceConfigHistoryInput) (req *request.Request, output *GetResourceConfigHistoryOutput) {
 	op := &request.Operation{
 		Name:       opGetResourceConfigHistory,
@@ -546,6 +941,23 @@ func (c *ConfigService) GetResourceConfigHistory(input *GetResourceConfigHistory
 	return out, err
 }
 
+// GetResourceConfigHistoryPages iterates over the pages of a GetResourceConfigHistory operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetResourceConfigHistory method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetResourceConfigHistory operation.
+//    pageNum := 0
+//    err := client.GetResourceConfigHistoryPages(params,
+//        func(page *GetResourceConfigHistoryOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *ConfigService) GetResourceConfigHistoryPages(input *GetResourceConfigHistoryInput, fn func(p *GetResourceConfigHistoryOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.GetResourceConfigHistoryRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -556,7 +968,28 @@ func (c *ConfigService) GetResourceConfigHistoryPages(input *GetResourceConfigHi
 
 const opListDiscoveredResources = "ListDiscoveredResources"
 
-// ListDiscoveredResourcesRequest generates a request for the ListDiscoveredResources operation.
+// ListDiscoveredResourcesRequest generates a "aws/request.Request" representing the
+// client's request for the ListDiscoveredResources operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListDiscoveredResources method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListDiscoveredResourcesRequest method.
+//    req, resp := client.ListDiscoveredResourcesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ConfigService) ListDiscoveredResourcesRequest(input *ListDiscoveredResourcesInput) (req *request.Request, output *ListDiscoveredResourcesOutput) {
 	op := &request.Operation{
 		Name:       opListDiscoveredResources,
@@ -581,12 +1014,13 @@ func (c *ConfigService) ListDiscoveredResourcesRequest(input *ListDiscoveredReso
 // recording. You can narrow the results to include only resources that have
 // specific resource IDs or a resource name.
 //
-// You can specify either resource IDs or a resource name but not both in the
-// same request. The response is paginated, and by default AWS Config lists
-// 100 resource identifiers on each page. You can customize this number with
-// the limit parameter. The response includes a nextToken string, and to get
-// the next page of results, run the request again and enter this string for
-// the nextToken parameter.
+//  You can specify either resource IDs or a resource name but not both in
+// the same request.
+//
+//  The response is paginated, and by default AWS Config lists 100 resource
+// identifiers on each page. You can customize this number with the limit parameter.
+// The response includes a nextToken string, and to get the next page of results,
+// run the request again and enter this string for the nextToken parameter.
 func (c *ConfigService) ListDiscoveredResources(input *ListDiscoveredResourcesInput) (*ListDiscoveredResourcesOutput, error) {
 	req, out := c.ListDiscoveredResourcesRequest(input)
 	err := req.Send()
@@ -595,7 +1029,28 @@ func (c *ConfigService) ListDiscoveredResources(input *ListDiscoveredResourcesIn
 
 const opPutConfigRule = "PutConfigRule"
 
-// PutConfigRuleRequest generates a request for the PutConfigRule operation.
+// PutConfigRuleRequest generates a "aws/request.Request" representing the
+// client's request for the PutConfigRule operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the PutConfigRule method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PutConfigRuleRequest method.
+//    req, resp := client.PutConfigRuleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ConfigService) PutConfigRuleRequest(input *PutConfigRuleInput) (req *request.Request, output *PutConfigRuleOutput) {
 	op := &request.Operation{
 		Name:       opPutConfigRule,
@@ -655,7 +1110,28 @@ func (c *ConfigService) PutConfigRule(input *PutConfigRuleInput) (*PutConfigRule
 
 const opPutConfigurationRecorder = "PutConfigurationRecorder"
 
-// PutConfigurationRecorderRequest generates a request for the PutConfigurationRecorder operation.
+// PutConfigurationRecorderRequest generates a "aws/request.Request" representing the
+// client's request for the PutConfigurationRecorder operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the PutConfigurationRecorder method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PutConfigurationRecorderRequest method.
+//    req, resp := client.PutConfigurationRecorderRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ConfigService) PutConfigurationRecorderRequest(input *PutConfigurationRecorderInput) (req *request.Request, output *PutConfigurationRecorderOutput) {
 	op := &request.Operation{
 		Name:       opPutConfigurationRecorder,
@@ -693,7 +1169,28 @@ func (c *ConfigService) PutConfigurationRecorder(input *PutConfigurationRecorder
 
 const opPutDeliveryChannel = "PutDeliveryChannel"
 
-// PutDeliveryChannelRequest generates a request for the PutDeliveryChannel operation.
+// PutDeliveryChannelRequest generates a "aws/request.Request" representing the
+// client's request for the PutDeliveryChannel operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the PutDeliveryChannel method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PutDeliveryChannelRequest method.
+//    req, resp := client.PutDeliveryChannelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ConfigService) PutDeliveryChannelRequest(input *PutDeliveryChannelInput) (req *request.Request, output *PutDeliveryChannelOutput) {
 	op := &request.Operation{
 		Name:       opPutDeliveryChannel,
@@ -713,8 +1210,11 @@ func (c *ConfigService) PutDeliveryChannelRequest(input *PutDeliveryChannelInput
 	return
 }
 
-// Creates a new delivery channel object to deliver the configuration information
-// to an Amazon S3 bucket, and to an Amazon SNS topic.
+// Creates a delivery channel object to deliver configuration information to
+// an Amazon S3 bucket and Amazon SNS topic.
+//
+// Before you can create a delivery channel, you must create a configuration
+// recorder.
 //
 // You can use this action to change the Amazon S3 bucket or an Amazon SNS
 // topic of the existing delivery channel. To change the Amazon S3 bucket or
@@ -723,7 +1223,7 @@ func (c *ConfigService) PutDeliveryChannelRequest(input *PutDeliveryChannelInput
 // the S3 bucket or the SNS topic, this action will keep the existing value
 // for the parameter that is not changed.
 //
-//  Currently, you can specify only one delivery channel per account.
+//  You can have only one delivery channel per AWS account.
 func (c *ConfigService) PutDeliveryChannel(input *PutDeliveryChannelInput) (*PutDeliveryChannelOutput, error) {
 	req, out := c.PutDeliveryChannelRequest(input)
 	err := req.Send()
@@ -732,7 +1232,28 @@ func (c *ConfigService) PutDeliveryChannel(input *PutDeliveryChannelInput) (*Put
 
 const opPutEvaluations = "PutEvaluations"
 
-// PutEvaluationsRequest generates a request for the PutEvaluations operation.
+// PutEvaluationsRequest generates a "aws/request.Request" representing the
+// client's request for the PutEvaluations operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the PutEvaluations method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PutEvaluationsRequest method.
+//    req, resp := client.PutEvaluationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ConfigService) PutEvaluationsRequest(input *PutEvaluationsInput) (req *request.Request, output *PutEvaluationsOutput) {
 	op := &request.Operation{
 		Name:       opPutEvaluations,
@@ -761,7 +1282,28 @@ func (c *ConfigService) PutEvaluations(input *PutEvaluationsInput) (*PutEvaluati
 
 const opStartConfigurationRecorder = "StartConfigurationRecorder"
 
-// StartConfigurationRecorderRequest generates a request for the StartConfigurationRecorder operation.
+// StartConfigurationRecorderRequest generates a "aws/request.Request" representing the
+// client's request for the StartConfigurationRecorder operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the StartConfigurationRecorder method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the StartConfigurationRecorderRequest method.
+//    req, resp := client.StartConfigurationRecorderRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ConfigService) StartConfigurationRecorderRequest(input *StartConfigurationRecorderInput) (req *request.Request, output *StartConfigurationRecorderOutput) {
 	op := &request.Operation{
 		Name:       opStartConfigurationRecorder,
@@ -794,7 +1336,28 @@ func (c *ConfigService) StartConfigurationRecorder(input *StartConfigurationReco
 
 const opStopConfigurationRecorder = "StopConfigurationRecorder"
 
-// StopConfigurationRecorderRequest generates a request for the StopConfigurationRecorder operation.
+// StopConfigurationRecorderRequest generates a "aws/request.Request" representing the
+// client's request for the StopConfigurationRecorder operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the StopConfigurationRecorder method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the StopConfigurationRecorderRequest method.
+//    req, resp := client.StopConfigurationRecorderRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ConfigService) StopConfigurationRecorderRequest(input *StopConfigurationRecorderInput) (req *request.Request, output *StopConfigurationRecorderOutput) {
 	op := &request.Operation{
 		Name:       opStopConfigurationRecorder,
@@ -1186,8 +1749,7 @@ func (s ConfigRuleEvaluationStatus) GoString() string {
 type ConfigSnapshotDeliveryProperties struct {
 	_ struct{} `type:"structure"`
 
-	// The frequency with which a AWS Config recurringly delivers configuration
-	// snapshots.
+	// The frequency with which AWS Config recurringly delivers configuration snapshots.
 	DeliveryFrequency *string `locationName:"deliveryFrequency" type:"string" enum:"MaximumExecutionFrequency"`
 }
 
@@ -1441,6 +2003,56 @@ func (s DeleteConfigRuleOutput) GoString() string {
 	return s.String()
 }
 
+// The request object for the DeleteConfigurationRecorder action.
+type DeleteConfigurationRecorderInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the configuration recorder to be deleted. You can retrieve the
+	// name of your configuration recorder by using the DescribeConfigurationRecorders
+	// action.
+	ConfigurationRecorderName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteConfigurationRecorderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteConfigurationRecorderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteConfigurationRecorderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteConfigurationRecorderInput"}
+	if s.ConfigurationRecorderName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigurationRecorderName"))
+	}
+	if s.ConfigurationRecorderName != nil && len(*s.ConfigurationRecorderName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationRecorderName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+type DeleteConfigurationRecorderOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteConfigurationRecorderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteConfigurationRecorderOutput) GoString() string {
+	return s.String()
+}
+
 // The input for the DeleteDeliveryChannel action. The action accepts the following
 // data in JSON format.
 type DeleteDeliveryChannelInput struct {
@@ -1542,8 +2154,8 @@ func (s DeliverConfigSnapshotOutput) GoString() string {
 	return s.String()
 }
 
-// A logical container used for storing the configuration changes of an AWS
-// resource.
+// The channel through which AWS Config delivers notifications and updated configuration
+// states.
 type DeliveryChannel struct {
 	_ struct{} `type:"structure"`
 
@@ -1551,20 +2163,32 @@ type DeliveryChannel struct {
 	// S3 bucket in your delivery channel.
 	ConfigSnapshotDeliveryProperties *ConfigSnapshotDeliveryProperties `locationName:"configSnapshotDeliveryProperties" type:"structure"`
 
-	// The name of the delivery channel. By default, AWS Config automatically assigns
-	// the name "default" when creating the delivery channel. You cannot change
-	// the assigned name.
+	// The name of the delivery channel. By default, AWS Config assigns the name
+	// "default" when creating the delivery channel. To change the delivery channel
+	// name, you must use the DeleteDeliveryChannel action to delete your current
+	// delivery channel, and then you must use the PutDeliveryChannel command to
+	// create a delivery channel that has the desired name.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	// The name of the Amazon S3 bucket used to store configuration history for
-	// the delivery channel.
+	// The name of the Amazon S3 bucket to which AWS Config delivers configuration
+	// snapshots and configuration history files.
+	//
+	// If you specify a bucket that belongs to another AWS account, that bucket
+	// must have policies that grant access permissions to AWS Config. For more
+	// information, see Permissions for the Amazon S3 Bucket (http://docs.aws.amazon.com/config/latest/developerguide/s3-bucket-policy.html)
+	// in the AWS Config Developer Guide.
 	S3BucketName *string `locationName:"s3BucketName" type:"string"`
 
 	// The prefix for the specified Amazon S3 bucket.
 	S3KeyPrefix *string `locationName:"s3KeyPrefix" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the SNS topic that AWS Config delivers
-	// notifications to.
+	// The Amazon Resource Name (ARN) of the Amazon SNS topic to which AWS Config
+	// sends notifications about configuration changes.
+	//
+	// If you choose a topic from another account, the topic must have policies
+	// that grant access permissions to AWS Config. For more information, see Permissions
+	// for the Amazon SNS Topic (http://docs.aws.amazon.com/config/latest/developerguide/sns-topic-policy.html)
+	// in the AWS Config Developer Guide.
 	SnsTopicARN *string `locationName:"snsTopicARN" type:"string"`
 }
 
@@ -2745,14 +3369,15 @@ func (s PutEvaluationsOutput) GoString() string {
 // types of global resources (for example, IAM resources). Global resources
 // are not tied to an individual region and can be used in all regions.
 //
-// The configuration details for any global resource are the same in all regions.
+//  The configuration details for any global resource are the same in all regions.
 // If you customize AWS Config in multiple regions to record global resources,
 // it will create multiple configuration items each time a global resource changes:
 // one configuration item for each region. These configuration items will contain
 // identical data. To prevent duplicate configuration items, you should consider
 // customizing AWS Config in only one region to record global resources, unless
-// you want the configuration items to be available in multiple regions. If
-// you don't want AWS Config to record all resources, you can specify which
+// you want the configuration items to be available in multiple regions.
+//
+//  If you don't want AWS Config to record all resources, you can specify which
 // types of resources it will record with the resourceTypes parameter.
 //
 // For a list of supported resource types, see Supported resource types (http://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html#supported-resources).

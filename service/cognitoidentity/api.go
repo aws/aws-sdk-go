@@ -15,7 +15,28 @@ import (
 
 const opCreateIdentityPool = "CreateIdentityPool"
 
-// CreateIdentityPoolRequest generates a request for the CreateIdentityPool operation.
+// CreateIdentityPoolRequest generates a "aws/request.Request" representing the
+// client's request for the CreateIdentityPool operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateIdentityPool method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateIdentityPoolRequest method.
+//    req, resp := client.CreateIdentityPoolRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoIdentity) CreateIdentityPoolRequest(input *CreateIdentityPoolInput) (req *request.Request, output *IdentityPool) {
 	op := &request.Operation{
 		Name:       opCreateIdentityPool,
@@ -47,7 +68,28 @@ func (c *CognitoIdentity) CreateIdentityPool(input *CreateIdentityPoolInput) (*I
 
 const opDeleteIdentities = "DeleteIdentities"
 
-// DeleteIdentitiesRequest generates a request for the DeleteIdentities operation.
+// DeleteIdentitiesRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteIdentities operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteIdentities method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteIdentitiesRequest method.
+//    req, resp := client.DeleteIdentitiesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoIdentity) DeleteIdentitiesRequest(input *DeleteIdentitiesInput) (req *request.Request, output *DeleteIdentitiesOutput) {
 	op := &request.Operation{
 		Name:       opDeleteIdentities,
@@ -77,7 +119,28 @@ func (c *CognitoIdentity) DeleteIdentities(input *DeleteIdentitiesInput) (*Delet
 
 const opDeleteIdentityPool = "DeleteIdentityPool"
 
-// DeleteIdentityPoolRequest generates a request for the DeleteIdentityPool operation.
+// DeleteIdentityPoolRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteIdentityPool operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteIdentityPool method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteIdentityPoolRequest method.
+//    req, resp := client.DeleteIdentityPoolRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoIdentity) DeleteIdentityPoolRequest(input *DeleteIdentityPoolInput) (req *request.Request, output *DeleteIdentityPoolOutput) {
 	op := &request.Operation{
 		Name:       opDeleteIdentityPool,
@@ -109,7 +172,28 @@ func (c *CognitoIdentity) DeleteIdentityPool(input *DeleteIdentityPoolInput) (*D
 
 const opDescribeIdentity = "DescribeIdentity"
 
-// DescribeIdentityRequest generates a request for the DescribeIdentity operation.
+// DescribeIdentityRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeIdentity operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeIdentity method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeIdentityRequest method.
+//    req, resp := client.DescribeIdentityRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoIdentity) DescribeIdentityRequest(input *DescribeIdentityInput) (req *request.Request, output *IdentityDescription) {
 	op := &request.Operation{
 		Name:       opDescribeIdentity,
@@ -139,7 +223,28 @@ func (c *CognitoIdentity) DescribeIdentity(input *DescribeIdentityInput) (*Ident
 
 const opDescribeIdentityPool = "DescribeIdentityPool"
 
-// DescribeIdentityPoolRequest generates a request for the DescribeIdentityPool operation.
+// DescribeIdentityPoolRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeIdentityPool operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeIdentityPool method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeIdentityPoolRequest method.
+//    req, resp := client.DescribeIdentityPoolRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoIdentity) DescribeIdentityPoolRequest(input *DescribeIdentityPoolInput) (req *request.Request, output *IdentityPool) {
 	op := &request.Operation{
 		Name:       opDescribeIdentityPool,
@@ -169,7 +274,28 @@ func (c *CognitoIdentity) DescribeIdentityPool(input *DescribeIdentityPoolInput)
 
 const opGetCredentialsForIdentity = "GetCredentialsForIdentity"
 
-// GetCredentialsForIdentityRequest generates a request for the GetCredentialsForIdentity operation.
+// GetCredentialsForIdentityRequest generates a "aws/request.Request" representing the
+// client's request for the GetCredentialsForIdentity operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetCredentialsForIdentity method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetCredentialsForIdentityRequest method.
+//    req, resp := client.GetCredentialsForIdentityRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoIdentity) GetCredentialsForIdentityRequest(input *GetCredentialsForIdentityInput) (req *request.Request, output *GetCredentialsForIdentityOutput) {
 	op := &request.Operation{
 		Name:       opGetCredentialsForIdentity,
@@ -201,7 +327,28 @@ func (c *CognitoIdentity) GetCredentialsForIdentity(input *GetCredentialsForIden
 
 const opGetId = "GetId"
 
-// GetIdRequest generates a request for the GetId operation.
+// GetIdRequest generates a "aws/request.Request" representing the
+// client's request for the GetId operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetId method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetIdRequest method.
+//    req, resp := client.GetIdRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoIdentity) GetIdRequest(input *GetIdInput) (req *request.Request, output *GetIdOutput) {
 	op := &request.Operation{
 		Name:       opGetId,
@@ -231,7 +378,28 @@ func (c *CognitoIdentity) GetId(input *GetIdInput) (*GetIdOutput, error) {
 
 const opGetIdentityPoolRoles = "GetIdentityPoolRoles"
 
-// GetIdentityPoolRolesRequest generates a request for the GetIdentityPoolRoles operation.
+// GetIdentityPoolRolesRequest generates a "aws/request.Request" representing the
+// client's request for the GetIdentityPoolRoles operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetIdentityPoolRoles method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetIdentityPoolRolesRequest method.
+//    req, resp := client.GetIdentityPoolRolesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoIdentity) GetIdentityPoolRolesRequest(input *GetIdentityPoolRolesInput) (req *request.Request, output *GetIdentityPoolRolesOutput) {
 	op := &request.Operation{
 		Name:       opGetIdentityPoolRoles,
@@ -260,7 +428,28 @@ func (c *CognitoIdentity) GetIdentityPoolRoles(input *GetIdentityPoolRolesInput)
 
 const opGetOpenIdToken = "GetOpenIdToken"
 
-// GetOpenIdTokenRequest generates a request for the GetOpenIdToken operation.
+// GetOpenIdTokenRequest generates a "aws/request.Request" representing the
+// client's request for the GetOpenIdToken operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetOpenIdToken method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetOpenIdTokenRequest method.
+//    req, resp := client.GetOpenIdTokenRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoIdentity) GetOpenIdTokenRequest(input *GetOpenIdTokenInput) (req *request.Request, output *GetOpenIdTokenOutput) {
 	op := &request.Operation{
 		Name:       opGetOpenIdToken,
@@ -293,7 +482,28 @@ func (c *CognitoIdentity) GetOpenIdToken(input *GetOpenIdTokenInput) (*GetOpenId
 
 const opGetOpenIdTokenForDeveloperIdentity = "GetOpenIdTokenForDeveloperIdentity"
 
-// GetOpenIdTokenForDeveloperIdentityRequest generates a request for the GetOpenIdTokenForDeveloperIdentity operation.
+// GetOpenIdTokenForDeveloperIdentityRequest generates a "aws/request.Request" representing the
+// client's request for the GetOpenIdTokenForDeveloperIdentity operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetOpenIdTokenForDeveloperIdentity method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetOpenIdTokenForDeveloperIdentityRequest method.
+//    req, resp := client.GetOpenIdTokenForDeveloperIdentityRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoIdentity) GetOpenIdTokenForDeveloperIdentityRequest(input *GetOpenIdTokenForDeveloperIdentityInput) (req *request.Request, output *GetOpenIdTokenForDeveloperIdentityOutput) {
 	op := &request.Operation{
 		Name:       opGetOpenIdTokenForDeveloperIdentity,
@@ -335,7 +545,28 @@ func (c *CognitoIdentity) GetOpenIdTokenForDeveloperIdentity(input *GetOpenIdTok
 
 const opListIdentities = "ListIdentities"
 
-// ListIdentitiesRequest generates a request for the ListIdentities operation.
+// ListIdentitiesRequest generates a "aws/request.Request" representing the
+// client's request for the ListIdentities operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListIdentities method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListIdentitiesRequest method.
+//    req, resp := client.ListIdentitiesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoIdentity) ListIdentitiesRequest(input *ListIdentitiesInput) (req *request.Request, output *ListIdentitiesOutput) {
 	op := &request.Operation{
 		Name:       opListIdentities,
@@ -364,7 +595,28 @@ func (c *CognitoIdentity) ListIdentities(input *ListIdentitiesInput) (*ListIdent
 
 const opListIdentityPools = "ListIdentityPools"
 
-// ListIdentityPoolsRequest generates a request for the ListIdentityPools operation.
+// ListIdentityPoolsRequest generates a "aws/request.Request" representing the
+// client's request for the ListIdentityPools operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListIdentityPools method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListIdentityPoolsRequest method.
+//    req, resp := client.ListIdentityPoolsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoIdentity) ListIdentityPoolsRequest(input *ListIdentityPoolsInput) (req *request.Request, output *ListIdentityPoolsOutput) {
 	op := &request.Operation{
 		Name:       opListIdentityPools,
@@ -393,7 +645,28 @@ func (c *CognitoIdentity) ListIdentityPools(input *ListIdentityPoolsInput) (*Lis
 
 const opLookupDeveloperIdentity = "LookupDeveloperIdentity"
 
-// LookupDeveloperIdentityRequest generates a request for the LookupDeveloperIdentity operation.
+// LookupDeveloperIdentityRequest generates a "aws/request.Request" representing the
+// client's request for the LookupDeveloperIdentity operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the LookupDeveloperIdentity method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the LookupDeveloperIdentityRequest method.
+//    req, resp := client.LookupDeveloperIdentityRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoIdentity) LookupDeveloperIdentityRequest(input *LookupDeveloperIdentityInput) (req *request.Request, output *LookupDeveloperIdentityOutput) {
 	op := &request.Operation{
 		Name:       opLookupDeveloperIdentity,
@@ -429,7 +702,28 @@ func (c *CognitoIdentity) LookupDeveloperIdentity(input *LookupDeveloperIdentity
 
 const opMergeDeveloperIdentities = "MergeDeveloperIdentities"
 
-// MergeDeveloperIdentitiesRequest generates a request for the MergeDeveloperIdentities operation.
+// MergeDeveloperIdentitiesRequest generates a "aws/request.Request" representing the
+// client's request for the MergeDeveloperIdentities operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the MergeDeveloperIdentities method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the MergeDeveloperIdentitiesRequest method.
+//    req, resp := client.MergeDeveloperIdentitiesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoIdentity) MergeDeveloperIdentitiesRequest(input *MergeDeveloperIdentitiesInput) (req *request.Request, output *MergeDeveloperIdentitiesOutput) {
 	op := &request.Operation{
 		Name:       opMergeDeveloperIdentities,
@@ -464,7 +758,28 @@ func (c *CognitoIdentity) MergeDeveloperIdentities(input *MergeDeveloperIdentiti
 
 const opSetIdentityPoolRoles = "SetIdentityPoolRoles"
 
-// SetIdentityPoolRolesRequest generates a request for the SetIdentityPoolRoles operation.
+// SetIdentityPoolRolesRequest generates a "aws/request.Request" representing the
+// client's request for the SetIdentityPoolRoles operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SetIdentityPoolRoles method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SetIdentityPoolRolesRequest method.
+//    req, resp := client.SetIdentityPoolRolesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoIdentity) SetIdentityPoolRolesRequest(input *SetIdentityPoolRolesInput) (req *request.Request, output *SetIdentityPoolRolesOutput) {
 	op := &request.Operation{
 		Name:       opSetIdentityPoolRoles,
@@ -496,7 +811,28 @@ func (c *CognitoIdentity) SetIdentityPoolRoles(input *SetIdentityPoolRolesInput)
 
 const opUnlinkDeveloperIdentity = "UnlinkDeveloperIdentity"
 
-// UnlinkDeveloperIdentityRequest generates a request for the UnlinkDeveloperIdentity operation.
+// UnlinkDeveloperIdentityRequest generates a "aws/request.Request" representing the
+// client's request for the UnlinkDeveloperIdentity operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UnlinkDeveloperIdentity method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UnlinkDeveloperIdentityRequest method.
+//    req, resp := client.UnlinkDeveloperIdentityRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoIdentity) UnlinkDeveloperIdentityRequest(input *UnlinkDeveloperIdentityInput) (req *request.Request, output *UnlinkDeveloperIdentityOutput) {
 	op := &request.Operation{
 		Name:       opUnlinkDeveloperIdentity,
@@ -530,7 +866,28 @@ func (c *CognitoIdentity) UnlinkDeveloperIdentity(input *UnlinkDeveloperIdentity
 
 const opUnlinkIdentity = "UnlinkIdentity"
 
-// UnlinkIdentityRequest generates a request for the UnlinkIdentity operation.
+// UnlinkIdentityRequest generates a "aws/request.Request" representing the
+// client's request for the UnlinkIdentity operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UnlinkIdentity method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UnlinkIdentityRequest method.
+//    req, resp := client.UnlinkIdentityRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoIdentity) UnlinkIdentityRequest(input *UnlinkIdentityInput) (req *request.Request, output *UnlinkIdentityOutput) {
 	op := &request.Operation{
 		Name:       opUnlinkIdentity,
@@ -563,7 +920,28 @@ func (c *CognitoIdentity) UnlinkIdentity(input *UnlinkIdentityInput) (*UnlinkIde
 
 const opUpdateIdentityPool = "UpdateIdentityPool"
 
-// UpdateIdentityPoolRequest generates a request for the UpdateIdentityPool operation.
+// UpdateIdentityPoolRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateIdentityPool operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateIdentityPool method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateIdentityPoolRequest method.
+//    req, resp := client.UpdateIdentityPoolRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CognitoIdentity) UpdateIdentityPoolRequest(input *IdentityPool) (req *request.Request, output *IdentityPool) {
 	op := &request.Operation{
 		Name:       opUpdateIdentityPool,
@@ -597,7 +975,7 @@ type CreateIdentityPoolInput struct {
 	// TRUE if the identity pool supports unauthenticated logins.
 	AllowUnauthenticatedIdentities *bool `type:"boolean" required:"true"`
 
-	// A list representing a Cognito User Identity Pool and its client ID.
+	// An array of Amazon Cognito Identity user pools.
 	CognitoIdentityProviders []*Provider `type:"list"`
 
 	// The "domain" by which Cognito will refer to your users. This name acts as
@@ -614,6 +992,10 @@ type CreateIdentityPoolInput struct {
 
 	// A list of OpendID Connect provider ARNs.
 	OpenIdConnectProviderARNs []*string `type:"list"`
+
+	// An array of Amazon Resource Names (ARNs) of the SAML provider for your identity
+	// pool.
+	SamlProviderARNs []*string `type:"list"`
 
 	// Optional key:value pairs mapping provider names to provider app IDs.
 	SupportedLoginProviders map[string]*string `type:"map"`
@@ -861,6 +1243,12 @@ func (s *DescribeIdentityPoolInput) Validate() error {
 type GetCredentialsForIdentityInput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the role to be assumed when multiple roles
+	// were received in the token from the identity provider. For example, a SAML-based
+	// identity provider. This parameter is optional for identity providers that
+	// do not support role customization.
+	CustomRoleArn *string `min:"20" type:"string"`
+
 	// A unique identifier in the format REGION:GUID.
 	IdentityId *string `min:"1" type:"string" required:"true"`
 
@@ -881,6 +1269,9 @@ func (s GetCredentialsForIdentityInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GetCredentialsForIdentityInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetCredentialsForIdentityInput"}
+	if s.CustomRoleArn != nil && len(*s.CustomRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomRoleArn", 20))
+	}
 	if s.IdentityId == nil {
 		invalidParams.Add(request.NewErrParamRequired("IdentityId"))
 	}
@@ -928,7 +1319,6 @@ type GetIdInput struct {
 	// A set of optional name-value pairs that map provider names to provider tokens.
 	//
 	// The available provider names for Logins are as follows:  Facebook: graph.facebook.com
-	// Amazon Cognito Identity Provider: cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789
 	// Google: accounts.google.com Amazon: www.amazon.com Twitter: api.twitter.com
 	// Digits: www.digits.com
 	Logins map[string]*string `type:"map"`
@@ -1134,9 +1524,8 @@ type GetOpenIdTokenInput struct {
 
 	// A set of optional name-value pairs that map provider names to provider tokens.
 	// When using graph.facebook.com and www.amazon.com, supply the access_token
-	// returned from the provider's authflow. For accounts.google.com, an Amazon
-	// Cognito Identity Provider, or any other OpenId Connect provider, always include
-	// the id_token.
+	// returned from the provider's authflow. For accounts.google.com or any other
+	// OpenId Connect provider, always include the id_token.
 	Logins map[string]*string `type:"map"`
 }
 
@@ -1222,7 +1611,7 @@ type IdentityPool struct {
 	// TRUE if the identity pool supports unauthenticated logins.
 	AllowUnauthenticatedIdentities *bool `type:"boolean" required:"true"`
 
-	// A list representing a Cognito User Identity Pool and its client ID.
+	// A list representing an Amazon Cognito Identity User Pool and its client ID.
 	CognitoIdentityProviders []*Provider `type:"list"`
 
 	// The "domain" by which Cognito will refer to your users.
@@ -1236,6 +1625,10 @@ type IdentityPool struct {
 
 	// A list of OpendID Connect provider ARNs.
 	OpenIdConnectProviderARNs []*string `type:"list"`
+
+	// An array of Amazon Resource Names (ARNs) of the SAML provider for your identity
+	// pool.
+	SamlProviderARNs []*string `type:"list"`
 
 	// Optional key:value pairs mapping provider names to provider app IDs.
 	SupportedLoginProviders map[string]*string `type:"map"`
@@ -1628,14 +2021,16 @@ func (s MergeDeveloperIdentitiesOutput) GoString() string {
 	return s.String()
 }
 
-// A provider representing a Cognito User Identity Pool and its client ID.
+// A provider representing an Amazon Cognito Identity User Pool and its client
+// ID.
 type Provider struct {
 	_ struct{} `type:"structure"`
 
-	// The client ID for the Cognito User Identity Pool.
+	// The client ID for the Amazon Cognito Identity User Pool.
 	ClientId *string `min:"1" type:"string"`
 
-	// The provider name for a Cognito User Identity Pool. For example, cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789.
+	// The provider name for an Amazon Cognito Identity User Pool. For example,
+	// cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789.
 	ProviderName *string `min:"1" type:"string"`
 }
 

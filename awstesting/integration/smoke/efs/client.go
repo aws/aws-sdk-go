@@ -1,3 +1,5 @@
+// +build integration
+
 //Package efs provides gucumber integration tests support.
 package efs
 

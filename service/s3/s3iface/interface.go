@@ -172,6 +172,8 @@ type S3API interface {
 
 	ListObjectsV2(*s3.ListObjectsV2Input) (*s3.ListObjectsV2Output, error)
 
+	ListObjectsV2Pages(*s3.ListObjectsV2Input, func(*s3.ListObjectsV2Output, bool) bool) error
+
 	ListPartsRequest(*s3.ListPartsInput) (*request.Request, *s3.ListPartsOutput)
 
 	ListParts(*s3.ListPartsInput) (*s3.ListPartsOutput, error)

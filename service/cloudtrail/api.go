@@ -13,7 +13,28 @@ import (
 
 const opAddTags = "AddTags"
 
-// AddTagsRequest generates a request for the AddTags operation.
+// AddTagsRequest generates a "aws/request.Request" representing the
+// client's request for the AddTags operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AddTags method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AddTagsRequest method.
+//    req, resp := client.AddTagsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudTrail) AddTagsRequest(input *AddTagsInput) (req *request.Request, output *AddTagsOutput) {
 	op := &request.Operation{
 		Name:       opAddTags,
@@ -45,7 +66,28 @@ func (c *CloudTrail) AddTags(input *AddTagsInput) (*AddTagsOutput, error) {
 
 const opCreateTrail = "CreateTrail"
 
-// CreateTrailRequest generates a request for the CreateTrail operation.
+// CreateTrailRequest generates a "aws/request.Request" representing the
+// client's request for the CreateTrail operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateTrail method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateTrailRequest method.
+//    req, resp := client.CreateTrailRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudTrail) CreateTrailRequest(input *CreateTrailInput) (req *request.Request, output *CreateTrailOutput) {
 	op := &request.Operation{
 		Name:       opCreateTrail,
@@ -74,7 +116,28 @@ func (c *CloudTrail) CreateTrail(input *CreateTrailInput) (*CreateTrailOutput, e
 
 const opDeleteTrail = "DeleteTrail"
 
-// DeleteTrailRequest generates a request for the DeleteTrail operation.
+// DeleteTrailRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteTrail operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteTrail method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteTrailRequest method.
+//    req, resp := client.DeleteTrailRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudTrail) DeleteTrailRequest(input *DeleteTrailInput) (req *request.Request, output *DeleteTrailOutput) {
 	op := &request.Operation{
 		Name:       opDeleteTrail,
@@ -103,7 +166,28 @@ func (c *CloudTrail) DeleteTrail(input *DeleteTrailInput) (*DeleteTrailOutput, e
 
 const opDescribeTrails = "DescribeTrails"
 
-// DescribeTrailsRequest generates a request for the DescribeTrails operation.
+// DescribeTrailsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeTrails operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeTrails method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeTrailsRequest method.
+//    req, resp := client.DescribeTrailsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudTrail) DescribeTrailsRequest(input *DescribeTrailsInput) (req *request.Request, output *DescribeTrailsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeTrails,
@@ -131,7 +215,28 @@ func (c *CloudTrail) DescribeTrails(input *DescribeTrailsInput) (*DescribeTrails
 
 const opGetTrailStatus = "GetTrailStatus"
 
-// GetTrailStatusRequest generates a request for the GetTrailStatus operation.
+// GetTrailStatusRequest generates a "aws/request.Request" representing the
+// client's request for the GetTrailStatus operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetTrailStatus method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetTrailStatusRequest method.
+//    req, resp := client.GetTrailStatusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudTrail) GetTrailStatusRequest(input *GetTrailStatusInput) (req *request.Request, output *GetTrailStatusOutput) {
 	op := &request.Operation{
 		Name:       opGetTrailStatus,
@@ -162,7 +267,28 @@ func (c *CloudTrail) GetTrailStatus(input *GetTrailStatusInput) (*GetTrailStatus
 
 const opListPublicKeys = "ListPublicKeys"
 
-// ListPublicKeysRequest generates a request for the ListPublicKeys operation.
+// ListPublicKeysRequest generates a "aws/request.Request" representing the
+// client's request for the ListPublicKeys operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListPublicKeys method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListPublicKeysRequest method.
+//    req, resp := client.ListPublicKeysRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudTrail) ListPublicKeysRequest(input *ListPublicKeysInput) (req *request.Request, output *ListPublicKeysOutput) {
 	op := &request.Operation{
 		Name:       opListPublicKeys,
@@ -196,7 +322,28 @@ func (c *CloudTrail) ListPublicKeys(input *ListPublicKeysInput) (*ListPublicKeys
 
 const opListTags = "ListTags"
 
-// ListTagsRequest generates a request for the ListTags operation.
+// ListTagsRequest generates a "aws/request.Request" representing the
+// client's request for the ListTags operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListTags method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListTagsRequest method.
+//    req, resp := client.ListTagsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudTrail) ListTagsRequest(input *ListTagsInput) (req *request.Request, output *ListTagsOutput) {
 	op := &request.Operation{
 		Name:       opListTags,
@@ -223,7 +370,28 @@ func (c *CloudTrail) ListTags(input *ListTagsInput) (*ListTagsOutput, error) {
 
 const opLookupEvents = "LookupEvents"
 
-// LookupEventsRequest generates a request for the LookupEvents operation.
+// LookupEventsRequest generates a "aws/request.Request" representing the
+// client's request for the LookupEvents operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the LookupEvents method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the LookupEventsRequest method.
+//    req, resp := client.LookupEventsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudTrail) LookupEventsRequest(input *LookupEventsInput) (req *request.Request, output *LookupEventsOutput) {
 	op := &request.Operation{
 		Name:       opLookupEvents,
@@ -265,7 +433,28 @@ func (c *CloudTrail) LookupEvents(input *LookupEventsInput) (*LookupEventsOutput
 
 const opRemoveTags = "RemoveTags"
 
-// RemoveTagsRequest generates a request for the RemoveTags operation.
+// RemoveTagsRequest generates a "aws/request.Request" representing the
+// client's request for the RemoveTags operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RemoveTags method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RemoveTagsRequest method.
+//    req, resp := client.RemoveTagsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudTrail) RemoveTagsRequest(input *RemoveTagsInput) (req *request.Request, output *RemoveTagsOutput) {
 	op := &request.Operation{
 		Name:       opRemoveTags,
@@ -292,7 +481,28 @@ func (c *CloudTrail) RemoveTags(input *RemoveTagsInput) (*RemoveTagsOutput, erro
 
 const opStartLogging = "StartLogging"
 
-// StartLoggingRequest generates a request for the StartLogging operation.
+// StartLoggingRequest generates a "aws/request.Request" representing the
+// client's request for the StartLogging operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the StartLogging method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the StartLoggingRequest method.
+//    req, resp := client.StartLoggingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudTrail) StartLoggingRequest(input *StartLoggingInput) (req *request.Request, output *StartLoggingOutput) {
 	op := &request.Operation{
 		Name:       opStartLogging,
@@ -323,7 +533,28 @@ func (c *CloudTrail) StartLogging(input *StartLoggingInput) (*StartLoggingOutput
 
 const opStopLogging = "StopLogging"
 
-// StopLoggingRequest generates a request for the StopLogging operation.
+// StopLoggingRequest generates a "aws/request.Request" representing the
+// client's request for the StopLogging operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the StopLogging method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the StopLoggingRequest method.
+//    req, resp := client.StopLoggingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudTrail) StopLoggingRequest(input *StopLoggingInput) (req *request.Request, output *StopLoggingOutput) {
 	op := &request.Operation{
 		Name:       opStopLogging,
@@ -356,7 +587,28 @@ func (c *CloudTrail) StopLogging(input *StopLoggingInput) (*StopLoggingOutput, e
 
 const opUpdateTrail = "UpdateTrail"
 
-// UpdateTrailRequest generates a request for the UpdateTrail operation.
+// UpdateTrailRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateTrail operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateTrail method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateTrailRequest method.
+//    req, resp := client.UpdateTrailRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudTrail) UpdateTrailRequest(input *UpdateTrailInput) (req *request.Request, output *UpdateTrailOutput) {
 	op := &request.Operation{
 		Name:       opUpdateTrail,
@@ -601,8 +853,7 @@ type CreateTrailOutput struct {
 	//  arn:aws:sns:us-east-1:123456789012:MyTopic
 	SnsTopicARN *string `type:"string"`
 
-	// Specifies the name of the Amazon SNS topic that CloudTrail uses to send notifications
-	// when log files are delivered.
+	// This field is deprecated. Use SnsTopicARN.
 	SnsTopicName *string `deprecated:"true" type:"string"`
 
 	// Specifies the ARN of the trail that was created. The format of a trail ARN
@@ -1459,8 +1710,7 @@ type Trail struct {
 	//  arn:aws:sns:us-east-1:123456789012:MyTopic
 	SnsTopicARN *string `type:"string"`
 
-	// Specifies the name of the Amazon SNS topic that CloudTrail uses to send notifications
-	// when log files are delivered.
+	// This field is deprecated. Use SnsTopicARN.
 	SnsTopicName *string `deprecated:"true" type:"string"`
 
 	// Specifies the ARN of the trail. The format of a trail ARN is:
@@ -1636,8 +1886,7 @@ type UpdateTrailOutput struct {
 	//  arn:aws:sns:us-east-1:123456789012:MyTopic
 	SnsTopicARN *string `type:"string"`
 
-	// Specifies the name of the Amazon SNS topic that CloudTrail uses to send notifications
-	// when log files are delivered.
+	// This field is deprecated. Use SnsTopicARN.
 	SnsTopicName *string `deprecated:"true" type:"string"`
 
 	// Specifies the ARN of the trail that was updated. The format of a trail ARN

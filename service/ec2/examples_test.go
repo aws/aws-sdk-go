@@ -2196,6 +2196,26 @@ func ExampleEC2_DescribeIdFormat() {
 	fmt.Println(resp)
 }
 
+func ExampleEC2_DescribeIdentityIdFormat() {
+	svc := ec2.New(session.New())
+
+	params := &ec2.DescribeIdentityIdFormatInput{
+		PrincipalArn: aws.String("String"), // Required
+		Resource:     aws.String("String"),
+	}
+	resp, err := svc.DescribeIdentityIdFormat(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleEC2_DescribeImageAttribute() {
 	svc := ec2.New(session.New())
 
@@ -4320,6 +4340,27 @@ func ExampleEC2_ModifyIdFormat() {
 	fmt.Println(resp)
 }
 
+func ExampleEC2_ModifyIdentityIdFormat() {
+	svc := ec2.New(session.New())
+
+	params := &ec2.ModifyIdentityIdFormatInput{
+		PrincipalArn: aws.String("String"), // Required
+		Resource:     aws.String("String"), // Required
+		UseLongIds:   aws.Bool(true),       // Required
+	}
+	resp, err := svc.ModifyIdentityIdFormat(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleEC2_ModifyImageAttribute() {
 	svc := ec2.New(session.New())
 
@@ -4397,6 +4438,9 @@ func ExampleEC2_ModifyInstanceAttribute() {
 		},
 		DryRun: aws.Bool(true),
 		EbsOptimized: &ec2.AttributeBooleanValue{
+			Value: aws.Bool(true),
+		},
+		EnaSupport: &ec2.AttributeBooleanValue{
 			Value: aws.Bool(true),
 		},
 		Groups: []*string{
@@ -4864,6 +4908,7 @@ func ExampleEC2_RegisterImage() {
 		},
 		Description:        aws.String("String"),
 		DryRun:             aws.Bool(true),
+		EnaSupport:         aws.Bool(true),
 		ImageLocation:      aws.String("String"),
 		KernelId:           aws.String("String"),
 		RamdiskId:          aws.String("String"),

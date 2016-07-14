@@ -2,6 +2,8 @@ package awstesting
 
 import (
 	"io"
+
+	"github.com/aws/aws-sdk-go/private/util"
 )
 
 // ZeroReader is a io.Reader which will always write zeros to the byte slice provided.
@@ -57,4 +59,9 @@ func (r *ReadCloser) Read(b []byte) (int, error) {
 func (r *ReadCloser) Close() error {
 	r.Closed = true
 	return nil
+}
+
+// SortedKeys returns a sorted slice of keys of a map.
+func SortedKeys(m map[string]interface{}) []string {
+	return util.SortedKeys(m)
 }

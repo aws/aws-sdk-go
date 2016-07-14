@@ -23,6 +23,17 @@
         {"shape":"ResourceInUseException"}
       ]
     },
+    "DeleteConfigurationRecorder":{
+      "name":"DeleteConfigurationRecorder",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteConfigurationRecorderRequest"},
+      "errors":[
+        {"shape":"NoSuchConfigurationRecorderException"}
+      ]
+    },
     "DeleteDeliveryChannel":{
       "name":"DeleteDeliveryChannel",
       "http":{
@@ -236,7 +247,8 @@
         {"shape":"InvalidParameterValueException"},
         {"shape":"MaxNumberOfConfigRulesExceededException"},
         {"shape":"ResourceInUseException"},
-        {"shape":"InsufficientPermissionsException"}
+        {"shape":"InsufficientPermissionsException"},
+        {"shape":"NoAvailableConfigurationRecorderException"}
       ]
     },
     "PutConfigurationRecorder":{
@@ -560,6 +572,13 @@
       "required":["ConfigRuleName"],
       "members":{
         "ConfigRuleName":{"shape":"StringWithCharLimit64"}
+      }
+    },
+    "DeleteConfigurationRecorderRequest":{
+      "type":"structure",
+      "required":["ConfigurationRecorderName"],
+      "members":{
+        "ConfigurationRecorderName":{"shape":"RecorderName"}
       }
     },
     "DeleteDeliveryChannelRequest":{

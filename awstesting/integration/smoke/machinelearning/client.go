@@ -1,3 +1,5 @@
+// +build integration
+
 //Package machinelearning provides gucumber integration tests support.
 package machinelearning
 

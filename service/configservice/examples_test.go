@@ -34,6 +34,25 @@ func ExampleConfigService_DeleteConfigRule() {
 	fmt.Println(resp)
 }
 
+func ExampleConfigService_DeleteConfigurationRecorder() {
+	svc := configservice.New(session.New())
+
+	params := &configservice.DeleteConfigurationRecorderInput{
+		ConfigurationRecorderName: aws.String("RecorderName"), // Required
+	}
+	resp, err := svc.DeleteConfigurationRecorder(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleConfigService_DeleteDeliveryChannel() {
 	svc := configservice.New(session.New())
 

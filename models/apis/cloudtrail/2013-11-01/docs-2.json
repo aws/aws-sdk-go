@@ -224,8 +224,13 @@
       "refs": {
       }
     },
+    "KmsException": {
+      "base": "<p>This exception is thrown when there is an issue with the specified KMS key and the trail can’t be updated.</p>",
+      "refs": {
+      }
+    },
     "KmsKeyDisabledException": {
-      "base": "<p>This exception is thrown when the KMS key is disabled.</p>",
+      "base": "<p>This exception is deprecated.</p>",
       "refs": {
       }
     },
@@ -406,7 +411,7 @@
         "CreateTrailResponse$Name": "<p>Specifies the name of the trail.</p>",
         "CreateTrailResponse$S3BucketName": "<p>Specifies the name of the Amazon S3 bucket designated for publishing log files.</p>",
         "CreateTrailResponse$S3KeyPrefix": "<p>Specifies the Amazon S3 key prefix that comes after the name of the bucket you have designated for log file delivery. For more information, see <a href=\"http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-find-log-files.html\">Finding Your CloudTrail Log Files</a>.</p>",
-        "CreateTrailResponse$SnsTopicName": "<p>Specifies the name of the Amazon SNS topic that CloudTrail uses to send notifications when log files are delivered.</p>",
+        "CreateTrailResponse$SnsTopicName": "<p>This field is deprecated. Use SnsTopicARN.</p>",
         "CreateTrailResponse$SnsTopicARN": "<p>Specifies the ARN of the Amazon SNS topic that CloudTrail uses to send notifications when log files are delivered. The format of a topic ARN is:</p> <p> <code>arn:aws:sns:us-east-1:123456789012:MyTopic</code> </p>",
         "CreateTrailResponse$TrailARN": "<p>Specifies the ARN of the trail that was created. The format of a trail ARN is:</p> <p> <code>arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail</code> </p>",
         "CreateTrailResponse$CloudWatchLogsLogGroupArn": "<p>Specifies the Amazon Resource Name (ARN) of the log group to which CloudTrail logs will be delivered.</p>",
@@ -446,7 +451,7 @@
         "Trail$Name": "<p>Name of the trail set by calling <a>CreateTrail</a>. The maximum length is 128 characters.</p>",
         "Trail$S3BucketName": "<p>Name of the Amazon S3 bucket into which CloudTrail delivers your trail files. See <a href=\"http://docs.aws.amazon.com/awscloudtrail/latest/userguide/create_trail_naming_policy.html\">Amazon S3 Bucket Naming Requirements</a>.</p>",
         "Trail$S3KeyPrefix": "<p>Specifies the Amazon S3 key prefix that comes after the name of the bucket you have designated for log file delivery. For more information, see <a href=\"http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-find-log-files.html\">Finding Your CloudTrail Log Files</a>.The maximum length is 200 characters.</p>",
-        "Trail$SnsTopicName": "<p>Specifies the name of the Amazon SNS topic that CloudTrail uses to send notifications when log files are delivered.</p>",
+        "Trail$SnsTopicName": "<p>This field is deprecated. Use SnsTopicARN.</p>",
         "Trail$SnsTopicARN": "<p>Specifies the ARN of the Amazon SNS topic that CloudTrail uses to send notifications when log files are delivered. The format of a topic ARN is:</p> <p> <code>arn:aws:sns:us-east-1:123456789012:MyTopic</code> </p>",
         "Trail$HomeRegion": "<p>The region in which the trail was created.</p>",
         "Trail$TrailARN": "<p>Specifies the ARN of the trail. The format of a trail ARN is:</p> <p> <code>arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail</code> </p>",
@@ -464,7 +469,7 @@
         "UpdateTrailResponse$Name": "<p>Specifies the name of the trail.</p>",
         "UpdateTrailResponse$S3BucketName": "<p>Specifies the name of the Amazon S3 bucket designated for publishing log files.</p>",
         "UpdateTrailResponse$S3KeyPrefix": "<p>Specifies the Amazon S3 key prefix that comes after the name of the bucket you have designated for log file delivery. For more information, see <a href=\"http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-find-log-files.html\">Finding Your CloudTrail Log Files</a>.</p>",
-        "UpdateTrailResponse$SnsTopicName": "<p>Specifies the name of the Amazon SNS topic that CloudTrail uses to send notifications when log files are delivered.</p>",
+        "UpdateTrailResponse$SnsTopicName": "<p>This field is deprecated. Use SnsTopicARN.</p>",
         "UpdateTrailResponse$SnsTopicARN": "<p>Specifies the ARN of the Amazon SNS topic that CloudTrail uses to send notifications when log files are delivered. The format of a topic ARN is:</p> <p> <code>arn:aws:sns:us-east-1:123456789012:MyTopic</code> </p>",
         "UpdateTrailResponse$TrailARN": "<p>Specifies the ARN of the trail that was updated. The format of a trail ARN is:</p> <p> <code>arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail</code> </p>",
         "UpdateTrailResponse$CloudWatchLogsLogGroupArn": "<p>Specifies the Amazon Resource Name (ARN) of the log group to which CloudTrail logs will be delivered.</p>",

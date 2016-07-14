@@ -1,3 +1,5 @@
+// +build integration
+
 //Package swf provides gucumber integration tests support.
 package swf
 

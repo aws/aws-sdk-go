@@ -19,7 +19,8 @@ func ExampleEFS_CreateFileSystem() {
 	svc := efs.New(session.New())
 
 	params := &efs.CreateFileSystemInput{
-		CreationToken: aws.String("CreationToken"), // Required
+		CreationToken:   aws.String("CreationToken"), // Required
+		PerformanceMode: aws.String("PerformanceMode"),
 	}
 	resp, err := svc.CreateFileSystem(params)
 

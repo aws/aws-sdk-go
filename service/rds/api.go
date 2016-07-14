@@ -15,7 +15,28 @@ import (
 
 const opAddSourceIdentifierToSubscription = "AddSourceIdentifierToSubscription"
 
-// AddSourceIdentifierToSubscriptionRequest generates a request for the AddSourceIdentifierToSubscription operation.
+// AddSourceIdentifierToSubscriptionRequest generates a "aws/request.Request" representing the
+// client's request for the AddSourceIdentifierToSubscription operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AddSourceIdentifierToSubscription method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AddSourceIdentifierToSubscriptionRequest method.
+//    req, resp := client.AddSourceIdentifierToSubscriptionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) AddSourceIdentifierToSubscriptionRequest(input *AddSourceIdentifierToSubscriptionInput) (req *request.Request, output *AddSourceIdentifierToSubscriptionOutput) {
 	op := &request.Operation{
 		Name:       opAddSourceIdentifierToSubscription,
@@ -42,7 +63,28 @@ func (c *RDS) AddSourceIdentifierToSubscription(input *AddSourceIdentifierToSubs
 
 const opAddTagsToResource = "AddTagsToResource"
 
-// AddTagsToResourceRequest generates a request for the AddTagsToResource operation.
+// AddTagsToResourceRequest generates a "aws/request.Request" representing the
+// client's request for the AddTagsToResource operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AddTagsToResource method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AddTagsToResourceRequest method.
+//    req, resp := client.AddTagsToResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *request.Request, output *AddTagsToResourceOutput) {
 	op := &request.Operation{
 		Name:       opAddTagsToResource,
@@ -76,7 +118,28 @@ func (c *RDS) AddTagsToResource(input *AddTagsToResourceInput) (*AddTagsToResour
 
 const opApplyPendingMaintenanceAction = "ApplyPendingMaintenanceAction"
 
-// ApplyPendingMaintenanceActionRequest generates a request for the ApplyPendingMaintenanceAction operation.
+// ApplyPendingMaintenanceActionRequest generates a "aws/request.Request" representing the
+// client's request for the ApplyPendingMaintenanceAction operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ApplyPendingMaintenanceAction method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ApplyPendingMaintenanceActionRequest method.
+//    req, resp := client.ApplyPendingMaintenanceActionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) ApplyPendingMaintenanceActionRequest(input *ApplyPendingMaintenanceActionInput) (req *request.Request, output *ApplyPendingMaintenanceActionOutput) {
 	op := &request.Operation{
 		Name:       opApplyPendingMaintenanceAction,
@@ -104,7 +167,28 @@ func (c *RDS) ApplyPendingMaintenanceAction(input *ApplyPendingMaintenanceAction
 
 const opAuthorizeDBSecurityGroupIngress = "AuthorizeDBSecurityGroupIngress"
 
-// AuthorizeDBSecurityGroupIngressRequest generates a request for the AuthorizeDBSecurityGroupIngress operation.
+// AuthorizeDBSecurityGroupIngressRequest generates a "aws/request.Request" representing the
+// client's request for the AuthorizeDBSecurityGroupIngress operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AuthorizeDBSecurityGroupIngress method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AuthorizeDBSecurityGroupIngressRequest method.
+//    req, resp := client.AuthorizeDBSecurityGroupIngressRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) AuthorizeDBSecurityGroupIngressRequest(input *AuthorizeDBSecurityGroupIngressInput) (req *request.Request, output *AuthorizeDBSecurityGroupIngressOutput) {
 	op := &request.Operation{
 		Name:       opAuthorizeDBSecurityGroupIngress,
@@ -141,9 +225,78 @@ func (c *RDS) AuthorizeDBSecurityGroupIngress(input *AuthorizeDBSecurityGroupIng
 	return out, err
 }
 
+const opCopyDBClusterParameterGroup = "CopyDBClusterParameterGroup"
+
+// CopyDBClusterParameterGroupRequest generates a "aws/request.Request" representing the
+// client's request for the CopyDBClusterParameterGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CopyDBClusterParameterGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CopyDBClusterParameterGroupRequest method.
+//    req, resp := client.CopyDBClusterParameterGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *RDS) CopyDBClusterParameterGroupRequest(input *CopyDBClusterParameterGroupInput) (req *request.Request, output *CopyDBClusterParameterGroupOutput) {
+	op := &request.Operation{
+		Name:       opCopyDBClusterParameterGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CopyDBClusterParameterGroupInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &CopyDBClusterParameterGroupOutput{}
+	req.Data = output
+	return
+}
+
+// Copies the specified DB cluster parameter group.
+func (c *RDS) CopyDBClusterParameterGroup(input *CopyDBClusterParameterGroupInput) (*CopyDBClusterParameterGroupOutput, error) {
+	req, out := c.CopyDBClusterParameterGroupRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opCopyDBClusterSnapshot = "CopyDBClusterSnapshot"
 
-// CopyDBClusterSnapshotRequest generates a request for the CopyDBClusterSnapshot operation.
+// CopyDBClusterSnapshotRequest generates a "aws/request.Request" representing the
+// client's request for the CopyDBClusterSnapshot operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CopyDBClusterSnapshot method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CopyDBClusterSnapshotRequest method.
+//    req, resp := client.CopyDBClusterSnapshotRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) CopyDBClusterSnapshotRequest(input *CopyDBClusterSnapshotInput) (req *request.Request, output *CopyDBClusterSnapshotOutput) {
 	op := &request.Operation{
 		Name:       opCopyDBClusterSnapshot,
@@ -172,7 +325,28 @@ func (c *RDS) CopyDBClusterSnapshot(input *CopyDBClusterSnapshotInput) (*CopyDBC
 
 const opCopyDBParameterGroup = "CopyDBParameterGroup"
 
-// CopyDBParameterGroupRequest generates a request for the CopyDBParameterGroup operation.
+// CopyDBParameterGroupRequest generates a "aws/request.Request" representing the
+// client's request for the CopyDBParameterGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CopyDBParameterGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CopyDBParameterGroupRequest method.
+//    req, resp := client.CopyDBParameterGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) CopyDBParameterGroupRequest(input *CopyDBParameterGroupInput) (req *request.Request, output *CopyDBParameterGroupOutput) {
 	op := &request.Operation{
 		Name:       opCopyDBParameterGroup,
@@ -199,7 +373,28 @@ func (c *RDS) CopyDBParameterGroup(input *CopyDBParameterGroupInput) (*CopyDBPar
 
 const opCopyDBSnapshot = "CopyDBSnapshot"
 
-// CopyDBSnapshotRequest generates a request for the CopyDBSnapshot operation.
+// CopyDBSnapshotRequest generates a "aws/request.Request" representing the
+// client's request for the CopyDBSnapshot operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CopyDBSnapshot method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CopyDBSnapshotRequest method.
+//    req, resp := client.CopyDBSnapshotRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) CopyDBSnapshotRequest(input *CopyDBSnapshotInput) (req *request.Request, output *CopyDBSnapshotOutput) {
 	op := &request.Operation{
 		Name:       opCopyDBSnapshot,
@@ -230,7 +425,28 @@ func (c *RDS) CopyDBSnapshot(input *CopyDBSnapshotInput) (*CopyDBSnapshotOutput,
 
 const opCopyOptionGroup = "CopyOptionGroup"
 
-// CopyOptionGroupRequest generates a request for the CopyOptionGroup operation.
+// CopyOptionGroupRequest generates a "aws/request.Request" representing the
+// client's request for the CopyOptionGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CopyOptionGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CopyOptionGroupRequest method.
+//    req, resp := client.CopyOptionGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) CopyOptionGroupRequest(input *CopyOptionGroupInput) (req *request.Request, output *CopyOptionGroupOutput) {
 	op := &request.Operation{
 		Name:       opCopyOptionGroup,
@@ -257,7 +473,28 @@ func (c *RDS) CopyOptionGroup(input *CopyOptionGroupInput) (*CopyOptionGroupOutp
 
 const opCreateDBCluster = "CreateDBCluster"
 
-// CreateDBClusterRequest generates a request for the CreateDBCluster operation.
+// CreateDBClusterRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDBCluster operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateDBCluster method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateDBClusterRequest method.
+//    req, resp := client.CreateDBClusterRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) CreateDBClusterRequest(input *CreateDBClusterInput) (req *request.Request, output *CreateDBClusterOutput) {
 	op := &request.Operation{
 		Name:       opCreateDBCluster,
@@ -290,7 +527,28 @@ func (c *RDS) CreateDBCluster(input *CreateDBClusterInput) (*CreateDBClusterOutp
 
 const opCreateDBClusterParameterGroup = "CreateDBClusterParameterGroup"
 
-// CreateDBClusterParameterGroupRequest generates a request for the CreateDBClusterParameterGroup operation.
+// CreateDBClusterParameterGroupRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDBClusterParameterGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateDBClusterParameterGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateDBClusterParameterGroupRequest method.
+//    req, resp := client.CreateDBClusterParameterGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) CreateDBClusterParameterGroupRequest(input *CreateDBClusterParameterGroupInput) (req *request.Request, output *CreateDBClusterParameterGroupOutput) {
 	op := &request.Operation{
 		Name:       opCreateDBClusterParameterGroup,
@@ -344,7 +602,28 @@ func (c *RDS) CreateDBClusterParameterGroup(input *CreateDBClusterParameterGroup
 
 const opCreateDBClusterSnapshot = "CreateDBClusterSnapshot"
 
-// CreateDBClusterSnapshotRequest generates a request for the CreateDBClusterSnapshot operation.
+// CreateDBClusterSnapshotRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDBClusterSnapshot operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateDBClusterSnapshot method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateDBClusterSnapshotRequest method.
+//    req, resp := client.CreateDBClusterSnapshotRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) CreateDBClusterSnapshotRequest(input *CreateDBClusterSnapshotInput) (req *request.Request, output *CreateDBClusterSnapshotOutput) {
 	op := &request.Operation{
 		Name:       opCreateDBClusterSnapshot,
@@ -373,7 +652,28 @@ func (c *RDS) CreateDBClusterSnapshot(input *CreateDBClusterSnapshotInput) (*Cre
 
 const opCreateDBInstance = "CreateDBInstance"
 
-// CreateDBInstanceRequest generates a request for the CreateDBInstance operation.
+// CreateDBInstanceRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDBInstance operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateDBInstance method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateDBInstanceRequest method.
+//    req, resp := client.CreateDBInstanceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) CreateDBInstanceRequest(input *CreateDBInstanceInput) (req *request.Request, output *CreateDBInstanceOutput) {
 	op := &request.Operation{
 		Name:       opCreateDBInstance,
@@ -400,7 +700,28 @@ func (c *RDS) CreateDBInstance(input *CreateDBInstanceInput) (*CreateDBInstanceO
 
 const opCreateDBInstanceReadReplica = "CreateDBInstanceReadReplica"
 
-// CreateDBInstanceReadReplicaRequest generates a request for the CreateDBInstanceReadReplica operation.
+// CreateDBInstanceReadReplicaRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDBInstanceReadReplica operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateDBInstanceReadReplica method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateDBInstanceReadReplicaRequest method.
+//    req, resp := client.CreateDBInstanceReadReplicaRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) CreateDBInstanceReadReplicaRequest(input *CreateDBInstanceReadReplicaInput) (req *request.Request, output *CreateDBInstanceReadReplicaOutput) {
 	op := &request.Operation{
 		Name:       opCreateDBInstanceReadReplica,
@@ -435,7 +756,28 @@ func (c *RDS) CreateDBInstanceReadReplica(input *CreateDBInstanceReadReplicaInpu
 
 const opCreateDBParameterGroup = "CreateDBParameterGroup"
 
-// CreateDBParameterGroupRequest generates a request for the CreateDBParameterGroup operation.
+// CreateDBParameterGroupRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDBParameterGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateDBParameterGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateDBParameterGroupRequest method.
+//    req, resp := client.CreateDBParameterGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) CreateDBParameterGroupRequest(input *CreateDBParameterGroupInput) (req *request.Request, output *CreateDBParameterGroupOutput) {
 	op := &request.Operation{
 		Name:       opCreateDBParameterGroup,
@@ -482,7 +824,28 @@ func (c *RDS) CreateDBParameterGroup(input *CreateDBParameterGroupInput) (*Creat
 
 const opCreateDBSecurityGroup = "CreateDBSecurityGroup"
 
-// CreateDBSecurityGroupRequest generates a request for the CreateDBSecurityGroup operation.
+// CreateDBSecurityGroupRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDBSecurityGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateDBSecurityGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateDBSecurityGroupRequest method.
+//    req, resp := client.CreateDBSecurityGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) CreateDBSecurityGroupRequest(input *CreateDBSecurityGroupInput) (req *request.Request, output *CreateDBSecurityGroupOutput) {
 	op := &request.Operation{
 		Name:       opCreateDBSecurityGroup,
@@ -510,7 +873,28 @@ func (c *RDS) CreateDBSecurityGroup(input *CreateDBSecurityGroupInput) (*CreateD
 
 const opCreateDBSnapshot = "CreateDBSnapshot"
 
-// CreateDBSnapshotRequest generates a request for the CreateDBSnapshot operation.
+// CreateDBSnapshotRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDBSnapshot operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateDBSnapshot method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateDBSnapshotRequest method.
+//    req, resp := client.CreateDBSnapshotRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) CreateDBSnapshotRequest(input *CreateDBSnapshotInput) (req *request.Request, output *CreateDBSnapshotOutput) {
 	op := &request.Operation{
 		Name:       opCreateDBSnapshot,
@@ -537,7 +921,28 @@ func (c *RDS) CreateDBSnapshot(input *CreateDBSnapshotInput) (*CreateDBSnapshotO
 
 const opCreateDBSubnetGroup = "CreateDBSubnetGroup"
 
-// CreateDBSubnetGroupRequest generates a request for the CreateDBSubnetGroup operation.
+// CreateDBSubnetGroupRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDBSubnetGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateDBSubnetGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateDBSubnetGroupRequest method.
+//    req, resp := client.CreateDBSubnetGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) CreateDBSubnetGroupRequest(input *CreateDBSubnetGroupInput) (req *request.Request, output *CreateDBSubnetGroupOutput) {
 	op := &request.Operation{
 		Name:       opCreateDBSubnetGroup,
@@ -565,7 +970,28 @@ func (c *RDS) CreateDBSubnetGroup(input *CreateDBSubnetGroupInput) (*CreateDBSub
 
 const opCreateEventSubscription = "CreateEventSubscription"
 
-// CreateEventSubscriptionRequest generates a request for the CreateEventSubscription operation.
+// CreateEventSubscriptionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateEventSubscription operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateEventSubscription method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateEventSubscriptionRequest method.
+//    req, resp := client.CreateEventSubscriptionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) CreateEventSubscriptionRequest(input *CreateEventSubscriptionInput) (req *request.Request, output *CreateEventSubscriptionOutput) {
 	op := &request.Operation{
 		Name:       opCreateEventSubscription,
@@ -610,7 +1036,28 @@ func (c *RDS) CreateEventSubscription(input *CreateEventSubscriptionInput) (*Cre
 
 const opCreateOptionGroup = "CreateOptionGroup"
 
-// CreateOptionGroupRequest generates a request for the CreateOptionGroup operation.
+// CreateOptionGroupRequest generates a "aws/request.Request" representing the
+// client's request for the CreateOptionGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateOptionGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateOptionGroupRequest method.
+//    req, resp := client.CreateOptionGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) CreateOptionGroupRequest(input *CreateOptionGroupInput) (req *request.Request, output *CreateOptionGroupOutput) {
 	op := &request.Operation{
 		Name:       opCreateOptionGroup,
@@ -637,7 +1084,28 @@ func (c *RDS) CreateOptionGroup(input *CreateOptionGroupInput) (*CreateOptionGro
 
 const opDeleteDBCluster = "DeleteDBCluster"
 
-// DeleteDBClusterRequest generates a request for the DeleteDBCluster operation.
+// DeleteDBClusterRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDBCluster operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteDBCluster method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteDBClusterRequest method.
+//    req, resp := client.DeleteDBClusterRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DeleteDBClusterRequest(input *DeleteDBClusterInput) (req *request.Request, output *DeleteDBClusterOutput) {
 	op := &request.Operation{
 		Name:       opDeleteDBCluster,
@@ -670,7 +1138,28 @@ func (c *RDS) DeleteDBCluster(input *DeleteDBClusterInput) (*DeleteDBClusterOutp
 
 const opDeleteDBClusterParameterGroup = "DeleteDBClusterParameterGroup"
 
-// DeleteDBClusterParameterGroupRequest generates a request for the DeleteDBClusterParameterGroup operation.
+// DeleteDBClusterParameterGroupRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDBClusterParameterGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteDBClusterParameterGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteDBClusterParameterGroupRequest method.
+//    req, resp := client.DeleteDBClusterParameterGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DeleteDBClusterParameterGroupRequest(input *DeleteDBClusterParameterGroupInput) (req *request.Request, output *DeleteDBClusterParameterGroupOutput) {
 	op := &request.Operation{
 		Name:       opDeleteDBClusterParameterGroup,
@@ -703,7 +1192,28 @@ func (c *RDS) DeleteDBClusterParameterGroup(input *DeleteDBClusterParameterGroup
 
 const opDeleteDBClusterSnapshot = "DeleteDBClusterSnapshot"
 
-// DeleteDBClusterSnapshotRequest generates a request for the DeleteDBClusterSnapshot operation.
+// DeleteDBClusterSnapshotRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDBClusterSnapshot operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteDBClusterSnapshot method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteDBClusterSnapshotRequest method.
+//    req, resp := client.DeleteDBClusterSnapshotRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DeleteDBClusterSnapshotRequest(input *DeleteDBClusterSnapshotInput) (req *request.Request, output *DeleteDBClusterSnapshotOutput) {
 	op := &request.Operation{
 		Name:       opDeleteDBClusterSnapshot,
@@ -736,7 +1246,28 @@ func (c *RDS) DeleteDBClusterSnapshot(input *DeleteDBClusterSnapshotInput) (*Del
 
 const opDeleteDBInstance = "DeleteDBInstance"
 
-// DeleteDBInstanceRequest generates a request for the DeleteDBInstance operation.
+// DeleteDBInstanceRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDBInstance operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteDBInstance method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteDBInstanceRequest method.
+//    req, resp := client.DeleteDBInstanceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DeleteDBInstanceRequest(input *DeleteDBInstanceInput) (req *request.Request, output *DeleteDBInstanceOutput) {
 	op := &request.Operation{
 		Name:       opDeleteDBInstance,
@@ -757,16 +1288,28 @@ func (c *RDS) DeleteDBInstanceRequest(input *DeleteDBInstanceInput) (req *reques
 // The DeleteDBInstance action deletes a previously provisioned DB instance.
 // When you delete a DB instance, all automated backups for that instance are
 // deleted and cannot be recovered. Manual DB snapshots of the DB instance to
-// be deleted are not deleted.
+// be deleted by DeleteDBInstance are not deleted.
 //
-//  If a final DB snapshot is requested the status of the RDS instance will
-// be deleting until the DB snapshot is created. The API action DescribeDBInstance
+//  If you request a final DB snapshot the status of the Amazon RDS DB instance
+// is deleting until the DB snapshot is created. The API action DescribeDBInstance
 // is used to monitor the status of this operation. The action cannot be canceled
 // or reverted once submitted.
 //
 // Note that when a DB instance is in a failure state and has a status of failed,
-// incompatible-restore, or incompatible-network, it can only be deleted when
+// incompatible-restore, or incompatible-network, you can only delete it when
 // the SkipFinalSnapshot parameter is set to true.
+//
+// If the specified DB instance is part of an Amazon Aurora DB cluster, you
+// cannot delete the DB instance if the following are true:
+//
+//   The DB cluster is a Read Replica of another Amazon Aurora DB cluster.
+//
+//   The DB instance is the only instance in the DB cluster.
+//
+//   To delete a DB instance in this case, first call the PromoteReadReplicaDBCluster
+// API action to promote the DB cluster so it's no longer a Read Replica. After
+// the promotion completes, then call the DeleteDBInstance API action to delete
+// the final instance in the DB cluster.
 func (c *RDS) DeleteDBInstance(input *DeleteDBInstanceInput) (*DeleteDBInstanceOutput, error) {
 	req, out := c.DeleteDBInstanceRequest(input)
 	err := req.Send()
@@ -775,7 +1318,28 @@ func (c *RDS) DeleteDBInstance(input *DeleteDBInstanceInput) (*DeleteDBInstanceO
 
 const opDeleteDBParameterGroup = "DeleteDBParameterGroup"
 
-// DeleteDBParameterGroupRequest generates a request for the DeleteDBParameterGroup operation.
+// DeleteDBParameterGroupRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDBParameterGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteDBParameterGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteDBParameterGroupRequest method.
+//    req, resp := client.DeleteDBParameterGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DeleteDBParameterGroupRequest(input *DeleteDBParameterGroupInput) (req *request.Request, output *DeleteDBParameterGroupOutput) {
 	op := &request.Operation{
 		Name:       opDeleteDBParameterGroup,
@@ -805,7 +1369,28 @@ func (c *RDS) DeleteDBParameterGroup(input *DeleteDBParameterGroupInput) (*Delet
 
 const opDeleteDBSecurityGroup = "DeleteDBSecurityGroup"
 
-// DeleteDBSecurityGroupRequest generates a request for the DeleteDBSecurityGroup operation.
+// DeleteDBSecurityGroupRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDBSecurityGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteDBSecurityGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteDBSecurityGroupRequest method.
+//    req, resp := client.DeleteDBSecurityGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DeleteDBSecurityGroupRequest(input *DeleteDBSecurityGroupInput) (req *request.Request, output *DeleteDBSecurityGroupOutput) {
 	op := &request.Operation{
 		Name:       opDeleteDBSecurityGroup,
@@ -836,7 +1421,28 @@ func (c *RDS) DeleteDBSecurityGroup(input *DeleteDBSecurityGroupInput) (*DeleteD
 
 const opDeleteDBSnapshot = "DeleteDBSnapshot"
 
-// DeleteDBSnapshotRequest generates a request for the DeleteDBSnapshot operation.
+// DeleteDBSnapshotRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDBSnapshot operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteDBSnapshot method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteDBSnapshotRequest method.
+//    req, resp := client.DeleteDBSnapshotRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DeleteDBSnapshotRequest(input *DeleteDBSnapshotInput) (req *request.Request, output *DeleteDBSnapshotOutput) {
 	op := &request.Operation{
 		Name:       opDeleteDBSnapshot,
@@ -866,7 +1472,28 @@ func (c *RDS) DeleteDBSnapshot(input *DeleteDBSnapshotInput) (*DeleteDBSnapshotO
 
 const opDeleteDBSubnetGroup = "DeleteDBSubnetGroup"
 
-// DeleteDBSubnetGroupRequest generates a request for the DeleteDBSubnetGroup operation.
+// DeleteDBSubnetGroupRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDBSubnetGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteDBSubnetGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteDBSubnetGroupRequest method.
+//    req, resp := client.DeleteDBSubnetGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DeleteDBSubnetGroupRequest(input *DeleteDBSubnetGroupInput) (req *request.Request, output *DeleteDBSubnetGroupOutput) {
 	op := &request.Operation{
 		Name:       opDeleteDBSubnetGroup,
@@ -898,7 +1525,28 @@ func (c *RDS) DeleteDBSubnetGroup(input *DeleteDBSubnetGroupInput) (*DeleteDBSub
 
 const opDeleteEventSubscription = "DeleteEventSubscription"
 
-// DeleteEventSubscriptionRequest generates a request for the DeleteEventSubscription operation.
+// DeleteEventSubscriptionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteEventSubscription operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteEventSubscription method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteEventSubscriptionRequest method.
+//    req, resp := client.DeleteEventSubscriptionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DeleteEventSubscriptionRequest(input *DeleteEventSubscriptionInput) (req *request.Request, output *DeleteEventSubscriptionOutput) {
 	op := &request.Operation{
 		Name:       opDeleteEventSubscription,
@@ -925,7 +1573,28 @@ func (c *RDS) DeleteEventSubscription(input *DeleteEventSubscriptionInput) (*Del
 
 const opDeleteOptionGroup = "DeleteOptionGroup"
 
-// DeleteOptionGroupRequest generates a request for the DeleteOptionGroup operation.
+// DeleteOptionGroupRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteOptionGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteOptionGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteOptionGroupRequest method.
+//    req, resp := client.DeleteOptionGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DeleteOptionGroupRequest(input *DeleteOptionGroupInput) (req *request.Request, output *DeleteOptionGroupOutput) {
 	op := &request.Operation{
 		Name:       opDeleteOptionGroup,
@@ -954,7 +1623,28 @@ func (c *RDS) DeleteOptionGroup(input *DeleteOptionGroupInput) (*DeleteOptionGro
 
 const opDescribeAccountAttributes = "DescribeAccountAttributes"
 
-// DescribeAccountAttributesRequest generates a request for the DescribeAccountAttributes operation.
+// DescribeAccountAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAccountAttributes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeAccountAttributes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeAccountAttributesRequest method.
+//    req, resp := client.DescribeAccountAttributesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DescribeAccountAttributesRequest(input *DescribeAccountAttributesInput) (req *request.Request, output *DescribeAccountAttributesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeAccountAttributes,
@@ -986,7 +1676,28 @@ func (c *RDS) DescribeAccountAttributes(input *DescribeAccountAttributesInput) (
 
 const opDescribeCertificates = "DescribeCertificates"
 
-// DescribeCertificatesRequest generates a request for the DescribeCertificates operation.
+// DescribeCertificatesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeCertificates operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeCertificates method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeCertificatesRequest method.
+//    req, resp := client.DescribeCertificatesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DescribeCertificatesRequest(input *DescribeCertificatesInput) (req *request.Request, output *DescribeCertificatesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeCertificates,
@@ -1013,7 +1724,28 @@ func (c *RDS) DescribeCertificates(input *DescribeCertificatesInput) (*DescribeC
 
 const opDescribeDBClusterParameterGroups = "DescribeDBClusterParameterGroups"
 
-// DescribeDBClusterParameterGroupsRequest generates a request for the DescribeDBClusterParameterGroups operation.
+// DescribeDBClusterParameterGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDBClusterParameterGroups operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeDBClusterParameterGroups method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeDBClusterParameterGroupsRequest method.
+//    req, resp := client.DescribeDBClusterParameterGroupsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DescribeDBClusterParameterGroupsRequest(input *DescribeDBClusterParameterGroupsInput) (req *request.Request, output *DescribeDBClusterParameterGroupsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeDBClusterParameterGroups,
@@ -1045,7 +1777,28 @@ func (c *RDS) DescribeDBClusterParameterGroups(input *DescribeDBClusterParameter
 
 const opDescribeDBClusterParameters = "DescribeDBClusterParameters"
 
-// DescribeDBClusterParametersRequest generates a request for the DescribeDBClusterParameters operation.
+// DescribeDBClusterParametersRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDBClusterParameters operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeDBClusterParameters method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeDBClusterParametersRequest method.
+//    req, resp := client.DescribeDBClusterParametersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DescribeDBClusterParametersRequest(input *DescribeDBClusterParametersInput) (req *request.Request, output *DescribeDBClusterParametersOutput) {
 	op := &request.Operation{
 		Name:       opDescribeDBClusterParameters,
@@ -1076,7 +1829,28 @@ func (c *RDS) DescribeDBClusterParameters(input *DescribeDBClusterParametersInpu
 
 const opDescribeDBClusterSnapshotAttributes = "DescribeDBClusterSnapshotAttributes"
 
-// DescribeDBClusterSnapshotAttributesRequest generates a request for the DescribeDBClusterSnapshotAttributes operation.
+// DescribeDBClusterSnapshotAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDBClusterSnapshotAttributes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeDBClusterSnapshotAttributes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeDBClusterSnapshotAttributesRequest method.
+//    req, resp := client.DescribeDBClusterSnapshotAttributesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DescribeDBClusterSnapshotAttributesRequest(input *DescribeDBClusterSnapshotAttributesInput) (req *request.Request, output *DescribeDBClusterSnapshotAttributesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeDBClusterSnapshotAttributes,
@@ -1114,7 +1888,28 @@ func (c *RDS) DescribeDBClusterSnapshotAttributes(input *DescribeDBClusterSnapsh
 
 const opDescribeDBClusterSnapshots = "DescribeDBClusterSnapshots"
 
-// DescribeDBClusterSnapshotsRequest generates a request for the DescribeDBClusterSnapshots operation.
+// DescribeDBClusterSnapshotsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDBClusterSnapshots operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeDBClusterSnapshots method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeDBClusterSnapshotsRequest method.
+//    req, resp := client.DescribeDBClusterSnapshotsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DescribeDBClusterSnapshotsRequest(input *DescribeDBClusterSnapshotsInput) (req *request.Request, output *DescribeDBClusterSnapshotsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeDBClusterSnapshots,
@@ -1145,7 +1940,28 @@ func (c *RDS) DescribeDBClusterSnapshots(input *DescribeDBClusterSnapshotsInput)
 
 const opDescribeDBClusters = "DescribeDBClusters"
 
-// DescribeDBClustersRequest generates a request for the DescribeDBClusters operation.
+// DescribeDBClustersRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDBClusters operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeDBClusters method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeDBClustersRequest method.
+//    req, resp := client.DescribeDBClustersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DescribeDBClustersRequest(input *DescribeDBClustersInput) (req *request.Request, output *DescribeDBClustersOutput) {
 	op := &request.Operation{
 		Name:       opDescribeDBClusters,
@@ -1176,7 +1992,28 @@ func (c *RDS) DescribeDBClusters(input *DescribeDBClustersInput) (*DescribeDBClu
 
 const opDescribeDBEngineVersions = "DescribeDBEngineVersions"
 
-// DescribeDBEngineVersionsRequest generates a request for the DescribeDBEngineVersions operation.
+// DescribeDBEngineVersionsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDBEngineVersions operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeDBEngineVersions method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeDBEngineVersionsRequest method.
+//    req, resp := client.DescribeDBEngineVersionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DescribeDBEngineVersionsRequest(input *DescribeDBEngineVersionsInput) (req *request.Request, output *DescribeDBEngineVersionsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeDBEngineVersions,
@@ -1207,6 +2044,23 @@ func (c *RDS) DescribeDBEngineVersions(input *DescribeDBEngineVersionsInput) (*D
 	return out, err
 }
 
+// DescribeDBEngineVersionsPages iterates over the pages of a DescribeDBEngineVersions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeDBEngineVersions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeDBEngineVersions operation.
+//    pageNum := 0
+//    err := client.DescribeDBEngineVersionsPages(params,
+//        func(page *DescribeDBEngineVersionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *RDS) DescribeDBEngineVersionsPages(input *DescribeDBEngineVersionsInput, fn func(p *DescribeDBEngineVersionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeDBEngineVersionsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -1217,7 +2071,28 @@ func (c *RDS) DescribeDBEngineVersionsPages(input *DescribeDBEngineVersionsInput
 
 const opDescribeDBInstances = "DescribeDBInstances"
 
-// DescribeDBInstancesRequest generates a request for the DescribeDBInstances operation.
+// DescribeDBInstancesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDBInstances operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeDBInstances method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeDBInstancesRequest method.
+//    req, resp := client.DescribeDBInstancesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DescribeDBInstancesRequest(input *DescribeDBInstancesInput) (req *request.Request, output *DescribeDBInstancesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeDBInstances,
@@ -1248,6 +2123,23 @@ func (c *RDS) DescribeDBInstances(input *DescribeDBInstancesInput) (*DescribeDBI
 	return out, err
 }
 
+// DescribeDBInstancesPages iterates over the pages of a DescribeDBInstances operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeDBInstances method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeDBInstances operation.
+//    pageNum := 0
+//    err := client.DescribeDBInstancesPages(params,
+//        func(page *DescribeDBInstancesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *RDS) DescribeDBInstancesPages(input *DescribeDBInstancesInput, fn func(p *DescribeDBInstancesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeDBInstancesRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -1258,7 +2150,28 @@ func (c *RDS) DescribeDBInstancesPages(input *DescribeDBInstancesInput, fn func(
 
 const opDescribeDBLogFiles = "DescribeDBLogFiles"
 
-// DescribeDBLogFilesRequest generates a request for the DescribeDBLogFiles operation.
+// DescribeDBLogFilesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDBLogFiles operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeDBLogFiles method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeDBLogFilesRequest method.
+//    req, resp := client.DescribeDBLogFilesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DescribeDBLogFilesRequest(input *DescribeDBLogFilesInput) (req *request.Request, output *DescribeDBLogFilesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeDBLogFiles,
@@ -1289,6 +2202,23 @@ func (c *RDS) DescribeDBLogFiles(input *DescribeDBLogFilesInput) (*DescribeDBLog
 	return out, err
 }
 
+// DescribeDBLogFilesPages iterates over the pages of a DescribeDBLogFiles operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeDBLogFiles method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeDBLogFiles operation.
+//    pageNum := 0
+//    err := client.DescribeDBLogFilesPages(params,
+//        func(page *DescribeDBLogFilesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *RDS) DescribeDBLogFilesPages(input *DescribeDBLogFilesInput, fn func(p *DescribeDBLogFilesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeDBLogFilesRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -1299,7 +2229,28 @@ func (c *RDS) DescribeDBLogFilesPages(input *DescribeDBLogFilesInput, fn func(p 
 
 const opDescribeDBParameterGroups = "DescribeDBParameterGroups"
 
-// DescribeDBParameterGroupsRequest generates a request for the DescribeDBParameterGroups operation.
+// DescribeDBParameterGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDBParameterGroups operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeDBParameterGroups method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeDBParameterGroupsRequest method.
+//    req, resp := client.DescribeDBParameterGroupsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DescribeDBParameterGroupsRequest(input *DescribeDBParameterGroupsInput) (req *request.Request, output *DescribeDBParameterGroupsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeDBParameterGroups,
@@ -1332,6 +2283,23 @@ func (c *RDS) DescribeDBParameterGroups(input *DescribeDBParameterGroupsInput) (
 	return out, err
 }
 
+// DescribeDBParameterGroupsPages iterates over the pages of a DescribeDBParameterGroups operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeDBParameterGroups method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeDBParameterGroups operation.
+//    pageNum := 0
+//    err := client.DescribeDBParameterGroupsPages(params,
+//        func(page *DescribeDBParameterGroupsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *RDS) DescribeDBParameterGroupsPages(input *DescribeDBParameterGroupsInput, fn func(p *DescribeDBParameterGroupsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeDBParameterGroupsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -1342,7 +2310,28 @@ func (c *RDS) DescribeDBParameterGroupsPages(input *DescribeDBParameterGroupsInp
 
 const opDescribeDBParameters = "DescribeDBParameters"
 
-// DescribeDBParametersRequest generates a request for the DescribeDBParameters operation.
+// DescribeDBParametersRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDBParameters operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeDBParameters method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeDBParametersRequest method.
+//    req, resp := client.DescribeDBParametersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DescribeDBParametersRequest(input *DescribeDBParametersInput) (req *request.Request, output *DescribeDBParametersOutput) {
 	op := &request.Operation{
 		Name:       opDescribeDBParameters,
@@ -1373,6 +2362,23 @@ func (c *RDS) DescribeDBParameters(input *DescribeDBParametersInput) (*DescribeD
 	return out, err
 }
 
+// DescribeDBParametersPages iterates over the pages of a DescribeDBParameters operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeDBParameters method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeDBParameters operation.
+//    pageNum := 0
+//    err := client.DescribeDBParametersPages(params,
+//        func(page *DescribeDBParametersOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *RDS) DescribeDBParametersPages(input *DescribeDBParametersInput, fn func(p *DescribeDBParametersOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeDBParametersRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -1383,7 +2389,28 @@ func (c *RDS) DescribeDBParametersPages(input *DescribeDBParametersInput, fn fun
 
 const opDescribeDBSecurityGroups = "DescribeDBSecurityGroups"
 
-// DescribeDBSecurityGroupsRequest generates a request for the DescribeDBSecurityGroups operation.
+// DescribeDBSecurityGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDBSecurityGroups operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeDBSecurityGroups method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeDBSecurityGroupsRequest method.
+//    req, resp := client.DescribeDBSecurityGroupsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DescribeDBSecurityGroupsRequest(input *DescribeDBSecurityGroupsInput) (req *request.Request, output *DescribeDBSecurityGroupsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeDBSecurityGroups,
@@ -1416,6 +2443,23 @@ func (c *RDS) DescribeDBSecurityGroups(input *DescribeDBSecurityGroupsInput) (*D
 	return out, err
 }
 
+// DescribeDBSecurityGroupsPages iterates over the pages of a DescribeDBSecurityGroups operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeDBSecurityGroups method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeDBSecurityGroups operation.
+//    pageNum := 0
+//    err := client.DescribeDBSecurityGroupsPages(params,
+//        func(page *DescribeDBSecurityGroupsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *RDS) DescribeDBSecurityGroupsPages(input *DescribeDBSecurityGroupsInput, fn func(p *DescribeDBSecurityGroupsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeDBSecurityGroupsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -1426,7 +2470,28 @@ func (c *RDS) DescribeDBSecurityGroupsPages(input *DescribeDBSecurityGroupsInput
 
 const opDescribeDBSnapshotAttributes = "DescribeDBSnapshotAttributes"
 
-// DescribeDBSnapshotAttributesRequest generates a request for the DescribeDBSnapshotAttributes operation.
+// DescribeDBSnapshotAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDBSnapshotAttributes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeDBSnapshotAttributes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeDBSnapshotAttributesRequest method.
+//    req, resp := client.DescribeDBSnapshotAttributesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DescribeDBSnapshotAttributesRequest(input *DescribeDBSnapshotAttributesInput) (req *request.Request, output *DescribeDBSnapshotAttributesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeDBSnapshotAttributes,
@@ -1464,7 +2529,28 @@ func (c *RDS) DescribeDBSnapshotAttributes(input *DescribeDBSnapshotAttributesIn
 
 const opDescribeDBSnapshots = "DescribeDBSnapshots"
 
-// DescribeDBSnapshotsRequest generates a request for the DescribeDBSnapshots operation.
+// DescribeDBSnapshotsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDBSnapshots operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeDBSnapshots method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeDBSnapshotsRequest method.
+//    req, resp := client.DescribeDBSnapshotsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DescribeDBSnapshotsRequest(input *DescribeDBSnapshotsInput) (req *request.Request, output *DescribeDBSnapshotsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeDBSnapshots,
@@ -1495,6 +2581,23 @@ func (c *RDS) DescribeDBSnapshots(input *DescribeDBSnapshotsInput) (*DescribeDBS
 	return out, err
 }
 
+// DescribeDBSnapshotsPages iterates over the pages of a DescribeDBSnapshots operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeDBSnapshots method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeDBSnapshots operation.
+//    pageNum := 0
+//    err := client.DescribeDBSnapshotsPages(params,
+//        func(page *DescribeDBSnapshotsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *RDS) DescribeDBSnapshotsPages(input *DescribeDBSnapshotsInput, fn func(p *DescribeDBSnapshotsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeDBSnapshotsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -1505,7 +2608,28 @@ func (c *RDS) DescribeDBSnapshotsPages(input *DescribeDBSnapshotsInput, fn func(
 
 const opDescribeDBSubnetGroups = "DescribeDBSubnetGroups"
 
-// DescribeDBSubnetGroupsRequest generates a request for the DescribeDBSubnetGroups operation.
+// DescribeDBSubnetGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDBSubnetGroups operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeDBSubnetGroups method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeDBSubnetGroupsRequest method.
+//    req, resp := client.DescribeDBSubnetGroupsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DescribeDBSubnetGroupsRequest(input *DescribeDBSubnetGroupsInput) (req *request.Request, output *DescribeDBSubnetGroupsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeDBSubnetGroups,
@@ -1539,6 +2663,23 @@ func (c *RDS) DescribeDBSubnetGroups(input *DescribeDBSubnetGroupsInput) (*Descr
 	return out, err
 }
 
+// DescribeDBSubnetGroupsPages iterates over the pages of a DescribeDBSubnetGroups operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeDBSubnetGroups method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeDBSubnetGroups operation.
+//    pageNum := 0
+//    err := client.DescribeDBSubnetGroupsPages(params,
+//        func(page *DescribeDBSubnetGroupsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *RDS) DescribeDBSubnetGroupsPages(input *DescribeDBSubnetGroupsInput, fn func(p *DescribeDBSubnetGroupsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeDBSubnetGroupsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -1549,7 +2690,28 @@ func (c *RDS) DescribeDBSubnetGroupsPages(input *DescribeDBSubnetGroupsInput, fn
 
 const opDescribeEngineDefaultClusterParameters = "DescribeEngineDefaultClusterParameters"
 
-// DescribeEngineDefaultClusterParametersRequest generates a request for the DescribeEngineDefaultClusterParameters operation.
+// DescribeEngineDefaultClusterParametersRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeEngineDefaultClusterParameters operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeEngineDefaultClusterParameters method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeEngineDefaultClusterParametersRequest method.
+//    req, resp := client.DescribeEngineDefaultClusterParametersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DescribeEngineDefaultClusterParametersRequest(input *DescribeEngineDefaultClusterParametersInput) (req *request.Request, output *DescribeEngineDefaultClusterParametersOutput) {
 	op := &request.Operation{
 		Name:       opDescribeEngineDefaultClusterParameters,
@@ -1580,7 +2742,28 @@ func (c *RDS) DescribeEngineDefaultClusterParameters(input *DescribeEngineDefaul
 
 const opDescribeEngineDefaultParameters = "DescribeEngineDefaultParameters"
 
-// DescribeEngineDefaultParametersRequest generates a request for the DescribeEngineDefaultParameters operation.
+// DescribeEngineDefaultParametersRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeEngineDefaultParameters operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeEngineDefaultParameters method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeEngineDefaultParametersRequest method.
+//    req, resp := client.DescribeEngineDefaultParametersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DescribeEngineDefaultParametersRequest(input *DescribeEngineDefaultParametersInput) (req *request.Request, output *DescribeEngineDefaultParametersOutput) {
 	op := &request.Operation{
 		Name:       opDescribeEngineDefaultParameters,
@@ -1612,6 +2795,23 @@ func (c *RDS) DescribeEngineDefaultParameters(input *DescribeEngineDefaultParame
 	return out, err
 }
 
+// DescribeEngineDefaultParametersPages iterates over the pages of a DescribeEngineDefaultParameters operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeEngineDefaultParameters method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeEngineDefaultParameters operation.
+//    pageNum := 0
+//    err := client.DescribeEngineDefaultParametersPages(params,
+//        func(page *DescribeEngineDefaultParametersOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *RDS) DescribeEngineDefaultParametersPages(input *DescribeEngineDefaultParametersInput, fn func(p *DescribeEngineDefaultParametersOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeEngineDefaultParametersRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -1622,7 +2822,28 @@ func (c *RDS) DescribeEngineDefaultParametersPages(input *DescribeEngineDefaultP
 
 const opDescribeEventCategories = "DescribeEventCategories"
 
-// DescribeEventCategoriesRequest generates a request for the DescribeEventCategories operation.
+// DescribeEventCategoriesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeEventCategories operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeEventCategories method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeEventCategoriesRequest method.
+//    req, resp := client.DescribeEventCategoriesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DescribeEventCategoriesRequest(input *DescribeEventCategoriesInput) (req *request.Request, output *DescribeEventCategoriesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeEventCategories,
@@ -1652,7 +2873,28 @@ func (c *RDS) DescribeEventCategories(input *DescribeEventCategoriesInput) (*Des
 
 const opDescribeEventSubscriptions = "DescribeEventSubscriptions"
 
-// DescribeEventSubscriptionsRequest generates a request for the DescribeEventSubscriptions operation.
+// DescribeEventSubscriptionsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeEventSubscriptions operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeEventSubscriptions method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeEventSubscriptionsRequest method.
+//    req, resp := client.DescribeEventSubscriptionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DescribeEventSubscriptionsRequest(input *DescribeEventSubscriptionsInput) (req *request.Request, output *DescribeEventSubscriptionsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeEventSubscriptions,
@@ -1687,6 +2929,23 @@ func (c *RDS) DescribeEventSubscriptions(input *DescribeEventSubscriptionsInput)
 	return out, err
 }
 
+// DescribeEventSubscriptionsPages iterates over the pages of a DescribeEventSubscriptions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeEventSubscriptions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeEventSubscriptions operation.
+//    pageNum := 0
+//    err := client.DescribeEventSubscriptionsPages(params,
+//        func(page *DescribeEventSubscriptionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *RDS) DescribeEventSubscriptionsPages(input *DescribeEventSubscriptionsInput, fn func(p *DescribeEventSubscriptionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeEventSubscriptionsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -1697,7 +2956,28 @@ func (c *RDS) DescribeEventSubscriptionsPages(input *DescribeEventSubscriptionsI
 
 const opDescribeEvents = "DescribeEvents"
 
-// DescribeEventsRequest generates a request for the DescribeEvents operation.
+// DescribeEventsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeEvents operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeEvents method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeEventsRequest method.
+//    req, resp := client.DescribeEventsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DescribeEventsRequest(input *DescribeEventsInput) (req *request.Request, output *DescribeEventsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeEvents,
@@ -1732,6 +3012,23 @@ func (c *RDS) DescribeEvents(input *DescribeEventsInput) (*DescribeEventsOutput,
 	return out, err
 }
 
+// DescribeEventsPages iterates over the pages of a DescribeEvents operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeEvents method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeEvents operation.
+//    pageNum := 0
+//    err := client.DescribeEventsPages(params,
+//        func(page *DescribeEventsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *RDS) DescribeEventsPages(input *DescribeEventsInput, fn func(p *DescribeEventsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeEventsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -1742,7 +3039,28 @@ func (c *RDS) DescribeEventsPages(input *DescribeEventsInput, fn func(p *Describ
 
 const opDescribeOptionGroupOptions = "DescribeOptionGroupOptions"
 
-// DescribeOptionGroupOptionsRequest generates a request for the DescribeOptionGroupOptions operation.
+// DescribeOptionGroupOptionsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeOptionGroupOptions operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeOptionGroupOptions method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeOptionGroupOptionsRequest method.
+//    req, resp := client.DescribeOptionGroupOptionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DescribeOptionGroupOptionsRequest(input *DescribeOptionGroupOptionsInput) (req *request.Request, output *DescribeOptionGroupOptionsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeOptionGroupOptions,
@@ -1773,6 +3091,23 @@ func (c *RDS) DescribeOptionGroupOptions(input *DescribeOptionGroupOptionsInput)
 	return out, err
 }
 
+// DescribeOptionGroupOptionsPages iterates over the pages of a DescribeOptionGroupOptions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeOptionGroupOptions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeOptionGroupOptions operation.
+//    pageNum := 0
+//    err := client.DescribeOptionGroupOptionsPages(params,
+//        func(page *DescribeOptionGroupOptionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *RDS) DescribeOptionGroupOptionsPages(input *DescribeOptionGroupOptionsInput, fn func(p *DescribeOptionGroupOptionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeOptionGroupOptionsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -1783,7 +3118,28 @@ func (c *RDS) DescribeOptionGroupOptionsPages(input *DescribeOptionGroupOptionsI
 
 const opDescribeOptionGroups = "DescribeOptionGroups"
 
-// DescribeOptionGroupsRequest generates a request for the DescribeOptionGroups operation.
+// DescribeOptionGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeOptionGroups operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeOptionGroups method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeOptionGroupsRequest method.
+//    req, resp := client.DescribeOptionGroupsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DescribeOptionGroupsRequest(input *DescribeOptionGroupsInput) (req *request.Request, output *DescribeOptionGroupsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeOptionGroups,
@@ -1814,6 +3170,23 @@ func (c *RDS) DescribeOptionGroups(input *DescribeOptionGroupsInput) (*DescribeO
 	return out, err
 }
 
+// DescribeOptionGroupsPages iterates over the pages of a DescribeOptionGroups operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeOptionGroups method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeOptionGroups operation.
+//    pageNum := 0
+//    err := client.DescribeOptionGroupsPages(params,
+//        func(page *DescribeOptionGroupsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *RDS) DescribeOptionGroupsPages(input *DescribeOptionGroupsInput, fn func(p *DescribeOptionGroupsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeOptionGroupsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -1824,7 +3197,28 @@ func (c *RDS) DescribeOptionGroupsPages(input *DescribeOptionGroupsInput, fn fun
 
 const opDescribeOrderableDBInstanceOptions = "DescribeOrderableDBInstanceOptions"
 
-// DescribeOrderableDBInstanceOptionsRequest generates a request for the DescribeOrderableDBInstanceOptions operation.
+// DescribeOrderableDBInstanceOptionsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeOrderableDBInstanceOptions operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeOrderableDBInstanceOptions method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeOrderableDBInstanceOptionsRequest method.
+//    req, resp := client.DescribeOrderableDBInstanceOptionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DescribeOrderableDBInstanceOptionsRequest(input *DescribeOrderableDBInstanceOptionsInput) (req *request.Request, output *DescribeOrderableDBInstanceOptionsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeOrderableDBInstanceOptions,
@@ -1855,6 +3249,23 @@ func (c *RDS) DescribeOrderableDBInstanceOptions(input *DescribeOrderableDBInsta
 	return out, err
 }
 
+// DescribeOrderableDBInstanceOptionsPages iterates over the pages of a DescribeOrderableDBInstanceOptions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeOrderableDBInstanceOptions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeOrderableDBInstanceOptions operation.
+//    pageNum := 0
+//    err := client.DescribeOrderableDBInstanceOptionsPages(params,
+//        func(page *DescribeOrderableDBInstanceOptionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *RDS) DescribeOrderableDBInstanceOptionsPages(input *DescribeOrderableDBInstanceOptionsInput, fn func(p *DescribeOrderableDBInstanceOptionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeOrderableDBInstanceOptionsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -1865,7 +3276,28 @@ func (c *RDS) DescribeOrderableDBInstanceOptionsPages(input *DescribeOrderableDB
 
 const opDescribePendingMaintenanceActions = "DescribePendingMaintenanceActions"
 
-// DescribePendingMaintenanceActionsRequest generates a request for the DescribePendingMaintenanceActions operation.
+// DescribePendingMaintenanceActionsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribePendingMaintenanceActions operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribePendingMaintenanceActions method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribePendingMaintenanceActionsRequest method.
+//    req, resp := client.DescribePendingMaintenanceActionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DescribePendingMaintenanceActionsRequest(input *DescribePendingMaintenanceActionsInput) (req *request.Request, output *DescribePendingMaintenanceActionsOutput) {
 	op := &request.Operation{
 		Name:       opDescribePendingMaintenanceActions,
@@ -1893,7 +3325,28 @@ func (c *RDS) DescribePendingMaintenanceActions(input *DescribePendingMaintenanc
 
 const opDescribeReservedDBInstances = "DescribeReservedDBInstances"
 
-// DescribeReservedDBInstancesRequest generates a request for the DescribeReservedDBInstances operation.
+// DescribeReservedDBInstancesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeReservedDBInstances operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeReservedDBInstances method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeReservedDBInstancesRequest method.
+//    req, resp := client.DescribeReservedDBInstancesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DescribeReservedDBInstancesRequest(input *DescribeReservedDBInstancesInput) (req *request.Request, output *DescribeReservedDBInstancesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeReservedDBInstances,
@@ -1925,6 +3378,23 @@ func (c *RDS) DescribeReservedDBInstances(input *DescribeReservedDBInstancesInpu
 	return out, err
 }
 
+// DescribeReservedDBInstancesPages iterates over the pages of a DescribeReservedDBInstances operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeReservedDBInstances method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeReservedDBInstances operation.
+//    pageNum := 0
+//    err := client.DescribeReservedDBInstancesPages(params,
+//        func(page *DescribeReservedDBInstancesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *RDS) DescribeReservedDBInstancesPages(input *DescribeReservedDBInstancesInput, fn func(p *DescribeReservedDBInstancesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeReservedDBInstancesRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -1935,7 +3405,28 @@ func (c *RDS) DescribeReservedDBInstancesPages(input *DescribeReservedDBInstance
 
 const opDescribeReservedDBInstancesOfferings = "DescribeReservedDBInstancesOfferings"
 
-// DescribeReservedDBInstancesOfferingsRequest generates a request for the DescribeReservedDBInstancesOfferings operation.
+// DescribeReservedDBInstancesOfferingsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeReservedDBInstancesOfferings operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeReservedDBInstancesOfferings method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeReservedDBInstancesOfferingsRequest method.
+//    req, resp := client.DescribeReservedDBInstancesOfferingsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DescribeReservedDBInstancesOfferingsRequest(input *DescribeReservedDBInstancesOfferingsInput) (req *request.Request, output *DescribeReservedDBInstancesOfferingsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeReservedDBInstancesOfferings,
@@ -1966,6 +3457,23 @@ func (c *RDS) DescribeReservedDBInstancesOfferings(input *DescribeReservedDBInst
 	return out, err
 }
 
+// DescribeReservedDBInstancesOfferingsPages iterates over the pages of a DescribeReservedDBInstancesOfferings operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeReservedDBInstancesOfferings method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeReservedDBInstancesOfferings operation.
+//    pageNum := 0
+//    err := client.DescribeReservedDBInstancesOfferingsPages(params,
+//        func(page *DescribeReservedDBInstancesOfferingsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *RDS) DescribeReservedDBInstancesOfferingsPages(input *DescribeReservedDBInstancesOfferingsInput, fn func(p *DescribeReservedDBInstancesOfferingsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeReservedDBInstancesOfferingsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -1976,7 +3484,28 @@ func (c *RDS) DescribeReservedDBInstancesOfferingsPages(input *DescribeReservedD
 
 const opDownloadDBLogFilePortion = "DownloadDBLogFilePortion"
 
-// DownloadDBLogFilePortionRequest generates a request for the DownloadDBLogFilePortion operation.
+// DownloadDBLogFilePortionRequest generates a "aws/request.Request" representing the
+// client's request for the DownloadDBLogFilePortion operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DownloadDBLogFilePortion method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DownloadDBLogFilePortionRequest method.
+//    req, resp := client.DownloadDBLogFilePortionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) DownloadDBLogFilePortionRequest(input *DownloadDBLogFilePortionInput) (req *request.Request, output *DownloadDBLogFilePortionOutput) {
 	op := &request.Operation{
 		Name:       opDownloadDBLogFilePortion,
@@ -2007,6 +3536,23 @@ func (c *RDS) DownloadDBLogFilePortion(input *DownloadDBLogFilePortionInput) (*D
 	return out, err
 }
 
+// DownloadDBLogFilePortionPages iterates over the pages of a DownloadDBLogFilePortion operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DownloadDBLogFilePortion method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DownloadDBLogFilePortion operation.
+//    pageNum := 0
+//    err := client.DownloadDBLogFilePortionPages(params,
+//        func(page *DownloadDBLogFilePortionOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *RDS) DownloadDBLogFilePortionPages(input *DownloadDBLogFilePortionInput, fn func(p *DownloadDBLogFilePortionOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DownloadDBLogFilePortionRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -2017,7 +3563,28 @@ func (c *RDS) DownloadDBLogFilePortionPages(input *DownloadDBLogFilePortionInput
 
 const opFailoverDBCluster = "FailoverDBCluster"
 
-// FailoverDBClusterRequest generates a request for the FailoverDBCluster operation.
+// FailoverDBClusterRequest generates a "aws/request.Request" representing the
+// client's request for the FailoverDBCluster operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the FailoverDBCluster method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the FailoverDBClusterRequest method.
+//    req, resp := client.FailoverDBClusterRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) FailoverDBClusterRequest(input *FailoverDBClusterInput) (req *request.Request, output *FailoverDBClusterOutput) {
 	op := &request.Operation{
 		Name:       opFailoverDBCluster,
@@ -2058,7 +3625,28 @@ func (c *RDS) FailoverDBCluster(input *FailoverDBClusterInput) (*FailoverDBClust
 
 const opListTagsForResource = "ListTagsForResource"
 
-// ListTagsForResourceRequest generates a request for the ListTagsForResource operation.
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListTagsForResource method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListTagsForResourceRequest method.
+//    req, resp := client.ListTagsForResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
 	op := &request.Operation{
 		Name:       opListTagsForResource,
@@ -2088,7 +3676,28 @@ func (c *RDS) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsFor
 
 const opModifyDBCluster = "ModifyDBCluster"
 
-// ModifyDBClusterRequest generates a request for the ModifyDBCluster operation.
+// ModifyDBClusterRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyDBCluster operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ModifyDBCluster method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ModifyDBClusterRequest method.
+//    req, resp := client.ModifyDBClusterRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) ModifyDBClusterRequest(input *ModifyDBClusterInput) (req *request.Request, output *ModifyDBClusterOutput) {
 	op := &request.Operation{
 		Name:       opModifyDBCluster,
@@ -2119,7 +3728,28 @@ func (c *RDS) ModifyDBCluster(input *ModifyDBClusterInput) (*ModifyDBClusterOutp
 
 const opModifyDBClusterParameterGroup = "ModifyDBClusterParameterGroup"
 
-// ModifyDBClusterParameterGroupRequest generates a request for the ModifyDBClusterParameterGroup operation.
+// ModifyDBClusterParameterGroupRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyDBClusterParameterGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ModifyDBClusterParameterGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ModifyDBClusterParameterGroupRequest method.
+//    req, resp := client.ModifyDBClusterParameterGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) ModifyDBClusterParameterGroupRequest(input *ModifyDBClusterParameterGroupInput) (req *request.Request, output *DBClusterParameterGroupNameMessage) {
 	op := &request.Operation{
 		Name:       opModifyDBClusterParameterGroup,
@@ -2167,7 +3797,28 @@ func (c *RDS) ModifyDBClusterParameterGroup(input *ModifyDBClusterParameterGroup
 
 const opModifyDBClusterSnapshotAttribute = "ModifyDBClusterSnapshotAttribute"
 
-// ModifyDBClusterSnapshotAttributeRequest generates a request for the ModifyDBClusterSnapshotAttribute operation.
+// ModifyDBClusterSnapshotAttributeRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyDBClusterSnapshotAttribute operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ModifyDBClusterSnapshotAttribute method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ModifyDBClusterSnapshotAttributeRequest method.
+//    req, resp := client.ModifyDBClusterSnapshotAttributeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) ModifyDBClusterSnapshotAttributeRequest(input *ModifyDBClusterSnapshotAttributeInput) (req *request.Request, output *ModifyDBClusterSnapshotAttributeOutput) {
 	op := &request.Operation{
 		Name:       opModifyDBClusterSnapshotAttribute,
@@ -2209,7 +3860,28 @@ func (c *RDS) ModifyDBClusterSnapshotAttribute(input *ModifyDBClusterSnapshotAtt
 
 const opModifyDBInstance = "ModifyDBInstance"
 
-// ModifyDBInstanceRequest generates a request for the ModifyDBInstance operation.
+// ModifyDBInstanceRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyDBInstance operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ModifyDBInstance method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ModifyDBInstanceRequest method.
+//    req, resp := client.ModifyDBInstanceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) ModifyDBInstanceRequest(input *ModifyDBInstanceInput) (req *request.Request, output *ModifyDBInstanceOutput) {
 	op := &request.Operation{
 		Name:       opModifyDBInstance,
@@ -2237,7 +3909,28 @@ func (c *RDS) ModifyDBInstance(input *ModifyDBInstanceInput) (*ModifyDBInstanceO
 
 const opModifyDBParameterGroup = "ModifyDBParameterGroup"
 
-// ModifyDBParameterGroupRequest generates a request for the ModifyDBParameterGroup operation.
+// ModifyDBParameterGroupRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyDBParameterGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ModifyDBParameterGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ModifyDBParameterGroupRequest method.
+//    req, resp := client.ModifyDBParameterGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) ModifyDBParameterGroupRequest(input *ModifyDBParameterGroupInput) (req *request.Request, output *DBParameterGroupNameMessage) {
 	op := &request.Operation{
 		Name:       opModifyDBParameterGroup,
@@ -2281,7 +3974,28 @@ func (c *RDS) ModifyDBParameterGroup(input *ModifyDBParameterGroupInput) (*DBPar
 
 const opModifyDBSnapshotAttribute = "ModifyDBSnapshotAttribute"
 
-// ModifyDBSnapshotAttributeRequest generates a request for the ModifyDBSnapshotAttribute operation.
+// ModifyDBSnapshotAttributeRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyDBSnapshotAttribute operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ModifyDBSnapshotAttribute method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ModifyDBSnapshotAttributeRequest method.
+//    req, resp := client.ModifyDBSnapshotAttributeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) ModifyDBSnapshotAttributeRequest(input *ModifyDBSnapshotAttributeInput) (req *request.Request, output *ModifyDBSnapshotAttributeOutput) {
 	op := &request.Operation{
 		Name:       opModifyDBSnapshotAttribute,
@@ -2323,7 +4037,28 @@ func (c *RDS) ModifyDBSnapshotAttribute(input *ModifyDBSnapshotAttributeInput) (
 
 const opModifyDBSubnetGroup = "ModifyDBSubnetGroup"
 
-// ModifyDBSubnetGroupRequest generates a request for the ModifyDBSubnetGroup operation.
+// ModifyDBSubnetGroupRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyDBSubnetGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ModifyDBSubnetGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ModifyDBSubnetGroupRequest method.
+//    req, resp := client.ModifyDBSubnetGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) ModifyDBSubnetGroupRequest(input *ModifyDBSubnetGroupInput) (req *request.Request, output *ModifyDBSubnetGroupOutput) {
 	op := &request.Operation{
 		Name:       opModifyDBSubnetGroup,
@@ -2351,7 +4086,28 @@ func (c *RDS) ModifyDBSubnetGroup(input *ModifyDBSubnetGroupInput) (*ModifyDBSub
 
 const opModifyEventSubscription = "ModifyEventSubscription"
 
-// ModifyEventSubscriptionRequest generates a request for the ModifyEventSubscription operation.
+// ModifyEventSubscriptionRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyEventSubscription operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ModifyEventSubscription method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ModifyEventSubscriptionRequest method.
+//    req, resp := client.ModifyEventSubscriptionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) ModifyEventSubscriptionRequest(input *ModifyEventSubscriptionInput) (req *request.Request, output *ModifyEventSubscriptionOutput) {
 	op := &request.Operation{
 		Name:       opModifyEventSubscription,
@@ -2386,7 +4142,28 @@ func (c *RDS) ModifyEventSubscription(input *ModifyEventSubscriptionInput) (*Mod
 
 const opModifyOptionGroup = "ModifyOptionGroup"
 
-// ModifyOptionGroupRequest generates a request for the ModifyOptionGroup operation.
+// ModifyOptionGroupRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyOptionGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ModifyOptionGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ModifyOptionGroupRequest method.
+//    req, resp := client.ModifyOptionGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) ModifyOptionGroupRequest(input *ModifyOptionGroupInput) (req *request.Request, output *ModifyOptionGroupOutput) {
 	op := &request.Operation{
 		Name:       opModifyOptionGroup,
@@ -2413,7 +4190,28 @@ func (c *RDS) ModifyOptionGroup(input *ModifyOptionGroupInput) (*ModifyOptionGro
 
 const opPromoteReadReplica = "PromoteReadReplica"
 
-// PromoteReadReplicaRequest generates a request for the PromoteReadReplica operation.
+// PromoteReadReplicaRequest generates a "aws/request.Request" representing the
+// client's request for the PromoteReadReplica operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the PromoteReadReplica method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PromoteReadReplicaRequest method.
+//    req, resp := client.PromoteReadReplicaRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) PromoteReadReplicaRequest(input *PromoteReadReplicaInput) (req *request.Request, output *PromoteReadReplicaOutput) {
 	op := &request.Operation{
 		Name:       opPromoteReadReplica,
@@ -2443,9 +4241,78 @@ func (c *RDS) PromoteReadReplica(input *PromoteReadReplicaInput) (*PromoteReadRe
 	return out, err
 }
 
+const opPromoteReadReplicaDBCluster = "PromoteReadReplicaDBCluster"
+
+// PromoteReadReplicaDBClusterRequest generates a "aws/request.Request" representing the
+// client's request for the PromoteReadReplicaDBCluster operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the PromoteReadReplicaDBCluster method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PromoteReadReplicaDBClusterRequest method.
+//    req, resp := client.PromoteReadReplicaDBClusterRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *RDS) PromoteReadReplicaDBClusterRequest(input *PromoteReadReplicaDBClusterInput) (req *request.Request, output *PromoteReadReplicaDBClusterOutput) {
+	op := &request.Operation{
+		Name:       opPromoteReadReplicaDBCluster,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PromoteReadReplicaDBClusterInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &PromoteReadReplicaDBClusterOutput{}
+	req.Data = output
+	return
+}
+
+// Promotes a Read Replica DB cluster to a standalone DB cluster.
+func (c *RDS) PromoteReadReplicaDBCluster(input *PromoteReadReplicaDBClusterInput) (*PromoteReadReplicaDBClusterOutput, error) {
+	req, out := c.PromoteReadReplicaDBClusterRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opPurchaseReservedDBInstancesOffering = "PurchaseReservedDBInstancesOffering"
 
-// PurchaseReservedDBInstancesOfferingRequest generates a request for the PurchaseReservedDBInstancesOffering operation.
+// PurchaseReservedDBInstancesOfferingRequest generates a "aws/request.Request" representing the
+// client's request for the PurchaseReservedDBInstancesOffering operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the PurchaseReservedDBInstancesOffering method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PurchaseReservedDBInstancesOfferingRequest method.
+//    req, resp := client.PurchaseReservedDBInstancesOfferingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) PurchaseReservedDBInstancesOfferingRequest(input *PurchaseReservedDBInstancesOfferingInput) (req *request.Request, output *PurchaseReservedDBInstancesOfferingOutput) {
 	op := &request.Operation{
 		Name:       opPurchaseReservedDBInstancesOffering,
@@ -2472,7 +4339,28 @@ func (c *RDS) PurchaseReservedDBInstancesOffering(input *PurchaseReservedDBInsta
 
 const opRebootDBInstance = "RebootDBInstance"
 
-// RebootDBInstanceRequest generates a request for the RebootDBInstance operation.
+// RebootDBInstanceRequest generates a "aws/request.Request" representing the
+// client's request for the RebootDBInstance operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RebootDBInstance method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RebootDBInstanceRequest method.
+//    req, resp := client.RebootDBInstanceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) RebootDBInstanceRequest(input *RebootDBInstanceInput) (req *request.Request, output *RebootDBInstanceOutput) {
 	op := &request.Operation{
 		Name:       opRebootDBInstance,
@@ -2515,7 +4403,28 @@ func (c *RDS) RebootDBInstance(input *RebootDBInstanceInput) (*RebootDBInstanceO
 
 const opRemoveSourceIdentifierFromSubscription = "RemoveSourceIdentifierFromSubscription"
 
-// RemoveSourceIdentifierFromSubscriptionRequest generates a request for the RemoveSourceIdentifierFromSubscription operation.
+// RemoveSourceIdentifierFromSubscriptionRequest generates a "aws/request.Request" representing the
+// client's request for the RemoveSourceIdentifierFromSubscription operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RemoveSourceIdentifierFromSubscription method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RemoveSourceIdentifierFromSubscriptionRequest method.
+//    req, resp := client.RemoveSourceIdentifierFromSubscriptionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) RemoveSourceIdentifierFromSubscriptionRequest(input *RemoveSourceIdentifierFromSubscriptionInput) (req *request.Request, output *RemoveSourceIdentifierFromSubscriptionOutput) {
 	op := &request.Operation{
 		Name:       opRemoveSourceIdentifierFromSubscription,
@@ -2542,7 +4451,28 @@ func (c *RDS) RemoveSourceIdentifierFromSubscription(input *RemoveSourceIdentifi
 
 const opRemoveTagsFromResource = "RemoveTagsFromResource"
 
-// RemoveTagsFromResourceRequest generates a request for the RemoveTagsFromResource operation.
+// RemoveTagsFromResourceRequest generates a "aws/request.Request" representing the
+// client's request for the RemoveTagsFromResource operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RemoveTagsFromResource method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RemoveTagsFromResourceRequest method.
+//    req, resp := client.RemoveTagsFromResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceInput) (req *request.Request, output *RemoveTagsFromResourceOutput) {
 	op := &request.Operation{
 		Name:       opRemoveTagsFromResource,
@@ -2574,7 +4504,28 @@ func (c *RDS) RemoveTagsFromResource(input *RemoveTagsFromResourceInput) (*Remov
 
 const opResetDBClusterParameterGroup = "ResetDBClusterParameterGroup"
 
-// ResetDBClusterParameterGroupRequest generates a request for the ResetDBClusterParameterGroup operation.
+// ResetDBClusterParameterGroupRequest generates a "aws/request.Request" representing the
+// client's request for the ResetDBClusterParameterGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ResetDBClusterParameterGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ResetDBClusterParameterGroupRequest method.
+//    req, resp := client.ResetDBClusterParameterGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) ResetDBClusterParameterGroupRequest(input *ResetDBClusterParameterGroupInput) (req *request.Request, output *DBClusterParameterGroupNameMessage) {
 	op := &request.Operation{
 		Name:       opResetDBClusterParameterGroup,
@@ -2613,7 +4564,28 @@ func (c *RDS) ResetDBClusterParameterGroup(input *ResetDBClusterParameterGroupIn
 
 const opResetDBParameterGroup = "ResetDBParameterGroup"
 
-// ResetDBParameterGroupRequest generates a request for the ResetDBParameterGroup operation.
+// ResetDBParameterGroupRequest generates a "aws/request.Request" representing the
+// client's request for the ResetDBParameterGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ResetDBParameterGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ResetDBParameterGroupRequest method.
+//    req, resp := client.ResetDBParameterGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) ResetDBParameterGroupRequest(input *ResetDBParameterGroupInput) (req *request.Request, output *DBParameterGroupNameMessage) {
 	op := &request.Operation{
 		Name:       opResetDBParameterGroup,
@@ -2646,7 +4618,28 @@ func (c *RDS) ResetDBParameterGroup(input *ResetDBParameterGroupInput) (*DBParam
 
 const opRestoreDBClusterFromSnapshot = "RestoreDBClusterFromSnapshot"
 
-// RestoreDBClusterFromSnapshotRequest generates a request for the RestoreDBClusterFromSnapshot operation.
+// RestoreDBClusterFromSnapshotRequest generates a "aws/request.Request" representing the
+// client's request for the RestoreDBClusterFromSnapshot operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RestoreDBClusterFromSnapshot method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RestoreDBClusterFromSnapshotRequest method.
+//    req, resp := client.RestoreDBClusterFromSnapshotRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) RestoreDBClusterFromSnapshotRequest(input *RestoreDBClusterFromSnapshotInput) (req *request.Request, output *RestoreDBClusterFromSnapshotOutput) {
 	op := &request.Operation{
 		Name:       opRestoreDBClusterFromSnapshot,
@@ -2679,7 +4672,28 @@ func (c *RDS) RestoreDBClusterFromSnapshot(input *RestoreDBClusterFromSnapshotIn
 
 const opRestoreDBClusterToPointInTime = "RestoreDBClusterToPointInTime"
 
-// RestoreDBClusterToPointInTimeRequest generates a request for the RestoreDBClusterToPointInTime operation.
+// RestoreDBClusterToPointInTimeRequest generates a "aws/request.Request" representing the
+// client's request for the RestoreDBClusterToPointInTime operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RestoreDBClusterToPointInTime method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RestoreDBClusterToPointInTimeRequest method.
+//    req, resp := client.RestoreDBClusterToPointInTimeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) RestoreDBClusterToPointInTimeRequest(input *RestoreDBClusterToPointInTimeInput) (req *request.Request, output *RestoreDBClusterToPointInTimeOutput) {
 	op := &request.Operation{
 		Name:       opRestoreDBClusterToPointInTime,
@@ -2713,7 +4727,28 @@ func (c *RDS) RestoreDBClusterToPointInTime(input *RestoreDBClusterToPointInTime
 
 const opRestoreDBInstanceFromDBSnapshot = "RestoreDBInstanceFromDBSnapshot"
 
-// RestoreDBInstanceFromDBSnapshotRequest generates a request for the RestoreDBInstanceFromDBSnapshot operation.
+// RestoreDBInstanceFromDBSnapshotRequest generates a "aws/request.Request" representing the
+// client's request for the RestoreDBInstanceFromDBSnapshot operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RestoreDBInstanceFromDBSnapshot method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RestoreDBInstanceFromDBSnapshotRequest method.
+//    req, resp := client.RestoreDBInstanceFromDBSnapshotRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) RestoreDBInstanceFromDBSnapshotRequest(input *RestoreDBInstanceFromDBSnapshotInput) (req *request.Request, output *RestoreDBInstanceFromDBSnapshotOutput) {
 	op := &request.Operation{
 		Name:       opRestoreDBInstanceFromDBSnapshot,
@@ -2758,7 +4793,28 @@ func (c *RDS) RestoreDBInstanceFromDBSnapshot(input *RestoreDBInstanceFromDBSnap
 
 const opRestoreDBInstanceToPointInTime = "RestoreDBInstanceToPointInTime"
 
-// RestoreDBInstanceToPointInTimeRequest generates a request for the RestoreDBInstanceToPointInTime operation.
+// RestoreDBInstanceToPointInTimeRequest generates a "aws/request.Request" representing the
+// client's request for the RestoreDBInstanceToPointInTime operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RestoreDBInstanceToPointInTime method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RestoreDBInstanceToPointInTimeRequest method.
+//    req, resp := client.RestoreDBInstanceToPointInTimeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) RestoreDBInstanceToPointInTimeRequest(input *RestoreDBInstanceToPointInTimeInput) (req *request.Request, output *RestoreDBInstanceToPointInTimeOutput) {
 	op := &request.Operation{
 		Name:       opRestoreDBInstanceToPointInTime,
@@ -2796,7 +4852,28 @@ func (c *RDS) RestoreDBInstanceToPointInTime(input *RestoreDBInstanceToPointInTi
 
 const opRevokeDBSecurityGroupIngress = "RevokeDBSecurityGroupIngress"
 
-// RevokeDBSecurityGroupIngressRequest generates a request for the RevokeDBSecurityGroupIngress operation.
+// RevokeDBSecurityGroupIngressRequest generates a "aws/request.Request" representing the
+// client's request for the RevokeDBSecurityGroupIngress operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RevokeDBSecurityGroupIngress method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RevokeDBSecurityGroupIngressRequest method.
+//    req, resp := client.RevokeDBSecurityGroupIngressRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *RDS) RevokeDBSecurityGroupIngressRequest(input *RevokeDBSecurityGroupIngressInput) (req *request.Request, output *RevokeDBSecurityGroupIngressOutput) {
 	op := &request.Operation{
 		Name:       opRevokeDBSecurityGroupIngress,
@@ -3192,6 +5269,98 @@ func (s CharacterSet) String() string {
 
 // GoString returns the string representation
 func (s CharacterSet) GoString() string {
+	return s.String()
+}
+
+type CopyDBClusterParameterGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier or Amazon Resource Name (ARN) for the source DB cluster parameter
+	// group. For information about creating an ARN, see  Constructing an RDS Amazon
+	// Resource Name (ARN) (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html#USER_Tagging.ARN).
+	//
+	// Constraints:
+	//
+	//   Must specify a valid DB cluster parameter group.
+	//
+	//   If the source DB cluster parameter group is in the same region as the
+	// copy, specify a valid DB parameter group identifier, for example my-db-cluster-param-group,
+	// or a valid ARN.
+	//
+	//   If the source DB parameter group is in a different region than the copy,
+	// specify a valid DB cluster parameter group ARN, for example arn:aws:rds:us-east-1:123456789012:cluster-pg:custom-cluster-group1.
+	SourceDBClusterParameterGroupIdentifier *string `type:"string" required:"true"`
+
+	// A list of tags.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
+
+	// A description for the copied DB cluster parameter group.
+	TargetDBClusterParameterGroupDescription *string `type:"string" required:"true"`
+
+	// The identifier for the copied DB cluster parameter group.
+	//
+	// Constraints:
+	//
+	//   Cannot be null, empty, or blank
+	//
+	//   Must contain from 1 to 255 alphanumeric characters or hyphens
+	//
+	//   First character must be a letter
+	//
+	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//
+	//   Example: my-cluster-param-group1
+	TargetDBClusterParameterGroupIdentifier *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CopyDBClusterParameterGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CopyDBClusterParameterGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CopyDBClusterParameterGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CopyDBClusterParameterGroupInput"}
+	if s.SourceDBClusterParameterGroupIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceDBClusterParameterGroupIdentifier"))
+	}
+	if s.TargetDBClusterParameterGroupDescription == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetDBClusterParameterGroupDescription"))
+	}
+	if s.TargetDBClusterParameterGroupIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetDBClusterParameterGroupIdentifier"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+type CopyDBClusterParameterGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the result of a successful invocation of the CreateDBClusterParameterGroup
+	// or CopyDBClusterParameterGroup action.
+	//
+	// This data type is used as a request parameter in the DeleteDBClusterParameterGroup
+	// action, and as a response element in the DescribeDBClusterParameterGroups
+	// action.
+	DBClusterParameterGroup *DBClusterParameterGroup `type:"structure"`
+}
+
+// String returns the string representation
+func (s CopyDBClusterParameterGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CopyDBClusterParameterGroupOutput) GoString() string {
 	return s.String()
 }
 
@@ -3660,7 +5829,7 @@ type CreateDBClusterInput struct {
 	// printable ASCII character except "/", """, or "@".
 	//
 	// Constraints: Must contain from 8 to 41 characters.
-	MasterUserPassword *string `type:"string" required:"true"`
+	MasterUserPassword *string `type:"string"`
 
 	// The name of the master user for the client DB cluster.
 	//
@@ -3671,7 +5840,7 @@ type CreateDBClusterInput struct {
 	//   First character must be a letter.
 	//
 	//   Cannot be a reserved word for the chosen database engine.
-	MasterUsername *string `type:"string" required:"true"`
+	MasterUsername *string `type:"string"`
 
 	// A value that indicates that the DB cluster should be associated with the
 	// specified option group.
@@ -3751,12 +5920,6 @@ func (s *CreateDBClusterInput) Validate() error {
 	}
 	if s.Engine == nil {
 		invalidParams.Add(request.NewErrParamRequired("Engine"))
-	}
-	if s.MasterUserPassword == nil {
-		invalidParams.Add(request.NewErrParamRequired("MasterUserPassword"))
-	}
-	if s.MasterUsername == nil {
-		invalidParams.Add(request.NewErrParamRequired("MasterUsername"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -3859,7 +6022,7 @@ type CreateDBClusterParameterGroupOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Contains the result of a successful invocation of the CreateDBClusterParameterGroup
-	// action.
+	// or CopyDBClusterParameterGroup action.
 	//
 	// This data type is used as a request parameter in the DeleteDBClusterParameterGroup
 	// action, and as a response element in the DescribeDBClusterParameterGroups
@@ -4179,9 +6342,11 @@ type CreateDBInstanceInput struct {
 	//  Amazon Aurora
 	//
 	//    Version 5.6 (only available in AWS regions ap-northeast-1, ap-northeast-2,
-	// ap-southeast-2, eu-west-1, us-east-1, us-west-2):  5.6.10a
+	// ap-south-1, ap-southeast-2, eu-west-1, us-east-1, us-west-2):  5.6.10a
 	//
 	//    MariaDB
+	//
+	//    Version 10.1 (available in all AWS regions except us-gov-west-1):  10.1.14
 	//
 	//    Version 10.0 (available in all AWS regions):  10.0.17 | 10.0.24
 	//
@@ -4227,117 +6392,137 @@ type CreateDBInstanceInput struct {
 	//
 	//    Version 5.7 (available in all AWS regions):  5.7.10 | 5.7.11
 	//
-	//    Version 5.6 (available in all AWS regions except ap-northeast-2):  5.6.19a
-	// | 5.6.19b | 5.6.21 | 5.6.21b | 5.6.22
+	//    Version 5.6 (available in all AWS regions except ap-south-1, ap-northeast-2):
+	//  5.6.19a | 5.6.19b | 5.6.21 | 5.6.21b | 5.6.22
 	//
-	//    Version 5.6 (available in all AWS regions):  5.6.23 | 5.6.27 | 5.6.29
+	//    Version 5.6 (available in all AWS regions except ap-south-1):  5.6.23
 	//
-	//    Version 5.5 (available in all AWS regions except eu-central-1, ap-northeast-2):
-	//  5.5.40 | 5.5.40a
+	//    Version 5.6 (available in all AWS regions):  5.6.27 | 5.6.29
 	//
-	//    Version 5.5 (available in all AWS regions except ap-northeast-2):  5.5.40b
-	// | 5.5.41
+	//    Version 5.5 (only available in AWS regions ap-northeast-1, ap-southeast-1,
+	// ap-southeast-2, eu-west-1, sa-east-1, us-east-1, us-gov-west-1, us-west-1,
+	// us-west-2):  5.5.40 | 5.5.40a
 	//
-	//    Version 5.5 (available in all AWS regions):  5.5.42 | 5.5.46
+	//    Version 5.5 (available in all AWS regions except ap-south-1, ap-northeast-2):
+	//  5.5.40b | 5.5.41
 	//
-	//    Version 5.1 (available in all AWS regions except eu-central-1, ap-northeast-2):
-	//  5.1.73a | 5.1.73b
+	//    Version 5.5 (available in all AWS regions except ap-south-1):  5.5.42
+	//
+	//    Version 5.5 (available in all AWS regions):  5.5.46
+	//
+	//    Version 5.1 (only available in AWS regions ap-northeast-1, ap-southeast-1,
+	// ap-southeast-2, eu-west-1, sa-east-1, us-east-1, us-gov-west-1, us-west-1,
+	// us-west-2):  5.1.73a | 5.1.73b
 	//
 	//    Oracle Database Enterprise Edition (oracle-ee)
 	//
-	//    Version 12.1 (available in all AWS regions except ap-northeast-2):  12.1.0.1.v1
-	// | 12.1.0.1.v2
+	//    Version 12.1 (available in all AWS regions except ap-south-1, ap-northeast-2):
+	//  12.1.0.1.v1 | 12.1.0.1.v2
 	//
-	//    Version 12.1 (available in all AWS regions except ap-northeast-2, us-gov-west-1):
-	//  12.1.0.1.v3 | 12.1.0.1.v4
+	//    Version 12.1 (only available in AWS regions ap-northeast-1, ap-southeast-1,
+	// ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-west-1,
+	// us-west-2):  12.1.0.1.v3 | 12.1.0.1.v4 | 12.1.0.1.v5
 	//
 	//    Version 12.1 (available in all AWS regions):  12.1.0.2.v1
 	//
 	//    Version 12.1 (available in all AWS regions except us-gov-west-1):  12.1.0.2.v2
-	// | 12.1.0.2.v3
+	// | 12.1.0.2.v3 | 12.1.0.2.v4
 	//
-	//    Version 11.2 (available in all AWS regions except eu-central-1, ap-northeast-2):
-	//  11.2.0.2.v3 | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7
+	//    Version 11.2 (only available in AWS regions ap-northeast-1, ap-southeast-1,
+	// ap-southeast-2, eu-west-1, sa-east-1, us-east-1, us-gov-west-1, us-west-1,
+	// us-west-2):  11.2.0.2.v3 | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7
 	//
-	//    Version 11.2 (available in all AWS regions except ap-northeast-2):  11.2.0.3.v1
-	// | 11.2.0.3.v2 | 11.2.0.3.v3
+	//    Version 11.2 (available in all AWS regions except ap-south-1, ap-northeast-2):
+	//  11.2.0.3.v1 | 11.2.0.3.v2 | 11.2.0.3.v3
 	//
-	//    Version 11.2 (available in all AWS regions except ap-northeast-2, us-gov-west-1):
-	//  11.2.0.3.v4
+	//    Version 11.2 (only available in AWS regions ap-northeast-1, ap-southeast-1,
+	// ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-west-1,
+	// us-west-2):  11.2.0.3.v4
 	//
 	//    Version 11.2 (available in all AWS regions):  11.2.0.4.v1 | 11.2.0.4.v3
 	// | 11.2.0.4.v4
 	//
 	//    Version 11.2 (available in all AWS regions except us-gov-west-1):  11.2.0.4.v5
-	// | 11.2.0.4.v6 | 11.2.0.4.v7
+	// | 11.2.0.4.v6 | 11.2.0.4.v7 | 11.2.0.4.v8
 	//
 	//    Oracle Database Standard Edition (oracle-se)
 	//
-	//    Version 12.1 (available in all AWS regions except ap-northeast-2):  12.1.0.1.v1
-	// | 12.1.0.1.v2
+	//    Version 12.1 (available in all AWS regions except ap-south-1, ap-northeast-2):
+	//  12.1.0.1.v1 | 12.1.0.1.v2
 	//
-	//    Version 12.1 (available in all AWS regions except ap-northeast-2, us-gov-west-1):
-	//  12.1.0.1.v3 | 12.1.0.1.v4
+	//    Version 12.1 (only available in AWS regions ap-northeast-1, ap-southeast-1,
+	// ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-west-1,
+	// us-west-2):  12.1.0.1.v3 | 12.1.0.1.v4 | 12.1.0.1.v5
 	//
-	//    Version 11.2 (available in all AWS regions except eu-central-1, ap-northeast-2):
-	//  11.2.0.2.v3 | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7
+	//    Version 11.2 (only available in AWS regions ap-northeast-1, ap-southeast-1,
+	// ap-southeast-2, eu-west-1, sa-east-1, us-east-1, us-gov-west-1, us-west-1,
+	// us-west-2):  11.2.0.2.v3 | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7
 	//
-	//    Version 11.2 (available in all AWS regions except ap-northeast-2):  11.2.0.3.v1
-	// | 11.2.0.3.v2 | 11.2.0.3.v3
+	//    Version 11.2 (available in all AWS regions except ap-south-1, ap-northeast-2):
+	//  11.2.0.3.v1 | 11.2.0.3.v2 | 11.2.0.3.v3
 	//
-	//    Version 11.2 (available in all AWS regions except ap-northeast-2, us-gov-west-1):
-	//  11.2.0.3.v4
+	//    Version 11.2 (only available in AWS regions ap-northeast-1, ap-southeast-1,
+	// ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-west-1,
+	// us-west-2):  11.2.0.3.v4
 	//
 	//    Version 11.2 (available in all AWS regions):  11.2.0.4.v1 | 11.2.0.4.v3
 	// | 11.2.0.4.v4
 	//
 	//    Version 11.2 (available in all AWS regions except us-gov-west-1):  11.2.0.4.v5
-	// | 11.2.0.4.v6 | 11.2.0.4.v7
+	// | 11.2.0.4.v6 | 11.2.0.4.v7 | 11.2.0.4.v8
 	//
 	//    Oracle Database Standard Edition One (oracle-se1)
 	//
-	//    Version 12.1 (available in all AWS regions except ap-northeast-2):  12.1.0.1.v1
-	// | 12.1.0.1.v2
+	//    Version 12.1 (available in all AWS regions except ap-south-1, ap-northeast-2):
+	//  12.1.0.1.v1 | 12.1.0.1.v2
 	//
-	//    Version 12.1 (available in all AWS regions except ap-northeast-2, us-gov-west-1):
-	//  12.1.0.1.v3 | 12.1.0.1.v4
+	//    Version 12.1 (only available in AWS regions ap-northeast-1, ap-southeast-1,
+	// ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-west-1,
+	// us-west-2):  12.1.0.1.v3 | 12.1.0.1.v4 | 12.1.0.1.v5
 	//
-	//    Version 11.2 (available in all AWS regions except eu-central-1, ap-northeast-2):
-	//  11.2.0.2.v3 | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7
+	//    Version 11.2 (only available in AWS regions ap-northeast-1, ap-southeast-1,
+	// ap-southeast-2, eu-west-1, sa-east-1, us-east-1, us-gov-west-1, us-west-1,
+	// us-west-2):  11.2.0.2.v3 | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7
 	//
-	//    Version 11.2 (available in all AWS regions except ap-northeast-2):  11.2.0.3.v1
-	// | 11.2.0.3.v2 | 11.2.0.3.v3
+	//    Version 11.2 (available in all AWS regions except ap-south-1, ap-northeast-2):
+	//  11.2.0.3.v1 | 11.2.0.3.v2 | 11.2.0.3.v3
 	//
-	//    Version 11.2 (available in all AWS regions except ap-northeast-2, us-gov-west-1):
-	//  11.2.0.3.v4
+	//    Version 11.2 (only available in AWS regions ap-northeast-1, ap-southeast-1,
+	// ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-west-1,
+	// us-west-2):  11.2.0.3.v4
 	//
 	//    Version 11.2 (available in all AWS regions):  11.2.0.4.v1 | 11.2.0.4.v3
 	// | 11.2.0.4.v4
 	//
 	//    Version 11.2 (available in all AWS regions except us-gov-west-1):  11.2.0.4.v5
-	// | 11.2.0.4.v6 | 11.2.0.4.v7
+	// | 11.2.0.4.v6 | 11.2.0.4.v7 | 11.2.0.4.v8
 	//
 	//    Oracle Database Standard Edition Two (oracle-se2)
 	//
 	//    Version 12.1 (available in all AWS regions except us-gov-west-1):  12.1.0.2.v2
-	// | 12.1.0.2.v3
+	// | 12.1.0.2.v3 | 12.1.0.2.v4
 	//
 	//    PostgreSQL
 	//
 	//    Version 9.5 (available in all AWS regions except us-gov-west-1):  9.5.2
 	//
-	//    Version 9.4 (available in all AWS regions):  9.4.1 | 9.4.4 | 9.4.5
+	//    Version 9.4 (available in all AWS regions except ap-south-1):  9.4.1
+	// | 9.4.4
+	//
+	//    Version 9.4 (available in all AWS regions):  9.4.5
 	//
 	//    Version 9.4 (available in all AWS regions except us-gov-west-1):  9.4.7
 	//
-	//    Version 9.3 (available in all AWS regions except eu-central-1, ap-northeast-2):
-	//  9.3.1 | 9.3.2
+	//    Version 9.3 (only available in AWS regions ap-northeast-1, ap-southeast-1,
+	// ap-southeast-2, eu-west-1, sa-east-1, us-east-1, us-gov-west-1, us-west-1,
+	// us-west-2):  9.3.1 | 9.3.2
 	//
-	//    Version 9.3 (available in all AWS regions except ap-northeast-2):  9.3.10
-	// | 9.3.3 | 9.3.5 | 9.3.6 | 9.3.9
+	//    Version 9.3 (available in all AWS regions except ap-south-1, ap-northeast-2):
+	//  9.3.10 | 9.3.3 | 9.3.5 | 9.3.6 | 9.3.9
 	//
-	//    Version 9.3 (available in all AWS regions except ap-northeast-2, us-gov-west-1):
-	//  9.3.12
+	//    Version 9.3 (only available in AWS regions ap-northeast-1, ap-southeast-1,
+	// ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-west-1,
+	// us-west-2):  9.3.12
 	EngineVersion *string `type:"string"`
 
 	// The amount of Provisioned IOPS (input/output operations per second) to be
@@ -4470,9 +6655,7 @@ type CreateDBInstanceInput struct {
 	MonitoringRoleArn *string `type:"string"`
 
 	// Specifies if the DB instance is a Multi-AZ deployment. You cannot set the
-	// AvailabilityZone parameter if the MultiAZ parameter is set to true. Do not
-	// set this value if you want a Multi-AZ deployment for a SQL Server DB instance.
-	// Multi-AZ for SQL Server is set using the Mirroring option in an option group.
+	// AvailabilityZone parameter if the MultiAZ parameter is set to true.
 	MultiAZ *bool `type:"boolean"`
 
 	// Indicates that the DB instance should be associated with the specified option
@@ -5138,8 +7321,8 @@ type CreateDBSubnetGroupInput struct {
 
 	// The name for the DB subnet group. This value is stored as a lowercase string.
 	//
-	// Constraints: Must contain no more than 255 alphanumeric characters, periods,
-	// underscores, spaces, or hyphens. Must not be default.
+	// Constraints: Must contain no more than 255 alphanumeric characters. Cannot
+	// contain periods, underscores, spaces, or hyphens. Must not be default.
 	//
 	// Example: mySubnetgroup
 	DBSubnetGroupName *string `type:"string" required:"true"`
@@ -5253,7 +7436,8 @@ type CreateEventSubscriptionInput struct {
 	// parameter to db-instance. if this value is not specified, all events are
 	// returned.
 	//
-	// Valid values: db-instance | db-parameter-group | db-security-group | db-snapshot
+	// Valid values: db-instance | db-cluster | db-parameter-group | db-security-group
+	// | db-snapshot | db-cluster-snapshot
 	SourceType *string `type:"string"`
 
 	// The name of the subscription.
@@ -5489,6 +7673,14 @@ type DBCluster struct {
 	// in Universal Coordinated Time (UTC).
 	PreferredMaintenanceWindow *string `type:"string"`
 
+	// Contains one or more identifiers of the Read Replicas associated with this
+	// DB cluster.
+	ReadReplicaIdentifiers []*string `locationNameList:"ReadReplicaIdentifier" type:"list"`
+
+	// Contains the identifier of the source DB cluster if this DB cluster is a
+	// Read Replica.
+	ReplicationSourceIdentifier *string `type:"string"`
+
 	// Specifies the current state of this DB cluster.
 	Status *string `type:"string"`
 
@@ -5562,7 +7754,7 @@ func (s DBClusterOptionGroupStatus) GoString() string {
 }
 
 // Contains the result of a successful invocation of the CreateDBClusterParameterGroup
-// action.
+// or CopyDBClusterParameterGroup action.
 //
 // This data type is used as a request parameter in the DeleteDBClusterParameterGroup
 // action, and as a response element in the DescribeDBClusterParameterGroups
@@ -9757,6 +11949,12 @@ type FailoverDBClusterInput struct {
 	//
 	//   Cannot end with a hyphen or contain two consecutive hyphens
 	DBClusterIdentifier *string `type:"string"`
+
+	// The name of the instance to promote to the primary instance.
+	//
+	// You must specify the instance identifier for an Aurora Replica in the DB
+	// cluster. For example, mydbcluster-replica1.
+	TargetDBInstanceIdentifier *string `type:"string"`
 }
 
 // String returns the string representation
@@ -10561,10 +12759,7 @@ type ModifyDBInstanceInput struct {
 	// does not result in an outage and the change is applied during the next maintenance
 	// window unless the ApplyImmediately parameter is set to true for this request.
 	//
-	// Constraints: Cannot be specified if the DB instance is a Read Replica. This
-	// parameter cannot be used with SQL Server DB instances. Multi-AZ for SQL Server
-	// DB instances is set using the Mirroring option in an option group associated
-	// with the DB instance.
+	// Constraints: Cannot be specified if the DB instance is a Read Replica.
 	MultiAZ *bool `type:"boolean"`
 
 	// The new DB instance identifier for the DB instance when renaming a DB instance.
@@ -11567,6 +13762,79 @@ func (s PendingModifiedValues) GoString() string {
 	return s.String()
 }
 
+type PromoteReadReplicaDBClusterInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the DB cluster Read Replica to promote. This parameter
+	// is not case-sensitive.
+	//
+	// Constraints:
+	//
+	//   Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//
+	//   First character must be a letter.
+	//
+	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//
+	//   Example: my-cluster-replica1
+	DBClusterIdentifier *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s PromoteReadReplicaDBClusterInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PromoteReadReplicaDBClusterInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PromoteReadReplicaDBClusterInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PromoteReadReplicaDBClusterInput"}
+	if s.DBClusterIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("DBClusterIdentifier"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+type PromoteReadReplicaDBClusterOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the result of a successful invocation of the following actions:
+	//
+	//    CreateDBCluster
+	//
+	//    DeleteDBCluster
+	//
+	//    FailoverDBCluster
+	//
+	//    ModifyDBCluster
+	//
+	//    RestoreDBClusterFromSnapshot
+	//
+	//    RestoreDBClusterToPointInTime
+	//
+	//   This data type is used as a response element in the DescribeDBClusters
+	// action.
+	DBCluster *DBCluster `type:"structure"`
+}
+
+// String returns the string representation
+func (s PromoteReadReplicaDBClusterOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PromoteReadReplicaDBClusterOutput) GoString() string {
+	return s.String()
+}
+
 type PromoteReadReplicaInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12207,7 +14475,7 @@ type RestoreDBClusterFromSnapshotInput struct {
 	EngineVersion *string `type:"string"`
 
 	// The KMS key identifier to use when restoring an encrypted DB cluster from
-	// an encrypted DB cluster snapshot.
+	// a DB cluster snapshot.
 	//
 	// The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption
 	// key. If you are restoring a DB cluster with the same AWS account that owns
@@ -12221,11 +14489,7 @@ type RestoreDBClusterFromSnapshotInput struct {
 	// is encrypted using the KMS key that was used to encrypt the DB cluster snapshot.
 	//
 	//   If the DB cluster snapshot is not encrypted, then the restored DB cluster
-	// is not encrypted.
-	//
-	//   If SnapshotIdentifier refers to a DB cluster snapshot that is not encrypted,
-	// and you specify a value for the KmsKeyId parameter, then the restore request
-	// is rejected.
+	// is encrypted using the specified encryption key.
 	KmsKeyId *string `type:"string"`
 
 	// The name of the option group to use for the restored DB cluster.

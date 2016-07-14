@@ -1,3 +1,5 @@
+// +build integration
+
 //Package kinesis provides gucumber integration tests support.
 package kinesis
 

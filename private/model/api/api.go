@@ -306,7 +306,7 @@ func newClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegio
     }
 
 	// Handlers
-	svc.Handlers.Sign.PushBack({{if eq .Metadata.SignatureVersion "v2"}}v2{{else}}v4{{end}}.Sign)
+	svc.Handlers.Sign.PushBackNamed({{if eq .Metadata.SignatureVersion "v2"}}v2{{else}}v4{{end}}.SignRequestHandler)
 	{{if eq .Metadata.SignatureVersion "v2"}}svc.Handlers.Sign.PushBackNamed(corehandlers.BuildContentLengthHandler)
 	{{end}}svc.Handlers.Build.PushBackNamed({{ .ProtocolPackage }}.BuildHandler)
 	svc.Handlers.Unmarshal.PushBackNamed({{ .ProtocolPackage }}.UnmarshalHandler)
@@ -347,7 +347,7 @@ func (a *API) ServiceGoCode() string {
 		a.imports["github.com/aws/aws-sdk-go/private/signer/v2"] = true
 		a.imports["github.com/aws/aws-sdk-go/aws/corehandlers"] = true
 	} else {
-		a.imports["github.com/aws/aws-sdk-go/private/signer/v4"] = true
+		a.imports["github.com/aws/aws-sdk-go/aws/signer/v4"] = true
 	}
 	a.imports["github.com/aws/aws-sdk-go/private/protocol/"+a.ProtocolPackage()] = true
 

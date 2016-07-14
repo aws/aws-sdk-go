@@ -69,11 +69,10 @@ func ExampleGameLift_CreateFleet() {
 	svc := gamelift.New(session.New())
 
 	params := &gamelift.CreateFleetInput{
-		BuildId:          aws.String("BuildId"),             // Required
-		EC2InstanceType:  aws.String("EC2InstanceType"),     // Required
-		Name:             aws.String("NonZeroAndMaxString"), // Required
-		ServerLaunchPath: aws.String("NonZeroAndMaxString"), // Required
-		Description:      aws.String("NonZeroAndMaxString"),
+		BuildId:         aws.String("BuildId"),             // Required
+		EC2InstanceType: aws.String("EC2InstanceType"),     // Required
+		Name:            aws.String("NonZeroAndMaxString"), // Required
+		Description:     aws.String("NonZeroAndMaxString"),
 		EC2InboundPermissions: []*gamelift.IpPermission{
 			&gamelift.IpPermission{ // Required
 				FromPort: aws.Int64(1),                 // Required
@@ -88,7 +87,18 @@ func ExampleGameLift_CreateFleet() {
 			// More values...
 		},
 		NewGameSessionProtectionPolicy: aws.String("ProtectionPolicy"),
-		ServerLaunchParameters:         aws.String("NonZeroAndMaxString"),
+		RuntimeConfiguration: &gamelift.RuntimeConfiguration{
+			ServerProcesses: []*gamelift.ServerProcess{
+				{ // Required
+					ConcurrentExecutions: aws.Int64(1),                      // Required
+					LaunchPath:           aws.String("NonZeroAndMaxString"), // Required
+					Parameters:           aws.String("NonZeroAndMaxString"),
+				},
+				// More values...
+			},
+		},
+		ServerLaunchParameters: aws.String("NonZeroAndMaxString"),
+		ServerLaunchPath:       aws.String("NonZeroAndMaxString"),
 	}
 	resp, err := svc.CreateFleet(params)
 
@@ -495,6 +505,25 @@ func ExampleGameLift_DescribePlayerSessions() {
 	fmt.Println(resp)
 }
 
+func ExampleGameLift_DescribeRuntimeConfiguration() {
+	svc := gamelift.New(session.New())
+
+	params := &gamelift.DescribeRuntimeConfigurationInput{
+		FleetId: aws.String("FleetId"), // Required
+	}
+	resp, err := svc.DescribeRuntimeConfiguration(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleGameLift_DescribeScalingPolicies() {
 	svc := gamelift.New(session.New())
 
@@ -803,6 +832,35 @@ func ExampleGameLift_UpdateGameSession() {
 		ProtectionPolicy:            aws.String("ProtectionPolicy"),
 	}
 	resp, err := svc.UpdateGameSession(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleGameLift_UpdateRuntimeConfiguration() {
+	svc := gamelift.New(session.New())
+
+	params := &gamelift.UpdateRuntimeConfigurationInput{
+		FleetId: aws.String("FleetId"), // Required
+		RuntimeConfiguration: &gamelift.RuntimeConfiguration{ // Required
+			ServerProcesses: []*gamelift.ServerProcess{
+				{ // Required
+					ConcurrentExecutions: aws.Int64(1),                      // Required
+					LaunchPath:           aws.String("NonZeroAndMaxString"), // Required
+					Parameters:           aws.String("NonZeroAndMaxString"),
+				},
+				// More values...
+			},
+		},
+	}
+	resp, err := svc.UpdateRuntimeConfiguration(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and

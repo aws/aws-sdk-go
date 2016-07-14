@@ -753,6 +753,7 @@
         "eu-west-1",
         "us-west-1",
         "us-west-2",
+        "ap-south-1",
         "ap-southeast-1",
         "ap-southeast-2",
         "ap-northeast-1",
@@ -963,7 +964,7 @@
     "ContentDisposition":{"type":"string"},
     "ContentEncoding":{"type":"string"},
     "ContentLanguage":{"type":"string"},
-    "ContentLength":{"type":"integer"},
+    "ContentLength":{"type":"long"},
     "ContentMD5":{"type":"string"},
     "ContentRange":{"type":"string"},
     "ContentType":{"type":"string"},
@@ -2913,7 +2914,7 @@
         "StartAfter":{
           "shape":"StartAfter",
           "location":"querystring",
-          "locationName":"start-key"
+          "locationName":"start-after"
         }
       }
     },

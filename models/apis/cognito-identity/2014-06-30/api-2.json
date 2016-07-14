@@ -369,7 +369,8 @@
         "SupportedLoginProviders":{"shape":"IdentityProviders"},
         "DeveloperProviderName":{"shape":"DeveloperProviderName"},
         "OpenIdConnectProviderARNs":{"shape":"OIDCProviderList"},
-        "CognitoIdentityProviders":{"shape":"CognitoIdentityProviderList"}
+        "CognitoIdentityProviders":{"shape":"CognitoIdentityProviderList"},
+        "SamlProviderARNs":{"shape":"SAMLProviderList"}
       }
     },
     "Credentials":{
@@ -458,7 +459,8 @@
       "required":["IdentityId"],
       "members":{
         "IdentityId":{"shape":"IdentityId"},
-        "Logins":{"shape":"LoginsMap"}
+        "Logins":{"shape":"LoginsMap"},
+        "CustomRoleArn":{"shape":"ARNString"}
       }
     },
     "GetCredentialsForIdentityResponse":{
@@ -572,7 +574,8 @@
         "SupportedLoginProviders":{"shape":"IdentityProviders"},
         "DeveloperProviderName":{"shape":"DeveloperProviderName"},
         "OpenIdConnectProviderARNs":{"shape":"OIDCProviderList"},
-        "CognitoIdentityProviders":{"shape":"CognitoIdentityProviderList"}
+        "CognitoIdentityProviders":{"shape":"CognitoIdentityProviderList"},
+        "SamlProviderARNs":{"shape":"SAMLProviderList"}
       }
     },
     "IdentityPoolId":{
@@ -608,14 +611,12 @@
     "IdentityProviderName":{
       "type":"string",
       "max":128,
-      "min":1,
-      "pattern":"[\\w._/:-]+"
+      "min":1
     },
     "IdentityProviderToken":{
       "type":"string",
-      "max":2048,
-      "min":1,
-      "pattern":"[\\S]+"
+      "max":50000,
+      "min":1
     },
     "IdentityProviders":{
       "type":"map",
@@ -783,6 +784,10 @@
       "key":{"shape":"RoleType"},
       "value":{"shape":"ARNString"},
       "max":2
+    },
+    "SAMLProviderList":{
+      "type":"list",
+      "member":{"shape":"ARNString"}
     },
     "SecretKeyString":{"type":"string"},
     "SessionTokenString":{"type":"string"},

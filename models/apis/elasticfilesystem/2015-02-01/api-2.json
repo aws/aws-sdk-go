@@ -3,10 +3,10 @@
   "metadata":{
     "apiVersion":"2015-02-01",
     "endpointPrefix":"elasticfilesystem",
+    "protocol":"rest-json",
     "serviceAbbreviation":"EFS",
     "serviceFullName":"Amazon Elastic File System",
-    "signatureVersion":"v4",
-    "protocol":"rest-json"
+    "signatureVersion":"v4"
   },
   "operations":{
     "CreateFileSystem":{
@@ -19,26 +19,10 @@
       "input":{"shape":"CreateFileSystemRequest"},
       "output":{"shape":"FileSystemDescription"},
       "errors":[
-        {
-          "shape":"BadRequest",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerError",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"FileSystemAlreadyExists",
-          "error":{"httpStatusCode":409},
-          "exception":true
-        },
-        {
-          "shape":"FileSystemLimitExceeded",
-          "error":{"httpStatusCode":403},
-          "exception":true
-        }
+        {"shape":"BadRequest"},
+        {"shape":"InternalServerError"},
+        {"shape":"FileSystemAlreadyExists"},
+        {"shape":"FileSystemLimitExceeded"}
       ]
     },
     "CreateMountTarget":{
@@ -51,66 +35,18 @@
       "input":{"shape":"CreateMountTargetRequest"},
       "output":{"shape":"MountTargetDescription"},
       "errors":[
-        {
-          "shape":"BadRequest",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerError",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"FileSystemNotFound",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"IncorrectFileSystemLifeCycleState",
-          "error":{"httpStatusCode":409},
-          "exception":true
-        },
-        {
-          "shape":"MountTargetConflict",
-          "error":{"httpStatusCode":409},
-          "exception":true
-        },
-        {
-          "shape":"SubnetNotFound",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"NoFreeAddressesInSubnet",
-          "error":{"httpStatusCode":409},
-          "exception":true
-        },
-        {
-          "shape":"IpAddressInUse",
-          "error":{"httpStatusCode":409},
-          "exception":true
-        },
-        {
-          "shape":"NetworkInterfaceLimitExceeded",
-          "error":{"httpStatusCode":409},
-          "exception":true
-        },
-        {
-          "shape":"SecurityGroupLimitExceeded",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"SecurityGroupNotFound",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"UnsupportedAvailabilityZone",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"BadRequest"},
+        {"shape":"InternalServerError"},
+        {"shape":"FileSystemNotFound"},
+        {"shape":"IncorrectFileSystemLifeCycleState"},
+        {"shape":"MountTargetConflict"},
+        {"shape":"SubnetNotFound"},
+        {"shape":"NoFreeAddressesInSubnet"},
+        {"shape":"IpAddressInUse"},
+        {"shape":"NetworkInterfaceLimitExceeded"},
+        {"shape":"SecurityGroupLimitExceeded"},
+        {"shape":"SecurityGroupNotFound"},
+        {"shape":"UnsupportedAvailabilityZone"}
       ]
     },
     "CreateTags":{
@@ -122,21 +58,9 @@
       },
       "input":{"shape":"CreateTagsRequest"},
       "errors":[
-        {
-          "shape":"BadRequest",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerError",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"FileSystemNotFound",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        }
+        {"shape":"BadRequest"},
+        {"shape":"InternalServerError"},
+        {"shape":"FileSystemNotFound"}
       ]
     },
     "DeleteFileSystem":{
@@ -148,26 +72,10 @@
       },
       "input":{"shape":"DeleteFileSystemRequest"},
       "errors":[
-        {
-          "shape":"BadRequest",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerError",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"FileSystemNotFound",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"FileSystemInUse",
-          "error":{"httpStatusCode":409},
-          "exception":true
-        }
+        {"shape":"BadRequest"},
+        {"shape":"InternalServerError"},
+        {"shape":"FileSystemNotFound"},
+        {"shape":"FileSystemInUse"}
       ]
     },
     "DeleteMountTarget":{
@@ -179,26 +87,10 @@
       },
       "input":{"shape":"DeleteMountTargetRequest"},
       "errors":[
-        {
-          "shape":"BadRequest",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerError",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"DependencyTimeout",
-          "error":{"httpStatusCode":504},
-          "exception":true
-        },
-        {
-          "shape":"MountTargetNotFound",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        }
+        {"shape":"BadRequest"},
+        {"shape":"InternalServerError"},
+        {"shape":"DependencyTimeout"},
+        {"shape":"MountTargetNotFound"}
       ]
     },
     "DeleteTags":{
@@ -210,21 +102,9 @@
       },
       "input":{"shape":"DeleteTagsRequest"},
       "errors":[
-        {
-          "shape":"BadRequest",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerError",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"FileSystemNotFound",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        }
+        {"shape":"BadRequest"},
+        {"shape":"InternalServerError"},
+        {"shape":"FileSystemNotFound"}
       ]
     },
     "DescribeFileSystems":{
@@ -237,21 +117,9 @@
       "input":{"shape":"DescribeFileSystemsRequest"},
       "output":{"shape":"DescribeFileSystemsResponse"},
       "errors":[
-        {
-          "shape":"BadRequest",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerError",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"FileSystemNotFound",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        }
+        {"shape":"BadRequest"},
+        {"shape":"InternalServerError"},
+        {"shape":"FileSystemNotFound"}
       ]
     },
     "DescribeMountTargetSecurityGroups":{
@@ -264,26 +132,10 @@
       "input":{"shape":"DescribeMountTargetSecurityGroupsRequest"},
       "output":{"shape":"DescribeMountTargetSecurityGroupsResponse"},
       "errors":[
-        {
-          "shape":"BadRequest",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerError",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"MountTargetNotFound",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"IncorrectMountTargetState",
-          "error":{"httpStatusCode":409},
-          "exception":true
-        }
+        {"shape":"BadRequest"},
+        {"shape":"InternalServerError"},
+        {"shape":"MountTargetNotFound"},
+        {"shape":"IncorrectMountTargetState"}
       ]
     },
     "DescribeMountTargets":{
@@ -296,26 +148,10 @@
       "input":{"shape":"DescribeMountTargetsRequest"},
       "output":{"shape":"DescribeMountTargetsResponse"},
       "errors":[
-        {
-          "shape":"BadRequest",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerError",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"FileSystemNotFound",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"MountTargetNotFound",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        }
+        {"shape":"BadRequest"},
+        {"shape":"InternalServerError"},
+        {"shape":"FileSystemNotFound"},
+        {"shape":"MountTargetNotFound"}
       ]
     },
     "DescribeTags":{
@@ -328,21 +164,9 @@
       "input":{"shape":"DescribeTagsRequest"},
       "output":{"shape":"DescribeTagsResponse"},
       "errors":[
-        {
-          "shape":"BadRequest",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerError",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"FileSystemNotFound",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        }
+        {"shape":"BadRequest"},
+        {"shape":"InternalServerError"},
+        {"shape":"FileSystemNotFound"}
       ]
     },
     "ModifyMountTargetSecurityGroups":{
@@ -354,36 +178,12 @@
       },
       "input":{"shape":"ModifyMountTargetSecurityGroupsRequest"},
       "errors":[
-        {
-          "shape":"BadRequest",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerError",
-          "error":{"httpStatusCode":500},
-          "exception":true
-        },
-        {
-          "shape":"MountTargetNotFound",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"IncorrectMountTargetState",
-          "error":{"httpStatusCode":409},
-          "exception":true
-        },
-        {
-          "shape":"SecurityGroupLimitExceeded",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"SecurityGroupNotFound",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"BadRequest"},
+        {"shape":"InternalServerError"},
+        {"shape":"MountTargetNotFound"},
+        {"shape":"IncorrectMountTargetState"},
+        {"shape":"SecurityGroupLimitExceeded"},
+        {"shape":"SecurityGroupNotFound"}
       ]
     }
   },
@@ -403,7 +203,8 @@
       "type":"structure",
       "required":["CreationToken"],
       "members":{
-        "CreationToken":{"shape":"CreationToken"}
+        "CreationToken":{"shape":"CreationToken"},
+        "PerformanceMode":{"shape":"PerformanceMode"}
       }
     },
     "CreateMountTargetRequest":{
@@ -436,8 +237,8 @@
     },
     "CreationToken":{
       "type":"string",
-      "min":1,
-      "max":64
+      "max":64,
+      "min":1
     },
     "DeleteFileSystemRequest":{
       "type":"structure",
@@ -628,7 +429,8 @@
         "CreationTime",
         "LifeCycleState",
         "NumberOfMountTargets",
-        "SizeInBytes"
+        "SizeInBytes",
+        "PerformanceMode"
       ],
       "members":{
         "OwnerId":{"shape":"AwsAccountId"},
@@ -638,7 +440,8 @@
         "LifeCycleState":{"shape":"LifeCycleState"},
         "Name":{"shape":"TagValue"},
         "NumberOfMountTargets":{"shape":"MountTargetCount"},
-        "SizeInBytes":{"shape":"FileSystemSize"}
+        "SizeInBytes":{"shape":"FileSystemSize"},
+        "PerformanceMode":{"shape":"PerformanceMode"}
       }
     },
     "FileSystemDescriptions":{
@@ -823,6 +626,13 @@
       "error":{"httpStatusCode":409},
       "exception":true
     },
+    "PerformanceMode":{
+      "type":"string",
+      "enum":[
+        "generalPurpose",
+        "maxIO"
+      ]
+    },
     "SecurityGroup":{"type":"string"},
     "SecurityGroupLimitExceeded":{
       "type":"structure",
@@ -873,8 +683,8 @@
     },
     "TagKey":{
       "type":"string",
-      "min":1,
-      "max":128
+      "max":128,
+      "min":1
     },
     "TagKeys":{
       "type":"list",

@@ -13,7 +13,28 @@ import (
 
 const opCreateDeliveryStream = "CreateDeliveryStream"
 
-// CreateDeliveryStreamRequest generates a request for the CreateDeliveryStream operation.
+// CreateDeliveryStreamRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDeliveryStream operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateDeliveryStream method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateDeliveryStreamRequest method.
+//    req, resp := client.CreateDeliveryStreamRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Firehose) CreateDeliveryStreamRequest(input *CreateDeliveryStreamInput) (req *request.Request, output *CreateDeliveryStreamOutput) {
 	op := &request.Operation{
 		Name:       opCreateDeliveryStream,
@@ -89,7 +110,28 @@ func (c *Firehose) CreateDeliveryStream(input *CreateDeliveryStreamInput) (*Crea
 
 const opDeleteDeliveryStream = "DeleteDeliveryStream"
 
-// DeleteDeliveryStreamRequest generates a request for the DeleteDeliveryStream operation.
+// DeleteDeliveryStreamRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDeliveryStream operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteDeliveryStream method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteDeliveryStreamRequest method.
+//    req, resp := client.DeleteDeliveryStreamRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Firehose) DeleteDeliveryStreamRequest(input *DeleteDeliveryStreamInput) (req *request.Request, output *DeleteDeliveryStreamOutput) {
 	op := &request.Operation{
 		Name:       opDeleteDeliveryStream,
@@ -127,7 +169,28 @@ func (c *Firehose) DeleteDeliveryStream(input *DeleteDeliveryStreamInput) (*Dele
 
 const opDescribeDeliveryStream = "DescribeDeliveryStream"
 
-// DescribeDeliveryStreamRequest generates a request for the DescribeDeliveryStream operation.
+// DescribeDeliveryStreamRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDeliveryStream operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeDeliveryStream method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeDeliveryStreamRequest method.
+//    req, resp := client.DescribeDeliveryStreamRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Firehose) DescribeDeliveryStreamRequest(input *DescribeDeliveryStreamInput) (req *request.Request, output *DescribeDeliveryStreamOutput) {
 	op := &request.Operation{
 		Name:       opDescribeDeliveryStream,
@@ -157,7 +220,28 @@ func (c *Firehose) DescribeDeliveryStream(input *DescribeDeliveryStreamInput) (*
 
 const opListDeliveryStreams = "ListDeliveryStreams"
 
-// ListDeliveryStreamsRequest generates a request for the ListDeliveryStreams operation.
+// ListDeliveryStreamsRequest generates a "aws/request.Request" representing the
+// client's request for the ListDeliveryStreams operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListDeliveryStreams method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListDeliveryStreamsRequest method.
+//    req, resp := client.ListDeliveryStreamsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Firehose) ListDeliveryStreamsRequest(input *ListDeliveryStreamsInput) (req *request.Request, output *ListDeliveryStreamsOutput) {
 	op := &request.Operation{
 		Name:       opListDeliveryStreams,
@@ -192,7 +276,28 @@ func (c *Firehose) ListDeliveryStreams(input *ListDeliveryStreamsInput) (*ListDe
 
 const opPutRecord = "PutRecord"
 
-// PutRecordRequest generates a request for the PutRecord operation.
+// PutRecordRequest generates a "aws/request.Request" representing the
+// client's request for the PutRecord operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the PutRecord method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PutRecordRequest method.
+//    req, resp := client.PutRecordRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Firehose) PutRecordRequest(input *PutRecordInput) (req *request.Request, output *PutRecordOutput) {
 	op := &request.Operation{
 		Name:       opPutRecord,
@@ -251,7 +356,28 @@ func (c *Firehose) PutRecord(input *PutRecordInput) (*PutRecordOutput, error) {
 
 const opPutRecordBatch = "PutRecordBatch"
 
-// PutRecordBatchRequest generates a request for the PutRecordBatch operation.
+// PutRecordBatchRequest generates a "aws/request.Request" representing the
+// client's request for the PutRecordBatch operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the PutRecordBatch method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the PutRecordBatchRequest method.
+//    req, resp := client.PutRecordBatchRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Firehose) PutRecordBatchRequest(input *PutRecordBatchInput) (req *request.Request, output *PutRecordBatchOutput) {
 	op := &request.Operation{
 		Name:       opPutRecordBatch,
@@ -333,7 +459,28 @@ func (c *Firehose) PutRecordBatch(input *PutRecordBatchInput) (*PutRecordBatchOu
 
 const opUpdateDestination = "UpdateDestination"
 
-// UpdateDestinationRequest generates a request for the UpdateDestination operation.
+// UpdateDestinationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateDestination operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateDestination method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateDestinationRequest method.
+//    req, resp := client.UpdateDestinationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *Firehose) UpdateDestinationRequest(input *UpdateDestinationInput) (req *request.Request, output *UpdateDestinationOutput) {
 	op := &request.Operation{
 		Name:       opUpdateDestination,

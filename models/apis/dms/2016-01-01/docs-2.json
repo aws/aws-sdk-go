@@ -1,36 +1,39 @@
 {
   "version": "2.0",
-  "service": "<fullname>AWS Database Migration Service</fullname> <p> AWS Database Migration Service (AWS DMS) can migrate your data to and from the most widely used commercial and open-source databases such as Oracle, PostgreSQL, Microsoft SQL Server, MariaDB, Amazon Aurora, and MySQL. The service supports homogeneous migrations such as Oracle to Oracle, as well as heterogeneous migrations between different database platforms, such as Oracle to MySQL or SQL Server to PostgreSQL. </p>",
+  "service": "<fullname>AWS Database Migration Service</fullname> <p>AWS Database Migration Service (AWS DMS) can migrate your data to and from the most widely used commercial and open-source databases such as Oracle, PostgreSQL, Microsoft SQL Server, Amazon Redshift, MariaDB, Amazon Aurora, and MySQL. The service supports homogeneous migrations such as Oracle to Oracle, as well as heterogeneous migrations between different database platforms, such as Oracle to MySQL or SQL Server to PostgreSQL.</p>",
   "operations": {
-    "AddTagsToResource": "<p> Adds metadata tags to a DMS resource, including replication instance, endpoint, security group, and migration task. These tags can also be used with cost allocation reporting to track cost associated with DMS resources, or used in a Condition statement in an IAM policy for DMS.</p> <note/><p/>",
-    "CreateEndpoint": "<p>Creates an endpoint using the provided settings.</p> <note/><p/>",
-    "CreateReplicationInstance": "<p>Creates the replication instance using the specified parameters.</p> <note/><p/>",
-    "CreateReplicationSubnetGroup": "<p>Creates a replication subnet group given a list of the subnet IDs in a VPC.</p> <note/><p/>",
-    "CreateReplicationTask": "<p>Creates a replication task using the specified parameters.</p> <note/><p/>",
-    "DeleteEndpoint": "<p>Deletes the specified endpoint. </p> <note>All tasks associated with the endpoint must be deleted before you can delete the endpoint.</note><p/>",
-    "DeleteReplicationInstance": "<p>Deletes the specified replication instance. </p> <note>You must delete any migration tasks that are associated with the replication instance before you can delete it.</note><p/>",
-    "DeleteReplicationSubnetGroup": "<p>Deletes a subnet group.</p> <note/><p/>",
-    "DeleteReplicationTask": "<p>Deletes the specified replication task.</p> <note/><p/>",
-    "DescribeAccountAttributes": "<p>Lists all of the AWS DMS attributes for a customer account. The attributes include AWS DMS quotas for the account, such as the number of replication instances allowed. The description for a quota includes the quota name, current usage toward that quota, and the quota's maximum value. </p> <p>This command does not take any parameters.</p> <note/><p/>",
-    "DescribeConnections": "<p>Describes the status of the connections that have been made between the replication instance and an endpoint. Connections are created when you test an endpoint.</p> <note/><p/>",
-    "DescribeEndpointTypes": "<p>Returns information about the type of endpoints available.</p> <note/> <p/>",
-    "DescribeEndpoints": "<p>Returns information about the endpoints for your account in the current region.</p> <note/><p/>",
-    "DescribeOrderableReplicationInstances": "<p>Returns information about the replication instance types that can be created in the specified region.</p> <note/><p/>",
-    "DescribeRefreshSchemasStatus": "<p>Returns the status of the RefreshSchemas operation.</p> <note/><p/>",
-    "DescribeReplicationInstances": "<p>Returns information about replication instances for your account in the current region.</p> <note/><p/>",
-    "DescribeReplicationSubnetGroups": "<p>Returns information about the replication subnet groups.</p> <note/><p/>",
-    "DescribeReplicationTasks": "<p>Returns information about replication tasks for your account in the current region.</p> <note/><p/>",
-    "DescribeSchemas": "<p>Returns information about the schema for the specified endpoint.</p> <note/><p/>",
-    "DescribeTableStatistics": "<p>Returns table statistics on the database migration task, including table name, rows inserted, rows updated, and rows deleted.</p> <note/><p/>",
-    "ListTagsForResource": "<p> Lists all tags for an AWS DMS resource.</p> <note/><p/>",
-    "ModifyEndpoint": "<p>Modifies the specified endpoint.</p> <note/><p/>",
-    "ModifyReplicationInstance": "<p>Modifies the replication instance to apply new settings. You can change one or more parameters by specifying these parameters and the new values in the request.</p> <note>Some settings are applied during the maintenance window.</note><p/> <p/>",
-    "ModifyReplicationSubnetGroup": "<p>Modifies the settings for the specified replication subnet group.</p> <note/><p/>",
-    "RefreshSchemas": "<p>Populates the schema for the specified endpoint. This is an asynchronous operation and can take several minutes. You can check the status of this operation by calling the DescribeRefreshSchemasStatus operation.</p> <note/><p/>",
-    "RemoveTagsFromResource": "<p> Removes metadata tags from a DMS resource.</p> <note/><p/>",
-    "StartReplicationTask": "<p>Starts the replication task.</p> <note/><p/>",
-    "StopReplicationTask": "<p>Stops the replication task.</p> <note/><p/>",
-    "TestConnection": "<p>Tests the connection between the replication instance and the endpoint. </p> <note/><p/>"
+    "AddTagsToResource": "<p>Adds metadata tags to a DMS resource, including replication instance, endpoint, security group, and migration task. These tags can also be used with cost allocation reporting to track cost associated with DMS resources, or used in a Condition statement in an IAM policy for DMS.</p>",
+    "CreateEndpoint": "<p>Creates an endpoint using the provided settings.</p>",
+    "CreateReplicationInstance": "<p>Creates the replication instance using the specified parameters.</p>",
+    "CreateReplicationSubnetGroup": "<p>Creates a replication subnet group given a list of the subnet IDs in a VPC.</p>",
+    "CreateReplicationTask": "<p>Creates a replication task using the specified parameters.</p>",
+    "DeleteCertificate": "<p>Deletes the specified certificate. </p>",
+    "DeleteEndpoint": "<p>Deletes the specified endpoint.</p> <note> <p>All tasks associated with the endpoint must be deleted before you can delete the endpoint.</p> </note> <p/>",
+    "DeleteReplicationInstance": "<p>Deletes the specified replication instance.</p> <note> <p>You must delete any migration tasks that are associated with the replication instance before you can delete it.</p> </note> <p/>",
+    "DeleteReplicationSubnetGroup": "<p>Deletes a subnet group.</p>",
+    "DeleteReplicationTask": "<p>Deletes the specified replication task.</p>",
+    "DescribeAccountAttributes": "<p>Lists all of the AWS DMS attributes for a customer account. The attributes include AWS DMS quotas for the account, such as the number of replication instances allowed. The description for a quota includes the quota name, current usage toward that quota, and the quota's maximum value.</p> <p>This command does not take any parameters.</p>",
+    "DescribeCertificates": "<p>Provides a description of the certificate.</p>",
+    "DescribeConnections": "<p>Describes the status of the connections that have been made between the replication instance and an endpoint. Connections are created when you test an endpoint.</p>",
+    "DescribeEndpointTypes": "<p>Returns information about the type of endpoints available.</p>",
+    "DescribeEndpoints": "<p>Returns information about the endpoints for your account in the current region.</p>",
+    "DescribeOrderableReplicationInstances": "<p>Returns information about the replication instance types that can be created in the specified region.</p>",
+    "DescribeRefreshSchemasStatus": "<p>Returns the status of the RefreshSchemas operation.</p>",
+    "DescribeReplicationInstances": "<p>Returns information about replication instances for your account in the current region.</p>",
+    "DescribeReplicationSubnetGroups": "<p>Returns information about the replication subnet groups.</p>",
+    "DescribeReplicationTasks": "<p>Returns information about replication tasks for your account in the current region.</p>",
+    "DescribeSchemas": "<p>Returns information about the schema for the specified endpoint.</p> <p/>",
+    "DescribeTableStatistics": "<p>Returns table statistics on the database migration task, including table name, rows inserted, rows updated, and rows deleted.</p>",
+    "ImportCertificate": "<p>Uploads the specified certificate.</p>",
+    "ListTagsForResource": "<p>Lists all tags for an AWS DMS resource.</p>",
+    "ModifyEndpoint": "<p>Modifies the specified endpoint.</p>",
+    "ModifyReplicationInstance": "<p>Modifies the replication instance to apply new settings. You can change one or more parameters by specifying these parameters and the new values in the request.</p> <p>Some settings are applied during the maintenance window.</p> <p/>",
+    "ModifyReplicationSubnetGroup": "<p>Modifies the settings for the specified replication subnet group.</p>",
+    "RefreshSchemas": "<p>Populates the schema for the specified endpoint. This is an asynchronous operation and can take several minutes. You can check the status of this operation by calling the DescribeRefreshSchemasStatus operation.</p>",
+    "RemoveTagsFromResource": "<p>Removes metadata tags from a DMS resource.</p>",
+    "StartReplicationTask": "<p>Starts the replication task.</p>",
+    "StopReplicationTask": "<p>Stops the replication task.</p> <p/>",
+    "TestConnection": "<p>Tests the connection between the replication instance and the endpoint.</p>"
   },
   "shapes": {
     "AccessDeniedFault": {
@@ -51,17 +54,17 @@
       }
     },
     "AddTagsToResourceMessage": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "AddTagsToResourceResponse": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "AvailabilityZone": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
         "Subnet$SubnetAvailabilityZone": "<p>The Availability Zone of the subnet.</p>"
       }
@@ -69,8 +72,9 @@
     "Boolean": {
       "base": null,
       "refs": {
-        "ModifyReplicationInstanceMessage$ApplyImmediately": "<p> Indicates whether the changes should be applied immediately or during the next maintenance window. </p>",
-        "ModifyReplicationInstanceMessage$AllowMajorVersionUpgrade": "<p> Indicates that major version upgrades are allowed. Changing this parameter does not result in an outage and the change is asynchronously applied as soon as possible. </p> <p>Constraints: This parameter must be set to true when specifying a value for the <code>EngineVersion</code> parameter that is a different major version than the replication instance's current version.</p>",
+        "ModifyReplicationInstanceMessage$ApplyImmediately": "<p>Indicates whether the changes should be applied immediately or during the next maintenance window.</p>",
+        "ModifyReplicationInstanceMessage$AllowMajorVersionUpgrade": "<p>Indicates that major version upgrades are allowed. Changing this parameter does not result in an outage and the change is asynchronously applied as soon as possible.</p> <p>Constraints: This parameter must be set to true when specifying a value for the <code>EngineVersion</code> parameter that is a different major version than the replication instance's current version.</p>",
+        "ReplicationInstance$MultiAZ": "<p> Specifies if the replication instance is a Multi-AZ deployment. You cannot set the <code>AvailabilityZone</code> parameter if the Multi-AZ parameter is set to <code>true</code>. </p>",
         "ReplicationInstance$AutoMinorVersionUpgrade": "<p>Boolean value indicating if minor version upgrades will be automatically applied to the instance.</p>",
         "ReplicationInstance$PubliclyAccessible": "<p> Specifies the accessibility options for the replication instance. A value of <code>true</code> represents an instance with a public IP address. A value of <code>false</code> represents an instance with a private IP address. The default value is <code>true</code>. </p>",
         "SupportedEndpointType$SupportsCDC": "<p>Indicates if Change Data Capture (CDC) is supported.</p>"
@@ -79,13 +83,30 @@
     "BooleanOptional": {
       "base": null,
       "refs": {
-        "CreateReplicationInstanceMessage$AutoMinorVersionUpgrade": "<p> Indicates that minor engine upgrades will be applied automatically to the replication instance during the maintenance window. </p> <p>Default: <code>true</code></p>",
+        "CreateReplicationInstanceMessage$MultiAZ": "<p> Specifies if the replication instance is a Multi-AZ deployment. You cannot set the <code>AvailabilityZone</code> parameter if the Multi-AZ parameter is set to <code>true</code>. </p>",
+        "CreateReplicationInstanceMessage$AutoMinorVersionUpgrade": "<p>Indicates that minor engine upgrades will be applied automatically to the replication instance during the maintenance window.</p> <p>Default: <code>true</code> </p>",
         "CreateReplicationInstanceMessage$PubliclyAccessible": "<p> Specifies the accessibility options for the replication instance. A value of <code>true</code> represents an instance with a public IP address. A value of <code>false</code> represents an instance with a private IP address. The default value is <code>true</code>. </p>",
-        "ModifyReplicationInstanceMessage$AutoMinorVersionUpgrade": "<p> Indicates that minor version upgrades will be applied automatically to the replication instance during the maintenance window. Changing this parameter does not result in an outage except in the following case and the change is asynchronously applied as soon as possible. An outage will result if this parameter is set to <code>true</code> during the maintenance window, and a newer minor version is available, and AWS DMS has enabled auto patching for that engine version. </p>"
+        "ModifyReplicationInstanceMessage$MultiAZ": "<p> Specifies if the replication instance is a Multi-AZ deployment. You cannot set the <code>AvailabilityZone</code> parameter if the Multi-AZ parameter is set to <code>true</code>. </p>",
+        "ModifyReplicationInstanceMessage$AutoMinorVersionUpgrade": "<p> Indicates that minor version upgrades will be applied automatically to the replication instance during the maintenance window. Changing this parameter does not result in an outage except in the following case and the change is asynchronously applied as soon as possible. An outage will result if this parameter is set to <code>true</code> during the maintenance window, and a newer minor version is available, and AWS DMS has enabled auto patching for that engine version. </p>",
+        "ReplicationPendingModifiedValues$MultiAZ": "<p> Specifies if the replication instance is a Multi-AZ deployment. You cannot set the <code>AvailabilityZone</code> parameter if the Multi-AZ parameter is set to <code>true</code>. </p>"
+      }
+    },
+    "Certificate": {
+      "base": "<p>The SSL certificate that can be used to encrypt connections between the endpoints and the replication instance.</p>",
+      "refs": {
+        "CertificateList$member": null,
+        "DeleteCertificateResponse$Certificate": "<p>The SSL certificate.</p>",
+        "ImportCertificateResponse$Certificate": "<p>The certificate to be uploaded.</p>"
+      }
+    },
+    "CertificateList": {
+      "base": null,
+      "refs": {
+        "DescribeCertificatesResponse$Certificates": "<p>The SSL certificates associated with the replication instance.</p>"
       }
     },
     "Connection": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
         "ConnectionList$member": null,
         "TestConnectionResponse$Connection": "<p>The connection tested.</p>"
@@ -94,16 +115,16 @@
     "ConnectionList": {
       "base": null,
       "refs": {
-        "DescribeConnectionsResponse$Connections": "<p>A description of the connections. </p>"
+        "DescribeConnectionsResponse$Connections": "<p>A description of the connections.</p>"
       }
     },
     "CreateEndpointMessage": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "CreateEndpointResponse": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
@@ -113,182 +134,210 @@
       }
     },
     "CreateReplicationInstanceResponse": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "CreateReplicationSubnetGroupMessage": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "CreateReplicationSubnetGroupResponse": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "CreateReplicationTaskMessage": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "CreateReplicationTaskResponse": {
+      "base": "<p/>",
+      "refs": {
+      }
+    },
+    "DeleteCertificateMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteCertificateResponse": {
       "base": null,
       "refs": {
       }
     },
     "DeleteEndpointMessage": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "DeleteEndpointResponse": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "DeleteReplicationInstanceMessage": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "DeleteReplicationInstanceResponse": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "DeleteReplicationSubnetGroupMessage": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "DeleteReplicationSubnetGroupResponse": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "DeleteReplicationTaskMessage": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "DeleteReplicationTaskResponse": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "DescribeAccountAttributesMessage": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "DescribeAccountAttributesResponse": {
+      "base": "<p/>",
+      "refs": {
+      }
+    },
+    "DescribeCertificatesMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeCertificatesResponse": {
       "base": null,
       "refs": {
       }
     },
     "DescribeConnectionsMessage": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "DescribeConnectionsResponse": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "DescribeEndpointTypesMessage": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "DescribeEndpointTypesResponse": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "DescribeEndpointsMessage": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "DescribeEndpointsResponse": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "DescribeOrderableReplicationInstancesMessage": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "DescribeOrderableReplicationInstancesResponse": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "DescribeRefreshSchemasStatusMessage": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "DescribeRefreshSchemasStatusResponse": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "DescribeReplicationInstancesMessage": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "DescribeReplicationInstancesResponse": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "DescribeReplicationSubnetGroupsMessage": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "DescribeReplicationSubnetGroupsResponse": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "DescribeReplicationTasksMessage": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "DescribeReplicationTasksResponse": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "DescribeSchemasMessage": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "DescribeSchemasResponse": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "DescribeTableStatisticsMessage": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "DescribeTableStatisticsResponse": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
-    "Endpoint": {
+    "DmsSslModeValue": {
       "base": null,
+      "refs": {
+        "CreateEndpointMessage$SslMode": "<p>The SSL mode to use for the SSL connection.</p> <p>SSL mode can be one of four values: none, require, verify-ca, verify-full. </p> <p>The default value is none.</p>",
+        "Endpoint$SslMode": "<p>The SSL mode used to connect to the endpoint.</p> <p>SSL mode can be one of four values: none, require, verify-ca, verify-full. </p> <p>The default value is none.</p>",
+        "ModifyEndpointMessage$SslMode": "<p>The SSL mode to be used.</p> <p>SSL mode can be one of four values: none, require, verify-ca, verify-full. </p> <p>The default value is none.</p>"
+      }
+    },
+    "Endpoint": {
+      "base": "<p/>",
       "refs": {
         "CreateEndpointResponse$Endpoint": "<p>The endpoint that was created.</p>",
         "DeleteEndpointResponse$Endpoint": "<p>The endpoint that was deleted.</p>",
@@ -305,22 +354,23 @@
     "ExceptionMessage": {
       "base": null,
       "refs": {
-        "AccessDeniedFault$message": null,
-        "InsufficientResourceCapacityFault$message": null,
-        "InvalidResourceStateFault$message": null,
-        "InvalidSubnet$message": null,
-        "KMSKeyNotAccessibleFault$message": null,
-        "ReplicationSubnetGroupDoesNotCoverEnoughAZs$message": null,
-        "ResourceAlreadyExistsFault$message": null,
-        "ResourceNotFoundFault$message": null,
-        "ResourceQuotaExceededFault$message": null,
-        "StorageQuotaExceededFault$message": null,
-        "SubnetAlreadyInUse$message": null,
-        "UpgradeDependencyFailureFault$message": null
+        "AccessDeniedFault$message": "<p/>",
+        "InsufficientResourceCapacityFault$message": "<p/>",
+        "InvalidCertificateFault$message": null,
+        "InvalidResourceStateFault$message": "<p/>",
+        "InvalidSubnet$message": "<p/>",
+        "KMSKeyNotAccessibleFault$message": "<p/>",
+        "ReplicationSubnetGroupDoesNotCoverEnoughAZs$message": "<p/>",
+        "ResourceAlreadyExistsFault$message": "<p/>",
+        "ResourceNotFoundFault$message": "<p/>",
+        "ResourceQuotaExceededFault$message": "<p/>",
+        "StorageQuotaExceededFault$message": "<p/>",
+        "SubnetAlreadyInUse$message": "<p/>",
+        "UpgradeDependencyFailureFault$message": "<p/>"
       }
     },
     "Filter": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
         "FilterList$member": null
       }
@@ -328,18 +378,29 @@
     "FilterList": {
       "base": null,
       "refs": {
-        "DescribeConnectionsMessage$Filters": "<p>The filters applied to the connection.</p> <p>Valid filter names: endpoint-arn | replication-instance-arn </p>",
+        "DescribeCertificatesMessage$Filters": "<p>Filters applied to the certificate described in the form of key-value pairs.</p>",
+        "DescribeConnectionsMessage$Filters": "<p>The filters applied to the connection.</p> <p>Valid filter names: endpoint-arn | replication-instance-arn</p>",
         "DescribeEndpointTypesMessage$Filters": "<p>Filters applied to the describe action.</p> <p>Valid filter names: engine-name | endpoint-type</p>",
-        "DescribeEndpointsMessage$Filters": "<p>Filters applied to the describe action.</p> <p>Valid filter names: endpoint-arn | endpoint-type | endpoint-id | engine-name </p>",
-        "DescribeReplicationInstancesMessage$Filters": "<p>Filters applied to the describe action.</p> <p>Valid filter names: replication-instance-arn | replication-instance-id | replication-instance-class | engine-version </p>",
+        "DescribeEndpointsMessage$Filters": "<p>Filters applied to the describe action.</p> <p>Valid filter names: endpoint-arn | endpoint-type | endpoint-id | engine-name</p>",
+        "DescribeReplicationInstancesMessage$Filters": "<p>Filters applied to the describe action.</p> <p>Valid filter names: replication-instance-arn | replication-instance-id | replication-instance-class | engine-version</p>",
         "DescribeReplicationSubnetGroupsMessage$Filters": "<p>Filters applied to the describe action.</p>",
-        "DescribeReplicationTasksMessage$Filters": "<p>Filters applied to the describe action.</p> <p>Valid filter names: replication-task-arn | replication-task-id | migration-type | endpoint-arn | replication-instance-arn </p>"
+        "DescribeReplicationTasksMessage$Filters": "<p>Filters applied to the describe action.</p> <p>Valid filter names: replication-task-arn | replication-task-id | migration-type | endpoint-arn | replication-instance-arn</p>"
       }
     },
     "FilterValueList": {
       "base": null,
       "refs": {
         "Filter$Values": "<p>The filter value.</p>"
+      }
+    },
+    "ImportCertificateMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ImportCertificateResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "InsufficientResourceCapacityFault": {
@@ -350,11 +411,11 @@
     "Integer": {
       "base": null,
       "refs": {
-        "OrderableReplicationInstance$MinAllocatedStorage": "<p> The minimum amount of storage (in gigabytes) that can be allocated for the replication instance. </p>",
-        "OrderableReplicationInstance$MaxAllocatedStorage": "<p> The minimum amount of storage (in gigabytes) that can be allocated for the replication instance. </p>",
-        "OrderableReplicationInstance$DefaultAllocatedStorage": "<p> The default amount of storage (in gigabytes) that is allocated for the replication instance. </p>",
-        "OrderableReplicationInstance$IncludedAllocatedStorage": "<p> The amount of storage (in gigabytes) that is allocated for the replication instance. </p>",
-        "ReplicationInstance$AllocatedStorage": "<p> The amount of storage (in gigabytes) that is allocated for the replication instance. </p>",
+        "OrderableReplicationInstance$MinAllocatedStorage": "<p>The minimum amount of storage (in gigabytes) that can be allocated for the replication instance.</p>",
+        "OrderableReplicationInstance$MaxAllocatedStorage": "<p>The minimum amount of storage (in gigabytes) that can be allocated for the replication instance.</p>",
+        "OrderableReplicationInstance$DefaultAllocatedStorage": "<p>The default amount of storage (in gigabytes) that is allocated for the replication instance.</p>",
+        "OrderableReplicationInstance$IncludedAllocatedStorage": "<p>The amount of storage (in gigabytes) that is allocated for the replication instance.</p>",
+        "ReplicationInstance$AllocatedStorage": "<p>The amount of storage (in gigabytes) that is allocated for the replication instance.</p>",
         "ReplicationTaskStats$FullLoadProgressPercent": "<p>The percent complete for the full load migration task.</p>",
         "ReplicationTaskStats$TablesLoaded": "<p>The number of tables loaded for this task.</p>",
         "ReplicationTaskStats$TablesLoading": "<p>The number of tables currently loading for this task.</p>",
@@ -365,8 +426,10 @@
     "IntegerOptional": {
       "base": null,
       "refs": {
+        "Certificate$KeyLength": "<p>The key length of the cryptographic algorithm being used.</p>",
         "CreateEndpointMessage$Port": "<p>The port used by the endpoint database.</p>",
-        "CreateReplicationInstanceMessage$AllocatedStorage": "<p> The amount of storage (in gigabytes) to be initially allocated for the replication instance. </p>",
+        "CreateReplicationInstanceMessage$AllocatedStorage": "<p>The amount of storage (in gigabytes) to be initially allocated for the replication instance.</p>",
+        "DescribeCertificatesMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 10</p>",
         "DescribeConnectionsMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeEndpointTypesMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeEndpointsMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
@@ -378,8 +441,13 @@
         "DescribeTableStatisticsMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "Endpoint$Port": "<p>The port value used to access the endpoint.</p>",
         "ModifyEndpointMessage$Port": "<p>The port used by the endpoint database.</p>",
-        "ModifyReplicationInstanceMessage$AllocatedStorage": "<p> The amount of storage (in gigabytes) to be allocated for the replication instance. </p>",
-        "ReplicationPendingModifiedValues$AllocatedStorage": "<p> The amount of storage (in gigabytes) that is allocated for the replication instance. </p>"
+        "ModifyReplicationInstanceMessage$AllocatedStorage": "<p>The amount of storage (in gigabytes) to be allocated for the replication instance.</p>",
+        "ReplicationPendingModifiedValues$AllocatedStorage": "<p>The amount of storage (in gigabytes) that is allocated for the replication instance.</p>"
+      }
+    },
+    "InvalidCertificateFault": {
+      "base": "<p>The certificate was not valid.</p>",
+      "refs": {
       }
     },
     "InvalidResourceStateFault": {
@@ -404,12 +472,12 @@
       }
     },
     "ListTagsForResourceMessage": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "ListTagsForResourceResponse": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
@@ -434,37 +502,37 @@
       }
     },
     "ModifyEndpointMessage": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "ModifyEndpointResponse": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "ModifyReplicationInstanceMessage": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "ModifyReplicationInstanceResponse": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "ModifyReplicationSubnetGroupMessage": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "ModifyReplicationSubnetGroupResponse": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "OrderableReplicationInstance": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
         "OrderableReplicationInstanceList$member": null
       }
@@ -476,17 +544,17 @@
       }
     },
     "RefreshSchemasMessage": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "RefreshSchemasResponse": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "RefreshSchemasStatus": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
         "DescribeRefreshSchemasStatusResponse$RefreshSchemasStatus": "<p>The status of the schema.</p>",
         "RefreshSchemasResponse$RefreshSchemasStatus": "<p>The status of the refreshed schema.</p>"
@@ -499,12 +567,12 @@
       }
     },
     "RemoveTagsFromResourceMessage": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "RemoveTagsFromResourceResponse": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
@@ -518,7 +586,7 @@
       }
     },
     "ReplicationInstance": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
         "CreateReplicationInstanceResponse$ReplicationInstance": "<p>The replication instance that was created.</p>",
         "DeleteReplicationInstanceResponse$ReplicationInstance": "<p>The replication instance that was deleted.</p>",
@@ -532,14 +600,26 @@
         "DescribeReplicationInstancesResponse$ReplicationInstances": "<p>The replication instances described.</p>"
       }
     },
-    "ReplicationPendingModifiedValues": {
+    "ReplicationInstancePrivateIpAddressList": {
       "base": null,
+      "refs": {
+        "ReplicationInstance$ReplicationInstancePrivateIpAddresses": "<p>The private IP address of the replication instance.</p>"
+      }
+    },
+    "ReplicationInstancePublicIpAddressList": {
+      "base": null,
+      "refs": {
+        "ReplicationInstance$ReplicationInstancePublicIpAddresses": "<p>The public IP address of the replication instance.</p>"
+      }
+    },
+    "ReplicationPendingModifiedValues": {
+      "base": "<p/>",
       "refs": {
         "ReplicationInstance$PendingModifiedValues": "<p>The pending modification values.</p>"
       }
     },
     "ReplicationSubnetGroup": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
         "CreateReplicationSubnetGroupResponse$ReplicationSubnetGroup": "<p>The replication subnet group that was created.</p>",
         "ModifyReplicationSubnetGroupResponse$ReplicationSubnetGroup": "<p>The modified replication subnet group.</p>",
@@ -559,7 +639,7 @@
       }
     },
     "ReplicationTask": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
         "CreateReplicationTaskResponse$ReplicationTask": "<p>The replication task that was created.</p>",
         "DeleteReplicationTaskResponse$ReplicationTask": "<p>The deleted replication task.</p>",
@@ -575,7 +655,7 @@
       }
     },
     "ReplicationTaskStats": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
         "ReplicationTask$ReplicationTaskStats": "<p>The statistics for the task, including elapsed time, tables loaded, and table errors.</p>"
       }
@@ -609,12 +689,12 @@
       }
     },
     "StartReplicationTaskMessage": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "StartReplicationTaskResponse": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
@@ -625,12 +705,12 @@
       }
     },
     "StopReplicationTaskMessage": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "StopReplicationTaskResponse": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
@@ -644,7 +724,12 @@
       "refs": {
         "AccountQuota$AccountQuotaName": "<p>The name of the AWS DMS quota for this AWS account.</p>",
         "AddTagsToResourceMessage$ResourceArn": "<p>The Amazon Resource Name (ARN) of the AWS DMS resource the tag is to be added to. AWS DMS resources include a replication instance, endpoint, and a replication task.</p>",
-        "AvailabilityZone$Name": "<p> The name of the availability zone. </p>",
+        "AvailabilityZone$Name": "<p>The name of the availability zone.</p>",
+        "Certificate$CertificateIdentifier": "<p>The customer-assigned name of the certificate. Valid characters are [A-z_0-9].</p>",
+        "Certificate$CertificatePem": "<p>The contents of the .pem X.509 certificate file.</p>",
+        "Certificate$CertificateArn": "<p>The Amazon Resource Name (ARN) for the certificate.</p>",
+        "Certificate$CertificateOwner": "<p>The owner of the certificate.</p>",
+        "Certificate$SigningAlgorithm": "<p>The signing algorithm for the certificate.</p>",
         "Connection$ReplicationInstanceArn": "<p>The Amazon Resource Name (ARN) of the replication instance.</p>",
         "Connection$EndpointArn": "<p>The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.</p>",
         "Connection$Status": "<p>The connection status.</p>",
@@ -652,31 +737,35 @@
         "Connection$EndpointIdentifier": "<p>The identifier of the endpoint. Identifiers must begin with a letter; must contain only ASCII letters, digits, and hyphens; and must not end with a hyphen or contain two consecutive hyphens.</p>",
         "Connection$ReplicationInstanceIdentifier": "<p>The replication instance identifier. This parameter is stored as a lowercase string.</p>",
         "CreateEndpointMessage$EndpointIdentifier": "<p>The database endpoint identifier. Identifiers must begin with a letter; must contain only ASCII letters, digits, and hyphens; and must not end with a hyphen or contain two consecutive hyphens.</p>",
-        "CreateEndpointMessage$EngineName": "<p>The type of engine for the endpoint. Valid values include MYSQL, ORACLE, POSTGRES, MARIADB, AURORA, SQLSERVER.</p>",
+        "CreateEndpointMessage$EngineName": "<p>The type of engine for the endpoint. Valid values include MYSQL, ORACLE, POSTGRES, MARIADB, AURORA, REDSHIFT, and SQLSERVER.</p>",
         "CreateEndpointMessage$Username": "<p>The user name to be used to login to the endpoint database.</p>",
         "CreateEndpointMessage$ServerName": "<p>The name of the server where the endpoint database resides.</p>",
         "CreateEndpointMessage$DatabaseName": "<p>The name of the endpoint database.</p>",
         "CreateEndpointMessage$ExtraConnectionAttributes": "<p>Additional attributes associated with the connection.</p>",
-        "CreateEndpointMessage$KmsKeyId": "<p> The KMS key identifier that will be used to encrypt the connection parameters. If you do not specify a value for the KmsKeyId parameter, then AWS DMS will use your default encryption key. AWS KMS creates the default encryption key for your AWS account. Your AWS account has a different default encryption key for each AWS region. </p>",
-        "CreateReplicationInstanceMessage$ReplicationInstanceIdentifier": "<p>The replication instance identifier. This parameter is stored as a lowercase string.</p> <p>Constraints:</p> <ul> <li>Must contain from 1 to 63 alphanumeric characters or hyphens.</li> <li>First character must be a letter.</li> <li>Cannot end with a hyphen or contain two consecutive hyphens.</li> </ul> <p>Example: <code>myrepinstance</code></p>",
-        "CreateReplicationInstanceMessage$ReplicationInstanceClass": "<p> The compute and memory capacity of the replication instance as specified by the replication instance class. </p> <p> Valid Values: <code>dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large | dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge </code></p>",
-        "CreateReplicationInstanceMessage$AvailabilityZone": "<p> The EC2 Availability Zone that the replication instance will be created in. </p> <p> Default: A random, system-chosen Availability Zone in the endpoint's region. </p> <p> Example: <code>us-east-1d</code></p>",
-        "CreateReplicationInstanceMessage$ReplicationSubnetGroupIdentifier": "<p> A subnet group to associate with the replication instance. </p>",
-        "CreateReplicationInstanceMessage$PreferredMaintenanceWindow": "<p> The weekly time range during which system maintenance can occur, in Universal Coordinated Time (UTC). </p> <p> Format: <code>ddd:hh24:mi-ddd:hh24:mi</code></p> <p> Default: A 30-minute window selected at random from an 8-hour block of time per region, occurring on a random day of the week. </p> <p>Valid Days: Mon, Tue, Wed, Thu, Fri, Sat, Sun</p> <p>Constraints: Minimum 30-minute window.</p>",
-        "CreateReplicationInstanceMessage$EngineVersion": "<p> The engine version number of the replication instance. </p>",
-        "CreateReplicationInstanceMessage$KmsKeyId": "<p> The KMS key identifier that will be used to encrypt the content on the replication instance. If you do not specify a value for the KmsKeyId parameter, then AWS DMS will use your default encryption key. AWS KMS creates the default encryption key for your AWS account. Your AWS account has a different default encryption key for each AWS region. </p>",
-        "CreateReplicationSubnetGroupMessage$ReplicationSubnetGroupIdentifier": "<p> The name for the replication subnet group. This value is stored as a lowercase string. </p> <p>Constraints: Must contain no more than 255 alphanumeric characters, periods, spaces, underscores, or hyphens. Must not be \"default\".</p> <p>Example: <code>mySubnetgroup</code></p>",
-        "CreateReplicationSubnetGroupMessage$ReplicationSubnetGroupDescription": "<p> The description for the subnet group. </p>",
-        "CreateReplicationTaskMessage$ReplicationTaskIdentifier": "<p>The replication task identifier.</p> <p>Constraints:</p> <ul> <li>Must contain from 1 to 63 alphanumeric characters or hyphens.</li> <li>First character must be a letter.</li> <li>Cannot end with a hyphen or contain two consecutive hyphens.</li> </ul>",
+        "CreateEndpointMessage$KmsKeyId": "<p>The KMS key identifier that will be used to encrypt the connection parameters. If you do not specify a value for the KmsKeyId parameter, then AWS DMS will use your default encryption key. AWS KMS creates the default encryption key for your AWS account. Your AWS account has a different default encryption key for each AWS region.</p>",
+        "CreateEndpointMessage$CertificateArn": "<p>The Amazon Resource Number (ARN) for the certificate.</p>",
+        "CreateReplicationInstanceMessage$ReplicationInstanceIdentifier": "<p>The replication instance identifier. This parameter is stored as a lowercase string.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63 alphanumeric characters or hyphens.</p> </li> <li> <p>First character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens.</p> </li> </ul> <p>Example: <code>myrepinstance</code> </p>",
+        "CreateReplicationInstanceMessage$ReplicationInstanceClass": "<p>The compute and memory capacity of the replication instance as specified by the replication instance class.</p> <p> Valid Values: <code>dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large | dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge </code> </p>",
+        "CreateReplicationInstanceMessage$AvailabilityZone": "<p>The EC2 Availability Zone that the replication instance will be created in.</p> <p>Default: A random, system-chosen Availability Zone in the endpoint's region.</p> <p> Example: <code>us-east-1d</code> </p>",
+        "CreateReplicationInstanceMessage$ReplicationSubnetGroupIdentifier": "<p>A subnet group to associate with the replication instance.</p>",
+        "CreateReplicationInstanceMessage$PreferredMaintenanceWindow": "<p>The weekly time range during which system maintenance can occur, in Universal Coordinated Time (UTC).</p> <p> Format: <code>ddd:hh24:mi-ddd:hh24:mi</code> </p> <p>Default: A 30-minute window selected at random from an 8-hour block of time per region, occurring on a random day of the week.</p> <p>Valid Days: Mon, Tue, Wed, Thu, Fri, Sat, Sun</p> <p>Constraints: Minimum 30-minute window.</p>",
+        "CreateReplicationInstanceMessage$EngineVersion": "<p>The engine version number of the replication instance.</p>",
+        "CreateReplicationInstanceMessage$KmsKeyId": "<p>The KMS key identifier that will be used to encrypt the content on the replication instance. If you do not specify a value for the KmsKeyId parameter, then AWS DMS will use your default encryption key. AWS KMS creates the default encryption key for your AWS account. Your AWS account has a different default encryption key for each AWS region.</p>",
+        "CreateReplicationSubnetGroupMessage$ReplicationSubnetGroupIdentifier": "<p>The name for the replication subnet group. This value is stored as a lowercase string.</p> <p>Constraints: Must contain no more than 255 alphanumeric characters, periods, spaces, underscores, or hyphens. Must not be \"default\".</p> <p>Example: <code>mySubnetgroup</code> </p>",
+        "CreateReplicationSubnetGroupMessage$ReplicationSubnetGroupDescription": "<p>The description for the subnet group.</p>",
+        "CreateReplicationTaskMessage$ReplicationTaskIdentifier": "<p>The replication task identifier.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63 alphanumeric characters or hyphens.</p> </li> <li> <p>First character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens.</p> </li> </ul>",
         "CreateReplicationTaskMessage$SourceEndpointArn": "<p>The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.</p>",
         "CreateReplicationTaskMessage$TargetEndpointArn": "<p>The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.</p>",
         "CreateReplicationTaskMessage$ReplicationInstanceArn": "<p>The Amazon Resource Name (ARN) of the replication instance.</p>",
-        "CreateReplicationTaskMessage$TableMappings": "<p>The path of the JSON file that contains the table mappings.</p>",
+        "CreateReplicationTaskMessage$TableMappings": "<p>The path of the JSON file that contains the table mappings. Preceed the path with \"file://\".</p> <p>For example, --table-mappings file://mappingfile.json</p>",
         "CreateReplicationTaskMessage$ReplicationTaskSettings": "<p>Settings for the task, such as target metadata settings.</p>",
+        "DeleteCertificateMessage$CertificateArn": "<p>the Amazon Resource Name (ARN) of the deleted certificate.</p>",
         "DeleteEndpointMessage$EndpointArn": "<p>The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.</p>",
         "DeleteReplicationInstanceMessage$ReplicationInstanceArn": "<p>The Amazon Resource Name (ARN) of the replication instance to be deleted.</p>",
         "DeleteReplicationSubnetGroupMessage$ReplicationSubnetGroupIdentifier": "<p>The subnet group name of the replication instance.</p>",
         "DeleteReplicationTaskMessage$ReplicationTaskArn": "<p>The Amazon Resource Name (ARN) of the replication task to be deleted.</p>",
+        "DescribeCertificatesMessage$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
+        "DescribeCertificatesResponse$Marker": "<p>The pagination token.</p>",
         "DescribeConnectionsMessage$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
         "DescribeConnectionsResponse$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
         "DescribeEndpointTypesMessage$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
@@ -706,52 +795,58 @@
         "Endpoint$DatabaseName": "<p>The name of the database at the endpoint.</p>",
         "Endpoint$ExtraConnectionAttributes": "<p>Additional connection attributes used to connect to the endpoint.</p>",
         "Endpoint$Status": "<p>The status of the endpoint.</p>",
-        "Endpoint$KmsKeyId": "<p> The KMS key identifier that will be used to encrypt the connection parameters. If you do not specify a value for the KmsKeyId parameter, then AWS DMS will use your default encryption key. AWS KMS creates the default encryption key for your AWS account. Your AWS account has a different default encryption key for each AWS region. </p>",
+        "Endpoint$KmsKeyId": "<p>The KMS key identifier that will be used to encrypt the connection parameters. If you do not specify a value for the KmsKeyId parameter, then AWS DMS will use your default encryption key. AWS KMS creates the default encryption key for your AWS account. Your AWS account has a different default encryption key for each AWS region.</p>",
         "Endpoint$EndpointArn": "<p>The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.</p>",
+        "Endpoint$CertificateArn": "<p>The Amazon Resource Name (ARN) used for SSL connection to the endpoint.</p>",
         "Filter$Name": "<p>The name of the filter.</p>",
         "FilterValueList$member": null,
+        "ImportCertificateMessage$CertificateIdentifier": "<p>The customer-assigned name of the certificate. Valid characters are [A-z_0-9].</p>",
+        "ImportCertificateMessage$CertificatePem": "<p>The contents of the .pem X.509 certificate file.</p>",
         "KeyList$member": null,
         "ListTagsForResourceMessage$ResourceArn": "<p>The Amazon Resource Name (ARN) string that uniquely identifies the AWS DMS resource.</p>",
         "ModifyEndpointMessage$EndpointArn": "<p>The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.</p>",
-        "ModifyEndpointMessage$EndpointIdentifier": "<p>The database endpoint identifier. Identifiers must begin with a letter; must contain only ASCII letters, digits, and hyphens; and must not end with a hyphen or contain two consecutive hyphens. </p>",
-        "ModifyEndpointMessage$EngineName": "<p>The type of engine for the endpoint. Valid values include MYSQL, ORACLE, POSTGRES.</p>",
+        "ModifyEndpointMessage$EndpointIdentifier": "<p>The database endpoint identifier. Identifiers must begin with a letter; must contain only ASCII letters, digits, and hyphens; and must not end with a hyphen or contain two consecutive hyphens.</p>",
+        "ModifyEndpointMessage$EngineName": "<p>The type of engine for the endpoint. Valid values include MYSQL, ORACLE, POSTGRES, MARIADB, AURORA, REDSHIFT, and SQLSERVER.</p>",
         "ModifyEndpointMessage$Username": "<p>The user name to be used to login to the endpoint database.</p>",
         "ModifyEndpointMessage$ServerName": "<p>The name of the server where the endpoint database resides.</p>",
         "ModifyEndpointMessage$DatabaseName": "<p>The name of the endpoint database.</p>",
         "ModifyEndpointMessage$ExtraConnectionAttributes": "<p>Additional attributes associated with the connection.</p>",
+        "ModifyEndpointMessage$CertificateArn": "<p>The Amazon Resource Name (ARN) of the certificate used for SSL connection.</p>",
         "ModifyReplicationInstanceMessage$ReplicationInstanceArn": "<p>The Amazon Resource Name (ARN) of the replication instance.</p>",
-        "ModifyReplicationInstanceMessage$ReplicationInstanceClass": "<p> The compute and memory capacity of the replication instance. </p> <p> Valid Values: <code>dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large | dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge </code></p>",
-        "ModifyReplicationInstanceMessage$PreferredMaintenanceWindow": "<p> The weekly time range (in UTC) during which system maintenance can occur, which might result in an outage. Changing this parameter does not result in an outage, except in the following situation, and the change is asynchronously applied as soon as possible. If moving this window to the current time, there must be at least 30 minutes between the current time and end of the window to ensure pending changes are applied. </p> <p>Default: Uses existing setting</p> <p>Format: ddd:hh24:mi-ddd:hh24:mi</p> <p>Valid Days: Mon | Tue | Wed | Thu | Fri | Sat | Sun</p> <p>Constraints: Must be at least 30 minutes</p>",
-        "ModifyReplicationInstanceMessage$EngineVersion": "<p> The engine version number of the replication instance. </p>",
+        "ModifyReplicationInstanceMessage$ReplicationInstanceClass": "<p>The compute and memory capacity of the replication instance.</p> <p> Valid Values: <code>dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large | dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge </code> </p>",
+        "ModifyReplicationInstanceMessage$PreferredMaintenanceWindow": "<p>The weekly time range (in UTC) during which system maintenance can occur, which might result in an outage. Changing this parameter does not result in an outage, except in the following situation, and the change is asynchronously applied as soon as possible. If moving this window to the current time, there must be at least 30 minutes between the current time and end of the window to ensure pending changes are applied.</p> <p>Default: Uses existing setting</p> <p>Format: ddd:hh24:mi-ddd:hh24:mi</p> <p>Valid Days: Mon | Tue | Wed | Thu | Fri | Sat | Sun</p> <p>Constraints: Must be at least 30 minutes</p>",
+        "ModifyReplicationInstanceMessage$EngineVersion": "<p>The engine version number of the replication instance.</p>",
         "ModifyReplicationInstanceMessage$ReplicationInstanceIdentifier": "<p>The replication instance identifier. This parameter is stored as a lowercase string.</p>",
         "ModifyReplicationSubnetGroupMessage$ReplicationSubnetGroupIdentifier": "<p>The name of the replication instance subnet group.</p>",
         "ModifyReplicationSubnetGroupMessage$ReplicationSubnetGroupDescription": "<p>The description of the replication instance subnet group.</p>",
         "OrderableReplicationInstance$EngineVersion": "<p>The version of the replication engine.</p>",
-        "OrderableReplicationInstance$ReplicationInstanceClass": "<p> The compute and memory capacity of the replication instance. </p> <p> Valid Values: <code>dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large | dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge </code></p>",
+        "OrderableReplicationInstance$ReplicationInstanceClass": "<p>The compute and memory capacity of the replication instance.</p> <p> Valid Values: <code>dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large | dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge </code> </p>",
         "OrderableReplicationInstance$StorageType": "<p>The type of storage used by the replication instance.</p>",
         "RefreshSchemasMessage$EndpointArn": "<p>The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.</p>",
         "RefreshSchemasMessage$ReplicationInstanceArn": "<p>The Amazon Resource Name (ARN) of the replication instance.</p>",
         "RefreshSchemasStatus$EndpointArn": "<p>The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.</p>",
         "RefreshSchemasStatus$ReplicationInstanceArn": "<p>The Amazon Resource Name (ARN) of the replication instance.</p>",
         "RefreshSchemasStatus$LastFailureMessage": "<p>The last failure message for the schema.</p>",
-        "RemoveTagsFromResourceMessage$ResourceArn": "<p>>The Amazon Resource Name (ARN) of the AWS DMS resource the tag is to be removed from.</p>",
-        "ReplicationInstance$ReplicationInstanceIdentifier": "<p>The replication instance identifier. This parameter is stored as a lowercase string.</p> <p>Constraints:</p> <ul> <li>Must contain from 1 to 63 alphanumeric characters or hyphens.</li> <li>First character must be a letter.</li> <li>Cannot end with a hyphen or contain two consecutive hyphens.</li> </ul> <p>Example: <code>myrepinstance</code></p>",
-        "ReplicationInstance$ReplicationInstanceClass": "<p> The compute and memory capacity of the replication instance. </p> <p> Valid Values: <code>dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large | dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge </code></p>",
+        "RemoveTagsFromResourceMessage$ResourceArn": "<p>&gt;The Amazon Resource Name (ARN) of the AWS DMS resource the tag is to be removed from.</p>",
+        "ReplicationInstance$ReplicationInstanceIdentifier": "<p>The replication instance identifier. This parameter is stored as a lowercase string.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63 alphanumeric characters or hyphens.</p> </li> <li> <p>First character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens.</p> </li> </ul> <p>Example: <code>myrepinstance</code> </p>",
+        "ReplicationInstance$ReplicationInstanceClass": "<p>The compute and memory capacity of the replication instance.</p> <p> Valid Values: <code>dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large | dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge </code> </p>",
         "ReplicationInstance$ReplicationInstanceStatus": "<p>The status of the replication instance.</p>",
         "ReplicationInstance$AvailabilityZone": "<p>The Availability Zone for the instance.</p>",
         "ReplicationInstance$PreferredMaintenanceWindow": "<p>The maintenance window times for the replication instance.</p>",
-        "ReplicationInstance$EngineVersion": "<p> The engine version number of the replication instance. </p>",
-        "ReplicationInstance$KmsKeyId": "<p> The KMS key identifier that is used to encrypt the content on the replication instance. If you do not specify a value for the KmsKeyId parameter, then AWS DMS will use your default encryption key. AWS KMS creates the default encryption key for your AWS account. Your AWS account has a different default encryption key for each AWS region. </p>",
+        "ReplicationInstance$EngineVersion": "<p>The engine version number of the replication instance.</p>",
+        "ReplicationInstance$KmsKeyId": "<p>The KMS key identifier that is used to encrypt the content on the replication instance. If you do not specify a value for the KmsKeyId parameter, then AWS DMS will use your default encryption key. AWS KMS creates the default encryption key for your AWS account. Your AWS account has a different default encryption key for each AWS region.</p>",
         "ReplicationInstance$ReplicationInstanceArn": "<p>The Amazon Resource Name (ARN) of the replication instance.</p>",
         "ReplicationInstance$ReplicationInstancePublicIpAddress": "<p>The public IP address of the replication instance.</p>",
         "ReplicationInstance$ReplicationInstancePrivateIpAddress": "<p>The private IP address of the replication instance.</p>",
-        "ReplicationPendingModifiedValues$ReplicationInstanceClass": "<p> The compute and memory capacity of the replication instance. </p> <p> Valid Values: <code>dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large | dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge </code></p>",
-        "ReplicationPendingModifiedValues$EngineVersion": "<p> The engine version number of the replication instance. </p>",
+        "ReplicationInstancePrivateIpAddressList$member": null,
+        "ReplicationInstancePublicIpAddressList$member": null,
+        "ReplicationPendingModifiedValues$ReplicationInstanceClass": "<p>The compute and memory capacity of the replication instance.</p> <p> Valid Values: <code>dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large | dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge </code> </p>",
+        "ReplicationPendingModifiedValues$EngineVersion": "<p>The engine version number of the replication instance.</p>",
         "ReplicationSubnetGroup$ReplicationSubnetGroupIdentifier": "<p>The identifier of the replication instance subnet group.</p>",
         "ReplicationSubnetGroup$ReplicationSubnetGroupDescription": "<p>The description of the replication subnet group.</p>",
         "ReplicationSubnetGroup$VpcId": "<p>The ID of the VPC.</p>",
         "ReplicationSubnetGroup$SubnetGroupStatus": "<p>The status of the subnet group.</p>",
-        "ReplicationTask$ReplicationTaskIdentifier": "<p>The replication task identifier.</p> <p>Constraints:</p> <ul> <li>Must contain from 1 to 63 alphanumeric characters or hyphens.</li> <li>First character must be a letter.</li> <li>Cannot end with a hyphen or contain two consecutive hyphens.</li> </ul>",
+        "ReplicationTask$ReplicationTaskIdentifier": "<p>The replication task identifier.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63 alphanumeric characters or hyphens.</p> </li> <li> <p>First character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens.</p> </li> </ul>",
         "ReplicationTask$SourceEndpointArn": "<p>The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.</p>",
         "ReplicationTask$TargetEndpointArn": "<p>The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.</p>",
         "ReplicationTask$ReplicationInstanceArn": "<p>The Amazon Resource Name (ARN) of the replication instance.</p>",
@@ -772,12 +867,15 @@
         "TableStatistics$TableState": "<p>The state of the table.</p>",
         "Tag$Key": "<p>A key is the required name of the tag. The string value can be from 1 to 128 Unicode characters in length and cannot be prefixed with \"aws:\" or \"dms:\". The string can only contain only the set of Unicode letters, digits, white-space, '_', '.', '/', '=', '+', '-' (Java regex: \"^([\\\\p{L}\\\\p{Z}\\\\p{N}_.:/=+\\\\-]*)$\").</p>",
         "Tag$Value": "<p>A value is the optional value of the tag. The string value can be from 1 to 256 Unicode characters in length and cannot be prefixed with \"aws:\" or \"dms:\". The string can only contain only the set of Unicode letters, digits, white-space, '_', '.', '/', '=', '+', '-' (Java regex: \"^([\\\\p{L}\\\\p{Z}\\\\p{N}_.:/=+\\\\-]*)$\").</p>",
-        "TestConnectionMessage$ReplicationInstanceArn": "<p>The Amazon Resource Number (ARN) of the replication instance.</p>",
-        "TestConnectionMessage$EndpointArn": "<p>The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.</p>"
+        "TestConnectionMessage$ReplicationInstanceArn": "<p>The Amazon Resource Name (ARN) of the replication instance.</p>",
+        "TestConnectionMessage$EndpointArn": "<p>The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.</p>",
+        "VpcSecurityGroupIdList$member": null,
+        "VpcSecurityGroupMembership$VpcSecurityGroupId": "<p>The VPC security group Id.</p>",
+        "VpcSecurityGroupMembership$Status": "<p>The status of the VPC security group.</p>"
       }
     },
     "Subnet": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
         "SubnetList$member": null
       }
@@ -790,7 +888,7 @@
     "SubnetIdentifierList": {
       "base": null,
       "refs": {
-        "CreateReplicationSubnetGroupMessage$SubnetIds": "<p> The EC2 subnet IDs for the subnet group. </p>",
+        "CreateReplicationSubnetGroupMessage$SubnetIds": "<p>The EC2 subnet IDs for the subnet group.</p>",
         "ModifyReplicationSubnetGroupMessage$SubnetIds": "<p>A list of subnet IDs.</p>"
       }
     },
@@ -801,7 +899,7 @@
       }
     },
     "SupportedEndpointType": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
         "SupportedEndpointTypeList$member": null
       }
@@ -815,6 +913,9 @@
     "TStamp": {
       "base": null,
       "refs": {
+        "Certificate$CertificateCreationDate": "<p>the date the certificate was created.</p>",
+        "Certificate$ValidFromDate": "<p>The beginning date the certificate is valid.</p>",
+        "Certificate$ValidToDate": "<p>the final date the certificate is valid.</p>",
         "CreateReplicationTaskMessage$CdcStartTime": "<p>The start time for the Change Data Capture (CDC) operation.</p>",
         "RefreshSchemasStatus$LastRefreshDate": "<p>The date the schema was last refreshed.</p>",
         "ReplicationInstance$InstanceCreateTime": "<p>The time the replication instance was created.</p>",
@@ -825,7 +926,7 @@
       }
     },
     "TableStatistics": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
         "TableStatisticsList$member": null
       }
@@ -837,7 +938,7 @@
       }
     },
     "Tag": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
         "TagList$member": null
       }
@@ -854,18 +955,37 @@
       }
     },
     "TestConnectionMessage": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "TestConnectionResponse": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
     "UpgradeDependencyFailureFault": {
       "base": "<p>An upgrade dependency is preventing the database migration.</p>",
       "refs": {
+      }
+    },
+    "VpcSecurityGroupIdList": {
+      "base": null,
+      "refs": {
+        "CreateReplicationInstanceMessage$VpcSecurityGroupIds": "<p> Specifies the VPC security group to be used with the replication instance. The VPC security group must work with the VPC containing the replication instance. </p>",
+        "ModifyReplicationInstanceMessage$VpcSecurityGroupIds": "<p> Specifies the VPC security group to be used with the replication instance. The VPC security group must work with the VPC containing the replication instance. </p>"
+      }
+    },
+    "VpcSecurityGroupMembership": {
+      "base": "<p/>",
+      "refs": {
+        "VpcSecurityGroupMembershipList$member": null
+      }
+    },
+    "VpcSecurityGroupMembershipList": {
+      "base": null,
+      "refs": {
+        "ReplicationInstance$VpcSecurityGroups": "<p>The VPC security group for the instance.</p>"
       }
     }
   }

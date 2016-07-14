@@ -14,7 +14,28 @@ import (
 
 const opCancelUpdateStack = "CancelUpdateStack"
 
-// CancelUpdateStackRequest generates a request for the CancelUpdateStack operation.
+// CancelUpdateStackRequest generates a "aws/request.Request" representing the
+// client's request for the CancelUpdateStack operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CancelUpdateStack method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CancelUpdateStackRequest method.
+//    req, resp := client.CancelUpdateStackRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudFormation) CancelUpdateStackRequest(input *CancelUpdateStackInput) (req *request.Request, output *CancelUpdateStackOutput) {
 	op := &request.Operation{
 		Name:       opCancelUpdateStack,
@@ -46,7 +67,28 @@ func (c *CloudFormation) CancelUpdateStack(input *CancelUpdateStackInput) (*Canc
 
 const opContinueUpdateRollback = "ContinueUpdateRollback"
 
-// ContinueUpdateRollbackRequest generates a request for the ContinueUpdateRollback operation.
+// ContinueUpdateRollbackRequest generates a "aws/request.Request" representing the
+// client's request for the ContinueUpdateRollback operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ContinueUpdateRollback method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ContinueUpdateRollbackRequest method.
+//    req, resp := client.ContinueUpdateRollbackRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudFormation) ContinueUpdateRollbackRequest(input *ContinueUpdateRollbackInput) (req *request.Request, output *ContinueUpdateRollbackOutput) {
 	op := &request.Operation{
 		Name:       opContinueUpdateRollback,
@@ -85,7 +127,28 @@ func (c *CloudFormation) ContinueUpdateRollback(input *ContinueUpdateRollbackInp
 
 const opCreateChangeSet = "CreateChangeSet"
 
-// CreateChangeSetRequest generates a request for the CreateChangeSet operation.
+// CreateChangeSetRequest generates a "aws/request.Request" representing the
+// client's request for the CreateChangeSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateChangeSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateChangeSetRequest method.
+//    req, resp := client.CreateChangeSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudFormation) CreateChangeSetRequest(input *CreateChangeSetInput) (req *request.Request, output *CreateChangeSetOutput) {
 	op := &request.Operation{
 		Name:       opCreateChangeSet,
@@ -125,7 +188,28 @@ func (c *CloudFormation) CreateChangeSet(input *CreateChangeSetInput) (*CreateCh
 
 const opCreateStack = "CreateStack"
 
-// CreateStackRequest generates a request for the CreateStack operation.
+// CreateStackRequest generates a "aws/request.Request" representing the
+// client's request for the CreateStack operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateStack method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateStackRequest method.
+//    req, resp := client.CreateStackRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudFormation) CreateStackRequest(input *CreateStackInput) (req *request.Request, output *CreateStackOutput) {
 	op := &request.Operation{
 		Name:       opCreateStack,
@@ -154,7 +238,28 @@ func (c *CloudFormation) CreateStack(input *CreateStackInput) (*CreateStackOutpu
 
 const opDeleteChangeSet = "DeleteChangeSet"
 
-// DeleteChangeSetRequest generates a request for the DeleteChangeSet operation.
+// DeleteChangeSetRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteChangeSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteChangeSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteChangeSetRequest method.
+//    req, resp := client.DeleteChangeSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudFormation) DeleteChangeSetRequest(input *DeleteChangeSetInput) (req *request.Request, output *DeleteChangeSetOutput) {
 	op := &request.Operation{
 		Name:       opDeleteChangeSet,
@@ -185,7 +290,28 @@ func (c *CloudFormation) DeleteChangeSet(input *DeleteChangeSetInput) (*DeleteCh
 
 const opDeleteStack = "DeleteStack"
 
-// DeleteStackRequest generates a request for the DeleteStack operation.
+// DeleteStackRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteStack operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteStack method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteStackRequest method.
+//    req, resp := client.DeleteStackRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudFormation) DeleteStackRequest(input *DeleteStackInput) (req *request.Request, output *DeleteStackOutput) {
 	op := &request.Operation{
 		Name:       opDeleteStack,
@@ -216,7 +342,28 @@ func (c *CloudFormation) DeleteStack(input *DeleteStackInput) (*DeleteStackOutpu
 
 const opDescribeAccountLimits = "DescribeAccountLimits"
 
-// DescribeAccountLimitsRequest generates a request for the DescribeAccountLimits operation.
+// DescribeAccountLimitsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAccountLimits operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeAccountLimits method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeAccountLimitsRequest method.
+//    req, resp := client.DescribeAccountLimitsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudFormation) DescribeAccountLimitsRequest(input *DescribeAccountLimitsInput) (req *request.Request, output *DescribeAccountLimitsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeAccountLimits,
@@ -244,7 +391,28 @@ func (c *CloudFormation) DescribeAccountLimits(input *DescribeAccountLimitsInput
 
 const opDescribeChangeSet = "DescribeChangeSet"
 
-// DescribeChangeSetRequest generates a request for the DescribeChangeSet operation.
+// DescribeChangeSetRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeChangeSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeChangeSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeChangeSetRequest method.
+//    req, resp := client.DescribeChangeSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudFormation) DescribeChangeSetRequest(input *DescribeChangeSetInput) (req *request.Request, output *DescribeChangeSetOutput) {
 	op := &request.Operation{
 		Name:       opDescribeChangeSet,
@@ -274,7 +442,28 @@ func (c *CloudFormation) DescribeChangeSet(input *DescribeChangeSetInput) (*Desc
 
 const opDescribeStackEvents = "DescribeStackEvents"
 
-// DescribeStackEventsRequest generates a request for the DescribeStackEvents operation.
+// DescribeStackEventsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeStackEvents operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeStackEvents method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeStackEventsRequest method.
+//    req, resp := client.DescribeStackEventsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudFormation) DescribeStackEventsRequest(input *DescribeStackEventsInput) (req *request.Request, output *DescribeStackEventsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeStackEvents,
@@ -310,6 +499,23 @@ func (c *CloudFormation) DescribeStackEvents(input *DescribeStackEventsInput) (*
 	return out, err
 }
 
+// DescribeStackEventsPages iterates over the pages of a DescribeStackEvents operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeStackEvents method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeStackEvents operation.
+//    pageNum := 0
+//    err := client.DescribeStackEventsPages(params,
+//        func(page *DescribeStackEventsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *CloudFormation) DescribeStackEventsPages(input *DescribeStackEventsInput, fn func(p *DescribeStackEventsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeStackEventsRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -320,7 +526,28 @@ func (c *CloudFormation) DescribeStackEventsPages(input *DescribeStackEventsInpu
 
 const opDescribeStackResource = "DescribeStackResource"
 
-// DescribeStackResourceRequest generates a request for the DescribeStackResource operation.
+// DescribeStackResourceRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeStackResource operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeStackResource method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeStackResourceRequest method.
+//    req, resp := client.DescribeStackResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudFormation) DescribeStackResourceRequest(input *DescribeStackResourceInput) (req *request.Request, output *DescribeStackResourceOutput) {
 	op := &request.Operation{
 		Name:       opDescribeStackResource,
@@ -350,7 +577,28 @@ func (c *CloudFormation) DescribeStackResource(input *DescribeStackResourceInput
 
 const opDescribeStackResources = "DescribeStackResources"
 
-// DescribeStackResourcesRequest generates a request for the DescribeStackResources operation.
+// DescribeStackResourcesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeStackResources operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeStackResources method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeStackResourcesRequest method.
+//    req, resp := client.DescribeStackResourcesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudFormation) DescribeStackResourcesRequest(input *DescribeStackResourcesInput) (req *request.Request, output *DescribeStackResourcesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeStackResources,
@@ -394,7 +642,28 @@ func (c *CloudFormation) DescribeStackResources(input *DescribeStackResourcesInp
 
 const opDescribeStacks = "DescribeStacks"
 
-// DescribeStacksRequest generates a request for the DescribeStacks operation.
+// DescribeStacksRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeStacks operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeStacks method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeStacksRequest method.
+//    req, resp := client.DescribeStacksRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudFormation) DescribeStacksRequest(input *DescribeStacksInput) (req *request.Request, output *DescribeStacksOutput) {
 	op := &request.Operation{
 		Name:       opDescribeStacks,
@@ -426,6 +695,23 @@ func (c *CloudFormation) DescribeStacks(input *DescribeStacksInput) (*DescribeSt
 	return out, err
 }
 
+// DescribeStacksPages iterates over the pages of a DescribeStacks operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeStacks method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeStacks operation.
+//    pageNum := 0
+//    err := client.DescribeStacksPages(params,
+//        func(page *DescribeStacksOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *CloudFormation) DescribeStacksPages(input *DescribeStacksInput, fn func(p *DescribeStacksOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeStacksRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -436,7 +722,28 @@ func (c *CloudFormation) DescribeStacksPages(input *DescribeStacksInput, fn func
 
 const opEstimateTemplateCost = "EstimateTemplateCost"
 
-// EstimateTemplateCostRequest generates a request for the EstimateTemplateCost operation.
+// EstimateTemplateCostRequest generates a "aws/request.Request" representing the
+// client's request for the EstimateTemplateCost operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the EstimateTemplateCost method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the EstimateTemplateCostRequest method.
+//    req, resp := client.EstimateTemplateCostRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudFormation) EstimateTemplateCostRequest(input *EstimateTemplateCostInput) (req *request.Request, output *EstimateTemplateCostOutput) {
 	op := &request.Operation{
 		Name:       opEstimateTemplateCost,
@@ -465,7 +772,28 @@ func (c *CloudFormation) EstimateTemplateCost(input *EstimateTemplateCostInput) 
 
 const opExecuteChangeSet = "ExecuteChangeSet"
 
-// ExecuteChangeSetRequest generates a request for the ExecuteChangeSet operation.
+// ExecuteChangeSetRequest generates a "aws/request.Request" representing the
+// client's request for the ExecuteChangeSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ExecuteChangeSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ExecuteChangeSetRequest method.
+//    req, resp := client.ExecuteChangeSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudFormation) ExecuteChangeSetRequest(input *ExecuteChangeSetInput) (req *request.Request, output *ExecuteChangeSetOutput) {
 	op := &request.Operation{
 		Name:       opExecuteChangeSet,
@@ -503,7 +831,28 @@ func (c *CloudFormation) ExecuteChangeSet(input *ExecuteChangeSetInput) (*Execut
 
 const opGetStackPolicy = "GetStackPolicy"
 
-// GetStackPolicyRequest generates a request for the GetStackPolicy operation.
+// GetStackPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the GetStackPolicy operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetStackPolicy method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetStackPolicyRequest method.
+//    req, resp := client.GetStackPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudFormation) GetStackPolicyRequest(input *GetStackPolicyInput) (req *request.Request, output *GetStackPolicyOutput) {
 	op := &request.Operation{
 		Name:       opGetStackPolicy,
@@ -531,7 +880,28 @@ func (c *CloudFormation) GetStackPolicy(input *GetStackPolicyInput) (*GetStackPo
 
 const opGetTemplate = "GetTemplate"
 
-// GetTemplateRequest generates a request for the GetTemplate operation.
+// GetTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the GetTemplate operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetTemplate method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetTemplateRequest method.
+//    req, resp := client.GetTemplateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudFormation) GetTemplateRequest(input *GetTemplateInput) (req *request.Request, output *GetTemplateOutput) {
 	op := &request.Operation{
 		Name:       opGetTemplate,
@@ -564,7 +934,28 @@ func (c *CloudFormation) GetTemplate(input *GetTemplateInput) (*GetTemplateOutpu
 
 const opGetTemplateSummary = "GetTemplateSummary"
 
-// GetTemplateSummaryRequest generates a request for the GetTemplateSummary operation.
+// GetTemplateSummaryRequest generates a "aws/request.Request" representing the
+// client's request for the GetTemplateSummary operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetTemplateSummary method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetTemplateSummaryRequest method.
+//    req, resp := client.GetTemplateSummaryRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudFormation) GetTemplateSummaryRequest(input *GetTemplateSummaryInput) (req *request.Request, output *GetTemplateSummaryOutput) {
 	op := &request.Operation{
 		Name:       opGetTemplateSummary,
@@ -600,7 +991,28 @@ func (c *CloudFormation) GetTemplateSummary(input *GetTemplateSummaryInput) (*Ge
 
 const opListChangeSets = "ListChangeSets"
 
-// ListChangeSetsRequest generates a request for the ListChangeSets operation.
+// ListChangeSetsRequest generates a "aws/request.Request" representing the
+// client's request for the ListChangeSets operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListChangeSets method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListChangeSetsRequest method.
+//    req, resp := client.ListChangeSetsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudFormation) ListChangeSetsRequest(input *ListChangeSetsInput) (req *request.Request, output *ListChangeSetsOutput) {
 	op := &request.Operation{
 		Name:       opListChangeSets,
@@ -629,7 +1041,28 @@ func (c *CloudFormation) ListChangeSets(input *ListChangeSetsInput) (*ListChange
 
 const opListStackResources = "ListStackResources"
 
-// ListStackResourcesRequest generates a request for the ListStackResources operation.
+// ListStackResourcesRequest generates a "aws/request.Request" representing the
+// client's request for the ListStackResources operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListStackResources method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListStackResourcesRequest method.
+//    req, resp := client.ListStackResourcesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudFormation) ListStackResourcesRequest(input *ListStackResourcesInput) (req *request.Request, output *ListStackResourcesOutput) {
 	op := &request.Operation{
 		Name:       opListStackResources,
@@ -663,6 +1096,23 @@ func (c *CloudFormation) ListStackResources(input *ListStackResourcesInput) (*Li
 	return out, err
 }
 
+// ListStackResourcesPages iterates over the pages of a ListStackResources operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListStackResources method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListStackResources operation.
+//    pageNum := 0
+//    err := client.ListStackResourcesPages(params,
+//        func(page *ListStackResourcesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *CloudFormation) ListStackResourcesPages(input *ListStackResourcesInput, fn func(p *ListStackResourcesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListStackResourcesRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -673,7 +1123,28 @@ func (c *CloudFormation) ListStackResourcesPages(input *ListStackResourcesInput,
 
 const opListStacks = "ListStacks"
 
-// ListStacksRequest generates a request for the ListStacks operation.
+// ListStacksRequest generates a "aws/request.Request" representing the
+// client's request for the ListStacks operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListStacks method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListStacksRequest method.
+//    req, resp := client.ListStacksRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudFormation) ListStacksRequest(input *ListStacksInput) (req *request.Request, output *ListStacksOutput) {
 	op := &request.Operation{
 		Name:       opListStacks,
@@ -708,6 +1179,23 @@ func (c *CloudFormation) ListStacks(input *ListStacksInput) (*ListStacksOutput, 
 	return out, err
 }
 
+// ListStacksPages iterates over the pages of a ListStacks operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListStacks method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListStacks operation.
+//    pageNum := 0
+//    err := client.ListStacksPages(params,
+//        func(page *ListStacksOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
 func (c *CloudFormation) ListStacksPages(input *ListStacksInput, fn func(p *ListStacksOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListStacksRequest(input)
 	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
@@ -718,7 +1206,28 @@ func (c *CloudFormation) ListStacksPages(input *ListStacksInput, fn func(p *List
 
 const opSetStackPolicy = "SetStackPolicy"
 
-// SetStackPolicyRequest generates a request for the SetStackPolicy operation.
+// SetStackPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the SetStackPolicy operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SetStackPolicy method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SetStackPolicyRequest method.
+//    req, resp := client.SetStackPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudFormation) SetStackPolicyRequest(input *SetStackPolicyInput) (req *request.Request, output *SetStackPolicyOutput) {
 	op := &request.Operation{
 		Name:       opSetStackPolicy,
@@ -747,7 +1256,28 @@ func (c *CloudFormation) SetStackPolicy(input *SetStackPolicyInput) (*SetStackPo
 
 const opSignalResource = "SignalResource"
 
-// SignalResourceRequest generates a request for the SignalResource operation.
+// SignalResourceRequest generates a "aws/request.Request" representing the
+// client's request for the SignalResource operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the SignalResource method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the SignalResourceRequest method.
+//    req, resp := client.SignalResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudFormation) SignalResourceRequest(input *SignalResourceInput) (req *request.Request, output *SignalResourceOutput) {
 	op := &request.Operation{
 		Name:       opSignalResource,
@@ -781,7 +1311,28 @@ func (c *CloudFormation) SignalResource(input *SignalResourceInput) (*SignalReso
 
 const opUpdateStack = "UpdateStack"
 
-// UpdateStackRequest generates a request for the UpdateStack operation.
+// UpdateStackRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateStack operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateStack method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateStackRequest method.
+//    req, resp := client.UpdateStackRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudFormation) UpdateStackRequest(input *UpdateStackInput) (req *request.Request, output *UpdateStackOutput) {
 	op := &request.Operation{
 		Name:       opUpdateStack,
@@ -816,7 +1367,28 @@ func (c *CloudFormation) UpdateStack(input *UpdateStackInput) (*UpdateStackOutpu
 
 const opValidateTemplate = "ValidateTemplate"
 
-// ValidateTemplateRequest generates a request for the ValidateTemplate operation.
+// ValidateTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the ValidateTemplate operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ValidateTemplate method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ValidateTemplateRequest method.
+//    req, resp := client.ValidateTemplateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *CloudFormation) ValidateTemplateRequest(input *ValidateTemplateInput) (req *request.Request, output *ValidateTemplateOutput) {
 	op := &request.Operation{
 		Name:       opValidateTemplate,

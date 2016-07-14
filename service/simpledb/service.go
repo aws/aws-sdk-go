@@ -73,7 +73,7 @@ func newClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegio
 	}
 
 	// Handlers
-	svc.Handlers.Sign.PushBack(v2.Sign)
+	svc.Handlers.Sign.PushBackNamed(v2.SignRequestHandler)
 	svc.Handlers.Sign.PushBackNamed(corehandlers.BuildContentLengthHandler)
 	svc.Handlers.Build.PushBackNamed(query.BuildHandler)
 	svc.Handlers.Unmarshal.PushBackNamed(query.UnmarshalHandler)

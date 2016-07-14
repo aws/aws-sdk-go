@@ -1,3 +1,5 @@
+// +build integration
+
 //Package cloudformation provides gucumber integration tests support.
 package cloudformation
 

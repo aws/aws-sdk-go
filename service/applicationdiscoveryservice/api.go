@@ -13,7 +13,28 @@ import (
 
 const opCreateTags = "CreateTags"
 
-// CreateTagsRequest generates a request for the CreateTags operation.
+// CreateTagsRequest generates a "aws/request.Request" representing the
+// client's request for the CreateTags operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateTags method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateTagsRequest method.
+//    req, resp := client.CreateTagsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ApplicationDiscoveryService) CreateTagsRequest(input *CreateTagsInput) (req *request.Request, output *CreateTagsOutput) {
 	op := &request.Operation{
 		Name:       opCreateTags,
@@ -42,7 +63,28 @@ func (c *ApplicationDiscoveryService) CreateTags(input *CreateTagsInput) (*Creat
 
 const opDeleteTags = "DeleteTags"
 
-// DeleteTagsRequest generates a request for the DeleteTags operation.
+// DeleteTagsRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteTags operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteTags method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteTagsRequest method.
+//    req, resp := client.DeleteTagsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ApplicationDiscoveryService) DeleteTagsRequest(input *DeleteTagsInput) (req *request.Request, output *DeleteTagsOutput) {
 	op := &request.Operation{
 		Name:       opDeleteTags,
@@ -70,7 +112,28 @@ func (c *ApplicationDiscoveryService) DeleteTags(input *DeleteTagsInput) (*Delet
 
 const opDescribeAgents = "DescribeAgents"
 
-// DescribeAgentsRequest generates a request for the DescribeAgents operation.
+// DescribeAgentsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAgents operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeAgents method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeAgentsRequest method.
+//    req, resp := client.DescribeAgentsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ApplicationDiscoveryService) DescribeAgentsRequest(input *DescribeAgentsInput) (req *request.Request, output *DescribeAgentsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeAgents,
@@ -98,7 +161,28 @@ func (c *ApplicationDiscoveryService) DescribeAgents(input *DescribeAgentsInput)
 
 const opDescribeConfigurations = "DescribeConfigurations"
 
-// DescribeConfigurationsRequest generates a request for the DescribeConfigurations operation.
+// DescribeConfigurationsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeConfigurations operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeConfigurations method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeConfigurationsRequest method.
+//    req, resp := client.DescribeConfigurationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ApplicationDiscoveryService) DescribeConfigurationsRequest(input *DescribeConfigurationsInput) (req *request.Request, output *DescribeConfigurationsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeConfigurations,
@@ -128,7 +212,28 @@ func (c *ApplicationDiscoveryService) DescribeConfigurations(input *DescribeConf
 
 const opDescribeExportConfigurations = "DescribeExportConfigurations"
 
-// DescribeExportConfigurationsRequest generates a request for the DescribeExportConfigurations operation.
+// DescribeExportConfigurationsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeExportConfigurations operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeExportConfigurations method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeExportConfigurationsRequest method.
+//    req, resp := client.DescribeExportConfigurationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ApplicationDiscoveryService) DescribeExportConfigurationsRequest(input *DescribeExportConfigurationsInput) (req *request.Request, output *DescribeExportConfigurationsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeExportConfigurations,
@@ -156,7 +261,28 @@ func (c *ApplicationDiscoveryService) DescribeExportConfigurations(input *Descri
 
 const opDescribeTags = "DescribeTags"
 
-// DescribeTagsRequest generates a request for the DescribeTags operation.
+// DescribeTagsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeTags operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeTags method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeTagsRequest method.
+//    req, resp := client.DescribeTagsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ApplicationDiscoveryService) DescribeTagsRequest(input *DescribeTagsInput) (req *request.Request, output *DescribeTagsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeTags,
@@ -184,7 +310,28 @@ func (c *ApplicationDiscoveryService) DescribeTags(input *DescribeTagsInput) (*D
 
 const opExportConfigurations = "ExportConfigurations"
 
-// ExportConfigurationsRequest generates a request for the ExportConfigurations operation.
+// ExportConfigurationsRequest generates a "aws/request.Request" representing the
+// client's request for the ExportConfigurations operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ExportConfigurations method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ExportConfigurationsRequest method.
+//    req, resp := client.ExportConfigurationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ApplicationDiscoveryService) ExportConfigurationsRequest(input *ExportConfigurationsInput) (req *request.Request, output *ExportConfigurationsOutput) {
 	op := &request.Operation{
 		Name:       opExportConfigurations,
@@ -215,7 +362,28 @@ func (c *ApplicationDiscoveryService) ExportConfigurations(input *ExportConfigur
 
 const opListConfigurations = "ListConfigurations"
 
-// ListConfigurationsRequest generates a request for the ListConfigurations operation.
+// ListConfigurationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListConfigurations operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListConfigurations method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListConfigurationsRequest method.
+//    req, resp := client.ListConfigurationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ApplicationDiscoveryService) ListConfigurationsRequest(input *ListConfigurationsInput) (req *request.Request, output *ListConfigurationsOutput) {
 	op := &request.Operation{
 		Name:       opListConfigurations,
@@ -243,7 +411,28 @@ func (c *ApplicationDiscoveryService) ListConfigurations(input *ListConfiguratio
 
 const opStartDataCollectionByAgentIds = "StartDataCollectionByAgentIds"
 
-// StartDataCollectionByAgentIdsRequest generates a request for the StartDataCollectionByAgentIds operation.
+// StartDataCollectionByAgentIdsRequest generates a "aws/request.Request" representing the
+// client's request for the StartDataCollectionByAgentIds operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the StartDataCollectionByAgentIds method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the StartDataCollectionByAgentIdsRequest method.
+//    req, resp := client.StartDataCollectionByAgentIdsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ApplicationDiscoveryService) StartDataCollectionByAgentIdsRequest(input *StartDataCollectionByAgentIdsInput) (req *request.Request, output *StartDataCollectionByAgentIdsOutput) {
 	op := &request.Operation{
 		Name:       opStartDataCollectionByAgentIds,
@@ -271,7 +460,28 @@ func (c *ApplicationDiscoveryService) StartDataCollectionByAgentIds(input *Start
 
 const opStopDataCollectionByAgentIds = "StopDataCollectionByAgentIds"
 
-// StopDataCollectionByAgentIdsRequest generates a request for the StopDataCollectionByAgentIds operation.
+// StopDataCollectionByAgentIdsRequest generates a "aws/request.Request" representing the
+// client's request for the StopDataCollectionByAgentIds operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the StopDataCollectionByAgentIds method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the StopDataCollectionByAgentIdsRequest method.
+//    req, resp := client.StopDataCollectionByAgentIdsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
 func (c *ApplicationDiscoveryService) StopDataCollectionByAgentIdsRequest(input *StopDataCollectionByAgentIdsInput) (req *request.Request, output *StopDataCollectionByAgentIdsOutput) {
 	op := &request.Operation{
 		Name:       opStopDataCollectionByAgentIds,

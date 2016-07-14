@@ -7,31 +7,44 @@ import (
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/client/metadata"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/aws/signer/v4"
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
-	"github.com/aws/aws-sdk-go/private/signer/v4"
 )
 
-// Overview This is the AWS CodePipeline API Reference. This guide provides
-// descriptions of the actions and data types for AWS CodePipeline. Some functionality
-// for your pipeline is only configurable through the API. For additional information,
+// Overview
+//
+// This is the AWS CodePipeline API Reference. This guide provides descriptions
+// of the actions and data types for AWS CodePipeline. Some functionality for
+// your pipeline is only configurable through the API. For additional information,
 // see the AWS CodePipeline User Guide (http://docs.aws.amazon.com/codepipeline/latest/userguide/welcome.html).
 //
 // You can use the AWS CodePipeline API to work with pipelines, stages, actions,
 // gates, and transitions, as described below.
 //
-// Pipelines are models of automated release processes. Each pipeline is uniquely
+//  Pipelines are models of automated release processes. Each pipeline is uniquely
 // named, and consists of actions, gates, and stages.
 //
-// You can work with pipelines by calling: CreatePipeline, which creates a
-// uniquely-named pipeline. DeletePipeline, which deletes the specified pipeline.
-// GetPipeline, which returns information about a pipeline structure. GetPipelineState,
-// which returns information about the current state of the stages and actions
-// of a pipeline.  ListPipelines, which gets a summary of all of the pipelines
-// associated with your account. StartPipelineExecution, which runs the the
-// most recent revision of an artifact through the pipeline. UpdatePipeline,
-// which updates a pipeline with edits or changes to the structure of the pipeline.
+// You can work with pipelines by calling:
 //
-// Pipelines include stages, which are which are logical groupings of gates
+//    CreatePipeline, which creates a uniquely-named pipeline.
+//
+//    DeletePipeline, which deletes the specified pipeline.
+//
+//    GetPipeline, which returns information about a pipeline structure.
+//
+//    GetPipelineState, which returns information about the current state of
+// the stages and actions of a pipeline.
+//
+//    ListPipelines, which gets a summary of all of the pipelines associated
+// with your account.
+//
+//    StartPipelineExecution, which runs the the most recent revision of an
+// artifact through the pipeline.
+//
+//    UpdatePipeline, which updates a pipeline with edits or changes to the
+// structure of the pipeline.
+//
+//   Pipelines include stages, which are which are logical groupings of gates
 // and actions. Each stage contains one or more actions that must complete before
 // the next stage begins. A stage will result in success or failure. If a stage
 // fails, then the pipeline stops at that stage and will remain stopped until
@@ -55,10 +68,13 @@ import (
 //
 // You can work with transitions by calling:
 //
-//  DisableStageTransition, which prevents artifacts from transitioning to
-// the next stage in a pipeline. EnableStageTransition, which enables transition
-// of artifacts between stages in a pipeline.   Using the API to integrate with
-// AWS CodePipeline
+//    DisableStageTransition, which prevents artifacts from transitioning to
+// the next stage in a pipeline.
+//
+//    EnableStageTransition, which enables transition of artifacts between
+// stages in a pipeline.
+//
+//    Using the API to integrate with AWS CodePipeline
 //
 // For third-party integrators or developers who want to create their own integrations
 // with AWS CodePipeline, the expected sequence varies from the standard API
@@ -66,24 +82,40 @@ import (
 // work with the following items:
 //
 //  Jobs, which are instances of an action. For example, a job for a source
-// action might import a revision of an artifact from a source. You can work
-// with jobs by calling:
+// action might import a revision of an artifact from a source.
 //
-//  AcknowledgeJob, which confirms whether a job worker has received the specified
-// job, GetJobDetails, which returns the details of a job, PollForJobs, which
-// determines whether there are any jobs to act upon,  PutJobFailureResult,
-// which provides details of a job failure, and PutJobSuccessResult, which provides
-// details of a job success.  Third party jobs, which are instances of an action
-// created by a partner action and integrated into AWS CodePipeline. Partner
-// actions are created by members of the AWS Partner Network. You can work with
-// third party jobs by calling:
+// You can work with jobs by calling:
 //
-// AcknowledgeThirdPartyJob, which confirms whether a job worker has received
-// the specified job, GetThirdPartyJobDetails, which requests the details of
-// a job for a partner action, PollForThirdPartyJobs, which determines whether
-// there are any jobs to act upon,  PutThirdPartyJobFailureResult, which provides
-// details of a job failure, and PutThirdPartyJobSuccessResult, which provides
-// details of a job success.
+//    AcknowledgeJob, which confirms whether a job worker has received the
+// specified job,
+//
+//    GetJobDetails, which returns the details of a job,
+//
+//    PollForJobs, which determines whether there are any jobs to act upon,
+//
+//    PutJobFailureResult, which provides details of a job failure, and
+//
+//    PutJobSuccessResult, which provides details of a job success.
+//
+//    Third party jobs, which are instances of an action created by a partner
+// action and integrated into AWS CodePipeline. Partner actions are created
+// by members of the AWS Partner Network.
+//
+// You can work with third party jobs by calling:
+//
+//    AcknowledgeThirdPartyJob, which confirms whether a job worker has received
+// the specified job,
+//
+//    GetThirdPartyJobDetails, which requests the details of a job for a partner
+// action,
+//
+//    PollForThirdPartyJobs, which determines whether there are any jobs to
+// act upon,
+//
+//    PutThirdPartyJobFailureResult, which provides details of a job failure,
+// and
+//
+//    PutThirdPartyJobSuccessResult, which provides details of a job success.
 //The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
 type CodePipeline struct {
@@ -132,7 +164,7 @@ func newClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegio
 	}
 
 	// Handlers
-	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Sign.PushBackNamed(v4.SignRequestHandler)
 	svc.Handlers.Build.PushBackNamed(jsonrpc.BuildHandler)
 	svc.Handlers.Unmarshal.PushBackNamed(jsonrpc.UnmarshalHandler)
 	svc.Handlers.UnmarshalMeta.PushBackNamed(jsonrpc.UnmarshalMetaHandler)

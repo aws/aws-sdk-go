@@ -1,3 +1,5 @@
+// +build integration
+
 //Package sns provides gucumber integration tests support.
 package sns
 

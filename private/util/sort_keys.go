@@ -1,4 +1,4 @@
-package awstesting
+package util
 
 import "sort"
 

@@ -14,6 +14,10 @@ type ConfigServiceAPI interface {
 
 	DeleteConfigRule(*configservice.DeleteConfigRuleInput) (*configservice.DeleteConfigRuleOutput, error)
 
+	DeleteConfigurationRecorderRequest(*configservice.DeleteConfigurationRecorderInput) (*request.Request, *configservice.DeleteConfigurationRecorderOutput)
+
+	DeleteConfigurationRecorder(*configservice.DeleteConfigurationRecorderInput) (*configservice.DeleteConfigurationRecorderOutput, error)
+
 	DeleteDeliveryChannelRequest(*configservice.DeleteDeliveryChannelInput) (*request.Request, *configservice.DeleteDeliveryChannelOutput)
 
 	DeleteDeliveryChannel(*configservice.DeleteDeliveryChannelInput) (*configservice.DeleteDeliveryChannelOutput, error)

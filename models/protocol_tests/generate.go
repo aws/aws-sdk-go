@@ -14,7 +14,6 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/aws/aws-sdk-go/awstesting"
 	"github.com/aws/aws-sdk-go/private/model/api"
 	"github.com/aws/aws-sdk-go/private/util"
 )
@@ -359,7 +358,7 @@ func findMember(shape *api.Shape, key string) string {
 func GenerateAssertions(out interface{}, shape *api.Shape, prefix string) string {
 	switch t := out.(type) {
 	case map[string]interface{}:
-		keys := awstesting.SortedKeys(t)
+		keys := util.SortedKeys(t)
 
 		code := ""
 		if shape.Type == "map" {

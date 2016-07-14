@@ -457,6 +457,32 @@ func ExampleCodePipeline_PutActionRevision() {
 	fmt.Println(resp)
 }
 
+func ExampleCodePipeline_PutApprovalResult() {
+	svc := codepipeline.New(session.New())
+
+	params := &codepipeline.PutApprovalResultInput{
+		ActionName:   aws.String("ActionName"),   // Required
+		PipelineName: aws.String("PipelineName"), // Required
+		Result: &codepipeline.ApprovalResult{ // Required
+			Status:  aws.String("ApprovalStatus"),  // Required
+			Summary: aws.String("ApprovalSummary"), // Required
+		},
+		StageName: aws.String("StageName"), // Required
+		Token:     aws.String("ApprovalToken"),
+	}
+	resp, err := svc.PutApprovalResult(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleCodePipeline_PutJobFailureResult() {
 	svc := codepipeline.New(session.New())
 
@@ -553,6 +579,28 @@ func ExampleCodePipeline_PutThirdPartyJobSuccessResult() {
 		},
 	}
 	resp, err := svc.PutThirdPartyJobSuccessResult(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleCodePipeline_RetryStageExecution() {
+	svc := codepipeline.New(session.New())
+
+	params := &codepipeline.RetryStageExecutionInput{
+		PipelineExecutionId: aws.String("PipelineExecutionId"), // Required
+		PipelineName:        aws.String("PipelineName"),        // Required
+		RetryMode:           aws.String("StageRetryMode"),      // Required
+		StageName:           aws.String("StageName"),           // Required
+	}
+	resp, err := svc.RetryStageExecution(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
