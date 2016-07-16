@@ -36,7 +36,9 @@ func (s *StaticProvider) Retrieve() (Value, error) {
 		return Value{ProviderName: StaticProviderName}, ErrStaticCredentialsEmpty
 	}
 
-	s.Value.ProviderName = StaticProviderName
+	if len(s.Value.ProviderName) == 0 {
+		s.Value.ProviderName = StaticProviderName
+	}
 	return s.Value, nil
 }
 
