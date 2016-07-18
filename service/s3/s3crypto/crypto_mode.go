@@ -8,7 +8,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
-// CryptoMode placeholder
+// CryptoMode is an abstraction layer that deals with encryption of
+// the contents and which key provider to use.
 type CryptoMode interface {
 	EncryptContents(io.Writer, io.Reader) error
 	DecryptContents(KeyProvider, io.ReadCloser) (io.ReadCloser, error)
@@ -16,7 +17,8 @@ type CryptoMode interface {
 	CipherDataIface
 }
 
-// CipherDataIface placeholder
+// CipherDataIface is used for when populating the envelope details upon
+// encryption.
 type CipherDataIface interface {
 	GetCipherName() string
 	GetTagLen() string

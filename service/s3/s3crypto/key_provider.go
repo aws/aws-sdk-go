@@ -9,7 +9,8 @@ type KeyProvider interface {
 	DecrypterKeyProvider
 }
 
-// EncrypterKeyProvider placeholder
+// EncrypterKeyProvider handles how to generate keys and ivs for the content encryption.
+// This also satifies the `MaterialDescription` and `CipherDataIface` interfaces.
 type EncrypterKeyProvider interface {
 	GenerateKey(int) ([]byte, error)
 	GenerateIV(int) ([]byte, error)
