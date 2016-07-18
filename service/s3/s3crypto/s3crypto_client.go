@@ -2,7 +2,6 @@ package s3crypto
 
 import (
 	"encoding/hex"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
@@ -101,7 +100,6 @@ func (c *Client) PutObjectRequest(input *s3.PutObjectInput) (*request.Request, *
 
 		shaHex := hex.EncodeToString(sha.GetValue())
 		req.HTTPRequest.Header.Set("X-Amz-Content-Sha256", shaHex)
-		fmt.Println("XAMZSHA256", req.HTTPRequest.Header.Get("X-Amz-Content-Sha256"))
 
 		f.Seek(0, 0)
 		input.Body = f
