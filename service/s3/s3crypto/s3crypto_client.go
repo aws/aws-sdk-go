@@ -41,13 +41,14 @@ type Config struct {
 	MasterKey []byte
 }
 
-// TODO: Add default minimum file and if the contents is less than that, then just
-// load it all into memory
-
-// New placeholder
-// TODO: Change master cipher to be not ECB
-// cipher := NewAESECB(masterkey)
-// svc := New(EncryptionOnly(NewSymmetricKeyProvider(cipher))
+// New instantiates a new S3 crypto client
+// Example:
+// cmkID := "some key id to kms"
+// kp, err = s3crypto.NewKMSKeyProvider(session.New(), cmkID, s3crypto.NewJSONMatDesc())
+// if err != nil {
+//   return err
+// }
+// svc := s3crypto.New(s3crypto.Authentication(kp))
 func New(mode CryptoMode, options ...func(*Client)) *Client {
 	sess := session.New()
 	client := &Client{
@@ -70,12 +71,12 @@ func New(mode CryptoMode, options ...func(*Client)) *Client {
 // PutObjectRequest creates a temp file to encrypt the contents into. It then streams
 // that data to S3.
 //
-// cipher := NewAESECB(masterkey)
-// svc := s3cryto.New(s3crypto.EncryptionOnly(s3crypto.NewSymmetricKeyProvider(cipher))
+// Example:
+// svc := s3crypto.New(s3crypto.Authentication(kp))
 // req, out := svc.PutObjectRequest(&s3.PutObjectInput {
-//	Bucket: aws.String("my_bucket"),
-//	Key: aws.String("object_key"),
-//	Body: strings.NewReader("WHATEVER"),
+//   Key: aws.String("testKey"),
+//   Bucket: aws.String("testBucket"),
+//   Body: bytes.NewBuffer("test data"),
 // })
 // err := req.Send()
 func (c *Client) PutObjectRequest(input *s3.PutObjectInput) (*request.Request, *s3.PutObjectOutput) {
@@ -92,7 +93,6 @@ func (c *Client) PutObjectRequest(input *s3.PutObjectInput) (*request.Request, *
 		md5 := newMD5Reader(input.Body)
 		sha := newSHA256Writer(f)
 		err = c.Config.Mode.EncryptContents(sha, md5)
-		log.Println("ERROR 0", err, c.Config.Mode.GetCipherName())
 		if err != nil {
 			r.Error = err
 			return
@@ -106,13 +106,11 @@ func (c *Client) PutObjectRequest(input *s3.PutObjectInput) (*request.Request, *
 		log.Println(input)
 
 		env, err := EncodeMeta(md5, c.Config.Mode)
-		log.Println("ERROR 2", err)
 		if err != nil {
 			r.Error = err
 			return
 		}
 		err = c.Config.SaveStrategy.Save(env, input)
-		log.Println("ERROR 3", err)
 		r.Error = err
 	})
 
@@ -132,7 +130,16 @@ func (c *Client) PutObject(input *s3.PutObjectInput) (*s3.PutObjectOutput, error
 	return out, req.Send()
 }
 
-// GetObjectRequest placeholder
+// GetObjectRequest will make a request to s3 and retrieve the object. In this process
+// decryption will be done. We only support V2 reads of KMS and GCM.
+//
+// Example:
+// svc := s3crypto.New(s3crypto.Authentication(kp))
+// req, out := svc.GetObjectRequest(&s3.GetObjectInput {
+//   Key: aws.String("testKey"),
+//   Bucket: aws.String("testBucket"),
+// })
+// err := req.Send()
 func (c *Client) GetObjectRequest(input *s3.GetObjectInput) (*request.Request, *s3.GetObjectOutput) {
 	req, out := c.S3.GetObjectRequest(input)
 	req.Handlers.Unmarshal.PushBack(func(r *request.Request) {
@@ -150,7 +157,8 @@ func (c *Client) GetObjectRequest(input *s3.GetObjectInput) (*request.Request, *
 			return
 		}
 
-		reader, err := mode.DecryptContents([]byte(env.CipherKey), []byte(env.IV), out.Body)
+		kp := &SymmetricKeyProvider{key: []byte(env.CipherKey), iv: []byte(env.IV)}
+		reader, err := mode.DecryptContents(kp, out.Body)
 		if err != nil {
 			r.Error = err
 			return
@@ -160,7 +168,7 @@ func (c *Client) GetObjectRequest(input *s3.GetObjectInput) (*request.Request, *
 	return req, out
 }
 
-// GetObject placeholder
+// GetObject is a wrapper for GetObjectRequest
 func (c *Client) GetObject(input *s3.GetObjectInput) (*s3.GetObjectOutput, error) {
 	req, out := c.GetObjectRequest(input)
 	return out, req.Send()

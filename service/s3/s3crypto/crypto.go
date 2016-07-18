@@ -10,14 +10,12 @@ type Cipher interface {
 	Decrypter
 }
 
-// Wrap placeholder
+// Wrap interface includes an additional method that allows us to get the cipher
+// name. This is used during encryption when populating the envelope information.
 type Wrap interface {
 	Cipher
-	GetCipherName() string
+	CipherDataIface
 }
-
-// TODO: Not used yet
-const defaultWriteBufferLimit = 1024 * 1000
 
 // Encrypter interface with only the encrypt method
 type Encrypter interface {
@@ -51,18 +49,19 @@ func (rc *CryptoReadCloser) Read(b []byte) (int, error) {
 	return rc.Decrypter.Read(b)
 }
 
-// CipherData ...
+// CipherData is used to populate the envelope during encryption calls
 type CipherData struct {
 	Algorithm string
 	TagLen    string
 }
 
-// GetCipherName ...
+// GetCipherName handles populating x-amz-wrap-alg and x-amz-cek-alg when
+// adding the envelope.
 func (cd *CipherData) GetCipherName() string {
 	return cd.Algorithm
 }
 
-// GetTagLen placeholder
+// GetTagLen handles populating x-amz-tag-len when adding the envelope.
 func (cd *CipherData) GetTagLen() string {
 	return cd.TagLen
 }

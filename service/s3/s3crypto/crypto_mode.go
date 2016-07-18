@@ -11,7 +11,7 @@ import (
 // CryptoMode placeholder
 type CryptoMode interface {
 	EncryptContents(io.Writer, io.Reader) error
-	DecryptContents([]byte, []byte, io.ReadCloser) (io.ReadCloser, error)
+	DecryptContents(KeyProvider, io.ReadCloser) (io.ReadCloser, error)
 	GetKeyProvider() KeyProvider
 	CipherDataIface
 }
@@ -24,7 +24,7 @@ type CipherDataIface interface {
 
 // DecryptMode is meant to used only in reading objects from s3
 type DecryptMode interface {
-	DecryptContents([]byte, []byte, io.ReadCloser) (io.ReadCloser, error)
+	DecryptContents(KeyProvider, io.ReadCloser) (io.ReadCloser, error)
 	GetKeyProvider() KeyProvider
 }
 

@@ -4,7 +4,7 @@ import (
 	"io"
 )
 
-// AuthenticationMode will use:
+// AuthenticationMode will use AES GCM for the main cipher.
 type AuthenticationMode struct {
 	// Cipher will hold either a master symmetric key or a KMS client
 	// for encrypting the Envelope key
@@ -36,14 +36,15 @@ func (mode *AuthenticationMode) EncryptContents(dst io.Writer, src io.Reader) er
 	return err
 }
 
-// DecryptContents placeholder
-func (mode *AuthenticationMode) DecryptContents(key, iv []byte, src io.ReadCloser) (io.ReadCloser, error) {
-	kp := &SymmetricKeyProvider{key: key, iv: iv}
-	cbc, err := NewAESGCM(kp)
+// DecryptContents will use the symmetric key provider to instantiate a new GCM cipher.
+// We grab a decrypt reader from gcm and wrap it in a CryptoReadCloser. The only error
+// expected here is when the key or iv is of invalid length.
+func (mode *AuthenticationMode) DecryptContents(kp KeyProvider, src io.ReadCloser) (io.ReadCloser, error) {
+	gcm, err := NewAESGCM(kp)
 	if err != nil {
 		return nil, err
 	}
 
-	reader := cbc.Decrypt(src)
+	reader := gcm.Decrypt(src)
 	return &CryptoReadCloser{Body: src, Decrypter: reader}, nil
 }

@@ -2,7 +2,8 @@ package s3crypto
 
 import "crypto/rand"
 
-// KeyProvider placeholder
+// KeyProvider is used to help generate keys and ivs. This allows for crypto based
+// algorithms or services to be used.
 type KeyProvider interface {
 	EncrypterKeyProvider
 	DecrypterKeyProvider
@@ -17,7 +18,7 @@ type EncrypterKeyProvider interface {
 	SetIV([]byte)
 	GetKey() []byte
 	SetKey([]byte)
-	GetCipherName() string
+	CipherDataIface
 
 	MaterialDescription
 }
