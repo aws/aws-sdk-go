@@ -30,7 +30,7 @@ func NewAESGCMRandom(kp KeyProvider) (*AESGCM, error) {
 		return nil, err
 	}
 
-	block, err := aes.NewCipher(padAESKey(key))
+	block, err := aes.NewCipher(key)
 	if err != nil {
 		return nil, err
 	}
@@ -47,7 +47,7 @@ func NewAESGCMRandom(kp KeyProvider) (*AESGCM, error) {
 
 // NewAESGCM ...
 func NewAESGCM(kp KeyProvider) (*AESGCM, error) {
-	block, err := aes.NewCipher(padAESKey(kp.GetKey()))
+	block, err := aes.NewCipher(kp.GetKey())
 	if err != nil {
 		return nil, err
 	}

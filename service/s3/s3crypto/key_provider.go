@@ -24,7 +24,8 @@ type EncrypterKeyProvider interface {
 	MaterialDescription
 }
 
-// DecrypterKeyProvider placeholder
+// DecrypterKeyProvider provides an interface to which when grabbing objects
+// from S3 we only need the GetDecryptedKey method.
 type DecrypterKeyProvider interface {
 	GetDecryptedKey([]byte) ([]byte, error)
 }
@@ -35,12 +36,13 @@ func generateBytes(n int) []byte {
 	return b
 }
 
-// BaseKeyProvider ...
+// BaseKeyProvider a wrapper struct that returns a KeyProvider
 type BaseKeyProvider struct {
 	KeyProvider
 }
 
-// GetKeyProvider ...
+// GetKeyProvider returns a key provider when dealing with encoding and
+// decoding the envelope.
 func (kp *BaseKeyProvider) GetKeyProvider() KeyProvider {
 	return kp.KeyProvider
 }
