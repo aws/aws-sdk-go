@@ -51,12 +51,18 @@ func (rc *CryptoReadCloser) Read(b []byte) (int, error) {
 	return rc.Decrypter.Read(b)
 }
 
-// CipherName ...
-type CipherName struct {
+// CipherData ...
+type CipherData struct {
 	Algorithm string
+	TagLen    string
 }
 
 // GetCipherName ...
-func (da *CipherName) GetCipherName() string {
-	return da.Algorithm
+func (cd *CipherData) GetCipherName() string {
+	return cd.Algorithm
+}
+
+// GetTagLen placeholder
+func (cd *CipherData) GetTagLen() string {
+	return cd.TagLen
 }

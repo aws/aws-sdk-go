@@ -1,8 +1,10 @@
 package s3crypto
 
 import (
+	"encoding/hex"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"os"
 
 	"github.com/aws/aws-sdk-go/aws/request"
@@ -49,7 +51,6 @@ type Config struct {
 // svc := New(EncryptionOnly(NewSymmetricKeyProvider(cipher))
 func New(mode CryptoMode, options ...func(*Client)) *Client {
 	sess := session.New()
-	// TODO: Change this to strict authenticaton mode
 	client := &Client{
 		Config: Config{
 			Mode:         mode,
@@ -82,7 +83,7 @@ func (c *Client) PutObjectRequest(input *s3.PutObjectInput) (*request.Request, *
 	req, out := c.S3.PutObjectRequest(input)
 
 	// Create temp file to be used later for calculating the SHA256 header
-	f, err := ioutil.TempFile("./", *input.Key)
+	f, err := ioutil.TempFile("./", "")
 	if err != nil {
 		req.Error = err
 		return req, out
@@ -92,22 +93,28 @@ func (c *Client) PutObjectRequest(input *s3.PutObjectInput) (*request.Request, *
 		md5 := newMD5Reader(input.Body)
 		sha := newSHA256Writer(f)
 		err = c.Config.Mode.EncryptContents(sha, md5)
+		log.Println("ERROR 0", err, c.Config.Mode.GetCipherName())
 		if err != nil {
 			r.Error = err
 			return
 		}
 
-		req.HTTPRequest.Header.Set("X-Amz-Content-Sha256", fmt.Sprintf("%d", sha.GetValue()))
+		shaHex := hex.EncodeToString(sha.GetValue())
+		req.HTTPRequest.Header.Set("X-Amz-Content-Sha256", shaHex)
+		fmt.Println("XAMZSHA256", req.HTTPRequest.Header.Get("X-Amz-Content-Sha256"))
 
 		f.Seek(0, 0)
 		input.Body = f
+		log.Println(input)
 
 		env, err := EncodeMeta(md5, c.Config.Mode)
+		log.Println("ERROR 2", err)
 		if err != nil {
 			r.Error = err
 			return
 		}
 		err = c.Config.SaveStrategy.Save(env, input)
+		log.Println("ERROR 3", err)
 		r.Error = err
 	})
 

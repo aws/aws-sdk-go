@@ -15,7 +15,7 @@ func TestGetV1Envelope(t *testing.T) {
 	mkey, _ := hex.DecodeString("2b7e151628aed2a6abf7158809cf4f3c")
 	cipher, err := NewAESECB([]byte(mkey))
 	assert.Nil(t, err)
-	c := New(EncryptionOnly(NewSymmetricKeyProvider(cipher)), func(c *Client) { c.Config.S3Session = session.New() })
+	c := New(EncryptionOnly(NewSymmetricKeyProvider(cipher, &JSONMatDesc{})), func(c *Client) { c.Config.S3Session = session.New() })
 	env, err := c.getEnvelope(nil, &request.Request{
 		HTTPResponse: &http.Response{
 			Header: http.Header{
@@ -32,7 +32,7 @@ func TestGetV2Envelope(t *testing.T) {
 	mkey, _ := hex.DecodeString("2b7e151628aed2a6abf7158809cf4f3c")
 	cipher, err := NewAESECB([]byte(mkey))
 	assert.Nil(t, err)
-	c := New(EncryptionOnly(NewSymmetricKeyProvider(cipher)), func(c *Client) { c.Config.S3Session = session.New() })
+	c := New(EncryptionOnly(NewSymmetricKeyProvider(cipher, &JSONMatDesc{})), func(c *Client) { c.Config.S3Session = session.New() })
 	env, err := c.getEnvelope(nil, &request.Request{
 		HTTPResponse: &http.Response{
 			Header: http.Header{

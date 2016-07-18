@@ -9,12 +9,18 @@ import (
 type SymmetricKeyProvider struct {
 	key []byte
 	iv  []byte
+
 	Wrap
+	MaterialDescription
 }
 
 // NewSymmetricKeyProvider ...
-func NewSymmetricKeyProvider(master Wrap) KeyProvider {
-	return &SymmetricKeyProvider{Wrap: master}
+// TODO: Constructor with matdesc eventually
+func NewSymmetricKeyProvider(master Wrap, matdesc MaterialDescription) KeyProvider {
+	return &SymmetricKeyProvider{
+		Wrap:                master,
+		MaterialDescription: matdesc,
+	}
 }
 
 // GenerateKey placeholder

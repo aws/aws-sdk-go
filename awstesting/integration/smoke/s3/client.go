@@ -14,14 +14,14 @@ import (
 func init() {
 	Before("@s3", func() {
 		c := s3crypto.New(nil, func(c *s3crypto.Client) {
-			c.Config.S3Session = session.New(&aws.Config{
+			c.Config.S3Session = session.New((&aws.Config{
 				Region:      aws.String("us-west-2"),
 				Credentials: credentials.NewSharedCredentials("", "integration"),
-			})
+			}).WithLogLevel(aws.LogDebugWithRequestRetries | aws.LogDebugWithRequestErrors))
 			c.Config.KMSSession = session.New((&aws.Config{
 				Region:      aws.String("us-east-1"),
 				Credentials: credentials.NewSharedCredentials("", "integration"),
-			}).WithLogLevel(aws.LogDebugWithRequestRetries | aws.LogDebugWithRequestErrors | aws.LogDebugWithHTTPBody))
+			}).WithLogLevel(aws.LogDebugWithRequestRetries | aws.LogDebugWithRequestErrors))
 		})
 		World["cryptoClient"] = c
 

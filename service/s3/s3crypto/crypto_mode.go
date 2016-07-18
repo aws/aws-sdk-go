@@ -13,7 +13,13 @@ type CryptoMode interface {
 	EncryptContents(io.Writer, io.Reader) error
 	DecryptContents([]byte, []byte, io.ReadCloser) (io.ReadCloser, error)
 	GetKeyProvider() KeyProvider
+	CipherDataIface
+}
+
+// CipherDataIface placeholder
+type CipherDataIface interface {
 	GetCipherName() string
+	GetTagLen() string
 }
 
 // DecryptMode is meant to used only in reading objects from s3
@@ -50,14 +56,14 @@ func keyProviderFactory(env *Envelope, cfg Config) (KeyProvider, error) {
 
 	switch env.WrapAlg {
 	case "kms":
-		return NewKMSKeyProvider(cfg.KMSSession, env.MatDesc)
+		return NewKMSKeyProviderWithMatDesc(cfg.KMSSession, env.MatDesc)
 	case "rsa":
 	case "ecb", "":
 		cipher, err := NewAESECB(cfg.MasterKey)
 		if err != nil {
 			return nil, err
 		}
-		return NewSymmetricKeyProvider(cipher), nil
+		return NewSymmetricKeyProvider(cipher, &JSONMatDesc{}), nil
 	case "aeswrap":
 	}
 	return nil, awserr.New(
@@ -71,6 +77,8 @@ func cekFactory(env *Envelope, kp KeyProvider) (Decrypter, error) {
 	switch env.CEKAlg {
 	case "AES/CBC/PKCS5Padding", "":
 		return NewAESCBC(kp)
+	case "AES/GCM/NoPadding":
+		return NewAESGCM(kp)
 	}
 	return nil, awserr.New(
 		"InvalidCEK",
@@ -97,14 +105,18 @@ func EncodeMeta(reader HashReader, mode CryptoMode) (Envelope, error) {
 	}
 
 	md5Str := base64.StdEncoding.EncodeToString(md5)
+	matdesc, err := kp.EncodeDescription()
+	if err != nil {
+		return Envelope{}, err
+	}
 
 	return Envelope{
 		CipherKey:             key,
 		IV:                    iv,
-		MatDesc:               "{}", // TODO: Add merging of mat desc
+		MatDesc:               matdesc,
 		WrapAlg:               kp.GetCipherName(),
 		CEKAlg:                mode.GetCipherName(),
-		TagLen:                "0",
+		TagLen:                mode.GetTagLen(),
 		UnencryptedMD5:        md5Str,
 		UnencryptedContentLen: fmt.Sprintf("%d", contentLength),
 	}, nil
@@ -117,7 +129,6 @@ func DecodeMeta(env *Envelope, kp KeyProvider) error {
 	if err != nil {
 		return err
 	}
-	//kp.SetEncryptedKey(key)
 
 	keyBytes, err := kp.GetDecryptedKey(key)
 	if err != nil {

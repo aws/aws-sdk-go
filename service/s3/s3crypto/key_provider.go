@@ -18,6 +18,8 @@ type EncrypterKeyProvider interface {
 	GetKey() []byte
 	SetKey([]byte)
 	GetCipherName() string
+
+	MaterialDescription
 }
 
 // DecrypterKeyProvider placeholder

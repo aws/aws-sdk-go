@@ -12,7 +12,12 @@ Feature: S3 Integration Crypto Tests
     Then I decrypt each fixture against "Java" "version_2"
     And I compare the decrypted ciphertext to the plaintext
 
-  Scenario: Get all plaintext fixtures for symmetric masterkey aes cbc 
+  Scenario: Uploading Go's SDK fixtures
     When I get all fixtures for "aes_gcm" from "aws-s3-shared-tests"
-    Then I decrypt each fixture against "Java" "version_2"
+    Then I encrypt each fixture with "kms" "AWS_SDK_TEST_ALIAS" "us-east-1" and "aes_gcm"
+    And upload "Go" data with folder "version_2"
+
+  Scenario: Get all plaintext fixtures for symmetric masterkey aes gcm 
+    When I get all fixtures for "aes_gcm" from "aws-s3-shared-tests"
+    Then I decrypt each fixture against "Go" "version_2"
     And I compare the decrypted ciphertext to the plaintext

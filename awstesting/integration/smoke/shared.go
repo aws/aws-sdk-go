@@ -7,6 +7,7 @@ import (
 	"bytes"
 	"encoding/base64"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -21,7 +22,9 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/service/kms"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3crypto"
 )
@@ -188,6 +191,7 @@ func init() {
 				continue
 			}
 
+			fmt.Println("CT OBJECT", ctObj)
 			masterkeyB64 := ctObj.Metadata["Masterkey"]
 			masterkey, err := base64.StdEncoding.DecodeString(*masterkeyB64)
 			assert.NoError(T, err)
@@ -200,13 +204,17 @@ func init() {
 			)
 			assert.NoError(T, err)
 
-			fmt.Println("CT OBJECT", ctObj)
 			ciphertext, err := ioutil.ReadAll(ctObj.Body)
 			assert.NoError(T, err)
 			ciphertexts[caseKey] = ciphertext
 		}
 		World["ciphertexts"] = ciphertexts
 	})
+
+	/*Scenario: Uploading Go's SDK fixtures
+	    When I get all fixtures for "aes_cbc" from "aws-s3-shared-tests"
+	    Then I encrypt each fixture with 'kms' and custID
+			And upload Go's data to S3 with folder 'version_2'*/
 
 	And(`^I compare the decrypted ciphertext to the plaintext$`, func() {
 		plaintexts := World["plaintexts"].(map[string][]byte)
@@ -217,6 +225,103 @@ func init() {
 			assert.True(T, bytes.Equal(plaintexts[caseKey], ciphertext))
 		}
 	})
+
+	Then(`^I encrypt each fixture with "(.+?)" "(.+?)" "(.+?)" and "(.+?)"$`, func(kek, v1, v2, cek string) {
+		var kp s3crypto.KeyProvider
+		var mode s3crypto.CryptoMode
+		switch kek {
+		case "kms":
+			m := s3crypto.NewJSONMatDesc()
+			arn, err := getAliasInformation(v1, v2)
+			assert.Nil(T, err)
+
+			b64Arn := base64.StdEncoding.EncodeToString([]byte(arn))
+			assert.Nil(T, err)
+			World["Masterkey"] = b64Arn
+
+			kp, err = s3crypto.NewKMSKeyProvider(session.New(&aws.Config{
+				Region:      &v2,
+				Credentials: credentials.NewSharedCredentials("", "integration"),
+			}), arn, m)
+			assert.Nil(T, err)
+		default:
+			T.Skip()
+		}
+
+		switch cek {
+		case "aes_cbc":
+			fmt.Println("AES CBC")
+			mode = s3crypto.EncryptionOnly(kp)
+		case "aes_gcm":
+			fmt.Println("AES GCM")
+			mode = s3crypto.Authentication(kp)
+		default:
+			T.Skip()
+		}
+
+		c := s3crypto.New(mode, func(c *s3crypto.Client) {
+			c.Config.S3Session = session.New(&aws.Config{
+				Region:      aws.String("us-west-2"),
+				Credentials: credentials.NewSharedCredentials("", "integration"),
+			})
+			session.New(&aws.Config{
+				Region:      aws.String("us-east-1"),
+				Credentials: credentials.NewSharedCredentials("", "integration"),
+			})
+		})
+		World["cryptoClient"] = c
+		World["cek"] = cek
+	})
+
+	And(`^upload "(.+?)" data with folder "(.+?)"$`, func(language, folder string) {
+		c := World["cryptoClient"].(*s3crypto.Client)
+		cek := World["cek"].(string)
+		bucket := World["bucket"].(string)
+		plaintexts := World["plaintexts"].(map[string][]byte)
+		key := World["Masterkey"].(string)
+		for caseKey, plaintext := range plaintexts {
+			input := &s3.PutObjectInput{
+				Bucket: &bucket,
+				Key:    aws.String("crypto_tests/" + cek + "/" + folder + "/language_" + language + "/ciphertext_test_case_" + caseKey),
+				Body:   bytes.NewReader(plaintext),
+				Metadata: map[string]*string{
+					"Masterkey": &key,
+				},
+			}
+
+			_, err := c.PutObject(input)
+			assert.Nil(T, err)
+		}
+	})
+}
+
+func getAliasInformation(alias, region string) (string, error) {
+	arn := ""
+	svc := kms.New(session.New(&aws.Config{
+		Region:      &region,
+		Credentials: credentials.NewSharedCredentials("", "integration"),
+	}))
+
+	truncated := true
+	var marker *string
+	for truncated {
+		out, err := svc.ListAliases(&kms.ListAliasesInput{
+			Marker: marker,
+		})
+		if err != nil {
+			return arn, err
+		}
+		fmt.Println("OUT", out)
+		for _, aliasEntry := range out.Aliases {
+			if *aliasEntry.AliasName == "alias/"+alias {
+				return *aliasEntry.AliasArn, nil
+			}
+		}
+		truncated = *out.Truncated
+		marker = out.NextMarker
+	}
+
+	return "", errors.New("The alias " + alias + " does not exist in your account. Please add the proper alias to a key")
 }
 
 // findMethod finds the op operation on the v structure using a case-insensitive

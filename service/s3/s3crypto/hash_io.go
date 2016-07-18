@@ -3,7 +3,6 @@ package s3crypto
 import (
 	"crypto/md5"
 	"crypto/sha256"
-	"fmt"
 	"hash"
 	"io"
 )
@@ -24,7 +23,6 @@ func newSHA256Writer(f io.Writer) *sha256Writer {
 	return &sha256Writer{hash: sha256.New(), out: f}
 }
 func (r *sha256Writer) Write(b []byte) (int, error) {
-	fmt.Println("WRINTING", b)
 	r.hash.Write(b)
 	return r.out.Write(b)
 }
@@ -45,7 +43,6 @@ func newMD5Reader(body io.Reader) *md5Reader {
 
 func (w *md5Reader) Read(b []byte) (int, error) {
 	n, err := w.body.Read(b)
-	fmt.Println("DATAAAAAAAA", n, err, b[:n])
 	if err != nil && err != io.EOF {
 		return n, err
 	}

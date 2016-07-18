@@ -61,7 +61,7 @@ func TestDecodeMetaV1(t *testing.T) {
 	masterkey, _ := base64.StdEncoding.DecodeString("w1WLio3agRWRTSJK/Ouh8NHoqRQ6fn5WbSXDTHjXMSo=")
 	cipher, err := NewAESECB(masterkey)
 	assert.Nil(t, err)
-	kp := NewSymmetricKeyProvider(cipher)
+	kp := NewSymmetricKeyProvider(cipher, &JSONMatDesc{})
 	env := Envelope{
 		CipherKey: "QCwoHJ/cOGmhQeNZ0GAeep+ysKWpqOY7w63kijvBCv+mCQMmX+H4u8HtGLdU3LFj",
 		IV:        "qxKNPKvYnj28sgP0OQ6ItQ==",

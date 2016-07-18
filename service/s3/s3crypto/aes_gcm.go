@@ -3,8 +3,14 @@ package s3crypto
 import (
 	"crypto/aes"
 	"crypto/cipher"
+	"fmt"
 	"io"
 	"io/ioutil"
+)
+
+const (
+	gcmKeySize   = 32
+	gcmNonceSize = 12
 )
 
 // AESGCM Symmetric encryption
@@ -13,9 +19,40 @@ type AESGCM struct {
 	nonce []byte
 }
 
-// NewAESGCM creates a new authenticated crypto handler.
-func NewAESGCM(key, nonce []byte) (*AESGCM, error) {
+// NewAESGCMRandom creates a new authenticated crypto handler.
+func NewAESGCMRandom(kp KeyProvider) (*AESGCM, error) {
+	key, err := kp.GenerateKey(gcmKeySize)
+	fmt.Println("HERE 0", err)
+	if err != nil {
+		return nil, err
+	}
+
+	nonce, err := kp.GenerateIV(gcmNonceSize)
+	fmt.Println("HERE 1", err)
+	if err != nil {
+		return nil, err
+	}
+
 	block, err := aes.NewCipher(padAESKey(key))
+	fmt.Println("HERE 2", err)
+	if err != nil {
+		return nil, err
+	}
+
+	aesgcm, err := cipher.NewGCM(block)
+	fmt.Println("HERE 3", err)
+	if err != nil {
+		return nil, err
+	}
+
+	kp.SetKey(key)
+	kp.SetIV(nonce)
+	return &AESGCM{aesgcm, nonce}, nil
+}
+
+// NewAESGCM ...
+func NewAESGCM(kp KeyProvider) (*AESGCM, error) {
+	block, err := aes.NewCipher(padAESKey(kp.GetKey()))
 	if err != nil {
 		return nil, err
 	}
@@ -25,7 +62,7 @@ func NewAESGCM(key, nonce []byte) (*AESGCM, error) {
 		return nil, err
 	}
 
-	return &AESGCM{aesgcm, nonce}, nil
+	return &AESGCM{aesgcm, kp.GetIV()}, nil
 }
 
 // Encrypt will encrypt the data using AES GCM

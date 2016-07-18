@@ -8,14 +8,12 @@ import (
 // Wrap Algorithm: AES Keywrap
 // CEK Algorithm: AES CBC with PKCS5 padding
 type EncryptionOnlyMode struct {
-	key []byte
-	iv  []byte
 	// Cipher will hold either a master symmetric key or a KMS client
 	// for encrypting the Envelope key
 	BaseKeyProvider
 
 	// This is the CEK algorithm used
-	CipherName
+	CipherData
 }
 
 // EncryptionOnly returns a new encryption only mode structure with a specific cipher
@@ -23,7 +21,7 @@ type EncryptionOnlyMode struct {
 func EncryptionOnly(kp KeyProvider) CryptoMode {
 	return &EncryptionOnlyMode{
 		BaseKeyProvider: BaseKeyProvider{kp},
-		CipherName:      CipherName{"AES/CBC/PKCS5Padding"},
+		CipherData:      CipherData{"AES/CBC/PKCS5Padding", "0"},
 	}
 }
 
