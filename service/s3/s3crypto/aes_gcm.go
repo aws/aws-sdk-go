@@ -3,7 +3,6 @@ package s3crypto
 import (
 	"crypto/aes"
 	"crypto/cipher"
-	"fmt"
 	"io"
 	"io/ioutil"
 )
@@ -22,25 +21,21 @@ type AESGCM struct {
 // NewAESGCMRandom creates a new authenticated crypto handler.
 func NewAESGCMRandom(kp KeyProvider) (*AESGCM, error) {
 	key, err := kp.GenerateKey(gcmKeySize)
-	fmt.Println("HERE 0", err)
 	if err != nil {
 		return nil, err
 	}
 
 	nonce, err := kp.GenerateIV(gcmNonceSize)
-	fmt.Println("HERE 1", err)
 	if err != nil {
 		return nil, err
 	}
 
 	block, err := aes.NewCipher(padAESKey(key))
-	fmt.Println("HERE 2", err)
 	if err != nil {
 		return nil, err
 	}
 
 	aesgcm, err := cipher.NewGCM(block)
-	fmt.Println("HERE 3", err)
 	if err != nil {
 		return nil, err
 	}

@@ -1,7 +1,6 @@
 package s3crypto
 
 import (
-	"fmt"
 	"io"
 )
 
@@ -28,14 +27,12 @@ func Authentication(kp KeyProvider) CryptoMode {
 func (mode *AuthenticationMode) EncryptContents(dst io.Writer, src io.Reader) error {
 	// Sets the key and iv to a randomly generated key and iv
 	cbc, err := NewAESGCMRandom(mode)
-	fmt.Println("TEST 0", err)
 	if err != nil {
 		return err
 	}
 
 	reader := cbc.Encrypt(src)
 	_, err = io.Copy(dst, reader)
-	fmt.Println("TEST 1", err)
 	return err
 }
 
