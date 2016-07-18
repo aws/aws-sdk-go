@@ -18,7 +18,8 @@ type AESGCM struct {
 	nonce []byte
 }
 
-// NewAESGCMRandom creates a new authenticated crypto handler.
+// NewAESGCMRandom create a new AES GCM cipher, but also randomly
+// generates a key and iv.
 func NewAESGCMRandom(kp KeyProvider) (*AESGCM, error) {
 	key, err := kp.GenerateKey(gcmKeySize)
 	if err != nil {
@@ -45,7 +46,8 @@ func NewAESGCMRandom(kp KeyProvider) (*AESGCM, error) {
 	return &AESGCM{aesgcm, nonce}, nil
 }
 
-// NewAESGCM ...
+// NewAESGCM creates a new AES GCM cipher. Expects keys to be of
+// the correct size.
 func NewAESGCM(kp KeyProvider) (*AESGCM, error) {
 	block, err := aes.NewCipher(kp.GetKey())
 	if err != nil {
@@ -94,21 +96,6 @@ func (reader *gcmEncryptReader) Read(data []byte) (int, error) {
 
 	return gcmCopyBuffer(rLen, &data, &reader.data)
 }
-
-/*func (c *AESGCM) Encrypt(data io.Reader) (*bytes.Reader, error) {
-	plaintext, err := ioutil.ReadAll(data)
-	if err != nil {
-		return bytes.NewReader([]byte{}), nil
-	}
-
-	aesgcm, err := cipher.NewGCM(c.block)
-	if err != nil {
-		return bytes.NewReader([]byte{}), nil
-	}
-
-	ciphertext := aesgcm.Seal(nil, c.nonce, plaintext, nil)
-	return bytes.NewReader(ciphertext), nil
-}*/
 
 // Decrypt will decrypt the data using AES GCM
 func (c *AESGCM) Decrypt(src io.Reader) io.Reader {

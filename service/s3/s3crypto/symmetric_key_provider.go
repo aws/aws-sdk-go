@@ -14,8 +14,8 @@ type SymmetricKeyProvider struct {
 	MaterialDescription
 }
 
-// NewSymmetricKeyProvider ...
-// TODO: Constructor with matdesc eventually
+// NewSymmetricKeyProvider will instantiate a new SymmetricKeyProvider with
+// a wrap algorithm and material description
 func NewSymmetricKeyProvider(master Wrap, matdesc MaterialDescription) KeyProvider {
 	return &SymmetricKeyProvider{
 		Wrap:                master,
