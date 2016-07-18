@@ -7,7 +7,8 @@ import (
 	"io"
 )
 
-// HashReader placeholder
+// HashReader is used for calculating SHA256 when following the sigv4 specification
+// and the unencrypted MD5.
 type HashReader interface {
 	GetValue() []byte
 	GetContentLength() int
