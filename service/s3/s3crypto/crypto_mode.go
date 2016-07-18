@@ -57,14 +57,6 @@ func keyProviderFactory(env *Envelope, cfg Config) (KeyProvider, error) {
 	switch env.WrapAlg {
 	case "kms":
 		return NewKMSKeyProviderWithMatDesc(cfg.KMSSession, env.MatDesc)
-	case "rsa":
-	case "ecb", "":
-		cipher, err := NewAESECB(cfg.MasterKey)
-		if err != nil {
-			return nil, err
-		}
-		return NewSymmetricKeyProvider(cipher, &JSONMatDesc{}), nil
-	case "aeswrap":
 	}
 	return nil, awserr.New(
 		"InvalidWrap",
@@ -75,8 +67,6 @@ func keyProviderFactory(env *Envelope, cfg Config) (KeyProvider, error) {
 
 func cekFactory(env *Envelope, kp KeyProvider) (Decrypter, error) {
 	switch env.CEKAlg {
-	case "AES/CBC/PKCS5Padding", "":
-		return NewAESCBC(kp)
 	case "AES/GCM/NoPadding":
 		return NewAESGCM(kp)
 	}
