@@ -58,7 +58,7 @@ func setup() {
 
 // Delete the bucket
 func teardown() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.NewFromSharedConfig())
 
 	objs, _ := svc.ListObjects(&s3.ListObjectsInput{Bucket: bucketName})
 	for _, o := range objs.Contents {
@@ -128,7 +128,7 @@ func TestUploadConcurrently(t *testing.T) {
 }
 
 func TestUploadFailCleanup(t *testing.T) {
-	svc := s3.New(session.New())
+	svc := s3.New(session.NewFromSharedConfig())
 
 	// Break checksum on 2nd part so it fails
 	part := 0
@@ -151,6 +151,7 @@ func TestUploadFailCleanup(t *testing.T) {
 		Body:   bytes.NewReader(integBuf12MB),
 	})
 	assert.Error(t, err)
+	assert.NotContains(t, err.Error(), "MissingRegion")
 	uploadID := ""
 	if merr, ok := err.(s3manager.MultiUploadFailure); ok {
 		uploadID = merr.UploadID()
