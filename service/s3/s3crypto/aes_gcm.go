@@ -20,7 +20,13 @@ type AESGCM struct {
 
 // NewAESGCMRandom create a new AES GCM cipher, but also randomly
 // generates a key and iv.
-func NewAESGCMRandom(kp KeyProvider) (*AESGCM, error) {
+//
+// Example:
+//
+// cmkID := "arn to key"
+// kp, _ := s3crypto.NewKMSKeyProvider(session.New(), cmkID, s3crypto.NewJSONMatDesc())
+// cipher, _ := s3crypto.NewAESGCMRandom(kp)
+func NewAESGCMRandom(kp KeyProvider) (Cipher, error) {
 	key, err := kp.GenerateKey(gcmKeySize)
 	if err != nil {
 		return nil, err
@@ -48,7 +54,14 @@ func NewAESGCMRandom(kp KeyProvider) (*AESGCM, error) {
 
 // NewAESGCM creates a new AES GCM cipher. Expects keys to be of
 // the correct size.
-func NewAESGCM(kp KeyProvider) (*AESGCM, error) {
+//
+// Example:
+//
+// kp := &s3crypto.SymmetricKeyProvider{}
+// kp.SetKey(key)
+// kp.SetIV(iv)
+// cipher, _ := s3crypto.NewAESGCM(kp)
+func NewAESGCM(kp KeyProvider) (Cipher, error) {
 	block, err := aes.NewCipher(kp.GetKey())
 	if err != nil {
 		return nil, err
