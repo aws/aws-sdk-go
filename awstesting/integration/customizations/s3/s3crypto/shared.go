@@ -72,6 +72,10 @@ func init() {
 				continue
 			}
 
+			// We don't support wrap, so skip it
+			if *ctObj.Metadata["X-Amz-Wrap-Alg"] == "AESWrap" {
+				continue
+			}
 			masterkeyB64 := ctObj.Metadata["Masterkey"]
 			masterkey, err := base64.StdEncoding.DecodeString(*masterkeyB64)
 			assert.NoError(T, err)
