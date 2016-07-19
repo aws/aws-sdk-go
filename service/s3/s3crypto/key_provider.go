@@ -12,15 +12,21 @@ type KeyProvider interface {
 // EncrypterKeyProvider handles how to generate keys and ivs for the content encryption.
 // This also satifies the `MaterialDescription` and `CipherDataIface` interfaces.
 type EncrypterKeyProvider interface {
+	// GenerateKey generates a key of n bytes
 	GenerateKey(int) ([]byte, error)
+	// GenerateIV generates an iv of n bytes
 	GenerateIV(int) ([]byte, error)
+	// GetEncryptedKey encrypts and returns the encrypted key
 	GetEncryptedKey(key []byte) ([]byte, error)
 	GetIV() []byte
 	SetIV([]byte)
 	GetKey() []byte
 	SetKey([]byte)
+	// CipherDataIface is used for populating the envelope data during
+	// encryption.
 	CipherDataIface
-
+	// MaterialDescription is used to distinguish the materials for both
+	// encryption and decryption.
 	MaterialDescription
 }
 

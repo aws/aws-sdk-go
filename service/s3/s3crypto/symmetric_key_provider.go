@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 )
 
-// SymmetricKeyProvider placeholder
+// SymmetricKeyProvider is used for symmetric cipher algorithms
 type SymmetricKeyProvider struct {
 	key []byte
 	iv  []byte
@@ -23,45 +23,45 @@ func NewSymmetricKeyProvider(master Wrap, matdesc MaterialDescription) KeyProvid
 	}
 }
 
-// GenerateKey placeholder
+// GenerateKey satisfies the KeyProvider interface
 func (kp *SymmetricKeyProvider) GenerateKey(n int) ([]byte, error) {
 	return generateBytes(n), nil
 }
 
-// GenerateIV placeholder
+// GenerateIV satisfies the KeyProvider interface
 func (kp *SymmetricKeyProvider) GenerateIV(n int) ([]byte, error) {
 	return generateBytes(n), nil
 }
 
-// GetKey placeholder
+// GetKey satisfies the KeyProvider interface
 func (kp *SymmetricKeyProvider) GetKey() []byte {
 	return kp.key
 }
 
-// SetKey placeholder
+// SetKey satisfies the KeyProvider interface
 func (kp *SymmetricKeyProvider) SetKey(key []byte) {
 	kp.key = key
 }
 
-// GetEncryptedKey placeholder
+// GetEncryptedKey satisfies the KeyProvider interface
 func (kp *SymmetricKeyProvider) GetEncryptedKey(key []byte) ([]byte, error) {
 	dst := kp.Encrypt(bytes.NewBuffer(key))
 	return ioutil.ReadAll(dst)
 }
 
-// GetDecryptedKey placeholder
+// GetDecryptedKey satisfies the KeyProvider interface
 func (kp *SymmetricKeyProvider) GetDecryptedKey(key []byte) ([]byte, error) {
 	dst := kp.Decrypt(bytes.NewBuffer(key))
 	b, err := ioutil.ReadAll(dst)
 	return b, err
 }
 
-// GetIV placeholder
+// GetIV satisfies the KeyProvider interface
 func (kp *SymmetricKeyProvider) GetIV() []byte {
 	return kp.iv
 }
 
-// SetIV placeholder
+// SetIV satisfies the KeyProvider interface
 func (kp *SymmetricKeyProvider) SetIV(b []byte) {
 	kp.iv = b
 }
