@@ -183,6 +183,12 @@ func (e *Encoder) Encode(in interface{}) (*dynamodb.AttributeValue, error) {
 }
 
 func (e *Encoder) encode(av *dynamodb.AttributeValue, v reflect.Value, fieldTag tag) error {
+	// We should check for omitted values first before dereferencing.
+	if fieldTag.OmitEmpty && emptyValue(v) {
+		encodeNull(av)
+		return nil
+	}
+
 	// Handle both pointers and interface conversion into types
 	v = valueElem(v)
 
@@ -190,11 +196,6 @@ func (e *Encoder) encode(av *dynamodb.AttributeValue, v reflect.Value, fieldTag 
 		if used, err := tryMarshaler(av, v); used {
 			return err
 		}
-	}
-
-	if fieldTag.OmitEmpty && emptyValue(v) {
-		encodeNull(av)
-		return nil
 	}
 
 	switch v.Kind() {
@@ -235,6 +236,9 @@ func (e *Encoder) encodeStruct(av *dynamodb.AttributeValue, v reflect.Value) err
 		fv := v.FieldByIndex(f.Index)
 		elem := &dynamodb.AttributeValue{}
 		err := e.encode(elem, fv, f.tag)
+		if err != nil {
+			return err
+		}
 		skip, err := keepOrOmitEmpty(f.OmitEmpty, elem, err)
 		if err != nil {
 			return err
