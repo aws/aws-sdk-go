@@ -799,6 +799,12 @@ func (c *SSM) DescribeInstanceInformationRequest(input *DescribeInstanceInformat
 		Name:       opDescribeInstanceInformation,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -821,6 +827,31 @@ func (c *SSM) DescribeInstanceInformation(input *DescribeInstanceInformationInpu
 	req, out := c.DescribeInstanceInformationRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+// DescribeInstanceInformationPages iterates over the pages of a DescribeInstanceInformation operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeInstanceInformation method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeInstanceInformation operation.
+//    pageNum := 0
+//    err := client.DescribeInstanceInformationPages(params,
+//        func(page *DescribeInstanceInformationOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *SSM) DescribeInstanceInformationPages(input *DescribeInstanceInformationInput, fn func(p *DescribeInstanceInformationOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeInstanceInformationRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeInstanceInformationOutput), lastPage)
+	})
 }
 
 const opGetDocument = "GetDocument"
