@@ -73,7 +73,7 @@ type envConfig struct {
 	// $HOME/.aws/config on Linux/Unix based systems, and
 	// %USERPROFILE%\.aws\config on Windows.
 	//
-	//	AWS_SHARED_CONFIG_FILE=$HOME/my_shared_config
+	//	AWS_CONFIG_FILE=$HOME/my_shared_config
 	SharedConfigFile string
 }
 

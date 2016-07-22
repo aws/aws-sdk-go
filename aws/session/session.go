@@ -5,6 +5,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/corehandlers"
 	"github.com/aws/aws-sdk-go/aws/credentials"
+	"github.com/aws/aws-sdk-go/aws/credentials/stscreds"
 	"github.com/aws/aws-sdk-go/aws/defaults"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/endpoints"
@@ -24,116 +25,199 @@ type Session struct {
 
 // New creates a new instance of the handlers merging in the provided configs
 // on top of the SDK's default configurations. Once the Session is created it
-// can be mutated to modify Config or Handlers. The Session is safe to be read
-// concurrently, but it should not be written to concurrently.
+// can be mutated to modify the Config or Handlers. The Session is safe to be
+// read concurrently, but it should not be written to concurrently.
+//
+// If the AWS_SDK_LOAD_CONFIG environment is set to a truthy value, the New
+// method could now encounter an error when loading the configuration. When
+// The environment variable is set, and an error occurs, New will return a
+// session that will fail all requests reporting the error that occured while
+// loading the session. Use NewSession to get the error when creating the
+// session.
 //
 // If the AWS_SDK_LOAD_CONFIG environment variable is set to a truthy value
-// the shared config (~/.aws/config) will also be loaded. Values from the shared
-// credentials file will have taken over those in the shared config.
+// the shared config file (~/.aws/config) will also be loaded, in addition to
+// the shared credentials file (~/.aws/config). Values set in both the
+// shared config, and shared credentials will be taken from the shared
+// credentials file.
 //
-// Example:
-//     // Create a Session with the default config and request handlers.
-//     sess := session.New()
+// Deprecated: Use NewSession functiions to create sessions instead. NewSession
+// has the same functionality as New except an error can be returned when the
+// func is called instead of waiting to receive an error until a request is made.
+func New(cfgs ...*aws.Config) *Session {
+	// load initial config from environment
+	envCfg := loadEnvConfig()
+
+	if envCfg.EnableSharedConfig {
+		s, err := newSession(envCfg, cfgs...)
+		if err != nil {
+			// Old session.New expected all errors to be discovered when
+			// a request is made, and would report the errors then. This
+			// needs to be replicated if an error occurs while creating
+			// the session.
+			msg := "failed to create session with AWS_SDK_LOAD_CONFIG enabled. " +
+				"Use session.NewSession to handle errors occuring during session creation."
+
+			// Session creation failed, need to report the error and prevent
+			// any requests from succeeding.
+			s = &Session{Config: defaults.Config()}
+			s.Config.MergeIn(cfgs...)
+			s.Config.Logger.Log("ERROR:", msg, "Error:", err)
+			s.Handlers.Validate.PushBack(func(r *request.Request) {
+				r.Error = err
+			})
+		}
+		return s
+	}
+
+	return oldNewSession(cfgs...)
+}
+
+// NewSession returns a new Session created from SDK defaults, config files,
+// environment, and user provided config files. Once the Session is created
+// it can be mutated to modify the Config or Handlers. The Session is safe to
+// be read concurrently, but it should not be written to concurrently.
 //
-//     // Create a Session with a custom region
-//     sess := session.New(&aws.Config{Region: aws.String("us-east-1")})
+// If the AWS_SDK_LOAD_CONFIG environment variable is set to a truthy value
+// the shared config file (~/.aws/config) will also be loaded in addition to
+// the shared credentials file (~/.aws/config). Values set in both the
+// shared config, and shared credentials will be taken from the shared
+// credentials file. Enabling the Shared Config will also allow the Session
+// to be built with retrieving credentials with AssumeRole set in the config.
 //
-//     // Create a Session, and add additional handlers for all service
-//     // clients created with the Session to inherit. Adds logging handler.
-//     sess := session.New()
-//     sess.Handlers.Send.PushFront(func(r *request.Request) {
-//          // Log every request made and its payload
-//          logger.Println("Request: %s/%s, Payload: %s", r.ClientInfo.ServiceName, r.Operation, r.Params)
+// See the NewSessionWithOptions func for information on how to override or
+// control through code how the Session will be created. Such as specifing the
+// config profile, and controlling if shared config is enabled or not.
+func NewSession(cfgs ...*aws.Config) (*Session, error) {
+	envCfg := loadEnvConfig()
+
+	return newSession(envCfg, cfgs...)
+}
+
+// SharedConfigState provides the ability to optionally override the state
+// of the session's creation based on the shared config being enabled or
+// disabled.
+type SharedConfigState int
+
+const (
+	// SharedConfigStateFromEnv does not override any state of the
+	// AWS_SDK_LOAD_CONFIG env var. It is the default value of the
+	// SharedConfigState type.
+	SharedConfigStateFromEnv SharedConfigState = iota
+
+	// SharedConfigDisable overrides the AWS_SDK_LOAD_CONFIG env var value
+	// and disables the shared config functionality.
+	SharedConfigDisable
+
+	// SharedConfigEnable overrides the AWS_SDK_LOAD_CONFIG env var value
+	// and enables the shared config functionality.
+	SharedConfigEnable
+)
+
+// Options provides the means to control how a Session is created and what
+// configuration values will be loaded.
+//
+type Options struct {
+	// Provides config values for the SDK to use when creating service clients
+	// and making API requests to services. Any value set in with this field
+	// will override the associated value provided by the SDK defaults,
+	// environment or config files where relevent.
+	//
+	// If not set, configuration values from from SDK defaults, environment,
+	// config will be used.
+	Config aws.Config
+
+	// Overrides the config profile the Session should be created from. If not
+	// set the value of the environment variable will be loaded (AWS_PROFILE,
+	// or AWS_DEFAULT_PROFILE if the Shared Config is enabled).
+	//
+	// If not set and environment variables are not set the "default"
+	// (DefaultSharedConfigProfile) will be used as the profile to load the
+	// session config from.
+	Profile string
+
+	// Instructs how the Session will be created based on the AWS_SDK_LOAD_CONFIG
+	// environment variable. By default a Session will be created using the
+	// value provided by the AWS_SDK_LOAD_CONFIG environment variable.
+	//
+	// Setting this value to SharedConfigEnable or SharedConfigDisable
+	// will allow you to override the AWS_SDK_LOAD_CONFIG environment variable
+	// and enable or disable the shared config functionality.
+	SharedConfigState SharedConfigState
+}
+
+// NewSessionWithOptions returns a new Session created from SDK defaults, config files,
+// environment, and user provided config files. This func uses the Options
+// values to configure how the Session is created.
+//
+// If the AWS_SDK_LOAD_CONFIG environment variable is set to a truthy value
+// the shared config file (~/.aws/config) will also be loaded in addition to
+// the shared credentials file (~/.aws/config). Values set in both the
+// shared config, and shared credentials will be taken from the shared
+// credentials file. Enabling the Shared Config will also allow the Session
+// to be built with retrieving credentials with AssumeRole set in the config.
+//
+//     // Equivalent to session.New
+//     sess, err := session.NewSessionWithOptions(session.Optons{})
+//
+//     // Specify profile to load for the session's config
+//     sess, err := session.NewSessionWithOptions(session.Optons{
+//          Profile: "profile_name",
 //     })
 //
-//     // Create a S3 client instance from a Session
-//     sess := session.New()
-//     svc := s3.New(sess)
-func New(cfgs ...*aws.Config) *Session {
-	// Load initial config from environment
+//     // Specify profile for config and region for requests
+//     sess, err := session.NewSessionWithOptions(session.Options{
+//          Config: aws.Config{Region: aws.String("us-east-1")},
+//          Profile: "profile_name",
+//     })
+//
+//     // Force enable Shared Config support
+//     sess, err := session.NewSessionWithOptions(session.Optons{
+//         SharedConfigState: SharedConfigEnable,
+//     })
+func NewSessionWithOptions(opts Options) (*Session, error) {
 	envCfg := loadEnvConfig()
 
-	// Load user's shared config, and passed in config
-	return newSession(envCfg, cfgs...)
+	if len(opts.Profile) > 0 {
+		envCfg.Profile = opts.Profile
+	}
+
+	switch opts.SharedConfigState {
+	case SharedConfigDisable:
+		envCfg.EnableSharedConfig = false
+	case SharedConfigEnable:
+		envCfg.EnableSharedConfig = true
+	}
+
+	return newSession(envCfg, &opts.Config)
 }
 
-// NewFromProfile creates a new Session loading configuration from the SDKs
-// defaults, and credentials from the shared credentials file.
+// Must is a helper function to ensure the Session is valid and there was no
+// error when calling a NewSession function.
 //
-// Uses the profile to configure which profile to load the shared configuration
-// from. This will override the profile specififed in the environment.
+// This helper is intended to be used in variable initialization to load the
+// Session and configuration at startup. Such as:
 //
-// Same as New, but specifies the profile that will be loaded from the shared
-// configuration files. This function also uses the AWS_SDK_LOAD_CONFIG the
-// same as the New function.
-func NewFromProfile(profile string, cfgs ...*aws.Config) *Session {
-	// Load initial config from environment
-	envCfg := loadEnvConfig()
-	envCfg.Profile = profile
+//     var sess = session.Must(session.NewSession())
+func Must(sess *Session, err error) *Session {
+	if err != nil {
+		panic(err)
+	}
 
-	// Load user's shared config, and passed in config
-	return newSession(envCfg, cfgs...)
+	return sess
 }
 
-// NewFromSharedConfig creates a new Session loading configuration from the
-// shared configuration, as a base which the passed in configurations will
-// be merged on top off.
-//
-// Same as New, but loads the configuration as if the AWS_SDK_LOAD_CONFIG
-// environment variable is set.
-func NewFromSharedConfig(cfgs ...*aws.Config) *Session {
-	// Load initial config from environment
-	envCfg := loadSharedEnvConfig()
-
-	// Load user's shared config, and passed in config
-	return newSession(envCfg, cfgs...)
-}
-
-// NewFromSharedConfigProfile creates a new Session loading configuration from
-// the shared configuration, as a base which the passed in configurations will
-// be merged on top off.
-//
-// Uses the profile to configure which profile to load the shared configuration
-// from. This will override the profile specififed in the environment.
-//
-// Same as New, but loads the configuration as if the AWS_SDK_LOAD_CONFIG
-// environment variable is set.
-func NewFromSharedConfigProfile(profile string, cfgs ...*aws.Config) *Session {
-	// Load initial config from environment
-	envCfg := loadSharedEnvConfig()
-	envCfg.Profile = profile
-
-	// Load user's shared config, and passed in config
-	return newSession(envCfg, cfgs...)
-}
-
-func newSession(envCfg envConfig, cfgs ...*aws.Config) *Session {
+func oldNewSession(cfgs ...*aws.Config) *Session {
 	cfg := defaults.Config()
 	handlers := defaults.Handlers()
 
-	// Load user shared config
-	err := loadConfig(envCfg, cfg)
+	// Apply the passed in configs so the configuration can be applied to the
+	// default credential chain
+	cfg.MergeIn(cfgs...)
+	cfg.Credentials = defaults.CredChain(cfg, handlers)
 
-	// Get a merged version of the user provided config to determine if
-	// credentials were.
-	userCfg := aws.Config{}
-	userCfg.MergeIn(cfgs...)
-
-	// Merge in user provided configuration
-	cfg.MergeIn(&userCfg)
-
-	// Need to wait until after the user, shared, and default configs are merged,
-	// so any log options are set to report the error to.
-	if err != nil && cfg.Logger != nil && cfg.LogLevel.Matches(aws.LogDebug) {
-		cfg.Logger.Log("DEBUG: failed to load shared config, error", err)
-	}
-
-	// Set default credential chain if none found in env/shared config, and
-	// not set by the user.
-	if cfg.Credentials == credentials.AnonymousCredentials && userCfg.Credentials == nil {
-		// Use default credentials chain if none in env/shared config
-		cfg.Credentials = defaults.CredChain(cfg, handlers)
-	}
+	// Reapply any passed in configs to override credentials if set
+	cfg.MergeIn(cfgs...)
 
 	s := &Session{
 		Config:   cfg,
@@ -145,7 +229,15 @@ func newSession(envCfg envConfig, cfgs ...*aws.Config) *Session {
 	return s
 }
 
-func loadConfig(envCfg envConfig, cfg *aws.Config) error {
+func newSession(envCfg envConfig, cfgs ...*aws.Config) (*Session, error) {
+	cfg := defaults.Config()
+	handlers := defaults.Handlers()
+
+	// Get a merged version of the user provided config to determine if
+	// credentials were.
+	userCfg := &aws.Config{}
+	userCfg.MergeIn(cfgs...)
+
 	// Order config files will be loaded in with later files overwriting
 	// previous config file values.
 	cfgFiles := []string{envCfg.SharedConfigFile, envCfg.SharedCredentialsFile}
@@ -156,30 +248,74 @@ func loadConfig(envCfg envConfig, cfg *aws.Config) error {
 	}
 
 	// Load additional config from file(s)
-	sharedCfg, err := loadSharedConfig(envCfg.Profile, cfgFiles...)
+	sharedCfg, err := loadSharedConfig(envCfg.Profile, cfgFiles)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	// Region
-	if len(envCfg.Region) > 0 {
-		cfg.WithRegion(envCfg.Region)
-	} else if envCfg.EnableSharedConfig && len(sharedCfg.Region) > 0 {
-		cfg.WithRegion(sharedCfg.Region)
+	mergeConfigSrcs(cfg, userCfg, envCfg, sharedCfg, handlers)
+
+	s := &Session{
+		Config:   cfg,
+		Handlers: handlers,
 	}
 
-	// Configure credentials if known
-	if len(envCfg.Creds.AccessKeyID) > 0 {
-		cfg.Credentials = credentials.NewCredentials(
-			&credentials.StaticProvider{Value: envCfg.Creds},
-		)
-	} else if len(sharedCfg.Creds.AccessKeyID) > 0 {
-		cfg.Credentials = credentials.NewCredentials(
-			&credentials.StaticProvider{Value: sharedCfg.Creds},
-		)
+	initHandlers(s)
+
+	return s, nil
+}
+
+func mergeConfigSrcs(cfg, userCfg *aws.Config, envCfg envConfig, sharedCfg sharedConfig, handlers request.Handlers) {
+	// Merge in user provided configuration
+	cfg.MergeIn(userCfg)
+
+	// Region if not already set by user
+	if len(aws.StringValue(cfg.Region)) == 0 {
+		if len(envCfg.Region) > 0 {
+			cfg.WithRegion(envCfg.Region)
+		} else if envCfg.EnableSharedConfig && len(sharedCfg.Region) > 0 {
+			cfg.WithRegion(sharedCfg.Region)
+		}
 	}
 
-	return nil
+	// Configure credentials if not already set
+	if cfg.Credentials == credentials.AnonymousCredentials && userCfg.Credentials == nil {
+		if len(envCfg.Creds.AccessKeyID) > 0 {
+			cfg.Credentials = credentials.NewStaticCredentialsFromCreds(
+				envCfg.Creds,
+			)
+		} else if envCfg.EnableSharedConfig && len(sharedCfg.AssumeRole.RoleARN) > 0 && sharedCfg.AssumeRoleSource != nil {
+			cfgCp := *cfg
+			cfgCp.Credentials = credentials.NewStaticCredentialsFromCreds(
+				sharedCfg.AssumeRoleSource.Creds,
+			)
+			cfg.Credentials = stscreds.NewCredentials(
+				&Session{
+					Config:   &cfgCp,
+					Handlers: handlers.Copy(),
+				},
+				sharedCfg.AssumeRole.RoleARN,
+				func(opt *stscreds.AssumeRoleProvider) {
+					opt.RoleSessionName = sharedCfg.AssumeRole.RoleSessionName
+
+					if len(sharedCfg.AssumeRole.ExternalID) > 0 {
+						opt.ExternalID = aws.String(sharedCfg.AssumeRole.ExternalID)
+					}
+
+					// MFA not supported
+				},
+			)
+		} else if len(sharedCfg.Creds.AccessKeyID) > 0 {
+			cfg.Credentials = credentials.NewStaticCredentialsFromCreds(
+				sharedCfg.Creds,
+			)
+		} else {
+			// Fallback to default credentials provider
+			cfg.Credentials = credentials.NewCredentials(
+				defaults.RemoteCredProvider(*cfg, handlers),
+			)
+		}
+	}
 }
 
 func initHandlers(s *Session) {
@@ -194,7 +330,6 @@ func initHandlers(s *Session) {
 // and handlers. If any additional configs are provided they will be merged
 // on top of the Session's copied config.
 //
-// Example:
 //     // Create a copy of the current Session, configured for the us-west-2 region.
 //     sess.Copy(&aws.Config{Region: aws.String("us-west-2")})
 func (s *Session) Copy(cfgs ...*aws.Config) *Session {
@@ -211,10 +346,6 @@ func (s *Session) Copy(cfgs ...*aws.Config) *Session {
 // ClientConfig satisfies the client.ConfigProvider interface and is used to
 // configure the service client instances. Passing the Session to the service
 // client's constructor (New) will use this method to configure the client.
-//
-// Example:
-//     sess := session.New()
-//     s3.New(sess)
 func (s *Session) ClientConfig(serviceName string, cfgs ...*aws.Config) client.Config {
 	s = s.Copy(cfgs...)
 	endpoint, signingRegion := endpoints.NormalizeEndpoint(
