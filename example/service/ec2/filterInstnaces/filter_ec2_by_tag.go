@@ -10,10 +10,10 @@ import (
 	"os"
 )
 
-var AwsRegions = []string{"us-east-1", "us-west-1", "us-west-2", "eu-west-1", "eu-central-1", "sa-east-1"}
+var awsRegions = []string{"us-east-1", "us-west-1", "us-west-2", "eu-west-1", "eu-central-1", "sa-east-1"}
 
 func listFilteredInstances(nameFilter string) {
-	for _, region := range AwsRegions {
+	for _, region := range awsRegions {
 		svc := ec2.New(session.New(&aws.Config{Region: aws.String(region)}))
 		fmt.Printf("listing instances with tag %v in: %v\n", nameFilter,region)
 		params := &ec2.DescribeInstancesInput{
