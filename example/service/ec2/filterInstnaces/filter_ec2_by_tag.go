@@ -12,11 +12,10 @@ import (
 
 var AwsRegions = []string{"us-east-1", "us-west-1", "us-west-2", "eu-west-1", "eu-central-1", "sa-east-1"}
 
-func listFilteredInstances(nameFilter string) []ec2.DescribeInstancesOutput{
-	filteredList := []ec2.DescribeInstancesOutput{}
+func listFilteredInstances(nameFilter string) {
 	for _, region := range AwsRegions {
 		svc := ec2.New(session.New(&aws.Config{Region: aws.String(region)}))
-		fmt.Println("listing VPNs in:", region)
+		fmt.Printf("listing instances with tag %v in: %v\n", nameFilter,region)
 		params := &ec2.DescribeInstancesInput{
 			Filters: []*ec2.Filter{
 				{
@@ -32,12 +31,12 @@ func listFilteredInstances(nameFilter string) []ec2.DescribeInstancesOutput{
 			fmt.Println("there was an error listing instnaces in", region, err.Error())
 			log.Fatal(err.Error())
 		}
-		filteredList = append(filteredList,*resp)
+		fmt.Printf("%+v\n",*resp)
 	}
-	return filteredList
 }
 
 func main() {
-	filteredInstances := listFilteredInstances(os.Args[1])
-	fmt.Printf("%+v\n",filteredInstances)
+	listFilteredInstances(os.Args[1])
 }
+
+
