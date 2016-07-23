@@ -7,6 +7,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"strings"
+	"os"
 )
 
 var AwsRegions = []string{"us-east-1", "us-west-1", "us-west-2", "eu-west-1", "eu-central-1", "sa-east-1"}
@@ -15,7 +16,7 @@ func listFilteredInstances(nameFilter string) []ec2.DescribeInstancesOutput{
 	filteredList := []ec2.DescribeInstancesOutput{}
 	for _, region := range AwsRegions {
 		svc := ec2.New(session.New(&aws.Config{Region: aws.String(region)}))
-		fmt.Println("enumerating VPNs in:", region)
+		fmt.Println("listing VPNs in:", region)
 		params := &ec2.DescribeInstancesInput{
 			Filters: []*ec2.Filter{
 				{
@@ -37,6 +38,6 @@ func listFilteredInstances(nameFilter string) []ec2.DescribeInstancesOutput{
 }
 
 func main() {
-	filteredInstances := listFilteredInstances("vpn")
+	filteredInstances := listFilteredInstances(os.Args[1])
 	fmt.Printf("%+v\n",filteredInstances)
 }
