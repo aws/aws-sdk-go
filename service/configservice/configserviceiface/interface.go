@@ -22,6 +22,10 @@ type ConfigServiceAPI interface {
 
 	DeleteDeliveryChannel(*configservice.DeleteDeliveryChannelInput) (*configservice.DeleteDeliveryChannelOutput, error)
 
+	DeleteEvaluationResultsRequest(*configservice.DeleteEvaluationResultsInput) (*request.Request, *configservice.DeleteEvaluationResultsOutput)
+
+	DeleteEvaluationResults(*configservice.DeleteEvaluationResultsInput) (*configservice.DeleteEvaluationResultsOutput, error)
+
 	DeliverConfigSnapshotRequest(*configservice.DeliverConfigSnapshotInput) (*request.Request, *configservice.DeliverConfigSnapshotOutput)
 
 	DeliverConfigSnapshot(*configservice.DeliverConfigSnapshotInput) (*configservice.DeliverConfigSnapshotOutput, error)
@@ -99,6 +103,10 @@ type ConfigServiceAPI interface {
 	PutEvaluationsRequest(*configservice.PutEvaluationsInput) (*request.Request, *configservice.PutEvaluationsOutput)
 
 	PutEvaluations(*configservice.PutEvaluationsInput) (*configservice.PutEvaluationsOutput, error)
+
+	StartConfigRulesEvaluationRequest(*configservice.StartConfigRulesEvaluationInput) (*request.Request, *configservice.StartConfigRulesEvaluationOutput)
+
+	StartConfigRulesEvaluation(*configservice.StartConfigRulesEvaluationInput) (*configservice.StartConfigRulesEvaluationOutput, error)
 
 	StartConfigurationRecorderRequest(*configservice.StartConfigurationRecorderInput) (*request.Request, *configservice.StartConfigurationRecorderOutput)
 
