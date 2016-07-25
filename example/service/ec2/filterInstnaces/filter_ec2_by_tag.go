@@ -10,7 +10,7 @@ import (
 	"os"
 )
 
-var awsRegions = []string{"us-east-1", "us-west-1", "us-west-2", "eu-west-1", "eu-central-1", "sa-east-1"}
+var awsRegions = []string{"us-east-1"}
 
 func listFilteredInstances(nameFilter string) {
 	for _, region := range awsRegions {
