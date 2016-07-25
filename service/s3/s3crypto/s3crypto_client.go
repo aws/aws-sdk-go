@@ -3,58 +3,59 @@ package s3crypto
 import (
 	"encoding/hex"
 	"io/ioutil"
-	"log"
 	"os"
 
+	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
+	"github.com/aws/aws-sdk-go/service/s3/s3iface"
 )
 
-// Client is an S3 crypto client. By default we will use EncryptionOnly mode which
-// will use AES Wrap for key wrapping and AES GCM for content encryption.
+// Client is an S3 crypto client. By default the SDK will use Authentication mode which
+// will use KMS for key wrapping and AES GCM for content encryption.
 // AES GCM will load all data into memory. However, the rest of the content algorithms
 // do not load the entire contents into memory.
 type Client struct {
-	S3     *s3.S3
+	S3     s3iface.S3API
 	Config Config
 }
 
 // Config used to customize the Client
 type Config struct {
-	// Mode is used to dictate how we encrypt and decrypt the data.
+	// Mode is used to dictate how the SDK encrypts and decrypts the data.
 	//
-	// Defaults to AES GCM with the suggested pairing of AES Wrap/PRSA/KMS
+	// Defaults to AES GCM with the suggested pairing of KMS
 	Mode CryptoMode
 	// SaveStrategy will dictate where the envelope is saved.
 	//
 	// Defaults to the object's metadata
 	SaveStrategy
-	// InstructionSuffix is the instruction file name suffix. If it is empty, then
-	// the item key will be used followed by .instruction
-	InstructionSuffix string
+	// InstructionFileSuffix is the instruction file name suffix when using get requests.
+	// If it is empty, then the item key will be used followed by .instruction
+	InstructionFileSuffix string
 	// This is used to instantiate new kms clients when calling GetObject
-	KMSSession *session.Session
-	S3Session  *session.Session
-
-	// Used for instantiating non-kms key providers when getting objects
-	MasterKey []byte
+	KMSSession client.ConfigProvider
+	S3Session  client.ConfigProvider
+	// TempFolder is used to store temp files when calling PutObject
+	TempFolder string
 }
 
 // New instantiates a new S3 crypto client
+//
 // Example:
-// cmkID := "some key id to kms"
-// kp, err = s3crypto.NewKMSKeyProvider(session.New(), cmkID, s3crypto.NewJSONMatDesc())
-// if err != nil {
-//   return err
-// }
-// svc := s3crypto.New(s3crypto.Authentication(kp))
+//	cmkID := "some key id to kms"
+//	kp, err = s3crypto.NewKMSKeyProvider(session.New(), cmkID, s3crypto.NewJSONMatDesc())
+//	if err != nil {
+//	  return err
+//	}
+//	svc := s3crypto.New(s3crypto.Authentication(kp))
 func New(mode CryptoMode, options ...func(*Client)) *Client {
 	sess := session.New()
 	client := &Client{
 		Config: Config{
 			Mode:         mode,
-			SaveStrategy: NewHeaderSaveStrategy(),
+			SaveStrategy: headerSaveStrategy{},
 			KMSSession:   sess,
 			S3Session:    sess,
 		},
@@ -72,18 +73,18 @@ func New(mode CryptoMode, options ...func(*Client)) *Client {
 // that data to S3.
 //
 // Example:
-// svc := s3crypto.New(s3crypto.Authentication(kp))
-// req, out := svc.PutObjectRequest(&s3.PutObjectInput {
-//   Key: aws.String("testKey"),
-//   Bucket: aws.String("testBucket"),
-//   Body: bytes.NewBuffer("test data"),
-// })
-// err := req.Send()
+//	svc := s3crypto.New(s3crypto.Authentication(kp))
+//	req, out := svc.PutObjectRequest(&s3.PutObjectInput {
+//	  Key: aws.String("testKey"),
+//	  Bucket: aws.String("testBucket"),
+//	  Body: bytes.NewBuffer("test data"),
+//	})
+//	err := req.Send()
 func (c *Client) PutObjectRequest(input *s3.PutObjectInput) (*request.Request, *s3.PutObjectOutput) {
 	req, out := c.S3.PutObjectRequest(input)
 
 	// Create temp file to be used later for calculating the SHA256 header
-	f, err := ioutil.TempFile("./", "")
+	f, err := ioutil.TempFile(c.Config.TempFolder, "")
 	if err != nil {
 		req.Error = err
 		return req, out
@@ -103,7 +104,6 @@ func (c *Client) PutObjectRequest(input *s3.PutObjectInput) (*request.Request, *
 
 		f.Seek(0, 0)
 		input.Body = f
-		log.Println(input)
 
 		env, err := EncodeMeta(md5, c.Config.Mode)
 		if err != nil {
@@ -131,15 +131,15 @@ func (c *Client) PutObject(input *s3.PutObjectInput) (*s3.PutObjectOutput, error
 }
 
 // GetObjectRequest will make a request to s3 and retrieve the object. In this process
-// decryption will be done. We only support V2 reads of KMS and GCM.
+// decryption will be done. The SDK only supports V2 reads of KMS and GCM.
 //
 // Example:
-// svc := s3crypto.New(s3crypto.Authentication(kp))
-// req, out := svc.GetObjectRequest(&s3.GetObjectInput {
-//   Key: aws.String("testKey"),
-//   Bucket: aws.String("testBucket"),
-// })
-// err := req.Send()
+//	svc := s3crypto.New(s3crypto.Authentication(kp))
+//	req, out := svc.GetObjectRequest(&s3.GetObjectInput {
+//	  Key: aws.String("testKey"),
+//	  Bucket: aws.String("testBucket"),
+//	})
+//	err := req.Send()
 func (c *Client) GetObjectRequest(input *s3.GetObjectInput) (*request.Request, *s3.GetObjectOutput) {
 	req, out := c.S3.GetObjectRequest(input)
 	req.Handlers.Unmarshal.PushBack(func(r *request.Request) {
@@ -151,7 +151,7 @@ func (c *Client) GetObjectRequest(input *s3.GetObjectInput) (*request.Request, *
 
 		// If KMS should return the correct CEK algorithm with the proper
 		// KMS key provider
-		mode, err := modeFactory(env, c.Config)
+		mode, err := modeForEnvelope(env, c.Config)
 		if err != nil {
 			r.Error = err
 			return

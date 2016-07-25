@@ -19,7 +19,7 @@ type AuthenticationMode struct {
 func Authentication(kp KeyProvider) CryptoMode {
 	return &AuthenticationMode{
 		BaseKeyProvider: BaseKeyProvider{kp},
-		CipherData:      CipherData{"AES/GCM/NoPadding", "128"},
+		CipherData:      CipherData{AESGCMNoPadding, "128"},
 	}
 }
 

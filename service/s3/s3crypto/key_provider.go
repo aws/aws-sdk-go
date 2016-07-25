@@ -24,7 +24,7 @@ type EncrypterKeyProvider interface {
 	SetKey([]byte)
 	// CipherDataIface is used for populating the envelope data during
 	// encryption.
-	CipherDataIface
+	CipherDataMetadata
 	// MaterialDescription is used to distinguish the materials for both
 	// encryption and decryption.
 	MaterialDescription

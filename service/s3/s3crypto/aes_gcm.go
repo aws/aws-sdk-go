@@ -1,6 +1,7 @@
 package s3crypto
 
 import (
+	"bytes"
 	"crypto/aes"
 	"crypto/cipher"
 	"io"
@@ -12,7 +13,9 @@ const (
 	gcmNonceSize = 12
 )
 
-// AESGCM Symmetric encryption
+// AESGCM Symmetric encryption algorithm. Since Golang designed this
+// with only TLS in mind. We have to load it all into memory meaning
+// this isn't streamed.
 type AESGCM struct {
 	aead  cipher.AEAD
 	nonce []byte
@@ -23,9 +26,9 @@ type AESGCM struct {
 //
 // Example:
 //
-// cmkID := "arn to key"
-// kp, _ := s3crypto.NewKMSKeyProvider(session.New(), cmkID, s3crypto.NewJSONMatDesc())
-// cipher, _ := s3crypto.NewAESGCMRandom(kp)
+//	cmkID := "arn to key"
+//	kp, _ := s3crypto.NewKMSKeyProvider(session.New(), cmkID, s3crypto.NewJSONMatDesc())
+//	cipher, _ := s3crypto.NewAESGCMRandom(kp)
 func NewAESGCMRandom(kp KeyProvider) (Cipher, error) {
 	key, err := kp.GenerateKey(gcmKeySize)
 	if err != nil {
@@ -57,10 +60,10 @@ func NewAESGCMRandom(kp KeyProvider) (Cipher, error) {
 //
 // Example:
 //
-// kp := &s3crypto.SymmetricKeyProvider{}
-// kp.SetKey(key)
-// kp.SetIV(iv)
-// cipher, _ := s3crypto.NewAESGCM(kp)
+//	kp := &s3crypto.SymmetricKeyProvider{}
+//	kp.SetKey(key)
+//	kp.SetIV(iv)
+//	cipher, _ := s3crypto.NewAESGCM(kp)
 func NewAESGCM(kp KeyProvider) (Cipher, error) {
 	block, err := aes.NewCipher(kp.GetKey())
 	if err != nil {
@@ -90,24 +93,20 @@ type gcmEncryptReader struct {
 	encrypter cipher.AEAD
 	nonce     []byte
 	src       io.Reader
-	data      []byte
+	buf       *bytes.Buffer
 }
 
 func (reader *gcmEncryptReader) Read(data []byte) (int, error) {
-	rLen := len(reader.data)
-	if rLen == 0 {
+	if reader.buf == nil {
 		b, err := ioutil.ReadAll(reader.src)
 		if err != nil {
 			return len(b), err
 		}
-		reader.data = reader.encrypter.Seal(nil, reader.nonce, b, nil)
-		// prevent infinite loops
-		if len(reader.data) == 0 {
-			return 0, io.EOF
-		}
+		b = reader.encrypter.Seal(nil, reader.nonce, b, nil)
+		reader.buf = bytes.NewBuffer(b)
 	}
 
-	return gcmCopyBuffer(rLen, &data, &reader.data)
+	return reader.buf.Read(data)
 }
 
 // Decrypt will decrypt the data using AES GCM
@@ -123,40 +122,22 @@ type gcmDecryptReader struct {
 	decrypter cipher.AEAD
 	nonce     []byte
 	src       io.Reader
-	data      []byte
+	buf       *bytes.Buffer
 }
 
 func (reader *gcmDecryptReader) Read(data []byte) (int, error) {
-	rLen := len(reader.data)
-	if rLen == 0 {
+	if reader.buf == nil {
 		b, err := ioutil.ReadAll(reader.src)
 		if err != nil {
 			return len(b), err
 		}
-		reader.data, err = reader.decrypter.Open(nil, reader.nonce, b, nil)
+		b, err = reader.decrypter.Open(nil, reader.nonce, b, nil)
 		if err != nil {
 			return len(b), err
 		}
-		// prevent infinite loops
-		if len(reader.data) == 0 {
-			return len(b), io.EOF
-		}
+
+		reader.buf = bytes.NewBuffer(b)
 	}
 
-	return gcmCopyBuffer(rLen, &data, &reader.data)
-}
-
-func gcmCopyBuffer(rLen int, dst, src *[]byte) (int, error) {
-	max := len(*dst)
-	if max > rLen {
-		max = rLen
-	}
-
-	copy(*dst, (*src)[:max])
-	(*src) = (*src)[max:]
-	var err error
-	if len(*src) == 0 {
-		err = io.EOF
-	}
-	return max, err
+	return reader.buf.Read(data)
 }

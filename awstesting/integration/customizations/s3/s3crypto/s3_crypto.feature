@@ -1,5 +1,5 @@
 # language: en
-@s3 @client
+@s3crypto @client
 Feature: S3 Integration Crypto Tests
 
   Scenario: Get all plaintext fixtures for symmetric masterkey aes cbc 

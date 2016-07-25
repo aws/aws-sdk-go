@@ -60,14 +60,14 @@ func aesgcmTest(t *testing.T, iv, key, plaintext, expected, tag []byte) {
 
 	// splitting tag and ciphertext
 	etag := ciphertext[len(ciphertext)-16:]
-	assert.True(t, bytes.Equal(etag, tag))
+	assert.Equal(t, etag, tag)
 	assert.Equal(t, len(ciphertext), len(expected))
-	assert.True(t, bytes.Equal(ciphertext, expected))
+	assert.Equal(t, ciphertext, expected)
 
 	data := gcm.Decrypt(bytes.NewReader(ciphertext))
 	assert.Nil(t, err)
 	text, err := ioutil.ReadAll(data)
 	assert.Nil(t, err)
 	assert.Equal(t, len(text), len(plaintext))
-	assert.True(t, bytes.Equal(text, plaintext))
+	assert.Equal(t, text, plaintext)
 }

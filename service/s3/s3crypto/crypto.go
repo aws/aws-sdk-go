@@ -14,7 +14,7 @@ type Cipher interface {
 // name. This is used during encryption when populating the envelope information.
 type Wrap interface {
 	Cipher
-	CipherDataIface
+	CipherDataMetadata
 }
 
 // Encrypter interface with only the encrypt method

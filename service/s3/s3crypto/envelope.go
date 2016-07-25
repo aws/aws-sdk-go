@@ -3,15 +3,36 @@ package s3crypto
 import (
 	"bytes"
 	"encoding/json"
+	"io/ioutil"
+	"net/http"
+	"strings"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/s3"
+	"github.com/aws/aws-sdk-go/service/s3/s3iface"
 )
 
-// Envelope encryption starts off by generating a random symmetric key using AES CBC,
-// AES CTR, or AES GCM. We then generate a random IV based off the encryption cipher
+// DefaultInstructionKeySuffix is appended to the end of the instruction file key when
+// grabbing or saving to S3
+const DefaultInstructionKeySuffix = ".instruction"
+
+const (
+	metaHeader                     = "x-amz-meta"
+	keyV1Header                    = "x-amz-key"
+	keyV2Header                    = keyV1Header + "-v2"
+	ivHeader                       = "x-amz-iv"
+	matDescHeader                  = "x-amz-matdesc"
+	cekAlgorithmHeader             = "x-amz-cek-alg"
+	wrapAlgorithmHeader            = "x-amz-wrap-alg"
+	tagLengthHeader                = "x-amz-tag-len"
+	unencryptedMD5Header           = "x-amz-unencrypted-content-md5"
+	unencryptedContentLengthHeader = "x-amz-unencrypted-content-length"
+)
+
+// Envelope encryption starts off by generating a random symmetric key using
+// AES GCM. The SDK generates a random IV based off the encryption cipher
 // chosen. The master key that was provided, whether by the user or KMS, will be used
 // to encrypt the randomly generated symmetric key and base64 encode the iv. This will
 // allow for decryption of that same data later.
@@ -31,53 +52,64 @@ type Envelope struct {
 }
 
 func (client *Client) getEnvelope(input *s3.GetObjectInput, r *request.Request) (*Envelope, error) {
-	if value := r.HTTPResponse.Header.Get("x-amz-meta-x-amz-key-v2"); value != "" {
+	if value := r.HTTPResponse.Header.Get(strings.Join([]string{metaHeader, keyV2Header}, "-")); value != "" {
 		return getV2Envelope(r)
-	} else if value = r.HTTPResponse.Header.Get("x-amz-meta-x-amz-key"); value != "" {
+	} else if value = r.HTTPResponse.Header.Get(strings.Join([]string{metaHeader, keyV1Header}, "-")); value != "" {
 		return getV1Envelope(r)
 	} else {
-		return getFromInstructionFile(input, r)
+		return getFromInstructionFile(client.S3, input, r, client.Config.InstructionFileSuffix)
 	}
 }
 
-// TODO:
-// Need MD5 and SHA256 io.Reader
-// Need to redo all io.Reader interface for encrypt and decrypt
-// Implement KMS and Private Key RSA
 func getV2Envelope(r *request.Request) (*Envelope, error) {
 	env := &Envelope{}
-	env.CipherKey = r.HTTPResponse.Header.Get("x-amz-meta-x-amz-key-v2")
-	env.IV = r.HTTPResponse.Header.Get("x-amz-meta-x-amz-iv")
-	env.MatDesc = r.HTTPResponse.Header.Get("x-amz-meta-x-amz-matdesc")
-	env.WrapAlg = r.HTTPResponse.Header.Get("x-amz-meta-x-amz-wrap-alg")
-	env.CEKAlg = r.HTTPResponse.Header.Get("x-amz-meta-x-amz-cek-alg")
-	env.TagLen = r.HTTPResponse.Header.Get("x-amz-meta-x-amz-tag-len")
-	env.UnencryptedMD5 = r.HTTPResponse.Header.Get("x-amz-unencrypted-content-md5")
-	env.UnencryptedContentLen = r.HTTPResponse.Header.Get("x-amz-unencrypted-content-length")
+	env.CipherKey = r.HTTPResponse.Header.Get(strings.Join([]string{metaHeader, keyV2Header}, "-"))
+	env.IV = r.HTTPResponse.Header.Get(strings.Join([]string{metaHeader, ivHeader}, "-"))
+	env.MatDesc = r.HTTPResponse.Header.Get(strings.Join([]string{metaHeader, matDescHeader}, "-"))
+	env.WrapAlg = r.HTTPResponse.Header.Get(strings.Join([]string{metaHeader, wrapAlgorithmHeader}, "-"))
+	env.CEKAlg = r.HTTPResponse.Header.Get(strings.Join([]string{metaHeader, cekAlgorithmHeader}, "-"))
+	env.TagLen = r.HTTPResponse.Header.Get(strings.Join([]string{metaHeader, tagLengthHeader}, "-"))
+	env.UnencryptedMD5 = r.HTTPResponse.Header.Get(strings.Join([]string{metaHeader, unencryptedMD5Header}, "-"))
+	env.UnencryptedContentLen = r.HTTPResponse.Header.Get(strings.Join([]string{metaHeader, unencryptedContentLengthHeader}, "-"))
 	env.version = 2
 	return env, nil
 }
 
 func getV1Envelope(r *request.Request) (*Envelope, error) {
 	env := &Envelope{}
-	env.CipherKey = r.HTTPResponse.Header.Get("x-amz-meta-x-amz-key")
-	env.IV = r.HTTPResponse.Header.Get("x-amz-meta-x-amz-iv")
-	env.MatDesc = r.HTTPResponse.Header.Get("x-amz-meta-x-amz-matdesc")
+	env.CipherKey = r.HTTPResponse.Header.Get(strings.Join([]string{metaHeader, keyV1Header}, "-"))
+	env.IV = r.HTTPResponse.Header.Get(strings.Join([]string{metaHeader, ivHeader}, "-"))
+	env.MatDesc = r.HTTPResponse.Header.Get(strings.Join([]string{metaHeader, matDescHeader}, "-"))
 	env.version = 1
 	return env, nil
 }
 
-func getFromInstructionFile(input *s3.GetObjectInput, r *request.Request) (*Envelope, error) {
-	return &Envelope{}, nil
+// TODO: write test
+func getFromInstructionFile(svc s3iface.S3API, input *s3.GetObjectInput, r *request.Request, suffix string) (*Envelope, error) {
+	if suffix == "" {
+		suffix = DefaultInstructionKeySuffix
+	}
+	out, err := svc.GetObject(&s3.GetObjectInput{
+		Key:    aws.String(strings.Join([]string{*input.Key, suffix}, "")),
+		Bucket: input.Bucket,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	b, err := ioutil.ReadAll(out.Body)
+	if err != nil {
+		return nil, err
+	}
+	env := &Envelope{}
+	err = json.Unmarshal(b, env)
+	return env, err
 }
 
 // SaveStrategy is how the data's metadata wants to be saved
 type SaveStrategy interface {
 	Save(Envelope, *s3.PutObjectInput) error
 }
-
-// default s3 key
-const instructionKey = ".instruction"
 
 type s3SaveStrategy struct {
 	client                *s3.S3
@@ -90,8 +122,7 @@ func NewS3SaveStrategy(p client.ConfigProvider, suffix *string) SaveStrategy {
 }
 
 // Save will save the envelope contents to s3.
-// TODO: Reimplement
-func (strat *s3SaveStrategy) Save(env Envelope, input *s3.PutObjectInput) error {
+func (strat s3SaveStrategy) Save(env Envelope, input *s3.PutObjectInput) error {
 	b, err := json.Marshal(env)
 	if err != nil {
 		return err
@@ -103,9 +134,9 @@ func (strat *s3SaveStrategy) Save(env Envelope, input *s3.PutObjectInput) error 
 	}
 
 	if strat.InstructionFileSuffix == nil {
-		instInput.Key = aws.String(*input.Key + instructionKey)
+		instInput.Key = aws.String(*input.Key + DefaultInstructionKeySuffix)
 	} else {
-		instInput.Key = aws.String(*input.Key + instructionKey + "-" + *strat.InstructionFileSuffix)
+		instInput.Key = aws.String(*input.Key + *strat.InstructionFileSuffix)
 	}
 
 	_, err = strat.client.PutObject(&instInput)
@@ -120,18 +151,18 @@ func NewHeaderSaveStrategy() SaveStrategy {
 }
 
 // Save will save the envelope to the request's header.
-func (strat *headerSaveStrategy) Save(env Envelope, input *s3.PutObjectInput) error {
+func (strat headerSaveStrategy) Save(env Envelope, input *s3.PutObjectInput) error {
 	if input.Metadata == nil {
-		input.Metadata = make(map[string]*string)
+		input.Metadata = map[string]*string{}
 	}
 
-	input.Metadata["X-Amz-Key-V2"] = &env.CipherKey
-	input.Metadata["X-Amz-Iv"] = &env.IV
-	input.Metadata["X-Amz-MatDesc"] = &env.MatDesc
-	input.Metadata["X-Amz-Wrap-Alg"] = &env.WrapAlg
-	input.Metadata["X-Amz-Cek-Alg"] = &env.CEKAlg
-	input.Metadata["X-Amz-Tag-Len"] = &env.TagLen
-	input.Metadata["X-Amz-Unencrypted-Content-Md5"] = &env.UnencryptedMD5
-	input.Metadata["X-Amz-Unencrypted-Content-Length"] = &env.UnencryptedContentLen
+	input.Metadata[http.CanonicalHeaderKey(keyV2Header)] = &env.CipherKey
+	input.Metadata[http.CanonicalHeaderKey(ivHeader)] = &env.IV
+	input.Metadata[http.CanonicalHeaderKey(matDescHeader)] = &env.MatDesc
+	input.Metadata[http.CanonicalHeaderKey(wrapAlgorithmHeader)] = &env.WrapAlg
+	input.Metadata[http.CanonicalHeaderKey(cekAlgorithmHeader)] = &env.CEKAlg
+	input.Metadata[http.CanonicalHeaderKey(tagLengthHeader)] = &env.TagLen
+	input.Metadata[http.CanonicalHeaderKey(unencryptedMD5Header)] = &env.UnencryptedMD5
+	input.Metadata[http.CanonicalHeaderKey(unencryptedContentLengthHeader)] = &env.UnencryptedContentLen
 	return nil
 }

@@ -2,8 +2,8 @@ package s3crypto
 
 import (
 	"encoding/base64"
-	"fmt"
 	"io"
+	"strconv"
 
 	"github.com/aws/aws-sdk-go/aws/awserr"
 )
@@ -14,12 +14,12 @@ type CryptoMode interface {
 	EncryptContents(io.Writer, io.Reader) error
 	DecryptContents(KeyProvider, io.ReadCloser) (io.ReadCloser, error)
 	GetKeyProvider() KeyProvider
-	CipherDataIface
+	CipherDataMetadata
 }
 
-// CipherDataIface is used for when populating the envelope details upon
+// CipherDataMetadata  is used for when populating the envelope details upon
 // encryption.
-type CipherDataIface interface {
+type CipherDataMetadata interface {
 	GetCipherName() string
 	GetTagLen() string
 }
@@ -30,8 +30,8 @@ type DecryptMode interface {
 	GetKeyProvider() KeyProvider
 }
 
-func modeFactory(env *Envelope, cfg Config) (DecryptMode, error) {
-	kp, err := keyProviderFactory(env, cfg)
+func modeForEnvelope(env *Envelope, cfg Config) (DecryptMode, error) {
+	kp, err := keyProviderForEnvelope(env, cfg)
 	if err != nil {
 		return nil, err
 	}
@@ -44,7 +44,7 @@ func modeFactory(env *Envelope, cfg Config) (DecryptMode, error) {
 	kp.SetKey([]byte(env.CipherKey))
 	kp.SetIV([]byte(env.IV))
 
-	cek, err := cekFactory(env, kp)
+	cek, err := cekForEnvelope(env, kp)
 	if err != nil {
 		return nil, err
 	}
@@ -54,22 +54,26 @@ func modeFactory(env *Envelope, cfg Config) (DecryptMode, error) {
 // wrapFactory will build a new CryptoMode based off the wrapping algorithm
 // TODO: Have the Cipher constructors return errs instead of panicing on invalid
 // key and iv lengths
-func keyProviderFactory(env *Envelope, cfg Config) (KeyProvider, error) {
+func keyProviderForEnvelope(env *Envelope, cfg Config) (KeyProvider, error) {
 
 	switch env.WrapAlg {
 	case "kms":
 		return NewKMSKeyProviderWithMatDesc(cfg.KMSSession, env.MatDesc)
 	}
 	return nil, awserr.New(
-		"InvalidWrap",
+		"Invali1WrapAlgorithmError",
 		"wrap algorithm isn't supported, "+env.WrapAlg,
 		nil,
 	)
 }
 
-func cekFactory(env *Envelope, kp KeyProvider) (Decrypter, error) {
+// AESGCMNoPadding is the constant value that is used to specify
+// the CEK algorithm consiting of AES GCM with no padding.
+const AESGCMNoPadding = "AES/GCM/NoPadding"
+
+func cekForEnvelope(env *Envelope, kp KeyProvider) (Decrypter, error) {
 	switch env.CEKAlg {
-	case "AES/GCM/NoPadding":
+	case AESGCMNoPadding:
 		return NewAESGCM(kp)
 	}
 	return nil, awserr.New(
@@ -89,12 +93,8 @@ func EncodeMeta(reader HashReader, mode CryptoMode) (Envelope, error) {
 	}
 	key := base64.StdEncoding.EncodeToString(keyBytes)
 
-	md5 := []byte{}
-	contentLength := 0
-	if reader != nil {
-		md5 = reader.GetValue()
-		contentLength = reader.GetContentLength()
-	}
+	md5 := reader.GetValue()
+	contentLength := reader.GetContentLength()
 
 	md5Str := base64.StdEncoding.EncodeToString(md5)
 	matdesc, err := kp.EncodeDescription()
@@ -105,12 +105,12 @@ func EncodeMeta(reader HashReader, mode CryptoMode) (Envelope, error) {
 	return Envelope{
 		CipherKey:             key,
 		IV:                    iv,
-		MatDesc:               matdesc,
+		MatDesc:               string(matdesc),
 		WrapAlg:               kp.GetCipherName(),
 		CEKAlg:                mode.GetCipherName(),
 		TagLen:                mode.GetTagLen(),
 		UnencryptedMD5:        md5Str,
-		UnencryptedContentLen: fmt.Sprintf("%d", contentLength),
+		UnencryptedContentLen: strconv.FormatInt(contentLength, 10),
 	}, nil
 }
 

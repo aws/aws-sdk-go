@@ -9,7 +9,7 @@ import (
 type MaterialDescription interface {
 	Set(string, string)
 	Get(string) (string, bool)
-	EncodeDescription() (string, error)
+	EncodeDescription() ([]byte, error)
 	DecodeDescription([]byte) error
 	// TODO: Should we do this differently?
 	GetData() map[string]*string
@@ -24,16 +24,16 @@ type JSONMatDesc struct {
 // NewJSONMatDesc returns a MaterialDescription while making the
 // necessary instantiations.
 func NewJSONMatDesc() MaterialDescription {
-	md := &JSONMatDesc{}
-	md.data = make(map[string]*string)
-	return md
+	return &JSONMatDesc{
+		data: map[string]*string{},
+	}
 }
 
 // Set associates a given key to a value.
 //
 // Example:
-// matdesc := s3crypto.NewJSONMatDesc()
-// matdesc.Set("foo", "bar")
+//	matdesc := s3crypto.NewJSONMatDesc()
+//	matdesc.Set("foo", "bar")
 func (md *JSONMatDesc) Set(key, value string) {
 	md.data[key] = &value
 }
@@ -42,9 +42,9 @@ func (md *JSONMatDesc) Set(key, value string) {
 // a bool to signify whether or not that key exists
 //
 // Example:
-// matdesc := s3crypto.NewJSONMatDesc()
-// matdesc.Set("foo", "bar")
-// str := matdesc.Get("foo")
+//	matdesc := s3crypto.NewJSONMatDesc()
+//	matdesc.Set("foo", "bar")
+//	str := matdesc.Get("foo")
 func (md *JSONMatDesc) Get(key string) (string, bool) {
 	v, ok := md.data[key]
 	if ok {
@@ -57,20 +57,20 @@ func (md *JSONMatDesc) Get(key string) (string, bool) {
 // Maybe need a better name here
 //
 // Example:
-// matdesc := s3crypto.NewJSONMatDesc()
-// matdesc.Set("foo", "bar")
-// data, err := matdesc.EncodeDescription()
-func (md *JSONMatDesc) EncodeDescription() (string, error) {
+//	matdesc := s3crypto.NewJSONMatDesc()
+//	matdesc.Set("foo", "bar")
+//	data, err := matdesc.EncodeDescription()
+func (md *JSONMatDesc) EncodeDescription() ([]byte, error) {
 	v, err := json.Marshal(&md.data)
-	return string(v), err
+	return v, err
 }
 
 // DecodeDescription return the proper json decoded string
 //
 // Example:
-// matdesc := s3crypto.NewJSONMatDesc()
-// data := []byte("{\"foo\": \"bar\"}")
-// err := matdesc.DecodeDescription(data)
+//	matdesc := s3crypto.NewJSONMatDesc()
+//	data := []byte("{\"foo\": \"bar\"}")
+//	err := matdesc.DecodeDescription(data)
 func (md *JSONMatDesc) DecodeDescription(b []byte) error {
 	return json.Unmarshal(b, &md.data)
 }

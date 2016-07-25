@@ -10,5 +10,5 @@ import (
 
 func TestAuthenticationModeCipherName(t *testing.T) {
 	mode := s3crypto.Authentication(&s3crypto.SymmetricKeyProvider{})
-	assert.Equal(t, mode.GetCipherName(), "AES/GCM/NoPadding")
+	assert.Equal(t, s3crypto.AESGCMNoPadding, mode.GetCipherName())
 }

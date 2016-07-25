@@ -76,11 +76,11 @@ func init() {
 			if *ctObj.Metadata["X-Amz-Wrap-Alg"] == "AESWrap" {
 				continue
 			}
-			masterkeyB64 := ctObj.Metadata["Masterkey"]
-			masterkey, err := base64.StdEncoding.DecodeString(*masterkeyB64)
-			assert.NoError(T, err)
+			//masterkeyB64 := ctObj.Metadata["Masterkey"]
+			//masterkey, err := base64.StdEncoding.DecodeString(*masterkeyB64)
+			//assert.NoError(T, err)
 
-			s3CryptoClient.Config.MasterKey = masterkey
+			//s3CryptoClient.Config.MasterKey = masterkey
 			ctObj, err = s3CryptoClient.GetObject(&s3.GetObjectInput{
 				Bucket: aws.String(bucket),
 				Key:    &cipherKey,
@@ -94,11 +94,6 @@ func init() {
 		}
 		World["ciphertexts"] = ciphertexts
 	})
-
-	/*Scenario: Uploading Go's SDK fixtures
-	    When I get all fixtures for "aes_cbc" from "aws-s3-shared-tests"
-	    Then I encrypt each fixture with 'kms' and custID
-			And upload Go's data to S3 with folder 'version_2'*/
 
 	And(`^I compare the decrypted ciphertext to the plaintext$`, func() {
 		plaintexts := World["plaintexts"].(map[string][]byte)

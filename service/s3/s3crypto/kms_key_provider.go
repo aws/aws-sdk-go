@@ -3,7 +3,7 @@ package s3crypto
 import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
-	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/service/kms"
 )
 
@@ -23,11 +23,11 @@ type KMSKeyProvider struct {
 // description.
 //
 // Example:
-// sess := session.New(&aws.Config{})
-// cmkID := "arn to key"
-// matdesc := s3crypto.NewJSONMatDesc()
-// kp, err := s3crypto.NewKMSKeyProvider(sess, cmkID, matdesc)
-func NewKMSKeyProvider(sess *session.Session, cmkID string, matdesc MaterialDescription) (KeyProvider, error) {
+//	sess := session.New(&aws.Config{})
+//	cmkID := "arn to key"
+//	matdesc := s3crypto.NewJSONMatDesc()
+//	kp, err := s3crypto.NewKMSKeyProvider(sess, cmkID, matdesc)
+func NewKMSKeyProvider(prov client.ConfigProvider, cmkID string, matdesc MaterialDescription) (KeyProvider, error) {
 	if matdesc == nil {
 		matdesc = &JSONMatDesc{}
 	}
@@ -35,7 +35,7 @@ func NewKMSKeyProvider(sess *session.Session, cmkID string, matdesc MaterialDesc
 
 	kp := &KMSKeyProvider{
 		MaterialDescription: matdesc,
-		kms:                 kms.New(sess),
+		kms:                 kms.New(prov),
 		cmkID:               &cmkID,
 	}
 	kp.Algorithm = "kms"
@@ -44,7 +44,7 @@ func NewKMSKeyProvider(sess *session.Session, cmkID string, matdesc MaterialDesc
 
 // NewKMSKeyProviderWithMatDesc initializes a KMS keyprovider with a material description. This
 // is used with Decrypting kms content, due to the cmkID being in the material description.
-func NewKMSKeyProviderWithMatDesc(sess *session.Session, matdesc string) (KeyProvider, error) {
+func NewKMSKeyProviderWithMatDesc(prov client.ConfigProvider, matdesc string) (KeyProvider, error) {
 	m := &JSONMatDesc{}
 	err := m.DecodeDescription([]byte(matdesc))
 	if err != nil {
@@ -58,7 +58,7 @@ func NewKMSKeyProviderWithMatDesc(sess *session.Session, matdesc string) (KeyPro
 
 	kp := &KMSKeyProvider{}
 	kp.MaterialDescription = m
-	kp.kms = kms.New(sess)
+	kp.kms = kms.New(prov)
 	kp.cmkID = &cmkID
 	kp.Algorithm = "kms"
 	return kp, nil

@@ -11,7 +11,7 @@ import (
 // and the unencrypted MD5.
 type HashReader interface {
 	GetValue() []byte
-	GetContentLength() int
+	GetContentLength() int64
 }
 
 type sha256Writer struct {
@@ -33,7 +33,7 @@ func (r *sha256Writer) GetValue() []byte {
 }
 
 type md5Reader struct {
-	contentLength int
+	contentLength int64
 	hash          hash.Hash
 	body          io.Reader
 }
@@ -47,7 +47,7 @@ func (w *md5Reader) Read(b []byte) (int, error) {
 	if err != nil && err != io.EOF {
 		return n, err
 	}
-	w.contentLength += n
+	w.contentLength += int64(n)
 	w.hash.Write(b[:n])
 	return n, err
 }
@@ -56,6 +56,6 @@ func (w *md5Reader) GetValue() []byte {
 	return w.hash.Sum(nil)
 }
 
-func (w *md5Reader) GetContentLength() int {
+func (w *md5Reader) GetContentLength() int64 {
 	return w.contentLength
 }

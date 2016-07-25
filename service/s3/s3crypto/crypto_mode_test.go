@@ -1,7 +1,6 @@
 package s3crypto
 
 import (
-	"encoding/hex"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -11,14 +10,13 @@ import (
 
 func TestKeyProviderFactory(t *testing.T) {
 	cfg := Config{
-		MasterKey:  []byte("00000000000000000000000000000000"),
 		KMSSession: session.New(),
 	}
 	env := Envelope{
 		WrapAlg: "kms",
-		MatDesc: "{\"kms_cmk_id\":\"\"}",
+		MatDesc: `{"kms_cmk_id":""}`,
 	}
-	kp, err := keyProviderFactory(&env, cfg)
+	kp, err := keyProviderForEnvelope(&env, cfg)
 	_, ok := kp.(*KMSKeyProvider)
 	assert.Nil(t, err)
 	assert.NotNil(t, kp)
@@ -27,12 +25,13 @@ func TestKeyProviderFactory(t *testing.T) {
 
 func TestCEKFactory(t *testing.T) {
 	env := Envelope{
-		CEKAlg:  "AES/GCM/NoPadding",
-		MatDesc: "{\"kms_cmk_id\":\"\"}",
+		CEKAlg:  AESGCMNoPadding,
+		MatDesc: `{"kms_cmk_id":""}`,
 	}
-	iv, _ := hex.DecodeString("00000000000000000000000000000000")
-	key, _ := hex.DecodeString("0000000000000000000000000000000000000000000000000000000000000000")
-	cek, err := cekFactory(&env, &SymmetricKeyProvider{key: key, iv: iv})
+
+	iv := make([]byte, 16)
+	key := make([]byte, 32)
+	cek, err := cekForEnvelope(&env, &SymmetricKeyProvider{key: key, iv: iv})
 	_, ok := cek.(*AESGCM)
 	assert.Nil(t, err)
 	assert.NotNil(t, cek)
