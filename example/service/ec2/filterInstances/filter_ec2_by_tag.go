@@ -1,17 +1,21 @@
 package main
 
 import (
-	"github.com/aws/aws-sdk-go/service/ec2"
-	"log"
 	"fmt"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
-	"strings"
+	"github.com/aws/aws-sdk-go/service/ec2"
+	"log"
 	"os"
+	"strings"
 )
 
-
-func listFilteredInstances(nameFilter string) {
+// This example will list instances with a filter
+//
+// Usage:
+// go run filter_ec2_by_tag.go <name_filter>
+func main() {
+	nameFilter := os.Args[1]
 	awsRegion := "us-east-1"
 	svc := ec2.New(session.New(&aws.Config{Region: aws.String(awsRegion)}))
 	fmt.Printf("listing instances with tag %v in: %v\n", nameFilter, awsRegion)
@@ -32,9 +36,3 @@ func listFilteredInstances(nameFilter string) {
 	}
 	fmt.Printf("%+v\n", *resp)
 }
-// go run filter_ec2_by_tag.go <name_filter>
-func main() {
-	listFilteredInstances(os.Args[1])
-}
-
-
