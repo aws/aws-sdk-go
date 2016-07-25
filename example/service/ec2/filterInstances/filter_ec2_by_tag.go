@@ -32,7 +32,7 @@ func listFilteredInstances(nameFilter string) {
 	}
 	fmt.Printf("%+v\n", *resp)
 }
-
+// go run filter_ec2_by_tag.go <name_filter>
 func main() {
 	listFilteredInstances(os.Args[1])
 }
