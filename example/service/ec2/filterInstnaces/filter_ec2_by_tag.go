@@ -28,7 +28,7 @@ func listFilteredInstances(nameFilter string) {
 		}
 		resp, err := svc.DescribeInstances(params)
 		if err != nil {
-			fmt.Println("there was an error listing instnaces in", region, err.Error())
+			fmt.Println("there was an error listing instances in", region, err.Error())
 			log.Fatal(err.Error())
 		}
 		fmt.Printf("%+v\n",*resp)
