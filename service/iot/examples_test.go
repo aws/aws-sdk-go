@@ -184,9 +184,37 @@ func ExampleIoT_CreateThing() {
 				"Key": aws.String("AttributeValue"), // Required
 				// More values...
 			},
+			Merge: aws.Bool(true),
 		},
+		ThingTypeName: aws.String("ThingTypeName"),
 	}
 	resp, err := svc.CreateThing(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleIoT_CreateThingType() {
+	svc := iot.New(session.New())
+
+	params := &iot.CreateThingTypeInput{
+		ThingTypeName: aws.String("ThingTypeName"), // Required
+		ThingTypeProperties: &iot.ThingTypeProperties{
+			SearchableAttributes: []*string{
+				aws.String("AttributeName"), // Required
+				// More values...
+			},
+			ThingTypeDescription: aws.String("ThingTypeDescription"),
+		},
+	}
+	resp, err := svc.CreateThingType(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -243,6 +271,7 @@ func ExampleIoT_CreateTopicRule() {
 					Firehose: &iot.FirehoseAction{
 						DeliveryStreamName: aws.String("DeliveryStreamName"), // Required
 						RoleArn:            aws.String("AwsArn"),             // Required
+						Separator:          aws.String("FirehoseSeparator"),
 					},
 					Kinesis: &iot.KinesisAction{
 						RoleArn:      aws.String("AwsArn"),     // Required
@@ -391,9 +420,29 @@ func ExampleIoT_DeleteThing() {
 	svc := iot.New(session.New())
 
 	params := &iot.DeleteThingInput{
-		ThingName: aws.String("ThingName"), // Required
+		ThingName:       aws.String("ThingName"), // Required
+		ExpectedVersion: aws.Int64(1),
 	}
 	resp, err := svc.DeleteThing(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleIoT_DeleteThingType() {
+	svc := iot.New(session.New())
+
+	params := &iot.DeleteThingTypeInput{
+		ThingTypeName: aws.String("ThingTypeName"), // Required
+	}
+	resp, err := svc.DeleteThingType(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -413,6 +462,26 @@ func ExampleIoT_DeleteTopicRule() {
 		RuleName: aws.String("RuleName"), // Required
 	}
 	resp, err := svc.DeleteTopicRule(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleIoT_DeprecateThingType() {
+	svc := iot.New(session.New())
+
+	params := &iot.DeprecateThingTypeInput{
+		ThingTypeName: aws.String("ThingTypeName"), // Required
+		UndoDeprecate: aws.Bool(true),
+	}
+	resp, err := svc.DeprecateThingType(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -487,6 +556,25 @@ func ExampleIoT_DescribeThing() {
 		ThingName: aws.String("ThingName"), // Required
 	}
 	resp, err := svc.DescribeThing(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleIoT_DescribeThingType() {
+	svc := iot.New(session.New())
+
+	params := &iot.DescribeThingTypeInput{
+		ThingTypeName: aws.String("ThingTypeName"), // Required
+	}
+	resp, err := svc.DescribeThingType(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -857,6 +945,27 @@ func ExampleIoT_ListThingPrincipals() {
 	fmt.Println(resp)
 }
 
+func ExampleIoT_ListThingTypes() {
+	svc := iot.New(session.New())
+
+	params := &iot.ListThingTypesInput{
+		MaxResults:    aws.Int64(1),
+		NextToken:     aws.String("NextToken"),
+		ThingTypeName: aws.String("ThingTypeName"),
+	}
+	resp, err := svc.ListThingTypes(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleIoT_ListThings() {
 	svc := iot.New(session.New())
 
@@ -865,6 +974,7 @@ func ExampleIoT_ListThings() {
 		AttributeValue: aws.String("AttributeValue"),
 		MaxResults:     aws.Int64(1),
 		NextToken:      aws.String("NextToken"),
+		ThingTypeName:  aws.String("ThingTypeName"),
 	}
 	resp, err := svc.ListThings(params)
 
@@ -1007,6 +1117,7 @@ func ExampleIoT_ReplaceTopicRule() {
 					Firehose: &iot.FirehoseAction{
 						DeliveryStreamName: aws.String("DeliveryStreamName"), // Required
 						RoleArn:            aws.String("AwsArn"),             // Required
+						Separator:          aws.String("FirehoseSeparator"),
 					},
 					Kinesis: &iot.KinesisAction{
 						RoleArn:      aws.String("AwsArn"),     // Required
@@ -1164,13 +1275,17 @@ func ExampleIoT_UpdateThing() {
 	svc := iot.New(session.New())
 
 	params := &iot.UpdateThingInput{
-		AttributePayload: &iot.AttributePayload{ // Required
+		ThingName: aws.String("ThingName"), // Required
+		AttributePayload: &iot.AttributePayload{
 			Attributes: map[string]*string{
 				"Key": aws.String("AttributeValue"), // Required
 				// More values...
 			},
+			Merge: aws.Bool(true),
 		},
-		ThingName: aws.String("ThingName"), // Required
+		ExpectedVersion: aws.Int64(1),
+		RemoveThingType: aws.Bool(true),
+		ThingTypeName:   aws.String("ThingTypeName"),
 	}
 	resp, err := svc.UpdateThing(params)
 
