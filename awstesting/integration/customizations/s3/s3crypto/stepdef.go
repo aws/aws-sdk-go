@@ -132,7 +132,7 @@ func init() {
 			T.Skip()
 		}
 
-		c := s3crypto.New(mode, func(c *s3crypto.Client) {
+		c := s3crypto.New(nil, mode, func(c *s3crypto.Client) {
 			c.Config.S3Session = session.New(&aws.Config{
 				Region: aws.String("us-west-2"),
 			})

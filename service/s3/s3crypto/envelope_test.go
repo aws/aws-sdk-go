@@ -11,7 +11,7 @@ import (
 )
 
 func TestGetV1Envelope(t *testing.T) {
-	c := New(Authentication(NewSymmetricKeyProvider(nil, &JSONMatDesc{})), func(c *Client) { c.Config.S3Session = session.New() })
+	c := New(nil, Authentication(NewSymmetricKeyProvider(nil, &JSONMatDesc{})), func(c *Client) { c.Config.S3Session = session.New() })
 	env, err := c.getEnvelope(nil, &request.Request{
 		HTTPResponse: &http.Response{
 			Header: http.Header{
@@ -25,7 +25,7 @@ func TestGetV1Envelope(t *testing.T) {
 }
 
 func TestGetV2Envelope(t *testing.T) {
-	c := New(Authentication(NewSymmetricKeyProvider(nil, &JSONMatDesc{})), func(c *Client) { c.Config.S3Session = session.New() })
+	c := New(nil, Authentication(NewSymmetricKeyProvider(nil, &JSONMatDesc{})), func(c *Client) { c.Config.S3Session = session.New() })
 	env, err := c.getEnvelope(nil, &request.Request{
 		HTTPResponse: &http.Response{
 			Header: http.Header{

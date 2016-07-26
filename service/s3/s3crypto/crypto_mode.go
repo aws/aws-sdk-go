@@ -11,7 +11,7 @@ import (
 // CryptoMode is an abstraction layer that deals with encryption of
 // the contents and which key provider to use.
 type CryptoMode interface {
-	EncryptContents(io.Writer, io.Reader) error
+	EncryptContents(io.Reader) (io.Reader, error)
 	DecryptContents(KeyProvider, io.ReadCloser) (io.ReadCloser, error)
 	GetKeyProvider() KeyProvider
 	CipherDataMetadata

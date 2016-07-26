@@ -24,7 +24,7 @@ func Authentication(kp KeyProvider) CryptoMode {
 }
 
 // EncryptContents will generate a random key and iv and encrypt the data using cbc
-func (mode *AuthenticationMode) EncryptContents(dst io.Writer, src io.Reader) error {
+/*func (mode *AuthenticationMode) EncryptContents(dst io.Writer, src io.Reader) error {
 	// Sets the key and iv to a randomly generated key and iv
 	cbc, err := NewAESGCMRandom(mode)
 	if err != nil {
@@ -34,6 +34,17 @@ func (mode *AuthenticationMode) EncryptContents(dst io.Writer, src io.Reader) er
 	reader := cbc.Encrypt(src)
 	_, err = io.Copy(dst, reader)
 	return err
+}*/
+
+// EncryptContents will generate a random key and iv and encrypt the data using cbc
+func (mode *AuthenticationMode) EncryptContents(src io.Reader) (io.Reader, error) {
+	// Sets the key and iv to a randomly generated key and iv
+	cbc, err := NewAESGCMRandom(mode)
+	if err != nil {
+		return nil, err
+	}
+
+	return cbc.Encrypt(src), err
 }
 
 // DecryptContents will use the symmetric key provider to instantiate a new GCM cipher.

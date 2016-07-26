@@ -2,12 +2,12 @@ package s3crypto
 
 import (
 	"encoding/hex"
+	"io"
 	"io/ioutil"
 	"os"
 
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3iface"
 )
@@ -30,34 +30,34 @@ type Config struct {
 	// SaveStrategy will dictate where the envelope is saved.
 	//
 	// Defaults to the object's metadata
-	SaveStrategy
+	SaveStrategy SaveStrategy
 	// InstructionFileSuffix is the instruction file name suffix when using get requests.
 	// If it is empty, then the item key will be used followed by .instruction
 	InstructionFileSuffix string
 	// This is used to instantiate new kms clients when calling GetObject
 	KMSSession client.ConfigProvider
 	S3Session  client.ConfigProvider
-	// TempFolder is used to store temp files when calling PutObject
-	TempFolder string
+	// TempFolderPath is used to store temp files when calling PutObject
+	TempFolderPath string
 }
 
 // New instantiates a new S3 crypto client
 //
 // Example:
 //	cmkID := "some key id to kms"
-//	kp, err = s3crypto.NewKMSKeyProvider(session.New(), cmkID, s3crypto.NewJSONMatDesc())
+//	sess := session.New()
+//	kp, err = s3crypto.NewKMSKeyProvider(sess, cmkID, s3crypto.NewJSONMatDesc())
 //	if err != nil {
 //	  return err
 //	}
-//	svc := s3crypto.New(s3crypto.Authentication(kp))
-func New(mode CryptoMode, options ...func(*Client)) *Client {
-	sess := session.New()
+//	svc := s3crypto.New(sess, s3crypto.Authentication(kp))
+func New(prov client.ConfigProvider, mode CryptoMode, options ...func(*Client)) *Client {
 	client := &Client{
 		Config: Config{
 			Mode:         mode,
 			SaveStrategy: headerSaveStrategy{},
-			KMSSession:   sess,
-			S3Session:    sess,
+			KMSSession:   prov,
+			S3Session:    prov,
 		},
 	}
 
@@ -84,7 +84,7 @@ func (c *Client) PutObjectRequest(input *s3.PutObjectInput) (*request.Request, *
 	req, out := c.S3.PutObjectRequest(input)
 
 	// Create temp file to be used later for calculating the SHA256 header
-	f, err := ioutil.TempFile(c.Config.TempFolder, "")
+	f, err := ioutil.TempFile(c.Config.TempFolderPath, "")
 	if err != nil {
 		req.Error = err
 		return req, out
@@ -93,7 +93,13 @@ func (c *Client) PutObjectRequest(input *s3.PutObjectInput) (*request.Request, *
 	req.Handlers.Build.PushFront(func(r *request.Request) {
 		md5 := newMD5Reader(input.Body)
 		sha := newSHA256Writer(f)
-		err = c.Config.Mode.EncryptContents(sha, md5)
+		reader, err := c.Config.Mode.EncryptContents(md5)
+		if err != nil {
+			r.Error = err
+			return
+		}
+
+		_, err = io.Copy(sha, reader)
 		if err != nil {
 			r.Error = err
 			return
@@ -146,6 +152,7 @@ func (c *Client) GetObjectRequest(input *s3.GetObjectInput) (*request.Request, *
 		env, err := c.getEnvelope(input, r)
 		if err != nil {
 			r.Error = err
+			out.Body.Close()
 			return
 		}
 
@@ -154,6 +161,7 @@ func (c *Client) GetObjectRequest(input *s3.GetObjectInput) (*request.Request, *
 		mode, err := modeForEnvelope(env, c.Config)
 		if err != nil {
 			r.Error = err
+			out.Body.Close()
 			return
 		}
 
@@ -161,6 +169,7 @@ func (c *Client) GetObjectRequest(input *s3.GetObjectInput) (*request.Request, *
 		reader, err := mode.DecryptContents(kp, out.Body)
 		if err != nil {
 			r.Error = err
+			out.Body.Close()
 			return
 		}
 		out.Body = reader

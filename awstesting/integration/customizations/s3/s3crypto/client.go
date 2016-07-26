@@ -11,7 +11,7 @@ import (
 
 func init() {
 	Before("@s3crypto", func() {
-		c := s3crypto.New(nil, func(c *s3crypto.Client) {
+		c := s3crypto.New(nil, nil, func(c *s3crypto.Client) {
 			c.Config.S3Session = session.New((&aws.Config{
 				Region: aws.String("us-west-2"),
 			}).WithLogLevel(aws.LogDebugWithRequestRetries | aws.LogDebugWithRequestErrors))

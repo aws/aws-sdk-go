@@ -9,10 +9,11 @@ import (
 )
 
 func TestDefaultConfigValues(t *testing.T) {
-	kp, err := NewKMSKeyProviderWithMatDesc(session.New(), "{\"kms_cmk_id\":\"\"}")
+	sess := session.New()
+	kp, err := NewKMSKeyProviderWithMatDesc(sess, "{\"kms_cmk_id\":\"\"}")
 	assert.Nil(t, err)
 
-	c := New(Authentication(kp), func(c *Client) { c.Config.KMSSession = session.New() })
+	c := New(sess, Authentication(kp))
 
 	assert.NotNil(t, c)
 	assert.NotNil(t, c.Config.Mode)
