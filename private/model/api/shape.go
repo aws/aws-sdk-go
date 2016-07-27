@@ -226,7 +226,7 @@ func (s ShapeTag) String() string {
 type ShapeTags []ShapeTag
 
 // Join returns an ordered serialization of the shape tags with the provided
-// seperator.
+// separator.
 func (s ShapeTags) Join(sep string) string {
 	o := &bytes.Buffer{}
 	for i, t := range s {
@@ -239,7 +239,7 @@ func (s ShapeTags) Join(sep string) string {
 	return o.String()
 }
 
-// String is an alias for Join with the empty space seperator.
+// String is an alias for Join with the empty space separator.
 func (s ShapeTags) String() string {
 	return s.Join(" ")
 }

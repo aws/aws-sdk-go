@@ -57,7 +57,7 @@ func main() {
 
 	// Send and handle the response. For a successful response the object's
 	// content will be written to stdout. The same process could be applied
-	// to a http service written cookies to the response but useing
+	// to a http service written cookies to the response but using
 	// http.SetCookie(w, c,) on the ResponseWriter.
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {

@@ -124,7 +124,7 @@ func ExampleCookieSigner_SignOptions() {
 	}
 
 	// Create the CookieSigner with options set. These options can be set
-	// directly with cookieSigner.Opts. These values can be overriden on
+	// directly with cookieSigner.Opts. These values can be overridden on
 	// individual Sign and SignWithProfile calls.
 	cookieSigner := NewCookieSigner("keyID", privKey, func(o *CookieOptions) {
 		//provide an optional struct fields to specify other options

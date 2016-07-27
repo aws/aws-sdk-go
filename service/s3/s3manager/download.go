@@ -170,7 +170,7 @@ func (d *downloader) download() (n int64, err error) {
 		// Assign work
 		for d.getErr() == nil {
 			if d.pos >= total {
-				break // We're finished queueing chunks
+				break // We're finished queuing chunks
 			}
 
 			// Queue the next range of bytes to read.
