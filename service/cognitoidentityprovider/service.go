@@ -16,7 +16,9 @@ import (
 // and access policies.
 //
 // This API reference provides information about user pools in Amazon Cognito
-// Identity, which is a new capability that is available as a beta.
+// Identity.
+//
+// For more information, see Amazon Cognito (https://aws.amazon.com/cognito/).
 //The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
 type CognitoIdentityProvider struct {

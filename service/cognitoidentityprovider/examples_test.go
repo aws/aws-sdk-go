@@ -156,6 +156,48 @@ func ExampleCognitoIdentityProvider_AdminEnableUser() {
 	fmt.Println(resp)
 }
 
+func ExampleCognitoIdentityProvider_AdminForgetDevice() {
+	svc := cognitoidentityprovider.New(session.New())
+
+	params := &cognitoidentityprovider.AdminForgetDeviceInput{
+		DeviceKey:  aws.String("DeviceKeyType"),  // Required
+		UserPoolId: aws.String("UserPoolIdType"), // Required
+		Username:   aws.String("UsernameType"),   // Required
+	}
+	resp, err := svc.AdminForgetDevice(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleCognitoIdentityProvider_AdminGetDevice() {
+	svc := cognitoidentityprovider.New(session.New())
+
+	params := &cognitoidentityprovider.AdminGetDeviceInput{
+		DeviceKey:  aws.String("DeviceKeyType"),  // Required
+		UserPoolId: aws.String("UserPoolIdType"), // Required
+		Username:   aws.String("UsernameType"),   // Required
+	}
+	resp, err := svc.AdminGetDevice(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleCognitoIdentityProvider_AdminGetUser() {
 	svc := cognitoidentityprovider.New(session.New())
 
@@ -176,6 +218,57 @@ func ExampleCognitoIdentityProvider_AdminGetUser() {
 	fmt.Println(resp)
 }
 
+func ExampleCognitoIdentityProvider_AdminInitiateAuth() {
+	svc := cognitoidentityprovider.New(session.New())
+
+	params := &cognitoidentityprovider.AdminInitiateAuthInput{
+		AuthFlow:   aws.String("AuthFlowType"),   // Required
+		ClientId:   aws.String("ClientIdType"),   // Required
+		UserPoolId: aws.String("UserPoolIdType"), // Required
+		AuthParameters: map[string]*string{
+			"Key": aws.String("StringType"), // Required
+			// More values...
+		},
+		ClientMetadata: map[string]*string{
+			"Key": aws.String("StringType"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.AdminInitiateAuth(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleCognitoIdentityProvider_AdminListDevices() {
+	svc := cognitoidentityprovider.New(session.New())
+
+	params := &cognitoidentityprovider.AdminListDevicesInput{
+		UserPoolId:      aws.String("UserPoolIdType"), // Required
+		Username:        aws.String("UsernameType"),   // Required
+		Limit:           aws.Int64(1),
+		PaginationToken: aws.String("SearchPaginationTokenType"),
+	}
+	resp, err := svc.AdminListDevices(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleCognitoIdentityProvider_AdminResetUserPassword() {
 	svc := cognitoidentityprovider.New(session.New())
 
@@ -184,6 +277,32 @@ func ExampleCognitoIdentityProvider_AdminResetUserPassword() {
 		Username:   aws.String("UsernameType"),   // Required
 	}
 	resp, err := svc.AdminResetUserPassword(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleCognitoIdentityProvider_AdminRespondToAuthChallenge() {
+	svc := cognitoidentityprovider.New(session.New())
+
+	params := &cognitoidentityprovider.AdminRespondToAuthChallengeInput{
+		ChallengeName: aws.String("ChallengeNameType"), // Required
+		ClientId:      aws.String("ClientIdType"),      // Required
+		UserPoolId:    aws.String("UserPoolIdType"),    // Required
+		ChallengeResponses: map[string]*string{
+			"Key": aws.String("StringType"), // Required
+			// More values...
+		},
+		Session: aws.String("SessionType"),
+	}
+	resp, err := svc.AdminRespondToAuthChallenge(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -223,6 +342,28 @@ func ExampleCognitoIdentityProvider_AdminSetUserSettings() {
 	fmt.Println(resp)
 }
 
+func ExampleCognitoIdentityProvider_AdminUpdateDeviceStatus() {
+	svc := cognitoidentityprovider.New(session.New())
+
+	params := &cognitoidentityprovider.AdminUpdateDeviceStatusInput{
+		DeviceKey:              aws.String("DeviceKeyType"),  // Required
+		UserPoolId:             aws.String("UserPoolIdType"), // Required
+		Username:               aws.String("UsernameType"),   // Required
+		DeviceRememberedStatus: aws.String("DeviceRememberedStatusType"),
+	}
+	resp, err := svc.AdminUpdateDeviceStatus(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleCognitoIdentityProvider_AdminUpdateUserAttributes() {
 	svc := cognitoidentityprovider.New(session.New())
 
@@ -250,6 +391,26 @@ func ExampleCognitoIdentityProvider_AdminUpdateUserAttributes() {
 	fmt.Println(resp)
 }
 
+func ExampleCognitoIdentityProvider_AdminUserGlobalSignOut() {
+	svc := cognitoidentityprovider.New(session.New())
+
+	params := &cognitoidentityprovider.AdminUserGlobalSignOutInput{
+		UserPoolId: aws.String("UserPoolIdType"), // Required
+		Username:   aws.String("UsernameType"),   // Required
+	}
+	resp, err := svc.AdminUserGlobalSignOut(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleCognitoIdentityProvider_ChangePassword() {
 	svc := cognitoidentityprovider.New(session.New())
 
@@ -259,6 +420,31 @@ func ExampleCognitoIdentityProvider_ChangePassword() {
 		AccessToken:      aws.String("TokenModelType"),
 	}
 	resp, err := svc.ChangePassword(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleCognitoIdentityProvider_ConfirmDevice() {
+	svc := cognitoidentityprovider.New(session.New())
+
+	params := &cognitoidentityprovider.ConfirmDeviceInput{
+		AccessToken: aws.String("TokenModelType"), // Required
+		DeviceKey:   aws.String("DeviceKeyType"),  // Required
+		DeviceName:  aws.String("DeviceNameType"),
+		DeviceSecretVerifierConfig: &cognitoidentityprovider.DeviceSecretVerifierConfigType{
+			PasswordVerifier: aws.String("StringType"),
+			Salt:             aws.String("StringType"),
+		},
+	}
+	resp, err := svc.ConfirmDevice(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -330,14 +516,25 @@ func ExampleCognitoIdentityProvider_CreateUserPool() {
 			aws.String("VerifiedAttributeType"), // Required
 			// More values...
 		},
+		DeviceConfiguration: &cognitoidentityprovider.DeviceConfigurationType{
+			ChallengeRequiredOnNewDevice:     aws.Bool(true),
+			DeviceOnlyRememberedOnUserPrompt: aws.Bool(true),
+		},
+		EmailConfiguration: &cognitoidentityprovider.EmailConfigurationType{
+			ReplyToEmailAddress: aws.String("EmailAddressType"),
+			SourceArn:           aws.String("ArnType"),
+		},
 		EmailVerificationMessage: aws.String("EmailVerificationMessageType"),
 		EmailVerificationSubject: aws.String("EmailVerificationSubjectType"),
 		LambdaConfig: &cognitoidentityprovider.LambdaConfigType{
-			CustomMessage:      aws.String("ArnType"),
-			PostAuthentication: aws.String("ArnType"),
-			PostConfirmation:   aws.String("ArnType"),
-			PreAuthentication:  aws.String("ArnType"),
-			PreSignUp:          aws.String("ArnType"),
+			CreateAuthChallenge:         aws.String("ArnType"),
+			CustomMessage:               aws.String("ArnType"),
+			DefineAuthChallenge:         aws.String("ArnType"),
+			PostAuthentication:          aws.String("ArnType"),
+			PostConfirmation:            aws.String("ArnType"),
+			PreAuthentication:           aws.String("ArnType"),
+			PreSignUp:                   aws.String("ArnType"),
+			VerifyAuthChallengeResponse: aws.String("ArnType"),
 		},
 		MfaConfiguration: aws.String("UserPoolMfaType"),
 		Policies: &cognitoidentityprovider.UserPoolPolicyType{
@@ -350,7 +547,11 @@ func ExampleCognitoIdentityProvider_CreateUserPool() {
 			},
 		},
 		SmsAuthenticationMessage: aws.String("SmsVerificationMessageType"),
-		SmsVerificationMessage:   aws.String("SmsVerificationMessageType"),
+		SmsConfiguration: &cognitoidentityprovider.SmsConfigurationType{
+			ExternalId:   aws.String("StringType"),
+			SnsCallerArn: aws.String("ArnType"),
+		},
+		SmsVerificationMessage: aws.String("SmsVerificationMessageType"),
 	}
 	resp, err := svc.CreateUserPool(params)
 
@@ -369,9 +570,22 @@ func ExampleCognitoIdentityProvider_CreateUserPoolClient() {
 	svc := cognitoidentityprovider.New(session.New())
 
 	params := &cognitoidentityprovider.CreateUserPoolClientInput{
-		ClientName:     aws.String("ClientNameType"), // Required
-		UserPoolId:     aws.String("UserPoolIdType"), // Required
+		ClientName: aws.String("ClientNameType"), // Required
+		UserPoolId: aws.String("UserPoolIdType"), // Required
+		ExplicitAuthFlows: []*string{
+			aws.String("ExplicitAuthFlowsType"), // Required
+			// More values...
+		},
 		GenerateSecret: aws.Bool(true),
+		ReadAttributes: []*string{
+			aws.String("ClientPermissionType"), // Required
+			// More values...
+		},
+		RefreshTokenValidity: aws.Int64(1),
+		WriteAttributes: []*string{
+			aws.String("ClientPermissionType"), // Required
+			// More values...
+		},
 	}
 	resp, err := svc.CreateUserPoolClient(params)
 
@@ -506,6 +720,26 @@ func ExampleCognitoIdentityProvider_DescribeUserPoolClient() {
 	fmt.Println(resp)
 }
 
+func ExampleCognitoIdentityProvider_ForgetDevice() {
+	svc := cognitoidentityprovider.New(session.New())
+
+	params := &cognitoidentityprovider.ForgetDeviceInput{
+		DeviceKey:   aws.String("DeviceKeyType"), // Required
+		AccessToken: aws.String("TokenModelType"),
+	}
+	resp, err := svc.ForgetDevice(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleCognitoIdentityProvider_ForgotPassword() {
 	svc := cognitoidentityprovider.New(session.New())
 
@@ -515,6 +749,26 @@ func ExampleCognitoIdentityProvider_ForgotPassword() {
 		SecretHash: aws.String("SecretHashType"),
 	}
 	resp, err := svc.ForgotPassword(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleCognitoIdentityProvider_GetDevice() {
+	svc := cognitoidentityprovider.New(session.New())
+
+	params := &cognitoidentityprovider.GetDeviceInput{
+		DeviceKey:   aws.String("DeviceKeyType"), // Required
+		AccessToken: aws.String("TokenModelType"),
+	}
+	resp, err := svc.GetDevice(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -554,6 +808,74 @@ func ExampleCognitoIdentityProvider_GetUserAttributeVerificationCode() {
 		AccessToken:   aws.String("TokenModelType"),
 	}
 	resp, err := svc.GetUserAttributeVerificationCode(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleCognitoIdentityProvider_GlobalSignOut() {
+	svc := cognitoidentityprovider.New(session.New())
+
+	params := &cognitoidentityprovider.GlobalSignOutInput{
+		AccessToken: aws.String("TokenModelType"),
+	}
+	resp, err := svc.GlobalSignOut(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleCognitoIdentityProvider_InitiateAuth() {
+	svc := cognitoidentityprovider.New(session.New())
+
+	params := &cognitoidentityprovider.InitiateAuthInput{
+		AuthFlow: aws.String("AuthFlowType"), // Required
+		ClientId: aws.String("ClientIdType"), // Required
+		AuthParameters: map[string]*string{
+			"Key": aws.String("StringType"), // Required
+			// More values...
+		},
+		ClientMetadata: map[string]*string{
+			"Key": aws.String("StringType"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.InitiateAuth(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleCognitoIdentityProvider_ListDevices() {
+	svc := cognitoidentityprovider.New(session.New())
+
+	params := &cognitoidentityprovider.ListDevicesInput{
+		AccessToken:     aws.String("TokenModelType"), // Required
+		Limit:           aws.Int64(1),
+		PaginationToken: aws.String("SearchPaginationTokenType"),
+	}
+	resp, err := svc.ListDevices(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -616,9 +938,9 @@ func ExampleCognitoIdentityProvider_ListUsers() {
 			aws.String("AttributeNameType"), // Required
 			// More values...
 		},
+		Filter:          aws.String("UserFilterType"),
 		Limit:           aws.Int64(1),
 		PaginationToken: aws.String("SearchPaginationTokenType"),
-		UserStatus:      aws.String("UserStatusType"),
 	}
 	resp, err := svc.ListUsers(params)
 
@@ -642,6 +964,31 @@ func ExampleCognitoIdentityProvider_ResendConfirmationCode() {
 		SecretHash: aws.String("SecretHashType"),
 	}
 	resp, err := svc.ResendConfirmationCode(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleCognitoIdentityProvider_RespondToAuthChallenge() {
+	svc := cognitoidentityprovider.New(session.New())
+
+	params := &cognitoidentityprovider.RespondToAuthChallengeInput{
+		ChallengeName: aws.String("ChallengeNameType"), // Required
+		ClientId:      aws.String("ClientIdType"),      // Required
+		ChallengeResponses: map[string]*string{
+			"Key": aws.String("StringType"), // Required
+			// More values...
+		},
+		Session: aws.String("SessionType"),
+	}
+	resp, err := svc.RespondToAuthChallenge(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -716,6 +1063,27 @@ func ExampleCognitoIdentityProvider_SignUp() {
 	fmt.Println(resp)
 }
 
+func ExampleCognitoIdentityProvider_UpdateDeviceStatus() {
+	svc := cognitoidentityprovider.New(session.New())
+
+	params := &cognitoidentityprovider.UpdateDeviceStatusInput{
+		AccessToken:            aws.String("TokenModelType"), // Required
+		DeviceKey:              aws.String("DeviceKeyType"),  // Required
+		DeviceRememberedStatus: aws.String("DeviceRememberedStatusType"),
+	}
+	resp, err := svc.UpdateDeviceStatus(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleCognitoIdentityProvider_UpdateUserAttributes() {
 	svc := cognitoidentityprovider.New(session.New())
 
@@ -751,14 +1119,25 @@ func ExampleCognitoIdentityProvider_UpdateUserPool() {
 			aws.String("VerifiedAttributeType"), // Required
 			// More values...
 		},
+		DeviceConfiguration: &cognitoidentityprovider.DeviceConfigurationType{
+			ChallengeRequiredOnNewDevice:     aws.Bool(true),
+			DeviceOnlyRememberedOnUserPrompt: aws.Bool(true),
+		},
+		EmailConfiguration: &cognitoidentityprovider.EmailConfigurationType{
+			ReplyToEmailAddress: aws.String("EmailAddressType"),
+			SourceArn:           aws.String("ArnType"),
+		},
 		EmailVerificationMessage: aws.String("EmailVerificationMessageType"),
 		EmailVerificationSubject: aws.String("EmailVerificationSubjectType"),
 		LambdaConfig: &cognitoidentityprovider.LambdaConfigType{
-			CustomMessage:      aws.String("ArnType"),
-			PostAuthentication: aws.String("ArnType"),
-			PostConfirmation:   aws.String("ArnType"),
-			PreAuthentication:  aws.String("ArnType"),
-			PreSignUp:          aws.String("ArnType"),
+			CreateAuthChallenge:         aws.String("ArnType"),
+			CustomMessage:               aws.String("ArnType"),
+			DefineAuthChallenge:         aws.String("ArnType"),
+			PostAuthentication:          aws.String("ArnType"),
+			PostConfirmation:            aws.String("ArnType"),
+			PreAuthentication:           aws.String("ArnType"),
+			PreSignUp:                   aws.String("ArnType"),
+			VerifyAuthChallengeResponse: aws.String("ArnType"),
 		},
 		MfaConfiguration: aws.String("UserPoolMfaType"),
 		Policies: &cognitoidentityprovider.UserPoolPolicyType{
@@ -771,7 +1150,11 @@ func ExampleCognitoIdentityProvider_UpdateUserPool() {
 			},
 		},
 		SmsAuthenticationMessage: aws.String("SmsVerificationMessageType"),
-		SmsVerificationMessage:   aws.String("SmsVerificationMessageType"),
+		SmsConfiguration: &cognitoidentityprovider.SmsConfigurationType{
+			ExternalId:   aws.String("StringType"),
+			SnsCallerArn: aws.String("ArnType"),
+		},
+		SmsVerificationMessage: aws.String("SmsVerificationMessageType"),
 	}
 	resp, err := svc.UpdateUserPool(params)
 
@@ -793,6 +1176,19 @@ func ExampleCognitoIdentityProvider_UpdateUserPoolClient() {
 		ClientId:   aws.String("ClientIdType"),   // Required
 		UserPoolId: aws.String("UserPoolIdType"), // Required
 		ClientName: aws.String("ClientNameType"),
+		ExplicitAuthFlows: []*string{
+			aws.String("ExplicitAuthFlowsType"), // Required
+			// More values...
+		},
+		ReadAttributes: []*string{
+			aws.String("ClientPermissionType"), // Required
+			// More values...
+		},
+		RefreshTokenValidity: aws.Int64(1),
+		WriteAttributes: []*string{
+			aws.String("ClientPermissionType"), // Required
+			// More values...
+		},
 	}
 	resp, err := svc.UpdateUserPoolClient(params)
 
