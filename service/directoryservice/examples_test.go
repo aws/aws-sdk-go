@@ -15,6 +15,33 @@ import (
 var _ time.Duration
 var _ bytes.Buffer
 
+func ExampleDirectoryService_AddIpRoutes() {
+	svc := directoryservice.New(session.New())
+
+	params := &directoryservice.AddIpRoutesInput{
+		DirectoryId: aws.String("DirectoryId"), // Required
+		IpRoutes: []*directoryservice.IpRoute{ // Required
+			{ // Required
+				CidrIp:      aws.String("CidrIp"),
+				Description: aws.String("Description"),
+			},
+			// More values...
+		},
+		UpdateSecurityGroupForDirectoryControllers: aws.Bool(true),
+	}
+	resp, err := svc.AddIpRoutes(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleDirectoryService_AddTagsToResource() {
 	svc := directoryservice.New(session.New())
 
@@ -602,6 +629,27 @@ func ExampleDirectoryService_GetSnapshotLimits() {
 	fmt.Println(resp)
 }
 
+func ExampleDirectoryService_ListIpRoutes() {
+	svc := directoryservice.New(session.New())
+
+	params := &directoryservice.ListIpRoutesInput{
+		DirectoryId: aws.String("DirectoryId"), // Required
+		Limit:       aws.Int64(1),
+		NextToken:   aws.String("NextToken"),
+	}
+	resp, err := svc.ListIpRoutes(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleDirectoryService_ListTagsForResource() {
 	svc := directoryservice.New(session.New())
 
@@ -631,6 +679,29 @@ func ExampleDirectoryService_RegisterEventTopic() {
 		TopicName:   aws.String("TopicName"),   // Required
 	}
 	resp, err := svc.RegisterEventTopic(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleDirectoryService_RemoveIpRoutes() {
+	svc := directoryservice.New(session.New())
+
+	params := &directoryservice.RemoveIpRoutesInput{
+		CidrIps: []*string{ // Required
+			aws.String("CidrIp"), // Required
+			// More values...
+		},
+		DirectoryId: aws.String("DirectoryId"), // Required
+	}
+	resp, err := svc.RemoveIpRoutes(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
