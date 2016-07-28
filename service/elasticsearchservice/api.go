@@ -634,6 +634,9 @@ type CreateElasticsearchDomainInput struct {
 	// IAM access policy as a JSON-formatted string.
 	AccessPolicies *string `type:"string"`
 
+	// Version of Elasticsearch
+	ElasticsearchVersion *string `type:"string" enum:"ESVersion"`
+
 	// Option to allow references to indices in an HTTP request body. Must be false
 	// when configuring access to individual sub-resources. By default, the value
 	// is true. See Configuration Advanced Options (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-advanced-options"
@@ -1118,6 +1121,9 @@ type ElasticsearchDomainStatus struct {
 	// The type and number of instances in the domain cluster.
 	ElasticsearchClusterConfig *ElasticsearchClusterConfig `type:"structure" required:"true"`
 
+	// Version of Elasticsearch
+	ElasticsearchVersion *string `type:"string"`
+
 	// The Elasticsearch domain endpoint that you use to submit index and search
 	// requests.
 	Endpoint *string `type:"string"`
@@ -1524,4 +1530,14 @@ const (
 	VolumeTypeGp2 = "gp2"
 	// @enum VolumeType
 	VolumeTypeIo1 = "io1"
+)
+
+// Version of Elasticsearch. See CreateElasticsearchDomain 
+// (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-configuration-api.html#es-configuration-api-actions-createelasticsearchdomain"
+// target="_blank)for more information.
+const (
+	// @enum ESVersion
+	ESVersion23 = "2.3"
+	// @enum ESVersion
+	ESVersion15 = "1.5"
 )
