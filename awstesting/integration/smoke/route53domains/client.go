@@ -6,11 +6,11 @@ package route53domains
 import (
 	"github.com/aws/aws-sdk-go/awstesting/integration/smoke"
 	"github.com/aws/aws-sdk-go/service/route53domains"
-	. "github.com/gucumber/gucumber"
+	"github.com/gucumber/gucumber"
 )
 
 func init() {
-	Before("@route53domains", func() {
-		World["client"] = route53domains.New(smoke.Session)
+	gucumber.Before("@route53domains", func() {
+		gucumber.World["client"] = route53domains.New(smoke.Session)
 	})
 }
