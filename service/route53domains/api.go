@@ -52,9 +52,6 @@ func (c *Route53Domains) CheckDomainAvailabilityRequest(input *CheckDomainAvaila
 	return
 }
 
-// This operation checks the availability of one domain name. Note that if the
-// availability status of a domain is pending, you must submit another request
-// to determine the availability of the domain name.
 func (c *Route53Domains) CheckDomainAvailability(input *CheckDomainAvailabilityInput) (*CheckDomainAvailabilityOutput, error) {
 	req, out := c.CheckDomainAvailabilityRequest(input)
 	err := req.Send()
@@ -102,10 +99,6 @@ func (c *Route53Domains) DeleteTagsForDomainRequest(input *DeleteTagsForDomainIn
 	return
 }
 
-// This operation deletes the specified tags for a domain.
-//
-// All tag operations are eventually consistent; subsequent operations may
-// not immediately represent all issued operations.
 func (c *Route53Domains) DeleteTagsForDomain(input *DeleteTagsForDomainInput) (*DeleteTagsForDomainOutput, error) {
 	req, out := c.DeleteTagsForDomainRequest(input)
 	err := req.Send()
@@ -153,13 +146,6 @@ func (c *Route53Domains) DisableDomainAutoRenewRequest(input *DisableDomainAutoR
 	return
 }
 
-// This operation disables automatic renewal of domain registration for the
-// specified domain.
-//
-// Caution! Amazon Route 53 doesn't have a manual renewal process, so if you
-// disable automatic renewal, registration for the domain will not be renewed
-// when the expiration date passes, and you will lose control of the domain
-// name.
 func (c *Route53Domains) DisableDomainAutoRenew(input *DisableDomainAutoRenewInput) (*DisableDomainAutoRenewOutput, error) {
 	req, out := c.DisableDomainAutoRenewRequest(input)
 	err := req.Send()
@@ -207,13 +193,6 @@ func (c *Route53Domains) DisableDomainTransferLockRequest(input *DisableDomainTr
 	return
 }
 
-// This operation removes the transfer lock on the domain (specifically the
-// clientTransferProhibited status) to allow domain transfers. We recommend
-// you refrain from performing this action unless you intend to transfer the
-// domain to a different registrar. Successful submission returns an operation
-// ID that you can use to track the progress and completion of the action. If
-// the request is not completed successfully, the domain registrant will be
-// notified by email.
 func (c *Route53Domains) DisableDomainTransferLock(input *DisableDomainTransferLockInput) (*DisableDomainTransferLockOutput, error) {
 	req, out := c.DisableDomainTransferLockRequest(input)
 	err := req.Send()
@@ -261,16 +240,6 @@ func (c *Route53Domains) EnableDomainAutoRenewRequest(input *EnableDomainAutoRen
 	return
 }
 
-// This operation configures Amazon Route 53 to automatically renew the specified
-// domain before the domain registration expires. The cost of renewing your
-// domain registration is billed to your AWS account.
-//
-// The period during which you can renew a domain name varies by TLD. For a
-// list of TLDs and their renewal policies, see "Renewal, restoration, and deletion
-// times" (http://wiki.gandi.net/en/domains/renew#renewal_restoration_and_deletion_times)
-// on the website for our registrar partner, Gandi. Route 53 requires that you
-// renew before the end of the renewal period that is listed on the Gandi website
-// so we can complete processing before the deadline.
 func (c *Route53Domains) EnableDomainAutoRenew(input *EnableDomainAutoRenewInput) (*EnableDomainAutoRenewOutput, error) {
 	req, out := c.EnableDomainAutoRenewRequest(input)
 	err := req.Send()
@@ -318,11 +287,6 @@ func (c *Route53Domains) EnableDomainTransferLockRequest(input *EnableDomainTran
 	return
 }
 
-// This operation sets the transfer lock on the domain (specifically the clientTransferProhibited
-// status) to prevent domain transfers. Successful submission returns an operation
-// ID that you can use to track the progress and completion of the action. If
-// the request is not completed successfully, the domain registrant will be
-// notified by email.
 func (c *Route53Domains) EnableDomainTransferLock(input *EnableDomainTransferLockInput) (*EnableDomainTransferLockOutput, error) {
 	req, out := c.EnableDomainTransferLockRequest(input)
 	err := req.Send()
@@ -370,12 +334,6 @@ func (c *Route53Domains) GetContactReachabilityStatusRequest(input *GetContactRe
 	return
 }
 
-// For operations that require confirmation that the email address for the registrant
-// contact is valid, such as registering a new domain, this operation returns
-// information about whether the registrant contact has responded.
-//
-// If you want us to resend the email, use the ResendContactReachabilityEmail
-// operation.
 func (c *Route53Domains) GetContactReachabilityStatus(input *GetContactReachabilityStatusInput) (*GetContactReachabilityStatusOutput, error) {
 	req, out := c.GetContactReachabilityStatusRequest(input)
 	err := req.Send()
@@ -423,10 +381,55 @@ func (c *Route53Domains) GetDomainDetailRequest(input *GetDomainDetailInput) (re
 	return
 }
 
-// This operation returns detailed information about the domain. The domain's
-// contact information is also returned as part of the output.
 func (c *Route53Domains) GetDomainDetail(input *GetDomainDetailInput) (*GetDomainDetailOutput, error) {
 	req, out := c.GetDomainDetailRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opGetDomainSuggestions = "GetDomainSuggestions"
+
+// GetDomainSuggestionsRequest generates a "aws/request.Request" representing the
+// client's request for the GetDomainSuggestions operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetDomainSuggestions method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetDomainSuggestionsRequest method.
+//    req, resp := client.GetDomainSuggestionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *Route53Domains) GetDomainSuggestionsRequest(input *GetDomainSuggestionsInput) (req *request.Request, output *GetDomainSuggestionsOutput) {
+	op := &request.Operation{
+		Name:       opGetDomainSuggestions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetDomainSuggestionsInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &GetDomainSuggestionsOutput{}
+	req.Data = output
+	return
+}
+
+func (c *Route53Domains) GetDomainSuggestions(input *GetDomainSuggestionsInput) (*GetDomainSuggestionsOutput, error) {
+	req, out := c.GetDomainSuggestionsRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -472,7 +475,6 @@ func (c *Route53Domains) GetOperationDetailRequest(input *GetOperationDetailInpu
 	return
 }
 
-// This operation returns the current status of an operation that is not completed.
 func (c *Route53Domains) GetOperationDetail(input *GetOperationDetailInput) (*GetOperationDetailOutput, error) {
 	req, out := c.GetOperationDetailRequest(input)
 	err := req.Send()
@@ -526,8 +528,6 @@ func (c *Route53Domains) ListDomainsRequest(input *ListDomainsInput) (req *reque
 	return
 }
 
-// This operation returns all the domain names registered with Amazon Route
-// 53 for the current AWS account.
 func (c *Route53Domains) ListDomains(input *ListDomainsInput) (*ListDomainsOutput, error) {
 	req, out := c.ListDomainsRequest(input)
 	err := req.Send()
@@ -606,7 +606,6 @@ func (c *Route53Domains) ListOperationsRequest(input *ListOperationsInput) (req 
 	return
 }
 
-// This operation returns the operation IDs of operations that are not yet complete.
 func (c *Route53Domains) ListOperations(input *ListOperationsInput) (*ListOperationsOutput, error) {
 	req, out := c.ListOperationsRequest(input)
 	err := req.Send()
@@ -679,11 +678,6 @@ func (c *Route53Domains) ListTagsForDomainRequest(input *ListTagsForDomainInput)
 	return
 }
 
-// This operation returns all of the tags that are associated with the specified
-// domain.
-//
-// All tag operations are eventually consistent; subsequent operations may
-// not immediately represent all issued operations.
 func (c *Route53Domains) ListTagsForDomain(input *ListTagsForDomainInput) (*ListTagsForDomainOutput, error) {
 	req, out := c.ListTagsForDomainRequest(input)
 	err := req.Send()
@@ -731,27 +725,55 @@ func (c *Route53Domains) RegisterDomainRequest(input *RegisterDomainInput) (req 
 	return
 }
 
-// This operation registers a domain. Domains are registered by the AWS registrar
-// partner, Gandi. For some top-level domains (TLDs), this operation requires
-// extra parameters.
-//
-// When you register a domain, Amazon Route 53 does the following:
-//
-//  Creates a Amazon Route 53 hosted zone that has the same name as the domain.
-// Amazon Route 53 assigns four name servers to your hosted zone and automatically
-// updates your domain registration with the names of these name servers. Enables
-// autorenew, so your domain registration will renew automatically each year.
-// We'll notify you in advance of the renewal date so you can choose whether
-// to renew the registration. Optionally enables privacy protection, so WHOIS
-// queries return contact information for our registrar partner, Gandi, instead
-// of the information you entered for registrant, admin, and tech contacts.
-// If registration is successful, returns an operation ID that you can use to
-// track the progress and completion of the action. If the request is not completed
-// successfully, the domain registrant is notified by email. Charges your AWS
-// account an amount based on the top-level domain. For more information, see
-// Amazon Route 53 Pricing (http://aws.amazon.com/route53/pricing/).
 func (c *Route53Domains) RegisterDomain(input *RegisterDomainInput) (*RegisterDomainOutput, error) {
 	req, out := c.RegisterDomainRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opRenewDomain = "RenewDomain"
+
+// RenewDomainRequest generates a "aws/request.Request" representing the
+// client's request for the RenewDomain operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RenewDomain method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RenewDomainRequest method.
+//    req, resp := client.RenewDomainRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *Route53Domains) RenewDomainRequest(input *RenewDomainInput) (req *request.Request, output *RenewDomainOutput) {
+	op := &request.Operation{
+		Name:       opRenewDomain,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RenewDomainInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &RenewDomainOutput{}
+	req.Data = output
+	return
+}
+
+func (c *Route53Domains) RenewDomain(input *RenewDomainInput) (*RenewDomainOutput, error) {
+	req, out := c.RenewDomainRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -797,9 +819,6 @@ func (c *Route53Domains) ResendContactReachabilityEmailRequest(input *ResendCont
 	return
 }
 
-// For operations that require confirmation that the email address for the registrant
-// contact is valid, such as registering a new domain, this operation resends
-// the confirmation email to the current email address for the registrant contact.
 func (c *Route53Domains) ResendContactReachabilityEmail(input *ResendContactReachabilityEmailInput) (*ResendContactReachabilityEmailOutput, error) {
 	req, out := c.ResendContactReachabilityEmailRequest(input)
 	err := req.Send()
@@ -847,8 +866,6 @@ func (c *Route53Domains) RetrieveDomainAuthCodeRequest(input *RetrieveDomainAuth
 	return
 }
 
-// This operation returns the AuthCode for the domain. To transfer a domain
-// to another registrar, you provide this value to the new registrar.
 func (c *Route53Domains) RetrieveDomainAuthCode(input *RetrieveDomainAuthCodeInput) (*RetrieveDomainAuthCodeOutput, error) {
 	req, out := c.RetrieveDomainAuthCodeRequest(input)
 	err := req.Send()
@@ -896,30 +913,6 @@ func (c *Route53Domains) TransferDomainRequest(input *TransferDomainInput) (req 
 	return
 }
 
-// This operation transfers a domain from another registrar to Amazon Route
-// 53. When the transfer is complete, the domain is registered with the AWS
-// registrar partner, Gandi.
-//
-// For transfer requirements, a detailed procedure, and information about viewing
-// the status of a domain transfer, see Transferring Registration for a Domain
-// to Amazon Route 53 (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-transfer-to-route-53.html)
-// in the Amazon Route 53 Developer Guide.
-//
-// If the registrar for your domain is also the DNS service provider for the
-// domain, we highly recommend that you consider transferring your DNS service
-// to Amazon Route 53 or to another DNS service provider before you transfer
-// your registration. Some registrars provide free DNS service when you purchase
-// a domain registration. When you transfer the registration, the previous registrar
-// will not renew your domain registration and could end your DNS service at
-// any time.
-//
-// Caution! If the registrar for your domain is also the DNS service provider
-// for the domain and you don't transfer DNS service to another provider, your
-// website, email, and the web applications associated with the domain might
-// become unavailable. If the transfer is successful, this method returns an
-// operation ID that you can use to track the progress and completion of the
-// action. If the transfer doesn't complete successfully, the domain registrant
-// will be notified by email.
 func (c *Route53Domains) TransferDomain(input *TransferDomainInput) (*TransferDomainOutput, error) {
 	req, out := c.TransferDomainRequest(input)
 	err := req.Send()
@@ -967,14 +960,6 @@ func (c *Route53Domains) UpdateDomainContactRequest(input *UpdateDomainContactIn
 	return
 }
 
-// This operation updates the contact information for a particular domain. Information
-// for at least one contact (registrant, administrator, or technical) must be
-// supplied for update.
-//
-// If the update is successful, this method returns an operation ID that you
-// can use to track the progress and completion of the action. If the request
-// is not completed successfully, the domain registrant will be notified by
-// email.
 func (c *Route53Domains) UpdateDomainContact(input *UpdateDomainContactInput) (*UpdateDomainContactOutput, error) {
 	req, out := c.UpdateDomainContactRequest(input)
 	err := req.Send()
@@ -1022,17 +1007,6 @@ func (c *Route53Domains) UpdateDomainContactPrivacyRequest(input *UpdateDomainCo
 	return
 }
 
-// This operation updates the specified domain contact's privacy setting. When
-// the privacy option is enabled, personal information such as postal or email
-// address is hidden from the results of a public WHOIS query. The privacy services
-// are provided by the AWS registrar, Gandi. For more information, see the Gandi
-// privacy features (http://www.gandi.net/domain/whois/?currency=USD&amp;lang=en).
-//
-// This operation only affects the privacy of the specified contact type (registrant,
-// administrator, or tech). Successful acceptance returns an operation ID that
-// you can use with GetOperationDetail to track the progress and completion
-// of the action. If the request is not completed successfully, the domain registrant
-// will be notified by email.
 func (c *Route53Domains) UpdateDomainContactPrivacy(input *UpdateDomainContactPrivacyInput) (*UpdateDomainContactPrivacyOutput, error) {
 	req, out := c.UpdateDomainContactPrivacyRequest(input)
 	err := req.Send()
@@ -1080,14 +1054,6 @@ func (c *Route53Domains) UpdateDomainNameserversRequest(input *UpdateDomainNames
 	return
 }
 
-// This operation replaces the current set of name servers for the domain with
-// the specified set of name servers. If you use Amazon Route 53 as your DNS
-// service, specify the four name servers in the delegation set for the hosted
-// zone for the domain.
-//
-// If successful, this operation returns an operation ID that you can use to
-// track the progress and completion of the action. If the request is not completed
-// successfully, the domain registrant will be notified by email.
 func (c *Route53Domains) UpdateDomainNameservers(input *UpdateDomainNameserversInput) (*UpdateDomainNameserversOutput, error) {
 	req, out := c.UpdateDomainNameserversRequest(input)
 	err := req.Send()
@@ -1135,34 +1101,88 @@ func (c *Route53Domains) UpdateTagsForDomainRequest(input *UpdateTagsForDomainIn
 	return
 }
 
-// This operation adds or updates tags for a specified domain.
-//
-// All tag operations are eventually consistent; subsequent operations may
-// not immediately represent all issued operations.
 func (c *Route53Domains) UpdateTagsForDomain(input *UpdateTagsForDomainInput) (*UpdateTagsForDomainOutput, error) {
 	req, out := c.UpdateTagsForDomainRequest(input)
 	err := req.Send()
 	return out, err
 }
 
-// The CheckDomainAvailability request contains the following elements.
+const opViewBilling = "ViewBilling"
+
+// ViewBillingRequest generates a "aws/request.Request" representing the
+// client's request for the ViewBilling operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ViewBilling method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ViewBillingRequest method.
+//    req, resp := client.ViewBillingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *Route53Domains) ViewBillingRequest(input *ViewBillingInput) (req *request.Request, output *ViewBillingOutput) {
+	op := &request.Operation{
+		Name:       opViewBilling,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ViewBillingInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ViewBillingOutput{}
+	req.Data = output
+	return
+}
+
+func (c *Route53Domains) ViewBilling(input *ViewBillingInput) (*ViewBillingOutput, error) {
+	req, out := c.ViewBillingRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+type BillingRecord struct {
+	_ struct{} `type:"structure"`
+
+	BillDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	DomainName *string `type:"string"`
+
+	InvoiceId *string `type:"string"`
+
+	Operation *string `type:"string" enum:"OperationType"`
+
+	Price *float64 `type:"double"`
+}
+
+// String returns the string representation
+func (s BillingRecord) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BillingRecord) GoString() string {
+	return s.String()
+}
+
 type CheckDomainAvailabilityInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of a domain.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: The domain name can contain only the letters a through z, the
-	// numbers 0 through 9, and hyphen (-). Internationalized Domain Names are not
-	// supported.
-	//
-	// Required: Yes
 	DomainName *string `type:"string" required:"true"`
 
-	// Reserved for future use.
 	IdnLangCode *string `type:"string"`
 }
 
@@ -1189,27 +1209,9 @@ func (s *CheckDomainAvailabilityInput) Validate() error {
 	return nil
 }
 
-// The CheckDomainAvailability response includes the following elements.
 type CheckDomainAvailabilityOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Whether the domain name is available for registering.
-	//
-	//  You can only register domains designated as AVAILABLE.
-	//
-	//  Type: String
-	//
-	// Valid values:
-	//
-	//  AVAILABLE – The domain name is available. AVAILABLE_RESERVED – The domain
-	// name is reserved under specific conditions. AVAILABLE_PREORDER – The domain
-	// name is available and can be preordered. UNAVAILABLE – The domain name is
-	// not available. UNAVAILABLE_PREMIUM – The domain name is not available. UNAVAILABLE_RESTRICTED
-	// – The domain name is forbidden. RESERVED – The domain name has been reserved
-	// for another person or organization. DONT_KNOW – The TLD registry didn't reply
-	// with a definitive answer about whether the domain name is available. Amazon
-	// Route 53 can return this response for a variety of reasons, for example,
-	// the registry is performing maintenance. Try again later.
 	Availability *string `type:"string" required:"true" enum:"DomainAvailability"`
 }
 
@@ -1223,198 +1225,35 @@ func (s CheckDomainAvailabilityOutput) GoString() string {
 	return s.String()
 }
 
-// ContactDetail includes the following elements.
 type ContactDetail struct {
 	_ struct{} `type:"structure"`
 
-	// First line of the contact's address.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: Maximum 255 characters.
-	//
-	// Parents: RegistrantContact, AdminContact, TechContact
-	//
-	// Required: Yes
 	AddressLine1 *string `type:"string"`
 
-	// Second line of contact's address, if any.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: Maximum 255 characters.
-	//
-	// Parents: RegistrantContact, AdminContact, TechContact
-	//
-	// Required: No
 	AddressLine2 *string `type:"string"`
 
-	// The city of the contact's address.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: Maximum 255 characters.
-	//
-	// Parents: RegistrantContact, AdminContact, TechContact
-	//
-	// Required: Yes
 	City *string `type:"string"`
 
-	// Indicates whether the contact is a person, company, association, or public
-	// organization. If you choose an option other than PERSON, you must enter an
-	// organization name, and you can't enable privacy protection for the contact.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: Maximum 255 characters.
-	//
-	// Valid values: PERSON | COMPANY | ASSOCIATION | PUBLIC_BODY
-	//
-	// Parents: RegistrantContact, AdminContact, TechContact
-	//
-	// Required: Yes
 	ContactType *string `type:"string" enum:"ContactType"`
 
-	// Code for the country of the contact's address.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: Maximum 255 characters.
-	//
-	// Parents: RegistrantContact, AdminContact, TechContact
-	//
-	// Required: Yes
 	CountryCode *string `type:"string" enum:"CountryCode"`
 
-	// Email address of the contact.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: Maximum 254 characters.
-	//
-	// Parents: RegistrantContact, AdminContact, TechContact
-	//
-	// Required: Yes
 	Email *string `type:"string"`
 
-	// A list of name-value pairs for parameters required by certain top-level domains.
-	//
-	// Type: Complex
-	//
-	// Default: None
-	//
-	// Parents: RegistrantContact, AdminContact, TechContact
-	//
-	// Children: Name, Value
-	//
-	// Required: No
 	ExtraParams []*ExtraParam `type:"list"`
 
-	// Fax number of the contact.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: Phone number must be specified in the format "+[country dialing
-	// code].[number including any area code]". For example, a US phone number might
-	// appear as "+1.1234567890".
-	//
-	// Parents: RegistrantContact, AdminContact, TechContact
-	//
-	// Required: No
 	Fax *string `type:"string"`
 
-	// First name of contact.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: Maximum 255 characters.
-	//
-	// Parents: RegistrantContact, AdminContact, TechContact
-	//
-	// Required: Yes
 	FirstName *string `type:"string"`
 
-	// Last name of contact.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: Maximum 255 characters.
-	//
-	// Parents: RegistrantContact, AdminContact, TechContact
-	//
-	// Required: Yes
 	LastName *string `type:"string"`
 
-	// Name of the organization for contact types other than PERSON.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: Maximum 255 characters. Contact type must not be PERSON.
-	//
-	// Parents: RegistrantContact, AdminContact, TechContact
-	//
-	// Required: No
 	OrganizationName *string `type:"string"`
 
-	// The phone number of the contact.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: Phone number must be specified in the format "+[country dialing
-	// code].[number including any area code>]". For example, a US phone number
-	// might appear as "+1.1234567890".
-	//
-	// Parents: RegistrantContact, AdminContact, TechContact
-	//
-	// Required: Yes
 	PhoneNumber *string `type:"string"`
 
-	// The state or province of the contact's city.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: Maximum 255 characters.
-	//
-	// Parents: RegistrantContact, AdminContact, TechContact
-	//
-	// Required: No
 	State *string `type:"string"`
 
-	// The zip or postal code of the contact's address.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: Maximum 255 characters.
-	//
-	// Parents: RegistrantContact, AdminContact, TechContact
-	//
-	// Required: No
 	ZipCode *string `type:"string"`
 }
 
@@ -1448,36 +1287,11 @@ func (s *ContactDetail) Validate() error {
 	return nil
 }
 
-// The DeleteTagsForDomainRequest includes the following elements.
 type DeleteTagsForDomainInput struct {
 	_ struct{} `type:"structure"`
 
-	// The domain for which you want to delete one or more tags.
-	//
-	// The name of a domain.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: The domain name can contain only the letters a through z, the
-	// numbers 0 through 9, and hyphen (-). Hyphens are allowed only when they're
-	// surrounded by letters, numbers, or other hyphens. You can't specify a hyphen
-	// at the beginning or end of a label. To specify an Internationalized Domain
-	// Name, you must convert the name to Punycode.
-	//
-	// Required: Yes
 	DomainName *string `type:"string" required:"true"`
 
-	// A list of tag keys to delete.
-	//
-	// Type: A list that contains the keys of the tags that you want to delete.
-	//
-	// Default: None
-	//
-	// Required: No
-	//
-	// '>
 	TagsToDelete []*string `type:"list" required:"true"`
 }
 
@@ -1564,21 +1378,9 @@ func (s DisableDomainAutoRenewOutput) GoString() string {
 	return s.String()
 }
 
-// The DisableDomainTransferLock request includes the following element.
 type DisableDomainTransferLockInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of a domain.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: The domain name can contain only the letters a through z, the
-	// numbers 0 through 9, and hyphen (-). Internationalized Domain Names are not
-	// supported.
-	//
-	// Required: Yes
 	DomainName *string `type:"string" required:"true"`
 }
 
@@ -1605,18 +1407,9 @@ func (s *DisableDomainTransferLockInput) Validate() error {
 	return nil
 }
 
-// The DisableDomainTransferLock response includes the following element.
 type DisableDomainTransferLockOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Identifier for tracking the progress of the request. To use this ID to query
-	// the operation status, use GetOperationDetail.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: Maximum 255 characters.
 	OperationId *string `type:"string" required:"true"`
 }
 
@@ -1630,32 +1423,33 @@ func (s DisableDomainTransferLockOutput) GoString() string {
 	return s.String()
 }
 
+type DomainSuggestion struct {
+	_ struct{} `type:"structure"`
+
+	Availability *string `type:"string"`
+
+	DomainName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DomainSuggestion) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DomainSuggestion) GoString() string {
+	return s.String()
+}
+
 type DomainSummary struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates whether the domain is automatically renewed upon expiration.
-	//
-	// Type: Boolean
-	//
-	// Valid values: True | False
 	AutoRenew *bool `type:"boolean"`
 
-	// The name of a domain.
-	//
-	// Type: String
 	DomainName *string `type:"string" required:"true"`
 
-	// Expiration date of the domain in Coordinated Universal Time (UTC).
-	//
-	// Type: Long
 	Expiry *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	// Indicates whether a domain is locked from unauthorized transfer to another
-	// party.
-	//
-	// Type: Boolean
-	//
-	// Valid values: True | False
 	TransferLock *bool `type:"boolean"`
 }
 
@@ -1712,21 +1506,9 @@ func (s EnableDomainAutoRenewOutput) GoString() string {
 	return s.String()
 }
 
-// The EnableDomainTransferLock request includes the following element.
 type EnableDomainTransferLockInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of a domain.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: The domain name can contain only the letters a through z, the
-	// numbers 0 through 9, and hyphen (-). Internationalized Domain Names are not
-	// supported.
-	//
-	// Required: Yes
 	DomainName *string `type:"string" required:"true"`
 }
 
@@ -1753,18 +1535,9 @@ func (s *EnableDomainTransferLockInput) Validate() error {
 	return nil
 }
 
-// The EnableDomainTransferLock response includes the following elements.
 type EnableDomainTransferLockOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Identifier for tracking the progress of the request. To use this ID to query
-	// the operation status, use GetOperationDetail.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: Maximum 255 characters.
 	OperationId *string `type:"string" required:"true"`
 }
 
@@ -1778,39 +1551,11 @@ func (s EnableDomainTransferLockOutput) GoString() string {
 	return s.String()
 }
 
-// ExtraParam includes the following elements.
 type ExtraParam struct {
 	_ struct{} `type:"structure"`
 
-	// Name of the additional parameter required by the top-level domain.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Valid values: DUNS_NUMBER | BRAND_NUMBER | BIRTH_DEPARTMENT | BIRTH_DATE_IN_YYYY_MM_DD
-	// | BIRTH_COUNTRY | BIRTH_CITY | DOCUMENT_NUMBER | AU_ID_NUMBER | AU_ID_TYPE
-	// | CA_LEGAL_TYPE | CA_BUSINESS_ENTITY_TYPE |ES_IDENTIFICATION | ES_IDENTIFICATION_TYPE
-	// | ES_LEGAL_FORM | FI_BUSINESS_NUMBER | FI_ID_NUMBER | IT_PIN | RU_PASSPORT_DATA
-	// | SE_ID_NUMBER | SG_ID_NUMBER | VAT_NUMBER
-	//
-	// Parent: ExtraParams
-	//
-	// Required: Yes
 	Name *string `type:"string" required:"true" enum:"ExtraParamName"`
 
-	// Values corresponding to the additional parameter names required by some top-level
-	// domains.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: Maximum 2048 characters.
-	//
-	// Parent: ExtraParams
-	//
-	// Required: Yes
 	Value *string `type:"string" required:"true"`
 }
 
@@ -1843,14 +1588,6 @@ func (s *ExtraParam) Validate() error {
 type GetContactReachabilityStatusInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the domain for which you want to know whether the registrant
-	// contact has confirmed that the email address is valid.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Required: Yes
 	DomainName *string `locationName:"domainName" type:"string"`
 }
 
@@ -1867,18 +1604,8 @@ func (s GetContactReachabilityStatusInput) GoString() string {
 type GetContactReachabilityStatusOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The domain name for which you requested the reachability status.
 	DomainName *string `locationName:"domainName" type:"string"`
 
-	// Whether the registrant contact has responded. PENDING indicates that we sent
-	// the confirmation email and haven't received a response yet, DONE indicates
-	// that we sent the email and got confirmation from the registrant contact,
-	// and EXPIRED indicates that the time limit expired before the registrant contact
-	// responded.
-	//
-	// Type: String
-	//
-	// Valid values: PENDING, DONE, EXPIRED
 	Status *string `locationName:"status" type:"string" enum:"ReachabilityStatus"`
 }
 
@@ -1892,21 +1619,9 @@ func (s GetContactReachabilityStatusOutput) GoString() string {
 	return s.String()
 }
 
-// The GetDomainDetail request includes the following element.
 type GetDomainDetailInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of a domain.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: The domain name can contain only the letters a through z, the
-	// numbers 0 through 9, and hyphen (-). Internationalized Domain Names are not
-	// supported.
-	//
-	// Required: Yes
 	DomainName *string `type:"string" required:"true"`
 }
 
@@ -1933,145 +1648,49 @@ func (s *GetDomainDetailInput) Validate() error {
 	return nil
 }
 
-// The GetDomainDetail response includes the following elements.
 type GetDomainDetailOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Email address to contact to report incorrect contact information for a domain,
-	// to report that the domain is being used to send spam, to report that someone
-	// is cybersquatting on a domain name, or report some other type of abuse.
-	//
-	// Type: String
 	AbuseContactEmail *string `type:"string"`
 
-	// Phone number for reporting abuse.
-	//
-	// Type: String
 	AbuseContactPhone *string `type:"string"`
 
-	// Provides details about the domain administrative contact.
-	//
-	// Type: Complex
-	//
-	// Children: FirstName, MiddleName, LastName, ContactType, OrganizationName,
-	// AddressLine1, AddressLine2, City, State, CountryCode, ZipCode, PhoneNumber,
-	// Email, Fax, ExtraParams
 	AdminContact *ContactDetail `type:"structure" required:"true"`
 
-	// Specifies whether contact information for the admin contact is concealed
-	// from WHOIS queries. If the value is true, WHOIS ("who is") queries will return
-	// contact information for our registrar partner, Gandi, instead of the contact
-	// information that you enter.
-	//
-	// Type: Boolean
 	AdminPrivacy *bool `type:"boolean"`
 
-	// Specifies whether the domain registration is set to renew automatically.
-	//
-	// Type: Boolean
 	AutoRenew *bool `type:"boolean"`
 
-	// The date when the domain was created as found in the response to a WHOIS
-	// query. The date format is Unix time.
 	CreationDate *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	// Reserved for future use.
 	DnsSec *string `type:"string"`
 
-	// The name of a domain.
-	//
-	// Type: String
 	DomainName *string `type:"string" required:"true"`
 
-	// The date when the registration for the domain is set to expire. The date
-	// format is Unix time.
 	ExpirationDate *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	// The name of the domain.
-	//
-	// Type: String
 	Nameservers []*Nameserver `type:"list" required:"true"`
 
-	// Provides details about the domain registrant.
-	//
-	// Type: Complex
-	//
-	// Children: FirstName, MiddleName, LastName, ContactType, OrganizationName,
-	// AddressLine1, AddressLine2, City, State, CountryCode, ZipCode, PhoneNumber,
-	// Email, Fax, ExtraParams
 	RegistrantContact *ContactDetail `type:"structure" required:"true"`
 
-	// Specifies whether contact information for the registrant contact is concealed
-	// from WHOIS queries. If the value is true, WHOIS ("who is") queries will return
-	// contact information for our registrar partner, Gandi, instead of the contact
-	// information that you enter.
-	//
-	// Type: Boolean
 	RegistrantPrivacy *bool `type:"boolean"`
 
-	// Name of the registrar of the domain as identified in the registry. Amazon
-	// Route 53 domains are registered by registrar Gandi. The value is "GANDI SAS".
-	//
-	// Type: String
 	RegistrarName *string `type:"string"`
 
-	// Web address of the registrar.
-	//
-	// Type: String
 	RegistrarUrl *string `type:"string"`
 
-	// Reserved for future use.
 	RegistryDomainId *string `type:"string"`
 
-	// Reseller of the domain. Domains registered or transferred using Amazon Route
-	// 53 domains will have "Amazon" as the reseller.
-	//
-	// Type: String
 	Reseller *string `type:"string"`
 
-	// An array of domain name status codes, also known as Extensible Provisioning
-	// Protocol (EPP) status codes.
-	//
-	// ICANN, the organization that maintains a central database of domain names,
-	// has developed a set of domain name status codes that tell you the status
-	// of a variety of operations on a domain name, for example, registering a domain
-	// name, transferring a domain name to another registrar, renewing the registration
-	// for a domain name, and so on. All registrars use this same set of status
-	// codes.
-	//
-	// For a current list of domain name status codes and an explanation of what
-	// each code means, go to the ICANN website (https://www.icann.org/) and search
-	// for epp status codes. (Search on the ICANN website; web searches sometimes
-	// return an old version of the document.)
-	//
-	// Type: Array of String
 	StatusList []*string `type:"list"`
 
-	// Provides details about the domain technical contact.
-	//
-	// Type: Complex
-	//
-	// Children: FirstName, MiddleName, LastName, ContactType, OrganizationName,
-	// AddressLine1, AddressLine2, City, State, CountryCode, ZipCode, PhoneNumber,
-	// Email, Fax, ExtraParams
 	TechContact *ContactDetail `type:"structure" required:"true"`
 
-	// Specifies whether contact information for the tech contact is concealed from
-	// WHOIS queries. If the value is true, WHOIS ("who is") queries will return
-	// contact information for our registrar partner, Gandi, instead of the contact
-	// information that you enter.
-	//
-	// Type: Boolean
 	TechPrivacy *bool `type:"boolean"`
 
-	// The last updated date of the domain as found in the response to a WHOIS query.
-	// The date format is Unix time.
 	UpdatedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	// The fully qualified name of the WHOIS server that can answer the WHOIS query
-	// for the domain.
-	//
-	// Type: String
 	WhoIsServer *string `type:"string"`
 }
 
@@ -2085,18 +1704,64 @@ func (s GetDomainDetailOutput) GoString() string {
 	return s.String()
 }
 
-// The GetOperationDetail request includes the following element.
+type GetDomainSuggestionsInput struct {
+	_ struct{} `type:"structure"`
+
+	DomainName *string `type:"string" required:"true"`
+
+	OnlyAvailable *bool `type:"boolean" required:"true"`
+
+	SuggestionCount *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s GetDomainSuggestionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetDomainSuggestionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetDomainSuggestionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetDomainSuggestionsInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.OnlyAvailable == nil {
+		invalidParams.Add(request.NewErrParamRequired("OnlyAvailable"))
+	}
+	if s.SuggestionCount == nil {
+		invalidParams.Add(request.NewErrParamRequired("SuggestionCount"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+type GetDomainSuggestionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	SuggestionsList []*DomainSuggestion `type:"list"`
+}
+
+// String returns the string representation
+func (s GetDomainSuggestionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetDomainSuggestionsOutput) GoString() string {
+	return s.String()
+}
+
 type GetOperationDetailInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the operation for which you want to get the status. Amazon
-	// Route 53 returned the identifier in the response to the original request.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Required: Yes
 	OperationId *string `type:"string" required:"true"`
 }
 
@@ -2123,36 +1788,19 @@ func (s *GetOperationDetailInput) Validate() error {
 	return nil
 }
 
-// The GetOperationDetail response includes the following elements.
 type GetOperationDetailOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of a domain.
-	//
-	// Type: String
 	DomainName *string `type:"string"`
 
-	// Detailed information on the status including possible errors.
-	//
-	// Type: String
 	Message *string `type:"string"`
 
-	// The identifier for the operation.
-	//
-	// Type: String
 	OperationId *string `type:"string"`
 
-	// The current status of the requested operation in the system.
-	//
-	// Type: String
 	Status *string `type:"string" enum:"OperationStatus"`
 
-	// The date when the request was submitted.
 	SubmittedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	// The type of operation that was requested.
-	//
-	// Type: String
 	Type *string `type:"string" enum:"OperationType"`
 }
 
@@ -2166,35 +1814,11 @@ func (s GetOperationDetailOutput) GoString() string {
 	return s.String()
 }
 
-// The ListDomains request includes the following elements.
 type ListDomainsInput struct {
 	_ struct{} `type:"structure"`
 
-	// For an initial request for a list of domains, omit this element. If the number
-	// of domains that are associated with the current AWS account is greater than
-	// the value that you specified for MaxItems, you can use Marker to return additional
-	// domains. Get the value of NextPageMarker from the previous response, and
-	// submit another request that includes the value of NextPageMarker in the Marker
-	// element.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: The marker must match the value specified in the previous request.
-	//
-	// Required: No
 	Marker *string `type:"string"`
 
-	// Number of domains to be returned.
-	//
-	// Type: Integer
-	//
-	// Default: 20
-	//
-	// Constraints: A numeral between 1 and 100.
-	//
-	// Required: No
 	MaxItems *int64 `type:"integer"`
 }
 
@@ -2208,24 +1832,11 @@ func (s ListDomainsInput) GoString() string {
 	return s.String()
 }
 
-// The ListDomains response includes the following elements.
 type ListDomainsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A summary of domains.
-	//
-	// Type: Complex type containing a list of domain summaries.
-	//
-	// Children: AutoRenew, DomainName, Expiry, TransferLock
 	Domains []*DomainSummary `type:"list" required:"true"`
 
-	// If there are more domains than you specified for MaxItems in the request,
-	// submit another request and include the value of NextPageMarker in the value
-	// of Marker.
-	//
-	// Type: String
-	//
-	// Parent: Operations
 	NextPageMarker *string `type:"string"`
 }
 
@@ -2239,33 +1850,11 @@ func (s ListDomainsOutput) GoString() string {
 	return s.String()
 }
 
-// The ListOperations request includes the following elements.
 type ListOperationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// For an initial request for a list of operations, omit this element. If the
-	// number of operations that are not yet complete is greater than the value
-	// that you specified for MaxItems, you can use Marker to return additional
-	// operations. Get the value of NextPageMarker from the previous response, and
-	// submit another request that includes the value of NextPageMarker in the Marker
-	// element.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Required: No
 	Marker *string `type:"string"`
 
-	// Number of domains to be returned.
-	//
-	// Type: Integer
-	//
-	// Default: 20
-	//
-	// Constraints: A value between 1 and 100.
-	//
-	// Required: No
 	MaxItems *int64 `type:"integer"`
 }
 
@@ -2279,24 +1868,11 @@ func (s ListOperationsInput) GoString() string {
 	return s.String()
 }
 
-// The ListOperations response includes the following elements.
 type ListOperationsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// If there are more operations than you specified for MaxItems in the request,
-	// submit another request and include the value of NextPageMarker in the value
-	// of Marker.
-	//
-	// Type: String
-	//
-	// Parent: Operations
 	NextPageMarker *string `type:"string"`
 
-	// Lists summaries of the operations.
-	//
-	// Type: Complex type containing a list of operation summaries
-	//
-	// Children: OperationId, Status, SubmittedDate, Type
 	Operations []*OperationSummary `type:"list" required:"true"`
 }
 
@@ -2310,11 +1886,9 @@ func (s ListOperationsOutput) GoString() string {
 	return s.String()
 }
 
-// The ListTagsForDomainRequest includes the following elements.
 type ListTagsForDomainInput struct {
 	_ struct{} `type:"structure"`
 
-	// The domain for which you want to get a list of tags.
 	DomainName *string `type:"string" required:"true"`
 }
 
@@ -2341,27 +1915,9 @@ func (s *ListTagsForDomainInput) Validate() error {
 	return nil
 }
 
-// The ListTagsForDomain response includes the following elements.
 type ListTagsForDomainOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of the tags that are associated with the specified domain.
-	//
-	// Type: A complex type containing a list of tags
-	//
-	// Each tag includes the following elements.
-	//
-	//  Key
-	//
-	// The key (name) of a tag.
-	//
-	// Type: String
-	//
-	//  Value
-	//
-	// The value of a tag.
-	//
-	// Type: String
 	TagList []*Tag `type:"list" required:"true"`
 }
 
@@ -2375,29 +1931,11 @@ func (s ListTagsForDomainOutput) GoString() string {
 	return s.String()
 }
 
-// Nameserver includes the following elements.
 type Nameserver struct {
 	_ struct{} `type:"structure"`
 
-	// Glue IP address of a name server entry. Glue IP addresses are required only
-	// when the name of the name server is a subdomain of the domain. For example,
-	// if your domain is example.com and the name server for the domain is ns.example.com,
-	// you need to specify the IP address for ns.example.com.
-	//
-	// Type: List of IP addresses.
-	//
-	// Constraints: The list can contain only one IPv4 and one IPv6 address.
-	//
-	// Parent: Nameservers
 	GlueIps []*string `type:"list"`
 
-	// The fully qualified host name of the name server.
-	//
-	// Type: String
-	//
-	// Constraint: Maximum 255 characterss
-	//
-	// Parent: Nameservers
 	Name *string `type:"string" required:"true"`
 }
 
@@ -2424,29 +1962,15 @@ func (s *Nameserver) Validate() error {
 	return nil
 }
 
-// OperationSummary includes the following elements.
 type OperationSummary struct {
 	_ struct{} `type:"structure"`
 
-	// Identifier returned to track the requested action.
-	//
-	// Type: String
 	OperationId *string `type:"string" required:"true"`
 
-	// The current status of the requested operation in the system.
-	//
-	// Type: String
 	Status *string `type:"string" required:"true" enum:"OperationStatus"`
 
-	// The date when the request was submitted.
 	SubmittedDate *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
 
-	// Type of the action requested.
-	//
-	// Type: String
-	//
-	// Valid values: REGISTER_DOMAIN | DELETE_DOMAIN | TRANSFER_IN_DOMAIN | UPDATE_DOMAIN_CONTACT
-	// | UPDATE_NAMESERVER | CHANGE_PRIVACY_PROTECTION | DOMAIN_LOCK
 	Type *string `type:"string" required:"true" enum:"OperationType"`
 }
 
@@ -2460,123 +1984,27 @@ func (s OperationSummary) GoString() string {
 	return s.String()
 }
 
-// The RegisterDomain request includes the following elements.
 type RegisterDomainInput struct {
 	_ struct{} `type:"structure"`
 
-	// Provides detailed contact information.
-	//
-	// Type: Complex
-	//
-	// Children: FirstName, MiddleName, LastName, ContactType, OrganizationName,
-	// AddressLine1, AddressLine2, City, State, CountryCode, ZipCode, PhoneNumber,
-	// Email, Fax, ExtraParams
-	//
-	// Required: Yes
 	AdminContact *ContactDetail `type:"structure" required:"true"`
 
-	// Indicates whether the domain will be automatically renewed (true) or not
-	// (false). Autorenewal only takes effect after the account is charged.
-	//
-	// Type: Boolean
-	//
-	// Valid values: true | false
-	//
-	// Default: true
-	//
-	// Required: No
 	AutoRenew *bool `type:"boolean"`
 
-	// The name of a domain.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: The domain name can contain only the letters a through z, the
-	// numbers 0 through 9, and hyphen (-). Internationalized Domain Names are not
-	// supported.
-	//
-	// Required: Yes
 	DomainName *string `type:"string" required:"true"`
 
-	// The number of years the domain will be registered. Domains are registered
-	// for a minimum of one year. The maximum period depends on the top-level domain.
-	//
-	// Type: Integer
-	//
-	// Default: 1
-	//
-	// Valid values: Integer from 1 to 10
-	//
-	// Required: Yes
 	DurationInYears *int64 `min:"1" type:"integer" required:"true"`
 
-	// Reserved for future use.
 	IdnLangCode *string `type:"string"`
 
-	// Whether you want to conceal contact information from WHOIS queries. If you
-	// specify true, WHOIS ("who is") queries will return contact information for
-	// our registrar partner, Gandi, instead of the contact information that you
-	// enter.
-	//
-	// Type: Boolean
-	//
-	// Default: true
-	//
-	// Valid values: true | false
-	//
-	// Required: No
 	PrivacyProtectAdminContact *bool `type:"boolean"`
 
-	// Whether you want to conceal contact information from WHOIS queries. If you
-	// specify true, WHOIS ("who is") queries will return contact information for
-	// our registrar partner, Gandi, instead of the contact information that you
-	// enter.
-	//
-	// Type: Boolean
-	//
-	// Default: true
-	//
-	// Valid values: true | false
-	//
-	// Required: No
 	PrivacyProtectRegistrantContact *bool `type:"boolean"`
 
-	// Whether you want to conceal contact information from WHOIS queries. If you
-	// specify true, WHOIS ("who is") queries will return contact information for
-	// our registrar partner, Gandi, instead of the contact information that you
-	// enter.
-	//
-	// Type: Boolean
-	//
-	// Default: true
-	//
-	// Valid values: true | false
-	//
-	// Required: No
 	PrivacyProtectTechContact *bool `type:"boolean"`
 
-	// Provides detailed contact information.
-	//
-	// Type: Complex
-	//
-	// Children: FirstName, MiddleName, LastName, ContactType, OrganizationName,
-	// AddressLine1, AddressLine2, City, State, CountryCode, ZipCode, PhoneNumber,
-	// Email, Fax, ExtraParams
-	//
-	// Required: Yes
 	RegistrantContact *ContactDetail `type:"structure" required:"true"`
 
-	// Provides detailed contact information.
-	//
-	// Type: Complex
-	//
-	// Children: FirstName, MiddleName, LastName, ContactType, OrganizationName,
-	// AddressLine1, AddressLine2, City, State, CountryCode, ZipCode, PhoneNumber,
-	// Email, Fax, ExtraParams
-	//
-	// Required: Yes
 	TechContact *ContactDetail `type:"structure" required:"true"`
 }
 
@@ -2633,18 +2061,9 @@ func (s *RegisterDomainInput) Validate() error {
 	return nil
 }
 
-// The RegisterDomain response includes the following element.
 type RegisterDomainOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Identifier for tracking the progress of the request. To use this ID to query
-	// the operation status, use GetOperationDetail.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: Maximum 255 characters.
 	OperationId *string `type:"string" required:"true"`
 }
 
@@ -2658,17 +2077,64 @@ func (s RegisterDomainOutput) GoString() string {
 	return s.String()
 }
 
+type RenewDomainInput struct {
+	_ struct{} `type:"structure"`
+
+	CurrentExpiryYear *int64 `type:"integer" required:"true"`
+
+	DomainName *string `type:"string" required:"true"`
+
+	DurationInYears *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation
+func (s RenewDomainInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RenewDomainInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RenewDomainInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RenewDomainInput"}
+	if s.CurrentExpiryYear == nil {
+		invalidParams.Add(request.NewErrParamRequired("CurrentExpiryYear"))
+	}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DurationInYears != nil && *s.DurationInYears < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("DurationInYears", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+type RenewDomainOutput struct {
+	_ struct{} `type:"structure"`
+
+	OperationId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s RenewDomainOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RenewDomainOutput) GoString() string {
+	return s.String()
+}
+
 type ResendContactReachabilityEmailInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the domain for which you want Amazon Route 53 to resend a confirmation
-	// email to the registrant contact.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Required: Yes
 	DomainName *string `locationName:"domainName" type:"string"`
 }
 
@@ -2685,16 +2151,10 @@ func (s ResendContactReachabilityEmailInput) GoString() string {
 type ResendContactReachabilityEmailOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The domain name for which you requested a confirmation email.
 	DomainName *string `locationName:"domainName" type:"string"`
 
-	// The email address for the registrant contact at the time that we sent the
-	// verification email.
 	EmailAddress *string `locationName:"emailAddress" type:"string"`
 
-	// True if the email address for the registrant contact has already been verified,
-	// and false otherwise. If the email address has already been verified, we don't
-	// send another confirmation email.
 	IsAlreadyVerified *bool `locationName:"isAlreadyVerified" type:"boolean"`
 }
 
@@ -2708,21 +2168,9 @@ func (s ResendContactReachabilityEmailOutput) GoString() string {
 	return s.String()
 }
 
-// The RetrieveDomainAuthCode request includes the following element.
 type RetrieveDomainAuthCodeInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of a domain.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: The domain name can contain only the letters a through z, the
-	// numbers 0 through 9, and hyphen (-). Internationalized Domain Names are not
-	// supported.
-	//
-	// Required: Yes
 	DomainName *string `type:"string" required:"true"`
 }
 
@@ -2749,13 +2197,9 @@ func (s *RetrieveDomainAuthCodeInput) Validate() error {
 	return nil
 }
 
-// The RetrieveDomainAuthCode response includes the following element.
 type RetrieveDomainAuthCodeOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The authorization code for the domain.
-	//
-	// Type: String
 	AuthCode *string `type:"string" required:"true"`
 }
 
@@ -2769,34 +2213,11 @@ func (s RetrieveDomainAuthCodeOutput) GoString() string {
 	return s.String()
 }
 
-// Each tag includes the following elements.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
-	// The key (name) of a tag.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Valid values: A-Z, a-z, 0-9, space, ".:/=+\-@"
-	//
-	// Constraints: Each key can be 1-128 characters long.
-	//
-	// Required: Yes
 	Key *string `type:"string"`
 
-	// The value of a tag.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Valid values: A-Z, a-z, 0-9, space, ".:/=+\-@"
-	//
-	// Constraints: Each value can be 0-256 characters long.
-	//
-	// Required: Yes
 	Value *string `type:"string"`
 }
 
@@ -2810,140 +2231,31 @@ func (s Tag) GoString() string {
 	return s.String()
 }
 
-// The TransferDomain request includes the following elements.
 type TransferDomainInput struct {
 	_ struct{} `type:"structure"`
 
-	// Provides detailed contact information.
-	//
-	// Type: Complex
-	//
-	// Children: FirstName, MiddleName, LastName, ContactType, OrganizationName,
-	// AddressLine1, AddressLine2, City, State, CountryCode, ZipCode, PhoneNumber,
-	// Email, Fax, ExtraParams
-	//
-	// Required: Yes
 	AdminContact *ContactDetail `type:"structure" required:"true"`
 
-	// The authorization code for the domain. You get this value from the current
-	// registrar.
-	//
-	// Type: String
-	//
-	// Required: Yes
 	AuthCode *string `type:"string"`
 
-	// Indicates whether the domain will be automatically renewed (true) or not
-	// (false). Autorenewal only takes effect after the account is charged.
-	//
-	// Type: Boolean
-	//
-	// Valid values: true | false
-	//
-	// Default: true
-	//
-	// Required: No
 	AutoRenew *bool `type:"boolean"`
 
-	// The name of a domain.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: The domain name can contain only the letters a through z, the
-	// numbers 0 through 9, and hyphen (-). Internationalized Domain Names are not
-	// supported.
-	//
-	// Required: Yes
 	DomainName *string `type:"string" required:"true"`
 
-	// The number of years the domain will be registered. Domains are registered
-	// for a minimum of one year. The maximum period depends on the top-level domain.
-	//
-	// Type: Integer
-	//
-	// Default: 1
-	//
-	// Valid values: Integer from 1 to 10
-	//
-	// Required: Yes
 	DurationInYears *int64 `min:"1" type:"integer" required:"true"`
 
-	// Reserved for future use.
 	IdnLangCode *string `type:"string"`
 
-	// Contains details for the host and glue IP addresses.
-	//
-	// Type: Complex
-	//
-	// Children: GlueIps, Name
-	//
-	// Required: No
 	Nameservers []*Nameserver `type:"list"`
 
-	// Whether you want to conceal contact information from WHOIS queries. If you
-	// specify true, WHOIS ("who is") queries will return contact information for
-	// our registrar partner, Gandi, instead of the contact information that you
-	// enter.
-	//
-	// Type: Boolean
-	//
-	// Default: true
-	//
-	// Valid values: true | false
-	//
-	// Required: No
 	PrivacyProtectAdminContact *bool `type:"boolean"`
 
-	// Whether you want to conceal contact information from WHOIS queries. If you
-	// specify true, WHOIS ("who is") queries will return contact information for
-	// our registrar partner, Gandi, instead of the contact information that you
-	// enter.
-	//
-	// Type: Boolean
-	//
-	// Default: true
-	//
-	// Valid values: true | false
-	//
-	// Required: No
 	PrivacyProtectRegistrantContact *bool `type:"boolean"`
 
-	// Whether you want to conceal contact information from WHOIS queries. If you
-	// specify true, WHOIS ("who is") queries will return contact information for
-	// our registrar partner, Gandi, instead of the contact information that you
-	// enter.
-	//
-	// Type: Boolean
-	//
-	// Default: true
-	//
-	// Valid values: true | false
-	//
-	// Required: No
 	PrivacyProtectTechContact *bool `type:"boolean"`
 
-	// Provides detailed contact information.
-	//
-	// Type: Complex
-	//
-	// Children: FirstName, MiddleName, LastName, ContactType, OrganizationName,
-	// AddressLine1, AddressLine2, City, State, CountryCode, ZipCode, PhoneNumber,
-	// Email, Fax, ExtraParams
-	//
-	// Required: Yes
 	RegistrantContact *ContactDetail `type:"structure" required:"true"`
 
-	// Provides detailed contact information.
-	//
-	// Type: Complex
-	//
-	// Children: FirstName, MiddleName, LastName, ContactType, OrganizationName,
-	// AddressLine1, AddressLine2, City, State, CountryCode, ZipCode, PhoneNumber,
-	// Email, Fax, ExtraParams
-	//
-	// Required: Yes
 	TechContact *ContactDetail `type:"structure" required:"true"`
 }
 
@@ -3010,18 +2322,9 @@ func (s *TransferDomainInput) Validate() error {
 	return nil
 }
 
-// The TranserDomain response includes the following element.
 type TransferDomainOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Identifier for tracking the progress of the request. To use this ID to query
-	// the operation status, use GetOperationDetail.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: Maximum 255 characters.
 	OperationId *string `type:"string" required:"true"`
 }
 
@@ -3035,54 +2338,15 @@ func (s TransferDomainOutput) GoString() string {
 	return s.String()
 }
 
-// The UpdateDomainContact request includes the following elements.
 type UpdateDomainContactInput struct {
 	_ struct{} `type:"structure"`
 
-	// Provides detailed contact information.
-	//
-	// Type: Complex
-	//
-	// Children: FirstName, MiddleName, LastName, ContactType, OrganizationName,
-	// AddressLine1, AddressLine2, City, State, CountryCode, ZipCode, PhoneNumber,
-	// Email, Fax, ExtraParams
-	//
-	// Required: Yes
 	AdminContact *ContactDetail `type:"structure"`
 
-	// The name of a domain.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: The domain name can contain only the letters a through z, the
-	// numbers 0 through 9, and hyphen (-). Internationalized Domain Names are not
-	// supported.
-	//
-	// Required: Yes
 	DomainName *string `type:"string" required:"true"`
 
-	// Provides detailed contact information.
-	//
-	// Type: Complex
-	//
-	// Children: FirstName, MiddleName, LastName, ContactType, OrganizationName,
-	// AddressLine1, AddressLine2, City, State, CountryCode, ZipCode, PhoneNumber,
-	// Email, Fax, ExtraParams
-	//
-	// Required: Yes
 	RegistrantContact *ContactDetail `type:"structure"`
 
-	// Provides detailed contact information.
-	//
-	// Type: Complex
-	//
-	// Children: FirstName, MiddleName, LastName, ContactType, OrganizationName,
-	// AddressLine1, AddressLine2, City, State, CountryCode, ZipCode, PhoneNumber,
-	// Email, Fax, ExtraParams
-	//
-	// Required: Yes
 	TechContact *ContactDetail `type:"structure"`
 }
 
@@ -3124,18 +2388,9 @@ func (s *UpdateDomainContactInput) Validate() error {
 	return nil
 }
 
-// The UpdateDomainContact response includes the following element.
 type UpdateDomainContactOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Identifier for tracking the progress of the request. To use this ID to query
-	// the operation status, use GetOperationDetail.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: Maximum 255 characters.
 	OperationId *string `type:"string" required:"true"`
 }
 
@@ -3149,63 +2404,15 @@ func (s UpdateDomainContactOutput) GoString() string {
 	return s.String()
 }
 
-// The UpdateDomainContactPrivacy request includes the following elements.
 type UpdateDomainContactPrivacyInput struct {
 	_ struct{} `type:"structure"`
 
-	// Whether you want to conceal contact information from WHOIS queries. If you
-	// specify true, WHOIS ("who is") queries will return contact information for
-	// our registrar partner, Gandi, instead of the contact information that you
-	// enter.
-	//
-	// Type: Boolean
-	//
-	// Default: None
-	//
-	// Valid values: true | false
-	//
-	// Required: No
 	AdminPrivacy *bool `type:"boolean"`
 
-	// The name of a domain.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: The domain name can contain only the letters a through z, the
-	// numbers 0 through 9, and hyphen (-). Internationalized Domain Names are not
-	// supported.
-	//
-	// Required: Yes
 	DomainName *string `type:"string" required:"true"`
 
-	// Whether you want to conceal contact information from WHOIS queries. If you
-	// specify true, WHOIS ("who is") queries will return contact information for
-	// our registrar partner, Gandi, instead of the contact information that you
-	// enter.
-	//
-	// Type: Boolean
-	//
-	// Default: None
-	//
-	// Valid values: true | false
-	//
-	// Required: No
 	RegistrantPrivacy *bool `type:"boolean"`
 
-	// Whether you want to conceal contact information from WHOIS queries. If you
-	// specify true, WHOIS ("who is") queries will return contact information for
-	// our registrar partner, Gandi, instead of the contact information that you
-	// enter.
-	//
-	// Type: Boolean
-	//
-	// Default: None
-	//
-	// Valid values: true | false
-	//
-	// Required: No
 	TechPrivacy *bool `type:"boolean"`
 }
 
@@ -3232,18 +2439,9 @@ func (s *UpdateDomainContactPrivacyInput) Validate() error {
 	return nil
 }
 
-// The UpdateDomainContactPrivacy response includes the following element.
 type UpdateDomainContactPrivacyOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Identifier for tracking the progress of the request. To use this ID to query
-	// the operation status, use GetOperationDetail.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: Maximum 255 characters.
 	OperationId *string `type:"string" required:"true"`
 }
 
@@ -3257,33 +2455,13 @@ func (s UpdateDomainContactPrivacyOutput) GoString() string {
 	return s.String()
 }
 
-// The UpdateDomainNameserver request includes the following elements.
 type UpdateDomainNameserversInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of a domain.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: The domain name can contain only the letters a through z, the
-	// numbers 0 through 9, and hyphen (-). Internationalized Domain Names are not
-	// supported.
-	//
-	// Required: Yes
 	DomainName *string `type:"string" required:"true"`
 
-	// The authorization key for .fi domains
 	FIAuthKey *string `type:"string"`
 
-	// A list of new name servers for the domain.
-	//
-	// Type: Complex
-	//
-	// Children: Name, GlueIps
-	//
-	// Required: Yes
 	Nameservers []*Nameserver `type:"list" required:"true"`
 }
 
@@ -3323,18 +2501,9 @@ func (s *UpdateDomainNameserversInput) Validate() error {
 	return nil
 }
 
-// The UpdateDomainNameservers response includes the following element.
 type UpdateDomainNameserversOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Identifier for tracking the progress of the request. To use this ID to query
-	// the operation status, use GetOperationDetail.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: Maximum 255 characters.
 	OperationId *string `type:"string" required:"true"`
 }
 
@@ -3348,65 +2517,11 @@ func (s UpdateDomainNameserversOutput) GoString() string {
 	return s.String()
 }
 
-// The UpdateTagsForDomainRequest includes the following elements.
 type UpdateTagsForDomainInput struct {
 	_ struct{} `type:"structure"`
 
-	// The domain for which you want to add or update tags.
-	//
-	// The name of a domain.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Constraints: The domain name can contain only the letters a through z, the
-	// numbers 0 through 9, and hyphen (-). Hyphens are allowed only when they're
-	// surrounded by letters, numbers, or other hyphens. You can't specify a hyphen
-	// at the beginning or end of a label. To specify an Internationalized Domain
-	// Name, you must convert the name to Punycode.
-	//
-	// Required: Yes
 	DomainName *string `type:"string" required:"true"`
 
-	// A list of the tag keys and values that you want to add or update. If you
-	// specify a key that already exists, the corresponding value will be replaced.
-	//
-	// Type: A complex type containing a list of tags
-	//
-	// Default: None
-	//
-	// Required: No
-	//
-	// '> Each tag includes the following elements:
-	//
-	//  Key
-	//
-	// The key (name) of a tag.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Valid values: Unicode characters including alphanumeric, space, and ".:/=+\-@"
-	//
-	// Constraints: Each key can be 1-128 characters long.
-	//
-	// Required: Yes
-	//
-	//  Value
-	//
-	// The value of a tag.
-	//
-	// Type: String
-	//
-	// Default: None
-	//
-	// Valid values: Unicode characters including alphanumeric, space, and ".:/=+\-@"
-	//
-	// Constraints: Each value can be 0-256 characters long.
-	//
-	// Required: Yes
 	TagsToUpdate []*Tag `type:"list"`
 }
 
@@ -3444,6 +2559,46 @@ func (s UpdateTagsForDomainOutput) String() string {
 
 // GoString returns the string representation
 func (s UpdateTagsForDomainOutput) GoString() string {
+	return s.String()
+}
+
+type ViewBillingInput struct {
+	_ struct{} `type:"structure"`
+
+	End *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	Marker *string `type:"string"`
+
+	MaxItems *int64 `type:"integer"`
+
+	Start *time.Time `type:"timestamp" timestampFormat:"unix"`
+}
+
+// String returns the string representation
+func (s ViewBillingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ViewBillingInput) GoString() string {
+	return s.String()
+}
+
+type ViewBillingOutput struct {
+	_ struct{} `type:"structure"`
+
+	BillingRecords []*BillingRecord `type:"list"`
+
+	NextPageMarker *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ViewBillingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ViewBillingOutput) GoString() string {
 	return s.String()
 }
 

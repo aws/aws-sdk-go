@@ -172,6 +172,27 @@ func ExampleRoute53Domains_GetDomainDetail() {
 	fmt.Println(resp)
 }
 
+func ExampleRoute53Domains_GetDomainSuggestions() {
+	svc := route53domains.New(session.New())
+
+	params := &route53domains.GetDomainSuggestionsInput{
+		DomainName:      aws.String("DomainName"), // Required
+		OnlyAvailable:   aws.Bool(true),           // Required
+		SuggestionCount: aws.Int64(1),             // Required
+	}
+	resp, err := svc.GetDomainSuggestions(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleRoute53Domains_GetOperationDetail() {
 	svc := route53domains.New(session.New())
 
@@ -329,6 +350,27 @@ func ExampleRoute53Domains_RegisterDomain() {
 		PrivacyProtectTechContact:       aws.Bool(true),
 	}
 	resp, err := svc.RegisterDomain(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleRoute53Domains_RenewDomain() {
+	svc := route53domains.New(session.New())
+
+	params := &route53domains.RenewDomainInput{
+		CurrentExpiryYear: aws.Int64(1),             // Required
+		DomainName:        aws.String("DomainName"), // Required
+		DurationInYears:   aws.Int64(1),
+	}
+	resp, err := svc.RenewDomain(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -632,6 +674,28 @@ func ExampleRoute53Domains_UpdateTagsForDomain() {
 		},
 	}
 	resp, err := svc.UpdateTagsForDomain(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleRoute53Domains_ViewBilling() {
+	svc := route53domains.New(session.New())
+
+	params := &route53domains.ViewBillingInput{
+		End:      aws.Time(time.Now()),
+		Marker:   aws.String("PageMarker"),
+		MaxItems: aws.Int64(1),
+		Start:    aws.Time(time.Now()),
+	}
+	resp, err := svc.ViewBilling(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
