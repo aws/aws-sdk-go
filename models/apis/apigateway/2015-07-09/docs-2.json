@@ -532,6 +532,13 @@
       "refs": {
       }
     },
+    "ListOfARNs": {
+      "base": null,
+      "refs": {
+        "Authorizer$providerARNs": null,
+        "CreateAuthorizerRequest$providerARNs": null
+      }
+    },
     "ListOfApiKey": {
       "base": null,
       "refs": {
@@ -712,6 +719,7 @@
         "Stage$variables": "<p>A map that defines the stage variables for a <a>Stage</a> resource. Variable names can have alphanumeric characters, and the values must match <code>[A-Za-z0-9-._~:/?#&amp;=,]+</code>.</p>",
         "TestInvokeAuthorizerRequest$stageVariables": "<p>A key-value map of stage variables to simulate an invocation on a deployed <a>Stage</a>.</p>",
         "TestInvokeAuthorizerRequest$additionalContext": "<p>[Optional] A key-value map of additional context variables.</p>",
+        "TestInvokeAuthorizerResponse$claims": null,
         "TestInvokeMethodRequest$stageVariables": "<p>A key-value map of stage variables to simulate an invocation on a deployed <a>Stage</a>.</p>"
       }
     },
@@ -789,6 +797,12 @@
       "base": null,
       "refs": {
         "Deployment$apiSummary": "<p>Gets a summary of the <a>RestApi</a> at the date and time that the deployment resource was created.</p>"
+      }
+    },
+    "ProviderARN": {
+      "base": null,
+      "refs": {
+        "ListOfARNs$member": null
       }
     },
     "PutIntegrationRequest": {

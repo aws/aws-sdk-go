@@ -47,7 +47,6 @@ func ExampleAPIGateway_CreateAuthorizer() {
 	svc := apigateway.New(session.New())
 
 	params := &apigateway.CreateAuthorizerInput{
-		AuthorizerUri:                aws.String("String"),         // Required
 		IdentitySource:               aws.String("String"),         // Required
 		Name:                         aws.String("String"),         // Required
 		RestApiId:                    aws.String("String"),         // Required
@@ -55,7 +54,12 @@ func ExampleAPIGateway_CreateAuthorizer() {
 		AuthType:                     aws.String("String"),
 		AuthorizerCredentials:        aws.String("String"),
 		AuthorizerResultTtlInSeconds: aws.Int64(1),
+		AuthorizerUri:                aws.String("String"),
 		IdentityValidationExpression: aws.String("String"),
+		ProviderARNs: []*string{
+			aws.String("ProviderARN"), // Required
+			// More values...
+		},
 	}
 	resp, err := svc.CreateAuthorizer(params)
 
