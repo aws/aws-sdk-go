@@ -4744,13 +4744,15 @@ func ExampleEC2_ModifyVpcPeeringConnectionOptions() {
 	params := &ec2.ModifyVpcPeeringConnectionOptionsInput{
 		VpcPeeringConnectionId: aws.String("String"), // Required
 		AccepterPeeringConnectionOptions: &ec2.PeeringConnectionOptionsRequest{
-			AllowEgressFromLocalClassicLinkToRemoteVpc: aws.Bool(true), // Required
-			AllowEgressFromLocalVpcToRemoteClassicLink: aws.Bool(true), // Required
+			AllowDnsResolutionFromRemoteVpc:            aws.Bool(true),
+			AllowEgressFromLocalClassicLinkToRemoteVpc: aws.Bool(true),
+			AllowEgressFromLocalVpcToRemoteClassicLink: aws.Bool(true),
 		},
 		DryRun: aws.Bool(true),
 		RequesterPeeringConnectionOptions: &ec2.PeeringConnectionOptionsRequest{
-			AllowEgressFromLocalClassicLinkToRemoteVpc: aws.Bool(true), // Required
-			AllowEgressFromLocalVpcToRemoteClassicLink: aws.Bool(true), // Required
+			AllowDnsResolutionFromRemoteVpc:            aws.Bool(true),
+			AllowEgressFromLocalClassicLinkToRemoteVpc: aws.Bool(true),
+			AllowEgressFromLocalVpcToRemoteClassicLink: aws.Bool(true),
 		},
 	}
 	resp, err := svc.ModifyVpcPeeringConnectionOptions(params)
