@@ -280,7 +280,7 @@ func TestPreResignRequestExpiredCreds(t *testing.T) {
 	creds.Expire()
 
 	signSDKRequestWithCurrTime(r, func() time.Time {
-		// Simulate the request occured 15 minutes in the past
+		// Simulate the request occurred 15 minutes in the past
 		return time.Now().Add(-48 * time.Hour)
 	})
 	assert.NotEqual(t, querySig, r.HTTPRequest.URL.Query().Get("X-Amz-Signature"))
@@ -308,7 +308,7 @@ func TestResignRequestExpiredRequest(t *testing.T) {
 	origSignedAt := r.LastSignedAt
 
 	signSDKRequestWithCurrTime(r, func() time.Time {
-		// Simulate the request occured 15 minutes in the past
+		// Simulate the request occurred 15 minutes in the past
 		return time.Now().Add(15 * time.Minute)
 	})
 	assert.NotEqual(t, querySig, r.HTTPRequest.Header.Get("Authorization"))

@@ -25,7 +25,7 @@ type logger interface {
 	log(key string, data map[string]interface{}) error
 }
 
-// init intializes the logger and uses dependecy injection for the
+// init initializes the logger and uses dependency injection for the
 // outputer
 func newBenchmarkLogger(output string) (*benchmarkLogger, error) {
 	b := &benchmarkLogger{}

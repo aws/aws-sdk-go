@@ -318,7 +318,7 @@ func NewUploaderWithClient(svc s3iface.S3API, options ...func(*Uploader)) *Uploa
 //     // Perform upload with options different than the those in the Uploader.
 //     result, err := uploader.Upload(upParams, func(u *s3manager.Uploader) {
 //          u.PartSize = 10 * 1024 * 1024 // 10MB part size
-//          u.LeavePartsOnError = true    // Dont delete the parts if the upload fails.
+//          u.LeavePartsOnError = true    // Don't delete the parts if the upload fails.
 //     })
 func (u Uploader) Upload(input *UploadInput, options ...func(*Uploader)) (*UploadOutput, error) {
 	i := uploader{in: input, ctx: u}
