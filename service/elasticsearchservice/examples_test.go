@@ -65,6 +65,7 @@ func ExampleElasticsearchService_CreateElasticsearchDomain() {
 			InstanceType:           aws.String("ESPartitionInstanceType"),
 			ZoneAwarenessEnabled:   aws.Bool(true),
 		},
+		ElasticsearchVersion: aws.String("ElasticsearchVersionString"),
 		SnapshotOptions: &elasticsearchservice.SnapshotOptions{
 			AutomatedSnapshotStartHour: aws.Int64(1),
 		},
