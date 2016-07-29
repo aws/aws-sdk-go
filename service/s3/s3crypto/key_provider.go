@@ -2,14 +2,17 @@ package s3crypto
 
 import "crypto/rand"
 
-// KeyProvider is used to help generate keys and ivs. This allows for crypto based
+/*// KeyProvider is used to help generate keys and ivs. This allows for crypto based
 // algorithms or services to be used.
 type KeyProvider interface {
 	EncrypterKeyProvider
-	DecrypterKeyProvider
+}*/
+
+// KeyProviderEncrypter test
+type KeyProviderEncrypter interface {
 }
 
-// EncrypterKeyProvider handles how to generate keys and ivs for the content encryption.
+/*// EncrypterKeyProvider handles how to generate keys and ivs for the content encryption.
 // This also satifies the `MaterialDescription` and `CipherDataIface` interfaces.
 type EncrypterKeyProvider interface {
 	CipherDataGenerator
@@ -20,31 +23,13 @@ type EncrypterKeyProvider interface {
 	// MaterialDescription is used to distinguish the materials for both
 	// encryption and decryption.
 	MaterialDescription
-}
+}*/
 
-// CipherDataGenerator is an interface that deals with key and iv generation
-type CipherDataGenerator interface {
-	// GenerateKey generates a key of n bytes
-	GenerateKey(int) ([]byte, error)
-	// GenerateIV generates an iv of n bytes
-	GenerateIV(int) ([]byte, error)
-}
-
-// CipherDataHandler is an interface of getters and setters dealing with
-// keys and ivs.
+// CipherDataHandler is an interface that deals with key and iv generation
 type CipherDataHandler interface {
-	// GetEncryptedKey encrypts and returns the encrypted key
-	GetEncryptedKey(key []byte) ([]byte, error)
-	GetIV() []byte
-	SetIV([]byte)
-	GetKey() []byte
-	SetKey([]byte)
-}
-
-// DecrypterKeyProvider provides an interface to which when grabbing objects
-// from S3 we only need the GetDecryptedKey method.
-type DecrypterKeyProvider interface {
-	GetDecryptedKey([]byte) ([]byte, error)
+	GenerateCipherData(int, int) (CipherData, error)
+	EncryptKey(key []byte) ([]byte, error)
+	DecryptKey([]byte) ([]byte, error)
 }
 
 func generateBytes(n int) []byte {
@@ -54,7 +39,7 @@ func generateBytes(n int) []byte {
 }
 
 // BaseKeyProvider a wrapper struct that returns a KeyProvider
-type BaseKeyProvider struct {
+/*type BaseKeyProvider struct {
 	KeyProvider
 }
 
@@ -62,4 +47,4 @@ type BaseKeyProvider struct {
 // decoding the envelope.
 func (kp *BaseKeyProvider) GetKeyProvider() KeyProvider {
 	return kp.KeyProvider
-}
+}*/

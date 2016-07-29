@@ -8,7 +8,7 @@ import (
 	"io/ioutil"
 	"strings"
 
-	. "github.com/lsegal/gucumber"
+	. "github.com/gucumber/gucumber"
 	"github.com/stretchr/testify/assert"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -105,11 +105,11 @@ func init() {
 	})
 
 	Then(`^I encrypt each fixture with "(.+?)" "(.+?)" "(.+?)" and "(.+?)"$`, func(kek, v1, v2, cek string) {
-		var kp s3crypto.KeyProvider
-		var mode s3crypto.CryptoMode
+		var handler s3crypto.CipherDataHandler
+		var builder s3crypto.ContentCipherBuilder
 		switch kek {
 		case "kms":
-			m := s3crypto.NewJSONMatDesc()
+			m := s3crypto.MaterialDescription{}
 			arn, err := getAliasInformation(v1, v2)
 			assert.Nil(T, err)
 
@@ -117,7 +117,7 @@ func init() {
 			assert.Nil(T, err)
 			World["Masterkey"] = b64Arn
 
-			kp, err = s3crypto.NewKMSKeyProvider(session.New(&aws.Config{
+			handler, err = s3crypto.NewKMSKeyProvider(session.New(&aws.Config{
 				Region: &v2,
 			}), arn, m)
 			assert.Nil(T, err)
@@ -127,12 +127,12 @@ func init() {
 
 		switch cek {
 		case "aes_gcm":
-			mode = s3crypto.Authentication(kp)
+			builder = s3crypto.AESGCMContentCipherBuilder(handler)
 		default:
 			T.Skip()
 		}
 
-		c := s3crypto.New(nil, mode, func(c *s3crypto.Client) {
+		c := s3crypto.New(nil, builder, func(c *s3crypto.Client) {
 			c.Config.S3Session = session.New(&aws.Config{
 				Region: aws.String("us-west-2"),
 			})

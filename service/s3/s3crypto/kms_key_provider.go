@@ -10,13 +10,10 @@ import (
 // KMSKeyProvider will make calls to KMS to get the masterkey
 type KMSKeyProvider struct {
 	kms          *kms.KMS
-	key          []byte
 	encryptedKey []byte
-	iv           []byte
 	cmkID        *string
 
 	CipherData
-	MaterialDescription
 }
 
 // NewKMSKeyProvider builds a new KMS key provider using the customer key ID and material
@@ -27,72 +24,52 @@ type KMSKeyProvider struct {
 //	cmkID := "arn to key"
 //	matdesc := s3crypto.NewJSONMatDesc()
 //	kp, err := s3crypto.NewKMSKeyProvider(sess, cmkID, matdesc)
-func NewKMSKeyProvider(prov client.ConfigProvider, cmkID string, matdesc MaterialDescription) (KeyProvider, error) {
+func NewKMSKeyProvider(prov client.ConfigProvider, cmkID string, matdesc MaterialDescription) (CipherDataHandler, error) {
 	if matdesc == nil {
-		matdesc = &JSONMatDesc{}
+		matdesc = MaterialDescription{}
 	}
-	matdesc.Set("kms_cmk_id", cmkID)
+	matdesc["kms_cmk_id"] = &cmkID
 
 	kp := &KMSKeyProvider{
-		MaterialDescription: matdesc,
-		kms:                 kms.New(prov),
-		cmkID:               &cmkID,
+		kms:   kms.New(prov),
+		cmkID: &cmkID,
 	}
-	kp.Algorithm = "kms"
+	kp.CipherData.WrapAlgorithm = "kms"
+	kp.CipherData.MaterialDescription = matdesc
 	return kp, nil
 }
 
-// NewKMSKeyProviderWithMatDesc initializes a KMS keyprovider with a material description. This
+// NewKMSKeyProviderDecrypter initializes a KMS keyprovider with a material description. This
 // is used with Decrypting kms content, due to the cmkID being in the material description.
-func NewKMSKeyProviderWithMatDesc(prov client.ConfigProvider, matdesc string) (KeyProvider, error) {
-	m := &JSONMatDesc{}
-	err := m.DecodeDescription([]byte(matdesc))
+func NewKMSKeyProviderDecrypter(prov client.ConfigProvider, matdesc string) (CipherDataHandler, error) {
+	m := MaterialDescription{}
+	err := m.decodeDescription([]byte(matdesc))
 	if err != nil {
 		return nil, err
 	}
 
-	cmkID, ok := m.Get("kms_cmk_id")
+	cmkID, ok := m["kms_cmk_id"]
 	if !ok {
-		return nil, awserr.New("MissingCMKID", "Material description is missing CMK ID", nil)
+		return nil, awserr.New("MissingCMKIDError", "Material description is missing CMK ID", nil)
 	}
 
 	kp := &KMSKeyProvider{}
-	kp.MaterialDescription = m
+	kp.CipherData.MaterialDescription = m
 	kp.kms = kms.New(prov)
-	kp.cmkID = &cmkID
-	kp.Algorithm = "kms"
+	kp.cmkID = cmkID
+	kp.WrapAlgorithm = "kms"
 	return kp, nil
 }
 
-// GetKey getter for key
-func (kp *KMSKeyProvider) GetKey() []byte {
-	return kp.key
-}
-
-// SetKey setter for key
-func (kp *KMSKeyProvider) SetKey(key []byte) {
-	kp.key = key
-}
-
-// GetIV getter for IV
-func (kp *KMSKeyProvider) GetIV() []byte {
-	return kp.iv
-}
-
-// SetIV setter for IV
-func (kp *KMSKeyProvider) SetIV(iv []byte) {
-	kp.iv = iv
-}
-
-// GetEncryptedKey getter for encrypted key. The encrypted key is set
+// EncryptKey getter for encrypted key. The encrypted key is set
 // when GenerateKey is called.
-func (kp *KMSKeyProvider) GetEncryptedKey(key []byte) ([]byte, error) {
+func (kp *KMSKeyProvider) EncryptKey(key []byte) ([]byte, error) {
 	return kp.encryptedKey, nil
 }
 
-// GetDecryptedKey makes a call to KMS to decrypt the key.
-func (kp *KMSKeyProvider) GetDecryptedKey(key []byte) ([]byte, error) {
-	matdesc := kp.MaterialDescription.GetData()
+// DecryptKey makes a call to KMS to decrypt the key.
+func (kp *KMSKeyProvider) DecryptKey(key []byte) ([]byte, error) {
+	matdesc := kp.CipherData.MaterialDescription.GetData()
 	out, err := kp.kms.Decrypt(&kms.DecryptInput{
 		EncryptionContext: matdesc,
 		CiphertextBlob:    key,
@@ -104,9 +81,9 @@ func (kp *KMSKeyProvider) GetDecryptedKey(key []byte) ([]byte, error) {
 	return out.Plaintext, nil
 }
 
-// GenerateKey makes a call to KMS to generate a data key, Upon making
+// GenerateCipherData makes a call to KMS to generate a data key, Upon making
 // the call, it also sets the encrypted key.
-func (kp *KMSKeyProvider) GenerateKey(n int) ([]byte, error) {
+func (kp *KMSKeyProvider) GenerateCipherData(keySize, ivSize int) (CipherData, error) {
 	out, err := kp.kms.GenerateDataKey(&kms.GenerateDataKeyInput{
 		EncryptionContext: map[string]*string{
 			"kms_cmk_id": kp.cmkID,
@@ -115,13 +92,15 @@ func (kp *KMSKeyProvider) GenerateKey(n int) ([]byte, error) {
 		KeySpec: aws.String("AES_256"),
 	})
 	if err != nil {
-		return nil, err
+		return CipherData{}, err
 	}
 	kp.encryptedKey = out.CiphertextBlob
-	return out.Plaintext, nil
-}
-
-// GenerateIV generates an IV of n bytes
-func (kp *KMSKeyProvider) GenerateIV(n int) ([]byte, error) {
-	return generateBytes(n), nil
+	iv := generateBytes(ivSize)
+	cd := CipherData{
+		Key:                 out.Plaintext,
+		IV:                  iv,
+		WrapAlgorithm:       "kms",
+		MaterialDescription: kp.CipherData.MaterialDescription,
+	}
+	return cd, nil
 }

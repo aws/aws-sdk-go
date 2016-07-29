@@ -2,6 +2,7 @@ package s3crypto
 
 import (
 	"encoding/hex"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"os"
@@ -23,10 +24,7 @@ type Client struct {
 
 // Config used to customize the Client
 type Config struct {
-	// Mode is used to dictate how the SDK encrypts and decrypts the data.
-	//
-	// Defaults to AES GCM with the suggested pairing of KMS
-	Mode CryptoMode
+	ContentCipherBuilder ContentCipherBuilder
 	// SaveStrategy will dictate where the envelope is saved.
 	//
 	// Defaults to the object's metadata
@@ -51,13 +49,13 @@ type Config struct {
 //	  return err
 //	}
 //	svc := s3crypto.New(sess, s3crypto.Authentication(kp))
-func New(prov client.ConfigProvider, mode CryptoMode, options ...func(*Client)) *Client {
+func New(prov client.ConfigProvider, builder ContentCipherBuilder, options ...func(*Client)) *Client {
 	client := &Client{
 		Config: Config{
-			Mode:         mode,
-			SaveStrategy: headerSaveStrategy{},
-			KMSSession:   prov,
-			S3Session:    prov,
+			ContentCipherBuilder: builder,
+			SaveStrategy:         headerSaveStrategy{},
+			KMSSession:           prov,
+			S3Session:            prov,
 		},
 	}
 
@@ -90,10 +88,16 @@ func (c *Client) PutObjectRequest(input *s3.PutObjectInput) (*request.Request, *
 		return req, out
 	}
 
+	encryptor, err := c.Config.ContentCipherBuilder.NewEncryptor()
 	req.Handlers.Build.PushFront(func(r *request.Request) {
+		if err != nil {
+			r.Error = err
+			return
+		}
+
 		md5 := newMD5Reader(input.Body)
 		sha := newSHA256Writer(f)
-		reader, err := c.Config.Mode.EncryptContents(md5)
+		reader, err := encryptor.EncryptContents(md5)
 		if err != nil {
 			r.Error = err
 			return
@@ -105,17 +109,19 @@ func (c *Client) PutObjectRequest(input *s3.PutObjectInput) (*request.Request, *
 			return
 		}
 
+		data := encryptor.GetCipherData()
+		env, err := encodeMeta(md5, encryptor.GetHandler(), data)
+		if err != nil {
+			r.Error = err
+			return
+		}
+
 		shaHex := hex.EncodeToString(sha.GetValue())
 		req.HTTPRequest.Header.Set("X-Amz-Content-Sha256", shaHex)
 
 		f.Seek(0, 0)
 		input.Body = f
 
-		env, err := EncodeMeta(md5, c.Config.Mode)
-		if err != nil {
-			r.Error = err
-			return
-		}
 		err = c.Config.SaveStrategy.Save(env, input)
 		r.Error = err
 	})
@@ -155,18 +161,18 @@ func (c *Client) GetObjectRequest(input *s3.GetObjectInput) (*request.Request, *
 			out.Body.Close()
 			return
 		}
+		fmt.Println("ENVELOPE", env)
 
 		// If KMS should return the correct CEK algorithm with the proper
 		// KMS key provider
-		mode, err := modeForEnvelope(env, c.Config)
+		cipher, err := contentCipherFromEnvelope(env, c.Config)
 		if err != nil {
 			r.Error = err
 			out.Body.Close()
 			return
 		}
 
-		kp := &SymmetricKeyProvider{key: []byte(env.CipherKey), iv: []byte(env.IV)}
-		reader, err := mode.DecryptContents(kp, out.Body)
+		reader, err := cipher.DecryptContents(out.Body)
 		if err != nil {
 			r.Error = err
 			out.Body.Close()

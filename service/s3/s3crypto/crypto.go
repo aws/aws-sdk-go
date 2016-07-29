@@ -48,20 +48,3 @@ func (rc *CryptoReadCloser) Read(b []byte) (int, error) {
 	}
 	return rc.Decrypter.Read(b)
 }
-
-// CipherData is used to populate the envelope during encryption calls
-type CipherData struct {
-	Algorithm string
-	TagLen    string
-}
-
-// GetCipherName handles populating x-amz-wrap-alg and x-amz-cek-alg when
-// adding the envelope.
-func (cd *CipherData) GetCipherName() string {
-	return cd.Algorithm
-}
-
-// GetTagLen handles populating x-amz-tag-len when adding the envelope.
-func (cd *CipherData) GetTagLen() string {
-	return cd.TagLen
-}

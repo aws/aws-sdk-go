@@ -47,11 +47,11 @@ func TestAES_GCM_NIST_gcmEncryptExtIV256_PTLen_408_Test_8(t *testing.T) {
 }
 
 func aesgcmTest(t *testing.T, iv, key, plaintext, expected, tag []byte) {
-	kp := &SymmetricKeyProvider{
-		key: key,
-		iv:  iv,
+	cd := CipherData{
+		Key: key,
+		IV:  iv,
 	}
-	gcm, err := NewAESGCM(kp)
+	gcm, err := NewAESGCM(cd)
 	assert.Nil(t, err)
 	cipherdata := gcm.Encrypt(bytes.NewReader(plaintext))
 

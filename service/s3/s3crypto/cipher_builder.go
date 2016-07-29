@@ -1,0 +1,33 @@
+package s3crypto
+
+import "io"
+
+// ContentCipherBuilder is a builder interface that builds
+// ciphers for each request.
+type ContentCipherBuilder interface {
+	NewEncryptor() (ContentCipher, error)
+}
+
+// ContentCipher deals with encrypting and decrypting content
+type ContentCipher interface {
+	EncryptContents(io.Reader) (io.Reader, error)
+	DecryptContents(io.ReadCloser) (io.ReadCloser, error)
+	GetCipherData() *CipherData
+	GetHandler() CipherDataHandler
+}
+
+// CipherData is used for content encryption. Holds the generated
+// key and iv.
+type CipherData struct {
+	Key           []byte
+	IV            []byte
+	WrapAlgorithm string
+	CEKAlgorithm  string
+	TagLength     string
+	MaterialDescription
+}
+
+// GetCipherData returns the cipher data
+func (cd *CipherData) GetCipherData() *CipherData {
+	return cd
+}

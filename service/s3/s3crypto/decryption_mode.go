@@ -1,6 +1,6 @@
 package s3crypto
 
-import (
+/*import (
 	"io"
 )
 
@@ -18,3 +18,4 @@ func (mode *decryptionMode) DecryptContents(kp KeyProvider, src io.ReadCloser) (
 func (mode *decryptionMode) GetKeyProvider() KeyProvider {
 	return mode.kp
 }
+*/

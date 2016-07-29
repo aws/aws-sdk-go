@@ -2,20 +2,10 @@ package s3crypto
 
 import (
 	"encoding/base64"
-	"io"
 	"strconv"
 
 	"github.com/aws/aws-sdk-go/aws/awserr"
 )
-
-// CryptoMode is an abstraction layer that deals with encryption of
-// the contents and which key provider to use.
-type CryptoMode interface {
-	EncryptContents(io.Reader) (io.Reader, error)
-	DecryptContents(KeyProvider, io.ReadCloser) (io.ReadCloser, error)
-	GetKeyProvider() KeyProvider
-	CipherDataMetadata
-}
 
 // CipherDataMetadata  is used for when populating the envelope details upon
 // encryption.
@@ -24,44 +14,22 @@ type CipherDataMetadata interface {
 	GetTagLen() string
 }
 
-// DecryptMode is meant to used only in reading objects from s3
-type DecryptMode interface {
-	DecryptContents(KeyProvider, io.ReadCloser) (io.ReadCloser, error)
-	GetKeyProvider() KeyProvider
+func contentCipherFromEnvelope(env *Envelope, cfg Config) (ContentCipher, error) {
+	wrap, err := wrapFromEnvelope(env, cfg)
+	if err != nil {
+		return nil, err
+	}
+
+	return cekFromEnvelope(env, wrap)
 }
 
-func modeForEnvelope(env *Envelope, cfg Config) (DecryptMode, error) {
-	kp, err := keyProviderForEnvelope(env, cfg)
-	if err != nil {
-		return nil, err
-	}
-
-	err = DecodeMeta(env, kp)
-	if err != nil {
-		return nil, err
-	}
-
-	kp.SetKey([]byte(env.CipherKey))
-	kp.SetIV([]byte(env.IV))
-
-	cek, err := cekForEnvelope(env, kp)
-	if err != nil {
-		return nil, err
-	}
-	return &decryptionMode{kp: kp, cek: cek}, nil
-}
-
-// wrapFactory will build a new CryptoMode based off the wrapping algorithm
-// TODO: Have the Cipher constructors return errs instead of panicing on invalid
-// key and iv lengths
-func keyProviderForEnvelope(env *Envelope, cfg Config) (KeyProvider, error) {
-
+func wrapFromEnvelope(env *Envelope, cfg Config) (CipherDataHandler, error) {
 	switch env.WrapAlg {
 	case "kms":
-		return NewKMSKeyProviderWithMatDesc(cfg.KMSSession, env.MatDesc)
+		return NewKMSKeyProviderDecrypter(cfg.KMSSession, env.MatDesc)
 	}
 	return nil, awserr.New(
-		"Invali1WrapAlgorithmError",
+		"InvalidWrapAlgorithmError",
 		"wrap algorithm isn't supported, "+env.WrapAlg,
 		nil,
 	)
@@ -71,23 +39,39 @@ func keyProviderForEnvelope(env *Envelope, cfg Config) (KeyProvider, error) {
 // the CEK algorithm consiting of AES GCM with no padding.
 const AESGCMNoPadding = "AES/GCM/NoPadding"
 
-func cekForEnvelope(env *Envelope, kp KeyProvider) (Decrypter, error) {
+func cekFromEnvelope(env *Envelope, cdh CipherDataHandler) (ContentCipher, error) {
+	key, err := base64.StdEncoding.DecodeString(env.CipherKey)
+	if err != nil {
+		return nil, err
+	}
+
+	iv, err := base64.StdEncoding.DecodeString(env.IV)
+	if err != nil {
+		return nil, err
+	}
+	key, err = cdh.DecryptKey(key)
+	if err != nil {
+		return nil, err
+	}
+
 	switch env.CEKAlg {
 	case AESGCMNoPadding:
-		return NewAESGCM(kp)
+		cd := CipherData{
+			Key: key,
+			IV:  iv,
+		}
+		return newAESGCMContentCipher(cd, cdh)
 	}
 	return nil, awserr.New(
-		"InvalidCEK",
+		"InvalidCEKAlgorithmError",
 		"cek algorithm isn't supported, "+env.CEKAlg,
 		nil,
 	)
 }
 
-// EncodeMeta will return the meta object to be saved
-func EncodeMeta(reader HashReader, mode CryptoMode) (Envelope, error) {
-	kp := mode.GetKeyProvider()
-	iv := base64.StdEncoding.EncodeToString(kp.GetIV())
-	keyBytes, err := kp.GetEncryptedKey(kp.GetKey())
+func encodeMeta(reader HashReader, handler CipherDataHandler, cd *CipherData) (Envelope, error) {
+	iv := base64.StdEncoding.EncodeToString(cd.IV)
+	keyBytes, err := handler.EncryptKey(cd.Key)
 	if err != nil {
 		return Envelope{}, err
 	}
@@ -97,7 +81,7 @@ func EncodeMeta(reader HashReader, mode CryptoMode) (Envelope, error) {
 	contentLength := reader.GetContentLength()
 
 	md5Str := base64.StdEncoding.EncodeToString(md5)
-	matdesc, err := kp.EncodeDescription()
+	matdesc, err := cd.encodeDescription()
 	if err != nil {
 		return Envelope{}, err
 	}
@@ -106,9 +90,9 @@ func EncodeMeta(reader HashReader, mode CryptoMode) (Envelope, error) {
 		CipherKey:             key,
 		IV:                    iv,
 		MatDesc:               string(matdesc),
-		WrapAlg:               kp.GetCipherName(),
-		CEKAlg:                mode.GetCipherName(),
-		TagLen:                mode.GetTagLen(),
+		WrapAlg:               cd.WrapAlgorithm,
+		CEKAlg:                cd.CEKAlgorithm,
+		TagLen:                cd.TagLength,
 		UnencryptedMD5:        md5Str,
 		UnencryptedContentLen: strconv.FormatInt(contentLength, 10),
 	}, nil
@@ -116,7 +100,7 @@ func EncodeMeta(reader HashReader, mode CryptoMode) (Envelope, error) {
 
 // DecodeMeta will return the metaobject with keys as decrypted values, if they were encrypted
 // or base64 encoded.
-func DecodeMeta(env *Envelope, kp KeyProvider) error {
+/*func DecodeMeta(env *Envelope, cd CipherData) error {
 	key, err := base64.StdEncoding.DecodeString(env.CipherKey)
 	if err != nil {
 		return err
@@ -135,4 +119,4 @@ func DecodeMeta(env *Envelope, kp KeyProvider) error {
 	env.CipherKey = string(keyBytes)
 	env.IV = string(iv)
 	return nil
-}
+}*/
