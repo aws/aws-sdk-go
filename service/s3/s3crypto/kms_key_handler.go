@@ -7,8 +7,8 @@ import (
 	"github.com/aws/aws-sdk-go/service/kms"
 )
 
-// KMSKeyProvider will make calls to KMS to get the masterkey
-type KMSKeyProvider struct {
+// KMSKeyHandler will make calls to KMS to get the masterkey
+type KMSKeyHandler struct {
 	kms          *kms.KMS
 	encryptedKey []byte
 	cmkID        *string
@@ -16,21 +16,21 @@ type KMSKeyProvider struct {
 	CipherData
 }
 
-// NewKMSKeyProvider builds a new KMS key provider using the customer key ID and material
+// NewKMSEncryptHandler builds a new KMS key provider using the customer key ID and material
 // description.
 //
 // Example:
 //	sess := session.New(&aws.Config{})
 //	cmkID := "arn to key"
 //	matdesc := s3crypto.NewJSONMatDesc()
-//	kp, err := s3crypto.NewKMSKeyProvider(sess, cmkID, matdesc)
-func NewKMSKeyProvider(prov client.ConfigProvider, cmkID string, matdesc MaterialDescription) (CipherDataHandler, error) {
+//	kp, err := s3crypto.NewKMSKeyHandler(sess, cmkID, matdesc)
+func NewKMSEncryptHandler(prov client.ConfigProvider, cmkID string, matdesc MaterialDescription) (CipherDataHandler, error) {
 	if matdesc == nil {
 		matdesc = MaterialDescription{}
 	}
 	matdesc["kms_cmk_id"] = &cmkID
 
-	kp := &KMSKeyProvider{
+	kp := &KMSKeyHandler{
 		kms:   kms.New(prov),
 		cmkID: &cmkID,
 	}
@@ -39,9 +39,9 @@ func NewKMSKeyProvider(prov client.ConfigProvider, cmkID string, matdesc Materia
 	return kp, nil
 }
 
-// NewKMSKeyProviderDecrypter initializes a KMS keyprovider with a material description. This
+// NewKMSDecryptHandler initializes a KMS keyprovider with a material description. This
 // is used with Decrypting kms content, due to the cmkID being in the material description.
-func NewKMSKeyProviderDecrypter(prov client.ConfigProvider, matdesc string) (CipherDataHandler, error) {
+func NewKMSDecryptHandler(prov client.ConfigProvider, matdesc string) (CipherDataHandler, error) {
 	m := MaterialDescription{}
 	err := m.decodeDescription([]byte(matdesc))
 	if err != nil {
@@ -53,7 +53,7 @@ func NewKMSKeyProviderDecrypter(prov client.ConfigProvider, matdesc string) (Cip
 		return nil, awserr.New("MissingCMKIDError", "Material description is missing CMK ID", nil)
 	}
 
-	kp := &KMSKeyProvider{}
+	kp := &KMSKeyHandler{}
 	kp.CipherData.MaterialDescription = m
 	kp.kms = kms.New(prov)
 	kp.cmkID = cmkID
@@ -63,12 +63,12 @@ func NewKMSKeyProviderDecrypter(prov client.ConfigProvider, matdesc string) (Cip
 
 // EncryptKey getter for encrypted key. The encrypted key is set
 // when GenerateKey is called.
-func (kp *KMSKeyProvider) EncryptKey(key []byte) ([]byte, error) {
+func (kp *KMSKeyHandler) EncryptKey(key []byte) ([]byte, error) {
 	return kp.encryptedKey, nil
 }
 
 // DecryptKey makes a call to KMS to decrypt the key.
-func (kp *KMSKeyProvider) DecryptKey(key []byte) ([]byte, error) {
+func (kp *KMSKeyHandler) DecryptKey(key []byte) ([]byte, error) {
 	matdesc := kp.CipherData.MaterialDescription.GetData()
 	out, err := kp.kms.Decrypt(&kms.DecryptInput{
 		EncryptionContext: matdesc,
@@ -83,7 +83,7 @@ func (kp *KMSKeyProvider) DecryptKey(key []byte) ([]byte, error) {
 
 // GenerateCipherData makes a call to KMS to generate a data key, Upon making
 // the call, it also sets the encrypted key.
-func (kp *KMSKeyProvider) GenerateCipherData(keySize, ivSize int) (CipherData, error) {
+func (kp *KMSKeyHandler) GenerateCipherData(keySize, ivSize int) (CipherData, error) {
 	out, err := kp.kms.GenerateDataKey(&kms.GenerateDataKeyInput{
 		EncryptionContext: map[string]*string{
 			"kms_cmk_id": kp.cmkID,

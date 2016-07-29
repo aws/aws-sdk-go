@@ -10,7 +10,7 @@ import (
 
 func TestDefaultConfigValues(t *testing.T) {
 	sess := session.New()
-	handler, err := NewKMSKeyProviderDecrypter(sess, "{\"kms_cmk_id\":\"\"}")
+	handler, err := NewKMSDecryptHandler(sess, "{\"kms_cmk_id\":\"\"}")
 	assert.Nil(t, err)
 
 	c := New(sess, AESGCMContentCipherBuilder(handler))

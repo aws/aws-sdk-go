@@ -117,7 +117,7 @@ func init() {
 			assert.Nil(T, err)
 			World["Masterkey"] = b64Arn
 
-			handler, err = s3crypto.NewKMSKeyProvider(session.New(&aws.Config{
+			handler, err = s3crypto.NewKMSEncryptHandler(session.New(&aws.Config{
 				Region: &v2,
 			}), arn, m)
 			assert.Nil(T, err)

@@ -10,13 +10,6 @@ type Cipher interface {
 	Decrypter
 }
 
-// Wrap interface includes an additional method that allows us to get the cipher
-// name. This is used during encryption when populating the envelope information.
-type Wrap interface {
-	Cipher
-	CipherDataMetadata
-}
-
 // Encrypter interface with only the encrypt method
 type Encrypter interface {
 	Encrypt(io.Reader) io.Reader

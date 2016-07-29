@@ -84,7 +84,6 @@ func getV1Envelope(r *request.Request) (*Envelope, error) {
 	return env, nil
 }
 
-// TODO: write test
 func getFromInstructionFile(svc s3iface.S3API, input *s3.GetObjectInput, r *request.Request, suffix string) (*Envelope, error) {
 	if suffix == "" {
 		suffix = DefaultInstructionKeySuffix

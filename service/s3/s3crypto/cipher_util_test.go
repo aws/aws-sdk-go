@@ -8,7 +8,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 )
 
-func TestKeyProviderFactory(t *testing.T) {
+func TestWrapFactory(t *testing.T) {
 	cfg := Config{
 		KMSSession: session.New(),
 	}
@@ -17,7 +17,7 @@ func TestKeyProviderFactory(t *testing.T) {
 		MatDesc: `{"kms_cmk_id":""}`,
 	}
 	wrap, err := wrapFromEnvelope(&env, cfg)
-	_, ok := wrap.(*KMSKeyProvider)
+	_, ok := wrap.(*KMSKeyHandler)
 	assert.Nil(t, err)
 	assert.NotNil(t, wrap)
 	assert.True(t, ok)

@@ -7,13 +7,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
-// CipherDataMetadata  is used for when populating the envelope details upon
-// encryption.
-type CipherDataMetadata interface {
-	GetCipherName() string
-	GetTagLen() string
-}
-
 func contentCipherFromEnvelope(env *Envelope, cfg Config) (ContentCipher, error) {
 	wrap, err := wrapFromEnvelope(env, cfg)
 	if err != nil {
@@ -26,7 +19,7 @@ func contentCipherFromEnvelope(env *Envelope, cfg Config) (ContentCipher, error)
 func wrapFromEnvelope(env *Envelope, cfg Config) (CipherDataHandler, error) {
 	switch env.WrapAlg {
 	case "kms":
-		return NewKMSKeyProviderDecrypter(cfg.KMSSession, env.MatDesc)
+		return NewKMSDecryptHandler(cfg.KMSSession, env.MatDesc)
 	}
 	return nil, awserr.New(
 		"InvalidWrapAlgorithmError",
@@ -97,26 +90,3 @@ func encodeMeta(reader HashReader, handler CipherDataHandler, cd *CipherData) (E
 		UnencryptedContentLen: strconv.FormatInt(contentLength, 10),
 	}, nil
 }
-
-// DecodeMeta will return the metaobject with keys as decrypted values, if they were encrypted
-// or base64 encoded.
-/*func DecodeMeta(env *Envelope, cd CipherData) error {
-	key, err := base64.StdEncoding.DecodeString(env.CipherKey)
-	if err != nil {
-		return err
-	}
-
-	keyBytes, err := kp.GetDecryptedKey(key)
-	if err != nil {
-		return err
-	}
-
-	iv, err := base64.StdEncoding.DecodeString(env.IV)
-	if err != nil {
-		return err
-	}
-
-	env.CipherKey = string(keyBytes)
-	env.IV = string(iv)
-	return nil
-}*/
