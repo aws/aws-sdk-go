@@ -238,7 +238,7 @@ type Uploader struct {
 //
 // Example:
 //     // The session the S3 Uploader will use
-//     sess := session.New()
+//     sess, err := session.NewSession()
 //
 //     // Create an uploader with the session and default options
 //     uploader := s3manager.NewUploader(sess)
@@ -268,8 +268,11 @@ func NewUploader(c client.ConfigProvider, options ...func(*Uploader)) *Uploader 
 // a S3 service client to make S3 API calls.
 //
 // Example:
+//     // The session the S3 Uploader will use
+//     sess, err := session.NewSession()
+//
 //     // S3 service client the Upload manager will use.
-//     s3Svc := s3.New(session.New())
+//     s3Svc := s3.New(sess)
 //
 //     // Create an uploader with S3 client and default options
 //     uploader := s3manager.NewUploaderWithClient(s3Svc)

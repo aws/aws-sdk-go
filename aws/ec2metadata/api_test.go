@@ -15,7 +15,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/ec2metadata"
 	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/awstesting/unit"
 )
 
 const instanceIdentityDocument = `{
@@ -61,7 +61,7 @@ func initTestServer(path string, resp string) *httptest.Server {
 }
 
 func TestEndpoint(t *testing.T) {
-	c := ec2metadata.New(session.New())
+	c := ec2metadata.New(unit.Session)
 	op := &request.Operation{
 		Name:       "GetMetadata",
 		HTTPMethod: "GET",
@@ -79,7 +79,7 @@ func TestGetMetadata(t *testing.T) {
 		"success", // real response includes suffix
 	)
 	defer server.Close()
-	c := ec2metadata.New(session.New(), &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
 
 	resp, err := c.GetMetadata("some/path")
 
@@ -93,7 +93,7 @@ func TestGetRegion(t *testing.T) {
 		"us-west-2a", // real response includes suffix
 	)
 	defer server.Close()
-	c := ec2metadata.New(session.New(), &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
 
 	region, err := c.Region()
 
@@ -107,7 +107,7 @@ func TestMetadataAvailable(t *testing.T) {
 		"instance-id",
 	)
 	defer server.Close()
-	c := ec2metadata.New(session.New(), &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
 
 	available := c.Available()
 
@@ -120,7 +120,7 @@ func TestMetadataIAMInfo_success(t *testing.T) {
 		validIamInfo,
 	)
 	defer server.Close()
-	c := ec2metadata.New(session.New(), &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
 
 	iamInfo, err := c.IAMInfo()
 	assert.NoError(t, err)
@@ -135,7 +135,7 @@ func TestMetadataIAMInfo_failure(t *testing.T) {
 		unsuccessfulIamInfo,
 	)
 	defer server.Close()
-	c := ec2metadata.New(session.New(), &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
 
 	iamInfo, err := c.IAMInfo()
 	assert.NotNil(t, err)
@@ -145,7 +145,7 @@ func TestMetadataIAMInfo_failure(t *testing.T) {
 }
 
 func TestMetadataNotAvailable(t *testing.T) {
-	c := ec2metadata.New(session.New())
+	c := ec2metadata.New(unit.Session)
 	c.Handlers.Send.Clear()
 	c.Handlers.Send.PushBack(func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
@@ -163,7 +163,7 @@ func TestMetadataNotAvailable(t *testing.T) {
 }
 
 func TestMetadataErrorResponse(t *testing.T) {
-	c := ec2metadata.New(session.New())
+	c := ec2metadata.New(unit.Session)
 	c.Handlers.Send.Clear()
 	c.Handlers.Send.PushBack(func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
@@ -185,7 +185,7 @@ func TestEC2RoleProviderInstanceIdentity(t *testing.T) {
 		instanceIdentityDocument,
 	)
 	defer server.Close()
-	c := ec2metadata.New(session.New(), &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
 
 	doc, err := c.GetInstanceIdentityDocument()
 	assert.Nil(t, err, "Expect no error, %v", err)

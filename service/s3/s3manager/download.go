@@ -49,7 +49,7 @@ type Downloader struct {
 //
 // Example:
 //     // The session the S3 Downloader will use
-//     sess := session.New()
+//     sess, err := session.NewSession()
 //
 //     // Create a downloader with the session and default options
 //     downloader := s3manager.NewDownloader(sess)
@@ -77,8 +77,11 @@ func NewDownloader(c client.ConfigProvider, options ...func(*Downloader)) *Downl
 // to make S3 API calls.
 //
 // Example:
+//     // The session the S3 Downloader will use
+//     sess, err := session.NewSession()
+//
 //     // The S3 client the S3 Downloader will use
-//     s3Svc := s3.new(session.New())
+//     s3Svc := s3.new(sess)
 //
 //     // Create a downloader with the s3 client and default options
 //     downloader := s3manager.NewDownloaderWithClient(s3Svc)
