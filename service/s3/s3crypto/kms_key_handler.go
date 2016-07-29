@@ -22,8 +22,8 @@ type KMSKeyHandler struct {
 // Example:
 //	sess := session.New(&aws.Config{})
 //	cmkID := "arn to key"
-//	matdesc := s3crypto.NewJSONMatDesc()
-//	kp, err := s3crypto.NewKMSKeyHandler(sess, cmkID, matdesc)
+//	matdesc := s3crypto.MaterialDescription{}
+//	handler, err := s3crypto.NewKMSEncryptHandler(sess, cmkID, matdesc)
 func NewKMSEncryptHandler(prov client.ConfigProvider, cmkID string, matdesc MaterialDescription) (CipherDataHandler, error) {
 	if matdesc == nil {
 		matdesc = MaterialDescription{}

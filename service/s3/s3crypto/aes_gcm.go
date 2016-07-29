@@ -21,10 +21,11 @@ type AESGCM struct {
 //
 // Example:
 //
-//	kp := &s3crypto.SymmetricKeyProvider{}
-//	kp.SetKey(key)
-//	kp.SetIV(iv)
-//	cipher, _ := s3crypto.NewAESGCM(kp)
+//	cd := &s3crypto.CipherData{
+//		Key: key,
+//		"IV": iv,
+//	}
+//	cipher, _ := s3crypto.NewAESGCM(cd)
 func NewAESGCM(cd CipherData) (Cipher, error) {
 	block, err := aes.NewCipher(cd.Key)
 	if err != nil {

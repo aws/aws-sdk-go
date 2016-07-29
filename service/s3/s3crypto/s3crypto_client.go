@@ -44,11 +44,11 @@ type Config struct {
 // Example:
 //	cmkID := "some key id to kms"
 //	sess := session.New()
-//	kp, err = s3crypto.NewKMSKeyProvider(sess, cmkID, s3crypto.NewJSONMatDesc())
+//	handler, err = s3crypto.NewKMSEncryptHandler(sess, cmkID, s3crypto.MaterialDescription{})
 //	if err != nil {
 //	  return err
 //	}
-//	svc := s3crypto.New(sess, s3crypto.Authentication(kp))
+//	svc := s3crypto.New(sess, s3crypto.AESGCMContentCipherBuilder(handler))
 func New(prov client.ConfigProvider, builder ContentCipherBuilder, options ...func(*Client)) *Client {
 	client := &Client{
 		Config: Config{
@@ -71,7 +71,7 @@ func New(prov client.ConfigProvider, builder ContentCipherBuilder, options ...fu
 // that data to S3.
 //
 // Example:
-//	svc := s3crypto.New(s3crypto.Authentication(kp))
+//	svc := s3crypto.New(session.New(), s3crypto.AESGCMContentCipherBuilder(handler))
 //	req, out := svc.PutObjectRequest(&s3.PutObjectInput {
 //	  Key: aws.String("testKey"),
 //	  Bucket: aws.String("testBucket"),
@@ -146,7 +146,7 @@ func (c *Client) PutObject(input *s3.PutObjectInput) (*s3.PutObjectOutput, error
 // decryption will be done. The SDK only supports V2 reads of KMS and GCM.
 //
 // Example:
-//	svc := s3crypto.New(s3crypto.Authentication(kp))
+//	svc := s3crypto.New(session.New(),s3crypto.AESGCMContentCipherBuilder(handler))
 //	req, out := svc.GetObjectRequest(&s3.GetObjectInput {
 //	  Key: aws.String("testKey"),
 //	  Bucket: aws.String("testBucket"),

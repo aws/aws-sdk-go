@@ -17,7 +17,7 @@ Creating an S3 cryptography client
 	cmkID := "<some key ID>"
 	sess := session.New()
 	// Create the KeyProvider
-	kp, err = s3crypto.NewKMSKeyProvider(sess, cmkID, s3crypto.NewJSONMatDesc())
+	handler, err = s3crypto.NewKMSEncryptHandler(sess, cmkID, s3crypto.MaterialDescription{})
 	if err != nil {
 		return err
 	}
@@ -25,7 +25,7 @@ Creating an S3 cryptography client
 	// Create the cryptography client
 	// We need to pass the session here so S3 can use it. In addition, any decryption that
 	// occurs will use the same session with KMS
-	svc := s3crypto.New(sess, s3crypto.Authentication(kp))
+	svc := s3crypto.New(sess, s3crypto.AESGCMContentCipherBuilder(handler))
 
 Configuration of the S3 cryptography client
 
