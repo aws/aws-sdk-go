@@ -433,13 +433,13 @@ func TestUploadOrderMultiBufferedReader(t *testing.T) {
 	assert.Equal(t, []int{1024 * 1024 * 2, 1024 * 1024 * 5, 1024 * 1024 * 5}, parts)
 }
 
-func TestUploadOrderMultiBufferedReaderUnexpectedEOF(t *testing.T) {
+func TestUploadOrderMultiBufferedReaderPartial(t *testing.T) {
 	s, ops, args := loggingSvc(emptyList)
 	mgr := s3manager.NewUploaderWithClient(s)
 	_, err := mgr.Upload(&s3manager.UploadInput{
 		Bucket: aws.String("Bucket"),
 		Key:    aws.String("Key"),
-		Body:   &sizedReader{size: 1024 * 1024 * 12, err: io.ErrUnexpectedEOF},
+		Body:   &sizedReader{size: 1024 * 1024 * 12, err: io.EOF},
 	})
 
 	assert.NoError(t, err)
@@ -456,8 +456,7 @@ func TestUploadOrderMultiBufferedReaderUnexpectedEOF(t *testing.T) {
 }
 
 // TestUploadOrderMultiBufferedReaderEOF tests the edge case where the
-// file size is the same as part size, which means nextReader will
-// return io.EOF rather than io.ErrUnexpectedEOF
+// file size is the same as part size.
 func TestUploadOrderMultiBufferedReaderEOF(t *testing.T) {
 	s, ops, args := loggingSvc(emptyList)
 	mgr := s3manager.NewUploaderWithClient(s)
