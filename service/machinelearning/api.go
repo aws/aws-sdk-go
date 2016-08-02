@@ -457,7 +457,7 @@ func (c *MachineLearning) CreateMLModelRequest(input *CreateMLModelInput) (req *
 // during the creation operation.
 //
 //  CreateMLModel requires a DataSource with computed statistics, which can
-// be created by setting ComputeStatistics to true in CreateDataSourcceFromRDS,
+// be created by setting ComputeStatistics to true in CreateDataSourceFromRDS,
 // CreateDataSourceFromS3, or CreateDataSourceFromRedshift operations.
 func (c *MachineLearning) CreateMLModel(input *CreateMLModelInput) (*CreateMLModelOutput, error) {
 	req, out := c.CreateMLModelRequest(input)
@@ -1740,6 +1740,9 @@ type BatchPrediction struct {
 	// identical to the value of the BatchPredictionID in the request.
 	BatchPredictionId *string `min:"1" type:"string"`
 
+	// Long integer type that is a 64-bit signed number.
+	ComputeTime *int64 `type:"long"`
+
 	// The time that the BatchPrediction was created. The time is expressed in epoch
 	// time.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
@@ -1749,9 +1752,15 @@ type BatchPrediction struct {
 	// user account.
 	CreatedByIamUser *string `type:"string"`
 
+	// A timestamp represented in epoch time.
+	FinishedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
+
 	// The location of the data file or directory in Amazon Simple Storage Service
 	// (Amazon S3).
 	InputDataLocationS3 *string `type:"string"`
+
+	// Long integer type that is a 64-bit signed number.
+	InvalidRecordCount *int64 `type:"long"`
 
 	// The time of the most recent edit to the BatchPrediction. The time is expressed
 	// in epoch time.
@@ -1773,6 +1782,9 @@ type BatchPrediction struct {
 	// the outputURI field: ':', '//', '/./', '/../'.
 	OutputUri *string `type:"string"`
 
+	// A timestamp represented in epoch time.
+	StartedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
+
 	// The status of the BatchPrediction. This element can have one of the following
 	// values:
 	//
@@ -1782,6 +1794,9 @@ type BatchPrediction struct {
 	// It is not usable.  COMPLETED - The batch prediction process completed successfully.
 	//  DELETED - The BatchPrediction is marked as deleted. It is not usable.
 	Status *string `type:"string" enum:"EntityStatus"`
+
+	// Long integer type that is a 64-bit signed number.
+	TotalRecordCount *int64 `type:"long"`
 }
 
 // String returns the string representation
@@ -2501,6 +2516,9 @@ type DataSource struct {
 	// data.
 	ComputeStatistics *bool `type:"boolean"`
 
+	// Long integer type that is a 64-bit signed number.
+	ComputeTime *int64 `type:"long"`
+
 	// The time that the DataSource was created. The time is expressed in epoch
 	// time.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
@@ -2525,6 +2543,9 @@ type DataSource struct {
 	// The ID that is assigned to the DataSource during creation.
 	DataSourceId *string `min:"1" type:"string"`
 
+	// A timestamp represented in epoch time.
+	FinishedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
+
 	// The time of the most recent edit to the BatchPrediction. The time is expressed
 	// in epoch time.
 	LastUpdatedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
@@ -2547,6 +2568,9 @@ type DataSource struct {
 	// The Amazon Resource Name (ARN) of an AWS IAM Role (http://docs.aws.amazon.com/IAM/latest/UserGuide/roles-toplevel.html#roles-about-termsandconcepts),
 	// such as the following: arn:aws:iam::account:role/rolename.
 	RoleARN *string `min:"1" type:"string"`
+
+	// A timestamp represented in epoch time.
+	StartedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The current status of the DataSource. This element can have one of the following
 	// values:
@@ -3436,6 +3460,9 @@ func (s DescribeTagsOutput) GoString() string {
 type Evaluation struct {
 	_ struct{} `type:"structure"`
 
+	// Long integer type that is a 64-bit signed number.
+	ComputeTime *int64 `type:"long"`
+
 	// The time that the Evaluation was created. The time is expressed in epoch
 	// time.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
@@ -3450,6 +3477,9 @@ type Evaluation struct {
 
 	// The ID that is assigned to the Evaluation at creation.
 	EvaluationId *string `min:"1" type:"string"`
+
+	// A timestamp represented in epoch time.
+	FinishedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The location and name of the data in Amazon Simple Storage Server (Amazon
 	// S3) that is used in the evaluation.
@@ -3485,6 +3515,9 @@ type Evaluation struct {
 	//    For more information about performance metrics, please see the Amazon
 	// Machine Learning Developer Guide (http://docs.aws.amazon.com/machine-learning/latest/dg).
 	PerformanceMetrics *PerformanceMetrics `type:"structure"`
+
+	// A timestamp represented in epoch time.
+	StartedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The status of the evaluation. This element can have one of the following
 	// values:
@@ -3551,6 +3584,12 @@ type GetBatchPredictionOutput struct {
 	// to the value of the BatchPredictionID in the request.
 	BatchPredictionId *string `min:"1" type:"string"`
 
+	// The approximate CPU time in milliseconds that Amazon Machine Learning spent
+	// processing the BatchPrediction, normalized and scaled on computation resources.
+	// ComputeTime is only available if the BatchPrediction is in the COMPLETED
+	// state.
+	ComputeTime *int64 `type:"long"`
+
 	// The time when the BatchPrediction was created. The time is expressed in epoch
 	// time.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
@@ -3560,9 +3599,18 @@ type GetBatchPredictionOutput struct {
 	// user account.
 	CreatedByIamUser *string `type:"string"`
 
+	// The epoch time when Amazon Machine Learning marked the BatchPrediction as
+	// COMPLETED or FAILED. FinishedAt is only available when the BatchPrediction
+	// is in the COMPLETED or FAILED state.
+	FinishedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
+
 	// The location of the data file or directory in Amazon Simple Storage Service
 	// (Amazon S3).
 	InputDataLocationS3 *string `type:"string"`
+
+	// The number of invalid records that Amazon Machine Learning saw while processing
+	// the BatchPrediction.
+	InvalidRecordCount *int64 `type:"long"`
 
 	// The time of the most recent edit to BatchPrediction. The time is expressed
 	// in epoch time.
@@ -3586,6 +3634,11 @@ type GetBatchPredictionOutput struct {
 	// results.
 	OutputUri *string `type:"string"`
 
+	// The epoch time when Amazon Machine Learning marked the BatchPrediction as
+	// INPROGRESS. StartedAt isn't available if the BatchPrediction is in the PENDING
+	// state.
+	StartedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
+
 	// The status of the BatchPrediction, which can be one of the following values:
 	//
 	//   PENDING - Amazon Machine Learning (Amazon ML) submitted a request to generate
@@ -3594,6 +3647,10 @@ type GetBatchPredictionOutput struct {
 	// It is not usable.  COMPLETED - The batch prediction process completed successfully.
 	//  DELETED - The BatchPrediction is marked as deleted. It is not usable.
 	Status *string `type:"string" enum:"EntityStatus"`
+
+	// The number of total records that Amazon Machine Learning saw while processing
+	// the BatchPrediction.
+	TotalRecordCount *int64 `type:"long"`
 }
 
 // String returns the string representation
@@ -3654,6 +3711,12 @@ type GetDataSourceOutput struct {
 	// data.
 	ComputeStatistics *bool `type:"boolean"`
 
+	// The approximate CPU time in milliseconds that Amazon Machine Learning spent
+	// processing the DataSource, normalized and scaled on computation resources.
+	// ComputeTime is only available if the DataSource is in the COMPLETED state
+	// and the ComputeStatistics is set to true.
+	ComputeTime *int64 `type:"long"`
+
 	// The time that the DataSource was created. The time is expressed in epoch
 	// time.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
@@ -3683,6 +3746,11 @@ type GetDataSourceOutput struct {
 	// Note This parameter is provided as part of the verbose format.
 	DataSourceSchema *string `type:"string"`
 
+	// The epoch time when Amazon Machine Learning marked the DataSource as COMPLETED
+	// or FAILED. FinishedAt is only available when the DataSource is in the COMPLETED
+	// or FAILED state.
+	FinishedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
+
 	// The time of the most recent edit to the DataSource. The time is expressed
 	// in epoch time.
 	LastUpdatedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
@@ -3709,6 +3777,10 @@ type GetDataSourceOutput struct {
 	// The Amazon Resource Name (ARN) of an AWS IAM Role (http://docs.aws.amazon.com/IAM/latest/UserGuide/roles-toplevel.html#roles-about-termsandconcepts),
 	// such as the following: arn:aws:iam::account:role/rolename.
 	RoleARN *string `min:"1" type:"string"`
+
+	// The epoch time when Amazon Machine Learning marked the DataSource as INPROGRESS.
+	// StartedAt isn't available if the DataSource is in the PENDING state.
+	StartedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The current status of the DataSource. This element can have one of the following
 	// values:
@@ -3769,6 +3841,11 @@ func (s *GetEvaluationInput) Validate() error {
 type GetEvaluationOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The approximate CPU time in milliseconds that Amazon Machine Learning spent
+	// processing the Evaluation, normalized and scaled on computation resources.
+	// ComputeTime is only available if the Evaluation is in the COMPLETED state.
+	ComputeTime *int64 `type:"long"`
+
 	// The time that the Evaluation was created. The time is expressed in epoch
 	// time.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
@@ -3784,11 +3861,16 @@ type GetEvaluationOutput struct {
 	// The evaluation ID which is same as the EvaluationId in the request.
 	EvaluationId *string `min:"1" type:"string"`
 
+	// The epoch time when Amazon Machine Learning marked the Evaluation as COMPLETED
+	// or FAILED. FinishedAt is only available when the Evaluation is in the COMPLETED
+	// or FAILED state.
+	FinishedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
+
 	// The location of the data file or directory in Amazon Simple Storage Service
 	// (Amazon S3).
 	InputDataLocationS3 *string `type:"string"`
 
-	// The time of the most recent edit to the BatchPrediction. The time is expressed
+	// The time of the most recent edit to the Evaluation. The time is expressed
 	// in epoch time.
 	LastUpdatedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
 
@@ -3821,6 +3903,10 @@ type GetEvaluationOutput struct {
 	//    For more information about performance metrics, please see the Amazon
 	// Machine Learning Developer Guide (http://docs.aws.amazon.com/machine-learning/latest/dg).
 	PerformanceMetrics *PerformanceMetrics `type:"structure"`
+
+	// The epoch time when Amazon Machine Learning marked the Evaluation as INPROGRESS.
+	// StartedAt isn't available if the Evaluation is in the PENDING state.
+	StartedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The status of the evaluation. This element can have one of the following
 	// values:
@@ -3888,6 +3974,11 @@ func (s *GetMLModelInput) Validate() error {
 type GetMLModelOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The approximate CPU time in milliseconds that Amazon Machine Learning spent
+	// processing the MLModel, normalized and scaled on computation resources. ComputeTime
+	// is only available if the MLModel is in the COMPLETED state.
+	ComputeTime *int64 `type:"long"`
+
 	// The time that the MLModel was created. The time is expressed in epoch time.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
 
@@ -3898,6 +3989,11 @@ type GetMLModelOutput struct {
 
 	// The current endpoint of the MLModel
 	EndpointInfo *RealtimeEndpointInfo `type:"structure"`
+
+	// The epoch time when Amazon Machine Learning marked the MLModel as COMPLETED
+	// or FAILED. FinishedAt is only available when the MLModel is in the COMPLETED
+	// or FAILED state.
+	FinishedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The location of the data file or directory in Amazon Simple Storage Service
 	// (Amazon S3).
@@ -3953,6 +4049,10 @@ type GetMLModelOutput struct {
 
 	// Long integer type that is a 64-bit signed number.
 	SizeInBytes *int64 `type:"long"`
+
+	// The epoch time when Amazon Machine Learning marked the MLModel as INPROGRESS.
+	// StartedAt isn't available if the MLModel is in the PENDING state.
+	StartedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The current status of the MLModel. This element can have one of the following
 	// values:
@@ -4030,6 +4130,9 @@ type MLModel struct {
 	// gradient of the loss function.
 	Algorithm *string `type:"string" enum:"Algorithm"`
 
+	// Long integer type that is a 64-bit signed number.
+	ComputeTime *int64 `type:"long"`
+
 	// The time that the MLModel was created. The time is expressed in epoch time.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
 
@@ -4040,6 +4143,9 @@ type MLModel struct {
 
 	// The current endpoint of the MLModel.
 	EndpointInfo *RealtimeEndpointInfo `type:"structure"`
+
+	// A timestamp represented in epoch time.
+	FinishedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The location of the data file or directory in Amazon Simple Storage Service
 	// (Amazon S3).
@@ -4075,6 +4181,9 @@ type MLModel struct {
 
 	// Long integer type that is a 64-bit signed number.
 	SizeInBytes *int64 `type:"long"`
+
+	// A timestamp represented in epoch time.
+	StartedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The current status of an MLModel. This element can have one of the following
 	// values:
@@ -4403,7 +4512,7 @@ type RDSDataSpec struct {
 	// to the Amazon RDS database.
 	DatabaseCredentials *RDSDatabaseCredentials `type:"structure" required:"true"`
 
-	// Describes the DatabaseName and InstanceIdentifier of an an Amazon RDS database.
+	// Describes the DatabaseName and InstanceIdentifier of an Amazon RDS database.
 	DatabaseInformation *RDSDatabase `type:"structure" required:"true"`
 
 	// The role (DataPipelineDefaultResourceRole) assumed by an Amazon Elastic Compute
