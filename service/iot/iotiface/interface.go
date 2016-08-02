@@ -158,6 +158,10 @@ type IoTAPI interface {
 
 	ListCertificatesByCA(*iot.ListCertificatesByCAInput) (*iot.ListCertificatesByCAOutput, error)
 
+	ListOutgoingCertificatesRequest(*iot.ListOutgoingCertificatesInput) (*request.Request, *iot.ListOutgoingCertificatesOutput)
+
+	ListOutgoingCertificates(*iot.ListOutgoingCertificatesInput) (*iot.ListOutgoingCertificatesOutput, error)
+
 	ListPoliciesRequest(*iot.ListPoliciesInput) (*request.Request, *iot.ListPoliciesOutput)
 
 	ListPolicies(*iot.ListPoliciesInput) (*iot.ListPoliciesOutput, error)

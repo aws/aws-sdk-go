@@ -1043,6 +1043,33 @@ func ExampleIoT_ListCertificatesByCA() {
 	fmt.Println(resp)
 }
 
+func ExampleIoT_ListOutgoingCertificates() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := iot.New(sess)
+
+	params := &iot.ListOutgoingCertificatesInput{
+		AscendingOrder: aws.Bool(true),
+		Marker:         aws.String("Marker"),
+		PageSize:       aws.Int64(1),
+	}
+	resp, err := svc.ListOutgoingCertificates(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleIoT_ListPolicies() {
 	sess, err := session.NewSession()
 	if err != nil {
@@ -1299,6 +1326,7 @@ func ExampleIoT_RegisterCACertificate() {
 	params := &iot.RegisterCACertificateInput{
 		CaCertificate:           aws.String("CertificatePem"), // Required
 		VerificationCertificate: aws.String("CertificatePem"), // Required
+		AllowAutoRegistration:   aws.Bool(true),
 		SetAsActive:             aws.Bool(true),
 	}
 	resp, err := svc.RegisterCACertificate(params)
@@ -1559,8 +1587,9 @@ func ExampleIoT_UpdateCACertificate() {
 	svc := iot.New(sess)
 
 	params := &iot.UpdateCACertificateInput{
-		CertificateId: aws.String("CertificateId"),       // Required
-		NewStatus:     aws.String("CACertificateStatus"), // Required
+		CertificateId:             aws.String("CertificateId"), // Required
+		NewAutoRegistrationStatus: aws.String("AutoRegistrationStatus"),
+		NewStatus:                 aws.String("CACertificateStatus"),
 	}
 	resp, err := svc.UpdateCACertificate(params)
 

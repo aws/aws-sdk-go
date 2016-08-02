@@ -1909,6 +1909,54 @@ func (c *IoT) ListCertificatesByCA(input *ListCertificatesByCAInput) (*ListCerti
 	return out, err
 }
 
+const opListOutgoingCertificates = "ListOutgoingCertificates"
+
+// ListOutgoingCertificatesRequest generates a "aws/request.Request" representing the
+// client's request for the ListOutgoingCertificates operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListOutgoingCertificates method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListOutgoingCertificatesRequest method.
+//    req, resp := client.ListOutgoingCertificatesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *IoT) ListOutgoingCertificatesRequest(input *ListOutgoingCertificatesInput) (req *request.Request, output *ListOutgoingCertificatesOutput) {
+	op := &request.Operation{
+		Name:       opListOutgoingCertificates,
+		HTTPMethod: "GET",
+		HTTPPath:   "/certificates-out-going",
+	}
+
+	if input == nil {
+		input = &ListOutgoingCertificatesInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListOutgoingCertificatesOutput{}
+	req.Data = output
+	return
+}
+
+// Lists certificates that are being transfered but not yet accepted.
+func (c *IoT) ListOutgoingCertificates(input *ListOutgoingCertificatesInput) (*ListOutgoingCertificatesOutput, error) {
+	req, out := c.ListOutgoingCertificatesRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opListPolicies = "ListPolicies"
 
 // ListPoliciesRequest generates a "aws/request.Request" representing the
@@ -3211,6 +3259,10 @@ func (s CACertificate) GoString() string {
 // Describes a CA certificate.
 type CACertificateDescription struct {
 	_ struct{} `type:"structure"`
+
+	// Whether the CA certificate configured for auto registration of device certificates.
+	// Valid values are "ENABLE" and "DISABLE"
+	AutoRegistrationStatus *string `locationName:"autoRegistrationStatus" type:"string" enum:"AutoRegistrationStatus"`
 
 	// The CA certificate ARN.
 	CertificateArn *string `locationName:"certificateArn" type:"string"`
@@ -5534,6 +5586,65 @@ func (s ListCertificatesOutput) GoString() string {
 	return s.String()
 }
 
+// The input to the ListOutgoingCertificates operation.
+type ListOutgoingCertificatesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the order for results. If True, the results are returned in ascending
+	// order, based on the creation date.
+	AscendingOrder *bool `location:"querystring" locationName:"isAscendingOrder" type:"boolean"`
+
+	// The marker for the next set of results.
+	Marker *string `location:"querystring" locationName:"marker" type:"string"`
+
+	// The result page size.
+	PageSize *int64 `location:"querystring" locationName:"pageSize" min:"1" type:"integer"`
+}
+
+// String returns the string representation
+func (s ListOutgoingCertificatesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListOutgoingCertificatesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListOutgoingCertificatesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListOutgoingCertificatesInput"}
+	if s.PageSize != nil && *s.PageSize < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("PageSize", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// The output from the ListOutgoingCertificates operation.
+type ListOutgoingCertificatesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The marker for the next set of results.
+	NextMarker *string `locationName:"nextMarker" type:"string"`
+
+	// The certificates that are being transfered but not yet accepted.
+	OutgoingCertificates []*OutgoingCertificate `locationName:"outgoingCertificates" type:"list"`
+}
+
+// String returns the string representation
+func (s ListOutgoingCertificatesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListOutgoingCertificatesOutput) GoString() string {
+	return s.String()
+}
+
 // The input for the ListPolicies operation.
 type ListPoliciesInput struct {
 	_ struct{} `type:"structure"`
@@ -6123,6 +6234,39 @@ func (s *LoggingOptionsPayload) Validate() error {
 	return nil
 }
 
+// A certificate that has been transfered but not yet accepted.
+type OutgoingCertificate struct {
+	_ struct{} `type:"structure"`
+
+	// The certificate ARN.
+	CertificateArn *string `locationName:"certificateArn" type:"string"`
+
+	// The certificate ID.
+	CertificateId *string `locationName:"certificateId" min:"64" type:"string"`
+
+	// The certificate creation date.
+	CreationDate *time.Time `locationName:"creationDate" type:"timestamp" timestampFormat:"unix"`
+
+	// The date the transfer was initiated.
+	TransferDate *time.Time `locationName:"transferDate" type:"timestamp" timestampFormat:"unix"`
+
+	// The transfer message.
+	TransferMessage *string `locationName:"transferMessage" type:"string"`
+
+	// The AWS account to which the transfer was made.
+	TransferredTo *string `locationName:"transferredTo" type:"string"`
+}
+
+// String returns the string representation
+func (s OutgoingCertificate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OutgoingCertificate) GoString() string {
+	return s.String()
+}
+
 // Describes an AWS IoT policy.
 type Policy struct {
 	_ struct{} `type:"structure"`
@@ -6171,6 +6315,9 @@ func (s PolicyVersion) GoString() string {
 // The input to the RegisterCACertificate operation.
 type RegisterCACertificateInput struct {
 	_ struct{} `type:"structure"`
+
+	// Allows this CA certificate to be used for auto registration of device certificates.
+	AllowAutoRegistration *bool `location:"querystring" locationName:"allowAutoRegistration" type:"boolean"`
 
 	// The CA certificate.
 	CaCertificate *string `locationName:"caCertificate" min:"1" type:"string" required:"true"`
@@ -7003,11 +7150,15 @@ type UpdateCACertificateInput struct {
 	// The CA certificate identifier.
 	CertificateId *string `location:"uri" locationName:"caCertificateId" min:"64" type:"string" required:"true"`
 
+	// The new value for the auto registration status. Valid values are: "ENABLE"
+	// or "DISABLE".
+	NewAutoRegistrationStatus *string `location:"querystring" locationName:"newAutoRegistrationStatus" type:"string" enum:"AutoRegistrationStatus"`
+
 	// The updated status of the CA certificate.
 	//
 	// Note: The status value REGISTER_INACTIVE is deprecated and should not be
 	// used.
-	NewStatus *string `location:"querystring" locationName:"newStatus" type:"string" required:"true" enum:"CACertificateStatus"`
+	NewStatus *string `location:"querystring" locationName:"newStatus" type:"string" enum:"CACertificateStatus"`
 }
 
 // String returns the string representation
@@ -7028,9 +7179,6 @@ func (s *UpdateCACertificateInput) Validate() error {
 	}
 	if s.CertificateId != nil && len(*s.CertificateId) < 64 {
 		invalidParams.Add(request.NewErrParamMinLen("CertificateId", 64))
-	}
-	if s.NewStatus == nil {
-		invalidParams.Add(request.NewErrParamRequired("NewStatus"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -7186,6 +7334,13 @@ func (s UpdateThingOutput) GoString() string {
 }
 
 const (
+	// @enum AutoRegistrationStatus
+	AutoRegistrationStatusEnable = "ENABLE"
+	// @enum AutoRegistrationStatus
+	AutoRegistrationStatusDisable = "DISABLE"
+)
+
+const (
 	// @enum CACertificateStatus
 	CACertificateStatusActive = "ACTIVE"
 	// @enum CACertificateStatus
@@ -7203,6 +7358,8 @@ const (
 	CertificateStatusPendingTransfer = "PENDING_TRANSFER"
 	// @enum CertificateStatus
 	CertificateStatusRegisterInactive = "REGISTER_INACTIVE"
+	// @enum CertificateStatus
+	CertificateStatusPendingActivation = "PENDING_ACTIVATION"
 )
 
 const (

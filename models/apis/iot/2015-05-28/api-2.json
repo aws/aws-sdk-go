@@ -1543,6 +1543,44 @@
         }
       ]
     },
+    "ListOutgoingCertificates":{
+      "name":"ListOutgoingCertificates",
+      "http":{
+        "method":"GET",
+        "requestUri":"/certificates-out-going"
+      },
+      "input":{"shape":"ListOutgoingCertificatesRequest"},
+      "output":{"shape":"ListOutgoingCertificatesResponse"},
+      "errors":[
+        {
+          "shape":"InvalidRequestException",
+          "error":{"httpStatusCode":400},
+          "exception":true
+        },
+        {
+          "shape":"ThrottlingException",
+          "error":{"httpStatusCode":429},
+          "exception":true
+        },
+        {
+          "shape":"UnauthorizedException",
+          "error":{"httpStatusCode":401},
+          "exception":true
+        },
+        {
+          "shape":"ServiceUnavailableException",
+          "error":{"httpStatusCode":503},
+          "exception":true,
+          "fault":true
+        },
+        {
+          "shape":"InternalFailureException",
+          "error":{"httpStatusCode":500},
+          "exception":true,
+          "fault":true
+        }
+      ]
+    },
     "ListPolicies":{
       "name":"ListPolicies",
       "http":{
@@ -2400,6 +2438,7 @@
       "max":10
     },
     "AlarmName":{"type":"string"},
+    "AllowAutoRegistration":{"type":"boolean"},
     "AscendingOrder":{"type":"boolean"},
     "AttachPrincipalPolicyRequest":{
       "type":"structure",
@@ -2466,6 +2505,13 @@
       "key":{"shape":"AttributeName"},
       "value":{"shape":"AttributeValue"}
     },
+    "AutoRegistrationStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLE",
+        "DISABLE"
+      ]
+    },
     "AwsAccountId":{
       "type":"string",
       "pattern":"[0-9]{12}"
@@ -2491,7 +2537,8 @@
         "status":{"shape":"CACertificateStatus"},
         "certificatePem":{"shape":"CertificatePem"},
         "ownedBy":{"shape":"AwsAccountId"},
-        "creationDate":{"shape":"DateType"}
+        "creationDate":{"shape":"DateType"},
+        "autoRegistrationStatus":{"shape":"AutoRegistrationStatus"}
       }
     },
     "CACertificateStatus":{
@@ -2579,7 +2626,8 @@
         "INACTIVE",
         "REVOKED",
         "PENDING_TRANSFER",
-        "REGISTER_INACTIVE"
+        "REGISTER_INACTIVE",
+        "PENDING_ACTIVATION"
       ]
     },
     "CertificateValidationException":{
@@ -3385,6 +3433,33 @@
         "nextMarker":{"shape":"Marker"}
       }
     },
+    "ListOutgoingCertificatesRequest":{
+      "type":"structure",
+      "members":{
+        "pageSize":{
+          "shape":"PageSize",
+          "location":"querystring",
+          "locationName":"pageSize"
+        },
+        "marker":{
+          "shape":"Marker",
+          "location":"querystring",
+          "locationName":"marker"
+        },
+        "ascendingOrder":{
+          "shape":"AscendingOrder",
+          "location":"querystring",
+          "locationName":"isAscendingOrder"
+        }
+      }
+    },
+    "ListOutgoingCertificatesResponse":{
+      "type":"structure",
+      "members":{
+        "outgoingCertificates":{"shape":"OutgoingCertificates"},
+        "nextMarker":{"shape":"Marker"}
+      }
+    },
     "ListPoliciesRequest":{
       "type":"structure",
       "members":{
@@ -3686,6 +3761,21 @@
     "MetricValue":{"type":"string"},
     "NextToken":{"type":"string"},
     "OptionalVersion":{"type":"long"},
+    "OutgoingCertificate":{
+      "type":"structure",
+      "members":{
+        "certificateArn":{"shape":"CertificateArn"},
+        "certificateId":{"shape":"CertificateId"},
+        "transferredTo":{"shape":"AwsAccountId"},
+        "transferDate":{"shape":"DateType"},
+        "transferMessage":{"shape":"Message"},
+        "creationDate":{"shape":"DateType"}
+      }
+    },
+    "OutgoingCertificates":{
+      "type":"list",
+      "member":{"shape":"OutgoingCertificate"}
+    },
     "PageSize":{
       "type":"integer",
       "min":1,
@@ -3759,6 +3849,11 @@
           "shape":"SetAsActive",
           "location":"querystring",
           "locationName":"setAsActive"
+        },
+        "allowAutoRegistration":{
+          "shape":"AllowAutoRegistration",
+          "location":"querystring",
+          "locationName":"allowAutoRegistration"
         }
       }
     },
@@ -4134,10 +4229,7 @@
     "UndoDeprecate":{"type":"boolean"},
     "UpdateCACertificateRequest":{
       "type":"structure",
-      "required":[
-        "certificateId",
-        "newStatus"
-      ],
+      "required":["certificateId"],
       "members":{
         "certificateId":{
           "shape":"CertificateId",
@@ -4148,6 +4240,11 @@
           "shape":"CACertificateStatus",
           "location":"querystring",
           "locationName":"newStatus"
+        },
+        "newAutoRegistrationStatus":{
+          "shape":"AutoRegistrationStatus",
+          "location":"querystring",
+          "locationName":"newAutoRegistrationStatus"
         }
       }
     },
