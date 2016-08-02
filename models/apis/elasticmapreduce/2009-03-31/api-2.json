@@ -550,6 +550,14 @@
       "min":1
     },
     "ErrorMessage":{"type":"string"},
+    "FailureDetails":{
+      "type":"structure",
+      "members":{
+        "Reason":{"shape":"String"},
+        "Message":{"shape":"String"},
+        "LogFile":{"shape":"String"}
+      }
+    },
     "HadoopJarStepConfig":{
       "type":"structure",
       "required":["Jar"],
@@ -1245,6 +1253,7 @@
       "members":{
         "State":{"shape":"StepState"},
         "StateChangeReason":{"shape":"StepStateChangeReason"},
+        "FailureDetails":{"shape":"FailureDetails"},
         "Timeline":{"shape":"StepTimeline"}
       }
     },
