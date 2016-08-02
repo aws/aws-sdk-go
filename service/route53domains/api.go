@@ -155,11 +155,6 @@ func (c *Route53Domains) DisableDomainAutoRenewRequest(input *DisableDomainAutoR
 
 // This operation disables automatic renewal of domain registration for the
 // specified domain.
-//
-// Caution! Amazon Route 53 doesn't have a manual renewal process, so if you
-// disable automatic renewal, registration for the domain will not be renewed
-// when the expiration date passes, and you will lose control of the domain
-// name.
 func (c *Route53Domains) DisableDomainAutoRenew(input *DisableDomainAutoRenewInput) (*DisableDomainAutoRenewOutput, error) {
 	req, out := c.DisableDomainAutoRenewRequest(input)
 	err := req.Send()
@@ -472,6 +467,18 @@ func (c *Route53Domains) GetDomainSuggestionsRequest(input *GetDomainSuggestions
 	return
 }
 
+// The GetDomainSuggestions operation returns a list of suggested domain names
+// given a string, which can either be a domain name or simply a word or phrase
+// (without spaces).
+//
+//  Parameters: DomainName (string): The basis for your domain suggestion search,
+// a string with (or without) top-level domain specified. SuggestionCount (int):
+// The number of domain suggestions to be returned, maximum 50, minimum 1. OnlyAvailable
+// (bool): If true, availability check will be performed on suggestion results,
+// and only available domains will be returned. If false, suggestions will be
+// returned without checking whether the domain is actually available, and caller
+// will have to call checkDomainAvailability for each suggestion to determine
+// availability for registration.
 func (c *Route53Domains) GetDomainSuggestions(input *GetDomainSuggestionsInput) (*GetDomainSuggestionsOutput, error) {
 	req, out := c.GetDomainSuggestionsRequest(input)
 	err := req.Send()
@@ -844,6 +851,14 @@ func (c *Route53Domains) RenewDomainRequest(input *RenewDomainInput) (req *reque
 	return
 }
 
+// This operation renews a domain for the specified number of years. The cost
+// of renewing your domain is billed to your AWS account.
+//
+// We recommend that you renew your domain several weeks before the expiration
+// date. Some TLD registries delete domains before the expiration date if you
+// haven't renewed far enough in advance. For more information about renewing
+// domain registration, see Renewing Registration for a Domain (http://docs.aws.amazon.com/console/route53/domain-renew)
+// in the Amazon Route 53 documentation.
 func (c *Route53Domains) RenewDomain(input *RenewDomainInput) (*RenewDomainOutput, error) {
 	req, out := c.RenewDomainRequest(input)
 	err := req.Send()
@@ -1280,6 +1295,8 @@ func (c *Route53Domains) ViewBillingRequest(input *ViewBillingInput) (req *reque
 	return
 }
 
+// This operation returns all the domain-related billing records for the current
+// AWS account for a specified period
 func (c *Route53Domains) ViewBilling(input *ViewBillingInput) (*ViewBillingOutput, error) {
 	req, out := c.ViewBillingRequest(input)
 	err := req.Send()
@@ -1289,14 +1306,33 @@ func (c *Route53Domains) ViewBilling(input *ViewBillingInput) (*ViewBillingOutpu
 type BillingRecord struct {
 	_ struct{} `type:"structure"`
 
+	// The date that the operation was billed, in Unix format.
+	//
+	// Type: Double
 	BillDate *time.Time `type:"timestamp" timestampFormat:"unix"`
 
+	// The name of a domain.
+	//
+	// Type: String
 	DomainName *string `type:"string"`
 
+	// The ID of the invoice that is associated with the billing record.
+	//
+	// Type: String
 	InvoiceId *string `type:"string"`
 
+	// The operation that you were charged for.
+	//
+	// Type: String
+	//
+	// Valid values:  REGISTER_DOMAIN TRANSFER_IN_DOMAIN RENEW_DOMAIN CHANGE_DOMAIN_OWNER
 	Operation *string `type:"string" enum:"OperationType"`
 
+	// The price that you were charged for the operation, in US dollars.
+	//
+	// Type: Double
+	//
+	// Example value: 12.0
 	Price *float64 `type:"double"`
 }
 
@@ -2896,13 +2932,37 @@ func (s RegisterDomainOutput) GoString() string {
 	return s.String()
 }
 
+// A RenewDomain request includes the number of years that you want to renew
+// for and the current expiration year.
 type RenewDomainInput struct {
 	_ struct{} `type:"structure"`
 
+	// The year when the registration for the domain is set to expire. This value
+	// must match the current expiration date for the domain.
+	//
+	// Type: Integer
+	//
+	// Default: None
+	//
+	// Valid values: Integer
+	//
+	// Required: Yes
 	CurrentExpiryYear *int64 `type:"integer" required:"true"`
 
 	DomainName *string `type:"string" required:"true"`
 
+	// The number of years that you want to renew the domain for. The maximum number
+	// of years depends on the top-level domain. For the range of valid values for
+	// your domain, see Domains that You Can Register with Amazon Route 53 (http://docs.aws.amazon.com/console/route53/domain-tld-list)
+	// in the Amazon Route 53 documentation.
+	//
+	// Type: Integer
+	//
+	// Default: 1
+	//
+	// Valid values: Integer from 1 to 10
+	//
+	// Required: No
 	DurationInYears *int64 `min:"1" type:"integer"`
 }
 
@@ -3740,15 +3800,56 @@ func (s UpdateTagsForDomainOutput) GoString() string {
 	return s.String()
 }
 
+// The ViewBilling request includes the following elements.
 type ViewBillingInput struct {
 	_ struct{} `type:"structure"`
 
+	// The end date and time for the time period for which you want a list of billing
+	// records. Specify the date in Unix time format.
+	//
+	// Type: Double
+	//
+	// Default: None
+	//
+	// Required: Yes
 	End *time.Time `type:"timestamp" timestampFormat:"unix"`
 
+	// For an initial request for a list of billing records, omit this element.
+	// If the number of billing records that are associated with the current AWS
+	// account during the specified period is greater than the value that you specified
+	// for MaxItems, you can use Marker to return additional billing records. Get
+	// the value of NextPageMarker from the previous response, and submit another
+	// request that includes the value of NextPageMarker in the Marker element.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: The marker must match the value of NextPageMarker that was
+	// returned in the previous response.
+	//
+	// Required: No
 	Marker *string `type:"string"`
 
+	// The number of billing records to be returned.
+	//
+	// Type: Integer
+	//
+	// Default: 20
+	//
+	// Constraints: A value between 1 and 100.
+	//
+	// Required: No
 	MaxItems *int64 `type:"integer"`
 
+	// The beginning date and time for the time period for which you want a list
+	// of billing records. Specify the date in Unix time format.
+	//
+	// Type: Double
+	//
+	// Default: None
+	//
+	// Required: Yes
 	Start *time.Time `type:"timestamp" timestampFormat:"unix"`
 }
 
@@ -3762,11 +3863,24 @@ func (s ViewBillingInput) GoString() string {
 	return s.String()
 }
 
+// The ViewBilling response includes the following elements.
 type ViewBillingOutput struct {
 	_ struct{} `type:"structure"`
 
+	// A summary of billing records.
+	//
+	// Type: Complex type containing a list of billing record summaries.
+	//
+	// Children: DomainName, Operation, InvoiceId, BillDate and Price
 	BillingRecords []*BillingRecord `type:"list"`
 
+	// If there are more billing records than you specified for MaxItems in the
+	// request, submit another request and include the value of NextPageMarker in
+	// the value of Marker.
+	//
+	// Type: String
+	//
+	// Parent: BillingRecords
 	NextPageMarker *string `type:"string"`
 }
 
