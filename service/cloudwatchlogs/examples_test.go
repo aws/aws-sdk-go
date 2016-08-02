@@ -614,6 +614,7 @@ func ExampleCloudWatchLogs_PutMetricFilter() {
 				MetricName:      aws.String("MetricName"),      // Required
 				MetricNamespace: aws.String("MetricNamespace"), // Required
 				MetricValue:     aws.String("MetricValue"),     // Required
+				DefaultValue:    aws.Float64(1.0),
 			},
 			// More values...
 		},
