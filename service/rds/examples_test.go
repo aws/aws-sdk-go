@@ -2241,6 +2241,7 @@ func ExampleRDS_ModifyDBInstance() {
 		DomainIAMRoleName:          aws.String("String"),
 		EngineVersion:              aws.String("String"),
 		Iops:                       aws.Int64(1),
+		LicenseModel:               aws.String("String"),
 		MasterUserPassword:         aws.String("String"),
 		MonitoringInterval:         aws.Int64(1),
 		MonitoringRoleArn:          aws.String("String"),
@@ -2441,7 +2442,8 @@ func ExampleRDS_ModifyOptionGroup() {
 					},
 					// More values...
 				},
-				Port: aws.Int64(1),
+				OptionVersion: aws.String("String"),
+				Port:          aws.Int64(1),
 				VpcSecurityGroupMemberships: []*string{
 					aws.String("String"), // Required
 					// More values...

@@ -227,6 +227,7 @@
         "OptionGroupOptionSetting$IsModifiable": "<p>Boolean value where true indicates that this option group option can be changed from the default value.</p>",
         "OptionSetting$IsModifiable": "<p>A Boolean value that, when true, indicates the option setting can be modified from the default.</p>",
         "OptionSetting$IsCollection": "<p>Indicates if the option setting is part of a collection.</p>",
+        "OptionVersion$IsDefault": "<p>True if the version is the default version of the option; otherwise, false.</p>",
         "OrderableDBInstanceOption$MultiAZCapable": "<p>Indicates whether this orderable DB instance is multi-AZ capable.</p>",
         "OrderableDBInstanceOption$ReadReplicaCapable": "<p>Indicates whether this orderable DB instance can have a Read Replica.</p>",
         "OrderableDBInstanceOption$Vpc": "<p>Indicates whether this is a VPC orderable DB instance.</p>",
@@ -1703,6 +1704,12 @@
         "OptionGroupOption$OptionGroupOptionSettings": "<p>Specifies the option settings that are available (and the default value) for each option in an option group.</p>"
       }
     },
+    "OptionGroupOptionVersionsList": {
+      "base": null,
+      "refs": {
+        "OptionGroupOption$OptionGroupOptionVersions": "<p>Specifies the versions that are available for the option.</p>"
+      }
+    },
     "OptionGroupOptionsList": {
       "base": "<p>List of available option group options.</p>",
       "refs": {
@@ -1753,6 +1760,12 @@
       "base": null,
       "refs": {
         "OptionConfiguration$OptionSettings": "<p>The option settings to include in an option group.</p>"
+      }
+    },
+    "OptionVersion": {
+      "base": "<p>The version for an option. Option group option versions are returned by the <a>DescribeOptionGroupOptions</a> action.</p>",
+      "refs": {
+        "OptionGroupOptionVersionsList$member": null
       }
     },
     "OptionsDependedOn": {
@@ -2460,6 +2473,7 @@
         "ModifyDBInstanceMessage$PreferredBackupWindow": "<p> The daily time range during which automated backups are created if automated backups are enabled, as determined by the <code>BackupRetentionPeriod</code> parameter. Changing this parameter does not result in an outage and the change is asynchronously applied as soon as possible. </p> <p>Constraints:</p> <ul> <li> <p>Must be in the format hh24:mi-hh24:mi</p> </li> <li> <p>Times should be in Universal Time Coordinated (UTC)</p> </li> <li> <p>Must not conflict with the preferred maintenance window</p> </li> <li> <p>Must be at least 30 minutes</p> </li> </ul>",
         "ModifyDBInstanceMessage$PreferredMaintenanceWindow": "<p>The weekly time range (in UTC) during which system maintenance can occur, which might result in an outage. Changing this parameter does not result in an outage, except in the following situation, and the change is asynchronously applied as soon as possible. If there are pending actions that cause a reboot, and the maintenance window is changed to include the current time, then changing this parameter will cause a reboot of the DB instance. If moving this window to the current time, there must be at least 30 minutes between the current time and end of the window to ensure pending changes are applied.</p> <p>Default: Uses existing setting</p> <p>Format: ddd:hh24:mi-ddd:hh24:mi</p> <p>Valid Days: Mon | Tue | Wed | Thu | Fri | Sat | Sun</p> <p>Constraints: Must be at least 30 minutes</p>",
         "ModifyDBInstanceMessage$EngineVersion": "<p> The version number of the database engine to upgrade to. Changing this parameter results in an outage and the change is applied during the next maintenance window unless the <code>ApplyImmediately</code> parameter is set to <code>true</code> for this request. </p> <p>For major version upgrades, if a non-default DB parameter group is currently in use, a new DB parameter group in the DB parameter group family for the new engine version must be specified. The new DB parameter group can be the default for that DB parameter group family.</p> <p>For a list of valid engine versions, see <a>CreateDBInstance</a>.</p>",
+        "ModifyDBInstanceMessage$LicenseModel": "<p>The license model for the DB instance.</p> <p>Valid values: <code>license-included</code> | <code>bring-your-own-license</code> | <code>general-public-license</code> </p>",
         "ModifyDBInstanceMessage$OptionGroupName": "<p> Indicates that the DB instance should be associated with the specified option group. Changing this parameter does not result in an outage except in the following case and the change is applied during the next maintenance window unless the <code>ApplyImmediately</code> parameter is set to <code>true</code> for this request. If the parameter change results in an option group that enables OEM, this change can cause a brief (sub-second) period during which new connections are rejected but existing connections are not interrupted. </p> <p>Permanent options, such as the TDE option for Oracle Advanced Security TDE, cannot be removed from an option group, and that option group cannot be removed from a DB instance once it is associated with a DB instance</p>",
         "ModifyDBInstanceMessage$NewDBInstanceIdentifier": "<p> The new DB instance identifier for the DB instance when renaming a DB instance. When you change the DB instance identifier, an instance reboot will occur immediately if you set <code>Apply Immediately</code> to true, or will occur during the next maintenance window if <code>Apply Immediately</code> to false. This value is stored as a lowercase string. </p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63 alphanumeric characters or hyphens</p> </li> <li> <p>First character must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens</p> </li> </ul>",
         "ModifyDBInstanceMessage$StorageType": "<p>Specifies the storage type to be associated with the DB instance.</p> <p> Valid values: <code>standard | gp2 | io1</code> </p> <p> If you specify <code>io1</code>, you must also include a value for the <code>Iops</code> parameter. </p> <p> Default: <code>io1</code> if the <code>Iops</code> parameter is specified; otherwise <code>standard</code> </p>",
@@ -2480,7 +2494,9 @@
         "ModifyOptionGroupMessage$OptionGroupName": "<p>The name of the option group to be modified.</p> <p>Permanent options, such as the TDE option for Oracle Advanced Security TDE, cannot be removed from an option group, and that option group cannot be removed from a DB instance once it is associated with a DB instance</p>",
         "Option$OptionName": "<p>The name of the option.</p>",
         "Option$OptionDescription": "<p>The description of the option.</p>",
+        "Option$OptionVersion": "<p>The version of the option.</p>",
         "OptionConfiguration$OptionName": "<p>The configuration of options to include in a group.</p>",
+        "OptionConfiguration$OptionVersion": "<p>The version for the option.</p>",
         "OptionGroup$OptionGroupName": "<p>Specifies the name of the option group.</p>",
         "OptionGroup$OptionGroupDescription": "<p>Provides a description of the option group.</p>",
         "OptionGroup$EngineName": "<p>Indicates the name of the engine that this option group can be applied to.</p>",
@@ -2508,6 +2524,7 @@
         "OptionSetting$ApplyType": "<p>The DB engine specific parameter type.</p>",
         "OptionSetting$DataType": "<p>The data type of the option setting.</p>",
         "OptionSetting$AllowedValues": "<p>The allowed values of the option setting.</p>",
+        "OptionVersion$Version": "<p>The version of the option.</p>",
         "OptionsDependedOn$member": null,
         "OrderableDBInstanceOption$Engine": "<p>The engine type of the orderable DB instance.</p>",
         "OrderableDBInstanceOption$EngineVersion": "<p>The engine version of the orderable DB instance.</p>",
@@ -2530,6 +2547,7 @@
         "PendingModifiedValues$DBInstanceClass": "<p> Contains the new <code>DBInstanceClass</code> for the DB instance that will be applied or is in progress. </p>",
         "PendingModifiedValues$MasterUserPassword": "<p>Contains the pending or in-progress change of the master credentials for the DB instance.</p>",
         "PendingModifiedValues$EngineVersion": "<p>Indicates the database engine version.</p>",
+        "PendingModifiedValues$LicenseModel": "<p>The license model for the DB instance.</p> <p>Valid values: <code>license-included</code> | <code>bring-your-own-license</code> | <code>general-public-license</code> </p>",
         "PendingModifiedValues$DBInstanceIdentifier": "<p> Contains the new <code>DBInstanceIdentifier</code> for the DB instance that will be applied or is in progress. </p>",
         "PendingModifiedValues$StorageType": "<p>Specifies the storage type to be associated with the DB instance.</p>",
         "PendingModifiedValues$CACertificateIdentifier": "<p>Specifies the identifier of the CA certificate for the DB instance.</p>",
@@ -2581,7 +2599,7 @@
         "RestoreDBInstanceFromDBSnapshotMessage$AvailabilityZone": "<p>The EC2 Availability Zone that the database instance will be created in.</p> <p>Default: A random, system-chosen Availability Zone.</p> <p>Constraint: You cannot specify the AvailabilityZone parameter if the MultiAZ parameter is set to <code>true</code>.</p> <p>Example: <code>us-east-1a</code> </p>",
         "RestoreDBInstanceFromDBSnapshotMessage$DBSubnetGroupName": "<p>The DB subnet group name to use for the new instance.</p> <p>Constraints: Must contain no more than 255 alphanumeric characters, periods, underscores, spaces, or hyphens. Must not be default.</p> <p>Example: <code>mySubnetgroup</code> </p>",
         "RestoreDBInstanceFromDBSnapshotMessage$LicenseModel": "<p>License model information for the restored DB instance.</p> <p>Default: Same as source.</p> <p> Valid values: <code>license-included</code> | <code>bring-your-own-license</code> | <code>general-public-license</code> </p>",
-        "RestoreDBInstanceFromDBSnapshotMessage$DBName": "<p>The database name for the restored DB instance.</p> <note> <p>This parameter doesn't apply to the MySQL or MariaDB engines.</p> </note>",
+        "RestoreDBInstanceFromDBSnapshotMessage$DBName": "<p>The database name for the restored DB instance.</p> <note> <p>This parameter doesn't apply to the MySQL, PostgreSQL, or MariaDB engines.</p> </note>",
         "RestoreDBInstanceFromDBSnapshotMessage$Engine": "<p>The database engine to use for the new instance.</p> <p>Default: The same as source</p> <p>Constraint: Must be compatible with the engine of the source</p> <p> Valid Values: <code>MySQL</code> | <code>mariadb</code> | <code>oracle-se1</code> | <code>oracle-se</code> | <code>oracle-ee</code> | <code>sqlserver-ee</code> | <code>sqlserver-se</code> | <code>sqlserver-ex</code> | <code>sqlserver-web</code> | <code>postgres</code> | <code>aurora</code> </p>",
         "RestoreDBInstanceFromDBSnapshotMessage$OptionGroupName": "<p>The name of the option group to be used for the restored DB instance.</p> <p>Permanent options, such as the TDE option for Oracle Advanced Security TDE, cannot be removed from an option group, and that option group cannot be removed from a DB instance once it is associated with a DB instance</p>",
         "RestoreDBInstanceFromDBSnapshotMessage$StorageType": "<p>Specifies the storage type to be associated with the DB instance.</p> <p> Valid values: <code>standard | gp2 | io1</code> </p> <p> If you specify <code>io1</code>, you must also include a value for the <code>Iops</code> parameter. </p> <p> Default: <code>io1</code> if the <code>Iops</code> parameter is specified; otherwise <code>standard</code> </p>",

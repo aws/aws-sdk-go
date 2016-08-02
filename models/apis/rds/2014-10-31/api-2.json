@@ -3683,6 +3683,7 @@
         "EngineVersion":{"shape":"String"},
         "AllowMajorVersionUpgrade":{"shape":"Boolean"},
         "AutoMinorVersionUpgrade":{"shape":"BooleanOptional"},
+        "LicenseModel":{"shape":"String"},
         "Iops":{"shape":"IntegerOptional"},
         "OptionGroupName":{"shape":"String"},
         "NewDBInstanceIdentifier":{"shape":"String"},
@@ -3795,6 +3796,7 @@
         "Persistent":{"shape":"Boolean"},
         "Permanent":{"shape":"Boolean"},
         "Port":{"shape":"IntegerOptional"},
+        "OptionVersion":{"shape":"String"},
         "OptionSettings":{"shape":"OptionSettingConfigurationList"},
         "DBSecurityGroupMemberships":{"shape":"DBSecurityGroupMembershipList"},
         "VpcSecurityGroupMemberships":{"shape":"VpcSecurityGroupMembershipList"}
@@ -3806,6 +3808,7 @@
       "members":{
         "OptionName":{"shape":"String"},
         "Port":{"shape":"IntegerOptional"},
+        "OptionVersion":{"shape":"String"},
         "DBSecurityGroupMemberships":{"shape":"DBSecurityGroupNameList"},
         "VpcSecurityGroupMemberships":{"shape":"VpcSecurityGroupIdList"},
         "OptionSettings":{"shape":"OptionSettingsList"}
@@ -3880,7 +3883,8 @@
         "OptionsDependedOn":{"shape":"OptionsDependedOn"},
         "Persistent":{"shape":"Boolean"},
         "Permanent":{"shape":"Boolean"},
-        "OptionGroupOptionSettings":{"shape":"OptionGroupOptionSettingsList"}
+        "OptionGroupOptionSettings":{"shape":"OptionGroupOptionSettingsList"},
+        "OptionGroupOptionVersions":{"shape":"OptionGroupOptionVersionsList"}
       }
     },
     "OptionGroupOptionSetting":{
@@ -3899,6 +3903,13 @@
       "member":{
         "shape":"OptionGroupOptionSetting",
         "locationName":"OptionGroupOptionSetting"
+      }
+    },
+    "OptionGroupOptionVersionsList":{
+      "type":"list",
+      "member":{
+        "shape":"OptionVersion",
+        "locationName":"OptionVersion"
       }
     },
     "OptionGroupOptionsList":{
@@ -3970,6 +3981,13 @@
       "member":{
         "shape":"OptionSetting",
         "locationName":"OptionSetting"
+      }
+    },
+    "OptionVersion":{
+      "type":"structure",
+      "members":{
+        "Version":{"shape":"String"},
+        "IsDefault":{"shape":"Boolean"}
       }
     },
     "OptionsDependedOn":{
@@ -4082,6 +4100,7 @@
         "BackupRetentionPeriod":{"shape":"IntegerOptional"},
         "MultiAZ":{"shape":"BooleanOptional"},
         "EngineVersion":{"shape":"String"},
+        "LicenseModel":{"shape":"String"},
         "Iops":{"shape":"IntegerOptional"},
         "DBInstanceIdentifier":{"shape":"String"},
         "StorageType":{"shape":"String"},

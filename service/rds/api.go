@@ -12717,6 +12717,11 @@ type ModifyDBInstanceInput struct {
 	// snapshot of the instance.
 	Iops *int64 `type:"integer"`
 
+	// The license model for the DB instance.
+	//
+	// Valid values: license-included | bring-your-own-license | general-public-license
+	LicenseModel *string `type:"string"`
+
 	// The new password for the DB instance master user. Can be any printable ASCII
 	// character except "/", """, or "@".
 	//
@@ -13293,6 +13298,9 @@ type Option struct {
 	// The option settings for this option.
 	OptionSettings []*OptionSetting `locationNameList:"OptionSetting" type:"list"`
 
+	// The version of the option.
+	OptionVersion *string `type:"string"`
+
 	// Indicate if this option is permanent.
 	Permanent *bool `type:"boolean"`
 
@@ -13329,6 +13337,9 @@ type OptionConfiguration struct {
 
 	// The option settings to include in an option group.
 	OptionSettings []*OptionSetting `locationNameList:"OptionSetting" type:"list"`
+
+	// The version for the option.
+	OptionVersion *string `type:"string"`
 
 	// The optional port for the option.
 	Port *int64 `type:"integer"`
@@ -13450,6 +13461,9 @@ type OptionGroupOption struct {
 	// for each option in an option group.
 	OptionGroupOptionSettings []*OptionGroupOptionSetting `locationNameList:"OptionGroupOptionSetting" type:"list"`
 
+	// Specifies the versions that are available for the option.
+	OptionGroupOptionVersions []*OptionVersion `locationNameList:"OptionVersion" type:"list"`
+
 	// List of all options that are prerequisites for this option.
 	OptionsDependedOn []*string `locationNameList:"OptionName" type:"list"`
 
@@ -13557,6 +13571,28 @@ func (s OptionSetting) String() string {
 
 // GoString returns the string representation
 func (s OptionSetting) GoString() string {
+	return s.String()
+}
+
+// The version for an option. Option group option versions are returned by the
+// DescribeOptionGroupOptions action.
+type OptionVersion struct {
+	_ struct{} `type:"structure"`
+
+	// True if the version is the default version of the option; otherwise, false.
+	IsDefault *bool `type:"boolean"`
+
+	// The version of the option.
+	Version *string `type:"string"`
+}
+
+// String returns the string representation
+func (s OptionVersion) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OptionVersion) GoString() string {
 	return s.String()
 }
 
@@ -13737,6 +13773,11 @@ type PendingModifiedValues struct {
 	// Specifies the new Provisioned IOPS value for the DB instance that will be
 	// applied or is being applied.
 	Iops *int64 `type:"integer"`
+
+	// The license model for the DB instance.
+	//
+	// Valid values: license-included | bring-your-own-license | general-public-license
+	LicenseModel *string `type:"string"`
 
 	// Contains the pending or in-progress change of the master credentials for
 	// the DB instance.
@@ -14785,7 +14826,7 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 
 	// The database name for the restored DB instance.
 	//
-	//  This parameter doesn't apply to the MySQL or MariaDB engines.
+	//  This parameter doesn't apply to the MySQL, PostgreSQL, or MariaDB engines.
 	DBName *string `type:"string"`
 
 	// The identifier for the DB snapshot to restore from.
