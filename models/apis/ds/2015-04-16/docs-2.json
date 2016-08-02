@@ -834,7 +834,7 @@
     "RadiusSharedSecret": {
       "base": null,
       "refs": {
-        "RadiusSettings$SharedSecret": "<p>The shared secret code that was specified when your RADIUS endpoints were created.</p>"
+        "RadiusSettings$SharedSecret": "<p>Not currently used.</p>"
       }
     },
     "RadiusStatus": {
