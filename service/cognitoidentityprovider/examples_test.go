@@ -16,7 +16,13 @@ var _ time.Duration
 var _ bytes.Buffer
 
 func ExampleCognitoIdentityProvider_AddCustomAttributes() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.AddCustomAttributesInput{
 		CustomAttributes: []*cognitoidentityprovider.SchemaAttributeType{ // Required
@@ -53,7 +59,13 @@ func ExampleCognitoIdentityProvider_AddCustomAttributes() {
 }
 
 func ExampleCognitoIdentityProvider_AdminConfirmSignUp() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.AdminConfirmSignUpInput{
 		UserPoolId: aws.String("UserPoolIdType"), // Required
@@ -73,7 +85,13 @@ func ExampleCognitoIdentityProvider_AdminConfirmSignUp() {
 }
 
 func ExampleCognitoIdentityProvider_AdminDeleteUser() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.AdminDeleteUserInput{
 		UserPoolId: aws.String("UserPoolIdType"), // Required
@@ -93,7 +111,13 @@ func ExampleCognitoIdentityProvider_AdminDeleteUser() {
 }
 
 func ExampleCognitoIdentityProvider_AdminDeleteUserAttributes() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.AdminDeleteUserAttributesInput{
 		UserAttributeNames: []*string{ // Required
@@ -117,7 +141,13 @@ func ExampleCognitoIdentityProvider_AdminDeleteUserAttributes() {
 }
 
 func ExampleCognitoIdentityProvider_AdminDisableUser() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.AdminDisableUserInput{
 		UserPoolId: aws.String("UserPoolIdType"), // Required
@@ -137,7 +167,13 @@ func ExampleCognitoIdentityProvider_AdminDisableUser() {
 }
 
 func ExampleCognitoIdentityProvider_AdminEnableUser() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.AdminEnableUserInput{
 		UserPoolId: aws.String("UserPoolIdType"), // Required
@@ -157,7 +193,13 @@ func ExampleCognitoIdentityProvider_AdminEnableUser() {
 }
 
 func ExampleCognitoIdentityProvider_AdminForgetDevice() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.AdminForgetDeviceInput{
 		DeviceKey:  aws.String("DeviceKeyType"),  // Required
@@ -178,7 +220,13 @@ func ExampleCognitoIdentityProvider_AdminForgetDevice() {
 }
 
 func ExampleCognitoIdentityProvider_AdminGetDevice() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.AdminGetDeviceInput{
 		DeviceKey:  aws.String("DeviceKeyType"),  // Required
@@ -199,7 +247,13 @@ func ExampleCognitoIdentityProvider_AdminGetDevice() {
 }
 
 func ExampleCognitoIdentityProvider_AdminGetUser() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.AdminGetUserInput{
 		UserPoolId: aws.String("UserPoolIdType"), // Required
@@ -219,7 +273,13 @@ func ExampleCognitoIdentityProvider_AdminGetUser() {
 }
 
 func ExampleCognitoIdentityProvider_AdminInitiateAuth() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.AdminInitiateAuthInput{
 		AuthFlow:   aws.String("AuthFlowType"),   // Required
@@ -248,7 +308,13 @@ func ExampleCognitoIdentityProvider_AdminInitiateAuth() {
 }
 
 func ExampleCognitoIdentityProvider_AdminListDevices() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.AdminListDevicesInput{
 		UserPoolId:      aws.String("UserPoolIdType"), // Required
@@ -270,7 +336,13 @@ func ExampleCognitoIdentityProvider_AdminListDevices() {
 }
 
 func ExampleCognitoIdentityProvider_AdminResetUserPassword() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.AdminResetUserPasswordInput{
 		UserPoolId: aws.String("UserPoolIdType"), // Required
@@ -290,7 +362,13 @@ func ExampleCognitoIdentityProvider_AdminResetUserPassword() {
 }
 
 func ExampleCognitoIdentityProvider_AdminRespondToAuthChallenge() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.AdminRespondToAuthChallengeInput{
 		ChallengeName: aws.String("ChallengeNameType"), // Required
@@ -316,7 +394,13 @@ func ExampleCognitoIdentityProvider_AdminRespondToAuthChallenge() {
 }
 
 func ExampleCognitoIdentityProvider_AdminSetUserSettings() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.AdminSetUserSettingsInput{
 		MFAOptions: []*cognitoidentityprovider.MFAOptionType{ // Required
@@ -343,7 +427,13 @@ func ExampleCognitoIdentityProvider_AdminSetUserSettings() {
 }
 
 func ExampleCognitoIdentityProvider_AdminUpdateDeviceStatus() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.AdminUpdateDeviceStatusInput{
 		DeviceKey:              aws.String("DeviceKeyType"),  // Required
@@ -365,7 +455,13 @@ func ExampleCognitoIdentityProvider_AdminUpdateDeviceStatus() {
 }
 
 func ExampleCognitoIdentityProvider_AdminUpdateUserAttributes() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.AdminUpdateUserAttributesInput{
 		UserAttributes: []*cognitoidentityprovider.AttributeType{ // Required
@@ -392,7 +488,13 @@ func ExampleCognitoIdentityProvider_AdminUpdateUserAttributes() {
 }
 
 func ExampleCognitoIdentityProvider_AdminUserGlobalSignOut() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.AdminUserGlobalSignOutInput{
 		UserPoolId: aws.String("UserPoolIdType"), // Required
@@ -412,7 +514,13 @@ func ExampleCognitoIdentityProvider_AdminUserGlobalSignOut() {
 }
 
 func ExampleCognitoIdentityProvider_ChangePassword() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.ChangePasswordInput{
 		PreviousPassword: aws.String("PasswordType"), // Required
@@ -433,7 +541,13 @@ func ExampleCognitoIdentityProvider_ChangePassword() {
 }
 
 func ExampleCognitoIdentityProvider_ConfirmDevice() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.ConfirmDeviceInput{
 		AccessToken: aws.String("TokenModelType"), // Required
@@ -458,7 +572,13 @@ func ExampleCognitoIdentityProvider_ConfirmDevice() {
 }
 
 func ExampleCognitoIdentityProvider_ConfirmForgotPassword() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.ConfirmForgotPasswordInput{
 		ClientId:         aws.String("ClientIdType"),         // Required
@@ -481,7 +601,13 @@ func ExampleCognitoIdentityProvider_ConfirmForgotPassword() {
 }
 
 func ExampleCognitoIdentityProvider_ConfirmSignUp() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.ConfirmSignUpInput{
 		ClientId:           aws.String("ClientIdType"),         // Required
@@ -504,7 +630,13 @@ func ExampleCognitoIdentityProvider_ConfirmSignUp() {
 }
 
 func ExampleCognitoIdentityProvider_CreateUserPool() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.CreateUserPoolInput{
 		PoolName: aws.String("UserPoolNameType"), // Required
@@ -567,7 +699,13 @@ func ExampleCognitoIdentityProvider_CreateUserPool() {
 }
 
 func ExampleCognitoIdentityProvider_CreateUserPoolClient() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.CreateUserPoolClientInput{
 		ClientName: aws.String("ClientNameType"), // Required
@@ -601,7 +739,13 @@ func ExampleCognitoIdentityProvider_CreateUserPoolClient() {
 }
 
 func ExampleCognitoIdentityProvider_DeleteUser() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.DeleteUserInput{
 		AccessToken: aws.String("TokenModelType"),
@@ -620,7 +764,13 @@ func ExampleCognitoIdentityProvider_DeleteUser() {
 }
 
 func ExampleCognitoIdentityProvider_DeleteUserAttributes() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.DeleteUserAttributesInput{
 		UserAttributeNames: []*string{ // Required
@@ -643,7 +793,13 @@ func ExampleCognitoIdentityProvider_DeleteUserAttributes() {
 }
 
 func ExampleCognitoIdentityProvider_DeleteUserPool() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.DeleteUserPoolInput{
 		UserPoolId: aws.String("UserPoolIdType"), // Required
@@ -662,7 +818,13 @@ func ExampleCognitoIdentityProvider_DeleteUserPool() {
 }
 
 func ExampleCognitoIdentityProvider_DeleteUserPoolClient() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.DeleteUserPoolClientInput{
 		ClientId:   aws.String("ClientIdType"),   // Required
@@ -682,7 +844,13 @@ func ExampleCognitoIdentityProvider_DeleteUserPoolClient() {
 }
 
 func ExampleCognitoIdentityProvider_DescribeUserPool() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.DescribeUserPoolInput{
 		UserPoolId: aws.String("UserPoolIdType"), // Required
@@ -701,7 +869,13 @@ func ExampleCognitoIdentityProvider_DescribeUserPool() {
 }
 
 func ExampleCognitoIdentityProvider_DescribeUserPoolClient() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.DescribeUserPoolClientInput{
 		ClientId:   aws.String("ClientIdType"),   // Required
@@ -721,7 +895,13 @@ func ExampleCognitoIdentityProvider_DescribeUserPoolClient() {
 }
 
 func ExampleCognitoIdentityProvider_ForgetDevice() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.ForgetDeviceInput{
 		DeviceKey:   aws.String("DeviceKeyType"), // Required
@@ -741,7 +921,13 @@ func ExampleCognitoIdentityProvider_ForgetDevice() {
 }
 
 func ExampleCognitoIdentityProvider_ForgotPassword() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.ForgotPasswordInput{
 		ClientId:   aws.String("ClientIdType"), // Required
@@ -762,7 +948,13 @@ func ExampleCognitoIdentityProvider_ForgotPassword() {
 }
 
 func ExampleCognitoIdentityProvider_GetDevice() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.GetDeviceInput{
 		DeviceKey:   aws.String("DeviceKeyType"), // Required
@@ -782,7 +974,13 @@ func ExampleCognitoIdentityProvider_GetDevice() {
 }
 
 func ExampleCognitoIdentityProvider_GetUser() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.GetUserInput{
 		AccessToken: aws.String("TokenModelType"),
@@ -801,7 +999,13 @@ func ExampleCognitoIdentityProvider_GetUser() {
 }
 
 func ExampleCognitoIdentityProvider_GetUserAttributeVerificationCode() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.GetUserAttributeVerificationCodeInput{
 		AttributeName: aws.String("AttributeNameType"), // Required
@@ -821,7 +1025,13 @@ func ExampleCognitoIdentityProvider_GetUserAttributeVerificationCode() {
 }
 
 func ExampleCognitoIdentityProvider_GlobalSignOut() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.GlobalSignOutInput{
 		AccessToken: aws.String("TokenModelType"),
@@ -840,7 +1050,13 @@ func ExampleCognitoIdentityProvider_GlobalSignOut() {
 }
 
 func ExampleCognitoIdentityProvider_InitiateAuth() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.InitiateAuthInput{
 		AuthFlow: aws.String("AuthFlowType"), // Required
@@ -868,7 +1084,13 @@ func ExampleCognitoIdentityProvider_InitiateAuth() {
 }
 
 func ExampleCognitoIdentityProvider_ListDevices() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.ListDevicesInput{
 		AccessToken:     aws.String("TokenModelType"), // Required
@@ -889,7 +1111,13 @@ func ExampleCognitoIdentityProvider_ListDevices() {
 }
 
 func ExampleCognitoIdentityProvider_ListUserPoolClients() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.ListUserPoolClientsInput{
 		UserPoolId: aws.String("UserPoolIdType"), // Required
@@ -910,7 +1138,13 @@ func ExampleCognitoIdentityProvider_ListUserPoolClients() {
 }
 
 func ExampleCognitoIdentityProvider_ListUserPools() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.ListUserPoolsInput{
 		MaxResults: aws.Int64(1), // Required
@@ -930,7 +1164,13 @@ func ExampleCognitoIdentityProvider_ListUserPools() {
 }
 
 func ExampleCognitoIdentityProvider_ListUsers() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.ListUsersInput{
 		UserPoolId: aws.String("UserPoolIdType"), // Required
@@ -956,7 +1196,13 @@ func ExampleCognitoIdentityProvider_ListUsers() {
 }
 
 func ExampleCognitoIdentityProvider_ResendConfirmationCode() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.ResendConfirmationCodeInput{
 		ClientId:   aws.String("ClientIdType"), // Required
@@ -977,7 +1223,13 @@ func ExampleCognitoIdentityProvider_ResendConfirmationCode() {
 }
 
 func ExampleCognitoIdentityProvider_RespondToAuthChallenge() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.RespondToAuthChallengeInput{
 		ChallengeName: aws.String("ChallengeNameType"), // Required
@@ -1002,7 +1254,13 @@ func ExampleCognitoIdentityProvider_RespondToAuthChallenge() {
 }
 
 func ExampleCognitoIdentityProvider_SetUserSettings() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.SetUserSettingsInput{
 		AccessToken: aws.String("TokenModelType"), // Required
@@ -1028,7 +1286,13 @@ func ExampleCognitoIdentityProvider_SetUserSettings() {
 }
 
 func ExampleCognitoIdentityProvider_SignUp() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.SignUpInput{
 		ClientId:   aws.String("ClientIdType"), // Required
@@ -1064,7 +1328,13 @@ func ExampleCognitoIdentityProvider_SignUp() {
 }
 
 func ExampleCognitoIdentityProvider_UpdateDeviceStatus() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.UpdateDeviceStatusInput{
 		AccessToken:            aws.String("TokenModelType"), // Required
@@ -1085,7 +1355,13 @@ func ExampleCognitoIdentityProvider_UpdateDeviceStatus() {
 }
 
 func ExampleCognitoIdentityProvider_UpdateUserAttributes() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.UpdateUserAttributesInput{
 		UserAttributes: []*cognitoidentityprovider.AttributeType{ // Required
@@ -1111,7 +1387,13 @@ func ExampleCognitoIdentityProvider_UpdateUserAttributes() {
 }
 
 func ExampleCognitoIdentityProvider_UpdateUserPool() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.UpdateUserPoolInput{
 		UserPoolId: aws.String("UserPoolIdType"), // Required
@@ -1170,7 +1452,13 @@ func ExampleCognitoIdentityProvider_UpdateUserPool() {
 }
 
 func ExampleCognitoIdentityProvider_UpdateUserPoolClient() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.UpdateUserPoolClientInput{
 		ClientId:   aws.String("ClientIdType"),   // Required
@@ -1204,7 +1492,13 @@ func ExampleCognitoIdentityProvider_UpdateUserPoolClient() {
 }
 
 func ExampleCognitoIdentityProvider_VerifyUserAttribute() {
-	svc := cognitoidentityprovider.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
 
 	params := &cognitoidentityprovider.VerifyUserAttributeInput{
 		AttributeName: aws.String("AttributeNameType"),    // Required

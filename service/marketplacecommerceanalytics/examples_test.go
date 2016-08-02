@@ -16,7 +16,13 @@ var _ time.Duration
 var _ bytes.Buffer
 
 func ExampleMarketplaceCommerceAnalytics_GenerateDataSet() {
-	svc := marketplacecommerceanalytics.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := marketplacecommerceanalytics.New(sess)
 
 	params := &marketplacecommerceanalytics.GenerateDataSetInput{
 		DataSetPublicationDate:  aws.Time(time.Now()),                  // Required

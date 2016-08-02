@@ -16,7 +16,13 @@ var _ time.Duration
 var _ bytes.Buffer
 
 func ExampleCloudFormation_CancelUpdateStack() {
-	svc := cloudformation.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cloudformation.New(sess)
 
 	params := &cloudformation.CancelUpdateStackInput{
 		StackName: aws.String("StackName"), // Required
@@ -35,7 +41,13 @@ func ExampleCloudFormation_CancelUpdateStack() {
 }
 
 func ExampleCloudFormation_ContinueUpdateRollback() {
-	svc := cloudformation.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cloudformation.New(sess)
 
 	params := &cloudformation.ContinueUpdateRollbackInput{
 		StackName: aws.String("StackNameOrId"), // Required
@@ -54,7 +66,13 @@ func ExampleCloudFormation_ContinueUpdateRollback() {
 }
 
 func ExampleCloudFormation_CreateChangeSet() {
-	svc := cloudformation.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cloudformation.New(sess)
 
 	params := &cloudformation.CreateChangeSetInput{
 		ChangeSetName: aws.String("ChangeSetName"), // Required
@@ -106,7 +124,13 @@ func ExampleCloudFormation_CreateChangeSet() {
 }
 
 func ExampleCloudFormation_CreateStack() {
-	svc := cloudformation.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cloudformation.New(sess)
 
 	params := &cloudformation.CreateStackInput{
 		StackName: aws.String("StackName"), // Required
@@ -159,7 +183,13 @@ func ExampleCloudFormation_CreateStack() {
 }
 
 func ExampleCloudFormation_DeleteChangeSet() {
-	svc := cloudformation.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cloudformation.New(sess)
 
 	params := &cloudformation.DeleteChangeSetInput{
 		ChangeSetName: aws.String("ChangeSetNameOrId"), // Required
@@ -179,7 +209,13 @@ func ExampleCloudFormation_DeleteChangeSet() {
 }
 
 func ExampleCloudFormation_DeleteStack() {
-	svc := cloudformation.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cloudformation.New(sess)
 
 	params := &cloudformation.DeleteStackInput{
 		StackName: aws.String("StackName"), // Required
@@ -202,7 +238,13 @@ func ExampleCloudFormation_DeleteStack() {
 }
 
 func ExampleCloudFormation_DescribeAccountLimits() {
-	svc := cloudformation.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cloudformation.New(sess)
 
 	params := &cloudformation.DescribeAccountLimitsInput{
 		NextToken: aws.String("NextToken"),
@@ -221,7 +263,13 @@ func ExampleCloudFormation_DescribeAccountLimits() {
 }
 
 func ExampleCloudFormation_DescribeChangeSet() {
-	svc := cloudformation.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cloudformation.New(sess)
 
 	params := &cloudformation.DescribeChangeSetInput{
 		ChangeSetName: aws.String("ChangeSetNameOrId"), // Required
@@ -242,7 +290,13 @@ func ExampleCloudFormation_DescribeChangeSet() {
 }
 
 func ExampleCloudFormation_DescribeStackEvents() {
-	svc := cloudformation.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cloudformation.New(sess)
 
 	params := &cloudformation.DescribeStackEventsInput{
 		NextToken: aws.String("NextToken"),
@@ -262,7 +316,13 @@ func ExampleCloudFormation_DescribeStackEvents() {
 }
 
 func ExampleCloudFormation_DescribeStackResource() {
-	svc := cloudformation.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cloudformation.New(sess)
 
 	params := &cloudformation.DescribeStackResourceInput{
 		LogicalResourceId: aws.String("LogicalResourceId"), // Required
@@ -282,7 +342,13 @@ func ExampleCloudFormation_DescribeStackResource() {
 }
 
 func ExampleCloudFormation_DescribeStackResources() {
-	svc := cloudformation.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cloudformation.New(sess)
 
 	params := &cloudformation.DescribeStackResourcesInput{
 		LogicalResourceId:  aws.String("LogicalResourceId"),
@@ -303,7 +369,13 @@ func ExampleCloudFormation_DescribeStackResources() {
 }
 
 func ExampleCloudFormation_DescribeStacks() {
-	svc := cloudformation.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cloudformation.New(sess)
 
 	params := &cloudformation.DescribeStacksInput{
 		NextToken: aws.String("NextToken"),
@@ -323,7 +395,13 @@ func ExampleCloudFormation_DescribeStacks() {
 }
 
 func ExampleCloudFormation_EstimateTemplateCost() {
-	svc := cloudformation.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cloudformation.New(sess)
 
 	params := &cloudformation.EstimateTemplateCostInput{
 		Parameters: []*cloudformation.Parameter{
@@ -351,7 +429,13 @@ func ExampleCloudFormation_EstimateTemplateCost() {
 }
 
 func ExampleCloudFormation_ExecuteChangeSet() {
-	svc := cloudformation.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cloudformation.New(sess)
 
 	params := &cloudformation.ExecuteChangeSetInput{
 		ChangeSetName: aws.String("ChangeSetNameOrId"), // Required
@@ -371,7 +455,13 @@ func ExampleCloudFormation_ExecuteChangeSet() {
 }
 
 func ExampleCloudFormation_GetStackPolicy() {
-	svc := cloudformation.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cloudformation.New(sess)
 
 	params := &cloudformation.GetStackPolicyInput{
 		StackName: aws.String("StackName"), // Required
@@ -390,7 +480,13 @@ func ExampleCloudFormation_GetStackPolicy() {
 }
 
 func ExampleCloudFormation_GetTemplate() {
-	svc := cloudformation.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cloudformation.New(sess)
 
 	params := &cloudformation.GetTemplateInput{
 		StackName: aws.String("StackName"), // Required
@@ -409,7 +505,13 @@ func ExampleCloudFormation_GetTemplate() {
 }
 
 func ExampleCloudFormation_GetTemplateSummary() {
-	svc := cloudformation.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cloudformation.New(sess)
 
 	params := &cloudformation.GetTemplateSummaryInput{
 		StackName:    aws.String("StackNameOrId"),
@@ -430,7 +532,13 @@ func ExampleCloudFormation_GetTemplateSummary() {
 }
 
 func ExampleCloudFormation_ListChangeSets() {
-	svc := cloudformation.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cloudformation.New(sess)
 
 	params := &cloudformation.ListChangeSetsInput{
 		StackName: aws.String("StackNameOrId"), // Required
@@ -450,7 +558,13 @@ func ExampleCloudFormation_ListChangeSets() {
 }
 
 func ExampleCloudFormation_ListStackResources() {
-	svc := cloudformation.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cloudformation.New(sess)
 
 	params := &cloudformation.ListStackResourcesInput{
 		StackName: aws.String("StackName"), // Required
@@ -470,7 +584,13 @@ func ExampleCloudFormation_ListStackResources() {
 }
 
 func ExampleCloudFormation_ListStacks() {
-	svc := cloudformation.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cloudformation.New(sess)
 
 	params := &cloudformation.ListStacksInput{
 		NextToken: aws.String("NextToken"),
@@ -493,7 +613,13 @@ func ExampleCloudFormation_ListStacks() {
 }
 
 func ExampleCloudFormation_SetStackPolicy() {
-	svc := cloudformation.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cloudformation.New(sess)
 
 	params := &cloudformation.SetStackPolicyInput{
 		StackName:       aws.String("StackName"), // Required
@@ -514,7 +640,13 @@ func ExampleCloudFormation_SetStackPolicy() {
 }
 
 func ExampleCloudFormation_SignalResource() {
-	svc := cloudformation.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cloudformation.New(sess)
 
 	params := &cloudformation.SignalResourceInput{
 		LogicalResourceId: aws.String("LogicalResourceId"),      // Required
@@ -536,7 +668,13 @@ func ExampleCloudFormation_SignalResource() {
 }
 
 func ExampleCloudFormation_UpdateStack() {
-	svc := cloudformation.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cloudformation.New(sess)
 
 	params := &cloudformation.UpdateStackInput{
 		StackName: aws.String("StackName"), // Required
@@ -589,7 +727,13 @@ func ExampleCloudFormation_UpdateStack() {
 }
 
 func ExampleCloudFormation_ValidateTemplate() {
-	svc := cloudformation.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cloudformation.New(sess)
 
 	params := &cloudformation.ValidateTemplateInput{
 		TemplateBody: aws.String("TemplateBody"),
