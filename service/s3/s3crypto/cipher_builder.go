@@ -13,18 +13,17 @@ type ContentCipher interface {
 	EncryptContents(io.Reader) (io.Reader, error)
 	DecryptContents(io.ReadCloser) (io.ReadCloser, error)
 	GetCipherData() CipherData
-	//GetHandler() CipherDataHandler
 }
 
 // CipherData is used for content encryption. Holds the generated
 // key and iv.
 type CipherData struct {
-	Key           []byte
-	IV            []byte
-	WrapAlgorithm string
-	CEKAlgorithm  string
-	TagLength     string
-	MaterialDescription
+	Key                 []byte
+	IV                  []byte
+	WrapAlgorithm       string
+	CEKAlgorithm        string
+	TagLength           string
+	MaterialDescription MaterialDescription
 
 	EncryptedKey []byte
 }

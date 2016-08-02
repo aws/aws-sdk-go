@@ -70,7 +70,7 @@ func encodeMeta(reader HashReader, cd CipherData) (Envelope, error) {
 	contentLength := reader.GetContentLength()
 
 	md5Str := base64.StdEncoding.EncodeToString(md5)
-	matdesc, err := cd.encodeDescription()
+	matdesc, err := cd.MaterialDescription.encodeDescription()
 	if err != nil {
 		return Envelope{}, err
 	}
