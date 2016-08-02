@@ -2,7 +2,6 @@ package s3crypto
 
 import (
 	"encoding/hex"
-	"fmt"
 	"io"
 	"io/ioutil"
 	"os"
@@ -13,17 +12,17 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3/s3iface"
 )
 
-// Client is an S3 crypto client. By default the SDK will use Authentication mode which
+// EncryptionClient is an S3 crypto client. By default the SDK will use Authentication mode which
 // will use KMS for key wrapping and AES GCM for content encryption.
 // AES GCM will load all data into memory. However, the rest of the content algorithms
 // do not load the entire contents into memory.
-type Client struct {
-	S3     s3iface.S3API
-	Config Config
+type EncryptionClient struct {
+	S3API  s3iface.S3API
+	Config EncryptionConfig
 }
 
-// Config used to customize the Client
-type Config struct {
+// EncryptionConfig used to customize the Client
+type EncryptionConfig struct {
 	ContentCipherBuilder ContentCipherBuilder
 	// SaveStrategy will dictate where the envelope is saved.
 	//
@@ -32,14 +31,12 @@ type Config struct {
 	// InstructionFileSuffix is the instruction file name suffix when using get requests.
 	// If it is empty, then the item key will be used followed by .instruction
 	InstructionFileSuffix string
-	// This is used to instantiate new kms clients when calling GetObject
-	KMSSession client.ConfigProvider
-	S3Session  client.ConfigProvider
+	S3Session             client.ConfigProvider
 	// TempFolderPath is used to store temp files when calling PutObject
 	TempFolderPath string
 }
 
-// New instantiates a new S3 crypto client
+// NewEncryptionClient instantiates a new S3 crypto client
 //
 // Example:
 //	cmkID := "some key id to kms"
@@ -49,12 +46,11 @@ type Config struct {
 //	  return err
 //	}
 //	svc := s3crypto.New(sess, s3crypto.AESGCMContentCipherBuilder(handler))
-func New(prov client.ConfigProvider, builder ContentCipherBuilder, options ...func(*Client)) *Client {
-	client := &Client{
-		Config: Config{
+func NewEncryptionClient(prov client.ConfigProvider, builder ContentCipherBuilder, options ...func(*EncryptionClient)) *EncryptionClient {
+	client := &EncryptionClient{
+		Config: EncryptionConfig{
 			ContentCipherBuilder: builder,
 			SaveStrategy:         headerSaveStrategy{},
-			KMSSession:           prov,
 			S3Session:            prov,
 		},
 	}
@@ -63,7 +59,7 @@ func New(prov client.ConfigProvider, builder ContentCipherBuilder, options ...fu
 		option(client)
 	}
 
-	client.S3 = s3.New(client.Config.S3Session)
+	client.S3API = s3.New(client.Config.S3Session)
 	return client
 }
 
@@ -78,8 +74,8 @@ func New(prov client.ConfigProvider, builder ContentCipherBuilder, options ...fu
 //	  Body: bytes.NewBuffer("test data"),
 //	})
 //	err := req.Send()
-func (c *Client) PutObjectRequest(input *s3.PutObjectInput) (*request.Request, *s3.PutObjectOutput) {
-	req, out := c.S3.PutObjectRequest(input)
+func (c *EncryptionClient) PutObjectRequest(input *s3.PutObjectInput) (*request.Request, *s3.PutObjectOutput) {
+	req, out := c.S3API.PutObjectRequest(input)
 
 	// Create temp file to be used later for calculating the SHA256 header
 	f, err := ioutil.TempFile(c.Config.TempFolderPath, "")
@@ -110,7 +106,7 @@ func (c *Client) PutObjectRequest(input *s3.PutObjectInput) (*request.Request, *
 		}
 
 		data := encryptor.GetCipherData()
-		env, err := encodeMeta(md5, encryptor.GetHandler(), data)
+		env, err := encodeMeta(md5, data)
 		if err != nil {
 			r.Error = err
 			return
@@ -137,54 +133,7 @@ func (c *Client) PutObjectRequest(input *s3.PutObjectInput) (*request.Request, *
 }
 
 // PutObject is a wrapper for PutObjectRequest
-func (c *Client) PutObject(input *s3.PutObjectInput) (*s3.PutObjectOutput, error) {
+func (c *EncryptionClient) PutObject(input *s3.PutObjectInput) (*s3.PutObjectOutput, error) {
 	req, out := c.PutObjectRequest(input)
-	return out, req.Send()
-}
-
-// GetObjectRequest will make a request to s3 and retrieve the object. In this process
-// decryption will be done. The SDK only supports V2 reads of KMS and GCM.
-//
-// Example:
-//	svc := s3crypto.New(session.New(),s3crypto.AESGCMContentCipherBuilder(handler))
-//	req, out := svc.GetObjectRequest(&s3.GetObjectInput {
-//	  Key: aws.String("testKey"),
-//	  Bucket: aws.String("testBucket"),
-//	})
-//	err := req.Send()
-func (c *Client) GetObjectRequest(input *s3.GetObjectInput) (*request.Request, *s3.GetObjectOutput) {
-	req, out := c.S3.GetObjectRequest(input)
-	req.Handlers.Unmarshal.PushBack(func(r *request.Request) {
-		env, err := c.getEnvelope(input, r)
-		if err != nil {
-			r.Error = err
-			out.Body.Close()
-			return
-		}
-		fmt.Println("ENVELOPE", env)
-
-		// If KMS should return the correct CEK algorithm with the proper
-		// KMS key provider
-		cipher, err := contentCipherFromEnvelope(env, c.Config)
-		if err != nil {
-			r.Error = err
-			out.Body.Close()
-			return
-		}
-
-		reader, err := cipher.DecryptContents(out.Body)
-		if err != nil {
-			r.Error = err
-			out.Body.Close()
-			return
-		}
-		out.Body = reader
-	})
-	return req, out
-}
-
-// GetObject is a wrapper for GetObjectRequest
-func (c *Client) GetObject(input *s3.GetObjectInput) (*s3.GetObjectOutput, error) {
-	req, out := c.GetObjectRequest(input)
 	return out, req.Send()
 }

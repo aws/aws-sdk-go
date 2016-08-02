@@ -7,7 +7,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
-func contentCipherFromEnvelope(env *Envelope, cfg Config) (ContentCipher, error) {
+func contentCipherFromEnvelope(env *Envelope, cfg DecryptionConfig) (ContentCipher, error) {
 	wrap, err := wrapFromEnvelope(env, cfg)
 	if err != nil {
 		return nil, err
@@ -16,10 +16,10 @@ func contentCipherFromEnvelope(env *Envelope, cfg Config) (ContentCipher, error)
 	return cekFromEnvelope(env, wrap)
 }
 
-func wrapFromEnvelope(env *Envelope, cfg Config) (CipherDataHandler, error) {
+func wrapFromEnvelope(env *Envelope, cfg DecryptionConfig) (CipherDataDecrypter, error) {
 	switch env.WrapAlg {
 	case "kms":
-		return NewKMSDecryptHandler(cfg.KMSSession, env.MatDesc)
+		return NewKMSDecryptHandler(cfg.KMSAPI, env.MatDesc)
 	}
 	return nil, awserr.New(
 		"InvalidWrapAlgorithmError",
@@ -32,7 +32,7 @@ func wrapFromEnvelope(env *Envelope, cfg Config) (CipherDataHandler, error) {
 // the CEK algorithm consiting of AES GCM with no padding.
 const AESGCMNoPadding = "AES/GCM/NoPadding"
 
-func cekFromEnvelope(env *Envelope, cdh CipherDataHandler) (ContentCipher, error) {
+func cekFromEnvelope(env *Envelope, decrypter CipherDataDecrypter) (ContentCipher, error) {
 	key, err := base64.StdEncoding.DecodeString(env.CipherKey)
 	if err != nil {
 		return nil, err
@@ -42,7 +42,7 @@ func cekFromEnvelope(env *Envelope, cdh CipherDataHandler) (ContentCipher, error
 	if err != nil {
 		return nil, err
 	}
-	key, err = cdh.DecryptKey(key)
+	key, err = decrypter.DecryptKey(key)
 	if err != nil {
 		return nil, err
 	}
@@ -53,7 +53,7 @@ func cekFromEnvelope(env *Envelope, cdh CipherDataHandler) (ContentCipher, error
 			Key: key,
 			IV:  iv,
 		}
-		return newAESGCMContentCipher(cd, cdh)
+		return newAESGCMContentCipher(cd)
 	}
 	return nil, awserr.New(
 		"InvalidCEKAlgorithmError",
@@ -62,13 +62,9 @@ func cekFromEnvelope(env *Envelope, cdh CipherDataHandler) (ContentCipher, error
 	)
 }
 
-func encodeMeta(reader HashReader, handler CipherDataHandler, cd *CipherData) (Envelope, error) {
+func encodeMeta(reader HashReader, cd CipherData) (Envelope, error) {
 	iv := base64.StdEncoding.EncodeToString(cd.IV)
-	keyBytes, err := handler.EncryptKey(cd.Key)
-	if err != nil {
-		return Envelope{}, err
-	}
-	key := base64.StdEncoding.EncodeToString(keyBytes)
+	key := base64.StdEncoding.EncodeToString(cd.EncryptedKey)
 
 	md5 := reader.GetValue()
 	contentLength := reader.GetContentLength()

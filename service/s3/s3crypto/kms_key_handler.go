@@ -3,15 +3,14 @@ package s3crypto
 import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
-	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/service/kms"
+	"github.com/aws/aws-sdk-go/service/kms/kmsiface"
 )
 
 // KMSKeyHandler will make calls to KMS to get the masterkey
 type KMSKeyHandler struct {
-	kms          *kms.KMS
-	encryptedKey []byte
-	cmkID        *string
+	kms   kmsiface.KMSAPI
+	cmkID *string
 
 	CipherData
 }
@@ -24,16 +23,18 @@ type KMSKeyHandler struct {
 //	cmkID := "arn to key"
 //	matdesc := s3crypto.MaterialDescription{}
 //	handler, err := s3crypto.NewKMSEncryptHandler(sess, cmkID, matdesc)
-func NewKMSEncryptHandler(prov client.ConfigProvider, cmkID string, matdesc MaterialDescription) (CipherDataHandler, error) {
+func NewKMSEncryptHandler(kmsClient kmsiface.KMSAPI, cmkID string, matdesc MaterialDescription) (CipherDataGenerator, error) {
 	if matdesc == nil {
 		matdesc = MaterialDescription{}
 	}
 	matdesc["kms_cmk_id"] = &cmkID
 
+	// These values are read only making them thread safe
 	kp := &KMSKeyHandler{
-		kms:   kms.New(prov),
+		kms:   kmsClient,
 		cmkID: &cmkID,
 	}
+	// These values are read only making them thread safe
 	kp.CipherData.WrapAlgorithm = "kms"
 	kp.CipherData.MaterialDescription = matdesc
 	return kp, nil
@@ -41,7 +42,7 @@ func NewKMSEncryptHandler(prov client.ConfigProvider, cmkID string, matdesc Mate
 
 // NewKMSDecryptHandler initializes a KMS keyprovider with a material description. This
 // is used with Decrypting kms content, due to the cmkID being in the material description.
-func NewKMSDecryptHandler(prov client.ConfigProvider, matdesc string) (CipherDataHandler, error) {
+func NewKMSDecryptHandler(kmsClient kmsiface.KMSAPI, matdesc string) (CipherDataDecrypter, error) {
 	m := MaterialDescription{}
 	err := m.decodeDescription([]byte(matdesc))
 	if err != nil {
@@ -55,23 +56,16 @@ func NewKMSDecryptHandler(prov client.ConfigProvider, matdesc string) (CipherDat
 
 	kp := &KMSKeyHandler{}
 	kp.CipherData.MaterialDescription = m
-	kp.kms = kms.New(prov)
+	kp.kms = kmsClient
 	kp.cmkID = cmkID
 	kp.WrapAlgorithm = "kms"
 	return kp, nil
 }
 
-// EncryptKey getter for encrypted key. The encrypted key is set
-// when GenerateKey is called.
-func (kp *KMSKeyHandler) EncryptKey(key []byte) ([]byte, error) {
-	return kp.encryptedKey, nil
-}
-
 // DecryptKey makes a call to KMS to decrypt the key.
 func (kp *KMSKeyHandler) DecryptKey(key []byte) ([]byte, error) {
-	matdesc := kp.CipherData.MaterialDescription.GetData()
 	out, err := kp.kms.Decrypt(&kms.DecryptInput{
-		EncryptionContext: matdesc,
+		EncryptionContext: map[string]*string(kp.CipherData.MaterialDescription),
 		CiphertextBlob:    key,
 		GrantTokens:       []*string{},
 	})
@@ -94,13 +88,14 @@ func (kp *KMSKeyHandler) GenerateCipherData(keySize, ivSize int) (CipherData, er
 	if err != nil {
 		return CipherData{}, err
 	}
-	kp.encryptedKey = out.CiphertextBlob
+
 	iv := generateBytes(ivSize)
 	cd := CipherData{
 		Key:                 out.Plaintext,
 		IV:                  iv,
 		WrapAlgorithm:       "kms",
 		MaterialDescription: kp.CipherData.MaterialDescription,
+		EncryptedKey:        out.CiphertextBlob,
 	}
 	return cd, nil
 }

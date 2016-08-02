@@ -12,8 +12,8 @@ type ContentCipherBuilder interface {
 type ContentCipher interface {
 	EncryptContents(io.Reader) (io.Reader, error)
 	DecryptContents(io.ReadCloser) (io.ReadCloser, error)
-	GetCipherData() *CipherData
-	GetHandler() CipherDataHandler
+	GetCipherData() CipherData
+	//GetHandler() CipherDataHandler
 }
 
 // CipherData is used for content encryption. Holds the generated
@@ -25,9 +25,6 @@ type CipherData struct {
 	CEKAlgorithm  string
 	TagLength     string
 	MaterialDescription
-}
 
-// GetCipherData returns the cipher data
-func (cd *CipherData) GetCipherData() *CipherData {
-	return cd
+	EncryptedKey []byte
 }

@@ -8,7 +8,7 @@ import (
 	"io/ioutil"
 	"strings"
 
-	. "github.com/gucumber/gucumber"
+	"github.com/gucumber/gucumber"
 	"github.com/stretchr/testify/assert"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -19,17 +19,17 @@ import (
 )
 
 func init() {
-	When(`^I get all fixtures for "(.+?)" from "(.+?)"$`,
+	gucumber.When(`^I get all fixtures for "(.+?)" from "(.+?)"$`,
 		func(cekAlg, bucket string) {
 			prefix := "plaintext_test_case_"
 			baseFolder := "crypto_tests/" + cekAlg
-			s3Client := World["client"].(*s3.S3)
+			s3Client := gucumber.World["client"].(*s3.S3)
 
 			out, err := s3Client.ListObjects(&s3.ListObjectsInput{
 				Bucket: aws.String(bucket),
 				Prefix: aws.String(baseFolder + "/" + prefix),
 			})
-			assert.NoError(T, err)
+			assert.NoError(gucumber.T, err)
 
 			plaintexts := make(map[string][]byte)
 			for _, obj := range out.Contents {
@@ -38,25 +38,25 @@ func init() {
 					Bucket: aws.String(bucket),
 					Key:    plaintextKey,
 				})
-				assert.NoError(T, err)
+				assert.NoError(gucumber.T, err)
 				caseKey := strings.TrimPrefix(*plaintextKey, baseFolder+"/"+prefix)
 				plaintext, err := ioutil.ReadAll(ptObj.Body)
-				assert.NoError(T, err)
+				assert.NoError(gucumber.T, err)
 
 				plaintexts[caseKey] = plaintext
 			}
-			World["baseFolder"] = baseFolder
-			World["bucket"] = bucket
-			World["plaintexts"] = plaintexts
+			gucumber.World["baseFolder"] = baseFolder
+			gucumber.World["bucket"] = bucket
+			gucumber.World["plaintexts"] = plaintexts
 		})
 
-	Then(`^I decrypt each fixture against "(.+?)" "(.+?)"$`, func(lang, version string) {
-		plaintexts := World["plaintexts"].(map[string][]byte)
-		baseFolder := World["baseFolder"].(string)
-		bucket := World["bucket"].(string)
+	gucumber.Then(`^I decrypt each fixture against "(.+?)" "(.+?)"$`, func(lang, version string) {
+		plaintexts := gucumber.World["plaintexts"].(map[string][]byte)
+		baseFolder := gucumber.World["baseFolder"].(string)
+		bucket := gucumber.World["bucket"].(string)
 		prefix := "ciphertext_test_case_"
-		s3Client := World["client"].(*s3.S3)
-		s3CryptoClient := World["cryptoClient"].(*s3crypto.Client)
+		s3Client := gucumber.World["client"].(*s3.S3)
+		s3CryptoClient := gucumber.World["decryptionClient"].(*s3crypto.DecryptionClient)
 		language := "language_" + lang
 
 		ciphertexts := make(map[string][]byte)
@@ -73,7 +73,7 @@ func init() {
 			}
 
 			// We don't support wrap, so skip it
-			if *ctObj.Metadata["X-Amz-Wrap-Alg"] == "AESWrap" {
+			if *ctObj.Metadata["X-Amz-Wrap-Alg"] != "kms" {
 				continue
 			}
 			//masterkeyB64 := ctObj.Metadata["Masterkey"]
@@ -86,53 +86,53 @@ func init() {
 				Key:    &cipherKey,
 			},
 			)
-			assert.NoError(T, err)
+			assert.NoError(gucumber.T, err)
 
 			ciphertext, err := ioutil.ReadAll(ctObj.Body)
-			assert.NoError(T, err)
+			assert.NoError(gucumber.T, err)
 			ciphertexts[caseKey] = ciphertext
 		}
-		World["ciphertexts"] = ciphertexts
+		gucumber.World["ciphertexts"] = ciphertexts
 	})
 
-	And(`^I compare the decrypted ciphertext to the plaintext$`, func() {
-		plaintexts := World["plaintexts"].(map[string][]byte)
-		ciphertexts := World["ciphertexts"].(map[string][]byte)
+	gucumber.And(`^I compare the decrypted ciphertext to the plaintext$`, func() {
+		plaintexts := gucumber.World["plaintexts"].(map[string][]byte)
+		ciphertexts := gucumber.World["ciphertexts"].(map[string][]byte)
 		for caseKey, ciphertext := range ciphertexts {
-			assert.Equal(T, len(plaintexts[caseKey]), len(ciphertext))
-			assert.True(T, bytes.Equal(plaintexts[caseKey], ciphertext))
+			assert.Equal(gucumber.T, len(plaintexts[caseKey]), len(ciphertext))
+			assert.True(gucumber.T, bytes.Equal(plaintexts[caseKey], ciphertext))
 		}
 	})
 
-	Then(`^I encrypt each fixture with "(.+?)" "(.+?)" "(.+?)" and "(.+?)"$`, func(kek, v1, v2, cek string) {
-		var handler s3crypto.CipherDataHandler
+	gucumber.Then(`^I encrypt each fixture with "(.+?)" "(.+?)" "(.+?)" and "(.+?)"$`, func(kek, v1, v2, cek string) {
+		var handler s3crypto.CipherDataGenerator
 		var builder s3crypto.ContentCipherBuilder
 		switch kek {
 		case "kms":
 			m := s3crypto.MaterialDescription{}
 			arn, err := getAliasInformation(v1, v2)
-			assert.Nil(T, err)
+			assert.Nil(gucumber.T, err)
 
 			b64Arn := base64.StdEncoding.EncodeToString([]byte(arn))
-			assert.Nil(T, err)
-			World["Masterkey"] = b64Arn
+			assert.Nil(gucumber.T, err)
+			gucumber.World["Masterkey"] = b64Arn
 
-			handler, err = s3crypto.NewKMSEncryptHandler(session.New(&aws.Config{
+			handler, err = s3crypto.NewKMSEncryptHandler(kms.New(session.New(&aws.Config{
 				Region: &v2,
-			}), arn, m)
-			assert.Nil(T, err)
+			})), arn, m)
+			assert.Nil(gucumber.T, err)
 		default:
-			T.Skip()
+			gucumber.T.Skip()
 		}
 
 		switch cek {
 		case "aes_gcm":
 			builder = s3crypto.AESGCMContentCipherBuilder(handler)
 		default:
-			T.Skip()
+			gucumber.T.Skip()
 		}
 
-		c := s3crypto.New(nil, builder, func(c *s3crypto.Client) {
+		c := s3crypto.NewEncryptionClient(nil, builder, func(c *s3crypto.EncryptionClient) {
 			c.Config.S3Session = session.New(&aws.Config{
 				Region: aws.String("us-west-2"),
 			})
@@ -140,16 +140,16 @@ func init() {
 				Region: aws.String("us-east-1"),
 			})
 		})
-		World["cryptoClient"] = c
-		World["cek"] = cek
+		gucumber.World["encryptionClient"] = c
+		gucumber.World["cek"] = cek
 	})
 
-	And(`^upload "(.+?)" data with folder "(.+?)"$`, func(language, folder string) {
-		c := World["cryptoClient"].(*s3crypto.Client)
-		cek := World["cek"].(string)
-		bucket := World["bucket"].(string)
-		plaintexts := World["plaintexts"].(map[string][]byte)
-		key := World["Masterkey"].(string)
+	gucumber.And(`^upload "(.+?)" data with folder "(.+?)"$`, func(language, folder string) {
+		c := gucumber.World["encryptionClient"].(*s3crypto.EncryptionClient)
+		cek := gucumber.World["cek"].(string)
+		bucket := gucumber.World["bucket"].(string)
+		plaintexts := gucumber.World["plaintexts"].(map[string][]byte)
+		key := gucumber.World["Masterkey"].(string)
 		for caseKey, plaintext := range plaintexts {
 			input := &s3.PutObjectInput{
 				Bucket: &bucket,
@@ -161,7 +161,7 @@ func init() {
 			}
 
 			_, err := c.PutObject(input)
-			assert.Nil(T, err)
+			assert.Nil(gucumber.T, err)
 		}
 	})
 }

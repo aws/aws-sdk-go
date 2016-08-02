@@ -10,25 +10,25 @@ const (
 )
 
 type gcmContentCipherBuilder struct {
-	handler CipherDataHandler
+	generator CipherDataGenerator
 }
 
 // AESGCMContentCipherBuilder returns a new encryption only mode structure with a specific cipher
 // for the master key
-func AESGCMContentCipherBuilder(handler CipherDataHandler) ContentCipherBuilder {
-	return gcmContentCipherBuilder{handler}
+func AESGCMContentCipherBuilder(generator CipherDataGenerator) ContentCipherBuilder {
+	return gcmContentCipherBuilder{generator}
 }
 
 func (builder gcmContentCipherBuilder) NewEncryptor() (ContentCipher, error) {
-	cd, err := builder.handler.GenerateCipherData(gcmKeySize, gcmNonceSize)
+	cd, err := builder.generator.GenerateCipherData(gcmKeySize, gcmNonceSize)
 	if err != nil {
 		return nil, err
 	}
 
-	return newAESGCMContentCipher(cd, builder.handler)
+	return newAESGCMContentCipher(cd)
 }
 
-func newAESGCMContentCipher(cd CipherData, handler CipherDataHandler) (ContentCipher, error) {
+func newAESGCMContentCipher(cd CipherData) (ContentCipher, error) {
 	cd.CEKAlgorithm = AESGCMNoPadding
 	cd.TagLength = "128"
 
@@ -40,15 +40,13 @@ func newAESGCMContentCipher(cd CipherData, handler CipherDataHandler) (ContentCi
 	return &AESGCMContentCipher{
 		CipherData: cd,
 		Cipher:     cipher,
-		handler:    handler,
 	}, nil
 }
 
 // AESGCMContentCipher will use AES GCM for the main cipher.
 type AESGCMContentCipher struct {
-	CipherData // Embedding so we don't need duplicate GetCipherData methods
+	CipherData CipherData
 	Cipher     Cipher
-	handler    CipherDataHandler
 }
 
 // EncryptContents will generate a random key and iv and encrypt the data using cbc
@@ -64,7 +62,7 @@ func (cc *AESGCMContentCipher) DecryptContents(src io.ReadCloser) (io.ReadCloser
 	return &CryptoReadCloser{Body: src, Decrypter: reader}, nil
 }
 
-// GetHandler returns the handler
-func (cc AESGCMContentCipher) GetHandler() CipherDataHandler {
-	return cc.handler
+// GetCipherData returns cipher data
+func (cc AESGCMContentCipher) GetCipherData() CipherData {
+	return cc.CipherData
 }

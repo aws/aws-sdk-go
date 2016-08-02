@@ -2,10 +2,14 @@ package s3crypto
 
 import "crypto/rand"
 
-// CipherDataHandler is an interface that deals with key and iv generation
-type CipherDataHandler interface {
+// CipherDataGenerator handles generating proper key and IVs of proper size for the
+// content cipher
+type CipherDataGenerator interface {
 	GenerateCipherData(int, int) (CipherData, error)
-	EncryptKey(key []byte) ([]byte, error)
+}
+
+// CipherDataDecrypter is a handler to decrypt keys from the envelope.
+type CipherDataDecrypter interface {
 	DecryptKey([]byte) ([]byte, error)
 }
 

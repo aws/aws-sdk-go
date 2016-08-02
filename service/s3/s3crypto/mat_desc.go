@@ -16,10 +16,3 @@ func (md *MaterialDescription) encodeDescription() ([]byte, error) {
 func (md *MaterialDescription) decodeDescription(b []byte) error {
 	return json.Unmarshal(b, &md)
 }
-
-// GetData is used to simply retrieve itself from CipherData
-func (md MaterialDescription) GetData() map[string]*string {
-	m := map[string]*string{}
-	m = md
-	return m
-}

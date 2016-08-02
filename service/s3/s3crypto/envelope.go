@@ -51,13 +51,13 @@ type Envelope struct {
 	version               int
 }
 
-func (client *Client) getEnvelope(input *s3.GetObjectInput, r *request.Request) (*Envelope, error) {
+func (client *DecryptionClient) getEnvelope(input *s3.GetObjectInput, r *request.Request) (*Envelope, error) {
 	if value := r.HTTPResponse.Header.Get(strings.Join([]string{metaHeader, keyV2Header}, "-")); value != "" {
 		return getV2Envelope(r)
 	} else if value = r.HTTPResponse.Header.Get(strings.Join([]string{metaHeader, keyV1Header}, "-")); value != "" {
 		return getV1Envelope(r)
 	} else {
-		return getFromInstructionFile(client.S3, input, r, client.Config.InstructionFileSuffix)
+		return getFromInstructionFile(client.S3API, input, r, client.Config.InstructionFileSuffix)
 	}
 }
 
