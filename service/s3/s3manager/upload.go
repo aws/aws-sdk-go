@@ -521,7 +521,6 @@ func (u *multiuploader) upload(firstBuf io.ReadSeeker) (*UploadOutput, error) {
 	var err error
 	for u.geterr() == nil && err == nil {
 		num++
-		fmt.Println("upload num", num)
 		// This upload exceeded maximum number of supported parts, error now.
 		if num > int64(u.ctx.MaxUploadParts) || num > int64(MaxUploadParts) {
 			var msg string
