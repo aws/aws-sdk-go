@@ -37,7 +37,7 @@ func main() {
 				Profile: acc,
 			})
 			if err != nil {
-				fmt.Fprintf(os.Stderr, "failed to create session for account, %d, %v\n", acc, err)
+				fmt.Fprintf(os.Stderr, "failed to create session for account, %s, %v\n", acc, err)
 				return
 			}
 			if err = getAccountBuckets(sess, bucketCh, acc); err != nil {
