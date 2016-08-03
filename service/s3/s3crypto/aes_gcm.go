@@ -25,7 +25,7 @@ type AESGCM struct {
 //		Key: key,
 //		"IV": iv,
 //	}
-//	cipher, _ := s3crypto.NewAESGCM(cd)
+//	cipher, err := s3crypto.NewAESGCM(cd)
 func NewAESGCM(cd CipherData) (Cipher, error) {
 	block, err := aes.NewCipher(cd.Key)
 	if err != nil {

@@ -17,25 +17,29 @@ Creating an S3 cryptography client
 	cmkID := "<some key ID>"
 	sess := session.New()
 	// Create the KeyProvider
-	handler, err = s3crypto.NewKMSEncryptHandler(sess, cmkID, s3crypto.MaterialDescription{})
+	handler, err = s3crypto.NewKMSEncryptHandler(kms.New(sess), cmkID, s3crypto.MaterialDescription{})
 	if err != nil {
 		return err
 	}
 
-	// Create the cryptography client
+	// Create an encryption and decryption client
 	// We need to pass the session here so S3 can use it. In addition, any decryption that
 	// occurs will use the same session with KMS
-	svc := s3crypto.New(sess, s3crypto.AESGCMContentCipherBuilder(handler))
+	svc := s3crypto.NewEncryptionClient(sess, s3crypto.AESGCMContentCipherBuilder(handler))
+	svc := s3crypto.NewDecryptionClient(sess)
 
 Configuration of the S3 cryptography client
 
-	cfg := s3crypto.Config{
+	cfg := s3crypto.EncryptionConfig{
 		// Save instruction files to separate objects
 		SaveStrategy: NewS3SaveStrategy(session.New(), ""),
 		// Change instruction file suffix to .example
 		InstructionFileSuffix: ".example",
 		// Set temp folder path
 		TempFolderPath: "/path/to/tmp/folder/",
+		// Any content less than the minimum file size will use memory
+		// instead of writing the contents to a temp file.
+		MinFileSize: int64(1024 * 1024 * 1024),
 	}
 
 The default SaveStrategy is to the object's header.
