@@ -3,8 +3,6 @@ package s3crypto
 import (
 	"encoding/hex"
 	"io"
-	"io/ioutil"
-	"os"
 
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"
@@ -84,8 +82,6 @@ func NewEncryptionClient(prov client.ConfigProvider, builder ContentCipherBuilde
 func (c *EncryptionClient) PutObjectRequest(input *s3.PutObjectInput) (*request.Request, *s3.PutObjectOutput) {
 	req, out := c.S3Client.PutObjectRequest(input)
 
-	var dst io.ReadWriteSeeker
-
 	// Get Size of file
 	n, err := input.Body.Seek(0, 2)
 	if err != nil {
@@ -94,16 +90,10 @@ func (c *EncryptionClient) PutObjectRequest(input *s3.PutObjectInput) (*request.
 	}
 	input.Body.Seek(0, 0)
 
-	useTempFile := n >= c.Config.MinFileSize
-	if useTempFile {
-		// Create temp file to be used later for calculating the SHA256 header
-		dst, err = ioutil.TempFile(c.Config.TempFolderPath, "")
-		if err != nil {
-			req.Error = err
-			return req, out
-		}
-	} else {
-		dst = &bytesWriteSeeker{}
+	dst, err := getWriterStore(req, c.Config.TempFolderPath, n >= c.Config.MinFileSize)
+	if err != nil {
+		req.Error = err
+		return req, out
 	}
 
 	encryptor, err := c.Config.ContentCipherBuilder.ContentCipher()
@@ -144,16 +134,6 @@ func (c *EncryptionClient) PutObjectRequest(input *s3.PutObjectInput) (*request.
 		r.Error = err
 	})
 
-	if useTempFile {
-		fn := func(r *request.Request) {
-			f := dst.(*os.File)
-			// Close the temp file and cleanup
-			f.Close()
-			os.Remove(f.Name())
-		}
-		req.Handlers.Send.PushBack(fn)
-		req.Handlers.ValidateResponse.PushBack(fn)
-	}
 	return req, out
 }
 

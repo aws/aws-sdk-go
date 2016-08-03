@@ -1,7 +1,6 @@
 package s3crypto
 
 import (
-	"bytes"
 	"io"
 )
 
@@ -41,12 +40,4 @@ func (rc *CryptoReadCloser) Read(b []byte) (int, error) {
 		return 0, io.EOF
 	}
 	return rc.Decrypter.Read(b)
-}
-
-type bytesWriteSeeker struct {
-	bytes.Buffer
-}
-
-func (ws *bytesWriteSeeker) Seek(offset int64, whence int) (int64, error) {
-	return 0, nil
 }
