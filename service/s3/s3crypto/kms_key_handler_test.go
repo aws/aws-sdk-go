@@ -33,6 +33,7 @@ func TestKMSGenerateCipherData(t *testing.T) {
 		Endpoint:         aws.String(ts.URL[7:]),
 		DisableSSL:       aws.Bool(true),
 		S3ForcePathStyle: aws.Bool(true),
+		Region:           aws.String("us-west-2"),
 	})
 	svc := kms.New(sess)
 	handler, err := s3crypto.NewKMSEncryptHandler(svc, "testid", s3crypto.MaterialDescription{})
@@ -61,6 +62,7 @@ func TestKMSDecrypt(t *testing.T) {
 		Endpoint:         aws.String(ts.URL[7:]),
 		DisableSSL:       aws.Bool(true),
 		S3ForcePathStyle: aws.Bool(true),
+		Region:           aws.String("us-west-2"),
 	})
 	svc := kms.New(sess)
 	handler, err := s3crypto.NewKMSDecryptHandler(svc, `{"kms_cmk_id":"test"}`)
@@ -83,6 +85,7 @@ func TestKMSDecryptBadJSON(t *testing.T) {
 		Endpoint:         aws.String(ts.URL[7:]),
 		DisableSSL:       aws.Bool(true),
 		S3ForcePathStyle: aws.Bool(true),
+		Region:           aws.String("us-west-2"),
 	})
 	svc := kms.New(sess)
 	_, err := s3crypto.NewKMSDecryptHandler(svc, `{"kms_cmk_id":"test"`)

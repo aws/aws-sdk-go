@@ -42,6 +42,7 @@ func TestCEKFactory(t *testing.T) {
 		Endpoint:         aws.String(ts.URL[7:]),
 		DisableSSL:       aws.Bool(true),
 		S3ForcePathStyle: aws.Bool(true),
+		Region:           aws.String("us-west-2"),
 	})
 
 	handler, err := NewKMSDecryptHandler(kms.New(sess), `{"kms_cmk_id": "test"}`)
