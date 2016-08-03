@@ -19,7 +19,7 @@ func AESGCMContentCipherBuilder(generator CipherDataGenerator) ContentCipherBuil
 	return gcmContentCipherBuilder{generator}
 }
 
-func (builder gcmContentCipherBuilder) NewEncryptor() (ContentCipher, error) {
+func (builder gcmContentCipherBuilder) ContentCipher() (ContentCipher, error) {
 	cd, err := builder.generator.GenerateCipherData(gcmKeySize, gcmNonceSize)
 	if err != nil {
 		return nil, err

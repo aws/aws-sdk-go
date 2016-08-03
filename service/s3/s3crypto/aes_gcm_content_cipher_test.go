@@ -17,7 +17,7 @@ func TestAESGCMContentCipherBuilder(t *testing.T) {
 func TestAESGCMContentCipherNewEncryptor(t *testing.T) {
 	generator := mockGenerator{}
 	builder := s3crypto.AESGCMContentCipherBuilder(generator)
-	cipher, err := builder.NewEncryptor()
+	cipher, err := builder.ContentCipher()
 	assert.NoError(t, err)
 	assert.NotNil(t, cipher)
 }

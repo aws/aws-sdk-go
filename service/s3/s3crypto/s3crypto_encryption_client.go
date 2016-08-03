@@ -106,7 +106,7 @@ func (c *EncryptionClient) PutObjectRequest(input *s3.PutObjectInput) (*request.
 		dst = &bytesWriteSeeker{}
 	}
 
-	encryptor, err := c.Config.ContentCipherBuilder.NewEncryptor()
+	encryptor, err := c.Config.ContentCipherBuilder.ContentCipher()
 	req.Handlers.Build.PushFront(func(r *request.Request) {
 		if err != nil {
 			r.Error = err

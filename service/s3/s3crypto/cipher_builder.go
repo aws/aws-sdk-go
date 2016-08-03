@@ -5,7 +5,7 @@ import "io"
 // ContentCipherBuilder is a builder interface that builds
 // ciphers for each request.
 type ContentCipherBuilder interface {
-	NewEncryptor() (ContentCipher, error)
+	ContentCipher() (ContentCipher, error)
 }
 
 // ContentCipher deals with encrypting and decrypting content

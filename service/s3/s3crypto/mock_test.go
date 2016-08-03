@@ -34,7 +34,7 @@ type mockCipherBuilder struct {
 	generator s3crypto.CipherDataGenerator
 }
 
-func (builder mockCipherBuilder) NewEncryptor() (s3crypto.ContentCipher, error) {
+func (builder mockCipherBuilder) ContentCipher() (s3crypto.ContentCipher, error) {
 	cd, err := builder.generator.GenerateCipherData(32, 16)
 	if err != nil {
 		return nil, err

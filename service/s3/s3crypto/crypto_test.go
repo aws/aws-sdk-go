@@ -16,7 +16,7 @@ func TestCryptoReadCloserRead(t *testing.T) {
 	rc := &s3crypto.CryptoReadCloser{Body: ioutil.NopCloser(str), Decrypter: str}
 
 	b, err := ioutil.ReadAll(rc)
-	assert.Nil(t, err)
+	assert.NoError(t, err)
 	assert.Equal(t, expectedStr, string(b))
 }
 
@@ -29,6 +29,6 @@ func TestCryptoReadCloserClose(t *testing.T) {
 	rc.Close()
 
 	b, err := ioutil.ReadAll(rc)
-	assert.Nil(t, err)
+	assert.NoError(t, err)
 	assert.Equal(t, expectedStr, string(b))
 }

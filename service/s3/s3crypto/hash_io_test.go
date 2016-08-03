@@ -8,7 +8,6 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-// TODO: Finish SHA256 and add MD5 tests
 // From Go stdlib encoding/sha256 test cases
 func TestSHA256(t *testing.T) {
 	sha := newSHA256Writer(nil)
