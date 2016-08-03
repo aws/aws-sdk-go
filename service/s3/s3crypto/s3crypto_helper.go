@@ -5,30 +5,28 @@ import (
 	"io"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 
 	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 func getWriterStore(req *request.Request, path string, useTempFile bool) (io.ReadWriteSeeker, error) {
-	var dst io.ReadWriteSeeker
-	var err error
-	if useTempFile {
-		// Create temp file to be used later for calculating the SHA256 header
-		dst, err = ioutil.TempFile(path, "")
-		if err != nil {
-			return nil, err
-		}
-		fn := func(r *request.Request) {
-			f := dst.(*os.File)
-			// Close the temp file and cleanup
-			f.Close()
-			os.Remove(f.Name())
-		}
-		req.Handlers.Send.PushBack(fn)
-	} else {
-		dst = &bytesReadWriteSeeker{}
+	if !useTempFile {
+		return &bytesReadWriteSeeker{}, nil
 	}
-	return dst, nil
+	// Create temp file to be used later for calculating the SHA256 header
+	f, err := ioutil.TempFile(path, "")
+	if err != nil {
+		return nil, err
+	}
+	fn := func(r *request.Request) {
+		// Close the temp file and cleanup
+		f.Close()
+		fpath := filepath.Join(path, f.Name())
+		os.Remove(fpath)
+	}
+	req.Handlers.Send.PushBack(fn)
+	return f, nil
 }
 
 type bytesReadWriteSeeker struct {
