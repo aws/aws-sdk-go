@@ -51,7 +51,6 @@ func TestNew_WithSessionLoadError(t *testing.T) {
 	oldEnv := initSessionTestEnv()
 	defer popEnv(oldEnv)
 
-	os.Setenv("AWS_SDK_LOAD_CONFIG", "1")
 	os.Setenv("AWS_CONFIG_FILE", testConfigFilename)
 	os.Setenv("AWS_PROFILE", "assume_role_invalid_source_profile")
 
@@ -64,7 +63,7 @@ func TestNew_WithSessionLoadError(t *testing.T) {
 	_, err := svc.ListBuckets(&s3.ListBucketsInput{})
 
 	assert.Error(t, err)
-	assert.Contains(t, logger.String(), "ERROR: failed to create session with AWS_SDK_LOAD_CONFIG enabled")
+	assert.Contains(t, logger.String(), "ERROR: failed to create session with SDK Shared Config enabled")
 	assert.Contains(t, err.Error(), SharedConfigAssumeRoleError{
 		RoleARN: "assume_role_invalid_source_profile_role_arn",
 	}.Error())
@@ -113,7 +112,6 @@ func TestNewSessionWithOptions_OverrideProfile(t *testing.T) {
 	oldEnv := initSessionTestEnv()
 	defer popEnv(oldEnv)
 
-	os.Setenv("AWS_SDK_LOAD_CONFIG", "1")
 	os.Setenv("AWS_SHARED_CREDENTIALS_FILE", testConfigFilename)
 	os.Setenv("AWS_PROFILE", "other_profile")
 
@@ -136,7 +134,7 @@ func TestNewSessionWithOptions_OverrideSharedConfigEnable(t *testing.T) {
 	oldEnv := initSessionTestEnv()
 	defer popEnv(oldEnv)
 
-	os.Setenv("AWS_SDK_LOAD_CONFIG", "0")
+	os.Setenv("AWS_SDK_CONFIG_OPT_OUT", "1")
 	os.Setenv("AWS_SHARED_CREDENTIALS_FILE", testConfigFilename)
 	os.Setenv("AWS_PROFILE", "full_profile")
 
@@ -159,7 +157,6 @@ func TestNewSessionWithOptions_OverrideSharedConfigDisable(t *testing.T) {
 	oldEnv := initSessionTestEnv()
 	defer popEnv(oldEnv)
 
-	os.Setenv("AWS_SDK_LOAD_CONFIG", "1")
 	os.Setenv("AWS_SHARED_CREDENTIALS_FILE", testConfigFilename)
 	os.Setenv("AWS_PROFILE", "full_profile")
 
@@ -187,7 +184,7 @@ func TestNewSessionWithOptions_Overrides(t *testing.T) {
 	}{
 		{
 			InEnvs: map[string]string{
-				"AWS_SDK_LOAD_CONFIG":         "0",
+				"AWS_SDK_CONFIG_OPT_OUT":      "1",
 				"AWS_SHARED_CREDENTIALS_FILE": testConfigFilename,
 				"AWS_PROFILE":                 "other_profile",
 			},
@@ -201,7 +198,19 @@ func TestNewSessionWithOptions_Overrides(t *testing.T) {
 		},
 		{
 			InEnvs: map[string]string{
-				"AWS_SDK_LOAD_CONFIG":         "0",
+				"AWS_SHARED_CREDENTIALS_FILE": testConfigFilename,
+				"AWS_PROFILE":                 "other_profile",
+			},
+			InProfile: "full_profile",
+			OutRegion: "full_profile_region",
+			OutCreds: credentials.Value{
+				AccessKeyID:     "full_profile_akid",
+				SecretAccessKey: "full_profile_secret",
+				ProviderName:    "SharedConfigCredentials",
+			},
+		},
+		{
+			InEnvs: map[string]string{
 				"AWS_SHARED_CREDENTIALS_FILE": testConfigFilename,
 				"AWS_REGION":                  "env_region",
 				"AWS_ACCESS_KEY":              "env_akid",
@@ -218,7 +227,6 @@ func TestNewSessionWithOptions_Overrides(t *testing.T) {
 		},
 		{
 			InEnvs: map[string]string{
-				"AWS_SDK_LOAD_CONFIG":         "0",
 				"AWS_SHARED_CREDENTIALS_FILE": testConfigFilename,
 				"AWS_CONFIG_FILE":             testConfigOtherFilename,
 				"AWS_PROFILE":                 "shared_profile",
@@ -262,7 +270,6 @@ func TestSesisonAssumeRole(t *testing.T) {
 	defer popEnv(oldEnv)
 
 	os.Setenv("AWS_REGION", "us-east-1")
-	os.Setenv("AWS_SDK_LOAD_CONFIG", "1")
 	os.Setenv("AWS_SHARED_CREDENTIALS_FILE", testConfigFilename)
 	os.Setenv("AWS_PROFILE", "assume_role_w_creds")
 
@@ -305,7 +312,7 @@ func TestSessionAssumeRole_DisableSharedConfig(t *testing.T) {
 	oldEnv := initSessionTestEnv()
 	defer popEnv(oldEnv)
 
-	os.Setenv("AWS_SDK_LOAD_CONFIG", "0")
+	os.Setenv("AWS_SDK_CONFIG_OPT_OUT", "1")
 	os.Setenv("AWS_SHARED_CREDENTIALS_FILE", testConfigFilename)
 	os.Setenv("AWS_PROFILE", "assume_role_w_creds")
 
@@ -325,7 +332,6 @@ func TestSessionAssumeRole_InvalidSourceProfile(t *testing.T) {
 	oldEnv := initSessionTestEnv()
 	defer popEnv(oldEnv)
 
-	os.Setenv("AWS_SDK_LOAD_CONFIG", "1")
 	os.Setenv("AWS_SHARED_CREDENTIALS_FILE", testConfigFilename)
 	os.Setenv("AWS_PROFILE", "assume_role_invalid_source_profile")
 

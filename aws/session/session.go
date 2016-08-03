@@ -14,8 +14,8 @@ import (
 // A Session provides a central location to create service clients from and
 // store configurations and request handlers for those services.
 //
-// Sessions are safe to create service clients concurrently, but it is not safe
-// to mutate the Session concurrently.
+// Sessions are safe to create service clients concurrently with, but it is
+// not safe to mutate the Session concurrently.
 //
 // The Session satisfies the service client's client.ClientConfigProvider.
 type Session struct {
@@ -28,18 +28,15 @@ type Session struct {
 // can be mutated to modify the Config or Handlers. The Session is safe to be
 // read concurrently, but it should not be written to concurrently.
 //
-// If the AWS_SDK_LOAD_CONFIG environment is set to a truthy value, the New
-// method could now encounter an error when loading the configuration. When
-// The environment variable is set, and an error occurs, New will return a
-// session that will fail all requests reporting the error that occured while
-// loading the session. Use NewSession to get the error when creating the
-// session.
+// By default the Session returned will be created with the configuration
+// loaded from the shared config file (~/.aws/config) will also be loaded, in
+// addition to the shared credentials file (~/.aws/config). Options set in both
+// the shared config, and shared credentials will be taken from the shared
+// credentials file. This functionality can be disabled by setting the
+// AWS_SDK_CONFIG_OPT_OUT environment variable.
 //
-// If the AWS_SDK_LOAD_CONFIG environment variable is set to a truthy value
-// the shared config file (~/.aws/config) will also be loaded, in addition to
-// the shared credentials file (~/.aws/config). Values set in both the
-// shared config, and shared credentials will be taken from the shared
-// credentials file.
+// When the Shared Config is eanbled the Session will support retrieving
+// credentials with STS Assume Roles defined in the config.
 //
 // Deprecated: Use NewSession functiions to create sessions instead. NewSession
 // has the same functionality as New except an error can be returned when the
@@ -48,15 +45,15 @@ func New(cfgs ...*aws.Config) *Session {
 	// load initial config from environment
 	envCfg := loadEnvConfig()
 
-	if envCfg.EnableSharedConfig {
+	if !envCfg.DisableSharedConfig {
 		s, err := newSession(envCfg, cfgs...)
 		if err != nil {
 			// Old session.New expected all errors to be discovered when
 			// a request is made, and would report the errors then. This
 			// needs to be replicated if an error occurs while creating
 			// the session.
-			msg := "failed to create session with AWS_SDK_LOAD_CONFIG enabled. " +
-				"Use session.NewSession to handle errors occuring during session creation."
+			msg := "failed to create session with SDK Shared Config enabled. " +
+				"Use session.NewSession to handle errors occurring during session creation."
 
 			// Session creation failed, need to report the error and prevent
 			// any requests from succeeding.
@@ -78,15 +75,18 @@ func New(cfgs ...*aws.Config) *Session {
 // it can be mutated to modify the Config or Handlers. The Session is safe to
 // be read concurrently, but it should not be written to concurrently.
 //
-// If the AWS_SDK_LOAD_CONFIG environment variable is set to a truthy value
-// the shared config file (~/.aws/config) will also be loaded in addition to
-// the shared credentials file (~/.aws/config). Values set in both the
-// shared config, and shared credentials will be taken from the shared
-// credentials file. Enabling the Shared Config will also allow the Session
-// to be built with retrieving credentials with AssumeRole set in the config.
+// By default the Session returned will be created with the configuration
+// loaded from the shared config file (~/.aws/config) will also be loaded, in
+// addition to the shared credentials file (~/.aws/config). Options set in both
+// the shared config, and shared credentials will be taken from the shared
+// credentials file. This functionality can be disabled by setting the
+// AWS_SDK_CONFIG_OPT_OUT environment variable.
+//
+// When the Shared Config is eanbled the Session will support retrieving
+// credentials with STS Assume Roles defined in the config.
 //
 // See the NewSessionWithOptions func for information on how to override or
-// control through code how the Session will be created. Such as specifing the
+// control through code how the Session will be created. Such as specifying the
 // config profile, and controlling if shared config is enabled or not.
 func NewSession(cfgs ...*aws.Config) (*Session, error) {
 	envCfg := loadEnvConfig()
@@ -100,16 +100,19 @@ func NewSession(cfgs ...*aws.Config) (*Session, error) {
 type SharedConfigState int
 
 const (
-	// SharedConfigStateFromEnv does not override any state of the
-	// AWS_SDK_LOAD_CONFIG env var. It is the default value of the
-	// SharedConfigState type.
+	// SharedConfigStateFromEnv does not override the default state of the
+	// SDK's loading of the shared config. Which is enabled by default. Unless
+	// AWS_SDK_CONFIG_OPT_OUT is set, which will disable the Session being
+	// created with the shared config values.
+	//
+	// This is the default value of the SharedConfigState type.
 	SharedConfigStateFromEnv SharedConfigState = iota
 
-	// SharedConfigDisable overrides the AWS_SDK_LOAD_CONFIG env var value
+	// SharedConfigDisable overrides the AWS_SDK_CONFIG_OPT_OUT env var value
 	// and disables the shared config functionality.
 	SharedConfigDisable
 
-	// SharedConfigEnable overrides the AWS_SDK_LOAD_CONFIG env var value
+	// SharedConfigEnable overrides the AWS_SDK_CONFIG_OPT_OUT env var value
 	// and enables the shared config functionality.
 	SharedConfigEnable
 )
@@ -121,7 +124,7 @@ type Options struct {
 	// Provides config values for the SDK to use when creating service clients
 	// and making API requests to services. Any value set in with this field
 	// will override the associated value provided by the SDK defaults,
-	// environment or config files where relevent.
+	// environment or config files where relevant.
 	//
 	// If not set, configuration values from from SDK defaults, environment,
 	// config will be used.
@@ -136,12 +139,10 @@ type Options struct {
 	// session config from.
 	Profile string
 
-	// Instructs how the Session will be created based on the AWS_SDK_LOAD_CONFIG
-	// environment variable. By default a Session will be created using the
-	// value provided by the AWS_SDK_LOAD_CONFIG environment variable.
+	// Allows overriding the state of creating the session with Shared Config.
 	//
-	// Setting this value to SharedConfigEnable or SharedConfigDisable
-	// will allow you to override the AWS_SDK_LOAD_CONFIG environment variable
+	// Setting this value to SharedConfigEnable or SharedConfigDisable will
+	// allow you to override the AWS_SDK_CONFIG_OPT_OUT environment variable
 	// and enable or disable the shared config functionality.
 	SharedConfigState SharedConfigState
 }
@@ -150,12 +151,13 @@ type Options struct {
 // environment, and user provided config files. This func uses the Options
 // values to configure how the Session is created.
 //
-// If the AWS_SDK_LOAD_CONFIG environment variable is set to a truthy value
-// the shared config file (~/.aws/config) will also be loaded in addition to
-// the shared credentials file (~/.aws/config). Values set in both the
-// shared config, and shared credentials will be taken from the shared
-// credentials file. Enabling the Shared Config will also allow the Session
-// to be built with retrieving credentials with AssumeRole set in the config.
+// By default the Session returned will be created with the configuration
+// loaded from the shared config file (~/.aws/config) will also be loaded, in
+// addition to the shared credentials file (~/.aws/config). Options set in both
+// the shared config, and shared credentials will be taken from the shared
+// credentials file. This functionality can be disabled by setting the
+// AWS_SDK_CONFIG_OPT_OUT environment variable, or setting SharedConfigDisabled
+// for SharedConfigState field.
 //
 //     // Equivalent to session.New
 //     sess, err := session.NewSessionWithOptions(session.Options{})
@@ -171,9 +173,14 @@ type Options struct {
 //          Profile: "profile_name",
 //     })
 //
+//     // Force disable Shared Config support
+//     sess, err := session.NewSessionWithOptions(session.Optons{
+//          SharedConfigState: SharedConfigDisable,
+//     })
+//
 //     // Force enable Shared Config support
-//     sess, err := session.NewSessionWithOptions(session.Options{
-//         SharedConfigState: SharedConfigEnable,
+//     sess, err := session.NewSessionWithOptions(session.Optons{
+//          SharedConfigState: SharedConfigEnable,
 //     })
 func NewSessionWithOptions(opts Options) (*Session, error) {
 	envCfg := loadEnvConfig()
@@ -184,9 +191,9 @@ func NewSessionWithOptions(opts Options) (*Session, error) {
 
 	switch opts.SharedConfigState {
 	case SharedConfigDisable:
-		envCfg.EnableSharedConfig = false
+		envCfg.DisableSharedConfig = true
 	case SharedConfigEnable:
-		envCfg.EnableSharedConfig = true
+		envCfg.DisableSharedConfig = false
 	}
 
 	return newSession(envCfg, &opts.Config)
@@ -241,9 +248,9 @@ func newSession(envCfg envConfig, cfgs ...*aws.Config) (*Session, error) {
 	// Order config files will be loaded in with later files overwriting
 	// previous config file values.
 	cfgFiles := []string{envCfg.SharedConfigFile, envCfg.SharedCredentialsFile}
-	if !envCfg.EnableSharedConfig {
-		// The shared config file (~/.aws/config) is only loaded if instructed
-		// to load via the envConfig.EnableSharedConfig (AWS_SDK_LOAD_CONFIG).
+	if envCfg.DisableSharedConfig {
+		// Shared config is always loaded by default unless disabled via the
+		// envConfig.DisableSharedConfig (AWS_SDK_CONFIG_OPT_OUT)
 		cfgFiles = cfgFiles[1:]
 	}
 
@@ -273,7 +280,7 @@ func mergeConfigSrcs(cfg, userCfg *aws.Config, envCfg envConfig, sharedCfg share
 	if len(aws.StringValue(cfg.Region)) == 0 {
 		if len(envCfg.Region) > 0 {
 			cfg.WithRegion(envCfg.Region)
-		} else if envCfg.EnableSharedConfig && len(sharedCfg.Region) > 0 {
+		} else if !envCfg.DisableSharedConfig && len(sharedCfg.Region) > 0 {
 			cfg.WithRegion(sharedCfg.Region)
 		}
 	}
@@ -284,7 +291,7 @@ func mergeConfigSrcs(cfg, userCfg *aws.Config, envCfg envConfig, sharedCfg share
 			cfg.Credentials = credentials.NewStaticCredentialsFromCreds(
 				envCfg.Creds,
 			)
-		} else if envCfg.EnableSharedConfig && len(sharedCfg.AssumeRole.RoleARN) > 0 && sharedCfg.AssumeRoleSource != nil {
+		} else if !envCfg.DisableSharedConfig && len(sharedCfg.AssumeRole.RoleARN) > 0 && sharedCfg.AssumeRoleSource != nil {
 			cfgCp := *cfg
 			cfgCp.Credentials = credentials.NewStaticCredentialsFromCreds(
 				sharedCfg.AssumeRoleSource.Creds,

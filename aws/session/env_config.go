@@ -3,7 +3,6 @@ package session
 import (
 	"os"
 	"path/filepath"
-	"strconv"
 
 	"github.com/aws/aws-sdk-go/aws/credentials"
 )
@@ -35,34 +34,33 @@ type envConfig struct {
 	//
 	//	AWS_REGION=us-east-1
 	//
-	//	# AWS_DEFAULT_REGION is only read if AWS_SDK_LOAD_CONFIG is also set,
+	//	# AWS_DEFAULT_REGION is only read if Shared Config is enabled.
 	//	# and AWS_REGION is not also set.
 	//	AWS_DEFAULT_REGION=us-east-1
 	Region string
 
-	// Profile name the SDK should load use when loading shared configuration from the
-	// shared configuration files. If not provided "default" will be used as the
+	// Profile name the SDK should load use when loading configuration from the
+	// shared config files. If not provided "default" will be used as the
 	// profile name.
 	//
 	//	AWS_PROFILE=my_profile
 	//
-	//	# AWS_DEFAULT_PROFILE is only read if AWS_SDK_LOAD_CONFIG is also set,
+	//	# AWS_DEFAULT_PROFILE is only read if Shared Config is enabled.
 	//	# and AWS_PROFILE is not also set.
 	//	AWS_DEFAULT_PROFILE=my_profile
 	Profile string
 
-	// SDK load config instructs the SDK to load the shared config in addition to
-	// shared credentials. This also expands the configuration loaded from the shared
-	// credentials to have parity with the shared config file. This also enables
-	// Region and Profile support for the AWS_DEFAULT_REGION and AWS_DEFAULT_PROFILE
-	// env values as well.
+	// Disable Shared Config opt out instructs the SDK to not load the shared config
+	// in addition to shared credentials. This disables the SDK using assume
+	// role in the default credential chain, and support for AWS_DEFAULT_REGION
+	// and AWS_DEFAULT_PROFILE env values as well.
 	//
-	//	AWS_SDK_LOAD_CONFIG=1
-	EnableSharedConfig bool
+	//	AWS_SDK_CONFIG_OPT_OUT=1
+	DisableSharedConfig bool
 
-	// Shared credentials file path can be set to instruct the SDK to use an alternate
-	// file for the shared credentials. If not set the file will be loaded from
-	// $HOME/.aws/credentials on Linux/Unix based systems, and
+	// Shared credentials file path can be set to instruct the SDK to use an
+	// alternate file for the shared credentials. If not set the file will be
+	// loaded from $HOME/.aws/credentials on Linux/Unix based systems, and
 	// %USERPROFILE%\.aws\credentials on Windows.
 	//
 	//	AWS_SHARED_CREDENTIALS_FILE=$HOME/my_shared_credentials
@@ -92,39 +90,26 @@ var (
 
 	regionEnvKeys = []string{
 		"AWS_REGION",
-		"AWS_DEFAULT_REGION", // Only read if AWS_SDK_LOAD_CONFIG is also set
+		"AWS_DEFAULT_REGION", // Only read if Shared Config is enabled
 	}
 	profileEnvKeys = []string{
 		"AWS_PROFILE",
-		"AWS_DEFAULT_PROFILE", // Only read if AWS_SDK_LOAD_CONFIG is also set
+		"AWS_DEFAULT_PROFILE", // Only read if Shared Config is enabled
 	}
 )
 
 // loadEnvConfig retrieves the SDK's environment configuration.
+//
 // See `envConfig` for the values that will be retrieved.
 //
-// If the environment variable `AWS_SDK_LOAD_CONFIG` is set to a truthy value
-// the shared SDK config will be loaded in addition to the SDK's specific
-// configuration values.
+// If the environment variable `AWS_SDK_CONFIG_OPT_OUT` is set the SDK will not
+// use the shared config when loading configuration.
 func loadEnvConfig() envConfig {
-	enableSharedConfig, _ := strconv.ParseBool(os.Getenv("AWS_SDK_LOAD_CONFIG"))
-	return envConfigLoad(enableSharedConfig)
-}
-
-// loadEnvSharedConfig retrieves the SDK's environment configuration, and the
-// SDK shared config. See `envConfig` for the values that will be retrieved.
-//
-// Loads the shared configuration in addition to the SDK's specific configuration.
-// This will load the same values as `loadEnvConfig` if the `AWS_SDK_LOAD_CONFIG`
-// environment variable is set.
-func loadSharedEnvConfig() envConfig {
-	return envConfigLoad(true)
-}
-
-func envConfigLoad(enableSharedConfig bool) envConfig {
 	cfg := envConfig{}
 
-	cfg.EnableSharedConfig = enableSharedConfig
+	if len(os.Getenv("AWS_SDK_CONFIG_OPT_OUT")) > 0 {
+		cfg.DisableSharedConfig = true
+	}
 
 	setFromEnvVal(&cfg.Creds.AccessKeyID, credAccessEnvKey)
 	setFromEnvVal(&cfg.Creds.SecretAccessKey, credSecretEnvKey)
@@ -139,7 +124,7 @@ func envConfigLoad(enableSharedConfig bool) envConfig {
 
 	regionKeys := regionEnvKeys
 	profileKeys := profileEnvKeys
-	if !cfg.EnableSharedConfig {
+	if cfg.DisableSharedConfig {
 		regionKeys = regionKeys[:1]
 		profileKeys = profileKeys[:1]
 	}

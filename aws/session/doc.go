@@ -18,13 +18,19 @@ Creating service clients concurrently from a shared Session is safe.
 
 Sessions from Shared Config
 
-Sessions can be created using the method above that will only load the
-additional config if the AWS_SDK_LOAD_CONFIG environment variable is set.
-Alternatively you can explicitly create a Session with shared config enabled.
-To do this you can use NewSessionWithOptions to configure how the Session will
-be created. Using the NewSessionWithOptions with SharedConfigState set to
-SharedConfigEnabled will create the session as if the AWS_SDK_LOAD_CONFIG
-environment variable was set.
+By default the Session returned will be created with the configuration
+loaded from the shared config file (~/.aws/config) will also be loaded, in
+addition to the shared credentials file (~/.aws/config). Options set in both
+the shared config, and shared credentials will be taken from the shared
+credentials file. This functionality can be disabled by setting the
+AWS_SDK_CONFIG_OPT_OUT environment variable.
+
+Alternatively you can explicitly create a Session with shared config enabled
+or disabled in code. To do this you can use NewSessionWithOptions to
+configure how the Session will be created. Using the NewSessionWithOptions
+with SharedConfigState set to SharedConfigEnabled will create a Session with
+the Shared Config enabled regardless of if the AWS_SDK_CONFIG_OPT_OUT environment
+value is set or not.
 
 Creating Sessions
 
@@ -32,13 +38,6 @@ When creating Sessions optional aws.Config values can be passed in that will
 override the default, or loaded config values the Session is being created
 with. This allows you to provide additional, or case based, configuration
 as needed.
-
-By default NewSession will only load credentials from the shared credentials
-file (~/.aws/credentials). If the AWS_SDK_LOAD_CONFIG environment variable is
-set to a truthy value the Session will be created from the configuration
-values from the shared config (~/.aws/config) and shared credentials
-(~/.aws/credentials) files. See the section Sessions from Shared Config for
-more information.
 
 Create a Session with the default config and request handlers. With credentials
 region, and profile loaded from the environment and shared config automatically.
@@ -64,7 +63,7 @@ This func allows you to control and override how the Session will be created
 through code instead of being driven by environment variables only.
 
 Use NewSessionWithOptions when you want to provide the config profile, or
-override the shared config state (AWS_SDK_LOAD_CONFIG).
+override the shared config load state (AWS_SDK_CONFIG_OPT_OUT).
 
 	// Equivalent to session.New
 	sess, err := session.NewSessionWithOptions(session.Options{})
@@ -78,6 +77,11 @@ override the shared config state (AWS_SDK_LOAD_CONFIG).
 	sess, err := session.NewSessionWithOptions(session.Options{
 		 Config: aws.Config{Region: aws.String("us-east-1")},
 		 Profile: "profile_name",
+	})
+
+	// Force disable Shared Config support
+	sess, err := session.NewSessionWithOptions(session.Optons{
+		SharedConfigState: SharedConfigDisable,
 	})
 
 	// Force enable Shared Config support
@@ -119,12 +123,11 @@ By default the SDK will only load the shared credentials file's (~/.aws/credenti
 credentials values, and all other config is provided by the environment variables,
 SDK defaults, and user provided aws.Config values.
 
-If the AWS_SDK_LOAD_CONFIG environment variable is set, or SharedConfigEnable
-option is used to create the Session the full shared config values will be
-loaded. This includes credentials, region, and support for assume role. In
-addition the Session will load its configuration from both the shared config
-file (~/.aws/config) and shared credentials file (~/.aws/credentials). Both
-files have the same format.
+If the AWS_SDK_CONFIG_OPT_OUT is not set and SharedConfigDisable option is not
+used when creating a session full shared config values will be loaded. This
+includes credentials, region, and support for assume role. In addition the
+Session will load its configuration from both the shared config file (~/.aws/config)
+and shared credentials file (~/.aws/credentials). Both files have the same format.
 
 If both config files are present the configuration from both files will be
 read. The Session will be created from  configuration values from the shared
@@ -189,7 +192,7 @@ client request is made.
 
 	AWS_REGION=us-east-1
 
-	# AWS_DEFAULT_REGION is only read if AWS_SDK_LOAD_CONFIG is also set,
+	# AWS_DEFAULT_REGION is only read if Shared Config is enabled.
 	# and AWS_REGION is not also set.
 	AWS_DEFAULT_REGION=us-east-1
 
@@ -198,17 +201,17 @@ configuration files. If not provided "default" will be used as the profile name.
 
 	AWS_PROFILE=my_profile
 
-	# AWS_DEFAULT_PROFILE is only read if AWS_SDK_LOAD_CONFIG is also set,
+	# AWS_DEFAULT_PROFILE is only read if Shared Config is enabled.
 	# and AWS_PROFILE is not also set.
 	AWS_DEFAULT_PROFILE=my_profile
 
-SDK load config instructs the SDK to load the shared config in addition to
-shared credentials. This also expands the configuration loaded so the shared
-credentials will have parity with the shared config file. This also enables
-Region and Profile support for the AWS_DEFAULT_REGION and AWS_DEFAULT_PROFILE
-env values as well.
+SDK config opt out instructs the SDK to not load the shared config in addition
+to shared credentials. This prevents the SDK from loading configuration values
+from the shared config file (~/.aws/config) and region from the shared
+credentials file. The AWS_DEFAULT_REGION and AWS_DEFAULT_PROFILE env values
+also will not be read.
 
-	AWS_SDK_LOAD_CONFIG=1
+	AWS_SDK_CONFIG_OPT_OUT=1
 
 Shared credentials file path can be set to instruct the SDK to use an alternative
 file for the shared credentials. If not set the file will be loaded from
