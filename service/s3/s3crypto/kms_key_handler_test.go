@@ -12,6 +12,7 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/service/kms"
 	"github.com/aws/aws-sdk-go/service/s3/s3crypto"
 )
@@ -28,13 +29,14 @@ func TestKMSGenerateCipherData(t *testing.T) {
 		fmt.Fprintln(w, `{"CiphertextBlob":"AQEDAHhqBCCY1MSimw8gOGcUma79cn4ANvTtQyv9iuBdbcEF1QAAAH4wfAYJKoZIhvcNAQcGoG8wbQIBADBoBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDJ6IcN5E4wVbk38MNAIBEIA7oF1E3lS7FY9DkoxPc/UmJsEwHzL82zMqoLwXIvi8LQHr8If4Lv6zKqY8u0+JRgSVoqCvZDx3p8Cn6nM=","KeyId":"arn:aws:kms:us-west-2:042062605278:key/c80a5cdb-8d09-4f9f-89ee-df01b2e3870a","Plaintext":"6tmyz9JLBE2yIuU7iXpArqpDVle172WSmxjcO6GNT7E="}`)
 	}))
 
-	sess := session.New(&aws.Config{
+	sess := unit.Session.Copy(&aws.Config{
 		MaxRetries:       aws.Int(0),
 		Endpoint:         aws.String(ts.URL[7:]),
 		DisableSSL:       aws.Bool(true),
 		S3ForcePathStyle: aws.Bool(true),
 		Region:           aws.String("us-west-2"),
 	})
+
 	svc := kms.New(sess)
 	handler, err := s3crypto.NewKMSEncryptHandler(svc, "testid", s3crypto.MaterialDescription{})
 	assert.NoError(t, err)
@@ -57,7 +59,7 @@ func TestKMSDecrypt(t *testing.T) {
 		fmt.Fprintln(w, fmt.Sprintf("%s%s%s", `{"KeyId":"test-key-id","Plaintext":"`, keyB64, `"}`))
 	}))
 
-	sess := session.New(&aws.Config{
+	sess := unit.Session.Copy(&aws.Config{
 		MaxRetries:       aws.Int(0),
 		Endpoint:         aws.String(ts.URL[7:]),
 		DisableSSL:       aws.Bool(true),
@@ -80,13 +82,14 @@ func TestKMSDecryptBadJSON(t *testing.T) {
 		fmt.Fprintln(w, fmt.Sprintf("%s%s%s", `{"KeyId":"test-key-id","Plaintext":"`, keyB64, `"}`))
 	}))
 
-	sess := session.New(&aws.Config{
+	sess := unit.Session.Copy(&aws.Config{
 		MaxRetries:       aws.Int(0),
 		Endpoint:         aws.String(ts.URL[7:]),
 		DisableSSL:       aws.Bool(true),
 		S3ForcePathStyle: aws.Bool(true),
 		Region:           aws.String("us-west-2"),
 	})
+
 	svc := kms.New(sess)
 	_, err := s3crypto.NewKMSDecryptHandler(svc, `{"kms_cmk_id":"test"`)
 	assert.Error(t, err)

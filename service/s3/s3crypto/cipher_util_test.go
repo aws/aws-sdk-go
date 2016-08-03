@@ -12,6 +12,7 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/service/kms"
 )
 
@@ -37,7 +38,8 @@ func TestCEKFactory(t *testing.T) {
 		fmt.Fprintln(w, fmt.Sprintf("%s%s%s", `{"KeyId":"test-key-id","Plaintext":"`, keyB64, `"}`))
 	}))
 	defer ts.Close()
-	sess := session.New(&aws.Config{
+
+	sess := unit.Session.Copy(&aws.Config{
 		MaxRetries:       aws.Int(0),
 		Endpoint:         aws.String(ts.URL[7:]),
 		DisableSSL:       aws.Bool(true),

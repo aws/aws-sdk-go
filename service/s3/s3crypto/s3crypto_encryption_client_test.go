@@ -11,14 +11,18 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/service/kms"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3crypto"
 )
 
 func TestDefaultConfigValues(t *testing.T) {
-	sess := session.New()
+	sess := unit.Session.Copy(&aws.Config{
+		MaxRetries:       aws.Int(0),
+		S3ForcePathStyle: aws.Bool(true),
+		Region:           aws.String("us-west-2"),
+	})
 	svc := kms.New(sess)
 	handler, err := s3crypto.NewKMSEncryptHandler(svc, "testid", s3crypto.MaterialDescription{})
 	assert.Nil(t, err)
@@ -36,8 +40,10 @@ func TestPutObject(t *testing.T) {
 	expected := bytes.Repeat([]byte{1}, size)
 	generator := mockGenerator{}
 	cb := mockCipherBuilder{generator}
-	sess := session.New(&aws.Config{
-		MaxRetries: aws.Int(0),
+	sess := unit.Session.Copy(&aws.Config{
+		MaxRetries:       aws.Int(0),
+		S3ForcePathStyle: aws.Bool(true),
+		Region:           aws.String("us-west-2"),
 	})
 	c := s3crypto.NewEncryptionClient(sess, cb)
 	assert.NotNil(t, c)

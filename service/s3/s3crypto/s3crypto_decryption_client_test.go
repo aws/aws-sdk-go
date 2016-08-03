@@ -14,7 +14,7 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3crypto"
 )
@@ -27,12 +27,14 @@ func TestGetObject(t *testing.T) {
 	}))
 	defer ts.Close()
 
-	sess := session.New(&aws.Config{
+	sess := unit.Session.Copy(&aws.Config{
 		MaxRetries:       aws.Int(0),
 		Endpoint:         aws.String(ts.URL[7:]),
 		DisableSSL:       aws.Bool(true),
 		S3ForcePathStyle: aws.Bool(true),
+		Region:           aws.String("us-west-2"),
 	})
+
 	c := s3crypto.NewDecryptionClient(sess)
 	assert.NotNil(t, c)
 	input := &s3.GetObjectInput{
