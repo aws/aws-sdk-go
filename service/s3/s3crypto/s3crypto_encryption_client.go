@@ -94,7 +94,7 @@ func (c *EncryptionClient) PutObjectRequest(input *s3.PutObjectInput) (*request.
 	}
 	input.Body.Seek(0, 0)
 
-	useTempFile := n > c.Config.MinFileSize
+	useTempFile := n >= c.Config.MinFileSize
 	if useTempFile {
 		// Create temp file to be used later for calculating the SHA256 header
 		dst, err = ioutil.TempFile(c.Config.TempFolderPath, "")
