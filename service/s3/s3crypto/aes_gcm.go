@@ -64,7 +64,7 @@ func (reader *gcmEncryptReader) Read(data []byte) (int, error) {
 		if err != nil {
 			return len(b), err
 		}
-		b = reader.encrypter.Seal(nil, reader.nonce, b, nil)
+		b = reader.encrypter.Seal(b[:0], reader.nonce, b, nil)
 		reader.buf = bytes.NewBuffer(b)
 	}
 
@@ -93,7 +93,7 @@ func (reader *gcmDecryptReader) Read(data []byte) (int, error) {
 		if err != nil {
 			return len(b), err
 		}
-		b, err = reader.decrypter.Open(nil, reader.nonce, b, nil)
+		b, err = reader.decrypter.Open(b[:0], reader.nonce, b, nil)
 		if err != nil {
 			return len(b), err
 		}

@@ -17,7 +17,7 @@ import (
 
 func TestWrapFactory(t *testing.T) {
 	cfg := DecryptionConfig{
-		KMSAPI: kms.New(session.New()),
+		KMSClient: kms.New(session.New()),
 	}
 	env := Envelope{
 		WrapAlg: "kms",

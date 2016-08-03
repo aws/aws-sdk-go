@@ -1,6 +1,7 @@
 package s3crypto
 
 import (
+	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/kms"
@@ -14,8 +15,8 @@ import (
 // AES GCM will load all data into memory. However, the rest of the content algorithms
 // do not load the entire contents into memory.
 type DecryptionClient struct {
-	S3API  s3iface.S3API
-	Config DecryptionConfig
+	S3Client s3iface.S3API
+	Config   DecryptionConfig
 }
 
 // DecryptionConfig used to customize the Client
@@ -23,7 +24,7 @@ type DecryptionConfig struct {
 	// InstructionFileSuffix is the instruction file name suffix when using get requests.
 	// If it is empty, then the item key will be used followed by .instruction
 	InstructionFileSuffix string
-	KMSAPI                kmsiface.KMSAPI
+	KMSClient             kmsiface.KMSAPI
 	S3Session             client.ConfigProvider
 }
 
@@ -40,7 +41,7 @@ type DecryptionConfig struct {
 func NewDecryptionClient(prov client.ConfigProvider, options ...func(*DecryptionClient)) *DecryptionClient {
 	client := &DecryptionClient{
 		Config: DecryptionConfig{
-			KMSAPI:    kms.New(prov),
+			KMSClient: kms.New(prov),
 			S3Session: prov,
 		},
 	}
@@ -49,7 +50,7 @@ func NewDecryptionClient(prov client.ConfigProvider, options ...func(*Decryption
 		option(client)
 	}
 
-	client.S3API = s3.New(client.Config.S3Session)
+	client.S3Client = s3.New(client.Config.S3Session)
 	return client
 }
 
@@ -64,10 +65,16 @@ func NewDecryptionClient(prov client.ConfigProvider, options ...func(*Decryption
 //	})
 //	err := req.Send()
 func (c *DecryptionClient) GetObjectRequest(input *s3.GetObjectInput) (*request.Request, *s3.GetObjectOutput) {
-	req, out := c.S3API.GetObjectRequest(input)
+	req, out := c.S3Client.GetObjectRequest(input)
 	req.Handlers.Unmarshal.PushBack(func(r *request.Request) {
 		env, err := c.getEnvelope(input, r)
 		if err != nil {
+			e, ok := err.(awserr.Error)
+			// If the evenlope cannot be found on the metadata or an instruction file, then we will simple
+			// continue on downloading the object.
+			if ok && e.Code() == "NoSuchKey" {
+				return
+			}
 			r.Error = err
 			out.Body.Close()
 			return

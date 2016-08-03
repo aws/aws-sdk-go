@@ -19,7 +19,7 @@ func contentCipherFromEnvelope(env *Envelope, cfg DecryptionConfig) (ContentCiph
 func wrapFromEnvelope(env *Envelope, cfg DecryptionConfig) (CipherDataDecrypter, error) {
 	switch env.WrapAlg {
 	case "kms":
-		return NewKMSDecryptHandler(cfg.KMSAPI, env.MatDesc)
+		return NewKMSDecryptHandler(cfg.KMSClient, env.MatDesc)
 	}
 	return nil, awserr.New(
 		"InvalidWrapAlgorithmError",

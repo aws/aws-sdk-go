@@ -12,13 +12,17 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3/s3iface"
 )
 
+// DefaultMinFileSize is used to check whether we want to write to a temp file
+// or store the data in memory.
+const DefaultMinFileSize = 1024 * 1024 * 10
+
 // EncryptionClient is an S3 crypto client. By default the SDK will use Authentication mode which
 // will use KMS for key wrapping and AES GCM for content encryption.
 // AES GCM will load all data into memory. However, the rest of the content algorithms
 // do not load the entire contents into memory.
 type EncryptionClient struct {
-	S3API  s3iface.S3API
-	Config EncryptionConfig
+	S3Client s3iface.S3API
+	Config   EncryptionConfig
 }
 
 // EncryptionConfig used to customize the Client
@@ -34,6 +38,8 @@ type EncryptionConfig struct {
 	S3Session             client.ConfigProvider
 	// TempFolderPath is used to store temp files when calling PutObject
 	TempFolderPath string
+
+	MinFileSize int64
 }
 
 // NewEncryptionClient instantiates a new S3 crypto client
@@ -52,6 +58,7 @@ func NewEncryptionClient(prov client.ConfigProvider, builder ContentCipherBuilde
 			ContentCipherBuilder: builder,
 			SaveStrategy:         headerSaveStrategy{},
 			S3Session:            prov,
+			MinFileSize:          DefaultMinFileSize,
 		},
 	}
 
@@ -59,7 +66,7 @@ func NewEncryptionClient(prov client.ConfigProvider, builder ContentCipherBuilde
 		option(client)
 	}
 
-	client.S3API = s3.New(client.Config.S3Session)
+	client.S3Client = s3.New(client.Config.S3Session)
 	return client
 }
 
@@ -75,13 +82,28 @@ func NewEncryptionClient(prov client.ConfigProvider, builder ContentCipherBuilde
 //	})
 //	err := req.Send()
 func (c *EncryptionClient) PutObjectRequest(input *s3.PutObjectInput) (*request.Request, *s3.PutObjectOutput) {
-	req, out := c.S3API.PutObjectRequest(input)
+	req, out := c.S3Client.PutObjectRequest(input)
 
-	// Create temp file to be used later for calculating the SHA256 header
-	f, err := ioutil.TempFile(c.Config.TempFolderPath, "")
+	var dst io.ReadWriteSeeker
+
+	// Get Size of file
+	n, err := input.Body.Seek(0, 2)
 	if err != nil {
 		req.Error = err
 		return req, out
+	}
+	input.Body.Seek(0, 0)
+
+	useTempFile := n > c.Config.MinFileSize
+	if useTempFile {
+		// Create temp file to be used later for calculating the SHA256 header
+		dst, err = ioutil.TempFile(c.Config.TempFolderPath, "")
+		if err != nil {
+			req.Error = err
+			return req, out
+		}
+	} else {
+		dst = &bytesWriteSeeker{}
 	}
 
 	encryptor, err := c.Config.ContentCipherBuilder.NewEncryptor()
@@ -92,7 +114,7 @@ func (c *EncryptionClient) PutObjectRequest(input *s3.PutObjectInput) (*request.
 		}
 
 		md5 := newMD5Reader(input.Body)
-		sha := newSHA256Writer(f)
+		sha := newSHA256Writer(dst)
 		reader, err := encryptor.EncryptContents(md5)
 		if err != nil {
 			r.Error = err
@@ -115,20 +137,23 @@ func (c *EncryptionClient) PutObjectRequest(input *s3.PutObjectInput) (*request.
 		shaHex := hex.EncodeToString(sha.GetValue())
 		req.HTTPRequest.Header.Set("X-Amz-Content-Sha256", shaHex)
 
-		f.Seek(0, 0)
-		input.Body = f
+		dst.Seek(0, 0)
+		input.Body = dst
 
 		err = c.Config.SaveStrategy.Save(env, input)
 		r.Error = err
 	})
 
-	fn := func(r *request.Request) {
-		// Close the temp file and cleanup
-		f.Close()
-		os.Remove(f.Name())
+	if useTempFile {
+		fn := func(r *request.Request) {
+			f := dst.(*os.File)
+			// Close the temp file and cleanup
+			f.Close()
+			os.Remove(f.Name())
+		}
+		req.Handlers.Send.PushBack(fn)
+		req.Handlers.ValidateResponse.PushBack(fn)
 	}
-	req.Handlers.Send.PushBack(fn)
-	req.Handlers.ValidateResponse.PushBack(fn)
 	return req, out
 }
 

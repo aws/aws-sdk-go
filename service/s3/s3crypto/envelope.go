@@ -57,7 +57,7 @@ func (client *DecryptionClient) getEnvelope(input *s3.GetObjectInput, r *request
 	} else if value = r.HTTPResponse.Header.Get(strings.Join([]string{metaHeader, keyV1Header}, "-")); value != "" {
 		return getV1Envelope(r)
 	} else {
-		return getFromInstructionFile(client.S3API, input, r, client.Config.InstructionFileSuffix)
+		return getFromInstructionFile(client.S3Client, input, r, client.Config.InstructionFileSuffix)
 	}
 }
 

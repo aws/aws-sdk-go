@@ -3,7 +3,8 @@ package s3crypto
 import "crypto/rand"
 
 // CipherDataGenerator handles generating proper key and IVs of proper size for the
-// content cipher
+// content cipher. CipherDataGenerator will also encrypt the key and store it in
+// the CipherData.
 type CipherDataGenerator interface {
 	GenerateCipherData(int, int) (CipherData, error)
 }
