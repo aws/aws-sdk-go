@@ -1268,6 +1268,32 @@
         {"shape":"DBParameterGroupNotFoundFault"}
       ]
     },
+    "RestoreDBClusterFromS3":{
+      "name":"RestoreDBClusterFromS3",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RestoreDBClusterFromS3Message"},
+      "output":{
+        "shape":"RestoreDBClusterFromS3Result",
+        "resultWrapper":"RestoreDBClusterFromS3Result"
+      },
+      "errors":[
+        {"shape":"DBClusterAlreadyExistsFault"},
+        {"shape":"DBClusterQuotaExceededFault"},
+        {"shape":"StorageQuotaExceededFault"},
+        {"shape":"DBSubnetGroupNotFoundFault"},
+        {"shape":"InvalidVPCNetworkStateFault"},
+        {"shape":"InvalidDBClusterStateFault"},
+        {"shape":"InvalidDBSubnetGroupStateFault"},
+        {"shape":"InvalidSubnet"},
+        {"shape":"InvalidS3BucketFault"},
+        {"shape":"DBClusterParameterGroupNotFoundFault"},
+        {"shape":"KMSKeyNotAccessibleFault"},
+        {"shape":"DBClusterNotFoundFault"}
+      ]
+    },
     "RestoreDBClusterFromSnapshot":{
       "name":"RestoreDBClusterFromSnapshot",
       "http":{
@@ -3565,6 +3591,17 @@
       },
       "exception":true
     },
+    "InvalidS3BucketFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidS3BucketFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "InvalidSubnet":{
       "type":"structure",
       "members":{
@@ -3671,6 +3708,7 @@
         "DBInstanceIdentifier":{"shape":"String"},
         "AllocatedStorage":{"shape":"IntegerOptional"},
         "DBInstanceClass":{"shape":"String"},
+        "DBSubnetGroupName":{"shape":"String"},
         "DBSecurityGroups":{"shape":"DBSecurityGroupNameList"},
         "VpcSecurityGroupIds":{"shape":"VpcSecurityGroupIdList"},
         "ApplyImmediately":{"shape":"Boolean"},
@@ -4104,7 +4142,8 @@
         "Iops":{"shape":"IntegerOptional"},
         "DBInstanceIdentifier":{"shape":"String"},
         "StorageType":{"shape":"String"},
-        "CACertificateIdentifier":{"shape":"String"}
+        "CACertificateIdentifier":{"shape":"String"},
+        "DBSubnetGroupName":{"shape":"String"}
       }
     },
     "PointInTimeRestoreNotEnabledFault":{
@@ -4388,6 +4427,51 @@
         "PendingMaintenanceActionDetails":{"shape":"PendingMaintenanceActionDetails"}
       },
       "wrapper":true
+    },
+    "RestoreDBClusterFromS3Message":{
+      "type":"structure",
+      "required":[
+        "DBClusterIdentifier",
+        "Engine",
+        "MasterUsername",
+        "MasterUserPassword",
+        "SourceEngine",
+        "SourceEngineVersion",
+        "S3BucketName",
+        "S3IngestionRoleArn"
+      ],
+      "members":{
+        "AvailabilityZones":{"shape":"AvailabilityZones"},
+        "BackupRetentionPeriod":{"shape":"IntegerOptional"},
+        "CharacterSetName":{"shape":"String"},
+        "DatabaseName":{"shape":"String"},
+        "DBClusterIdentifier":{"shape":"String"},
+        "DBClusterParameterGroupName":{"shape":"String"},
+        "VpcSecurityGroupIds":{"shape":"VpcSecurityGroupIdList"},
+        "DBSubnetGroupName":{"shape":"String"},
+        "Engine":{"shape":"String"},
+        "EngineVersion":{"shape":"String"},
+        "Port":{"shape":"IntegerOptional"},
+        "MasterUsername":{"shape":"String"},
+        "MasterUserPassword":{"shape":"String"},
+        "OptionGroupName":{"shape":"String"},
+        "PreferredBackupWindow":{"shape":"String"},
+        "PreferredMaintenanceWindow":{"shape":"String"},
+        "Tags":{"shape":"TagList"},
+        "StorageEncrypted":{"shape":"BooleanOptional"},
+        "KmsKeyId":{"shape":"String"},
+        "SourceEngine":{"shape":"String"},
+        "SourceEngineVersion":{"shape":"String"},
+        "S3BucketName":{"shape":"String"},
+        "S3Prefix":{"shape":"String"},
+        "S3IngestionRoleArn":{"shape":"String"}
+      }
+    },
+    "RestoreDBClusterFromS3Result":{
+      "type":"structure",
+      "members":{
+        "DBCluster":{"shape":"DBCluster"}
+      }
     },
     "RestoreDBClusterFromSnapshotMessage":{
       "type":"structure",

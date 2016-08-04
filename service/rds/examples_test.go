@@ -2237,6 +2237,7 @@ func ExampleRDS_ModifyDBInstance() {
 			aws.String("String"), // Required
 			// More values...
 		},
+		DBSubnetGroupName:          aws.String("String"),
 		Domain:                     aws.String("String"),
 		DomainIAMRoleName:          aws.String("String"),
 		EngineVersion:              aws.String("String"),
@@ -2706,6 +2707,66 @@ func ExampleRDS_ResetDBParameterGroup() {
 		ResetAllParameters: aws.Bool(true),
 	}
 	resp, err := svc.ResetDBParameterGroup(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleRDS_RestoreDBClusterFromS3() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := rds.New(sess)
+
+	params := &rds.RestoreDBClusterFromS3Input{
+		DBClusterIdentifier: aws.String("String"), // Required
+		Engine:              aws.String("String"), // Required
+		MasterUserPassword:  aws.String("String"), // Required
+		MasterUsername:      aws.String("String"), // Required
+		S3BucketName:        aws.String("String"), // Required
+		S3IngestionRoleArn:  aws.String("String"), // Required
+		SourceEngine:        aws.String("String"), // Required
+		SourceEngineVersion: aws.String("String"), // Required
+		AvailabilityZones: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+		BackupRetentionPeriod:       aws.Int64(1),
+		CharacterSetName:            aws.String("String"),
+		DBClusterParameterGroupName: aws.String("String"),
+		DBSubnetGroupName:           aws.String("String"),
+		DatabaseName:                aws.String("String"),
+		EngineVersion:               aws.String("String"),
+		KmsKeyId:                    aws.String("String"),
+		OptionGroupName:             aws.String("String"),
+		Port:                        aws.Int64(1),
+		PreferredBackupWindow:      aws.String("String"),
+		PreferredMaintenanceWindow: aws.String("String"),
+		S3Prefix:                   aws.String("String"),
+		StorageEncrypted:           aws.Bool(true),
+		Tags: []*rds.Tag{
+			{ // Required
+				Key:   aws.String("String"),
+				Value: aws.String("String"),
+			},
+			// More values...
+		},
+		VpcSecurityGroupIds: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.RestoreDBClusterFromS3(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and

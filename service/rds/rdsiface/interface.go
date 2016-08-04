@@ -352,6 +352,10 @@ type RDSAPI interface {
 
 	ResetDBParameterGroup(*rds.ResetDBParameterGroupInput) (*rds.DBParameterGroupNameMessage, error)
 
+	RestoreDBClusterFromS3Request(*rds.RestoreDBClusterFromS3Input) (*request.Request, *rds.RestoreDBClusterFromS3Output)
+
+	RestoreDBClusterFromS3(*rds.RestoreDBClusterFromS3Input) (*rds.RestoreDBClusterFromS3Output, error)
+
 	RestoreDBClusterFromSnapshotRequest(*rds.RestoreDBClusterFromSnapshotInput) (*request.Request, *rds.RestoreDBClusterFromSnapshotOutput)
 
 	RestoreDBClusterFromSnapshot(*rds.RestoreDBClusterFromSnapshotInput) (*rds.RestoreDBClusterFromSnapshotOutput, error)
