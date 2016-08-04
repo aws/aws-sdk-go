@@ -873,6 +873,36 @@ func ExampleGameLift_ResolveAlias() {
 	fmt.Println(resp)
 }
 
+func ExampleGameLift_SearchGameSessions() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := gamelift.New(sess)
+
+	params := &gamelift.SearchGameSessionsInput{
+		AliasId:          aws.String("AliasId"),
+		FilterExpression: aws.String("NonZeroAndMaxString"),
+		FleetId:          aws.String("FleetId"),
+		Limit:            aws.Int64(1),
+		NextToken:        aws.String("NonZeroAndMaxString"),
+		SortExpression:   aws.String("NonZeroAndMaxString"),
+	}
+	resp, err := svc.SearchGameSessions(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleGameLift_UpdateAlias() {
 	sess, err := session.NewSession()
 	if err != nil {
