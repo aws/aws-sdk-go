@@ -12,7 +12,7 @@ import (
 
 // DefaultMinFileSize is used to check whether we want to write to a temp file
 // or store the data in memory.
-const DefaultMinFileSize = 1024 * 1024 * 10
+const DefaultMinFileSize = 1024 * 512 * 5
 
 // EncryptionClient is an S3 crypto client. By default the SDK will use Authentication mode which
 // will use KMS for key wrapping and AES GCM for content encryption.

@@ -137,7 +137,7 @@ func init() {
 				Region: aws.String("us-west-2"),
 			})
 			session.New(&aws.Config{
-				Region: aws.String("us-east-1"),
+				Region: aws.String("us-west-2"),
 			})
 		})
 		gucumber.World["encryptionClient"] = c

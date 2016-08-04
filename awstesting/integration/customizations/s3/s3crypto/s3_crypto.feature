@@ -9,7 +9,7 @@ Feature: S3 Integration Crypto Tests
 
   Scenario: Uploading Go's SDK fixtures
     When I get all fixtures for "aes_gcm" from "aws-s3-shared-tests"
-    Then I encrypt each fixture with "kms" "AWS_SDK_TEST_ALIAS" "us-east-1" and "aes_gcm"
+    Then I encrypt each fixture with "kms" "AWS_SDK_TEST_ALIAS" "us-west-2" and "aes_gcm"
     And upload "Go" data with folder "version_2"
 
   Scenario: Get all plaintext fixtures for symmetric masterkey aes gcm 

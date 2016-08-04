@@ -1,7 +1,6 @@
 package s3crypto
 
 import (
-	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/kms"
@@ -69,12 +68,6 @@ func (c *DecryptionClient) GetObjectRequest(input *s3.GetObjectInput) (*request.
 	req.Handlers.Unmarshal.PushBack(func(r *request.Request) {
 		env, err := c.getEnvelope(input, r)
 		if err != nil {
-			e, ok := err.(awserr.Error)
-			// If the evenlope cannot be found on the metadata or an instruction file, then we will simple
-			// continue on downloading the object.
-			if ok && e.Code() == "NoSuchKey" {
-				return
-			}
 			r.Error = err
 			out.Body.Close()
 			return

@@ -7,8 +7,8 @@ import (
 	"io"
 )
 
-// HashReader is used for calculating SHA256 when following the sigv4 specification
-// and the unencrypted MD5.
+// HashReader is used for calculating SHA256 when following the sigv4 specification.
+// Additionally this used for calculating the unencrypted MD5.
 type HashReader interface {
 	GetValue() []byte
 	GetContentLength() int64

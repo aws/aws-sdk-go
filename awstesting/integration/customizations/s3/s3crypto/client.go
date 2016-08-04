@@ -22,7 +22,7 @@ func init() {
 
 		decryptionClient := s3crypto.NewDecryptionClient(session.New(), func(c *s3crypto.DecryptionClient) {
 			sess := session.New(&aws.Config{
-				Region: aws.String("us-east-1"),
+				Region: aws.String("us-west-2"),
 			})
 			c.Config.KMSClient = kms.New(sess)
 			c.Config.S3Session = session.New(&aws.Config{Region: aws.String("us-west-2")})

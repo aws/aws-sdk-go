@@ -24,7 +24,7 @@ Creating an S3 cryptography client
 
 	// Create an encryption and decryption client
 	// We need to pass the session here so S3 can use it. In addition, any decryption that
-	// occurs will use the same session with KMS
+	// occurs will use the KMS client.
 	svc := s3crypto.NewEncryptionClient(sess, s3crypto.AESGCMContentCipherBuilder(handler))
 	svc := s3crypto.NewDecryptionClient(sess)
 
