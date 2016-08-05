@@ -238,7 +238,7 @@ type Uploader struct {
 //
 // Example:
 //     // The session the S3 Uploader will use
-//     sess := session.New()
+//     sess, err := session.NewSession()
 //
 //     // Create an uploader with the session and default options
 //     uploader := s3manager.NewUploader(sess)
@@ -268,8 +268,11 @@ func NewUploader(c client.ConfigProvider, options ...func(*Uploader)) *Uploader 
 // a S3 service client to make S3 API calls.
 //
 // Example:
+//     // The session the S3 Uploader will use
+//     sess, err := session.NewSession()
+//
 //     // S3 service client the Upload manager will use.
-//     s3Svc := s3.New(session.New())
+//     s3Svc := s3.New(sess)
 //
 //     // Create an uploader with S3 client and default options
 //     uploader := s3manager.NewUploaderWithClient(s3Svc)
@@ -318,7 +321,7 @@ func NewUploaderWithClient(svc s3iface.S3API, options ...func(*Uploader)) *Uploa
 //     // Perform upload with options different than the those in the Uploader.
 //     result, err := uploader.Upload(upParams, func(u *s3manager.Uploader) {
 //          u.PartSize = 10 * 1024 * 1024 // 10MB part size
-//          u.LeavePartsOnError = true    // Dont delete the parts if the upload fails.
+//          u.LeavePartsOnError = true    // Don't delete the parts if the upload fails.
 //     })
 func (u Uploader) Upload(input *UploadInput, options ...func(*Uploader)) (*UploadOutput, error) {
 	i := uploader{in: input, ctx: u}

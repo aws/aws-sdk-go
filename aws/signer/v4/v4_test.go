@@ -111,10 +111,18 @@ func TestSignRequest(t *testing.T) {
 	assert.Equal(t, expectedDate, q.Get("X-Amz-Date"))
 }
 
-func TestSignBody(t *testing.T) {
+func TestSignBodyS3(t *testing.T) {
 	req, body := buildRequest("s3", "us-east-1", "hello")
 	signer := buildSigner()
 	signer.Sign(req, body, "s3", "us-east-1", time.Now())
+	hash := req.Header.Get("X-Amz-Content-Sha256")
+	assert.Equal(t, "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824", hash)
+}
+
+func TestSignBodyGlacier(t *testing.T) {
+	req, body := buildRequest("glacier", "us-east-1", "hello")
+	signer := buildSigner()
+	signer.Sign(req, body, "glacier", "us-east-1", time.Now())
 	hash := req.Header.Get("X-Amz-Content-Sha256")
 	assert.Equal(t, "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824", hash)
 }
@@ -280,7 +288,7 @@ func TestPreResignRequestExpiredCreds(t *testing.T) {
 	creds.Expire()
 
 	signSDKRequestWithCurrTime(r, func() time.Time {
-		// Simulate the request occured 15 minutes in the past
+		// Simulate the request occurred 15 minutes in the past
 		return time.Now().Add(-48 * time.Hour)
 	})
 	assert.NotEqual(t, querySig, r.HTTPRequest.URL.Query().Get("X-Amz-Signature"))
@@ -308,7 +316,7 @@ func TestResignRequestExpiredRequest(t *testing.T) {
 	origSignedAt := r.LastSignedAt
 
 	signSDKRequestWithCurrTime(r, func() time.Time {
-		// Simulate the request occured 15 minutes in the past
+		// Simulate the request occurred 15 minutes in the past
 		return time.Now().Add(15 * time.Minute)
 	})
 	assert.NotEqual(t, querySig, r.HTTPRequest.Header.Get("Authorization"))

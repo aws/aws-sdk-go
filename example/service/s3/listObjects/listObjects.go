@@ -13,12 +13,16 @@ import (
 // Usage:
 // go run listObjects.go <bucket>
 func main() {
-	sess := session.New()
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
 
 	svc := s3.New(sess)
 
 	i := 0
-	err := svc.ListObjectsPages(&s3.ListObjectsInput{
+	err = svc.ListObjectsPages(&s3.ListObjectsInput{
 		Bucket: &os.Args[1],
 	}, func(p *s3.ListObjectsOutput, last bool) (shouldContinue bool) {
 		fmt.Println("Page,", i)

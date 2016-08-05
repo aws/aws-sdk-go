@@ -16,7 +16,13 @@ var _ time.Duration
 var _ bytes.Buffer
 
 func ExampleServiceCatalog_DescribeProduct() {
-	svc := servicecatalog.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := servicecatalog.New(sess)
 
 	params := &servicecatalog.DescribeProductInput{
 		Id:             aws.String("Id"), // Required
@@ -36,7 +42,13 @@ func ExampleServiceCatalog_DescribeProduct() {
 }
 
 func ExampleServiceCatalog_DescribeProductView() {
-	svc := servicecatalog.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := servicecatalog.New(sess)
 
 	params := &servicecatalog.DescribeProductViewInput{
 		Id:             aws.String("Id"), // Required
@@ -56,7 +68,13 @@ func ExampleServiceCatalog_DescribeProductView() {
 }
 
 func ExampleServiceCatalog_DescribeProvisioningParameters() {
-	svc := servicecatalog.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := servicecatalog.New(sess)
 
 	params := &servicecatalog.DescribeProvisioningParametersInput{
 		ProductId:              aws.String("Id"), // Required
@@ -78,7 +96,13 @@ func ExampleServiceCatalog_DescribeProvisioningParameters() {
 }
 
 func ExampleServiceCatalog_DescribeRecord() {
-	svc := servicecatalog.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := servicecatalog.New(sess)
 
 	params := &servicecatalog.DescribeRecordInput{
 		Id:             aws.String("Id"), // Required
@@ -100,7 +124,13 @@ func ExampleServiceCatalog_DescribeRecord() {
 }
 
 func ExampleServiceCatalog_ListLaunchPaths() {
-	svc := servicecatalog.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := servicecatalog.New(sess)
 
 	params := &servicecatalog.ListLaunchPathsInput{
 		ProductId:      aws.String("Id"), // Required
@@ -122,7 +152,13 @@ func ExampleServiceCatalog_ListLaunchPaths() {
 }
 
 func ExampleServiceCatalog_ListRecordHistory() {
-	svc := servicecatalog.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := servicecatalog.New(sess)
 
 	params := &servicecatalog.ListRecordHistoryInput{
 		AcceptLanguage: aws.String("AcceptLanguage"),
@@ -147,7 +183,13 @@ func ExampleServiceCatalog_ListRecordHistory() {
 }
 
 func ExampleServiceCatalog_ProvisionProduct() {
-	svc := servicecatalog.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := servicecatalog.New(sess)
 
 	params := &servicecatalog.ProvisionProductInput{
 		ProductId:              aws.String("Id"),                     // Required
@@ -189,7 +231,13 @@ func ExampleServiceCatalog_ProvisionProduct() {
 }
 
 func ExampleServiceCatalog_ScanProvisionedProducts() {
-	svc := servicecatalog.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := servicecatalog.New(sess)
 
 	params := &servicecatalog.ScanProvisionedProductsInput{
 		AcceptLanguage: aws.String("AcceptLanguage"),
@@ -210,7 +258,13 @@ func ExampleServiceCatalog_ScanProvisionedProducts() {
 }
 
 func ExampleServiceCatalog_SearchProducts() {
-	svc := servicecatalog.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := servicecatalog.New(sess)
 
 	params := &servicecatalog.SearchProductsInput{
 		AcceptLanguage: aws.String("AcceptLanguage"),
@@ -240,7 +294,13 @@ func ExampleServiceCatalog_SearchProducts() {
 }
 
 func ExampleServiceCatalog_TerminateProvisionedProduct() {
-	svc := servicecatalog.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := servicecatalog.New(sess)
 
 	params := &servicecatalog.TerminateProvisionedProductInput{
 		TerminateToken:         aws.String("IdempotencyToken"), // Required
@@ -263,7 +323,13 @@ func ExampleServiceCatalog_TerminateProvisionedProduct() {
 }
 
 func ExampleServiceCatalog_UpdateProvisionedProduct() {
-	svc := servicecatalog.New(session.New())
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := servicecatalog.New(sess)
 
 	params := &servicecatalog.UpdateProvisionedProductInput{
 		UpdateToken:            aws.String("IdempotencyToken"), // Required

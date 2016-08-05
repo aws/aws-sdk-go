@@ -277,7 +277,8 @@
       "errors":[
         {"shape":"UnauthorizedException"},
         {"shape":"NotFoundException"},
-        {"shape":"TooManyRequestsException"}
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"}
       ]
     },
     "DeleteMethod":{
@@ -305,7 +306,8 @@
       "errors":[
         {"shape":"UnauthorizedException"},
         {"shape":"NotFoundException"},
-        {"shape":"TooManyRequestsException"}
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"}
       ]
     },
     "DeleteModel":{
@@ -918,7 +920,8 @@
         {"shape":"LimitExceededException"},
         {"shape":"NotFoundException"},
         {"shape":"BadRequestException"},
-        {"shape":"TooManyRequestsException"}
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ConflictException"}
       ]
     },
     "TestInvokeAuthorizer":{
@@ -1226,6 +1229,7 @@
         "id":{"shape":"String"},
         "name":{"shape":"String"},
         "type":{"shape":"AuthorizerType"},
+        "providerARNs":{"shape":"ListOfARNs"},
         "authType":{"shape":"String"},
         "authorizerUri":{"shape":"String"},
         "authorizerCredentials":{"shape":"String"},
@@ -1236,7 +1240,10 @@
     },
     "AuthorizerType":{
       "type":"string",
-      "enum":["TOKEN"]
+      "enum":[
+        "TOKEN",
+        "COGNITO_USER_POOLS"
+      ]
     },
     "Authorizers":{
       "type":"structure",
@@ -1342,7 +1349,6 @@
         "restApiId",
         "name",
         "type",
-        "authorizerUri",
         "identitySource"
       ],
       "members":{
@@ -1353,6 +1359,7 @@
         },
         "name":{"shape":"String"},
         "type":{"shape":"AuthorizerType"},
+        "providerARNs":{"shape":"ListOfARNs"},
         "authType":{"shape":"String"},
         "authorizerUri":{"shape":"String"},
         "authorizerCredentials":{"shape":"String"},
@@ -2461,6 +2468,10 @@
       "error":{"httpStatusCode":429},
       "exception":true
     },
+    "ListOfARNs":{
+      "type":"list",
+      "member":{"shape":"ProviderARN"}
+    },
     "ListOfApiKey":{
       "type":"list",
       "member":{"shape":"ApiKey"}
@@ -2646,6 +2657,7 @@
       "key":{"shape":"String"},
       "value":{"shape":"MapOfMethodSnapshot"}
     },
+    "ProviderARN":{"type":"string"},
     "PutIntegrationRequest":{
       "type":"structure",
       "required":[
@@ -2962,7 +2974,8 @@
         "latency":{"shape":"Long"},
         "principalId":{"shape":"String"},
         "policy":{"shape":"String"},
-        "authorization":{"shape":"MapOfStringToList"}
+        "authorization":{"shape":"MapOfStringToList"},
+        "claims":{"shape":"MapOfStringToString"}
       }
     },
     "TestInvokeMethodRequest":{

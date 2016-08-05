@@ -46,6 +46,10 @@ type IoTAPI interface {
 
 	CreateThing(*iot.CreateThingInput) (*iot.CreateThingOutput, error)
 
+	CreateThingTypeRequest(*iot.CreateThingTypeInput) (*request.Request, *iot.CreateThingTypeOutput)
+
+	CreateThingType(*iot.CreateThingTypeInput) (*iot.CreateThingTypeOutput, error)
+
 	CreateTopicRuleRequest(*iot.CreateTopicRuleInput) (*request.Request, *iot.CreateTopicRuleOutput)
 
 	CreateTopicRule(*iot.CreateTopicRuleInput) (*iot.CreateTopicRuleOutput, error)
@@ -74,9 +78,17 @@ type IoTAPI interface {
 
 	DeleteThing(*iot.DeleteThingInput) (*iot.DeleteThingOutput, error)
 
+	DeleteThingTypeRequest(*iot.DeleteThingTypeInput) (*request.Request, *iot.DeleteThingTypeOutput)
+
+	DeleteThingType(*iot.DeleteThingTypeInput) (*iot.DeleteThingTypeOutput, error)
+
 	DeleteTopicRuleRequest(*iot.DeleteTopicRuleInput) (*request.Request, *iot.DeleteTopicRuleOutput)
 
 	DeleteTopicRule(*iot.DeleteTopicRuleInput) (*iot.DeleteTopicRuleOutput, error)
+
+	DeprecateThingTypeRequest(*iot.DeprecateThingTypeInput) (*request.Request, *iot.DeprecateThingTypeOutput)
+
+	DeprecateThingType(*iot.DeprecateThingTypeInput) (*iot.DeprecateThingTypeOutput, error)
 
 	DescribeCACertificateRequest(*iot.DescribeCACertificateInput) (*request.Request, *iot.DescribeCACertificateOutput)
 
@@ -93,6 +105,10 @@ type IoTAPI interface {
 	DescribeThingRequest(*iot.DescribeThingInput) (*request.Request, *iot.DescribeThingOutput)
 
 	DescribeThing(*iot.DescribeThingInput) (*iot.DescribeThingOutput, error)
+
+	DescribeThingTypeRequest(*iot.DescribeThingTypeInput) (*request.Request, *iot.DescribeThingTypeOutput)
+
+	DescribeThingType(*iot.DescribeThingTypeInput) (*iot.DescribeThingTypeOutput, error)
 
 	DetachPrincipalPolicyRequest(*iot.DetachPrincipalPolicyInput) (*request.Request, *iot.DetachPrincipalPolicyOutput)
 
@@ -142,6 +158,10 @@ type IoTAPI interface {
 
 	ListCertificatesByCA(*iot.ListCertificatesByCAInput) (*iot.ListCertificatesByCAOutput, error)
 
+	ListOutgoingCertificatesRequest(*iot.ListOutgoingCertificatesInput) (*request.Request, *iot.ListOutgoingCertificatesOutput)
+
+	ListOutgoingCertificates(*iot.ListOutgoingCertificatesInput) (*iot.ListOutgoingCertificatesOutput, error)
+
 	ListPoliciesRequest(*iot.ListPoliciesInput) (*request.Request, *iot.ListPoliciesOutput)
 
 	ListPolicies(*iot.ListPoliciesInput) (*iot.ListPoliciesOutput, error)
@@ -165,6 +185,10 @@ type IoTAPI interface {
 	ListThingPrincipalsRequest(*iot.ListThingPrincipalsInput) (*request.Request, *iot.ListThingPrincipalsOutput)
 
 	ListThingPrincipals(*iot.ListThingPrincipalsInput) (*iot.ListThingPrincipalsOutput, error)
+
+	ListThingTypesRequest(*iot.ListThingTypesInput) (*request.Request, *iot.ListThingTypesOutput)
+
+	ListThingTypes(*iot.ListThingTypesInput) (*iot.ListThingTypesOutput, error)
 
 	ListThingsRequest(*iot.ListThingsInput) (*request.Request, *iot.ListThingsOutput)
 

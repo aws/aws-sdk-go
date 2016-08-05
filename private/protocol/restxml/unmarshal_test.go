@@ -16,9 +16,9 @@ import (
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/client/metadata"
 	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/aws/signer/v4"
 	"github.com/aws/aws-sdk-go/awstesting"
+	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/restxml"
 	"github.com/aws/aws-sdk-go/private/protocol/xml/xmlutil"
@@ -1469,8 +1469,7 @@ type OutputService12TestShapeOutputService12TestCaseOperation1Output struct {
 //
 
 func TestOutputService1ProtocolTestScalarMembersCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewOutputService1ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewOutputService1ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 
 	buf := bytes.NewReader([]byte("<OperationNameResponse><Str>myname</Str><FooNum>123</FooNum><FalseBool>false</FalseBool><TrueBool>true</TrueBool><Float>1.2</Float><Double>1.3</Double><Long>200</Long><Char>a</Char><Timestamp>2015-01-25T08:00:00Z</Timestamp></OperationNameResponse>"))
 	req, out := svc.OutputService1TestCaseOperation1Request(nil)
@@ -1502,8 +1501,7 @@ func TestOutputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 }
 
 func TestOutputService1ProtocolTestScalarMembersCase2(t *testing.T) {
-	sess := session.New()
-	svc := NewOutputService1ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewOutputService1ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 
 	buf := bytes.NewReader([]byte("<OperationNameResponse><Str></Str><FooNum>123</FooNum><FalseBool>false</FalseBool><TrueBool>true</TrueBool><Float>1.2</Float><Double>1.3</Double><Long>200</Long><Char>a</Char><Timestamp>2015-01-25T08:00:00Z</Timestamp></OperationNameResponse>"))
 	req, out := svc.OutputService1TestCaseOperation2Request(nil)
@@ -1535,8 +1533,7 @@ func TestOutputService1ProtocolTestScalarMembersCase2(t *testing.T) {
 }
 
 func TestOutputService2ProtocolTestBlobCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewOutputService2ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewOutputService2ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 
 	buf := bytes.NewReader([]byte("<OperationNameResult><Blob>dmFsdWU=</Blob></OperationNameResult>"))
 	req, out := svc.OutputService2TestCaseOperation1Request(nil)
@@ -1556,8 +1553,7 @@ func TestOutputService2ProtocolTestBlobCase1(t *testing.T) {
 }
 
 func TestOutputService3ProtocolTestListsCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewOutputService3ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewOutputService3ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 
 	buf := bytes.NewReader([]byte("<OperationNameResult><ListMember><member>abc</member><member>123</member></ListMember></OperationNameResult>"))
 	req, out := svc.OutputService3TestCaseOperation1Request(nil)
@@ -1578,8 +1574,7 @@ func TestOutputService3ProtocolTestListsCase1(t *testing.T) {
 }
 
 func TestOutputService4ProtocolTestListWithCustomMemberNameCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewOutputService4ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewOutputService4ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 
 	buf := bytes.NewReader([]byte("<OperationNameResult><ListMember><item>abc</item><item>123</item></ListMember></OperationNameResult>"))
 	req, out := svc.OutputService4TestCaseOperation1Request(nil)
@@ -1600,8 +1595,7 @@ func TestOutputService4ProtocolTestListWithCustomMemberNameCase1(t *testing.T) {
 }
 
 func TestOutputService5ProtocolTestFlattenedListCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewOutputService5ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewOutputService5ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 
 	buf := bytes.NewReader([]byte("<OperationNameResult><ListMember>abc</ListMember><ListMember>123</ListMember></OperationNameResult>"))
 	req, out := svc.OutputService5TestCaseOperation1Request(nil)
@@ -1622,8 +1616,7 @@ func TestOutputService5ProtocolTestFlattenedListCase1(t *testing.T) {
 }
 
 func TestOutputService6ProtocolTestNormalMapCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewOutputService6ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewOutputService6ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 
 	buf := bytes.NewReader([]byte("<OperationNameResult><Map><entry><key>qux</key><value><foo>bar</foo></value></entry><entry><key>baz</key><value><foo>bam</foo></value></entry></Map></OperationNameResult>"))
 	req, out := svc.OutputService6TestCaseOperation1Request(nil)
@@ -1644,8 +1637,7 @@ func TestOutputService6ProtocolTestNormalMapCase1(t *testing.T) {
 }
 
 func TestOutputService7ProtocolTestFlattenedMapCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewOutputService7ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewOutputService7ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 
 	buf := bytes.NewReader([]byte("<OperationNameResult><Map><key>qux</key><value>bar</value></Map><Map><key>baz</key><value>bam</value></Map></OperationNameResult>"))
 	req, out := svc.OutputService7TestCaseOperation1Request(nil)
@@ -1666,8 +1658,7 @@ func TestOutputService7ProtocolTestFlattenedMapCase1(t *testing.T) {
 }
 
 func TestOutputService8ProtocolTestNamedMapCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewOutputService8ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewOutputService8ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 
 	buf := bytes.NewReader([]byte("<OperationNameResult><Map><entry><foo>qux</foo><bar>bar</bar></entry><entry><foo>baz</foo><bar>bam</bar></entry></Map></OperationNameResult>"))
 	req, out := svc.OutputService8TestCaseOperation1Request(nil)
@@ -1688,8 +1679,7 @@ func TestOutputService8ProtocolTestNamedMapCase1(t *testing.T) {
 }
 
 func TestOutputService9ProtocolTestXMLPayloadCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewOutputService9ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewOutputService9ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 
 	buf := bytes.NewReader([]byte("<OperationNameResponse><Foo>abc</Foo></OperationNameResponse>"))
 	req, out := svc.OutputService9TestCaseOperation1Request(nil)
@@ -1711,8 +1701,7 @@ func TestOutputService9ProtocolTestXMLPayloadCase1(t *testing.T) {
 }
 
 func TestOutputService10ProtocolTestStreamingPayloadCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewOutputService10ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewOutputService10ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 
 	buf := bytes.NewReader([]byte("abc"))
 	req, out := svc.OutputService10TestCaseOperation1Request(nil)
@@ -1732,8 +1721,7 @@ func TestOutputService10ProtocolTestStreamingPayloadCase1(t *testing.T) {
 }
 
 func TestOutputService11ProtocolTestScalarMembersInHeadersCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewOutputService11ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewOutputService11ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 
 	buf := bytes.NewReader([]byte(""))
 	req, out := svc.OutputService11TestCaseOperation1Request(nil)
@@ -1770,8 +1758,7 @@ func TestOutputService11ProtocolTestScalarMembersInHeadersCase1(t *testing.T) {
 }
 
 func TestOutputService12ProtocolTestEmptyStringCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewOutputService12ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewOutputService12ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 
 	buf := bytes.NewReader([]byte("<OperationNameResponse><Foo/><RequestId>requestid</RequestId></OperationNameResponse>"))
 	req, out := svc.OutputService12TestCaseOperation1Request(nil)

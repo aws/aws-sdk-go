@@ -9770,18 +9770,19 @@
         "AllowEgressFromLocalVpcToRemoteClassicLink":{
           "shape":"Boolean",
           "locationName":"allowEgressFromLocalVpcToRemoteClassicLink"
+        },
+        "AllowDnsResolutionFromRemoteVpc":{
+          "shape":"Boolean",
+          "locationName":"allowDnsResolutionFromRemoteVpc"
         }
       }
     },
     "PeeringConnectionOptionsRequest":{
       "type":"structure",
-      "required":[
-        "AllowEgressFromLocalClassicLinkToRemoteVpc",
-        "AllowEgressFromLocalVpcToRemoteClassicLink"
-      ],
       "members":{
         "AllowEgressFromLocalClassicLinkToRemoteVpc":{"shape":"Boolean"},
-        "AllowEgressFromLocalVpcToRemoteClassicLink":{"shape":"Boolean"}
+        "AllowEgressFromLocalVpcToRemoteClassicLink":{"shape":"Boolean"},
+        "AllowDnsResolutionFromRemoteVpc":{"shape":"Boolean"}
       }
     },
     "PermissionGroup":{
@@ -13616,6 +13617,10 @@
         "AllowEgressFromLocalVpcToRemoteClassicLink":{
           "shape":"Boolean",
           "locationName":"allowEgressFromLocalVpcToRemoteClassicLink"
+        },
+        "AllowDnsResolutionFromRemoteVpc":{
+          "shape":"Boolean",
+          "locationName":"allowDnsResolutionFromRemoteVpc"
         }
       }
     },

@@ -34,25 +34,57 @@ type CognitoIdentityProviderAPI interface {
 
 	AdminEnableUser(*cognitoidentityprovider.AdminEnableUserInput) (*cognitoidentityprovider.AdminEnableUserOutput, error)
 
+	AdminForgetDeviceRequest(*cognitoidentityprovider.AdminForgetDeviceInput) (*request.Request, *cognitoidentityprovider.AdminForgetDeviceOutput)
+
+	AdminForgetDevice(*cognitoidentityprovider.AdminForgetDeviceInput) (*cognitoidentityprovider.AdminForgetDeviceOutput, error)
+
+	AdminGetDeviceRequest(*cognitoidentityprovider.AdminGetDeviceInput) (*request.Request, *cognitoidentityprovider.AdminGetDeviceOutput)
+
+	AdminGetDevice(*cognitoidentityprovider.AdminGetDeviceInput) (*cognitoidentityprovider.AdminGetDeviceOutput, error)
+
 	AdminGetUserRequest(*cognitoidentityprovider.AdminGetUserInput) (*request.Request, *cognitoidentityprovider.AdminGetUserOutput)
 
 	AdminGetUser(*cognitoidentityprovider.AdminGetUserInput) (*cognitoidentityprovider.AdminGetUserOutput, error)
+
+	AdminInitiateAuthRequest(*cognitoidentityprovider.AdminInitiateAuthInput) (*request.Request, *cognitoidentityprovider.AdminInitiateAuthOutput)
+
+	AdminInitiateAuth(*cognitoidentityprovider.AdminInitiateAuthInput) (*cognitoidentityprovider.AdminInitiateAuthOutput, error)
+
+	AdminListDevicesRequest(*cognitoidentityprovider.AdminListDevicesInput) (*request.Request, *cognitoidentityprovider.AdminListDevicesOutput)
+
+	AdminListDevices(*cognitoidentityprovider.AdminListDevicesInput) (*cognitoidentityprovider.AdminListDevicesOutput, error)
 
 	AdminResetUserPasswordRequest(*cognitoidentityprovider.AdminResetUserPasswordInput) (*request.Request, *cognitoidentityprovider.AdminResetUserPasswordOutput)
 
 	AdminResetUserPassword(*cognitoidentityprovider.AdminResetUserPasswordInput) (*cognitoidentityprovider.AdminResetUserPasswordOutput, error)
 
+	AdminRespondToAuthChallengeRequest(*cognitoidentityprovider.AdminRespondToAuthChallengeInput) (*request.Request, *cognitoidentityprovider.AdminRespondToAuthChallengeOutput)
+
+	AdminRespondToAuthChallenge(*cognitoidentityprovider.AdminRespondToAuthChallengeInput) (*cognitoidentityprovider.AdminRespondToAuthChallengeOutput, error)
+
 	AdminSetUserSettingsRequest(*cognitoidentityprovider.AdminSetUserSettingsInput) (*request.Request, *cognitoidentityprovider.AdminSetUserSettingsOutput)
 
 	AdminSetUserSettings(*cognitoidentityprovider.AdminSetUserSettingsInput) (*cognitoidentityprovider.AdminSetUserSettingsOutput, error)
+
+	AdminUpdateDeviceStatusRequest(*cognitoidentityprovider.AdminUpdateDeviceStatusInput) (*request.Request, *cognitoidentityprovider.AdminUpdateDeviceStatusOutput)
+
+	AdminUpdateDeviceStatus(*cognitoidentityprovider.AdminUpdateDeviceStatusInput) (*cognitoidentityprovider.AdminUpdateDeviceStatusOutput, error)
 
 	AdminUpdateUserAttributesRequest(*cognitoidentityprovider.AdminUpdateUserAttributesInput) (*request.Request, *cognitoidentityprovider.AdminUpdateUserAttributesOutput)
 
 	AdminUpdateUserAttributes(*cognitoidentityprovider.AdminUpdateUserAttributesInput) (*cognitoidentityprovider.AdminUpdateUserAttributesOutput, error)
 
+	AdminUserGlobalSignOutRequest(*cognitoidentityprovider.AdminUserGlobalSignOutInput) (*request.Request, *cognitoidentityprovider.AdminUserGlobalSignOutOutput)
+
+	AdminUserGlobalSignOut(*cognitoidentityprovider.AdminUserGlobalSignOutInput) (*cognitoidentityprovider.AdminUserGlobalSignOutOutput, error)
+
 	ChangePasswordRequest(*cognitoidentityprovider.ChangePasswordInput) (*request.Request, *cognitoidentityprovider.ChangePasswordOutput)
 
 	ChangePassword(*cognitoidentityprovider.ChangePasswordInput) (*cognitoidentityprovider.ChangePasswordOutput, error)
+
+	ConfirmDeviceRequest(*cognitoidentityprovider.ConfirmDeviceInput) (*request.Request, *cognitoidentityprovider.ConfirmDeviceOutput)
+
+	ConfirmDevice(*cognitoidentityprovider.ConfirmDeviceInput) (*cognitoidentityprovider.ConfirmDeviceOutput, error)
 
 	ConfirmForgotPasswordRequest(*cognitoidentityprovider.ConfirmForgotPasswordInput) (*request.Request, *cognitoidentityprovider.ConfirmForgotPasswordOutput)
 
@@ -94,9 +126,17 @@ type CognitoIdentityProviderAPI interface {
 
 	DescribeUserPoolClient(*cognitoidentityprovider.DescribeUserPoolClientInput) (*cognitoidentityprovider.DescribeUserPoolClientOutput, error)
 
+	ForgetDeviceRequest(*cognitoidentityprovider.ForgetDeviceInput) (*request.Request, *cognitoidentityprovider.ForgetDeviceOutput)
+
+	ForgetDevice(*cognitoidentityprovider.ForgetDeviceInput) (*cognitoidentityprovider.ForgetDeviceOutput, error)
+
 	ForgotPasswordRequest(*cognitoidentityprovider.ForgotPasswordInput) (*request.Request, *cognitoidentityprovider.ForgotPasswordOutput)
 
 	ForgotPassword(*cognitoidentityprovider.ForgotPasswordInput) (*cognitoidentityprovider.ForgotPasswordOutput, error)
+
+	GetDeviceRequest(*cognitoidentityprovider.GetDeviceInput) (*request.Request, *cognitoidentityprovider.GetDeviceOutput)
+
+	GetDevice(*cognitoidentityprovider.GetDeviceInput) (*cognitoidentityprovider.GetDeviceOutput, error)
 
 	GetUserRequest(*cognitoidentityprovider.GetUserInput) (*request.Request, *cognitoidentityprovider.GetUserOutput)
 
@@ -105,6 +145,18 @@ type CognitoIdentityProviderAPI interface {
 	GetUserAttributeVerificationCodeRequest(*cognitoidentityprovider.GetUserAttributeVerificationCodeInput) (*request.Request, *cognitoidentityprovider.GetUserAttributeVerificationCodeOutput)
 
 	GetUserAttributeVerificationCode(*cognitoidentityprovider.GetUserAttributeVerificationCodeInput) (*cognitoidentityprovider.GetUserAttributeVerificationCodeOutput, error)
+
+	GlobalSignOutRequest(*cognitoidentityprovider.GlobalSignOutInput) (*request.Request, *cognitoidentityprovider.GlobalSignOutOutput)
+
+	GlobalSignOut(*cognitoidentityprovider.GlobalSignOutInput) (*cognitoidentityprovider.GlobalSignOutOutput, error)
+
+	InitiateAuthRequest(*cognitoidentityprovider.InitiateAuthInput) (*request.Request, *cognitoidentityprovider.InitiateAuthOutput)
+
+	InitiateAuth(*cognitoidentityprovider.InitiateAuthInput) (*cognitoidentityprovider.InitiateAuthOutput, error)
+
+	ListDevicesRequest(*cognitoidentityprovider.ListDevicesInput) (*request.Request, *cognitoidentityprovider.ListDevicesOutput)
+
+	ListDevices(*cognitoidentityprovider.ListDevicesInput) (*cognitoidentityprovider.ListDevicesOutput, error)
 
 	ListUserPoolClientsRequest(*cognitoidentityprovider.ListUserPoolClientsInput) (*request.Request, *cognitoidentityprovider.ListUserPoolClientsOutput)
 
@@ -122,6 +174,10 @@ type CognitoIdentityProviderAPI interface {
 
 	ResendConfirmationCode(*cognitoidentityprovider.ResendConfirmationCodeInput) (*cognitoidentityprovider.ResendConfirmationCodeOutput, error)
 
+	RespondToAuthChallengeRequest(*cognitoidentityprovider.RespondToAuthChallengeInput) (*request.Request, *cognitoidentityprovider.RespondToAuthChallengeOutput)
+
+	RespondToAuthChallenge(*cognitoidentityprovider.RespondToAuthChallengeInput) (*cognitoidentityprovider.RespondToAuthChallengeOutput, error)
+
 	SetUserSettingsRequest(*cognitoidentityprovider.SetUserSettingsInput) (*request.Request, *cognitoidentityprovider.SetUserSettingsOutput)
 
 	SetUserSettings(*cognitoidentityprovider.SetUserSettingsInput) (*cognitoidentityprovider.SetUserSettingsOutput, error)
@@ -129,6 +185,10 @@ type CognitoIdentityProviderAPI interface {
 	SignUpRequest(*cognitoidentityprovider.SignUpInput) (*request.Request, *cognitoidentityprovider.SignUpOutput)
 
 	SignUp(*cognitoidentityprovider.SignUpInput) (*cognitoidentityprovider.SignUpOutput, error)
+
+	UpdateDeviceStatusRequest(*cognitoidentityprovider.UpdateDeviceStatusInput) (*request.Request, *cognitoidentityprovider.UpdateDeviceStatusOutput)
+
+	UpdateDeviceStatus(*cognitoidentityprovider.UpdateDeviceStatusInput) (*cognitoidentityprovider.UpdateDeviceStatusOutput, error)
 
 	UpdateUserAttributesRequest(*cognitoidentityprovider.UpdateUserAttributesInput) (*request.Request, *cognitoidentityprovider.UpdateUserAttributesOutput)
 

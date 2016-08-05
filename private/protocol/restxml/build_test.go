@@ -16,9 +16,9 @@ import (
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/client/metadata"
 	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/aws/signer/v4"
 	"github.com/aws/aws-sdk-go/awstesting"
+	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/restxml"
 	"github.com/aws/aws-sdk-go/private/protocol/xml/xmlutil"
@@ -3474,8 +3474,7 @@ type InputService23TestShapeInputShape struct {
 //
 
 func TestInputService1ProtocolTestBasicXMLSerializationCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService1ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService1ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService1TestShapeInputShape{
 		Description: aws.String("bar"),
 		Name:        aws.String("foo"),
@@ -3500,8 +3499,7 @@ func TestInputService1ProtocolTestBasicXMLSerializationCase1(t *testing.T) {
 }
 
 func TestInputService1ProtocolTestBasicXMLSerializationCase2(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService1ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService1ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService1TestShapeInputShape{
 		Description: aws.String("bar"),
 		Name:        aws.String("foo"),
@@ -3526,8 +3524,7 @@ func TestInputService1ProtocolTestBasicXMLSerializationCase2(t *testing.T) {
 }
 
 func TestInputService1ProtocolTestBasicXMLSerializationCase3(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService1ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService1ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService1TestShapeInputService1TestCaseOperation3Input{}
 	req, _ := svc.InputService1TestCaseOperation3Request(input)
 	r := req.HTTPRequest
@@ -3544,8 +3541,7 @@ func TestInputService1ProtocolTestBasicXMLSerializationCase3(t *testing.T) {
 }
 
 func TestInputService2ProtocolTestSerializeOtherScalarTypesCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService2ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService2ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService2TestShapeInputService2TestCaseOperation1Input{
 		First:  aws.Bool(true),
 		Fourth: aws.Int64(3),
@@ -3572,8 +3568,7 @@ func TestInputService2ProtocolTestSerializeOtherScalarTypesCase1(t *testing.T) {
 }
 
 func TestInputService3ProtocolTestNestedStructuresCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService3ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService3ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService3TestShapeInputShape{
 		Description: aws.String("baz"),
 		SubStructure: &InputService3TestShapeSubStructure{
@@ -3601,8 +3596,7 @@ func TestInputService3ProtocolTestNestedStructuresCase1(t *testing.T) {
 }
 
 func TestInputService3ProtocolTestNestedStructuresCase2(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService3ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService3ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService3TestShapeInputShape{
 		Description: aws.String("baz"),
 		SubStructure: &InputService3TestShapeSubStructure{
@@ -3629,8 +3623,7 @@ func TestInputService3ProtocolTestNestedStructuresCase2(t *testing.T) {
 }
 
 func TestInputService4ProtocolTestNestedStructuresCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService4ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService4ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService4TestShapeInputService4TestCaseOperation1Input{
 		Description:  aws.String("baz"),
 		SubStructure: &InputService4TestShapeSubStructure{},
@@ -3655,8 +3648,7 @@ func TestInputService4ProtocolTestNestedStructuresCase1(t *testing.T) {
 }
 
 func TestInputService5ProtocolTestNonFlattenedListsCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService5ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService5ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService5TestShapeInputService5TestCaseOperation1Input{
 		ListParam: []*string{
 			aws.String("one"),
@@ -3684,8 +3676,7 @@ func TestInputService5ProtocolTestNonFlattenedListsCase1(t *testing.T) {
 }
 
 func TestInputService6ProtocolTestNonFlattenedListsWithLocationNameCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService6ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService6ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService6TestShapeInputService6TestCaseOperation1Input{
 		ListParam: []*string{
 			aws.String("one"),
@@ -3713,8 +3704,7 @@ func TestInputService6ProtocolTestNonFlattenedListsWithLocationNameCase1(t *test
 }
 
 func TestInputService7ProtocolTestFlattenedListsCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService7ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService7ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService7TestShapeInputService7TestCaseOperation1Input{
 		ListParam: []*string{
 			aws.String("one"),
@@ -3742,8 +3732,7 @@ func TestInputService7ProtocolTestFlattenedListsCase1(t *testing.T) {
 }
 
 func TestInputService8ProtocolTestFlattenedListsWithLocationNameCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService8ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService8ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService8TestShapeInputService8TestCaseOperation1Input{
 		ListParam: []*string{
 			aws.String("one"),
@@ -3771,8 +3760,7 @@ func TestInputService8ProtocolTestFlattenedListsWithLocationNameCase1(t *testing
 }
 
 func TestInputService9ProtocolTestListOfStructuresCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService9ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService9ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService9TestShapeInputService9TestCaseOperation1Input{
 		ListParam: []*InputService9TestShapeSingleFieldStruct{
 			{
@@ -3806,8 +3794,7 @@ func TestInputService9ProtocolTestListOfStructuresCase1(t *testing.T) {
 }
 
 func TestInputService10ProtocolTestBlobAndTimestampShapesCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService10ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService10ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService10TestShapeInputService10TestCaseOperation1Input{
 		StructureParam: &InputService10TestShapeStructureShape{
 			B: []byte("foo"),
@@ -3834,8 +3821,7 @@ func TestInputService10ProtocolTestBlobAndTimestampShapesCase1(t *testing.T) {
 }
 
 func TestInputService11ProtocolTestHeaderMapsCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService11ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService11ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService11TestShapeInputService11TestCaseOperation1Input{
 		Foo: map[string]*string{
 			"a": aws.String("b"),
@@ -3859,8 +3845,7 @@ func TestInputService11ProtocolTestHeaderMapsCase1(t *testing.T) {
 }
 
 func TestInputService12ProtocolTestQuerystringListOfStringsCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService12ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService12ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService12TestShapeInputService12TestCaseOperation1Input{
 		Items: []*string{
 			aws.String("value1"),
@@ -3882,8 +3867,7 @@ func TestInputService12ProtocolTestQuerystringListOfStringsCase1(t *testing.T) {
 }
 
 func TestInputService13ProtocolTestStringToStringMapsInQuerystringCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService13ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService13ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService13TestShapeInputService13TestCaseOperation1Input{
 		PipelineId: aws.String("foo"),
 		QueryDoc: map[string]*string{
@@ -3906,8 +3890,7 @@ func TestInputService13ProtocolTestStringToStringMapsInQuerystringCase1(t *testi
 }
 
 func TestInputService14ProtocolTestStringToStringListMapsInQuerystringCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService14ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService14ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService14TestShapeInputService14TestCaseOperation1Input{
 		PipelineId: aws.String("id"),
 		QueryDoc: map[string][]*string{
@@ -3936,8 +3919,7 @@ func TestInputService14ProtocolTestStringToStringListMapsInQuerystringCase1(t *t
 }
 
 func TestInputService15ProtocolTestStringPayloadCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService15ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService15ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService15TestShapeInputService15TestCaseOperation1Input{
 		Foo: aws.String("bar"),
 	}
@@ -3961,8 +3943,7 @@ func TestInputService15ProtocolTestStringPayloadCase1(t *testing.T) {
 }
 
 func TestInputService16ProtocolTestBlobPayloadCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService16ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService16ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService16TestShapeInputShape{
 		Foo: []byte("bar"),
 	}
@@ -3986,8 +3967,7 @@ func TestInputService16ProtocolTestBlobPayloadCase1(t *testing.T) {
 }
 
 func TestInputService16ProtocolTestBlobPayloadCase2(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService16ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService16ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService16TestShapeInputShape{}
 	req, _ := svc.InputService16TestCaseOperation2Request(input)
 	r := req.HTTPRequest
@@ -4004,8 +3984,7 @@ func TestInputService16ProtocolTestBlobPayloadCase2(t *testing.T) {
 }
 
 func TestInputService17ProtocolTestStructurePayloadCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService17ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService17ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService17TestShapeInputShape{
 		Foo: &InputService17TestShapeFooShape{
 			Baz: aws.String("bar"),
@@ -4031,8 +4010,7 @@ func TestInputService17ProtocolTestStructurePayloadCase1(t *testing.T) {
 }
 
 func TestInputService17ProtocolTestStructurePayloadCase2(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService17ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService17ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService17TestShapeInputShape{}
 	req, _ := svc.InputService17TestCaseOperation2Request(input)
 	r := req.HTTPRequest
@@ -4049,8 +4027,7 @@ func TestInputService17ProtocolTestStructurePayloadCase2(t *testing.T) {
 }
 
 func TestInputService17ProtocolTestStructurePayloadCase3(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService17ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService17ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService17TestShapeInputShape{
 		Foo: &InputService17TestShapeFooShape{},
 	}
@@ -4074,8 +4051,7 @@ func TestInputService17ProtocolTestStructurePayloadCase3(t *testing.T) {
 }
 
 func TestInputService17ProtocolTestStructurePayloadCase4(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService17ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService17ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService17TestShapeInputShape{}
 	req, _ := svc.InputService17TestCaseOperation4Request(input)
 	r := req.HTTPRequest
@@ -4092,8 +4068,7 @@ func TestInputService17ProtocolTestStructurePayloadCase4(t *testing.T) {
 }
 
 func TestInputService18ProtocolTestXMLAttributeCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService18ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService18ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService18TestShapeInputService18TestCaseOperation1Input{
 		Grant: &InputService18TestShapeGrant{
 			Grantee: &InputService18TestShapeGrantee{
@@ -4122,8 +4097,7 @@ func TestInputService18ProtocolTestXMLAttributeCase1(t *testing.T) {
 }
 
 func TestInputService19ProtocolTestGreedyKeysCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService19ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService19ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService19TestShapeInputService19TestCaseOperation1Input{
 		Bucket: aws.String("my/bucket"),
 		Key:    aws.String("testing /123"),
@@ -4143,8 +4117,7 @@ func TestInputService19ProtocolTestGreedyKeysCase1(t *testing.T) {
 }
 
 func TestInputService20ProtocolTestOmitsNullQueryParamsButSerializesEmptyStringsCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService20ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService20ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService20TestShapeInputShape{}
 	req, _ := svc.InputService20TestCaseOperation1Request(input)
 	r := req.HTTPRequest
@@ -4161,8 +4134,7 @@ func TestInputService20ProtocolTestOmitsNullQueryParamsButSerializesEmptyStrings
 }
 
 func TestInputService20ProtocolTestOmitsNullQueryParamsButSerializesEmptyStringsCase2(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService20ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService20ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService20TestShapeInputShape{
 		Foo: aws.String(""),
 	}
@@ -4181,8 +4153,7 @@ func TestInputService20ProtocolTestOmitsNullQueryParamsButSerializesEmptyStrings
 }
 
 func TestInputService21ProtocolTestRecursiveShapesCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService21ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService21ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService21TestShapeInputShape{
 		RecursiveStruct: &InputService21TestShapeRecursiveStructType{
 			NoRecurse: aws.String("foo"),
@@ -4208,8 +4179,7 @@ func TestInputService21ProtocolTestRecursiveShapesCase1(t *testing.T) {
 }
 
 func TestInputService21ProtocolTestRecursiveShapesCase2(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService21ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService21ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService21TestShapeInputShape{
 		RecursiveStruct: &InputService21TestShapeRecursiveStructType{
 			RecursiveStruct: &InputService21TestShapeRecursiveStructType{
@@ -4237,8 +4207,7 @@ func TestInputService21ProtocolTestRecursiveShapesCase2(t *testing.T) {
 }
 
 func TestInputService21ProtocolTestRecursiveShapesCase3(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService21ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService21ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService21TestShapeInputShape{
 		RecursiveStruct: &InputService21TestShapeRecursiveStructType{
 			RecursiveStruct: &InputService21TestShapeRecursiveStructType{
@@ -4270,8 +4239,7 @@ func TestInputService21ProtocolTestRecursiveShapesCase3(t *testing.T) {
 }
 
 func TestInputService21ProtocolTestRecursiveShapesCase4(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService21ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService21ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService21TestShapeInputShape{
 		RecursiveStruct: &InputService21TestShapeRecursiveStructType{
 			RecursiveList: []*InputService21TestShapeRecursiveStructType{
@@ -4304,8 +4272,7 @@ func TestInputService21ProtocolTestRecursiveShapesCase4(t *testing.T) {
 }
 
 func TestInputService21ProtocolTestRecursiveShapesCase5(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService21ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService21ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService21TestShapeInputShape{
 		RecursiveStruct: &InputService21TestShapeRecursiveStructType{
 			RecursiveList: []*InputService21TestShapeRecursiveStructType{
@@ -4340,8 +4307,7 @@ func TestInputService21ProtocolTestRecursiveShapesCase5(t *testing.T) {
 }
 
 func TestInputService21ProtocolTestRecursiveShapesCase6(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService21ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService21ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService21TestShapeInputShape{
 		RecursiveStruct: &InputService21TestShapeRecursiveStructType{
 			RecursiveMap: map[string]*InputService21TestShapeRecursiveStructType{
@@ -4374,8 +4340,7 @@ func TestInputService21ProtocolTestRecursiveShapesCase6(t *testing.T) {
 }
 
 func TestInputService22ProtocolTestTimestampInHeaderCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService22ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService22ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService22TestShapeInputService22TestCaseOperation1Input{
 		TimeArgInHeader: aws.Time(time.Unix(1422172800, 0)),
 	}
@@ -4395,8 +4360,7 @@ func TestInputService22ProtocolTestTimestampInHeaderCase1(t *testing.T) {
 }
 
 func TestInputService23ProtocolTestIdempotencyTokenAutoFillCase1(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService23ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService23ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService23TestShapeInputShape{
 		Token: aws.String("abc123"),
 	}
@@ -4420,8 +4384,7 @@ func TestInputService23ProtocolTestIdempotencyTokenAutoFillCase1(t *testing.T) {
 }
 
 func TestInputService23ProtocolTestIdempotencyTokenAutoFillCase2(t *testing.T) {
-	sess := session.New()
-	svc := NewInputService23ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
+	svc := NewInputService23ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService23TestShapeInputShape{}
 	req, _ := svc.InputService23TestCaseOperation2Request(input)
 	r := req.HTTPRequest

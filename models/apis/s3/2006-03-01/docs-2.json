@@ -26,7 +26,7 @@
     "GetBucketNotification": "Deprecated, see the GetBucketNotificationConfiguration operation.",
     "GetBucketNotificationConfiguration": "Returns the notification configuration of a bucket.",
     "GetBucketPolicy": "Returns the policy of a specified bucket.",
-    "GetBucketReplication": "Deprecated, see the GetBucketReplicationConfiguration operation.",
+    "GetBucketReplication": "Returns the replication configuration of a bucket.",
     "GetBucketRequestPayment": "Returns the request payment configuration of a bucket.",
     "GetBucketTagging": "Returns the tag set associated with the bucket.",
     "GetBucketVersioning": "Returns the versioning state of a bucket.",

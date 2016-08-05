@@ -37,9 +37,9 @@ import (
 // manage multiplayer game sessions and player sessions.
 //
 //   Game sessions  CreateGameSession DescribeGameSessions DescribeGameSessionDetails
-// UpdateGameSession    Player sessions  CreatePlayerSession CreatePlayerSessions
-// DescribePlayerSessions    Other actions:  GetGameSessionLogUrl    Set Up
-// and Manage Game Servers
+// UpdateGameSession SearchGameSessions    Player sessions  CreatePlayerSession
+// CreatePlayerSessions DescribePlayerSessions    Other actions:  GetGameSessionLogUrl
+//    Set Up and Manage Game Servers
 //
 // Use these administrative actions to configure GameLift to host your game
 // servers. When setting up GameLift, you'll need to (1) configure a build for

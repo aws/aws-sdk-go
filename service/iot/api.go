@@ -510,9 +510,57 @@ func (c *IoT) CreateThingRequest(input *CreateThingInput) (req *request.Request,
 	return
 }
 
-// Creates a thing in the Thing Registry.
+// Creates a thing record in the thing registry.
 func (c *IoT) CreateThing(input *CreateThingInput) (*CreateThingOutput, error) {
 	req, out := c.CreateThingRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opCreateThingType = "CreateThingType"
+
+// CreateThingTypeRequest generates a "aws/request.Request" representing the
+// client's request for the CreateThingType operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateThingType method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateThingTypeRequest method.
+//    req, resp := client.CreateThingTypeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *IoT) CreateThingTypeRequest(input *CreateThingTypeInput) (req *request.Request, output *CreateThingTypeOutput) {
+	op := &request.Operation{
+		Name:       opCreateThingType,
+		HTTPMethod: "POST",
+		HTTPPath:   "/thing-types/{thingTypeName}",
+	}
+
+	if input == nil {
+		input = &CreateThingTypeInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &CreateThingTypeOutput{}
+	req.Data = output
+	return
+}
+
+// Creates a new thing type.
+func (c *IoT) CreateThingType(input *CreateThingTypeInput) (*CreateThingTypeOutput, error) {
+	req, out := c.CreateThingTypeRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -874,9 +922,61 @@ func (c *IoT) DeleteThingRequest(input *DeleteThingInput) (req *request.Request,
 	return
 }
 
-// Deletes the specified thing from the Thing Registry.
+// Deletes the specified thing.
 func (c *IoT) DeleteThing(input *DeleteThingInput) (*DeleteThingOutput, error) {
 	req, out := c.DeleteThingRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDeleteThingType = "DeleteThingType"
+
+// DeleteThingTypeRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteThingType operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteThingType method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteThingTypeRequest method.
+//    req, resp := client.DeleteThingTypeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *IoT) DeleteThingTypeRequest(input *DeleteThingTypeInput) (req *request.Request, output *DeleteThingTypeOutput) {
+	op := &request.Operation{
+		Name:       opDeleteThingType,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/thing-types/{thingTypeName}",
+	}
+
+	if input == nil {
+		input = &DeleteThingTypeInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DeleteThingTypeOutput{}
+	req.Data = output
+	return
+}
+
+// Deletes the specified thing type . You cannot delete a thing type if it has
+// things associated with it. To delete a thing type, first mark it as deprecated
+// by calling DeprecateThingType, then remove any associated things by calling
+// UpdateThing to change the thing type on any associated thing, and finally
+// use DeleteThingType to delete the thing type.
+func (c *IoT) DeleteThingType(input *DeleteThingTypeInput) (*DeleteThingTypeOutput, error) {
+	req, out := c.DeleteThingTypeRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -927,6 +1027,55 @@ func (c *IoT) DeleteTopicRuleRequest(input *DeleteTopicRuleInput) (req *request.
 // Deletes the specified rule.
 func (c *IoT) DeleteTopicRule(input *DeleteTopicRuleInput) (*DeleteTopicRuleOutput, error) {
 	req, out := c.DeleteTopicRuleRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDeprecateThingType = "DeprecateThingType"
+
+// DeprecateThingTypeRequest generates a "aws/request.Request" representing the
+// client's request for the DeprecateThingType operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeprecateThingType method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeprecateThingTypeRequest method.
+//    req, resp := client.DeprecateThingTypeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *IoT) DeprecateThingTypeRequest(input *DeprecateThingTypeInput) (req *request.Request, output *DeprecateThingTypeOutput) {
+	op := &request.Operation{
+		Name:       opDeprecateThingType,
+		HTTPMethod: "POST",
+		HTTPPath:   "/thing-types/{thingTypeName}/deprecate",
+	}
+
+	if input == nil {
+		input = &DeprecateThingTypeInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DeprecateThingTypeOutput{}
+	req.Data = output
+	return
+}
+
+// Deprecates a thing type. You can not associate new things with deprecated
+// thing type.
+func (c *IoT) DeprecateThingType(input *DeprecateThingTypeInput) (*DeprecateThingTypeOutput, error) {
+	req, out := c.DeprecateThingTypeRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -1119,6 +1268,54 @@ func (c *IoT) DescribeThingRequest(input *DescribeThingInput) (req *request.Requ
 // Gets information about the specified thing.
 func (c *IoT) DescribeThing(input *DescribeThingInput) (*DescribeThingOutput, error) {
 	req, out := c.DescribeThingRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDescribeThingType = "DescribeThingType"
+
+// DescribeThingTypeRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeThingType operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeThingType method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeThingTypeRequest method.
+//    req, resp := client.DescribeThingTypeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *IoT) DescribeThingTypeRequest(input *DescribeThingTypeInput) (req *request.Request, output *DescribeThingTypeOutput) {
+	op := &request.Operation{
+		Name:       opDescribeThingType,
+		HTTPMethod: "GET",
+		HTTPPath:   "/thing-types/{thingTypeName}",
+	}
+
+	if input == nil {
+		input = &DescribeThingTypeInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeThingTypeOutput{}
+	req.Data = output
+	return
+}
+
+// Gets information about the specified thing type.
+func (c *IoT) DescribeThingType(input *DescribeThingTypeInput) (*DescribeThingTypeOutput, error) {
+	req, out := c.DescribeThingTypeRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -1712,6 +1909,54 @@ func (c *IoT) ListCertificatesByCA(input *ListCertificatesByCAInput) (*ListCerti
 	return out, err
 }
 
+const opListOutgoingCertificates = "ListOutgoingCertificates"
+
+// ListOutgoingCertificatesRequest generates a "aws/request.Request" representing the
+// client's request for the ListOutgoingCertificates operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListOutgoingCertificates method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListOutgoingCertificatesRequest method.
+//    req, resp := client.ListOutgoingCertificatesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *IoT) ListOutgoingCertificatesRequest(input *ListOutgoingCertificatesInput) (req *request.Request, output *ListOutgoingCertificatesOutput) {
+	op := &request.Operation{
+		Name:       opListOutgoingCertificates,
+		HTTPMethod: "GET",
+		HTTPPath:   "/certificates-out-going",
+	}
+
+	if input == nil {
+		input = &ListOutgoingCertificatesInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListOutgoingCertificatesOutput{}
+	req.Data = output
+	return
+}
+
+// Lists certificates that are being transfered but not yet accepted.
+func (c *IoT) ListOutgoingCertificates(input *ListOutgoingCertificatesInput) (*ListOutgoingCertificatesOutput, error) {
+	req, out := c.ListOutgoingCertificatesRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opListPolicies = "ListPolicies"
 
 // ListPoliciesRequest generates a "aws/request.Request" representing the
@@ -2001,6 +2246,54 @@ func (c *IoT) ListThingPrincipals(input *ListThingPrincipalsInput) (*ListThingPr
 	return out, err
 }
 
+const opListThingTypes = "ListThingTypes"
+
+// ListThingTypesRequest generates a "aws/request.Request" representing the
+// client's request for the ListThingTypes operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListThingTypes method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListThingTypesRequest method.
+//    req, resp := client.ListThingTypesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *IoT) ListThingTypesRequest(input *ListThingTypesInput) (req *request.Request, output *ListThingTypesOutput) {
+	op := &request.Operation{
+		Name:       opListThingTypes,
+		HTTPMethod: "GET",
+		HTTPPath:   "/thing-types",
+	}
+
+	if input == nil {
+		input = &ListThingTypesInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListThingTypesOutput{}
+	req.Data = output
+	return
+}
+
+// Lists the existing thing types.
+func (c *IoT) ListThingTypes(input *ListThingTypesInput) (*ListThingTypesOutput, error) {
+	req, out := c.ListThingTypesRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opListThings = "ListThings"
 
 // ListThingsRequest generates a "aws/request.Request" representing the
@@ -2042,8 +2335,10 @@ func (c *IoT) ListThingsRequest(input *ListThingsInput) (req *request.Request, o
 	return
 }
 
-// Lists your things. You can pass an AttributeName or AttributeValue to filter
-// your things (for example, "ListThings where AttributeName=Color and AttributeValue=Red").
+// Lists your things. Use the attributeName and attributeValue parameters to
+// filter your things. For example, calling ListThings with attributeName=Color
+// and attributeValue=Red retrieves all things in the registry that contain
+// an attribute Color with the value Red.
 func (c *IoT) ListThings(input *ListThingsInput) (*ListThingsOutput, error) {
 	req, out := c.ListThingsRequest(input)
 	err := req.Send()
@@ -2852,7 +3147,7 @@ func (s AttachPrincipalPolicyOutput) GoString() string {
 type AttachThingPrincipalInput struct {
 	_ struct{} `type:"structure"`
 
-	// The principal (certificate or other credential).
+	// The principal, such as a certificate or other credential.
 	Principal *string `location:"header" locationName:"x-amzn-principal" type:"string" required:"true"`
 
 	// The name of the thing.
@@ -2903,14 +3198,23 @@ func (s AttachThingPrincipalOutput) GoString() string {
 	return s.String()
 }
 
-// The attribute payload, a JSON string containing up to three key-value pairs
-// (for example, {\"attributes\":{\"string1\":\"string2\"}}).
+// The attribute payload.
 type AttributePayload struct {
 	_ struct{} `type:"structure"`
 
-	// A JSON string containing up to three key-value pair in JSON format (for example,
-	// {\"attributes\":{\"string1\":\"string2\"}}).
+	// A JSON string containing up to three key-value pair in JSON format. For example:
+	//
+	// {\"attributes\":{\"string1\":\"string2\"}})
 	Attributes map[string]*string `locationName:"attributes" type:"map"`
+
+	// Specifies whether the list of attributes provided in the AttributePayload
+	// is merged with the attributes stored in the registry, instead of overwriting
+	// them.
+	//
+	// To remove an attribute, call UpdateThing with an empty attribute value.
+	//
+	//  The merge attribute is only valid when calling UpdateThing.
+	Merge *bool `locationName:"merge" type:"boolean"`
 }
 
 // String returns the string representation
@@ -2955,6 +3259,10 @@ func (s CACertificate) GoString() string {
 // Describes a CA certificate.
 type CACertificateDescription struct {
 	_ struct{} `type:"structure"`
+
+	// Whether the CA certificate configured for auto registration of device certificates.
+	// Valid values are "ENABLE" and "DISABLE"
+	AutoRegistrationStatus *string `locationName:"autoRegistrationStatus" type:"string" enum:"AutoRegistrationStatus"`
 
 	// The CA certificate ARN.
 	CertificateArn *string `locationName:"certificateArn" type:"string"`
@@ -3469,12 +3777,17 @@ func (s CreatePolicyVersionOutput) GoString() string {
 type CreateThingInput struct {
 	_ struct{} `type:"structure"`
 
-	// The attribute payload, which consists of up to 3 name/value pairs in a JSON
-	// document (for example, {\"attributes\":{\"string1\":\"string2\"}}).
+	// The attribute payload, which consists of up to three name/value pairs in
+	// a JSON document. For example:
+	//
+	// {\"attributes\":{\"string1\":\"string2\"}})
 	AttributePayload *AttributePayload `locationName:"attributePayload" type:"structure"`
 
-	// The name of the thing.
+	// The name of the thing to create.
 	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
+
+	// The name of the thing type associated with the new thing.
+	ThingTypeName *string `locationName:"thingTypeName" min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -3496,6 +3809,9 @@ func (s *CreateThingInput) Validate() error {
 	if s.ThingName != nil && len(*s.ThingName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ThingName", 1))
 	}
+	if s.ThingTypeName != nil && len(*s.ThingTypeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ThingTypeName", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3507,10 +3823,10 @@ func (s *CreateThingInput) Validate() error {
 type CreateThingOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The thing ARN.
+	// The ARN of the new thing.
 	ThingArn *string `locationName:"thingArn" type:"string"`
 
-	// The name of the thing.
+	// The name of the new thing.
 	ThingName *string `locationName:"thingName" min:"1" type:"string"`
 }
 
@@ -3521,6 +3837,66 @@ func (s CreateThingOutput) String() string {
 
 // GoString returns the string representation
 func (s CreateThingOutput) GoString() string {
+	return s.String()
+}
+
+// The input for the CreateThingType operation.
+type CreateThingTypeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the thing type.
+	ThingTypeName *string `location:"uri" locationName:"thingTypeName" min:"1" type:"string" required:"true"`
+
+	// The ThingTypeProperties for the thing type to create. It contains information
+	// about the new thing type including a description, and a list of searchable
+	// thing attribute names.
+	ThingTypeProperties *ThingTypeProperties `locationName:"thingTypeProperties" type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateThingTypeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateThingTypeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateThingTypeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateThingTypeInput"}
+	if s.ThingTypeName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ThingTypeName"))
+	}
+	if s.ThingTypeName != nil && len(*s.ThingTypeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ThingTypeName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// The output of the CreateThingType operation.
+type CreateThingTypeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the thing type.
+	ThingTypeArn *string `locationName:"thingTypeArn" type:"string"`
+
+	// The name of the thing type.
+	ThingTypeName *string `locationName:"thingTypeName" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateThingTypeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateThingTypeOutput) GoString() string {
 	return s.String()
 }
 
@@ -3816,7 +4192,12 @@ func (s DeleteRegistrationCodeOutput) GoString() string {
 type DeleteThingInput struct {
 	_ struct{} `type:"structure"`
 
-	// The thing name.
+	// The expected version of the thing record in the registry. If the version
+	// of the record in the registry does not match the expected version specified
+	// in the request, the DeleteThing request is rejected with a VersionConflictException.
+	ExpectedVersion *int64 `location:"querystring" locationName:"expectedVersion" type:"long"`
+
+	// The name of the thing to delete.
 	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
 }
 
@@ -3858,6 +4239,55 @@ func (s DeleteThingOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteThingOutput) GoString() string {
+	return s.String()
+}
+
+// The input for the DeleteThingType operation.
+type DeleteThingTypeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the thing type.
+	ThingTypeName *string `location:"uri" locationName:"thingTypeName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteThingTypeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteThingTypeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteThingTypeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteThingTypeInput"}
+	if s.ThingTypeName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ThingTypeName"))
+	}
+	if s.ThingTypeName != nil && len(*s.ThingTypeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ThingTypeName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// The output for the DeleteThingType operation.
+type DeleteThingTypeOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteThingTypeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteThingTypeOutput) GoString() string {
 	return s.String()
 }
 
@@ -3906,6 +4336,59 @@ func (s DeleteTopicRuleOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteTopicRuleOutput) GoString() string {
+	return s.String()
+}
+
+// The input for the DeprecateThingType operation.
+type DeprecateThingTypeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the thing type to deprecate.
+	ThingTypeName *string `location:"uri" locationName:"thingTypeName" min:"1" type:"string" required:"true"`
+
+	// Whether to undeprecate a deprecated thing type. If true, the thing type will
+	// not be deprecated anymore and you can associate it with things.
+	UndoDeprecate *bool `locationName:"undoDeprecate" type:"boolean"`
+}
+
+// String returns the string representation
+func (s DeprecateThingTypeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeprecateThingTypeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeprecateThingTypeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeprecateThingTypeInput"}
+	if s.ThingTypeName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ThingTypeName"))
+	}
+	if s.ThingTypeName != nil && len(*s.ThingTypeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ThingTypeName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// The output for the DeprecateThingType operation.
+type DeprecateThingTypeOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeprecateThingTypeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeprecateThingTypeOutput) GoString() string {
 	return s.String()
 }
 
@@ -4084,8 +4567,7 @@ func (s *DescribeThingInput) Validate() error {
 type DescribeThingOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The attributes, which are name/value pairs in JSON format (for example: {\"attributes\":{\"some-name1\":\"some-value1\"},
-	// {\"some-name2\":\"some-value2\"}, {\"some-name3\":\"some-value3\"}})
+	// The thing attributes.
 	Attributes map[string]*string `locationName:"attributes" type:"map"`
 
 	// The default client ID.
@@ -4093,6 +4575,16 @@ type DescribeThingOutput struct {
 
 	// The name of the thing.
 	ThingName *string `locationName:"thingName" min:"1" type:"string"`
+
+	// The thing type name.
+	ThingTypeName *string `locationName:"thingTypeName" min:"1" type:"string"`
+
+	// The current version of the thing record in the registry.
+	//
+	//  To avoid unintentional changes to the information in the registry, you
+	// can pass the version information in the expectedVersion parameter of the
+	// UpdateThing and DeleteThing calls.
+	Version *int64 `locationName:"version" type:"long"`
 }
 
 // String returns the string representation
@@ -4102,6 +4594,67 @@ func (s DescribeThingOutput) String() string {
 
 // GoString returns the string representation
 func (s DescribeThingOutput) GoString() string {
+	return s.String()
+}
+
+// The input for the DescribeThingType operation.
+type DescribeThingTypeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the thing type.
+	ThingTypeName *string `location:"uri" locationName:"thingTypeName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeThingTypeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeThingTypeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeThingTypeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeThingTypeInput"}
+	if s.ThingTypeName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ThingTypeName"))
+	}
+	if s.ThingTypeName != nil && len(*s.ThingTypeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ThingTypeName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// The output for the DescribeThingType operation.
+type DescribeThingTypeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ThingTypeMetadata contains additional information about the thing type
+	// including: creation date and time, a value indicating whether the thing type
+	// is deprecated, and a date and time when time was deprecated.
+	ThingTypeMetadata *ThingTypeMetadata `locationName:"thingTypeMetadata" type:"structure"`
+
+	// The name of the thing type.
+	ThingTypeName *string `locationName:"thingTypeName" min:"1" type:"string"`
+
+	// The ThingTypeProperties contains information about the thing type including
+	// description, and a list of searchable thing attribute names.
+	ThingTypeProperties *ThingTypeProperties `locationName:"thingTypeProperties" type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeThingTypeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeThingTypeOutput) GoString() string {
 	return s.String()
 }
 
@@ -4166,10 +4719,9 @@ func (s DetachPrincipalPolicyOutput) GoString() string {
 type DetachThingPrincipalInput struct {
 	_ struct{} `type:"structure"`
 
-	// The principal.
-	//
-	// If the principal is a certificate, specify the certificate ARN. If the principal
-	// is an Amazon Cognito identity, specify the identity ID.
+	// If the principal is a certificate, this value must be ARN of the certificate.
+	// If the principal is an Amazon Cognito identity, this value must be the ID
+	// of the Amazon Cognito identity.
 	Principal *string `location:"header" locationName:"x-amzn-principal" type:"string" required:"true"`
 
 	// The name of the thing.
@@ -4466,6 +5018,11 @@ type FirehoseAction struct {
 
 	// The IAM role that grants access to the Amazon Kinesis Firehost stream.
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+
+	// A character separator that will be used to separate records written to the
+	// firehose stream. Valid values are: '\n' (newline), '\t' (tab), '\r\n' (Windows
+	// newline), ',' (comma).
+	Separator *string `locationName:"separator" type:"string"`
 }
 
 // String returns the string representation
@@ -5029,6 +5586,65 @@ func (s ListCertificatesOutput) GoString() string {
 	return s.String()
 }
 
+// The input to the ListOutgoingCertificates operation.
+type ListOutgoingCertificatesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the order for results. If True, the results are returned in ascending
+	// order, based on the creation date.
+	AscendingOrder *bool `location:"querystring" locationName:"isAscendingOrder" type:"boolean"`
+
+	// The marker for the next set of results.
+	Marker *string `location:"querystring" locationName:"marker" type:"string"`
+
+	// The result page size.
+	PageSize *int64 `location:"querystring" locationName:"pageSize" min:"1" type:"integer"`
+}
+
+// String returns the string representation
+func (s ListOutgoingCertificatesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListOutgoingCertificatesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListOutgoingCertificatesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListOutgoingCertificatesInput"}
+	if s.PageSize != nil && *s.PageSize < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("PageSize", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// The output from the ListOutgoingCertificates operation.
+type ListOutgoingCertificatesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The marker for the next set of results.
+	NextMarker *string `locationName:"nextMarker" type:"string"`
+
+	// The certificates that are being transfered but not yet accepted.
+	OutgoingCertificates []*OutgoingCertificate `locationName:"outgoingCertificates" type:"list"`
+}
+
+// String returns the string representation
+func (s ListOutgoingCertificatesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListOutgoingCertificatesOutput) GoString() string {
+	return s.String()
+}
+
 // The input for the ListPolicies operation.
 type ListPoliciesInput struct {
 	_ struct{} `type:"structure"`
@@ -5280,10 +5896,11 @@ func (s ListPrincipalPoliciesOutput) GoString() string {
 type ListPrincipalThingsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of principals to return.
+	// The maximum number of results to return in this operation.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// A token used to retrieve the next value.
+	// The token for the next set of results, or null if there are no additional
+	// results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// The principal.
@@ -5320,7 +5937,8 @@ func (s *ListPrincipalThingsInput) Validate() error {
 type ListPrincipalThingsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A token used to retrieve the next value.
+	// The token for the next set of results, or null if there are no additional
+	// results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The things.
@@ -5375,7 +5993,7 @@ func (s *ListThingPrincipalsInput) Validate() error {
 type ListThingPrincipalsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The principals.
+	// The principals associated with the thing.
 	Principals []*string `locationName:"principals" type:"list"`
 }
 
@@ -5389,21 +6007,88 @@ func (s ListThingPrincipalsOutput) GoString() string {
 	return s.String()
 }
 
+// The input for the ListThingTypes operation.
+type ListThingTypesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to return in this operation.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results, or null if there are no additional
+	// results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The name of the thing type.
+	ThingTypeName *string `location:"querystring" locationName:"thingTypeName" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListThingTypesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListThingTypesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListThingTypesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListThingTypesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.ThingTypeName != nil && len(*s.ThingTypeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ThingTypeName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// The output for the ListThingTypes operation.
+type ListThingTypesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token for the next set of results, or null if there are no additional
+	// results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The thing types.
+	ThingTypes []*ThingTypeDefinition `locationName:"thingTypes" type:"list"`
+}
+
+// String returns the string representation
+func (s ListThingTypesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListThingTypesOutput) GoString() string {
+	return s.String()
+}
+
 // The input for the ListThings operation.
 type ListThingsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The attribute name.
+	// The attribute name used to search for things.
 	AttributeName *string `location:"querystring" locationName:"attributeName" type:"string"`
 
-	// The attribute value.
+	// The attribute value used to search for things.
 	AttributeValue *string `location:"querystring" locationName:"attributeValue" type:"string"`
 
-	// The maximum number of results.
+	// The maximum number of results to return in this operation.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The token for the next value.
+	// The token for the next set of results, or null if there are no additional
+	// results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The name of the thing type used to search for things.
+	ThingTypeName *string `location:"querystring" locationName:"thingTypeName" min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -5422,6 +6107,9 @@ func (s *ListThingsInput) Validate() error {
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
+	if s.ThingTypeName != nil && len(*s.ThingTypeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ThingTypeName", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -5433,7 +6121,8 @@ func (s *ListThingsInput) Validate() error {
 type ListThingsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A token used to retrieve the next value.
+	// The token for the next set of results, or null if there are no additional
+	// results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The things.
@@ -5545,6 +6234,39 @@ func (s *LoggingOptionsPayload) Validate() error {
 	return nil
 }
 
+// A certificate that has been transfered but not yet accepted.
+type OutgoingCertificate struct {
+	_ struct{} `type:"structure"`
+
+	// The certificate ARN.
+	CertificateArn *string `locationName:"certificateArn" type:"string"`
+
+	// The certificate ID.
+	CertificateId *string `locationName:"certificateId" min:"64" type:"string"`
+
+	// The certificate creation date.
+	CreationDate *time.Time `locationName:"creationDate" type:"timestamp" timestampFormat:"unix"`
+
+	// The date the transfer was initiated.
+	TransferDate *time.Time `locationName:"transferDate" type:"timestamp" timestampFormat:"unix"`
+
+	// The transfer message.
+	TransferMessage *string `locationName:"transferMessage" type:"string"`
+
+	// The AWS account to which the transfer was made.
+	TransferredTo *string `locationName:"transferredTo" type:"string"`
+}
+
+// String returns the string representation
+func (s OutgoingCertificate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OutgoingCertificate) GoString() string {
+	return s.String()
+}
+
 // Describes an AWS IoT policy.
 type Policy struct {
 	_ struct{} `type:"structure"`
@@ -5593,6 +6315,9 @@ func (s PolicyVersion) GoString() string {
 // The input to the RegisterCACertificate operation.
 type RegisterCACertificateInput struct {
 	_ struct{} `type:"structure"`
+
+	// Allows this CA certificate to be used for auto registration of device certificates.
+	AllowAutoRegistration *bool `location:"querystring" locationName:"allowAutoRegistration" type:"boolean"`
 
 	// The CA certificate.
 	CaCertificate *string `locationName:"caCertificate" min:"1" type:"string" required:"true"`
@@ -6099,15 +6824,22 @@ func (s *SqsAction) Validate() error {
 	return nil
 }
 
-// Describes a thing attribute.
+// The properties of the thing, including thing name, thing type name, and a
+// list of thing attributes.
 type ThingAttribute struct {
 	_ struct{} `type:"structure"`
 
-	// The attributes.
+	// A list of thing attributes which are name-value pairs.
 	Attributes map[string]*string `locationName:"attributes" type:"map"`
 
 	// The name of the thing.
 	ThingName *string `locationName:"thingName" min:"1" type:"string"`
+
+	// The name of the thing type, if the thing has been associated with a type.
+	ThingTypeName *string `locationName:"thingTypeName" min:"1" type:"string"`
+
+	// The version of the thing record in the registry.
+	Version *int64 `locationName:"version" type:"long"`
 }
 
 // String returns the string representation
@@ -6117,6 +6849,81 @@ func (s ThingAttribute) String() string {
 
 // GoString returns the string representation
 func (s ThingAttribute) GoString() string {
+	return s.String()
+}
+
+// The definition of the thing type, including thing type name and description.
+type ThingTypeDefinition struct {
+	_ struct{} `type:"structure"`
+
+	// The ThingTypeMetadata contains additional information about the thing type
+	// including: creation date and time, a value indicating whether the thing type
+	// is deprecated, and a date and time when time was deprecated.
+	ThingTypeMetadata *ThingTypeMetadata `locationName:"thingTypeMetadata" type:"structure"`
+
+	// The name of the thing type.
+	ThingTypeName *string `locationName:"thingTypeName" min:"1" type:"string"`
+
+	// The ThingTypeProperties for the thing type.
+	ThingTypeProperties *ThingTypeProperties `locationName:"thingTypeProperties" type:"structure"`
+}
+
+// String returns the string representation
+func (s ThingTypeDefinition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ThingTypeDefinition) GoString() string {
+	return s.String()
+}
+
+// The ThingTypeMetadata contains additional information about the thing type
+// including: creation date and time, a value indicating whether the thing type
+// is deprecated, and a date and time when time was deprecated.
+type ThingTypeMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time when the thing type was created.
+	CreationDate *time.Time `locationName:"creationDate" type:"timestamp" timestampFormat:"unix"`
+
+	// Whether the thing type is deprecated. If true, no new things could be associated
+	// with this type.
+	Deprecated *bool `locationName:"deprecated" type:"boolean"`
+
+	// The date and time when the thing type was deprecated.
+	DeprecationDate *time.Time `locationName:"deprecationDate" type:"timestamp" timestampFormat:"unix"`
+}
+
+// String returns the string representation
+func (s ThingTypeMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ThingTypeMetadata) GoString() string {
+	return s.String()
+}
+
+// The ThingTypeProperties contains information about the thing type including:
+// a thing type description, and a list of searchable thing attribute names.
+type ThingTypeProperties struct {
+	_ struct{} `type:"structure"`
+
+	// A list of searchable thing attribute names.
+	SearchableAttributes []*string `locationName:"searchableAttributes" type:"list"`
+
+	// The description of the thing type.
+	ThingTypeDescription *string `locationName:"thingTypeDescription" type:"string"`
+}
+
+// String returns the string representation
+func (s ThingTypeProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ThingTypeProperties) GoString() string {
 	return s.String()
 }
 
@@ -6343,11 +7150,15 @@ type UpdateCACertificateInput struct {
 	// The CA certificate identifier.
 	CertificateId *string `location:"uri" locationName:"caCertificateId" min:"64" type:"string" required:"true"`
 
+	// The new value for the auto registration status. Valid values are: "ENABLE"
+	// or "DISABLE".
+	NewAutoRegistrationStatus *string `location:"querystring" locationName:"newAutoRegistrationStatus" type:"string" enum:"AutoRegistrationStatus"`
+
 	// The updated status of the CA certificate.
 	//
 	// Note: The status value REGISTER_INACTIVE is deprecated and should not be
 	// used.
-	NewStatus *string `location:"querystring" locationName:"newStatus" type:"string" required:"true" enum:"CACertificateStatus"`
+	NewStatus *string `location:"querystring" locationName:"newStatus" type:"string" enum:"CACertificateStatus"`
 }
 
 // String returns the string representation
@@ -6368,9 +7179,6 @@ func (s *UpdateCACertificateInput) Validate() error {
 	}
 	if s.CertificateId != nil && len(*s.CertificateId) < 64 {
 		invalidParams.Add(request.NewErrParamMinLen("CertificateId", 64))
-	}
-	if s.NewStatus == nil {
-		invalidParams.Add(request.NewErrParamRequired("NewStatus"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -6458,12 +7266,27 @@ func (s UpdateCertificateOutput) GoString() string {
 type UpdateThingInput struct {
 	_ struct{} `type:"structure"`
 
-	// The attribute payload, a JSON string containing up to three key-value pairs
-	// (for example, {\"attributes\":{\"string1\":\"string2\"}}).
-	AttributePayload *AttributePayload `locationName:"attributePayload" type:"structure" required:"true"`
+	// A list of thing attributes, a JSON string containing name-value pairs. For
+	// example:
+	//
+	// {\"attributes\":{\"name1\":\"value2\"}})
+	//
+	// This data is used to add new attributes or update existing attributes.
+	AttributePayload *AttributePayload `locationName:"attributePayload" type:"structure"`
 
-	// The thing name.
+	// The expected version of the thing record in the registry. If the version
+	// of the record in the registry does not match the expected version specified
+	// in the request, the UpdateThing request is rejected with a VersionConflictException.
+	ExpectedVersion *int64 `locationName:"expectedVersion" type:"long"`
+
+	// Remove a thing type association. If true, the assocation is removed.
+	RemoveThingType *bool `locationName:"removeThingType" type:"boolean"`
+
+	// The name of the thing to update.
 	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
+
+	// The name of the thing type.
+	ThingTypeName *string `locationName:"thingTypeName" min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -6479,14 +7302,14 @@ func (s UpdateThingInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateThingInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateThingInput"}
-	if s.AttributePayload == nil {
-		invalidParams.Add(request.NewErrParamRequired("AttributePayload"))
-	}
 	if s.ThingName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ThingName"))
 	}
 	if s.ThingName != nil && len(*s.ThingName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ThingName", 1))
+	}
+	if s.ThingTypeName != nil && len(*s.ThingTypeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ThingTypeName", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -6511,6 +7334,13 @@ func (s UpdateThingOutput) GoString() string {
 }
 
 const (
+	// @enum AutoRegistrationStatus
+	AutoRegistrationStatusEnable = "ENABLE"
+	// @enum AutoRegistrationStatus
+	AutoRegistrationStatusDisable = "DISABLE"
+)
+
+const (
 	// @enum CACertificateStatus
 	CACertificateStatusActive = "ACTIVE"
 	// @enum CACertificateStatus
@@ -6528,6 +7358,8 @@ const (
 	CertificateStatusPendingTransfer = "PENDING_TRANSFER"
 	// @enum CertificateStatus
 	CertificateStatusRegisterInactive = "REGISTER_INACTIVE"
+	// @enum CertificateStatus
+	CertificateStatusPendingActivation = "PENDING_ACTIVATION"
 )
 
 const (

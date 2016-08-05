@@ -126,7 +126,7 @@ get-deps: get-deps-tests get-deps-verify
 
 get-deps-tests:
 	@echo "go get SDK testing dependencies"
-	go get github.com/lsegal/gucumber/cmd/gucumber
+	go get github.com/gucumber/gucumber/cmd/gucumber
 	go get github.com/stretchr/testify
 	go get github.com/smartystreets/goconvey
 

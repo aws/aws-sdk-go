@@ -410,6 +410,54 @@
           "shape":"ResourceAlreadyExistsException",
           "error":{"httpStatusCode":409},
           "exception":true
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "error":{"httpStatusCode":404},
+          "exception":true
+        }
+      ]
+    },
+    "CreateThingType":{
+      "name":"CreateThingType",
+      "http":{
+        "method":"POST",
+        "requestUri":"/thing-types/{thingTypeName}"
+      },
+      "input":{"shape":"CreateThingTypeRequest"},
+      "output":{"shape":"CreateThingTypeResponse"},
+      "errors":[
+        {
+          "shape":"InvalidRequestException",
+          "error":{"httpStatusCode":400},
+          "exception":true
+        },
+        {
+          "shape":"ThrottlingException",
+          "error":{"httpStatusCode":429},
+          "exception":true
+        },
+        {
+          "shape":"UnauthorizedException",
+          "error":{"httpStatusCode":401},
+          "exception":true
+        },
+        {
+          "shape":"ServiceUnavailableException",
+          "error":{"httpStatusCode":503},
+          "exception":true,
+          "fault":true
+        },
+        {
+          "shape":"InternalFailureException",
+          "error":{"httpStatusCode":500},
+          "exception":true,
+          "fault":true
+        },
+        {
+          "shape":"ResourceAlreadyExistsException",
+          "error":{"httpStatusCode":409},
+          "exception":true
         }
       ]
     },
@@ -697,6 +745,54 @@
           "exception":true
         },
         {
+          "shape":"VersionConflictException",
+          "error":{"httpStatusCode":409},
+          "exception":true
+        },
+        {
+          "shape":"InvalidRequestException",
+          "error":{"httpStatusCode":400},
+          "exception":true
+        },
+        {
+          "shape":"ThrottlingException",
+          "error":{"httpStatusCode":429},
+          "exception":true
+        },
+        {
+          "shape":"UnauthorizedException",
+          "error":{"httpStatusCode":401},
+          "exception":true
+        },
+        {
+          "shape":"ServiceUnavailableException",
+          "error":{"httpStatusCode":503},
+          "exception":true,
+          "fault":true
+        },
+        {
+          "shape":"InternalFailureException",
+          "error":{"httpStatusCode":500},
+          "exception":true,
+          "fault":true
+        }
+      ]
+    },
+    "DeleteThingType":{
+      "name":"DeleteThingType",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/thing-types/{thingTypeName}"
+      },
+      "input":{"shape":"DeleteThingTypeRequest"},
+      "output":{"shape":"DeleteThingTypeResponse"},
+      "errors":[
+        {
+          "shape":"ResourceNotFoundException",
+          "error":{"httpStatusCode":404},
+          "exception":true
+        },
+        {
           "shape":"InvalidRequestException",
           "error":{"httpStatusCode":400},
           "exception":true
@@ -754,6 +850,49 @@
           "shape":"UnauthorizedException",
           "error":{"httpStatusCode":401},
           "exception":true
+        }
+      ]
+    },
+    "DeprecateThingType":{
+      "name":"DeprecateThingType",
+      "http":{
+        "method":"POST",
+        "requestUri":"/thing-types/{thingTypeName}/deprecate"
+      },
+      "input":{"shape":"DeprecateThingTypeRequest"},
+      "output":{"shape":"DeprecateThingTypeResponse"},
+      "errors":[
+        {
+          "shape":"ResourceNotFoundException",
+          "error":{"httpStatusCode":404},
+          "exception":true
+        },
+        {
+          "shape":"InvalidRequestException",
+          "error":{"httpStatusCode":400},
+          "exception":true
+        },
+        {
+          "shape":"ThrottlingException",
+          "error":{"httpStatusCode":429},
+          "exception":true
+        },
+        {
+          "shape":"UnauthorizedException",
+          "error":{"httpStatusCode":401},
+          "exception":true
+        },
+        {
+          "shape":"ServiceUnavailableException",
+          "error":{"httpStatusCode":503},
+          "exception":true,
+          "fault":true
+        },
+        {
+          "shape":"InternalFailureException",
+          "error":{"httpStatusCode":500},
+          "exception":true,
+          "fault":true
         }
       ]
     },
@@ -878,6 +1017,49 @@
       },
       "input":{"shape":"DescribeThingRequest"},
       "output":{"shape":"DescribeThingResponse"},
+      "errors":[
+        {
+          "shape":"ResourceNotFoundException",
+          "error":{"httpStatusCode":404},
+          "exception":true
+        },
+        {
+          "shape":"InvalidRequestException",
+          "error":{"httpStatusCode":400},
+          "exception":true
+        },
+        {
+          "shape":"ThrottlingException",
+          "error":{"httpStatusCode":429},
+          "exception":true
+        },
+        {
+          "shape":"UnauthorizedException",
+          "error":{"httpStatusCode":401},
+          "exception":true
+        },
+        {
+          "shape":"ServiceUnavailableException",
+          "error":{"httpStatusCode":503},
+          "exception":true,
+          "fault":true
+        },
+        {
+          "shape":"InternalFailureException",
+          "error":{"httpStatusCode":500},
+          "exception":true,
+          "fault":true
+        }
+      ]
+    },
+    "DescribeThingType":{
+      "name":"DescribeThingType",
+      "http":{
+        "method":"GET",
+        "requestUri":"/thing-types/{thingTypeName}"
+      },
+      "input":{"shape":"DescribeThingTypeRequest"},
+      "output":{"shape":"DescribeThingTypeResponse"},
       "errors":[
         {
           "shape":"ResourceNotFoundException",
@@ -1361,6 +1543,44 @@
         }
       ]
     },
+    "ListOutgoingCertificates":{
+      "name":"ListOutgoingCertificates",
+      "http":{
+        "method":"GET",
+        "requestUri":"/certificates-out-going"
+      },
+      "input":{"shape":"ListOutgoingCertificatesRequest"},
+      "output":{"shape":"ListOutgoingCertificatesResponse"},
+      "errors":[
+        {
+          "shape":"InvalidRequestException",
+          "error":{"httpStatusCode":400},
+          "exception":true
+        },
+        {
+          "shape":"ThrottlingException",
+          "error":{"httpStatusCode":429},
+          "exception":true
+        },
+        {
+          "shape":"UnauthorizedException",
+          "error":{"httpStatusCode":401},
+          "exception":true
+        },
+        {
+          "shape":"ServiceUnavailableException",
+          "error":{"httpStatusCode":503},
+          "exception":true,
+          "fault":true
+        },
+        {
+          "shape":"InternalFailureException",
+          "error":{"httpStatusCode":500},
+          "exception":true,
+          "fault":true
+        }
+      ]
+    },
     "ListPolicies":{
       "name":"ListPolicies",
       "http":{
@@ -1563,6 +1783,11 @@
           "error":{"httpStatusCode":500},
           "exception":true,
           "fault":true
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "error":{"httpStatusCode":404},
+          "exception":true
         }
       ]
     },
@@ -1574,6 +1799,49 @@
       },
       "input":{"shape":"ListThingPrincipalsRequest"},
       "output":{"shape":"ListThingPrincipalsResponse"},
+      "errors":[
+        {
+          "shape":"InvalidRequestException",
+          "error":{"httpStatusCode":400},
+          "exception":true
+        },
+        {
+          "shape":"ThrottlingException",
+          "error":{"httpStatusCode":429},
+          "exception":true
+        },
+        {
+          "shape":"UnauthorizedException",
+          "error":{"httpStatusCode":401},
+          "exception":true
+        },
+        {
+          "shape":"ServiceUnavailableException",
+          "error":{"httpStatusCode":503},
+          "exception":true,
+          "fault":true
+        },
+        {
+          "shape":"InternalFailureException",
+          "error":{"httpStatusCode":500},
+          "exception":true,
+          "fault":true
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "error":{"httpStatusCode":404},
+          "exception":true
+        }
+      ]
+    },
+    "ListThingTypes":{
+      "name":"ListThingTypes",
+      "http":{
+        "method":"GET",
+        "requestUri":"/thing-types"
+      },
+      "input":{"shape":"ListThingTypesRequest"},
+      "output":{"shape":"ListThingTypesResponse"},
       "errors":[
         {
           "shape":"InvalidRequestException",
@@ -2096,6 +2364,11 @@
           "exception":true
         },
         {
+          "shape":"VersionConflictException",
+          "error":{"httpStatusCode":409},
+          "exception":true
+        },
+        {
           "shape":"ThrottlingException",
           "error":{"httpStatusCode":429},
           "exception":true
@@ -2165,6 +2438,7 @@
       "max":10
     },
     "AlarmName":{"type":"string"},
+    "AllowAutoRegistration":{"type":"boolean"},
     "AscendingOrder":{"type":"boolean"},
     "AttachPrincipalPolicyRequest":{
       "type":"structure",
@@ -2217,18 +2491,26 @@
     "AttributePayload":{
       "type":"structure",
       "members":{
-        "attributes":{"shape":"Attributes"}
+        "attributes":{"shape":"Attributes"},
+        "merge":{"shape":"Flag"}
       }
     },
     "AttributeValue":{
       "type":"string",
-      "max":1024,
-      "pattern":"[a-zA-Z0-9_.,@/:#-]+"
+      "max":800,
+      "pattern":"[a-zA-Z0-9_.,@/:#-]*"
     },
     "Attributes":{
       "type":"map",
       "key":{"shape":"AttributeName"},
       "value":{"shape":"AttributeValue"}
+    },
+    "AutoRegistrationStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLE",
+        "DISABLE"
+      ]
     },
     "AwsAccountId":{
       "type":"string",
@@ -2236,6 +2518,7 @@
     },
     "AwsArn":{"type":"string"},
     "AwsIotSqlVersion":{"type":"string"},
+    "Boolean":{"type":"boolean"},
     "BucketName":{"type":"string"},
     "CACertificate":{
       "type":"structure",
@@ -2254,7 +2537,8 @@
         "status":{"shape":"CACertificateStatus"},
         "certificatePem":{"shape":"CertificatePem"},
         "ownedBy":{"shape":"AwsAccountId"},
-        "creationDate":{"shape":"DateType"}
+        "creationDate":{"shape":"DateType"},
+        "autoRegistrationStatus":{"shape":"AutoRegistrationStatus"}
       }
     },
     "CACertificateStatus":{
@@ -2342,7 +2626,8 @@
         "INACTIVE",
         "REVOKED",
         "PENDING_TRANSFER",
-        "REGISTER_INACTIVE"
+        "REGISTER_INACTIVE",
+        "PENDING_ACTIVATION"
       ]
     },
     "CertificateValidationException":{
@@ -2492,6 +2777,7 @@
           "location":"uri",
           "locationName":"thingName"
         },
+        "thingTypeName":{"shape":"ThingTypeName"},
         "attributePayload":{"shape":"AttributePayload"}
       }
     },
@@ -2500,6 +2786,25 @@
       "members":{
         "thingName":{"shape":"ThingName"},
         "thingArn":{"shape":"ThingArn"}
+      }
+    },
+    "CreateThingTypeRequest":{
+      "type":"structure",
+      "required":["thingTypeName"],
+      "members":{
+        "thingTypeName":{
+          "shape":"ThingTypeName",
+          "location":"uri",
+          "locationName":"thingTypeName"
+        },
+        "thingTypeProperties":{"shape":"ThingTypeProperties"}
+      }
+    },
+    "CreateThingTypeResponse":{
+      "type":"structure",
+      "members":{
+        "thingTypeName":{"shape":"ThingTypeName"},
+        "thingTypeArn":{"shape":"ThingTypeArn"}
       }
     },
     "CreateTopicRuleRequest":{
@@ -2519,6 +2824,7 @@
       "payload":"topicRulePayload"
     },
     "CreatedAtDate":{"type":"timestamp"},
+    "CreationDate":{"type":"timestamp"},
     "DateType":{"type":"timestamp"},
     "DeleteCACertificateRequest":{
       "type":"structure",
@@ -2603,10 +2909,31 @@
           "shape":"ThingName",
           "location":"uri",
           "locationName":"thingName"
+        },
+        "expectedVersion":{
+          "shape":"OptionalVersion",
+          "location":"querystring",
+          "locationName":"expectedVersion"
         }
       }
     },
     "DeleteThingResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteThingTypeRequest":{
+      "type":"structure",
+      "required":["thingTypeName"],
+      "members":{
+        "thingTypeName":{
+          "shape":"ThingTypeName",
+          "location":"uri",
+          "locationName":"thingTypeName"
+        }
+      }
+    },
+    "DeleteThingTypeResponse":{
       "type":"structure",
       "members":{
       }
@@ -2623,6 +2950,24 @@
       "required":["ruleName"]
     },
     "DeliveryStreamName":{"type":"string"},
+    "DeprecateThingTypeRequest":{
+      "type":"structure",
+      "required":["thingTypeName"],
+      "members":{
+        "thingTypeName":{
+          "shape":"ThingTypeName",
+          "location":"uri",
+          "locationName":"thingTypeName"
+        },
+        "undoDeprecate":{"shape":"UndoDeprecate"}
+      }
+    },
+    "DeprecateThingTypeResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeprecationDate":{"type":"timestamp"},
     "DescribeCACertificateRequest":{
       "type":"structure",
       "required":["certificateId"],
@@ -2684,7 +3029,28 @@
       "members":{
         "defaultClientId":{"shape":"ClientId"},
         "thingName":{"shape":"ThingName"},
-        "attributes":{"shape":"Attributes"}
+        "thingTypeName":{"shape":"ThingTypeName"},
+        "attributes":{"shape":"Attributes"},
+        "version":{"shape":"Version"}
+      }
+    },
+    "DescribeThingTypeRequest":{
+      "type":"structure",
+      "required":["thingTypeName"],
+      "members":{
+        "thingTypeName":{
+          "shape":"ThingTypeName",
+          "location":"uri",
+          "locationName":"thingTypeName"
+        }
+      }
+    },
+    "DescribeThingTypeResponse":{
+      "type":"structure",
+      "members":{
+        "thingTypeName":{"shape":"ThingTypeName"},
+        "thingTypeProperties":{"shape":"ThingTypeProperties"},
+        "thingTypeMetadata":{"shape":"ThingTypeMetadata"}
       }
     },
     "Description":{"type":"string"},
@@ -2815,9 +3181,15 @@
       ],
       "members":{
         "roleArn":{"shape":"AwsArn"},
-        "deliveryStreamName":{"shape":"DeliveryStreamName"}
+        "deliveryStreamName":{"shape":"DeliveryStreamName"},
+        "separator":{"shape":"FirehoseSeparator"}
       }
     },
+    "FirehoseSeparator":{
+      "type":"string",
+      "pattern":"([\\n\\t])|(\\r\\n)|(,)"
+    },
+    "Flag":{"type":"boolean"},
     "FunctionArn":{"type":"string"},
     "GetLoggingOptionsRequest":{
       "type":"structure",
@@ -3061,6 +3433,33 @@
         "nextMarker":{"shape":"Marker"}
       }
     },
+    "ListOutgoingCertificatesRequest":{
+      "type":"structure",
+      "members":{
+        "pageSize":{
+          "shape":"PageSize",
+          "location":"querystring",
+          "locationName":"pageSize"
+        },
+        "marker":{
+          "shape":"Marker",
+          "location":"querystring",
+          "locationName":"marker"
+        },
+        "ascendingOrder":{
+          "shape":"AscendingOrder",
+          "location":"querystring",
+          "locationName":"isAscendingOrder"
+        }
+      }
+    },
+    "ListOutgoingCertificatesResponse":{
+      "type":"structure",
+      "members":{
+        "outgoingCertificates":{"shape":"OutgoingCertificates"},
+        "nextMarker":{"shape":"Marker"}
+      }
+    },
     "ListPoliciesRequest":{
       "type":"structure",
       "members":{
@@ -3216,6 +3615,33 @@
         "principals":{"shape":"Principals"}
       }
     },
+    "ListThingTypesRequest":{
+      "type":"structure",
+      "members":{
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "thingTypeName":{
+          "shape":"ThingTypeName",
+          "location":"querystring",
+          "locationName":"thingTypeName"
+        }
+      }
+    },
+    "ListThingTypesResponse":{
+      "type":"structure",
+      "members":{
+        "thingTypes":{"shape":"ThingTypeList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
     "ListThingsRequest":{
       "type":"structure",
       "members":{
@@ -3238,6 +3664,11 @@
           "shape":"AttributeValue",
           "location":"querystring",
           "locationName":"attributeValue"
+        },
+        "thingTypeName":{
+          "shape":"ThingTypeName",
+          "location":"querystring",
+          "locationName":"thingTypeName"
         }
       }
     },
@@ -3329,6 +3760,22 @@
     "MetricUnit":{"type":"string"},
     "MetricValue":{"type":"string"},
     "NextToken":{"type":"string"},
+    "OptionalVersion":{"type":"long"},
+    "OutgoingCertificate":{
+      "type":"structure",
+      "members":{
+        "certificateArn":{"shape":"CertificateArn"},
+        "certificateId":{"shape":"CertificateId"},
+        "transferredTo":{"shape":"AwsAccountId"},
+        "transferDate":{"shape":"DateType"},
+        "transferMessage":{"shape":"Message"},
+        "creationDate":{"shape":"DateType"}
+      }
+    },
+    "OutgoingCertificates":{
+      "type":"list",
+      "member":{"shape":"OutgoingCertificate"}
+    },
     "PageSize":{
       "type":"integer",
       "min":1,
@@ -3402,6 +3849,11 @@
           "shape":"SetAsActive",
           "location":"querystring",
           "locationName":"setAsActive"
+        },
+        "allowAutoRegistration":{
+          "shape":"AllowAutoRegistration",
+          "location":"querystring",
+          "locationName":"allowAutoRegistration"
         }
       }
     },
@@ -3458,6 +3910,7 @@
         "rejectReason":{"shape":"Message"}
       }
     },
+    "RemoveThingType":{"type":"boolean"},
     "ReplaceTopicRuleRequest":{
       "type":"structure",
       "required":[
@@ -3522,6 +3975,10 @@
       }
     },
     "SQL":{"type":"string"},
+    "SearchableAttributes":{
+      "type":"list",
+      "member":{"shape":"AttributeName"}
+    },
     "ServiceUnavailableException":{
       "type":"structure",
       "members":{
@@ -3601,7 +4058,9 @@
       "type":"structure",
       "members":{
         "thingName":{"shape":"ThingName"},
-        "attributes":{"shape":"Attributes"}
+        "thingTypeName":{"shape":"ThingTypeName"},
+        "attributes":{"shape":"Attributes"},
+        "version":{"shape":"Version"}
       }
     },
     "ThingAttributeList":{
@@ -3612,11 +4071,50 @@
       "type":"string",
       "min":1,
       "max":128,
-      "pattern":"[a-zA-Z0-9_-]+"
+      "pattern":"[a-zA-Z0-9:_-]+"
     },
     "ThingNameList":{
       "type":"list",
       "member":{"shape":"ThingName"}
+    },
+    "ThingTypeArn":{"type":"string"},
+    "ThingTypeDefinition":{
+      "type":"structure",
+      "members":{
+        "thingTypeName":{"shape":"ThingTypeName"},
+        "thingTypeProperties":{"shape":"ThingTypeProperties"},
+        "thingTypeMetadata":{"shape":"ThingTypeMetadata"}
+      }
+    },
+    "ThingTypeDescription":{
+      "type":"string",
+      "max":2028,
+      "pattern":"[\\p{Graph}\\x20]*"
+    },
+    "ThingTypeList":{
+      "type":"list",
+      "member":{"shape":"ThingTypeDefinition"}
+    },
+    "ThingTypeMetadata":{
+      "type":"structure",
+      "members":{
+        "deprecated":{"shape":"Boolean"},
+        "deprecationDate":{"shape":"DeprecationDate"},
+        "creationDate":{"shape":"CreationDate"}
+      }
+    },
+    "ThingTypeName":{
+      "type":"string",
+      "min":1,
+      "max":128,
+      "pattern":"[a-zA-Z0-9:_-]+"
+    },
+    "ThingTypeProperties":{
+      "type":"structure",
+      "members":{
+        "thingTypeDescription":{"shape":"ThingTypeDescription"},
+        "searchableAttributes":{"shape":"SearchableAttributes"}
+      }
     },
     "ThrottlingException":{
       "type":"structure",
@@ -3728,12 +4226,10 @@
       "error":{"httpStatusCode":401},
       "exception":true
     },
+    "UndoDeprecate":{"type":"boolean"},
     "UpdateCACertificateRequest":{
       "type":"structure",
-      "required":[
-        "certificateId",
-        "newStatus"
-      ],
+      "required":["certificateId"],
       "members":{
         "certificateId":{
           "shape":"CertificateId",
@@ -3744,6 +4240,11 @@
           "shape":"CACertificateStatus",
           "location":"querystring",
           "locationName":"newStatus"
+        },
+        "newAutoRegistrationStatus":{
+          "shape":"AutoRegistrationStatus",
+          "location":"querystring",
+          "locationName":"newAutoRegistrationStatus"
         }
       }
     },
@@ -3768,17 +4269,17 @@
     },
     "UpdateThingRequest":{
       "type":"structure",
-      "required":[
-        "thingName",
-        "attributePayload"
-      ],
+      "required":["thingName"],
       "members":{
         "thingName":{
           "shape":"ThingName",
           "location":"uri",
           "locationName":"thingName"
         },
-        "attributePayload":{"shape":"AttributePayload"}
+        "thingTypeName":{"shape":"ThingTypeName"},
+        "attributePayload":{"shape":"AttributePayload"},
+        "expectedVersion":{"shape":"OptionalVersion"},
+        "removeThingType":{"shape":"RemoveThingType"}
       }
     },
     "UpdateThingResponse":{
@@ -3787,6 +4288,15 @@
       }
     },
     "UseBase64":{"type":"boolean"},
+    "Version":{"type":"long"},
+    "VersionConflictException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"errorMessage"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
     "VersionsLimitExceededException":{
       "type":"structure",
       "members":{
