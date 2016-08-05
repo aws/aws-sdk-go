@@ -158,10 +158,10 @@ type Options struct {
 // to be built with retrieving credentials with AssumeRole set in the config.
 //
 //     // Equivalent to session.New
-//     sess, err := session.NewSessionWithOptions(session.Optons{})
+//     sess, err := session.NewSessionWithOptions(session.Options{})
 //
 //     // Specify profile to load for the session's config
-//     sess, err := session.NewSessionWithOptions(session.Optons{
+//     sess, err := session.NewSessionWithOptions(session.Options{
 //          Profile: "profile_name",
 //     })
 //
@@ -172,7 +172,7 @@ type Options struct {
 //     })
 //
 //     // Force enable Shared Config support
-//     sess, err := session.NewSessionWithOptions(session.Optons{
+//     sess, err := session.NewSessionWithOptions(session.Options{
 //         SharedConfigState: SharedConfigEnable,
 //     })
 func NewSessionWithOptions(opts Options) (*Session, error) {

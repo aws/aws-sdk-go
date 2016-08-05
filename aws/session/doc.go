@@ -67,10 +67,10 @@ Use NewSessionWithOptions when you want to provide the config profile, or
 override the shared config state (AWS_SDK_LOAD_CONFIG).
 
 	// Equivalent to session.New
-	sess, err := session.NewSessionWithOptions(session.Optons{})
+	sess, err := session.NewSessionWithOptions(session.Options{})
 
 	// Specify profile to load for the session's config
-	sess, err := session.NewSessionWithOptions(session.Optons{
+	sess, err := session.NewSessionWithOptions(session.Options{
 		 Profile: "profile_name",
 	})
 
@@ -81,7 +81,7 @@ override the shared config state (AWS_SDK_LOAD_CONFIG).
 	})
 
 	// Force enable Shared Config support
-	sess, err := session.NewSessionWithOptions(session.Optons{
+	sess, err := session.NewSessionWithOptions(session.Options{
 		SharedConfigState: SharedConfigEnable,
 	})
 
