@@ -7,7 +7,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
-func contentCipherFromEnvelope(env *Envelope, cfg DecryptionConfig) (ContentCipher, error) {
+func contentCipherFromEnvelope(env Envelope, cfg DecryptionConfig) (ContentCipher, error) {
 	wrap, err := wrapFromEnvelope(env, cfg)
 	if err != nil {
 		return nil, err
@@ -16,7 +16,7 @@ func contentCipherFromEnvelope(env *Envelope, cfg DecryptionConfig) (ContentCiph
 	return cekFromEnvelope(env, wrap)
 }
 
-func wrapFromEnvelope(env *Envelope, cfg DecryptionConfig) (CipherDataDecrypter, error) {
+func wrapFromEnvelope(env Envelope, cfg DecryptionConfig) (CipherDataDecrypter, error) {
 	switch env.WrapAlg {
 	case "kms":
 		return NewKMSDecryptHandler(cfg.KMSClient, env.MatDesc)
@@ -32,7 +32,7 @@ func wrapFromEnvelope(env *Envelope, cfg DecryptionConfig) (CipherDataDecrypter,
 // the CEK algorithm consiting of AES GCM with no padding.
 const AESGCMNoPadding = "AES/GCM/NoPadding"
 
-func cekFromEnvelope(env *Envelope, decrypter CipherDataDecrypter) (ContentCipher, error) {
+func cekFromEnvelope(env Envelope, decrypter CipherDataDecrypter) (ContentCipher, error) {
 	key, err := base64.StdEncoding.DecodeString(env.CipherKey)
 	if err != nil {
 		return nil, err

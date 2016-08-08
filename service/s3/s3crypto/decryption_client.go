@@ -23,8 +23,14 @@ type DecryptionConfig struct {
 	// InstructionFileSuffix is the instruction file name suffix when using get requests.
 	// If it is empty, then the item key will be used followed by .instruction
 	InstructionFileSuffix string
-	KMSClient             kmsiface.KMSAPI
-	S3Session             client.ConfigProvider
+	// LoadStrategy is used to load the metadata either from the metadata of the object
+	// or from a separate file in s3.
+	//
+	// Defaults to our default load strategy.
+	LoadStrategy LoadStrategy
+	// KMSClient is used to interface with kms when decrypting the CEK key within the
+	// envelope.
+	KMSClient kmsiface.KMSAPI
 }
 
 // NewDecryptionClient instantiates a new S3 crypto client
@@ -38,18 +44,20 @@ type DecryptionConfig struct {
 //	}
 //	svc := s3crypto.New(sess, s3crypto.AESGCMContentCipherBuilder(handler))
 func NewDecryptionClient(prov client.ConfigProvider, options ...func(*DecryptionClient)) *DecryptionClient {
+	s3client := s3.New(prov)
 	client := &DecryptionClient{
+		S3Client: s3client,
 		Config: DecryptionConfig{
 			KMSClient: kms.New(prov),
-			S3Session: prov,
+			LoadStrategy: defaultV2LoadStrategy{
+				client: s3client,
+			},
 		},
 	}
-
 	for _, option := range options {
 		option(client)
 	}
 
-	client.S3Client = s3.New(client.Config.S3Session)
 	return client
 }
 
@@ -66,7 +74,7 @@ func NewDecryptionClient(prov client.ConfigProvider, options ...func(*Decryption
 func (c *DecryptionClient) GetObjectRequest(input *s3.GetObjectInput) (*request.Request, *s3.GetObjectOutput) {
 	req, out := c.S3Client.GetObjectRequest(input)
 	req.Handlers.Unmarshal.PushBack(func(r *request.Request) {
-		env, err := c.getEnvelope(input, r)
+		env, err := c.Config.LoadStrategy.Load(r)
 		if err != nil {
 			r.Error = err
 			out.Body.Close()

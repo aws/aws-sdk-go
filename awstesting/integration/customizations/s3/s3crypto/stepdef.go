@@ -1,3 +1,5 @@
+// +build integration
+
 // Package s3crypto contains shared step definitions that are used across integration tests
 package s3crypto
 
@@ -5,6 +7,7 @@ import (
 	"bytes"
 	"encoding/base64"
 	"errors"
+	"fmt"
 	"io/ioutil"
 	"strings"
 
@@ -88,6 +91,7 @@ func init() {
 			)
 			assert.NoError(gucumber.T, err)
 
+			fmt.Println("DATA", err)
 			ciphertext, err := ioutil.ReadAll(ctObj.Body)
 			assert.NoError(gucumber.T, err)
 			ciphertexts[caseKey] = ciphertext
@@ -109,7 +113,6 @@ func init() {
 		var builder s3crypto.ContentCipherBuilder
 		switch kek {
 		case "kms":
-			m := s3crypto.MaterialDescription{}
 			arn, err := getAliasInformation(v1, v2)
 			assert.Nil(gucumber.T, err)
 
@@ -117,9 +120,9 @@ func init() {
 			assert.Nil(gucumber.T, err)
 			gucumber.World["Masterkey"] = b64Arn
 
-			handler, err = s3crypto.NewKMSEncryptHandler(kms.New(session.New(&aws.Config{
+			handler = s3crypto.NewKMSKeyGenerator(kms.New(session.New(&aws.Config{
 				Region: &v2,
-			})), arn, m)
+			})), arn)
 			assert.Nil(gucumber.T, err)
 		default:
 			gucumber.T.Skip()
@@ -132,13 +135,10 @@ func init() {
 			gucumber.T.Skip()
 		}
 
-		c := s3crypto.NewEncryptionClient(nil, builder, func(c *s3crypto.EncryptionClient) {
-			c.Config.S3Session = session.New(&aws.Config{
-				Region: aws.String("us-west-2"),
-			})
-			session.New(&aws.Config{
-				Region: aws.String("us-west-2"),
-			})
+		sess := session.New(&aws.Config{
+			Region: aws.String("us-west-2"),
+		})
+		c := s3crypto.NewEncryptionClient(sess, builder, func(c *s3crypto.EncryptionClient) {
 		})
 		gucumber.World["encryptionClient"] = c
 		gucumber.World["cek"] = cek

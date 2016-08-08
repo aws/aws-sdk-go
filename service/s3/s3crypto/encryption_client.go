@@ -30,13 +30,11 @@ type EncryptionConfig struct {
 	//
 	// Defaults to the object's metadata
 	SaveStrategy SaveStrategy
-	// InstructionFileSuffix is the instruction file name suffix when using get requests.
-	// If it is empty, then the item key will be used followed by .instruction
-	InstructionFileSuffix string
-	S3Session             client.ConfigProvider
-	// TempFolderPath is used to store temp files when calling PutObject
+	// TempFolderPath is used to store temp files when calling PutObject.
+	// Temporary files are needed to compute the X-Amz-Content-Sha256 header.
 	TempFolderPath string
-
+	// MinFileSize is the minimum size for the content to write to a
+	// temporary file instead of using memory.
 	MinFileSize int64
 }
 
@@ -52,10 +50,10 @@ type EncryptionConfig struct {
 //	svc := s3crypto.New(sess, s3crypto.AESGCMContentCipherBuilder(handler))
 func NewEncryptionClient(prov client.ConfigProvider, builder ContentCipherBuilder, options ...func(*EncryptionClient)) *EncryptionClient {
 	client := &EncryptionClient{
+		S3Client: s3.New(prov),
 		Config: EncryptionConfig{
 			ContentCipherBuilder: builder,
-			SaveStrategy:         headerSaveStrategy{},
-			S3Session:            prov,
+			SaveStrategy:         HeaderV2SaveStrategy{},
 			MinFileSize:          DefaultMinFileSize,
 		},
 	}
@@ -64,7 +62,6 @@ func NewEncryptionClient(prov client.ConfigProvider, builder ContentCipherBuilde
 		option(client)
 	}
 
-	client.S3Client = s3.New(client.Config.S3Session)
 	return client
 }
 
@@ -130,7 +127,7 @@ func (c *EncryptionClient) PutObjectRequest(input *s3.PutObjectInput) (*request.
 		dst.Seek(0, 0)
 		input.Body = dst
 
-		err = c.Config.SaveStrategy.Save(env, input)
+		err = c.Config.SaveStrategy.Save(env, r)
 		r.Error = err
 	})
 

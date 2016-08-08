@@ -24,8 +24,7 @@ func TestDefaultConfigValues(t *testing.T) {
 		Region:           aws.String("us-west-2"),
 	})
 	svc := kms.New(sess)
-	handler, err := s3crypto.NewKMSEncryptHandler(svc, "testid", s3crypto.MaterialDescription{})
-	assert.Nil(t, err)
+	handler := s3crypto.NewKMSKeyGenerator(svc, "testid")
 
 	c := s3crypto.NewEncryptionClient(sess, s3crypto.AESGCMContentCipherBuilder(handler))
 

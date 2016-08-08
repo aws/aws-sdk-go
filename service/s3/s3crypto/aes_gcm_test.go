@@ -51,7 +51,7 @@ func aesgcmTest(t *testing.T, iv, key, plaintext, expected, tag []byte) {
 		Key: key,
 		IV:  iv,
 	}
-	gcm, err := NewAESGCM(cd)
+	gcm, err := newAESGCM(cd)
 	assert.NoError(t, err)
 	cipherdata := gcm.Encrypt(bytes.NewReader(plaintext))
 

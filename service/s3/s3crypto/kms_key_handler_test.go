@@ -1,4 +1,4 @@
-package s3crypto_test
+package s3crypto
 
 import (
 	"encoding/base64"
@@ -14,14 +14,27 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/service/kms"
-	"github.com/aws/aws-sdk-go/service/s3/s3crypto"
 )
 
 func TestBuildKMSEncryptHandler(t *testing.T) {
 	svc := kms.New(session.New())
-	handler, err := s3crypto.NewKMSEncryptHandler(svc, "testid", s3crypto.MaterialDescription{})
-	assert.NoError(t, err)
+	handler := NewKMSKeyGenerator(svc, "testid")
 	assert.NotNil(t, handler)
+}
+
+func TestBuildKMSEncryptHandlerWithMatDesc(t *testing.T) {
+	svc := kms.New(session.New())
+	handler := NewKMSKeyGeneratorWithMatDesc(svc, "testid", MaterialDescription{
+		"Testing": aws.String("123"),
+	})
+	assert.NotNil(t, handler)
+
+	kmsHandler := handler.(*kmsKeyHandler)
+	expected := MaterialDescription{
+		"kms_cmk_id": aws.String("testid"),
+		"Testing":    aws.String("123"),
+	}
+	assert.Equal(t, expected, kmsHandler.CipherData.MaterialDescription)
 }
 
 func TestKMSGenerateCipherData(t *testing.T) {
@@ -38,8 +51,7 @@ func TestKMSGenerateCipherData(t *testing.T) {
 	})
 
 	svc := kms.New(sess)
-	handler, err := s3crypto.NewKMSEncryptHandler(svc, "testid", s3crypto.MaterialDescription{})
-	assert.NoError(t, err)
+	handler := NewKMSKeyGenerator(svc, "testid")
 
 	keySize := 32
 	ivSize := 16
@@ -67,7 +79,7 @@ func TestKMSDecrypt(t *testing.T) {
 		Region:           aws.String("us-west-2"),
 	})
 	svc := kms.New(sess)
-	handler, err := s3crypto.NewKMSDecryptHandler(svc, `{"kms_cmk_id":"test"}`)
+	handler, err := NewKMSDecryptHandler(svc, `{"kms_cmk_id":"test"}`)
 	assert.NoError(t, err)
 
 	plaintextKey, err := handler.DecryptKey([]byte{1, 2, 3, 4})
@@ -91,6 +103,6 @@ func TestKMSDecryptBadJSON(t *testing.T) {
 	})
 
 	svc := kms.New(sess)
-	_, err := s3crypto.NewKMSDecryptHandler(svc, `{"kms_cmk_id":"test"`)
+	_, err := NewKMSDecryptHandler(svc, `{"kms_cmk_id":"test"`)
 	assert.Error(t, err)
 }

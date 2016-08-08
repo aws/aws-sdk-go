@@ -24,8 +24,8 @@ func TestWrapFactory(t *testing.T) {
 		WrapAlg: "kms",
 		MatDesc: `{"kms_cmk_id":""}`,
 	}
-	wrap, err := wrapFromEnvelope(&env, cfg)
-	_, ok := wrap.(*KMSKeyHandler)
+	wrap, err := wrapFromEnvelope(env, cfg)
+	_, ok := wrap.(*kmsKeyHandler)
 	assert.Nil(t, err)
 	assert.NotNil(t, wrap)
 	assert.True(t, ok)
@@ -65,7 +65,7 @@ func TestCEKFactory(t *testing.T) {
 		IV:        ivB64,
 		MatDesc:   `{"kms_cmk_id":""}`,
 	}
-	cek, err := cekFromEnvelope(&env, handler)
+	cek, err := cekFromEnvelope(env, handler)
 	assert.NoError(t, err)
 	assert.NotNil(t, cek)
 }

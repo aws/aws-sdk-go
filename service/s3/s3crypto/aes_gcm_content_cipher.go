@@ -32,37 +32,37 @@ func newAESGCMContentCipher(cd CipherData) (ContentCipher, error) {
 	cd.CEKAlgorithm = AESGCMNoPadding
 	cd.TagLength = "128"
 
-	cipher, err := NewAESGCM(cd)
+	cipher, err := newAESGCM(cd)
 	if err != nil {
 		return nil, err
 	}
 
-	return &AESGCMContentCipher{
+	return &aesGCMContentCipher{
 		CipherData: cd,
 		Cipher:     cipher,
 	}, nil
 }
 
 // AESGCMContentCipher will use AES GCM for the main cipher.
-type AESGCMContentCipher struct {
+type aesGCMContentCipher struct {
 	CipherData CipherData
 	Cipher     Cipher
 }
 
 // EncryptContents will generate a random key and iv and encrypt the data using cbc
-func (cc *AESGCMContentCipher) EncryptContents(src io.Reader) (io.Reader, error) {
+func (cc *aesGCMContentCipher) EncryptContents(src io.Reader) (io.Reader, error) {
 	return cc.Cipher.Encrypt(src), nil
 }
 
 // DecryptContents will use the symmetric key provider to instantiate a new GCM cipher.
 // We grab a decrypt reader from gcm and wrap it in a CryptoReadCloser. The only error
 // expected here is when the key or iv is of invalid length.
-func (cc *AESGCMContentCipher) DecryptContents(src io.ReadCloser) (io.ReadCloser, error) {
+func (cc *aesGCMContentCipher) DecryptContents(src io.ReadCloser) (io.ReadCloser, error) {
 	reader := cc.Cipher.Decrypt(src)
 	return &CryptoReadCloser{Body: src, Decrypter: reader}, nil
 }
 
 // GetCipherData returns cipher data
-func (cc AESGCMContentCipher) GetCipherData() CipherData {
+func (cc aesGCMContentCipher) GetCipherData() CipherData {
 	return cc.CipherData
 }

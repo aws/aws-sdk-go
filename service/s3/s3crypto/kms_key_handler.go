@@ -7,15 +7,27 @@ import (
 	"github.com/aws/aws-sdk-go/service/kms/kmsiface"
 )
 
-// KMSKeyHandler will make calls to KMS to get the masterkey
-type KMSKeyHandler struct {
+// kmsKeyHandler will make calls to KMS to get the masterkey
+type kmsKeyHandler struct {
 	kms   kmsiface.KMSAPI
 	cmkID *string
 
 	CipherData
 }
 
-// NewKMSEncryptHandler builds a new KMS key provider using the customer key ID and material
+// NewKMSKeyGenerator builds a new KMS key provider using the customer key ID and material
+// description.
+//
+// Example:
+//	sess := session.New(&aws.Config{})
+//	cmkID := "arn to key"
+//	matdesc := s3crypto.MaterialDescription{}
+//	handler := s3crypto.NewKMSEncryptHandler(kms.New(sess), cmkID)
+func NewKMSKeyGenerator(kmsClient kmsiface.KMSAPI, cmkID string) CipherDataGenerator {
+	return NewKMSKeyGeneratorWithMatDesc(kmsClient, cmkID, MaterialDescription{})
+}
+
+// NewKMSKeyGeneratorWithMatDesc builds a new KMS key provider using the customer key ID and material
 // description.
 //
 // Example:
@@ -23,21 +35,21 @@ type KMSKeyHandler struct {
 //	cmkID := "arn to key"
 //	matdesc := s3crypto.MaterialDescription{}
 //	handler, err := s3crypto.NewKMSEncryptHandler(kms.New(sess), cmkID, matdesc)
-func NewKMSEncryptHandler(kmsClient kmsiface.KMSAPI, cmkID string, matdesc MaterialDescription) (CipherDataGenerator, error) {
+func NewKMSKeyGeneratorWithMatDesc(kmsClient kmsiface.KMSAPI, cmkID string, matdesc MaterialDescription) CipherDataGenerator {
 	if matdesc == nil {
 		matdesc = MaterialDescription{}
 	}
 	matdesc["kms_cmk_id"] = &cmkID
 
 	// These values are read only making them thread safe
-	kp := &KMSKeyHandler{
+	kp := &kmsKeyHandler{
 		kms:   kmsClient,
 		cmkID: &cmkID,
 	}
 	// These values are read only making them thread safe
 	kp.CipherData.WrapAlgorithm = "kms"
 	kp.CipherData.MaterialDescription = matdesc
-	return kp, nil
+	return kp
 }
 
 // NewKMSDecryptHandler initializes a KMS keyprovider with a material description. This
@@ -54,7 +66,7 @@ func NewKMSDecryptHandler(kmsClient kmsiface.KMSAPI, matdesc string) (CipherData
 		return nil, awserr.New("MissingCMKIDError", "Material description is missing CMK ID", nil)
 	}
 
-	kp := &KMSKeyHandler{}
+	kp := &kmsKeyHandler{}
 	kp.CipherData.MaterialDescription = m
 	kp.kms = kmsClient
 	kp.cmkID = cmkID
@@ -63,7 +75,7 @@ func NewKMSDecryptHandler(kmsClient kmsiface.KMSAPI, matdesc string) (CipherData
 }
 
 // DecryptKey makes a call to KMS to decrypt the key.
-func (kp *KMSKeyHandler) DecryptKey(key []byte) ([]byte, error) {
+func (kp *kmsKeyHandler) DecryptKey(key []byte) ([]byte, error) {
 	out, err := kp.kms.Decrypt(&kms.DecryptInput{
 		EncryptionContext: map[string]*string(kp.CipherData.MaterialDescription),
 		CiphertextBlob:    key,
@@ -77,13 +89,11 @@ func (kp *KMSKeyHandler) DecryptKey(key []byte) ([]byte, error) {
 
 // GenerateCipherData makes a call to KMS to generate a data key, Upon making
 // the call, it also sets the encrypted key.
-func (kp *KMSKeyHandler) GenerateCipherData(keySize, ivSize int) (CipherData, error) {
+func (kp *kmsKeyHandler) GenerateCipherData(keySize, ivSize int) (CipherData, error) {
 	out, err := kp.kms.GenerateDataKey(&kms.GenerateDataKeyInput{
-		EncryptionContext: map[string]*string{
-			"kms_cmk_id": kp.cmkID,
-		},
-		KeyId:   kp.cmkID,
-		KeySpec: aws.String("AES_256"),
+		EncryptionContext: kp.CipherData.MaterialDescription,
+		KeyId:             kp.cmkID,
+		KeySpec:           aws.String("AES_256"),
 	})
 	if err != nil {
 		return CipherData{}, err

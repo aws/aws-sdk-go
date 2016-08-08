@@ -11,12 +11,12 @@ import (
 // AESGCM Symmetric encryption algorithm. Since Golang designed this
 // with only TLS in mind. We have to load it all into memory meaning
 // this isn't streamed.
-type AESGCM struct {
+type aesGCM struct {
 	aead  cipher.AEAD
 	nonce []byte
 }
 
-// NewAESGCM creates a new AES GCM cipher. Expects keys to be of
+// newAESGCM creates a new AES GCM cipher. Expects keys to be of
 // the correct size.
 //
 // Example:
@@ -25,8 +25,8 @@ type AESGCM struct {
 //		Key: key,
 //		"IV": iv,
 //	}
-//	cipher, err := s3crypto.NewAESGCM(cd)
-func NewAESGCM(cd CipherData) (Cipher, error) {
+//	cipher, err := s3crypto.newAESGCM(cd)
+func newAESGCM(cd CipherData) (Cipher, error) {
 	block, err := aes.NewCipher(cd.Key)
 	if err != nil {
 		return nil, err
@@ -37,12 +37,12 @@ func NewAESGCM(cd CipherData) (Cipher, error) {
 		return nil, err
 	}
 
-	return &AESGCM{aesgcm, cd.IV}, nil
+	return &aesGCM{aesgcm, cd.IV}, nil
 }
 
 // Encrypt will encrypt the data using AES GCM
 // Tag will be included as the last 16 bytes of the slice
-func (c *AESGCM) Encrypt(src io.Reader) io.Reader {
+func (c *aesGCM) Encrypt(src io.Reader) io.Reader {
 	reader := &gcmEncryptReader{
 		encrypter: c.aead,
 		nonce:     c.nonce,
@@ -72,7 +72,7 @@ func (reader *gcmEncryptReader) Read(data []byte) (int, error) {
 }
 
 // Decrypt will decrypt the data using AES GCM
-func (c *AESGCM) Decrypt(src io.Reader) io.Reader {
+func (c *aesGCM) Decrypt(src io.Reader) io.Reader {
 	return &gcmDecryptReader{
 		decrypter: c.aead,
 		nonce:     c.nonce,
