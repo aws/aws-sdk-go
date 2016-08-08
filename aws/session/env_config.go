@@ -34,7 +34,7 @@ type envConfig struct {
 	//
 	//	AWS_REGION=us-east-1
 	//
-	//	# AWS_DEFAULT_REGION is only read if Shared Config is enabled.
+	//	# AWS_DEFAULT_REGION is only read if EnableCLIEnvVarFallback is set.
 	//	# and AWS_REGION is not also set.
 	//	AWS_DEFAULT_REGION=us-east-1
 	Region string
@@ -45,7 +45,7 @@ type envConfig struct {
 	//
 	//	AWS_PROFILE=my_profile
 	//
-	//	# AWS_DEFAULT_PROFILE is only read if Shared Config is enabled.
+	//	# AWS_DEFAULT_PROFILE is only read if EnableCLIEnvVarFallback is set.
 	//	# and AWS_PROFILE is not also set.
 	//	AWS_DEFAULT_PROFILE=my_profile
 	Profile string
@@ -57,6 +57,14 @@ type envConfig struct {
 	//
 	//	AWS_SDK_CONFIG_OPT_OUT=1
 	DisableSharedConfig bool
+
+	// Enable the SDK to load the CLI's common environment variables as fallback
+	// when the SDK's values are not specified.
+	//
+	// Adds support for AWS_DEFAULT_REGION, AWS_DEFAULT_PROFILE.
+	//
+	// 	AWS_SDK_ENABLE_CLI_ENV_VAR_FALLBACK=1
+	EnableCLIEnvVarFallback bool
 
 	// Shared credentials file path can be set to instruct the SDK to use an
 	// alternate file for the shared credentials. If not set the file will be
@@ -90,11 +98,18 @@ var (
 
 	regionEnvKeys = []string{
 		"AWS_REGION",
-		"AWS_DEFAULT_REGION", // Only read if Shared Config is enabled
+		"AWS_DEFAULT_REGION", // Only read if EnableCLIEnvVarFallback is set.
 	}
 	profileEnvKeys = []string{
 		"AWS_PROFILE",
-		"AWS_DEFAULT_PROFILE", // Only read if Shared Config is enabled
+		"AWS_DEFAULT_PROFILE", // Only read if EnableCLIEnvVarFallback is set.
+	}
+	disableSharedConfigKeys = []string{
+		"AWS_SDK_CONFIG_OPT_OUT",
+	}
+	enableCLIEnvVarFallbackKeys = []string{
+		"AWS_SDK_LOAD_CONFIG", // Legacy support for original opt in flag
+		"AWS_SDK_ENABLE_CLI_ENV_VAR_FALLBACK",
 	}
 )
 
@@ -107,13 +122,12 @@ var (
 func loadEnvConfig() envConfig {
 	cfg := envConfig{}
 
-	if len(os.Getenv("AWS_SDK_CONFIG_OPT_OUT")) > 0 {
-		cfg.DisableSharedConfig = true
-	}
+	cfg.DisableSharedConfig = boolFromEnv(disableSharedConfigKeys)
+	cfg.EnableCLIEnvVarFallback = boolFromEnv(enableCLIEnvVarFallbackKeys)
 
-	setFromEnvVal(&cfg.Creds.AccessKeyID, credAccessEnvKey)
-	setFromEnvVal(&cfg.Creds.SecretAccessKey, credSecretEnvKey)
-	setFromEnvVal(&cfg.Creds.SessionToken, credSessionEnvKey)
+	cfg.Creds.AccessKeyID = stringFromEnv(credAccessEnvKey)
+	cfg.Creds.SecretAccessKey = stringFromEnv(credSecretEnvKey)
+	cfg.Creds.SessionToken = stringFromEnv(credSessionEnvKey)
 
 	// Require logical grouping of credentials
 	if len(cfg.Creds.AccessKeyID) == 0 || len(cfg.Creds.SecretAccessKey) == 0 {
@@ -124,27 +138,35 @@ func loadEnvConfig() envConfig {
 
 	regionKeys := regionEnvKeys
 	profileKeys := profileEnvKeys
-	if cfg.DisableSharedConfig {
+	if !cfg.EnableCLIEnvVarFallback {
 		regionKeys = regionKeys[:1]
 		profileKeys = profileKeys[:1]
 	}
 
-	setFromEnvVal(&cfg.Region, regionKeys)
-	setFromEnvVal(&cfg.Profile, profileKeys)
+	cfg.Region = stringFromEnv(regionKeys)
+	cfg.Profile = stringFromEnv(profileKeys)
 
 	cfg.SharedCredentialsFile = sharedCredentialsFilename()
 	cfg.SharedConfigFile = sharedConfigFilename()
 
 	return cfg
 }
-
-func setFromEnvVal(dst *string, keys []string) {
+func boolFromEnv(keys []string) bool {
 	for _, k := range keys {
-		if v := os.Getenv(k); len(v) > 0 {
-			*dst = v
-			break
+		if len(os.Getenv(k)) > 0 {
+			return true
 		}
 	}
+	return false
+}
+
+func stringFromEnv(keys []string) string {
+	for _, k := range keys {
+		if v := os.Getenv(k); len(v) > 0 {
+			return v
+		}
+	}
+	return ""
 }
 
 func sharedCredentialsFilename() string {

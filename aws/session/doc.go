@@ -171,6 +171,13 @@ Sessions. All environment values are optional, but some values like credentials
 require multiple of the values to set or the partial values will be ignored.
 All environment variable values are strings unless otherwise noted.
 
+Sessions can also be configured to enable fallback support for the CLI's
+AWS_DEFAULT_REGION and AWS_DEFAULT_PROFILE environment variables. If the
+AWS_SDK_ENABLE_CLI_ENV_VAR_FALLBACK environment variable is set the SDK will
+read the region and profile from those variables if it was not found using
+AWS_REGION or AWS_PROFILE. By default this functionality is disabled and must
+be enabled for sessions to use these additional environment variables.
+
 Environment configuration values. If set both Access Key ID and Secret Access
 Key must be provided. Session Token and optionally also be provided, but is
 not required.
@@ -192,8 +199,8 @@ client request is made.
 
 	AWS_REGION=us-east-1
 
-	# AWS_DEFAULT_REGION is only read if Shared Config is enabled.
-	# and AWS_REGION is not also set.
+	# AWS_DEFAULT_REGION is only read if AWS_SDK_ENABLE_CLI_ENV_VAR_FALLBACK.
+	# is also set, and AWS_REGION is not also set.
 	AWS_DEFAULT_REGION=us-east-1
 
 Profile name the SDK should load use when loading shared config from the
@@ -201,8 +208,8 @@ configuration files. If not provided "default" will be used as the profile name.
 
 	AWS_PROFILE=my_profile
 
-	# AWS_DEFAULT_PROFILE is only read if Shared Config is enabled.
-	# and AWS_PROFILE is not also set.
+	# AWS_DEFAULT_PROFILE is only read if AWS_SDK_ENABLE_CLI_ENV_VAR_FALLBACK.
+	# is also set, and AWS_PROFILE is not also set.
 	AWS_DEFAULT_PROFILE=my_profile
 
 SDK config opt out instructs the SDK to not load the shared config in addition

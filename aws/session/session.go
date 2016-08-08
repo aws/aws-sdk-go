@@ -132,7 +132,7 @@ type Options struct {
 
 	// Overrides the config profile the Session should be created from. If not
 	// set the value of the environment variable will be loaded (AWS_PROFILE,
-	// or AWS_DEFAULT_PROFILE if the Shared Config is enabled).
+	// or AWS_DEFAULT_PROFILE if AWS_SDK_ENABLE_CLI_ENV_VAR_FALLBACK is set).
 	//
 	// If not set and environment variables are not set the "default"
 	// (DefaultSharedConfigProfile) will be used as the profile to load the

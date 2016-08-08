@@ -113,18 +113,18 @@ func TestLoadEnvConfig(t *testing.T) {
 		},
 		{
 			Env: map[string]string{
-				"AWS_REGION":            "region",
-				"AWS_DEFAULT_REGION":    "default_region",
-				"AWS_PROFILE":           "profile",
-				"AWS_DEFAULT_PROFILE":   "default_profile",
+				"AWS_REGION":             "region",
+				"AWS_DEFAULT_REGION":     "default_region",
+				"AWS_PROFILE":            "profile",
+				"AWS_DEFAULT_PROFILE":    "default_profile",
 				"AWS_SDK_CONFIG_OPT_OUT": "1",
 			},
 			Region: "region", Profile: "profile",
 		},
 		{
 			Env: map[string]string{
-				"AWS_DEFAULT_REGION":    "default_region",
-				"AWS_DEFAULT_PROFILE":   "default_profile",
+				"AWS_DEFAULT_REGION":     "default_region",
+				"AWS_DEFAULT_PROFILE":    "default_profile",
 				"AWS_SDK_CONFIG_OPT_OUT": "1",
 			},
 		},
@@ -132,6 +132,21 @@ func TestLoadEnvConfig(t *testing.T) {
 			Env: map[string]string{
 				"AWS_DEFAULT_REGION":  "default_region",
 				"AWS_DEFAULT_PROFILE": "default_profile",
+			},
+		},
+		{
+			Env: map[string]string{
+				"AWS_DEFAULT_REGION":                  "default_region",
+				"AWS_DEFAULT_PROFILE":                 "default_profile",
+				"AWS_SDK_ENABLE_CLI_ENV_VAR_FALLBACK": "1",
+			},
+			Region: "default_region", Profile: "default_profile",
+		},
+		{
+			Env: map[string]string{
+				"AWS_DEFAULT_REGION":  "default_region",
+				"AWS_DEFAULT_PROFILE": "default_profile",
+				"AWS_SDK_LOAD_CONFIG": "1",
 			},
 			Region: "default_region", Profile: "default_profile",
 		},
@@ -199,12 +214,11 @@ func TestSetEnvValue(t *testing.T) {
 	os.Setenv("second_key", "2")
 	os.Setenv("third_key", "3")
 
-	var dst string
-	setFromEnvVal(&dst, []string{
+	val := stringFromEnv([]string{
 		"empty_key", "first_key", "second_key", "third_key",
 	})
 
-	assert.Equal(t, "2", dst)
+	assert.Equal(t, "2", val)
 }
 
 func stashEnv() []string {
