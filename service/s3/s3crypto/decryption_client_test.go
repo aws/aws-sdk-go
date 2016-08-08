@@ -55,14 +55,14 @@ func TestGetObject(t *testing.T) {
 				http.CanonicalHeaderKey("x-amz-meta-x-amz-key-v2"):   []string{"SpFRES0JyU8BLZSKo51SrwILK4lhtZsWiMNjgO4WmoK+joMwZPG7Hw=="},
 				http.CanonicalHeaderKey("x-amz-meta-x-amz-iv"):       []string{base64.URLEncoding.EncodeToString(iv)},
 				http.CanonicalHeaderKey("x-amz-meta-x-amz-matdesc"):  []string{`{"kms_cmk_id":"arn:aws:kms:us-east-1:172259396726:key/a22a4b30-79f4-4b3d-bab4-a26d327a231b"}`},
-				http.CanonicalHeaderKey("x-amz-meta-x-amz-wrap-alg"): []string{"kms"},
+				http.CanonicalHeaderKey("x-amz-meta-x-amz-wrap-alg"): []string{s3crypto.KMSWrap},
 				http.CanonicalHeaderKey("x-amz-meta-x-amz-cek-alg"):  []string{s3crypto.AESGCMNoPadding},
 				http.CanonicalHeaderKey("x-amz-meta-x-amz-tag-len"):  []string{"128"},
 			},
 			Body: ioutil.NopCloser(bytes.NewBuffer(b)),
 		}
 		out.Metadata = make(map[string]*string)
-		out.Metadata["x-amz-wrap-alg"] = aws.String("kms")
+		out.Metadata["x-amz-wrap-alg"] = aws.String(s3crypto.KMSWrap)
 	})
 	err := req.Send()
 	assert.NoError(t, err)

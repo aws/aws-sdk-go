@@ -52,7 +52,7 @@ func NewKMSKeyGeneratorWithMatDesc(kmsClient kmsiface.KMSAPI, cmkID string, matd
 		cmkID: &cmkID,
 	}
 	// These values are read only making them thread safe
-	kp.CipherData.WrapAlgorithm = "kms"
+	kp.CipherData.WrapAlgorithm = KMSWrap
 	kp.CipherData.MaterialDescription = matdesc
 	return kp
 }
@@ -73,7 +73,7 @@ func (kp kmsKeyHandler) decryptHandler(env Envelope) (CipherDataDecrypter, error
 
 	kp.CipherData.MaterialDescription = m
 	kp.cmkID = cmkID
-	kp.WrapAlgorithm = "kms"
+	kp.WrapAlgorithm = KMSWrap
 	return &kp, nil
 }
 
@@ -106,7 +106,7 @@ func (kp *kmsKeyHandler) GenerateCipherData(keySize, ivSize int) (CipherData, er
 	cd := CipherData{
 		Key:                 out.Plaintext,
 		IV:                  iv,
-		WrapAlgorithm:       "kms",
+		WrapAlgorithm:       KMSWrap,
 		MaterialDescription: kp.CipherData.MaterialDescription,
 		EncryptedKey:        out.CiphertextBlob,
 	}

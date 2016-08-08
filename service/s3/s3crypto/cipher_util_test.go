@@ -28,7 +28,7 @@ func TestWrapFactory(t *testing.T) {
 		},
 	}
 	env := Envelope{
-		WrapAlg: "kms",
+		WrapAlg: KMSWrap,
 		MatDesc: `{"kms_cmk_id":""}`,
 	}
 	wrap, err := c.wrapFromEnvelope(env)
@@ -112,7 +112,7 @@ func TestCEKFactory(t *testing.T) {
 	cipherKeyB64 := base64.URLEncoding.EncodeToString(cipherKey)
 
 	env := Envelope{
-		WrapAlg:   "kms",
+		WrapAlg:   KMSWrap,
 		CEKAlg:    AESGCMNoPadding,
 		CipherKey: cipherKeyB64,
 		IV:        ivB64,
@@ -159,7 +159,7 @@ func TestCEKFactoryNoCEK(t *testing.T) {
 	cipherKeyB64 := base64.URLEncoding.EncodeToString(cipherKey)
 
 	env := Envelope{
-		WrapAlg:   "kms",
+		WrapAlg:   KMSWrap,
 		CEKAlg:    "none",
 		CipherKey: cipherKeyB64,
 		IV:        ivB64,
@@ -206,7 +206,7 @@ func TestCEKFactoryCustomEntry(t *testing.T) {
 	cipherKeyB64 := base64.URLEncoding.EncodeToString(cipherKey)
 
 	env := Envelope{
-		WrapAlg:   "kms",
+		WrapAlg:   KMSWrap,
 		CEKAlg:    "custom",
 		CipherKey: cipherKeyB64,
 		IV:        ivB64,
