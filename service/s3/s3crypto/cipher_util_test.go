@@ -11,7 +11,6 @@ import (
 	"github.com/stretchr/testify/assert"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/service/kms"
 )
@@ -20,7 +19,7 @@ func TestWrapFactory(t *testing.T) {
 	c := DecryptionClient{
 		WrapRegistry: map[string]WrapEntry{
 			KMSWrap: (kmsKeyHandler{
-				kms: kms.New(session.New()),
+				kms: kms.New(unit.Session),
 			}).decryptHandler,
 		},
 		CEKRegistry: map[string]CEKEntry{
@@ -41,7 +40,7 @@ func TestWrapFactoryErrorNoWrap(t *testing.T) {
 	c := DecryptionClient{
 		WrapRegistry: map[string]WrapEntry{
 			KMSWrap: (kmsKeyHandler{
-				kms: kms.New(session.New()),
+				kms: kms.New(unit.Session),
 			}).decryptHandler,
 		},
 		CEKRegistry: map[string]CEKEntry{
@@ -61,7 +60,7 @@ func TestWrapFactoryCustomEntry(t *testing.T) {
 	c := DecryptionClient{
 		WrapRegistry: map[string]WrapEntry{
 			"custom": (kmsKeyHandler{
-				kms: kms.New(session.New()),
+				kms: kms.New(unit.Session),
 			}).decryptHandler,
 		},
 		CEKRegistry: map[string]CEKEntry{

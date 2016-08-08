@@ -11,19 +11,18 @@ import (
 	"github.com/stretchr/testify/assert"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/service/kms"
 )
 
 func TestBuildKMSEncryptHandler(t *testing.T) {
-	svc := kms.New(session.New())
+	svc := kms.New(unit.Session)
 	handler := NewKMSKeyGenerator(svc, "testid")
 	assert.NotNil(t, handler)
 }
 
 func TestBuildKMSEncryptHandlerWithMatDesc(t *testing.T) {
-	svc := kms.New(session.New())
+	svc := kms.New(unit.Session)
 	handler := NewKMSKeyGeneratorWithMatDesc(svc, "testid", MaterialDescription{
 		"Testing": aws.String("123"),
 	})
