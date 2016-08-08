@@ -20,9 +20,6 @@ type CEKEntry func(CipherData) (ContentCipher, error)
 // do not load the entire contents into memory.
 type DecryptionClient struct {
 	S3Client s3iface.S3API
-	// InstructionFileSuffix is the instruction file name suffix when using get requests.
-	// If it is empty, then the item key will be used followed by .instruction
-	InstructionFileSuffix string
 	// LoadStrategy is used to load the metadata either from the metadata of the object
 	// or from a separate file in s3.
 	//
