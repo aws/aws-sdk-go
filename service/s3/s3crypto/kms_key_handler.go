@@ -7,6 +7,11 @@ import (
 	"github.com/aws/aws-sdk-go/service/kms/kmsiface"
 )
 
+const (
+	// KMSWrap is a constant used during decryption to build a KMS key handler.
+	KMSWrap = "kms"
+)
+
 // kmsKeyHandler will make calls to KMS to get the masterkey
 type kmsKeyHandler struct {
 	kms   kmsiface.KMSAPI
@@ -52,11 +57,11 @@ func NewKMSKeyGeneratorWithMatDesc(kmsClient kmsiface.KMSAPI, cmkID string, matd
 	return kp
 }
 
-// NewKMSDecryptHandler initializes a KMS keyprovider with a material description. This
+// decryptHandler initializes a KMS keyprovider with a material description. This
 // is used with Decrypting kms content, due to the cmkID being in the material description.
-func NewKMSDecryptHandler(kmsClient kmsiface.KMSAPI, matdesc string) (CipherDataDecrypter, error) {
+func (kp kmsKeyHandler) decryptHandler(env Envelope) (CipherDataDecrypter, error) {
 	m := MaterialDescription{}
-	err := m.decodeDescription([]byte(matdesc))
+	err := m.decodeDescription([]byte(env.MatDesc))
 	if err != nil {
 		return nil, err
 	}
@@ -66,12 +71,10 @@ func NewKMSDecryptHandler(kmsClient kmsiface.KMSAPI, matdesc string) (CipherData
 		return nil, awserr.New("MissingCMKIDError", "Material description is missing CMK ID", nil)
 	}
 
-	kp := &kmsKeyHandler{}
 	kp.CipherData.MaterialDescription = m
-	kp.kms = kmsClient
 	kp.cmkID = cmkID
 	kp.WrapAlgorithm = "kms"
-	return kp, nil
+	return &kp, nil
 }
 
 // DecryptKey makes a call to KMS to decrypt the key.

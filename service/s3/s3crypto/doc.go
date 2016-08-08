@@ -17,7 +17,7 @@ Creating an S3 cryptography client
 	cmkID := "<some key ID>"
 	sess := session.New()
 	// Create the KeyProvider
-	handler = s3crypto.NewKMSKeyGenerator(kms.New(sess), cmkID, s3crypto.MaterialDescription{})
+	handler := s3crypto.NewKMSKeyGenerator(kms.New(sess), cmkID)
 
 	// Create an encryption and decryption client
 	// We need to pass the session here so S3 can use it. In addition, any decryption that
@@ -44,5 +44,23 @@ The default SaveStrategy is to the object's header.
 The InstructionFileSuffix defaults to .instruction. Careful here though, if you do this, be sure you know
 what that suffix is in grabbing data.  All requests will look for fooKey.example instead of fooKey.instruction.
 This suffix only affects gets and not puts. Put uses the keyprovider's suffix.
+
+Registration of new wrap or cek algorithms are also supported by the SDK. Let's say we want to support `AES Wrap`
+and `AES CTR`. Let's assume we have already defined the functionality.
+
+	svc := s3crypto.NewDecryptionClient(sess)
+	svc.WrapRegistry["AESWrap"] = NewAESWrap
+	svc.CEKRegistry["AES/CTR/NoPadding"] = NewAESCTR
+
+We have now registered these new algorithms to the decryption client. When the client calls `GetObject` and sees
+the wrap as `AESWrap` then it'll use that wrap algorithm. This is also true for `AES/CTR/NoPadding`.
+
+For encryption adding a custom content cipher builder and key handler will allow for encryption of custom
+defined ciphers.
+
+	// Our customer wrap algorith, AESWrap
+	handler := NewAESWrap(key, iv)
+	// Our customer content cipher builder, AESCTRContentCipherBuilder
+	svc := s3crypto.NewEncryptionClient(sess, NewAESCTRContentCipherBuilder(handler))
 */
 package s3crypto

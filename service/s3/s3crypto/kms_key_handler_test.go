@@ -78,8 +78,7 @@ func TestKMSDecrypt(t *testing.T) {
 		S3ForcePathStyle: aws.Bool(true),
 		Region:           aws.String("us-west-2"),
 	})
-	svc := kms.New(sess)
-	handler, err := NewKMSDecryptHandler(svc, `{"kms_cmk_id":"test"}`)
+	handler, err := (kmsKeyHandler{kms: kms.New(sess)}).decryptHandler(Envelope{MatDesc: `{"kms_cmk_id":"test"}`})
 	assert.NoError(t, err)
 
 	plaintextKey, err := handler.DecryptKey([]byte{1, 2, 3, 4})
@@ -102,7 +101,6 @@ func TestKMSDecryptBadJSON(t *testing.T) {
 		Region:           aws.String("us-west-2"),
 	})
 
-	svc := kms.New(sess)
-	_, err := NewKMSDecryptHandler(svc, `{"kms_cmk_id":"test"`)
+	_, err := (kmsKeyHandler{kms: kms.New(sess)}).decryptHandler(Envelope{MatDesc: `{"kms_cmk_id":"test"`})
 	assert.Error(t, err)
 }

@@ -4,10 +4,15 @@ import (
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/kms"
-	"github.com/aws/aws-sdk-go/service/kms/kmsiface"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3iface"
 )
+
+// WrapEntry is builder that return a proper key decrypter and error
+type WrapEntry func(Envelope) (CipherDataDecrypter, error)
+
+// CEKEntry is a builder thatn returns a proper content decrypter and error
+type CEKEntry func(CipherData) (ContentCipher, error)
 
 // DecryptionClient is an S3 crypto client. By default the SDK will use Authentication mode which
 // will use KMS for key wrapping and AES GCM for content encryption.
@@ -23,9 +28,9 @@ type DecryptionClient struct {
 	//
 	// Defaults to our default load strategy.
 	LoadStrategy LoadStrategy
-	// KMSClient is used to interface with kms when decrypting the CEK key within the
-	// envelope.
-	KMSClient kmsiface.KMSAPI
+
+	WrapRegistry map[string]WrapEntry
+	CEKRegistry  map[string]CEKEntry
 }
 
 // NewDecryptionClient instantiates a new S3 crypto client
@@ -41,10 +46,17 @@ type DecryptionClient struct {
 func NewDecryptionClient(prov client.ConfigProvider, options ...func(*DecryptionClient)) *DecryptionClient {
 	s3client := s3.New(prov)
 	client := &DecryptionClient{
-		S3Client:  s3client,
-		KMSClient: kms.New(prov),
+		S3Client: s3client,
 		LoadStrategy: defaultV2LoadStrategy{
 			client: s3client,
+		},
+		WrapRegistry: map[string]WrapEntry{
+			KMSWrap: (kmsKeyHandler{
+				kms: kms.New(prov),
+			}).decryptHandler,
+		},
+		CEKRegistry: map[string]CEKEntry{
+			AESGCMNoPadding: newAESGCMContentCipher,
 		},
 	}
 	for _, option := range options {

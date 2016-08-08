@@ -13,26 +13,35 @@ func (client *DecryptionClient) contentCipherFromEnvelope(env Envelope) (Content
 		return nil, err
 	}
 
-	return cekFromEnvelope(env, wrap)
+	return client.cekFromEnvelope(env, wrap)
 }
 
 func (client *DecryptionClient) wrapFromEnvelope(env Envelope) (CipherDataDecrypter, error) {
-	switch env.WrapAlg {
-	case "kms":
-		return NewKMSDecryptHandler(client.KMSClient, env.MatDesc)
+	f, ok := client.WrapRegistry[env.WrapAlg]
+	if !ok || f == nil {
+		return nil, awserr.New(
+			"InvalidWrapAlgorithmError",
+			"wrap algorithm isn't supported, "+env.WrapAlg,
+			nil,
+		)
 	}
-	return nil, awserr.New(
-		"InvalidWrapAlgorithmError",
-		"wrap algorithm isn't supported, "+env.WrapAlg,
-		nil,
-	)
+	return f(env)
 }
 
 // AESGCMNoPadding is the constant value that is used to specify
 // the CEK algorithm consiting of AES GCM with no padding.
 const AESGCMNoPadding = "AES/GCM/NoPadding"
 
-func cekFromEnvelope(env Envelope, decrypter CipherDataDecrypter) (ContentCipher, error) {
+func (client *DecryptionClient) cekFromEnvelope(env Envelope, decrypter CipherDataDecrypter) (ContentCipher, error) {
+	f, ok := client.CEKRegistry[env.CEKAlg]
+	if !ok || f == nil {
+		return nil, awserr.New(
+			"InvalidCEKAlgorithmError",
+			"cek algorithm isn't supported, "+env.CEKAlg,
+			nil,
+		)
+	}
+
 	key, err := base64.StdEncoding.DecodeString(env.CipherKey)
 	if err != nil {
 		return nil, err
@@ -47,19 +56,11 @@ func cekFromEnvelope(env Envelope, decrypter CipherDataDecrypter) (ContentCipher
 		return nil, err
 	}
 
-	switch env.CEKAlg {
-	case AESGCMNoPadding:
-		cd := CipherData{
-			Key: key,
-			IV:  iv,
-		}
-		return newAESGCMContentCipher(cd)
+	cd := CipherData{
+		Key: key,
+		IV:  iv,
 	}
-	return nil, awserr.New(
-		"InvalidCEKAlgorithmError",
-		"cek algorithm isn't supported, "+env.CEKAlg,
-		nil,
-	)
+	return f(cd)
 }
 
 func encodeMeta(reader hashReader, cd CipherData) (Envelope, error) {
