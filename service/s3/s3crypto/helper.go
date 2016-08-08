@@ -19,13 +19,13 @@ func getWriterStore(req *request.Request, path string, useTempFile bool) (io.Rea
 	if err != nil {
 		return nil, err
 	}
-	fn := func(r *request.Request) {
+
+	req.Handlers.Send.PushBack(func(r *request.Request) {
 		// Close the temp file and cleanup
 		f.Close()
 		fpath := filepath.Join(path, f.Name())
 		os.Remove(fpath)
-	}
-	req.Handlers.Send.PushBack(fn)
+	})
 	return f, nil
 }
 
