@@ -15,11 +15,6 @@ import (
 // do not load the entire contents into memory.
 type DecryptionClient struct {
 	S3Client s3iface.S3API
-	Config   DecryptionConfig
-}
-
-// DecryptionConfig used to customize the Client
-type DecryptionConfig struct {
 	// InstructionFileSuffix is the instruction file name suffix when using get requests.
 	// If it is empty, then the item key will be used followed by .instruction
 	InstructionFileSuffix string
@@ -46,12 +41,10 @@ type DecryptionConfig struct {
 func NewDecryptionClient(prov client.ConfigProvider, options ...func(*DecryptionClient)) *DecryptionClient {
 	s3client := s3.New(prov)
 	client := &DecryptionClient{
-		S3Client: s3client,
-		Config: DecryptionConfig{
-			KMSClient: kms.New(prov),
-			LoadStrategy: defaultV2LoadStrategy{
-				client: s3client,
-			},
+		S3Client:  s3client,
+		KMSClient: kms.New(prov),
+		LoadStrategy: defaultV2LoadStrategy{
+			client: s3client,
 		},
 	}
 	for _, option := range options {
@@ -74,7 +67,7 @@ func NewDecryptionClient(prov client.ConfigProvider, options ...func(*Decryption
 func (c *DecryptionClient) GetObjectRequest(input *s3.GetObjectInput) (*request.Request, *s3.GetObjectOutput) {
 	req, out := c.S3Client.GetObjectRequest(input)
 	req.Handlers.Unmarshal.PushBack(func(r *request.Request) {
-		env, err := c.Config.LoadStrategy.Load(r)
+		env, err := c.LoadStrategy.Load(r)
 		if err != nil {
 			r.Error = err
 			out.Body.Close()
@@ -83,7 +76,7 @@ func (c *DecryptionClient) GetObjectRequest(input *s3.GetObjectInput) (*request.
 
 		// If KMS should return the correct CEK algorithm with the proper
 		// KMS key provider
-		cipher, err := contentCipherFromEnvelope(env, c.Config)
+		cipher, err := c.contentCipherFromEnvelope(env)
 		if err != nil {
 			r.Error = err
 			out.Body.Close()

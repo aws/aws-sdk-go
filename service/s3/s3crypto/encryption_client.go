@@ -19,12 +19,7 @@ const DefaultMinFileSize = 1024 * 512 * 5
 // AES GCM will load all data into memory. However, the rest of the content algorithms
 // do not load the entire contents into memory.
 type EncryptionClient struct {
-	S3Client s3iface.S3API
-	Config   EncryptionConfig
-}
-
-// EncryptionConfig used to customize the Client
-type EncryptionConfig struct {
+	S3Client             s3iface.S3API
 	ContentCipherBuilder ContentCipherBuilder
 	// SaveStrategy will dictate where the envelope is saved.
 	//
@@ -50,12 +45,10 @@ type EncryptionConfig struct {
 //	svc := s3crypto.New(sess, s3crypto.AESGCMContentCipherBuilder(handler))
 func NewEncryptionClient(prov client.ConfigProvider, builder ContentCipherBuilder, options ...func(*EncryptionClient)) *EncryptionClient {
 	client := &EncryptionClient{
-		S3Client: s3.New(prov),
-		Config: EncryptionConfig{
-			ContentCipherBuilder: builder,
-			SaveStrategy:         HeaderV2SaveStrategy{},
-			MinFileSize:          DefaultMinFileSize,
-		},
+		S3Client:             s3.New(prov),
+		ContentCipherBuilder: builder,
+		SaveStrategy:         HeaderV2SaveStrategy{},
+		MinFileSize:          DefaultMinFileSize,
 	}
 
 	for _, option := range options {
@@ -87,13 +80,13 @@ func (c *EncryptionClient) PutObjectRequest(input *s3.PutObjectInput) (*request.
 	}
 	input.Body.Seek(0, 0)
 
-	dst, err := getWriterStore(req, c.Config.TempFolderPath, n >= c.Config.MinFileSize)
+	dst, err := getWriterStore(req, c.TempFolderPath, n >= c.MinFileSize)
 	if err != nil {
 		req.Error = err
 		return req, out
 	}
 
-	encryptor, err := c.Config.ContentCipherBuilder.ContentCipher()
+	encryptor, err := c.ContentCipherBuilder.ContentCipher()
 	req.Handlers.Build.PushFront(func(r *request.Request) {
 		if err != nil {
 			r.Error = err
@@ -127,7 +120,7 @@ func (c *EncryptionClient) PutObjectRequest(input *s3.PutObjectInput) (*request.
 		dst.Seek(0, 0)
 		input.Body = dst
 
-		err = c.Config.SaveStrategy.Save(env, r)
+		err = c.SaveStrategy.Save(env, r)
 		r.Error = err
 	})
 

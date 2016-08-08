@@ -29,8 +29,8 @@ func TestDefaultConfigValues(t *testing.T) {
 	c := s3crypto.NewEncryptionClient(sess, s3crypto.AESGCMContentCipherBuilder(handler))
 
 	assert.NotNil(t, c)
-	assert.NotNil(t, c.Config.ContentCipherBuilder)
-	assert.NotNil(t, c.Config.SaveStrategy)
+	assert.NotNil(t, c.ContentCipherBuilder)
+	assert.NotNil(t, c.SaveStrategy)
 }
 
 func TestPutObject(t *testing.T) {

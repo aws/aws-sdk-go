@@ -23,7 +23,7 @@ func init() {
 		gucumber.World["encryptionClient"] = encryptionClient
 
 		decryptionClient := s3crypto.NewDecryptionClient(sess, func(c *s3crypto.DecryptionClient) {
-			c.Config.KMSClient = kms.New(sess)
+			c.KMSClient = kms.New(sess)
 		})
 		gucumber.World["decryptionClient"] = decryptionClient
 

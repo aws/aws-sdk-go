@@ -15,8 +15,8 @@ type ContentCipher interface {
 	GetCipherData() CipherData
 }
 
-// CipherData is used for content encryption. Holds the generated
-// key and iv.
+// CipherData is used for content encryption. It used for storing the
+// metadata of the encrypted content.
 type CipherData struct {
 	Key                 []byte
 	IV                  []byte
@@ -24,6 +24,6 @@ type CipherData struct {
 	CEKAlgorithm        string
 	TagLength           string
 	MaterialDescription MaterialDescription
-
+	// EncryptedKey should be populated when calling GenerateCipherData
 	EncryptedKey []byte
 }

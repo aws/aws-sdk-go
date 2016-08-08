@@ -17,14 +17,14 @@ import (
 )
 
 func TestWrapFactory(t *testing.T) {
-	cfg := DecryptionConfig{
+	c := DecryptionClient{
 		KMSClient: kms.New(session.New()),
 	}
 	env := Envelope{
 		WrapAlg: "kms",
 		MatDesc: `{"kms_cmk_id":""}`,
 	}
-	wrap, err := wrapFromEnvelope(env, cfg)
+	wrap, err := c.wrapFromEnvelope(env)
 	_, ok := wrap.(*kmsKeyHandler)
 	assert.Nil(t, err)
 	assert.NotNil(t, wrap)

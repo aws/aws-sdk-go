@@ -7,7 +7,6 @@ import (
 	"bytes"
 	"encoding/base64"
 	"errors"
-	"fmt"
 	"io/ioutil"
 	"strings"
 
@@ -91,7 +90,6 @@ func init() {
 			)
 			assert.NoError(gucumber.T, err)
 
-			fmt.Println("DATA", err)
 			ciphertext, err := ioutil.ReadAll(ctObj.Body)
 			assert.NoError(gucumber.T, err)
 			ciphertexts[caseKey] = ciphertext

@@ -22,7 +22,7 @@ type kmsKeyHandler struct {
 //	sess := session.New(&aws.Config{})
 //	cmkID := "arn to key"
 //	matdesc := s3crypto.MaterialDescription{}
-//	handler := s3crypto.NewKMSEncryptHandler(kms.New(sess), cmkID)
+//	handler := s3crypto.NewKMSKeyGenerator(kms.New(sess), cmkID)
 func NewKMSKeyGenerator(kmsClient kmsiface.KMSAPI, cmkID string) CipherDataGenerator {
 	return NewKMSKeyGeneratorWithMatDesc(kmsClient, cmkID, MaterialDescription{})
 }

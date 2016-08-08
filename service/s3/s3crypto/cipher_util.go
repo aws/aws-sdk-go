@@ -7,8 +7,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
-func contentCipherFromEnvelope(env Envelope, cfg DecryptionConfig) (ContentCipher, error) {
-	wrap, err := wrapFromEnvelope(env, cfg)
+func (client *DecryptionClient) contentCipherFromEnvelope(env Envelope) (ContentCipher, error) {
+	wrap, err := client.wrapFromEnvelope(env)
 	if err != nil {
 		return nil, err
 	}
@@ -16,10 +16,10 @@ func contentCipherFromEnvelope(env Envelope, cfg DecryptionConfig) (ContentCiphe
 	return cekFromEnvelope(env, wrap)
 }
 
-func wrapFromEnvelope(env Envelope, cfg DecryptionConfig) (CipherDataDecrypter, error) {
+func (client *DecryptionClient) wrapFromEnvelope(env Envelope) (CipherDataDecrypter, error) {
 	switch env.WrapAlg {
 	case "kms":
-		return NewKMSDecryptHandler(cfg.KMSClient, env.MatDesc)
+		return NewKMSDecryptHandler(client.KMSClient, env.MatDesc)
 	}
 	return nil, awserr.New(
 		"InvalidWrapAlgorithmError",
@@ -62,7 +62,7 @@ func cekFromEnvelope(env Envelope, decrypter CipherDataDecrypter) (ContentCipher
 	)
 }
 
-func encodeMeta(reader HashReader, cd CipherData) (Envelope, error) {
+func encodeMeta(reader hashReader, cd CipherData) (Envelope, error) {
 	iv := base64.StdEncoding.EncodeToString(cd.IV)
 	key := base64.StdEncoding.EncodeToString(cd.EncryptedKey)
 
