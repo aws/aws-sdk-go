@@ -36,7 +36,7 @@ type EncryptionClient struct {
 // NewEncryptionClient instantiates a new S3 crypto client
 //
 // Example:
-//	cmkID := "some arn to kms key"
+//	cmkID := "arn:aws:kms:region:000000000000:key/00000000-0000-0000-0000-000000000000"
 //	sess := session.New()
 //	handler := s3crypto.NewKMSKeyGenerator(kms.New(sess), cmkID)
 //	svc := s3crypto.New(sess, s3crypto.AESGCMContentCipherBuilder(handler))
