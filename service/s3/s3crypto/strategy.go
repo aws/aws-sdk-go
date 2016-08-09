@@ -20,7 +20,7 @@ type SaveStrategy interface {
 
 // S3SaveStrategy will save the metadata to a separate instruction file in S3
 type S3SaveStrategy struct {
-	client                *s3.S3
+	Client                *s3.S3
 	InstructionFileSuffix string
 }
 
@@ -43,7 +43,7 @@ func (strat S3SaveStrategy) Save(env Envelope, req *request.Request) error {
 		instInput.Key = aws.String(*input.Key + strat.InstructionFileSuffix)
 	}
 
-	_, err = strat.client.PutObject(&instInput)
+	_, err = strat.Client.PutObject(&instInput)
 	return err
 }
 

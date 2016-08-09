@@ -36,12 +36,9 @@ type EncryptionClient struct {
 // NewEncryptionClient instantiates a new S3 crypto client
 //
 // Example:
-//	cmkID := "some key id to kms"
+//	cmkID := "some arn to kms key"
 //	sess := session.New()
-//	handler, err = s3crypto.NewKMSEncryptHandler(sess, cmkID, s3crypto.MaterialDescription{})
-//	if err != nil {
-//	  return err
-//	}
+//	handler := s3crypto.NewKMSKeyGenerator(kms.New(sess), cmkID)
 //	svc := s3crypto.New(sess, s3crypto.AESGCMContentCipherBuilder(handler))
 func NewEncryptionClient(prov client.ConfigProvider, builder ContentCipherBuilder, options ...func(*EncryptionClient)) *EncryptionClient {
 	client := &EncryptionClient{
