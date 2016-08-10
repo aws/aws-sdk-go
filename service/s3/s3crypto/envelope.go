@@ -1,7 +1,5 @@
 package s3crypto
 
-import ()
-
 // DefaultInstructionKeySuffix is appended to the end of the instruction file key when
 // grabbing or saving to S3
 const DefaultInstructionKeySuffix = ".instruction"
