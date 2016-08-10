@@ -264,6 +264,238 @@ func ExampleCloudFront_CreateDistribution() {
 	fmt.Println(resp)
 }
 
+func ExampleCloudFront_CreateDistributionWithTags() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cloudfront.New(sess)
+
+	params := &cloudfront.CreateDistributionWithTagsInput{
+		DistributionConfigWithTags: &cloudfront.DistributionConfigWithTags{ // Required
+			DistributionConfig: &cloudfront.DistributionConfig{ // Required
+				CallerReference: aws.String("string"), // Required
+				Comment:         aws.String("string"), // Required
+				DefaultCacheBehavior: &cloudfront.DefaultCacheBehavior{ // Required
+					ForwardedValues: &cloudfront.ForwardedValues{ // Required
+						Cookies: &cloudfront.CookiePreference{ // Required
+							Forward: aws.String("ItemSelection"), // Required
+							WhitelistedNames: &cloudfront.CookieNames{
+								Quantity: aws.Int64(1), // Required
+								Items: []*string{
+									aws.String("string"), // Required
+									// More values...
+								},
+							},
+						},
+						QueryString: aws.Bool(true), // Required
+						Headers: &cloudfront.Headers{
+							Quantity: aws.Int64(1), // Required
+							Items: []*string{
+								aws.String("string"), // Required
+								// More values...
+							},
+						},
+					},
+					MinTTL:         aws.Int64(1),         // Required
+					TargetOriginId: aws.String("string"), // Required
+					TrustedSigners: &cloudfront.TrustedSigners{ // Required
+						Enabled:  aws.Bool(true), // Required
+						Quantity: aws.Int64(1),   // Required
+						Items: []*string{
+							aws.String("string"), // Required
+							// More values...
+						},
+					},
+					ViewerProtocolPolicy: aws.String("ViewerProtocolPolicy"), // Required
+					AllowedMethods: &cloudfront.AllowedMethods{
+						Items: []*string{ // Required
+							aws.String("Method"), // Required
+							// More values...
+						},
+						Quantity: aws.Int64(1), // Required
+						CachedMethods: &cloudfront.CachedMethods{
+							Items: []*string{ // Required
+								aws.String("Method"), // Required
+								// More values...
+							},
+							Quantity: aws.Int64(1), // Required
+						},
+					},
+					Compress:        aws.Bool(true),
+					DefaultTTL:      aws.Int64(1),
+					MaxTTL:          aws.Int64(1),
+					SmoothStreaming: aws.Bool(true),
+				},
+				Enabled: aws.Bool(true), // Required
+				Origins: &cloudfront.Origins{ // Required
+					Quantity: aws.Int64(1), // Required
+					Items: []*cloudfront.Origin{
+						{ // Required
+							DomainName: aws.String("string"), // Required
+							Id:         aws.String("string"), // Required
+							CustomHeaders: &cloudfront.CustomHeaders{
+								Quantity: aws.Int64(1), // Required
+								Items: []*cloudfront.OriginCustomHeader{
+									{ // Required
+										HeaderName:  aws.String("string"), // Required
+										HeaderValue: aws.String("string"), // Required
+									},
+									// More values...
+								},
+							},
+							CustomOriginConfig: &cloudfront.CustomOriginConfig{
+								HTTPPort:             aws.Int64(1),                       // Required
+								HTTPSPort:            aws.Int64(1),                       // Required
+								OriginProtocolPolicy: aws.String("OriginProtocolPolicy"), // Required
+								OriginSslProtocols: &cloudfront.OriginSslProtocols{
+									Items: []*string{ // Required
+										aws.String("SslProtocol"), // Required
+										// More values...
+									},
+									Quantity: aws.Int64(1), // Required
+								},
+							},
+							OriginPath: aws.String("string"),
+							S3OriginConfig: &cloudfront.S3OriginConfig{
+								OriginAccessIdentity: aws.String("string"), // Required
+							},
+						},
+						// More values...
+					},
+				},
+				Aliases: &cloudfront.Aliases{
+					Quantity: aws.Int64(1), // Required
+					Items: []*string{
+						aws.String("string"), // Required
+						// More values...
+					},
+				},
+				CacheBehaviors: &cloudfront.CacheBehaviors{
+					Quantity: aws.Int64(1), // Required
+					Items: []*cloudfront.CacheBehavior{
+						{ // Required
+							ForwardedValues: &cloudfront.ForwardedValues{ // Required
+								Cookies: &cloudfront.CookiePreference{ // Required
+									Forward: aws.String("ItemSelection"), // Required
+									WhitelistedNames: &cloudfront.CookieNames{
+										Quantity: aws.Int64(1), // Required
+										Items: []*string{
+											aws.String("string"), // Required
+											// More values...
+										},
+									},
+								},
+								QueryString: aws.Bool(true), // Required
+								Headers: &cloudfront.Headers{
+									Quantity: aws.Int64(1), // Required
+									Items: []*string{
+										aws.String("string"), // Required
+										// More values...
+									},
+								},
+							},
+							MinTTL:         aws.Int64(1),         // Required
+							PathPattern:    aws.String("string"), // Required
+							TargetOriginId: aws.String("string"), // Required
+							TrustedSigners: &cloudfront.TrustedSigners{ // Required
+								Enabled:  aws.Bool(true), // Required
+								Quantity: aws.Int64(1),   // Required
+								Items: []*string{
+									aws.String("string"), // Required
+									// More values...
+								},
+							},
+							ViewerProtocolPolicy: aws.String("ViewerProtocolPolicy"), // Required
+							AllowedMethods: &cloudfront.AllowedMethods{
+								Items: []*string{ // Required
+									aws.String("Method"), // Required
+									// More values...
+								},
+								Quantity: aws.Int64(1), // Required
+								CachedMethods: &cloudfront.CachedMethods{
+									Items: []*string{ // Required
+										aws.String("Method"), // Required
+										// More values...
+									},
+									Quantity: aws.Int64(1), // Required
+								},
+							},
+							Compress:        aws.Bool(true),
+							DefaultTTL:      aws.Int64(1),
+							MaxTTL:          aws.Int64(1),
+							SmoothStreaming: aws.Bool(true),
+						},
+						// More values...
+					},
+				},
+				CustomErrorResponses: &cloudfront.CustomErrorResponses{
+					Quantity: aws.Int64(1), // Required
+					Items: []*cloudfront.CustomErrorResponse{
+						{ // Required
+							ErrorCode:          aws.Int64(1), // Required
+							ErrorCachingMinTTL: aws.Int64(1),
+							ResponseCode:       aws.String("string"),
+							ResponsePagePath:   aws.String("string"),
+						},
+						// More values...
+					},
+				},
+				DefaultRootObject: aws.String("string"),
+				Logging: &cloudfront.LoggingConfig{
+					Bucket:         aws.String("string"), // Required
+					Enabled:        aws.Bool(true),       // Required
+					IncludeCookies: aws.Bool(true),       // Required
+					Prefix:         aws.String("string"), // Required
+				},
+				PriceClass: aws.String("PriceClass"),
+				Restrictions: &cloudfront.Restrictions{
+					GeoRestriction: &cloudfront.GeoRestriction{ // Required
+						Quantity:        aws.Int64(1),                     // Required
+						RestrictionType: aws.String("GeoRestrictionType"), // Required
+						Items: []*string{
+							aws.String("string"), // Required
+							// More values...
+						},
+					},
+				},
+				ViewerCertificate: &cloudfront.ViewerCertificate{
+					ACMCertificateArn:            aws.String("string"),
+					Certificate:                  aws.String("string"),
+					CertificateSource:            aws.String("CertificateSource"),
+					CloudFrontDefaultCertificate: aws.Bool(true),
+					IAMCertificateId:             aws.String("string"),
+					MinimumProtocolVersion:       aws.String("MinimumProtocolVersion"),
+					SSLSupportMethod:             aws.String("SSLSupportMethod"),
+				},
+				WebACLId: aws.String("string"),
+			},
+			Tags: &cloudfront.Tags{ // Required
+				Items: []*cloudfront.Tag{
+					{ // Required
+						Key:   aws.String("TagKey"), // Required
+						Value: aws.String("TagValue"),
+					},
+					// More values...
+				},
+			},
+		},
+	}
+	resp, err := svc.CreateDistributionWithTags(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleCloudFront_CreateInvalidation() {
 	sess, err := session.NewSession()
 	if err != nil {
@@ -341,6 +573,71 @@ func ExampleCloudFront_CreateStreamingDistribution() {
 		},
 	}
 	resp, err := svc.CreateStreamingDistribution(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleCloudFront_CreateStreamingDistributionWithTags() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cloudfront.New(sess)
+
+	params := &cloudfront.CreateStreamingDistributionWithTagsInput{
+		StreamingDistributionConfigWithTags: &cloudfront.StreamingDistributionConfigWithTags{ // Required
+			StreamingDistributionConfig: &cloudfront.StreamingDistributionConfig{ // Required
+				CallerReference: aws.String("string"), // Required
+				Comment:         aws.String("string"), // Required
+				Enabled:         aws.Bool(true),       // Required
+				S3Origin: &cloudfront.S3Origin{ // Required
+					DomainName:           aws.String("string"), // Required
+					OriginAccessIdentity: aws.String("string"), // Required
+				},
+				TrustedSigners: &cloudfront.TrustedSigners{ // Required
+					Enabled:  aws.Bool(true), // Required
+					Quantity: aws.Int64(1),   // Required
+					Items: []*string{
+						aws.String("string"), // Required
+						// More values...
+					},
+				},
+				Aliases: &cloudfront.Aliases{
+					Quantity: aws.Int64(1), // Required
+					Items: []*string{
+						aws.String("string"), // Required
+						// More values...
+					},
+				},
+				Logging: &cloudfront.StreamingLoggingConfig{
+					Bucket:  aws.String("string"), // Required
+					Enabled: aws.Bool(true),       // Required
+					Prefix:  aws.String("string"), // Required
+				},
+				PriceClass: aws.String("PriceClass"),
+			},
+			Tags: &cloudfront.Tags{ // Required
+				Items: []*cloudfront.Tag{
+					{ // Required
+						Key:   aws.String("TagKey"), // Required
+						Value: aws.String("TagValue"),
+					},
+					// More values...
+				},
+			},
+		},
+	}
+	resp, err := svc.CreateStreamingDistributionWithTags(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -727,6 +1024,96 @@ func ExampleCloudFront_ListStreamingDistributions() {
 		MaxItems: aws.Int64(1),
 	}
 	resp, err := svc.ListStreamingDistributions(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleCloudFront_ListTagsForResource() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cloudfront.New(sess)
+
+	params := &cloudfront.ListTagsForResourceInput{
+		Resource: aws.String("ResourceARN"), // Required
+	}
+	resp, err := svc.ListTagsForResource(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleCloudFront_TagResource() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cloudfront.New(sess)
+
+	params := &cloudfront.TagResourceInput{
+		Resource: aws.String("ResourceARN"), // Required
+		Tags: &cloudfront.Tags{ // Required
+			Items: []*cloudfront.Tag{
+				{ // Required
+					Key:   aws.String("TagKey"), // Required
+					Value: aws.String("TagValue"),
+				},
+				// More values...
+			},
+		},
+	}
+	resp, err := svc.TagResource(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleCloudFront_UntagResource() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cloudfront.New(sess)
+
+	params := &cloudfront.UntagResourceInput{
+		Resource: aws.String("ResourceARN"), // Required
+		TagKeys: &cloudfront.TagKeys{ // Required
+			Items: []*string{
+				aws.String("TagKey"), // Required
+				// More values...
+			},
+		},
+	}
+	resp, err := svc.UntagResource(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and

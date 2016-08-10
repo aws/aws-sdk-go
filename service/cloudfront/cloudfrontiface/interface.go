@@ -18,6 +18,10 @@ type CloudFrontAPI interface {
 
 	CreateDistribution(*cloudfront.CreateDistributionInput) (*cloudfront.CreateDistributionOutput, error)
 
+	CreateDistributionWithTagsRequest(*cloudfront.CreateDistributionWithTagsInput) (*request.Request, *cloudfront.CreateDistributionWithTagsOutput)
+
+	CreateDistributionWithTags(*cloudfront.CreateDistributionWithTagsInput) (*cloudfront.CreateDistributionWithTagsOutput, error)
+
 	CreateInvalidationRequest(*cloudfront.CreateInvalidationInput) (*request.Request, *cloudfront.CreateInvalidationOutput)
 
 	CreateInvalidation(*cloudfront.CreateInvalidationInput) (*cloudfront.CreateInvalidationOutput, error)
@@ -25,6 +29,10 @@ type CloudFrontAPI interface {
 	CreateStreamingDistributionRequest(*cloudfront.CreateStreamingDistributionInput) (*request.Request, *cloudfront.CreateStreamingDistributionOutput)
 
 	CreateStreamingDistribution(*cloudfront.CreateStreamingDistributionInput) (*cloudfront.CreateStreamingDistributionOutput, error)
+
+	CreateStreamingDistributionWithTagsRequest(*cloudfront.CreateStreamingDistributionWithTagsInput) (*request.Request, *cloudfront.CreateStreamingDistributionWithTagsOutput)
+
+	CreateStreamingDistributionWithTags(*cloudfront.CreateStreamingDistributionWithTagsInput) (*cloudfront.CreateStreamingDistributionWithTagsOutput, error)
 
 	DeleteCloudFrontOriginAccessIdentityRequest(*cloudfront.DeleteCloudFrontOriginAccessIdentityInput) (*request.Request, *cloudfront.DeleteCloudFrontOriginAccessIdentityOutput)
 
@@ -93,6 +101,18 @@ type CloudFrontAPI interface {
 	ListStreamingDistributions(*cloudfront.ListStreamingDistributionsInput) (*cloudfront.ListStreamingDistributionsOutput, error)
 
 	ListStreamingDistributionsPages(*cloudfront.ListStreamingDistributionsInput, func(*cloudfront.ListStreamingDistributionsOutput, bool) bool) error
+
+	ListTagsForResourceRequest(*cloudfront.ListTagsForResourceInput) (*request.Request, *cloudfront.ListTagsForResourceOutput)
+
+	ListTagsForResource(*cloudfront.ListTagsForResourceInput) (*cloudfront.ListTagsForResourceOutput, error)
+
+	TagResourceRequest(*cloudfront.TagResourceInput) (*request.Request, *cloudfront.TagResourceOutput)
+
+	TagResource(*cloudfront.TagResourceInput) (*cloudfront.TagResourceOutput, error)
+
+	UntagResourceRequest(*cloudfront.UntagResourceInput) (*request.Request, *cloudfront.UntagResourceOutput)
+
+	UntagResource(*cloudfront.UntagResourceInput) (*cloudfront.UntagResourceOutput, error)
 
 	UpdateCloudFrontOriginAccessIdentityRequest(*cloudfront.UpdateCloudFrontOriginAccessIdentityInput) (*request.Request, *cloudfront.UpdateCloudFrontOriginAccessIdentityOutput)
 
