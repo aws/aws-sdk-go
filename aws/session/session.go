@@ -372,8 +372,12 @@ func (s *Session) Copy(cfgs ...*aws.Config) *Session {
 func (s *Session) ClientConfig(serviceName string, cfgs ...*aws.Config) client.Config {
 	s = s.Copy(cfgs...)
 	endpoint, signingRegion := endpoints.NormalizeEndpoint(
-		aws.StringValue(s.Config.Endpoint), serviceName,
-		aws.StringValue(s.Config.Region), aws.BoolValue(s.Config.DisableSSL))
+		aws.StringValue(s.Config.Endpoint),
+		serviceName,
+		aws.StringValue(s.Config.Region),
+		aws.BoolValue(s.Config.DisableSSL),
+		aws.BoolValue(s.Config.UseDualStack),
+	)
 
 	return client.Config{
 		Config:        s.Config,
