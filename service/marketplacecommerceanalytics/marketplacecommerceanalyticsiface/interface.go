@@ -13,6 +13,10 @@ type MarketplaceCommerceAnalyticsAPI interface {
 	GenerateDataSetRequest(*marketplacecommerceanalytics.GenerateDataSetInput) (*request.Request, *marketplacecommerceanalytics.GenerateDataSetOutput)
 
 	GenerateDataSet(*marketplacecommerceanalytics.GenerateDataSetInput) (*marketplacecommerceanalytics.GenerateDataSetOutput, error)
+
+	StartSupportDataExportRequest(*marketplacecommerceanalytics.StartSupportDataExportInput) (*request.Request, *marketplacecommerceanalytics.StartSupportDataExportOutput)
+
+	StartSupportDataExport(*marketplacecommerceanalytics.StartSupportDataExportInput) (*marketplacecommerceanalytics.StartSupportDataExportOutput, error)
 }
 
 var _ MarketplaceCommerceAnalyticsAPI = (*marketplacecommerceanalytics.MarketplaceCommerceAnalytics)(nil)
