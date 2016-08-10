@@ -669,6 +669,12 @@
       },
       "exception":true
     },
+    "ListImagesFilter":{
+      "type":"structure",
+      "members":{
+        "tagStatus":{"shape":"TagStatus"}
+      }
+    },
     "ListImagesRequest":{
       "type":"structure",
       "required":["repositoryName"],
@@ -676,7 +682,8 @@
         "registryId":{"shape":"RegistryId"},
         "repositoryName":{"shape":"RepositoryName"},
         "nextToken":{"shape":"NextToken"},
-        "maxResults":{"shape":"MaxResults"}
+        "maxResults":{"shape":"MaxResults"},
+        "filter":{"shape":"ListImagesFilter"}
       }
     },
     "ListImagesResponse":{
@@ -805,6 +812,13 @@
         "repositoryName":{"shape":"RepositoryName"},
         "policyText":{"shape":"RepositoryPolicyText"}
       }
+    },
+    "TagStatus":{
+      "type":"string",
+      "enum":[
+        "TAGGED",
+        "UNTAGGED"
+      ]
     },
     "UploadId":{
       "type":"string",

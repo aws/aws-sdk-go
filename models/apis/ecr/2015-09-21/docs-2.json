@@ -213,7 +213,7 @@
       }
     },
     "Image": {
-      "base": "<p>Object representing an image.</p>",
+      "base": "<p>An object representing an Amazon ECR image.</p>",
       "refs": {
         "ImageList$member": null,
         "PutImageResponse$image": "<p>Details of the image uploaded.</p>"
@@ -231,7 +231,7 @@
       }
     },
     "ImageFailure": {
-      "base": null,
+      "base": "<p>An object representing an Amazon ECR image failure.</p>",
       "refs": {
         "ImageFailureList$member": null
       }
@@ -256,7 +256,7 @@
       }
     },
     "ImageIdentifier": {
-      "base": null,
+      "base": "<p>An object with identifying information for an Amazon ECR image.</p>",
       "refs": {
         "Image$imageId": "<p>An object containing the image tag and image digest associated with an image.</p>",
         "ImageFailure$imageId": "<p>The image ID associated with the failure.</p>",
@@ -317,7 +317,7 @@
       }
     },
     "Layer": {
-      "base": null,
+      "base": "<p>An object representing an Amazon ECR image layer.</p>",
       "refs": {
         "LayerList$member": null
       }
@@ -350,7 +350,7 @@
       }
     },
     "LayerFailure": {
-      "base": null,
+      "base": "<p>An object representing an Amazon ECR image layer failure.</p>",
       "refs": {
         "LayerFailureList$member": null
       }
@@ -411,6 +411,12 @@
       "refs": {
       }
     },
+    "ListImagesFilter": {
+      "base": null,
+      "refs": {
+        "ListImagesRequest$filter": null
+      }
+    },
     "ListImagesRequest": {
       "base": null,
       "refs": {
@@ -431,9 +437,9 @@
     "NextToken": {
       "base": null,
       "refs": {
-        "DescribeRepositoriesRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>DescribeRepositories</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. This value is <code>null</code> when there are no more results to return.</p>",
+        "DescribeRepositoriesRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>DescribeRepositories</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. This value is <code>null</code> when there are no more results to return.</p> <note> <p>This token should be treated as an opaque identifier that is only used to retrieve the next items in a list and not for other programmatic purposes.</p> </note>",
         "DescribeRepositoriesResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>DescribeRepositories</code> request. When the results of a <code>DescribeRepositories</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
-        "ListImagesRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>ListImages</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. This value is <code>null</code> when there are no more results to return.</p>",
+        "ListImagesRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>ListImages</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. This value is <code>null</code> when there are no more results to return.</p> <note> <p>This token should be treated as an opaque identifier that is only used to retrieve the next items in a list and not for other programmatic purposes.</p> </note>",
         "ListImagesResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>ListImages</code> request. When the results of a <code>ListImages</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>"
       }
     },
@@ -492,7 +498,7 @@
       }
     },
     "Repository": {
-      "base": "<p>Object representing a repository.</p>",
+      "base": "<p>An object representing a repository.</p>",
       "refs": {
         "CreateRepositoryResponse$repository": null,
         "DeleteRepositoryResponse$repository": null,
@@ -581,6 +587,12 @@
     "SetRepositoryPolicyResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "TagStatus": {
+      "base": null,
+      "refs": {
+        "ListImagesFilter$tagStatus": null
       }
     },
     "UploadId": {

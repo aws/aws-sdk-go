@@ -369,9 +369,12 @@ func ExampleECR_ListImages() {
 
 	params := &ecr.ListImagesInput{
 		RepositoryName: aws.String("RepositoryName"), // Required
-		MaxResults:     aws.Int64(1),
-		NextToken:      aws.String("NextToken"),
-		RegistryId:     aws.String("RegistryId"),
+		Filter: &ecr.ListImagesFilter{
+			TagStatus: aws.String("TagStatus"),
+		},
+		MaxResults: aws.Int64(1),
+		NextToken:  aws.String("NextToken"),
+		RegistryId: aws.String("RegistryId"),
 	}
 	resp, err := svc.ListImages(params)
 
