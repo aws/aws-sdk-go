@@ -79,10 +79,12 @@ func (a *API) StructName() string {
 		}
 
 		name = nameRegex.ReplaceAllString(name, "")
-		switch name {
-		case "ElasticLoadBalancing":
+		switch strings.ToLower(name) {
+		case "elasticloadbalancing":
 			a.name = "ELB"
-		case "Config":
+		case "elasticloadbalancingv2":
+			a.name = "ELBV2"
+		case "config":
 			a.name = "ConfigService"
 		default:
 			a.name = name
