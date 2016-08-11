@@ -706,8 +706,8 @@ func ExampleELB_ModifyLoadBalancerAttributes() {
 			},
 			AdditionalAttributes: []*elb.AdditionalAttribute{
 				{ // Required
-					Key:   aws.String("StringVal"),
-					Value: aws.String("StringVal"),
+					Key:   aws.String("AdditionalAttributeKey"),
+					Value: aws.String("AdditionalAttributeValue"),
 				},
 				// More values...
 			},
