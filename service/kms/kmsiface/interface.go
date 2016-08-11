@@ -34,6 +34,10 @@ type KMSAPI interface {
 
 	DeleteAlias(*kms.DeleteAliasInput) (*kms.DeleteAliasOutput, error)
 
+	DeleteImportedKeyMaterialRequest(*kms.DeleteImportedKeyMaterialInput) (*request.Request, *kms.DeleteImportedKeyMaterialOutput)
+
+	DeleteImportedKeyMaterial(*kms.DeleteImportedKeyMaterialInput) (*kms.DeleteImportedKeyMaterialOutput, error)
+
 	DescribeKeyRequest(*kms.DescribeKeyInput) (*request.Request, *kms.DescribeKeyOutput)
 
 	DescribeKey(*kms.DescribeKeyInput) (*kms.DescribeKeyOutput, error)
@@ -77,6 +81,14 @@ type KMSAPI interface {
 	GetKeyRotationStatusRequest(*kms.GetKeyRotationStatusInput) (*request.Request, *kms.GetKeyRotationStatusOutput)
 
 	GetKeyRotationStatus(*kms.GetKeyRotationStatusInput) (*kms.GetKeyRotationStatusOutput, error)
+
+	GetParametersForImportRequest(*kms.GetParametersForImportInput) (*request.Request, *kms.GetParametersForImportOutput)
+
+	GetParametersForImport(*kms.GetParametersForImportInput) (*kms.GetParametersForImportOutput, error)
+
+	ImportKeyMaterialRequest(*kms.ImportKeyMaterialInput) (*request.Request, *kms.ImportKeyMaterialOutput)
+
+	ImportKeyMaterial(*kms.ImportKeyMaterialInput) (*kms.ImportKeyMaterialOutput, error)
 
 	ListAliasesRequest(*kms.ListAliasesInput) (*request.Request, *kms.ListAliasesOutput)
 

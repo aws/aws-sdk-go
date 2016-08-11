@@ -125,6 +125,7 @@ func ExampleKMS_CreateKey() {
 		BypassPolicyLockoutSafetyCheck: aws.Bool(true),
 		Description:                    aws.String("DescriptionType"),
 		KeyUsage:                       aws.String("KeyUsageType"),
+		Origin:                         aws.String("OriginType"),
 		Policy:                         aws.String("PolicyType"),
 	}
 	resp, err := svc.CreateKey(params)
@@ -186,6 +187,31 @@ func ExampleKMS_DeleteAlias() {
 		AliasName: aws.String("AliasNameType"), // Required
 	}
 	resp, err := svc.DeleteAlias(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleKMS_DeleteImportedKeyMaterial() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := kms.New(sess)
+
+	params := &kms.DeleteImportedKeyMaterialInput{
+		KeyId: aws.String("KeyIdType"), // Required
+	}
+	resp, err := svc.DeleteImportedKeyMaterial(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -495,6 +521,62 @@ func ExampleKMS_GetKeyRotationStatus() {
 		KeyId: aws.String("KeyIdType"), // Required
 	}
 	resp, err := svc.GetKeyRotationStatus(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleKMS_GetParametersForImport() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := kms.New(sess)
+
+	params := &kms.GetParametersForImportInput{
+		KeyId:             aws.String("KeyIdType"),       // Required
+		WrappingAlgorithm: aws.String("AlgorithmSpec"),   // Required
+		WrappingKeySpec:   aws.String("WrappingKeySpec"), // Required
+	}
+	resp, err := svc.GetParametersForImport(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleKMS_ImportKeyMaterial() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := kms.New(sess)
+
+	params := &kms.ImportKeyMaterialInput{
+		EncryptedKeyMaterial: []byte("PAYLOAD"),       // Required
+		ImportToken:          []byte("PAYLOAD"),       // Required
+		KeyId:                aws.String("KeyIdType"), // Required
+		ValidTo:              aws.Time(time.Now()),    // Required
+		ExpirationModel:      aws.String("ExpirationModelType"),
+	}
+	resp, err := svc.ImportKeyMaterial(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
