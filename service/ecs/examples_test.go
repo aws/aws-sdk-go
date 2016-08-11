@@ -64,6 +64,7 @@ func ExampleECS_CreateService() {
 				ContainerName:    aws.String("String"),
 				ContainerPort:    aws.Int64(1),
 				LoadBalancerName: aws.String("String"),
+				TargetGroupArn:   aws.String("String"),
 			},
 			// More values...
 		},

@@ -502,7 +502,7 @@
         "name":{"shape":"String"},
         "image":{"shape":"String"},
         "cpu":{"shape":"Integer"},
-        "memory":{"shape":"Integer"},
+        "memory":{"shape":"BoxedInteger"},
         "links":{"shape":"StringList"},
         "portMappings":{"shape":"PortMappingList"},
         "essential":{"shape":"BoxedBoolean"},
@@ -930,6 +930,7 @@
     "LoadBalancer":{
       "type":"structure",
       "members":{
+        "targetGroupArn":{"shape":"String"},
         "loadBalancerName":{"shape":"String"},
         "containerName":{"shape":"String"},
         "containerPort":{"shape":"BoxedInteger"}
@@ -1004,8 +1005,8 @@
     "PortMapping":{
       "type":"structure",
       "members":{
-        "containerPort":{"shape":"Integer"},
-        "hostPort":{"shape":"Integer"},
+        "containerPort":{"shape":"BoxedInteger"},
+        "hostPort":{"shape":"BoxedInteger"},
         "protocol":{"shape":"TransportProtocol"}
       }
     },
