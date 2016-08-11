@@ -44,6 +44,35 @@ func ExampleAutoScaling_AttachInstances() {
 	fmt.Println(resp)
 }
 
+func ExampleAutoScaling_AttachLoadBalancerTargetGroups() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := autoscaling.New(sess)
+
+	params := &autoscaling.AttachLoadBalancerTargetGroupsInput{
+		AutoScalingGroupName: aws.String("ResourceName"), // Required
+		TargetGroupARNs: []*string{ // Required
+			aws.String("XmlStringMaxLen511"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.AttachLoadBalancerTargetGroups(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleAutoScaling_AttachLoadBalancers() {
 	sess, err := session.NewSession()
 	if err != nil {
@@ -54,8 +83,8 @@ func ExampleAutoScaling_AttachLoadBalancers() {
 	svc := autoscaling.New(sess)
 
 	params := &autoscaling.AttachLoadBalancersInput{
-		AutoScalingGroupName: aws.String("ResourceName"),
-		LoadBalancerNames: []*string{
+		AutoScalingGroupName: aws.String("ResourceName"), // Required
+		LoadBalancerNames: []*string{ // Required
 			aws.String("XmlStringMaxLen255"), // Required
 			// More values...
 		},
@@ -141,11 +170,15 @@ func ExampleAutoScaling_CreateAutoScalingGroup() {
 			},
 			// More values...
 		},
+		TargetGroupARNs: []*string{
+			aws.String("XmlStringMaxLen511"), // Required
+			// More values...
+		},
 		TerminationPolicies: []*string{
 			aws.String("XmlStringMaxLen1600"), // Required
 			// More values...
 		},
-		VPCZoneIdentifier: aws.String("XmlStringMaxLen255"),
+		VPCZoneIdentifier: aws.String("XmlStringMaxLen2047"),
 	}
 	resp, err := svc.CreateAutoScalingGroup(params)
 
@@ -398,8 +431,8 @@ func ExampleAutoScaling_DeleteScheduledAction() {
 	svc := autoscaling.New(sess)
 
 	params := &autoscaling.DeleteScheduledActionInput{
+		AutoScalingGroupName: aws.String("ResourceName"), // Required
 		ScheduledActionName:  aws.String("ResourceName"), // Required
-		AutoScalingGroupName: aws.String("ResourceName"),
 	}
 	resp, err := svc.DeleteScheduledAction(params)
 
@@ -647,6 +680,33 @@ func ExampleAutoScaling_DescribeLifecycleHooks() {
 		},
 	}
 	resp, err := svc.DescribeLifecycleHooks(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleAutoScaling_DescribeLoadBalancerTargetGroups() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := autoscaling.New(sess)
+
+	params := &autoscaling.DescribeLoadBalancerTargetGroupsInput{
+		AutoScalingGroupName: aws.String("ResourceName"), // Required
+		MaxRecords:           aws.Int64(1),
+		NextToken:            aws.String("XmlString"),
+	}
+	resp, err := svc.DescribeLoadBalancerTargetGroups(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -950,6 +1010,35 @@ func ExampleAutoScaling_DetachInstances() {
 	fmt.Println(resp)
 }
 
+func ExampleAutoScaling_DetachLoadBalancerTargetGroups() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := autoscaling.New(sess)
+
+	params := &autoscaling.DetachLoadBalancerTargetGroupsInput{
+		AutoScalingGroupName: aws.String("ResourceName"), // Required
+		TargetGroupARNs: []*string{ // Required
+			aws.String("XmlStringMaxLen511"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.DetachLoadBalancerTargetGroups(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleAutoScaling_DetachLoadBalancers() {
 	sess, err := session.NewSession()
 	if err != nil {
@@ -960,8 +1049,8 @@ func ExampleAutoScaling_DetachLoadBalancers() {
 	svc := autoscaling.New(sess)
 
 	params := &autoscaling.DetachLoadBalancersInput{
-		AutoScalingGroupName: aws.String("ResourceName"),
-		LoadBalancerNames: []*string{
+		AutoScalingGroupName: aws.String("ResourceName"), // Required
+		LoadBalancerNames: []*string{ // Required
 			aws.String("XmlStringMaxLen255"), // Required
 			// More values...
 		},
@@ -1487,7 +1576,7 @@ func ExampleAutoScaling_UpdateAutoScalingGroup() {
 			aws.String("XmlStringMaxLen1600"), // Required
 			// More values...
 		},
-		VPCZoneIdentifier: aws.String("XmlStringMaxLen255"),
+		VPCZoneIdentifier: aws.String("XmlStringMaxLen2047"),
 	}
 	resp, err := svc.UpdateAutoScalingGroup(params)
 
