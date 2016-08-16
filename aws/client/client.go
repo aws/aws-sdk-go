@@ -89,7 +89,10 @@ const logReqMsg = `DEBUG: Request %s/%s Details:
 
 func logRequest(r *request.Request) {
 	logBody := r.Config.LogLevel.Matches(aws.LogDebugWithHTTPBody)
-	dumpedBody, _ := httputil.DumpRequestOut(r.HTTPRequest, logBody)
+	dumpedBody, err := httputil.DumpRequestOut(r.HTTPRequest, logBody)
+	if err != nil {
+		r.Config.Logger.Log(fmt.Sprintf("Error dumping request: %s", err))
+	}
 
 	if logBody {
 		// Reset the request body because dumpRequest will re-wrap the r.HTTPRequest's
@@ -111,7 +114,11 @@ func logResponse(r *request.Request) {
 	var msg = "no response data"
 	if r.HTTPResponse != nil {
 		logBody := r.Config.LogLevel.Matches(aws.LogDebugWithHTTPBody)
-		dumpedBody, _ := httputil.DumpResponse(r.HTTPResponse, logBody)
+		dumpedBody, err := httputil.DumpResponse(r.HTTPResponse, logBody)
+		if err != nil {
+			r.Config.Logger.Log(fmt.Sprintf("Error dumping response: %s", err))
+		}
+
 		msg = string(dumpedBody)
 	} else if r.Error != nil {
 		msg = r.Error.Error()
