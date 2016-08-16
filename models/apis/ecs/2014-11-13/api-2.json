@@ -503,6 +503,7 @@
         "image":{"shape":"String"},
         "cpu":{"shape":"Integer"},
         "memory":{"shape":"BoxedInteger"},
+        "memoryReservation":{"shape":"BoxedInteger"},
         "links":{"shape":"StringList"},
         "portMappings":{"shape":"PortMappingList"},
         "essential":{"shape":"BoxedBoolean"},
@@ -961,7 +962,8 @@
         "journald",
         "gelf",
         "fluentd",
-        "awslogs"
+        "awslogs",
+        "splunk"
       ]
     },
     "Long":{"type":"long"},
@@ -995,6 +997,14 @@
     "NetworkBindings":{
       "type":"list",
       "member":{"shape":"NetworkBinding"}
+    },
+    "NetworkMode":{
+      "type":"string",
+      "enum":[
+        "bridge",
+        "host",
+        "none"
+      ]
     },
     "NoUpdateAvailableException":{
       "type":"structure",
@@ -1041,6 +1051,7 @@
       "members":{
         "family":{"shape":"String"},
         "taskRoleArn":{"shape":"String"},
+        "networkMode":{"shape":"NetworkMode"},
         "containerDefinitions":{"shape":"ContainerDefinitions"},
         "volumes":{"shape":"VolumeList"}
       }
@@ -1249,6 +1260,7 @@
         "containerDefinitions":{"shape":"ContainerDefinitions"},
         "family":{"shape":"String"},
         "taskRoleArn":{"shape":"String"},
+        "networkMode":{"shape":"NetworkMode"},
         "revision":{"shape":"Integer"},
         "volumes":{"shape":"VolumeList"},
         "status":{"shape":"TaskDefinitionStatus"},
