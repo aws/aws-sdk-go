@@ -25,9 +25,10 @@ func ExampleAPIGateway_CreateApiKey() {
 	svc := apigateway.New(sess)
 
 	params := &apigateway.CreateApiKeyInput{
-		Description: aws.String("String"),
-		Enabled:     aws.Bool(true),
-		Name:        aws.String("String"),
+		Description:        aws.String("String"),
+		Enabled:            aws.Bool(true),
+		GenerateDistinctId: aws.Bool(true),
+		Name:               aws.String("String"),
 		StageKeys: []*apigateway.StageKey{
 			{ // Required
 				RestApiId: aws.String("String"),
@@ -35,6 +36,7 @@ func ExampleAPIGateway_CreateApiKey() {
 			},
 			// More values...
 		},
+		Value: aws.String("String"),
 	}
 	resp, err := svc.CreateApiKey(params)
 
@@ -282,6 +284,75 @@ func ExampleAPIGateway_CreateStage() {
 		},
 	}
 	resp, err := svc.CreateStage(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleAPIGateway_CreateUsagePlan() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := apigateway.New(sess)
+
+	params := &apigateway.CreateUsagePlanInput{
+		Name: aws.String("String"), // Required
+		ApiStages: []*apigateway.ApiStage{
+			{ // Required
+				ApiId: aws.String("String"),
+				Stage: aws.String("String"),
+			},
+			// More values...
+		},
+		Description: aws.String("String"),
+		Quota: &apigateway.QuotaSettings{
+			Limit:  aws.Int64(1),
+			Offset: aws.Int64(1),
+			Period: aws.String("QuotaPeriodType"),
+		},
+		Throttle: &apigateway.ThrottleSettings{
+			BurstLimit: aws.Int64(1),
+			RateLimit:  aws.Float64(1.0),
+		},
+	}
+	resp, err := svc.CreateUsagePlan(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleAPIGateway_CreateUsagePlanKey() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := apigateway.New(sess)
+
+	params := &apigateway.CreateUsagePlanKeyInput{
+		KeyId:       aws.String("String"), // Required
+		KeyType:     aws.String("String"), // Required
+		UsagePlanId: aws.String("String"), // Required
+	}
+	resp, err := svc.CreateUsagePlanKey(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -660,6 +731,57 @@ func ExampleAPIGateway_DeleteStage() {
 	fmt.Println(resp)
 }
 
+func ExampleAPIGateway_DeleteUsagePlan() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := apigateway.New(sess)
+
+	params := &apigateway.DeleteUsagePlanInput{
+		UsagePlanId: aws.String("String"), // Required
+	}
+	resp, err := svc.DeleteUsagePlan(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleAPIGateway_DeleteUsagePlanKey() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := apigateway.New(sess)
+
+	params := &apigateway.DeleteUsagePlanKeyInput{
+		KeyId:       aws.String("String"), // Required
+		UsagePlanId: aws.String("String"), // Required
+	}
+	resp, err := svc.DeleteUsagePlanKey(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleAPIGateway_FlushStageAuthorizersCache() {
 	sess, err := session.NewSession()
 	if err != nil {
@@ -770,7 +892,8 @@ func ExampleAPIGateway_GetApiKey() {
 	svc := apigateway.New(sess)
 
 	params := &apigateway.GetApiKeyInput{
-		ApiKey: aws.String("String"), // Required
+		ApiKey:       aws.String("String"), // Required
+		IncludeValue: aws.Bool(true),
 	}
 	resp, err := svc.GetApiKey(params)
 
@@ -795,8 +918,10 @@ func ExampleAPIGateway_GetApiKeys() {
 	svc := apigateway.New(sess)
 
 	params := &apigateway.GetApiKeysInput{
-		Limit:    aws.Int64(1),
-		Position: aws.String("String"),
+		IncludeValues: aws.Bool(true),
+		Limit:         aws.Int64(1),
+		NameQuery:     aws.String("String"),
+		Position:      aws.String("String"),
 	}
 	resp, err := svc.GetApiKeys(params)
 
@@ -1469,6 +1594,169 @@ func ExampleAPIGateway_GetStages() {
 		DeploymentId: aws.String("String"),
 	}
 	resp, err := svc.GetStages(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleAPIGateway_GetUsage() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := apigateway.New(sess)
+
+	params := &apigateway.GetUsageInput{
+		EndDate:     aws.String("String"), // Required
+		StartDate:   aws.String("String"), // Required
+		UsagePlanId: aws.String("String"), // Required
+		KeyId:       aws.String("String"),
+		Limit:       aws.Int64(1),
+		Position:    aws.String("String"),
+	}
+	resp, err := svc.GetUsage(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleAPIGateway_GetUsagePlan() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := apigateway.New(sess)
+
+	params := &apigateway.GetUsagePlanInput{
+		UsagePlanId: aws.String("String"), // Required
+	}
+	resp, err := svc.GetUsagePlan(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleAPIGateway_GetUsagePlanKey() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := apigateway.New(sess)
+
+	params := &apigateway.GetUsagePlanKeyInput{
+		KeyId:       aws.String("String"), // Required
+		UsagePlanId: aws.String("String"), // Required
+	}
+	resp, err := svc.GetUsagePlanKey(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleAPIGateway_GetUsagePlanKeys() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := apigateway.New(sess)
+
+	params := &apigateway.GetUsagePlanKeysInput{
+		UsagePlanId: aws.String("String"), // Required
+		Limit:       aws.Int64(1),
+		NameQuery:   aws.String("String"),
+		Position:    aws.String("String"),
+	}
+	resp, err := svc.GetUsagePlanKeys(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleAPIGateway_GetUsagePlans() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := apigateway.New(sess)
+
+	params := &apigateway.GetUsagePlansInput{
+		KeyId:    aws.String("String"),
+		Limit:    aws.Int64(1),
+		Position: aws.String("String"),
+	}
+	resp, err := svc.GetUsagePlans(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleAPIGateway_ImportApiKeys() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := apigateway.New(sess)
+
+	params := &apigateway.ImportApiKeysInput{
+		Body:           []byte("PAYLOAD"),           // Required
+		Format:         aws.String("ApiKeysFormat"), // Required
+		FailOnWarnings: aws.Bool(true),
+	}
+	resp, err := svc.ImportApiKeys(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -2290,6 +2578,75 @@ func ExampleAPIGateway_UpdateStage() {
 		},
 	}
 	resp, err := svc.UpdateStage(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleAPIGateway_UpdateUsage() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := apigateway.New(sess)
+
+	params := &apigateway.UpdateUsageInput{
+		KeyId:       aws.String("String"), // Required
+		UsagePlanId: aws.String("String"), // Required
+		PatchOperations: []*apigateway.PatchOperation{
+			{ // Required
+				From:  aws.String("String"),
+				Op:    aws.String("op"),
+				Path:  aws.String("String"),
+				Value: aws.String("String"),
+			},
+			// More values...
+		},
+	}
+	resp, err := svc.UpdateUsage(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleAPIGateway_UpdateUsagePlan() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := apigateway.New(sess)
+
+	params := &apigateway.UpdateUsagePlanInput{
+		UsagePlanId: aws.String("String"), // Required
+		PatchOperations: []*apigateway.PatchOperation{
+			{ // Required
+				From:  aws.String("String"),
+				Op:    aws.String("op"),
+				Path:  aws.String("String"),
+				Value: aws.String("String"),
+			},
+			// More values...
+		},
+	}
+	resp, err := svc.UpdateUsagePlan(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and

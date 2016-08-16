@@ -46,6 +46,14 @@ type APIGatewayAPI interface {
 
 	CreateStage(*apigateway.CreateStageInput) (*apigateway.Stage, error)
 
+	CreateUsagePlanRequest(*apigateway.CreateUsagePlanInput) (*request.Request, *apigateway.UsagePlan)
+
+	CreateUsagePlan(*apigateway.CreateUsagePlanInput) (*apigateway.UsagePlan, error)
+
+	CreateUsagePlanKeyRequest(*apigateway.CreateUsagePlanKeyInput) (*request.Request, *apigateway.UsagePlanKey)
+
+	CreateUsagePlanKey(*apigateway.CreateUsagePlanKeyInput) (*apigateway.UsagePlanKey, error)
+
 	DeleteApiKeyRequest(*apigateway.DeleteApiKeyInput) (*request.Request, *apigateway.DeleteApiKeyOutput)
 
 	DeleteApiKey(*apigateway.DeleteApiKeyInput) (*apigateway.DeleteApiKeyOutput, error)
@@ -101,6 +109,14 @@ type APIGatewayAPI interface {
 	DeleteStageRequest(*apigateway.DeleteStageInput) (*request.Request, *apigateway.DeleteStageOutput)
 
 	DeleteStage(*apigateway.DeleteStageInput) (*apigateway.DeleteStageOutput, error)
+
+	DeleteUsagePlanRequest(*apigateway.DeleteUsagePlanInput) (*request.Request, *apigateway.DeleteUsagePlanOutput)
+
+	DeleteUsagePlan(*apigateway.DeleteUsagePlanInput) (*apigateway.DeleteUsagePlanOutput, error)
+
+	DeleteUsagePlanKeyRequest(*apigateway.DeleteUsagePlanKeyInput) (*request.Request, *apigateway.DeleteUsagePlanKeyOutput)
+
+	DeleteUsagePlanKey(*apigateway.DeleteUsagePlanKeyInput) (*apigateway.DeleteUsagePlanKeyOutput, error)
 
 	FlushStageAuthorizersCacheRequest(*apigateway.FlushStageAuthorizersCacheInput) (*request.Request, *apigateway.FlushStageAuthorizersCacheOutput)
 
@@ -242,6 +258,36 @@ type APIGatewayAPI interface {
 
 	GetStages(*apigateway.GetStagesInput) (*apigateway.GetStagesOutput, error)
 
+	GetUsageRequest(*apigateway.GetUsageInput) (*request.Request, *apigateway.Usage)
+
+	GetUsage(*apigateway.GetUsageInput) (*apigateway.Usage, error)
+
+	GetUsagePages(*apigateway.GetUsageInput, func(*apigateway.Usage, bool) bool) error
+
+	GetUsagePlanRequest(*apigateway.GetUsagePlanInput) (*request.Request, *apigateway.UsagePlan)
+
+	GetUsagePlan(*apigateway.GetUsagePlanInput) (*apigateway.UsagePlan, error)
+
+	GetUsagePlanKeyRequest(*apigateway.GetUsagePlanKeyInput) (*request.Request, *apigateway.UsagePlanKey)
+
+	GetUsagePlanKey(*apigateway.GetUsagePlanKeyInput) (*apigateway.UsagePlanKey, error)
+
+	GetUsagePlanKeysRequest(*apigateway.GetUsagePlanKeysInput) (*request.Request, *apigateway.GetUsagePlanKeysOutput)
+
+	GetUsagePlanKeys(*apigateway.GetUsagePlanKeysInput) (*apigateway.GetUsagePlanKeysOutput, error)
+
+	GetUsagePlanKeysPages(*apigateway.GetUsagePlanKeysInput, func(*apigateway.GetUsagePlanKeysOutput, bool) bool) error
+
+	GetUsagePlansRequest(*apigateway.GetUsagePlansInput) (*request.Request, *apigateway.GetUsagePlansOutput)
+
+	GetUsagePlans(*apigateway.GetUsagePlansInput) (*apigateway.GetUsagePlansOutput, error)
+
+	GetUsagePlansPages(*apigateway.GetUsagePlansInput, func(*apigateway.GetUsagePlansOutput, bool) bool) error
+
+	ImportApiKeysRequest(*apigateway.ImportApiKeysInput) (*request.Request, *apigateway.ImportApiKeysOutput)
+
+	ImportApiKeys(*apigateway.ImportApiKeysInput) (*apigateway.ImportApiKeysOutput, error)
+
 	ImportRestApiRequest(*apigateway.ImportRestApiInput) (*request.Request, *apigateway.RestApi)
 
 	ImportRestApi(*apigateway.ImportRestApiInput) (*apigateway.RestApi, error)
@@ -333,6 +379,14 @@ type APIGatewayAPI interface {
 	UpdateStageRequest(*apigateway.UpdateStageInput) (*request.Request, *apigateway.Stage)
 
 	UpdateStage(*apigateway.UpdateStageInput) (*apigateway.Stage, error)
+
+	UpdateUsageRequest(*apigateway.UpdateUsageInput) (*request.Request, *apigateway.Usage)
+
+	UpdateUsage(*apigateway.UpdateUsageInput) (*apigateway.Usage, error)
+
+	UpdateUsagePlanRequest(*apigateway.UpdateUsagePlanInput) (*request.Request, *apigateway.UsagePlan)
+
+	UpdateUsagePlan(*apigateway.UpdateUsagePlanInput) (*apigateway.UsagePlan, error)
 }
 
 var _ APIGatewayAPI = (*apigateway.APIGateway)(nil)
