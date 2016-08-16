@@ -573,8 +573,8 @@ func ExampleKMS_ImportKeyMaterial() {
 		EncryptedKeyMaterial: []byte("PAYLOAD"),       // Required
 		ImportToken:          []byte("PAYLOAD"),       // Required
 		KeyId:                aws.String("KeyIdType"), // Required
-		ValidTo:              aws.Time(time.Now()),    // Required
 		ExpirationModel:      aws.String("ExpirationModelType"),
+		ValidTo:              aws.Time(time.Now()),
 	}
 	resp, err := svc.ImportKeyMaterial(params)
 
