@@ -97,6 +97,7 @@ func logRequest(r *request.Request) {
 	dumpedBody, err := httputil.DumpRequestOut(r.HTTPRequest, logBody)
 	if err != nil {
 		r.Config.Logger.Log(fmt.Sprintf(logReqErrMsg, r.ClientInfo.ServiceName, r.Operation.Name, err))
+		return
 	}
 
 	if logBody {
@@ -127,6 +128,7 @@ func logResponse(r *request.Request) {
 		dumpedBody, err := httputil.DumpResponse(r.HTTPResponse, logBody)
 		if err != nil {
 			r.Config.Logger.Log(fmt.Sprintf(logRespErrMsg, r.ClientInfo.ServiceName, r.Operation.Name, err))
+			return
 		}
 
 		msg = string(dumpedBody)
