@@ -87,11 +87,16 @@ const logReqMsg = `DEBUG: Request %s/%s Details:
 %s
 -----------------------------------------------------`
 
+const logReqErrMsg = `DEBUG ERROR: Request %s/%s:
+---[ REQUEST DUMP ERROR ]-----------------------------
+%s
+-----------------------------------------------------`
+
 func logRequest(r *request.Request) {
 	logBody := r.Config.LogLevel.Matches(aws.LogDebugWithHTTPBody)
 	dumpedBody, err := httputil.DumpRequestOut(r.HTTPRequest, logBody)
 	if err != nil {
-		r.Config.Logger.Log(fmt.Sprintf("Error dumping request: %s", err))
+		r.Config.Logger.Log(fmt.Sprintf(logReqErrMsg, r.ClientInfo.ServiceName, r.Operation.Name, err))
 	}
 
 	if logBody {
@@ -110,13 +115,18 @@ const logRespMsg = `DEBUG: Response %s/%s Details:
 %s
 -----------------------------------------------------`
 
+const logRespErrMsg = `DEBUG ERROR: Response %s/%s:
+---[ RESPONSE DUMP ERROR ]-----------------------------
+%s
+-----------------------------------------------------`
+
 func logResponse(r *request.Request) {
 	var msg = "no response data"
 	if r.HTTPResponse != nil {
 		logBody := r.Config.LogLevel.Matches(aws.LogDebugWithHTTPBody)
 		dumpedBody, err := httputil.DumpResponse(r.HTTPResponse, logBody)
 		if err != nil {
-			r.Config.Logger.Log(fmt.Sprintf("Error dumping response: %s", err))
+			r.Config.Logger.Log(fmt.Sprintf(logRespErrMsg, r.ClientInfo.ServiceName, r.Operation.Name, err))
 		}
 
 		msg = string(dumpedBody)
