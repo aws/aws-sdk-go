@@ -5,6 +5,7 @@ package workspaces
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
@@ -465,6 +466,103 @@ func (c *WorkSpaces) DescribeWorkspacesPages(input *DescribeWorkspacesInput, fn 
 	})
 }
 
+const opDescribeWorkspacesConnectionStatus = "DescribeWorkspacesConnectionStatus"
+
+// DescribeWorkspacesConnectionStatusRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeWorkspacesConnectionStatus operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeWorkspacesConnectionStatus method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeWorkspacesConnectionStatusRequest method.
+//    req, resp := client.DescribeWorkspacesConnectionStatusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *WorkSpaces) DescribeWorkspacesConnectionStatusRequest(input *DescribeWorkspacesConnectionStatusInput) (req *request.Request, output *DescribeWorkspacesConnectionStatusOutput) {
+	op := &request.Operation{
+		Name:       opDescribeWorkspacesConnectionStatus,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeWorkspacesConnectionStatusInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeWorkspacesConnectionStatusOutput{}
+	req.Data = output
+	return
+}
+
+// Describes the connection status of a specified WorkSpace.
+func (c *WorkSpaces) DescribeWorkspacesConnectionStatus(input *DescribeWorkspacesConnectionStatusInput) (*DescribeWorkspacesConnectionStatusOutput, error) {
+	req, out := c.DescribeWorkspacesConnectionStatusRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opModifyWorkspaceProperties = "ModifyWorkspaceProperties"
+
+// ModifyWorkspacePropertiesRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyWorkspaceProperties operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ModifyWorkspaceProperties method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ModifyWorkspacePropertiesRequest method.
+//    req, resp := client.ModifyWorkspacePropertiesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *WorkSpaces) ModifyWorkspacePropertiesRequest(input *ModifyWorkspacePropertiesInput) (req *request.Request, output *ModifyWorkspacePropertiesOutput) {
+	op := &request.Operation{
+		Name:       opModifyWorkspaceProperties,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ModifyWorkspacePropertiesInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ModifyWorkspacePropertiesOutput{}
+	req.Data = output
+	return
+}
+
+// Modifies the WorkSpace properties, including the RunningMode and AutoStop
+// time.
+func (c *WorkSpaces) ModifyWorkspaceProperties(input *ModifyWorkspacePropertiesInput) (*ModifyWorkspacePropertiesOutput, error) {
+	req, out := c.ModifyWorkspacePropertiesRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opRebootWorkspaces = "RebootWorkspaces"
 
 // RebootWorkspacesRequest generates a "aws/request.Request" representing the
@@ -511,8 +609,7 @@ func (c *WorkSpaces) RebootWorkspacesRequest(input *RebootWorkspacesInput) (req 
 // To be able to reboot a WorkSpace, the WorkSpace must have a State of AVAILABLE,
 // IMPAIRED, or INOPERABLE.
 //
-//  This operation is asynchronous and will return before the WorkSpaces have
-// rebooted.
+//  This operation is asynchronous and returns before the WorkSpaces have rebooted.
 func (c *WorkSpaces) RebootWorkspaces(input *RebootWorkspacesInput) (*RebootWorkspacesOutput, error) {
 	req, out := c.RebootWorkspacesRequest(input)
 	err := req.Send()
@@ -565,19 +662,121 @@ func (c *WorkSpaces) RebuildWorkspacesRequest(input *RebuildWorkspacesInput) (re
 // Rebuilding a WorkSpace is a potentially destructive action that can result
 // in the loss of data. Rebuilding a WorkSpace causes the following to occur:
 //
-//  The system is restored to the image of the bundle that the WorkSpace is
+//   The system is restored to the image of the bundle that the WorkSpace is
 // created from. Any applications that have been installed, or system settings
-// that have been made since the WorkSpace was created will be lost. The data
-// drive (D drive) is re-created from the last automatic snapshot taken of the
-// data drive. The current contents of the data drive are overwritten. Automatic
-// snapshots of the data drive are taken every 12 hours, so the snapshot can
-// be as much as 12 hours old.  To be able to rebuild a WorkSpace, the WorkSpace
-// must have a State of AVAILABLE or ERROR.
+// that have been made since the WorkSpace was created will be lost.
 //
-//  This operation is asynchronous and will return before the WorkSpaces have
-// been completely rebuilt.
+//   The data drive (D drive) is re-created from the last automatic snapshot
+// taken of the data drive. The current contents of the data drive are overwritten.
+// Automatic snapshots of the data drive are taken every 12 hours, so the snapshot
+// can be as much as 12 hours old.
+//
+//   To be able to rebuild a WorkSpace, the WorkSpace must have a State of
+// AVAILABLE or ERROR.
+//
+//  This operation is asynchronous and returns before the WorkSpaces have been
+// completely rebuilt.
 func (c *WorkSpaces) RebuildWorkspaces(input *RebuildWorkspacesInput) (*RebuildWorkspacesOutput, error) {
 	req, out := c.RebuildWorkspacesRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opStartWorkspaces = "StartWorkspaces"
+
+// StartWorkspacesRequest generates a "aws/request.Request" representing the
+// client's request for the StartWorkspaces operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the StartWorkspaces method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the StartWorkspacesRequest method.
+//    req, resp := client.StartWorkspacesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *WorkSpaces) StartWorkspacesRequest(input *StartWorkspacesInput) (req *request.Request, output *StartWorkspacesOutput) {
+	op := &request.Operation{
+		Name:       opStartWorkspaces,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartWorkspacesInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &StartWorkspacesOutput{}
+	req.Data = output
+	return
+}
+
+// Starts the specified WorkSpaces. The API only works with WorkSpaces that
+// have RunningMode configured as AutoStop and the State set to “STOPPED.”
+func (c *WorkSpaces) StartWorkspaces(input *StartWorkspacesInput) (*StartWorkspacesOutput, error) {
+	req, out := c.StartWorkspacesRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opStopWorkspaces = "StopWorkspaces"
+
+// StopWorkspacesRequest generates a "aws/request.Request" representing the
+// client's request for the StopWorkspaces operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the StopWorkspaces method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the StopWorkspacesRequest method.
+//    req, resp := client.StopWorkspacesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *WorkSpaces) StopWorkspacesRequest(input *StopWorkspacesInput) (req *request.Request, output *StopWorkspacesOutput) {
+	op := &request.Operation{
+		Name:       opStopWorkspaces,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StopWorkspacesInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &StopWorkspacesOutput{}
+	req.Data = output
+	return
+}
+
+// Stops the specified WorkSpaces. The API only works with WorkSpaces that have
+// RunningMode configured as AutoStop and the State set to AVAILABLE, IMPAIRED,
+// UNHEALTHY, or ERROR.
+func (c *WorkSpaces) StopWorkspaces(input *StopWorkspacesInput) (*StopWorkspacesOutput, error) {
+	req, out := c.StopWorkspacesRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -631,8 +830,8 @@ func (c *WorkSpaces) TerminateWorkspacesRequest(input *TerminateWorkspacesInput)
 //
 // You can terminate a WorkSpace that is in any state except SUSPENDED.
 //
-//  This operation is asynchronous and will return before the WorkSpaces have
-// been completely terminated.
+//  This operation is asynchronous and returns before the WorkSpaces have been
+// completely terminated.
 func (c *WorkSpaces) TerminateWorkspaces(input *TerminateWorkspacesInput) (*TerminateWorkspacesOutput, error) {
 	req, out := c.TerminateWorkspacesRequest(input)
 	err := req.Send()
@@ -657,7 +856,7 @@ func (s ComputeType) GoString() string {
 	return s.String()
 }
 
-// The request of the create tags action.
+// The request of the CreateTags operation.
 type CreateTagsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -707,7 +906,7 @@ func (s *CreateTagsInput) Validate() error {
 	return nil
 }
 
-// The result of the create tags action.
+// The result of the CreateTags operation.
 type CreateTagsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -824,7 +1023,7 @@ func (s DefaultWorkspaceCreationProperties) GoString() string {
 	return s.String()
 }
 
-// The request of the delete tags action.
+// The request of the DeleteTags operation.
 type DeleteTagsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -864,7 +1063,7 @@ func (s *DeleteTagsInput) Validate() error {
 	return nil
 }
 
-// The result of the delete tags action.
+// The result of the DeleteTags operation.
 type DeleteTagsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -879,7 +1078,7 @@ func (s DeleteTagsOutput) GoString() string {
 	return s.String()
 }
 
-// The request of the describe tags action.
+// The request of the DescribeTags operation.
 type DescribeTagsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -913,7 +1112,7 @@ func (s *DescribeTagsInput) Validate() error {
 	return nil
 }
 
-// The result of the describe tags action.
+// The result of the DescribeTags operation.
 type DescribeTagsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -948,8 +1147,9 @@ type DescribeWorkspaceBundlesInput struct {
 	//
 	// This contains one of the following values:
 	//
-	//  null - Retrieves the bundles that belong to the account making the call.
-	// AMAZON - Retrieves the bundles that are provided by AWS.
+	//   null- Retrieves the bundles that belong to the account making the call.
+	//
+	//    AMAZON- Retrieves the bundles that are provided by AWS.
 	Owner *string `type:"string"`
 }
 
@@ -988,7 +1188,8 @@ type DescribeWorkspaceBundlesOutput struct {
 
 	// If not null, more results are available. Pass this value for the NextToken
 	// parameter in a subsequent call to this operation to retrieve the next set
-	// of items. This token is valid for one day and must be used within that timeframe.
+	// of items. This token is valid for one day and must be used within that time
+	// frame.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -1050,7 +1251,8 @@ type DescribeWorkspaceDirectoriesOutput struct {
 
 	// If not null, more results are available. Pass this value for the NextToken
 	// parameter in a subsequent call to this operation to retrieve the next set
-	// of items. This token is valid for one day and must be used within that timeframe.
+	// of items. This token is valid for one day and must be used within that time
+	// frame.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -1061,6 +1263,62 @@ func (s DescribeWorkspaceDirectoriesOutput) String() string {
 
 // GoString returns the string representation
 func (s DescribeWorkspaceDirectoriesOutput) GoString() string {
+	return s.String()
+}
+
+type DescribeWorkspacesConnectionStatusInput struct {
+	_ struct{} `type:"structure"`
+
+	// The next token of the request.
+	NextToken *string `min:"1" type:"string"`
+
+	// An array of strings that contain the identifiers of the WorkSpaces.
+	WorkspaceIds []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeWorkspacesConnectionStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeWorkspacesConnectionStatusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeWorkspacesConnectionStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeWorkspacesConnectionStatusInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.WorkspaceIds != nil && len(s.WorkspaceIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkspaceIds", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+type DescribeWorkspacesConnectionStatusOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The next token of the result.
+	NextToken *string `min:"1" type:"string"`
+
+	// The connection status of the WorkSpace.
+	WorkspacesConnectionStatus []*WorkspaceConnectionStatus `type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeWorkspacesConnectionStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeWorkspacesConnectionStatusOutput) GoString() string {
 	return s.String()
 }
 
@@ -1085,7 +1343,7 @@ type DescribeWorkspacesInput struct {
 	// this is the first call.
 	NextToken *string `min:"1" type:"string"`
 
-	// Used with the DirectoryId parameter to specify the directory user for which
+	// Used with the DirectoryId parameter to specify the directory user for whom
 	// to obtain the WorkSpace.
 	UserName *string `min:"1" type:"string"`
 
@@ -1093,9 +1351,9 @@ type DescribeWorkspacesInput struct {
 	// to retrieve information. This parameter cannot be combined with any other
 	// filter parameter.
 	//
-	// Because the CreateWorkspaces operation is asynchronous, the identifier returned
-	// by CreateWorkspaces is not immediately available. If you immediately call
-	// DescribeWorkspaces with this identifier, no information will be returned.
+	// Because the CreateWorkspaces operation is asynchronous, the identifier it
+	// returns is not immediately available. If you immediately call DescribeWorkspaces
+	// with this identifier, no information is returned.
 	WorkspaceIds []*string `min:"1" type:"list"`
 }
 
@@ -1137,7 +1395,8 @@ type DescribeWorkspacesOutput struct {
 
 	// If not null, more results are available. Pass this value for the NextToken
 	// parameter in a subsequent call to this operation to retrieve the next set
-	// of items. This token is valid for one day and must be used within that timeframe.
+	// of items. This token is valid for one day and must be used within that time
+	// frame.
 	NextToken *string `min:"1" type:"string"`
 
 	// An array of structures that contain the information about the WorkSpaces.
@@ -1167,8 +1426,8 @@ type FailedCreateWorkspaceRequest struct {
 	// The textual error message.
 	ErrorMessage *string `type:"string"`
 
-	// A WorkspaceRequest object that contains the information about the WorkSpace
-	// that could not be created.
+	// A FailedCreateWorkspaceRequest$WorkspaceRequest object that contains the
+	// information about the WorkSpace that could not be created.
 	WorkspaceRequest *WorkspaceRequest `type:"structure"`
 }
 
@@ -1183,7 +1442,8 @@ func (s FailedCreateWorkspaceRequest) GoString() string {
 }
 
 // Contains information about a WorkSpace that could not be rebooted (RebootWorkspaces),
-// rebuilt (RebuildWorkspaces), or terminated (TerminateWorkspaces).
+// rebuilt (RebuildWorkspaces), terminated (TerminateWorkspaces), started (StartWorkspaces),
+// or stopped (StopWorkspaces).
 type FailedWorkspaceChangeRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -1204,6 +1464,56 @@ func (s FailedWorkspaceChangeRequest) String() string {
 
 // GoString returns the string representation
 func (s FailedWorkspaceChangeRequest) GoString() string {
+	return s.String()
+}
+
+type ModifyWorkspacePropertiesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the WorkSpace.
+	WorkspaceId *string `type:"string" required:"true"`
+
+	// The WorkSpace properties of the request.
+	WorkspaceProperties *WorkspaceProperties `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s ModifyWorkspacePropertiesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyWorkspacePropertiesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifyWorkspacePropertiesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifyWorkspacePropertiesInput"}
+	if s.WorkspaceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkspaceId"))
+	}
+	if s.WorkspaceProperties == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkspaceProperties"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+type ModifyWorkspacePropertiesOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyWorkspacePropertiesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyWorkspacePropertiesOutput) GoString() string {
 	return s.String()
 }
 
@@ -1287,7 +1597,7 @@ func (s *RebootWorkspacesInput) Validate() error {
 type RebootWorkspacesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An array of structures that represent any WorkSpaces that could not be rebooted.
+	// An array of structures representing any WorkSpaces that could not be rebooted.
 	FailedRequests []*FailedWorkspaceChangeRequest `type:"list"`
 }
 
@@ -1381,7 +1691,7 @@ func (s *RebuildWorkspacesInput) Validate() error {
 type RebuildWorkspacesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An array of structures that represent any WorkSpaces that could not be rebuilt.
+	// An array of structures representing any WorkSpaces that could not be rebuilt.
 	FailedRequests []*FailedWorkspaceChangeRequest `type:"list"`
 }
 
@@ -1392,6 +1702,142 @@ func (s RebuildWorkspacesOutput) String() string {
 
 // GoString returns the string representation
 func (s RebuildWorkspacesOutput) GoString() string {
+	return s.String()
+}
+
+// Describes the start request.
+type StartRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the WorkSpace.
+	WorkspaceId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s StartRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartRequest) GoString() string {
+	return s.String()
+}
+
+type StartWorkspacesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The requests.
+	StartWorkspaceRequests []*StartRequest `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s StartWorkspacesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartWorkspacesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartWorkspacesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartWorkspacesInput"}
+	if s.StartWorkspaceRequests == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartWorkspaceRequests"))
+	}
+	if s.StartWorkspaceRequests != nil && len(s.StartWorkspaceRequests) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StartWorkspaceRequests", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+type StartWorkspacesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The failed requests.
+	FailedRequests []*FailedWorkspaceChangeRequest `type:"list"`
+}
+
+// String returns the string representation
+func (s StartWorkspacesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartWorkspacesOutput) GoString() string {
+	return s.String()
+}
+
+// Describes the stop request.
+type StopRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the WorkSpace.
+	WorkspaceId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s StopRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopRequest) GoString() string {
+	return s.String()
+}
+
+type StopWorkspacesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The requests.
+	StopWorkspaceRequests []*StopRequest `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s StopWorkspacesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopWorkspacesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopWorkspacesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopWorkspacesInput"}
+	if s.StopWorkspaceRequests == nil {
+		invalidParams.Add(request.NewErrParamRequired("StopWorkspaceRequests"))
+	}
+	if s.StopWorkspaceRequests != nil && len(s.StopWorkspaceRequests) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StopWorkspaceRequests", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+type StopWorkspacesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The failed requests.
+	FailedRequests []*FailedWorkspaceChangeRequest `type:"list"`
+}
+
+// String returns the string representation
+func (s StopWorkspacesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopWorkspacesOutput) GoString() string {
 	return s.String()
 }
 
@@ -1512,7 +1958,7 @@ func (s *TerminateWorkspacesInput) Validate() error {
 type TerminateWorkspacesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An array of structures that represent any WorkSpaces that could not be terminated.
+	// An array of structures representing any WorkSpaces that could not be terminated.
 	FailedRequests []*FailedWorkspaceChangeRequest `type:"list"`
 }
 
@@ -1588,6 +2034,9 @@ type Workspace struct {
 
 	// The identifier of the WorkSpace.
 	WorkspaceId *string `type:"string"`
+
+	// Describes the properties of a WorkSpace.
+	WorkspaceProperties *WorkspaceProperties `type:"structure"`
 }
 
 // String returns the string representation
@@ -1632,6 +2081,34 @@ func (s WorkspaceBundle) String() string {
 
 // GoString returns the string representation
 func (s WorkspaceBundle) GoString() string {
+	return s.String()
+}
+
+// Describes the connection status of a WorkSpace.
+type WorkspaceConnectionStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The connection state of the WorkSpace. Returns UNKOWN if the WorkSpace is
+	// in a Stopped state.
+	ConnectionState *string `type:"string" enum:"ConnectionState"`
+
+	// The timestamp of the connection state check.
+	ConnectionStateCheckTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The timestamp of the last known user connection.
+	LastKnownUserConnectionTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The ID of the WorkSpace.
+	WorkspaceId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s WorkspaceConnectionStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s WorkspaceConnectionStatus) GoString() string {
 	return s.String()
 }
 
@@ -1692,6 +2169,30 @@ func (s WorkspaceDirectory) GoString() string {
 	return s.String()
 }
 
+// Describes the properties of a WorkSpace.
+type WorkspaceProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The running mode of the WorkSpace. AlwaysOn WorkSpaces are billed monthly.
+	// AutoStop WorkSpaces are billed by the hour and stopped when no longer being
+	// used in order to save on costs.
+	RunningMode *string `type:"string" enum:"RunningMode"`
+
+	// The time after a user logs off when WorkSpaces are automatically stopped.
+	// Configured in 60 minute intervals.
+	RunningModeAutoStopTimeoutInMinutes *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s WorkspaceProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s WorkspaceProperties) GoString() string {
+	return s.String()
+}
+
 // Contains information about a WorkSpace creation request.
 type WorkspaceRequest struct {
 	_ struct{} `type:"structure"`
@@ -1721,6 +2222,9 @@ type WorkspaceRequest struct {
 
 	// The KMS key used to encrypt data stored on your WorkSpace.
 	VolumeEncryptionKey *string `type:"string"`
+
+	// Describes the properties of a WorkSpace.
+	WorkspaceProperties *WorkspaceProperties `type:"structure"`
 }
 
 // String returns the string representation
@@ -1775,6 +2279,22 @@ const (
 )
 
 const (
+	// @enum ConnectionState
+	ConnectionStateConnected = "CONNECTED"
+	// @enum ConnectionState
+	ConnectionStateDisconnected = "DISCONNECTED"
+	// @enum ConnectionState
+	ConnectionStateUnknown = "UNKNOWN"
+)
+
+const (
+	// @enum RunningMode
+	RunningModeAutoStop = "AUTO_STOP"
+	// @enum RunningMode
+	RunningModeAlwaysOn = "ALWAYS_ON"
+)
+
+const (
 	// @enum WorkspaceDirectoryState
 	WorkspaceDirectoryStateRegistering = "REGISTERING"
 	// @enum WorkspaceDirectoryState
@@ -1806,13 +2326,21 @@ const (
 	// @enum WorkspaceState
 	WorkspaceStateRebooting = "REBOOTING"
 	// @enum WorkspaceState
+	WorkspaceStateStarting = "STARTING"
+	// @enum WorkspaceState
 	WorkspaceStateRebuilding = "REBUILDING"
+	// @enum WorkspaceState
+	WorkspaceStateMaintenance = "MAINTENANCE"
 	// @enum WorkspaceState
 	WorkspaceStateTerminating = "TERMINATING"
 	// @enum WorkspaceState
 	WorkspaceStateTerminated = "TERMINATED"
 	// @enum WorkspaceState
 	WorkspaceStateSuspended = "SUSPENDED"
+	// @enum WorkspaceState
+	WorkspaceStateStopping = "STOPPING"
+	// @enum WorkspaceState
+	WorkspaceStateStopped = "STOPPED"
 	// @enum WorkspaceState
 	WorkspaceStateError = "ERROR"
 )
