@@ -358,6 +358,14 @@ type EC2API interface {
 
 	DescribeFlowLogs(*ec2.DescribeFlowLogsInput) (*ec2.DescribeFlowLogsOutput, error)
 
+	DescribeHostReservationOfferingsRequest(*ec2.DescribeHostReservationOfferingsInput) (*request.Request, *ec2.DescribeHostReservationOfferingsOutput)
+
+	DescribeHostReservationOfferings(*ec2.DescribeHostReservationOfferingsInput) (*ec2.DescribeHostReservationOfferingsOutput, error)
+
+	DescribeHostReservationsRequest(*ec2.DescribeHostReservationsInput) (*request.Request, *ec2.DescribeHostReservationsOutput)
+
+	DescribeHostReservations(*ec2.DescribeHostReservationsInput) (*ec2.DescribeHostReservationsOutput, error)
+
 	DescribeHostsRequest(*ec2.DescribeHostsInput) (*request.Request, *ec2.DescribeHostsOutput)
 
 	DescribeHosts(*ec2.DescribeHostsInput) (*ec2.DescribeHostsOutput, error)
@@ -650,6 +658,10 @@ type EC2API interface {
 
 	GetConsoleScreenshot(*ec2.GetConsoleScreenshotInput) (*ec2.GetConsoleScreenshotOutput, error)
 
+	GetHostReservationPurchasePreviewRequest(*ec2.GetHostReservationPurchasePreviewInput) (*request.Request, *ec2.GetHostReservationPurchasePreviewOutput)
+
+	GetHostReservationPurchasePreview(*ec2.GetHostReservationPurchasePreviewInput) (*ec2.GetHostReservationPurchasePreviewOutput, error)
+
 	GetPasswordDataRequest(*ec2.GetPasswordDataInput) (*request.Request, *ec2.GetPasswordDataOutput)
 
 	GetPasswordData(*ec2.GetPasswordDataInput) (*ec2.GetPasswordDataOutput, error)
@@ -741,6 +753,10 @@ type EC2API interface {
 	MoveAddressToVpcRequest(*ec2.MoveAddressToVpcInput) (*request.Request, *ec2.MoveAddressToVpcOutput)
 
 	MoveAddressToVpc(*ec2.MoveAddressToVpcInput) (*ec2.MoveAddressToVpcOutput, error)
+
+	PurchaseHostReservationRequest(*ec2.PurchaseHostReservationInput) (*request.Request, *ec2.PurchaseHostReservationOutput)
+
+	PurchaseHostReservation(*ec2.PurchaseHostReservationInput) (*ec2.PurchaseHostReservationOutput, error)
 
 	PurchaseReservedInstancesOfferingRequest(*ec2.PurchaseReservedInstancesOfferingInput) (*request.Request, *ec2.PurchaseReservedInstancesOfferingOutput)
 

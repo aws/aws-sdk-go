@@ -2665,6 +2665,85 @@ func ExampleEC2_DescribeFlowLogs() {
 	fmt.Println(resp)
 }
 
+func ExampleEC2_DescribeHostReservationOfferings() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := ec2.New(sess)
+
+	params := &ec2.DescribeHostReservationOfferingsInput{
+		Filter: []*ec2.Filter{
+			{ // Required
+				Name: aws.String("String"),
+				Values: []*string{
+					aws.String("String"), // Required
+					// More values...
+				},
+			},
+			// More values...
+		},
+		MaxDuration: aws.Int64(1),
+		MaxResults:  aws.Int64(1),
+		MinDuration: aws.Int64(1),
+		NextToken:   aws.String("String"),
+		OfferingId:  aws.String("String"),
+	}
+	resp, err := svc.DescribeHostReservationOfferings(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleEC2_DescribeHostReservations() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := ec2.New(sess)
+
+	params := &ec2.DescribeHostReservationsInput{
+		Filter: []*ec2.Filter{
+			{ // Required
+				Name: aws.String("String"),
+				Values: []*string{
+					aws.String("String"), // Required
+					// More values...
+				},
+			},
+			// More values...
+		},
+		HostReservationIdSet: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+		MaxResults: aws.Int64(1),
+		NextToken:  aws.String("String"),
+	}
+	resp, err := svc.DescribeHostReservations(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleEC2_DescribeHosts() {
 	sess, err := session.NewSession()
 	if err != nil {
@@ -5012,6 +5091,35 @@ func ExampleEC2_GetConsoleScreenshot() {
 	fmt.Println(resp)
 }
 
+func ExampleEC2_GetHostReservationPurchasePreview() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := ec2.New(sess)
+
+	params := &ec2.GetHostReservationPurchasePreviewInput{
+		HostIdSet: []*string{ // Required
+			aws.String("String"), // Required
+			// More values...
+		},
+		OfferingId: aws.String("String"), // Required
+	}
+	resp, err := svc.GetHostReservationPurchasePreview(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleEC2_GetPasswordData() {
 	sess, err := session.NewSession()
 	if err != nil {
@@ -5867,6 +5975,38 @@ func ExampleEC2_MoveAddressToVpc() {
 		DryRun:   aws.Bool(true),
 	}
 	resp, err := svc.MoveAddressToVpc(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleEC2_PurchaseHostReservation() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := ec2.New(sess)
+
+	params := &ec2.PurchaseHostReservationInput{
+		HostIdSet: []*string{ // Required
+			aws.String("String"), // Required
+			// More values...
+		},
+		OfferingId:   aws.String("String"), // Required
+		ClientToken:  aws.String("String"),
+		CurrencyCode: aws.String("CurrencyCodeValues"),
+		LimitPrice:   aws.String("String"),
+	}
+	resp, err := svc.PurchaseHostReservation(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
