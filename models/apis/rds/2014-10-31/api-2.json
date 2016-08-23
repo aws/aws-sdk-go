@@ -102,7 +102,8 @@
       "errors":[
         {"shape":"DBClusterSnapshotAlreadyExistsFault"},
         {"shape":"DBClusterSnapshotNotFoundFault"},
-        {"shape":"InvalidDBClusterStateFault"}
+        {"shape":"InvalidDBClusterStateFault"},
+        {"shape":"InvalidDBClusterSnapshotStateFault"}
       ]
     },
     "CopyDBParameterGroup":{
@@ -1291,7 +1292,8 @@
         {"shape":"InvalidS3BucketFault"},
         {"shape":"DBClusterParameterGroupNotFoundFault"},
         {"shape":"KMSKeyNotAccessibleFault"},
-        {"shape":"DBClusterNotFoundFault"}
+        {"shape":"DBClusterNotFoundFault"},
+        {"shape":"InsufficientStorageClusterCapacityFault"}
       ]
     },
     "RestoreDBClusterFromSnapshot":{
@@ -1344,6 +1346,7 @@
         {"shape":"DBClusterNotFoundFault"},
         {"shape":"DBClusterSnapshotNotFoundFault"},
         {"shape":"InsufficientDBClusterCapacityFault"},
+        {"shape":"InsufficientStorageClusterCapacityFault"},
         {"shape":"InvalidDBSnapshotStateFault"},
         {"shape":"InvalidDBClusterSnapshotStateFault"},
         {"shape":"StorageQuotaExceededFault"},
@@ -1602,7 +1605,8 @@
         "CertificateType":{"shape":"String"},
         "Thumbprint":{"shape":"String"},
         "ValidFrom":{"shape":"TStamp"},
-        "ValidTill":{"shape":"TStamp"}
+        "ValidTill":{"shape":"TStamp"},
+        "CertificateArn":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -2042,7 +2046,8 @@
         "HostedZoneId":{"shape":"String"},
         "StorageEncrypted":{"shape":"Boolean"},
         "KmsKeyId":{"shape":"String"},
-        "DbClusterResourceId":{"shape":"String"}
+        "DbClusterResourceId":{"shape":"String"},
+        "DBClusterArn":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -2118,7 +2123,8 @@
       "members":{
         "DBClusterParameterGroupName":{"shape":"String"},
         "DBParameterGroupFamily":{"shape":"String"},
-        "Description":{"shape":"String"}
+        "Description":{"shape":"String"},
+        "DBClusterParameterGroupArn":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -2190,7 +2196,8 @@
         "SnapshotType":{"shape":"String"},
         "PercentProgress":{"shape":"Integer"},
         "StorageEncrypted":{"shape":"Boolean"},
-        "KmsKeyId":{"shape":"String"}
+        "KmsKeyId":{"shape":"String"},
+        "DBClusterSnapshotArn":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -2326,7 +2333,8 @@
         "MonitoringInterval":{"shape":"IntegerOptional"},
         "EnhancedMonitoringResourceArn":{"shape":"String"},
         "MonitoringRoleArn":{"shape":"String"},
-        "PromotionTier":{"shape":"IntegerOptional"}
+        "PromotionTier":{"shape":"IntegerOptional"},
+        "DBInstanceArn":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -2398,7 +2406,8 @@
       "members":{
         "DBParameterGroupName":{"shape":"String"},
         "DBParameterGroupFamily":{"shape":"String"},
-        "Description":{"shape":"String"}
+        "Description":{"shape":"String"},
+        "DBParameterGroupArn":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -2484,7 +2493,8 @@
         "DBSecurityGroupDescription":{"shape":"String"},
         "VpcId":{"shape":"String"},
         "EC2SecurityGroups":{"shape":"EC2SecurityGroupList"},
-        "IPRanges":{"shape":"IPRangeList"}
+        "IPRanges":{"shape":"IPRangeList"},
+        "DBSecurityGroupArn":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -2592,7 +2602,8 @@
         "StorageType":{"shape":"String"},
         "TdeCredentialArn":{"shape":"String"},
         "Encrypted":{"shape":"Boolean"},
-        "KmsKeyId":{"shape":"String"}
+        "KmsKeyId":{"shape":"String"},
+        "DBSnapshotArn":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -2662,7 +2673,8 @@
         "DBSubnetGroupDescription":{"shape":"String"},
         "VpcId":{"shape":"String"},
         "SubnetGroupStatus":{"shape":"String"},
-        "Subnets":{"shape":"SubnetList"}
+        "Subnets":{"shape":"SubnetList"},
+        "DBSubnetGroupArn":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -3276,7 +3288,8 @@
         "SourceType":{"shape":"SourceType"},
         "Message":{"shape":"String"},
         "EventCategories":{"shape":"EventCategoriesList"},
-        "Date":{"shape":"TStamp"}
+        "Date":{"shape":"TStamp"},
+        "SourceArn":{"shape":"String"}
       }
     },
     "EventCategoriesList":{
@@ -3325,7 +3338,8 @@
         "SourceType":{"shape":"String"},
         "SourceIdsList":{"shape":"SourceIdsList"},
         "EventCategoriesList":{"shape":"EventCategoriesList"},
-        "Enabled":{"shape":"Boolean"}
+        "Enabled":{"shape":"Boolean"},
+        "EventSubscriptionArn":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -3868,7 +3882,8 @@
         "MajorEngineVersion":{"shape":"String"},
         "Options":{"shape":"OptionsList"},
         "AllowsVpcAndNonVpcInstanceMemberships":{"shape":"Boolean"},
-        "VpcId":{"shape":"String"}
+        "VpcId":{"shape":"String"},
+        "OptionGroupArn":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -4299,7 +4314,8 @@
         "OfferingType":{"shape":"String"},
         "MultiAZ":{"shape":"Boolean"},
         "State":{"shape":"String"},
-        "RecurringCharges":{"shape":"RecurringChargeList"}
+        "RecurringCharges":{"shape":"RecurringChargeList"},
+        "ReservedDBInstanceArn":{"shape":"String"}
       },
       "wrapper":true
     },

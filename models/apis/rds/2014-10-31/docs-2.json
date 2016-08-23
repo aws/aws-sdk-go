@@ -65,7 +65,7 @@
     "ModifyDBCluster": "<p>Modify a setting for an Amazon Aurora DB cluster. You can change one or more database configuration parameters by specifying these parameters and the new values in the request. For more information on Amazon Aurora, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html\">Aurora on Amazon RDS</a> in the <i>Amazon RDS User Guide.</i> </p>",
     "ModifyDBClusterParameterGroup": "<p> Modifies the parameters of a DB cluster parameter group. To modify more than one parameter, submit a list of the following: <code>ParameterName</code>, <code>ParameterValue</code>, and <code>ApplyMethod</code>. A maximum of 20 parameters can be modified in a single request. </p> <p>For more information on Amazon Aurora, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html\">Aurora on Amazon RDS</a> in the <i>Amazon RDS User Guide.</i> </p> <note> <p>Changes to dynamic parameters are applied immediately. Changes to static parameters require a reboot without failover to the DB cluster associated with the parameter group before the change can take effect.</p> </note> <important> <p>After you create a DB cluster parameter group, you should wait at least 5 minutes before creating your first DB cluster that uses that DB cluster parameter group as the default parameter group. This allows Amazon RDS to fully complete the create action before the parameter group is used as the default for a new DB cluster. This is especially important for parameters that are critical when creating the default database for a DB cluster, such as the character set for the default database defined by the <code>character_set_database</code> parameter. You can use the <i>Parameter Groups</i> option of the <a href=\"https://console.aws.amazon.com/rds/\">Amazon RDS console</a> or the <a>DescribeDBClusterParameters</a> command to verify that your DB cluster parameter group has been created or modified.</p> </important>",
     "ModifyDBClusterSnapshotAttribute": "<p>Adds an attribute and values to, or removes an attribute and values from, a manual DB cluster snapshot.</p> <p>To share a manual DB cluster snapshot with other AWS accounts, specify <code>restore</code> as the <code>AttributeName</code> and use the <code>ValuesToAdd</code> parameter to add a list of IDs of the AWS accounts that are authorized to restore the manual DB cluster snapshot. Use the value <code>all</code> to make the manual DB cluster snapshot public, which means that it can be copied or restored by all AWS accounts. Do not add the <code>all</code> value for any manual DB cluster snapshots that contain private information that you don't want available to all AWS accounts.</p> <p>To view which AWS accounts have access to copy or restore a manual DB cluster snapshot, or whether a manual DB cluster snapshot public or private, use the <a>DescribeDBClusterSnapshotAttributes</a> API action.</p> <p>If a manual DB cluster snapshot is encrypted, it cannot be shared.</p>",
-    "ModifyDBInstance": "<p>Modify settings for a DB instance. You can change one or more database configuration parameters by specifying these parameters and the new values in the request.</p>",
+    "ModifyDBInstance": "<p>Modifies settings for a DB instance. You can change one or more database configuration parameters by specifying these parameters and the new values in the request.</p>",
     "ModifyDBParameterGroup": "<p> Modifies the parameters of a DB parameter group. To modify more than one parameter, submit a list of the following: <code>ParameterName</code>, <code>ParameterValue</code>, and <code>ApplyMethod</code>. A maximum of 20 parameters can be modified in a single request. </p> <note> <p>Changes to dynamic parameters are applied immediately. Changes to static parameters require a reboot without failover to the DB instance associated with the parameter group before the change can take effect.</p> </note> <important> <p>After you modify a DB parameter group, you should wait at least 5 minutes before creating your first DB instance that uses that DB parameter group as the default parameter group. This allows Amazon RDS to fully complete the modify action before the parameter group is used as the default for a new DB instance. This is especially important for parameters that are critical when creating the default database for a DB instance, such as the character set for the default database defined by the <code>character_set_database</code> parameter. You can use the <i>Parameter Groups</i> option of the <a href=\"https://console.aws.amazon.com/rds/\">Amazon RDS console</a> or the <i>DescribeDBParameters</i> command to verify that your DB parameter group has been created or modified.</p> </important>",
     "ModifyDBSnapshotAttribute": "<p>Adds an attribute and values to, or removes an attribute and values from, a manual DB snapshot.</p> <p>To share a manual DB snapshot with other AWS accounts, specify <code>restore</code> as the <code>AttributeName</code> and use the <code>ValuesToAdd</code> parameter to add a list of IDs of the AWS accounts that are authorized to restore the manual DB snapshot. Uses the value <code>all</code> to make the manual DB snapshot public, which means it can be copied or restored by all AWS accounts. Do not add the <code>all</code> value for any manual DB snapshots that contain private information that you don't want available to all AWS accounts.</p> <p>To view which AWS accounts have access to copy or restore a manual DB snapshot, or whether a manual DB snapshot public or private, use the <a>DescribeDBSnapshotAttributes</a> API action.</p> <p>If the manual DB snapshot is encrypted, it cannot be shared.</p>",
     "ModifyDBSubnetGroup": "<p>Modifies an existing DB subnet group. DB subnet groups must contain at least one subnet in at least two AZs in the region.</p>",
@@ -224,8 +224,8 @@
         "Option$Permanent": "<p>Indicate if this option is permanent.</p>",
         "OptionGroup$AllowsVpcAndNonVpcInstanceMemberships": "<p>Indicates whether this option group can be applied to both VPC and non-VPC instances. The value <code>true</code> indicates the option group can be applied to both VPC and non-VPC instances. </p>",
         "OptionGroupOption$PortRequired": "<p>Specifies whether the option requires a port.</p>",
-        "OptionGroupOption$Persistent": "<p>A persistent option cannot be removed from the option group once the option group is used, but this option can be removed from the db instance while modifying the related data and assigning another option group without this option.</p>",
-        "OptionGroupOption$Permanent": "<p>A permanent option cannot be removed from the option group once the option group is used, and it cannot be removed from the db instance after assigning an option group with this permanent option.</p>",
+        "OptionGroupOption$Persistent": "<p>Persistent options can't be removed from an option group while DB instances are associated with the option group. If you disassociate all DB instances from the option group, your can remove the persistent option from the option group.</p>",
+        "OptionGroupOption$Permanent": "<p>Permanent options can never be removed from an option group. An option group containing a permanent option can't be removed from a DB instance.</p>",
         "OptionGroupOptionSetting$IsModifiable": "<p>Boolean value where true indicates that this option group option can be changed from the default value.</p>",
         "OptionSetting$IsModifiable": "<p>A Boolean value that, when true, indicates the option setting can be modified from the default.</p>",
         "OptionSetting$IsCollection": "<p>Indicates if the option setting is part of a collection.</p>",
@@ -1718,7 +1718,7 @@
     "OptionGroupOptionVersionsList": {
       "base": null,
       "refs": {
-        "OptionGroupOption$OptionGroupOptionVersions": "<p>Specifies the versions that are available for the option.</p>"
+        "OptionGroupOption$OptionGroupOptionVersions": "<p>The versions that are available for the option.</p>"
       }
     },
     "OptionGroupOptionsList": {
@@ -1782,7 +1782,7 @@
     "OptionsDependedOn": {
       "base": null,
       "refs": {
-        "OptionGroupOption$OptionsDependedOn": "<p>List of all options that are prerequisites for this option.</p>"
+        "OptionGroupOption$OptionsDependedOn": "<p>The options that are prerequisites for this option.</p>"
       }
     },
     "OptionsList": {
@@ -2157,6 +2157,7 @@
         "Certificate$CertificateIdentifier": "<p>The unique key that identifies a certificate.</p>",
         "Certificate$CertificateType": "<p>The type of the certificate.</p>",
         "Certificate$Thumbprint": "<p>The thumbprint of the certificate.</p>",
+        "Certificate$CertificateArn": null,
         "CertificateMessage$Marker": "<p> An optional pagination token provided by a previous <a>DescribeCertificates</a> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code> . </p>",
         "CharacterSet$CharacterSetName": "<p>The name of the character set.</p>",
         "CharacterSet$CharacterSetDescription": "<p>The description of the character set.</p>",
@@ -2231,7 +2232,7 @@
         "CreateDBSecurityGroupMessage$DBSecurityGroupDescription": "<p>The description for the DB security group.</p>",
         "CreateDBSnapshotMessage$DBSnapshotIdentifier": "<p>The identifier for the DB snapshot.</p> <p>Constraints:</p> <ul> <li> <p>Cannot be null, empty, or blank</p> </li> <li> <p>Must contain from 1 to 255 alphanumeric characters or hyphens</p> </li> <li> <p>First character must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens</p> </li> </ul> <p>Example: <code>my-snapshot-id</code> </p>",
         "CreateDBSnapshotMessage$DBInstanceIdentifier": "<p>The DB instance identifier. This is the unique key that identifies a DB instance.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63 alphanumeric characters or hyphens</p> </li> <li> <p>First character must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens</p> </li> </ul>",
-        "CreateDBSubnetGroupMessage$DBSubnetGroupName": "<p>The name for the DB subnet group. This value is stored as a lowercase string.</p> <p>Constraints: Must contain no more than 255 alphanumeric characters. Cannot contain periods, underscores, spaces, or hyphens. Must not be <code>default</code>.</p> <p>Example: <code>mySubnetgroup</code> </p>",
+        "CreateDBSubnetGroupMessage$DBSubnetGroupName": "<p>The name for the DB subnet group. This value is stored as a lowercase string.</p> <p>Constraints: Must contain no more than 255 alphanumeric characters, periods, underscores, spaces, or hyphens. Must not be default.</p> <p>Example: <code>mySubnetgroup</code> </p>",
         "CreateDBSubnetGroupMessage$DBSubnetGroupDescription": "<p>The description for the DB subnet group.</p>",
         "CreateEventSubscriptionMessage$SubscriptionName": "<p>The name of the subscription.</p> <p>Constraints: The name must be less than 255 characters.</p>",
         "CreateEventSubscriptionMessage$SnsTopicArn": "<p>The Amazon Resource Name (ARN) of the SNS topic created for event notification. The ARN is created by Amazon SNS when you create a topic and subscribe to it.</p>",
@@ -2257,6 +2258,7 @@
         "DBCluster$HostedZoneId": "<p>Specifies the ID that Amazon Route 53 assigns when you create a hosted zone.</p>",
         "DBCluster$KmsKeyId": "<p>If <code>StorageEncrypted</code> is true, the KMS key identifier for the encrypted DB cluster.</p>",
         "DBCluster$DbClusterResourceId": "<p>The region-unique, immutable identifier for the DB cluster. This identifier is found in AWS CloudTrail log entries whenever the KMS key for the DB cluster is accessed.</p>",
+        "DBCluster$DBClusterArn": null,
         "DBClusterMember$DBInstanceIdentifier": "<p>Specifies the instance identifier for this member of the DB cluster.</p>",
         "DBClusterMember$DBClusterParameterGroupStatus": "<p>Specifies the status of the DB cluster parameter group for this member of the DB cluster.</p>",
         "DBClusterMessage$Marker": "<p>A pagination token that can be used in a subsequent DescribeDBClusters request.</p>",
@@ -2265,6 +2267,7 @@
         "DBClusterParameterGroup$DBClusterParameterGroupName": "<p>Provides the name of the DB cluster parameter group.</p>",
         "DBClusterParameterGroup$DBParameterGroupFamily": "<p>Provides the name of the DB parameter group family that this DB cluster parameter group is compatible with.</p>",
         "DBClusterParameterGroup$Description": "<p>Provides the customer-specified description for this DB cluster parameter group.</p>",
+        "DBClusterParameterGroup$DBClusterParameterGroupArn": null,
         "DBClusterParameterGroupDetails$Marker": "<p> An optional pagination token provided by a previous DescribeDBClusterParameters request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code> . </p>",
         "DBClusterParameterGroupNameMessage$DBClusterParameterGroupName": "<p>The name of the DB cluster parameter group.</p> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255 alphanumeric characters</p> </li> <li> <p>First character must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens</p> </li> </ul> <note> <p>This value is stored as a lowercase string.</p> </note>",
         "DBClusterParameterGroupsMessage$Marker": "<p> An optional pagination token provided by a previous <code>DescribeDBClusterParameterGroups</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
@@ -2278,6 +2281,7 @@
         "DBClusterSnapshot$LicenseModel": "<p>Provides the license model information for this DB cluster snapshot.</p>",
         "DBClusterSnapshot$SnapshotType": "<p>Provides the type of the DB cluster snapshot.</p>",
         "DBClusterSnapshot$KmsKeyId": "<p>If <code>StorageEncrypted</code> is true, the KMS key identifier for the encrypted DB cluster snapshot.</p>",
+        "DBClusterSnapshot$DBClusterSnapshotArn": null,
         "DBClusterSnapshotAttribute$AttributeName": "<p>The name of the manual DB cluster snapshot attribute.</p> <p>The attribute named <code>restore</code> refers to the list of AWS accounts that have permission to copy or restore the manual DB cluster snapshot. For more information, see the <a>ModifyDBClusterSnapshotAttribute</a> API action.</p>",
         "DBClusterSnapshotAttributesResult$DBClusterSnapshotIdentifier": "<p>The identifier of the manual DB cluster snapshot that the attributes apply to.</p>",
         "DBClusterSnapshotMessage$Marker": "<p> An optional pagination token provided by a previous <a>DescribeDBClusterSnapshots</a> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
@@ -2309,6 +2313,7 @@
         "DBInstance$CACertificateIdentifier": "<p>The identifier of the CA certificate for this DB instance.</p>",
         "DBInstance$EnhancedMonitoringResourceArn": "<p>The Amazon Resource Name (ARN) of the Amazon CloudWatch Logs log stream that receives the Enhanced Monitoring metrics data for the DB instance.</p>",
         "DBInstance$MonitoringRoleArn": "<p>The ARN for the IAM role that permits RDS to send Enhanced Monitoring metrics to CloudWatch Logs.</p>",
+        "DBInstance$DBInstanceArn": null,
         "DBInstanceMessage$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code> . </p>",
         "DBInstanceStatusInfo$StatusType": "<p>This value is currently \"read replication.\"</p>",
         "DBInstanceStatusInfo$Status": "<p>Status of the DB instance. For a StatusType of read replica, the values can be replicating, error, stopped, or terminated.</p>",
@@ -2316,6 +2321,7 @@
         "DBParameterGroup$DBParameterGroupName": "<p>Provides the name of the DB parameter group.</p>",
         "DBParameterGroup$DBParameterGroupFamily": "<p>Provides the name of the DB parameter group family that this DB parameter group is compatible with.</p>",
         "DBParameterGroup$Description": "<p>Provides the customer-specified description for this DB parameter group.</p>",
+        "DBParameterGroup$DBParameterGroupArn": null,
         "DBParameterGroupDetails$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
         "DBParameterGroupNameMessage$DBParameterGroupName": "<p>Provides the name of the DB parameter group.</p>",
         "DBParameterGroupStatus$DBParameterGroupName": "<p>The name of the DP parameter group.</p>",
@@ -2325,6 +2331,7 @@
         "DBSecurityGroup$DBSecurityGroupName": "<p>Specifies the name of the DB security group.</p>",
         "DBSecurityGroup$DBSecurityGroupDescription": "<p>Provides the description of the DB security group.</p>",
         "DBSecurityGroup$VpcId": "<p>Provides the VpcId of the DB security group.</p>",
+        "DBSecurityGroup$DBSecurityGroupArn": null,
         "DBSecurityGroupMembership$DBSecurityGroupName": "<p>The name of the DB security group.</p>",
         "DBSecurityGroupMembership$Status": "<p>The status of the DB security group.</p>",
         "DBSecurityGroupMessage$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
@@ -2345,6 +2352,7 @@
         "DBSnapshot$StorageType": "<p>Specifies the storage type associated with DB Snapshot.</p>",
         "DBSnapshot$TdeCredentialArn": "<p>The ARN from the Key Store with which to associate the instance for TDE encryption.</p>",
         "DBSnapshot$KmsKeyId": "<p> If <code>Encrypted</code> is true, the KMS key identifier for the encrypted DB snapshot. </p>",
+        "DBSnapshot$DBSnapshotArn": null,
         "DBSnapshotAttribute$AttributeName": "<p>The name of the manual DB snapshot attribute.</p> <p>The attribute named <code>restore</code> refers to the list of AWS accounts that have permission to copy or restore the manual DB cluster snapshot. For more information, see the <a>ModifyDBSnapshotAttribute</a> API action.</p>",
         "DBSnapshotAttributesResult$DBSnapshotIdentifier": "<p>The identifier of the manual DB snapshot that the attributes apply to.</p>",
         "DBSnapshotMessage$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
@@ -2352,6 +2360,7 @@
         "DBSubnetGroup$DBSubnetGroupDescription": "<p>Provides the description of the DB subnet group.</p>",
         "DBSubnetGroup$VpcId": "<p>Provides the VpcId of the DB subnet group.</p>",
         "DBSubnetGroup$SubnetGroupStatus": "<p>Provides the status of the DB subnet group.</p>",
+        "DBSubnetGroup$DBSubnetGroupArn": null,
         "DBSubnetGroupMessage$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
         "DeleteDBClusterMessage$DBClusterIdentifier": "<p>The DB cluster identifier for the DB cluster to be deleted. This parameter isn't case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63 alphanumeric characters or hyphens</p> </li> <li> <p>First character must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens</p> </li> </ul>",
         "DeleteDBClusterMessage$FinalDBSnapshotIdentifier": "<p> The DB cluster snapshot identifier of the new DB cluster snapshot created when <code>SkipFinalSnapshot</code> is set to <code>false</code>. </p> <note> <p> Specifying this parameter and also setting the <code>SkipFinalShapshot</code> parameter to true results in an error. </p> </note> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255 alphanumeric characters</p> </li> <li> <p>First character must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens</p> </li> </ul>",
@@ -2459,6 +2468,7 @@
         "EngineDefaults$Marker": "<p> An optional pagination token provided by a previous EngineDefaults request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code> . </p>",
         "Event$SourceIdentifier": "<p>Provides the identifier for the source of the event.</p>",
         "Event$Message": "<p>Provides the text of this event.</p>",
+        "Event$SourceArn": null,
         "EventCategoriesList$member": null,
         "EventCategoriesMap$SourceType": "<p>The source type that the returned categories belong to</p>",
         "EventSubscription$CustomerAwsId": "<p>The AWS customer account associated with the RDS event notification subscription.</p>",
@@ -2467,6 +2477,7 @@
         "EventSubscription$Status": "<p>The status of the RDS event notification subscription.</p> <p>Constraints:</p> <p>Can be one of the following: creating | modifying | deleting | active | no-permission | topic-not-exist</p> <p>The status \"no-permission\" indicates that RDS no longer has permission to post to the SNS topic. The status \"topic-not-exist\" indicates that the topic was deleted after the subscription was created.</p>",
         "EventSubscription$SubscriptionCreationTime": "<p>The time the RDS event notification subscription was created.</p>",
         "EventSubscription$SourceType": "<p>The source type for the RDS event notification subscription.</p>",
+        "EventSubscription$EventSubscriptionArn": null,
         "EventSubscriptionsMessage$Marker": "<p> An optional pagination token provided by a previous DescribeOrderableDBInstanceOptions request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
         "EventsMessage$Marker": "<p> An optional pagination token provided by a previous Events request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code> . </p>",
         "FailoverDBClusterMessage$DBClusterIdentifier": "<p>A DB cluster identifier to force a failover for. This parameter is not case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63 alphanumeric characters or hyphens</p> </li> <li> <p>First character must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens</p> </li> </ul>",
@@ -2524,6 +2535,7 @@
         "OptionGroup$EngineName": "<p>Indicates the name of the engine that this option group can be applied to.</p>",
         "OptionGroup$MajorEngineVersion": "<p>Indicates the major engine version associated with this option group.</p>",
         "OptionGroup$VpcId": "<p>If <b>AllowsVpcAndNonVpcInstanceMemberships</b> is <code>false</code>, this field is blank. If <b>AllowsVpcAndNonVpcInstanceMemberships</b> is <code>true</code> and this field is blank, then this option group can be applied to both VPC and non-VPC instances. If this field contains a value, then this option group can only be applied to instances that are in the VPC indicated by this field. </p>",
+        "OptionGroup$OptionGroupArn": null,
         "OptionGroupMembership$OptionGroupName": "<p>The name of the option group that the instance belongs to.</p>",
         "OptionGroupMembership$Status": "<p>The status of the DB instance's option group membership. Valid values are: <code>in-sync</code>, <code>pending-apply</code>, <code>pending-removal</code>, <code>pending-maintenance-apply</code>, <code>pending-maintenance-removal</code>, <code>applying</code>, <code>removing</code>, and <code>failed</code>. </p>",
         "OptionGroupOption$Name": "<p>The name of the option.</p>",
@@ -2593,6 +2605,7 @@
         "ReservedDBInstance$ProductDescription": "<p>The description of the reserved DB instance.</p>",
         "ReservedDBInstance$OfferingType": "<p>The offering type of this reserved DB instance.</p>",
         "ReservedDBInstance$State": "<p>The state of the reserved DB instance.</p>",
+        "ReservedDBInstance$ReservedDBInstanceArn": null,
         "ReservedDBInstanceMessage$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
         "ReservedDBInstancesOffering$ReservedDBInstancesOfferingId": "<p>The offering identifier.</p>",
         "ReservedDBInstancesOffering$DBInstanceClass": "<p>The DB instance class for the reserved DB instance.</p>",

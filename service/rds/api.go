@@ -3899,8 +3899,9 @@ func (c *RDS) ModifyDBInstanceRequest(input *ModifyDBInstanceInput) (req *reques
 	return
 }
 
-// Modify settings for a DB instance. You can change one or more database configuration
-// parameters by specifying these parameters and the new values in the request.
+// Modifies settings for a DB instance. You can change one or more database
+// configuration parameters by specifying these parameters and the new values
+// in the request.
 func (c *RDS) ModifyDBInstance(input *ModifyDBInstanceInput) (*ModifyDBInstanceOutput, error) {
 	req, out := c.ModifyDBInstanceRequest(input)
 	err := req.Send()
@@ -5275,6 +5276,8 @@ func (s AvailabilityZone) GoString() string {
 // A CA certificate for an AWS account.
 type Certificate struct {
 	_ struct{} `type:"structure"`
+
+	CertificateArn *string `type:"string"`
 
 	// The unique key that identifies a certificate.
 	CertificateIdentifier *string `type:"string"`
@@ -7369,8 +7372,8 @@ type CreateDBSubnetGroupInput struct {
 
 	// The name for the DB subnet group. This value is stored as a lowercase string.
 	//
-	// Constraints: Must contain no more than 255 alphanumeric characters. Cannot
-	// contain periods, underscores, spaces, or hyphens. Must not be default.
+	// Constraints: Must contain no more than 255 alphanumeric characters, periods,
+	// underscores, spaces, or hyphens. Must not be default.
 	//
 	// Example: mySubnetgroup
 	DBSubnetGroupName *string `type:"string" required:"true"`
@@ -7653,6 +7656,8 @@ type DBCluster struct {
 	// associated with.
 	CharacterSetName *string `type:"string"`
 
+	DBClusterArn *string `type:"string"`
+
 	// Contains a user-supplied DB cluster identifier. This identifier is the unique
 	// key that identifies a DB cluster.
 	DBClusterIdentifier *string `type:"string"`
@@ -7810,6 +7815,8 @@ func (s DBClusterOptionGroupStatus) GoString() string {
 type DBClusterParameterGroup struct {
 	_ struct{} `type:"structure"`
 
+	DBClusterParameterGroupArn *string `type:"string"`
+
 	// Provides the name of the DB cluster parameter group.
 	DBClusterParameterGroupName *string `type:"string"`
 
@@ -7884,6 +7891,8 @@ type DBClusterSnapshot struct {
 	// Specifies the DB cluster identifier of the DB cluster that this DB cluster
 	// snapshot was created from.
 	DBClusterIdentifier *string `type:"string"`
+
+	DBClusterSnapshotArn *string `type:"string"`
 
 	// Specifies the identifier for the DB cluster snapshot.
 	DBClusterSnapshotIdentifier *string `type:"string"`
@@ -8081,6 +8090,8 @@ type DBInstance struct {
 	// If the DB instance is a member of a DB cluster, contains the name of the
 	// DB cluster that the DB instance is a member of.
 	DBClusterIdentifier *string `type:"string"`
+
+	DBInstanceArn *string `type:"string"`
 
 	// Contains the name of the compute and memory capacity class of the DB instance.
 	DBInstanceClass *string `type:"string"`
@@ -8296,6 +8307,8 @@ func (s DBInstanceStatusInfo) GoString() string {
 type DBParameterGroup struct {
 	_ struct{} `type:"structure"`
 
+	DBParameterGroupArn *string `type:"string"`
+
 	// Provides the name of the DB parameter group family that this DB parameter
 	// group is compatible with.
 	DBParameterGroupFamily *string `type:"string"`
@@ -8386,6 +8399,8 @@ func (s DBParameterGroupStatus) GoString() string {
 type DBSecurityGroup struct {
 	_ struct{} `type:"structure"`
 
+	DBSecurityGroupArn *string `type:"string"`
+
 	// Provides the description of the DB security group.
 	DBSecurityGroupDescription *string `type:"string"`
 
@@ -8465,6 +8480,8 @@ type DBSnapshot struct {
 	// Specifies the DB instance identifier of the DB instance this DB snapshot
 	// was created from.
 	DBInstanceIdentifier *string `type:"string"`
+
+	DBSnapshotArn *string `type:"string"`
 
 	// Specifies the identifier for the DB snapshot.
 	DBSnapshotIdentifier *string `type:"string"`
@@ -8616,6 +8633,8 @@ func (s DBSnapshotAttributesResult) GoString() string {
 // action.
 type DBSubnetGroup struct {
 	_ struct{} `type:"structure"`
+
+	DBSubnetGroupArn *string `type:"string"`
 
 	// Provides the description of the DB subnet group.
 	DBSubnetGroupDescription *string `type:"string"`
@@ -11891,6 +11910,8 @@ type Event struct {
 	// Provides the text of this event.
 	Message *string `type:"string"`
 
+	SourceArn *string `type:"string"`
+
 	// Provides the identifier for the source of the event.
 	SourceIdentifier *string `type:"string"`
 
@@ -11947,6 +11968,8 @@ type EventSubscription struct {
 
 	// A list of event categories for the RDS event notification subscription.
 	EventCategoriesList []*string `locationNameList:"EventCategory" type:"list"`
+
+	EventSubscriptionArn *string `type:"string"`
 
 	// The topic ARN of the RDS event notification subscription.
 	SnsTopicArn *string `type:"string"`
@@ -13448,6 +13471,8 @@ type OptionGroup struct {
 	// Indicates the major engine version associated with this option group.
 	MajorEngineVersion *string `type:"string"`
 
+	OptionGroupArn *string `type:"string"`
+
 	// Provides a description of the option group.
 	OptionGroupDescription *string `type:"string"`
 
@@ -13524,21 +13549,20 @@ type OptionGroupOption struct {
 	// for each option in an option group.
 	OptionGroupOptionSettings []*OptionGroupOptionSetting `locationNameList:"OptionGroupOptionSetting" type:"list"`
 
-	// Specifies the versions that are available for the option.
+	// The versions that are available for the option.
 	OptionGroupOptionVersions []*OptionVersion `locationNameList:"OptionVersion" type:"list"`
 
-	// List of all options that are prerequisites for this option.
+	// The options that are prerequisites for this option.
 	OptionsDependedOn []*string `locationNameList:"OptionName" type:"list"`
 
-	// A permanent option cannot be removed from the option group once the option
-	// group is used, and it cannot be removed from the db instance after assigning
-	// an option group with this permanent option.
+	// Permanent options can never be removed from an option group. An option group
+	// containing a permanent option can't be removed from a DB instance.
 	Permanent *bool `type:"boolean"`
 
-	// A persistent option cannot be removed from the option group once the option
-	// group is used, but this option can be removed from the db instance while
-	// modifying the related data and assigning another option group without this
-	// option.
+	// Persistent options can't be removed from an option group while DB instances
+	// are associated with the option group. If you disassociate all DB instances
+	// from the option group, your can remove the persistent option from the option
+	// group.
 	Persistent *bool `type:"boolean"`
 
 	// Specifies whether the option requires a port.
@@ -14334,6 +14358,8 @@ type ReservedDBInstance struct {
 
 	// The recurring price charged to run this reserved DB instance.
 	RecurringCharges []*RecurringCharge `locationNameList:"RecurringCharge" type:"list"`
+
+	ReservedDBInstanceArn *string `type:"string"`
 
 	// The unique identifier for the reservation.
 	ReservedDBInstanceId *string `type:"string"`
