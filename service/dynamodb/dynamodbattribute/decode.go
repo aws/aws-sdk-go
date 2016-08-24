@@ -449,7 +449,20 @@ func (d *Decoder) decodeMap(avMap map[string]*dynamodb.AttributeValue, v reflect
 		fields := unionStructFields(v.Type(), d.MarshalOptions)
 		for k, av := range avMap {
 			if f, ok := fieldByName(fields, k); ok {
-				fv := v.FieldByIndex(f.Index)
+				fv := v
+				for i, x := range f.Index {
+					if i > 0 {
+						if fv.Kind() == reflect.Ptr && fv.Type().Elem().Kind() == reflect.Struct {
+							if fv.IsNil() {
+								// Create a struct object for embedded pointer
+								// fields, before accessing it.
+								fv.Set(reflect.New(fv.Type().Elem()))
+							}
+							fv = fv.Elem()
+						}
+					}
+					fv = fv.Field(x)
+				}
 				if err := d.decode(av, fv, f.tag); err != nil {
 					return err
 				}

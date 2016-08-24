@@ -392,3 +392,36 @@ func TestDecodeUseNumberNumberSet(t *testing.T) {
 	assert.Equal(t, "123", ns[0].String())
 	assert.Equal(t, "321", ns[1].String())
 }
+
+func TestDecodeEmbeddedPointerStruct(t *testing.T) {
+	type B struct {
+		Bint int
+	}
+	type C struct {
+		Cint int
+	}
+	type A struct {
+		Aint int
+		*B
+		*C
+	}
+	av := &dynamodb.AttributeValue{
+		M: map[string]*dynamodb.AttributeValue{
+			"Aint": {
+				N: aws.String("321"),
+			},
+			"Bint": {
+				N: aws.String("123"),
+			},
+		},
+	}
+	decoder := NewDecoder()
+	a := A{}
+	err := decoder.Decode(av, &a)
+	assert.NoError(t, err)
+	assert.Equal(t, 321, a.Aint)
+	// Embedded pointer struct can be created automatically.
+	assert.Equal(t, 123, a.Bint)
+	// But not for absent fields.
+	assert.Nil(t, a.C)
+}

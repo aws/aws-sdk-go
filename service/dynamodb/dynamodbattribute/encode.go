@@ -233,7 +233,25 @@ func (e *Encoder) encodeStruct(av *dynamodb.AttributeValue, v reflect.Value) err
 			return &InvalidMarshalError{msg: "map key cannot be empty"}
 		}
 
-		fv := v.FieldByIndex(f.Index)
+		fv := v
+		found := true
+		for i, x := range f.Index {
+			if i > 0 {
+				if fv.Kind() == reflect.Ptr && fv.Type().Elem().Kind() == reflect.Struct {
+					if fv.IsNil() {
+						// Skip embedded pointer fields.
+						found = false
+						break
+					}
+					fv = fv.Elem()
+				}
+			}
+			fv = fv.Field(x)
+		}
+		if !found {
+			continue
+		}
+		// fv := v.FieldByIndex(f.Index)
 		elem := &dynamodb.AttributeValue{}
 		err := e.encode(elem, fv, f.tag)
 		if err != nil {
