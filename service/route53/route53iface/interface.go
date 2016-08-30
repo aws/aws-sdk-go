@@ -192,6 +192,10 @@ type Route53API interface {
 
 	ListTrafficPolicyVersions(*route53.ListTrafficPolicyVersionsInput) (*route53.ListTrafficPolicyVersionsOutput, error)
 
+	TestDNSAnswerRequest(*route53.TestDNSAnswerInput) (*request.Request, *route53.TestDNSAnswerOutput)
+
+	TestDNSAnswer(*route53.TestDNSAnswerInput) (*route53.TestDNSAnswerOutput, error)
+
 	UpdateHealthCheckRequest(*route53.UpdateHealthCheckInput) (*request.Request, *route53.UpdateHealthCheckOutput)
 
 	UpdateHealthCheck(*route53.UpdateHealthCheckInput) (*route53.UpdateHealthCheckOutput, error)
