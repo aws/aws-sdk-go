@@ -516,6 +516,56 @@ func (c *CodePipeline) GetPipeline(input *GetPipelineInput) (*GetPipelineOutput,
 	return out, err
 }
 
+const opGetPipelineExecution = "GetPipelineExecution"
+
+// GetPipelineExecutionRequest generates a "aws/request.Request" representing the
+// client's request for the GetPipelineExecution operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetPipelineExecution method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetPipelineExecutionRequest method.
+//    req, resp := client.GetPipelineExecutionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *CodePipeline) GetPipelineExecutionRequest(input *GetPipelineExecutionInput) (req *request.Request, output *GetPipelineExecutionOutput) {
+	op := &request.Operation{
+		Name:       opGetPipelineExecution,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetPipelineExecutionInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &GetPipelineExecutionOutput{}
+	req.Data = output
+	return
+}
+
+// Returns information about an execution of a pipeline, including details about
+// artifacts, the pipeline execution ID, and the name, version, and status of
+// the pipeline.
+func (c *CodePipeline) GetPipelineExecution(input *GetPipelineExecutionInput) (*GetPipelineExecutionOutput, error) {
+	req, out := c.GetPipelineExecutionRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opGetPipelineState = "GetPipelineState"
 
 // GetPipelineStateRequest generates a "aws/request.Request" representing the
@@ -2024,6 +2074,65 @@ func (s ArtifactLocation) GoString() string {
 	return s.String()
 }
 
+// Represents revision details of an artifact.
+type ArtifactRevision struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time when the most recent revision of the artifact was created,
+	// in timestamp format.
+	Created *time.Time `locationName:"created" type:"timestamp" timestampFormat:"unix"`
+
+	// An additional identifier for a revision, such as a commit date or, for artifacts
+	// stored in Amazon S3 buckets, the ETag value.
+	RevisionChangeIdentifier *string `locationName:"revisionChangeIdentifier" min:"1" type:"string"`
+
+	// The revision ID of the artifact.
+	RevisionId *string `locationName:"revisionId" min:"1" type:"string"`
+
+	// Summary information about the most recent revision of the artifact. For GitHub
+	// and AWS CodeCommit repositories, the commit message. For Amazon S3 buckets
+	// or actions, the user-provided value of an x-amz-meta-codepipeline-artifact-revision-summary
+	// key specified in the object metadata.
+	RevisionSummary *string `locationName:"revisionSummary" min:"1" type:"string"`
+
+	// The commit ID for the artifact revision. For artifacts stored in GitHub or
+	// AWS CodeCommit repositories, the commit ID is linked to a commit details
+	// page.
+	RevisionUrl *string `locationName:"revisionUrl" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ArtifactRevision) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ArtifactRevision) GoString() string {
+	return s.String()
+}
+
+// Represents information about an artifact revision.
+type ArtifactRevisionInformation struct {
+	_ struct{} `type:"structure"`
+
+	// The name of an artifact. This name might be system-generated, such as "MyApp",
+	// or might be defined by the user when an action is created.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// Represents details about the ArtifactRevision object.
+	Revision *ArtifactRevision `locationName:"revision" type:"structure"`
+}
+
+// String returns the string representation
+func (s ArtifactRevisionInformation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ArtifactRevisionInformation) GoString() string {
+	return s.String()
+}
+
 // The Amazon S3 location where artifacts are stored for the pipeline. If this
 // Amazon S3 bucket is created manually, it must meet the requirements for AWS
 // CodePipeline. For more information, see the Concepts (http://docs.aws.amazon.com/codepipeline/latest/userguide/concepts.html#CPS3Bucket).
@@ -2296,8 +2405,15 @@ type CurrentRevision struct {
 	// The change identifier for the current revision.
 	ChangeIdentifier *string `locationName:"changeIdentifier" min:"1" type:"string" required:"true"`
 
+	// The date and time when the most recent revision of the artifact was created,
+	// in timestamp format.
+	Created *time.Time `locationName:"created" type:"timestamp" timestampFormat:"unix"`
+
 	// The revision ID of the current version of an artifact.
 	Revision *string `locationName:"revision" min:"1" type:"string" required:"true"`
+
+	// The summary of the most recent revision of the artifact.
+	RevisionSummary *string `locationName:"revisionSummary" min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -2324,6 +2440,9 @@ func (s *CurrentRevision) Validate() error {
 	}
 	if s.Revision != nil && len(*s.Revision) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Revision", 1))
+	}
+	if s.RevisionSummary != nil && len(*s.RevisionSummary) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RevisionSummary", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2787,6 +2906,64 @@ func (s GetJobDetailsOutput) String() string {
 
 // GoString returns the string representation
 func (s GetJobDetailsOutput) GoString() string {
+	return s.String()
+}
+
+// Represents the input of a get pipeline execution action.
+type GetPipelineExecutionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the pipeline execution about which you want to get execution details.
+	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string" required:"true"`
+
+	// The name of the pipeline about which you want to get execution details.
+	PipelineName *string `locationName:"pipelineName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetPipelineExecutionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetPipelineExecutionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetPipelineExecutionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetPipelineExecutionInput"}
+	if s.PipelineExecutionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineExecutionId"))
+	}
+	if s.PipelineName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineName"))
+	}
+	if s.PipelineName != nil && len(*s.PipelineName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PipelineName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// Represents the output of a get pipeline execution action.
+type GetPipelineExecutionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Represents information about the execution of a pipeline.
+	PipelineExecution *PipelineExecution `locationName:"pipelineExecution" type:"structure"`
+}
+
+// String returns the string representation
+func (s GetPipelineExecutionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetPipelineExecutionOutput) GoString() string {
 	return s.String()
 }
 
@@ -3349,6 +3526,46 @@ func (s *PipelineDeclaration) Validate() error {
 	return nil
 }
 
+// Represents information about an execution of a pipeline.
+type PipelineExecution struct {
+	_ struct{} `type:"structure"`
+
+	// A list of ArtifactRevisionInformation objects included in a pipeline execution.
+	ArtifactRevisionInformations []*ArtifactRevisionInformation `locationName:"artifactRevisionInformations" type:"list"`
+
+	// The ID of the pipeline execution.
+	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string"`
+
+	// The name of the pipeline that was executed.
+	PipelineName *string `locationName:"pipelineName" min:"1" type:"string"`
+
+	// The version number of the pipeline that was executed.
+	PipelineVersion *int64 `locationName:"pipelineVersion" min:"1" type:"integer"`
+
+	// The status of the pipeline execution.
+	//
+	//   InProgress: The pipeline execution is currently running.
+	//
+	//   Succeeded: The pipeline execution completed successfully.
+	//
+	//   Superseded: While this pipeline execution was waiting for the next stage
+	// to be completed, a newer pipeline execution caught up and continued through
+	// the pipeline instead.
+	//
+	//   Failed: The pipeline did not complete successfully.
+	Status *string `locationName:"status" type:"string" enum:"PipelineExecutionStatus"`
+}
+
+// String returns the string representation
+func (s PipelineExecution) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PipelineExecution) GoString() string {
+	return s.String()
+}
+
 // Returns a summary of a pipeline.
 type PipelineSummary struct {
 	_ struct{} `type:"structure"`
@@ -3569,7 +3786,8 @@ func (s *PutActionRevisionInput) Validate() error {
 type PutActionRevisionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The new revision number or ID for the revision after the action completes.
+	// Indicates whether the artifact revision was previously used in an execution
+	// of the specified pipeline.
 	NewRevision *bool `locationName:"newRevision" type:"boolean"`
 
 	// The ID of the current workflow state of the pipeline.
@@ -4215,7 +4433,7 @@ func (s *StartPipelineExecutionInput) Validate() error {
 type StartPipelineExecutionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The unique system-generated ID of the pipeline that was started.
+	// The unique system-generated ID of the pipeline execution that was started.
 	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string"`
 }
 
@@ -4511,6 +4729,17 @@ const (
 	JobStatusSucceeded = "Succeeded"
 	// @enum JobStatus
 	JobStatusFailed = "Failed"
+)
+
+const (
+	// @enum PipelineExecutionStatus
+	PipelineExecutionStatusInProgress = "InProgress"
+	// @enum PipelineExecutionStatus
+	PipelineExecutionStatusSucceeded = "Succeeded"
+	// @enum PipelineExecutionStatus
+	PipelineExecutionStatusSuperseded = "Superseded"
+	// @enum PipelineExecutionStatus
+	PipelineExecutionStatusFailed = "Failed"
 )
 
 const (

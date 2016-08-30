@@ -50,6 +50,10 @@ type CodePipelineAPI interface {
 
 	GetPipeline(*codepipeline.GetPipelineInput) (*codepipeline.GetPipelineOutput, error)
 
+	GetPipelineExecutionRequest(*codepipeline.GetPipelineExecutionInput) (*request.Request, *codepipeline.GetPipelineExecutionOutput)
+
+	GetPipelineExecution(*codepipeline.GetPipelineExecutionInput) (*codepipeline.GetPipelineExecutionOutput, error)
+
 	GetPipelineStateRequest(*codepipeline.GetPipelineStateInput) (*request.Request, *codepipeline.GetPipelineStateOutput)
 
 	GetPipelineState(*codepipeline.GetPipelineStateInput) (*codepipeline.GetPipelineStateOutput, error)

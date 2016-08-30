@@ -359,6 +359,32 @@ func ExampleCodePipeline_GetPipeline() {
 	fmt.Println(resp)
 }
 
+func ExampleCodePipeline_GetPipelineExecution() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := codepipeline.New(sess)
+
+	params := &codepipeline.GetPipelineExecutionInput{
+		PipelineExecutionId: aws.String("PipelineExecutionId"), // Required
+		PipelineName:        aws.String("PipelineName"),        // Required
+	}
+	resp, err := svc.GetPipelineExecution(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleCodePipeline_GetPipelineState() {
 	sess, err := session.NewSession()
 	if err != nil {
@@ -636,6 +662,8 @@ func ExampleCodePipeline_PutJobSuccessResult() {
 		CurrentRevision: &codepipeline.CurrentRevision{
 			ChangeIdentifier: aws.String("RevisionChangeIdentifier"), // Required
 			Revision:         aws.String("Revision"),                 // Required
+			Created:          aws.Time(time.Now()),
+			RevisionSummary:  aws.String("RevisionSummary"),
 		},
 		ExecutionDetails: &codepipeline.ExecutionDetails{
 			ExternalExecutionId: aws.String("ExecutionId"),
@@ -703,6 +731,8 @@ func ExampleCodePipeline_PutThirdPartyJobSuccessResult() {
 		CurrentRevision: &codepipeline.CurrentRevision{
 			ChangeIdentifier: aws.String("RevisionChangeIdentifier"), // Required
 			Revision:         aws.String("Revision"),                 // Required
+			Created:          aws.Time(time.Now()),
+			RevisionSummary:  aws.String("RevisionSummary"),
 		},
 		ExecutionDetails: &codepipeline.ExecutionDetails{
 			ExternalExecutionId: aws.String("ExecutionId"),

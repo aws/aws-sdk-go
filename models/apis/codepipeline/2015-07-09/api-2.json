@@ -146,6 +146,20 @@
         {"shape":"PipelineVersionNotFoundException"}
       ]
     },
+    "GetPipelineExecution":{
+      "name":"GetPipelineExecution",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetPipelineExecutionInput"},
+      "output":{"shape":"GetPipelineExecutionOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"PipelineNotFoundException"},
+        {"shape":"PipelineExecutionNotFoundException"}
+      ]
+    },
     "GetPipelineState":{
       "name":"GetPipelineState",
       "http":{
@@ -707,6 +721,27 @@
       "min":1,
       "pattern":"[a-zA-Z0-9_\\-]+"
     },
+    "ArtifactRevision":{
+      "type":"structure",
+      "members":{
+        "revisionId":{"shape":"Revision"},
+        "revisionChangeIdentifier":{"shape":"RevisionChangeIdentifier"},
+        "revisionSummary":{"shape":"RevisionSummary"},
+        "created":{"shape":"Timestamp"},
+        "revisionUrl":{"shape":"Url"}
+      }
+    },
+    "ArtifactRevisionInformation":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"ArtifactName"},
+        "revision":{"shape":"ArtifactRevision"}
+      }
+    },
+    "ArtifactRevisionInformationList":{
+      "type":"list",
+      "member":{"shape":"ArtifactRevisionInformation"}
+    },
     "ArtifactStore":{
       "type":"structure",
       "required":[
@@ -804,7 +839,9 @@
       ],
       "members":{
         "revision":{"shape":"Revision"},
-        "changeIdentifier":{"shape":"RevisionChangeIdentifier"}
+        "changeIdentifier":{"shape":"RevisionChangeIdentifier"},
+        "created":{"shape":"Time"},
+        "revisionSummary":{"shape":"RevisionSummary"}
       }
     },
     "DeleteCustomActionTypeInput":{
@@ -942,6 +979,23 @@
       "type":"structure",
       "members":{
         "jobDetails":{"shape":"JobDetails"}
+      }
+    },
+    "GetPipelineExecutionInput":{
+      "type":"structure",
+      "required":[
+        "pipelineName",
+        "pipelineExecutionId"
+      ],
+      "members":{
+        "pipelineName":{"shape":"PipelineName"},
+        "pipelineExecutionId":{"shape":"PipelineExecutionId"}
+      }
+    },
+    "GetPipelineExecutionOutput":{
+      "type":"structure",
+      "members":{
+        "pipelineExecution":{"shape":"PipelineExecution"}
       }
     },
     "GetPipelineInput":{
@@ -1219,9 +1273,34 @@
         "version":{"shape":"PipelineVersion"}
       }
     },
+    "PipelineExecution":{
+      "type":"structure",
+      "members":{
+        "pipelineName":{"shape":"PipelineName"},
+        "pipelineVersion":{"shape":"PipelineVersion"},
+        "pipelineExecutionId":{"shape":"PipelineExecutionId"},
+        "status":{"shape":"PipelineExecutionStatus"},
+        "artifactRevisionInformations":{"shape":"ArtifactRevisionInformationList"}
+      }
+    },
     "PipelineExecutionId":{
       "type":"string",
       "pattern":"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+    },
+    "PipelineExecutionNotFoundException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "PipelineExecutionStatus":{
+      "type":"string",
+      "enum":[
+        "InProgress",
+        "Succeeded",
+        "Superseded",
+        "Failed"
+      ]
     },
     "PipelineList":{
       "type":"list",
@@ -1427,6 +1506,11 @@
       "max":100,
       "min":1
     },
+    "RevisionSummary":{
+      "type":"string",
+      "max":2048,
+      "min":1
+    },
     "RoleArn":{
       "type":"string",
       "max":1024,
@@ -1584,6 +1668,7 @@
       "type":"list",
       "member":{"shape":"ThirdPartyJob"}
     },
+    "Time":{"type":"timestamp"},
     "Timestamp":{"type":"timestamp"},
     "TransitionState":{
       "type":"structure",
