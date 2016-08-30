@@ -76,6 +76,13 @@ func ExampleCloudFront_CreateDistribution() {
 							// More values...
 						},
 					},
+					QueryStringCacheKeys: &cloudfront.QueryStringCacheKeys{
+						Quantity: aws.Int64(1), // Required
+						Items: []*string{
+							aws.String("string"), // Required
+							// More values...
+						},
+					},
 				},
 				MinTTL:         aws.Int64(1),         // Required
 				TargetOriginId: aws.String("string"), // Required
@@ -168,6 +175,13 @@ func ExampleCloudFront_CreateDistribution() {
 							},
 							QueryString: aws.Bool(true), // Required
 							Headers: &cloudfront.Headers{
+								Quantity: aws.Int64(1), // Required
+								Items: []*string{
+									aws.String("string"), // Required
+									// More values...
+								},
+							},
+							QueryStringCacheKeys: &cloudfront.QueryStringCacheKeys{
 								Quantity: aws.Int64(1), // Required
 								Items: []*string{
 									aws.String("string"), // Required
@@ -298,6 +312,13 @@ func ExampleCloudFront_CreateDistributionWithTags() {
 								// More values...
 							},
 						},
+						QueryStringCacheKeys: &cloudfront.QueryStringCacheKeys{
+							Quantity: aws.Int64(1), // Required
+							Items: []*string{
+								aws.String("string"), // Required
+								// More values...
+							},
+						},
 					},
 					MinTTL:         aws.Int64(1),         // Required
 					TargetOriginId: aws.String("string"), // Required
@@ -390,6 +411,13 @@ func ExampleCloudFront_CreateDistributionWithTags() {
 								},
 								QueryString: aws.Bool(true), // Required
 								Headers: &cloudfront.Headers{
+									Quantity: aws.Int64(1), // Required
+									Items: []*string{
+										aws.String("string"), // Required
+										// More values...
+									},
+								},
+								QueryStringCacheKeys: &cloudfront.QueryStringCacheKeys{
 									Quantity: aws.Int64(1), // Required
 									Items: []*string{
 										aws.String("string"), // Required
@@ -1189,6 +1217,13 @@ func ExampleCloudFront_UpdateDistribution() {
 							// More values...
 						},
 					},
+					QueryStringCacheKeys: &cloudfront.QueryStringCacheKeys{
+						Quantity: aws.Int64(1), // Required
+						Items: []*string{
+							aws.String("string"), // Required
+							// More values...
+						},
+					},
 				},
 				MinTTL:         aws.Int64(1),         // Required
 				TargetOriginId: aws.String("string"), // Required
@@ -1281,6 +1316,13 @@ func ExampleCloudFront_UpdateDistribution() {
 							},
 							QueryString: aws.Bool(true), // Required
 							Headers: &cloudfront.Headers{
+								Quantity: aws.Int64(1), // Required
+								Items: []*string{
+									aws.String("string"), // Required
+									// More values...
+								},
+							},
+							QueryStringCacheKeys: &cloudfront.QueryStringCacheKeys{
 								Quantity: aws.Int64(1), // Required
 								Items: []*string{
 									aws.String("string"), // Required
