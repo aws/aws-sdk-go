@@ -19524,7 +19524,7 @@ type DescribeReservedInstancesListingsInput struct {
 	// | cancelled | closed).
 	//
 	//    status-message - The reason for the status.
-	Filters []*Filter `locationName:"filters" locationNameList:"Filter" type:"list"`
+	Filters []*Filter `locationName:"filter" locationNameList:"Filter" type:"list"`
 
 	// One or more Reserved Instance IDs.
 	ReservedInstancesId *string `locationName:"reservedInstancesId" type:"string"`
