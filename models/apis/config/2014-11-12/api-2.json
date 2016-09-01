@@ -1275,7 +1275,8 @@
         "AWS::RDS::DBSubnetGroup",
         "AWS::RDS::DBSecurityGroup",
         "AWS::RDS::DBSnapshot",
-        "AWS::RDS::EventSubscription"
+        "AWS::RDS::EventSubscription",
+        "AWS::ElasticLoadBalancingV2::LoadBalancer"
       ]
     },
     "ResourceTypeList":{
