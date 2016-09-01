@@ -3934,6 +3934,7 @@
         "PortRequired":{"shape":"Boolean"},
         "DefaultPort":{"shape":"IntegerOptional"},
         "OptionsDependedOn":{"shape":"OptionsDependedOn"},
+        "OptionsConflictsWith":{"shape":"OptionsConflictsWith"},
         "Persistent":{"shape":"Boolean"},
         "Permanent":{"shape":"Boolean"},
         "OptionGroupOptionSettings":{"shape":"OptionGroupOptionSettingsList"},
@@ -4041,6 +4042,13 @@
       "members":{
         "Version":{"shape":"String"},
         "IsDefault":{"shape":"Boolean"}
+      }
+    },
+    "OptionsConflictsWith":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"OptionConflictName"
       }
     },
     "OptionsDependedOn":{
