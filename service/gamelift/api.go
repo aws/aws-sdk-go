@@ -122,15 +122,16 @@ func (c *GameLift) CreateBuildRequest(input *CreateBuildInput) (req *request.Req
 // Storage Service (Amazon S3) client and need to manually upload your build
 // files. Instead, to create a build, use the CLI command upload-build, which
 // creates a new build record and uploads the build files in one step. (See
-// the Amazon GameLift Developer Guide (http://docs.aws.amazon.com/gamelift/latest/developerguide/)
-// for more details on the CLI and the upload process.)
+// the Amazon GameLift Developer Guide (http://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-build-intro.html)
+// help on packaging and uploading your build.)
 //
-//  To create a new build, optionally specify a build name and version. This
-// metadata is stored with other properties in the build record and is displayed
-// in the GameLift console (it is not visible to players). If successful, this
-// action returns the newly created build record along with the Amazon S3 storage
-// location and AWS account credentials. Use the location and credentials to
-// upload your game build.
+//  To create a new build, identify the operating system of the game server
+// binaries. All game servers in a build must use the same operating system.
+// Optionally, specify a build name and version; this metadata is stored with
+// other properties in the build record and is displayed in the GameLift console
+// (it is not visible to players). If successful, this action returns the newly
+// created build record along with the Amazon S3 storage location and AWS account
+// credentials. Use the location and credentials to upload your game build.
 func (c *GameLift) CreateBuild(input *CreateBuildInput) (*CreateBuildOutput, error) {
 	req, out := c.CreateBuildRequest(input)
 	err := req.Send()
@@ -2236,6 +2237,10 @@ type Build struct {
 	// unique. It can be set using CreateBuild or UpdateBuild.
 	Name *string `type:"string"`
 
+	// Operating system that the game server binaries are built to run on. This
+	// value determines the type of fleet resources that you can use for this build.
+	OperatingSystem *string `type:"string" enum:"OperatingSystem"`
+
 	// File size of the uploaded game build, expressed in bytes. When the build
 	// status is INITIALIZED, this value is 0.
 	SizeOnDisk *int64 `min:"1" type:"long"`
@@ -2339,6 +2344,10 @@ type CreateBuildInput struct {
 	// Descriptive label associated with a build. Build names do not need to be
 	// unique. A build name can be changed later using UpdateBuild.
 	Name *string `min:"1" type:"string"`
+
+	// Operating system that the game server binaries are built to run on. This
+	// value determines the type of fleet resources that you can use for this build.
+	OperatingSystem *string `type:"string" enum:"OperatingSystem"`
 
 	// Location in Amazon Simple Storage Service (Amazon S3) where a build's files
 	// are stored. This location is assigned in response to a CreateBuild call,
@@ -3984,12 +3993,19 @@ type FleetAttributes struct {
 	// terminated during a scale-down event.
 	NewGameSessionProtectionPolicy *string `type:"string" enum:"ProtectionPolicy"`
 
-	// Deprecated. Server launch parameters are now specified using a RuntimeConfiguration
-	// object.
+	// Operating system of the fleet's computing resources. A fleet's operating
+	// system depends on the OS specified for the build that is deployed on this
+	// fleet.
+	OperatingSystem *string `type:"string" enum:"OperatingSystem"`
+
+	// Game server launch parameters specified for fleets created prior to 2016-08-04
+	// (or AWS SDK v. 0.12.16). Server launch parameters for fleets created after
+	// this date are specified in the fleet's RuntimeConfiguration.
 	ServerLaunchParameters *string `min:"1" type:"string"`
 
-	// Deprecated. Server launch parameters are now set using a RuntimeConfiguration
-	// object.
+	// Path to a game server executable in the fleet's build, specified for fleets
+	// created prior to 2016-08-04 (or AWS SDK v. 0.12.16). Server launch paths
+	// for fleets created after this date are specified in the fleet's RuntimeConfiguration.
 	ServerLaunchPath *string `min:"1" type:"string"`
 
 	// Current status of the fleet.
@@ -5017,9 +5033,9 @@ type ScalingPolicy struct {
 	// Current status of the scaling policy. The scaling policy is only in force
 	// when in an ACTIVE status.
 	//
-	//   ACTIVE – The scaling policy is currently in force.  UPDATEREQUESTED –
+	//   ACTIVE – The scaling policy is currently in force.  UPDATE_REQUESTED –
 	// A request to update the scaling policy has been received.  UPDATING – A change
-	// is being made to the scaling policy.  DELETEREQUESTED – A request to delete
+	// is being made to the scaling policy.  DELETE_REQUESTED – A request to delete
 	// the scaling policy has been received.  DELETING – The scaling policy is being
 	// deleted.  DELETED – The scaling policy has been deleted.  ERROR – An error
 	// occurred in creating the policy. It should be removed and recreated.
@@ -5856,6 +5872,13 @@ const (
 	MetricNameCurrentPlayerSessions = "CurrentPlayerSessions"
 	// @enum MetricName
 	MetricNameIdleInstances = "IdleInstances"
+)
+
+const (
+	// @enum OperatingSystem
+	OperatingSystemWindows2012 = "WINDOWS_2012"
+	// @enum OperatingSystem
+	OperatingSystemAmazonLinux = "AMAZON_LINUX"
 )
 
 const (

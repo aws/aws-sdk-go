@@ -1216,6 +1216,7 @@
         "Version":{"shape":"FreeText"},
         "Status":{"shape":"BuildStatus"},
         "SizeOnDisk":{"shape":"PositiveLong"},
+        "OperatingSystem":{"shape":"OperatingSystem"},
         "CreationTime":{"shape":"Timestamp"}
       }
     },
@@ -1274,7 +1275,8 @@
       "members":{
         "Name":{"shape":"NonZeroAndMaxString"},
         "Version":{"shape":"NonZeroAndMaxString"},
-        "StorageLocation":{"shape":"S3Location"}
+        "StorageLocation":{"shape":"S3Location"},
+        "OperatingSystem":{"shape":"OperatingSystem"}
       }
     },
     "CreateBuildOutput":{
@@ -1700,7 +1702,8 @@
         "ServerLaunchPath":{"shape":"NonZeroAndMaxString"},
         "ServerLaunchParameters":{"shape":"NonZeroAndMaxString"},
         "LogPaths":{"shape":"StringList"},
-        "NewGameSessionProtectionPolicy":{"shape":"ProtectionPolicy"}
+        "NewGameSessionProtectionPolicy":{"shape":"ProtectionPolicy"},
+        "OperatingSystem":{"shape":"OperatingSystem"}
       }
     },
     "FleetAttributesList":{
@@ -1994,6 +1997,13 @@
         "Message":{"shape":"NonEmptyString"}
       },
       "exception":true
+    },
+    "OperatingSystem":{
+      "type":"string",
+      "enum":[
+        "WINDOWS_2012",
+        "AMAZON_LINUX"
+      ]
     },
     "PlayerIdList":{
       "type":"list",

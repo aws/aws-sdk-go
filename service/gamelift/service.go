@@ -17,7 +17,7 @@ import (
 // of game servers, and handles infrastructure scaling and session management.
 //
 // This reference describes the low-level service API for GameLift. You can
-// call this API directly or use the AWS SDK (https://aws.amazon.com/tools/)
+// call this API directly or use the AWS SDK (https://aws.amazon.com/tools/#sdk)
 // for your preferred language. The AWS SDK includes a set of high-level GameLift
 // actions multiplayer game sessions. Alternatively, you can use the AWS command-line
 // interface (https://aws.amazon.com/cli/) (CLI) tool, which includes commands

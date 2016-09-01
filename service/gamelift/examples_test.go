@@ -56,7 +56,8 @@ func ExampleGameLift_CreateBuild() {
 	svc := gamelift.New(sess)
 
 	params := &gamelift.CreateBuildInput{
-		Name: aws.String("NonZeroAndMaxString"),
+		Name:            aws.String("NonZeroAndMaxString"),
+		OperatingSystem: aws.String("OperatingSystem"),
 		StorageLocation: &gamelift.S3Location{
 			Bucket:  aws.String("NonEmptyString"),
 			Key:     aws.String("NonEmptyString"),
