@@ -23,6 +23,7 @@
         {"shape":"InvalidParameterException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"NotAuthorizedException"},
+        {"shape":"UserImportInProgressException"},
         {"shape":"InternalErrorException"}
       ]
     },
@@ -44,8 +45,8 @@
         {"shape":"InvalidLambdaResponseException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"LimitExceededException"},
-        {"shape":"InternalErrorException"},
-        {"shape":"PasswordResetRequiredException"}
+        {"shape":"UserNotFoundException"},
+        {"shape":"InternalErrorException"}
       ]
     },
     "AdminDeleteUser":{
@@ -60,6 +61,7 @@
         {"shape":"InvalidParameterException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"NotAuthorizedException"},
+        {"shape":"UserNotFoundException"},
         {"shape":"InternalErrorException"}
       ]
     },
@@ -76,6 +78,7 @@
         {"shape":"InvalidParameterException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"NotAuthorizedException"},
+        {"shape":"UserNotFoundException"},
         {"shape":"InternalErrorException"}
       ]
     },
@@ -92,6 +95,7 @@
         {"shape":"InvalidParameterException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"NotAuthorizedException"},
+        {"shape":"UserNotFoundException"},
         {"shape":"InternalErrorException"}
       ]
     },
@@ -108,6 +112,7 @@
         {"shape":"InvalidParameterException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"NotAuthorizedException"},
+        {"shape":"UserNotFoundException"},
         {"shape":"InternalErrorException"}
       ]
     },
@@ -123,8 +128,9 @@
         {"shape":"InvalidParameterException"},
         {"shape":"InvalidUserPoolConfigurationException"},
         {"shape":"TooManyRequestsException"},
-        {"shape":"InternalErrorException"},
-        {"shape":"NotAuthorizedException"}
+        {"shape":"NotAuthorizedException"},
+        {"shape":"UserNotFoundException"},
+        {"shape":"InternalErrorException"}
       ]
     },
     "AdminGetDevice":{
@@ -157,6 +163,7 @@
         {"shape":"InvalidParameterException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"NotAuthorizedException"},
+        {"shape":"UserNotFoundException"},
         {"shape":"InternalErrorException"}
       ]
     },
@@ -180,7 +187,10 @@
         {"shape":"InvalidLambdaResponseException"},
         {"shape":"MFAMethodNotFoundException"},
         {"shape":"InvalidSmsRoleAccessPolicyException"},
-        {"shape":"InvalidSmsRoleTrustRelationshipException"}
+        {"shape":"InvalidSmsRoleTrustRelationshipException"},
+        {"shape":"PasswordResetRequiredException"},
+        {"shape":"UserNotFoundException"},
+        {"shape":"UserNotConfirmedException"}
       ]
     },
     "AdminListDevices":{
@@ -217,6 +227,7 @@
         {"shape":"InvalidLambdaResponseException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"LimitExceededException"},
+        {"shape":"UserNotFoundException"},
         {"shape":"InternalErrorException"}
       ]
     },
@@ -243,7 +254,10 @@
         {"shape":"MFAMethodNotFoundException"},
         {"shape":"InvalidSmsRoleAccessPolicyException"},
         {"shape":"InvalidSmsRoleTrustRelationshipException"},
-        {"shape":"AliasExistsException"}
+        {"shape":"AliasExistsException"},
+        {"shape":"PasswordResetRequiredException"},
+        {"shape":"UserNotFoundException"},
+        {"shape":"UserNotConfirmedException"}
       ]
     },
     "AdminSetUserSettings":{
@@ -258,6 +272,7 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidParameterException"},
         {"shape":"NotAuthorizedException"},
+        {"shape":"UserNotFoundException"},
         {"shape":"InternalErrorException"}
       ]
     },
@@ -274,8 +289,9 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidUserPoolConfigurationException"},
         {"shape":"TooManyRequestsException"},
-        {"shape":"InternalErrorException"},
-        {"shape":"NotAuthorizedException"}
+        {"shape":"NotAuthorizedException"},
+        {"shape":"UserNotFoundException"},
+        {"shape":"InternalErrorException"}
       ]
     },
     "AdminUpdateUserAttributes":{
@@ -295,6 +311,7 @@
         {"shape":"AliasExistsException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"NotAuthorizedException"},
+        {"shape":"UserNotFoundException"},
         {"shape":"InternalErrorException"}
       ]
     },
@@ -311,6 +328,7 @@
         {"shape":"InvalidParameterException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"NotAuthorizedException"},
+        {"shape":"UserNotFoundException"},
         {"shape":"InternalErrorException"}
       ]
     },
@@ -329,6 +347,9 @@
         {"shape":"NotAuthorizedException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"LimitExceededException"},
+        {"shape":"PasswordResetRequiredException"},
+        {"shape":"UserNotFoundException"},
+        {"shape":"UserNotConfirmedException"},
         {"shape":"InternalErrorException"}
       ],
       "authtype":"none"
@@ -350,6 +371,9 @@
         {"shape":"UsernameExistsException"},
         {"shape":"InvalidUserPoolConfigurationException"},
         {"shape":"TooManyRequestsException"},
+        {"shape":"PasswordResetRequiredException"},
+        {"shape":"UserNotFoundException"},
+        {"shape":"UserNotConfirmedException"},
         {"shape":"InternalErrorException"}
       ]
     },
@@ -374,9 +398,9 @@
         {"shape":"InvalidLambdaResponseException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"LimitExceededException"},
-        {"shape":"InternalErrorException"},
         {"shape":"UserNotFoundException"},
-        {"shape":"UserNotConfirmedException"}
+        {"shape":"UserNotConfirmedException"},
+        {"shape":"InternalErrorException"}
       ],
       "authtype":"none"
     },
@@ -401,10 +425,28 @@
         {"shape":"AliasExistsException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"LimitExceededException"},
-        {"shape":"InternalErrorException"},
-        {"shape":"UserNotFoundException"}
+        {"shape":"UserNotFoundException"},
+        {"shape":"InternalErrorException"}
       ],
       "authtype":"none"
+    },
+    "CreateUserImportJob":{
+      "name":"CreateUserImportJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateUserImportJobRequest"},
+      "output":{"shape":"CreateUserImportJobResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"PreconditionNotMetException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalErrorException"}
+      ]
     },
     "CreateUserPool":{
       "name":"CreateUserPool",
@@ -454,6 +496,9 @@
         {"shape":"InvalidParameterException"},
         {"shape":"NotAuthorizedException"},
         {"shape":"TooManyRequestsException"},
+        {"shape":"PasswordResetRequiredException"},
+        {"shape":"UserNotFoundException"},
+        {"shape":"UserNotConfirmedException"},
         {"shape":"InternalErrorException"}
       ],
       "authtype":"none"
@@ -471,6 +516,9 @@
         {"shape":"InvalidParameterException"},
         {"shape":"NotAuthorizedException"},
         {"shape":"TooManyRequestsException"},
+        {"shape":"PasswordResetRequiredException"},
+        {"shape":"UserNotFoundException"},
+        {"shape":"UserNotConfirmedException"},
         {"shape":"InternalErrorException"}
       ],
       "authtype":"none"
@@ -487,6 +535,7 @@
         {"shape":"InvalidParameterException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"NotAuthorizedException"},
+        {"shape":"UserImportInProgressException"},
         {"shape":"InternalErrorException"}
       ]
     },
@@ -497,6 +546,22 @@
         "requestUri":"/"
       },
       "input":{"shape":"DeleteUserPoolClientRequest"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"InternalErrorException"}
+      ]
+    },
+    "DescribeUserImportJob":{
+      "name":"DescribeUserImportJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeUserImportJobRequest"},
+      "output":{"shape":"DescribeUserImportJobResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidParameterException"},
@@ -550,6 +615,9 @@
         {"shape":"NotAuthorizedException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"InvalidUserPoolConfigurationException"},
+        {"shape":"PasswordResetRequiredException"},
+        {"shape":"UserNotFoundException"},
+        {"shape":"UserNotConfirmedException"},
         {"shape":"InternalErrorException"}
       ]
     },
@@ -570,15 +638,31 @@
         {"shape":"InvalidLambdaResponseException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"LimitExceededException"},
-        {"shape":"InternalErrorException"},
         {"shape":"InvalidSmsRoleAccessPolicyException"},
         {"shape":"InvalidSmsRoleTrustRelationshipException"},
         {"shape":"InvalidEmailRoleAccessPolicyException"},
         {"shape":"CodeDeliveryFailureException"},
         {"shape":"UserNotFoundException"},
-        {"shape":"UserNotConfirmedException"}
+        {"shape":"UserNotConfirmedException"},
+        {"shape":"InternalErrorException"}
       ],
       "authtype":"none"
+    },
+    "GetCSVHeader":{
+      "name":"GetCSVHeader",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetCSVHeaderRequest"},
+      "output":{"shape":"GetCSVHeaderResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"InternalErrorException"}
+      ]
     },
     "GetDevice":{
       "name":"GetDevice",
@@ -594,6 +678,9 @@
         {"shape":"InvalidUserPoolConfigurationException"},
         {"shape":"NotAuthorizedException"},
         {"shape":"TooManyRequestsException"},
+        {"shape":"PasswordResetRequiredException"},
+        {"shape":"UserNotFoundException"},
+        {"shape":"UserNotConfirmedException"},
         {"shape":"InternalErrorException"}
       ]
     },
@@ -610,6 +697,9 @@
         {"shape":"InvalidParameterException"},
         {"shape":"NotAuthorizedException"},
         {"shape":"TooManyRequestsException"},
+        {"shape":"PasswordResetRequiredException"},
+        {"shape":"UserNotFoundException"},
+        {"shape":"UserNotConfirmedException"},
         {"shape":"InternalErrorException"}
       ],
       "authtype":"none"
@@ -630,12 +720,15 @@
         {"shape":"UnexpectedLambdaException"},
         {"shape":"UserLambdaValidationException"},
         {"shape":"InvalidLambdaResponseException"},
-        {"shape":"InternalErrorException"},
         {"shape":"InvalidSmsRoleAccessPolicyException"},
         {"shape":"InvalidSmsRoleTrustRelationshipException"},
         {"shape":"InvalidEmailRoleAccessPolicyException"},
         {"shape":"CodeDeliveryFailureException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"LimitExceededException"},
+        {"shape":"PasswordResetRequiredException"},
+        {"shape":"UserNotFoundException"},
+        {"shape":"UserNotConfirmedException"},
+        {"shape":"InternalErrorException"}
       ],
       "authtype":"none"
     },
@@ -668,14 +761,14 @@
         {"shape":"InvalidParameterException"},
         {"shape":"NotAuthorizedException"},
         {"shape":"TooManyRequestsException"},
-        {"shape":"InternalErrorException"},
         {"shape":"UnexpectedLambdaException"},
         {"shape":"InvalidUserPoolConfigurationException"},
         {"shape":"UserLambdaValidationException"},
         {"shape":"InvalidLambdaResponseException"},
         {"shape":"PasswordResetRequiredException"},
         {"shape":"UserNotFoundException"},
-        {"shape":"UserNotConfirmedException"}
+        {"shape":"UserNotConfirmedException"},
+        {"shape":"InternalErrorException"}
       ]
     },
     "ListDevices":{
@@ -692,6 +785,25 @@
         {"shape":"NotAuthorizedException"},
         {"shape":"InvalidUserPoolConfigurationException"},
         {"shape":"TooManyRequestsException"},
+        {"shape":"PasswordResetRequiredException"},
+        {"shape":"UserNotFoundException"},
+        {"shape":"UserNotConfirmedException"},
+        {"shape":"InternalErrorException"}
+      ]
+    },
+    "ListUserImportJobs":{
+      "name":"ListUserImportJobs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListUserImportJobsRequest"},
+      "output":{"shape":"ListUserImportJobsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"NotAuthorizedException"},
         {"shape":"InternalErrorException"}
       ]
     },
@@ -759,12 +871,12 @@
         {"shape":"InvalidLambdaResponseException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"LimitExceededException"},
-        {"shape":"InternalErrorException"},
         {"shape":"InvalidSmsRoleAccessPolicyException"},
         {"shape":"InvalidSmsRoleTrustRelationshipException"},
         {"shape":"InvalidEmailRoleAccessPolicyException"},
         {"shape":"CodeDeliveryFailureException"},
-        {"shape":"UserNotFoundException"}
+        {"shape":"UserNotFoundException"},
+        {"shape":"InternalErrorException"}
       ],
       "authtype":"none"
     },
@@ -787,14 +899,14 @@
         {"shape":"InvalidLambdaResponseException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"InvalidUserPoolConfigurationException"},
-        {"shape":"InternalErrorException"},
         {"shape":"MFAMethodNotFoundException"},
         {"shape":"PasswordResetRequiredException"},
         {"shape":"UserNotFoundException"},
         {"shape":"UserNotConfirmedException"},
         {"shape":"InvalidSmsRoleAccessPolicyException"},
         {"shape":"InvalidSmsRoleTrustRelationshipException"},
-        {"shape":"AliasExistsException"}
+        {"shape":"AliasExistsException"},
+        {"shape":"InternalErrorException"}
       ]
     },
     "SetUserSettings":{
@@ -808,7 +920,11 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidParameterException"},
-        {"shape":"NotAuthorizedException"}
+        {"shape":"NotAuthorizedException"},
+        {"shape":"PasswordResetRequiredException"},
+        {"shape":"UserNotFoundException"},
+        {"shape":"UserNotConfirmedException"},
+        {"shape":"InternalErrorException"}
       ],
       "authtype":"none"
     },
@@ -838,6 +954,40 @@
       ],
       "authtype":"none"
     },
+    "StartUserImportJob":{
+      "name":"StartUserImportJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartUserImportJobRequest"},
+      "output":{"shape":"StartUserImportJobResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"PreconditionNotMetException"},
+        {"shape":"NotAuthorizedException"}
+      ]
+    },
+    "StopUserImportJob":{
+      "name":"StopUserImportJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopUserImportJobRequest"},
+      "output":{"shape":"StopUserImportJobResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"PreconditionNotMetException"},
+        {"shape":"NotAuthorizedException"}
+      ]
+    },
     "UpdateDeviceStatus":{
       "name":"UpdateDeviceStatus",
       "http":{
@@ -852,6 +1002,9 @@
         {"shape":"NotAuthorizedException"},
         {"shape":"InvalidUserPoolConfigurationException"},
         {"shape":"TooManyRequestsException"},
+        {"shape":"PasswordResetRequiredException"},
+        {"shape":"UserNotFoundException"},
+        {"shape":"UserNotConfirmedException"},
         {"shape":"InternalErrorException"}
       ]
     },
@@ -874,11 +1027,14 @@
         {"shape":"InvalidLambdaResponseException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"AliasExistsException"},
-        {"shape":"InternalErrorException"},
         {"shape":"InvalidSmsRoleAccessPolicyException"},
         {"shape":"InvalidSmsRoleTrustRelationshipException"},
         {"shape":"InvalidEmailRoleAccessPolicyException"},
-        {"shape":"CodeDeliveryFailureException"}
+        {"shape":"CodeDeliveryFailureException"},
+        {"shape":"PasswordResetRequiredException"},
+        {"shape":"UserNotFoundException"},
+        {"shape":"UserNotConfirmedException"},
+        {"shape":"InternalErrorException"}
       ],
       "authtype":"none"
     },
@@ -896,6 +1052,7 @@
         {"shape":"ConcurrentModificationException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"NotAuthorizedException"},
+        {"shape":"UserImportInProgressException"},
         {"shape":"InternalErrorException"},
         {"shape":"InvalidSmsRoleAccessPolicyException"},
         {"shape":"InvalidSmsRoleTrustRelationshipException"},
@@ -934,6 +1091,9 @@
         {"shape":"NotAuthorizedException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"LimitExceededException"},
+        {"shape":"PasswordResetRequiredException"},
+        {"shape":"UserNotFoundException"},
+        {"shape":"UserNotConfirmedException"},
         {"shape":"InternalErrorException"}
       ],
       "authtype":"none"
@@ -1311,6 +1471,7 @@
       "enum":[
         "USER_SRP_AUTH",
         "REFRESH_TOKEN_AUTH",
+        "REFRESH_TOKEN",
         "CUSTOM_AUTH",
         "ADMIN_NO_SRP_AUTH"
       ]
@@ -1430,6 +1591,12 @@
       },
       "exception":true
     },
+    "CompletionMessageType":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[\\w]+"
+    },
     "ConcurrentModificationException":{
       "type":"structure",
       "members":{
@@ -1502,6 +1669,25 @@
       "max":2048,
       "min":1,
       "pattern":"[\\S]+"
+    },
+    "CreateUserImportJobRequest":{
+      "type":"structure",
+      "required":[
+        "JobName",
+        "UserPoolId",
+        "CloudWatchLogsRoleArn"
+      ],
+      "members":{
+        "JobName":{"shape":"UserImportJobNameType"},
+        "UserPoolId":{"shape":"UserPoolIdType"},
+        "CloudWatchLogsRoleArn":{"shape":"ArnType"}
+      }
+    },
+    "CreateUserImportJobResponse":{
+      "type":"structure",
+      "members":{
+        "UserImportJob":{"shape":"UserImportJobType"}
+      }
     },
     "CreateUserPoolClientRequest":{
       "type":"structure",
@@ -1607,6 +1793,23 @@
         "EMAIL"
       ]
     },
+    "DescribeUserImportJobRequest":{
+      "type":"structure",
+      "required":[
+        "UserPoolId",
+        "JobId"
+      ],
+      "members":{
+        "UserPoolId":{"shape":"UserPoolIdType"},
+        "JobId":{"shape":"UserImportJobIdType"}
+      }
+    },
+    "DescribeUserImportJobResponse":{
+      "type":"structure",
+      "members":{
+        "UserImportJob":{"shape":"UserImportJobType"}
+      }
+    },
     "DescribeUserPoolClientRequest":{
       "type":"structure",
       "required":[
@@ -1656,7 +1859,7 @@
     },
     "DeviceNameType":{
       "type":"string",
-      "max":150,
+      "max":1024,
       "min":1
     },
     "DeviceRememberedStatusType":{
@@ -1719,7 +1922,10 @@
     },
     "ExplicitAuthFlowsType":{
       "type":"string",
-      "enum":["ADMIN_NO_SRP_AUTH"]
+      "enum":[
+        "ADMIN_NO_SRP_AUTH",
+        "CUSTOM_AUTH_FLOW_ONLY"
+      ]
     },
     "ForceAliasCreation":{"type":"boolean"},
     "ForgetDeviceRequest":{
@@ -1749,6 +1955,20 @@
       }
     },
     "GenerateSecret":{"type":"boolean"},
+    "GetCSVHeaderRequest":{
+      "type":"structure",
+      "required":["UserPoolId"],
+      "members":{
+        "UserPoolId":{"shape":"UserPoolIdType"}
+      }
+    },
+    "GetCSVHeaderResponse":{
+      "type":"structure",
+      "members":{
+        "UserPoolId":{"shape":"UserPoolIdType"},
+        "CSVHeader":{"shape":"ListOfStringTypes"}
+      }
+    },
     "GetDeviceRequest":{
       "type":"structure",
       "required":["DeviceKey"],
@@ -1923,6 +2143,29 @@
         "PaginationToken":{"shape":"SearchPaginationTokenType"}
       }
     },
+    "ListOfStringTypes":{
+      "type":"list",
+      "member":{"shape":"StringType"}
+    },
+    "ListUserImportJobsRequest":{
+      "type":"structure",
+      "required":[
+        "UserPoolId",
+        "MaxResults"
+      ],
+      "members":{
+        "UserPoolId":{"shape":"UserPoolIdType"},
+        "MaxResults":{"shape":"PoolQueryLimitType"},
+        "PaginationToken":{"shape":"PaginationKeyType"}
+      }
+    },
+    "ListUserImportJobsResponse":{
+      "type":"structure",
+      "members":{
+        "UserImportJobs":{"shape":"UserImportJobsListType"},
+        "PaginationToken":{"shape":"PaginationKeyType"}
+      }
+    },
     "ListUserPoolClientsRequest":{
       "type":"structure",
       "required":["UserPoolId"],
@@ -1972,6 +2215,7 @@
         "PaginationToken":{"shape":"SearchPaginationTokenType"}
       }
     },
+    "LongType":{"type":"long"},
     "MFAMethodNotFoundException":{
       "type":"structure",
       "members":{
@@ -2055,6 +2299,18 @@
       "type":"integer",
       "max":60,
       "min":1
+    },
+    "PreSignedUrlType":{
+      "type":"string",
+      "max":2048,
+      "min":0
+    },
+    "PreconditionNotMetException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"MessageType"}
+      },
+      "exception":true
     },
     "QueryLimit":{
       "type":"integer",
@@ -2209,12 +2465,46 @@
       "min":6,
       "pattern":".*\\{####\\}.*"
     },
+    "StartUserImportJobRequest":{
+      "type":"structure",
+      "required":[
+        "UserPoolId",
+        "JobId"
+      ],
+      "members":{
+        "UserPoolId":{"shape":"UserPoolIdType"},
+        "JobId":{"shape":"UserImportJobIdType"}
+      }
+    },
+    "StartUserImportJobResponse":{
+      "type":"structure",
+      "members":{
+        "UserImportJob":{"shape":"UserImportJobType"}
+      }
+    },
     "StatusType":{
       "type":"string",
       "enum":[
         "Enabled",
         "Disabled"
       ]
+    },
+    "StopUserImportJobRequest":{
+      "type":"structure",
+      "required":[
+        "UserPoolId",
+        "JobId"
+      ],
+      "members":{
+        "UserPoolId":{"shape":"UserPoolIdType"},
+        "JobId":{"shape":"UserImportJobIdType"}
+      }
+    },
+    "StopUserImportJobResponse":{
+      "type":"structure",
+      "members":{
+        "UserImportJob":{"shape":"UserImportJobType"}
+      }
     },
     "StringAttributeConstraintsType":{
       "type":"structure",
@@ -2330,6 +2620,62 @@
       "type":"string",
       "max":256
     },
+    "UserImportInProgressException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"MessageType"}
+      },
+      "exception":true
+    },
+    "UserImportJobIdType":{
+      "type":"string",
+      "max":55,
+      "min":1,
+      "pattern":"import-[0-9a-zA-Z-]+"
+    },
+    "UserImportJobNameType":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[\\w\\s+=,.@-]+"
+    },
+    "UserImportJobStatusType":{
+      "type":"string",
+      "enum":[
+        "Created",
+        "Pending",
+        "InProgress",
+        "Stopping",
+        "Expired",
+        "Stopped",
+        "Failed",
+        "Succeeded"
+      ]
+    },
+    "UserImportJobType":{
+      "type":"structure",
+      "members":{
+        "JobName":{"shape":"UserImportJobNameType"},
+        "JobId":{"shape":"UserImportJobIdType"},
+        "UserPoolId":{"shape":"UserPoolIdType"},
+        "PreSignedUrl":{"shape":"PreSignedUrlType"},
+        "CreationDate":{"shape":"DateType"},
+        "StartDate":{"shape":"DateType"},
+        "CompletionDate":{"shape":"DateType"},
+        "Status":{"shape":"UserImportJobStatusType"},
+        "CloudWatchLogsRoleArn":{"shape":"ArnType"},
+        "ImportedUsers":{"shape":"LongType"},
+        "SkippedUsers":{"shape":"LongType"},
+        "FailedUsers":{"shape":"LongType"},
+        "CompletionMessage":{"shape":"CompletionMessageType"}
+      }
+    },
+    "UserImportJobsListType":{
+      "type":"list",
+      "member":{"shape":"UserImportJobType"},
+      "max":50,
+      "min":1
+    },
     "UserLambdaValidationException":{
       "type":"structure",
       "members":{
@@ -2393,7 +2739,7 @@
       "type":"string",
       "max":55,
       "min":1,
-      "pattern":"[\\w-]+.[0-9a-zA-Z-]+"
+      "pattern":"[\\w-]+_[0-9a-zA-Z]+"
     },
     "UserPoolListType":{
       "type":"list",

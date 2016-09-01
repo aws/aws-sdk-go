@@ -592,6 +592,16 @@ func (c *CognitoIdentityProvider) AdminResetUserPasswordRequest(input *AdminRese
 
 // Resets the specified user's password in a user pool as an administrator.
 // Works on any user.
+//
+// When a developer calls this API, the current password is invalidated, so
+// it must be changed. If a user tries to sign in after the API is called, the
+// app will get a PasswordResetRequiredException exception back and should direct
+// the user down the flow to reset the password, which is the same as the forgot
+// password flow. In addition, if the user pool has phone verification selected
+// and a verified phone number exists for the user, or if email verification
+// is selected and a verified email exists for the user, calling this API will
+// also result in sending a message to the end user with the code to change
+// their password.
 func (c *CognitoIdentityProvider) AdminResetUserPassword(input *AdminResetUserPasswordInput) (*AdminResetUserPasswordOutput, error) {
 	req, out := c.AdminResetUserPasswordRequest(input)
 	err := req.Send()
@@ -1037,6 +1047,54 @@ func (c *CognitoIdentityProvider) ConfirmSignUp(input *ConfirmSignUpInput) (*Con
 	return out, err
 }
 
+const opCreateUserImportJob = "CreateUserImportJob"
+
+// CreateUserImportJobRequest generates a "aws/request.Request" representing the
+// client's request for the CreateUserImportJob operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateUserImportJob method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateUserImportJobRequest method.
+//    req, resp := client.CreateUserImportJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *CognitoIdentityProvider) CreateUserImportJobRequest(input *CreateUserImportJobInput) (req *request.Request, output *CreateUserImportJobOutput) {
+	op := &request.Operation{
+		Name:       opCreateUserImportJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateUserImportJobInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &CreateUserImportJobOutput{}
+	req.Data = output
+	return
+}
+
+// Creates the user import job.
+func (c *CognitoIdentityProvider) CreateUserImportJob(input *CreateUserImportJobInput) (*CreateUserImportJobOutput, error) {
+	req, out := c.CreateUserImportJobRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opCreateUserPool = "CreateUserPool"
 
 // CreateUserPoolRequest generates a "aws/request.Request" representing the
@@ -1334,6 +1392,54 @@ func (c *CognitoIdentityProvider) DeleteUserPoolClient(input *DeleteUserPoolClie
 	return out, err
 }
 
+const opDescribeUserImportJob = "DescribeUserImportJob"
+
+// DescribeUserImportJobRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeUserImportJob operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeUserImportJob method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeUserImportJobRequest method.
+//    req, resp := client.DescribeUserImportJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *CognitoIdentityProvider) DescribeUserImportJobRequest(input *DescribeUserImportJobInput) (req *request.Request, output *DescribeUserImportJobOutput) {
+	op := &request.Operation{
+		Name:       opDescribeUserImportJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeUserImportJobInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeUserImportJobOutput{}
+	req.Data = output
+	return
+}
+
+// Describes the user import job.
+func (c *CognitoIdentityProvider) DescribeUserImportJob(input *DescribeUserImportJobInput) (*DescribeUserImportJobOutput, error) {
+	req, out := c.DescribeUserImportJobRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opDescribeUserPool = "DescribeUserPool"
 
 // DescribeUserPoolRequest generates a "aws/request.Request" representing the
@@ -1527,6 +1633,55 @@ func (c *CognitoIdentityProvider) ForgotPasswordRequest(input *ForgotPasswordInp
 // Retrieves the password for the specified client ID or username.
 func (c *CognitoIdentityProvider) ForgotPassword(input *ForgotPasswordInput) (*ForgotPasswordOutput, error) {
 	req, out := c.ForgotPasswordRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opGetCSVHeader = "GetCSVHeader"
+
+// GetCSVHeaderRequest generates a "aws/request.Request" representing the
+// client's request for the GetCSVHeader operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetCSVHeader method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetCSVHeaderRequest method.
+//    req, resp := client.GetCSVHeaderRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *CognitoIdentityProvider) GetCSVHeaderRequest(input *GetCSVHeaderInput) (req *request.Request, output *GetCSVHeaderOutput) {
+	op := &request.Operation{
+		Name:       opGetCSVHeader,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetCSVHeaderInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &GetCSVHeaderOutput{}
+	req.Data = output
+	return
+}
+
+// Gets the header information for the .csv file to be used as input for the
+// user import job.
+func (c *CognitoIdentityProvider) GetCSVHeader(input *GetCSVHeaderInput) (*GetCSVHeaderOutput, error) {
+	req, out := c.GetCSVHeaderRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -1817,6 +1972,54 @@ func (c *CognitoIdentityProvider) ListDevicesRequest(input *ListDevicesInput) (r
 // Lists the devices.
 func (c *CognitoIdentityProvider) ListDevices(input *ListDevicesInput) (*ListDevicesOutput, error) {
 	req, out := c.ListDevicesRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opListUserImportJobs = "ListUserImportJobs"
+
+// ListUserImportJobsRequest generates a "aws/request.Request" representing the
+// client's request for the ListUserImportJobs operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListUserImportJobs method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListUserImportJobsRequest method.
+//    req, resp := client.ListUserImportJobsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *CognitoIdentityProvider) ListUserImportJobsRequest(input *ListUserImportJobsInput) (req *request.Request, output *ListUserImportJobsOutput) {
+	op := &request.Operation{
+		Name:       opListUserImportJobs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListUserImportJobsInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListUserImportJobsOutput{}
+	req.Data = output
+	return
+}
+
+// Lists the user import jobs.
+func (c *CognitoIdentityProvider) ListUserImportJobs(input *ListUserImportJobsInput) (*ListUserImportJobsOutput, error) {
+	req, out := c.ListUserImportJobsRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -2160,6 +2363,102 @@ func (c *CognitoIdentityProvider) SignUpRequest(input *SignUpInput) (req *reques
 // and user attributes.
 func (c *CognitoIdentityProvider) SignUp(input *SignUpInput) (*SignUpOutput, error) {
 	req, out := c.SignUpRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opStartUserImportJob = "StartUserImportJob"
+
+// StartUserImportJobRequest generates a "aws/request.Request" representing the
+// client's request for the StartUserImportJob operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the StartUserImportJob method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the StartUserImportJobRequest method.
+//    req, resp := client.StartUserImportJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *CognitoIdentityProvider) StartUserImportJobRequest(input *StartUserImportJobInput) (req *request.Request, output *StartUserImportJobOutput) {
+	op := &request.Operation{
+		Name:       opStartUserImportJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartUserImportJobInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &StartUserImportJobOutput{}
+	req.Data = output
+	return
+}
+
+// Starts the user import.
+func (c *CognitoIdentityProvider) StartUserImportJob(input *StartUserImportJobInput) (*StartUserImportJobOutput, error) {
+	req, out := c.StartUserImportJobRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opStopUserImportJob = "StopUserImportJob"
+
+// StopUserImportJobRequest generates a "aws/request.Request" representing the
+// client's request for the StopUserImportJob operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the StopUserImportJob method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the StopUserImportJobRequest method.
+//    req, resp := client.StopUserImportJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *CognitoIdentityProvider) StopUserImportJobRequest(input *StopUserImportJobInput) (req *request.Request, output *StopUserImportJobOutput) {
+	op := &request.Operation{
+		Name:       opStopUserImportJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StopUserImportJobInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &StopUserImportJobOutput{}
+	req.Data = output
+	return
+}
+
+// Stops the user import job.
+func (c *CognitoIdentityProvider) StopUserImportJob(input *StopUserImportJobInput) (*StopUserImportJobOutput, error) {
+	req, out := c.StopUserImportJobRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -3556,7 +3855,7 @@ func (s *AdminUserGlobalSignOutInput) Validate() error {
 	return nil
 }
 
-// The global signot response, as an administrator.
+// The global sign-out response, as an administrator.
 type AdminUserGlobalSignOutOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3961,6 +4260,77 @@ func (s ConfirmSignUpOutput) GoString() string {
 	return s.String()
 }
 
+// Represents the request to create the user import job.
+type CreateUserImportJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The role ARN for the Amazon CloudWatch Logging role for the user import job.
+	CloudWatchLogsRoleArn *string `min:"20" type:"string" required:"true"`
+
+	// The job name for the user import job.
+	JobName *string `min:"1" type:"string" required:"true"`
+
+	// The user pool ID for the user pool that the users are being imported into.
+	UserPoolId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateUserImportJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateUserImportJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateUserImportJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateUserImportJobInput"}
+	if s.CloudWatchLogsRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CloudWatchLogsRoleArn"))
+	}
+	if s.CloudWatchLogsRoleArn != nil && len(*s.CloudWatchLogsRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("CloudWatchLogsRoleArn", 20))
+	}
+	if s.JobName == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobName"))
+	}
+	if s.JobName != nil && len(*s.JobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobName", 1))
+	}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// Represents the response from the server to the request to create the user
+// import job.
+type CreateUserImportJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The job object that represents the user import job.
+	UserImportJob *UserImportJobType `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateUserImportJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateUserImportJobOutput) GoString() string {
+	return s.String()
+}
+
 // Represents the request to create a user pool client.
 type CreateUserPoolClientInput struct {
 	_ struct{} `type:"structure"`
@@ -4346,6 +4716,68 @@ func (s DeleteUserPoolOutput) GoString() string {
 	return s.String()
 }
 
+// Represents the request to describe the user import job.
+type DescribeUserImportJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The job ID for the user import job.
+	JobId *string `min:"1" type:"string" required:"true"`
+
+	// The user pool ID for the user pool that the users are being imported into.
+	UserPoolId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeUserImportJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeUserImportJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeUserImportJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeUserImportJobInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// Represents the response from the server to the request to describe the user
+// import job.
+type DescribeUserImportJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The job object that represents the user import job.
+	UserImportJob *UserImportJobType `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeUserImportJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeUserImportJobOutput) GoString() string {
+	return s.String()
+}
+
 // Represents the request to describe a user pool client.
 type DescribeUserPoolClientInput struct {
 	_ struct{} `type:"structure"`
@@ -4685,6 +5117,63 @@ func (s ForgotPasswordOutput) String() string {
 
 // GoString returns the string representation
 func (s ForgotPasswordOutput) GoString() string {
+	return s.String()
+}
+
+// Represents the request to get the header information for the .csv file for
+// the user import job.
+type GetCSVHeaderInput struct {
+	_ struct{} `type:"structure"`
+
+	// The user pool ID for the user pool that the users are to be imported into.
+	UserPoolId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetCSVHeaderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetCSVHeaderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCSVHeaderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCSVHeaderInput"}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// Represents the response from the server to the request to get the header
+// information for the .csv file for the user import job.
+type GetCSVHeaderOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The header information for the .csv file for the user import job.
+	CSVHeader []*string `type:"list"`
+
+	// The user pool ID for the user pool that the users are to be imported into.
+	UserPoolId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s GetCSVHeaderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetCSVHeaderOutput) GoString() string {
 	return s.String()
 }
 
@@ -5083,6 +5572,79 @@ func (s ListDevicesOutput) String() string {
 
 // GoString returns the string representation
 func (s ListDevicesOutput) GoString() string {
+	return s.String()
+}
+
+// Represents the request to list the user import jobs.
+type ListUserImportJobsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of import jobs you want the request to return.
+	MaxResults *int64 `min:"1" type:"integer" required:"true"`
+
+	// An identifier that was returned from the previous call to this operation,
+	// which can be used to return the next set of import jobs in the list.
+	PaginationToken *string `min:"1" type:"string"`
+
+	// The user pool ID for the user pool that the users are being imported into.
+	UserPoolId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListUserImportJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListUserImportJobsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListUserImportJobsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListUserImportJobsInput"}
+	if s.MaxResults == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaxResults"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.PaginationToken != nil && len(*s.PaginationToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PaginationToken", 1))
+	}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// Represents the response from the server to the request to list the user import
+// jobs.
+type ListUserImportJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An identifier that can be used to return the next set of user import jobs
+	// in the list.
+	PaginationToken *string `min:"1" type:"string"`
+
+	// The user import jobs.
+	UserImportJobs []*UserImportJobType `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s ListUserImportJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListUserImportJobsOutput) GoString() string {
 	return s.String()
 }
 
@@ -5816,6 +6378,130 @@ func (s *SmsConfigurationType) Validate() error {
 	return nil
 }
 
+// Represents the request to start the user import job.
+type StartUserImportJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The job ID for the user import job.
+	JobId *string `min:"1" type:"string" required:"true"`
+
+	// The user pool ID for the user pool that the users are being imported into.
+	UserPoolId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s StartUserImportJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartUserImportJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartUserImportJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartUserImportJobInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// Represents the response from the server to the request to start the user
+// import job.
+type StartUserImportJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The job object that represents the user import job.
+	UserImportJob *UserImportJobType `type:"structure"`
+}
+
+// String returns the string representation
+func (s StartUserImportJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartUserImportJobOutput) GoString() string {
+	return s.String()
+}
+
+// Represents the request to stop the user import job.
+type StopUserImportJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The job ID for the user import job.
+	JobId *string `min:"1" type:"string" required:"true"`
+
+	// The user pool ID for the user pool that the users are being imported into.
+	UserPoolId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s StopUserImportJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopUserImportJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopUserImportJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopUserImportJobInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// Represents the response from the server to the request to stop the user import
+// job.
+type StopUserImportJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The job object that represents the user import job.
+	UserImportJob *UserImportJobType `type:"structure"`
+}
+
+// String returns the string representation
+func (s StopUserImportJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopUserImportJobOutput) GoString() string {
+	return s.String()
+}
+
 // The type of constraints associated with an attribute of the string type.
 type StringAttributeConstraintsType struct {
 	_ struct{} `type:"structure"`
@@ -6159,6 +6845,72 @@ func (s UpdateUserPoolOutput) String() string {
 
 // GoString returns the string representation
 func (s UpdateUserPoolOutput) GoString() string {
+	return s.String()
+}
+
+// The user import job type.
+type UserImportJobType struct {
+	_ struct{} `type:"structure"`
+
+	// The role ARN for the Amazon CloudWatch Logging role for the user import job.
+	// For more information, see "Creating the CloudWatch Logs IAM Role" in the
+	// Amazon Cognito Developer Guide.
+	CloudWatchLogsRoleArn *string `min:"20" type:"string"`
+
+	// The date when the user imoprt job was completed.
+	CompletionDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The message returned when the user import job is completed.
+	CompletionMessage *string `min:"1" type:"string"`
+
+	// The date when the user import job was created.
+	CreationDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The number of users that could not be imported.
+	FailedUsers *int64 `type:"long"`
+
+	// The number of users that were successfully imported.
+	ImportedUsers *int64 `type:"long"`
+
+	// The job ID for the user import job.
+	JobId *string `min:"1" type:"string"`
+
+	// The job name for the user import job.
+	JobName *string `min:"1" type:"string"`
+
+	// The pre-signed URL to be used to upload the .csv file.
+	PreSignedUrl *string `type:"string"`
+
+	// The number of users that were skipped.
+	SkippedUsers *int64 `type:"long"`
+
+	// The date when the user import job was started.
+	StartDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The status of the user import job. One of the following:
+	//
+	//  Created - The job was created but not started. Pending - A transition state.
+	// You have started the job, but it has not begun importing users yet. InProgress
+	// - The job has started, and users are being imported. Stopping - You have
+	// stopped the job, but the job has not stopped importing users yet. Stopped
+	// - You have stopped the job, and the job has stopped importing users. Succeeded
+	// - The job has completed successfully. Failed - The job has stopped due to
+	// an error. Expired - You created a job, but did not start the job within 24-48
+	// hours. All data associated with the job was deleted, and the job cannot be
+	// started.
+	Status *string `type:"string" enum:"UserImportJobStatusType"`
+
+	// The user pool ID for the user pool that the users are being imported into.
+	UserPoolId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s UserImportJobType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UserImportJobType) GoString() string {
 	return s.String()
 }
 
@@ -6507,6 +7259,8 @@ const (
 	// @enum AuthFlowType
 	AuthFlowTypeRefreshTokenAuth = "REFRESH_TOKEN_AUTH"
 	// @enum AuthFlowType
+	AuthFlowTypeRefreshToken = "REFRESH_TOKEN"
+	// @enum AuthFlowType
 	AuthFlowTypeCustomAuth = "CUSTOM_AUTH"
 	// @enum AuthFlowType
 	AuthFlowTypeAdminNoSrpAuth = "ADMIN_NO_SRP_AUTH"
@@ -6544,6 +7298,8 @@ const (
 const (
 	// @enum ExplicitAuthFlowsType
 	ExplicitAuthFlowsTypeAdminNoSrpAuth = "ADMIN_NO_SRP_AUTH"
+	// @enum ExplicitAuthFlowsType
+	ExplicitAuthFlowsTypeCustomAuthFlowOnly = "CUSTOM_AUTH_FLOW_ONLY"
 )
 
 const (
@@ -6551,6 +7307,25 @@ const (
 	StatusTypeEnabled = "Enabled"
 	// @enum StatusType
 	StatusTypeDisabled = "Disabled"
+)
+
+const (
+	// @enum UserImportJobStatusType
+	UserImportJobStatusTypeCreated = "Created"
+	// @enum UserImportJobStatusType
+	UserImportJobStatusTypePending = "Pending"
+	// @enum UserImportJobStatusType
+	UserImportJobStatusTypeInProgress = "InProgress"
+	// @enum UserImportJobStatusType
+	UserImportJobStatusTypeStopping = "Stopping"
+	// @enum UserImportJobStatusType
+	UserImportJobStatusTypeExpired = "Expired"
+	// @enum UserImportJobStatusType
+	UserImportJobStatusTypeStopped = "Stopped"
+	// @enum UserImportJobStatusType
+	UserImportJobStatusTypeFailed = "Failed"
+	// @enum UserImportJobStatusType
+	UserImportJobStatusTypeSucceeded = "Succeeded"
 )
 
 const (

@@ -94,6 +94,10 @@ type CognitoIdentityProviderAPI interface {
 
 	ConfirmSignUp(*cognitoidentityprovider.ConfirmSignUpInput) (*cognitoidentityprovider.ConfirmSignUpOutput, error)
 
+	CreateUserImportJobRequest(*cognitoidentityprovider.CreateUserImportJobInput) (*request.Request, *cognitoidentityprovider.CreateUserImportJobOutput)
+
+	CreateUserImportJob(*cognitoidentityprovider.CreateUserImportJobInput) (*cognitoidentityprovider.CreateUserImportJobOutput, error)
+
 	CreateUserPoolRequest(*cognitoidentityprovider.CreateUserPoolInput) (*request.Request, *cognitoidentityprovider.CreateUserPoolOutput)
 
 	CreateUserPool(*cognitoidentityprovider.CreateUserPoolInput) (*cognitoidentityprovider.CreateUserPoolOutput, error)
@@ -118,6 +122,10 @@ type CognitoIdentityProviderAPI interface {
 
 	DeleteUserPoolClient(*cognitoidentityprovider.DeleteUserPoolClientInput) (*cognitoidentityprovider.DeleteUserPoolClientOutput, error)
 
+	DescribeUserImportJobRequest(*cognitoidentityprovider.DescribeUserImportJobInput) (*request.Request, *cognitoidentityprovider.DescribeUserImportJobOutput)
+
+	DescribeUserImportJob(*cognitoidentityprovider.DescribeUserImportJobInput) (*cognitoidentityprovider.DescribeUserImportJobOutput, error)
+
 	DescribeUserPoolRequest(*cognitoidentityprovider.DescribeUserPoolInput) (*request.Request, *cognitoidentityprovider.DescribeUserPoolOutput)
 
 	DescribeUserPool(*cognitoidentityprovider.DescribeUserPoolInput) (*cognitoidentityprovider.DescribeUserPoolOutput, error)
@@ -133,6 +141,10 @@ type CognitoIdentityProviderAPI interface {
 	ForgotPasswordRequest(*cognitoidentityprovider.ForgotPasswordInput) (*request.Request, *cognitoidentityprovider.ForgotPasswordOutput)
 
 	ForgotPassword(*cognitoidentityprovider.ForgotPasswordInput) (*cognitoidentityprovider.ForgotPasswordOutput, error)
+
+	GetCSVHeaderRequest(*cognitoidentityprovider.GetCSVHeaderInput) (*request.Request, *cognitoidentityprovider.GetCSVHeaderOutput)
+
+	GetCSVHeader(*cognitoidentityprovider.GetCSVHeaderInput) (*cognitoidentityprovider.GetCSVHeaderOutput, error)
 
 	GetDeviceRequest(*cognitoidentityprovider.GetDeviceInput) (*request.Request, *cognitoidentityprovider.GetDeviceOutput)
 
@@ -157,6 +169,10 @@ type CognitoIdentityProviderAPI interface {
 	ListDevicesRequest(*cognitoidentityprovider.ListDevicesInput) (*request.Request, *cognitoidentityprovider.ListDevicesOutput)
 
 	ListDevices(*cognitoidentityprovider.ListDevicesInput) (*cognitoidentityprovider.ListDevicesOutput, error)
+
+	ListUserImportJobsRequest(*cognitoidentityprovider.ListUserImportJobsInput) (*request.Request, *cognitoidentityprovider.ListUserImportJobsOutput)
+
+	ListUserImportJobs(*cognitoidentityprovider.ListUserImportJobsInput) (*cognitoidentityprovider.ListUserImportJobsOutput, error)
 
 	ListUserPoolClientsRequest(*cognitoidentityprovider.ListUserPoolClientsInput) (*request.Request, *cognitoidentityprovider.ListUserPoolClientsOutput)
 
@@ -185,6 +201,14 @@ type CognitoIdentityProviderAPI interface {
 	SignUpRequest(*cognitoidentityprovider.SignUpInput) (*request.Request, *cognitoidentityprovider.SignUpOutput)
 
 	SignUp(*cognitoidentityprovider.SignUpInput) (*cognitoidentityprovider.SignUpOutput, error)
+
+	StartUserImportJobRequest(*cognitoidentityprovider.StartUserImportJobInput) (*request.Request, *cognitoidentityprovider.StartUserImportJobOutput)
+
+	StartUserImportJob(*cognitoidentityprovider.StartUserImportJobInput) (*cognitoidentityprovider.StartUserImportJobOutput, error)
+
+	StopUserImportJobRequest(*cognitoidentityprovider.StopUserImportJobInput) (*request.Request, *cognitoidentityprovider.StopUserImportJobOutput)
+
+	StopUserImportJob(*cognitoidentityprovider.StopUserImportJobInput) (*cognitoidentityprovider.StopUserImportJobOutput, error)
 
 	UpdateDeviceStatusRequest(*cognitoidentityprovider.UpdateDeviceStatusInput) (*request.Request, *cognitoidentityprovider.UpdateDeviceStatusOutput)
 

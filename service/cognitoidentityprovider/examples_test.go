@@ -629,6 +629,33 @@ func ExampleCognitoIdentityProvider_ConfirmSignUp() {
 	fmt.Println(resp)
 }
 
+func ExampleCognitoIdentityProvider_CreateUserImportJob() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
+
+	params := &cognitoidentityprovider.CreateUserImportJobInput{
+		CloudWatchLogsRoleArn: aws.String("ArnType"),               // Required
+		JobName:               aws.String("UserImportJobNameType"), // Required
+		UserPoolId:            aws.String("UserPoolIdType"),        // Required
+	}
+	resp, err := svc.CreateUserImportJob(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleCognitoIdentityProvider_CreateUserPool() {
 	sess, err := session.NewSession()
 	if err != nil {
@@ -843,6 +870,32 @@ func ExampleCognitoIdentityProvider_DeleteUserPoolClient() {
 	fmt.Println(resp)
 }
 
+func ExampleCognitoIdentityProvider_DescribeUserImportJob() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
+
+	params := &cognitoidentityprovider.DescribeUserImportJobInput{
+		JobId:      aws.String("UserImportJobIdType"), // Required
+		UserPoolId: aws.String("UserPoolIdType"),      // Required
+	}
+	resp, err := svc.DescribeUserImportJob(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleCognitoIdentityProvider_DescribeUserPool() {
 	sess, err := session.NewSession()
 	if err != nil {
@@ -935,6 +988,31 @@ func ExampleCognitoIdentityProvider_ForgotPassword() {
 		SecretHash: aws.String("SecretHashType"),
 	}
 	resp, err := svc.ForgotPassword(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleCognitoIdentityProvider_GetCSVHeader() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
+
+	params := &cognitoidentityprovider.GetCSVHeaderInput{
+		UserPoolId: aws.String("UserPoolIdType"), // Required
+	}
+	resp, err := svc.GetCSVHeader(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -1098,6 +1176,33 @@ func ExampleCognitoIdentityProvider_ListDevices() {
 		PaginationToken: aws.String("SearchPaginationTokenType"),
 	}
 	resp, err := svc.ListDevices(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleCognitoIdentityProvider_ListUserImportJobs() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
+
+	params := &cognitoidentityprovider.ListUserImportJobsInput{
+		MaxResults:      aws.Int64(1),                 // Required
+		UserPoolId:      aws.String("UserPoolIdType"), // Required
+		PaginationToken: aws.String("PaginationKeyType"),
+	}
+	resp, err := svc.ListUserImportJobs(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -1315,6 +1420,58 @@ func ExampleCognitoIdentityProvider_SignUp() {
 		},
 	}
 	resp, err := svc.SignUp(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleCognitoIdentityProvider_StartUserImportJob() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
+
+	params := &cognitoidentityprovider.StartUserImportJobInput{
+		JobId:      aws.String("UserImportJobIdType"), // Required
+		UserPoolId: aws.String("UserPoolIdType"),      // Required
+	}
+	resp, err := svc.StartUserImportJob(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleCognitoIdentityProvider_StopUserImportJob() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := cognitoidentityprovider.New(sess)
+
+	params := &cognitoidentityprovider.StopUserImportJobInput{
+		JobId:      aws.String("UserImportJobIdType"), // Required
+		UserPoolId: aws.String("UserPoolIdType"),      // Required
+	}
+	resp, err := svc.StopUserImportJob(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and

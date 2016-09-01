@@ -13,7 +13,7 @@
     "AdminGetUser": "<p>Gets the specified user by user name in a user pool as an administrator. Works on any user.</p>",
     "AdminInitiateAuth": "<p>Initiates the authentication flow, as an administrator.</p>",
     "AdminListDevices": "<p>Lists devices, as an administrator.</p>",
-    "AdminResetUserPassword": "<p>Resets the specified user's password in a user pool as an administrator. Works on any user.</p>",
+    "AdminResetUserPassword": "<p>Resets the specified user's password in a user pool as an administrator. Works on any user.</p> <p>When a developer calls this API, the current password is invalidated, so it must be changed. If a user tries to sign in after the API is called, the app will get a PasswordResetRequiredException exception back and should direct the user down the flow to reset the password, which is the same as the forgot password flow. In addition, if the user pool has phone verification selected and a verified phone number exists for the user, or if email verification is selected and a verified email exists for the user, calling this API will also result in sending a message to the end user with the code to change their password.</p>",
     "AdminRespondToAuthChallenge": "<p>Responds to an authentication challenge, as an administrator.</p>",
     "AdminSetUserSettings": "<p>Sets all the user settings for a specified user name. Works on any user.</p>",
     "AdminUpdateDeviceStatus": "<p>Updates the device status as an administrator.</p>",
@@ -23,22 +23,26 @@
     "ConfirmDevice": "<p>Confirms tracking of the device. This API call is the call that beings device tracking.</p>",
     "ConfirmForgotPassword": "<p>Allows a user to enter a code provided when they reset their password to update their password.</p>",
     "ConfirmSignUp": "<p>Confirms registration of a user and handles the existing alias from a previous user.</p>",
+    "CreateUserImportJob": "<p>Creates the user import job.</p>",
     "CreateUserPool": "<p>Creates a new Amazon Cognito user pool and sets the password policy for the pool.</p>",
     "CreateUserPoolClient": "<p>Creates the user pool client.</p>",
     "DeleteUser": "<p>Allows a user to delete one's self.</p>",
     "DeleteUserAttributes": "<p>Deletes the attributes for a user.</p>",
     "DeleteUserPool": "<p>Deletes the specified Amazon Cognito user pool.</p>",
     "DeleteUserPoolClient": "<p>Allows the developer to delete the user pool client.</p>",
+    "DescribeUserImportJob": "<p>Describes the user import job.</p>",
     "DescribeUserPool": "<p>Returns the configuration information and metadata of the specified user pool.</p>",
     "DescribeUserPoolClient": "<p>Client method for returning the configuration information and metadata of the specified user pool client.</p>",
     "ForgetDevice": "<p>Forgets the specified device.</p>",
     "ForgotPassword": "<p>Retrieves the password for the specified client ID or username.</p>",
+    "GetCSVHeader": "<p>Gets the header information for the .csv file to be used as input for the user import job.</p>",
     "GetDevice": "<p>Gets the device.</p>",
     "GetUser": "<p>Gets the user attributes and metadata for a user.</p>",
     "GetUserAttributeVerificationCode": "<p>Gets the user attribute verification code for the specified attribute name.</p>",
     "GlobalSignOut": "<p>Signs out users from all devices.</p>",
     "InitiateAuth": "<p>Initiates the authentication flow.</p>",
     "ListDevices": "<p>Lists the devices.</p>",
+    "ListUserImportJobs": "<p>Lists the user import jobs.</p>",
     "ListUserPoolClients": "<p>Lists the clients that have been created for the specified user pool.</p>",
     "ListUserPools": "<p>Lists the user pools associated with an AWS account.</p>",
     "ListUsers": "<p>Lists the users in the Amazon Cognito user pool.</p>",
@@ -46,6 +50,8 @@
     "RespondToAuthChallenge": "<p>Responds to the authentication challenge.</p>",
     "SetUserSettings": "<p>Sets the user settings like multi-factor authentication (MFA). If MFA is to be removed for a particular attribute pass the attribute with code delivery as null. If null list is passed, all MFA options are removed.</p>",
     "SignUp": "<p>Registers the user in the specified user pool and creates a user name, password, and user attributes.</p>",
+    "StartUserImportJob": "<p>Starts the user import.</p>",
+    "StopUserImportJob": "<p>Stops the user import job.</p>",
     "UpdateDeviceStatus": "<p>Updates the device status.</p>",
     "UpdateUserAttributes": "<p>Allows a user to update a specific attribute (one at a time).</p>",
     "UpdateUserPool": "<p>Updates the specified user pool with the specified attributes.</p>",
@@ -209,7 +215,7 @@
       }
     },
     "AdminUserGlobalSignOutResponse": {
-      "base": "<p>The global signot response, as an administrator.</p>",
+      "base": "<p>The global sign-out response, as an administrator.</p>",
       "refs": {
       }
     },
@@ -234,6 +240,7 @@
     "ArnType": {
       "base": null,
       "refs": {
+        "CreateUserImportJobRequest$CloudWatchLogsRoleArn": "<p>The role ARN for the Amazon CloudWatch Logging role for the user import job.</p>",
         "EmailConfigurationType$SourceArn": "<p>The Amazon Resource Name (ARN) of the email source.</p>",
         "LambdaConfigType$PreSignUp": "<p>A pre-registration AWS Lambda trigger.</p>",
         "LambdaConfigType$CustomMessage": "<p>A custom Message AWS Lambda trigger.</p>",
@@ -243,7 +250,8 @@
         "LambdaConfigType$DefineAuthChallenge": "<p>Defines the authentication challenge.</p>",
         "LambdaConfigType$CreateAuthChallenge": "<p>Creates an authentication challenge.</p>",
         "LambdaConfigType$VerifyAuthChallengeResponse": "<p>Verifies the authentication challenge response.</p>",
-        "SmsConfigurationType$SnsCallerArn": "<p>The Amazon Resource Name (ARN) of the Amazon Simple Notification Service (SNS) caller.</p>"
+        "SmsConfigurationType$SnsCallerArn": "<p>The Amazon Resource Name (ARN) of the Amazon Simple Notification Service (SNS) caller.</p>",
+        "UserImportJobType$CloudWatchLogsRoleArn": "<p>The role ARN for the Amazon CloudWatch Logging role for the user import job. For more information, see \"Creating the CloudWatch Logs IAM Role\" in the Amazon Cognito Developer Guide.</p>"
       }
     },
     "AttributeDataType": {
@@ -458,6 +466,12 @@
       "refs": {
       }
     },
+    "CompletionMessageType": {
+      "base": null,
+      "refs": {
+        "UserImportJobType$CompletionMessage": "<p>The message returned when the user import job is completed.</p>"
+      }
+    },
     "ConcurrentModificationException": {
       "base": "<p>This exception is thrown if two or more modifications are happening concurrently.</p>",
       "refs": {
@@ -501,6 +515,16 @@
         "VerifyUserAttributeRequest$Code": "<p>The verification code in the request to verify user attributes.</p>"
       }
     },
+    "CreateUserImportJobRequest": {
+      "base": "<p>Represents the request to create the user import job.</p>",
+      "refs": {
+      }
+    },
+    "CreateUserImportJobResponse": {
+      "base": "<p>Represents the response from the server to the request to create the user import job.</p>",
+      "refs": {
+      }
+    },
     "CreateUserPoolClientRequest": {
       "base": "<p>Represents the request to create a user pool client.</p>",
       "refs": {
@@ -541,6 +565,9 @@
         "DeviceType$DeviceCreateDate": "<p>The creation date of the device.</p>",
         "DeviceType$DeviceLastModifiedDate": "<p>The last modified date of the device.</p>",
         "DeviceType$DeviceLastAuthenticatedDate": "<p>The date in which the device was last authenticated.</p>",
+        "UserImportJobType$CreationDate": "<p>The date when the user import job was created.</p>",
+        "UserImportJobType$StartDate": "<p>The date when the user import job was started.</p>",
+        "UserImportJobType$CompletionDate": "<p>The date when the user imoprt job was completed.</p>",
         "UserPoolClientType$LastModifiedDate": "<p>The last modified date from the user pool request of the client type.</p>",
         "UserPoolClientType$CreationDate": "<p>The creation date from the user pool request of the client type.</p>",
         "UserPoolDescriptionType$LastModifiedDate": "<p>The last modified date in a user pool description.</p>",
@@ -581,6 +608,16 @@
       "refs": {
         "CodeDeliveryDetailsType$DeliveryMedium": "<p>The delivery medium (email message or phone number).</p>",
         "MFAOptionType$DeliveryMedium": "<p>The delivery medium (email message or SMS message) to send the MFA code.</p>"
+      }
+    },
+    "DescribeUserImportJobRequest": {
+      "base": "<p>Represents the request to describe the user import job.</p>",
+      "refs": {
+      }
+    },
+    "DescribeUserImportJobResponse": {
+      "base": "<p>Represents the response from the server to the request to describe the user import job.</p>",
+      "refs": {
       }
     },
     "DescribeUserPoolClientRequest": {
@@ -735,6 +772,16 @@
         "CreateUserPoolClientRequest$GenerateSecret": "<p> Boolean to specify whether you want to generate a secret for the user pool client being created.</p>"
       }
     },
+    "GetCSVHeaderRequest": {
+      "base": "<p>Represents the request to get the header information for the .csv file for the user import job.</p>",
+      "refs": {
+      }
+    },
+    "GetCSVHeaderResponse": {
+      "base": "<p>Represents the response from the server to the request to get the header information for the .csv file for the user import job.</p>",
+      "refs": {
+      }
+    },
     "GetDeviceRequest": {
       "base": "<p>Represents the request to get the device.</p>",
       "refs": {
@@ -856,6 +903,22 @@
       "refs": {
       }
     },
+    "ListOfStringTypes": {
+      "base": null,
+      "refs": {
+        "GetCSVHeaderResponse$CSVHeader": "<p>The header information for the .csv file for the user import job.</p>"
+      }
+    },
+    "ListUserImportJobsRequest": {
+      "base": "<p>Represents the request to list the user import jobs.</p>",
+      "refs": {
+      }
+    },
+    "ListUserImportJobsResponse": {
+      "base": "<p>Represents the response from the server to the request to list the user import jobs.</p>",
+      "refs": {
+      }
+    },
     "ListUserPoolClientsRequest": {
       "base": "<p>Represents the request to list the user pool clients.</p>",
       "refs": {
@@ -884,6 +947,14 @@
     "ListUsersResponse": {
       "base": "<p>The response from the request to list users.</p>",
       "refs": {
+      }
+    },
+    "LongType": {
+      "base": null,
+      "refs": {
+        "UserImportJobType$ImportedUsers": "<p>The number of users that were successfully imported.</p>",
+        "UserImportJobType$SkippedUsers": "<p>The number of users that were skipped.</p>",
+        "UserImportJobType$FailedUsers": "<p>The number of users that could not be imported.</p>"
       }
     },
     "MFAMethodNotFoundException": {
@@ -926,10 +997,12 @@
         "MFAMethodNotFoundException$message": "<p>The message returned when Amazon Cognito throws an MFA method not found exception.</p>",
         "NotAuthorizedException$message": "<p>The message returned when the Amazon Cognito service returns a not authorized exception.</p>",
         "PasswordResetRequiredException$message": "<p>The message returned when a password reset is required.</p>",
+        "PreconditionNotMetException$message": "<p>The message returned when a precondition is not met.</p>",
         "ResourceNotFoundException$message": "<p>The message returned when the Amazon Cognito service returns a resource not found exception.</p>",
         "TooManyFailedAttemptsException$message": "<p>The message returned when the Amazon Cognito service returns a too many failed attempts exception.</p>",
         "TooManyRequestsException$message": "<p>The message returned when the Amazon Cognito service returns a too many requests exception.</p>",
         "UnexpectedLambdaException$message": "<p>The message returned when the Amazon Cognito service returns an unexpected AWS Lambda exception.</p>",
+        "UserImportInProgressException$message": "<p>The message returned when the user pool has an import job running.</p>",
         "UserLambdaValidationException$message": "<p>The message returned when the Amazon Cognito service returns a user validation exception with the AWS Lambda service.</p>",
         "UserNotConfirmedException$message": "<p>The message returned when a user is not confirmed successfully.</p>",
         "UserNotFoundException$message": "<p>The message returned when a user is not found.</p>",
@@ -963,6 +1036,8 @@
     "PaginationKeyType": {
       "base": null,
       "refs": {
+        "ListUserImportJobsRequest$PaginationToken": "<p>An identifier that was returned from the previous call to this operation, which can be used to return the next set of import jobs in the list.</p>",
+        "ListUserImportJobsResponse$PaginationToken": "<p>An identifier that can be used to return the next set of user import jobs in the list.</p>",
         "ListUserPoolsRequest$NextToken": "<p>An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.</p>",
         "ListUserPoolsResponse$NextToken": "<p>An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.</p>"
       }
@@ -996,7 +1071,19 @@
     "PoolQueryLimitType": {
       "base": null,
       "refs": {
+        "ListUserImportJobsRequest$MaxResults": "<p>The maximum number of import jobs you want the request to return.</p>",
         "ListUserPoolsRequest$MaxResults": "<p>The maximum number of results you want the request to return when listing the user pools.</p>"
+      }
+    },
+    "PreSignedUrlType": {
+      "base": null,
+      "refs": {
+        "UserImportJobType$PreSignedUrl": "<p>The pre-signed URL to be used to upload the .csv file.</p>"
+      }
+    },
+    "PreconditionNotMetException": {
+      "base": "<p>This exception is thrown when a precondition is not met.</p>",
+      "refs": {
       }
     },
     "QueryLimit": {
@@ -1136,11 +1223,31 @@
         "UserPoolType$SmsAuthenticationMessage": "<p>The contents of the SMS authentication message.</p>"
       }
     },
+    "StartUserImportJobRequest": {
+      "base": "<p>Represents the request to start the user import job.</p>",
+      "refs": {
+      }
+    },
+    "StartUserImportJobResponse": {
+      "base": "<p>Represents the response from the server to the request to start the user import job.</p>",
+      "refs": {
+      }
+    },
     "StatusType": {
       "base": null,
       "refs": {
         "UserPoolDescriptionType$Status": "<p>The user pool status in a user pool description.</p>",
         "UserPoolType$Status": "<p>The status of a user pool.</p>"
+      }
+    },
+    "StopUserImportJobRequest": {
+      "base": "<p>Represents the request to stop the user import job.</p>",
+      "refs": {
+      }
+    },
+    "StopUserImportJobResponse": {
+      "base": "<p>Represents the response from the server to the request to stop the user import job.</p>",
+      "refs": {
       }
     },
     "StringAttributeConstraintsType": {
@@ -1164,6 +1271,7 @@
         "CodeDeliveryDetailsType$Destination": "<p>The destination for the code delivery details.</p>",
         "DeviceSecretVerifierConfigType$PasswordVerifier": "<p>The password verifier.</p>",
         "DeviceSecretVerifierConfigType$Salt": "<p>The salt.</p>",
+        "ListOfStringTypes$member": null,
         "NewDeviceMetadataType$DeviceGroupKey": "<p>The device group key.</p>",
         "NumberAttributeConstraintsType$MinValue": "<p>The minimum value of an attribute that is of the number data type.</p>",
         "NumberAttributeConstraintsType$MaxValue": "<p>The maximum value of an attribute that is of the number data type.</p>",
@@ -1257,6 +1365,49 @@
         "ListUsersRequest$Filter": "<p>The filter for the list users request.</p>"
       }
     },
+    "UserImportInProgressException": {
+      "base": "<p>This exception is thrown when you are trying to modify a user pool while a user import job is in progress for that pool.</p>",
+      "refs": {
+      }
+    },
+    "UserImportJobIdType": {
+      "base": null,
+      "refs": {
+        "DescribeUserImportJobRequest$JobId": "<p>The job ID for the user import job.</p>",
+        "StartUserImportJobRequest$JobId": "<p>The job ID for the user import job.</p>",
+        "StopUserImportJobRequest$JobId": "<p>The job ID for the user import job.</p>",
+        "UserImportJobType$JobId": "<p>The job ID for the user import job.</p>"
+      }
+    },
+    "UserImportJobNameType": {
+      "base": null,
+      "refs": {
+        "CreateUserImportJobRequest$JobName": "<p>The job name for the user import job.</p>",
+        "UserImportJobType$JobName": "<p>The job name for the user import job.</p>"
+      }
+    },
+    "UserImportJobStatusType": {
+      "base": null,
+      "refs": {
+        "UserImportJobType$Status": "<p>The status of the user import job. One of the following:</p> <ul> <li>Created - The job was created but not started.</li> <li>Pending - A transition state. You have started the job, but it has not begun importing users yet.</li> <li>InProgress - The job has started, and users are being imported.</li> <li>Stopping - You have stopped the job, but the job has not stopped importing users yet.</li> <li>Stopped - You have stopped the job, and the job has stopped importing users.</li> <li>Succeeded - The job has completed successfully.</li> <li>Failed - The job has stopped due to an error.</li> <li>Expired - You created a job, but did not start the job within 24-48 hours. All data associated with the job was deleted, and the job cannot be started.</li> </ul>"
+      }
+    },
+    "UserImportJobType": {
+      "base": "<p>The user import job type.</p>",
+      "refs": {
+        "CreateUserImportJobResponse$UserImportJob": "<p>The job object that represents the user import job.</p>",
+        "DescribeUserImportJobResponse$UserImportJob": "<p>The job object that represents the user import job.</p>",
+        "StartUserImportJobResponse$UserImportJob": "<p>The job object that represents the user import job.</p>",
+        "StopUserImportJobResponse$UserImportJob": "<p>The job object that represents the user import job.</p>",
+        "UserImportJobsListType$member": null
+      }
+    },
+    "UserImportJobsListType": {
+      "base": null,
+      "refs": {
+        "ListUserImportJobsResponse$UserImportJobs": "<p>The user import jobs.</p>"
+      }
+    },
     "UserLambdaValidationException": {
       "base": "<p>This exception gets thrown when the Amazon Cognito service encounters a user validation exception with the AWS Lambda service.</p>",
       "refs": {
@@ -1318,15 +1469,23 @@
         "AdminUpdateDeviceStatusRequest$UserPoolId": "<p>The user pool ID></p>",
         "AdminUpdateUserAttributesRequest$UserPoolId": "<p>The user pool ID for the user pool where you want to update user attributes.</p>",
         "AdminUserGlobalSignOutRequest$UserPoolId": "<p>The user pool ID.</p>",
+        "CreateUserImportJobRequest$UserPoolId": "<p>The user pool ID for the user pool that the users are being imported into.</p>",
         "CreateUserPoolClientRequest$UserPoolId": "<p>The user pool ID for the user pool where you want to create a user pool client.</p>",
         "DeleteUserPoolClientRequest$UserPoolId": "<p>The user pool ID for the user pool where you want to delete the client.</p>",
         "DeleteUserPoolRequest$UserPoolId": "<p>The user pool ID for the user pool you want to delete.</p>",
+        "DescribeUserImportJobRequest$UserPoolId": "<p>The user pool ID for the user pool that the users are being imported into.</p>",
         "DescribeUserPoolClientRequest$UserPoolId": "<p>The user pool ID for the user pool you want to describe.</p>",
         "DescribeUserPoolRequest$UserPoolId": "<p>The user pool ID for the user pool you want to describe.</p>",
+        "GetCSVHeaderRequest$UserPoolId": "<p>The user pool ID for the user pool that the users are to be imported into.</p>",
+        "GetCSVHeaderResponse$UserPoolId": "<p>The user pool ID for the user pool that the users are to be imported into.</p>",
+        "ListUserImportJobsRequest$UserPoolId": "<p>The user pool ID for the user pool that the users are being imported into.</p>",
         "ListUserPoolClientsRequest$UserPoolId": "<p>The user pool ID for the user pool where you want to list user pool clients.</p>",
         "ListUsersRequest$UserPoolId": "<p>The user pool ID for which you want to list users.</p>",
+        "StartUserImportJobRequest$UserPoolId": "<p>The user pool ID for the user pool that the users are being imported into.</p>",
+        "StopUserImportJobRequest$UserPoolId": "<p>The user pool ID for the user pool that the users are being imported into.</p>",
         "UpdateUserPoolClientRequest$UserPoolId": "<p>The user pool ID for the user pool where you want to update the user pool client.</p>",
         "UpdateUserPoolRequest$UserPoolId": "<p>The user pool ID for the user pool you want to update.</p>",
+        "UserImportJobType$UserPoolId": "<p>The user pool ID for the user pool that the users are being imported into.</p>",
         "UserPoolClientDescription$UserPoolId": "<p>The user pool ID for the user pool where you want to describe the user pool client.</p>",
         "UserPoolClientType$UserPoolId": "<p>The user pool ID for the user pool client.</p>",
         "UserPoolDescriptionType$Id": "<p>The ID in a user pool description.</p>",
