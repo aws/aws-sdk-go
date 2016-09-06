@@ -655,7 +655,7 @@ func (e *InvalidUnmarshalError) Message() string {
 		return "cannot unmarshal to nil value"
 	}
 	if e.Type.Kind() != reflect.Ptr {
-		return "cannot unmasrhal to non-pointer value, got " + e.Type.String()
+		return "cannot unmarshal to non-pointer value, got " + e.Type.String()
 	}
 	return "cannot unmarshal to nil value, " + e.Type.String()
 }
