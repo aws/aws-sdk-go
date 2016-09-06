@@ -630,3 +630,43 @@ func enumFields(v reflect.Type) []reflect.StructField {
 
 	return fields
 }
+
+type fooReaderAt struct{}
+
+func (r *fooReaderAt) Read(p []byte) (n int, err error) {
+	return 12, io.EOF
+}
+
+func (r *fooReaderAt) ReadAt(p []byte, off int64) (n int, err error) {
+	return 12, io.EOF
+}
+
+func TestReaderAt(t *testing.T) {
+	svc := s3.New(unit.Session)
+	svc.Handlers.Unmarshal.Clear()
+	svc.Handlers.UnmarshalMeta.Clear()
+	svc.Handlers.UnmarshalError.Clear()
+	svc.Handlers.Send.Clear()
+
+	contentLen := ""
+	svc.Handlers.Send.PushBack(func(r *request.Request) {
+		contentLen = r.HTTPRequest.Header.Get("Content-Length")
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Body:       ioutil.NopCloser(bytes.NewReader([]byte{})),
+		}
+	})
+
+	mgr := s3manager.NewUploaderWithClient(svc, func(u *s3manager.Uploader) {
+		u.Concurrency = 1
+	})
+
+	_, err := mgr.Upload(&s3manager.UploadInput{
+		Bucket: aws.String("Bucket"),
+		Key:    aws.String("Key"),
+		Body:   &fooReaderAt{},
+	})
+
+	assert.NoError(t, err)
+	assert.Equal(t, contentLen, "12")
+}
