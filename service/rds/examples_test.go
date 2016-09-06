@@ -2011,6 +2011,43 @@ func ExampleRDS_DescribeReservedDBInstancesOfferings() {
 	fmt.Println(resp)
 }
 
+func ExampleRDS_DescribeSourceRegions() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := rds.New(sess)
+
+	params := &rds.DescribeSourceRegionsInput{
+		Filters: []*rds.Filter{
+			{ // Required
+				Name: aws.String("String"), // Required
+				Values: []*string{ // Required
+					aws.String("String"), // Required
+					// More values...
+				},
+			},
+			// More values...
+		},
+		Marker:     aws.String("String"),
+		MaxRecords: aws.Int64(1),
+		RegionName: aws.String("String"),
+	}
+	resp, err := svc.DescribeSourceRegions(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleRDS_DownloadDBLogFilePortion() {
 	sess, err := session.NewSession()
 	if err != nil {
