@@ -14,7 +14,7 @@
     "GetDownloadUrlForLayer": "<p>Retrieves the pre-signed Amazon S3 download URL corresponding to an image layer. You can only get URLs for image layers that are referenced in an image.</p> <note> <p>This operation is used by the Amazon ECR proxy, and it is not intended for general use by customers. Use the <code>docker</code> CLI to pull, tag, and push images.</p> </note>",
     "GetRepositoryPolicy": "<p>Retrieves the repository policy for a specified repository.</p>",
     "InitiateLayerUpload": "<p>Notify Amazon ECR that you intend to upload an image layer.</p> <note> <p>This operation is used by the Amazon ECR proxy, and it is not intended for general use by customers. Use the <code>docker</code> CLI to pull, tag, and push images.</p> </note>",
-    "ListImages": "<p>Lists all the image IDs for a given repository.</p>",
+    "ListImages": "<p>Lists all the image IDs for a given repository.</p> <p>You can filter images based on whether or not they are tagged by setting the <code>tagStatus</code> parameter to <code>TAGGED</code> or <code>UNTAGGED</code>. For example, you can filter your results to return only <code>UNTAGGED</code> images and then pipe that result to a <a>BatchDeleteImage</a> operation to delete them. Or, you can filter your results to return only <code>TAGGED</code> images to list all of the tags in your repository.</p>",
     "PutImage": "<p>Creates or updates the image manifest associated with an image.</p> <note> <p>This operation is used by the Amazon ECR proxy, and it is not intended for general use by customers. Use the <code>docker</code> CLI to pull, tag, and push images.</p> </note>",
     "SetRepositoryPolicy": "<p>Applies a repository policy on a specified repository to control access permissions.</p>",
     "UploadLayerPart": "<p>Uploads an image layer part to Amazon ECR.</p> <note> <p>This operation is used by the Amazon ECR proxy, and it is not intended for general use by customers. Use the <code>docker</code> CLI to pull, tag, and push images.</p> </note>"
@@ -412,9 +412,9 @@
       }
     },
     "ListImagesFilter": {
-      "base": null,
+      "base": "<p>An object representing a filter on a <a>ListImages</a> operation.</p>",
       "refs": {
-        "ListImagesRequest$filter": null
+        "ListImagesRequest$filter": "<p>The filter key and value with which to filter your <code>ListImages</code> results.</p>"
       }
     },
     "ListImagesRequest": {
@@ -592,7 +592,7 @@
     "TagStatus": {
       "base": null,
       "refs": {
-        "ListImagesFilter$tagStatus": null
+        "ListImagesFilter$tagStatus": "<p>The tag status with which to filter your <a>ListImages</a> results. You can filter results based on whether they are <code>TAGGED</code> or <code>UNTAGGED</code>.</p>"
       }
     },
     "UploadId": {
