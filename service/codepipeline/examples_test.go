@@ -601,8 +601,8 @@ func ExampleCodePipeline_PutApprovalResult() {
 			Status:  aws.String("ApprovalStatus"),  // Required
 			Summary: aws.String("ApprovalSummary"), // Required
 		},
-		StageName: aws.String("StageName"), // Required
-		Token:     aws.String("ApprovalToken"),
+		StageName: aws.String("StageName"),     // Required
+		Token:     aws.String("ApprovalToken"), // Required
 	}
 	resp, err := svc.PutApprovalResult(params)
 

@@ -724,6 +724,7 @@
     "ArtifactRevision":{
       "type":"structure",
       "members":{
+        "name":{"shape":"ArtifactName"},
         "revisionId":{"shape":"Revision"},
         "revisionChangeIdentifier":{"shape":"RevisionChangeIdentifier"},
         "revisionSummary":{"shape":"RevisionSummary"},
@@ -731,16 +732,9 @@
         "revisionUrl":{"shape":"Url"}
       }
     },
-    "ArtifactRevisionInformation":{
-      "type":"structure",
-      "members":{
-        "name":{"shape":"ArtifactName"},
-        "revision":{"shape":"ArtifactRevision"}
-      }
-    },
-    "ArtifactRevisionInformationList":{
+    "ArtifactRevisionList":{
       "type":"list",
-      "member":{"shape":"ArtifactRevisionInformation"}
+      "member":{"shape":"ArtifactRevision"}
     },
     "ArtifactStore":{
       "type":"structure",
@@ -1280,7 +1274,7 @@
         "pipelineVersion":{"shape":"PipelineVersion"},
         "pipelineExecutionId":{"shape":"PipelineExecutionId"},
         "status":{"shape":"PipelineExecutionStatus"},
-        "artifactRevisionInformations":{"shape":"ArtifactRevisionInformationList"}
+        "artifactRevisions":{"shape":"ArtifactRevisionList"}
       }
     },
     "PipelineExecutionId":{
@@ -1404,7 +1398,8 @@
         "pipelineName",
         "stageName",
         "actionName",
-        "result"
+        "result",
+        "token"
       ],
       "members":{
         "pipelineName":{"shape":"PipelineName"},

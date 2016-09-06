@@ -321,7 +321,7 @@
       "base": null,
       "refs": {
         "Artifact$name": "<p>The artifact's name.</p>",
-        "ArtifactRevisionInformation$name": "<p>The name of an artifact. This name might be system-generated, such as \"MyApp\", or might be defined by the user when an action is created.</p>",
+        "ArtifactRevision$name": "<p>The name of an artifact. This name might be system-generated, such as \"MyApp\", or might be defined by the user when an action is created.</p>",
         "InputArtifact$name": "<p>The name of the artifact to be worked on, for example, \"My App\".</p> <p>The input artifact of an action must exactly match the output artifact declared in a preceding action, but the input artifact does not have to be the next action in strict sequence from the action that provided the output artifact. Actions in parallel can declare different output artifacts, which are in turn consumed by different following actions.</p>",
         "OutputArtifact$name": "<p>The name of the output of an artifact, such as \"My App\".</p> <p>The input artifact of an action must exactly match the output artifact declared in a preceding action, but the input artifact does not have to be the next action in strict sequence from the action that provided the output artifact. Actions in parallel can declare different output artifacts, which are in turn consumed by different following actions.</p> <p>Output artifact names must be unique within a pipeline.</p>"
       }
@@ -329,19 +329,13 @@
     "ArtifactRevision": {
       "base": "<p>Represents revision details of an artifact. </p>",
       "refs": {
-        "ArtifactRevisionInformation$revision": "<p>Represents details about the ArtifactRevision object.</p>"
+        "ArtifactRevisionList$member": null
       }
     },
-    "ArtifactRevisionInformation": {
-      "base": "<p>Represents information about an artifact revision.</p>",
-      "refs": {
-        "ArtifactRevisionInformationList$member": null
-      }
-    },
-    "ArtifactRevisionInformationList": {
+    "ArtifactRevisionList": {
       "base": null,
       "refs": {
-        "PipelineExecution$artifactRevisionInformations": "<p>A list of ArtifactRevisionInformation objects included in a pipeline execution.</p>"
+        "PipelineExecution$artifactRevisions": "<p>A list of ArtifactRevision objects included in a pipeline execution.</p>"
       }
     },
     "ArtifactStore": {
@@ -1024,7 +1018,7 @@
     "RevisionSummary": {
       "base": null,
       "refs": {
-        "ArtifactRevision$revisionSummary": "<p>Summary information about the most recent revision of the artifact. For GitHub and AWS CodeCommit repositories, the commit message. For Amazon S3 buckets or actions, the user-provided value of an <code>x-amz-meta-codepipeline-artifact-revision-summary</code> key specified in the object metadata.</p>",
+        "ArtifactRevision$revisionSummary": "<p>Summary information about the most recent revision of the artifact. For GitHub and AWS CodeCommit repositories, the commit message. For Amazon S3 buckets or actions, the user-provided content of a <code>codepipeline-artifact-revision-summary</code> key specified in the object metadata.</p>",
         "CurrentRevision$revisionSummary": "<p>The summary of the most recent revision of the artifact.</p>"
       }
     },
