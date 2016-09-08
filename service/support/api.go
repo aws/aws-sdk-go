@@ -49,14 +49,14 @@ func (c *Support) AddAttachmentsToSetRequest(input *AddAttachmentsToSetInput) (r
 	return
 }
 
-// Adds one or more attachments to an attachment set. If an AttachmentSetId
+// Adds one or more attachments to an attachment set. If an attachmentSetId
 // is not specified, a new attachment set is created, and the ID of the set
-// is returned in the response. If an AttachmentSetId is specified, the attachments
+// is returned in the response. If an attachmentSetId is specified, the attachments
 // are added to the specified set, if it exists.
 //
 // An attachment set is a temporary container for attachments that are to be
 // added to a case or case communication. The set is available for one hour
-// after it is created; the ExpiryTime returned in the response indicates when
+// after it is created; the expiryTime returned in the response indicates when
 // the set expires. The maximum number of attachments in a set is 3, and the
 // maximum size of any attachment in the set is 5 MB.
 func (c *Support) AddAttachmentsToSet(input *AddAttachmentsToSetInput) (*AddAttachmentsToSetOutput, error) {
@@ -107,9 +107,9 @@ func (c *Support) AddCommunicationToCaseRequest(input *AddCommunicationToCaseInp
 }
 
 // Adds additional customer communication to an AWS Support case. You use the
-// CaseId value to identify the case to add communication to. You can list a
-// set of email addresses to copy on the communication using the CcEmailAddresses
-// value. The CommunicationBody value contains the text of the communication.
+// caseId value to identify the case to add communication to. You can list a
+// set of email addresses to copy on the communication using the ccEmailAddresses
+// value. The communicationBody value contains the text of the communication.
 //
 // The response indicates the success or failure of the request.
 //
@@ -165,27 +165,40 @@ func (c *Support) CreateCaseRequest(input *CreateCaseInput) (req *request.Reques
 // the behavior of the AWS Support Center Create Case (https://console.aws.amazon.com/support/home#/case/create)
 // page. Its parameters require you to specify the following information:
 //
-//   IssueType. The type of issue for the case. You can specify either "customer-service"
+//    issueType. The type of issue for the case. You can specify either "customer-service"
 // or "technical." If you do not indicate a value, the default is "technical."
-//   ServiceCode. The code for an AWS service. You obtain the ServiceCode by
-// calling DescribeServices.   CategoryCode. The category for the service defined
-// for the ServiceCode value. You also obtain the category code for a service
-// by calling DescribeServices. Each AWS service defines its own set of category
-// codes.   SeverityCode. A value that indicates the urgency of the case, which
-// in turn determines the response time according to your service level agreement
+//
+//    serviceCode. The code for an AWS service. You obtain the serviceCode
+// by calling DescribeServices.
+//
+//    categoryCode. The category for the service defined for the serviceCode
+// value. You also obtain the category code for a service by calling DescribeServices.
+// Each AWS service defines its own set of category codes.
+//
+//    severityCode. A value that indicates the urgency of the case, which in
+// turn determines the response time according to your service level agreement
 // with AWS Support. You obtain the SeverityCode by calling DescribeSeverityLevels.
-//  Subject. The Subject field on the AWS Support Center Create Case (https://console.aws.amazon.com/support/home#/case/create)
-// page.  CommunicationBody. The Description field on the AWS Support Center
-// Create Case (https://console.aws.amazon.com/support/home#/case/create) page.
-//  AttachmentSetId. The ID of a set of attachments that has been created by
-// using AddAttachmentsToSet.  Language. The human language in which AWS Support
-// handles the case. English and Japanese are currently supported.  CcEmailAddresses.
-// The AWS Support Center CC field on the Create Case (https://console.aws.amazon.com/support/home#/case/create)
-// page. You can list email addresses to be copied on any correspondence about
-// the case. The account that opens the case is already identified by passing
-// the AWS Credentials in the HTTP POST method or in a method or function call
-// from one of the programming languages supported by an AWS SDK (http://aws.amazon.com/tools/).
-//   To add additional communication or attachments to an existing case, use
+//
+//    subject. The Subject field on the AWS Support Center Create Case (https://console.aws.amazon.com/support/home#/case/create)
+// page.
+//
+//    communicationBody. The Description field on the AWS Support Center Create
+// Case (https://console.aws.amazon.com/support/home#/case/create) page.
+//
+//    attachmentSetId. The ID of a set of attachments that has been created
+// by using AddAttachmentsToSet.
+//
+//    language. The human language in which AWS Support handles the case. English
+// and Japanese are currently supported.
+//
+//    ccEmailAddresses. The AWS Support Center CC field on the Create Case
+// (https://console.aws.amazon.com/support/home#/case/create) page. You can
+// list email addresses to be copied on any correspondence about the case. The
+// account that opens the case is already identified by passing the AWS Credentials
+// in the HTTP POST method or in a method or function call from one of the programming
+// languages supported by an AWS SDK (http://aws.amazon.com/tools/).
+//
+//    To add additional communication or attachments to an existing case, use
 // AddCommunicationToCase.
 //
 //  A successful CreateCase request returns an AWS Support case number. Case
@@ -296,9 +309,9 @@ func (c *Support) DescribeCasesRequest(input *DescribeCasesInput) (req *request.
 }
 
 // Returns a list of cases that you specify by passing one or more case IDs.
-// In addition, you can filter the cases by date by setting values for the AfterTime
-// and BeforeTime request parameters. You can set values for the IncludeResolvedCases
-// and IncludeCommunications request parameters to control how much information
+// In addition, you can filter the cases by date by setting values for the afterTime
+// and beforeTime request parameters. You can set values for the includeResolvedCases
+// and includeCommunications request parameters to control how much information
 // is returned.
 //
 // Case data is available for 12 months after creation. If a case was created
@@ -306,9 +319,10 @@ func (c *Support) DescribeCasesRequest(input *DescribeCasesInput) (req *request.
 //
 // The response returns the following in JSON format:
 //
-//  One or more CaseDetails data types.  One or more NextToken values, which
-// specify where to paginate the returned records represented by the CaseDetails
-// objects.
+//   One or more CaseDetails data types.
+//
+//   One or more nextToken values, which specify where to paginate the returned
+// records represented by the CaseDetails objects.
 func (c *Support) DescribeCases(input *DescribeCasesInput) (*DescribeCasesOutput, error) {
 	req, out := c.DescribeCasesRequest(input)
 	err := req.Send()
@@ -388,15 +402,15 @@ func (c *Support) DescribeCommunicationsRequest(input *DescribeCommunicationsInp
 }
 
 // Returns communications (and attachments) for one or more support cases. You
-// can use the AfterTime and BeforeTime parameters to filter by date. You can
-// use the CaseId parameter to restrict the results to a particular case.
+// can use the afterTime and beforeTime parameters to filter by date. You can
+// use the caseId parameter to restrict the results to a particular case.
 //
 // Case data is available for 12 months after creation. If a case was created
 // more than 12 months ago, a request for data might cause an error.
 //
-// You can use the MaxResults and NextToken parameters to control the pagination
-// of the result set. Set MaxResults to the number of cases you want displayed
-// on each page, and use NextToken to specify the resumption of pagination.
+// You can use the maxResults and nextToken parameters to control the pagination
+// of the result set. Set maxResults to the number of cases you want displayed
+// on each page, and use nextToken to specify the resumption of pagination.
 func (c *Support) DescribeCommunications(input *DescribeCommunicationsInput) (*DescribeCommunicationsOutput, error) {
 	req, out := c.DescribeCommunicationsRequest(input)
 	err := req.Send()
@@ -579,6 +593,10 @@ func (c *Support) DescribeTrustedAdvisorCheckRefreshStatusesRequest(input *Descr
 
 // Returns the refresh status of the Trusted Advisor checks that have the specified
 // check IDs. Check IDs can be obtained by calling DescribeTrustedAdvisorChecks.
+//
+//  Some checks are refreshed automatically, and their refresh statuses cannot
+// be retrieved by using this operation. Use of the DescribeTrustedAdvisorCheckRefreshStatuses
+// operation for these checks causes an InvalidParameterValue error.
 func (c *Support) DescribeTrustedAdvisorCheckRefreshStatuses(input *DescribeTrustedAdvisorCheckRefreshStatusesInput) (*DescribeTrustedAdvisorCheckRefreshStatusesOutput, error) {
 	req, out := c.DescribeTrustedAdvisorCheckRefreshStatusesRequest(input)
 	err := req.Send()
@@ -632,12 +650,20 @@ func (c *Support) DescribeTrustedAdvisorCheckResultRequest(input *DescribeTruste
 // The response contains a TrustedAdvisorCheckResult object, which contains
 // these three objects:
 //
-//  TrustedAdvisorCategorySpecificSummary TrustedAdvisorResourceDetail TrustedAdvisorResourcesSummary
-//  In addition, the response contains these fields:
+//    TrustedAdvisorCategorySpecificSummary
 //
-//   Status. The alert status of the check: "ok" (green), "warning" (yellow),
-// "error" (red), or "not_available".  Timestamp. The time of the last refresh
-// of the check.  CheckId. The unique identifier for the check.
+//    TrustedAdvisorResourceDetail
+//
+//    TrustedAdvisorResourcesSummary
+//
+//   In addition, the response contains these fields:
+//
+//    status. The alert status of the check: "ok" (green), "warning" (yellow),
+// "error" (red), or "not_available".
+//
+//    timestamp. The time of the last refresh of the check.
+//
+//    checkId. The unique identifier for the check.
 func (c *Support) DescribeTrustedAdvisorCheckResult(input *DescribeTrustedAdvisorCheckResultInput) (*DescribeTrustedAdvisorCheckResultOutput, error) {
 	req, out := c.DescribeTrustedAdvisorCheckResultRequest(input)
 	err := req.Send()
@@ -790,13 +816,20 @@ func (c *Support) RefreshTrustedAdvisorCheckRequest(input *RefreshTrustedAdvisor
 // Requests a refresh of the Trusted Advisor check that has the specified check
 // ID. Check IDs can be obtained by calling DescribeTrustedAdvisorChecks.
 //
-// The response contains a TrustedAdvisorCheckRefreshStatus object, which contains
-// these fields:
+//  Some checks are refreshed automatically, and they cannot be refreshed by
+// using this operation. Use of the RefreshTrustedAdvisorCheck operation for
+// these checks causes an InvalidParameterValue error.
 //
-//   Status. The refresh status of the check: "none", "enqueued", "processing",
-// "success", or "abandoned".  MillisUntilNextRefreshable. The amount of time,
-// in milliseconds, until the check is eligible for refresh.  CheckId. The unique
-// identifier for the check.
+//  The response contains a TrustedAdvisorCheckRefreshStatus object, which
+// contains these fields:
+//
+//    status. The refresh status of the check: "none", "enqueued", "processing",
+// "success", or "abandoned".
+//
+//    millisUntilNextRefreshable. The amount of time, in milliseconds, until
+// the check is eligible for refresh.
+//
+//    checkId. The unique identifier for the check.
 func (c *Support) RefreshTrustedAdvisorCheck(input *RefreshTrustedAdvisorCheckInput) (*RefreshTrustedAdvisorCheckOutput, error) {
 	req, out := c.RefreshTrustedAdvisorCheckRequest(input)
 	err := req.Send()
@@ -844,7 +877,7 @@ func (c *Support) ResolveCaseRequest(input *ResolveCaseInput) (req *request.Requ
 	return
 }
 
-// Takes a CaseId and returns the initial state of the case along with the state
+// Takes a caseId and returns the initial state of the case along with the state
 // of the case after the call to ResolveCase completed.
 func (c *Support) ResolveCase(input *ResolveCaseInput) (*ResolveCaseOutput, error) {
 	req, out := c.ResolveCaseRequest(input)
@@ -855,9 +888,9 @@ func (c *Support) ResolveCase(input *ResolveCaseInput) (*ResolveCaseOutput, erro
 type AddAttachmentsToSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the attachment set. If an AttachmentSetId is not specified, a new
+	// The ID of the attachment set. If an attachmentSetId is not specified, a new
 	// attachment set is created, and the ID of the set is returned in the response.
-	// If an AttachmentSetId is specified, the attachments are added to the specified
+	// If an attachmentSetId is specified, the attachments are added to the specified
 	// set, if it exists.
 	AttachmentSetId *string `locationName:"attachmentSetId" type:"string"`
 
@@ -894,9 +927,9 @@ func (s *AddAttachmentsToSetInput) Validate() error {
 type AddAttachmentsToSetOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the attachment set. If an AttachmentSetId was not specified, a
+	// The ID of the attachment set. If an attachmentSetId was not specified, a
 	// new attachment set is created, and the ID of the set is returned in the response.
-	// If an AttachmentSetId was specified, the attachments are added to the specified
+	// If an attachmentSetId was specified, the attachments are added to the specified
 	// set, if it exists.
 	AttachmentSetId *string `locationName:"attachmentSetId" type:"string"`
 
@@ -931,7 +964,7 @@ type AddCommunicationToCaseInput struct {
 	CcEmailAddresses []*string `locationName:"ccEmailAddresses" type:"list"`
 
 	// The body of an email communication to add to the support case.
-	CommunicationBody *string `locationName:"communicationBody" type:"string" required:"true"`
+	CommunicationBody *string `locationName:"communicationBody" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -949,6 +982,9 @@ func (s *AddCommunicationToCaseInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AddCommunicationToCaseInput"}
 	if s.CommunicationBody == nil {
 		invalidParams.Add(request.NewErrParamRequired("CommunicationBody"))
+	}
+	if s.CommunicationBody != nil && len(*s.CommunicationBody) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CommunicationBody", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -1025,23 +1061,36 @@ func (s AttachmentDetails) GoString() string {
 // is contained the response from a DescribeCases request. CaseDetails contains
 // the following fields:
 //
-//   CaseID. The AWS Support case ID requested or returned in the call. The
+//    caseId. The AWS Support case ID requested or returned in the call. The
 // case ID is an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47.
-//  CategoryCode. The category of problem for the AWS Support case. Corresponds
-// to the CategoryCode values returned by a call to DescribeServices.  DisplayId.
-// The identifier for the case on pages in the AWS Support Center.  Language.
-// The ISO 639-1 code for the language in which AWS provides support. AWS Support
-// currently supports English ("en") and Japanese ("ja"). Language parameters
-// must be passed explicitly for operations that take them.  RecentCommunications.
-// One or more Communication objects. Fields of these objects are Attachments,
-// Body, CaseId, SubmittedBy, and TimeCreated.  NextToken. A resumption point
-// for pagination.  ServiceCode. The identifier for the AWS service that corresponds
-// to the service code defined in the call to DescribeServices.  SeverityCode.
-// The severity code assigned to the case. Contains one of the values returned
-// by the call to DescribeSeverityLevels.  Status. The status of the case in
-// the AWS Support Center.  Subject. The subject line of the case.  SubmittedBy.
-// The email address of the account that submitted the case.  TimeCreated. The
-// time the case was created, in ISO-8601 format.
+//
+//    categoryCode. The category of problem for the AWS Support case. Corresponds
+// to the CategoryCode values returned by a call to DescribeServices.
+//
+//    displayId. The identifier for the case on pages in the AWS Support Center.
+//
+//    language. The ISO 639-1 code for the language in which AWS provides support.
+// AWS Support currently supports English ("en") and Japanese ("ja"). Language
+// parameters must be passed explicitly for operations that take them.
+//
+//    recentCommunications. One or more Communication objects. Fields of these
+// objects are attachments, body, caseId, submittedBy, and timeCreated.
+//
+//    nextToken. A resumption point for pagination.
+//
+//    serviceCode. The identifier for the AWS service that corresponds to the
+// service code defined in the call to DescribeServices.
+//
+//    severityCode. The severity code assigned to the case. Contains one of
+// the values returned by the call to DescribeSeverityLevels.
+//
+//    status. The status of the case in the AWS Support Center.
+//
+//    subject. The subject line of the case.
+//
+//    submittedBy. The email address of the account that submitted the case.
+//
+//    timeCreated. The time the case was created, in ISO-8601 format.
 type CaseDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -1131,7 +1180,7 @@ type Communication struct {
 	AttachmentSet []*AttachmentDetails `locationName:"attachmentSet" type:"list"`
 
 	// The text of the communication between the customer and AWS Support.
-	Body *string `locationName:"body" type:"string"`
+	Body *string `locationName:"body" min:"1" type:"string"`
 
 	// The AWS Support case ID requested or returned in the call. The case ID is
 	// an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47
@@ -1169,7 +1218,7 @@ type CreateCaseInput struct {
 
 	// The communication body text when you create an AWS Support case by calling
 	// CreateCase.
-	CommunicationBody *string `locationName:"communicationBody" type:"string" required:"true"`
+	CommunicationBody *string `locationName:"communicationBody" min:"1" type:"string" required:"true"`
 
 	// The type of issue for the case. You can specify either "customer-service"
 	// or "technical." If you do not indicate a value, the default is "technical."
@@ -1185,9 +1234,9 @@ type CreateCaseInput struct {
 
 	// The code for the severity level returned by the call to DescribeSeverityLevels.
 	//
-	// The availability of severity levels depends on each customer's support subscription.
-	// In other words, your subscription may not necessarily require the urgent
-	// level of response time.
+	//  The availability of severity levels depends on each customer's support
+	// subscription. In other words, your subscription may not necessarily require
+	// the urgent level of response time.
 	SeverityCode *string `locationName:"severityCode" type:"string"`
 
 	// The title of the AWS Support case.
@@ -1209,6 +1258,9 @@ func (s *CreateCaseInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateCaseInput"}
 	if s.CommunicationBody == nil {
 		invalidParams.Add(request.NewErrParamRequired("CommunicationBody"))
+	}
+	if s.CommunicationBody != nil && len(*s.CommunicationBody) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CommunicationBody", 1))
 	}
 	if s.Subject == nil {
 		invalidParams.Add(request.NewErrParamRequired("Subject"))
@@ -1351,7 +1403,7 @@ func (s *DescribeCasesInput) Validate() error {
 	return nil
 }
 
-// Returns an array of CaseDetails objects and a NextToken that defines a point
+// Returns an array of CaseDetails objects and a nextToken that defines a point
 // for pagination in the result set.
 type DescribeCasesOutput struct {
 	_ struct{} `type:"structure"`
@@ -1523,7 +1575,9 @@ func (s DescribeSeverityLevelsOutput) GoString() string {
 type DescribeTrustedAdvisorCheckRefreshStatusesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The IDs of the Trusted Advisor checks.
+	// The IDs of the Trusted Advisor checks to get the status of. Note: Specifying
+	// the check ID of a check that is automatically refreshed causes an InvalidParameterValue
+	// error.
 	CheckIds []*string `locationName:"checkIds" type:"list" required:"true"`
 }
 
@@ -1747,7 +1801,9 @@ func (s RecentCaseCommunications) GoString() string {
 type RefreshTrustedAdvisorCheckInput struct {
 	_ struct{} `type:"structure"`
 
-	// The unique identifier for the Trusted Advisor check.
+	// The unique identifier for the Trusted Advisor check to refresh. Note: Specifying
+	// the check ID of a check that is automatically refreshed causes an InvalidParameterValue
+	// error.
 	CheckId *string `locationName:"checkId" type:"string" required:"true"`
 }
 
@@ -1842,10 +1898,10 @@ type Service struct {
 	Categories []*Category `locationName:"categories" type:"list"`
 
 	// The code for an AWS service returned by the DescribeServices response. The
-	// Name element contains the corresponding friendly name.
+	// name element contains the corresponding friendly name.
 	Code *string `locationName:"code" type:"string"`
 
-	// The friendly name for an AWS service. The Code element contains the corresponding
+	// The friendly name for an AWS service. The code element contains the corresponding
 	// code.
 	Name *string `locationName:"name" type:"string"`
 }
@@ -1866,7 +1922,7 @@ type SeverityLevel struct {
 	_ struct{} `type:"structure"`
 
 	// One of four values: "low," "medium," "high," and "urgent". These values correspond
-	// to response times returned to the caller in SeverityLevel.name.
+	// to response times returned to the caller in severityLevel.name.
 	Code *string `locationName:"code" type:"string"`
 
 	// The name of the severity level that corresponds to the severity level code.
@@ -2077,7 +2133,7 @@ type TrustedAdvisorResourceDetail struct {
 	Metadata []*string `locationName:"metadata" type:"list" required:"true"`
 
 	// The AWS region in which the identified resource is located.
-	Region *string `locationName:"region" type:"string" required:"true"`
+	Region *string `locationName:"region" type:"string"`
 
 	// The unique identifier for the identified resource.
 	ResourceId *string `locationName:"resourceId" type:"string" required:"true"`
