@@ -55,7 +55,7 @@ type Downloader struct {
 //     downloader := s3manager.NewDownloader(sess)
 //
 //     // Create a downloader with the session and custom options
-//     downloader := s3manager.NewDownloader(sess, func(d *s3manager.Uploader) {
+//     downloader := s3manager.NewDownloader(sess, func(d *s3manager.Downloader) {
 //          d.PartSize = 64 * 1024 * 1024 // 64MB per part
 //     })
 func NewDownloader(c client.ConfigProvider, options ...func(*Downloader)) *Downloader {
@@ -87,7 +87,7 @@ func NewDownloader(c client.ConfigProvider, options ...func(*Downloader)) *Downl
 //     downloader := s3manager.NewDownloaderWithClient(s3Svc)
 //
 //     // Create a downloader with the s3 client and custom options
-//     downloader := s3manager.NewDownloaderWithClient(s3Svc, func(d *s3manager.Uploader) {
+//     downloader := s3manager.NewDownloaderWithClient(s3Svc, func(d *s3manager.Downloader) {
 //          d.PartSize = 64 * 1024 * 1024 // 64MB per part
 //     })
 func NewDownloaderWithClient(svc s3iface.S3API, options ...func(*Downloader)) *Downloader {
@@ -107,8 +107,8 @@ func NewDownloaderWithClient(svc s3iface.S3API, options ...func(*Downloader)) *D
 // concurrent GET requests.
 //
 // Additional functional options can be provided to configure the individual
-// upload. These options are copies of the Uploader instance Upload is called from.
-// Modifying the options will not impact the original Uploader instance.
+// download. These options are copies of the Downloader instance Download is called from.
+// Modifying the options will not impact the original Downloader instance.
 //
 // It is safe to call this method concurrently across goroutines.
 //
