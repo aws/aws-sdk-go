@@ -59,6 +59,7 @@
     "DescribePendingMaintenanceActions": "<p>Returns a list of resources (for example, DB instances) that have at least one pending maintenance action.</p>",
     "DescribeReservedDBInstances": "<p>Returns information about reserved DB instances for this account, or about a specified reserved DB instance.</p>",
     "DescribeReservedDBInstancesOfferings": "<p>Lists available reserved DB instance offerings.</p>",
+    "DescribeSourceRegions": "<p>Returns a list that includes the status of each source AWS Region that the current region can get a Read Replica or a DB snapshot from. This API action supports pagination.</p>",
     "DownloadDBLogFilePortion": "<p>Downloads all or a portion of the specified log file, up to 1 MB in size.</p>",
     "FailoverDBCluster": "<p>Forces a failover for a DB cluster.</p> <p>A failover for a DB cluster promotes one of the read-only instances in the DB cluster to the master DB instance (the cluster writer) and deletes the current primary instance.</p> <p>Amazon Aurora will automatically fail over to a read-only instance, if one exists, when the primary instance fails. You can force a failover when you want to simulate a failure of a DB instance for testing. Because each instance in a DB cluster has its own endpoint address, you will need to clean up and re-establish any existing connections that use those endpoint addresses when the failover is complete.</p> <p>For more information on Amazon Aurora, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html\">Aurora on Amazon RDS</a> in the <i>Amazon RDS User Guide.</i> </p>",
     "ListTagsForResource": "<p>Lists all tags on an Amazon RDS resource.</p> <p>For an overview on tagging an Amazon RDS resource, see <a href=\"http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Tagging.html\">Tagging Amazon RDS Resources</a>.</p>",
@@ -1156,6 +1157,11 @@
       "refs": {
       }
     },
+    "DescribeSourceRegionsMessage": {
+      "base": "<p/>",
+      "refs": {
+      }
+    },
     "DomainMembership": {
       "base": "<p>An Active Directory Domain membership record associated with the DB instance.</p>",
       "refs": {
@@ -1333,6 +1339,7 @@
         "DescribePendingMaintenanceActionsMessage$Filters": "<p>A filter that specifies one or more resources to return pending maintenance actions for.</p> <p>Supported filters:</p> <ul> <li> <p> <code>db-instance-id</code> - Accepts DB instance identifiers and DB instance Amazon Resource Names (ARNs). The results list will only include pending maintenance actions for the DB instances identified by these ARNs.</p> </li> </ul>",
         "DescribeReservedDBInstancesMessage$Filters": "<p>This parameter is not currently supported.</p>",
         "DescribeReservedDBInstancesOfferingsMessage$Filters": "<p>This parameter is not currently supported.</p>",
+        "DescribeSourceRegionsMessage$Filters": "<p>This parameter is not currently supported.</p>",
         "ListTagsForResourceMessage$Filters": "<p>This parameter is not currently supported.</p>"
       }
     },
@@ -1439,6 +1446,7 @@
         "DescribePendingMaintenanceActionsMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeReservedDBInstancesMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more than the <code>MaxRecords</code> value is available, a pagination token called a marker is included in the response so that the following results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeReservedDBInstancesOfferingsMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more than the <code>MaxRecords</code> value is available, a pagination token called a marker is included in the response so that the following results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
+        "DescribeSourceRegionsMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "ModifyDBClusterMessage$BackupRetentionPeriod": "<p>The number of days for which automated backups are retained. You must specify a minimum value of 1.</p> <p>Default: 1</p> <p>Constraints:</p> <ul> <li> <p>Must be a value from 1 to 35</p> </li> </ul>",
         "ModifyDBClusterMessage$Port": "<p>The port number on which the DB cluster accepts connections.</p> <p>Constraints: Value must be <code>1150-65535</code> </p> <p>Default: The same port as the original DB cluster.</p>",
         "ModifyDBInstanceMessage$AllocatedStorage": "<p> The new storage capacity of the RDS instance. Changing this setting does not result in an outage and the change is applied during the next maintenance window unless <code>ApplyImmediately</code> is set to <code>true</code> for this request. </p> <p> <b>MySQL</b> </p> <p>Default: Uses existing setting</p> <p>Valid Values: 5-6144</p> <p>Constraints: Value supplied must be at least 10% greater than the current value. Values that are not at least 10% greater than the existing value are rounded up so that they are 10% greater than the current value.</p> <p>Type: Integer</p> <p> <b>MariaDB</b> </p> <p>Default: Uses existing setting</p> <p>Valid Values: 5-6144</p> <p>Constraints: Value supplied must be at least 10% greater than the current value. Values that are not at least 10% greater than the existing value are rounded up so that they are 10% greater than the current value.</p> <p>Type: Integer</p> <p> <b>PostgreSQL</b> </p> <p>Default: Uses existing setting</p> <p>Valid Values: 5-6144</p> <p>Constraints: Value supplied must be at least 10% greater than the current value. Values that are not at least 10% greater than the existing value are rounded up so that they are 10% greater than the current value.</p> <p>Type: Integer</p> <p> <b>Oracle</b> </p> <p>Default: Uses existing setting</p> <p>Valid Values: 10-6144</p> <p>Constraints: Value supplied must be at least 10% greater than the current value. Values that are not at least 10% greater than the existing value are rounded up so that they are 10% greater than the current value.</p> <p> <b>SQL Server</b> </p> <p>Cannot be modified.</p> <p>If you choose to migrate your DB instance from using standard storage to using Provisioned IOPS, or from using Provisioned IOPS to using standard storage, the process can take time. The duration of the migration depends on several factors such as database load, storage size, storage type (standard or Provisioned IOPS), amount of IOPS provisioned (if any), and the number of prior scale storage operations. Typical migration times are under 24 hours, but the process can take up to several days in some cases. During the migration, the DB instance will be available for use, but might experience performance degradation. While the migration takes place, nightly backups for the instance will be suspended. No other Amazon RDS operations can take place for the instance, including modifying the instance, rebooting the instance, deleting the instance, creating a Read Replica for the instance, and creating a DB snapshot of the instance.</p>",
@@ -2125,6 +2133,23 @@
       "refs": {
       }
     },
+    "SourceRegion": {
+      "base": "<p>Contains an AWS Region name as the result of a successful call to the <a>DescribeSourceRegions</a> action.</p>",
+      "refs": {
+        "SourceRegionList$member": null
+      }
+    },
+    "SourceRegionList": {
+      "base": null,
+      "refs": {
+        "SourceRegionMessage$SourceRegions": "<p>A list of SourceRegion instances that contains each source AWS Region that the current region can get a Read Replica or a DB snapshot from.</p>"
+      }
+    },
+    "SourceRegionMessage": {
+      "base": "<p>Contains the result of a successful invocation of the <a>DescribeSourceRegions</a> action.</p>",
+      "refs": {
+      }
+    },
     "SourceType": {
       "base": null,
       "refs": {
@@ -2455,6 +2480,8 @@
         "DescribeReservedDBInstancesOfferingsMessage$ProductDescription": "<p>Product description filter value. Specify this parameter to show only the available offerings matching the specified product description.</p>",
         "DescribeReservedDBInstancesOfferingsMessage$OfferingType": "<p>The offering type filter value. Specify this parameter to show only the available offerings matching the specified offering type.</p> <p>Valid Values: <code>\"Partial Upfront\" | \"All Upfront\" | \"No Upfront\" </code> </p>",
         "DescribeReservedDBInstancesOfferingsMessage$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
+        "DescribeSourceRegionsMessage$RegionName": "<p>The source region name, for example US West (Oregon).</p> <p>Constraints:</p> <ul> <li> <p>Must specify a valid AWS Region name, for example US West (Oregon).</p> </li> </ul>",
+        "DescribeSourceRegionsMessage$Marker": "<p> An optional pagination token provided by a previous <a>DescribeSourceRegions</a> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
         "DomainMembership$Domain": "<p>The identifier of the Active Directory Domain.</p>",
         "DomainMembership$Status": "<p>The status of the DB instance's Active Directory Domain membership, such as joined, pending-join, failed etc).</p>",
         "DomainMembership$FQDN": "<p>The fully qualified domain name of the Active Directory Domain.</p>",
@@ -2688,6 +2715,10 @@
         "RevokeDBSecurityGroupIngressMessage$EC2SecurityGroupId": "<p> The id of the EC2 security group to revoke access from. For VPC DB security groups, <code>EC2SecurityGroupId</code> must be provided. Otherwise, EC2SecurityGroupOwnerId and either <code>EC2SecurityGroupName</code> or <code>EC2SecurityGroupId</code> must be provided. </p>",
         "RevokeDBSecurityGroupIngressMessage$EC2SecurityGroupOwnerId": "<p> The AWS Account Number of the owner of the EC2 security group specified in the <code>EC2SecurityGroupName</code> parameter. The AWS Access Key ID is not an acceptable value. For VPC DB security groups, <code>EC2SecurityGroupId</code> must be provided. Otherwise, EC2SecurityGroupOwnerId and either <code>EC2SecurityGroupName</code> or <code>EC2SecurityGroupId</code> must be provided. </p>",
         "SourceIdsList$member": null,
+        "SourceRegion$RegionName": "<p>The source region name.</p>",
+        "SourceRegion$Endpoint": "<p>The source region endpoint.</p>",
+        "SourceRegion$Status": "<p>The status of the source region.</p>",
+        "SourceRegionMessage$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
         "Subnet$SubnetIdentifier": "<p>Specifies the identifier of the subnet.</p>",
         "Subnet$SubnetStatus": "<p>Specifies the status of the subnet.</p>",
         "SubnetIdentifierList$member": null,

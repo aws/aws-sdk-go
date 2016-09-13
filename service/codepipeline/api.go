@@ -2082,6 +2082,10 @@ type ArtifactRevision struct {
 	// in timestamp format.
 	Created *time.Time `locationName:"created" type:"timestamp" timestampFormat:"unix"`
 
+	// The name of an artifact. This name might be system-generated, such as "MyApp",
+	// or might be defined by the user when an action is created.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
 	// An additional identifier for a revision, such as a commit date or, for artifacts
 	// stored in Amazon S3 buckets, the ETag value.
 	RevisionChangeIdentifier *string `locationName:"revisionChangeIdentifier" min:"1" type:"string"`
@@ -2091,7 +2095,7 @@ type ArtifactRevision struct {
 
 	// Summary information about the most recent revision of the artifact. For GitHub
 	// and AWS CodeCommit repositories, the commit message. For Amazon S3 buckets
-	// or actions, the user-provided value of an x-amz-meta-codepipeline-artifact-revision-summary
+	// or actions, the user-provided content of a codepipeline-artifact-revision-summary
 	// key specified in the object metadata.
 	RevisionSummary *string `locationName:"revisionSummary" min:"1" type:"string"`
 
@@ -2108,28 +2112,6 @@ func (s ArtifactRevision) String() string {
 
 // GoString returns the string representation
 func (s ArtifactRevision) GoString() string {
-	return s.String()
-}
-
-// Represents information about an artifact revision.
-type ArtifactRevisionInformation struct {
-	_ struct{} `type:"structure"`
-
-	// The name of an artifact. This name might be system-generated, such as "MyApp",
-	// or might be defined by the user when an action is created.
-	Name *string `locationName:"name" min:"1" type:"string"`
-
-	// Represents details about the ArtifactRevision object.
-	Revision *ArtifactRevision `locationName:"revision" type:"structure"`
-}
-
-// String returns the string representation
-func (s ArtifactRevisionInformation) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation
-func (s ArtifactRevisionInformation) GoString() string {
 	return s.String()
 }
 
@@ -3530,8 +3512,8 @@ func (s *PipelineDeclaration) Validate() error {
 type PipelineExecution struct {
 	_ struct{} `type:"structure"`
 
-	// A list of ArtifactRevisionInformation objects included in a pipeline execution.
-	ArtifactRevisionInformations []*ArtifactRevisionInformation `locationName:"artifactRevisionInformations" type:"list"`
+	// A list of ArtifactRevision objects included in a pipeline execution.
+	ArtifactRevisions []*ArtifactRevision `locationName:"artifactRevisions" type:"list"`
 
 	// The ID of the pipeline execution.
 	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string"`
@@ -3824,7 +3806,7 @@ type PutApprovalResultInput struct {
 	// token for each open approval request can be obtained using the GetPipelineState
 	// action and is used to validate that the approval request corresponding to
 	// this token is still valid.
-	Token *string `locationName:"token" type:"string"`
+	Token *string `locationName:"token" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -3860,6 +3842,9 @@ func (s *PutApprovalResultInput) Validate() error {
 	}
 	if s.StageName != nil && len(*s.StageName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("StageName", 1))
+	}
+	if s.Token == nil {
+		invalidParams.Add(request.NewErrParamRequired("Token"))
 	}
 	if s.Result != nil {
 		if err := s.Result.Validate(); err != nil {
