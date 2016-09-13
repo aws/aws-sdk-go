@@ -162,8 +162,12 @@ func ExampleServiceCatalog_ListRecordHistory() {
 
 	params := &servicecatalog.ListRecordHistoryInput{
 		AcceptLanguage: aws.String("AcceptLanguage"),
-		PageSize:       aws.Int64(1),
-		PageToken:      aws.String("PageToken"),
+		AccessLevelFilter: &servicecatalog.AccessLevelFilter{
+			Key:   aws.String("AccessLevelFilterKey"),
+			Value: aws.String("AccessLevelFilterValue"),
+		},
+		PageSize:  aws.Int64(1),
+		PageToken: aws.String("PageToken"),
 		SearchFilter: &servicecatalog.ListRecordHistorySearchFilter{
 			Key:   aws.String("SearchFilterKey"),
 			Value: aws.String("SearchFilterValue"),
@@ -241,8 +245,12 @@ func ExampleServiceCatalog_ScanProvisionedProducts() {
 
 	params := &servicecatalog.ScanProvisionedProductsInput{
 		AcceptLanguage: aws.String("AcceptLanguage"),
-		PageSize:       aws.Int64(1),
-		PageToken:      aws.String("PageToken"),
+		AccessLevelFilter: &servicecatalog.AccessLevelFilter{
+			Key:   aws.String("AccessLevelFilterKey"),
+			Value: aws.String("AccessLevelFilterValue"),
+		},
+		PageSize:  aws.Int64(1),
+		PageToken: aws.String("PageToken"),
 	}
 	resp, err := svc.ScanProvisionedProducts(params)
 

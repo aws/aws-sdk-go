@@ -576,6 +576,34 @@ func (c *ServiceCatalog) UpdateProvisionedProduct(input *UpdateProvisionedProduc
 	return out, err
 }
 
+// The access level to limit results.
+type AccessLevelFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the access level.
+	//
+	//  Account allows results at the account level.
+	//
+	//  Role allows results based on the federated role of the specified user.
+	//
+	//  User allows results limited to the specified user.
+	Key *string `type:"string" enum:"AccessLevelFilterKey"`
+
+	// Specifies the user to which the access level applies. A value of Self is
+	// currently supported.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AccessLevelFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccessLevelFilter) GoString() string {
+	return s.String()
+}
+
 // An administrator-specified constraint to apply when provisioning a product.
 type ConstraintSummary struct {
 	_ struct{} `type:"structure"`
@@ -600,7 +628,8 @@ func (s ConstraintSummary) GoString() string {
 type DescribeProductInput struct {
 	_ struct{} `type:"structure"`
 
-	// Optional language code. Supported language codes are as follows:
+	// The language code to use for this operation. Supported language codes are
+	// as follows:
 	//
 	// "en" (English)
 	//
@@ -612,7 +641,7 @@ type DescribeProductInput struct {
 	AcceptLanguage *string `type:"string"`
 
 	// The ProductId of the product to describe.
-	Id *string `type:"string" required:"true"`
+	Id *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -630,6 +659,9 @@ func (s *DescribeProductInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeProductInput"}
 	if s.Id == nil {
 		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -662,7 +694,8 @@ func (s DescribeProductOutput) GoString() string {
 type DescribeProductViewInput struct {
 	_ struct{} `type:"structure"`
 
-	// Optional language code. Supported language codes are as follows:
+	// The language code to use for this operation. Supported language codes are
+	// as follows:
 	//
 	// "en" (English)
 	//
@@ -674,7 +707,7 @@ type DescribeProductViewInput struct {
 	AcceptLanguage *string `type:"string"`
 
 	// The ProductViewId of the product to describe.
-	Id *string `type:"string" required:"true"`
+	Id *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -692,6 +725,9 @@ func (s *DescribeProductViewInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeProductViewInput"}
 	if s.Id == nil {
 		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -724,7 +760,8 @@ func (s DescribeProductViewOutput) GoString() string {
 type DescribeProvisioningParametersInput struct {
 	_ struct{} `type:"structure"`
 
-	// Optional language code. Supported language codes are as follows:
+	// The language code to use for this operation. Supported language codes are
+	// as follows:
 	//
 	// "en" (English)
 	//
@@ -738,13 +775,13 @@ type DescribeProvisioningParametersInput struct {
 	// The identifier of the path for this product's provisioning. This value is
 	// optional if the product has a default path, and is required if there is more
 	// than one path for the specified product.
-	PathId *string `type:"string"`
+	PathId *string `min:"1" type:"string"`
 
 	// The identifier of the product.
-	ProductId *string `type:"string" required:"true"`
+	ProductId *string `min:"1" type:"string" required:"true"`
 
 	// The provisioning artifact identifier for this product.
-	ProvisioningArtifactId *string `type:"string" required:"true"`
+	ProvisioningArtifactId *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -760,11 +797,20 @@ func (s DescribeProvisioningParametersInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeProvisioningParametersInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeProvisioningParametersInput"}
+	if s.PathId != nil && len(*s.PathId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PathId", 1))
+	}
 	if s.ProductId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ProductId"))
 	}
+	if s.ProductId != nil && len(*s.ProductId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProductId", 1))
+	}
 	if s.ProvisioningArtifactId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ProvisioningArtifactId"))
+	}
+	if s.ProvisioningArtifactId != nil && len(*s.ProvisioningArtifactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProvisioningArtifactId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -801,7 +847,8 @@ func (s DescribeProvisioningParametersOutput) GoString() string {
 type DescribeRecordInput struct {
 	_ struct{} `type:"structure"`
 
-	// Optional language code. Supported language codes are as follows:
+	// The language code to use for this operation. Supported language codes are
+	// as follows:
 	//
 	// "en" (English)
 	//
@@ -815,14 +862,14 @@ type DescribeRecordInput struct {
 	// The record identifier of the ProvisionedProduct object for which to retrieve
 	// output information. This is the RecordDetail.RecordId obtained from the request
 	// operation's response.
-	Id *string `type:"string" required:"true"`
+	Id *string `min:"1" type:"string" required:"true"`
 
 	// The maximum number of items to return in the results. If more results exist
 	// than fit in the specified PageSize, the value of NextPageToken in the response
 	// is non-null.
 	PageSize *int64 `type:"integer"`
 
-	// The page token of the first page retrieve. If null, this retrieves the first
+	// The page token of the first page retrieved. If null, this retrieves the first
 	// page of size PageSize.
 	PageToken *string `type:"string"`
 }
@@ -842,6 +889,9 @@ func (s *DescribeRecordInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeRecordInput"}
 	if s.Id == nil {
 		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -885,7 +935,7 @@ type LaunchPathSummary struct {
 	ConstraintSummaries []*ConstraintSummary `type:"list"`
 
 	// The unique identifier of the product path.
-	Id *string `type:"string"`
+	Id *string `min:"1" type:"string"`
 
 	// Corresponds to the name of the portfolio to which the user was assigned.
 	Name *string `type:"string"`
@@ -907,7 +957,8 @@ func (s LaunchPathSummary) GoString() string {
 type ListLaunchPathsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Optional language code. Supported language codes are as follows:
+	// The language code to use for this operation. Supported language codes are
+	// as follows:
 	//
 	// "en" (English)
 	//
@@ -923,12 +974,12 @@ type ListLaunchPathsInput struct {
 	// is non-null.
 	PageSize *int64 `type:"integer"`
 
-	// The page token of the first page retrieve. If null, this retrieves the first
+	// The page token of the first page retrieved. If null, this retrieves the first
 	// page of size PageSize.
 	PageToken *string `type:"string"`
 
 	// Identifies the product for which to retrieve LaunchPathSummaries information.
-	ProductId *string `type:"string" required:"true"`
+	ProductId *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -946,6 +997,9 @@ func (s *ListLaunchPathsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListLaunchPathsInput"}
 	if s.ProductId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ProductId"))
+	}
+	if s.ProductId != nil && len(*s.ProductId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProductId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -978,7 +1032,8 @@ func (s ListLaunchPathsOutput) GoString() string {
 type ListRecordHistoryInput struct {
 	_ struct{} `type:"structure"`
 
-	// Optional language code. Supported language codes are as follows:
+	// The language code to use for this operation. Supported language codes are
+	// as follows:
 	//
 	// "en" (English)
 	//
@@ -989,16 +1044,20 @@ type ListRecordHistoryInput struct {
 	// If no code is specified, "en" is used as the default.
 	AcceptLanguage *string `type:"string"`
 
+	// The access level for obtaining results. If left unspecified, User level access
+	// is used.
+	AccessLevelFilter *AccessLevelFilter `type:"structure"`
+
 	// The maximum number of items to return in the results. If more results exist
 	// than fit in the specified PageSize, the value of NextPageToken in the response
 	// is non-null.
 	PageSize *int64 `type:"integer"`
 
-	// The page token of the first page retrieve. If null, this retrieves the first
+	// The page token of the first page retrieved. If null, this retrieves the first
 	// page of size PageSize.
 	PageToken *string `type:"string"`
 
-	// (Optional) The filter to limit search results.
+	// The filter to limit search results.
 	SearchFilter *ListRecordHistorySearchFilter `type:"structure"`
 }
 
@@ -1110,7 +1169,7 @@ type ProductViewSummary struct {
 	HasDefaultPath *bool `type:"boolean"`
 
 	// The product view identifier.
-	Id *string `type:"string"`
+	Id *string `min:"1" type:"string"`
 
 	// The name of the product.
 	Name *string `type:"string"`
@@ -1120,7 +1179,7 @@ type ProductViewSummary struct {
 	Owner *string `type:"string"`
 
 	// The product identifier.
-	ProductId *string `type:"string"`
+	ProductId *string `min:"1" type:"string"`
 
 	// Short description of the product.
 	ShortDescription *string `type:"string"`
@@ -1152,7 +1211,8 @@ func (s ProductViewSummary) GoString() string {
 type ProvisionProductInput struct {
 	_ struct{} `type:"structure"`
 
-	// Optional language code. Supported language codes are as follows:
+	// The language code to use for this operation. Supported language codes are
+	// as follows:
 	//
 	// "en" (English)
 	//
@@ -1170,10 +1230,10 @@ type ProvisionProductInput struct {
 	// The identifier of the path for this product's provisioning. This value is
 	// optional if the product has a default path, and is required if there is more
 	// than one path for the specified product.
-	PathId *string `type:"string"`
+	PathId *string `min:"1" type:"string"`
 
 	// The identifier of the product.
-	ProductId *string `type:"string" required:"true"`
+	ProductId *string `min:"1" type:"string" required:"true"`
 
 	// An idempotency token that uniquely identifies the provisioning request.
 	ProvisionToken *string `min:"1" type:"string" required:"true" idempotencyToken:"true"`
@@ -1184,13 +1244,13 @@ type ProvisionProductInput struct {
 	ProvisionedProductName *string `type:"string" required:"true"`
 
 	// The provisioning artifact identifier for this product.
-	ProvisioningArtifactId *string `type:"string" required:"true"`
+	ProvisioningArtifactId *string `min:"1" type:"string" required:"true"`
 
 	// Parameters specified by the administrator that are required for provisioning
 	// the product.
 	ProvisioningParameters []*ProvisioningParameter `type:"list"`
 
-	// (Optional) A list of tags to use as provisioning options.
+	// A list of tags to use as provisioning options.
 	Tags []*Tag `type:"list"`
 }
 
@@ -1207,8 +1267,14 @@ func (s ProvisionProductInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ProvisionProductInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ProvisionProductInput"}
+	if s.PathId != nil && len(*s.PathId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PathId", 1))
+	}
 	if s.ProductId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ProductId"))
+	}
+	if s.ProductId != nil && len(*s.ProductId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProductId", 1))
 	}
 	if s.ProvisionToken == nil {
 		invalidParams.Add(request.NewErrParamRequired("ProvisionToken"))
@@ -1221,6 +1287,9 @@ func (s *ProvisionProductInput) Validate() error {
 	}
 	if s.ProvisioningArtifactId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ProvisioningArtifactId"))
+	}
+	if s.ProvisioningArtifactId != nil && len(*s.ProvisioningArtifactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProvisioningArtifactId", 1))
 	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
@@ -1313,7 +1382,7 @@ type ProvisioningArtifact struct {
 	Description *string `type:"string"`
 
 	// The identifier for the artifact.
-	Id *string `type:"string"`
+	Id *string `min:"1" type:"string"`
 
 	// The name of the artifact.
 	Name *string `type:"string"`
@@ -1395,13 +1464,13 @@ type RecordDetail struct {
 	CreatedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The identifier of the path for this product's provisioning.
-	PathId *string `type:"string"`
+	PathId *string `min:"1" type:"string"`
 
 	// The identifier of the product.
-	ProductId *string `type:"string"`
+	ProductId *string `min:"1" type:"string"`
 
 	// The identifier of the ProvisionedProduct object.
-	ProvisionedProductId *string `type:"string"`
+	ProvisionedProductId *string `min:"1" type:"string"`
 
 	// The user-friendly name of the ProvisionedProduct object.
 	ProvisionedProductName *string `type:"string"`
@@ -1410,13 +1479,13 @@ type RecordDetail struct {
 	ProvisionedProductType *string `type:"string"`
 
 	// The provisioning artifact identifier for this product.
-	ProvisioningArtifactId *string `type:"string"`
+	ProvisioningArtifactId *string `min:"1" type:"string"`
 
 	// A list of errors that occurred while processing the request.
 	RecordErrors []*RecordError `type:"list"`
 
 	// The identifier of the ProvisionedProduct object record.
-	RecordId *string `type:"string"`
+	RecordId *string `min:"1" type:"string"`
 
 	// List of tags associated with this record.
 	RecordTags []*RecordTag `type:"list"`
@@ -1512,7 +1581,8 @@ func (s RecordTag) GoString() string {
 type ScanProvisionedProductsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Optional language code. Supported language codes are as follows:
+	// The language code to use for this operation. Supported language codes are
+	// as follows:
 	//
 	// "en" (English)
 	//
@@ -1523,12 +1593,16 @@ type ScanProvisionedProductsInput struct {
 	// If no code is specified, "en" is used as the default.
 	AcceptLanguage *string `type:"string"`
 
+	// The access level for obtaining results. If left unspecified, User level access
+	// is used.
+	AccessLevelFilter *AccessLevelFilter `type:"structure"`
+
 	// The maximum number of items to return in the results. If more results exist
 	// than fit in the specified PageSize, the value of NextPageToken in the response
 	// is non-null.
 	PageSize *int64 `type:"integer"`
 
-	// The page token of the first page retrieve. If null, this retrieves the first
+	// The page token of the first page retrieved. If null, this retrieves the first
 	// page of size PageSize.
 	PageToken *string `type:"string"`
 }
@@ -1567,7 +1641,8 @@ func (s ScanProvisionedProductsOutput) GoString() string {
 type SearchProductsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Optional language code. Supported language codes are as follows:
+	// The language code to use for this operation. Supported language codes are
+	// as follows:
 	//
 	// "en" (English)
 	//
@@ -1578,9 +1653,9 @@ type SearchProductsInput struct {
 	// If no code is specified, "en" is used as the default.
 	AcceptLanguage *string `type:"string"`
 
-	// (Optional) The list of filters with which to limit search results. If no
-	// search filters are specified, the output is all the products to which the
-	// calling user has access.
+	// The list of filters with which to limit search results. If no search filters
+	// are specified, the output is all the products to which the calling user has
+	// access.
 	Filters map[string][]*string `type:"map"`
 
 	// The maximum number of items to return in the results. If more results exist
@@ -1588,16 +1663,14 @@ type SearchProductsInput struct {
 	// is non-null.
 	PageSize *int64 `type:"integer"`
 
-	// The page token of the first page retrieve. If null, this retrieves the first
+	// The page token of the first page retrieved. If null, this retrieves the first
 	// page of size PageSize.
 	PageToken *string `type:"string"`
 
-	// (Optional) The sort field specifier. If no value is specified, results are
-	// not sorted.
+	// The sort field specifier. If no value is specified, results are not sorted.
 	SortBy *string `type:"string" enum:"ProductViewSortBy"`
 
-	// (Optional) The sort order specifier. If no value is specified, results are
-	// not sorted.
+	// The sort order specifier. If no value is specified, results are not sorted.
 	SortOrder *string `type:"string" enum:"SortOrder"`
 }
 
@@ -1635,8 +1708,8 @@ func (s SearchProductsOutput) GoString() string {
 	return s.String()
 }
 
-// Optional key/value pairs to associate with this provisioning. These tags
-// are propagated to the resources created in the provisioning.
+// Key/value pairs to associate with this provisioning. These tags are entirely
+// discretionary and are propagated to the resources created in the provisioning.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -1676,7 +1749,8 @@ func (s *Tag) Validate() error {
 type TerminateProvisionedProductInput struct {
 	_ struct{} `type:"structure"`
 
-	// Optional language code. Supported language codes are as follows:
+	// The language code to use for this operation. Supported language codes are
+	// as follows:
 	//
 	// "en" (English)
 	//
@@ -1687,14 +1761,13 @@ type TerminateProvisionedProductInput struct {
 	// If no code is specified, "en" is used as the default.
 	AcceptLanguage *string `type:"string"`
 
-	// Optional Boolean parameter. If set to true, AWS Service Catalog stops managing
-	// the specified ProvisionedProduct object even if it cannot delete the underlying
-	// resources.
+	// If set to true, AWS Service Catalog stops managing the specified ProvisionedProduct
+	// object even if it cannot delete the underlying resources.
 	IgnoreErrors *bool `type:"boolean"`
 
 	// The identifier of the ProvisionedProduct object to terminate. You must specify
 	// either ProvisionedProductName or ProvisionedProductId, but not both.
-	ProvisionedProductId *string `type:"string"`
+	ProvisionedProductId *string `min:"1" type:"string"`
 
 	// The name of the ProvisionedProduct object to terminate. You must specify
 	// either ProvisionedProductName or ProvisionedProductId, but not both.
@@ -1720,6 +1793,9 @@ func (s TerminateProvisionedProductInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *TerminateProvisionedProductInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "TerminateProvisionedProductInput"}
+	if s.ProvisionedProductId != nil && len(*s.ProvisionedProductId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProvisionedProductId", 1))
+	}
 	if s.ProvisionedProductName != nil && len(*s.ProvisionedProductName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ProvisionedProductName", 1))
 	}
@@ -1759,7 +1835,8 @@ func (s TerminateProvisionedProductOutput) GoString() string {
 type UpdateProvisionedProductInput struct {
 	_ struct{} `type:"structure"`
 
-	// Optional language code. Supported language codes are as follows:
+	// The language code to use for this operation. Supported language codes are
+	// as follows:
 	//
 	// "en" (English)
 	//
@@ -1773,21 +1850,21 @@ type UpdateProvisionedProductInput struct {
 	// The identifier of the path to use in the updated ProvisionedProduct object.
 	// This value is optional if the product has a default path, and is required
 	// if there is more than one path for the specified product.
-	PathId *string `type:"string"`
+	PathId *string `min:"1" type:"string"`
 
 	// The identifier of the ProvisionedProduct object.
-	ProductId *string `type:"string"`
+	ProductId *string `min:"1" type:"string"`
 
 	// The identifier of the ProvisionedProduct object to update. You must specify
 	// either ProvisionedProductName or ProvisionedProductId, but not both.
-	ProvisionedProductId *string `type:"string"`
+	ProvisionedProductId *string `min:"1" type:"string"`
 
 	// The updated name of the ProvisionedProduct object . You must specify either
 	// ProvisionedProductName or ProvisionedProductId, but not both.
 	ProvisionedProductName *string `min:"1" type:"string"`
 
 	// The provisioning artifact identifier for this product.
-	ProvisioningArtifactId *string `type:"string"`
+	ProvisioningArtifactId *string `min:"1" type:"string"`
 
 	// A list of ProvisioningParameter objects used to update the ProvisionedProduct
 	// object.
@@ -1810,8 +1887,20 @@ func (s UpdateProvisionedProductInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateProvisionedProductInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateProvisionedProductInput"}
+	if s.PathId != nil && len(*s.PathId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PathId", 1))
+	}
+	if s.ProductId != nil && len(*s.ProductId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProductId", 1))
+	}
+	if s.ProvisionedProductId != nil && len(*s.ProvisionedProductId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProvisionedProductId", 1))
+	}
 	if s.ProvisionedProductName != nil && len(*s.ProvisionedProductName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ProvisionedProductName", 1))
+	}
+	if s.ProvisioningArtifactId != nil && len(*s.ProvisioningArtifactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProvisioningArtifactId", 1))
 	}
 	if s.UpdateToken == nil {
 		invalidParams.Add(request.NewErrParamRequired("UpdateToken"))
@@ -1894,6 +1983,15 @@ func (s UsageInstruction) String() string {
 func (s UsageInstruction) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum AccessLevelFilterKey
+	AccessLevelFilterKeyAccount = "Account"
+	// @enum AccessLevelFilterKey
+	AccessLevelFilterKeyRole = "Role"
+	// @enum AccessLevelFilterKey
+	AccessLevelFilterKeyUser = "User"
+)
 
 const (
 	// @enum ProductViewFilterBy
