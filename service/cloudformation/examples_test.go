@@ -88,7 +88,7 @@ func ExampleCloudFormation_CreateChangeSet() {
 			// More values...
 		},
 		Parameters: []*cloudformation.Parameter{
-			{ // Required
+			&cloudformation.Parameter{ // Required
 				ParameterKey:     aws.String("ParameterKey"),
 				ParameterValue:   aws.String("ParameterValue"),
 				UsePreviousValue: aws.Bool(true),
@@ -100,7 +100,7 @@ func ExampleCloudFormation_CreateChangeSet() {
 			// More values...
 		},
 		Tags: []*cloudformation.Tag{
-			{ // Required
+			&cloudformation.Tag{ // Required
 				Key:   aws.String("TagKey"),
 				Value: aws.String("TagValue"),
 			},
@@ -145,7 +145,7 @@ func ExampleCloudFormation_CreateStack() {
 		},
 		OnFailure: aws.String("OnFailure"),
 		Parameters: []*cloudformation.Parameter{
-			{ // Required
+			&cloudformation.Parameter{ // Required
 				ParameterKey:     aws.String("ParameterKey"),
 				ParameterValue:   aws.String("ParameterValue"),
 				UsePreviousValue: aws.Bool(true),
@@ -159,7 +159,7 @@ func ExampleCloudFormation_CreateStack() {
 		StackPolicyBody: aws.String("StackPolicyBody"),
 		StackPolicyURL:  aws.String("StackPolicyURL"),
 		Tags: []*cloudformation.Tag{
-			{ // Required
+			&cloudformation.Tag{ // Required
 				Key:   aws.String("TagKey"),
 				Value: aws.String("TagValue"),
 			},
@@ -405,7 +405,7 @@ func ExampleCloudFormation_EstimateTemplateCost() {
 
 	params := &cloudformation.EstimateTemplateCostInput{
 		Parameters: []*cloudformation.Parameter{
-			{ // Required
+			&cloudformation.Parameter{ // Required
 				ParameterKey:     aws.String("ParameterKey"),
 				ParameterValue:   aws.String("ParameterValue"),
 				UsePreviousValue: aws.Bool(true),
@@ -687,7 +687,7 @@ func ExampleCloudFormation_UpdateStack() {
 			// More values...
 		},
 		Parameters: []*cloudformation.Parameter{
-			{ // Required
+			&cloudformation.Parameter{ // Required
 				ParameterKey:     aws.String("ParameterKey"),
 				ParameterValue:   aws.String("ParameterValue"),
 				UsePreviousValue: aws.Bool(true),
@@ -703,7 +703,7 @@ func ExampleCloudFormation_UpdateStack() {
 		StackPolicyDuringUpdateURL:  aws.String("StackPolicyDuringUpdateURL"),
 		StackPolicyURL:              aws.String("StackPolicyURL"),
 		Tags: []*cloudformation.Tag{
-			{ // Required
+			&cloudformation.Tag{ // Required
 				Key:   aws.String("TagKey"),
 				Value: aws.String("TagValue"),
 			},

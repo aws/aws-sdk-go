@@ -12,13 +12,13 @@ func (c *ECS) WaitUntilServicesInactive(input *DescribeServicesInput) error {
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			{
+			waiter.WaitAcceptor{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "failures[].reason",
 				Expected: "MISSING",
 			},
-			{
+			waiter.WaitAcceptor{
 				State:    "success",
 				Matcher:  "pathAny",
 				Argument: "services[].status",
@@ -41,25 +41,25 @@ func (c *ECS) WaitUntilServicesStable(input *DescribeServicesInput) error {
 		Delay:       15,
 		MaxAttempts: 40,
 		Acceptors: []waiter.WaitAcceptor{
-			{
+			waiter.WaitAcceptor{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "failures[].reason",
 				Expected: "MISSING",
 			},
-			{
+			waiter.WaitAcceptor{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "services[].status",
 				Expected: "DRAINING",
 			},
-			{
+			waiter.WaitAcceptor{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "services[].status",
 				Expected: "INACTIVE",
 			},
-			{
+			waiter.WaitAcceptor{
 				State:    "success",
 				Matcher:  "path",
 				Argument: "length(services[?!(length(deployments) == `1` && runningCount == desiredCount)]) == `0`",
@@ -82,19 +82,19 @@ func (c *ECS) WaitUntilTasksRunning(input *DescribeTasksInput) error {
 		Delay:       6,
 		MaxAttempts: 100,
 		Acceptors: []waiter.WaitAcceptor{
-			{
+			waiter.WaitAcceptor{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "tasks[].lastStatus",
 				Expected: "STOPPED",
 			},
-			{
+			waiter.WaitAcceptor{
 				State:    "failure",
 				Matcher:  "pathAny",
 				Argument: "failures[].reason",
 				Expected: "MISSING",
 			},
-			{
+			waiter.WaitAcceptor{
 				State:    "success",
 				Matcher:  "pathAll",
 				Argument: "tasks[].lastStatus",
@@ -117,7 +117,7 @@ func (c *ECS) WaitUntilTasksStopped(input *DescribeTasksInput) error {
 		Delay:       6,
 		MaxAttempts: 100,
 		Acceptors: []waiter.WaitAcceptor{
-			{
+			waiter.WaitAcceptor{
 				State:    "success",
 				Matcher:  "pathAll",
 				Argument: "tasks[].lastStatus",

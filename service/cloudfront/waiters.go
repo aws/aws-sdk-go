@@ -12,7 +12,7 @@ func (c *CloudFront) WaitUntilDistributionDeployed(input *GetDistributionInput) 
 		Delay:       60,
 		MaxAttempts: 25,
 		Acceptors: []waiter.WaitAcceptor{
-			{
+			waiter.WaitAcceptor{
 				State:    "success",
 				Matcher:  "path",
 				Argument: "Distribution.Status",
@@ -35,7 +35,7 @@ func (c *CloudFront) WaitUntilInvalidationCompleted(input *GetInvalidationInput)
 		Delay:       20,
 		MaxAttempts: 30,
 		Acceptors: []waiter.WaitAcceptor{
-			{
+			waiter.WaitAcceptor{
 				State:    "success",
 				Matcher:  "path",
 				Argument: "Invalidation.Status",
@@ -58,7 +58,7 @@ func (c *CloudFront) WaitUntilStreamingDistributionDeployed(input *GetStreamingD
 		Delay:       60,
 		MaxAttempts: 25,
 		Acceptors: []waiter.WaitAcceptor{
-			{
+			waiter.WaitAcceptor{
 				State:    "success",
 				Matcher:  "path",
 				Argument: "StreamingDistribution.Status",

@@ -28,7 +28,7 @@ func ExampleDeviceFarm_CreateDevicePool() {
 		Name:       aws.String("Name"),               // Required
 		ProjectArn: aws.String("AmazonResourceName"), // Required
 		Rules: []*devicefarm.Rule{ // Required
-			{ // Required
+			&devicefarm.Rule{ // Required
 				Attribute: aws.String("DeviceAttribute"),
 				Operator:  aws.String("RuleOperator"),
 				Value:     aws.String("String"),
@@ -1121,7 +1121,7 @@ func ExampleDeviceFarm_UpdateDevicePool() {
 		Description: aws.String("Message"),
 		Name:        aws.String("Name"),
 		Rules: []*devicefarm.Rule{
-			{ // Required
+			&devicefarm.Rule{ // Required
 				Attribute: aws.String("DeviceAttribute"),
 				Operator:  aws.String("RuleOperator"),
 				Value:     aws.String("String"),

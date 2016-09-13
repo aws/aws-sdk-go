@@ -90,7 +90,7 @@ func ExampleCodePipeline_CreateCustomActionType() {
 		Provider: aws.String("ActionProvider"), // Required
 		Version:  aws.String("Version"),        // Required
 		ConfigurationProperties: []*codepipeline.ActionConfigurationProperty{
-			{ // Required
+			&codepipeline.ActionConfigurationProperty{ // Required
 				Key:         aws.Bool(true),                       // Required
 				Name:        aws.String("ActionConfigurationKey"), // Required
 				Required:    aws.Bool(true),                       // Required
@@ -143,9 +143,9 @@ func ExampleCodePipeline_CreatePipeline() {
 			Name:    aws.String("PipelineName"), // Required
 			RoleArn: aws.String("RoleArn"),      // Required
 			Stages: []*codepipeline.StageDeclaration{ // Required
-				{ // Required
+				&codepipeline.StageDeclaration{ // Required
 					Actions: []*codepipeline.ActionDeclaration{ // Required
-						{ // Required
+						&codepipeline.ActionDeclaration{ // Required
 							ActionTypeId: &codepipeline.ActionTypeId{ // Required
 								Category: aws.String("ActionCategory"), // Required
 								Owner:    aws.String("ActionOwner"),    // Required
@@ -158,13 +158,13 @@ func ExampleCodePipeline_CreatePipeline() {
 								// More values...
 							},
 							InputArtifacts: []*codepipeline.InputArtifact{
-								{ // Required
+								&codepipeline.InputArtifact{ // Required
 									Name: aws.String("ArtifactName"), // Required
 								},
 								// More values...
 							},
 							OutputArtifacts: []*codepipeline.OutputArtifact{
-								{ // Required
+								&codepipeline.OutputArtifact{ // Required
 									Name: aws.String("ArtifactName"), // Required
 								},
 								// More values...
@@ -176,7 +176,7 @@ func ExampleCodePipeline_CreatePipeline() {
 					},
 					Name: aws.String("StageName"), // Required
 					Blockers: []*codepipeline.BlockerDeclaration{
-						{ // Required
+						&codepipeline.BlockerDeclaration{ // Required
 							Name: aws.String("BlockerName"), // Required
 							Type: aws.String("BlockerType"), // Required
 						},
@@ -828,9 +828,9 @@ func ExampleCodePipeline_UpdatePipeline() {
 			Name:    aws.String("PipelineName"), // Required
 			RoleArn: aws.String("RoleArn"),      // Required
 			Stages: []*codepipeline.StageDeclaration{ // Required
-				{ // Required
+				&codepipeline.StageDeclaration{ // Required
 					Actions: []*codepipeline.ActionDeclaration{ // Required
-						{ // Required
+						&codepipeline.ActionDeclaration{ // Required
 							ActionTypeId: &codepipeline.ActionTypeId{ // Required
 								Category: aws.String("ActionCategory"), // Required
 								Owner:    aws.String("ActionOwner"),    // Required
@@ -843,13 +843,13 @@ func ExampleCodePipeline_UpdatePipeline() {
 								// More values...
 							},
 							InputArtifacts: []*codepipeline.InputArtifact{
-								{ // Required
+								&codepipeline.InputArtifact{ // Required
 									Name: aws.String("ArtifactName"), // Required
 								},
 								// More values...
 							},
 							OutputArtifacts: []*codepipeline.OutputArtifact{
-								{ // Required
+								&codepipeline.OutputArtifact{ // Required
 									Name: aws.String("ArtifactName"), // Required
 								},
 								// More values...
@@ -861,7 +861,7 @@ func ExampleCodePipeline_UpdatePipeline() {
 					},
 					Name: aws.String("StageName"), // Required
 					Blockers: []*codepipeline.BlockerDeclaration{
-						{ // Required
+						&codepipeline.BlockerDeclaration{ // Required
 							Name: aws.String("BlockerName"), // Required
 							Type: aws.String("BlockerType"), // Required
 						},

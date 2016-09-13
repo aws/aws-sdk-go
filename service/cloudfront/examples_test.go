@@ -118,13 +118,13 @@ func ExampleCloudFront_CreateDistribution() {
 			Origins: &cloudfront.Origins{ // Required
 				Quantity: aws.Int64(1), // Required
 				Items: []*cloudfront.Origin{
-					{ // Required
+					&cloudfront.Origin{ // Required
 						DomainName: aws.String("string"), // Required
 						Id:         aws.String("string"), // Required
 						CustomHeaders: &cloudfront.CustomHeaders{
 							Quantity: aws.Int64(1), // Required
 							Items: []*cloudfront.OriginCustomHeader{
-								{ // Required
+								&cloudfront.OriginCustomHeader{ // Required
 									HeaderName:  aws.String("string"), // Required
 									HeaderValue: aws.String("string"), // Required
 								},
@@ -161,7 +161,7 @@ func ExampleCloudFront_CreateDistribution() {
 			CacheBehaviors: &cloudfront.CacheBehaviors{
 				Quantity: aws.Int64(1), // Required
 				Items: []*cloudfront.CacheBehavior{
-					{ // Required
+					&cloudfront.CacheBehavior{ // Required
 						ForwardedValues: &cloudfront.ForwardedValues{ // Required
 							Cookies: &cloudfront.CookiePreference{ // Required
 								Forward: aws.String("ItemSelection"), // Required
@@ -226,7 +226,7 @@ func ExampleCloudFront_CreateDistribution() {
 			CustomErrorResponses: &cloudfront.CustomErrorResponses{
 				Quantity: aws.Int64(1), // Required
 				Items: []*cloudfront.CustomErrorResponse{
-					{ // Required
+					&cloudfront.CustomErrorResponse{ // Required
 						ErrorCode:          aws.Int64(1), // Required
 						ErrorCachingMinTTL: aws.Int64(1),
 						ResponseCode:       aws.String("string"),
@@ -1259,13 +1259,13 @@ func ExampleCloudFront_UpdateDistribution() {
 			Origins: &cloudfront.Origins{ // Required
 				Quantity: aws.Int64(1), // Required
 				Items: []*cloudfront.Origin{
-					{ // Required
+					&cloudfront.Origin{ // Required
 						DomainName: aws.String("string"), // Required
 						Id:         aws.String("string"), // Required
 						CustomHeaders: &cloudfront.CustomHeaders{
 							Quantity: aws.Int64(1), // Required
 							Items: []*cloudfront.OriginCustomHeader{
-								{ // Required
+								&cloudfront.OriginCustomHeader{ // Required
 									HeaderName:  aws.String("string"), // Required
 									HeaderValue: aws.String("string"), // Required
 								},
@@ -1302,7 +1302,7 @@ func ExampleCloudFront_UpdateDistribution() {
 			CacheBehaviors: &cloudfront.CacheBehaviors{
 				Quantity: aws.Int64(1), // Required
 				Items: []*cloudfront.CacheBehavior{
-					{ // Required
+					&cloudfront.CacheBehavior{ // Required
 						ForwardedValues: &cloudfront.ForwardedValues{ // Required
 							Cookies: &cloudfront.CookiePreference{ // Required
 								Forward: aws.String("ItemSelection"), // Required
@@ -1367,7 +1367,7 @@ func ExampleCloudFront_UpdateDistribution() {
 			CustomErrorResponses: &cloudfront.CustomErrorResponses{
 				Quantity: aws.Int64(1), // Required
 				Items: []*cloudfront.CustomErrorResponse{
-					{ // Required
+					&cloudfront.CustomErrorResponse{ // Required
 						ErrorCode:          aws.Int64(1), // Required
 						ErrorCachingMinTTL: aws.Int64(1),
 						ResponseCode:       aws.String("string"),

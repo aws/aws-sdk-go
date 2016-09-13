@@ -27,7 +27,7 @@ func ExampleCloudTrail_AddTags() {
 	params := &cloudtrail.AddTagsInput{
 		ResourceId: aws.String("String"), // Required
 		TagsList: []*cloudtrail.Tag{
-			{ // Required
+			&cloudtrail.Tag{ // Required
 				Key:   aws.String("String"), // Required
 				Value: aws.String("String"),
 			},
@@ -228,7 +228,7 @@ func ExampleCloudTrail_LookupEvents() {
 	params := &cloudtrail.LookupEventsInput{
 		EndTime: aws.Time(time.Now()),
 		LookupAttributes: []*cloudtrail.LookupAttribute{
-			{ // Required
+			&cloudtrail.LookupAttribute{ // Required
 				AttributeKey:   aws.String("LookupAttributeKey"), // Required
 				AttributeValue: aws.String("String"),             // Required
 			},
@@ -263,7 +263,7 @@ func ExampleCloudTrail_RemoveTags() {
 	params := &cloudtrail.RemoveTagsInput{
 		ResourceId: aws.String("String"), // Required
 		TagsList: []*cloudtrail.Tag{
-			{ // Required
+			&cloudtrail.Tag{ // Required
 				Key:   aws.String("String"), // Required
 				Value: aws.String("String"),
 			},

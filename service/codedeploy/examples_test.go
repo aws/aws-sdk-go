@@ -30,7 +30,7 @@ func ExampleCodeDeploy_AddTagsToOnPremisesInstances() {
 			// More values...
 		},
 		Tags: []*codedeploy.Tag{ // Required
-			{ // Required
+			&codedeploy.Tag{ // Required
 				Key:   aws.String("Key"),
 				Value: aws.String("Value"),
 			},
@@ -62,7 +62,7 @@ func ExampleCodeDeploy_BatchGetApplicationRevisions() {
 	params := &codedeploy.BatchGetApplicationRevisionsInput{
 		ApplicationName: aws.String("ApplicationName"), // Required
 		Revisions: []*codedeploy.RevisionLocation{ // Required
-			{ // Required
+			&codedeploy.RevisionLocation{ // Required
 				GitHubLocation: &codedeploy.GitHubLocation{
 					CommitId:   aws.String("CommitId"),
 					Repository: aws.String("Repository"),
@@ -350,7 +350,7 @@ func ExampleCodeDeploy_CreateDeploymentGroup() {
 		},
 		DeploymentConfigName: aws.String("DeploymentConfigName"),
 		Ec2TagFilters: []*codedeploy.EC2TagFilter{
-			{ // Required
+			&codedeploy.EC2TagFilter{ // Required
 				Key:   aws.String("Key"),
 				Type:  aws.String("EC2TagFilterType"),
 				Value: aws.String("Value"),
@@ -358,7 +358,7 @@ func ExampleCodeDeploy_CreateDeploymentGroup() {
 			// More values...
 		},
 		OnPremisesInstanceTagFilters: []*codedeploy.TagFilter{
-			{ // Required
+			&codedeploy.TagFilter{ // Required
 				Key:   aws.String("Key"),
 				Type:  aws.String("TagFilterType"),
 				Value: aws.String("Value"),
@@ -366,7 +366,7 @@ func ExampleCodeDeploy_CreateDeploymentGroup() {
 			// More values...
 		},
 		TriggerConfigurations: []*codedeploy.TriggerConfig{
-			{ // Required
+			&codedeploy.TriggerConfig{ // Required
 				TriggerEvents: []*string{
 					aws.String("TriggerEventType"), // Required
 					// More values...
@@ -867,7 +867,7 @@ func ExampleCodeDeploy_ListOnPremisesInstances() {
 		NextToken:          aws.String("NextToken"),
 		RegistrationStatus: aws.String("RegistrationStatus"),
 		TagFilters: []*codedeploy.TagFilter{
-			{ // Required
+			&codedeploy.TagFilter{ // Required
 				Key:   aws.String("Key"),
 				Type:  aws.String("TagFilterType"),
 				Value: aws.String("Value"),
@@ -969,7 +969,7 @@ func ExampleCodeDeploy_RemoveTagsFromOnPremisesInstances() {
 			// More values...
 		},
 		Tags: []*codedeploy.Tag{ // Required
-			{ // Required
+			&codedeploy.Tag{ // Required
 				Key:   aws.String("Key"),
 				Value: aws.String("Value"),
 			},
@@ -1058,7 +1058,7 @@ func ExampleCodeDeploy_UpdateDeploymentGroup() {
 		},
 		DeploymentConfigName: aws.String("DeploymentConfigName"),
 		Ec2TagFilters: []*codedeploy.EC2TagFilter{
-			{ // Required
+			&codedeploy.EC2TagFilter{ // Required
 				Key:   aws.String("Key"),
 				Type:  aws.String("EC2TagFilterType"),
 				Value: aws.String("Value"),
@@ -1067,7 +1067,7 @@ func ExampleCodeDeploy_UpdateDeploymentGroup() {
 		},
 		NewDeploymentGroupName: aws.String("DeploymentGroupName"),
 		OnPremisesInstanceTagFilters: []*codedeploy.TagFilter{
-			{ // Required
+			&codedeploy.TagFilter{ // Required
 				Key:   aws.String("Key"),
 				Type:  aws.String("TagFilterType"),
 				Value: aws.String("Value"),
@@ -1076,7 +1076,7 @@ func ExampleCodeDeploy_UpdateDeploymentGroup() {
 		},
 		ServiceRoleArn: aws.String("Role"),
 		TriggerConfigurations: []*codedeploy.TriggerConfig{
-			{ // Required
+			&codedeploy.TriggerConfig{ // Required
 				TriggerEvents: []*string{
 					aws.String("TriggerEventType"), // Required
 					// More values...

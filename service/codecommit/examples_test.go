@@ -288,7 +288,7 @@ func ExampleCodeCommit_PutRepositoryTriggers() {
 	params := &codecommit.PutRepositoryTriggersInput{
 		RepositoryName: aws.String("RepositoryName"),
 		Triggers: []*codecommit.RepositoryTrigger{
-			{ // Required
+			&codecommit.RepositoryTrigger{ // Required
 				Branches: []*string{
 					aws.String("BranchName"), // Required
 					// More values...
@@ -329,7 +329,7 @@ func ExampleCodeCommit_TestRepositoryTriggers() {
 	params := &codecommit.TestRepositoryTriggersInput{
 		RepositoryName: aws.String("RepositoryName"),
 		Triggers: []*codecommit.RepositoryTrigger{
-			{ // Required
+			&codecommit.RepositoryTrigger{ // Required
 				Branches: []*string{
 					aws.String("BranchName"), // Required
 					// More values...
