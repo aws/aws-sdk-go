@@ -149,8 +149,10 @@ var tplInfSig = template.Must(template.New("opsig").Parse(`
 {{ .ExportedName }}Request({{ .InputRef.GoTypeWithPkgName }}) (*request.Request, {{ .OutputRef.GoTypeWithPkgName }})
 
 {{ .ExportedName }}({{ .InputRef.GoTypeWithPkgName }}) ({{ .OutputRef.GoTypeWithPkgName }}, error)
-{{ if .Paginator }}
-{{ .ExportedName }}Pages({{ .InputRef.GoTypeWithPkgName }}, func({{ .OutputRef.GoTypeWithPkgName }}, bool) bool) error{{ end }}
+
+{{ if .Paginator -}}
+{{ .ExportedName }}Pages({{ .InputRef.GoTypeWithPkgName }}, func({{ .OutputRef.GoTypeWithPkgName }}, bool) bool) error
+{{- end }}
 `))
 
 // InterfaceSignature returns a string representing the Operation's interface{}
