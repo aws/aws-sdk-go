@@ -355,6 +355,7 @@ func ExampleIoT_CreateTopicRule() {
 						BucketName: aws.String("BucketName"), // Required
 						Key:        aws.String("Key"),        // Required
 						RoleArn:    aws.String("AwsArn"),     // Required
+						CannedAcl:  aws.String("CannedAccessControlList"),
 					},
 					Sns: &iot.SnsAction{
 						RoleArn:       aws.String("AwsArn"), // Required
@@ -1355,6 +1356,7 @@ func ExampleIoT_RegisterCertificate() {
 		CertificatePem:   aws.String("CertificatePem"), // Required
 		CaCertificatePem: aws.String("CertificatePem"),
 		SetAsActive:      aws.Bool(true),
+		Status:           aws.String("CertificateStatus"),
 	}
 	resp, err := svc.RegisterCertificate(params)
 
@@ -1463,6 +1465,7 @@ func ExampleIoT_ReplaceTopicRule() {
 						BucketName: aws.String("BucketName"), // Required
 						Key:        aws.String("Key"),        // Required
 						RoleArn:    aws.String("AwsArn"),     // Required
+						CannedAcl:  aws.String("CannedAccessControlList"),
 					},
 					Sns: &iot.SnsAction{
 						RoleArn:       aws.String("AwsArn"), // Required
