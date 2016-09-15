@@ -2043,6 +2043,7 @@
         "PercentProgress":{"shape":"String"},
         "EarliestRestorableTime":{"shape":"TStamp"},
         "Endpoint":{"shape":"String"},
+        "ReaderEndpoint":{"shape":"String"},
         "Engine":{"shape":"String"},
         "EngineVersion":{"shape":"String"},
         "LatestRestorableTime":{"shape":"TStamp"},

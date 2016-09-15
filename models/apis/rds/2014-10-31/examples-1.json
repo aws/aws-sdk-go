@@ -837,7 +837,7 @@
       {
         "input": {
           "DBInstanceIdentifier": "mymysqlinstance",
-          "IncludePublic": true,
+          "IncludePublic": false,
           "IncludeShared": true,
           "SnapshotType": "manual"
         },
@@ -849,7 +849,7 @@
           "output": {
           }
         },
-        "description": "This example lists all manually-created, shared, public snapshots for the specified DB instance.",
+        "description": "This example lists all manually-created, shared snapshots for the specified DB instance.",
         "id": "describe-db-snapshots-2c935989-a1ef-4c85-aea4-1d0f45f17f26",
         "title": "To list DB snapshot attributes"
       }
@@ -1087,6 +1087,71 @@
         "description": "This example lists information for all reserved DB instance offerings for the specified DB instance class, duration, product, offering type, and availability zone settings.",
         "id": "describe-reserved-db-instances-offerings-9de7d1fd-d6a6-4a72-84ae-b2ef58d47d8d",
         "title": "To list information about reserved DB instance offerings"
+      }
+    ],
+    "DescribeSourceRegions": [
+      {
+        "input": {
+        },
+        "output": {
+          "SourceRegions": [
+            {
+              "Endpoint": "https://rds.ap-northeast-1.amazonaws.com",
+              "RegionName": "ap-northeast-1",
+              "Status": "available"
+            },
+            {
+              "Endpoint": "https://rds.ap-northeast-2.amazonaws.com",
+              "RegionName": "ap-northeast-2",
+              "Status": "available"
+            },
+            {
+              "Endpoint": "https://rds.ap-south-1.amazonaws.com",
+              "RegionName": "ap-south-1",
+              "Status": "available"
+            },
+            {
+              "Endpoint": "https://rds.ap-southeast-1.amazonaws.com",
+              "RegionName": "ap-southeast-1",
+              "Status": "available"
+            },
+            {
+              "Endpoint": "https://rds.ap-southeast-2.amazonaws.com",
+              "RegionName": "ap-southeast-2",
+              "Status": "available"
+            },
+            {
+              "Endpoint": "https://rds.eu-central-1.amazonaws.com",
+              "RegionName": "eu-central-1",
+              "Status": "available"
+            },
+            {
+              "Endpoint": "https://rds.eu-west-1.amazonaws.com",
+              "RegionName": "eu-west-1",
+              "Status": "available"
+            },
+            {
+              "Endpoint": "https://rds.sa-east-1.amazonaws.com",
+              "RegionName": "sa-east-1",
+              "Status": "available"
+            },
+            {
+              "Endpoint": "https://rds.us-west-1.amazonaws.com",
+              "RegionName": "us-west-1",
+              "Status": "available"
+            },
+            {
+              "Endpoint": "https://rds.us-west-2.amazonaws.com",
+              "RegionName": "us-west-2",
+              "Status": "available"
+            }
+          ]
+        },
+        "comments": {
+        },
+        "description": "To list the AWS regions where a Read Replica can be created.",
+        "id": "to-describe-source-regions-1473457722410",
+        "title": "To describe source regions"
       }
     ],
     "DownloadDBLogFilePortion": [
