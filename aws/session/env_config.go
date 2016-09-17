@@ -75,6 +75,13 @@ type envConfig struct {
 	//
 	//	AWS_CONFIG_FILE=$HOME/my_shared_config
 	SharedConfigFile string
+
+	// Location of credentials cache, $HOME/.aws/cli/cache, used for caching
+	// credentials obtained via sts:AssumeRole.
+	// Currently writing into the cache is not implemented, only reading.
+	//
+	//	AWS_CLI_CREDENTIALS_CACHE=$HOME/.aws/cli/cache
+	CLICredentialsCacheDir string
 }
 
 var (
@@ -149,6 +156,7 @@ func envConfigLoad(enableSharedConfig bool) envConfig {
 
 	cfg.SharedCredentialsFile = sharedCredentialsFilename()
 	cfg.SharedConfigFile = sharedConfigFilename()
+	cfg.CLICredentialsCacheDir = cliCredentialsCacheDir()
 
 	return cfg
 }
@@ -168,6 +176,14 @@ func sharedCredentialsFilename() string {
 	}
 
 	return filepath.Join(userHomeDir(), ".aws", "credentials")
+}
+
+func cliCredentialsCacheDir() string {
+	if name := os.Getenv("AWS_CLI_CREDENTIALS_CACHE"); len(name) > 0 {
+		return name
+	}
+
+	return filepath.Join(userHomeDir(), ".aws", "cli", "cache")
 }
 
 func sharedConfigFilename() string {

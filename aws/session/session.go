@@ -299,6 +299,8 @@ func mergeConfigSrcs(cfg, userCfg *aws.Config, envCfg envConfig, sharedCfg share
 				},
 				sharedCfg.AssumeRole.RoleARN,
 				func(opt *stscreds.AssumeRoleProvider) {
+					opt.CLICredentialsCacheDir = envCfg.CLICredentialsCacheDir
+					opt.Profile = sharedCfg.AssumeRole.Profile
 					opt.RoleSessionName = sharedCfg.AssumeRole.RoleSessionName
 
 					if len(sharedCfg.AssumeRole.ExternalID) > 0 {
