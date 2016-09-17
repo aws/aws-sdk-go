@@ -61,6 +61,7 @@ func TestLoadSharedConfig(t *testing.T) {
 			Profile:   "assume_role",
 			Expected: sharedConfig{
 				AssumeRole: assumeRoleConfig{
+					Profile:       "assume_role",
 					RoleARN:       "assume_role_role_arn",
 					SourceProfile: "complete_creds",
 				},
@@ -94,6 +95,7 @@ func TestLoadSharedConfig(t *testing.T) {
 					ProviderName:    fmt.Sprintf("SharedConfigCredentials: %s", testConfigFilename),
 				},
 				AssumeRole: assumeRoleConfig{
+					Profile:         "assume_role_w_creds",
 					RoleARN:         "assume_role_w_creds_role_arn",
 					SourceProfile:   "assume_role_w_creds",
 					ExternalID:      "1234",
@@ -207,6 +209,7 @@ func TestLoadSharedConfigFromFile(t *testing.T) {
 			Profile: "assume_role",
 			Expected: sharedConfig{
 				AssumeRole: assumeRoleConfig{
+					Profile:       "assume_role",
 					RoleARN:       "assume_role_role_arn",
 					SourceProfile: "complete_creds",
 				},
