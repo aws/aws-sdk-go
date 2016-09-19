@@ -2563,6 +2563,19 @@
         }
       }
     },
+    "CannedAccessControlList":{
+      "type":"string",
+      "enum":[
+        "private",
+        "public-read",
+        "public-read-write",
+        "aws-exec-read",
+        "authenticated-read",
+        "bucket-owner-read",
+        "bucket-owner-full-control",
+        "log-delivery-write"
+      ]
+    },
     "Certificate":{
       "type":"structure",
       "members":{
@@ -3871,10 +3884,12 @@
         "certificatePem":{"shape":"CertificatePem"},
         "caCertificatePem":{"shape":"CertificatePem"},
         "setAsActive":{
-          "shape":"SetAsActive",
+          "shape":"SetAsActiveFlag",
+          "deprecated":true,
           "location":"querystring",
           "locationName":"setAsActive"
-        }
+        },
+        "status":{"shape":"CertificateStatus"}
       }
     },
     "RegisterCertificateResponse":{
@@ -3941,7 +3956,9 @@
     "ResourceAlreadyExistsException":{
       "type":"structure",
       "members":{
-        "message":{"shape":"errorMessage"}
+        "message":{"shape":"errorMessage"},
+        "resourceId":{"shape":"resourceId"},
+        "resourceArn":{"shape":"resourceArn"}
       },
       "error":{"httpStatusCode":409},
       "exception":true
@@ -3971,7 +3988,8 @@
       "members":{
         "roleArn":{"shape":"AwsArn"},
         "bucketName":{"shape":"BucketName"},
-        "key":{"shape":"Key"}
+        "key":{"shape":"Key"},
+        "cannedAcl":{"shape":"CannedAccessControlList"}
       }
     },
     "SQL":{"type":"string"},
@@ -3989,6 +4007,7 @@
       "fault":true
     },
     "SetAsActive":{"type":"boolean"},
+    "SetAsActiveFlag":{"type":"boolean"},
     "SetAsDefault":{"type":"boolean"},
     "SetDefaultPolicyVersionRequest":{
       "type":"structure",
@@ -4305,6 +4324,8 @@
       "error":{"httpStatusCode":409},
       "exception":true
     },
-    "errorMessage":{"type":"string"}
+    "errorMessage":{"type":"string"},
+    "resourceArn":{"type":"string"},
+    "resourceId":{"type":"string"}
   }
 }

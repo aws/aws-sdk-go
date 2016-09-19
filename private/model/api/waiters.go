@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"sort"
+	"strings"
 	"text/template"
 )
 
@@ -121,6 +122,22 @@ func (c *{{ .Operation.API.StructName }}) WaitUntil{{ .Name }}(input {{ .Operati
 	return w.Wait()
 }
 `))
+
+var tplWaiterIface = template.Must(template.New("waiteriface").Parse(`
+WaitUntil{{ .Name }}({{ .Operation.InputRef.GoTypeWithPkgName }}) error
+`))
+
+// InterfaceSignature returns a string representing the Waiter's interface
+// function signature.
+func (w *Waiter) InterfaceSignature() string {
+	var buf bytes.Buffer
+	err := tplWaiterIface.Execute(&buf, w)
+	if err != nil {
+		panic(err)
+	}
+
+	return strings.TrimSpace(buf.String())
+}
 
 // GoCode returns the generated Go code for an individual waiter.
 func (w *Waiter) GoCode() string {

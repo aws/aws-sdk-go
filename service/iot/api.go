@@ -2988,7 +2988,7 @@ type Action struct {
 	// Write to a DynamoDB table.
 	DynamoDB *DynamoDBAction `locationName:"dynamoDB" type:"structure"`
 
-	// Write data to an Amazon Elasticsearch Service; domain.
+	// Write data to an Amazon Elasticsearch Service domain.
 	Elasticsearch *ElasticsearchAction `locationName:"elasticsearch" type:"structure"`
 
 	// Write to an Amazon Kinesis Firehose stream.
@@ -4905,8 +4905,7 @@ func (s *DynamoDBAction) Validate() error {
 	return nil
 }
 
-// Describes an action that writes data to an Amazon Elasticsearch Service;
-// domain.
+// Describes an action that writes data to an Amazon Elasticsearch Service domain.
 type ElasticsearchAction struct {
 	_ struct{} `type:"structure"`
 
@@ -5020,7 +5019,7 @@ type FirehoseAction struct {
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 
 	// A character separator that will be used to separate records written to the
-	// firehose stream. Valid values are: '\n' (newline), '\t' (tab), '\r\n' (Windows
+	// Firehose stream. Valid values are: '\n' (newline), '\t' (tab), '\r\n' (Windows
 	// newline), ',' (comma).
 	Separator *string `locationName:"separator" type:"string"`
 }
@@ -6393,7 +6392,9 @@ type RegisterCertificateInput struct {
 	CertificatePem *string `locationName:"certificatePem" min:"1" type:"string" required:"true"`
 
 	// A boolean value that specifies if the CA certificate is set to active.
-	SetAsActive *bool `location:"querystring" locationName:"setAsActive" type:"boolean"`
+	SetAsActive *bool `location:"querystring" locationName:"setAsActive" deprecated:"true" type:"boolean"`
+
+	Status *string `locationName:"status" type:"string" enum:"CertificateStatus"`
 }
 
 // String returns the string representation
@@ -6599,6 +6600,10 @@ type S3Action struct {
 
 	// The Amazon S3 bucket.
 	BucketName *string `locationName:"bucketName" type:"string" required:"true"`
+
+	// The Amazon S3 canned ACL that controls access to the object identified by
+	// the object key. For more information, see S3 canned ACLs (http://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl).
+	CannedAcl *string `locationName:"cannedAcl" type:"string" enum:"CannedAccessControlList"`
 
 	// The object key.
 	Key *string `locationName:"key" type:"string" required:"true"`
@@ -7345,6 +7350,25 @@ const (
 	CACertificateStatusActive = "ACTIVE"
 	// @enum CACertificateStatus
 	CACertificateStatusInactive = "INACTIVE"
+)
+
+const (
+	// @enum CannedAccessControlList
+	CannedAccessControlListPrivate = "private"
+	// @enum CannedAccessControlList
+	CannedAccessControlListPublicRead = "public-read"
+	// @enum CannedAccessControlList
+	CannedAccessControlListPublicReadWrite = "public-read-write"
+	// @enum CannedAccessControlList
+	CannedAccessControlListAwsExecRead = "aws-exec-read"
+	// @enum CannedAccessControlList
+	CannedAccessControlListAuthenticatedRead = "authenticated-read"
+	// @enum CannedAccessControlList
+	CannedAccessControlListBucketOwnerRead = "bucket-owner-read"
+	// @enum CannedAccessControlList
+	CannedAccessControlListBucketOwnerFullControl = "bucket-owner-full-control"
+	// @enum CannedAccessControlList
+	CannedAccessControlListLogDeliveryWrite = "log-delivery-write"
 )
 
 const (

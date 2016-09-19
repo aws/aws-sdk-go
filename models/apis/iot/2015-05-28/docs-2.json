@@ -233,6 +233,12 @@
       "refs": {
       }
     },
+    "CannedAccessControlList": {
+      "base": null,
+      "refs": {
+        "S3Action$cannedAcl": "<p>The Amazon S3 canned ACL that controls access to the object identified by the object key. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl\">S3 canned ACLs</a>.</p>"
+      }
+    },
     "Certificate": {
       "base": "<p>Information about a certificate.</p>",
       "refs": {
@@ -320,6 +326,7 @@
       "refs": {
         "Certificate$status": "<p>The status of the certificate.</p> <p>The status value REGISTER_INACTIVE is deprecated and should not be used.</p>",
         "CertificateDescription$status": "<p>The status of the certificate.</p>",
+        "RegisterCertificateRequest$status": null,
         "UpdateCertificateRequest$newStatus": "<p>The new status.</p> <p><b>Note:</b> Setting the status to PENDING_TRANSFER will result in an exception being thrown. PENDING_TRANSFER is a status used internally by AWS IoT. It is not intended for developer use.</p> <p><b>Note:</b> The status value REGISTER_INACTIVE is deprecated and should not be used.</p>"
       }
     },
@@ -631,9 +638,9 @@
       }
     },
     "ElasticsearchAction": {
-      "base": "<p>Describes an action that writes data to an Amazon Elasticsearch Service; domain.</p>",
+      "base": "<p>Describes an action that writes data to an Amazon Elasticsearch Service domain.</p>",
       "refs": {
-        "Action$elasticsearch": "<p>Write data to an Amazon Elasticsearch Service; domain.</p>"
+        "Action$elasticsearch": "<p>Write data to an Amazon Elasticsearch Service domain.</p>"
       }
     },
     "ElasticsearchEndpoint": {
@@ -680,7 +687,7 @@
     "FirehoseSeparator": {
       "base": null,
       "refs": {
-        "FirehoseAction$separator": "<p>A character separator that will be used to separate records written to the firehose stream. Valid values are: '\\n' (newline), '\\t' (tab), '\\r\\n' (Windows newline), ',' (comma).</p>"
+        "FirehoseAction$separator": "<p>A character separator that will be used to separate records written to the Firehose stream. Valid values are: '\\n' (newline), '\\t' (tab), '\\r\\n' (Windows newline), ',' (comma).</p>"
       }
     },
     "Flag": {
@@ -1342,7 +1349,12 @@
         "AcceptCertificateTransferRequest$setAsActive": "<p>Specifies whether the certificate is active.</p>",
         "CreateCertificateFromCsrRequest$setAsActive": "<p>Specifies whether the certificate is active.</p>",
         "CreateKeysAndCertificateRequest$setAsActive": "<p>Specifies whether the certificate is active.</p>",
-        "RegisterCACertificateRequest$setAsActive": "<p>A boolean value that specifies if the CA certificate is set to active.</p>",
+        "RegisterCACertificateRequest$setAsActive": "<p>A boolean value that specifies if the CA certificate is set to active.</p>"
+      }
+    },
+    "SetAsActiveFlag": {
+      "base": null,
+      "refs": {
         "RegisterCertificateRequest$setAsActive": "<p>A boolean value that specifies if the CA certificate is set to active.</p>"
       }
     },
@@ -1646,6 +1658,18 @@
         "UnauthorizedException$message": "<p>The message for the exception.</p>",
         "VersionConflictException$message": "<p>The message for the exception.</p>",
         "VersionsLimitExceededException$message": "<p>The message for the exception.</p>"
+      }
+    },
+    "resourceArn": {
+      "base": null,
+      "refs": {
+        "ResourceAlreadyExistsException$resourceArn": "<p>The ARN of the resource that caused the exception.</p>"
+      }
+    },
+    "resourceId": {
+      "base": null,
+      "refs": {
+        "ResourceAlreadyExistsException$resourceId": "<p>The ID of the resource that caused the exception.</p>"
       }
     }
   }

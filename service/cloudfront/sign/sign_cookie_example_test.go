@@ -108,7 +108,7 @@ func ExampleCookieSigner_SignWithPolicy() {
 	// CloudFront-Key-Pair-Id: privateKeyID, , , false
 }
 
-func ExampleCookieSigner_SignOptions() {
+func ExampleCookieOptions() {
 	origRandReader := randReader
 	randReader = newRandomReader(rand.New(rand.NewSource(1)))
 	defer func() {
