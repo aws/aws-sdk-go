@@ -1869,7 +1869,8 @@
         "MonitoringInterval":{"shape":"IntegerOptional"},
         "MonitoringRoleArn":{"shape":"String"},
         "DomainIAMRoleName":{"shape":"String"},
-        "PromotionTier":{"shape":"IntegerOptional"}
+        "PromotionTier":{"shape":"IntegerOptional"},
+        "Timezone":{"shape":"String"}
       }
     },
     "CreateDBInstanceReadReplicaMessage":{
@@ -2282,7 +2283,8 @@
         "DBEngineVersionDescription":{"shape":"String"},
         "DefaultCharacterSet":{"shape":"CharacterSet"},
         "SupportedCharacterSets":{"shape":"SupportedCharacterSetsList"},
-        "ValidUpgradeTarget":{"shape":"ValidUpgradeTargetList"}
+        "ValidUpgradeTarget":{"shape":"ValidUpgradeTargetList"},
+        "SupportedTimezones":{"shape":"SupportedTimezonesList"}
       }
     },
     "DBEngineVersionList":{
@@ -2347,7 +2349,8 @@
         "EnhancedMonitoringResourceArn":{"shape":"String"},
         "MonitoringRoleArn":{"shape":"String"},
         "PromotionTier":{"shape":"IntegerOptional"},
-        "DBInstanceArn":{"shape":"String"}
+        "DBInstanceArn":{"shape":"String"},
+        "Timezone":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -2616,7 +2619,8 @@
         "TdeCredentialArn":{"shape":"String"},
         "Encrypted":{"shape":"Boolean"},
         "KmsKeyId":{"shape":"String"},
-        "DBSnapshotArn":{"shape":"String"}
+        "DBSnapshotArn":{"shape":"String"},
+        "Timezone":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -2965,7 +2969,8 @@
         "MaxRecords":{"shape":"IntegerOptional"},
         "Marker":{"shape":"String"},
         "DefaultOnly":{"shape":"Boolean"},
-        "ListSupportedCharacterSets":{"shape":"BooleanOptional"}
+        "ListSupportedCharacterSets":{"shape":"BooleanOptional"},
+        "ListSupportedTimezones":{"shape":"BooleanOptional"}
       }
     },
     "DescribeDBInstancesMessage":{
@@ -4865,6 +4870,13 @@
         "locationName":"CharacterSet"
       }
     },
+    "SupportedTimezonesList":{
+      "type":"list",
+      "member":{
+        "shape":"Timezone",
+        "locationName":"Timezone"
+      }
+    },
     "TStamp":{"type":"timestamp"},
     "Tag":{
       "type":"structure",
@@ -4884,6 +4896,12 @@
       "type":"structure",
       "members":{
         "TagList":{"shape":"TagList"}
+      }
+    },
+    "Timezone":{
+      "type":"structure",
+      "members":{
+        "TimezoneName":{"shape":"String"}
       }
     },
     "UpgradeTarget":{
