@@ -1,8 +1,11 @@
 package v4
 
 import (
+	"bytes"
 	"io"
+	"io/ioutil"
 	"net/http"
+	"net/http/httptest"
 	"strings"
 	"testing"
 	"time"
@@ -321,6 +324,56 @@ func TestResignRequestExpiredRequest(t *testing.T) {
 	})
 	assert.NotEqual(t, querySig, r.HTTPRequest.Header.Get("Authorization"))
 	assert.NotEqual(t, origSignedAt, r.LastSignedAt)
+}
+
+func TestSignWithRequestBody(t *testing.T) {
+	creds := credentials.NewStaticCredentials("AKID", "SECRET", "SESSION")
+	signer := NewSigner(creds)
+
+	expectBody := []byte("abc123")
+
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		b, err := ioutil.ReadAll(r.Body)
+		r.Body.Close()
+		assert.NoError(t, err)
+		assert.Equal(t, expectBody, b)
+		w.WriteHeader(http.StatusOK)
+	}))
+
+	req, err := http.NewRequest("POST", server.URL, nil)
+
+	_, err = signer.Sign(req, bytes.NewReader(expectBody), "service", "region", time.Now())
+	assert.NoError(t, err)
+
+	resp, err := http.DefaultClient.Do(req)
+	assert.NoError(t, err)
+	assert.Equal(t, http.StatusOK, resp.StatusCode)
+}
+
+func TestSignWithRequestBody_Overwrite(t *testing.T) {
+	creds := credentials.NewStaticCredentials("AKID", "SECRET", "SESSION")
+	signer := NewSigner(creds)
+
+	var expectBody []byte
+
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		b, err := ioutil.ReadAll(r.Body)
+		r.Body.Close()
+		assert.NoError(t, err)
+		assert.Equal(t, len(expectBody), len(b))
+		w.WriteHeader(http.StatusOK)
+	}))
+
+	req, err := http.NewRequest("GET", server.URL, strings.NewReader("invalid body"))
+
+	_, err = signer.Sign(req, nil, "service", "region", time.Now())
+	req.ContentLength = 0
+
+	assert.NoError(t, err)
+
+	resp, err := http.DefaultClient.Do(req)
+	assert.NoError(t, err)
+	assert.Equal(t, http.StatusOK, resp.StatusCode)
 }
 
 func BenchmarkPresignRequest(b *testing.B) {
