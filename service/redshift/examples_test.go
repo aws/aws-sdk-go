@@ -126,6 +126,7 @@ func ExampleRedshift_CreateCluster() {
 		DBName:                         aws.String("String"),
 		ElasticIp:                      aws.String("String"),
 		Encrypted:                      aws.Bool(true),
+		EnhancedVpcRouting:             aws.Bool(true),
 		HsmClientCertificateIdentifier: aws.String("String"),
 		HsmConfigurationIdentifier:     aws.String("String"),
 		IamRoles: []*string{
@@ -1507,6 +1508,7 @@ func ExampleRedshift_ModifyCluster() {
 		ClusterType:                    aws.String("String"),
 		ClusterVersion:                 aws.String("String"),
 		ElasticIp:                      aws.String("String"),
+		EnhancedVpcRouting:             aws.Bool(true),
 		HsmClientCertificateIdentifier: aws.String("String"),
 		HsmConfigurationIdentifier:     aws.String("String"),
 		MasterUserPassword:             aws.String("String"),
@@ -1812,6 +1814,7 @@ func ExampleRedshift_RestoreFromClusterSnapshot() {
 		},
 		ClusterSubnetGroupName:         aws.String("String"),
 		ElasticIp:                      aws.String("String"),
+		EnhancedVpcRouting:             aws.Bool(true),
 		HsmClientCertificateIdentifier: aws.String("String"),
 		HsmConfigurationIdentifier:     aws.String("String"),
 		IamRoles: []*string{
