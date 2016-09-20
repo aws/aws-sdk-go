@@ -5,13 +5,17 @@
     "AddInstanceGroups": "<p>AddInstanceGroups adds an instance group to a running cluster.</p>",
     "AddJobFlowSteps": "<p>AddJobFlowSteps adds new steps to a running job flow. A maximum of 256 steps are allowed in each job flow.</p> <p>If your job flow is long-running (such as a Hive data warehouse) or complex, you may require more than 256 steps to process your data. You can bypass the 256-step limitation in various ways, including using the SSH shell to connect to the master node and submitting queries directly to the software running on the master node, such as Hive and Hadoop. For more information on how to do this, go to <a href=\"http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/AddMoreThan256Steps.html\">Add More than 256 Steps to a Job Flow</a> in the <i>Amazon Elastic MapReduce Developer's Guide</i>.</p> <p>A step specifies the location of a JAR file stored either on the master node of the job flow or in Amazon S3. Each step is performed by the main function of the main class of the JAR file. The main class can be specified either in the manifest of the JAR or by using the MainFunction parameter of the step.</p> <p>Elastic MapReduce executes each step in the order listed. For a step to be considered complete, the main function must exit with a zero exit code and all Hadoop jobs started while the step was running must have completed and run successfully.</p> <p>You can only add steps to a job flow that is in one of the following states: STARTING, BOOTSTRAPPING, RUNNING, or WAITING.</p>",
     "AddTags": "<p>Adds tags to an Amazon EMR resource. Tags make it easier to associate clusters in various ways, such as grouping clusters to track your Amazon EMR resource allocation costs. For more information, see <a href=\"http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-plan-tags.html\">Tagging Amazon EMR Resources</a>. </p>",
+    "CreateSecurityConfiguration": "<p>Creates a security configuration using EMR Security Configurations, which are stored in the service. Security Configurations enable you to more easily create a configuration, reuse it, and apply it whenever a cluster is created.</p>",
+    "DeleteSecurityConfiguration": "<p>Deletes a security configuration.</p>",
     "DescribeCluster": "<p>Provides cluster-level details including status, hardware and software configuration, VPC settings, and so on. For information about the cluster steps, see <a>ListSteps</a>.</p>",
     "DescribeJobFlows": "<p> This API is deprecated and will eventually be removed. We recommend you use <a>ListClusters</a>, <a>DescribeCluster</a>, <a>ListSteps</a>, <a>ListInstanceGroups</a> and <a>ListBootstrapActions</a> instead.</p> <p>DescribeJobFlows returns a list of job flows that match all of the supplied parameters. The parameters can include a list of job flow IDs, job flow states, and restrictions on job flow creation date and time.</p> <p>Regardless of supplied parameters, only job flows created within the last two months are returned.</p> <p>If no parameters are supplied, then job flows matching either of the following criteria are returned:</p> <ul> <li> <p>Job flows created and completed in the last two weeks</p> </li> <li> <p> Job flows created within the last two months that are in one of the following states: <code>RUNNING</code>, <code>WAITING</code>, <code>SHUTTING_DOWN</code>, <code>STARTING</code> </p> </li> </ul> <p>Amazon Elastic MapReduce can return a maximum of 512 job flow descriptions.</p>",
+    "DescribeSecurityConfiguration": "<p>Provides the details of a security configuration by returning the configuration JSON.</p>",
     "DescribeStep": "<p>Provides more detail about the cluster step.</p>",
     "ListBootstrapActions": "<p>Provides information about the bootstrap actions associated with a cluster.</p>",
     "ListClusters": "<p>Provides the status of all clusters visible to this AWS account. Allows you to filter the list of clusters based on certain criteria; for example, filtering by cluster creation date and time or by status. This call returns a maximum of 50 clusters per call, but returns a marker to track the paging of the cluster list across multiple ListClusters calls.</p>",
     "ListInstanceGroups": "<p>Provides all available details about the instance groups in a cluster.</p>",
     "ListInstances": "<p>Provides information about the cluster instances that Amazon EMR provisions on behalf of a user when it creates the cluster. For example, this operation indicates when the EC2 instances reach the Ready state, when instances become available to Amazon EMR to use for jobs, and the IP addresses for cluster instances, etc.</p>",
+    "ListSecurityConfigurations": "<p>Lists all the security configurations visible to this account, providing their creation dates and times, and their names. This call returns a maximum of 50 clusters per call, but returns a marker to track the paging of the cluster list across multiple ListSecurityConfigurations calls.</p>",
     "ListSteps": "<p>Provides a list of steps for the cluster.</p>",
     "ModifyInstanceGroups": "<p>ModifyInstanceGroups modifies the number of nodes and configuration settings of an instance group. The input parameters include the new target instance count for the group and the instance group ID. The call will either succeed or fail atomically.</p>",
     "RemoveTags": "<p>Removes tags from an Amazon EMR resource. Tags make it easier to associate clusters in various ways, such as grouping clusters to track your Amazon EMR resource allocation costs. For more information, see <a href=\"http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-plan-tags.html\">Tagging Amazon EMR Resources</a>. </p> <p>The following example removes the stack tag with value Prod from a cluster:</p>",
@@ -96,7 +100,7 @@
       }
     },
     "BootstrapActionConfig": {
-      "base": "<p>Configuration of a bootstrap action.</p>",
+      "base": null,
       "refs": {
         "BootstrapActionConfigList$member": null,
         "BootstrapActionDetail$BootstrapActionConfig": "<p>A description of the bootstrap action.</p>"
@@ -217,14 +221,26 @@
         "RunJobFlowInput$Configurations": "<note> <p>Amazon EMR releases 4.x or later.</p> </note> <p>The list of configurations supplied for the EMR cluster you are creating.</p>"
       }
     },
+    "CreateSecurityConfigurationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateSecurityConfigurationOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Date": {
       "base": null,
       "refs": {
         "ClusterTimeline$CreationDateTime": "<p>The creation date and time of the cluster.</p>",
         "ClusterTimeline$ReadyDateTime": "<p>The date and time when the cluster was ready to execute steps.</p>",
         "ClusterTimeline$EndDateTime": "<p>The date and time when the cluster was terminated.</p>",
+        "CreateSecurityConfigurationOutput$CreationDateTime": "<p>The date and time the security configuration was created.</p>",
         "DescribeJobFlowsInput$CreatedAfter": "<p>Return only job flows created after this date and time.</p>",
         "DescribeJobFlowsInput$CreatedBefore": "<p>Return only job flows created before this date and time.</p>",
+        "DescribeSecurityConfigurationOutput$CreationDateTime": "<p>The date and time the security configuration was created</p>",
         "InstanceGroupDetail$CreationDateTime": "<p>The date/time the instance group was created.</p>",
         "InstanceGroupDetail$StartDateTime": "<p>The date/time the instance group was started.</p>",
         "InstanceGroupDetail$ReadyDateTime": "<p>The date/time the instance group was available to the cluster.</p>",
@@ -241,12 +257,23 @@
         "JobFlowExecutionStatusDetail$EndDateTime": "<p>The completion date and time of the job flow.</p>",
         "ListClustersInput$CreatedAfter": "<p>The creation date and time beginning value filter for listing clusters .</p>",
         "ListClustersInput$CreatedBefore": "<p>The creation date and time end value filter for listing clusters .</p>",
+        "SecurityConfigurationSummary$CreationDateTime": "<p>The date and time the security configuration was created.</p>",
         "StepExecutionStatusDetail$CreationDateTime": "<p>The creation date and time of the step.</p>",
         "StepExecutionStatusDetail$StartDateTime": "<p>The start date and time of the step.</p>",
         "StepExecutionStatusDetail$EndDateTime": "<p>The completion date and time of the step.</p>",
         "StepTimeline$CreationDateTime": "<p>The date and time when the cluster step was created.</p>",
         "StepTimeline$StartDateTime": "<p>The date and time when the cluster step execution started.</p>",
         "StepTimeline$EndDateTime": "<p>The date and time when the cluster step execution completed or failed.</p>"
+      }
+    },
+    "DeleteSecurityConfigurationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteSecurityConfigurationOutput": {
+      "base": null,
+      "refs": {
       }
     },
     "DescribeClusterInput": {
@@ -266,6 +293,16 @@
     },
     "DescribeJobFlowsOutput": {
       "base": "<p> The output for the <a>DescribeJobFlows</a> operation. </p>",
+      "refs": {
+      }
+    },
+    "DescribeSecurityConfigurationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeSecurityConfigurationOutput": {
+      "base": null,
       "refs": {
       }
     },
@@ -692,6 +729,16 @@
       "refs": {
       }
     },
+    "ListSecurityConfigurationsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSecurityConfigurationsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListStepsInput": {
       "base": "<p>This input determines which steps to list.</p>",
       "refs": {
@@ -705,14 +752,16 @@
     "Marker": {
       "base": null,
       "refs": {
-        "ListBootstrapActionsInput$Marker": "<p>The pagination token that indicates the next set of results to retrieve .</p>",
-        "ListBootstrapActionsOutput$Marker": "<p>The pagination token that indicates the next set of results to retrieve .</p>",
+        "ListBootstrapActionsInput$Marker": "<p>The pagination token that indicates the next set of results to retrieve.</p>",
+        "ListBootstrapActionsOutput$Marker": "<p>The pagination token that indicates the next set of results to retrieve.</p>",
         "ListClustersInput$Marker": "<p>The pagination token that indicates the next set of results to retrieve.</p>",
         "ListClustersOutput$Marker": "<p>The pagination token that indicates the next set of results to retrieve.</p>",
         "ListInstanceGroupsInput$Marker": "<p>The pagination token that indicates the next set of results to retrieve.</p>",
         "ListInstanceGroupsOutput$Marker": "<p>The pagination token that indicates the next set of results to retrieve.</p>",
         "ListInstancesInput$Marker": "<p>The pagination token that indicates the next set of results to retrieve.</p>",
         "ListInstancesOutput$Marker": "<p>The pagination token that indicates the next set of results to retrieve.</p>",
+        "ListSecurityConfigurationsInput$Marker": "<p>The pagination token that indicates the set of results to retrieve.</p>",
+        "ListSecurityConfigurationsOutput$Marker": "<p>A pagination token that indicates the next set of results to retrieve. Include the marker in the next ListSecurityConfiguration call to retrieve the next page of results, if required.</p>",
         "ListStepsInput$Marker": "<p>The pagination token that indicates the next set of results to retrieve.</p>",
         "ListStepsOutput$Marker": "<p>The pagination token that indicates the next set of results to retrieve.</p>"
       }
@@ -771,9 +820,21 @@
       }
     },
     "ScriptBootstrapActionConfig": {
-      "base": "<p>Configuration of the script to run during a bootstrap action.</p>",
+      "base": null,
       "refs": {
-        "BootstrapActionConfig$ScriptBootstrapAction": "<p>The script run by the bootstrap action.</p>"
+        "BootstrapActionConfig$ScriptBootstrapAction": null
+      }
+    },
+    "SecurityConfigurationList": {
+      "base": null,
+      "refs": {
+        "ListSecurityConfigurationsOutput$SecurityConfigurations": "<p>The creation date and time, and name, of each security configuration.</p>"
+      }
+    },
+    "SecurityConfigurationSummary": {
+      "base": "<p>The creation date and time, and name, of a security configuration.</p>",
+      "refs": {
+        "SecurityConfigurationList$member": null
       }
     },
     "SecurityGroupsList": {
@@ -925,6 +986,8 @@
         "Command$Name": "<p>The name of the command.</p>",
         "Command$ScriptPath": "<p>The Amazon S3 location of the command script.</p>",
         "Configuration$Classification": "<p>The classification of a configuration. For more information see, <a href=\"http://docs.aws.amazon.com/ElasticMapReduce/latest/API/EmrConfigurations.html\">Amazon EMR Configurations</a>. </p>",
+        "CreateSecurityConfigurationInput$SecurityConfiguration": "<p>The security configuration details in JSON format.</p>",
+        "DescribeSecurityConfigurationOutput$SecurityConfiguration": "<p>The security configuration details in JSON format.</p>",
         "EbsBlockDevice$Device": "<p>The device name that is exposed to the instance, such as /dev/sdh.</p>",
         "EbsVolume$Device": "<p>The device name that is exposed to the instance, such as /dev/sdh.</p>",
         "EbsVolume$VolumeId": "<p>The volume identifier of the EBS volume.</p>",
@@ -1021,6 +1084,12 @@
     "XmlString": {
       "base": null,
       "refs": {
+        "Cluster$SecurityConfiguration": "<p>The name of the security configuration applied to the cluster.</p>",
+        "CreateSecurityConfigurationInput$Name": "<p>The name of the security configuration.</p>",
+        "CreateSecurityConfigurationOutput$Name": "<p>The name of the security configuration.</p>",
+        "DeleteSecurityConfigurationInput$Name": "<p>The name of the security configuration.</p>",
+        "DescribeSecurityConfigurationInput$Name": "<p>The name of the security configuration.</p>",
+        "DescribeSecurityConfigurationOutput$Name": "<p>The name of the security configuration.</p>",
         "HadoopJarStepConfig$Jar": "<p>A path to a JAR file run during the step.</p>",
         "HadoopJarStepConfig$MainClass": "<p>The name of the main class in the specified Java file. If not specified, the JAR file should specify a Main-Class in its manifest file.</p>",
         "InstanceGroupDetail$LastStateChangeReason": "<p>Details regarding the state of the instance group.</p>",
@@ -1037,7 +1106,9 @@
         "RunJobFlowInput$AdditionalInfo": "<p>A JSON string for selecting additional features.</p>",
         "RunJobFlowInput$JobFlowRole": "<p>Also called instance profile and EC2 role. An IAM role for an EMR cluster. The EC2 instances of the cluster assume this role. The default role is <code>EMR_EC2_DefaultRole</code>. In order to use the default role, you must have already created it using the CLI or console.</p>",
         "RunJobFlowInput$ServiceRole": "<p>The IAM role that will be assumed by the Amazon EMR service to access AWS resources on your behalf.</p>",
-        "ScriptBootstrapActionConfig$Path": "<p>Location of the script to run during a bootstrap action. Can be either a location in Amazon S3 or on a local file system.</p>",
+        "RunJobFlowInput$SecurityConfiguration": "<p>The name of a security configuration to apply to the cluster.</p>",
+        "ScriptBootstrapActionConfig$Path": null,
+        "SecurityConfigurationSummary$Name": "<p>The name of the security configuration.</p>",
         "StepExecutionStatusDetail$LastStateChangeReason": "<p>A description of the step's current state.</p>",
         "XmlStringList$member": null
       }
@@ -1048,7 +1119,7 @@
         "DescribeJobFlowsInput$JobFlowIds": "<p>Return only job flows whose job flow ID is contained in this list.</p>",
         "HadoopJarStepConfig$Args": "<p>A list of command line arguments passed to the JAR file's main function when executed.</p>",
         "ListStepsInput$StepIds": "<p>The filter to limit the step list based on the identifier of the steps.</p>",
-        "ScriptBootstrapActionConfig$Args": "<p>A list of command line arguments to pass to the bootstrap action script.</p>",
+        "ScriptBootstrapActionConfig$Args": null,
         "SetTerminationProtectionInput$JobFlowIds": "<p> A list of strings that uniquely identify the job flows to protect. This identifier is returned by <a>RunJobFlow</a> and can also be obtained from <a>DescribeJobFlows</a> . </p>",
         "SetVisibleToAllUsersInput$JobFlowIds": "<p>Identifiers of the job flows to receive the new visibility setting.</p>",
         "SupportedProductConfig$Args": "<p>The list of user-supplied arguments.</p>",
@@ -1061,7 +1132,7 @@
         "AddInstanceGroupsInput$JobFlowId": "<p>Job flow in which to add the instance groups.</p>",
         "AddInstanceGroupsOutput$JobFlowId": "<p>The job flow ID in which the instance groups are added.</p>",
         "AddJobFlowStepsInput$JobFlowId": "<p>A string that uniquely identifies the job flow. This identifier is returned by <a>RunJobFlow</a> and can also be obtained from <a>ListClusters</a>. </p>",
-        "BootstrapActionConfig$Name": "<p>The name of the bootstrap action.</p>",
+        "BootstrapActionConfig$Name": null,
         "InstanceGroupConfig$Name": "<p>Friendly name given to the instance group.</p>",
         "InstanceGroupConfig$BidPrice": "<p>Bid price for each Amazon EC2 instance in the instance group when launching nodes as Spot Instances, expressed in USD.</p>",
         "InstanceGroupDetail$InstanceGroupId": "<p>Unique identifier for the instance group.</p>",
