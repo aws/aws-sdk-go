@@ -377,7 +377,7 @@ func signSDKRequestWithCurrTime(req *request.Request, curTimeFn func() time.Time
 	req.LastSignedAt = curTimeFn()
 }
 
-const logSignInfoMsg = `DEBUG: Request Signiture:
+const logSignInfoMsg = `DEBUG: Request Signature:
 ---[ CANONICAL STRING  ]-----------------------------
 %s
 ---[ STRING TO SIGN ]--------------------------------
