@@ -2078,7 +2078,7 @@ func ExampleAPIGateway_UpdateAccount() {
 		PatchOperations: []*apigateway.PatchOperation{
 			{ // Required
 				From:  aws.String("String"),
-				Op:    aws.String("op"),
+				Op:    aws.String("Op"),
 				Path:  aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -2112,7 +2112,7 @@ func ExampleAPIGateway_UpdateApiKey() {
 		PatchOperations: []*apigateway.PatchOperation{
 			{ // Required
 				From:  aws.String("String"),
-				Op:    aws.String("op"),
+				Op:    aws.String("Op"),
 				Path:  aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -2147,7 +2147,7 @@ func ExampleAPIGateway_UpdateAuthorizer() {
 		PatchOperations: []*apigateway.PatchOperation{
 			{ // Required
 				From:  aws.String("String"),
-				Op:    aws.String("op"),
+				Op:    aws.String("Op"),
 				Path:  aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -2182,7 +2182,7 @@ func ExampleAPIGateway_UpdateBasePathMapping() {
 		PatchOperations: []*apigateway.PatchOperation{
 			{ // Required
 				From:  aws.String("String"),
-				Op:    aws.String("op"),
+				Op:    aws.String("Op"),
 				Path:  aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -2216,7 +2216,7 @@ func ExampleAPIGateway_UpdateClientCertificate() {
 		PatchOperations: []*apigateway.PatchOperation{
 			{ // Required
 				From:  aws.String("String"),
-				Op:    aws.String("op"),
+				Op:    aws.String("Op"),
 				Path:  aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -2251,7 +2251,7 @@ func ExampleAPIGateway_UpdateDeployment() {
 		PatchOperations: []*apigateway.PatchOperation{
 			{ // Required
 				From:  aws.String("String"),
-				Op:    aws.String("op"),
+				Op:    aws.String("Op"),
 				Path:  aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -2285,7 +2285,7 @@ func ExampleAPIGateway_UpdateDomainName() {
 		PatchOperations: []*apigateway.PatchOperation{
 			{ // Required
 				From:  aws.String("String"),
-				Op:    aws.String("op"),
+				Op:    aws.String("Op"),
 				Path:  aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -2321,7 +2321,7 @@ func ExampleAPIGateway_UpdateIntegration() {
 		PatchOperations: []*apigateway.PatchOperation{
 			{ // Required
 				From:  aws.String("String"),
-				Op:    aws.String("op"),
+				Op:    aws.String("Op"),
 				Path:  aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -2358,7 +2358,7 @@ func ExampleAPIGateway_UpdateIntegrationResponse() {
 		PatchOperations: []*apigateway.PatchOperation{
 			{ // Required
 				From:  aws.String("String"),
-				Op:    aws.String("op"),
+				Op:    aws.String("Op"),
 				Path:  aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -2394,7 +2394,7 @@ func ExampleAPIGateway_UpdateMethod() {
 		PatchOperations: []*apigateway.PatchOperation{
 			{ // Required
 				From:  aws.String("String"),
-				Op:    aws.String("op"),
+				Op:    aws.String("Op"),
 				Path:  aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -2431,7 +2431,7 @@ func ExampleAPIGateway_UpdateMethodResponse() {
 		PatchOperations: []*apigateway.PatchOperation{
 			{ // Required
 				From:  aws.String("String"),
-				Op:    aws.String("op"),
+				Op:    aws.String("Op"),
 				Path:  aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -2466,7 +2466,7 @@ func ExampleAPIGateway_UpdateModel() {
 		PatchOperations: []*apigateway.PatchOperation{
 			{ // Required
 				From:  aws.String("String"),
-				Op:    aws.String("op"),
+				Op:    aws.String("Op"),
 				Path:  aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -2501,7 +2501,7 @@ func ExampleAPIGateway_UpdateResource() {
 		PatchOperations: []*apigateway.PatchOperation{
 			{ // Required
 				From:  aws.String("String"),
-				Op:    aws.String("op"),
+				Op:    aws.String("Op"),
 				Path:  aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -2535,7 +2535,7 @@ func ExampleAPIGateway_UpdateRestApi() {
 		PatchOperations: []*apigateway.PatchOperation{
 			{ // Required
 				From:  aws.String("String"),
-				Op:    aws.String("op"),
+				Op:    aws.String("Op"),
 				Path:  aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -2570,7 +2570,7 @@ func ExampleAPIGateway_UpdateStage() {
 		PatchOperations: []*apigateway.PatchOperation{
 			{ // Required
 				From:  aws.String("String"),
-				Op:    aws.String("op"),
+				Op:    aws.String("Op"),
 				Path:  aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -2605,7 +2605,7 @@ func ExampleAPIGateway_UpdateUsage() {
 		PatchOperations: []*apigateway.PatchOperation{
 			{ // Required
 				From:  aws.String("String"),
-				Op:    aws.String("op"),
+				Op:    aws.String("Op"),
 				Path:  aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -2639,7 +2639,7 @@ func ExampleAPIGateway_UpdateUsagePlan() {
 		PatchOperations: []*apigateway.PatchOperation{
 			{ // Required
 				From:  aws.String("String"),
-				Op:    aws.String("op"),
+				Op:    aws.String("Op"),
 				Path:  aws.String("String"),
 				Value: aws.String("String"),
 			},
