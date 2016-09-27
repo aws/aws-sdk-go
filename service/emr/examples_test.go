@@ -157,6 +157,57 @@ func ExampleEMR_AddTags() {
 	fmt.Println(resp)
 }
 
+func ExampleEMR_CreateSecurityConfiguration() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := emr.New(sess)
+
+	params := &emr.CreateSecurityConfigurationInput{
+		Name: aws.String("XmlString"), // Required
+		SecurityConfiguration: aws.String("String"), // Required
+	}
+	resp, err := svc.CreateSecurityConfiguration(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleEMR_DeleteSecurityConfiguration() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := emr.New(sess)
+
+	params := &emr.DeleteSecurityConfigurationInput{
+		Name: aws.String("XmlString"), // Required
+	}
+	resp, err := svc.DeleteSecurityConfiguration(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleEMR_DescribeCluster() {
 	sess, err := session.NewSession()
 	if err != nil {
@@ -204,6 +255,31 @@ func ExampleEMR_DescribeJobFlows() {
 		},
 	}
 	resp, err := svc.DescribeJobFlows(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleEMR_DescribeSecurityConfiguration() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := emr.New(sess)
+
+	params := &emr.DescribeSecurityConfigurationInput{
+		Name: aws.String("XmlString"), // Required
+	}
+	resp, err := svc.DescribeSecurityConfiguration(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -348,6 +424,31 @@ func ExampleEMR_ListInstances() {
 		Marker: aws.String("Marker"),
 	}
 	resp, err := svc.ListInstances(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleEMR_ListSecurityConfigurations() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := emr.New(sess)
+
+	params := &emr.ListSecurityConfigurationsInput{
+		Marker: aws.String("Marker"),
+	}
+	resp, err := svc.ListSecurityConfigurations(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -600,8 +701,9 @@ func ExampleEMR_RunJobFlow() {
 			},
 			// More values...
 		},
-		ReleaseLabel: aws.String("XmlStringMaxLen256"),
-		ServiceRole:  aws.String("XmlString"),
+		ReleaseLabel:          aws.String("XmlStringMaxLen256"),
+		SecurityConfiguration: aws.String("XmlString"),
+		ServiceRole:           aws.String("XmlString"),
 		Steps: []*emr.StepConfig{
 			{ // Required
 				HadoopJarStep: &emr.HadoopJarStepConfig{ // Required

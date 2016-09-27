@@ -104,10 +104,30 @@
     "CopyDBClusterSnapshot": [
       {
         "input": {
-          "SourceDBClusterSnapshotIdentifier": "mydbclustersnapshot",
-          "TargetDBClusterSnapshotIdentifier": "mydbclustersnapshot-copy"
+          "SourceDBClusterSnapshotIdentifier": "rds:sample-cluster-2016-09-14-10-38",
+          "TargetDBClusterSnapshotIdentifier": "cluster-snapshot-copy-1"
         },
         "output": {
+          "AllocatedStorage": 1,
+          "AvailabilityZones": [
+            "us-west-2a",
+            "us-west-2b",
+            "us-west-2c"
+          ],
+          "ClusterCreateTime": "2016-09-13T16:57:52.695Z",
+          "DBClusterIdentifier": "sample-cluster",
+          "DBClusterSnapshotArn": "arn:aws:rds:us-west-2:123456789012:cluster-snapshot:cluster-snapshot-copy-1",
+          "DBClusterSnapshotIdentifier": "cluster-snapshot-copy-1",
+          "Engine": "aurora",
+          "LicenseModel": "aurora",
+          "MasterUsername": "mymasteruser",
+          "PercentProgress": 100,
+          "Port": 0,
+          "SnapshotCreateTime": "2016-09-14T10:38:05.616Z",
+          "SnapshotType": "manual",
+          "Status": "available",
+          "StorageEncrypted": false,
+          "VpcId": "vpc-e82e7d8d"
         },
         "comments": {
           "input": {
@@ -115,8 +135,8 @@
           "output": {
           }
         },
-        "description": "This example copies a DB cluster snapshot.",
-        "id": "copy-db-cluster-snapshot-433679d6-4a2e-480f-a057-32c97d729afc",
+        "description": "The following example copies an automated snapshot of a DB cluster to a new DB cluster snapshot.",
+        "id": "to-copy-a-db-cluster-snapshot-1473879770564",
         "title": "To copy a DB cluster snapshot"
       }
     ],
@@ -500,6 +520,38 @@
         "description": "This example deletes the specified DB instance.",
         "id": "delete-db-instance-4412e650-949c-488a-b32a-7d3038ebccc4",
         "title": "To delete a DB instance."
+      }
+    ],
+    "DeleteDBParameterGroup": [
+      {
+        "input": {
+          "DBParameterGroupName": "mydbparamgroup3"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example deletes a DB parameter group.",
+        "id": "to-delete-a-db-parameter-group-1473888796509",
+        "title": "To delete a DB parameter group"
+      }
+    ],
+    "DeleteDBSecurityGroup": [
+      {
+        "input": {
+          "DBSecurityGroupName": "mysecgroup"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example deletes a DB security group.",
+        "id": "to-delete-a-db-security-group-1473960141889",
+        "title": "To delete a DB security group"
       }
     ],
     "DeleteDBSnapshot": [
@@ -1258,6 +1310,42 @@
         "title": "To change DB cluster parameter group settings"
       }
     ],
+    "ModifyDBClusterSnapshotAttribute": [
+      {
+        "input": {
+          "AttributeName": "restore",
+          "DBClusterSnapshotIdentifier": "manual-cluster-snapshot1",
+          "ValuesToAdd": [
+            "123451234512",
+            "123456789012"
+          ],
+          "ValuesToRemove": [
+            "all"
+          ]
+        },
+        "output": {
+          "DBClusterSnapshotAttributes": [
+            {
+              "AttributeName": "restore",
+              "AttributeValues": [
+                "123451234512",
+                "123456789012"
+              ]
+            }
+          ],
+          "DBClusterSnapshotIdentifier": "manual-cluster-snapshot1"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example gives two AWS accounts access to a manual DB cluster snapshot and ensures that the DB cluster snapshot is private by removing the value \"all\".",
+        "id": "to-add-or-remove-access-to-a-manual-db-cluster-snapshot-1473889426431",
+        "title": "To add or remove access to a manual DB cluster snapshot"
+      }
+    ],
     "ModifyDBInstance": [
       {
         "input": {
@@ -1376,6 +1464,213 @@
         "title": "To change event notification subscription settings"
       }
     ],
+    "ModifyOptionGroup": [
+      {
+        "input": {
+          "ApplyImmediately": true,
+          "OptionGroupName": "myawsuser-og02",
+          "OptionsToInclude": [
+            {
+              "DBSecurityGroupMemberships": [
+                "default"
+              ],
+              "OptionName": "MEMCACHED"
+            }
+          ]
+        },
+        "output": {
+          "AllowsVpcAndNonVpcInstanceMemberships": false,
+          "EngineName": "mysql",
+          "MajorEngineVersion": "5.7",
+          "OptionGroupArn": "arn:aws:rds:us-west-2:123456789012:og:myawsuser-og02",
+          "OptionGroupDescription": "Sample option group",
+          "OptionGroupName": "myawsuser-og02",
+          "Options": [
+            {
+              "DBSecurityGroupMemberships": [
+                {
+                  "DBSecurityGroupName": "default",
+                  "Status": "authorized"
+                }
+              ],
+              "OptionDescription": "Innodb Memcached for MySQL",
+              "OptionName": "MEMCACHED",
+              "OptionSettings": [
+                {
+                  "AllowedValues": "0,1",
+                  "ApplyType": "STATIC",
+                  "DataType": "BOOLEAN",
+                  "DefaultValue": "0",
+                  "Description": "Disable the use of compare and swap (CAS) which reduces the per-item size by 8 bytes.",
+                  "IsCollection": false,
+                  "IsModifiable": true,
+                  "Name": "CAS_DISABLED",
+                  "Value": "0"
+                },
+                {
+                  "AllowedValues": "0,1",
+                  "ApplyType": "STATIC",
+                  "DataType": "BOOLEAN",
+                  "DefaultValue": "0",
+                  "Description": "If enabled when there is no more memory to store items, memcached will return an error rather than evicting items.",
+                  "IsCollection": false,
+                  "IsModifiable": true,
+                  "Name": "ERROR_ON_MEMORY_EXHAUSTED",
+                  "Value": "0"
+                },
+                {
+                  "AllowedValues": "10-1024",
+                  "ApplyType": "STATIC",
+                  "DataType": "INTEGER",
+                  "DefaultValue": "1024",
+                  "Description": "Maximum number of concurrent connections. Setting this value to anything less than 10 prevents MySQL from starting.",
+                  "IsCollection": false,
+                  "IsModifiable": true,
+                  "Name": "MAX_SIMULTANEOUS_CONNECTIONS",
+                  "Value": "1024"
+                },
+                {
+                  "AllowedValues": "1-1073741824",
+                  "ApplyType": "DYNAMIC",
+                  "DataType": "INTEGER",
+                  "DefaultValue": "5",
+                  "Description": "Specifies how often to auto-commit idle connections that use the InnoDB memcached interface.",
+                  "IsCollection": false,
+                  "IsModifiable": true,
+                  "Name": "INNODB_API_BK_COMMIT_INTERVAL",
+                  "Value": "5"
+                },
+                {
+                  "AllowedValues": "1-2",
+                  "ApplyType": "STATIC",
+                  "DataType": "FLOAT",
+                  "DefaultValue": "1.25",
+                  "Description": "Chunk size growth factor that controls the size of each successive chunk with each chunk growing times this amount larger than the previous chunk.",
+                  "IsCollection": false,
+                  "IsModifiable": true,
+                  "Name": "CHUNK_SIZE_GROWTH_FACTOR",
+                  "Value": "1.25"
+                },
+                {
+                  "AllowedValues": "v,vv,vvv",
+                  "ApplyType": "STATIC",
+                  "DataType": "STRING",
+                  "DefaultValue": "v",
+                  "Description": "Verbose level for memcached.",
+                  "IsCollection": false,
+                  "IsModifiable": true,
+                  "Name": "VERBOSITY",
+                  "Value": "v"
+                },
+                {
+                  "AllowedValues": "0,1",
+                  "ApplyType": "STATIC",
+                  "DataType": "BOOLEAN",
+                  "DefaultValue": "0",
+                  "Description": "Disables the use of row locks when using the InnoDB memcached interface.",
+                  "IsCollection": false,
+                  "IsModifiable": true,
+                  "Name": "INNODB_API_DISABLE_ROWLOCK",
+                  "Value": "0"
+                },
+                {
+                  "AllowedValues": "auto,ascii,binary",
+                  "ApplyType": "STATIC",
+                  "DataType": "STRING",
+                  "DefaultValue": "auto",
+                  "Description": "The binding protocol to use which can be either auto, ascii, or binary. The default is auto which means the server automatically negotiates the protocol with the client.",
+                  "IsCollection": false,
+                  "IsModifiable": true,
+                  "Name": "BINDING_PROTOCOL",
+                  "Value": "auto"
+                },
+                {
+                  "AllowedValues": "1-48",
+                  "ApplyType": "STATIC",
+                  "DataType": "INTEGER",
+                  "DefaultValue": "48",
+                  "Description": "Minimum chunk size in bytes to allocate for the smallest item's key, value, and flags. The default is 48 and you can get a significant memory efficiency gain with a lower value.",
+                  "IsCollection": false,
+                  "IsModifiable": true,
+                  "Name": "CHUNK_SIZE",
+                  "Value": "48"
+                },
+                {
+                  "AllowedValues": "0-3",
+                  "ApplyType": "STATIC",
+                  "DataType": "INTEGER",
+                  "DefaultValue": "0",
+                  "Description": "Lets you control the transaction isolation level on queries processed by the memcached interface.",
+                  "IsCollection": false,
+                  "IsModifiable": true,
+                  "Name": "INNODB_API_TRX_LEVEL",
+                  "Value": "0"
+                },
+                {
+                  "AllowedValues": "1-4294967295",
+                  "ApplyType": "STATIC",
+                  "DataType": "INTEGER",
+                  "DefaultValue": "1",
+                  "Description": "Specifies how many memcached write operations, such as add, set, or incr, to perform before doing a COMMIT to start a new transaction",
+                  "IsCollection": false,
+                  "IsModifiable": true,
+                  "Name": "DAEMON_MEMCACHED_W_BATCH_SIZE",
+                  "Value": "1"
+                },
+                {
+                  "AllowedValues": "1-4294967295",
+                  "ApplyType": "STATIC",
+                  "DataType": "INTEGER",
+                  "DefaultValue": "1",
+                  "Description": "Specifies how many memcached read operations (get) to perform before doing a COMMIT to start a new transaction",
+                  "IsCollection": false,
+                  "IsModifiable": true,
+                  "Name": "DAEMON_MEMCACHED_R_BATCH_SIZE",
+                  "Value": "1"
+                },
+                {
+                  "AllowedValues": "0,1",
+                  "ApplyType": "STATIC",
+                  "DataType": "BOOLEAN",
+                  "DefaultValue": "0",
+                  "Description": "Locks the table used by the InnoDB memcached plugin, so that it cannot be dropped or altered by DDL through the SQL interface.",
+                  "IsCollection": false,
+                  "IsModifiable": true,
+                  "Name": "INNODB_API_ENABLE_MDL",
+                  "Value": "0"
+                },
+                {
+                  "AllowedValues": "1-2048",
+                  "ApplyType": "STATIC",
+                  "DataType": "INTEGER",
+                  "DefaultValue": "1024",
+                  "Description": "The backlog queue configures how many network connections can be waiting to be processed by memcached",
+                  "IsCollection": false,
+                  "IsModifiable": true,
+                  "Name": "BACKLOG_QUEUE_LIMIT",
+                  "Value": "1024"
+                }
+              ],
+              "Permanent": false,
+              "Persistent": false,
+              "Port": 11211,
+              "VpcSecurityGroupMemberships": [
+
+              ]
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example adds an option to an option group.",
+        "id": "to-modify-an-option-group-1473890247875",
+        "title": "To modify an option group"
+      }
+    ],
     "PromoteReadReplica": [
       {
         "input": {
@@ -1394,6 +1689,71 @@
         "description": "This example promotes the specified read replica and sets its backup retention period and preferred backup window.",
         "id": "promote-read-replica-cc580039-c55d-4035-838a-def4a1ae4181",
         "title": "To promote a read replica"
+      }
+    ],
+    "PromoteReadReplicaDBCluster": [
+      {
+        "input": {
+          "DBClusterIdentifier": "sample-cluster"
+        },
+        "output": {
+          "AllocatedStorage": 1,
+          "AvailabilityZones": [
+            "us-west-2a",
+            "us-west-2b",
+            "us-west-2c"
+          ],
+          "BackupRetentionPeriod": 1,
+          "DBClusterArn": "arn:aws:rds:us-west-2:123456789012:cluster:sample-cluster",
+          "DBClusterIdentifier": "sample-cluster",
+          "DBClusterMembers": [
+            {
+              "DBClusterParameterGroupStatus": "in-sync",
+              "DBInstanceIdentifier": "sample",
+              "IsClusterWriter": true,
+              "PromotionTier": 0
+            },
+            {
+              "DBClusterParameterGroupStatus": "in-sync",
+              "DBInstanceIdentifier": "sample-us-west-2a",
+              "IsClusterWriter": false,
+              "PromotionTier": 0
+            }
+          ],
+          "DBClusterParameterGroup": "default.aurora5.6",
+          "DBSubnetGroup": "default",
+          "DatabaseName": "sample",
+          "DbClusterResourceId": "cluster-YJFQLUT5KMASH2ZRHSE7LSTRMM",
+          "Endpoint": "sample-cluster.cluster-cnubrrfwfke7.us-west-2.rds.amazonaws.com",
+          "Engine": "aurora",
+          "EngineVersion": "5.6.10a",
+          "HostedZoneId": "Z1PVIF0B656C1W",
+          "MasterUsername": "mymasteruser",
+          "Port": 3306,
+          "PreferredBackupWindow": "11:54-12:24",
+          "PreferredMaintenanceWindow": "fri:06:47-fri:07:17",
+          "ReadReplicaIdentifiers": [
+
+          ],
+          "ReaderEndpoint": "sample-cluster.cluster-ro-cnubrrfwfke7.us-west-2.rds.amazonaws.com",
+          "Status": "creating",
+          "StorageEncrypted": false,
+          "VpcSecurityGroups": [
+            {
+              "Status": "active",
+              "VpcSecurityGroupId": "sg-122c1671"
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example promotes Read Replica DB cluster to a standalone DB cluster.",
+        "id": "to-promote-an-aurora-replica-to-the-primary-instance-of-a-db-cluster-1473954817725",
+        "title": "To promote a Read Replica DB cluster to a standalone DB cluster"
       }
     ],
     "PurchaseReservedDBInstancesOffering": [
@@ -1508,6 +1868,418 @@
         "description": "This example resets all parameters for the specified DB parameter group to their default values.",
         "id": "reset-db-parameter-group-ed2ed723-de0d-4824-8af5-3c65fa130abf",
         "title": "To reset the values of a DB parameter group"
+      }
+    ],
+    "RestoreDBClusterFromS3": [
+      {
+        "input": {
+          "DBClusterIdentifier": "sample-restored-cluster",
+          "DatabaseName": "sample",
+          "Engine": "aurora",
+          "MasterUserPassword": "mymasterpassword",
+          "MasterUsername": "mymasteruser",
+          "Port": 3306,
+          "S3BucketName": "my-aurora-bucket",
+          "S3IngestionRoleArn": "arn:aws:iam::123456789012:role/S3RestoreAccess",
+          "S3Prefix": "",
+          "SourceEngine": "mysql",
+          "SourceEngineVersion": "5.6.22"
+        },
+        "output": {
+          "AllocatedStorage": 1,
+          "AvailabilityZones": [
+            "us-west-2a",
+            "us-west-2b",
+            "us-west-2c"
+          ],
+          "BackupRetentionPeriod": 1,
+          "DBClusterArn": "arn:aws:rds:us-west-2:123456789012:cluster:sample-restored-cluster",
+          "DBClusterIdentifier": "sample-restored-cluster",
+          "DBClusterMembers": [
+            {
+              "DBClusterParameterGroupStatus": "in-sync",
+              "DBInstanceIdentifier": "sample-restored",
+              "IsClusterWriter": true,
+              "PromotionTier": 0
+            },
+            {
+              "DBClusterParameterGroupStatus": "in-sync",
+              "DBInstanceIdentifier": "sample-restored-us-west-2a",
+              "IsClusterWriter": false,
+              "PromotionTier": 0
+            }
+          ],
+          "DBClusterParameterGroup": "default.aurora5.6",
+          "DBSubnetGroup": "default",
+          "DatabaseName": "sample",
+          "DbClusterResourceId": "cluster-YJFQLUT5KMASB2ZRHSE7LSTRMM",
+          "Endpoint": "sample-restored-cluster.cluster-cnubrrfwfkb5.us-west-2.rds.amazonaws.com",
+          "Engine": "aurora",
+          "EngineVersion": "5.6.10a",
+          "HostedZoneId": "Z1PVIF0B446C1W",
+          "MasterUsername": "mymasteruser",
+          "Port": 3306,
+          "PreferredBackupWindow": "11:54-12:24",
+          "PreferredMaintenanceWindow": "fri:06:47-fri:07:17",
+          "ReadReplicaIdentifiers": [
+
+          ],
+          "ReaderEndpoint": "sample-restored-cluster.cluster-ro-cnubrrfwfkb5.us-west-2.rds.amazonaws.com",
+          "Status": "creating",
+          "StorageEncrypted": false,
+          "VpcSecurityGroups": [
+            {
+              "Status": "active",
+              "VpcSecurityGroupId": "sg-122c1671"
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example restores an Amazon Aurora DB cluster from an Amazon S3 bucket.",
+        "id": "to-restore-an-amazon-aurora-db-cluster-from-an-amazon-s3-bucket-1473955754456",
+        "title": "To restore an Amazon Aurora DB cluster from an Amazon S3 bucket"
+      }
+    ],
+    "RestoreDBClusterFromSnapshot": [
+      {
+        "input": {
+          "DBClusterIdentifier": "restored-cluster1",
+          "Engine": "aurora",
+          "SnapshotIdentifier": "sample-cluster-snapshot1"
+        },
+        "output": {
+          "AllocatedStorage": 1,
+          "AvailabilityZones": [
+            "us-west-2a",
+            "us-west-2b",
+            "us-west-2c"
+          ],
+          "BackupRetentionPeriod": 1,
+          "DBClusterArn": "arn:aws:rds:us-west-2:123456789012:cluster:restored-cluster1",
+          "DBClusterIdentifier": "restored-cluster1",
+          "DBClusterMembers": [
+            {
+              "DBClusterParameterGroupStatus": "in-sync",
+              "DBInstanceIdentifier": "sample-instance",
+              "IsClusterWriter": true,
+              "PromotionTier": 0
+            },
+            {
+              "DBClusterParameterGroupStatus": "in-sync",
+              "DBInstanceIdentifier": "sample-instance-us-west-2a",
+              "IsClusterWriter": false,
+              "PromotionTier": 0
+            }
+          ],
+          "DBClusterParameterGroup": "default.aurora5.6",
+          "DBSubnetGroup": "default",
+          "DatabaseName": "sample",
+          "DbClusterResourceId": "cluster-YJFQLUT5KMASB2ZRHSB5LSTRMM",
+          "Endpoint": "restored-cluster1.cluster-cnubrrfwfkk3.us-west-2.rds.amazonaws.com",
+          "Engine": "aurora",
+          "EngineVersion": "5.6.10a",
+          "HostedZoneId": "Z1PVIF0B446B2W",
+          "MasterUsername": "mymasteruser",
+          "Port": 3306,
+          "PreferredBackupWindow": "11:54-12:24",
+          "PreferredMaintenanceWindow": "fri:06:47-fri:07:17",
+          "ReadReplicaIdentifiers": [
+
+          ],
+          "ReaderEndpoint": "restored-cluster1.cluster-ro-cnubrrfwfkk3.us-west-2.rds.amazonaws.com",
+          "Status": "creating",
+          "StorageEncrypted": false,
+          "VpcSecurityGroups": [
+            {
+              "Status": "active",
+              "VpcSecurityGroupId": "sg-212c1671"
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example restores an Amazon Aurora DB cluster from a DB cluster snapshot.",
+        "id": "to-restore-an-amazon-aurora-db-cluster-from-a-db-cluster-snapshot-1473958144325",
+        "title": "To restore an Amazon Aurora DB cluster from a DB cluster snapshot"
+      }
+    ],
+    "RestoreDBClusterToPointInTime": [
+      {
+        "input": {
+          "DBClusterIdentifier": "sample-restored-cluster1",
+          "RestoreToTime": "2016-09-13T18:45:00Z",
+          "SourceDBClusterIdentifier": "sample-cluster1"
+        },
+        "output": {
+          "AllocatedStorage": 1,
+          "AvailabilityZones": [
+            "us-west-2a",
+            "us-west-2b",
+            "us-west-2c"
+          ],
+          "BackupRetentionPeriod": 1,
+          "DBClusterArn": "arn:aws:rds:us-west-2:123456789012:cluster:sample-restored-cluster1",
+          "DBClusterIdentifier": "sample-restored-cluster1",
+          "DBClusterMembers": [
+            {
+              "DBClusterParameterGroupStatus": "in-sync",
+              "DBInstanceIdentifier": "sample-restored",
+              "IsClusterWriter": true,
+              "PromotionTier": 0
+            },
+            {
+              "DBClusterParameterGroupStatus": "in-sync",
+              "DBInstanceIdentifier": "sample-restored-us-west-2a",
+              "IsClusterWriter": false,
+              "PromotionTier": 0
+            }
+          ],
+          "DBClusterParameterGroup": "default.aurora5.6",
+          "DBSubnetGroup": "default",
+          "DatabaseName": "sample",
+          "DbClusterResourceId": "cluster-YJFQLUT5KMASB2ZRHSE7LSTRMM",
+          "Endpoint": "sample-restored-cluster1.cluster-cnubrrfwfkf4.us-west-2.rds.amazonaws.com",
+          "Engine": "aurora",
+          "EngineVersion": "5.6.10a",
+          "HostedZoneId": "Z1PVIF0B726C1W",
+          "MasterUsername": "mymasteruser",
+          "Port": 3306,
+          "PreferredBackupWindow": "11:54-12:24",
+          "PreferredMaintenanceWindow": "fri:06:47-fri:07:17",
+          "ReadReplicaIdentifiers": [
+
+          ],
+          "ReaderEndpoint": "sample-restored-cluster1.cluster-ro-cnubrrfwfkf4.us-west-2.rds.amazonaws.com",
+          "Status": "creating",
+          "StorageEncrypted": false,
+          "VpcSecurityGroups": [
+            {
+              "Status": "active",
+              "VpcSecurityGroupId": "sg-332c1671"
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example restores a DB cluster to a new DB cluster at a point in time from the source DB cluster.",
+        "id": "to-restore-a-db-cluster-to-a-point-in-time-1473962082214",
+        "title": "To restore a DB cluster to a point in time."
+      }
+    ],
+    "RestoreDBInstanceFromDBSnapshot": [
+      {
+        "input": {
+          "DBInstanceIdentifier": "mysqldb-restored",
+          "DBSnapshotIdentifier": "rds:mysqldb-2014-04-22-08-15"
+        },
+        "output": {
+          "AllocatedStorage": 200,
+          "AutoMinorVersionUpgrade": true,
+          "AvailabilityZone": "us-west-2b",
+          "BackupRetentionPeriod": 7,
+          "CACertificateIdentifier": "rds-ca-2015",
+          "CopyTagsToSnapshot": false,
+          "DBInstanceArn": "arn:aws:rds:us-west-2:123456789012:db:mysqldb-restored",
+          "DBInstanceClass": "db.t2.small",
+          "DBInstanceIdentifier": "mysqldb-restored",
+          "DBInstanceStatus": "available",
+          "DBName": "sample",
+          "DBParameterGroups": [
+            {
+              "DBParameterGroupName": "default.mysql5.6",
+              "ParameterApplyStatus": "in-sync"
+            }
+          ],
+          "DBSecurityGroups": [
+
+          ],
+          "DBSubnetGroup": {
+            "DBSubnetGroupDescription": "default",
+            "DBSubnetGroupName": "default",
+            "SubnetGroupStatus": "Complete",
+            "Subnets": [
+              {
+                "SubnetAvailabilityZone": {
+                  "Name": "us-west-2a"
+                },
+                "SubnetIdentifier": "subnet-77e8db03",
+                "SubnetStatus": "Active"
+              },
+              {
+                "SubnetAvailabilityZone": {
+                  "Name": "us-west-2b"
+                },
+                "SubnetIdentifier": "subnet-c39989a1",
+                "SubnetStatus": "Active"
+              },
+              {
+                "SubnetAvailabilityZone": {
+                  "Name": "us-west-2c"
+                },
+                "SubnetIdentifier": "subnet-4b267b0d",
+                "SubnetStatus": "Active"
+              }
+            ],
+            "VpcId": "vpc-c1c5b3a3"
+          },
+          "DbInstancePort": 0,
+          "DbiResourceId": "db-VNZUCCBTEDC4WR7THXNJO72HVQ",
+          "DomainMemberships": [
+
+          ],
+          "Engine": "mysql",
+          "EngineVersion": "5.6.27",
+          "LicenseModel": "general-public-license",
+          "MasterUsername": "mymasteruser",
+          "MonitoringInterval": 0,
+          "MultiAZ": false,
+          "OptionGroupMemberships": [
+            {
+              "OptionGroupName": "default:mysql-5-6",
+              "Status": "in-sync"
+            }
+          ],
+          "PendingModifiedValues": {
+          },
+          "PreferredBackupWindow": "12:58-13:28",
+          "PreferredMaintenanceWindow": "tue:10:16-tue:10:46",
+          "PubliclyAccessible": true,
+          "ReadReplicaDBInstanceIdentifiers": [
+
+          ],
+          "StorageEncrypted": false,
+          "StorageType": "gp2",
+          "VpcSecurityGroups": [
+            {
+              "Status": "active",
+              "VpcSecurityGroupId": "sg-e5e5b0d2"
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example restores a DB instance from a DB snapshot.",
+        "id": "to-restore-a-db-instance-from-a-db-snapshot-1473961657311",
+        "title": "To restore a DB instance from a DB snapshot."
+      }
+    ],
+    "RestoreDBInstanceToPointInTime": [
+      {
+        "input": {
+          "RestoreTime": "2016-09-13T18:45:00Z",
+          "SourceDBInstanceIdentifier": "mysql-sample",
+          "TargetDBInstanceIdentifier": "mysql-sample-restored"
+        },
+        "output": {
+          "AllocatedStorage": 200,
+          "AutoMinorVersionUpgrade": true,
+          "AvailabilityZone": "us-west-2b",
+          "BackupRetentionPeriod": 7,
+          "CACertificateIdentifier": "rds-ca-2015",
+          "CopyTagsToSnapshot": false,
+          "DBInstanceArn": "arn:aws:rds:us-west-2:123456789012:db:mysql-sample-restored",
+          "DBInstanceClass": "db.t2.small",
+          "DBInstanceIdentifier": "mysql-sample-restored",
+          "DBInstanceStatus": "available",
+          "DBName": "sample",
+          "DBParameterGroups": [
+            {
+              "DBParameterGroupName": "default.mysql5.6",
+              "ParameterApplyStatus": "in-sync"
+            }
+          ],
+          "DBSecurityGroups": [
+
+          ],
+          "DBSubnetGroup": {
+            "DBSubnetGroupDescription": "default",
+            "DBSubnetGroupName": "default",
+            "SubnetGroupStatus": "Complete",
+            "Subnets": [
+              {
+                "SubnetAvailabilityZone": {
+                  "Name": "us-west-2a"
+                },
+                "SubnetIdentifier": "subnet-77e8db03",
+                "SubnetStatus": "Active"
+              },
+              {
+                "SubnetAvailabilityZone": {
+                  "Name": "us-west-2b"
+                },
+                "SubnetIdentifier": "subnet-c39989a1",
+                "SubnetStatus": "Active"
+              },
+              {
+                "SubnetAvailabilityZone": {
+                  "Name": "us-west-2c"
+                },
+                "SubnetIdentifier": "subnet-4b267b0d",
+                "SubnetStatus": "Active"
+              }
+            ],
+            "VpcId": "vpc-c1c5b3a3"
+          },
+          "DbInstancePort": 0,
+          "DbiResourceId": "db-VNZUCCBTEDC4WR7THXNJO72HVQ",
+          "DomainMemberships": [
+
+          ],
+          "Engine": "mysql",
+          "EngineVersion": "5.6.27",
+          "LicenseModel": "general-public-license",
+          "MasterUsername": "mymasteruser",
+          "MonitoringInterval": 0,
+          "MultiAZ": false,
+          "OptionGroupMemberships": [
+            {
+              "OptionGroupName": "default:mysql-5-6",
+              "Status": "in-sync"
+            }
+          ],
+          "PendingModifiedValues": {
+          },
+          "PreferredBackupWindow": "12:58-13:28",
+          "PreferredMaintenanceWindow": "tue:10:16-tue:10:46",
+          "PubliclyAccessible": true,
+          "ReadReplicaDBInstanceIdentifiers": [
+
+          ],
+          "StorageEncrypted": false,
+          "StorageType": "gp2",
+          "VpcSecurityGroups": [
+            {
+              "Status": "active",
+              "VpcSecurityGroupId": "sg-e5e5b0d2"
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example restores a DB instance to a new DB instance at a point in time from the source DB instance.",
+        "id": "to-restore-a-db-instance-to-a-point-in-time-1473962652154",
+        "title": "To restore a DB instance to a point in time."
       }
     ],
     "RevokeDBSecurityGroupIngress": [

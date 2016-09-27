@@ -607,9 +607,9 @@
       }
     },
     "IntegrationType": {
-      "base": "<p>The integration type. The valid value is <code>HTTP</code>, <code>AWS</code>, or <code>MOCK</code>.</p>",
+      "base": "<p>The integration type. The valid value is <code>HTTP</code> for integrating with an HTTP back end, <code>AWS</code> for any AWS service endpoints, <code>MOCK</code> for testing without actually invoking the back end, <code>HTTP_PROXY</code> for integrating with the HTTP proxy integration, or <code>AWS_PROXY</code> for integrating with the Lambda proxy integration type.</p>",
       "refs": {
-        "Integration$type": "<p>Specifies the integration's type. The valid value is <code>HTTP</code>, <code>AWS</code>, or <code>MOCK</code>.</p>",
+        "Integration$type": "<p>Specifies the integration's type. The valid value is <code>HTTP</code> for integrating with an HTTP back end, <code>AWS</code> for any AWS service endpoints, <code>MOCK</code> for testing without actually invoking the back end, <code>HTTP_PROXY</code> for integrating with the HTTP proxy integration, or <code>AWS_PROXY</code> for integrating with the Lambda proxy integration type.</p>",
         "PutIntegrationRequest$type": "<p>Specifies a put integration input's type.</p>"
       }
     },
@@ -801,7 +801,7 @@
     "MapOfMethodSettings": {
       "base": null,
       "refs": {
-        "Stage$methodSettings": "<p>A map that defines the method settings for a <a>Stage</a> resource. Keys (designated as <code>/{method_setting_key</code> below) are method paths defined as <code>{resource_path}/{http_method}</code> for an individual method override, or <code>/\\*/\\*</code> for overriding all methods in the stage. Any forward slash (\"/\") characters in the <code>resource_path</code> part must be encoded as \"~1\" as in, for example, <code>~1resource~1sub-resource/GET</code>.</p>"
+        "Stage$methodSettings": "<p>A map that defines the method settings for a <a>Stage</a> resource. Keys (designated as <code>/{method_setting_key</code> below) are method paths defined as <code>{resource_path}/{http_method}</code> for an individual method override, or <code>/\\*/\\*</code> for overriding all methods in the stage. </p>"
       }
     },
     "MapOfMethodSnapshot": {
@@ -918,6 +918,12 @@
         "GetUsagePlanKeysRequest$limit": "<p>A query parameter specifying the maximum number usage plan keys returned by the GET request.</p>",
         "GetUsagePlansRequest$limit": "<p>The number of <a>UsagePlan</a> resources to be returned as the result.</p>",
         "GetUsageRequest$limit": "<p>The maximum number of results to be returned.</p>"
+      }
+    },
+    "Op": {
+      "base": null,
+      "refs": {
+        "PatchOperation$op": "<p>An update operation to be performed with this PATCH request. The valid value can be \"add\", \"remove\", or \"replace\". Not all valid operations are supported for a given resource. Support of the operations depends on specific operational contexts. Attempts to apply an unsupported operation on a resource will return an error message.</p>"
       }
     },
     "PatchOperation": {
@@ -1546,12 +1552,6 @@
     "UsagePlans": {
       "base": "<p>Represents a collection of usage plans for an AWS account.</p> <div class=\"seeAlso\"> <a href=\"http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html\">Create and Use Usage Plans</a> </div>",
       "refs": {
-      }
-    },
-    "op": {
-      "base": null,
-      "refs": {
-        "PatchOperation$op": "<p>An update operation to be performed with this PATCH request. The valid value can be \"add\", \"remove\", or \"replace\". Not all valid operations are supported for a given resource. Support of the operations depends on specific operational contexts. Attempts to apply an unsupported operation on a resource will return an error message.</p>"
       }
     }
   }

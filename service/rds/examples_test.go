@@ -477,6 +477,7 @@ func ExampleRDS_CreateDBInstance() {
 		},
 		TdeCredentialArn:      aws.String("String"),
 		TdeCredentialPassword: aws.String("String"),
+		Timezone:              aws.String("String"),
 		VpcSecurityGroupIds: []*string{
 			aws.String("String"), // Required
 			// More values...
@@ -1272,8 +1273,9 @@ func ExampleRDS_DescribeDBEngineVersions() {
 			// More values...
 		},
 		ListSupportedCharacterSets: aws.Bool(true),
-		Marker:     aws.String("String"),
-		MaxRecords: aws.Int64(1),
+		ListSupportedTimezones:     aws.Bool(true),
+		Marker:                     aws.String("String"),
+		MaxRecords:                 aws.Int64(1),
 	}
 	resp, err := svc.DescribeDBEngineVersions(params)
 

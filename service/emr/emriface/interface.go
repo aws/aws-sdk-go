@@ -71,6 +71,14 @@ type EMRAPI interface {
 
 	AddTags(*emr.AddTagsInput) (*emr.AddTagsOutput, error)
 
+	CreateSecurityConfigurationRequest(*emr.CreateSecurityConfigurationInput) (*request.Request, *emr.CreateSecurityConfigurationOutput)
+
+	CreateSecurityConfiguration(*emr.CreateSecurityConfigurationInput) (*emr.CreateSecurityConfigurationOutput, error)
+
+	DeleteSecurityConfigurationRequest(*emr.DeleteSecurityConfigurationInput) (*request.Request, *emr.DeleteSecurityConfigurationOutput)
+
+	DeleteSecurityConfiguration(*emr.DeleteSecurityConfigurationInput) (*emr.DeleteSecurityConfigurationOutput, error)
+
 	DescribeClusterRequest(*emr.DescribeClusterInput) (*request.Request, *emr.DescribeClusterOutput)
 
 	DescribeCluster(*emr.DescribeClusterInput) (*emr.DescribeClusterOutput, error)
@@ -78,6 +86,10 @@ type EMRAPI interface {
 	DescribeJobFlowsRequest(*emr.DescribeJobFlowsInput) (*request.Request, *emr.DescribeJobFlowsOutput)
 
 	DescribeJobFlows(*emr.DescribeJobFlowsInput) (*emr.DescribeJobFlowsOutput, error)
+
+	DescribeSecurityConfigurationRequest(*emr.DescribeSecurityConfigurationInput) (*request.Request, *emr.DescribeSecurityConfigurationOutput)
+
+	DescribeSecurityConfiguration(*emr.DescribeSecurityConfigurationInput) (*emr.DescribeSecurityConfigurationOutput, error)
 
 	DescribeStepRequest(*emr.DescribeStepInput) (*request.Request, *emr.DescribeStepOutput)
 
@@ -106,6 +118,10 @@ type EMRAPI interface {
 	ListInstances(*emr.ListInstancesInput) (*emr.ListInstancesOutput, error)
 
 	ListInstancesPages(*emr.ListInstancesInput, func(*emr.ListInstancesOutput, bool) bool) error
+
+	ListSecurityConfigurationsRequest(*emr.ListSecurityConfigurationsInput) (*request.Request, *emr.ListSecurityConfigurationsOutput)
+
+	ListSecurityConfigurations(*emr.ListSecurityConfigurationsInput) (*emr.ListSecurityConfigurationsOutput, error)
 
 	ListStepsRequest(*emr.ListStepsInput) (*request.Request, *emr.ListStepsOutput)
 

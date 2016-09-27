@@ -269,7 +269,14 @@ func ExampleCodeDeploy_CreateDeployment() {
 	svc := codedeploy.New(sess)
 
 	params := &codedeploy.CreateDeploymentInput{
-		ApplicationName:               aws.String("ApplicationName"), // Required
+		ApplicationName: aws.String("ApplicationName"), // Required
+		AutoRollbackConfiguration: &codedeploy.AutoRollbackConfiguration{
+			Enabled: aws.Bool(true),
+			Events: []*string{
+				aws.String("AutoRollbackEvent"), // Required
+				// More values...
+			},
+		},
 		DeploymentConfigName:          aws.String("DeploymentConfigName"),
 		DeploymentGroupName:           aws.String("DeploymentGroupName"),
 		Description:                   aws.String("Description"),
@@ -288,6 +295,7 @@ func ExampleCodeDeploy_CreateDeployment() {
 				Version:    aws.String("VersionId"),
 			},
 		},
+		UpdateOutdatedInstancesOnly: aws.Bool(true),
 	}
 	resp, err := svc.CreateDeployment(params)
 
@@ -344,6 +352,23 @@ func ExampleCodeDeploy_CreateDeploymentGroup() {
 		ApplicationName:     aws.String("ApplicationName"),     // Required
 		DeploymentGroupName: aws.String("DeploymentGroupName"), // Required
 		ServiceRoleArn:      aws.String("Role"),                // Required
+		AlarmConfiguration: &codedeploy.AlarmConfiguration{
+			Alarms: []*codedeploy.Alarm{
+				{ // Required
+					Name: aws.String("AlarmName"),
+				},
+				// More values...
+			},
+			Enabled:                aws.Bool(true),
+			IgnorePollAlarmFailure: aws.Bool(true),
+		},
+		AutoRollbackConfiguration: &codedeploy.AutoRollbackConfiguration{
+			Enabled: aws.Bool(true),
+			Events: []*string{
+				aws.String("AutoRollbackEvent"), // Required
+				// More values...
+			},
+		},
 		AutoScalingGroups: []*string{
 			aws.String("AutoScalingGroupName"), // Required
 			// More values...
@@ -999,7 +1024,8 @@ func ExampleCodeDeploy_StopDeployment() {
 	svc := codedeploy.New(sess)
 
 	params := &codedeploy.StopDeploymentInput{
-		DeploymentId: aws.String("DeploymentId"), // Required
+		DeploymentId:        aws.String("DeploymentId"), // Required
+		AutoRollbackEnabled: aws.Bool(true),
 	}
 	resp, err := svc.StopDeployment(params)
 
@@ -1052,6 +1078,23 @@ func ExampleCodeDeploy_UpdateDeploymentGroup() {
 	params := &codedeploy.UpdateDeploymentGroupInput{
 		ApplicationName:            aws.String("ApplicationName"),     // Required
 		CurrentDeploymentGroupName: aws.String("DeploymentGroupName"), // Required
+		AlarmConfiguration: &codedeploy.AlarmConfiguration{
+			Alarms: []*codedeploy.Alarm{
+				{ // Required
+					Name: aws.String("AlarmName"),
+				},
+				// More values...
+			},
+			Enabled:                aws.Bool(true),
+			IgnorePollAlarmFailure: aws.Bool(true),
+		},
+		AutoRollbackConfiguration: &codedeploy.AutoRollbackConfiguration{
+			Enabled: aws.Bool(true),
+			Events: []*string{
+				aws.String("AutoRollbackEvent"), // Required
+				// More values...
+			},
+		},
 		AutoScalingGroups: []*string{
 			aws.String("AutoScalingGroupName"), // Required
 			// More values...

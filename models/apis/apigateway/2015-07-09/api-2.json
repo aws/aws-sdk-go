@@ -2883,7 +2883,9 @@
       "enum":[
         "HTTP",
         "AWS",
-        "MOCK"
+        "MOCK",
+        "HTTP_PROXY",
+        "AWS_PROXY"
       ]
     },
     "LimitExceededException":{
@@ -3099,10 +3101,21 @@
     },
     "NullableBoolean":{"type":"boolean"},
     "NullableInteger":{"type":"integer"},
+    "Op":{
+      "type":"string",
+      "enum":[
+        "add",
+        "remove",
+        "replace",
+        "move",
+        "copy",
+        "test"
+      ]
+    },
     "PatchOperation":{
       "type":"structure",
       "members":{
-        "op":{"shape":"op"},
+        "op":{"shape":"Op"},
         "path":{"shape":"String"},
         "value":{"shape":"String"},
         "from":{"shape":"String"}
@@ -3901,17 +3914,6 @@
           "locationName":"item"
         }
       }
-    },
-    "op":{
-      "type":"string",
-      "enum":[
-        "add",
-        "remove",
-        "replace",
-        "move",
-        "copy",
-        "test"
-      ]
     }
   }
 }
