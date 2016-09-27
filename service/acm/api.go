@@ -552,7 +552,7 @@ type AddTagsToCertificateInput struct {
 	// String that contains the ARN of the ACM Certificate to which the tag is to
 	// be applied. This must be of the form:
 	//
-	//  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
+	// arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	//
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
@@ -710,7 +710,7 @@ type CertificateSummary struct {
 
 	// Amazon Resource Name (ARN) of the certificate. This is of the form:
 	//
-	//  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
+	// arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	//
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
@@ -737,7 +737,7 @@ type DeleteCertificateInput struct {
 	// String that contains the ARN of the ACM Certificate to be deleted. This must
 	// be of the form:
 	//
-	//  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
+	// arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	//
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
@@ -789,7 +789,7 @@ type DescribeCertificateInput struct {
 
 	// String that contains an ACM Certificate ARN. The ARN must be of the form:
 	//
-	//  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
+	// arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	//
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
@@ -930,7 +930,7 @@ type GetCertificateInput struct {
 
 	// String that contains a certificate ARN in the following format:
 	//
-	//  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
+	// arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	//
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
@@ -1056,7 +1056,7 @@ type ListTagsForCertificateInput struct {
 	// String that contains the ARN of the ACM Certificate for which you want to
 	// list the tags. This must be of the form:
 	//
-	//  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
+	// arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	//
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
@@ -1112,7 +1112,7 @@ type RemoveTagsFromCertificateInput struct {
 	// String that contains the ARN of the ACM Certificate with one or more tags
 	// that you want to remove. This must be of the form:
 	//
-	//  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
+	// arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	//
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
@@ -1271,7 +1271,7 @@ type RequestCertificateOutput struct {
 	// String that contains the ARN of the issued certificate. This must be of the
 	// form:
 	//
-	//  arn:aws:acm:us-east-1:123456789012:certificate/12345678-1234-1234-1234-123456789012
+	// arn:aws:acm:us-east-1:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	CertificateArn *string `min:"20" type:"string"`
 }
 
@@ -1295,7 +1295,7 @@ type ResendValidationEmailInput struct {
 	//
 	// The ARN must be of the form:
 	//
-	//  arn:aws:acm:us-east-1:123456789012:certificate/12345678-1234-1234-1234-123456789012
+	// arn:aws:acm:us-east-1:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	CertificateArn *string `min:"20" type:"string" required:"true"`
 
 	// The Fully Qualified Domain Name (FQDN) of the certificate that needs to be

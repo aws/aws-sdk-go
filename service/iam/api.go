@@ -453,8 +453,8 @@ func (c *IAM) CreateAccessKeyRequest(input *CreateAccessKeyInput) (req *request.
 // for access keys under the AWS account, you can use this action to manage
 // root credentials even if the AWS account has no associated users.
 //
-//  For information about limits on the number of keys you can create, see
-// Limitations on IAM Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html)
+// For information about limits on the number of keys you can create, see Limitations
+// on IAM Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html)
 // in the IAM User Guide.
 //
 //  To ensure the security of your AWS account, the secret access key is accessible
@@ -563,7 +563,7 @@ func (c *IAM) CreateGroupRequest(input *CreateGroupInput) (req *request.Request,
 
 // Creates a new group.
 //
-//  For information about the number of groups you can create, see Limitations
+// For information about the number of groups you can create, see Limitations
 // on IAM Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html)
 // in the IAM User Guide.
 func (c *IAM) CreateGroup(input *CreateGroupInput) (*CreateGroupOutput, error) {
@@ -616,7 +616,7 @@ func (c *IAM) CreateInstanceProfileRequest(input *CreateInstanceProfileInput) (r
 // Creates a new instance profile. For information about instance profiles,
 // go to About Instance Profiles (http://docs.aws.amazon.com/IAM/latest/UserGuide/AboutInstanceProfiles.html).
 //
-//  For information about the number of instance profiles you can create, see
+// For information about the number of instance profiles you can create, see
 // Limitations on IAM Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html)
 // in the IAM User Guide.
 func (c *IAM) CreateInstanceProfile(input *CreateInstanceProfileInput) (*CreateInstanceProfileOutput, error) {
@@ -965,10 +965,10 @@ func (c *IAM) CreateSAMLProviderRequest(input *CreateSAMLProviderInput) (req *re
 // document using the identity management software that is used as your organization's
 // IdP.
 //
-//   This operation requires Signature Version 4 (http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
+//  This operation requires Signature Version 4 (http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
 //
-//   For more information, see Enabling SAML 2.0 Federated Users to Access
-// the AWS Management Console (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-saml.html)
+//  For more information, see Enabling SAML 2.0 Federated Users to Access the
+// AWS Management Console (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-saml.html)
 // and About SAML 2.0-based Federation (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html)
 // in the IAM User Guide.
 func (c *IAM) CreateSAMLProvider(input *CreateSAMLProviderInput) (*CreateSAMLProviderOutput, error) {
@@ -1020,7 +1020,7 @@ func (c *IAM) CreateUserRequest(input *CreateUserInput) (req *request.Request, o
 
 // Creates a new IAM user for your AWS account.
 //
-//  For information about limitations on the number of IAM users you can create,
+// For information about limitations on the number of IAM users you can create,
 // see Limitations on IAM Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html)
 // in the IAM User Guide.
 func (c *IAM) CreateUser(input *CreateUserInput) (*CreateUserOutput, error) {
@@ -1514,11 +1514,10 @@ func (c *IAM) DeleteLoginProfileRequest(input *DeleteLoginProfileInput) (req *re
 // Deletes the password for the specified IAM user, which terminates the user's
 // ability to access AWS services through the AWS Management Console.
 //
-//   Deleting a user's password does not prevent a user from accessing AWS
-// through the command line interface or the API. To prevent all user access
-// you must also either make any access keys inactive or delete them. For more
-// information about making keys inactive or deleting them, see UpdateAccessKey
-// and DeleteAccessKey.
+//  Deleting a user's password does not prevent a user from accessing AWS through
+// the command line interface or the API. To prevent all user access you must
+// also either make any access keys inactive or delete them. For more information
+// about making keys inactive or deleting them, see UpdateAccessKey and DeleteAccessKey.
 func (c *IAM) DeleteLoginProfile(input *DeleteLoginProfileInput) (*DeleteLoginProfileOutput, error) {
 	req, out := c.DeleteLoginProfileRequest(input)
 	err := req.Send()
@@ -1873,7 +1872,7 @@ func (c *IAM) DeleteSAMLProviderRequest(input *DeleteSAMLProviderInput) (req *re
 // Any attempt to assume a role that references a non-existent provider resource
 // ARN fails.
 //
-//   This operation requires Signature Version 4 (http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
+//  This operation requires Signature Version 4 (http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
 func (c *IAM) DeleteSAMLProvider(input *DeleteSAMLProviderInput) (*DeleteSAMLProviderOutput, error) {
 	req, out := c.DeleteSAMLProviderRequest(input)
 	err := req.Send()
@@ -1986,7 +1985,7 @@ func (c *IAM) DeleteServerCertificateRequest(input *DeleteServerCertificateInput
 // with IAM, go to Working with Server Certificates (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html)
 // in the IAM User Guide.
 //
-//   If you are using a server certificate with Elastic Load Balancing, deleting
+//  If you are using a server certificate with Elastic Load Balancing, deleting
 // the certificate could have implications for your application. If Elastic
 // Load Balancing doesn't detect the deletion of bound certificates, it may
 // continue to use the certificates. This could cause Elastic Load Balancing
@@ -2208,8 +2207,8 @@ func (c *IAM) DeleteVirtualMFADeviceRequest(input *DeleteVirtualMFADeviceInput) 
 
 // Deletes a virtual MFA device.
 //
-//   You must deactivate a user's virtual MFA device before you can delete
-// it. For information about deactivating MFA devices, see DeactivateMFADevice.
+//  You must deactivate a user's virtual MFA device before you can delete it.
+// For information about deactivating MFA devices, see DeactivateMFADevice.
 func (c *IAM) DeleteVirtualMFADevice(input *DeleteVirtualMFADeviceInput) (*DeleteVirtualMFADeviceOutput, error) {
 	req, out := c.DeleteVirtualMFADeviceRequest(input)
 	err := req.Send()
@@ -2711,7 +2710,7 @@ func (c *IAM) GetAccountSummaryRequest(input *GetAccountSummaryInput) (req *requ
 
 // Retrieves information about IAM entity usage and IAM quotas in the AWS account.
 //
-//  For information about limitations on IAM entities, see Limitations on IAM
+// For information about limitations on IAM entities, see Limitations on IAM
 // Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html)
 // in the IAM User Guide.
 func (c *IAM) GetAccountSummary(input *GetAccountSummaryInput) (*GetAccountSummaryOutput, error) {
@@ -2827,7 +2826,7 @@ func (c *IAM) GetContextKeysForPrincipalPolicyRequest(input *GetContextKeysForPr
 // as strings. If you want to include only a list of policies by string, use
 // GetContextKeysForCustomPolicy instead.
 //
-//  Note: This API discloses information about the permissions granted to other
+// Note: This API discloses information about the permissions granted to other
 // users. If you do not want users to see other user's permissions, then consider
 // allowing them to use GetContextKeysForCustomPolicy instead.
 //
@@ -4381,7 +4380,7 @@ func (c *IAM) ListGroupsRequest(input *ListGroupsInput) (req *request.Request, o
 
 // Lists the IAM groups that have the specified path prefix.
 //
-//  You can paginate the results using the MaxItems and Marker parameters.
+// You can paginate the results using the MaxItems and Marker parameters.
 func (c *IAM) ListGroups(input *ListGroupsInput) (*ListGroupsOutput, error) {
 	req, out := c.ListGroupsRequest(input)
 	err := req.Send()
@@ -5183,7 +5182,7 @@ func (c *IAM) ListSAMLProvidersRequest(input *ListSAMLProvidersInput) (req *requ
 
 // Lists the SAML provider resource objects defined in IAM in the account.
 //
-//   This operation requires Signature Version 4 (http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
+//  This operation requires Signature Version 4 (http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
 func (c *IAM) ListSAMLProviders(input *ListSAMLProvidersInput) (*ListSAMLProvidersOutput, error) {
 	req, out := c.ListSAMLProvidersRequest(input)
 	err := req.Send()
@@ -5329,7 +5328,7 @@ func (c *IAM) ListServerCertificatesRequest(input *ListServerCertificatesInput) 
 // Lists the server certificates stored in IAM that have the specified path
 // prefix. If none exist, the action returns an empty list.
 //
-//  You can paginate the results using the MaxItems and Marker parameters.
+// You can paginate the results using the MaxItems and Marker parameters.
 //
 // For more information about working with server certificates, including a
 // list of AWS services that can use the server certificates that you manage
@@ -6020,7 +6019,7 @@ func (c *IAM) RemoveRoleFromInstanceProfileRequest(input *RemoveRoleFromInstance
 // instance profile that is associated with a running instance break any applications
 // running on the instance.
 //
-//   For more information about IAM roles, go to Working with Roles (http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html).
+//  For more information about IAM roles, go to Working with Roles (http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html).
 // For more information about instance profiles, go to About Instance Profiles
 // (http://docs.aws.amazon.com/IAM/latest/UserGuide/AboutInstanceProfiles.html).
 func (c *IAM) RemoveRoleFromInstanceProfile(input *RemoveRoleFromInstanceProfileInput) (*RemoveRoleFromInstanceProfileOutput, error) {
@@ -6351,7 +6350,7 @@ func (c *IAM) SimulatePrincipalPolicyRequest(input *SimulatePrincipalPolicyInput
 // The simulation does not perform the API actions, it only checks the authorization
 // to determine if the simulated policies allow or deny the actions.
 //
-//  Note: This API discloses information about the permissions granted to other
+// Note: This API discloses information about the permissions granted to other
 // users. If you do not want users to see other user's permissions, then consider
 // allowing them to use SimulateCustomPolicy instead.
 //
@@ -6504,7 +6503,7 @@ func (c *IAM) UpdateAccountPasswordPolicyRequest(input *UpdateAccountPasswordPol
 // its default value. See the Request Parameters section for each parameter's
 // default value.
 //
-//   For more information about using a password policy, see Managing an IAM
+//  For more information about using a password policy, see Managing an IAM
 // Password Policy (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_ManagingPasswordPolicies.html)
 // in the IAM User Guide.
 func (c *IAM) UpdateAccountPasswordPolicy(input *UpdateAccountPasswordPolicyInput) (*UpdateAccountPasswordPolicyOutput, error) {
@@ -6611,7 +6610,7 @@ func (c *IAM) UpdateGroupRequest(input *UpdateGroupInput) (req *request.Request,
 
 // Updates the name and/or the path of the specified IAM group.
 //
-//   You should understand the implications of changing a group's path or name.
+//  You should understand the implications of changing a group's path or name.
 // For more information, see Renaming Users and Groups (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_WorkingWithGroupsAndUsers.html)
 // in the IAM User Guide.
 //
@@ -7023,12 +7022,12 @@ func (c *IAM) UpdateUserRequest(input *UpdateUserInput) (req *request.Request, o
 
 // Updates the name and/or the path of the specified IAM user.
 //
-//   You should understand the implications of changing an IAM user's path
-// or name. For more information, see Renaming an IAM User (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_manage.html#id_users_renaming)
+//  You should understand the implications of changing an IAM user's path or
+// name. For more information, see Renaming an IAM User (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_manage.html#id_users_renaming)
 // and Renaming an IAM Group (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups_manage_rename.html)
 // in the IAM User Guide.
 //
-//    To change a user name the requester must have appropriate permissions
+//   To change a user name the requester must have appropriate permissions
 // on both the source object and the target object. For example, to change Bob
 // to Robert, the entity making the request must have permission on Bob and
 // Robert, or must have permission on all (*). For more information about permissions,
@@ -7227,7 +7226,7 @@ func (c *IAM) UploadSigningCertificate(input *UploadSigningCertificateInput) (*U
 
 // Contains information about an AWS access key.
 //
-//  This data type is used as a response element in the CreateAccessKey and
+// This data type is used as a response element in the CreateAccessKey and
 // ListAccessKeys actions.
 //
 //  The SecretAccessKey value is returned only in response to CreateAccessKey.
@@ -10427,7 +10426,7 @@ type GetAccountPasswordPolicyOutput struct {
 
 	// Contains information about the account password policy.
 	//
-	//  This data type is used as a response element in the GetAccountPasswordPolicy
+	// This data type is used as a response element in the GetAccountPasswordPolicy
 	// action.
 	PasswordPolicy *PasswordPolicy `type:"structure" required:"true"`
 }
@@ -11550,11 +11549,11 @@ func (s GetUserPolicyOutput) GoString() string {
 //
 // This data type is used as a response element in the following actions:
 //
-//    CreateGroup
+//   CreateGroup
 //
-//    GetGroup
+//   GetGroup
 //
-//    ListGroups
+//   ListGroups
 type Group struct {
 	_ struct{} `type:"structure"`
 
@@ -11643,13 +11642,13 @@ func (s GroupDetail) GoString() string {
 //
 // This data type is used as a response element in the following actions:
 //
-//    CreateInstanceProfile
+//   CreateInstanceProfile
 //
-//    GetInstanceProfile
+//   GetInstanceProfile
 //
-//    ListInstanceProfiles
+//   ListInstanceProfiles
 //
-//    ListInstanceProfilesForRole
+//   ListInstanceProfilesForRole
 type InstanceProfile struct {
 	_ struct{} `type:"structure"`
 
@@ -13790,8 +13789,8 @@ func (s ListVirtualMFADevicesOutput) GoString() string {
 
 // Contains the user name and password create date for a user.
 //
-//  This data type is used as a response element in the CreateLoginProfile
-// and GetLoginProfile actions.
+// This data type is used as a response element in the CreateLoginProfile and
+// GetLoginProfile actions.
 type LoginProfile struct {
 	_ struct{} `type:"structure"`
 
@@ -13947,7 +13946,7 @@ func (s OpenIDConnectProviderListEntry) GoString() string {
 
 // Contains information about the account password policy.
 //
-//  This data type is used as a response element in the GetAccountPasswordPolicy
+// This data type is used as a response element in the GetAccountPasswordPolicy
 // action.
 type PasswordPolicy struct {
 	_ struct{} `type:"structure"`
@@ -14818,11 +14817,11 @@ func (s ResyncMFADeviceOutput) GoString() string {
 //
 // This data type is used as a response element in the following actions:
 //
-//    CreateRole
+//   CreateRole
 //
-//    GetRole
+//   GetRole
 //
-//    ListRoles
+//   ListRoles
 type Role struct {
 	_ struct{} `type:"structure"`
 
@@ -15013,7 +15012,7 @@ func (s SSHPublicKeyMetadata) GoString() string {
 
 // Contains information about a server certificate.
 //
-//  This data type is used as a response element in the GetServerCertificate
+// This data type is used as a response element in the GetServerCertificate
 // action.
 type ServerCertificate struct {
 	_ struct{} `type:"structure"`
@@ -15042,7 +15041,7 @@ func (s ServerCertificate) GoString() string {
 // Contains information about a server certificate without its certificate body,
 // certificate chain, and private key.
 //
-//  This data type is used as a response element in the UploadServerCertificate
+// This data type is used as a response element in the UploadServerCertificate
 // and ListServerCertificates actions.
 type ServerCertificateMetadata struct {
 	_ struct{} `type:"structure"`
@@ -15267,27 +15266,27 @@ type SimulateCustomPolicyInput struct {
 	// the EC2 scenario options, see Supported Platforms (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html)
 	// in the AWS EC2 User Guide.
 	//
-	//    EC2-Classic-InstanceStore
+	//   EC2-Classic-InstanceStore
 	//
 	// instance, image, security-group
 	//
-	//    EC2-Classic-EBS
+	//   EC2-Classic-EBS
 	//
 	// instance, image, security-group, volume
 	//
-	//    EC2-VPC-InstanceStore
+	//   EC2-VPC-InstanceStore
 	//
 	// instance, image, security-group, network-interface
 	//
-	//    EC2-VPC-InstanceStore-Subnet
+	//   EC2-VPC-InstanceStore-Subnet
 	//
 	// instance, image, security-group, network-interface, subnet
 	//
-	//    EC2-VPC-EBS
+	//   EC2-VPC-EBS
 	//
 	// instance, image, security-group, network-interface, volume
 	//
-	//    EC2-VPC-EBS-Subnet
+	//   EC2-VPC-EBS-Subnet
 	//
 	// instance, image, security-group, network-interface, subnet, volume
 	ResourceHandlingOption *string `min:"1" type:"string"`
@@ -15418,7 +15417,7 @@ type SimulatePrincipalPolicyInput struct {
 	// You can specify only the ARN of an IAM user. You cannot specify the ARN
 	// of an assumed role, federated user, or a service principal.
 	//
-	//  CallerArn is required if you include a ResourcePolicy and the PolicySourceArn
+	// CallerArn is required if you include a ResourcePolicy and the PolicySourceArn
 	// is not the ARN for an IAM user. This is required so that the resource-based
 	// policy's Principal element has a value to use in evaluating the policy.
 	//
@@ -15502,27 +15501,27 @@ type SimulatePrincipalPolicyInput struct {
 	// the EC2 scenario options, see Supported Platforms (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html)
 	// in the AWS EC2 User Guide.
 	//
-	//    EC2-Classic-InstanceStore
+	//   EC2-Classic-InstanceStore
 	//
 	// instance, image, security-group
 	//
-	//    EC2-Classic-EBS
+	//   EC2-Classic-EBS
 	//
 	// instance, image, security-group, volume
 	//
-	//    EC2-VPC-InstanceStore
+	//   EC2-VPC-InstanceStore
 	//
 	// instance, image, security-group, network-interface
 	//
-	//    EC2-VPC-InstanceStore-Subnet
+	//   EC2-VPC-InstanceStore-Subnet
 	//
 	// instance, image, security-group, network-interface, subnet
 	//
-	//    EC2-VPC-EBS
+	//   EC2-VPC-EBS
 	//
 	// instance, image, security-group, network-interface, volume
 	//
-	//    EC2-VPC-EBS-Subnet
+	//   EC2-VPC-EBS-Subnet
 	//
 	// instance, image, security-group, network-interface, subnet, volume
 	ResourceHandlingOption *string `min:"1" type:"string"`
@@ -16545,7 +16544,7 @@ type UploadServerCertificateInput struct {
 	// ASCII character from the ! (\u0021) thru the DEL character (\u007F), including
 	// most punctuation characters, digits, and upper and lowercased letters.
 	//
-	//   If you are uploading a server certificate specifically for use with Amazon
+	//  If you are uploading a server certificate specifically for use with Amazon
 	// CloudFront distributions, you must specify a path using the --path option.
 	// The path must begin with /cloudfront and must include a trailing slash (for
 	// example, /cloudfront/test/).
@@ -16703,11 +16702,11 @@ func (s UploadSigningCertificateOutput) GoString() string {
 //
 // This data type is used as a response element in the following actions:
 //
-//    CreateUser
+//   CreateUser
 //
-//    GetUser
+//   GetUser
 //
-//    ListUsers
+//   ListUsers
 type User struct {
 	_ struct{} `type:"structure"`
 
@@ -16842,11 +16841,11 @@ type VirtualMFADevice struct {
 	//
 	// This data type is used as a response element in the following actions:
 	//
-	//    CreateUser
+	//   CreateUser
 	//
-	//    GetUser
+	//   GetUser
 	//
-	//    ListUsers
+	//   ListUsers
 	User *User `type:"structure"`
 }
 

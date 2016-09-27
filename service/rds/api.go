@@ -571,7 +571,7 @@ func (c *RDS) CreateDBClusterParameterGroupRequest(input *CreateDBClusterParamet
 // Parameters in a DB cluster parameter group apply to all of the instances
 // in a DB cluster.
 //
-//  A DB cluster parameter group is initially created with the default parameters
+// A DB cluster parameter group is initially created with the default parameters
 // for the database engine used by instances in the DB cluster. To provide custom
 // values for any of the parameters, you must modify the group after creating
 // it using ModifyDBClusterParameterGroup. Once you've created a DB cluster
@@ -797,7 +797,7 @@ func (c *RDS) CreateDBParameterGroupRequest(input *CreateDBParameterGroupInput) 
 
 // Creates a new DB parameter group.
 //
-//  A DB parameter group is initially created with the default parameters for
+// A DB parameter group is initially created with the default parameters for
 // the database engine used by the DB instance. To provide custom values for
 // any of the parameters, you must modify the group after creating it using
 // ModifyDBParameterGroup. Once you've created a DB parameter group, you need
@@ -1290,7 +1290,7 @@ func (c *RDS) DeleteDBInstanceRequest(input *DeleteDBInstanceInput) (req *reques
 // deleted and cannot be recovered. Manual DB snapshots of the DB instance to
 // be deleted by DeleteDBInstance are not deleted.
 //
-//  If you request a final DB snapshot the status of the Amazon RDS DB instance
+// If you request a final DB snapshot the status of the Amazon RDS DB instance
 // is deleting until the DB snapshot is created. The API action DescribeDBInstance
 // is used to monitor the status of this operation. The action cannot be canceled
 // or reverted once submitted.
@@ -4599,7 +4599,7 @@ func (c *RDS) ResetDBClusterParameterGroupRequest(input *ResetDBClusterParameter
 // and ApplyMethod. To reset the entire DB cluster parameter group, specify
 // the DBClusterParameterGroupName and ResetAllParameters parameters.
 //
-//  When resetting the entire group, dynamic parameters are updated immediately
+// When resetting the entire group, dynamic parameters are updated immediately
 // and static parameters are set to pending-reboot to take effect on the next
 // DB instance restart or RebootDBInstance request. You must call RebootDBInstance
 // for every DB instance in your DB cluster that you want the updated static
@@ -5163,12 +5163,12 @@ type ApplyPendingMaintenanceActionInput struct {
 	//
 	// Valid values:
 	//
-	//    immediate - Apply the maintenance action immediately.
+	//   immediate - Apply the maintenance action immediately.
 	//
-	//    next-maintenance - Apply the maintenance action during the next maintenance
+	//   next-maintenance - Apply the maintenance action during the next maintenance
 	// window for the resource.
 	//
-	//    undo-opt-in - Cancel any existing next-maintenance opt-in requests.
+	//   undo-opt-in - Cancel any existing next-maintenance opt-in requests.
 	OptInType *string `type:"string" required:"true"`
 
 	// The RDS Amazon Resource Name (ARN) of the resource that the pending maintenance
@@ -5278,13 +5278,13 @@ type AuthorizeDBSecurityGroupIngressOutput struct {
 
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//    DescribeDBSecurityGroups
+	//   DescribeDBSecurityGroups
 	//
-	//    AuthorizeDBSecurityGroupIngress
+	//   AuthorizeDBSecurityGroupIngress
 	//
-	//    CreateDBSecurityGroup
+	//   CreateDBSecurityGroup
 	//
-	//    RevokeDBSecurityGroupIngress
+	//   RevokeDBSecurityGroupIngress
 	//
 	//   This data type is used as a response element in the DescribeDBSecurityGroups
 	// action.
@@ -5303,9 +5303,9 @@ func (s AuthorizeDBSecurityGroupIngressOutput) GoString() string {
 
 // Contains Availability Zone information.
 //
-//  This data type is used as an element in the following data type:
+// This data type is used as an element in the following data type:
 //
-//    OrderableDBInstanceOption
+//   OrderableDBInstanceOption
 type AvailabilityZone struct {
 	_ struct{} `type:"structure"`
 
@@ -5535,9 +5535,9 @@ type CopyDBClusterSnapshotOutput struct {
 
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//    CreateDBClusterSnapshot
+	//   CreateDBClusterSnapshot
 	//
-	//    DeleteDBClusterSnapshot
+	//   DeleteDBClusterSnapshot
 	//
 	//   This data type is used as a response element in the DescribeDBClusterSnapshots
 	// action.
@@ -5565,7 +5565,7 @@ type CopyDBParameterGroupInput struct {
 	//
 	//   Must specify a valid DB parameter group.
 	//
-	//    Must specify a valid DB parameter group identifier, for example my-db-param-group,
+	//   Must specify a valid DB parameter group identifier, for example my-db-param-group,
 	// or a valid ARN.
 	SourceDBParameterGroupIdentifier *string `type:"string" required:"true"`
 
@@ -5736,9 +5736,9 @@ type CopyDBSnapshotOutput struct {
 
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//    CreateDBSnapshot
+	//   CreateDBSnapshot
 	//
-	//    DeleteDBSnapshot
+	//   DeleteDBSnapshot
 	//
 	//   This data type is used as a response element in the DescribeDBSnapshots
 	// action.
@@ -5907,7 +5907,7 @@ type CreateDBClusterInput struct {
 
 	// The version number of the database engine to use.
 	//
-	//  Aurora
+	// Aurora
 	//
 	// Example: 5.6.10a
 	EngineVersion *string `type:"string"`
@@ -5951,7 +5951,7 @@ type CreateDBClusterInput struct {
 
 	// The port number on which the instances in the DB cluster accept connections.
 	//
-	//  Default: 3306
+	// Default: 3306
 	Port *int64 `type:"integer"`
 
 	// The daily time range during which automated backups are created if automated
@@ -5976,7 +5976,7 @@ type CreateDBClusterInput struct {
 	// The weekly time range during which system maintenance can occur, in Universal
 	// Coordinated Time (UTC).
 	//
-	//  Format: ddd:hh24:mi-ddd:hh24:mi
+	// Format: ddd:hh24:mi-ddd:hh24:mi
 	//
 	// Default: A 30-minute window selected at random from an 8-hour block of time
 	// per region, occurring on a random day of the week. To see the time blocks
@@ -6033,17 +6033,17 @@ type CreateDBClusterOutput struct {
 
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//    CreateDBCluster
+	//   CreateDBCluster
 	//
-	//    DeleteDBCluster
+	//   DeleteDBCluster
 	//
-	//    FailoverDBCluster
+	//   FailoverDBCluster
 	//
-	//    ModifyDBCluster
+	//   ModifyDBCluster
 	//
-	//    RestoreDBClusterFromSnapshot
+	//   RestoreDBClusterFromSnapshot
 	//
-	//    RestoreDBClusterToPointInTime
+	//   RestoreDBClusterToPointInTime
 	//
 	//   This data type is used as a response element in the DescribeDBClusters
 	// action.
@@ -6206,9 +6206,9 @@ type CreateDBClusterSnapshotOutput struct {
 
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//    CreateDBClusterSnapshot
+	//   CreateDBClusterSnapshot
 	//
-	//    DeleteDBClusterSnapshot
+	//   DeleteDBClusterSnapshot
 	//
 	//   This data type is used as a response element in the DescribeDBClusterSnapshots
 	// action.
@@ -6233,23 +6233,23 @@ type CreateDBInstanceInput struct {
 	//
 	// Type: Integer
 	//
-	//  MySQL
+	// MySQL
 	//
 	// Constraints: Must be an integer from 5 to 6144.
 	//
-	//  MariaDB
+	// MariaDB
 	//
 	// Constraints: Must be an integer from 5 to 6144.
 	//
-	//  PostgreSQL
+	// PostgreSQL
 	//
 	// Constraints: Must be an integer from 5 to 6144.
 	//
-	//  Oracle
+	// Oracle
 	//
 	// Constraints: Must be an integer from 10 to 6144.
 	//
-	//  SQL Server
+	// SQL Server
 	//
 	// Constraints: Must be an integer from 200 to 4096 (Standard Edition and Enterprise
 	// Edition) or from 20 to 4096 (Express Edition and Web Edition)
@@ -6267,9 +6267,9 @@ type CreateDBInstanceInput struct {
 	//
 	// Default: A random, system-chosen Availability Zone in the endpoint's region.
 	//
-	//  Example: us-east-1d
+	// Example: us-east-1d
 	//
-	//  Constraint: The AvailabilityZone parameter cannot be specified if the MultiAZ
+	// Constraint: The AvailabilityZone parameter cannot be specified if the MultiAZ
 	// parameter is set to true. The specified Availability Zone must be in the
 	// same region as the current endpoint.
 	AvailabilityZone *string `type:"string"`
@@ -6304,12 +6304,12 @@ type CreateDBInstanceInput struct {
 
 	// The compute and memory capacity of the DB instance.
 	//
-	//  Valid Values: db.t1.micro | db.m1.small | db.m1.medium | db.m1.large |
-	// db.m1.xlarge | db.m2.xlarge |db.m2.2xlarge | db.m2.4xlarge | db.m3.medium
-	// | db.m3.large | db.m3.xlarge | db.m3.2xlarge | db.m4.large | db.m4.xlarge
-	// | db.m4.2xlarge | db.m4.4xlarge | db.m4.10xlarge | db.r3.large | db.r3.xlarge
-	// | db.r3.2xlarge | db.r3.4xlarge | db.r3.8xlarge | db.t2.micro | db.t2.small
-	// | db.t2.medium | db.t2.large
+	// Valid Values: db.t1.micro | db.m1.small | db.m1.medium | db.m1.large | db.m1.xlarge
+	// | db.m2.xlarge |db.m2.2xlarge | db.m2.4xlarge | db.m3.medium | db.m3.large
+	// | db.m3.xlarge | db.m3.2xlarge | db.m4.large | db.m4.xlarge | db.m4.2xlarge
+	// | db.m4.4xlarge | db.m4.10xlarge | db.r3.large | db.r3.xlarge | db.r3.2xlarge
+	// | db.r3.4xlarge | db.r3.8xlarge | db.t2.micro | db.t2.small | db.t2.medium
+	// | db.t2.large
 	DBInstanceClass *string `type:"string" required:"true"`
 
 	// The DB instance identifier. This parameter is stored as a lowercase string.
@@ -6331,7 +6331,7 @@ type CreateDBInstanceInput struct {
 	//
 	// Type: String
 	//
-	//  MySQL
+	// MySQL
 	//
 	// The name of the database to create when the DB instance is created. If this
 	// parameter is not specified, no database is created in the DB instance.
@@ -6342,7 +6342,7 @@ type CreateDBInstanceInput struct {
 	//
 	//   Cannot be a word reserved by the specified database engine
 	//
-	//    MariaDB
+	//   MariaDB
 	//
 	// The name of the database to create when the DB instance is created. If this
 	// parameter is not specified, no database is created in the DB instance.
@@ -6353,7 +6353,7 @@ type CreateDBInstanceInput struct {
 	//
 	//   Cannot be a word reserved by the specified database engine
 	//
-	//    PostgreSQL
+	//   PostgreSQL
 	//
 	// The name of the database to create when the DB instance is created. If this
 	// parameter is not specified, the default "postgres" database is created in
@@ -6368,7 +6368,7 @@ type CreateDBInstanceInput struct {
 	//
 	//   Cannot be a word reserved by the specified database engine
 	//
-	//    Oracle
+	//   Oracle
 	//
 	// The Oracle System ID (SID) of the created DB instance.
 	//
@@ -6378,11 +6378,11 @@ type CreateDBInstanceInput struct {
 	//
 	//   Cannot be longer than 8 characters
 	//
-	//    SQL Server
+	//   SQL Server
 	//
 	// Not applicable. Must be null.
 	//
-	//  Amazon Aurora
+	// Amazon Aurora
 	//
 	// The name of the database to create when the primary instance of the DB cluster
 	// is created. If this parameter is not specified, no database is created in
@@ -6427,7 +6427,7 @@ type CreateDBInstanceInput struct {
 
 	// The name of the database engine to be used for this instance.
 	//
-	//  Valid Values: mysql | mariadb | oracle-se1 | oracle-se2 | oracle-se | oracle-ee
+	// Valid Values: mysql | mariadb | oracle-se1 | oracle-se2 | oracle-se | oracle-ee
 	// | sqlserver-ee | sqlserver-se | sqlserver-ex | sqlserver-web | postgres |
 	// aurora
 	//
@@ -6440,151 +6440,151 @@ type CreateDBInstanceInput struct {
 	// are available with Amazon RDS. Not every database engine is available for
 	// every AWS region.
 	//
-	//  Amazon Aurora
+	// Amazon Aurora
 	//
-	//    Version 5.6 (only available in AWS regions ap-northeast-1, ap-northeast-2,
+	//   Version 5.6 (only available in AWS regions ap-northeast-1, ap-northeast-2,
 	// ap-south-1, ap-southeast-2, eu-west-1, us-east-1, us-west-2):  5.6.10a
 	//
-	//    MariaDB
+	//   MariaDB
 	//
-	//    Version 10.1 (available in all AWS regions except us-gov-west-1):  10.1.14
+	//   Version 10.1 (available in all AWS regions except us-gov-west-1):  10.1.14
 	//
-	//    Version 10.0 (available in all AWS regions):  10.0.17 | 10.0.24
+	//   Version 10.0 (available in all AWS regions):  10.0.17 | 10.0.24
 	//
-	//    Microsoft SQL Server Enterprise Edition (sqlserver-ee)
+	//   Microsoft SQL Server Enterprise Edition (sqlserver-ee)
 	//
-	//    Version 11.00 (available in all AWS regions):  11.00.2100.60.v1 | 11.00.5058.0.v1
+	//   Version 11.00 (available in all AWS regions):  11.00.2100.60.v1 | 11.00.5058.0.v1
 	// | 11.00.6020.0.v1
 	//
-	//    Version 10.50 (available in all AWS regions):  10.50.2789.0.v1 | 10.50.6000.34.v1
+	//   Version 10.50 (available in all AWS regions):  10.50.2789.0.v1 | 10.50.6000.34.v1
 	// | 10.50.6529.0.v1
 	//
-	//    Microsoft SQL Server Express Edition (sqlserver-ex)
+	//   Microsoft SQL Server Express Edition (sqlserver-ex)
 	//
-	//    Version 12.00 (available in all AWS regions):  12.00.4422.0.v1
+	//   Version 12.00 (available in all AWS regions):  12.00.4422.0.v1
 	//
-	//    Version 11.00 (available in all AWS regions):  11.00.2100.60.v1 | 11.00.5058.0.v1
+	//   Version 11.00 (available in all AWS regions):  11.00.2100.60.v1 | 11.00.5058.0.v1
 	// | 11.00.6020.0.v1
 	//
-	//    Version 10.50 (available in all AWS regions):  10.50.2789.0.v1 | 10.50.6000.34.v1
+	//   Version 10.50 (available in all AWS regions):  10.50.2789.0.v1 | 10.50.6000.34.v1
 	// | 10.50.6529.0.v1
 	//
-	//    Microsoft SQL Server Standard Edition (sqlserver-se)
+	//   Microsoft SQL Server Standard Edition (sqlserver-se)
 	//
-	//    Version 12.00 (available in all AWS regions):  12.00.4422.0.v1
+	//   Version 12.00 (available in all AWS regions):  12.00.4422.0.v1
 	//
-	//    Version 11.00 (available in all AWS regions):  11.00.2100.60.v1 | 11.00.5058.0.v1
+	//   Version 11.00 (available in all AWS regions):  11.00.2100.60.v1 | 11.00.5058.0.v1
 	// | 11.00.6020.0.v1
 	//
-	//    Version 10.50 (available in all AWS regions):  10.50.2789.0.v1 | 10.50.6000.34.v1
+	//   Version 10.50 (available in all AWS regions):  10.50.2789.0.v1 | 10.50.6000.34.v1
 	// | 10.50.6529.0.v1
 	//
-	//    Microsoft SQL Server Web Edition (sqlserver-web)
+	//   Microsoft SQL Server Web Edition (sqlserver-web)
 	//
-	//    Version 12.00 (available in all AWS regions):  12.00.4422.0.v1
+	//   Version 12.00 (available in all AWS regions):  12.00.4422.0.v1
 	//
-	//    Version 11.00 (available in all AWS regions):  11.00.2100.60.v1 | 11.00.5058.0.v1
+	//   Version 11.00 (available in all AWS regions):  11.00.2100.60.v1 | 11.00.5058.0.v1
 	// | 11.00.6020.0.v1
 	//
-	//    Version 10.50 (available in all AWS regions):  10.50.2789.0.v1 | 10.50.6000.34.v1
+	//   Version 10.50 (available in all AWS regions):  10.50.2789.0.v1 | 10.50.6000.34.v1
 	// | 10.50.6529.0.v1
 	//
-	//    MySQL
+	//   MySQL
 	//
-	//    Version 5.7 (available in all AWS regions):  5.7.10 | 5.7.11
+	//   Version 5.7 (available in all AWS regions):  5.7.10 | 5.7.11
 	//
-	//    Version 5.6 (available in all AWS regions except ap-south-1, ap-northeast-2):
+	//   Version 5.6 (available in all AWS regions except ap-south-1, ap-northeast-2):
 	//  5.6.19a | 5.6.19b | 5.6.21 | 5.6.21b | 5.6.22
 	//
-	//    Version 5.6 (available in all AWS regions except ap-south-1):  5.6.23
+	//   Version 5.6 (available in all AWS regions except ap-south-1):  5.6.23
 	//
-	//    Version 5.6 (available in all AWS regions):  5.6.27 | 5.6.29
+	//   Version 5.6 (available in all AWS regions):  5.6.27 | 5.6.29
 	//
-	//    Version 5.5 (only available in AWS regions ap-northeast-1, ap-southeast-1,
+	//   Version 5.5 (only available in AWS regions ap-northeast-1, ap-southeast-1,
 	// ap-southeast-2, eu-west-1, sa-east-1, us-east-1, us-gov-west-1, us-west-1,
 	// us-west-2):  5.5.40 | 5.5.40a
 	//
-	//    Version 5.5 (available in all AWS regions except ap-south-1, ap-northeast-2):
+	//   Version 5.5 (available in all AWS regions except ap-south-1, ap-northeast-2):
 	//  5.5.40b | 5.5.41
 	//
-	//    Version 5.5 (available in all AWS regions except ap-south-1):  5.5.42
+	//   Version 5.5 (available in all AWS regions except ap-south-1):  5.5.42
 	//
-	//    Version 5.5 (available in all AWS regions):  5.5.46
+	//   Version 5.5 (available in all AWS regions):  5.5.46
 	//
-	//    Oracle Database Enterprise Edition (oracle-ee)
+	//   Oracle Database Enterprise Edition (oracle-ee)
 	//
-	//    Version 12.1 (available in all AWS regions except ap-south-1, ap-northeast-2):
+	//   Version 12.1 (available in all AWS regions except ap-south-1, ap-northeast-2):
 	//  12.1.0.1.v1 | 12.1.0.1.v2
 	//
-	//    Version 12.1 (only available in AWS regions ap-northeast-1, ap-southeast-1,
+	//   Version 12.1 (only available in AWS regions ap-northeast-1, ap-southeast-1,
 	// ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-west-1,
 	// us-west-2):  12.1.0.1.v3 | 12.1.0.1.v4 | 12.1.0.1.v5
 	//
-	//    Version 12.1 (available in all AWS regions):  12.1.0.2.v1
+	//   Version 12.1 (available in all AWS regions):  12.1.0.2.v1
 	//
-	//    Version 12.1 (available in all AWS regions except us-gov-west-1):  12.1.0.2.v2
+	//   Version 12.1 (available in all AWS regions except us-gov-west-1):  12.1.0.2.v2
 	// | 12.1.0.2.v3 | 12.1.0.2.v4
 	//
-	//    Version 11.2 (available in all AWS regions):  11.2.0.4.v1 | 11.2.0.4.v3
+	//   Version 11.2 (available in all AWS regions):  11.2.0.4.v1 | 11.2.0.4.v3
 	// | 11.2.0.4.v4
 	//
-	//    Version 11.2 (available in all AWS regions except us-gov-west-1):  11.2.0.4.v5
+	//   Version 11.2 (available in all AWS regions except us-gov-west-1):  11.2.0.4.v5
 	// | 11.2.0.4.v6 | 11.2.0.4.v7 | 11.2.0.4.v8
 	//
-	//    Oracle Database Standard Edition (oracle-se)
+	//   Oracle Database Standard Edition (oracle-se)
 	//
-	//    Version 12.1 (available in all AWS regions except ap-south-1, ap-northeast-2):
+	//   Version 12.1 (available in all AWS regions except ap-south-1, ap-northeast-2):
 	//  12.1.0.1.v1 | 12.1.0.1.v2
 	//
-	//    Version 12.1 (only available in AWS regions ap-northeast-1, ap-southeast-1,
+	//   Version 12.1 (only available in AWS regions ap-northeast-1, ap-southeast-1,
 	// ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-west-1,
 	// us-west-2):  12.1.0.1.v3 | 12.1.0.1.v4 | 12.1.0.1.v5
 	//
-	//    Version 11.2 (available in all AWS regions):  11.2.0.4.v1 | 11.2.0.4.v3
+	//   Version 11.2 (available in all AWS regions):  11.2.0.4.v1 | 11.2.0.4.v3
 	// | 11.2.0.4.v4
 	//
-	//    Version 11.2 (available in all AWS regions except us-gov-west-1):  11.2.0.4.v5
+	//   Version 11.2 (available in all AWS regions except us-gov-west-1):  11.2.0.4.v5
 	// | 11.2.0.4.v6 | 11.2.0.4.v7 | 11.2.0.4.v8
 	//
-	//    Oracle Database Standard Edition One (oracle-se1)
+	//   Oracle Database Standard Edition One (oracle-se1)
 	//
-	//    Version 12.1 (available in all AWS regions except ap-south-1, ap-northeast-2):
+	//   Version 12.1 (available in all AWS regions except ap-south-1, ap-northeast-2):
 	//  12.1.0.1.v1 | 12.1.0.1.v2
 	//
-	//    Version 12.1 (only available in AWS regions ap-northeast-1, ap-southeast-1,
+	//   Version 12.1 (only available in AWS regions ap-northeast-1, ap-southeast-1,
 	// ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-west-1,
 	// us-west-2):  12.1.0.1.v3 | 12.1.0.1.v4 | 12.1.0.1.v5
 	//
-	//    Version 11.2 (available in all AWS regions):  11.2.0.4.v1 | 11.2.0.4.v3
+	//   Version 11.2 (available in all AWS regions):  11.2.0.4.v1 | 11.2.0.4.v3
 	// | 11.2.0.4.v4
 	//
-	//    Version 11.2 (available in all AWS regions except us-gov-west-1):  11.2.0.4.v5
+	//   Version 11.2 (available in all AWS regions except us-gov-west-1):  11.2.0.4.v5
 	// | 11.2.0.4.v6 | 11.2.0.4.v7 | 11.2.0.4.v8
 	//
-	//    Oracle Database Standard Edition Two (oracle-se2)
+	//   Oracle Database Standard Edition Two (oracle-se2)
 	//
-	//    Version 12.1 (available in all AWS regions except us-gov-west-1):  12.1.0.2.v2
+	//   Version 12.1 (available in all AWS regions except us-gov-west-1):  12.1.0.2.v2
 	// | 12.1.0.2.v3 | 12.1.0.2.v4
 	//
-	//    PostgreSQL
+	//   PostgreSQL
 	//
-	//    Version 9.5 (available in all AWS regions except us-gov-west-1):  9.5.2
+	//   Version 9.5 (available in all AWS regions except us-gov-west-1):  9.5.2
 	//
-	//    Version 9.4 (available in all AWS regions except ap-south-1):  9.4.1
-	// | 9.4.4
+	//   Version 9.4 (available in all AWS regions except ap-south-1):  9.4.1 |
+	// 9.4.4
 	//
-	//    Version 9.4 (available in all AWS regions):  9.4.5
+	//   Version 9.4 (available in all AWS regions):  9.4.5
 	//
-	//    Version 9.4 (available in all AWS regions except us-gov-west-1):  9.4.7
+	//   Version 9.4 (available in all AWS regions except us-gov-west-1):  9.4.7
 	//
-	//    Version 9.3 (only available in AWS regions ap-northeast-1, ap-southeast-1,
+	//   Version 9.3 (only available in AWS regions ap-northeast-1, ap-southeast-1,
 	// ap-southeast-2, eu-west-1, sa-east-1, us-east-1, us-gov-west-1, us-west-1,
 	// us-west-2):  9.3.1 | 9.3.2
 	//
-	//    Version 9.3 (available in all AWS regions except ap-south-1, ap-northeast-2):
+	//   Version 9.3 (available in all AWS regions except ap-south-1, ap-northeast-2):
 	//  9.3.10 | 9.3.3 | 9.3.5 | 9.3.6 | 9.3.9
 	//
-	//    Version 9.3 (only available in AWS regions ap-northeast-1, ap-southeast-1,
+	//   Version 9.3 (only available in AWS regions ap-northeast-1, ap-southeast-1,
 	// ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-west-1,
 	// us-west-2):  9.3.12
 	EngineVersion *string `type:"string"`
@@ -6613,7 +6613,7 @@ type CreateDBInstanceInput struct {
 
 	// License model information for this DB instance.
 	//
-	//  Valid values: license-included | bring-your-own-license | general-public-license
+	// Valid values: license-included | bring-your-own-license | general-public-license
 	LicenseModel *string `type:"string"`
 
 	// The password for the master database user. Can be any printable ASCII character
@@ -6621,34 +6621,34 @@ type CreateDBInstanceInput struct {
 	//
 	// Type: String
 	//
-	//  MySQL
+	// MySQL
 	//
 	// Constraints: Must contain from 8 to 41 characters.
 	//
-	//  MariaDB
+	// MariaDB
 	//
 	// Constraints: Must contain from 8 to 41 characters.
 	//
-	//  Oracle
+	// Oracle
 	//
 	// Constraints: Must contain from 8 to 30 characters.
 	//
-	//  SQL Server
+	// SQL Server
 	//
 	// Constraints: Must contain from 8 to 128 characters.
 	//
-	//  PostgreSQL
+	// PostgreSQL
 	//
 	// Constraints: Must contain from 8 to 128 characters.
 	//
-	//  Amazon Aurora
+	// Amazon Aurora
 	//
 	// Constraints: Must contain from 8 to 41 characters.
 	MasterUserPassword *string `type:"string"`
 
 	// The name of master user for the client DB instance.
 	//
-	//  MySQL
+	// MySQL
 	//
 	// Constraints:
 	//
@@ -6658,7 +6658,7 @@ type CreateDBInstanceInput struct {
 	//
 	//   Cannot be a reserved word for the chosen database engine.
 	//
-	//    MariaDB
+	//   MariaDB
 	//
 	// Constraints:
 	//
@@ -6668,7 +6668,7 @@ type CreateDBInstanceInput struct {
 	//
 	//   Type: String
 	//
-	//  Oracle
+	// Oracle
 	//
 	// Constraints:
 	//
@@ -6678,7 +6678,7 @@ type CreateDBInstanceInput struct {
 	//
 	//   Cannot be a reserved word for the chosen database engine.
 	//
-	//    SQL Server
+	//   SQL Server
 	//
 	// Constraints:
 	//
@@ -6688,7 +6688,7 @@ type CreateDBInstanceInput struct {
 	//
 	//   Cannot be a reserved word for the chosen database engine.
 	//
-	//    PostgreSQL
+	//   PostgreSQL
 	//
 	// Constraints:
 	//
@@ -6732,48 +6732,48 @@ type CreateDBInstanceInput struct {
 
 	// The port number on which the database accepts connections.
 	//
-	//  MySQL
+	// MySQL
 	//
-	//  Default: 3306
+	// Default: 3306
 	//
-	//  Valid Values: 1150-65535
-	//
-	// Type: Integer
-	//
-	//  MariaDB
-	//
-	//  Default: 3306
-	//
-	//  Valid Values: 1150-65535
+	// Valid Values: 1150-65535
 	//
 	// Type: Integer
 	//
-	//  PostgreSQL
+	// MariaDB
 	//
-	//  Default: 5432
+	// Default: 3306
 	//
-	//  Valid Values: 1150-65535
+	// Valid Values: 1150-65535
 	//
 	// Type: Integer
 	//
-	//  Oracle
+	// PostgreSQL
 	//
-	//  Default: 1521
+	// Default: 5432
 	//
-	//  Valid Values: 1150-65535
+	// Valid Values: 1150-65535
 	//
-	//  SQL Server
+	// Type: Integer
 	//
-	//  Default: 1433
+	// Oracle
 	//
-	//  Valid Values: 1150-65535 except for 1434, 3389, 47001, 49152, and 49152
+	// Default: 1521
+	//
+	// Valid Values: 1150-65535
+	//
+	// SQL Server
+	//
+	// Default: 1433
+	//
+	// Valid Values: 1150-65535 except for 1434, 3389, 47001, 49152, and 49152
 	// through 49156.
 	//
-	//  Amazon Aurora
+	// Amazon Aurora
 	//
-	//  Default: 3306
+	// Default: 3306
 	//
-	//  Valid Values: 1150-65535
+	// Valid Values: 1150-65535
 	//
 	// Type: Integer
 	Port *int64 `type:"integer"`
@@ -6782,8 +6782,8 @@ type CreateDBInstanceInput struct {
 	// backups are enabled, using the BackupRetentionPeriod parameter. For more
 	// information, see DB Instance Backups (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.BackingUpAndRestoringAmazonRDSInstances.html).
 	//
-	//  Default: A 30-minute window selected at random from an 8-hour block of
-	// time per region. To see the time blocks available, see  Adjusting the Preferred
+	// Default: A 30-minute window selected at random from an 8-hour block of time
+	// per region. To see the time blocks available, see  Adjusting the Preferred
 	// Maintenance Window (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/AdjustingTheMaintenanceWindow.html)
 	// in the Amazon RDS User Guide.
 	//
@@ -6802,10 +6802,10 @@ type CreateDBInstanceInput struct {
 	// Coordinated Time (UTC). For more information, see DB Instance Maintenance
 	// (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBMaintenance.html).
 	//
-	//  Format: ddd:hh24:mi-ddd:hh24:mi
+	// Format: ddd:hh24:mi-ddd:hh24:mi
 	//
-	//  Default: A 30-minute window selected at random from an 8-hour block of
-	// time per region, occurring on a random day of the week. To see the time blocks
+	// Default: A 30-minute window selected at random from an 8-hour block of time
+	// per region, occurring on a random day of the week. To see the time blocks
 	// available, see  Adjusting the Preferred Maintenance Window (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/AdjustingTheMaintenanceWindow.html)
 	// in the Amazon RDS User Guide.
 	//
@@ -6831,9 +6831,9 @@ type CreateDBInstanceInput struct {
 	// Default: The default behavior varies depending on whether a VPC has been
 	// requested or not. The following list shows the default behavior in each case.
 	//
-	//    Default VPC: true
+	//   Default VPC: true
 	//
-	//    VPC: false
+	//   VPC: false
 	//
 	//   If no DB subnet group has been specified as part of the request and the
 	// PubliclyAccessible value has not been set, the DB instance will be publicly
@@ -6849,11 +6849,11 @@ type CreateDBInstanceInput struct {
 
 	// Specifies the storage type to be associated with the DB instance.
 	//
-	//  Valid values: standard | gp2 | io1
+	// Valid values: standard | gp2 | io1
 	//
-	//  If you specify io1, you must also include a value for the Iops parameter.
+	// If you specify io1, you must also include a value for the Iops parameter.
 	//
-	//  Default: io1 if the Iops parameter is specified; otherwise standard
+	// Default: io1 if the Iops parameter is specified; otherwise standard
 	StorageType *string `type:"string"`
 
 	// A list of tags.
@@ -6910,11 +6910,11 @@ type CreateDBInstanceOutput struct {
 
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//    CreateDBInstance
+	//   CreateDBInstance
 	//
-	//    DeleteDBInstance
+	//   DeleteDBInstance
 	//
-	//    ModifyDBInstance
+	//   ModifyDBInstance
 	//
 	//   This data type is used as a response element in the DescribeDBInstances
 	// action.
@@ -6944,7 +6944,7 @@ type CreateDBInstanceReadReplicaInput struct {
 	//
 	// Default: A random, system-chosen Availability Zone in the endpoint's region.
 	//
-	//  Example: us-east-1d
+	// Example: us-east-1d
 	AvailabilityZone *string `type:"string"`
 
 	// True to copy all tags from the Read Replica to snapshots of the Read Replica;
@@ -6953,7 +6953,7 @@ type CreateDBInstanceReadReplicaInput struct {
 
 	// The compute and memory capacity of the Read Replica.
 	//
-	//  Valid Values: db.m1.small | db.m1.medium | db.m1.large | db.m1.xlarge |
+	// Valid Values: db.m1.small | db.m1.medium | db.m1.large | db.m1.xlarge |
 	// db.m2.xlarge |db.m2.2xlarge | db.m2.4xlarge | db.m3.medium | db.m3.large
 	// | db.m3.xlarge | db.m3.2xlarge | db.m4.large | db.m4.xlarge | db.m4.2xlarge
 	// | db.m4.4xlarge | db.m4.10xlarge | db.r3.large | db.r3.xlarge | db.r3.2xlarge
@@ -7037,9 +7037,9 @@ type CreateDBInstanceReadReplicaInput struct {
 	// Default: The default behavior varies depending on whether a VPC has been
 	// requested or not. The following list shows the default behavior in each case.
 	//
-	//    Default VPC:true
+	//   Default VPC:true
 	//
-	//    VPC:false
+	//   VPC:false
 	//
 	//   If no DB subnet group has been specified as part of the request and the
 	// PubliclyAccessible value has not been set, the DB instance will be publicly
@@ -7075,11 +7075,11 @@ type CreateDBInstanceReadReplicaInput struct {
 
 	// Specifies the storage type to be associated with the Read Replica.
 	//
-	//  Valid values: standard | gp2 | io1
+	// Valid values: standard | gp2 | io1
 	//
-	//  If you specify io1, you must also include a value for the Iops parameter.
+	// If you specify io1, you must also include a value for the Iops parameter.
 	//
-	//  Default: io1 if the Iops parameter is specified; otherwise standard
+	// Default: io1 if the Iops parameter is specified; otherwise standard
 	StorageType *string `type:"string"`
 
 	// A list of tags.
@@ -7117,11 +7117,11 @@ type CreateDBInstanceReadReplicaOutput struct {
 
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//    CreateDBInstance
+	//   CreateDBInstance
 	//
-	//    DeleteDBInstance
+	//   DeleteDBInstance
 	//
-	//    ModifyDBInstance
+	//   ModifyDBInstance
 	//
 	//   This data type is used as a response element in the DescribeDBInstances
 	// action.
@@ -7273,13 +7273,13 @@ type CreateDBSecurityGroupOutput struct {
 
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//    DescribeDBSecurityGroups
+	//   DescribeDBSecurityGroups
 	//
-	//    AuthorizeDBSecurityGroupIngress
+	//   AuthorizeDBSecurityGroupIngress
 	//
-	//    CreateDBSecurityGroup
+	//   CreateDBSecurityGroup
 	//
-	//    RevokeDBSecurityGroupIngress
+	//   RevokeDBSecurityGroupIngress
 	//
 	//   This data type is used as a response element in the DescribeDBSecurityGroups
 	// action.
@@ -7360,9 +7360,9 @@ type CreateDBSnapshotOutput struct {
 
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//    CreateDBSnapshot
+	//   CreateDBSnapshot
 	//
-	//    DeleteDBSnapshot
+	//   DeleteDBSnapshot
 	//
 	//   This data type is used as a response element in the DescribeDBSnapshots
 	// action.
@@ -7434,13 +7434,13 @@ type CreateDBSubnetGroupOutput struct {
 
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//    CreateDBSubnetGroup
+	//   CreateDBSubnetGroup
 	//
-	//    ModifyDBSubnetGroup
+	//   ModifyDBSubnetGroup
 	//
-	//    DescribeDBSubnetGroups
+	//   DescribeDBSubnetGroups
 	//
-	//    DeleteDBSubnetGroup
+	//   DeleteDBSubnetGroup
 	//
 	//   This data type is used as a response element in the DescribeDBSubnetGroups
 	// action.
@@ -7640,17 +7640,17 @@ func (s CreateOptionGroupOutput) GoString() string {
 
 // Contains the result of a successful invocation of the following actions:
 //
-//    CreateDBCluster
+//   CreateDBCluster
 //
-//    DeleteDBCluster
+//   DeleteDBCluster
 //
-//    FailoverDBCluster
+//   FailoverDBCluster
 //
-//    ModifyDBCluster
+//   ModifyDBCluster
 //
-//    RestoreDBClusterFromSnapshot
+//   RestoreDBClusterFromSnapshot
 //
-//    RestoreDBClusterToPointInTime
+//   RestoreDBClusterToPointInTime
 //
 //   This data type is used as a response element in the DescribeDBClusters
 // action.
@@ -7898,9 +7898,9 @@ func (s DBClusterParameterGroupNameMessage) GoString() string {
 
 // Contains the result of a successful invocation of the following actions:
 //
-//    CreateDBClusterSnapshot
+//   CreateDBClusterSnapshot
 //
-//    DeleteDBClusterSnapshot
+//   DeleteDBClusterSnapshot
 //
 //   This data type is used as a response element in the DescribeDBClusterSnapshots
 // action.
@@ -8088,11 +8088,11 @@ func (s DBEngineVersion) GoString() string {
 
 // Contains the result of a successful invocation of the following actions:
 //
-//    CreateDBInstance
+//   CreateDBInstance
 //
-//    DeleteDBInstance
+//   DeleteDBInstance
 //
-//    ModifyDBInstance
+//   ModifyDBInstance
 //
 //   This data type is used as a response element in the DescribeDBInstances
 // action.
@@ -8144,7 +8144,7 @@ type DBInstance struct {
 	// when returning values from CreateDBInstanceReadReplica since Read Replicas
 	// are only supported for these engines.
 	//
-	//  MySQL, MariaDB, SQL Server, PostgreSQL, Amazon Aurora
+	// MySQL, MariaDB, SQL Server, PostgreSQL, Amazon Aurora
 	//
 	// Contains the name of the initial database of this instance that was provided
 	// at create time, if one was specified when the DB instance was created. This
@@ -8152,7 +8152,7 @@ type DBInstance struct {
 	//
 	// Type: String
 	//
-	//  Oracle
+	// Oracle
 	//
 	// Contains the Oracle System ID (SID) of the created DB instance. Not shown
 	// when the returned parameters do not apply to an Oracle DB instance.
@@ -8253,9 +8253,9 @@ type DBInstance struct {
 	// Default: The default behavior varies depending on whether a VPC has been
 	// requested or not. The following list shows the default behavior in each case.
 	//
-	//    Default VPC:true
+	//   Default VPC:true
 	//
-	//    VPC:false
+	//   VPC:false
 	//
 	//   If no DB subnet group has been specified as part of the request and the
 	// PubliclyAccessible value has not been set, the DB instance will be publicly
@@ -8395,17 +8395,17 @@ func (s DBParameterGroupNameMessage) GoString() string {
 //
 // This data type is used as a response element in the following actions:
 //
-//    CreateDBInstance
+//   CreateDBInstance
 //
-//    CreateDBInstanceReadReplica
+//   CreateDBInstanceReadReplica
 //
-//    DeleteDBInstance
+//   DeleteDBInstance
 //
-//    ModifyDBInstance
+//   ModifyDBInstance
 //
-//    RebootDBInstance
+//   RebootDBInstance
 //
-//    RestoreDBInstanceFromDBSnapshot
+//   RestoreDBInstanceFromDBSnapshot
 type DBParameterGroupStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -8428,13 +8428,13 @@ func (s DBParameterGroupStatus) GoString() string {
 
 // Contains the result of a successful invocation of the following actions:
 //
-//    DescribeDBSecurityGroups
+//   DescribeDBSecurityGroups
 //
-//    AuthorizeDBSecurityGroupIngress
+//   AuthorizeDBSecurityGroupIngress
 //
-//    CreateDBSecurityGroup
+//   CreateDBSecurityGroup
 //
-//    RevokeDBSecurityGroupIngress
+//   RevokeDBSecurityGroupIngress
 //
 //   This data type is used as a response element in the DescribeDBSecurityGroups
 // action.
@@ -8475,13 +8475,13 @@ func (s DBSecurityGroup) GoString() string {
 
 // This data type is used as a response element in the following actions:
 //
-//    ModifyDBInstance
+//   ModifyDBInstance
 //
-//    RebootDBInstance
+//   RebootDBInstance
 //
-//    RestoreDBInstanceFromDBSnapshot
+//   RestoreDBInstanceFromDBSnapshot
 //
-//    RestoreDBInstanceToPointInTime
+//   RestoreDBInstanceToPointInTime
 type DBSecurityGroupMembership struct {
 	_ struct{} `type:"structure"`
 
@@ -8504,9 +8504,9 @@ func (s DBSecurityGroupMembership) GoString() string {
 
 // Contains the result of a successful invocation of the following actions:
 //
-//    CreateDBSnapshot
+//   CreateDBSnapshot
 //
-//    DeleteDBSnapshot
+//   DeleteDBSnapshot
 //
 //   This data type is used as a response element in the DescribeDBSnapshots
 // action.
@@ -8670,13 +8670,13 @@ func (s DBSnapshotAttributesResult) GoString() string {
 
 // Contains the result of a successful invocation of the following actions:
 //
-//    CreateDBSubnetGroup
+//   CreateDBSubnetGroup
 //
-//    ModifyDBSubnetGroup
+//   ModifyDBSubnetGroup
 //
-//    DescribeDBSubnetGroups
+//   DescribeDBSubnetGroups
 //
-//    DeleteDBSubnetGroup
+//   DeleteDBSubnetGroup
 //
 //   This data type is used as a response element in the DescribeDBSubnetGroups
 // action.
@@ -8730,7 +8730,7 @@ type DeleteDBClusterInput struct {
 	// The DB cluster snapshot identifier of the new DB cluster snapshot created
 	// when SkipFinalSnapshot is set to false.
 	//
-	//   Specifying this parameter and also setting the SkipFinalShapshot parameter
+	//  Specifying this parameter and also setting the SkipFinalShapshot parameter
 	// to true results in an error.
 	//
 	//  Constraints:
@@ -8781,17 +8781,17 @@ type DeleteDBClusterOutput struct {
 
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//    CreateDBCluster
+	//   CreateDBCluster
 	//
-	//    DeleteDBCluster
+	//   DeleteDBCluster
 	//
-	//    FailoverDBCluster
+	//   FailoverDBCluster
 	//
-	//    ModifyDBCluster
+	//   ModifyDBCluster
 	//
-	//    RestoreDBClusterFromSnapshot
+	//   RestoreDBClusterFromSnapshot
 	//
-	//    RestoreDBClusterToPointInTime
+	//   RestoreDBClusterToPointInTime
 	//
 	//   This data type is used as a response element in the DescribeDBClusters
 	// action.
@@ -8898,9 +8898,9 @@ type DeleteDBClusterSnapshotOutput struct {
 
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//    CreateDBClusterSnapshot
+	//   CreateDBClusterSnapshot
 	//
-	//    DeleteDBClusterSnapshot
+	//   DeleteDBClusterSnapshot
 	//
 	//   This data type is used as a response element in the DescribeDBClusterSnapshots
 	// action.
@@ -8994,11 +8994,11 @@ type DeleteDBInstanceOutput struct {
 
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//    CreateDBInstance
+	//   CreateDBInstance
 	//
-	//    DeleteDBInstance
+	//   DeleteDBInstance
 	//
-	//    ModifyDBInstance
+	//   ModifyDBInstance
 	//
 	//   This data type is used as a response element in the DescribeDBInstances
 	// action.
@@ -9161,9 +9161,9 @@ type DeleteDBSnapshotOutput struct {
 
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//    CreateDBSnapshot
+	//   CreateDBSnapshot
 	//
-	//    DeleteDBSnapshot
+	//   DeleteDBSnapshot
 	//
 	//   This data type is used as a response element in the DescribeDBSnapshots
 	// action.
@@ -9745,16 +9745,16 @@ type DescribeDBClusterSnapshotsInput struct {
 	// The type of DB cluster snapshots to be returned. You can specify one of the
 	// following values:
 	//
-	//    automated - Return all DB cluster snapshots that have been automatically
+	//   automated - Return all DB cluster snapshots that have been automatically
 	// taken by Amazon RDS for my AWS account.
 	//
-	//    manual - Return all DB cluster snapshots that have been taken by my AWS
+	//   manual - Return all DB cluster snapshots that have been taken by my AWS
 	// account.
 	//
-	//    shared - Return all manual DB cluster snapshots that have been shared
+	//   shared - Return all manual DB cluster snapshots that have been shared
 	// to my AWS account.
 	//
-	//    public - Return all DB cluster snapshots that have been marked as public.
+	//   public - Return all DB cluster snapshots that have been marked as public.
 	//
 	//   If you don't specify a SnapshotType value, then both automated and manual
 	// DB cluster snapshots are returned. You can include shared DB cluster snapshots
@@ -10602,15 +10602,15 @@ type DescribeDBSnapshotsInput struct {
 	// The type of snapshots to be returned. You can specify one of the following
 	// values:
 	//
-	//    automated - Return all DB snapshots that have been automatically taken
+	//   automated - Return all DB snapshots that have been automatically taken
 	// by Amazon RDS for my AWS account.
 	//
-	//    manual - Return all DB snapshots that have been taken by my AWS account.
+	//   manual - Return all DB snapshots that have been taken by my AWS account.
 	//
-	//    shared - Return all manual DB snapshots that have been shared to my AWS
+	//   shared - Return all manual DB snapshots that have been shared to my AWS
 	// account.
 	//
-	//    public - Return all DB snapshots that have been marked as public.
+	//   public - Return all DB snapshots that have been marked as public.
 	//
 	//   If you don't specify a SnapshotType value, then both automated and manual
 	// snapshots are returned. Shared and public DB snapshots are not included in
@@ -11443,7 +11443,7 @@ type DescribePendingMaintenanceActionsInput struct {
 	//
 	// Supported filters:
 	//
-	//    db-instance-id - Accepts DB instance identifiers and DB instance Amazon
+	//   db-instance-id - Accepts DB instance identifiers and DB instance Amazon
 	// Resource Names (ARNs). The results list will only include pending maintenance
 	// actions for the DB instances identified by these ARNs.
 	Filters []*Filter `locationNameList:"Filter" type:"list"`
@@ -11944,11 +11944,11 @@ func (s DownloadDBLogFilePortionOutput) GoString() string {
 
 // This data type is used as a response element in the following actions:
 //
-//    AuthorizeDBSecurityGroupIngress
+//   AuthorizeDBSecurityGroupIngress
 //
-//    DescribeDBSecurityGroups
+//   DescribeDBSecurityGroups
 //
-//    RevokeDBSecurityGroupIngress
+//   RevokeDBSecurityGroupIngress
 type EC2SecurityGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -11979,11 +11979,11 @@ func (s EC2SecurityGroup) GoString() string {
 
 // This data type is used as a response element in the following actions:
 //
-//    CreateDBInstance
+//   CreateDBInstance
 //
-//    DescribeDBInstances
+//   DescribeDBInstances
 //
-//    DeleteDBInstance
+//   DeleteDBInstance
 type Endpoint struct {
 	_ struct{} `type:"structure"`
 
@@ -12182,17 +12182,17 @@ type FailoverDBClusterOutput struct {
 
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//    CreateDBCluster
+	//   CreateDBCluster
 	//
-	//    DeleteDBCluster
+	//   DeleteDBCluster
 	//
-	//    FailoverDBCluster
+	//   FailoverDBCluster
 	//
-	//    ModifyDBCluster
+	//   ModifyDBCluster
 	//
-	//    RestoreDBClusterFromSnapshot
+	//   RestoreDBClusterFromSnapshot
 	//
-	//    RestoreDBClusterToPointInTime
+	//   RestoreDBClusterToPointInTime
 	//
 	//   This data type is used as a response element in the DescribeDBClusters
 	// action.
@@ -12438,7 +12438,7 @@ type ModifyDBClusterInput struct {
 	// The weekly time range during which system maintenance can occur, in Universal
 	// Coordinated Time (UTC).
 	//
-	//  Format: ddd:hh24:mi-ddd:hh24:mi
+	// Format: ddd:hh24:mi-ddd:hh24:mi
 	//
 	// Default: A 30-minute window selected at random from an 8-hour block of time
 	// per region, occurring on a random day of the week. To see the time blocks
@@ -12482,17 +12482,17 @@ type ModifyDBClusterOutput struct {
 
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//    CreateDBCluster
+	//   CreateDBCluster
 	//
-	//    DeleteDBCluster
+	//   DeleteDBCluster
 	//
-	//    FailoverDBCluster
+	//   FailoverDBCluster
 	//
-	//    ModifyDBCluster
+	//   ModifyDBCluster
 	//
-	//    RestoreDBClusterFromSnapshot
+	//   RestoreDBClusterFromSnapshot
 	//
-	//    RestoreDBClusterToPointInTime
+	//   RestoreDBClusterToPointInTime
 	//
 	//   This data type is used as a response element in the DescribeDBClusters
 	// action.
@@ -12634,7 +12634,7 @@ type ModifyDBInstanceInput struct {
 	// not result in an outage and the change is applied during the next maintenance
 	// window unless ApplyImmediately is set to true for this request.
 	//
-	//  MySQL
+	// MySQL
 	//
 	// Default: Uses existing setting
 	//
@@ -12646,7 +12646,7 @@ type ModifyDBInstanceInput struct {
 	//
 	// Type: Integer
 	//
-	//  MariaDB
+	// MariaDB
 	//
 	// Default: Uses existing setting
 	//
@@ -12658,7 +12658,7 @@ type ModifyDBInstanceInput struct {
 	//
 	// Type: Integer
 	//
-	//  PostgreSQL
+	// PostgreSQL
 	//
 	// Default: Uses existing setting
 	//
@@ -12670,7 +12670,7 @@ type ModifyDBInstanceInput struct {
 	//
 	// Type: Integer
 	//
-	//  Oracle
+	// Oracle
 	//
 	// Default: Uses existing setting
 	//
@@ -12680,7 +12680,7 @@ type ModifyDBInstanceInput struct {
 	// value. Values that are not at least 10% greater than the existing value are
 	// rounded up so that they are 10% greater than the current value.
 	//
-	//  SQL Server
+	// SQL Server
 	//
 	// Cannot be modified.
 	//
@@ -12712,7 +12712,7 @@ type ModifyDBInstanceInput struct {
 	// are asynchronously applied as soon as possible, regardless of the PreferredMaintenanceWindow
 	// setting for the DB instance.
 	//
-	//  If this parameter is set to false, changes to the DB instance are applied
+	// If this parameter is set to false, changes to the DB instance are applied
 	// during the next maintenance window. Some parameter changes can cause an outage
 	// and will be applied on the next call to RebootDBInstance, or the next failure
 	// reboot. Review the table of parameters in Modifying a DB Instance and Using
@@ -12768,7 +12768,7 @@ type ModifyDBInstanceInput struct {
 	// instance classes that are available for a particular DB engine, use the DescribeOrderableDBInstanceOptions
 	// action.
 	//
-	//  Passing a value for this setting causes an outage during the change and
+	// Passing a value for this setting causes an outage during the change and
 	// is applied during the next maintenance window, unless ApplyImmediately is
 	// specified as true for this request.
 	//
@@ -12816,44 +12816,44 @@ type ModifyDBInstanceInput struct {
 	// Your database will restart when you change the DBPortNumber value regardless
 	// of the value of the ApplyImmediately parameter.
 	//
-	//  MySQL
+	// MySQL
 	//
-	//  Default: 3306
+	// Default: 3306
 	//
-	//  Valid Values: 1150-65535
+	// Valid Values: 1150-65535
 	//
-	//  MariaDB
+	// MariaDB
 	//
-	//  Default: 3306
+	// Default: 3306
 	//
-	//  Valid Values: 1150-65535
+	// Valid Values: 1150-65535
 	//
-	//  PostgreSQL
+	// PostgreSQL
 	//
-	//  Default: 5432
+	// Default: 5432
 	//
-	//  Valid Values: 1150-65535
+	// Valid Values: 1150-65535
 	//
 	// Type: Integer
 	//
-	//  Oracle
+	// Oracle
 	//
-	//  Default: 1521
+	// Default: 1521
 	//
-	//  Valid Values: 1150-65535
+	// Valid Values: 1150-65535
 	//
-	//  SQL Server
+	// SQL Server
 	//
-	//  Default: 1433
+	// Default: 1433
 	//
-	//  Valid Values: 1150-65535 except for 1434, 3389, 47001, 49152, and 49152
+	// Valid Values: 1150-65535 except for 1434, 3389, 47001, 49152, and 49152
 	// through 49156.
 	//
-	//  Amazon Aurora
+	// Amazon Aurora
 	//
-	//  Default: 3306
+	// Default: 3306
 	//
-	//  Valid Values: 1150-65535
+	// Valid Values: 1150-65535
 	DBPortNumber *int64 `type:"integer"`
 
 	// A list of DB security groups to authorize on this DB instance. Changing this
@@ -12920,7 +12920,7 @@ type ModifyDBInstanceInput struct {
 	// The DB instance will require a reboot for the change in storage type to take
 	// effect.
 	//
-	//  SQL Server
+	// SQL Server
 	//
 	// Setting the IOPS value for the SQL Server database engine is not supported.
 	//
@@ -12949,10 +12949,10 @@ type ModifyDBInstanceInput struct {
 	// The new password for the DB instance master user. Can be any printable ASCII
 	// character except "/", """, or "@".
 	//
-	//  Changing this parameter does not result in an outage and the change is
-	// asynchronously applied as soon as possible. Between the time of the request
-	// and the completion of the request, the MasterUserPassword element exists
-	// in the PendingModifiedValues element of the operation response.
+	// Changing this parameter does not result in an outage and the change is asynchronously
+	// applied as soon as possible. Between the time of the request and the completion
+	// of the request, the MasterUserPassword element exists in the PendingModifiedValues
+	// element of the operation response.
 	//
 	// Default: Uses existing setting
 	//
@@ -13068,7 +13068,7 @@ type ModifyDBInstanceInput struct {
 	// to make the DB instance internal with a DNS name that resolves to a private
 	// IP address.
 	//
-	//  PubliclyAccessible only applies to DB instances in a VPC. The DB instance
+	// PubliclyAccessible only applies to DB instances in a VPC. The DB instance
 	// must be part of a public subnet and PubliclyAccessible must be true in order
 	// for it to be publicly accessible.
 	//
@@ -13080,11 +13080,11 @@ type ModifyDBInstanceInput struct {
 
 	// Specifies the storage type to be associated with the DB instance.
 	//
-	//  Valid values: standard | gp2 | io1
+	// Valid values: standard | gp2 | io1
 	//
-	//  If you specify io1, you must also include a value for the Iops parameter.
+	// If you specify io1, you must also include a value for the Iops parameter.
 	//
-	//  Default: io1 if the Iops parameter is specified; otherwise standard
+	// Default: io1 if the Iops parameter is specified; otherwise standard
 	StorageType *string `type:"string"`
 
 	// The ARN from the Key Store with which to associate the instance for TDE encryption.
@@ -13135,11 +13135,11 @@ type ModifyDBInstanceOutput struct {
 
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//    CreateDBInstance
+	//   CreateDBInstance
 	//
-	//    DeleteDBInstance
+	//   DeleteDBInstance
 	//
-	//    ModifyDBInstance
+	//   ModifyDBInstance
 	//
 	//   This data type is used as a response element in the DescribeDBInstances
 	// action.
@@ -13340,13 +13340,13 @@ type ModifyDBSubnetGroupOutput struct {
 
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//    CreateDBSubnetGroup
+	//   CreateDBSubnetGroup
 	//
-	//    ModifyDBSubnetGroup
+	//   ModifyDBSubnetGroup
 	//
-	//    DescribeDBSubnetGroups
+	//   DescribeDBSubnetGroups
 	//
-	//    DeleteDBSubnetGroup
+	//   DeleteDBSubnetGroup
 	//
 	//   This data type is used as a response element in the DescribeDBSubnetGroups
 	// action.
@@ -13827,7 +13827,7 @@ func (s OptionVersion) GoString() string {
 
 // Contains a list of available options for a DB instance
 //
-//  This data type is used as a response element in the DescribeOrderableDBInstanceOptions
+// This data type is used as a response element in the DescribeOrderableDBInstanceOptions
 // action.
 type OrderableDBInstanceOption struct {
 	_ struct{} `type:"structure"`
@@ -14081,17 +14081,17 @@ type PromoteReadReplicaDBClusterOutput struct {
 
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//    CreateDBCluster
+	//   CreateDBCluster
 	//
-	//    DeleteDBCluster
+	//   DeleteDBCluster
 	//
-	//    FailoverDBCluster
+	//   FailoverDBCluster
 	//
-	//    ModifyDBCluster
+	//   ModifyDBCluster
 	//
-	//    RestoreDBClusterFromSnapshot
+	//   RestoreDBClusterFromSnapshot
 	//
-	//    RestoreDBClusterToPointInTime
+	//   RestoreDBClusterToPointInTime
 	//
 	//   This data type is used as a response element in the DescribeDBClusters
 	// action.
@@ -14140,8 +14140,8 @@ type PromoteReadReplicaInput struct {
 	// The daily time range during which automated backups are created if automated
 	// backups are enabled, using the BackupRetentionPeriod parameter.
 	//
-	//  Default: A 30-minute window selected at random from an 8-hour block of
-	// time per region. To see the time blocks available, see  Adjusting the Preferred
+	// Default: A 30-minute window selected at random from an 8-hour block of time
+	// per region. To see the time blocks available, see  Adjusting the Preferred
 	// Maintenance Window (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/AdjustingTheMaintenanceWindow.html)
 	// in the Amazon RDS User Guide.
 	//
@@ -14185,11 +14185,11 @@ type PromoteReadReplicaOutput struct {
 
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//    CreateDBInstance
+	//   CreateDBInstance
 	//
-	//    DeleteDBInstance
+	//   DeleteDBInstance
 	//
-	//    ModifyDBInstance
+	//   ModifyDBInstance
 	//
 	//   This data type is used as a response element in the DescribeDBInstances
 	// action.
@@ -14318,11 +14318,11 @@ type RebootDBInstanceOutput struct {
 
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//    CreateDBInstance
+	//   CreateDBInstance
 	//
-	//    DeleteDBInstance
+	//   DeleteDBInstance
 	//
-	//    ModifyDBInstance
+	//   ModifyDBInstance
 	//
 	//   This data type is used as a response element in the DescribeDBInstances
 	// action.
@@ -14635,7 +14635,7 @@ type ResetDBParameterGroupInput struct {
 	// subsequent arguments are optional. A maximum of 20 parameters can be modified
 	// in a single request.
 	//
-	//  MySQL
+	// MySQL
 	//
 	// Valid Values (for Apply method): immediate | pending-reboot
 	//
@@ -14643,7 +14643,7 @@ type ResetDBParameterGroupInput struct {
 	// the pending-reboot value for both dynamic and static parameters, and changes
 	// are applied when DB instance reboots.
 	//
-	//  MariaDB
+	// MariaDB
 	//
 	// Valid Values (for Apply method): immediate | pending-reboot
 	//
@@ -14651,7 +14651,7 @@ type ResetDBParameterGroupInput struct {
 	// the pending-reboot value for both dynamic and static parameters, and changes
 	// are applied when DB instance reboots.
 	//
-	//  Oracle
+	// Oracle
 	//
 	// Valid Values (for Apply method): pending-reboot
 	Parameters []*Parameter `locationNameList:"Parameter" type:"list"`
@@ -14773,7 +14773,7 @@ type RestoreDBClusterFromS3Input struct {
 
 	// The version number of the database engine to use.
 	//
-	//  Aurora
+	// Aurora
 	//
 	// Example: 5.6.10a
 	EngineVersion *string `type:"string"`
@@ -14818,7 +14818,7 @@ type RestoreDBClusterFromS3Input struct {
 	// The port number on which the instances in the restored DB cluster accept
 	// connections.
 	//
-	//  Default: 3306
+	// Default: 3306
 	Port *int64 `type:"integer"`
 
 	// The daily time range during which automated backups are created if automated
@@ -14843,7 +14843,7 @@ type RestoreDBClusterFromS3Input struct {
 	// The weekly time range during which system maintenance can occur, in Universal
 	// Coordinated Time (UTC).
 	//
-	//  Format: ddd:hh24:mi-ddd:hh24:mi
+	// Format: ddd:hh24:mi-ddd:hh24:mi
 	//
 	// Default: A 30-minute window selected at random from an 8-hour block of time
 	// per region, occurring on a random day of the week. To see the time blocks
@@ -14942,17 +14942,17 @@ type RestoreDBClusterFromS3Output struct {
 
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//    CreateDBCluster
+	//   CreateDBCluster
 	//
-	//    DeleteDBCluster
+	//   DeleteDBCluster
 	//
-	//    FailoverDBCluster
+	//   FailoverDBCluster
 	//
-	//    ModifyDBCluster
+	//   ModifyDBCluster
 	//
-	//    RestoreDBClusterFromSnapshot
+	//   RestoreDBClusterFromSnapshot
 	//
-	//    RestoreDBClusterToPointInTime
+	//   RestoreDBClusterToPointInTime
 	//
 	//   This data type is used as a response element in the DescribeDBClusters
 	// action.
@@ -15091,17 +15091,17 @@ type RestoreDBClusterFromSnapshotOutput struct {
 
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//    CreateDBCluster
+	//   CreateDBCluster
 	//
-	//    DeleteDBCluster
+	//   DeleteDBCluster
 	//
-	//    FailoverDBCluster
+	//   FailoverDBCluster
 	//
-	//    ModifyDBCluster
+	//   ModifyDBCluster
 	//
-	//    RestoreDBClusterFromSnapshot
+	//   RestoreDBClusterFromSnapshot
 	//
-	//    RestoreDBClusterToPointInTime
+	//   RestoreDBClusterToPointInTime
 	//
 	//   This data type is used as a response element in the DescribeDBClusters
 	// action.
@@ -15248,17 +15248,17 @@ type RestoreDBClusterToPointInTimeOutput struct {
 
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//    CreateDBCluster
+	//   CreateDBCluster
 	//
-	//    DeleteDBCluster
+	//   DeleteDBCluster
 	//
-	//    FailoverDBCluster
+	//   FailoverDBCluster
 	//
-	//    ModifyDBCluster
+	//   ModifyDBCluster
 	//
-	//    RestoreDBClusterFromSnapshot
+	//   RestoreDBClusterFromSnapshot
 	//
-	//    RestoreDBClusterToPointInTime
+	//   RestoreDBClusterToPointInTime
 	//
 	//   This data type is used as a response element in the DescribeDBClusters
 	// action.
@@ -15360,7 +15360,7 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//
 	// Constraint: Must be compatible with the engine of the source
 	//
-	//  Valid Values: MySQL | mariadb | oracle-se1 | oracle-se | oracle-ee | sqlserver-ee
+	// Valid Values: MySQL | mariadb | oracle-se1 | oracle-se | oracle-ee | sqlserver-ee
 	// | sqlserver-se | sqlserver-ex | sqlserver-web | postgres | aurora
 	Engine *string `type:"string"`
 
@@ -15373,7 +15373,7 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//
 	// Constraints: Must be an integer greater than 1000.
 	//
-	//  SQL Server
+	// SQL Server
 	//
 	// Setting the IOPS value for the SQL Server database engine is not supported.
 	Iops *int64 `type:"integer"`
@@ -15382,7 +15382,7 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//
 	// Default: Same as source.
 	//
-	//  Valid values: license-included | bring-your-own-license | general-public-license
+	// Valid values: license-included | bring-your-own-license | general-public-license
 	LicenseModel *string `type:"string"`
 
 	// Specifies if the DB instance is a Multi-AZ deployment.
@@ -15413,9 +15413,9 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// Default: The default behavior varies depending on whether a VPC has been
 	// requested or not. The following list shows the default behavior in each case.
 	//
-	//    Default VPC: true
+	//   Default VPC: true
 	//
-	//    VPC: false
+	//   VPC: false
 	//
 	//   If no DB subnet group has been specified as part of the request and the
 	// PubliclyAccessible value has not been set, the DB instance will be publicly
@@ -15426,11 +15426,11 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 
 	// Specifies the storage type to be associated with the DB instance.
 	//
-	//  Valid values: standard | gp2 | io1
+	// Valid values: standard | gp2 | io1
 	//
-	//  If you specify io1, you must also include a value for the Iops parameter.
+	// If you specify io1, you must also include a value for the Iops parameter.
 	//
-	//  Default: io1 if the Iops parameter is specified; otherwise standard
+	// Default: io1 if the Iops parameter is specified; otherwise standard
 	StorageType *string `type:"string"`
 
 	// A list of tags.
@@ -15475,11 +15475,11 @@ type RestoreDBInstanceFromDBSnapshotOutput struct {
 
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//    CreateDBInstance
+	//   CreateDBInstance
 	//
-	//    DeleteDBInstance
+	//   DeleteDBInstance
 	//
-	//    ModifyDBInstance
+	//   ModifyDBInstance
 	//
 	//   This data type is used as a response element in the DescribeDBInstances
 	// action.
@@ -15554,7 +15554,7 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	//
 	// Constraint: Must be compatible with the engine of the source
 	//
-	//  Valid Values: MySQL | mariadb | oracle-se1 | oracle-se | oracle-ee | sqlserver-ee
+	// Valid Values: MySQL | mariadb | oracle-se1 | oracle-se | oracle-ee | sqlserver-ee
 	// | sqlserver-se | sqlserver-ex | sqlserver-web | postgres | aurora
 	Engine *string `type:"string"`
 
@@ -15563,7 +15563,7 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	//
 	// Constraints: Must be an integer greater than 1000.
 	//
-	//  SQL Server
+	// SQL Server
 	//
 	// Setting the IOPS value for the SQL Server database engine is not supported.
 	Iops *int64 `type:"integer"`
@@ -15572,7 +15572,7 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	//
 	// Default: Same as source.
 	//
-	//  Valid values: license-included | bring-your-own-license | general-public-license
+	// Valid values: license-included | bring-your-own-license | general-public-license
 	LicenseModel *string `type:"string"`
 
 	// Specifies if the DB instance is a Multi-AZ deployment.
@@ -15603,9 +15603,9 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	// Default: The default behavior varies depending on whether a VPC has been
 	// requested or not. The following list shows the default behavior in each case.
 	//
-	//    Default VPC:true
+	//   Default VPC:true
 	//
-	//    VPC:false
+	//   VPC:false
 	//
 	//   If no DB subnet group has been specified as part of the request and the
 	// PubliclyAccessible value has not been set, the DB instance will be publicly
@@ -15642,11 +15642,11 @@ type RestoreDBInstanceToPointInTimeInput struct {
 
 	// Specifies the storage type to be associated with the DB instance.
 	//
-	//  Valid values: standard | gp2 | io1
+	// Valid values: standard | gp2 | io1
 	//
-	//  If you specify io1, you must also include a value for the Iops parameter.
+	// If you specify io1, you must also include a value for the Iops parameter.
 	//
-	//  Default: io1 if the Iops parameter is specified; otherwise standard
+	// Default: io1 if the Iops parameter is specified; otherwise standard
 	StorageType *string `type:"string"`
 
 	// A list of tags.
@@ -15710,11 +15710,11 @@ type RestoreDBInstanceToPointInTimeOutput struct {
 
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//    CreateDBInstance
+	//   CreateDBInstance
 	//
-	//    DeleteDBInstance
+	//   DeleteDBInstance
 	//
-	//    ModifyDBInstance
+	//   ModifyDBInstance
 	//
 	//   This data type is used as a response element in the DescribeDBInstances
 	// action.
@@ -15788,13 +15788,13 @@ type RevokeDBSecurityGroupIngressOutput struct {
 
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//    DescribeDBSecurityGroups
+	//   DescribeDBSecurityGroups
 	//
-	//    AuthorizeDBSecurityGroupIngress
+	//   AuthorizeDBSecurityGroupIngress
 	//
-	//    CreateDBSecurityGroup
+	//   CreateDBSecurityGroup
 	//
-	//    RevokeDBSecurityGroupIngress
+	//   RevokeDBSecurityGroupIngress
 	//
 	//   This data type is used as a response element in the DescribeDBSecurityGroups
 	// action.
@@ -15843,9 +15843,9 @@ type Subnet struct {
 
 	// Contains Availability Zone information.
 	//
-	//  This data type is used as an element in the following data type:
+	// This data type is used as an element in the following data type:
 	//
-	//    OrderableDBInstanceOption
+	//   OrderableDBInstanceOption
 	SubnetAvailabilityZone *AvailabilityZone `type:"structure"`
 
 	// Specifies the identifier of the subnet.

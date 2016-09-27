@@ -5082,7 +5082,7 @@ type SearchGameSessionsInput struct {
 	// expression, use the logical keywords AND, OR, and NOT and parentheses as
 	// needed. For example: x AND y AND NOT z, NOT (x OR y).
 	//
-	//  Session search evaluates conditions from left to right using the following
+	// Session search evaluates conditions from left to right using the following
 	// precedence rules:
 	//
 	//   =, &lt;&gt;, &lt;, &gt;, &lt;=, &gt;=  Parentheses  NOT AND OR  For example,

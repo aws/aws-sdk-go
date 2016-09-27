@@ -16,7 +16,7 @@ import (
 // applications running in on-premises data centers, their associated dependencies,
 // and their performance profile.
 //
-//  Planning data center migrations can involve thousands of workloads that
+// Planning data center migrations can involve thousands of workloads that
 // are often deeply interdependent. Application discovery and dependency mapping
 // are important early first steps in the migration process, but difficult to
 // perform at scale due to the lack of automated tools.
@@ -46,7 +46,7 @@ import (
 //
 // The following are short descriptions of each API action, organized by function.
 //
-//  Managing AWS Agents Using the Application Discovery Service
+// Managing AWS Agents Using the Application Discovery Service
 //
 // An AWS agent is software that you install on on-premises servers and virtual
 // machines that are targeted for discovery and migration. Agents run on Linux
@@ -82,19 +82,19 @@ import (
 //   The Application Discovery Service API includes the following actions to
 // manage AWS agents:
 //
-//    StartDataCollectionByAgentIds: Instructs the specified agents to start
+//   StartDataCollectionByAgentIds: Instructs the specified agents to start
 // collecting data. The Application Discovery Service takes several minutes
 // to receive and process data after you initiate data collection.
 //
-//    StopDataCollectionByAgentIds: Instructs the specified agents to stop
-// collecting data.
+//   StopDataCollectionByAgentIds: Instructs the specified agents to stop collecting
+// data.
 //
-//    DescribeAgents: Lists AWS agents by ID or lists all agents associated
+//   DescribeAgents: Lists AWS agents by ID or lists all agents associated
 // with your user account if you did not specify an agent ID. The output includes
 // agent IDs, IP addresses, media access control (MAC) addresses, agent health,
 // host name where the agent resides, and the version number of each agent.
 //
-//    Querying Configuration Items
+//   Querying Configuration Items
 //
 // A configuration item is an IT asset that was discovered in your data center
 // by an AWS agent. When you use the Application Discovery Service, you can
@@ -167,43 +167,43 @@ import (
 //   The Application Discovery Service includes the following actions for querying
 // configuration items.
 //
-//    DescribeConfigurations: Retrieves a list of attributes for a specific
+//   DescribeConfigurations: Retrieves a list of attributes for a specific
 // configuration ID. For example, the output for a server configuration item
 // includes a list of attributes about the server, including host name, operating
 // system, number of network cards, etc.
 //
-//    ListConfigurations: Retrieves a list of configuration items according
+//   ListConfigurations: Retrieves a list of configuration items according
 // to the criteria you specify in a filter. The filter criteria identify relationship
 // requirements. For example, you can specify filter criteria of process.name
 // with values of nginx and apache.
 //
-//    Tagging Discovered Configuration Items
+//   Tagging Discovered Configuration Items
 //
 // You can tag discovered configuration items. Tags are metadata that help
 // you categorize IT assets in your data center. Tags use a key-value format.
 // For example, {"key": "serverType", "value": "webServer"}.
 //
-//    CreateTags: Creates one or more tags for a configuration items.
+//   CreateTags: Creates one or more tags for a configuration items.
 //
-//    DescribeTags: Retrieves a list of configuration items that are tagged
+//   DescribeTags: Retrieves a list of configuration items that are tagged
 // with a specific tag. Or, retrieves a list of all tags assigned to a specific
 // configuration item.
 //
-//    DeleteTags: Deletes the association between a configuration item and
-// one or more tags.
+//   DeleteTags: Deletes the association between a configuration item and one
+// or more tags.
 //
-//    Exporting Data
+//   Exporting Data
 //
 // You can export data as a CSV file to an Amazon S3 bucket or into your preferred
 // visualization tool or cloud migration solution to help reduce the complexity
 // and time in planning your cloud migration.
 //
-//    ExportConfigurations: Exports all discovered configuration data to an
+//   ExportConfigurations: Exports all discovered configuration data to an
 // Amazon S3 bucket. Data includes tags and tag associations, processes, connections,
 // servers, and system performance. This API returns an export ID which you
 // can query using the GetExportStatus API.
 //
-//    DescribeExportConfigurations: Gets the status of the data export. When
+//   DescribeExportConfigurations: Gets the status of the data export. When
 // the export is complete, the service returns an Amazon S3 URL where you can
 // download CSV files that include the data.
 //The service client's operations are safe to be used concurrently.

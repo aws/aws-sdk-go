@@ -121,12 +121,12 @@ func (c *KinesisAnalytics) AddApplicationOutputRequest(input *AddApplicationOutp
 // for your application. Each output configuration maps an in-application stream
 // and an external destination.
 //
-//  You can use one of the output configurations to deliver data from your
-// in-application error stream to an external destination so that you can analyze
-// the errors. For conceptual information, see Understanding Application Output
-// (Destination) (http://docs.aws.amazon.com/kinesisanalytics/latest/dev/how-it-works-output.html).
+// You can use one of the output configurations to deliver data from your in-application
+// error stream to an external destination so that you can analyze the errors.
+// For conceptual information, see Understanding Application Output (Destination)
+// (http://docs.aws.amazon.com/kinesisanalytics/latest/dev/how-it-works-output.html).
 //
-//  Note that any configuration update, including adding a streaming source
+// Note that any configuration update, including adding a streaming source
 // using this operation, results in a new version of the application. You can
 // use the DescribeApplication operation to find the current application version.
 //
@@ -191,11 +191,11 @@ func (c *KinesisAnalytics) AddApplicationReferenceDataSourceRequest(input *AddAp
 // describes how data in Amazon S3 object maps to columns in the resulting in-application
 // table.
 //
-//  For conceptual information, see Configuring Application Input (http://docs.aws.amazon.com/kinesisanalytics/latest/dev/how-it-works-input.html).
+// For conceptual information, see Configuring Application Input (http://docs.aws.amazon.com/kinesisanalytics/latest/dev/how-it-works-input.html).
 // For the limits on data sources you can add to your application, see Limits
 // (http://docs.aws.amazon.com/kinesisanalytics/latest/dev/limits.html).
 //
-//  This operation requires permissions to perform the kinesisanalytics:AddApplicationOutput
+// This operation requires permissions to perform the kinesisanalytics:AddApplicationOutput
 // action.
 func (c *KinesisAnalytics) AddApplicationReferenceDataSource(input *AddApplicationReferenceDataSourceInput) (*AddApplicationReferenceDataSourceOutput, error) {
 	req, out := c.AddApplicationReferenceDataSourceRequest(input)
@@ -264,12 +264,12 @@ func (c *KinesisAnalytics) CreateApplicationRequest(input *CreateApplicationInpu
 // data from in-application streams created in your applications to up to five
 // streaming destinations.
 //
-//  To read data from your source stream or write data to destination streams,
+// To read data from your source stream or write data to destination streams,
 // Amazon Kinesis Analytics needs your permissions. You grant these permissions
 // by creating IAM roles. This operation requires permissions to perform the
 // kinesisanalytics:CreateApplication action.
 //
-//  For introductory exercises to create an Amazon Kinesis Analytics application,
+// For introductory exercises to create an Amazon Kinesis Analytics application,
 // see Getting Started (http://docs.aws.amazon.com/kinesisanalytics/latest/dev/getting-started.html).
 func (c *KinesisAnalytics) CreateApplication(input *CreateApplicationInput) (*CreateApplicationOutput, error) {
 	req, out := c.CreateApplicationRequest(input)
@@ -540,14 +540,14 @@ func (c *KinesisAnalytics) DiscoverInputSchemaRequest(input *DiscoverInputSchema
 // response, the operation returns the inferred schema and also the sample records
 // that the operation used to infer the schema.
 //
-//  You can use the inferred schema when configuring a streaming source for
+// You can use the inferred schema when configuring a streaming source for
 // your application. For conceptual information, see Configuring Application
 // Input (http://docs.aws.amazon.com/kinesisanalytics/latest/dev/how-it-works-input.html).
 // Note that when you create an application using the Amazon Kinesis Analytics
 // console, the console uses this operation to infer a schema and show it in
 // the console user interface.
 //
-//  This operation requires permissions to perform the kinesisanalytics:DiscoverInputSchema
+// This operation requires permissions to perform the kinesisanalytics:DiscoverInputSchema
 // action.
 func (c *KinesisAnalytics) DiscoverInputSchema(input *DiscoverInputSchemaInput) (*DiscoverInputSchemaOutput, error) {
 	req, out := c.DiscoverInputSchemaRequest(input)
@@ -660,7 +660,7 @@ func (c *KinesisAnalytics) StartApplicationRequest(input *StartApplicationInput)
 // After the application starts, it begins consuming the input data, processes
 // it, and writes the output to the configured destination.
 //
-//  The application status must be READY for you to start an application. You
+// The application status must be READY for you to start an application. You
 // can get the application status in the console or using the DescribeApplication
 // operation.
 //
@@ -1154,9 +1154,9 @@ func (s *ApplicationUpdate) Validate() error {
 // the records use the '\n' as the row delimiter and a comma (",") as the column
 // delimiter:
 //
-//  "name1", "address1"
+// "name1", "address1"
 //
-//  "name2, "address2"
+// "name2, "address2"
 type CSVMappingParameters struct {
 	_ struct{} `type:"structure"`
 
@@ -1672,7 +1672,7 @@ type Input struct {
 	//
 	// Data from your source will be routed to these in-application input streams.
 	//
-	//  (see Configuring Application Input (http://docs.aws.amazon.com/kinesisanalytics/latest/dev/how-it-works-input.html).
+	// (see Configuring Application Input (http://docs.aws.amazon.com/kinesisanalytics/latest/dev/how-it-works-input.html).
 	InputParallelism *InputParallelism `type:"structure"`
 
 	// Describes the format of the data in the streaming source, and how each data
@@ -1963,13 +1963,13 @@ type InputStartingPositionConfiguration struct {
 
 	// The starting position on the stream.
 	//
-	//    LATEST - Start reading just after the most recent record in the stream.
+	//   LATEST - Start reading just after the most recent record in the stream.
 	//
-	//    TRIM_HORIZON - Start reading at the last untrimmed record in the stream,
+	//   TRIM_HORIZON - Start reading at the last untrimmed record in the stream,
 	// which is the oldest record available in the stream. This option is not available
 	// for an Amazon Kinesis Firehose delivery stream.
 	//
-	//    LAST_STOPPED_POINT - Resume reading from where the application last stopped
+	//   LAST_STOPPED_POINT - Resume reading from where the application last stopped
 	// reading.
 	InputStartingPosition *string `type:"string" enum:"InputStartingPosition"`
 }

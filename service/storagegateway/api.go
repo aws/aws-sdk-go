@@ -3257,19 +3257,19 @@ func (c *StorageGateway) UpdateVTLDeviceType(input *UpdateVTLDeviceTypeInput) (*
 
 // A JSON object containing one or more of the following fields:
 //
-//    ActivateGatewayInput$ActivationKey
+//   ActivateGatewayInput$ActivationKey
 //
-//    ActivateGatewayInput$GatewayName
+//   ActivateGatewayInput$GatewayName
 //
-//    ActivateGatewayInput$GatewayRegion
+//   ActivateGatewayInput$GatewayRegion
 //
-//    ActivateGatewayInput$GatewayTimezone
+//   ActivateGatewayInput$GatewayTimezone
 //
-//    ActivateGatewayInput$GatewayType
+//   ActivateGatewayInput$GatewayType
 //
-//    ActivateGatewayInput$TapeDriveType
+//   ActivateGatewayInput$TapeDriveType
 //
-//    ActivateGatewayInput$MediumChangerType
+//   ActivateGatewayInput$MediumChangerType
 type ActivateGatewayInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3291,7 +3291,7 @@ type ActivateGatewayInput struct {
 	// and endpoints for AWS Storage Gateway, see Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html#sg_region)
 	// in the Amazon Web Services Glossary.
 	//
-	//  Valid Values: "us-east-1", "us-west-1", "us-west-2", "eu-west-1", "eu-central-1",
+	// Valid Values: "us-east-1", "us-west-1", "us-west-2", "eu-west-1", "eu-central-1",
 	// "ap-northeast-1", "ap-northeast-2", "ap-southeast-1", "ap-southeast-2", "sa-east-1"
 	GatewayRegion *string `min:"1" type:"string" required:"true"`
 
@@ -3308,13 +3308,13 @@ type ActivateGatewayInput struct {
 	// The value that indicates the type of medium changer to use for gateway-VTL.
 	// This field is optional.
 	//
-	//  Valid Values: "STK-L700", "AWS-Gateway-VTL"
+	// Valid Values: "STK-L700", "AWS-Gateway-VTL"
 	MediumChangerType *string `min:"2" type:"string"`
 
 	// The value that indicates the type of tape drive to use for gateway-VTL. This
 	// field is optional.
 	//
-	//  Valid Values: "IBM-ULT3580-TD5"
+	// Valid Values: "IBM-ULT3580-TD5"
 	TapeDriveType *string `min:"2" type:"string"`
 }
 
@@ -3585,7 +3585,7 @@ func (s AddUploadBufferOutput) GoString() string {
 
 // A JSON object containing one or more of the following fields:
 //
-//    AddWorkingStorageInput$DiskIds
+//   AddWorkingStorageInput$DiskIds
 type AddWorkingStorageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3825,7 +3825,7 @@ type ChapInfo struct {
 
 	// The Amazon Resource Name (ARN) of the volume.
 	//
-	//  Valid Values: 50 to 500 lowercase letters, numbers, periods (.), and hyphens
+	// Valid Values: 50 to 500 lowercase letters, numbers, periods (.), and hyphens
 	// (-).
 	TargetARN *string `min:"50" type:"string"`
 }
@@ -3982,9 +3982,9 @@ func (s CreateSnapshotFromVolumeRecoveryPointOutput) GoString() string {
 
 // A JSON object containing one or more of the following fields:
 //
-//    CreateSnapshotInput$SnapshotDescription
+//   CreateSnapshotInput$SnapshotDescription
 //
-//    CreateSnapshotInput$VolumeARN
+//   CreateSnapshotInput$VolumeARN
 type CreateSnapshotInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4055,15 +4055,15 @@ func (s CreateSnapshotOutput) GoString() string {
 
 // A JSON object containing one or more of the following fields:
 //
-//    CreateStorediSCSIVolumeInput$DiskId
+//   CreateStorediSCSIVolumeInput$DiskId
 //
-//    CreateStorediSCSIVolumeInput$NetworkInterfaceId
+//   CreateStorediSCSIVolumeInput$NetworkInterfaceId
 //
-//    CreateStorediSCSIVolumeInput$PreserveExistingData
+//   CreateStorediSCSIVolumeInput$PreserveExistingData
 //
-//    CreateStorediSCSIVolumeInput$SnapshotId
+//   CreateStorediSCSIVolumeInput$SnapshotId
 //
-//    CreateStorediSCSIVolumeInput$TargetName
+//   CreateStorediSCSIVolumeInput$TargetName
 type CreateStorediSCSIVolumeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4080,13 +4080,13 @@ type CreateStorediSCSIVolumeInput struct {
 	// Only IPv4 addresses are accepted. Use DescribeGatewayInformation to get a
 	// list of the network interfaces available on a gateway.
 	//
-	//  Valid Values: A valid IP address.
+	// Valid Values: A valid IP address.
 	NetworkInterfaceId *string `type:"string" required:"true"`
 
 	// Specify this field as true if you want to preserve the data on the local
 	// disk. Otherwise, specifying this field as false creates an empty volume.
 	//
-	//  Valid Values: true, false
+	// Valid Values: true, false
 	PreserveExistingData *bool `type:"boolean" required:"true"`
 
 	// The snapshot ID (e.g. "snap-1122aabb") of the snapshot to restore as the
@@ -4405,9 +4405,9 @@ func (s DeleteBandwidthRateLimitOutput) GoString() string {
 
 // A JSON object containing one or more of the following fields:
 //
-//    DeleteChapCredentialsInput$InitiatorName
+//   DeleteChapCredentialsInput$InitiatorName
 //
-//    DeleteChapCredentialsInput$TargetARN
+//   DeleteChapCredentialsInput$TargetARN
 type DeleteChapCredentialsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4964,16 +4964,16 @@ type DescribeChapCredentialsOutput struct {
 	// pair. If no CHAP credentials are set, an empty array is returned. CHAP credential
 	// information is provided in a JSON object with the following fields:
 	//
-	//    InitiatorName: The iSCSI initiator that connects to the target.
+	//   InitiatorName: The iSCSI initiator that connects to the target.
 	//
-	//    SecretToAuthenticateInitiator: The secret key that the initiator (for
+	//   SecretToAuthenticateInitiator: The secret key that the initiator (for
 	// example, the Windows client) must provide to participate in mutual CHAP with
 	// the target.
 	//
-	//    SecretToAuthenticateTarget: The secret key that the target must provide
+	//   SecretToAuthenticateTarget: The secret key that the target must provide
 	// to participate in mutual CHAP with the initiator (e.g. Windows client).
 	//
-	//    TargetARN: The Amazon Resource Name (ARN) of the storage volume.
+	//   TargetARN: The Amazon Resource Name (ARN) of the storage volume.
 	ChapCredentials []*ChapInfo `type:"list"`
 }
 
@@ -5857,9 +5857,9 @@ func (s GatewayInfo) GoString() string {
 
 // A JSON object containing zero or more of the following fields:
 //
-//    ListGatewaysInput$Limit
+//   ListGatewaysInput$Limit
 //
-//    ListGatewaysInput$Marker
+//   ListGatewaysInput$Marker
 type ListGatewaysInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6048,11 +6048,11 @@ func (s ListTagsForResourceOutput) GoString() string {
 
 // A JSON object that contains one or more of the following fields:
 //
-//    ListTapesInput$Limit
+//   ListTapesInput$Limit
 //
-//    ListTapesInput$Marker
+//   ListTapesInput$Marker
 //
-//    ListTapesInput$TapeARNs
+//   ListTapesInput$TapeARNs
 type ListTapesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6097,9 +6097,9 @@ func (s *ListTapesInput) Validate() error {
 
 // A JSON object containing the following fields:
 //
-//    ListTapesOutput$Marker
+//   ListTapesOutput$Marker
 //
-//    ListTapesOutput$VolumeInfos
+//   ListTapesOutput$VolumeInfos
 type ListTapesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6235,9 +6235,9 @@ func (s ListVolumeRecoveryPointsOutput) GoString() string {
 
 // A JSON object that contains one or more of the following fields:
 //
-//    ListVolumesInput$Limit
+//   ListVolumesInput$Limit
 //
-//    ListVolumesInput$Marker
+//   ListVolumesInput$Marker
 type ListVolumesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6958,9 +6958,9 @@ func (s TapeRecoveryPointInfo) GoString() string {
 
 // A JSON object containing one or more of the following fields:
 //
-//    UpdateBandwidthRateLimitInput$AverageDownloadRateLimitInBitsPerSec
+//   UpdateBandwidthRateLimitInput$AverageDownloadRateLimitInBitsPerSec
 //
-//    UpdateBandwidthRateLimitInput$AverageUploadRateLimitInBitsPerSec
+//   UpdateBandwidthRateLimitInput$AverageUploadRateLimitInBitsPerSec
 type UpdateBandwidthRateLimitInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7029,13 +7029,13 @@ func (s UpdateBandwidthRateLimitOutput) GoString() string {
 
 // A JSON object containing one or more of the following fields:
 //
-//    UpdateChapCredentialsInput$InitiatorName
+//   UpdateChapCredentialsInput$InitiatorName
 //
-//    UpdateChapCredentialsInput$SecretToAuthenticateInitiator
+//   UpdateChapCredentialsInput$SecretToAuthenticateInitiator
 //
-//    UpdateChapCredentialsInput$SecretToAuthenticateTarget
+//   UpdateChapCredentialsInput$SecretToAuthenticateTarget
 //
-//    UpdateChapCredentialsInput$TargetARN
+//   UpdateChapCredentialsInput$TargetARN
 type UpdateChapCredentialsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7247,11 +7247,11 @@ func (s UpdateGatewaySoftwareNowOutput) GoString() string {
 
 // A JSON object containing the following fields:
 //
-//    UpdateMaintenanceStartTimeInput$DayOfWeek
+//   UpdateMaintenanceStartTimeInput$DayOfWeek
 //
-//    UpdateMaintenanceStartTimeInput$HourOfDay
+//   UpdateMaintenanceStartTimeInput$HourOfDay
 //
-//    UpdateMaintenanceStartTimeInput$MinuteOfHour
+//   UpdateMaintenanceStartTimeInput$MinuteOfHour
 type UpdateMaintenanceStartTimeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7330,13 +7330,13 @@ func (s UpdateMaintenanceStartTimeOutput) GoString() string {
 
 // A JSON object containing one or more of the following fields:
 //
-//    UpdateSnapshotScheduleInput$Description
+//   UpdateSnapshotScheduleInput$Description
 //
-//    UpdateSnapshotScheduleInput$RecurrenceInHours
+//   UpdateSnapshotScheduleInput$RecurrenceInHours
 //
-//    UpdateSnapshotScheduleInput$StartAt
+//   UpdateSnapshotScheduleInput$StartAt
 //
-//    UpdateSnapshotScheduleInput$VolumeARN
+//   UpdateSnapshotScheduleInput$VolumeARN
 type UpdateSnapshotScheduleInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7416,7 +7416,7 @@ type UpdateVTLDeviceTypeInput struct {
 
 	// The type of medium changer you want to select.
 	//
-	//  Valid Values: "STK-L700", "AWS-Gateway-VTL"
+	// Valid Values: "STK-L700", "AWS-Gateway-VTL"
 	DeviceType *string `min:"2" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the medium changer you want to select.
@@ -7513,23 +7513,23 @@ type VolumeInfo struct {
 	// becomes part of the gateway Amazon Resource Name (ARN), which you use as
 	// input for other operations.
 	//
-	//  Valid Values: 50 to 500 lowercase letters, numbers, periods (.), and hyphens
+	// Valid Values: 50 to 500 lowercase letters, numbers, periods (.), and hyphens
 	// (-).
 	GatewayId *string `min:"12" type:"string"`
 
 	// The Amazon Resource Name (ARN) for the storage volume. For example, the following
 	// is a valid ARN:
 	//
-	//  arn:aws:storagegateway:us-east-1:111122223333:gateway/sgw-12A3456B/volume/vol-1122AABB
+	// arn:aws:storagegateway:us-east-1:111122223333:gateway/sgw-12A3456B/volume/vol-1122AABB
 	//
-	//  Valid Values: 50 to 500 lowercase letters, numbers, periods (.), and hyphens
+	// Valid Values: 50 to 500 lowercase letters, numbers, periods (.), and hyphens
 	// (-).
 	VolumeARN *string `min:"50" type:"string"`
 
 	// The unique identifier assigned to the volume. This ID becomes part of the
 	// volume Amazon Resource Name (ARN), which you use as input for other operations.
 	//
-	//  Valid Values: 50 to 500 lowercase letters, numbers, periods (.), and hyphens
+	// Valid Values: 50 to 500 lowercase letters, numbers, periods (.), and hyphens
 	// (-).
 	VolumeId *string `min:"12" type:"string"`
 

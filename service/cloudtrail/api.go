@@ -645,7 +645,7 @@ type AddTagsInput struct {
 	// Specifies the ARN of the trail to which one or more tags will be added. The
 	// format of a trail ARN is:
 	//
-	//  arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
+	// arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
 	ResourceId *string `type:"string" required:"true"`
 
 	// Contains a list of CloudTrail tags, up to a limit of 10.
@@ -829,7 +829,7 @@ type CreateTrailOutput struct {
 	// Specifies the KMS key ID that encrypts the logs delivered by CloudTrail.
 	// The value is a fully specified ARN to a KMS key in the format:
 	//
-	//  arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	KmsKeyId *string `type:"string"`
 
 	// Specifies whether log file integrity validation is enabled.
@@ -850,7 +850,7 @@ type CreateTrailOutput struct {
 	// Specifies the ARN of the Amazon SNS topic that CloudTrail uses to send notifications
 	// when log files are delivered. The format of a topic ARN is:
 	//
-	//  arn:aws:sns:us-east-1:123456789012:MyTopic
+	// arn:aws:sns:us-east-1:123456789012:MyTopic
 	SnsTopicARN *string `type:"string"`
 
 	// This field is deprecated. Use SnsTopicARN.
@@ -859,7 +859,7 @@ type CreateTrailOutput struct {
 	// Specifies the ARN of the trail that was created. The format of a trail ARN
 	// is:
 	//
-	//  arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
+	// arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
 	TrailARN *string `type:"string"`
 }
 
@@ -880,7 +880,7 @@ type DeleteTrailInput struct {
 	// Specifies the name or the CloudTrail ARN of the trail to be deleted. The
 	// format of a trail ARN is:
 	//
-	//  arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
+	// arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
 	Name *string `type:"string" required:"true"`
 }
 
@@ -935,7 +935,7 @@ type DescribeTrailsInput struct {
 	// Specifies a list of trail names, trail ARNs, or both, of the trails to describe.
 	// The format of a trail ARN is:
 	//
-	//  arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
+	// arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
 	//
 	// If an empty list is specified, information for the trail in the current
 	// region is returned.
@@ -1026,7 +1026,7 @@ type GetTrailStatusInput struct {
 	// status. To get the status of a shadow trail (a replication of the trail in
 	// another region), you must specify its ARN. The format of a trail ARN is:
 	//
-	//  arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
+	// arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
 	Name *string `type:"string" required:"true"`
 }
 
@@ -1206,7 +1206,7 @@ type ListTagsInput struct {
 	// Specifies a list of trail ARNs whose tags will be listed. The list has a
 	// limit of 20 ARNs. The format of a trail ARN is:
 	//
-	//  arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
+	// arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
 	ResourceIdList []*string `type:"list" required:"true"`
 }
 
@@ -1418,7 +1418,7 @@ type RemoveTagsInput struct {
 	// Specifies the ARN of the trail from which tags should be removed. The format
 	// of a trail ARN is:
 	//
-	//  arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
+	// arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
 	ResourceId *string `type:"string" required:"true"`
 
 	// Specifies a list of tags to be removed.
@@ -1530,7 +1530,7 @@ type StartLoggingInput struct {
 	// Specifies the name or the CloudTrail ARN of the trail for which CloudTrail
 	// logs AWS API calls. The format of a trail ARN is:
 	//
-	//  arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
+	// arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
 	Name *string `type:"string" required:"true"`
 }
 
@@ -1581,7 +1581,7 @@ type StopLoggingInput struct {
 	// Specifies the name or the CloudTrail ARN of the trail for which CloudTrail
 	// will stop logging AWS API calls. The format of a trail ARN is:
 	//
-	//  arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
+	// arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
 	Name *string `type:"string" required:"true"`
 }
 
@@ -1685,7 +1685,7 @@ type Trail struct {
 	// Specifies the KMS key ID that encrypts the logs delivered by CloudTrail.
 	// The value is a fully specified ARN to a KMS key in the format:
 	//
-	//  arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	KmsKeyId *string `type:"string"`
 
 	// Specifies whether log file validation is enabled.
@@ -1707,7 +1707,7 @@ type Trail struct {
 	// Specifies the ARN of the Amazon SNS topic that CloudTrail uses to send notifications
 	// when log files are delivered. The format of a topic ARN is:
 	//
-	//  arn:aws:sns:us-east-1:123456789012:MyTopic
+	// arn:aws:sns:us-east-1:123456789012:MyTopic
 	SnsTopicARN *string `type:"string"`
 
 	// This field is deprecated. Use SnsTopicARN.
@@ -1715,7 +1715,7 @@ type Trail struct {
 
 	// Specifies the ARN of the trail. The format of a trail ARN is:
 	//
-	//  arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
+	// arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
 	TrailARN *string `type:"string"`
 }
 
@@ -1798,7 +1798,7 @@ type UpdateTrailInput struct {
 	//
 	//   If Name is a trail ARN, it must be in the format:
 	//
-	//  arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
+	// arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
 	Name *string `type:"string" required:"true"`
 
 	// Specifies the name of the Amazon S3 bucket designated for publishing log
@@ -1862,7 +1862,7 @@ type UpdateTrailOutput struct {
 	// Specifies the KMS key ID that encrypts the logs delivered by CloudTrail.
 	// The value is a fully specified ARN to a KMS key in the format:
 	//
-	//  arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	KmsKeyId *string `type:"string"`
 
 	// Specifies whether log file integrity validation is enabled.
@@ -1883,7 +1883,7 @@ type UpdateTrailOutput struct {
 	// Specifies the ARN of the Amazon SNS topic that CloudTrail uses to send notifications
 	// when log files are delivered. The format of a topic ARN is:
 	//
-	//  arn:aws:sns:us-east-1:123456789012:MyTopic
+	// arn:aws:sns:us-east-1:123456789012:MyTopic
 	SnsTopicARN *string `type:"string"`
 
 	// This field is deprecated. Use SnsTopicARN.
@@ -1892,7 +1892,7 @@ type UpdateTrailOutput struct {
 	// Specifies the ARN of the trail that was updated. The format of a trail ARN
 	// is:
 	//
-	//  arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
+	// arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
 	TrailARN *string `type:"string"`
 }
 

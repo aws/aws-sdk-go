@@ -36,7 +36,7 @@ import (
 // maintenance window. The reference structure is as follows, and we list following
 // some related topics from the user guide.
 //
-//  Amazon RDS API Reference
+// Amazon RDS API Reference
 //
 //   For the alphabetical list of API actions, see API Actions (http://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_Operations.html).
 //
@@ -46,7 +46,7 @@ import (
 //
 //   For descriptions of the error codes, see Common Errors (http://docs.aws.amazon.com/AmazonRDS/latest/APIReference/CommonErrors.html).
 //
-//    Amazon RDS User Guide
+//   Amazon RDS User Guide
 //
 //   For a summary of the Amazon RDS interfaces, see Available RDS Interfaces
 // (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html#Welcome.Interfaces).

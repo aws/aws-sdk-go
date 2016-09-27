@@ -338,14 +338,14 @@ func (c *SQS) DeleteMessageRequest(input *DeleteMessageInput) (req *request.Requ
 // If you leave a message in the queue for longer than the queue's configured
 // retention period, Amazon SQS automatically deletes it.
 //
-//   The receipt handle is associated with a specific instance of receiving
+//  The receipt handle is associated with a specific instance of receiving
 // the message. If you receive a message more than once, the receipt handle
 // you get each time you receive the message is different. When you request
 // DeleteMessage, if you don't provide the most recently received receipt handle
 // for the message, the request will still succeed, but the message might not
 // be deleted.
 //
-//    It is possible you will receive a message even after you have deleted
+//   It is possible you will receive a message even after you have deleted
 // it. This might happen on rare occasions if one of the servers storing a copy
 // of the message is unavailable when you request to delete the message. The
 // copy remains on the server and might be returned to you again on a subsequent
@@ -402,7 +402,7 @@ func (c *SQS) DeleteMessageBatchRequest(input *DeleteMessageBatchInput) (req *re
 // of DeleteMessage. The result of the delete action on each message is reported
 // individually in the response.
 //
-//   Because the batch request can result in a combination of successful and
+//  Because the batch request can result in a combination of successful and
 // unsuccessful actions, you should check for batch errors even when the call
 // returns an HTTP status code of 200.
 //
@@ -462,17 +462,16 @@ func (c *SQS) DeleteQueueRequest(input *DeleteQueueInput) (req *request.Request,
 // is empty. If the specified queue does not exist, Amazon SQS returns a successful
 // response.
 //
-//   Use DeleteQueue with care; once you delete your queue, any messages in
+//  Use DeleteQueue with care; once you delete your queue, any messages in
 // the queue are no longer available.
 //
-//   When you delete a queue, the deletion process takes up to 60 seconds.
-// Requests you send involving that queue during the 60 seconds might succeed.
-// For example, a SendMessage request might succeed, but after the 60 seconds,
-// the queue and that message you sent no longer exist. Also, when you delete
-// a queue, you must wait at least 60 seconds before creating a queue with the
-// same name.
+//  When you delete a queue, the deletion process takes up to 60 seconds. Requests
+// you send involving that queue during the 60 seconds might succeed. For example,
+// a SendMessage request might succeed, but after the 60 seconds, the queue
+// and that message you sent no longer exist. Also, when you delete a queue,
+// you must wait at least 60 seconds before creating a queue with the same name.
 //
-//  We reserve the right to delete queues that have had no activity for more
+// We reserve the right to delete queues that have had no activity for more
 // than 30 days. For more information, see How Amazon SQS Queues Work (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSConcepts.html)
 // in the Amazon SQS Developer Guide.
 func (c *SQS) DeleteQueue(input *DeleteQueueInput) (*DeleteQueueOutput, error) {
@@ -577,7 +576,7 @@ func (c *SQS) GetQueueUrlRequest(input *GetQueueUrlInput) (req *request.Request,
 // Returns the URL of an existing queue. This action provides a simple way to
 // retrieve the URL of an Amazon SQS queue.
 //
-//  To access a queue that belongs to another AWS account, use the QueueOwnerAWSAccountId
+// To access a queue that belongs to another AWS account, use the QueueOwnerAWSAccountId
 // parameter to specify the account ID of the queue's owner. The queue's owner
 // must grant you permission to access the queue. For more information about
 // shared queue access, see AddPermission or go to Shared Queues (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/acp-overview.html)
@@ -795,7 +794,7 @@ func (c *SQS) ReceiveMessageRequest(input *ReceiveMessageInput) (req *request.Re
 // parameter. For more information, see Amazon SQS Long Poll (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-long-polling.html)
 // in the Amazon SQS Developer Guide.
 //
-//  Short poll is the default behavior where a weighted random set of machines
+// Short poll is the default behavior where a weighted random set of machines
 // is sampled on a ReceiveMessage call. This means only the messages on the
 // sampled machines are returned. If the number of messages in the queue is
 // small (less than 1000), it is likely you will get fewer messages than you
@@ -803,35 +802,35 @@ func (c *SQS) ReceiveMessageRequest(input *ReceiveMessageInput) (req *request.Re
 // is extremely small, you might not receive any messages in a particular ReceiveMessage
 // response; in which case you should repeat the request.
 //
-//  For each message returned, the response includes the following:
+// For each message returned, the response includes the following:
 //
-//    Message body
+//   Message body
 //
-//    MD5 digest of the message body. For information about MD5, go to http://www.faqs.org/rfcs/rfc1321.html
+//   MD5 digest of the message body. For information about MD5, go to http://www.faqs.org/rfcs/rfc1321.html
 // (http://www.faqs.org/rfcs/rfc1321.html).
 //
-//    Message ID you received when you sent the message to the queue.
+//   Message ID you received when you sent the message to the queue.
 //
-//    Receipt handle.
+//   Receipt handle.
 //
-//    Message attributes.
+//   Message attributes.
 //
-//    MD5 digest of the message attributes.
+//   MD5 digest of the message attributes.
 //
-//    The receipt handle is the identifier you must provide when deleting the
+//   The receipt handle is the identifier you must provide when deleting the
 // message. For more information, see Queue and Message Identifiers (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ImportantIdentifiers.html)
 // in the Amazon SQS Developer Guide.
 //
-//  You can provide the VisibilityTimeout parameter in your request, which
-// will be applied to the messages that Amazon SQS returns in the response.
-// If you do not include the parameter, the overall visibility timeout for the
-// queue is used for the returned messages. For more information, see Visibility
-// Timeout (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html)
+// You can provide the VisibilityTimeout parameter in your request, which will
+// be applied to the messages that Amazon SQS returns in the response. If you
+// do not include the parameter, the overall visibility timeout for the queue
+// is used for the returned messages. For more information, see Visibility Timeout
+// (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html)
 // in the Amazon SQS Developer Guide.
 //
-//   Going forward, new attributes might be added. If you are writing code
-// that calls this action, we recommend that you structure your code so that
-// it can handle new attributes gracefully.
+//  Going forward, new attributes might be added. If you are writing code that
+// calls this action, we recommend that you structure your code so that it can
+// handle new attributes gracefully.
 func (c *SQS) ReceiveMessage(input *ReceiveMessageInput) (*ReceiveMessageOutput, error) {
 	req, out := c.ReceiveMessageRequest(input)
 	err := req.Send()
@@ -936,12 +935,12 @@ func (c *SQS) SendMessageRequest(input *SendMessageInput) (req *request.Request,
 // SigV4 signing. To verify whether SigV4 is supported for an AWS SDK, check
 // the SDK release notes.
 //
-//   The following list shows the characters (in Unicode) allowed in your message,
+//  The following list shows the characters (in Unicode) allowed in your message,
 // according to the W3C XML specification. For more information, go to http://www.w3.org/TR/REC-xml/#charsets
 // (http://www.w3.org/TR/REC-xml/#charsets) If you send any characters not included
 // in the list, your request will be rejected.
 //
-//  #x9 | #xA | #xD | [#x20 to #xD7FF] | [#xE000 to #xFFFD] | [#x10000 to #x10FFFF]
+// #x9 | #xA | #xD | [#x20 to #xD7FF] | [#xE000 to #xFFFD] | [#x10000 to #x10FFFF]
 func (c *SQS) SendMessage(input *SendMessageInput) (*SendMessageOutput, error) {
 	req, out := c.SendMessageRequest(input)
 	err := req.Send()

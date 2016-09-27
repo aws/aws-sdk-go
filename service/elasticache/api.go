@@ -58,7 +58,7 @@ func (c *ElastiCache) AddTagsToResourceRequest(input *AddTagsToResourceInput) (r
 // are case-sensitive. Cost allocation tags can be used to categorize and track
 // your AWS costs.
 //
-//  When you apply tags to your ElastiCache resources, AWS generates a cost
+// When you apply tags to your ElastiCache resources, AWS generates a cost
 // allocation report as a comma-separated value (CSV) file with your usage and
 // costs aggregated by your tags. You can apply tags that represent business
 // categories (such as cost centers, application names, or owners) to organize
@@ -174,10 +174,10 @@ func (c *ElastiCache) CopySnapshotRequest(input *CopySnapshotInput) (req *reques
 // of ElastiCache APIs, see Exporting Snapshots (http://docs.aws.amazon.com/ElastiCache/latest/Snapshots.Exporting.html)
 // and Authentication & Access Control (http://docs.aws.amazon.com/ElastiCache/latest/IAM.html).
 //
-//   Erorr Message:     Error Message: The authenticated user does not have
+//   Erorr Message:    Error Message: The authenticated user does not have
 // sufficient permissions to perform the desired activity.
 //
-//  Solution: Contact your system administrator to get the needed permissions.
+// Solution: Contact your system administrator to get the needed permissions.
 func (c *ElastiCache) CopySnapshot(input *CopySnapshotInput) (*CopySnapshotOutput, error) {
 	req, out := c.CopySnapshotRequest(input)
 	err := req.Send()
@@ -2461,11 +2461,11 @@ type AuthorizeCacheSecurityGroupIngressOutput struct {
 
 	// Represents the output of one of the following actions:
 	//
-	//    AuthorizeCacheSecurityGroupIngress
+	//   AuthorizeCacheSecurityGroupIngress
 	//
-	//    CreateCacheSecurityGroup
+	//   CreateCacheSecurityGroup
 	//
-	//    RevokeCacheSecurityGroupIngress
+	//   RevokeCacheSecurityGroupIngress
 	CacheSecurityGroup *CacheSecurityGroup `type:"structure"`
 }
 
@@ -2537,7 +2537,7 @@ type CacheCluster struct {
 	//
 	//   Previous generation: cache.m2.xlarge, cache.m2.2xlarge, cache.m2.4xlarge
 	//
-	//      Notes:
+	//     Notes:
 	//
 	//   All t2 instances are created in an Amazon Virtual Private Cloud (VPC).
 	//
@@ -2603,19 +2603,19 @@ type CacheCluster struct {
 	// (24H Clock UTC). The minimum maintenance window is a 60 minute period. Valid
 	// values for ddd are:
 	//
-	//    sun
+	//   sun
 	//
-	//    mon
+	//   mon
 	//
-	//    tue
+	//   tue
 	//
-	//    wed
+	//   wed
 	//
-	//    thu
+	//   thu
 	//
-	//    fri
+	//   fri
 	//
-	//    sat
+	//   sat
 	//
 	//   Example: sun:05:00-sun:09:00
 	PreferredMaintenanceWindow *string `type:"string"`
@@ -2632,7 +2632,7 @@ type CacheCluster struct {
 	// to 5, then a snapshot that was taken today will be retained for 5 days before
 	// being deleted.
 	//
-	//   If the value of SnapshotRetentionLimit is set to zero (0), backups are
+	//  If the value of SnapshotRetentionLimit is set to zero (0), backups are
 	// turned off.
 	SnapshotRetentionLimit *int64 `type:"integer"`
 
@@ -2706,7 +2706,7 @@ func (s CacheEngineVersion) GoString() string {
 //
 //   Previous generation: cache.m2.xlarge, cache.m2.2xlarge, cache.m2.4xlarge
 //
-//      Notes:
+//     Notes:
 //
 //   All t2 instances are created in an Amazon Virtual Private Cloud (VPC).
 //
@@ -2855,9 +2855,9 @@ func (s CacheParameterGroup) GoString() string {
 
 // Represents the output of one of the following actions:
 //
-//    ModifyCacheParameterGroup
+//   ModifyCacheParameterGroup
 //
-//    ResetCacheParameterGroup
+//   ResetCacheParameterGroup
 type CacheParameterGroupNameMessage struct {
 	_ struct{} `type:"structure"`
 
@@ -2902,11 +2902,11 @@ func (s CacheParameterGroupStatus) GoString() string {
 
 // Represents the output of one of the following actions:
 //
-//    AuthorizeCacheSecurityGroupIngress
+//   AuthorizeCacheSecurityGroupIngress
 //
-//    CreateCacheSecurityGroup
+//   CreateCacheSecurityGroup
 //
-//    RevokeCacheSecurityGroupIngress
+//   RevokeCacheSecurityGroupIngress
 type CacheSecurityGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -2959,9 +2959,9 @@ func (s CacheSecurityGroupMembership) GoString() string {
 
 // Represents the output of one of the following actions:
 //
-//    CreateCacheSubnetGroup
+//   CreateCacheSubnetGroup
 //
-//    ModifyCacheSubnetGroup
+//   ModifyCacheSubnetGroup
 type CacheSubnetGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -3004,45 +3004,45 @@ type CopySnapshotInput struct {
 	// 2: Grant ElastiCache Access to Your Amazon S3 Bucket (http://docs.aws.amazon.com/AmazonElastiCache/AmazonElastiCache/latest/UserGuide/Snapshots.Exporting.html#Snapshots.Exporting.GrantAccess)
 	// in the Amazon ElastiCache User Guide.
 	//
-	//  Error Messages:
+	// Error Messages:
 	//
 	// You could receive one of the following error messages.
 	//
-	//  Erorr Messages     Error Message:  ElastiCache has not been granted READ
+	//  Erorr Messages    Error Message:  ElastiCache has not been granted READ
 	// permissions %s on the S3 Bucket.
 	//
-	//  Solution: Add List and Read permissions on the bucket.
+	// Solution: Add List and Read permissions on the bucket.
 	//
-	//    Error Message:  ElastiCache has not been granted WRITE permissions %s
+	//   Error Message:  ElastiCache has not been granted WRITE permissions %s
 	// on the S3 Bucket.
 	//
-	//  Solution: Add Upload/Delete permissions on the bucket.
+	// Solution: Add Upload/Delete permissions on the bucket.
 	//
-	//    Error Message:  ElastiCache has not been granted READ_ACP permissions
+	//   Error Message:  ElastiCache has not been granted READ_ACP permissions
 	// %s on the S3 Bucket.
 	//
-	//  Solution: Add View Permissions permissions on the bucket.
+	// Solution: Add View Permissions permissions on the bucket.
 	//
-	//    Error Message: The S3 bucket %s is outside of the region.
+	//   Error Message: The S3 bucket %s is outside of the region.
 	//
-	//  Solution: Before exporting your snapshot, create a new Amazon S3 bucket
+	// Solution: Before exporting your snapshot, create a new Amazon S3 bucket
 	// in the same region as your snapshot. For more information, see Step 1: Create
 	// an Amazon S3 Bucket (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Snapshots.Exporting.html#Snapshots.Exporting.CreateBucket).
 	//
-	//    Error Message: The S3 bucket %s does not exist.
+	//   Error Message: The S3 bucket %s does not exist.
 	//
-	//  Solution: Create an Amazon S3 bucket in the same region as your snapshot.
+	// Solution: Create an Amazon S3 bucket in the same region as your snapshot.
 	// For more information, see Step 1: Create an Amazon S3 Bucket (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Snapshots.Exporting.html#Snapshots.Exporting.CreateBucket).
 	//
-	//    Error Message: The S3 bucket %s is not owned by the authenticated user.
+	//   Error Message: The S3 bucket %s is not owned by the authenticated user.
 	//
-	//  Solution: Create an Amazon S3 bucket in the same region as your snapshot.
+	// Solution: Create an Amazon S3 bucket in the same region as your snapshot.
 	// For more information, see Step 1: Create an Amazon S3 Bucket (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Snapshots.Exporting.html#Snapshots.Exporting.CreateBucket).
 	//
-	//    Error Message: The authenticated user does not have sufficient permissions
+	//   Error Message: The authenticated user does not have sufficient permissions
 	// to perform the desired activity.
 	//
-	//  Solution: Contact your system administrator to get the needed permissions.
+	// Solution: Contact your system administrator to get the needed permissions.
 	//
 	//   For more information, see Exporting a Snapshot (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Snapshots.Exporting.html)
 	// in the Amazon ElastiCache User Guide.
@@ -3052,10 +3052,10 @@ type CopySnapshotInput struct {
 	// therefore this name must be unique within its context - ElastiCache or an
 	// Amazon S3 bucket if exporting.
 	//
-	//  Error Message     Error Message: The S3 bucket %s already contains an object
+	//  Error Message    Error Message: The S3 bucket %s already contains an object
 	// with key %s.
 	//
-	//  Solution: Give the TargetSnapshotName a new and unique value. If exporting
+	// Solution: Give the TargetSnapshotName a new and unique value. If exporting
 	// a snapshot, you could alternatively create a new Amazon S3 bucket and use
 	// this same value for TargetSnapshotName.
 	TargetSnapshotName *string `type:"string" required:"true"`
@@ -3124,7 +3124,7 @@ type CreateCacheClusterInput struct {
 
 	// The node group identifier. This parameter is stored as a lowercase string.
 	//
-	//  Constraints:
+	// Constraints:
 	//
 	//   A name must contain from 1 to 20 alphanumeric characters or hyphens.
 	//
@@ -3154,7 +3154,7 @@ type CreateCacheClusterInput struct {
 	//
 	//   Previous generation: cache.m2.xlarge, cache.m2.2xlarge, cache.m2.4xlarge
 	//
-	//      Notes:
+	//     Notes:
 	//
 	//   All t2 instances are created in an Amazon Virtual Private Cloud (VPC).
 	//
@@ -3190,14 +3190,14 @@ type CreateCacheClusterInput struct {
 	//
 	// Valid values for this parameter are:
 	//
-	//  memcached | redis
+	// memcached | redis
 	Engine *string `type:"string"`
 
 	// The version number of the cache engine to be used for this cache cluster.
 	// To view the supported cache engine versions, use the DescribeCacheEngineVersions
 	// action.
 	//
-	//  Important: You can upgrade to a newer engine version (see Selecting a Cache
+	// Important: You can upgrade to a newer engine version (see Selecting a Cache
 	// Engine and Version (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/SelectEngine.html#VersionManagement)),
 	// but you cannot downgrade to an earlier engine version. If you want to use
 	// an earlier engine version, you must delete the existing cache cluster or
@@ -3259,19 +3259,19 @@ type CreateCacheClusterInput struct {
 	// (24H Clock UTC). The minimum maintenance window is a 60 minute period. Valid
 	// values for ddd are:
 	//
-	//    sun
+	//   sun
 	//
-	//    mon
+	//   mon
 	//
-	//    tue
+	//   tue
 	//
-	//    wed
+	//   wed
 	//
-	//    thu
+	//   thu
 	//
-	//    fri
+	//   fri
 	//
-	//    sat
+	//   sat
 	//
 	//   Example: sun:05:00-sun:09:00
 	PreferredMaintenanceWindow *string `type:"string"`
@@ -3329,7 +3329,7 @@ type CreateCacheClusterInput struct {
 	// If you do not specify this parameter, then ElastiCache will automatically
 	// choose an appropriate time range.
 	//
-	//  Note: This parameter is only valid if the Engine parameter is redis.
+	// Note: This parameter is only valid if the Engine parameter is redis.
 	SnapshotWindow *string `type:"string"`
 
 	// A list of cost allocation tags to be added to this resource. A tag is a key-value
@@ -3488,11 +3488,11 @@ type CreateCacheSecurityGroupOutput struct {
 
 	// Represents the output of one of the following actions:
 	//
-	//    AuthorizeCacheSecurityGroupIngress
+	//   AuthorizeCacheSecurityGroupIngress
 	//
-	//    CreateCacheSecurityGroup
+	//   CreateCacheSecurityGroup
 	//
-	//    RevokeCacheSecurityGroupIngress
+	//   RevokeCacheSecurityGroupIngress
 	CacheSecurityGroup *CacheSecurityGroup `type:"structure"`
 }
 
@@ -3558,9 +3558,9 @@ type CreateCacheSubnetGroupOutput struct {
 
 	// Represents the output of one of the following actions:
 	//
-	//    CreateCacheSubnetGroup
+	//   CreateCacheSubnetGroup
 	//
-	//    ModifyCacheSubnetGroup
+	//   ModifyCacheSubnetGroup
 	CacheSubnetGroup *CacheSubnetGroup `type:"structure"`
 }
 
@@ -3617,7 +3617,7 @@ type CreateReplicationGroupInput struct {
 	//
 	//   Previous generation: cache.m2.xlarge, cache.m2.2xlarge, cache.m2.4xlarge
 	//
-	//      Notes:
+	//     Notes:
 	//
 	//   All t2 instances are created in an Amazon Virtual Private Cloud (VPC).
 	//
@@ -3653,7 +3653,7 @@ type CreateReplicationGroupInput struct {
 	// in this replication group. To view the supported cache engine versions, use
 	// the DescribeCacheEngineVersions action.
 	//
-	//  Important: You can upgrade to a newer engine version (see Selecting a Cache
+	// Important: You can upgrade to a newer engine version (see Selecting a Cache
 	// Engine and Version (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/SelectEngine.html#VersionManagement))
 	// in the ElastiCache User Guide, but you cannot downgrade to an earlier engine
 	// version. If you want to use an earlier engine version, you must delete the
@@ -3694,7 +3694,7 @@ type CreateReplicationGroupInput struct {
 	//
 	// Example: One Redis cache cluster in each of three availability zones.
 	//
-	//  PreferredAvailabilityZones.member.1=us-west-2a PreferredAvailabilityZones.member.2=us-west-2c
+	// PreferredAvailabilityZones.member.1=us-west-2a PreferredAvailabilityZones.member.2=us-west-2c
 	// PreferredAvailabilityZones.member.3=us-west-2c
 	PreferredCacheClusterAZs []*string `locationNameList:"AvailabilityZone" type:"list"`
 
@@ -3703,19 +3703,19 @@ type CreateReplicationGroupInput struct {
 	// (24H Clock UTC). The minimum maintenance window is a 60 minute period. Valid
 	// values for ddd are:
 	//
-	//    sun
+	//   sun
 	//
-	//    mon
+	//   mon
 	//
-	//    tue
+	//   tue
 	//
-	//    wed
+	//   wed
 	//
-	//    thu
+	//   thu
 	//
-	//    fri
+	//   fri
 	//
-	//    sat
+	//   sat
 	//
 	//   Example: sun:05:00-sun:09:00
 	PreferredMaintenanceWindow *string `type:"string"`
@@ -4785,7 +4785,7 @@ type DescribeReservedCacheNodesInput struct {
 	//
 	//   Previous generation: cache.m2.xlarge, cache.m2.2xlarge, cache.m2.4xlarge
 	//
-	//      Notes:
+	//     Notes:
 	//
 	//   All t2 instances are created in an Amazon Virtual Private Cloud (VPC).
 	//
@@ -4875,7 +4875,7 @@ type DescribeReservedCacheNodesOfferingsInput struct {
 	//
 	//   Previous generation: cache.m2.xlarge, cache.m2.2xlarge, cache.m2.4xlarge
 	//
-	//      Notes:
+	//     Notes:
 	//
 	//   All t2 instances are created in an Amazon Virtual Private Cloud (VPC).
 	//
@@ -5322,7 +5322,7 @@ type ModifyCacheClusterInput struct {
 
 	// The upgraded version of the cache engine to be run on the cache nodes.
 	//
-	//  Important: You can upgrade to a newer engine version (see Selecting a Cache
+	// Important: You can upgrade to a newer engine version (see Selecting a Cache
 	// Engine and Version (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/SelectEngine.html#VersionManagement)),
 	// but you cannot downgrade to an earlier engine version. If you want to use
 	// an earlier engine version, you must delete the existing cache cluster and
@@ -5341,15 +5341,14 @@ type ModifyCacheClusterInput struct {
 	//
 	// Scenarios:
 	//
-	//    Scenario 1: You have 3 active nodes and wish to add 2 nodes. Specify
-	// NumCacheNodes=5 (3 + 2) and optionally specify two Availability Zones for
-	// the two new nodes.
+	//   Scenario 1: You have 3 active nodes and wish to add 2 nodes. Specify NumCacheNodes=5
+	// (3 + 2) and optionally specify two Availability Zones for the two new nodes.
 	//
-	//    Scenario 2: You have 3 active nodes and 2 nodes pending creation (from
+	//   Scenario 2: You have 3 active nodes and 2 nodes pending creation (from
 	// the scenario 1 call) and want to add 1 more node. Specify NumCacheNodes=6
 	// ((3 + 2) + 1) and optionally specify an Availability Zone for the new node.
 	//
-	//    Scenario 3: You want to cancel all pending actions. Specify NumCacheNodes=3
+	//   Scenario 3: You want to cancel all pending actions. Specify NumCacheNodes=3
 	// to cancel all pending actions.
 	//
 	//   The Availability Zone placement of nodes pending creation cannot be modified.
@@ -5362,7 +5361,7 @@ type ModifyCacheClusterInput struct {
 	// Availability Zones, see the Availability Zone Considerations section of Cache
 	// Node Considerations for Memcached (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheNode.Memcached.html).
 	//
-	//  Impact of new add/remove requests upon pending requests
+	// Impact of new add/remove requests upon pending requests
 	//
 	//   Scenario-1
 	//
@@ -5396,13 +5395,13 @@ type ModifyCacheClusterInput struct {
 	//
 	//   Result: The new create is added to the pending create.
 	//
-	//   Important: If the new create request is Apply Immediately - Yes, all creates
+	//  Important: If the new create request is Apply Immediately - Yes, all creates
 	// are performed immediately. If the new create request is Apply Immediately
 	// - No, all creates are pending.
 	//
 	//      Example:
 	//
-	//  NewAvailabilityZones.member.1=us-west-2a&amp;NewAvailabilityZones.member.2=us-west-2b&amp;NewAvailabilityZones.member.3=us-west-2c
+	// NewAvailabilityZones.member.1=us-west-2a&amp;NewAvailabilityZones.member.2=us-west-2b&amp;NewAvailabilityZones.member.3=us-west-2c
 	NewAvailabilityZones []*string `locationNameList:"PreferredAvailabilityZone" type:"list"`
 
 	// The Amazon Resource Name (ARN) of the Amazon SNS topic to which notifications
@@ -5455,19 +5454,19 @@ type ModifyCacheClusterInput struct {
 	// (24H Clock UTC). The minimum maintenance window is a 60 minute period. Valid
 	// values for ddd are:
 	//
-	//    sun
+	//   sun
 	//
-	//    mon
+	//   mon
 	//
-	//    tue
+	//   tue
 	//
-	//    wed
+	//   wed
 	//
-	//    thu
+	//   thu
 	//
-	//    fri
+	//   fri
 	//
-	//    sat
+	//   sat
 	//
 	//   Example: sun:05:00-sun:09:00
 	PreferredMaintenanceWindow *string `type:"string"`
@@ -5618,9 +5617,9 @@ type ModifyCacheSubnetGroupOutput struct {
 
 	// Represents the output of one of the following actions:
 	//
-	//    CreateCacheSubnetGroup
+	//   CreateCacheSubnetGroup
 	//
-	//    ModifyCacheSubnetGroup
+	//   ModifyCacheSubnetGroup
 	CacheSubnetGroup *CacheSubnetGroup `type:"structure"`
 }
 
@@ -5691,7 +5690,7 @@ type ModifyReplicationGroupInput struct {
 	// The upgraded version of the cache engine to be run on the cache clusters
 	// in the replication group.
 	//
-	//  Important: You can upgrade to a newer engine version (see Selecting a Cache
+	// Important: You can upgrade to a newer engine version (see Selecting a Cache
 	// Engine and Version (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/SelectEngine.html#VersionManagement)),
 	// but you cannot downgrade to an earlier engine version. If you want to use
 	// an earlier engine version, you must delete the existing replication group
@@ -5715,19 +5714,19 @@ type ModifyReplicationGroupInput struct {
 	// (24H Clock UTC). The minimum maintenance window is a 60 minute period. Valid
 	// values for ddd are:
 	//
-	//    sun
+	//   sun
 	//
-	//    mon
+	//   mon
 	//
-	//    tue
+	//   tue
 	//
-	//    wed
+	//   wed
 	//
-	//    thu
+	//   thu
 	//
-	//    fri
+	//   fri
 	//
-	//    sat
+	//   sat
 	//
 	//   Example: sun:05:00-sun:09:00
 	PreferredMaintenanceWindow *string `type:"string"`
@@ -5755,7 +5754,7 @@ type ModifyReplicationGroupInput struct {
 	// to 5, then a snapshot that was taken today will be retained for 5 days before
 	// being deleted.
 	//
-	//  Important If the value of SnapshotRetentionLimit is set to zero (0), backups
+	// Important If the value of SnapshotRetentionLimit is set to zero (0), backups
 	// are turned off.
 	SnapshotRetentionLimit *int64 `type:"integer"`
 
@@ -6318,7 +6317,7 @@ type ReservedCacheNode struct {
 	//
 	//   Previous generation: cache.m2.xlarge, cache.m2.2xlarge, cache.m2.4xlarge
 	//
-	//      Notes:
+	//     Notes:
 	//
 	//   All t2 instances are created in an Amazon Virtual Private Cloud (VPC).
 	//
@@ -6399,7 +6398,7 @@ type ReservedCacheNodesOffering struct {
 	//
 	//   Previous generation: cache.m2.xlarge, cache.m2.2xlarge, cache.m2.4xlarge
 	//
-	//      Notes:
+	//     Notes:
 	//
 	//   All t2 instances are created in an Amazon Virtual Private Cloud (VPC).
 	//
@@ -6538,11 +6537,11 @@ type RevokeCacheSecurityGroupIngressOutput struct {
 
 	// Represents the output of one of the following actions:
 	//
-	//    AuthorizeCacheSecurityGroupIngress
+	//   AuthorizeCacheSecurityGroupIngress
 	//
-	//    CreateCacheSecurityGroup
+	//   CreateCacheSecurityGroup
 	//
-	//    RevokeCacheSecurityGroupIngress
+	//   RevokeCacheSecurityGroupIngress
 	CacheSecurityGroup *CacheSecurityGroup `type:"structure"`
 }
 
@@ -6615,7 +6614,7 @@ type Snapshot struct {
 	//
 	//   Previous generation: cache.m2.xlarge, cache.m2.2xlarge, cache.m2.4xlarge
 	//
-	//      Notes:
+	//     Notes:
 	//
 	//   All t2 instances are created in an Amazon Virtual Private Cloud (VPC).
 	//
@@ -6664,19 +6663,19 @@ type Snapshot struct {
 	// (24H Clock UTC). The minimum maintenance window is a 60 minute period. Valid
 	// values for ddd are:
 	//
-	//    sun
+	//   sun
 	//
-	//    mon
+	//   mon
 	//
-	//    tue
+	//   tue
 	//
-	//    wed
+	//   wed
 	//
-	//    thu
+	//   thu
 	//
-	//    fri
+	//   fri
 	//
-	//    sat
+	//   sat
 	//
 	//   Example: sun:05:00-sun:09:00
 	PreferredMaintenanceWindow *string `type:"string"`
@@ -6693,7 +6692,7 @@ type Snapshot struct {
 	// ignored: Manual snapshots do not expire, and can only be deleted using the
 	// DeleteSnapshot action.
 	//
-	//  Important If the value of SnapshotRetentionLimit is set to zero (0), backups
+	// Important If the value of SnapshotRetentionLimit is set to zero (0), backups
 	// are turned off.
 	SnapshotRetentionLimit *int64 `type:"integer"`
 

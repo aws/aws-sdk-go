@@ -1873,7 +1873,7 @@ type CreateReplicationInstanceInput struct {
 	//
 	// Default: A random, system-chosen Availability Zone in the endpoint's region.
 	//
-	//  Example: us-east-1d
+	// Example: us-east-1d
 	AvailabilityZone *string `type:"string"`
 
 	// The engine version number of the replication instance.
@@ -1893,7 +1893,7 @@ type CreateReplicationInstanceInput struct {
 	// The weekly time range during which system maintenance can occur, in Universal
 	// Coordinated Time (UTC).
 	//
-	//  Format: ddd:hh24:mi-ddd:hh24:mi
+	// Format: ddd:hh24:mi-ddd:hh24:mi
 	//
 	// Default: A 30-minute window selected at random from an 8-hour block of time
 	// per region, occurring on a random day of the week.
@@ -1911,7 +1911,7 @@ type CreateReplicationInstanceInput struct {
 	// The compute and memory capacity of the replication instance as specified
 	// by the replication instance class.
 	//
-	//  Valid Values: dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large
+	// Valid Values: dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large
 	// | dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge
 	ReplicationInstanceClass *string `type:"string" required:"true"`
 
@@ -3504,7 +3504,7 @@ type ModifyReplicationInstanceInput struct {
 
 	// The compute and memory capacity of the replication instance.
 	//
-	//  Valid Values: dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large
+	// Valid Values: dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large
 	// | dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge
 	ReplicationInstanceClass *string `type:"string"`
 
@@ -3638,7 +3638,7 @@ type OrderableReplicationInstance struct {
 
 	// The compute and memory capacity of the replication instance.
 	//
-	//  Valid Values: dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large
+	// Valid Values: dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large
 	// | dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge
 	ReplicationInstanceClass *string `type:"string"`
 
@@ -3836,7 +3836,7 @@ type ReplicationInstance struct {
 
 	// The compute and memory capacity of the replication instance.
 	//
-	//  Valid Values: dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large
+	// Valid Values: dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large
 	// | dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge
 	ReplicationInstanceClass *string `type:"string"`
 
@@ -3902,7 +3902,7 @@ type ReplicationPendingModifiedValues struct {
 
 	// The compute and memory capacity of the replication instance.
 	//
-	//  Valid Values: dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large
+	// Valid Values: dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large
 	// | dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge
 	ReplicationInstanceClass *string `type:"string"`
 }

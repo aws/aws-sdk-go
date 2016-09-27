@@ -29,7 +29,7 @@ import (
 // or Setting Up Run Command On Managed Instances (On-Premises Servers and VMs)
 // on Windows (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/managed-instances.html).
 //
-//   Run Command
+//  Run Command
 //
 // Run Command provides an on-demand experience for executing commands. You
 // can use pre-defined SSM documents to perform the actions listed later in
@@ -49,7 +49,7 @@ import (
 // (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/remote-commands-prereq.html)
 // or Windows (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/remote-commands-prereq.html)).
 //
-//   SSM Config
+//  SSM Config
 //
 // SSM Config is a lightweight instance configuration solution. SSM Config
 // is currently only available for Windows instances. With SSM Config, you can
@@ -69,40 +69,40 @@ import (
 //
 // SSM Config and Run Command include the following pre-defined documents.
 //
-//  Linux
+// Linux
 //
-//    AWS-RunShellScript to run shell scripts
+//   AWS-RunShellScript to run shell scripts
 //
-//    AWS-UpdateSSMAgent to update the Amazon SSM agent
+//   AWS-UpdateSSMAgent to update the Amazon SSM agent
 //
-//     Windows
+//    Windows
 //
-//    AWS-JoinDirectoryServiceDomain to join an AWS Directory
+//   AWS-JoinDirectoryServiceDomain to join an AWS Directory
 //
-//    AWS-RunPowerShellScript to run PowerShell commands or scripts
+//   AWS-RunPowerShellScript to run PowerShell commands or scripts
 //
-//    AWS-UpdateEC2Config to update the EC2Config service
+//   AWS-UpdateEC2Config to update the EC2Config service
 //
-//    AWS-ConfigureWindowsUpdate to configure Windows Update settings
+//   AWS-ConfigureWindowsUpdate to configure Windows Update settings
 //
-//    AWS-InstallApplication to install, repair, or uninstall software using
+//   AWS-InstallApplication to install, repair, or uninstall software using
 // an MSI package
 //
-//    AWS-InstallPowerShellModule to install PowerShell modules
+//   AWS-InstallPowerShellModule to install PowerShell modules
 //
-//    AWS-ConfigureCloudWatch to configure Amazon CloudWatch Logs to monitor
+//   AWS-ConfigureCloudWatch to configure Amazon CloudWatch Logs to monitor
 // applications and systems
 //
-//    AWS-ListWindowsInventory to collect information about an EC2 instance
+//   AWS-ListWindowsInventory to collect information about an EC2 instance
 // running in Windows.
 //
-//    AWS-FindWindowsUpdates to scan an instance and determines which updates
+//   AWS-FindWindowsUpdates to scan an instance and determines which updates
 // are missing.
 //
-//    AWS-InstallMissingWindowsUpdates to install missing updates on your EC2
+//   AWS-InstallMissingWindowsUpdates to install missing updates on your EC2
 // instance.
 //
-//    AWS-InstallSpecificWindowsUpdates to install one or more specific updates.
+//   AWS-InstallSpecificWindowsUpdates to install one or more specific updates.
 //
 //    The commands or scripts specified in SSM documents run with administrative
 // privilege on your instances because the Amazon SSM agent runs as root on
@@ -121,11 +121,11 @@ import (
 //  For information about creating and sharing SSM documents, see the following
 // topics in the SSM User Guide:
 //
-//    Creating SSM Documents (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-ssm-doc.html)
+//   Creating SSM Documents (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-ssm-doc.html)
 // and Sharing SSM Documents (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ssm-sharing.html)
 // (Linux)
 //
-//    Creating SSM Documents (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/create-ssm-doc.html)
+//   Creating SSM Documents (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/create-ssm-doc.html)
 // and Sharing SSM Documents (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ssm-sharing.html)
 // (Windows)
 //The service client's operations are safe to be used concurrently.

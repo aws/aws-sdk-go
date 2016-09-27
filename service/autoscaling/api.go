@@ -251,8 +251,7 @@ func (c *AutoScaling) CompleteLifecycleActionRequest(input *CompleteLifecycleAct
 //   If you need more time, record the lifecycle action heartbeat to keep the
 // instance in a pending state.
 //
-//    If you finish before the timeout period ends, complete the lifecycle
-// action.
+//   If you finish before the timeout period ends, complete the lifecycle action.
 //
 //   For more information, see Auto Scaling Lifecycle (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html)
 // in the Auto Scaling User Guide.
@@ -2418,8 +2417,8 @@ func (c *AutoScaling) PutLifecycleHookRequest(input *PutLifecycleHookInput) (req
 // be either an Amazon SQS queue or an Amazon SNS topic. The role allows Auto
 // Scaling to publish lifecycle notifications to the target.
 //
-//    Create the lifecycle hook. Specify whether the hook is used when the
-// instances launch or terminate.
+//   Create the lifecycle hook. Specify whether the hook is used when the instances
+// launch or terminate.
 //
 //   If you need more time, record the lifecycle action heartbeat to keep the
 // instance in a pending state.
@@ -2667,8 +2666,8 @@ func (c *AutoScaling) RecordLifecycleActionHeartbeatRequest(input *RecordLifecyc
 //   Create the lifecycle hook. Specify whether the hook is used when the instances
 // launch or terminate.
 //
-//    If you need more time, record the lifecycle action heartbeat to keep
-// the instance in a pending state.
+//   If you need more time, record the lifecycle action heartbeat to keep the
+// instance in a pending state.
 //
 //   If you finish before the timeout period ends, complete the lifecycle action.
 //
@@ -5355,21 +5354,21 @@ type DisableMetricsCollectionInput struct {
 	// One or more of the following metrics. If you omit this parameter, all metrics
 	// are disabled.
 	//
-	//    GroupMinSize
+	//   GroupMinSize
 	//
-	//    GroupMaxSize
+	//   GroupMaxSize
 	//
-	//    GroupDesiredCapacity
+	//   GroupDesiredCapacity
 	//
-	//    GroupInServiceInstances
+	//   GroupInServiceInstances
 	//
-	//    GroupPendingInstances
+	//   GroupPendingInstances
 	//
-	//    GroupStandbyInstances
+	//   GroupStandbyInstances
 	//
-	//    GroupTerminatingInstances
+	//   GroupTerminatingInstances
 	//
-	//    GroupTotalInstances
+	//   GroupTotalInstances
 	Metrics []*string `type:"list"`
 }
 
@@ -5503,21 +5502,21 @@ type EnableMetricsCollectionInput struct {
 	// One or more of the following metrics. If you omit this parameter, all metrics
 	// are enabled.
 	//
-	//    GroupMinSize
+	//   GroupMinSize
 	//
-	//    GroupMaxSize
+	//   GroupMaxSize
 	//
-	//    GroupDesiredCapacity
+	//   GroupDesiredCapacity
 	//
-	//    GroupInServiceInstances
+	//   GroupInServiceInstances
 	//
-	//    GroupPendingInstances
+	//   GroupPendingInstances
 	//
-	//    GroupStandbyInstances
+	//   GroupStandbyInstances
 	//
-	//    GroupTerminatingInstances
+	//   GroupTerminatingInstances
 	//
-	//    GroupTotalInstances
+	//   GroupTotalInstances
 	Metrics []*string `type:"list"`
 }
 
@@ -5576,21 +5575,21 @@ type EnabledMetric struct {
 
 	// One of the following metrics:
 	//
-	//    GroupMinSize
+	//   GroupMinSize
 	//
-	//    GroupMaxSize
+	//   GroupMaxSize
 	//
-	//    GroupDesiredCapacity
+	//   GroupDesiredCapacity
 	//
-	//    GroupInServiceInstances
+	//   GroupInServiceInstances
 	//
-	//    GroupPendingInstances
+	//   GroupPendingInstances
 	//
-	//    GroupStandbyInstances
+	//   GroupStandbyInstances
 	//
-	//    GroupTerminatingInstances
+	//   GroupTerminatingInstances
 	//
-	//    GroupTotalInstances
+	//   GroupTotalInstances
 	Metric *string `min:"1" type:"string"`
 }
 
@@ -6192,18 +6191,18 @@ type LoadBalancerState struct {
 
 	// One of the following load balancer states:
 	//
-	//    Adding - The instances in the group are being registered with the load
+	//   Adding - The instances in the group are being registered with the load
 	// balancer.
 	//
-	//    Added - All instances in the group are registered with the load balancer.
+	//   Added - All instances in the group are registered with the load balancer.
 	//
-	//    InService - At least one instance in the group passed an ELB health check.
+	//   InService - At least one instance in the group passed an ELB health check.
 	//
-	//    Removing - The instances in the group are being deregistered from the
+	//   Removing - The instances in the group are being deregistered from the
 	// load balancer. If connection draining is enabled, Elastic Load Balancing
 	// waits for in-flight requests to complete before deregistering the instances.
 	//
-	//    Removed - All instances in the group are deregistered from the load balancer.
+	//   Removed - All instances in the group are deregistered from the load balancer.
 	State *string `min:"1" type:"string"`
 }
 
@@ -6233,18 +6232,18 @@ type LoadBalancerTargetGroupState struct {
 
 	// The state of the target group.
 	//
-	//    Adding - The Auto Scaling instances are being registered with the target
+	//   Adding - The Auto Scaling instances are being registered with the target
 	// group.
 	//
-	//    Added - All Auto Scaling instances are registered with the target group.
+	//   Added - All Auto Scaling instances are registered with the target group.
 	//
-	//    InService - At least one Auto Scaling instance passed an ELB health check.
+	//   InService - At least one Auto Scaling instance passed an ELB health check.
 	//
-	//    Removing - The Auto Scaling instances are being deregistered from the
+	//   Removing - The Auto Scaling instances are being deregistered from the
 	// target group. If connection draining is enabled, Elastic Load Balancing waits
 	// for in-flight requests to complete before deregistering the instances.
 	//
-	//    Removed - All Auto Scaling instances are deregistered from the target
+	//   Removed - All Auto Scaling instances are deregistered from the target
 	// group.
 	State *string `min:"1" type:"string"`
 }
@@ -6265,21 +6264,21 @@ type MetricCollectionType struct {
 
 	// One of the following metrics:
 	//
-	//    GroupMinSize
+	//   GroupMinSize
 	//
-	//    GroupMaxSize
+	//   GroupMaxSize
 	//
-	//    GroupDesiredCapacity
+	//   GroupDesiredCapacity
 	//
-	//    GroupInServiceInstances
+	//   GroupInServiceInstances
 	//
-	//    GroupPendingInstances
+	//   GroupPendingInstances
 	//
-	//    GroupStandbyInstances
+	//   GroupStandbyInstances
 	//
-	//    GroupTerminatingInstances
+	//   GroupTerminatingInstances
 	//
-	//    GroupTotalInstances
+	//   GroupTotalInstances
 	Metric *string `min:"1" type:"string"`
 }
 
@@ -6320,15 +6319,15 @@ type NotificationConfiguration struct {
 
 	// One of the following event notification types:
 	//
-	//    autoscaling:EC2_INSTANCE_LAUNCH
+	//   autoscaling:EC2_INSTANCE_LAUNCH
 	//
-	//    autoscaling:EC2_INSTANCE_LAUNCH_ERROR
+	//   autoscaling:EC2_INSTANCE_LAUNCH_ERROR
 	//
-	//    autoscaling:EC2_INSTANCE_TERMINATE
+	//   autoscaling:EC2_INSTANCE_TERMINATE
 	//
-	//    autoscaling:EC2_INSTANCE_TERMINATE_ERROR
+	//   autoscaling:EC2_INSTANCE_TERMINATE_ERROR
 	//
-	//    autoscaling:TEST_NOTIFICATION
+	//   autoscaling:TEST_NOTIFICATION
 	NotificationType *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
@@ -6355,21 +6354,21 @@ type ProcessType struct {
 
 	// One of the following processes:
 	//
-	//    Launch
+	//   Launch
 	//
-	//    Terminate
+	//   Terminate
 	//
-	//    AddToLoadBalancer
+	//   AddToLoadBalancer
 	//
-	//    AlarmNotification
+	//   AlarmNotification
 	//
-	//    AZRebalance
+	//   AZRebalance
 	//
-	//    HealthCheck
+	//   HealthCheck
 	//
-	//    ReplaceUnhealthy
+	//   ReplaceUnhealthy
 	//
-	//    ScheduledActions
+	//   ScheduledActions
 	ProcessName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -6423,19 +6422,19 @@ type PutLifecycleHookInput struct {
 	//
 	// The notification messages sent to the target include the following information:
 	//
-	//    AutoScalingGroupName. The name of the Auto Scaling group.
+	//   AutoScalingGroupName. The name of the Auto Scaling group.
 	//
-	//    AccountId. The AWS account ID.
+	//   AccountId. The AWS account ID.
 	//
-	//    LifecycleTransition. The lifecycle hook type.
+	//   LifecycleTransition. The lifecycle hook type.
 	//
-	//    LifecycleActionToken. The lifecycle action token.
+	//   LifecycleActionToken. The lifecycle action token.
 	//
-	//    EC2InstanceId. The EC2 instance ID.
+	//   EC2InstanceId. The EC2 instance ID.
 	//
-	//    LifecycleHookName. The name of the lifecycle hook.
+	//   LifecycleHookName. The name of the lifecycle hook.
 	//
-	//    NotificationMetadata. User-defined information.
+	//   NotificationMetadata. User-defined information.
 	//
 	//   This operation uses the JSON format when sending notifications to an Amazon
 	// SQS queue, and an email key/value pair format when sending notifications
@@ -6967,21 +6966,21 @@ type ScalingProcessQuery struct {
 	// One or more of the following processes. If you omit this parameter, all processes
 	// are specified.
 	//
-	//    Launch
+	//   Launch
 	//
-	//    Terminate
+	//   Terminate
 	//
-	//    HealthCheck
+	//   HealthCheck
 	//
-	//    ReplaceUnhealthy
+	//   ReplaceUnhealthy
 	//
-	//    AZRebalance
+	//   AZRebalance
 	//
-	//    AlarmNotification
+	//   AlarmNotification
 	//
-	//    ScheduledActions
+	//   ScheduledActions
 	//
-	//    AddToLoadBalancer
+	//   AddToLoadBalancer
 	ScalingProcesses []*string `type:"list"`
 }
 

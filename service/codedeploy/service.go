@@ -17,7 +17,7 @@ import (
 // more information about AWS CodeDeploy, see the AWS CodeDeploy User Guide
 // (http://docs.aws.amazon.com/codedeploy/latest/userguide).
 //
-//  Using the APIs
+// Using the APIs
 //
 // You can use the AWS CodeDeploy APIs to work with the following:
 //

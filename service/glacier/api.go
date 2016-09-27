@@ -71,8 +71,8 @@ func (c *Glacier) AbortMultipartUploadRequest(input *AbortMultipartUploadInput) 
 // For more information, see Access Control Using AWS Identity and Access Management
 // (IAM) (http://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html).
 //
-//  For conceptual information and underlying REST API, go to Working with
-// Archives in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/working-with-archives.html)
+// For conceptual information and underlying REST API, go to Working with Archives
+// in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/working-with-archives.html)
 // and Abort Multipart Upload (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-multipart-abort-upload.html)
 // in the Amazon Glacier Developer Guide.
 func (c *Glacier) AbortMultipartUpload(input *AbortMultipartUploadInput) (*AbortMultipartUploadOutput, error) {
@@ -282,7 +282,7 @@ func (c *Glacier) CompleteMultipartUploadRequest(input *CompleteMultipartUploadI
 // For more information, see Access Control Using AWS Identity and Access Management
 // (IAM) (http://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html).
 //
-//  For conceptual information and underlying REST API, go to Uploading Large
+// For conceptual information and underlying REST API, go to Uploading Large
 // Archives in Parts (Multipart Upload) (http://docs.aws.amazon.com/amazonglacier/latest/dev/uploading-archive-mpu.html)
 // and Complete Multipart Upload (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-multipart-complete-upload.html)
 // in the Amazon Glacier Developer Guide.
@@ -404,7 +404,7 @@ func (c *Glacier) CreateVaultRequest(input *CreateVaultInput) (req *request.Requ
 //
 // You must use the following guidelines when naming a vault.
 //
-//     Names can be between 1 and 255 characters long.
+//    Names can be between 1 and 255 characters long.
 //
 //   Allowed characters are a-z, A-Z, 0-9, '_' (underscore), '-' (hyphen),
 // and '.' (period).
@@ -417,7 +417,7 @@ func (c *Glacier) CreateVaultRequest(input *CreateVaultInput) (req *request.Requ
 // For more information, see Access Control Using AWS Identity and Access Management
 // (IAM) (http://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html).
 //
-//  For conceptual information and underlying REST API, go to Creating a Vault
+// For conceptual information and underlying REST API, go to Creating a Vault
 // in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/creating-vaults.html)
 // and Create Vault  (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-vault-put.html)
 // in the Amazon Glacier Developer Guide.
@@ -487,7 +487,7 @@ func (c *Glacier) DeleteArchiveRequest(input *DeleteArchiveInput) (req *request.
 // For more information, see Access Control Using AWS Identity and Access Management
 // (IAM) (http://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html).
 //
-//  For conceptual information and underlying REST API, go to Deleting an Archive
+// For conceptual information and underlying REST API, go to Deleting an Archive
 // in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/deleting-an-archive.html)
 // and Delete Archive (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-archive-delete.html)
 // in the Amazon Glacier Developer Guide.
@@ -559,7 +559,7 @@ func (c *Glacier) DeleteVaultRequest(input *DeleteVaultInput) (req *request.Requ
 // For more information, see Access Control Using AWS Identity and Access Management
 // (IAM) (http://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html).
 //
-//  For conceptual information and underlying REST API, go to Deleting a Vault
+// For conceptual information and underlying REST API, go to Deleting a Vault
 // in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/deleting-vaults.html)
 // and Delete Vault  (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-vault-delete.html)
 // in the Amazon Glacier Developer Guide.
@@ -682,7 +682,7 @@ func (c *Glacier) DeleteVaultNotificationsRequest(input *DeleteVaultNotification
 // For more information, see Access Control Using AWS Identity and Access Management
 // (IAM) (http://docs.aws.amazon.com/latest/dev/using-iam-with-amazon-glacier.html).
 //
-//  For conceptual information and underlying REST API, go to Configuring Vault
+// For conceptual information and underlying REST API, go to Configuring Vault
 // Notifications in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/configuring-notifications.html)
 // and Delete Vault Notification Configuration  (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-vault-notifications-delete.html)
 // in the Amazon Glacier Developer Guide.
@@ -752,7 +752,7 @@ func (c *Glacier) DescribeJobRequest(input *DescribeJobInput) (req *request.Requ
 // For more information, see Access Control Using AWS Identity and Access Management
 // (IAM) (http://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html).
 //
-//  For information about the underlying REST API, go to Working with Archives
+// For information about the underlying REST API, go to Working with Archives
 // in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-describe-job-get.html)
 // in the Amazon Glacier Developer Guide.
 func (c *Glacier) DescribeJob(input *DescribeJobInput) (*JobDescription, error) {
@@ -1292,8 +1292,8 @@ func (c *Glacier) InitiateJobRequest(input *InitiateJobInput) (req *request.Requ
 //
 // About Ranged Archive Retrieval
 //
-//  You can initiate an archive retrieval for the whole archive or a range
-// of the archive. In the case of ranged archive retrieval, you specify a byte
+// You can initiate an archive retrieval for the whole archive or a range of
+// the archive. In the case of ranged archive retrieval, you specify a byte
 // range to return or the whole archive. The range specified must be megabyte
 // (MB) aligned, that is the range start value must be divisible by 1 MB and
 // range end value plus 1 must be divisible by 1 MB or equal the end of the
@@ -2268,8 +2268,8 @@ func (c *Glacier) UploadArchiveRequest(input *UploadArchiveInput) (req *request.
 // For more information, see Access Control Using AWS Identity and Access Management
 // (IAM) (http://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html).
 //
-//  For conceptual information and underlying REST API, go to Uploading an
-// Archive in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/uploading-an-archive.html)
+// For conceptual information and underlying REST API, go to Uploading an Archive
+// in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/uploading-an-archive.html)
 // and Upload Archive (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-archive-post.html)
 // in the Amazon Glacier Developer Guide.
 func (c *Glacier) UploadArchive(input *UploadArchiveInput) (*ArchiveCreationOutput, error) {
@@ -2358,7 +2358,7 @@ func (c *Glacier) UploadMultipartPartRequest(input *UploadMultipartPartInput) (r
 // For more information, see Access Control Using AWS Identity and Access Management
 // (IAM) (http://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html).
 //
-//  For conceptual information and underlying REST API, go to Uploading Large
+// For conceptual information and underlying REST API, go to Uploading Large
 // Archives in Parts (Multipart Upload) (http://docs.aws.amazon.com/amazonglacier/latest/dev/uploading-archive-mpu.html)
 // and Upload Part  (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-upload-part.html)
 // in the Amazon Glacier Developer Guide.
@@ -3840,14 +3840,14 @@ type JobDescription struct {
 	// For an ArchiveRetrieval job, it is the checksum of the archive. Otherwise,
 	// the value is null.
 	//
-	//  The SHA256 tree hash value for the requested range of an archive. If the
+	// The SHA256 tree hash value for the requested range of an archive. If the
 	// Initiate a Job request for an archive specified a tree-hash aligned range,
 	// then this field returns a value.
 	//
-	//  For the specific case when the whole archive is retrieved, this value is
+	// For the specific case when the whole archive is retrieved, this value is
 	// the same as the ArchiveSHA256TreeHash value.
 	//
-	//  This field is null in the following situations:  Archive retrieval jobs
+	// This field is null in the following situations:  Archive retrieval jobs
 	// that specify a range that is not tree-hash aligned.
 	//
 	//   Archival jobs that specify a range that is equal to the whole archive

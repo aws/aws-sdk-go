@@ -54,7 +54,7 @@ func (c *Firehose) CreateDeliveryStreamRequest(input *CreateDeliveryStreamInput)
 
 // Creates a delivery stream.
 //
-//  CreateDeliveryStream is an asynchronous operation that immediately returns.
+// CreateDeliveryStream is an asynchronous operation that immediately returns.
 // The initial status of the delivery stream is CREATING. After the delivery
 // stream is created, its status is ACTIVE and it now accepts data. Attempts
 // to send data to a delivery stream that is not in the ACTIVE state cause an
@@ -616,18 +616,18 @@ type CopyCommand struct {
 	// command (http://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html). Some
 	// possible examples that would apply to Firehose are as follows.
 	//
-	//  delimiter '\t' lzop; - fields are delimited with "\t" (TAB character) and
+	// delimiter '\t' lzop; - fields are delimited with "\t" (TAB character) and
 	// compressed using lzop.
 	//
-	//  delimiter '| - fields are delimited with "|" (this is the default delimiter).
+	// delimiter '| - fields are delimited with "|" (this is the default delimiter).
 	//
-	//  delimiter '|' escape - the delimiter should be escaped.
+	// delimiter '|' escape - the delimiter should be escaped.
 	//
-	//  fixedwidth 'venueid:3,venuename:25,venuecity:12,venuestate:2,venueseats:6'
+	// fixedwidth 'venueid:3,venuename:25,venuecity:12,venuestate:2,venueseats:6'
 	// - fields are fixed width in the source, with each width specified after every
 	// column in the table.
 	//
-	//  JSON 's3://mybucket/jsonpaths.txt' - data is in JSON format, and the path
+	// JSON 's3://mybucket/jsonpaths.txt' - data is in JSON format, and the path
 	// specified is the format of the data.
 	//
 	// For more examples, see Amazon Redshift COPY command examples (http://docs.aws.amazon.com/redshift/latest/dg/r_COPY_command_examples.html).

@@ -1598,7 +1598,7 @@ func (c *ECS) UpdateContainerAgentRequest(input *UpdateContainerAgentInput) (req
 // differs depending on whether your container instance was launched with the
 // Amazon ECS-optimized AMI or another operating system.
 //
-//  UpdateContainerAgent requires the Amazon ECS-optimized AMI or Amazon Linux
+// UpdateContainerAgent requires the Amazon ECS-optimized AMI or Amazon Linux
 // with the ecs-init service installed and running. For help updating the Amazon
 // ECS container agent on other operating systems, see Manually Updating the
 // Amazon ECS Container Agent (http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-update.html#manually_update_agent)
@@ -1871,12 +1871,12 @@ type ContainerDefinition struct {
 	// 2 (including null), the behavior varies based on your Amazon ECS container
 	// agent version:
 	//
-	//    Agent versions less than or equal to 1.1.0: Null and zero CPU values
-	// are passed to Docker as 0, which Docker then converts to 1,024 CPU shares.
-	// CPU values of 1 are passed to Docker as 1, which the Linux kernel converts
-	// to 2 CPU shares.
+	//   Agent versions less than or equal to 1.1.0: Null and zero CPU values are
+	// passed to Docker as 0, which Docker then converts to 1,024 CPU shares. CPU
+	// values of 1 are passed to Docker as 1, which the Linux kernel converts to
+	// 2 CPU shares.
 	//
-	//    Agent versions greater than or equal to 1.2.0: Null, zero, and CPU values
+	//   Agent versions greater than or equal to 1.2.0: Null, zero, and CPU values
 	// of 1 are passed to Docker as 2.
 	Cpu *int64 `locationName:"cpu" type:"integer"`
 

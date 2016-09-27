@@ -499,8 +499,8 @@ type SearchInput struct {
 	// For example, the following request retrieves highlights for the actors and
 	// title fields.
 	//
-	//  { "actors": {}, "title": {"format": "text","max_phrases": 2,"pre_tag":
-	// "","post_tag": ""} }
+	// { "actors": {}, "title": {"format": "text","max_phrases": 2,"pre_tag": "","post_tag":
+	// ""} }
 	Highlight *string `location:"querystring" locationName:"highlight" type:"string"`
 
 	// Enables partial results to be returned if one or more index partitions are

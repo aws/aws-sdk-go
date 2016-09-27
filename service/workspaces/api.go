@@ -1149,7 +1149,7 @@ type DescribeWorkspaceBundlesInput struct {
 	//
 	//   null- Retrieves the bundles that belong to the account making the call.
 	//
-	//    AMAZON- Retrieves the bundles that are provided by AWS.
+	//   AMAZON- Retrieves the bundles that are provided by AWS.
 	Owner *string `type:"string"`
 }
 
