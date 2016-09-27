@@ -2212,10 +2212,10 @@ func (s *BlockerDeclaration) Validate() error {
 type CreateCustomActionTypeInput struct {
 	_ struct{} `type:"structure"`
 
-	// The category of the custom action, such as a source action or a build action.
+	// The category of the custom action, such as a build action or a test action.
 	//
-	//  Although Source is listed as a valid value, it is not currently functional.
-	// This value is reserved for future use.
+	//  Although Source and Approval are listed as valid values, they are not currently
+	// functional. These values are reserved for future use.
 	Category *string `locationName:"category" type:"string" required:"true" enum:"ActionCategory"`
 
 	// The configuration properties for the custom action.
@@ -2238,7 +2238,7 @@ type CreateCustomActionTypeInput struct {
 	// Returns information about the settings for an action type.
 	Settings *ActionTypeSettings `locationName:"settings" type:"structure"`
 
-	// The version number of the custom action.
+	// The version identifier of the custom action.
 	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
 }
 

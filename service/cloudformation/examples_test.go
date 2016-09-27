@@ -51,6 +51,7 @@ func ExampleCloudFormation_ContinueUpdateRollback() {
 
 	params := &cloudformation.ContinueUpdateRollbackInput{
 		StackName: aws.String("StackNameOrId"), // Required
+		RoleARN:   aws.String("RoleARN"),
 	}
 	resp, err := svc.ContinueUpdateRollback(params)
 
@@ -99,6 +100,7 @@ func ExampleCloudFormation_CreateChangeSet() {
 			aws.String("ResourceType"), // Required
 			// More values...
 		},
+		RoleARN: aws.String("RoleARN"),
 		Tags: []*cloudformation.Tag{
 			{ // Required
 				Key:   aws.String("TagKey"),
@@ -156,6 +158,7 @@ func ExampleCloudFormation_CreateStack() {
 			aws.String("ResourceType"), // Required
 			// More values...
 		},
+		RoleARN:         aws.String("RoleARN"),
 		StackPolicyBody: aws.String("StackPolicyBody"),
 		StackPolicyURL:  aws.String("StackPolicyURL"),
 		Tags: []*cloudformation.Tag{
@@ -223,6 +226,7 @@ func ExampleCloudFormation_DeleteStack() {
 			aws.String("LogicalResourceId"), // Required
 			// More values...
 		},
+		RoleARN: aws.String("RoleARN"),
 	}
 	resp, err := svc.DeleteStack(params)
 
@@ -698,6 +702,7 @@ func ExampleCloudFormation_UpdateStack() {
 			aws.String("ResourceType"), // Required
 			// More values...
 		},
+		RoleARN:                     aws.String("RoleARN"),
 		StackPolicyBody:             aws.String("StackPolicyBody"),
 		StackPolicyDuringUpdateBody: aws.String("StackPolicyDuringUpdateBody"),
 		StackPolicyDuringUpdateURL:  aws.String("StackPolicyDuringUpdateURL"),
