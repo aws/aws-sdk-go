@@ -74,7 +74,7 @@
       "base": null,
       "refs": {
         "ActionTypeId$category": "<p>A category defines what kind of action can be taken in the stage, and constrains the provider type for the action. Valid categories are limited to one of the values below.</p>",
-        "CreateCustomActionTypeInput$category": "<p>The category of the custom action, such as a source action or a build action.</p> <note> <p>Although Source is listed as a valid value, it is not currently functional. This value is reserved for future use.</p> </note>",
+        "CreateCustomActionTypeInput$category": "<p>The category of the custom action, such as a build action or a test action.</p> <note> <p>Although Source and Approval are listed as valid values, they are not currently functional. These values are reserved for future use.</p> </note>",
         "DeleteCustomActionTypeInput$category": "<p>The category of the custom action that you want to delete, such as source or deploy.</p>"
       }
     },
@@ -1249,7 +1249,7 @@
       "base": null,
       "refs": {
         "ActionTypeId$version": "<p>A string that identifies the action type.</p>",
-        "CreateCustomActionTypeInput$version": "<p>The version number of the custom action.</p>",
+        "CreateCustomActionTypeInput$version": "<p>The version identifier of the custom action.</p>",
         "DeleteCustomActionTypeInput$version": "<p>The version of the custom action to delete.</p>"
       }
     }

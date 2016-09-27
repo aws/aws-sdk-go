@@ -452,7 +452,8 @@
       "type":"structure",
       "required":["StackName"],
       "members":{
-        "StackName":{"shape":"StackNameOrId"}
+        "StackName":{"shape":"StackNameOrId"},
+        "RoleARN":{"shape":"RoleARN"}
       }
     },
     "ContinueUpdateRollbackOutput":{
@@ -474,6 +475,7 @@
         "Parameters":{"shape":"Parameters"},
         "Capabilities":{"shape":"Capabilities"},
         "ResourceTypes":{"shape":"ResourceTypes"},
+        "RoleARN":{"shape":"RoleARN"},
         "NotificationARNs":{"shape":"NotificationARNs"},
         "Tags":{"shape":"Tags"},
         "ChangeSetName":{"shape":"ChangeSetName"},
@@ -500,6 +502,7 @@
         "NotificationARNs":{"shape":"NotificationARNs"},
         "Capabilities":{"shape":"Capabilities"},
         "ResourceTypes":{"shape":"ResourceTypes"},
+        "RoleARN":{"shape":"RoleARN"},
         "OnFailure":{"shape":"OnFailure"},
         "StackPolicyBody":{"shape":"StackPolicyBody"},
         "StackPolicyURL":{"shape":"StackPolicyURL"},
@@ -531,7 +534,8 @@
       "required":["StackName"],
       "members":{
         "StackName":{"shape":"StackName"},
-        "RetainResources":{"shape":"RetainResources"}
+        "RetainResources":{"shape":"RetainResources"},
+        "RoleARN":{"shape":"RoleARN"}
       }
     },
     "DeletionTime":{"type":"timestamp"},
@@ -990,6 +994,11 @@
       "type":"list",
       "member":{"shape":"LogicalResourceId"}
     },
+    "RoleARN":{
+      "type":"string",
+      "max":2048,
+      "min":20
+    },
     "Scope":{
       "type":"list",
       "member":{"shape":"ResourceAttribute"}
@@ -1039,6 +1048,7 @@
         "TimeoutInMinutes":{"shape":"TimeoutMinutes"},
         "Capabilities":{"shape":"Capabilities"},
         "Outputs":{"shape":"Outputs"},
+        "RoleARN":{"shape":"RoleARN"},
         "Tags":{"shape":"Tags"}
       }
     },
@@ -1266,6 +1276,7 @@
         "Parameters":{"shape":"Parameters"},
         "Capabilities":{"shape":"Capabilities"},
         "ResourceTypes":{"shape":"ResourceTypes"},
+        "RoleARN":{"shape":"RoleARN"},
         "StackPolicyBody":{"shape":"StackPolicyBody"},
         "StackPolicyURL":{"shape":"StackPolicyURL"},
         "NotificationARNs":{"shape":"NotificationARNs"},

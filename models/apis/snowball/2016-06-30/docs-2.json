@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>This is a test of the welcome page front matter.</p>",
+  "service": "<p>AWS Import/Export Snowball is a petabyte-scale data transport solution that uses secure appliances to transfer large amounts of data between your on-premises data centers and Amazon Simple Storage Service (Amazon S3). The Snowball commands described here provide access to the same functionality that is available in the AWS Snowball Management Console, which enables you to create and manage jobs for Snowball. To transfer data locally with a Snowball appliance, you'll need to use the Snowball client or the Amazon S3 API adapter for Snowball. For more information, see the <a href=\"http://docs.aws.amazon.com/AWSImportExport/latest/ug/api-reference.html\">User Guide</a>.</p>",
   "operations": {
     "CancelJob": "<p>Cancels the specified job. Note that you can only cancel a job before its <code>JobState</code> value changes to <code>PreparingAppliance</code>. Requesting the <code>ListJobs</code> or <code>DescribeJob</code> action will return a job's <code>JobState</code> as part of the response element data returned.</p>",
     "CreateAddress": "<p>Creates an address for a Snowball to be shipped to. </p> <p>Addresses are validated at the time of creation. The address you provide must be located within the serviceable area of your region. If the address is invalid or unsupported, then an exception is thrown.</p>",
