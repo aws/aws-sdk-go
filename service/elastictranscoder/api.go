@@ -269,9 +269,9 @@ func (c *ElasticTranscoder) DeletePipelineRequest(input *DeletePipelineInput) (r
 
 // The DeletePipeline operation removes a pipeline.
 //
-//  You can only delete a pipeline that has never been used or that is not
-// currently in use (doesn't contain any active jobs). If the pipeline is currently
-// in use, DeletePipeline returns an error.
+// You can only delete a pipeline that has never been used or that is not currently
+// in use (doesn't contain any active jobs). If the pipeline is currently in
+// use, DeletePipeline returns an error.
 func (c *ElasticTranscoder) DeletePipeline(input *DeletePipelineInput) (*DeletePipelineOutput, error) {
 	req, out := c.DeletePipelineRequest(input)
 	err := req.Send()
@@ -1056,25 +1056,25 @@ type Artwork struct {
 	// Specify one of the following values to control scaling of the output album
 	// art:
 	//
-	//   Fit: Elastic Transcoder scales the output art so it matches the value
-	// that you specified in either MaxWidth or MaxHeight without exceeding the
-	// other value. Fill: Elastic Transcoder scales the output art so it matches
-	// the value that you specified in either MaxWidth or MaxHeight and matches
-	// or exceeds the other value. Elastic Transcoder centers the output art and
-	// then crops it in the dimension (if any) that exceeds the maximum value.
-	// Stretch: Elastic Transcoder stretches the output art to match the values
-	// that you specified for MaxWidth and MaxHeight. If the relative proportions
-	// of the input art and the output art are different, the output art will be
-	// distorted. Keep: Elastic Transcoder does not scale the output art. If either
-	// dimension of the input art exceeds the values that you specified for MaxWidth
-	// and MaxHeight, Elastic Transcoder crops the output art. ShrinkToFit: Elastic
-	// Transcoder scales the output art down so that its dimensions match the values
-	// that you specified for at least one of MaxWidth and MaxHeight without exceeding
-	// either value. If you specify this option, Elastic Transcoder does not scale
-	// the art up. ShrinkToFill Elastic Transcoder scales the output art down so
-	// that its dimensions match the values that you specified for at least one
-	// of MaxWidth and MaxHeight without dropping below either value. If you specify
-	// this option, Elastic Transcoder does not scale the art up.
+	//  Fit: Elastic Transcoder scales the output art so it matches the value that
+	// you specified in either MaxWidth or MaxHeight without exceeding the other
+	// value. Fill: Elastic Transcoder scales the output art so it matches the value
+	// that you specified in either MaxWidth or MaxHeight and matches or exceeds
+	// the other value. Elastic Transcoder centers the output art and then crops
+	// it in the dimension (if any) that exceeds the maximum value.  Stretch: Elastic
+	// Transcoder stretches the output art to match the values that you specified
+	// for MaxWidth and MaxHeight. If the relative proportions of the input art
+	// and the output art are different, the output art will be distorted. Keep:
+	// Elastic Transcoder does not scale the output art. If either dimension of
+	// the input art exceeds the values that you specified for MaxWidth and MaxHeight,
+	// Elastic Transcoder crops the output art. ShrinkToFit: Elastic Transcoder
+	// scales the output art down so that its dimensions match the values that you
+	// specified for at least one of MaxWidth and MaxHeight without exceeding either
+	// value. If you specify this option, Elastic Transcoder does not scale the
+	// art up. ShrinkToFill Elastic Transcoder scales the output art down so that
+	// its dimensions match the values that you specified for at least one of MaxWidth
+	// and MaxHeight without dropping below either value. If you specify this option,
+	// Elastic Transcoder does not scale the art up.
 	SizingPolicy *string `type:"string"`
 }
 
@@ -1254,7 +1254,7 @@ type AudioParameters struct {
 	// channels. 0 channels specified, with any input: Audio omitted from the output.
 	// 1 channel specified, with at least one input channel: Mono sound. 2 channels
 	// specified, with any input: Two identical mono channels or stereo. For more
-	// information about tracks, see Audio:AudioPackingMode.   For more information
+	// information about tracks, see Audio:AudioPackingMode.  For more information
 	// about how Elastic Transcoder organizes channels and tracks, see Audio:AudioPackingMode.
 	Channels *string `type:"string"`
 
@@ -1687,7 +1687,7 @@ type CreateJobOutput struct {
 	//
 	// Valid outputs include: dfxp (first div element only), scc, srt, and webvtt.
 	//
-	//   If you want ttml or smpte-tt compatible captions, specify dfxp as your
+	//  If you want ttml or smpte-tt compatible captions, specify dfxp as your
 	// output format.
 	//
 	// Elastic Transcoder does not support OCR (Optical Character Recognition),
@@ -1761,11 +1761,11 @@ type CreateJobOutput struct {
 	//
 	// If you don't want Elastic Transcoder to create thumbnails, specify "".
 	//
-	//  If you do want Elastic Transcoder to create thumbnails, specify the information
+	// If you do want Elastic Transcoder to create thumbnails, specify the information
 	// that you want to include in the file name for each thumbnail. You can specify
 	// the following values in any sequence:
 	//
-	//    {count} (Required): If you want to create thumbnails, you must include
+	//   {count} (Required): If you want to create thumbnails, you must include
 	// {count} in the ThumbnailPattern object. Wherever you specify {count}, Elastic
 	// Transcoder adds a five-digit sequence number (beginning with 00001) to thumbnail
 	// file names. The number indicates where a given thumbnail appears in the sequence
@@ -1773,11 +1773,11 @@ type CreateJobOutput struct {
 	//
 	// If you specify a literal value and/or {resolution} but you omit {count},
 	// Elastic Transcoder returns a validation error and does not create the job.
-	//    Literal values (Optional): You can specify literal values anywhere in
-	// the ThumbnailPattern object. For example, you can include them as a file
-	// name prefix or as a delimiter between {resolution} and {count}.
+	//   Literal values (Optional): You can specify literal values anywhere in the
+	// ThumbnailPattern object. For example, you can include them as a file name
+	// prefix or as a delimiter between {resolution} and {count}.
 	//
-	//    {resolution} (Optional): If you want Elastic Transcoder to include the
+	//   {resolution} (Optional): If you want Elastic Transcoder to include the
 	// resolution in the file name, include {resolution} in the ThumbnailPattern
 	// object.
 	//
@@ -2561,7 +2561,7 @@ type Job struct {
 	// file into only one format. Do not use both the Outputs and Output syntaxes
 	// in the same request. You can create a maximum of 30 outputs per job.
 	//
-	//  If you specify more than one output for a job, Elastic Transcoder creates
+	// If you specify more than one output for a job, Elastic Transcoder creates
 	// the files for each output in the order in which you specify them in the job.
 	Outputs []*JobOutput `type:"list"`
 
@@ -2623,13 +2623,12 @@ type JobAlbumArt struct {
 	// A policy that determines how Elastic Transcoder will handle the existence
 	// of multiple album artwork files.
 	//
-	//   Replace: The specified album art will replace any existing album art.
-	// Prepend: The specified album art will be placed in front of any existing
-	// album art. Append: The specified album art will be placed after any existing
-	// album art. Fallback: If the original input file contains artwork, Elastic
-	// Transcoder will use that artwork for the output. If the original input does
-	// not contain artwork, Elastic Transcoder will use the specified album art
-	// file.
+	//  Replace: The specified album art will replace any existing album art. Prepend:
+	// The specified album art will be placed in front of any existing album art.
+	// Append: The specified album art will be placed after any existing album art.
+	// Fallback: If the original input file contains artwork, Elastic Transcoder
+	// will use that artwork for the output. If the original input does not contain
+	// artwork, Elastic Transcoder will use the specified album art file.
 	MergePolicy *string `type:"string"`
 }
 
@@ -2671,9 +2670,9 @@ type JobInput struct {
 	// detect the aspect ratio of the input file, specify auto. If you want to specify
 	// the aspect ratio for the output file, enter one of the following values:
 	//
-	//  1:1, 4:3, 3:2, 16:9
+	// 1:1, 4:3, 3:2, 16:9
 	//
-	//  If you specify a value other than auto, Elastic Transcoder disables automatic
+	// If you specify a value other than auto, Elastic Transcoder disables automatic
 	// detection of the aspect ratio.
 	AspectRatio *string `type:"string"`
 
@@ -2682,8 +2681,8 @@ type JobInput struct {
 	// If you want to specify the container type for the input file, enter one of
 	// the following values:
 	//
-	//  3gp, aac, asf, avi, divx, flv, m4a, mkv, mov, mp3, mp4, mpeg, mpeg-ps,
-	// mpeg-ts, mxf, ogg, vob, wav, webm
+	// 3gp, aac, asf, avi, divx, flv, m4a, mkv, mov, mp3, mp4, mpeg, mpeg-ps, mpeg-ts,
+	// mxf, ogg, vob, wav, webm
 	Container *string `type:"string"`
 
 	// The detected properties of the input file.
@@ -2698,7 +2697,7 @@ type JobInput struct {
 	// detect the frame rate of the input file, specify auto. If you want to specify
 	// the frame rate for the input file, enter one of the following values:
 	//
-	//  10, 15, 23.97, 24, 25, 29.97, 30, 60
+	// 10, 15, 23.97, 24, 25, 29.97, 30, 60
 	//
 	// If you specify a value other than auto, Elastic Transcoder disables automatic
 	// detection of the frame rate.
@@ -2795,7 +2794,7 @@ type JobOutput struct {
 	//
 	// Valid outputs include: dfxp (first div element only), scc, srt, and webvtt.
 	//
-	//   If you want ttml or smpte-tt compatible captions, specify dfxp as your
+	//  If you want ttml or smpte-tt compatible captions, specify dfxp as your
 	// output format.
 	//
 	// Elastic Transcoder does not support OCR (Optical Character Recognition),
@@ -2864,7 +2863,7 @@ type JobOutput struct {
 	//
 	// auto, 0, 90, 180, 270
 	//
-	//  The value auto generally works only if the file that you're transcoding
+	// The value auto generally works only if the file that you're transcoding
 	// contains rotation metadata.
 	Rotate *string `type:"string"`
 
@@ -2914,11 +2913,11 @@ type JobOutput struct {
 	//
 	// If you don't want Elastic Transcoder to create thumbnails, specify "".
 	//
-	//  If you do want Elastic Transcoder to create thumbnails, specify the information
+	// If you do want Elastic Transcoder to create thumbnails, specify the information
 	// that you want to include in the file name for each thumbnail. You can specify
 	// the following values in any sequence:
 	//
-	//    {count} (Required): If you want to create thumbnails, you must include
+	//   {count} (Required): If you want to create thumbnails, you must include
 	// {count} in the ThumbnailPattern object. Wherever you specify {count}, Elastic
 	// Transcoder adds a five-digit sequence number (beginning with 00001) to thumbnail
 	// file names. The number indicates where a given thumbnail appears in the sequence
@@ -2926,11 +2925,11 @@ type JobOutput struct {
 	//
 	// If you specify a literal value and/or {resolution} but you omit {count},
 	// Elastic Transcoder returns a validation error and does not create the job.
-	//    Literal values (Optional): You can specify literal values anywhere in
-	// the ThumbnailPattern object. For example, you can include them as a file
-	// name prefix or as a delimiter between {resolution} and {count}.
+	//   Literal values (Optional): You can specify literal values anywhere in the
+	// ThumbnailPattern object. For example, you can include them as a file name
+	// prefix or as a delimiter between {resolution} and {count}.
 	//
-	//    {resolution} (Optional): If you want Elastic Transcoder to include the
+	//   {resolution} (Optional): If you want Elastic Transcoder to include the
 	// resolution in the file name, include {resolution} in the ThumbnailPattern
 	// object.
 	//
@@ -2982,7 +2981,7 @@ type JobWatermark struct {
 	// Transcoder checks the pipeline specified by Pipeline; the Input Bucket object
 	// in that pipeline identifies the bucket.
 	//
-	//  If the file name includes a prefix, for example, logos/128x64.png, include
+	// If the file name includes a prefix, for example, logos/128x64.png, include
 	// the prefix in the key. If the file isn't in the specified bucket, Elastic
 	// Transcoder returns an error.
 	InputKey *string `min:"1" type:"string"`
@@ -3480,7 +3479,7 @@ type PipelineOutputConfig struct {
 	// role specified by Role. If you want that user to have full control, you must
 	// explicitly grant full control to the user.
 	//
-	//  If you omit Permissions, Elastic Transcoder grants full control over the
+	// If you omit Permissions, Elastic Transcoder grants full control over the
 	// transcoded files and playlists to the owner of the role specified by Role,
 	// and grants no other permissions to any other user or group.
 	Permissions []*Permission `type:"list"`
@@ -4175,7 +4174,7 @@ type Thumbnails struct {
 
 	// Specify one of the following values to control scaling of thumbnails:
 	//
-	//   Fit: Elastic Transcoder scales thumbnails so they match the value that
+	//  Fit: Elastic Transcoder scales thumbnails so they match the value that
 	// you specified in thumbnail MaxWidth or MaxHeight settings without exceeding
 	// the other value.  Fill: Elastic Transcoder scales thumbnails so they match
 	// the value that you specified in thumbnail MaxWidth or MaxHeight settings
@@ -4612,7 +4611,7 @@ type VideoParameters struct {
 	// than or equal to the maximum H.264-compliant value listed for your level
 	// and profile:
 	//
-	//  Level - Maximum video bit rate in kilobits/second (baseline and main Profile)
+	// Level - Maximum video bit rate in kilobits/second (baseline and main Profile)
 	// : maximum video bit rate in kilobits/second (high Profile)
 	//
 	//  1 - 64 : 80 1b - 128 : 160 1.1 - 192 : 240 1.2 - 384 : 480 1.3 - 768 :
@@ -4633,22 +4632,22 @@ type VideoParameters struct {
 	//  baseline: The profile most commonly used for videoconferencing and for
 	// mobile applications. main: The profile used for standard-definition digital
 	// TV broadcasts. high: The profile used for high-definition digital TV broadcasts
-	// and for Blu-ray discs.   Level (H.264 Only)
+	// and for Blu-ray discs.  Level (H.264 Only)
 	//
 	// The H.264 level that you want to use for the output file. Elastic Transcoder
 	// supports the following levels:
 	//
 	// 1, 1b, 1.1, 1.2, 1.3, 2, 2.1, 2.2, 3, 3.1, 3.2, 4, 4.1
 	//
-	//  MaxReferenceFrames (H.264 Only)
+	// MaxReferenceFrames (H.264 Only)
 	//
 	// Applicable only when the value of Video:Codec is H.264. The maximum number
 	// of previously decoded frames to use as a reference for decoding future frames.
 	// Valid values are integers 0 through 16, but we recommend that you not use
 	// a value greater than the following:
 	//
-	//  Min(Floor(Maximum decoded picture buffer in macroblocks * 256 / (Width
-	// in pixels * Height in pixels)), 16)
+	// Min(Floor(Maximum decoded picture buffer in macroblocks * 256 / (Width in
+	// pixels * Height in pixels)), 16)
 	//
 	// where Width in pixels and Height in pixels represent either MaxWidth and
 	// MaxHeight, or Resolution. Maximum decoded picture buffer in macroblocks depends
@@ -4656,7 +4655,7 @@ type VideoParameters struct {
 	// block of pixels measuring 16x16.)
 	//
 	//  1 - 396 1b - 396 1.1 - 900 1.2 - 2376 1.3 - 2376 2 - 2376 2.1 - 4752 2.2
-	// - 8100 3 - 8100 3.1 - 18000 3.2 - 20480 4 - 32768 4.1 - 32768   MaxBitRate
+	// - 8100 3 - 8100 3.1 - 18000 3.2 - 20480 4 - 32768 4.1 - 32768  MaxBitRate
 	// (Optional, H.264/MPEG2/VP8 only)
 	//
 	// The maximum number of bits per second in a video buffer; the size of the
@@ -4664,7 +4663,7 @@ type VideoParameters struct {
 	// You can reduce the bandwidth required to stream a video by reducing the maximum
 	// bit rate, but this also reduces the quality of the video.
 	//
-	//  BufferSize (Optional, H.264/MPEG2/VP8 only)
+	// BufferSize (Optional, H.264/MPEG2/VP8 only)
 	//
 	// The maximum number of bits in any x seconds of the output video. This window
 	// is commonly 10 seconds, the standard segment duration when you're using FMP4
@@ -4672,7 +4671,7 @@ type VideoParameters struct {
 	// greater than 0. If you specify MaxBitRate and omit BufferSize, Elastic Transcoder
 	// sets BufferSize to 10 times the value of MaxBitRate.
 	//
-	//  InterlacedMode (Optional, H.264/MPEG2 Only)
+	// InterlacedMode (Optional, H.264/MPEG2 Only)
 	//
 	// The interlace mode for the output video.
 	//
@@ -4688,7 +4687,7 @@ type VideoParameters struct {
 	// If InterlaceMode is not specified, Elastic Transcoder uses Progressive for
 	// the output. If Auto is specified, Elastic Transcoder interlaces the output.
 	//
-	//  ColorSpaceConversionMode (Optional, H.264/MPEG2 Only)
+	// ColorSpaceConversionMode (Optional, H.264/MPEG2 Only)
 	//
 	// The color space conversion Elastic Transcoder applies to the output video.
 	// Color spaces are the algorithms used by the computer to store information
@@ -4714,7 +4713,7 @@ type VideoParameters struct {
 	// parameter included in your job response. If your job does not have an AppliedColorSpaceConversion
 	// in its response, no ColorSpaceConversionMode was applied.
 	//
-	//  ChromaSubsampling
+	// ChromaSubsampling
 	//
 	// The sampling pattern for the chroma (color) channels of the output video.
 	// Valid values include yuv420p and yuv422p.
@@ -4723,7 +4722,7 @@ type VideoParameters struct {
 	// other vertical line, yuv422p samples the color information of every horizontal
 	// line and every other vertical line.
 	//
-	//  LoopCount (Gif Only)
+	// LoopCount (Gif Only)
 	//
 	// The number of times you want the output gif to loop. Valid values include
 	// Infinite and integers between 0 and 100, inclusive.
@@ -4752,8 +4751,8 @@ type VideoParameters struct {
 	// the input source. If you specify a frame rate, we recommend that you perform
 	// the following calculation:
 	//
-	//  Frame rate = maximum recommended decoding speed in luma samples/second
-	// / (width in pixels * height in pixels)
+	// Frame rate = maximum recommended decoding speed in luma samples/second /
+	// (width in pixels * height in pixels)
 	//
 	// where:
 	//
@@ -4843,7 +4842,7 @@ type VideoParameters struct {
 
 	// Specify one of the following values to control scaling of the output video:
 	//
-	//   Fit: Elastic Transcoder scales the output video so it matches the value
+	//  Fit: Elastic Transcoder scales the output video so it matches the value
 	// that you specified in either MaxWidth or MaxHeight without exceeding the
 	// other value. Fill: Elastic Transcoder scales the output video so it matches
 	// the value that you specified in either MaxWidth or MaxHeight and matches

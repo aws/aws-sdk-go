@@ -20,27 +20,27 @@ import (
 // about this product, go to the AWS OpsWorks (http://aws.amazon.com/opsworks/)
 // details page.
 //
-//  SDKs and CLI
+// SDKs and CLI
 //
 // The most common way to use the AWS OpsWorks API is by using the AWS Command
 // Line Interface (CLI) or by using one of the AWS SDKs to implement applications
 // in your preferred language. For more information, see:
 //
-//    AWS CLI (http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)
+//   AWS CLI (http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)
 //
-//    AWS SDK for Java (http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/opsworks/AWSOpsWorksClient.html)
+//   AWS SDK for Java (http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/opsworks/AWSOpsWorksClient.html)
 //
-//    AWS SDK for .NET (http://docs.aws.amazon.com/sdkfornet/latest/apidocs/html/N_Amazon_OpsWorks.htm)
+//   AWS SDK for .NET (http://docs.aws.amazon.com/sdkfornet/latest/apidocs/html/N_Amazon_OpsWorks.htm)
 //
-//    AWS SDK for PHP 2 (http://docs.aws.amazon.com/aws-sdk-php-2/latest/class-Aws.OpsWorks.OpsWorksClient.html)
+//   AWS SDK for PHP 2 (http://docs.aws.amazon.com/aws-sdk-php-2/latest/class-Aws.OpsWorks.OpsWorksClient.html)
 //
-//    AWS SDK for Ruby (http://docs.aws.amazon.com/sdkforruby/api/)
+//   AWS SDK for Ruby (http://docs.aws.amazon.com/sdkforruby/api/)
 //
-//    AWS SDK for Node.js (http://aws.amazon.com/documentation/sdkforjavascript/)
+//   AWS SDK for Node.js (http://aws.amazon.com/documentation/sdkforjavascript/)
 //
-//    AWS SDK for Python(Boto) (http://docs.pythonboto.org/en/latest/ref/opsworks.html)
+//   AWS SDK for Python(Boto) (http://docs.pythonboto.org/en/latest/ref/opsworks.html)
 //
-//    Endpoints
+//   Endpoints
 //
 // AWS OpsWorks supports the following endpoints, all HTTPS. You must connect
 // to one of the following endpoints. Stacks can only be accessed or managed
@@ -68,7 +68,7 @@ import (
 //
 //   opsworks.sa-east-1.amazonaws.com
 //
-//    Chef Versions
+//   Chef Versions
 //
 // When you call CreateStack, CloneStack, or UpdateStack we recommend you use
 // the ConfigurationManager parameter to specify the Chef version. The recommended

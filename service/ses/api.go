@@ -1733,11 +1733,11 @@ func (c *SES) SendRawEmailRequest(input *SendRawEmailInput) (req *request.Reques
 // API, or you can include the following X-headers in the header of your raw
 // email:
 //
-//    X-SES-SOURCE-ARN
+//   X-SES-SOURCE-ARN
 //
-//    X-SES-FROM-ARN
+//   X-SES-FROM-ARN
 //
-//    X-SES-RETURN-PATH-ARN
+//   X-SES-RETURN-PATH-ARN
 //
 //    Do not include these X-headers in the DKIM signature, because they are
 // removed by Amazon SES before sending the email.
@@ -3366,7 +3366,7 @@ func (s DescribeReceiptRuleSetOutput) GoString() string {
 // Represents the destination of the message, consisting of To:, CC:, and BCC:
 // fields.
 //
-//  By default, the string must be 7-bit ASCII. If the text must contain any
+// By default, the string must be 7-bit ASCII. If the text must contain any
 // other characters, then you must use MIME encoded-word syntax (RFC 2047) instead
 // of a literal string. MIME encoded-word syntax uses the following form: =?charset?encoding?encoded-text?=.
 // For more information, see RFC 2047 (http://tools.ietf.org/html/rfc2047).
@@ -5202,7 +5202,7 @@ type SendEmailInput struct {
 	// parameter. For more information about sending authorization, see the Amazon
 	// SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html).
 	//
-	//  In all cases, the email address must be 7-bit ASCII. If the text must contain
+	// In all cases, the email address must be 7-bit ASCII. If the text must contain
 	// any other characters, then you must use MIME encoded-word syntax (RFC 2047)
 	// instead of a literal string. MIME encoded-word syntax uses the following
 	// form: =?charset?encoding?encoded-text?=. For more information, see RFC 2047
@@ -5332,7 +5332,7 @@ type SendRawEmailInput struct {
 	// you must specify a "From" address in the raw text of the message. (You can
 	// also specify both.)
 	//
-	//  By default, the string must be 7-bit ASCII. If the text must contain any
+	// By default, the string must be 7-bit ASCII. If the text must contain any
 	// other characters, then you must use MIME encoded-word syntax (RFC 2047) instead
 	// of a literal string. MIME encoded-word syntax uses the following form: =?charset?encoding?encoded-text?=.
 	// For more information, see RFC 2047 (http://tools.ietf.org/html/rfc2047).

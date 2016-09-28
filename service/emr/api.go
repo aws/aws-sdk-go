@@ -390,7 +390,7 @@ func (c *EMR) DescribeJobFlowsRequest(input *DescribeJobFlowsInput) (req *reques
 //
 //   Job flows created and completed in the last two weeks
 //
-//    Job flows created within the last two months that are in one of the following
+//   Job flows created within the last two months that are in one of the following
 // states: RUNNING, WAITING, SHUTTING_DOWN, STARTING
 //
 //   Amazon Elastic MapReduce can return a maximum of 512 job flow descriptions.
@@ -1181,11 +1181,11 @@ func (c *EMR) SetTerminationProtectionRequest(input *SetTerminationProtectionInp
 // job flow and to ensure that in the event of an error, the instances will
 // persist so you can recover any data stored in their ephemeral instance storage.
 //
-//  To terminate a job flow that has been locked by setting SetTerminationProtection
+// To terminate a job flow that has been locked by setting SetTerminationProtection
 // to true, you must first unlock the job flow by a subsequent call to SetTerminationProtection
 // in which you set the value to false.
 //
-//  For more information, go to Protecting a Job Flow from Termination (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/UsingEMR_TerminationProtection.html)
+// For more information, go to Protecting a Job Flow from Termination (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/UsingEMR_TerminationProtection.html)
 // in the Amazon Elastic MapReduce Developer's Guide.
 func (c *EMR) SetTerminationProtection(input *SetTerminationProtectionInput) (*SetTerminationProtectionOutput, error) {
 	req, out := c.SetTerminationProtectionRequest(input)

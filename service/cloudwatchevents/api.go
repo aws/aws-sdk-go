@@ -59,7 +59,7 @@ func (c *CloudWatchEvents) DeleteRuleRequest(input *DeleteRuleInput) (req *reque
 // Deletes a rule. You must remove all targets from a rule using RemoveTargets
 // before you can delete the rule.
 //
-//  Note: When you delete a rule, incoming events might still continue to match
+// Note: When you delete a rule, incoming events might still continue to match
 // to the deleted rule. Please allow a short period of time for changes to take
 // effect.
 func (c *CloudWatchEvents) DeleteRule(input *DeleteRuleInput) (*DeleteRuleOutput, error) {
@@ -162,9 +162,9 @@ func (c *CloudWatchEvents) DisableRuleRequest(input *DisableRuleInput) (req *req
 // Disables a rule. A disabled rule won't match any events, and won't self-trigger
 // if it has a schedule expression.
 //
-//  Note: When you disable a rule, incoming events might still continue to
-// match to the disabled rule. Please allow a short period of time for changes
-// to take effect.
+// Note: When you disable a rule, incoming events might still continue to match
+// to the disabled rule. Please allow a short period of time for changes to
+// take effect.
 func (c *CloudWatchEvents) DisableRule(input *DisableRuleInput) (*DisableRuleOutput, error) {
 	req, out := c.DisableRuleRequest(input)
 	err := req.Send()
@@ -216,7 +216,7 @@ func (c *CloudWatchEvents) EnableRuleRequest(input *EnableRuleInput) (req *reque
 
 // Enables a rule. If the rule does not exist, the operation fails.
 //
-//  Note: When you enable a rule, incoming events might not immediately start
+// Note: When you enable a rule, incoming events might not immediately start
 // matching to a newly enabled rule. Please allow a short period of time for
 // changes to take effect.
 func (c *CloudWatchEvents) EnableRule(input *EnableRuleInput) (*EnableRuleOutput, error) {
@@ -471,7 +471,7 @@ func (c *CloudWatchEvents) PutRuleRequest(input *PutRuleInput) (req *request.Req
 // Creates or updates a rule. Rules are enabled by default, or based on value
 // of the State parameter. You can disable a rule using DisableRule.
 //
-//  Note: When you create or update a rule, incoming events might not immediately
+// Note: When you create or update a rule, incoming events might not immediately
 // start matching to new or updated rules. Please allow a short period of time
 // for changes to take effect.
 //
@@ -481,7 +481,7 @@ func (c *CloudWatchEvents) PutRuleRequest(input *PutRuleInput) (req *request.Req
 // can have both an EventPattern and a ScheduleExpression, in which case the
 // rule will trigger on matching events as well as on a schedule.
 //
-//  Note: Most services in AWS treat : or / as the same character in Amazon
+// Note: Most services in AWS treat : or / as the same character in Amazon
 // Resource Names (ARNs). However, CloudWatch Events uses an exact match in
 // event patterns and rules. Be sure to use the correct ARN characters when
 // creating event patterns so that they match the ARN syntax in the event you
@@ -554,7 +554,7 @@ func (c *CloudWatchEvents) PutTargetsRequest(input *PutTargetsInput) (req *reque
 // (e.g. $.detail), then only the part of the event specified in the path is
 // passed to the target (e.g. only the detail part of the event is passed).
 //   Input is specified in the form of a valid JSON, then the matched event
-// is overridden with this constant.   Note: When you add targets to a rule,
+// is overridden with this constant.  Note: When you add targets to a rule,
 // when the associated rule triggers, new or updated targets might not be immediately
 // invoked. Please allow a short period of time for changes to take effect.
 func (c *CloudWatchEvents) PutTargets(input *PutTargetsInput) (*PutTargetsOutput, error) {
@@ -607,7 +607,7 @@ func (c *CloudWatchEvents) RemoveTargetsRequest(input *RemoveTargetsInput) (req 
 // Removes target(s) from a rule so that when the rule is triggered, those targets
 // will no longer be invoked.
 //
-//  Note: When you remove a target, when the associated rule triggers, removed
+// Note: When you remove a target, when the associated rule triggers, removed
 // targets might still continue to be invoked. Please allow a short period of
 // time for changes to take effect.
 func (c *CloudWatchEvents) RemoveTargets(input *RemoveTargetsInput) (*RemoveTargetsOutput, error) {
@@ -659,7 +659,7 @@ func (c *CloudWatchEvents) TestEventPatternRequest(input *TestEventPatternInput)
 
 // Tests whether an event pattern matches the provided event.
 //
-//  Note: Most services in AWS treat : or / as the same character in Amazon
+// Note: Most services in AWS treat : or / as the same character in Amazon
 // Resource Names (ARNs). However, CloudWatch Events uses an exact match in
 // event patterns and rules. Be sure to use the correct ARN characters when
 // creating event patterns so that they match the ARN syntax in the event you

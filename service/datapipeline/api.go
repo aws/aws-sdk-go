@@ -696,13 +696,13 @@ func (c *DataPipeline) PutPipelineDefinitionRequest(input *PutPipelineDefinition
 // Adds tasks, schedules, and preconditions to the specified pipeline. You can
 // use PutPipelineDefinition to populate a new pipeline.
 //
-//  PutPipelineDefinition also validates the configuration as it adds it to
+// PutPipelineDefinition also validates the configuration as it adds it to
 // the pipeline. Changes to the pipeline are saved unless one of the following
 // three validation errors exists in the pipeline.
 //
 //  An object is missing a name or identifier field. A string or reference
 // field is empty. The number of objects in the pipeline exceeds the maximum
-// allowed objects. The pipeline is in a FINISHED state.   Pipeline object definitions
+// allowed objects. The pipeline is in a FINISHED state.  Pipeline object definitions
 // are passed to the PutPipelineDefinition action and returned by the GetPipelineDefinition
 // action.
 func (c *DataPipeline) PutPipelineDefinition(input *PutPipelineDefinitionInput) (*PutPipelineDefinitionOutput, error) {
@@ -1822,10 +1822,10 @@ type Operator struct {
 	// comparison types can be used only with String fields. The comparison types
 	// you can use apply only to certain object fields, as detailed below.
 	//
-	//  The comparison operators EQ and REF_EQ act on the following fields:
+	// The comparison operators EQ and REF_EQ act on the following fields:
 	//
 	//  name @sphere parent @componentParent @instanceParent @status @scheduledStartTime
-	// @scheduledEndTime @actualStartTime @actualEndTime   The comparison operators
+	// @scheduledEndTime @actualStartTime @actualEndTime  The comparison operators
 	// GE, LE, and BETWEEN act on the following fields:
 	//
 	//  @scheduledStartTime @scheduledEndTime @actualStartTime @actualEndTime

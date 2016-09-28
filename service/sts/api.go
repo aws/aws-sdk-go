@@ -60,7 +60,7 @@ func (c *STS) AssumeRoleRequest(input *AssumeRoleInput) (req *request.Request, o
 // and Comparing the AWS STS APIs (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#stsapi_comparison)
 // in the IAM User Guide.
 //
-//  Important: You cannot call AssumeRole by using AWS root account credentials;
+// Important: You cannot call AssumeRole by using AWS root account credentials;
 // access is denied. You must use credentials for an IAM user or an IAM role
 // to call AssumeRole.
 //
@@ -120,7 +120,7 @@ func (c *STS) AssumeRoleRequest(input *AssumeRoleInput) (req *request.Request, o
 // a policy to the user (identical to the previous different account user),
 // or you can add the user as a principal directly in the role's trust policy
 //
-//  Using MFA with AssumeRole
+// Using MFA with AssumeRole
 //
 // You can optionally include multi-factor authentication (MFA) information
 // when you call AssumeRole. This is useful for cross-account scenarios in which
@@ -131,7 +131,7 @@ func (c *STS) AssumeRoleRequest(input *AssumeRoleInput) (req *request.Request, o
 // denied. The condition in a trust policy that tests for MFA authentication
 // might look like the following example.
 //
-//  "Condition": {"Bool": {"aws:MultiFactorAuthPresent": true}}
+// "Condition": {"Bool": {"aws:MultiFactorAuthPresent": true}}
 //
 // For more information, see Configuring MFA-Protected API Access (http://docs.aws.amazon.com/IAM/latest/UserGuide/MFAProtectedAPI.html)
 // in the IAM User Guide guide.
@@ -243,16 +243,16 @@ func (c *STS) AssumeRoleWithSAMLRequest(input *AssumeRoleWithSAMLInput) (req *re
 //
 //  For more information, see the following resources:
 //
-//    About SAML 2.0-based Federation (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html)
+//   About SAML 2.0-based Federation (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html)
 // in the IAM User Guide.
 //
-//    Creating SAML Identity Providers (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_saml.html)
+//   Creating SAML Identity Providers (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_saml.html)
 // in the IAM User Guide.
 //
-//    Configuring a Relying Party and Claims (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_saml_relying-party.html)
+//   Configuring a Relying Party and Claims (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_saml_relying-party.html)
 // in the IAM User Guide.
 //
-//    Creating a Role for SAML 2.0 Federation (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-idp_saml.html)
+//   Creating a Role for SAML 2.0 Federation (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-idp_saml.html)
 // in the IAM User Guide.
 func (c *STS) AssumeRoleWithSAML(input *AssumeRoleWithSAMLInput) (*AssumeRoleWithSAMLOutput, error) {
 	req, out := c.AssumeRoleWithSAMLRequest(input)
@@ -370,20 +370,20 @@ func (c *STS) AssumeRoleWithWebIdentityRequest(input *AssumeRoleWithWebIdentityI
 //  For more information about how to use web identity federation and the AssumeRoleWithWebIdentity
 // API, see the following resources:
 //
-//    Using Web Identity Federation APIs for Mobile Apps (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc_manual)
+//   Using Web Identity Federation APIs for Mobile Apps (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc_manual)
 // and Federation Through a Web-based Identity Provider (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#api_assumerolewithwebidentity).
 //
-//     Web Identity Federation Playground (https://web-identity-federation-playground.s3.amazonaws.com/index.html).
+//    Web Identity Federation Playground (https://web-identity-federation-playground.s3.amazonaws.com/index.html).
 // This interactive website lets you walk through the process of authenticating
 // via Login with Amazon, Facebook, or Google, getting temporary security credentials,
 // and then using those credentials to make a request to AWS.
 //
-//    AWS SDK for iOS (http://aws.amazon.com/sdkforios/) and AWS SDK for Android
+//   AWS SDK for iOS (http://aws.amazon.com/sdkforios/) and AWS SDK for Android
 // (http://aws.amazon.com/sdkforandroid/). These toolkits contain sample apps
 // that show how to invoke the identity providers, and then how to use the information
 // from these providers to get and use temporary security credentials.
 //
-//    Web Identity Federation with Mobile Applications (http://aws.amazon.com/articles/4617974389850313).
+//   Web Identity Federation with Mobile Applications (http://aws.amazon.com/articles/4617974389850313).
 // This article discusses web identity federation and shows an example of how
 // to use web identity federation to get access to content in Amazon S3.
 func (c *STS) AssumeRoleWithWebIdentity(input *AssumeRoleWithWebIdentityInput) (*AssumeRoleWithWebIdentityOutput, error) {
@@ -573,7 +573,7 @@ func (c *STS) GetFederationTokenRequest(input *GetFederationTokenInput) (req *re
 // and Comparing the AWS STS APIs (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#stsapi_comparison)
 // in the IAM User Guide.
 //
-//   If you are creating a mobile-based or browser-based app that can authenticate
+//  If you are creating a mobile-based or browser-based app that can authenticate
 // users using a web identity provider like Login with Amazon, Facebook, Google,
 // or an OpenID Connect-compatible identity provider, we recommend that you
 // use Amazon Cognito (http://aws.amazon.com/cognito/) or AssumeRoleWithWebIdentity.
@@ -602,7 +602,7 @@ func (c *STS) GetFederationTokenRequest(input *GetFederationTokenInput) (req *re
 //
 //   You cannot call any STS APIs.
 //
-//    Permissions
+//   Permissions
 //
 // The permissions for the temporary security credentials returned by GetFederationToken
 // are determined by a combination of the following:
@@ -899,7 +899,7 @@ type AssumeRoleOutput struct {
 	// The temporary security credentials, which include an access key ID, a secret
 	// access key, and a security (or session) token.
 	//
-	//  Note: The size of the security token that STS APIs return is not fixed.
+	// Note: The size of the security token that STS APIs return is not fixed.
 	// We strongly recommend that you make no assumptions about the maximum size.
 	// As of this writing, the typical size is less than 4096 bytes, but that can
 	// vary. Also, future updates to AWS might require larger sizes.
@@ -1040,7 +1040,7 @@ type AssumeRoleWithSAMLOutput struct {
 	// The temporary security credentials, which include an access key ID, a secret
 	// access key, and a security (or session) token.
 	//
-	//  Note: The size of the security token that STS APIs return is not fixed.
+	// Note: The size of the security token that STS APIs return is not fixed.
 	// We strongly recommend that you make no assumptions about the maximum size.
 	// As of this writing, the typical size is less than 4096 bytes, but that can
 	// vary. Also, future updates to AWS might require larger sizes.
@@ -1056,7 +1056,7 @@ type AssumeRoleWithSAMLOutput struct {
 	//
 	// The following pseudocode shows how the hash value is calculated:
 	//
-	//  BASE64 ( SHA1 ( "https://example.com/saml" + "123456789012" + "/MySAMLIdP"
+	// BASE64 ( SHA1 ( "https://example.com/saml" + "123456789012" + "/MySAMLIdP"
 	// ) )
 	NameQualifier *string `type:"string"`
 
@@ -1072,7 +1072,7 @@ type AssumeRoleWithSAMLOutput struct {
 	// element of the SAML assertion. Typical examples of the format are transient
 	// or persistent.
 	//
-	//  If the format includes the prefix urn:oasis:names:tc:SAML:2.0:nameid-format,
+	// If the format includes the prefix urn:oasis:names:tc:SAML:2.0:nameid-format,
 	// that prefix is removed. For example, urn:oasis:names:tc:SAML:2.0:nameid-format:transient
 	// is returned as transient. If the format includes any other prefix, the format
 	// is returned with no modifications.
@@ -1228,7 +1228,7 @@ type AssumeRoleWithWebIdentityOutput struct {
 	// The temporary security credentials, which include an access key ID, a secret
 	// access key, and a security token.
 	//
-	//  Note: The size of the security token that STS APIs return is not fixed.
+	// Note: The size of the security token that STS APIs return is not fixed.
 	// We strongly recommend that you make no assumptions about the maximum size.
 	// As of this writing, the typical size is less than 4096 bytes, but that can
 	// vary. Also, future updates to AWS might require larger sizes.
@@ -1534,7 +1534,7 @@ type GetFederationTokenOutput struct {
 	// The temporary security credentials, which include an access key ID, a secret
 	// access key, and a security (or session) token.
 	//
-	//  Note: The size of the security token that STS APIs return is not fixed.
+	// Note: The size of the security token that STS APIs return is not fixed.
 	// We strongly recommend that you make no assumptions about the maximum size.
 	// As of this writing, the typical size is less than 4096 bytes, but that can
 	// vary. Also, future updates to AWS might require larger sizes.
@@ -1635,7 +1635,7 @@ type GetSessionTokenOutput struct {
 	// The temporary security credentials, which include an access key ID, a secret
 	// access key, and a security (or session) token.
 	//
-	//  Note: The size of the security token that STS APIs return is not fixed.
+	// Note: The size of the security token that STS APIs return is not fixed.
 	// We strongly recommend that you make no assumptions about the maximum size.
 	// As of this writing, the typical size is less than 4096 bytes, but that can
 	// vary. Also, future updates to AWS might require larger sizes.

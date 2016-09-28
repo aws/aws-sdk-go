@@ -144,8 +144,8 @@ type GenerateDataSetInput struct {
 
 	// The desired data set type.
 	//
-	//   customer_subscriber_hourly_monthly_subscriptions - Available daily by
-	// 5:00 PM Pacific Time since 2014-07-21. customer_subscriber_annual_subscriptions
+	//  customer_subscriber_hourly_monthly_subscriptions - Available daily by 5:00
+	// PM Pacific Time since 2014-07-21. customer_subscriber_annual_subscriptions
 	// - Available daily by 5:00 PM Pacific Time since 2014-07-21. daily_business_usage_by_instance_type
 	// - Available daily by 5:00 PM Pacific Time since 2015-01-26. daily_business_fees
 	// - Available daily by 5:00 PM Pacific Time since 2015-01-26. daily_business_free_trial_conversions
@@ -275,7 +275,7 @@ type StartSupportDataExportInput struct {
 	// Code, Operation Type, and Operation Time. Currently, only the test_customer_support_contacts_data
 	// value is supported
 	//
-	//   customer_support_contacts_data Customer support contact data. The data
+	//  customer_support_contacts_data Customer support contact data. The data
 	// set will contain all changes (Creates, Updates, and Deletes) to customer
 	// support contact data from the date specified in the from_date parameter.
 	// test_customer_support_contacts_data An example data set containing static

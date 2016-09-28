@@ -582,11 +582,11 @@ type AccessLevelFilter struct {
 
 	// Specifies the access level.
 	//
-	//  Account allows results at the account level.
+	// Account allows results at the account level.
 	//
-	//  Role allows results based on the federated role of the specified user.
+	// Role allows results based on the federated role of the specified user.
 	//
-	//  User allows results limited to the specified user.
+	// User allows results limited to the specified user.
 	Key *string `type:"string" enum:"AccessLevelFilterKey"`
 
 	// Specifies the user to which the access level applies. A value of Self is

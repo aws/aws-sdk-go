@@ -421,7 +421,7 @@ func (c *CloudWatch) GetMetricStatisticsRequest(input *GetMetricStatisticsInput)
 
 // Gets statistics for the specified metric.
 //
-//  The maximum number of data points that can be queried is 50,850, whereas
+// The maximum number of data points that can be queried is 50,850, whereas
 // the maximum number of data points returned from a single GetMetricStatistics
 // request is 1,440. If you make a request that generates more than 1,440 data
 // points, Amazon CloudWatch returns an error. In such a case, you can alter
@@ -431,13 +431,13 @@ func (c *CloudWatch) GetMetricStatisticsRequest(input *GetMetricStatisticsInput)
 // adjacent time ranges. GetMetricStatistics does not return the data in chronological
 // order.
 //
-//  Amazon CloudWatch aggregates data points based on the length of the period
+// Amazon CloudWatch aggregates data points based on the length of the period
 // that you specify. For example, if you request statistics with a one-minute
 // granularity, Amazon CloudWatch aggregates data points with time stamps that
 // fall within the same one-minute period. In such a case, the data points queried
 // can greatly outnumber the data points returned.
 //
-//  The following examples show various statistics allowed by the data point
+// The following examples show various statistics allowed by the data point
 // query maximum of 50,850 when you call GetMetricStatistics on Amazon EC2 instances
 // with detailed (one-minute) monitoring enabled:
 //
@@ -447,7 +447,7 @@ func (c *CloudWatch) GetMetricStatisticsRequest(input *GetMetricStatisticsInput)
 //
 //   Statistics for up to 2 instances over a span of 2 weeks
 //
-//    For information about the namespace, metric names, and dimensions that
+//   For information about the namespace, metric names, and dimensions that
 // other Amazon Web Services products use to send metrics to CloudWatch, go
 // to Amazon CloudWatch Metrics, Namespaces, and Dimensions Reference (http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html)
 // in the Amazon CloudWatch Developer Guide.
@@ -508,10 +508,10 @@ func (c *CloudWatch) ListMetricsRequest(input *ListMetricsInput) (req *request.R
 // metrics can be used with GetMetricStatistics to obtain statistical data for
 // a given metric.
 //
-//   Up to 500 results are returned for any one call. To retrieve further results,
+//  Up to 500 results are returned for any one call. To retrieve further results,
 // use returned NextToken values with subsequent ListMetrics operations.
 //
-//    If you create a metric with PutMetricData, allow up to fifteen minutes
+//   If you create a metric with PutMetricData, allow up to fifteen minutes
 // for the metric to appear in calls to ListMetrics. Statistics about the metric,
 // however, are available sooner using GetMetricStatistics.
 func (c *CloudWatch) ListMetrics(input *ListMetricsInput) (*ListMetricsOutput, error) {
@@ -592,7 +592,7 @@ func (c *CloudWatch) PutMetricAlarmRequest(input *PutMetricAlarmInput) (req *req
 // metric. Optionally, this operation can associate one or more Amazon SNS resources
 // with the alarm.
 //
-//  When this operation creates an alarm, the alarm state is immediately set
+// When this operation creates an alarm, the alarm state is immediately set
 // to INSUFFICIENT_DATA. The alarm is evaluated and its StateValue is set appropriately.
 // Any actions associated with the StateValue are then executed.
 //
@@ -602,14 +602,14 @@ func (c *CloudWatch) PutMetricAlarmRequest(input *PutMetricAlarmInput) (req *req
 //   If you are using an AWS Identity and Access Management (IAM) account to
 // create or modify an alarm, you must have the following Amazon EC2 permissions:
 //
-//    ec2:DescribeInstanceStatus and ec2:DescribeInstances for all alarms on
+//   ec2:DescribeInstanceStatus and ec2:DescribeInstances for all alarms on
 // Amazon EC2 instance status metrics.
 //
-//    ec2:StopInstances for alarms with stop actions.
+//   ec2:StopInstances for alarms with stop actions.
 //
-//    ec2:TerminateInstances for alarms with terminate actions.
+//   ec2:TerminateInstances for alarms with terminate actions.
 //
-//    ec2:DescribeInstanceRecoveryAttribute, and ec2:RecoverInstances for alarms
+//   ec2:DescribeInstanceRecoveryAttribute, and ec2:RecoverInstances for alarms
 // with recover actions.
 //
 //   If you have read/write permissions for Amazon CloudWatch but not for Amazon
@@ -683,7 +683,7 @@ func (c *CloudWatch) PutMetricDataRequest(input *PutMetricDataInput) (req *reque
 // a metric, it can take up to fifteen minutes for the metric to appear in calls
 // to ListMetrics.
 //
-//  Each PutMetricData request is limited to 8 KB in size for HTTP GET requests
+// Each PutMetricData request is limited to 8 KB in size for HTTP GET requests
 // and is limited to 40 KB in size for HTTP POST requests.
 //
 //  Although the Value parameter accepts numbers of type Double, Amazon CloudWatch
@@ -1700,7 +1700,7 @@ type PutMetricAlarmInput struct {
 	// | arn:aws:swf:us-east-1:{customer-account}:action/actions/AWS_EC2.InstanceId.Terminate/1.0
 	// | arn:aws:swf:us-east-1:{customer-account}:action/actions/AWS_EC2.InstanceId.Reboot/1.0
 	//
-	//  Note: You must create at least one stop, terminate, or reboot alarm using
+	// Note: You must create at least one stop, terminate, or reboot alarm using
 	// the Amazon EC2 or CloudWatch console to create the EC2ActionsAccess IAM role
 	// for the first time. After this IAM role is created, you can create stop,
 	// terminate, or reboot alarms using the CLI.
@@ -1734,7 +1734,7 @@ type PutMetricAlarmInput struct {
 	// | arn:aws:swf:us-east-1:{customer-account}:action/actions/AWS_EC2.InstanceId.Terminate/1.0
 	// | arn:aws:swf:us-east-1:{customer-account}:action/actions/AWS_EC2.InstanceId.Reboot/1.0
 	//
-	//  Note: You must create at least one stop, terminate, or reboot alarm using
+	// Note: You must create at least one stop, terminate, or reboot alarm using
 	// the Amazon EC2 or CloudWatch console to create the EC2ActionsAccess IAM role
 	// for the first time. After this IAM role is created, you can create stop,
 	// terminate, or reboot alarms using the CLI.
@@ -1757,7 +1757,7 @@ type PutMetricAlarmInput struct {
 	// | arn:aws:swf:us-east-1:{customer-account}:action/actions/AWS_EC2.InstanceId.Terminate/1.0
 	// | arn:aws:swf:us-east-1:{customer-account}:action/actions/AWS_EC2.InstanceId.Reboot/1.0
 	//
-	//  Note: You must create at least one stop, terminate, or reboot alarm using
+	// Note: You must create at least one stop, terminate, or reboot alarm using
 	// the Amazon EC2 or CloudWatch console to create the EC2ActionsAccess IAM role
 	// for the first time. After this IAM role is created, you can create stop,
 	// terminate, or reboot alarms using the CLI.
@@ -1779,7 +1779,7 @@ type PutMetricAlarmInput struct {
 	// your data. Metric data points that specify a unit of measure, such as Percent,
 	// are aggregated separately.
 	//
-	//  Note: If you specify a unit, you must use a unit that is appropriate for
+	// Note: If you specify a unit, you must use a unit that is appropriate for
 	// the metric. Otherwise, this can cause an Amazon CloudWatch alarm to get stuck
 	// in the INSUFFICIENT DATA state.
 	Unit *string `type:"string" enum:"StandardUnit"`

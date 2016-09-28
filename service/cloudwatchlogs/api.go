@@ -1549,7 +1549,7 @@ func (c *CloudWatchLogs) PutSubscriptionFilterRequest(input *PutSubscriptionFilt
 //   An Amazon Kinesis stream belonging to the same account as the subscription
 // filter, for same-account delivery.
 //
-//    A logical destination (used via an ARN of Destination) belonging to a
+//   A logical destination (used via an ARN of Destination) belonging to a
 // different account, for cross-account delivery.
 //
 //   An Amazon Kinesis Firehose stream belonging to the same account as the
@@ -1668,7 +1668,7 @@ type CreateExportTaskInput struct {
 
 	// Name of Amazon S3 bucket to which the log data will be exported.
 	//
-	//  Note: Only buckets in the same AWS region are supported.
+	// Note: Only buckets in the same AWS region are supported.
 	Destination *string `locationName:"destination" min:"1" type:"string" required:"true"`
 
 	// Prefix that will be used as the start of Amazon S3 key for every object exported.

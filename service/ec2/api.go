@@ -1547,14 +1547,14 @@ func (c *EC2) CreateDhcpOptionsRequest(input *CreateDhcpOptionsInput) (req *requ
 // individual DHCP options you can specify. For more information about the options,
 // see RFC 2132 (http://www.ietf.org/rfc/rfc2132.txt).
 //
-//    domain-name-servers - The IP addresses of up to four domain name servers,
+//   domain-name-servers - The IP addresses of up to four domain name servers,
 // or AmazonProvidedDNS. The default DHCP option set specifies AmazonProvidedDNS.
 // If specifying more than one domain name server, specify the IP addresses
 // in a single parameter, separated by commas. If you want your instance to
 // receive a custom DNS hostname as specified in domain-name, you must set domain-name-servers
 // to a custom DNS server.
 //
-//    domain-name - If you're using AmazonProvidedDNS in "us-east-1", specify
+//   domain-name - If you're using AmazonProvidedDNS in "us-east-1", specify
 // "ec2.internal". If you're using AmazonProvidedDNS in another region, specify
 // "region.compute.internal" (for example, "ap-northeast-1.compute.internal").
 // Otherwise, specify a domain name (for example, "MyCompany.com"). This value
@@ -1565,12 +1565,12 @@ func (c *EC2) CreateDhcpOptionsRequest(input *CreateDhcpOptionsInput) (req *requ
 // a VPC that has instances with multiple operating systems, specify only one
 // domain name.
 //
-//    ntp-servers - The IP addresses of up to four Network Time Protocol (NTP)
+//   ntp-servers - The IP addresses of up to four Network Time Protocol (NTP)
 // servers.
 //
-//    netbios-name-servers - The IP addresses of up to four NetBIOS name servers.
+//   netbios-name-servers - The IP addresses of up to four NetBIOS name servers.
 //
-//    netbios-node-type - The NetBIOS node type (1, 2, 4, or 8). We recommend
+//   netbios-node-type - The NetBIOS node type (1, 2, 4, or 8). We recommend
 // that you specify 2 (broadcast and multicast are not currently supported).
 // For more information about these node types, see RFC 2132 (http://www.ietf.org/rfc/rfc2132.txt).
 //
@@ -2261,9 +2261,9 @@ func (c *EC2) CreateRouteRequest(input *CreateRouteInput) (req *request.Request,
 // match. For example, let's say the traffic is destined for 192.0.2.3, and
 // the route table includes the following two routes:
 //
-//    192.0.2.0/24 (goes to some target A)
+//   192.0.2.0/24 (goes to some target A)
 //
-//    192.0.2.0/28 (goes to some target B)
+//   192.0.2.0/28 (goes to some target B)
 //
 //   Both routes apply to the traffic destined for 192.0.2.3. However, the
 // second route in the list covers a smaller number of IP addresses and is therefore
@@ -4432,22 +4432,22 @@ func (c *EC2) DescribeAccountAttributesRequest(input *DescribeAccountAttributesI
 // Describes attributes of your AWS account. The following are the supported
 // account attributes:
 //
-//    supported-platforms: Indicates whether your account can launch instances
+//   supported-platforms: Indicates whether your account can launch instances
 // into EC2-Classic and EC2-VPC, or only into EC2-VPC.
 //
-//    default-vpc: The ID of the default VPC for your account, or none.
+//   default-vpc: The ID of the default VPC for your account, or none.
 //
-//    max-instances: The maximum number of On-Demand instances that you can
+//   max-instances: The maximum number of On-Demand instances that you can
 // run.
 //
-//    vpc-max-security-groups-per-interface: The maximum number of security
+//   vpc-max-security-groups-per-interface: The maximum number of security
 // groups that you can assign to a network interface.
 //
-//    max-elastic-ips: The maximum number of Elastic IP addresses that you
-// can allocate for use with EC2-Classic.
+//   max-elastic-ips: The maximum number of Elastic IP addresses that you can
+// allocate for use with EC2-Classic.
 //
-//    vpc-max-elastic-ips: The maximum number of Elastic IP addresses that
-// you can allocate for use with EC2-VPC.
+//   vpc-max-elastic-ips: The maximum number of Elastic IP addresses that you
+// can allocate for use with EC2-VPC.
 func (c *EC2) DescribeAccountAttributes(input *DescribeAccountAttributesInput) (*DescribeAccountAttributesOutput, error) {
 	req, out := c.DescribeAccountAttributesRequest(input)
 	err := req.Send()
@@ -5499,19 +5499,19 @@ func (c *EC2) DescribeInstanceStatusRequest(input *DescribeInstanceStatusInput) 
 //
 // Instance status includes the following components:
 //
-//    Status checks - Amazon EC2 performs status checks on running EC2 instances
+//   Status checks - Amazon EC2 performs status checks on running EC2 instances
 // to identify hardware and software issues. For more information, see Status
 // Checks for Your Instances (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-system-instance-status-check.html)
 // and Troubleshooting Instances with Failed Status Checks (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
-//    Scheduled events - Amazon EC2 can schedule events (such as reboot, stop,
+//   Scheduled events - Amazon EC2 can schedule events (such as reboot, stop,
 // or terminate) for your instances related to hardware issues, software updates,
 // or system maintenance. For more information, see Scheduled Events for Your
 // Instances (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-instances-status-check_sched.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
-//    Instance state - You can manage your instances from the moment you launch
+//   Instance state - You can manage your instances from the moment you launch
 // them through their termination. For more information, see Instance Lifecycle
 // (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html)
 // in the Amazon Elastic Compute Cloud User Guide.
@@ -6803,14 +6803,14 @@ func (c *EC2) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (req *requ
 //
 // The create volume permissions fall into the following categories:
 //
-//    public: The owner of the snapshot granted create volume permissions for
+//   public: The owner of the snapshot granted create volume permissions for
 // the snapshot to the all group. All AWS accounts have create volume permissions
 // for these snapshots.
 //
-//    explicit: The owner of the snapshot granted create volume permissions
+//   explicit: The owner of the snapshot granted create volume permissions
 // to a specific AWS account.
 //
-//    implicit: An AWS account has implicit create volume permissions for all
+//   implicit: An AWS account has implicit create volume permissions for all
 // snapshots it owns.
 //
 //   The list of snapshots returned can be modified by specifying snapshot
@@ -7544,21 +7544,21 @@ func (c *EC2) DescribeVolumeStatusRequest(input *DescribeVolumeStatusInput) (req
 // The DescribeVolumeStatus operation provides the following information about
 // the specified volumes:
 //
-//  Status: Reflects the current status of the volume. The possible values
-// are ok, impaired , warning, or insufficient-data. If all checks pass, the
-// overall status of the volume is ok. If the check fails, the overall status
-// is impaired. If the status is insufficient-data, then the checks may still
-// be taking place on your volume at the time. We recommend that you retry the
-// request. For more information on volume status, see Monitoring the Status
-// of Your Volumes (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-volume-status.html).
+// Status: Reflects the current status of the volume. The possible values are
+// ok, impaired , warning, or insufficient-data. If all checks pass, the overall
+// status of the volume is ok. If the check fails, the overall status is impaired.
+// If the status is insufficient-data, then the checks may still be taking place
+// on your volume at the time. We recommend that you retry the request. For
+// more information on volume status, see Monitoring the Status of Your Volumes
+// (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-volume-status.html).
 //
-//  Events: Reflect the cause of a volume status and may require you to take
+// Events: Reflect the cause of a volume status and may require you to take
 // action. For example, if your volume returns an impaired status, then the
 // volume event might be potential-data-inconsistency. This means that your
 // volume has been affected by an issue with the underlying host, has all I/O
 // operations disabled, and may have inconsistent data.
 //
-//  Actions: Reflect the actions you may have to take in response to an event.
+// Actions: Reflect the actions you may have to take in response to an event.
 // For example, if the status of the volume is impaired and the volume event
 // shows potential-data-inconsistency, then the action shows enable-volume-io.
 // This means that you may want to enable the I/O operations for the volume
@@ -14083,7 +14083,7 @@ type CopySnapshotInput struct {
 	// copy operation. This parameter is only valid for specifying the destination
 	// region in a PresignedUrl parameter, where it is required.
 	//
-	//   CopySnapshot sends the snapshot copy to the regional endpoint that you
+	//  CopySnapshot sends the snapshot copy to the regional endpoint that you
 	// send the HTTP request to, such as ec2.us-east-1.amazonaws.com (in the AWS
 	// CLI, this is specified with the --region parameter or the default region
 	// in your AWS configuration file).
@@ -15728,7 +15728,7 @@ type CreateVpcInput struct {
 	// as dedicated tenancy instances by default. You can only launch instances
 	// with a tenancy of dedicated or host into a dedicated tenancy VPC.
 	//
-	//  Important: The host value cannot be used with this parameter. Use the default
+	// Important: The host value cannot be used with this parameter. Use the default
 	// or dedicated values only.
 	//
 	// Default: default
@@ -17382,25 +17382,25 @@ type DescribeAddressesInput struct {
 
 	// One or more filters. Filter names and values are case-sensitive.
 	//
-	//    allocation-id - [EC2-VPC] The allocation ID for the address.
+	//   allocation-id - [EC2-VPC] The allocation ID for the address.
 	//
-	//    association-id - [EC2-VPC] The association ID for the address.
+	//   association-id - [EC2-VPC] The association ID for the address.
 	//
-	//    domain - Indicates whether the address is for use in EC2-Classic (standard)
+	//   domain - Indicates whether the address is for use in EC2-Classic (standard)
 	// or in a VPC (vpc).
 	//
-	//    instance-id - The ID of the instance the address is associated with,
-	// if any.
+	//   instance-id - The ID of the instance the address is associated with, if
+	// any.
 	//
-	//    network-interface-id - [EC2-VPC] The ID of the network interface that
+	//   network-interface-id - [EC2-VPC] The ID of the network interface that
 	// the address is associated with, if any.
 	//
-	//    network-interface-owner-id - The AWS account ID of the owner.
+	//   network-interface-owner-id - The AWS account ID of the owner.
 	//
-	//    private-ip-address - [EC2-VPC] The private IP address associated with
+	//   private-ip-address - [EC2-VPC] The private IP address associated with
 	// the Elastic IP address.
 	//
-	//    public-ip - The Elastic IP address.
+	//   public-ip - The Elastic IP address.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// [EC2-Classic] One or more Elastic IP addresses.
@@ -17449,15 +17449,15 @@ type DescribeAvailabilityZonesInput struct {
 
 	// One or more filters.
 	//
-	//    message - Information about the Availability Zone.
+	//   message - Information about the Availability Zone.
 	//
-	//    region-name - The name of the region for the Availability Zone (for example,
+	//   region-name - The name of the region for the Availability Zone (for example,
 	// us-east-1).
 	//
-	//    state - The state of the Availability Zone (available | information |
+	//   state - The state of the Availability Zone (available | information |
 	// impaired | unavailable).
 	//
-	//    zone-name - The name of the Availability Zone (for example, us-east-1a).
+	//   zone-name - The name of the Availability Zone (for example, us-east-1a).
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// The names of one or more Availability Zones.
@@ -17509,27 +17509,27 @@ type DescribeBundleTasksInput struct {
 
 	// One or more filters.
 	//
-	//    bundle-id - The ID of the bundle task.
+	//   bundle-id - The ID of the bundle task.
 	//
-	//    error-code - If the task failed, the error code returned.
+	//   error-code - If the task failed, the error code returned.
 	//
-	//    error-message - If the task failed, the error message returned.
+	//   error-message - If the task failed, the error message returned.
 	//
-	//    instance-id - The ID of the instance.
+	//   instance-id - The ID of the instance.
 	//
-	//    progress - The level of task completion, as a percentage (for example,
+	//   progress - The level of task completion, as a percentage (for example,
 	// 20%).
 	//
-	//    s3-bucket - The Amazon S3 bucket to store the AMI.
+	//   s3-bucket - The Amazon S3 bucket to store the AMI.
 	//
-	//    s3-prefix - The beginning of the AMI name.
+	//   s3-prefix - The beginning of the AMI name.
 	//
-	//    start-time - The time the task started (for example, 2013-09-15T17:15:20.000Z).
+	//   start-time - The time the task started (for example, 2013-09-15T17:15:20.000Z).
 	//
-	//    state - The state of the task (pending | waiting-for-shutdown | bundling
+	//   state - The state of the task (pending | waiting-for-shutdown | bundling
 	// | storing | cancelling | complete | failed).
 	//
-	//    update-time - The time of the most recent update for the task.
+	//   update-time - The time of the most recent update for the task.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 }
 
@@ -17573,24 +17573,23 @@ type DescribeClassicLinkInstancesInput struct {
 
 	// One or more filters.
 	//
-	//    group-id - The ID of a VPC security group that's associated with the
-	// instance.
+	//   group-id - The ID of a VPC security group that's associated with the instance.
 	//
-	//    instance-id - The ID of the instance.
+	//   instance-id - The ID of the instance.
 	//
-	//    tag:key=value - The key/value combination of a tag assigned to the resource.
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
 	//
-	//    tag-key - The key of a tag assigned to the resource. This filter is independent
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
 	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
 	// and the filter "tag-value=X", you get any resources assigned both the tag
 	// key Purpose (regardless of what the tag's value is), and the tag value X
 	// (regardless of what the tag's key is). If you want to list only resources
 	// where Purpose is X, see the tag:key=value filter.
 	//
-	//    tag-value - The value of a tag assigned to the resource. This filter
-	// is independent of the tag-key filter.
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
 	//
-	//    vpc-id - The ID of the VPC that the instance is linked to.
+	//   vpc-id - The ID of the VPC that the instance is linked to.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// One or more instance IDs. Must be instances linked to a VPC through ClassicLink.
@@ -17704,31 +17703,31 @@ type DescribeCustomerGatewaysInput struct {
 
 	// One or more filters.
 	//
-	//    bgp-asn - The customer gateway's Border Gateway Protocol (BGP) Autonomous
+	//   bgp-asn - The customer gateway's Border Gateway Protocol (BGP) Autonomous
 	// System Number (ASN).
 	//
-	//    customer-gateway-id - The ID of the customer gateway.
+	//   customer-gateway-id - The ID of the customer gateway.
 	//
-	//    ip-address - The IP address of the customer gateway's Internet-routable
+	//   ip-address - The IP address of the customer gateway's Internet-routable
 	// external interface.
 	//
-	//    state - The state of the customer gateway (pending | available | deleting
+	//   state - The state of the customer gateway (pending | available | deleting
 	// | deleted).
 	//
-	//    type - The type of customer gateway. Currently, the only supported type
+	//   type - The type of customer gateway. Currently, the only supported type
 	// is ipsec.1.
 	//
-	//    tag:key=value - The key/value combination of a tag assigned to the resource.
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
 	//
-	//    tag-key - The key of a tag assigned to the resource. This filter is independent
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
 	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
 	// and the filter "tag-value=X", you get any resources assigned both the tag
 	// key Purpose (regardless of what the tag's value is), and the tag value X
 	// (regardless of what the tag's key is). If you want to list only resources
 	// where Purpose is X, see the tag:key=value filter.
 	//
-	//    tag-value - The value of a tag assigned to the resource. This filter
-	// is independent of the tag-key filter.
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 }
 
@@ -17777,23 +17776,23 @@ type DescribeDhcpOptionsInput struct {
 
 	// One or more filters.
 	//
-	//    dhcp-options-id - The ID of a set of DHCP options.
+	//   dhcp-options-id - The ID of a set of DHCP options.
 	//
-	//    key - The key for one of the options (for example, domain-name).
+	//   key - The key for one of the options (for example, domain-name).
 	//
-	//    value - The value for one of the options.
+	//   value - The value for one of the options.
 	//
-	//    tag:key=value - The key/value combination of a tag assigned to the resource.
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
 	//
-	//    tag-key - The key of a tag assigned to the resource. This filter is independent
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
 	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
 	// and the filter "tag-value=X", you get any resources assigned both the tag
 	// key Purpose (regardless of what the tag's value is), and the tag value X
 	// (regardless of what the tag's key is). If you want to list only resources
 	// where Purpose is X, see the tag:key=value filter.
 	//
-	//    tag-value - The value of a tag assigned to the resource. This filter
-	// is independent of the tag-key filter.
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 }
 
@@ -17867,15 +17866,15 @@ type DescribeFlowLogsInput struct {
 
 	// One or more filters.
 	//
-	//    deliver-log-status - The status of the logs delivery (SUCCESS | FAILED).
+	//   deliver-log-status - The status of the logs delivery (SUCCESS | FAILED).
 	//
-	//    flow-log-id - The ID of the flow log.
+	//   flow-log-id - The ID of the flow log.
 	//
-	//    log-group-name - The name of the log group.
+	//   log-group-name - The name of the log group.
 	//
-	//    resource-id - The ID of the VPC, subnet, or network interface.
+	//   resource-id - The ID of the VPC, subnet, or network interface.
 	//
-	//    traffic-type - The type of traffic (ACCEPT | REJECT | ALL)
+	//   traffic-type - The type of traffic (ACCEPT | REJECT | ALL)
 	Filter []*Filter `locationNameList:"Filter" type:"list"`
 
 	// One or more flow log IDs.
@@ -17929,9 +17928,9 @@ type DescribeHostReservationOfferingsInput struct {
 
 	// One or more filters.
 	//
-	//    instance-family - The instance family of the offering (e.g., m4).
+	//   instance-family - The instance family of the offering (e.g., m4).
 	//
-	//    payment-option - The payment option (No Upfront | Partial Upfront | All
+	//   payment-option - The payment option (No Upfront | Partial Upfront | All
 	// Upfront).
 	Filter []*Filter `locationNameList:"Filter" type:"list"`
 
@@ -17998,12 +17997,12 @@ type DescribeHostReservationsInput struct {
 
 	// One or more filters.
 	//
-	//    instance-family - The instance family (e.g., m4).
+	//   instance-family - The instance family (e.g., m4).
 	//
-	//    payment-option - The payment option (No Upfront | Partial Upfront | All
+	//   payment-option - The payment option (No Upfront | Partial Upfront | All
 	// Upfront).
 	//
-	//    state - The state of the reservation (payment-pending | payment-failed
+	//   state - The state of the reservation (payment-pending | payment-failed
 	// | active | retired).
 	Filter []*Filter `locationNameList:"Filter" type:"list"`
 
@@ -18057,21 +18056,20 @@ type DescribeHostsInput struct {
 
 	// One or more filters.
 	//
-	//    instance-type - The instance type size that the Dedicated Host is configured
+	//   instance-type - The instance type size that the Dedicated Host is configured
 	// to support.
 	//
-	//    auto-placement - Whether auto-placement is enabled or disabled (on |
-	// off).
+	//   auto-placement - Whether auto-placement is enabled or disabled (on | off).
 	//
-	//    host-reservation-id - The ID of the reservation assigned to this host.
+	//   host-reservation-id - The ID of the reservation assigned to this host.
 	//
-	//    client-token - The idempotency token you provided when you launched the
+	//   client-token - The idempotency token you provided when you launched the
 	// instance
 	//
-	//    state- The allocation state of the Dedicated Host (available | under-assessment
+	//   state- The allocation state of the Dedicated Host (available | under-assessment
 	// | permanent-failure | released | released-permanent-failure).
 	//
-	//    availability-zone - The Availability Zone of the host.
+	//   availability-zone - The Availability Zone of the host.
 	Filter []*Filter `locationName:"filter" locationNameList:"Filter" type:"list"`
 
 	// The IDs of the Dedicated Hosts. The IDs are used for targeted instance launches.
@@ -18215,7 +18213,7 @@ type DescribeImageAttributeInput struct {
 
 	// The AMI attribute.
 	//
-	//  Note: Depending on your account privileges, the blockDeviceMapping attribute
+	// Note: Depending on your account privileges, the blockDeviceMapping attribute
 	// may return a Client.AuthFailure error. If this happens, use DescribeImages
 	// to get information about the block device mapping for the AMI.
 	Attribute *string `type:"string" required:"true" enum:"ImageAttributeName"`
@@ -18312,76 +18310,76 @@ type DescribeImagesInput struct {
 
 	// One or more filters.
 	//
-	//    architecture - The image architecture (i386 | x86_64).
+	//   architecture - The image architecture (i386 | x86_64).
 	//
-	//    block-device-mapping.delete-on-termination - A Boolean value that indicates
+	//   block-device-mapping.delete-on-termination - A Boolean value that indicates
 	// whether the Amazon EBS volume is deleted on instance termination.
 	//
-	//    block-device-mapping.device-name - The device name for the EBS volume
+	//   block-device-mapping.device-name - The device name for the EBS volume
 	// (for example, /dev/sdh).
 	//
-	//    block-device-mapping.snapshot-id - The ID of the snapshot used for the
+	//   block-device-mapping.snapshot-id - The ID of the snapshot used for the
 	// EBS volume.
 	//
-	//    block-device-mapping.volume-size - The volume size of the EBS volume,
+	//   block-device-mapping.volume-size - The volume size of the EBS volume,
 	// in GiB.
 	//
-	//    block-device-mapping.volume-type - The volume type of the EBS volume
-	// (gp2 | io1 | st1 | sc1 | standard).
+	//   block-device-mapping.volume-type - The volume type of the EBS volume (gp2
+	// | io1 | st1 | sc1 | standard).
 	//
-	//    description - The description of the image (provided during image creation).
+	//   description - The description of the image (provided during image creation).
 	//
-	//    hypervisor - The hypervisor type (ovm | xen).
+	//   hypervisor - The hypervisor type (ovm | xen).
 	//
-	//    image-id - The ID of the image.
+	//   image-id - The ID of the image.
 	//
-	//    image-type - The image type (machine | kernel | ramdisk).
+	//   image-type - The image type (machine | kernel | ramdisk).
 	//
-	//    is-public - A Boolean that indicates whether the image is public.
+	//   is-public - A Boolean that indicates whether the image is public.
 	//
-	//    kernel-id - The kernel ID.
+	//   kernel-id - The kernel ID.
 	//
-	//    manifest-location - The location of the image manifest.
+	//   manifest-location - The location of the image manifest.
 	//
-	//    name - The name of the AMI (provided during image creation).
+	//   name - The name of the AMI (provided during image creation).
 	//
-	//    owner-alias - String value from an Amazon-maintained list (amazon | aws-marketplace
+	//   owner-alias - String value from an Amazon-maintained list (amazon | aws-marketplace
 	// | microsoft) of snapshot owners. Not to be confused with the user-configured
 	// AWS account alias, which is set from the IAM console.
 	//
-	//    owner-id - The AWS account ID of the image owner.
+	//   owner-id - The AWS account ID of the image owner.
 	//
-	//    platform - The platform. To only list Windows-based AMIs, use windows.
+	//   platform - The platform. To only list Windows-based AMIs, use windows.
 	//
-	//    product-code - The product code.
+	//   product-code - The product code.
 	//
-	//    product-code.type - The type of the product code (devpay | marketplace).
+	//   product-code.type - The type of the product code (devpay | marketplace).
 	//
-	//    ramdisk-id - The RAM disk ID.
+	//   ramdisk-id - The RAM disk ID.
 	//
-	//    root-device-name - The name of the root device volume (for example, /dev/sda1).
+	//   root-device-name - The name of the root device volume (for example, /dev/sda1).
 	//
-	//    root-device-type - The type of the root device volume (ebs | instance-store).
+	//   root-device-type - The type of the root device volume (ebs | instance-store).
 	//
-	//    state - The state of the image (available | pending | failed).
+	//   state - The state of the image (available | pending | failed).
 	//
-	//    state-reason-code - The reason code for the state change.
+	//   state-reason-code - The reason code for the state change.
 	//
-	//    state-reason-message - The message for the state change.
+	//   state-reason-message - The message for the state change.
 	//
-	//    tag:key=value - The key/value combination of a tag assigned to the resource.
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
 	//
-	//    tag-key - The key of a tag assigned to the resource. This filter is independent
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
 	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
 	// and the filter "tag-value=X", you get any resources assigned both the tag
 	// key Purpose (regardless of what the tag's value is), and the tag value X
 	// (regardless of what the tag's key is). If you want to list only resources
 	// where Purpose is X, see the tag:key=value filter.
 	//
-	//    tag-value - The value of a tag assigned to the resource. This filter
-	// is independent of the tag-key filter.
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
 	//
-	//    virtualization-type - The virtualization type (paravirtual | hvm).
+	//   virtualization-type - The virtualization type (paravirtual | hvm).
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// One or more image IDs.
@@ -18661,38 +18659,38 @@ type DescribeInstanceStatusInput struct {
 
 	// One or more filters.
 	//
-	//    availability-zone - The Availability Zone of the instance.
+	//   availability-zone - The Availability Zone of the instance.
 	//
-	//    event.code - The code for the scheduled event (instance-reboot | system-reboot
+	//   event.code - The code for the scheduled event (instance-reboot | system-reboot
 	// | system-maintenance | instance-retirement | instance-stop).
 	//
-	//    event.description - A description of the event.
+	//   event.description - A description of the event.
 	//
-	//    event.not-after - The latest end time for the scheduled event (for example,
+	//   event.not-after - The latest end time for the scheduled event (for example,
 	// 2014-09-15T17:15:20.000Z).
 	//
-	//    event.not-before - The earliest start time for the scheduled event (for
+	//   event.not-before - The earliest start time for the scheduled event (for
 	// example, 2014-09-15T17:15:20.000Z).
 	//
-	//    instance-state-code - The code for the instance state, as a 16-bit unsigned
+	//   instance-state-code - The code for the instance state, as a 16-bit unsigned
 	// integer. The high byte is an opaque internal value and should be ignored.
 	// The low byte is set based on the state represented. The valid values are
 	// 0 (pending), 16 (running), 32 (shutting-down), 48 (terminated), 64 (stopping),
 	// and 80 (stopped).
 	//
-	//    instance-state-name - The state of the instance (pending | running |
-	// shutting-down | terminated | stopping | stopped).
+	//   instance-state-name - The state of the instance (pending | running | shutting-down
+	// | terminated | stopping | stopped).
 	//
-	//    instance-status.reachability - Filters on instance status where the name
+	//   instance-status.reachability - Filters on instance status where the name
 	// is reachability (passed | failed | initializing | insufficient-data).
 	//
-	//    instance-status.status - The status of the instance (ok | impaired |
-	// initializing | insufficient-data | not-applicable).
+	//   instance-status.status - The status of the instance (ok | impaired | initializing
+	// | insufficient-data | not-applicable).
 	//
-	//    system-status.reachability - Filters on system status where the name
-	// is reachability (passed | failed | initializing | insufficient-data).
+	//   system-status.reachability - Filters on system status where the name is
+	// reachability (passed | failed | initializing | insufficient-data).
 	//
-	//    system-status.status - The system status of the instance (ok | impaired
+	//   system-status.status - The system status of the instance (ok | impaired
 	// | initializing | insufficient-data | not-applicable).
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
@@ -18763,234 +18761,233 @@ type DescribeInstancesInput struct {
 
 	// One or more filters.
 	//
-	//    affinity - The affinity setting for an instance running on a Dedicated
+	//   affinity - The affinity setting for an instance running on a Dedicated
 	// Host (default | host).
 	//
-	//    architecture - The instance architecture (i386 | x86_64).
+	//   architecture - The instance architecture (i386 | x86_64).
 	//
-	//    availability-zone - The Availability Zone of the instance.
+	//   availability-zone - The Availability Zone of the instance.
 	//
-	//    block-device-mapping.attach-time - The attach time for an EBS volume
-	// mapped to the instance, for example, 2010-09-15T17:15:20.000Z.
+	//   block-device-mapping.attach-time - The attach time for an EBS volume mapped
+	// to the instance, for example, 2010-09-15T17:15:20.000Z.
 	//
-	//    block-device-mapping.delete-on-termination - A Boolean that indicates
+	//   block-device-mapping.delete-on-termination - A Boolean that indicates
 	// whether the EBS volume is deleted on instance termination.
 	//
-	//    block-device-mapping.device-name - The device name for the EBS volume
+	//   block-device-mapping.device-name - The device name for the EBS volume
 	// (for example, /dev/sdh or xvdh).
 	//
-	//    block-device-mapping.status - The status for the EBS volume (attaching
+	//   block-device-mapping.status - The status for the EBS volume (attaching
 	// | attached | detaching | detached).
 	//
-	//    block-device-mapping.volume-id - The volume ID of the EBS volume.
+	//   block-device-mapping.volume-id - The volume ID of the EBS volume.
 	//
-	//    client-token - The idempotency token you provided when you launched the
+	//   client-token - The idempotency token you provided when you launched the
 	// instance.
 	//
-	//    dns-name - The public DNS name of the instance.
+	//   dns-name - The public DNS name of the instance.
 	//
-	//    group-id - The ID of the security group for the instance. EC2-Classic
+	//   group-id - The ID of the security group for the instance. EC2-Classic
 	// only.
 	//
-	//    group-name - The name of the security group for the instance. EC2-Classic
+	//   group-name - The name of the security group for the instance. EC2-Classic
 	// only.
 	//
-	//    host-id - The ID of the Dedicated Host on which the instance is running,
+	//   host-id - The ID of the Dedicated Host on which the instance is running,
 	// if applicable.
 	//
-	//    hypervisor - The hypervisor type of the instance (ovm | xen).
+	//   hypervisor - The hypervisor type of the instance (ovm | xen).
 	//
-	//    iam-instance-profile.arn - The instance profile associated with the instance.
+	//   iam-instance-profile.arn - The instance profile associated with the instance.
 	// Specified as an ARN.
 	//
-	//    image-id - The ID of the image used to launch the instance.
+	//   image-id - The ID of the image used to launch the instance.
 	//
-	//    instance-id - The ID of the instance.
+	//   instance-id - The ID of the instance.
 	//
-	//    instance-lifecycle - Indicates whether this is a Spot Instance or a Scheduled
+	//   instance-lifecycle - Indicates whether this is a Spot Instance or a Scheduled
 	// Instance (spot | scheduled).
 	//
-	//    instance-state-code - The state of the instance, as a 16-bit unsigned
+	//   instance-state-code - The state of the instance, as a 16-bit unsigned
 	// integer. The high byte is an opaque internal value and should be ignored.
 	// The low byte is set based on the state represented. The valid values are:
 	// 0 (pending), 16 (running), 32 (shutting-down), 48 (terminated), 64 (stopping),
 	// and 80 (stopped).
 	//
-	//    instance-state-name - The state of the instance (pending | running |
-	// shutting-down | terminated | stopping | stopped).
+	//   instance-state-name - The state of the instance (pending | running | shutting-down
+	// | terminated | stopping | stopped).
 	//
-	//    instance-type - The type of instance (for example, t2.micro).
+	//   instance-type - The type of instance (for example, t2.micro).
 	//
-	//    instance.group-id - The ID of the security group for the instance.
+	//   instance.group-id - The ID of the security group for the instance.
 	//
-	//    instance.group-name - The name of the security group for the instance.
+	//   instance.group-name - The name of the security group for the instance.
 	//
-	//    ip-address - The public IP address of the instance.
+	//   ip-address - The public IP address of the instance.
 	//
-	//    kernel-id - The kernel ID.
+	//   kernel-id - The kernel ID.
 	//
-	//    key-name - The name of the key pair used when the instance was launched.
+	//   key-name - The name of the key pair used when the instance was launched.
 	//
-	//    launch-index - When launching multiple instances, this is the index for
+	//   launch-index - When launching multiple instances, this is the index for
 	// the instance in the launch group (for example, 0, 1, 2, and so on).
 	//
-	//    launch-time - The time when the instance was launched.
+	//   launch-time - The time when the instance was launched.
 	//
-	//    monitoring-state - Indicates whether monitoring is enabled for the instance
+	//   monitoring-state - Indicates whether monitoring is enabled for the instance
 	// (disabled | enabled).
 	//
-	//    owner-id - The AWS account ID of the instance owner.
+	//   owner-id - The AWS account ID of the instance owner.
 	//
-	//    placement-group-name - The name of the placement group for the instance.
+	//   placement-group-name - The name of the placement group for the instance.
 	//
-	//    platform - The platform. Use windows if you have Windows instances; otherwise,
+	//   platform - The platform. Use windows if you have Windows instances; otherwise,
 	// leave blank.
 	//
-	//    private-dns-name - The private DNS name of the instance.
+	//   private-dns-name - The private DNS name of the instance.
 	//
-	//    private-ip-address - The private IP address of the instance.
+	//   private-ip-address - The private IP address of the instance.
 	//
-	//    product-code - The product code associated with the AMI used to launch
+	//   product-code - The product code associated with the AMI used to launch
 	// the instance.
 	//
-	//    product-code.type - The type of product code (devpay | marketplace).
+	//   product-code.type - The type of product code (devpay | marketplace).
 	//
-	//    ramdisk-id - The RAM disk ID.
+	//   ramdisk-id - The RAM disk ID.
 	//
-	//    reason - The reason for the current state of the instance (for example,
+	//   reason - The reason for the current state of the instance (for example,
 	// shows "User Initiated [date]" when you stop or terminate the instance). Similar
 	// to the state-reason-code filter.
 	//
-	//    requester-id - The ID of the entity that launched the instance on your
+	//   requester-id - The ID of the entity that launched the instance on your
 	// behalf (for example, AWS Management Console, Auto Scaling, and so on).
 	//
-	//    reservation-id - The ID of the instance's reservation. A reservation
-	// ID is created any time you launch an instance. A reservation ID has a one-to-one
+	//   reservation-id - The ID of the instance's reservation. A reservation ID
+	// is created any time you launch an instance. A reservation ID has a one-to-one
 	// relationship with an instance launch request, but can be associated with
 	// more than one instance if you launch multiple instances using the same launch
 	// request. For example, if you launch one instance, you'll get one reservation
 	// ID. If you launch ten instances using the same launch request, you'll also
 	// get one reservation ID.
 	//
-	//    root-device-name - The name of the root device for the instance (for
-	// example, /dev/sda1 or /dev/xvda).
+	//   root-device-name - The name of the root device for the instance (for example,
+	// /dev/sda1 or /dev/xvda).
 	//
-	//    root-device-type - The type of root device that the instance uses (ebs
+	//   root-device-type - The type of root device that the instance uses (ebs
 	// | instance-store).
 	//
-	//    source-dest-check - Indicates whether the instance performs source/destination
+	//   source-dest-check - Indicates whether the instance performs source/destination
 	// checking. A value of true means that checking is enabled, and false means
 	// checking is disabled. The value must be false for the instance to perform
 	// network address translation (NAT) in your VPC.
 	//
-	//    spot-instance-request-id - The ID of the Spot instance request.
+	//   spot-instance-request-id - The ID of the Spot instance request.
 	//
-	//    state-reason-code - The reason code for the state change.
+	//   state-reason-code - The reason code for the state change.
 	//
-	//    state-reason-message - A message that describes the state change.
+	//   state-reason-message - A message that describes the state change.
 	//
-	//    subnet-id - The ID of the subnet for the instance.
+	//   subnet-id - The ID of the subnet for the instance.
 	//
-	//    tag:key=value - The key/value combination of a tag assigned to the resource,
+	//   tag:key=value - The key/value combination of a tag assigned to the resource,
 	// where tag:key is the tag's key.
 	//
-	//    tag-key - The key of a tag assigned to the resource. This filter is independent
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
 	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
 	// and the filter "tag-value=X", you get any resources assigned both the tag
 	// key Purpose (regardless of what the tag's value is), and the tag value X
 	// (regardless of what the tag's key is). If you want to list only resources
 	// where Purpose is X, see the tag:key=value filter.
 	//
-	//    tag-value - The value of a tag assigned to the resource. This filter
-	// is independent of the tag-key filter.
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
 	//
-	//    tenancy - The tenancy of an instance (dedicated | default | host).
+	//   tenancy - The tenancy of an instance (dedicated | default | host).
 	//
-	//    virtualization-type - The virtualization type of the instance (paravirtual
+	//   virtualization-type - The virtualization type of the instance (paravirtual
 	// | hvm).
 	//
-	//    vpc-id - The ID of the VPC that the instance is running in.
+	//   vpc-id - The ID of the VPC that the instance is running in.
 	//
-	//    network-interface.description - The description of the network interface.
+	//   network-interface.description - The description of the network interface.
 	//
-	//    network-interface.subnet-id - The ID of the subnet for the network interface.
+	//   network-interface.subnet-id - The ID of the subnet for the network interface.
 	//
-	//    network-interface.vpc-id - The ID of the VPC for the network interface.
+	//   network-interface.vpc-id - The ID of the VPC for the network interface.
 	//
-	//    network-interface.network-interface-id - The ID of the network interface.
+	//   network-interface.network-interface-id - The ID of the network interface.
 	//
-	//    network-interface.owner-id - The ID of the owner of the network interface.
+	//   network-interface.owner-id - The ID of the owner of the network interface.
 	//
-	//    network-interface.availability-zone - The Availability Zone for the network
+	//   network-interface.availability-zone - The Availability Zone for the network
 	// interface.
 	//
-	//    network-interface.requester-id - The requester ID for the network interface.
+	//   network-interface.requester-id - The requester ID for the network interface.
 	//
-	//    network-interface.requester-managed - Indicates whether the network interface
+	//   network-interface.requester-managed - Indicates whether the network interface
 	// is being managed by AWS.
 	//
-	//    network-interface.status - The status of the network interface (available)
+	//   network-interface.status - The status of the network interface (available)
 	// | in-use).
 	//
-	//    network-interface.mac-address - The MAC address of the network interface.
+	//   network-interface.mac-address - The MAC address of the network interface.
 	//
-	//    network-interface.private-dns-name - The private DNS name of the network
+	//   network-interface.private-dns-name - The private DNS name of the network
 	// interface.
 	//
-	//    network-interface.source-dest-check - Whether the network interface performs
+	//   network-interface.source-dest-check - Whether the network interface performs
 	// source/destination checking. A value of true means checking is enabled, and
 	// false means checking is disabled. The value must be false for the network
 	// interface to perform network address translation (NAT) in your VPC.
 	//
-	//    network-interface.group-id - The ID of a security group associated with
+	//   network-interface.group-id - The ID of a security group associated with
 	// the network interface.
 	//
-	//    network-interface.group-name - The name of a security group associated
+	//   network-interface.group-name - The name of a security group associated
 	// with the network interface.
 	//
-	//    network-interface.attachment.attachment-id - The ID of the interface
-	// attachment.
+	//   network-interface.attachment.attachment-id - The ID of the interface attachment.
 	//
-	//    network-interface.attachment.instance-id - The ID of the instance to
-	// which the network interface is attached.
-	//
-	//    network-interface.attachment.instance-owner-id - The owner ID of the
-	// instance to which the network interface is attached.
-	//
-	//    network-interface.addresses.private-ip-address - The private IP address
-	// associated with the network interface.
-	//
-	//    network-interface.attachment.device-index - The device index to which
+	//   network-interface.attachment.instance-id - The ID of the instance to which
 	// the network interface is attached.
 	//
-	//    network-interface.attachment.status - The status of the attachment (attaching
+	//   network-interface.attachment.instance-owner-id - The owner ID of the instance
+	// to which the network interface is attached.
+	//
+	//   network-interface.addresses.private-ip-address - The private IP address
+	// associated with the network interface.
+	//
+	//   network-interface.attachment.device-index - The device index to which
+	// the network interface is attached.
+	//
+	//   network-interface.attachment.status - The status of the attachment (attaching
 	// | attached | detaching | detached).
 	//
-	//    network-interface.attachment.attach-time - The time that the network
-	// interface was attached to an instance.
+	//   network-interface.attachment.attach-time - The time that the network interface
+	// was attached to an instance.
 	//
-	//    network-interface.attachment.delete-on-termination - Specifies whether
+	//   network-interface.attachment.delete-on-termination - Specifies whether
 	// the attachment is deleted when an instance is terminated.
 	//
-	//    network-interface.addresses.primary - Specifies whether the IP address
+	//   network-interface.addresses.primary - Specifies whether the IP address
 	// of the network interface is the primary private IP address.
 	//
-	//    network-interface.addresses.association.public-ip - The ID of the association
+	//   network-interface.addresses.association.public-ip - The ID of the association
 	// of an Elastic IP address with a network interface.
 	//
-	//    network-interface.addresses.association.ip-owner-id - The owner ID of
+	//   network-interface.addresses.association.ip-owner-id - The owner ID of
 	// the private IP address associated with the network interface.
 	//
-	//    association.public-ip - The address of the Elastic IP address bound to
+	//   association.public-ip - The address of the Elastic IP address bound to
 	// the network interface.
 	//
-	//    association.ip-owner-id - The owner of the Elastic IP address associated
+	//   association.ip-owner-id - The owner of the Elastic IP address associated
 	// with the network interface.
 	//
-	//    association.allocation-id - The allocation ID returned when you allocated
+	//   association.allocation-id - The allocation ID returned when you allocated
 	// the Elastic IP address for your network interface.
 	//
-	//    association.association-id - The association ID returned when the network
+	//   association.association-id - The association ID returned when the network
 	// interface was associated with an IP address.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
@@ -19053,24 +19050,24 @@ type DescribeInternetGatewaysInput struct {
 
 	// One or more filters.
 	//
-	//    attachment.state - The current state of the attachment between the gateway
+	//   attachment.state - The current state of the attachment between the gateway
 	// and the VPC (available). Present only if a VPC is attached.
 	//
-	//    attachment.vpc-id - The ID of an attached VPC.
+	//   attachment.vpc-id - The ID of an attached VPC.
 	//
-	//    internet-gateway-id - The ID of the Internet gateway.
+	//   internet-gateway-id - The ID of the Internet gateway.
 	//
-	//    tag:key=value - The key/value combination of a tag assigned to the resource.
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
 	//
-	//    tag-key - The key of a tag assigned to the resource. This filter is independent
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
 	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
 	// and the filter "tag-value=X", you get any resources assigned both the tag
 	// key Purpose (regardless of what the tag's value is), and the tag value X
 	// (regardless of what the tag's key is). If you want to list only resources
 	// where Purpose is X, see the tag:key=value filter.
 	//
-	//    tag-value - The value of a tag assigned to the resource. This filter
-	// is independent of the tag-key filter.
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// One or more Internet gateway IDs.
@@ -19119,9 +19116,9 @@ type DescribeKeyPairsInput struct {
 
 	// One or more filters.
 	//
-	//    fingerprint - The fingerprint of the key pair.
+	//   fingerprint - The fingerprint of the key pair.
 	//
-	//    key-name - The name of the key pair.
+	//   key-name - The name of the key pair.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// One or more key pair names.
@@ -19170,7 +19167,7 @@ type DescribeMovingAddressesInput struct {
 
 	// One or more filters.
 	//
-	//    moving-status - The status of the Elastic IP address (MovingToVpc | RestoringToClassic).
+	//   moving-status - The status of the Elastic IP address (MovingToVpc | RestoringToClassic).
 	Filters []*Filter `locationName:"filter" locationNameList:"Filter" type:"list"`
 
 	// The maximum number of results to return for the request in a single page.
@@ -19226,14 +19223,14 @@ type DescribeNatGatewaysInput struct {
 
 	// One or more filters.
 	//
-	//    nat-gateway-id - The ID of the NAT gateway.
+	//   nat-gateway-id - The ID of the NAT gateway.
 	//
-	//    state - The state of the NAT gateway (pending | failed | available |
-	// deleting | deleted).
+	//   state - The state of the NAT gateway (pending | failed | available | deleting
+	// | deleted).
 	//
-	//    subnet-id - The ID of the subnet in which the NAT gateway resides.
+	//   subnet-id - The ID of the subnet in which the NAT gateway resides.
 	//
-	//    vpc-id - The ID of the VPC in which the NAT gateway resides.
+	//   vpc-id - The ID of the VPC in which the NAT gateway resides.
 	Filter []*Filter `locationNameList:"Filter" type:"list"`
 
 	// The maximum number of items to return for this request. The request returns
@@ -19295,52 +19292,51 @@ type DescribeNetworkAclsInput struct {
 
 	// One or more filters.
 	//
-	//    association.association-id - The ID of an association ID for the ACL.
+	//   association.association-id - The ID of an association ID for the ACL.
 	//
-	//    association.network-acl-id - The ID of the network ACL involved in the
+	//   association.network-acl-id - The ID of the network ACL involved in the
 	// association.
 	//
-	//    association.subnet-id - The ID of the subnet involved in the association.
+	//   association.subnet-id - The ID of the subnet involved in the association.
 	//
-	//    default - Indicates whether the ACL is the default network ACL for the
+	//   default - Indicates whether the ACL is the default network ACL for the
 	// VPC.
 	//
-	//    entry.cidr - The CIDR range specified in the entry.
+	//   entry.cidr - The CIDR range specified in the entry.
 	//
-	//    entry.egress - Indicates whether the entry applies to egress traffic.
+	//   entry.egress - Indicates whether the entry applies to egress traffic.
 	//
-	//    entry.icmp.code - The ICMP code specified in the entry, if any.
+	//   entry.icmp.code - The ICMP code specified in the entry, if any.
 	//
-	//    entry.icmp.type - The ICMP type specified in the entry, if any.
+	//   entry.icmp.type - The ICMP type specified in the entry, if any.
 	//
-	//    entry.port-range.from - The start of the port range specified in the
-	// entry.
+	//   entry.port-range.from - The start of the port range specified in the entry.
 	//
-	//    entry.port-range.to - The end of the port range specified in the entry.
+	//   entry.port-range.to - The end of the port range specified in the entry.
 	//
-	//    entry.protocol - The protocol specified in the entry (tcp | udp | icmp
+	//   entry.protocol - The protocol specified in the entry (tcp | udp | icmp
 	// or a protocol number).
 	//
-	//    entry.rule-action - Allows or denies the matching traffic (allow | deny).
+	//   entry.rule-action - Allows or denies the matching traffic (allow | deny).
 	//
-	//    entry.rule-number - The number of an entry (in other words, rule) in
-	// the ACL's set of entries.
+	//   entry.rule-number - The number of an entry (in other words, rule) in the
+	// ACL's set of entries.
 	//
-	//    network-acl-id - The ID of the network ACL.
+	//   network-acl-id - The ID of the network ACL.
 	//
-	//    tag:key=value - The key/value combination of a tag assigned to the resource.
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
 	//
-	//    tag-key - The key of a tag assigned to the resource. This filter is independent
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
 	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
 	// and the filter "tag-value=X", you get any resources assigned both the tag
 	// key Purpose (regardless of what the tag's value is), and the tag value X
 	// (regardless of what the tag's key is). If you want to list only resources
 	// where Purpose is X, see the tag:key=value filter.
 	//
-	//    tag-value - The value of a tag assigned to the resource. This filter
-	// is independent of the tag-key filter.
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
 	//
-	//    vpc-id - The ID of the VPC for the network ACL.
+	//   vpc-id - The ID of the VPC for the network ACL.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// One or more network ACL IDs.
@@ -19459,106 +19455,106 @@ type DescribeNetworkInterfacesInput struct {
 
 	// One or more filters.
 	//
-	//    addresses.private-ip-address - The private IP addresses associated with
+	//   addresses.private-ip-address - The private IP addresses associated with
 	// the network interface.
 	//
-	//    addresses.primary - Whether the private IP address is the primary IP
-	// address associated with the network interface.
+	//   addresses.primary - Whether the private IP address is the primary IP address
+	// associated with the network interface.
 	//
-	//    addresses.association.public-ip - The association ID returned when the
+	//   addresses.association.public-ip - The association ID returned when the
 	// network interface was associated with the Elastic IP address.
 	//
-	//    addresses.association.owner-id - The owner ID of the addresses associated
+	//   addresses.association.owner-id - The owner ID of the addresses associated
 	// with the network interface.
 	//
-	//    association.association-id - The association ID returned when the network
+	//   association.association-id - The association ID returned when the network
 	// interface was associated with an IP address.
 	//
-	//    association.allocation-id - The allocation ID returned when you allocated
+	//   association.allocation-id - The allocation ID returned when you allocated
 	// the Elastic IP address for your network interface.
 	//
-	//    association.ip-owner-id - The owner of the Elastic IP address associated
+	//   association.ip-owner-id - The owner of the Elastic IP address associated
 	// with the network interface.
 	//
-	//    association.public-ip - The address of the Elastic IP address bound to
+	//   association.public-ip - The address of the Elastic IP address bound to
 	// the network interface.
 	//
-	//    association.public-dns-name - The public DNS name for the network interface.
+	//   association.public-dns-name - The public DNS name for the network interface.
 	//
-	//    attachment.attachment-id - The ID of the interface attachment.
+	//   attachment.attachment-id - The ID of the interface attachment.
 	//
-	//    attachment.attach.time - The time that the network interface was attached
+	//   attachment.attach.time - The time that the network interface was attached
 	// to an instance.
 	//
-	//    attachment.delete-on-termination - Indicates whether the attachment is
+	//   attachment.delete-on-termination - Indicates whether the attachment is
 	// deleted when an instance is terminated.
 	//
-	//    attachment.device-index - The device index to which the network interface
+	//   attachment.device-index - The device index to which the network interface
 	// is attached.
 	//
-	//    attachment.instance-id - The ID of the instance to which the network
+	//   attachment.instance-id - The ID of the instance to which the network interface
+	// is attached.
+	//
+	//   attachment.instance-owner-id - The owner ID of the instance to which the
+	// network interface is attached.
+	//
+	//   attachment.nat-gateway-id - The ID of the NAT gateway to which the network
 	// interface is attached.
 	//
-	//    attachment.instance-owner-id - The owner ID of the instance to which
-	// the network interface is attached.
-	//
-	//    attachment.nat-gateway-id - The ID of the NAT gateway to which the network
-	// interface is attached.
-	//
-	//    attachment.status - The status of the attachment (attaching | attached
+	//   attachment.status - The status of the attachment (attaching | attached
 	// | detaching | detached).
 	//
-	//    availability-zone - The Availability Zone of the network interface.
+	//   availability-zone - The Availability Zone of the network interface.
 	//
-	//    description - The description of the network interface.
+	//   description - The description of the network interface.
 	//
-	//    group-id - The ID of a security group associated with the network interface.
+	//   group-id - The ID of a security group associated with the network interface.
 	//
-	//    group-name - The name of a security group associated with the network
+	//   group-name - The name of a security group associated with the network
 	// interface.
 	//
-	//    mac-address - The MAC address of the network interface.
+	//   mac-address - The MAC address of the network interface.
 	//
-	//    network-interface-id - The ID of the network interface.
+	//   network-interface-id - The ID of the network interface.
 	//
-	//    owner-id - The AWS account ID of the network interface owner.
+	//   owner-id - The AWS account ID of the network interface owner.
 	//
-	//    private-ip-address - The private IP address or addresses of the network
+	//   private-ip-address - The private IP address or addresses of the network
 	// interface.
 	//
-	//    private-dns-name - The private DNS name of the network interface.
+	//   private-dns-name - The private DNS name of the network interface.
 	//
-	//    requester-id - The ID of the entity that launched the instance on your
+	//   requester-id - The ID of the entity that launched the instance on your
 	// behalf (for example, AWS Management Console, Auto Scaling, and so on).
 	//
-	//    requester-managed - Indicates whether the network interface is being
-	// managed by an AWS service (for example, AWS Management Console, Auto Scaling,
-	// and so on).
+	//   requester-managed - Indicates whether the network interface is being managed
+	// by an AWS service (for example, AWS Management Console, Auto Scaling, and
+	// so on).
 	//
-	//    source-desk-check - Indicates whether the network interface performs
-	// source/destination checking. A value of true means checking is enabled, and
-	// false means checking is disabled. The value must be false for the network
-	// interface to perform network address translation (NAT) in your VPC.
+	//   source-desk-check - Indicates whether the network interface performs source/destination
+	// checking. A value of true means checking is enabled, and false means checking
+	// is disabled. The value must be false for the network interface to perform
+	// network address translation (NAT) in your VPC.
 	//
-	//    status - The status of the network interface. If the network interface
+	//   status - The status of the network interface. If the network interface
 	// is not attached to an instance, the status is available; if a network interface
 	// is attached to an instance the status is in-use.
 	//
-	//    subnet-id - The ID of the subnet for the network interface.
+	//   subnet-id - The ID of the subnet for the network interface.
 	//
-	//    tag:key=value - The key/value combination of a tag assigned to the resource.
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
 	//
-	//    tag-key - The key of a tag assigned to the resource. This filter is independent
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
 	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
 	// and the filter "tag-value=X", you get any resources assigned both the tag
 	// key Purpose (regardless of what the tag's value is), and the tag value X
 	// (regardless of what the tag's key is). If you want to list only resources
 	// where Purpose is X, see the tag:key=value filter.
 	//
-	//    tag-value - The value of a tag assigned to the resource. This filter
-	// is independent of the tag-key filter.
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
 	//
-	//    vpc-id - The ID of the VPC for the network interface.
+	//   vpc-id - The ID of the VPC for the network interface.
 	Filters []*Filter `locationName:"filter" locationNameList:"Filter" type:"list"`
 
 	// One or more network interface IDs.
@@ -19607,12 +19603,12 @@ type DescribePlacementGroupsInput struct {
 
 	// One or more filters.
 	//
-	//    group-name - The name of the placement group.
+	//   group-name - The name of the placement group.
 	//
-	//    state - The state of the placement group (pending | available | deleting
+	//   state - The state of the placement group (pending | available | deleting
 	// | deleted).
 	//
-	//    strategy - The strategy of the placement group (cluster).
+	//   strategy - The strategy of the placement group (cluster).
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// One or more placement group names.
@@ -19661,9 +19657,9 @@ type DescribePrefixListsInput struct {
 
 	// One or more filters.
 	//
-	//    prefix-list-id: The ID of a prefix list.
+	//   prefix-list-id: The ID of a prefix list.
 	//
-	//    prefix-list-name: The name of a prefix list.
+	//   prefix-list-name: The name of a prefix list.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// The maximum number of items to return for this request. The request returns
@@ -19726,9 +19722,9 @@ type DescribeRegionsInput struct {
 
 	// One or more filters.
 	//
-	//    endpoint - The endpoint of the region (for example, ec2.us-east-1.amazonaws.com).
+	//   endpoint - The endpoint of the region (for example, ec2.us-east-1.amazonaws.com).
 	//
-	//    region-name - The name of the region (for example, us-east-1).
+	//   region-name - The name of the region (for example, us-east-1).
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// The names of one or more regions.
@@ -19775,20 +19771,20 @@ type DescribeReservedInstancesInput struct {
 
 	// One or more filters.
 	//
-	//    availability-zone - The Availability Zone where the Reserved Instance
+	//   availability-zone - The Availability Zone where the Reserved Instance
 	// can be used.
 	//
-	//    duration - The duration of the Reserved Instance (one year or three years),
+	//   duration - The duration of the Reserved Instance (one year or three years),
 	// in seconds (31536000 | 94608000).
 	//
-	//    end - The time when the Reserved Instance expires (for example, 2015-08-07T11:54:42.000Z).
+	//   end - The time when the Reserved Instance expires (for example, 2015-08-07T11:54:42.000Z).
 	//
-	//    fixed-price - The purchase price of the Reserved Instance (for example,
+	//   fixed-price - The purchase price of the Reserved Instance (for example,
 	// 9800.0).
 	//
-	//    instance-type - The instance type that is covered by the reservation.
+	//   instance-type - The instance type that is covered by the reservation.
 	//
-	//    product-description - The Reserved Instance product platform description.
+	//   product-description - The Reserved Instance product platform description.
 	// Instances that include (Amazon VPC) in the product platform description will
 	// only be displayed to EC2-Classic account holders and are for use with Amazon
 	// VPC (Linux/UNIX | Linux/UNIX (Amazon VPC) | SUSE Linux | SUSE Linux (Amazon
@@ -19798,27 +19794,27 @@ type DescribeReservedInstancesInput struct {
 	// with SQL Server Web (Amazon VPC) | Windows with SQL Server Enterprise | Windows
 	// with SQL Server Enterprise (Amazon VPC)).
 	//
-	//    reserved-instances-id - The ID of the Reserved Instance.
+	//   reserved-instances-id - The ID of the Reserved Instance.
 	//
-	//    start - The time at which the Reserved Instance purchase request was
-	// placed (for example, 2014-08-07T11:54:42.000Z).
+	//   start - The time at which the Reserved Instance purchase request was placed
+	// (for example, 2014-08-07T11:54:42.000Z).
 	//
-	//    state - The state of the Reserved Instance (payment-pending | active
-	// | payment-failed | retired).
+	//   state - The state of the Reserved Instance (payment-pending | active |
+	// payment-failed | retired).
 	//
-	//    tag:key=value - The key/value combination of a tag assigned to the resource.
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
 	//
-	//    tag-key - The key of a tag assigned to the resource. This filter is independent
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
 	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
 	// and the filter "tag-value=X", you get any resources assigned both the tag
 	// key Purpose (regardless of what the tag's value is), and the tag value X
 	// (regardless of what the tag's key is). If you want to list only resources
 	// where Purpose is X, see the tag:key=value filter.
 	//
-	//    tag-value - The value of a tag assigned to the resource. This filter
-	// is independent of the tag-key filter.
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
 	//
-	//    usage-price - The usage price of the Reserved Instance, per hour (for
+	//   usage-price - The usage price of the Reserved Instance, per hour (for
 	// example, 0.84).
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
@@ -19850,14 +19846,14 @@ type DescribeReservedInstancesListingsInput struct {
 
 	// One or more filters.
 	//
-	//    reserved-instances-id - The ID of the Reserved Instances.
+	//   reserved-instances-id - The ID of the Reserved Instances.
 	//
-	//    reserved-instances-listing-id - The ID of the Reserved Instances listing.
+	//   reserved-instances-listing-id - The ID of the Reserved Instances listing.
 	//
-	//    status - The status of the Reserved Instance listing (pending | active
+	//   status - The status of the Reserved Instance listing (pending | active
 	// | cancelled | closed).
 	//
-	//    status-message - The reason for the status.
+	//   status-message - The reason for the status.
 	Filters []*Filter `locationName:"filters" locationNameList:"Filter" type:"list"`
 
 	// One or more Reserved Instance IDs.
@@ -19901,38 +19897,38 @@ type DescribeReservedInstancesModificationsInput struct {
 
 	// One or more filters.
 	//
-	//    client-token - The idempotency token for the modification request.
+	//   client-token - The idempotency token for the modification request.
 	//
-	//    create-date - The time when the modification request was created.
+	//   create-date - The time when the modification request was created.
 	//
-	//    effective-date - The time when the modification becomes effective.
+	//   effective-date - The time when the modification becomes effective.
 	//
-	//    modification-result.reserved-instances-id - The ID for the Reserved Instances
+	//   modification-result.reserved-instances-id - The ID for the Reserved Instances
 	// created as part of the modification request. This ID is only available when
 	// the status of the modification is fulfilled.
 	//
-	//    modification-result.target-configuration.availability-zone - The Availability
+	//   modification-result.target-configuration.availability-zone - The Availability
 	// Zone for the new Reserved Instances.
 	//
-	//    modification-result.target-configuration.instance-count  - The number
+	//   modification-result.target-configuration.instance-count  - The number
 	// of new Reserved Instances.
 	//
-	//    modification-result.target-configuration.instance-type - The instance
+	//   modification-result.target-configuration.instance-type - The instance
 	// type of the new Reserved Instances.
 	//
-	//    modification-result.target-configuration.platform - The network platform
+	//   modification-result.target-configuration.platform - The network platform
 	// of the new Reserved Instances (EC2-Classic | EC2-VPC).
 	//
-	//    reserved-instances-id - The ID of the Reserved Instances modified.
+	//   reserved-instances-id - The ID of the Reserved Instances modified.
 	//
-	//    reserved-instances-modification-id - The ID of the modification request.
+	//   reserved-instances-modification-id - The ID of the modification request.
 	//
-	//    status - The status of the Reserved Instances modification request (processing
+	//   status - The status of the Reserved Instances modification request (processing
 	// | fulfilled | failed).
 	//
-	//    status-message - The reason for the status.
+	//   status-message - The reason for the status.
 	//
-	//    update-date - The time when the modification request was last updated.
+	//   update-date - The time when the modification request was last updated.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// The token to retrieve the next page of results.
@@ -19989,22 +19985,22 @@ type DescribeReservedInstancesOfferingsInput struct {
 
 	// One or more filters.
 	//
-	//    availability-zone - The Availability Zone where the Reserved Instance
+	//   availability-zone - The Availability Zone where the Reserved Instance
 	// can be used.
 	//
-	//    duration - The duration of the Reserved Instance (for example, one year
+	//   duration - The duration of the Reserved Instance (for example, one year
 	// or three years), in seconds (31536000 | 94608000).
 	//
-	//    fixed-price - The purchase price of the Reserved Instance (for example,
+	//   fixed-price - The purchase price of the Reserved Instance (for example,
 	// 9800.0).
 	//
-	//    instance-type - The instance type that is covered by the reservation.
+	//   instance-type - The instance type that is covered by the reservation.
 	//
-	//    marketplace - Set to true to show only Reserved Instance Marketplace
-	// offerings. When this filter is not used, which is the default behavior, all
-	// offerings from both AWS and the Reserved Instance Marketplace are listed.
+	//   marketplace - Set to true to show only Reserved Instance Marketplace offerings.
+	// When this filter is not used, which is the default behavior, all offerings
+	// from both AWS and the Reserved Instance Marketplace are listed.
 	//
-	//    product-description - The Reserved Instance product platform description.
+	//   product-description - The Reserved Instance product platform description.
 	// Instances that include (Amazon VPC) in the product platform description will
 	// only be displayed to EC2-Classic account holders and are for use with Amazon
 	// VPC. (Linux/UNIX | Linux/UNIX (Amazon VPC) | SUSE Linux | SUSE Linux (Amazon
@@ -20014,9 +20010,9 @@ type DescribeReservedInstancesOfferingsInput struct {
 	// with SQL Server Web (Amazon VPC) | Windows with SQL Server Enterprise | Windows
 	// with SQL Server Enterprise (Amazon VPC))
 	//
-	//    reserved-instances-offering-id - The Reserved Instances offering ID.
+	//   reserved-instances-offering-id - The Reserved Instances offering ID.
 	//
-	//    usage-price - The usage price of the Reserved Instance, per hour (for
+	//   usage-price - The usage price of the Reserved Instance, per hour (for
 	// example, 0.84).
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
@@ -20135,59 +20131,59 @@ type DescribeRouteTablesInput struct {
 
 	// One or more filters.
 	//
-	//    association.route-table-association-id - The ID of an association ID
-	// for the route table.
+	//   association.route-table-association-id - The ID of an association ID for
+	// the route table.
 	//
-	//    association.route-table-id - The ID of the route table involved in the
+	//   association.route-table-id - The ID of the route table involved in the
 	// association.
 	//
-	//    association.subnet-id - The ID of the subnet involved in the association.
+	//   association.subnet-id - The ID of the subnet involved in the association.
 	//
-	//    association.main - Indicates whether the route table is the main route
+	//   association.main - Indicates whether the route table is the main route
 	// table for the VPC (true | false).
 	//
-	//    route-table-id - The ID of the route table.
+	//   route-table-id - The ID of the route table.
 	//
-	//    route.destination-cidr-block - The CIDR range specified in a route in
+	//   route.destination-cidr-block - The CIDR range specified in a route in
 	// the table.
 	//
-	//    route.destination-prefix-list-id - The ID (prefix) of the AWS service
+	//   route.destination-prefix-list-id - The ID (prefix) of the AWS service
 	// specified in a route in the table.
 	//
-	//    route.gateway-id - The ID of a gateway specified in a route in the table.
+	//   route.gateway-id - The ID of a gateway specified in a route in the table.
 	//
-	//    route.instance-id - The ID of an instance specified in a route in the
+	//   route.instance-id - The ID of an instance specified in a route in the
 	// table.
 	//
-	//    route.nat-gateway-id - The ID of a NAT gateway.
+	//   route.nat-gateway-id - The ID of a NAT gateway.
 	//
-	//    route.origin - Describes how the route was created. CreateRouteTable
-	// indicates that the route was automatically created when the route table was
-	// created; CreateRoute indicates that the route was manually added to the route
-	// table; EnableVgwRoutePropagation indicates that the route was propagated
-	// by route propagation.
+	//   route.origin - Describes how the route was created. CreateRouteTable indicates
+	// that the route was automatically created when the route table was created;
+	// CreateRoute indicates that the route was manually added to the route table;
+	// EnableVgwRoutePropagation indicates that the route was propagated by route
+	// propagation.
 	//
-	//    route.state - The state of a route in the route table (active | blackhole).
+	//   route.state - The state of a route in the route table (active | blackhole).
 	// The blackhole state indicates that the route's target isn't available (for
 	// example, the specified gateway isn't attached to the VPC, the specified NAT
 	// instance has been terminated, and so on).
 	//
-	//    route.vpc-peering-connection-id - The ID of a VPC peering connection
-	// specified in a route in the table.
+	//   route.vpc-peering-connection-id - The ID of a VPC peering connection specified
+	// in a route in the table.
 	//
-	//    tag:key=value - The key/value combination of a tag assigned to the resource.
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
 	//
-	//    tag-key - The key of a tag assigned to the resource. This filter is independent
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
 	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
 	// and the filter "tag-value=X", you get any resources assigned both the tag
 	// key Purpose (regardless of what the tag's value is), and the tag value X
 	// (regardless of what the tag's key is). If you want to list only resources
 	// where Purpose is X, see the tag:key=value filter.
 	//
-	//    tag-value - The value of a tag assigned to the resource. This filter
-	// is independent of the tag-key filter.
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
 	//
-	//    vpc-id - The ID of the VPC for the route table.
+	//   vpc-id - The ID of the VPC for the route table.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// One or more route table IDs.
@@ -20236,13 +20232,13 @@ type DescribeScheduledInstanceAvailabilityInput struct {
 
 	// One or more filters.
 	//
-	//    availability-zone - The Availability Zone (for example, us-west-2a).
+	//   availability-zone - The Availability Zone (for example, us-west-2a).
 	//
-	//    instance-type - The instance type (for example, c4.large).
+	//   instance-type - The instance type (for example, c4.large).
 	//
-	//    network-platform - The network platform (EC2-Classic or EC2-VPC).
+	//   network-platform - The network platform (EC2-Classic or EC2-VPC).
 	//
-	//    platform - The platform (Linux/UNIX or Windows).
+	//   platform - The platform (Linux/UNIX or Windows).
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// The time period for the first schedule to start.
@@ -20335,13 +20331,13 @@ type DescribeScheduledInstancesInput struct {
 
 	// One or more filters.
 	//
-	//    availability-zone - The Availability Zone (for example, us-west-2a).
+	//   availability-zone - The Availability Zone (for example, us-west-2a).
 	//
-	//    instance-type - The instance type (for example, c4.large).
+	//   instance-type - The instance type (for example, c4.large).
 	//
-	//    network-platform - The network platform (EC2-Classic or EC2-VPC).
+	//   network-platform - The network platform (EC2-Classic or EC2-VPC).
 	//
-	//    platform - The platform (Linux/UNIX or Windows).
+	//   platform - The platform (Linux/UNIX or Windows).
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// The maximum number of results to return in a single call. This value can
@@ -20458,42 +20454,42 @@ type DescribeSecurityGroupsInput struct {
 	// security groups for which any combination of rules - not necessarily a single
 	// rule - match all filters.
 	//
-	//    description - The description of the security group.
+	//   description - The description of the security group.
 	//
-	//    egress.ip-permission.prefix-list-id - The ID (prefix) of the AWS service
+	//   egress.ip-permission.prefix-list-id - The ID (prefix) of the AWS service
 	// to which the security group allows access.
 	//
-	//    group-id - The ID of the security group.
+	//   group-id - The ID of the security group.
 	//
-	//    group-name - The name of the security group.
+	//   group-name - The name of the security group.
 	//
-	//    ip-permission.cidr - A CIDR range that has been granted permission.
+	//   ip-permission.cidr - A CIDR range that has been granted permission.
 	//
-	//    ip-permission.from-port - The start of port range for the TCP and UDP
+	//   ip-permission.from-port - The start of port range for the TCP and UDP
 	// protocols, or an ICMP type number.
 	//
-	//    ip-permission.group-id - The ID of a security group that has been granted
+	//   ip-permission.group-id - The ID of a security group that has been granted
 	// permission.
 	//
-	//    ip-permission.group-name - The name of a security group that has been
+	//   ip-permission.group-name - The name of a security group that has been
 	// granted permission.
 	//
-	//    ip-permission.protocol - The IP protocol for the permission (tcp | udp
+	//   ip-permission.protocol - The IP protocol for the permission (tcp | udp
 	// | icmp or a protocol number).
 	//
-	//    ip-permission.to-port - The end of port range for the TCP and UDP protocols,
+	//   ip-permission.to-port - The end of port range for the TCP and UDP protocols,
 	// or an ICMP code.
 	//
-	//    ip-permission.user-id - The ID of an AWS account that has been granted
+	//   ip-permission.user-id - The ID of an AWS account that has been granted
 	// permission.
 	//
-	//    owner-id - The AWS account ID of the owner of the security group.
+	//   owner-id - The AWS account ID of the owner of the security group.
 	//
-	//    tag-key - The key of a tag assigned to the security group.
+	//   tag-key - The key of a tag assigned to the security group.
 	//
-	//    tag-value - The value of a tag assigned to the security group.
+	//   tag-value - The value of a tag assigned to the security group.
 	//
-	//    vpc-id - The ID of the VPC specified when the security group was created.
+	//   vpc-id - The ID of the VPC specified when the security group was created.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// One or more security group IDs. Required for security groups in a nondefault
@@ -20618,38 +20614,38 @@ type DescribeSnapshotsInput struct {
 
 	// One or more filters.
 	//
-	//    description - A description of the snapshot.
+	//   description - A description of the snapshot.
 	//
-	//    owner-alias - Value from an Amazon-maintained list (amazon | aws-marketplace
+	//   owner-alias - Value from an Amazon-maintained list (amazon | aws-marketplace
 	// | microsoft) of snapshot owners. Not to be confused with the user-configured
 	// AWS account alias, which is set from the IAM consolew.
 	//
-	//    owner-id - The ID of the AWS account that owns the snapshot.
+	//   owner-id - The ID of the AWS account that owns the snapshot.
 	//
-	//    progress - The progress of the snapshot, as a percentage (for example,
+	//   progress - The progress of the snapshot, as a percentage (for example,
 	// 80%).
 	//
-	//    snapshot-id - The snapshot ID.
+	//   snapshot-id - The snapshot ID.
 	//
-	//    start-time - The time stamp when the snapshot was initiated.
+	//   start-time - The time stamp when the snapshot was initiated.
 	//
-	//    status - The status of the snapshot (pending | completed | error).
+	//   status - The status of the snapshot (pending | completed | error).
 	//
-	//    tag:key=value - The key/value combination of a tag assigned to the resource.
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
 	//
-	//    tag-key - The key of a tag assigned to the resource. This filter is independent
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
 	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
 	// and the filter "tag-value=X", you get any resources assigned both the tag
 	// key Purpose (regardless of what the tag's value is), and the tag value X
 	// (regardless of what the tag's key is). If you want to list only resources
 	// where Purpose is X, see the tag:key=value filter.
 	//
-	//    tag-value - The value of a tag assigned to the resource. This filter
-	// is independent of the tag-key filter.
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
 	//
-	//    volume-id - The ID of the volume the snapshot is for.
+	//   volume-id - The ID of the volume the snapshot is for.
 	//
-	//    volume-size - The size of the volume, in GiB.
+	//   volume-size - The size of the volume, in GiB.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// The maximum number of snapshot results returned by DescribeSnapshots in paginated
@@ -20981,113 +20977,113 @@ type DescribeSpotInstanceRequestsInput struct {
 
 	// One or more filters.
 	//
-	//    availability-zone-group - The Availability Zone group.
+	//   availability-zone-group - The Availability Zone group.
 	//
-	//    create-time - The time stamp when the Spot instance request was created.
+	//   create-time - The time stamp when the Spot instance request was created.
 	//
-	//    fault-code - The fault code related to the request.
+	//   fault-code - The fault code related to the request.
 	//
-	//    fault-message - The fault message related to the request.
+	//   fault-message - The fault message related to the request.
 	//
-	//    instance-id - The ID of the instance that fulfilled the request.
+	//   instance-id - The ID of the instance that fulfilled the request.
 	//
-	//    launch-group - The Spot instance launch group.
+	//   launch-group - The Spot instance launch group.
 	//
-	//    launch.block-device-mapping.delete-on-termination - Indicates whether
+	//   launch.block-device-mapping.delete-on-termination - Indicates whether
 	// the Amazon EBS volume is deleted on instance termination.
 	//
-	//    launch.block-device-mapping.device-name - The device name for the Amazon
+	//   launch.block-device-mapping.device-name - The device name for the Amazon
 	// EBS volume (for example, /dev/sdh).
 	//
-	//    launch.block-device-mapping.snapshot-id - The ID of the snapshot used
+	//   launch.block-device-mapping.snapshot-id - The ID of the snapshot used
 	// for the Amazon EBS volume.
 	//
-	//    launch.block-device-mapping.volume-size - The size of the Amazon EBS
-	// volume, in GiB.
+	//   launch.block-device-mapping.volume-size - The size of the Amazon EBS volume,
+	// in GiB.
 	//
-	//    launch.block-device-mapping.volume-type - The type of the Amazon EBS
-	// volume: gp2 for General Purpose SSD, io1 for Provisioned IOPS SSD, st1 for
-	// Throughput Optimized HDD, sc1for Cold HDD, or standard for Magnetic.
+	//   launch.block-device-mapping.volume-type - The type of the Amazon EBS volume:
+	// gp2 for General Purpose SSD, io1 for Provisioned IOPS SSD, st1 for Throughput
+	// Optimized HDD, sc1for Cold HDD, or standard for Magnetic.
 	//
-	//    launch.group-id - The security group for the instance.
+	//   launch.group-id - The security group for the instance.
 	//
-	//    launch.image-id - The ID of the AMI.
+	//   launch.image-id - The ID of the AMI.
 	//
-	//    launch.instance-type - The type of instance (for example, m3.medium).
+	//   launch.instance-type - The type of instance (for example, m3.medium).
 	//
-	//    launch.kernel-id - The kernel ID.
+	//   launch.kernel-id - The kernel ID.
 	//
-	//    launch.key-name - The name of the key pair the instance launched with.
+	//   launch.key-name - The name of the key pair the instance launched with.
 	//
-	//    launch.monitoring-enabled - Whether monitoring is enabled for the Spot
+	//   launch.monitoring-enabled - Whether monitoring is enabled for the Spot
 	// instance.
 	//
-	//    launch.ramdisk-id - The RAM disk ID.
+	//   launch.ramdisk-id - The RAM disk ID.
 	//
-	//    network-interface.network-interface-id - The ID of the network interface.
+	//   network-interface.network-interface-id - The ID of the network interface.
 	//
-	//    network-interface.device-index - The index of the device for the network
+	//   network-interface.device-index - The index of the device for the network
 	// interface attachment on the instance.
 	//
-	//    network-interface.subnet-id - The ID of the subnet for the instance.
+	//   network-interface.subnet-id - The ID of the subnet for the instance.
 	//
-	//    network-interface.description - A description of the network interface.
+	//   network-interface.description - A description of the network interface.
 	//
-	//    network-interface.private-ip-address - The primary private IP address
+	//   network-interface.private-ip-address - The primary private IP address
 	// of the network interface.
 	//
-	//    network-interface.delete-on-termination - Indicates whether the network
+	//   network-interface.delete-on-termination - Indicates whether the network
 	// interface is deleted when the instance is terminated.
 	//
-	//    network-interface.group-id - The ID of the security group associated
+	//   network-interface.group-id - The ID of the security group associated with
+	// the network interface.
+	//
+	//   network-interface.group-name - The name of the security group associated
 	// with the network interface.
 	//
-	//    network-interface.group-name - The name of the security group associated
-	// with the network interface.
-	//
-	//    network-interface.addresses.primary - Indicates whether the IP address
+	//   network-interface.addresses.primary - Indicates whether the IP address
 	// is the primary private IP address.
 	//
-	//    product-description - The product description associated with the instance
+	//   product-description - The product description associated with the instance
 	// (Linux/UNIX | Windows).
 	//
-	//    spot-instance-request-id - The Spot instance request ID.
+	//   spot-instance-request-id - The Spot instance request ID.
 	//
-	//    spot-price - The maximum hourly price for any Spot instance launched
-	// to fulfill the request.
+	//   spot-price - The maximum hourly price for any Spot instance launched to
+	// fulfill the request.
 	//
-	//    state - The state of the Spot instance request (open | active | closed
+	//   state - The state of the Spot instance request (open | active | closed
 	// | cancelled | failed). Spot bid status information can help you track your
 	// Amazon EC2 Spot instance requests. For more information, see Spot Bid Status
 	// (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-bid-status.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
 	//
-	//    status-code - The short code describing the most recent evaluation of
+	//   status-code - The short code describing the most recent evaluation of
 	// your Spot instance request.
 	//
-	//    status-message - The message explaining the status of the Spot instance
+	//   status-message - The message explaining the status of the Spot instance
 	// request.
 	//
-	//    tag:key=value - The key/value combination of a tag assigned to the resource.
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
 	//
-	//    tag-key - The key of a tag assigned to the resource. This filter is independent
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
 	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
 	// and the filter "tag-value=X", you get any resources assigned both the tag
 	// key Purpose (regardless of what the tag's value is), and the tag value X
 	// (regardless of what the tag's key is). If you want to list only resources
 	// where Purpose is X, see the tag:key=value filter.
 	//
-	//    tag-value - The value of a tag assigned to the resource. This filter
-	// is independent of the tag-key filter.
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
 	//
-	//    type - The type of Spot instance request (one-time | persistent).
+	//   type - The type of Spot instance request (one-time | persistent).
 	//
-	//    launched-availability-zone - The Availability Zone in which the bid is
+	//   launched-availability-zone - The Availability Zone in which the bid is
 	// launched.
 	//
-	//    valid-from - The start date of the request.
+	//   valid-from - The start date of the request.
 	//
-	//    valid-until - The end date of the request.
+	//   valid-until - The end date of the request.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// One or more Spot instance request IDs.
@@ -21141,19 +21137,18 @@ type DescribeSpotPriceHistoryInput struct {
 
 	// One or more filters.
 	//
-	//    availability-zone - The Availability Zone for which prices should be
-	// returned.
+	//   availability-zone - The Availability Zone for which prices should be returned.
 	//
-	//    instance-type - The type of instance (for example, m3.medium).
+	//   instance-type - The type of instance (for example, m3.medium).
 	//
-	//    product-description - The product description for the Spot price (Linux/UNIX
+	//   product-description - The product description for the Spot price (Linux/UNIX
 	// | SUSE Linux | Windows | Linux/UNIX (Amazon VPC) | SUSE Linux (Amazon VPC)
 	// | Windows (Amazon VPC)).
 	//
-	//    spot-price - The Spot price. The value must match exactly (or use wildcards;
+	//   spot-price - The Spot price. The value must match exactly (or use wildcards;
 	// greater than or less than comparison is not supported).
 	//
-	//    timestamp - The timestamp of the Spot price history, in UTC format (for
+	//   timestamp - The timestamp of the Spot price history, in UTC format (for
 	// example, YYYY-MM-DDTHH:MM:SSZ). You can use wildcards (* and ?). Greater
 	// than or less than comparison is not supported.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
@@ -21293,36 +21288,36 @@ type DescribeSubnetsInput struct {
 
 	// One or more filters.
 	//
-	//    availabilityZone - The Availability Zone for the subnet. You can also
+	//   availabilityZone - The Availability Zone for the subnet. You can also
 	// use availability-zone as the filter name.
 	//
-	//    available-ip-address-count - The number of IP addresses in the subnet
+	//   available-ip-address-count - The number of IP addresses in the subnet
 	// that are available.
 	//
-	//    cidrBlock - The CIDR block of the subnet. The CIDR block you specify
-	// must exactly match the subnet's CIDR block for information to be returned
-	// for the subnet. You can also use cidr or cidr-block as the filter names.
+	//   cidrBlock - The CIDR block of the subnet. The CIDR block you specify must
+	// exactly match the subnet's CIDR block for information to be returned for
+	// the subnet. You can also use cidr or cidr-block as the filter names.
 	//
-	//    defaultForAz - Indicates whether this is the default subnet for the Availability
+	//   defaultForAz - Indicates whether this is the default subnet for the Availability
 	// Zone. You can also use default-for-az as the filter name.
 	//
-	//    state - The state of the subnet (pending | available).
+	//   state - The state of the subnet (pending | available).
 	//
-	//    subnet-id - The ID of the subnet.
+	//   subnet-id - The ID of the subnet.
 	//
-	//    tag:key=value - The key/value combination of a tag assigned to the resource.
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
 	//
-	//    tag-key - The key of a tag assigned to the resource. This filter is independent
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
 	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
 	// and the filter "tag-value=X", you get any resources assigned both the tag
 	// key Purpose (regardless of what the tag's value is), and the tag value X
 	// (regardless of what the tag's key is). If you want to list only resources
 	// where Purpose is X, see the tag:key=value filter.
 	//
-	//    tag-value - The value of a tag assigned to the resource. This filter
-	// is independent of the tag-key filter.
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
 	//
-	//    vpc-id - The ID of the VPC for the subnet.
+	//   vpc-id - The ID of the VPC for the subnet.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// One or more subnet IDs.
@@ -21371,16 +21366,16 @@ type DescribeTagsInput struct {
 
 	// One or more filters.
 	//
-	//    key - The tag key.
+	//   key - The tag key.
 	//
-	//    resource-id - The resource ID.
+	//   resource-id - The resource ID.
 	//
-	//    resource-type - The resource type (customer-gateway | dhcp-options |
-	// image | instance | internet-gateway | network-acl | network-interface | reserved-instances
+	//   resource-type - The resource type (customer-gateway | dhcp-options | image
+	// | instance | internet-gateway | network-acl | network-interface | reserved-instances
 	// | route-table | security-group | snapshot | spot-instances-request | subnet
 	// | volume | vpc | vpn-connection | vpn-gateway).
 	//
-	//    value - The tag value.
+	//   value - The tag value.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// The maximum number of results to return in a single call. This value can
@@ -21500,34 +21495,34 @@ type DescribeVolumeStatusInput struct {
 
 	// One or more filters.
 	//
-	//    action.code - The action code for the event (for example, enable-volume-io).
+	//   action.code - The action code for the event (for example, enable-volume-io).
 	//
-	//    action.description - A description of the action.
+	//   action.description - A description of the action.
 	//
-	//    action.event-id - The event ID associated with the action.
+	//   action.event-id - The event ID associated with the action.
 	//
-	//    availability-zone - The Availability Zone of the instance.
+	//   availability-zone - The Availability Zone of the instance.
 	//
-	//    event.description - A description of the event.
+	//   event.description - A description of the event.
 	//
-	//    event.event-id - The event ID.
+	//   event.event-id - The event ID.
 	//
-	//    event.event-type - The event type (for io-enabled: passed | failed; for
+	//   event.event-type - The event type (for io-enabled: passed | failed; for
 	// io-performance: io-performance:degraded | io-performance:severely-degraded
 	// | io-performance:stalled).
 	//
-	//    event.not-after - The latest end time for the event.
+	//   event.not-after - The latest end time for the event.
 	//
-	//    event.not-before - The earliest start time for the event.
+	//   event.not-before - The earliest start time for the event.
 	//
-	//    volume-status.details-name - The cause for volume-status.status (io-enabled
+	//   volume-status.details-name - The cause for volume-status.status (io-enabled
 	// | io-performance).
 	//
-	//    volume-status.details-status - The status of volume-status.details-name
+	//   volume-status.details-status - The status of volume-status.details-name
 	// (for io-enabled: passed | failed; for io-performance: normal | degraded |
 	// severely-degraded | stalled).
 	//
-	//    volume-status.status - The status of the volume (ok | impaired | warning
+	//   volume-status.status - The status of the volume (ok | impaired | warning
 	// | insufficient-data).
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
@@ -21597,48 +21592,48 @@ type DescribeVolumesInput struct {
 
 	// One or more filters.
 	//
-	//    attachment.attach-time - The time stamp when the attachment initiated.
+	//   attachment.attach-time - The time stamp when the attachment initiated.
 	//
-	//    attachment.delete-on-termination - Whether the volume is deleted on instance
+	//   attachment.delete-on-termination - Whether the volume is deleted on instance
 	// termination.
 	//
-	//    attachment.device - The device name that is exposed to the instance (for
+	//   attachment.device - The device name that is exposed to the instance (for
 	// example, /dev/sda1).
 	//
-	//    attachment.instance-id - The ID of the instance the volume is attached
+	//   attachment.instance-id - The ID of the instance the volume is attached
 	// to.
 	//
-	//    attachment.status - The attachment state (attaching | attached | detaching
+	//   attachment.status - The attachment state (attaching | attached | detaching
 	// | detached).
 	//
-	//    availability-zone - The Availability Zone in which the volume was created.
+	//   availability-zone - The Availability Zone in which the volume was created.
 	//
-	//    create-time - The time stamp when the volume was created.
+	//   create-time - The time stamp when the volume was created.
 	//
-	//    encrypted - The encryption status of the volume.
+	//   encrypted - The encryption status of the volume.
 	//
-	//    size - The size of the volume, in GiB.
+	//   size - The size of the volume, in GiB.
 	//
-	//    snapshot-id - The snapshot from which the volume was created.
+	//   snapshot-id - The snapshot from which the volume was created.
 	//
-	//    status - The status of the volume (creating | available | in-use | deleting
+	//   status - The status of the volume (creating | available | in-use | deleting
 	// | deleted | error).
 	//
-	//    tag:key=value - The key/value combination of a tag assigned to the resource.
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
 	//
-	//    tag-key - The key of a tag assigned to the resource. This filter is independent
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
 	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
 	// and the filter "tag-value=X", you get any resources assigned both the tag
 	// key Purpose (regardless of what the tag's value is), and the tag value X
 	// (regardless of what the tag's key is). If you want to list only resources
 	// where Purpose is X, see the tag:key=value filter.
 	//
-	//    tag-value - The value of a tag assigned to the resource. This filter
-	// is independent of the tag-key filter.
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
 	//
-	//    volume-id - The volume ID.
+	//   volume-id - The volume ID.
 	//
-	//    volume-type - The Amazon EBS volume type. This can be gp2 for General
+	//   volume-type - The Amazon EBS volume type. This can be gp2 for General
 	// Purpose SSD, io1 for Provisioned IOPS SSD, st1 for Throughput Optimized HDD,
 	// sc1 for Cold HDD, or standard for Magnetic volumes.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
@@ -21845,20 +21840,20 @@ type DescribeVpcClassicLinkInput struct {
 
 	// One or more filters.
 	//
-	//    is-classic-link-enabled - Whether the VPC is enabled for ClassicLink
-	// (true | false).
+	//   is-classic-link-enabled - Whether the VPC is enabled for ClassicLink (true
+	// | false).
 	//
-	//    tag:key=value - The key/value combination of a tag assigned to the resource.
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
 	//
-	//    tag-key - The key of a tag assigned to the resource. This filter is independent
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
 	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
 	// and the filter "tag-value=X", you get any resources assigned both the tag
 	// key Purpose (regardless of what the tag's value is), and the tag value X
 	// (regardless of what the tag's key is). If you want to list only resources
 	// where Purpose is X, see the tag:key=value filter.
 	//
-	//    tag-value - The value of a tag assigned to the resource. This filter
-	// is independent of the tag-key filter.
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// One or more VPCs for which you want to describe the ClassicLink status.
@@ -21959,13 +21954,13 @@ type DescribeVpcEndpointsInput struct {
 
 	// One or more filters.
 	//
-	//    service-name: The name of the AWS service.
+	//   service-name: The name of the AWS service.
 	//
-	//    vpc-id: The ID of the VPC in which the endpoint resides.
+	//   vpc-id: The ID of the VPC in which the endpoint resides.
 	//
-	//    vpc-endpoint-id: The ID of the endpoint.
+	//   vpc-endpoint-id: The ID of the endpoint.
 	//
-	//    vpc-endpoint-state: The state of the endpoint. (pending | available |
+	//   vpc-endpoint-state: The state of the endpoint. (pending | available |
 	// deleting | deleted)
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
@@ -22028,41 +22023,41 @@ type DescribeVpcPeeringConnectionsInput struct {
 
 	// One or more filters.
 	//
-	//    accepter-vpc-info.cidr-block - The CIDR block of the peer VPC.
+	//   accepter-vpc-info.cidr-block - The CIDR block of the peer VPC.
 	//
-	//    accepter-vpc-info.owner-id - The AWS account ID of the owner of the peer
+	//   accepter-vpc-info.owner-id - The AWS account ID of the owner of the peer
 	// VPC.
 	//
-	//    accepter-vpc-info.vpc-id - The ID of the peer VPC.
+	//   accepter-vpc-info.vpc-id - The ID of the peer VPC.
 	//
-	//    expiration-time - The expiration date and time for the VPC peering connection.
+	//   expiration-time - The expiration date and time for the VPC peering connection.
 	//
-	//    requester-vpc-info.cidr-block - The CIDR block of the requester's VPC.
+	//   requester-vpc-info.cidr-block - The CIDR block of the requester's VPC.
 	//
-	//    requester-vpc-info.owner-id - The AWS account ID of the owner of the
-	// requester VPC.
+	//   requester-vpc-info.owner-id - The AWS account ID of the owner of the requester
+	// VPC.
 	//
-	//    requester-vpc-info.vpc-id - The ID of the requester VPC.
+	//   requester-vpc-info.vpc-id - The ID of the requester VPC.
 	//
-	//    status-code - The status of the VPC peering connection (pending-acceptance
+	//   status-code - The status of the VPC peering connection (pending-acceptance
 	// | failed | expired | provisioning | active | deleted | rejected).
 	//
-	//    status-message - A message that provides more information about the status
+	//   status-message - A message that provides more information about the status
 	// of the VPC peering connection, if applicable.
 	//
-	//    tag:key=value - The key/value combination of a tag assigned to the resource.
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
 	//
-	//    tag-key - The key of a tag assigned to the resource. This filter is independent
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
 	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
 	// and the filter "tag-value=X", you get any resources assigned both the tag
 	// key Purpose (regardless of what the tag's value is), and the tag value X
 	// (regardless of what the tag's key is). If you want to list only resources
 	// where Purpose is X, see the tag:key=value filter.
 	//
-	//    tag-value - The value of a tag assigned to the resource. This filter
-	// is independent of the tag-key filter.
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
 	//
-	//    vpc-peering-connection-id - The ID of the VPC peering connection.
+	//   vpc-peering-connection-id - The ID of the VPC peering connection.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// One or more VPC peering connection IDs.
@@ -22111,29 +22106,29 @@ type DescribeVpcsInput struct {
 
 	// One or more filters.
 	//
-	//    cidr - The CIDR block of the VPC. The CIDR block you specify must exactly
+	//   cidr - The CIDR block of the VPC. The CIDR block you specify must exactly
 	// match the VPC's CIDR block for information to be returned for the VPC. Must
 	// contain the slash followed by one or two digits (for example, /28).
 	//
-	//    dhcp-options-id - The ID of a set of DHCP options.
+	//   dhcp-options-id - The ID of a set of DHCP options.
 	//
-	//    isDefault - Indicates whether the VPC is the default VPC.
+	//   isDefault - Indicates whether the VPC is the default VPC.
 	//
-	//    state - The state of the VPC (pending | available).
+	//   state - The state of the VPC (pending | available).
 	//
-	//    tag:key=value - The key/value combination of a tag assigned to the resource.
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
 	//
-	//    tag-key - The key of a tag assigned to the resource. This filter is independent
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
 	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
 	// and the filter "tag-value=X", you get any resources assigned both the tag
 	// key Purpose (regardless of what the tag's value is), and the tag value X
 	// (regardless of what the tag's key is). If you want to list only resources
 	// where Purpose is X, see the tag:key=value filter.
 	//
-	//    tag-value - The value of a tag assigned to the resource. This filter
-	// is independent of the tag-key filter.
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
 	//
-	//    vpc-id - The ID of the VPC.
+	//   vpc-id - The ID of the VPC.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// One or more VPC IDs.
@@ -22182,44 +22177,44 @@ type DescribeVpnConnectionsInput struct {
 
 	// One or more filters.
 	//
-	//    customer-gateway-configuration - The configuration information for the
+	//   customer-gateway-configuration - The configuration information for the
 	// customer gateway.
 	//
-	//    customer-gateway-id - The ID of a customer gateway associated with the
+	//   customer-gateway-id - The ID of a customer gateway associated with the
 	// VPN connection.
 	//
-	//    state - The state of the VPN connection (pending | available | deleting
+	//   state - The state of the VPN connection (pending | available | deleting
 	// | deleted).
 	//
-	//    option.static-routes-only - Indicates whether the connection has static
+	//   option.static-routes-only - Indicates whether the connection has static
 	// routes only. Used for devices that do not support Border Gateway Protocol
 	// (BGP).
 	//
-	//    route.destination-cidr-block - The destination CIDR block. This corresponds
+	//   route.destination-cidr-block - The destination CIDR block. This corresponds
 	// to the subnet used in a customer data center.
 	//
-	//    bgp-asn - The BGP Autonomous System Number (ASN) associated with a BGP
+	//   bgp-asn - The BGP Autonomous System Number (ASN) associated with a BGP
 	// device.
 	//
-	//    tag:key=value - The key/value combination of a tag assigned to the resource.
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
 	//
-	//    tag-key - The key of a tag assigned to the resource. This filter is independent
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
 	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
 	// and the filter "tag-value=X", you get any resources assigned both the tag
 	// key Purpose (regardless of what the tag's value is), and the tag value X
 	// (regardless of what the tag's key is). If you want to list only resources
 	// where Purpose is X, see the tag:key=value filter.
 	//
-	//    tag-value - The value of a tag assigned to the resource. This filter
-	// is independent of the tag-key filter.
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
 	//
-	//    type - The type of VPN connection. Currently the only supported type
-	// is ipsec.1.
+	//   type - The type of VPN connection. Currently the only supported type is
+	// ipsec.1.
 	//
-	//    vpn-connection-id - The ID of the VPN connection.
+	//   vpn-connection-id - The ID of the VPN connection.
 	//
-	//    vpn-gateway-id - The ID of a virtual private gateway associated with
-	// the VPN connection.
+	//   vpn-gateway-id - The ID of a virtual private gateway associated with the
+	// VPN connection.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// One or more VPN connection IDs.
@@ -22268,33 +22263,33 @@ type DescribeVpnGatewaysInput struct {
 
 	// One or more filters.
 	//
-	//    attachment.state - The current state of the attachment between the gateway
+	//   attachment.state - The current state of the attachment between the gateway
 	// and the VPC (attaching | attached | detaching | detached).
 	//
-	//    attachment.vpc-id - The ID of an attached VPC.
+	//   attachment.vpc-id - The ID of an attached VPC.
 	//
-	//    availability-zone - The Availability Zone for the virtual private gateway
+	//   availability-zone - The Availability Zone for the virtual private gateway
 	// (if applicable).
 	//
-	//    state - The state of the virtual private gateway (pending | available
+	//   state - The state of the virtual private gateway (pending | available
 	// | deleting | deleted).
 	//
-	//    tag:key=value - The key/value combination of a tag assigned to the resource.
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
 	//
-	//    tag-key - The key of a tag assigned to the resource. This filter is independent
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
 	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
 	// and the filter "tag-value=X", you get any resources assigned both the tag
 	// key Purpose (regardless of what the tag's value is), and the tag value X
 	// (regardless of what the tag's key is). If you want to list only resources
 	// where Purpose is X, see the tag:key=value filter.
 	//
-	//    tag-value - The value of a tag assigned to the resource. This filter
-	// is independent of the tag-key filter.
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
 	//
-	//    type - The type of virtual private gateway. Currently the only supported
+	//   type - The type of virtual private gateway. Currently the only supported
 	// type is ipsec.1.
 	//
-	//    vpn-gateway-id - The ID of the virtual private gateway.
+	//   vpn-gateway-id - The ID of the virtual private gateway.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// One or more virtual private gateway IDs.
@@ -23351,54 +23346,54 @@ type EventInformation struct {
 	//
 	// The following are the error events.
 	//
-	//    iamFleetRoleInvalid - The Spot fleet did not have the required permissions
+	//   iamFleetRoleInvalid - The Spot fleet did not have the required permissions
 	// either to launch or terminate an instance.
 	//
-	//    launchSpecTemporarilyBlacklisted - The configuration is not valid and
+	//   launchSpecTemporarilyBlacklisted - The configuration is not valid and
 	// several attempts to launch instances have failed. For more information, see
 	// the description of the event.
 	//
-	//    spotFleetRequestConfigurationInvalid - The configuration is not valid.
+	//   spotFleetRequestConfigurationInvalid - The configuration is not valid.
 	// For more information, see the description of the event.
 	//
-	//    spotInstanceCountLimitExceeded - You've reached the limit on the number
+	//   spotInstanceCountLimitExceeded - You've reached the limit on the number
 	// of Spot instances that you can launch.
 	//
 	//   The following are the fleetRequestChange events.
 	//
-	//    active - The Spot fleet has been validated and Amazon EC2 is attempting
+	//   active - The Spot fleet has been validated and Amazon EC2 is attempting
 	// to maintain the target number of running Spot instances.
 	//
-	//    cancelled - The Spot fleet is canceled and has no running Spot instances.
+	//   cancelled - The Spot fleet is canceled and has no running Spot instances.
 	// The Spot fleet will be deleted two days after its instances were terminated.
 	//
-	//    cancelled_running - The Spot fleet is canceled and will not launch additional
+	//   cancelled_running - The Spot fleet is canceled and will not launch additional
 	// Spot instances, but its existing Spot instances continue to run until they
 	// are interrupted or terminated.
 	//
-	//    cancelled_terminating - The Spot fleet is canceled and its Spot instances
+	//   cancelled_terminating - The Spot fleet is canceled and its Spot instances
 	// are terminating.
 	//
-	//    expired - The Spot fleet request has expired. A subsequent event indicates
+	//   expired - The Spot fleet request has expired. A subsequent event indicates
 	// that the instances were terminated, if the request was created with TerminateInstancesWithExpiration
 	// set.
 	//
-	//    modify_in_progress - A request to modify the Spot fleet request was accepted
+	//   modify_in_progress - A request to modify the Spot fleet request was accepted
 	// and is in progress.
 	//
-	//    modify_successful - The Spot fleet request was modified.
+	//   modify_successful - The Spot fleet request was modified.
 	//
-	//    price_update - The bid price for a launch configuration was adjusted
-	// because it was too high. This change is permanent.
+	//   price_update - The bid price for a launch configuration was adjusted because
+	// it was too high. This change is permanent.
 	//
-	//    submitted - The Spot fleet request is being evaluated and Amazon EC2
-	// is preparing to launch the target number of Spot instances.
+	//   submitted - The Spot fleet request is being evaluated and Amazon EC2 is
+	// preparing to launch the target number of Spot instances.
 	//
 	//   The following are the instanceChange events.
 	//
-	//    launched - A bid was fulfilled and a new instance was launched.
+	//   launched - A bid was fulfilled and a new instance was launched.
 	//
-	//    terminated - An instance was terminated by the user.
+	//   terminated - An instance was terminated by the user.
 	EventSubType *string `locationName:"eventSubType" type:"string"`
 
 	// The ID of the instance. This information is available only for instanceChange
@@ -23858,12 +23853,12 @@ type HistoryRecord struct {
 
 	// The event type.
 	//
-	//    error - Indicates an error with the Spot fleet request.
+	//   error - Indicates an error with the Spot fleet request.
 	//
-	//    fleetRequestChange - Indicates a change in the status or configuration
+	//   fleetRequestChange - Indicates a change in the status or configuration
 	// of the Spot fleet request.
 	//
-	//    instanceChange - Indicates that an instance was launched or terminated.
+	//   instanceChange - Indicates that an instance was launched or terminated.
 	EventType *string `locationName:"eventType" type:"string" required:"true" enum:"EventType"`
 
 	// The date and time of the event, in UTC format (for example, YYYY-MM-DDTHH:MM:SSZ).
@@ -24322,7 +24317,7 @@ type ImportImageInput struct {
 
 	// The license type to be used for the Amazon Machine Image (AMI) after importing.
 	//
-	//  Note: You may only use BYOL if you have existing licenses with rights to
+	// Note: You may only use BYOL if you have existing licenses with rights to
 	// use these licenses in a third party cloud like AWS. For more information,
 	// see Prerequisites (http://docs.aws.amazon.com/vm-import/latest/userguide/vmimport-image-import.html#prerequisites-image)
 	// in the VM Import/Export User Guide.
@@ -25411,17 +25406,17 @@ type InstanceState struct {
 	// The low byte represents the state. The high byte is an opaque internal value
 	// and should be ignored.
 	//
-	//    0 : pending
+	//   0 : pending
 	//
-	//    16 : running
+	//   16 : running
 	//
-	//    32 : shutting-down
+	//   32 : shutting-down
 	//
-	//    48 : terminated
+	//   48 : terminated
 	//
-	//    64 : stopping
+	//   64 : stopping
 	//
-	//    80 : stopped
+	//   80 : stopped
 	Code *int64 `locationName:"code" type:"integer"`
 
 	// The current state of the instance.
@@ -27016,20 +27011,20 @@ type NatGateway struct {
 
 	// The state of the NAT gateway.
 	//
-	//    pending: The NAT gateway is being created and is not ready to process
+	//   pending: The NAT gateway is being created and is not ready to process
 	// traffic.
 	//
-	//    failed: The NAT gateway could not be created. Check the failureCode and
+	//   failed: The NAT gateway could not be created. Check the failureCode and
 	// failureMessage fields for the reason.
 	//
-	//    available: The NAT gateway is able to process traffic. This status remains
+	//   available: The NAT gateway is able to process traffic. This status remains
 	// until you delete the NAT gateway, and does not indicate the health of the
 	// NAT gateway.
 	//
-	//    deleting: The NAT gateway is in the process of being terminated and may
+	//   deleting: The NAT gateway is in the process of being terminated and may
 	// still be processing traffic.
 	//
-	//    deleted: The NAT gateway has been terminated and is no longer processing
+	//   deleted: The NAT gateway has been terminated and is no longer processing
 	// traffic.
 	State *string `locationName:"state" type:"string" enum:"NatGatewayState"`
 
@@ -28716,26 +28711,26 @@ type ReportInstanceStatusInput struct {
 
 	// One or more reason codes that describes the health state of your instance.
 	//
-	//    instance-stuck-in-state: My instance is stuck in a state.
+	//   instance-stuck-in-state: My instance is stuck in a state.
 	//
-	//    unresponsive: My instance is unresponsive.
+	//   unresponsive: My instance is unresponsive.
 	//
-	//    not-accepting-credentials: My instance is not accepting my credentials.
+	//   not-accepting-credentials: My instance is not accepting my credentials.
 	//
-	//    password-not-available: A password is not available for my instance.
+	//   password-not-available: A password is not available for my instance.
 	//
-	//    performance-network: My instance is experiencing performance problems
+	//   performance-network: My instance is experiencing performance problems
 	// which I believe are network related.
 	//
-	//    performance-instance-store: My instance is experiencing performance problems
+	//   performance-instance-store: My instance is experiencing performance problems
 	// which I believe are related to the instance stores.
 	//
-	//    performance-ebs-volume: My instance is experiencing performance problems
+	//   performance-ebs-volume: My instance is experiencing performance problems
 	// which I believe are related to an EBS volume.
 	//
-	//    performance-other: My instance is experiencing performance problems.
+	//   performance-other: My instance is experiencing performance problems.
 	//
-	//    other: [explain using the description parameter]
+	//   other: [explain using the description parameter]
 	ReasonCodes []*string `locationName:"reasonCode" locationNameList:"item" type:"list" required:"true"`
 
 	// The time at which the reported instance health state began.
@@ -29891,12 +29886,12 @@ type Route struct {
 
 	// Describes how the route was created.
 	//
-	//    CreateRouteTable - The route was automatically created when the route
+	//   CreateRouteTable - The route was automatically created when the route
 	// table was created.
 	//
-	//    CreateRoute - The route was manually added to the route table.
+	//   CreateRoute - The route was manually added to the route table.
 	//
-	//    EnableVgwRoutePropagation - The route was propagated by route propagation.
+	//   EnableVgwRoutePropagation - The route was propagated by route propagation.
 	Origin *string `locationName:"origin" type:"string" enum:"RouteOrigin"`
 
 	// The state of the route. The blackhole state indicates that the route's target
@@ -31737,29 +31732,29 @@ type StateReason struct {
 
 	// The message for the state change.
 	//
-	//    Server.SpotInstanceTermination: A Spot instance was terminated due to
+	//   Server.SpotInstanceTermination: A Spot instance was terminated due to
 	// an increase in the market price.
 	//
-	//    Server.InternalError: An internal error occurred during instance launch,
+	//   Server.InternalError: An internal error occurred during instance launch,
 	// resulting in termination.
 	//
-	//    Server.InsufficientInstanceCapacity: There was insufficient instance
-	// capacity to satisfy the launch request.
+	//   Server.InsufficientInstanceCapacity: There was insufficient instance capacity
+	// to satisfy the launch request.
 	//
-	//    Client.InternalError: A client error caused the instance to terminate
+	//   Client.InternalError: A client error caused the instance to terminate
 	// on launch.
 	//
-	//    Client.InstanceInitiatedShutdown: The instance was shut down using the
+	//   Client.InstanceInitiatedShutdown: The instance was shut down using the
 	// shutdown -h command from the instance.
 	//
-	//    Client.UserInitiatedShutdown: The instance was shut down using the Amazon
+	//   Client.UserInitiatedShutdown: The instance was shut down using the Amazon
 	// EC2 API.
 	//
-	//    Client.VolumeLimitExceeded: The limit on the number of EBS volumes or
+	//   Client.VolumeLimitExceeded: The limit on the number of EBS volumes or
 	// total storage was exceeded. Decrease usage or request an increase in your
 	// limits.
 	//
-	//    Client.InvalidSnapshot.NotFound: The specified snapshot was not found.
+	//   Client.InvalidSnapshot.NotFound: The specified snapshot was not found.
 	Message *string `locationName:"message" type:"string"`
 }
 

@@ -20,23 +20,23 @@ import (
 // Use the following links to get started using the AWS Storage Gateway Service
 // API Reference:
 //
-//    AWS Storage Gateway Required Request Headers (http://docs.aws.amazon.com/storagegateway/latest/userguide/AWSStorageGatewayHTTPRequestsHeaders.html):
+//   AWS Storage Gateway Required Request Headers (http://docs.aws.amazon.com/storagegateway/latest/userguide/AWSStorageGatewayHTTPRequestsHeaders.html):
 // Describes the required headers that you must send with every POST request
 // to AWS Storage Gateway.
 //
-//    Signing Requests (http://docs.aws.amazon.com/storagegateway/latest/userguide/AWSStorageGatewaySigningRequests.html):
+//   Signing Requests (http://docs.aws.amazon.com/storagegateway/latest/userguide/AWSStorageGatewaySigningRequests.html):
 // AWS Storage Gateway requires that you authenticate every request you send;
 // this topic describes how sign such a request.
 //
-//    Error Responses (http://docs.aws.amazon.com/storagegateway/latest/userguide/APIErrorResponses.html):
+//   Error Responses (http://docs.aws.amazon.com/storagegateway/latest/userguide/APIErrorResponses.html):
 // Provides reference information about AWS Storage Gateway errors.
 //
-//    Operations in AWS Storage Gateway (http://docs.aws.amazon.com/storagegateway/latest/userguide/AWSStorageGatewayAPIOperations.html):
+//   Operations in AWS Storage Gateway (http://docs.aws.amazon.com/storagegateway/latest/userguide/AWSStorageGatewayAPIOperations.html):
 // Contains detailed descriptions of all AWS Storage Gateway operations, their
 // request parameters, response elements, possible errors, and examples of requests
 // and responses.
 //
-//    AWS Storage Gateway Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/index.html?rande.html):
+//   AWS Storage Gateway Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/index.html?rande.html):
 // Provides a list of each of the s and endpoints available for use with AWS
 // Storage Gateway.
 //
@@ -54,10 +54,10 @@ import (
 // test your systems with the new format. For more information, see Longer EC2
 // and EBS Resource IDs (https://aws.amazon.com/ec2/faqs/#longer-ids).
 //
-//  For example, a volume ARN with the longer volume ID format will look like
+// For example, a volume ARN with the longer volume ID format will look like
 // this:
 //
-//  arn:aws:storagegateway:us-west-2:111122223333:gateway/sgw-12A3456B/volume/vol-1122AABBCCDDEEFFG.
+// arn:aws:storagegateway:us-west-2:111122223333:gateway/sgw-12A3456B/volume/vol-1122AABBCCDDEEFFG.
 //
 // A snapshot ID with the longer ID format will look like this: snap-78e226633445566ee.
 //

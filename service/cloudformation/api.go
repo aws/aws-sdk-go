@@ -927,7 +927,7 @@ func (c *CloudFormation) GetTemplateRequest(input *GetTemplateInput) (req *reque
 // For deleted stacks, GetTemplate returns the template for up to 90 days after
 // the stack has been deleted.
 //
-//   If the template does not exist, a ValidationError is returned.
+//  If the template does not exist, a ValidationError is returned.
 func (c *CloudFormation) GetTemplate(input *GetTemplateInput) (*GetTemplateOutput, error) {
 	req, out := c.GetTemplateRequest(input)
 	err := req.Send()
@@ -3267,20 +3267,20 @@ type ResourceChangeDetail struct {
 	// The group to which the CausingEntity value belongs. There are five entity
 	// groups:
 	//
-	//    ResourceReference entities are Ref intrinsic functions that refer to
-	// resources in the template, such as { "Ref" : "MyEC2InstanceResource" }.
+	//   ResourceReference entities are Ref intrinsic functions that refer to resources
+	// in the template, such as { "Ref" : "MyEC2InstanceResource" }.
 	//
-	//    ParameterReference entities are Ref intrinsic functions that get template
+	//   ParameterReference entities are Ref intrinsic functions that get template
 	// parameter values, such as { "Ref" : "MyPasswordParameter" }.
 	//
-	//    ResourceAttribute entities are Fn::GetAtt intrinsic functions that get
+	//   ResourceAttribute entities are Fn::GetAtt intrinsic functions that get
 	// resource attribute values, such as { "Fn::GetAtt" : [ "MyEC2InstanceResource",
 	// "PublicDnsName" ] }.
 	//
-	//    DirectModification entities are changes that are made directly to the
+	//   DirectModification entities are changes that are made directly to the
 	// template.
 	//
-	//    Automatic entities are AWS::CloudFormation::Stack resource types, which
+	//   Automatic entities are AWS::CloudFormation::Stack resource types, which
 	// are also known as nested stacks. If you made no changes to the AWS::CloudFormation::Stack
 	// resource, AWS CloudFormation sets the ChangeSource to Automatic because the
 	// nested stack's template might have changed. Changes to a nested stack's template
@@ -3504,9 +3504,9 @@ type Stack struct {
 
 	// Boolean to enable or disable rollback on stack creation failures:
 	//
-	//    true: disable rollback
+	//   true: disable rollback
 	//
-	//    false: enable rollback
+	//   false: enable rollback
 	DisableRollback *bool `type:"boolean"`
 
 	// The time the stack was last updated. This field will only be returned if

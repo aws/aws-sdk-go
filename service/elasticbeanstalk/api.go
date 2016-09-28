@@ -464,7 +464,7 @@ func (c *ElasticBeanstalk) CreateStorageLocationRequest(input *CreateStorageLoca
 
 // Creates the Amazon S3 storage location for the account.
 //
-//  This location is used to store user log files.
+// This location is used to store user log files.
 func (c *ElasticBeanstalk) CreateStorageLocation(input *CreateStorageLocationInput) (*CreateStorageLocationOutput, error) {
 	req, out := c.CreateStorageLocationRequest(input)
 	err := req.Send()
@@ -883,8 +883,8 @@ func (c *ElasticBeanstalk) DescribeConfigurationSettingsRequest(input *DescribeC
 // that is, either a configuration template or the configuration set associated
 // with a running environment.
 //
-//  When describing the settings for the configuration set associated with
-// a running environment, it is possible to receive two sets of setting descriptions.
+// When describing the settings for the configuration set associated with a
+// running environment, it is possible to receive two sets of setting descriptions.
 // One is the deployed configuration set, and the other is a draft configuration
 // of an environment that is either in the process of deployment or that failed
 // to deploy.
@@ -1416,14 +1416,14 @@ func (c *ElasticBeanstalk) RequestEnvironmentInfoRequest(input *RequestEnvironme
 // Initiates a request to compile the specified type of information of the deployed
 // environment.
 //
-//  Setting the InfoType to tail compiles the last lines from the application
+// Setting the InfoType to tail compiles the last lines from the application
 // server log files of every Amazon EC2 instance in your environment.
 //
-//  Setting the InfoType to bundle compresses the application server log files
+// Setting the InfoType to bundle compresses the application server log files
 // for every Amazon EC2 instance into a .zip file. Legacy and .NET containers
 // do not support bundle logs.
 //
-//  Use RetrieveEnvironmentInfo to obtain the set of logs.
+// Use RetrieveEnvironmentInfo to obtain the set of logs.
 //
 // Related Topics
 //
@@ -1837,10 +1837,10 @@ func (c *ElasticBeanstalk) UpdateEnvironmentRequest(input *UpdateEnvironmentInpu
 // the configuration settings to an entirely new configuration template, or
 // updates select configuration option values in the running environment.
 //
-//  Attempting to update both the release and configuration is not allowed
-// and AWS Elastic Beanstalk returns an InvalidParameterCombination error.
+// Attempting to update both the release and configuration is not allowed and
+// AWS Elastic Beanstalk returns an InvalidParameterCombination error.
 //
-//  When updating the configuration settings to a new template or individual
+// When updating the configuration settings to a new template or individual
 // settings, a draft configuration is created and DescribeConfigurationSettings
 // for this environment returns two setting descriptions with different DeploymentStatus
 // values.
@@ -1894,7 +1894,7 @@ func (c *ElasticBeanstalk) ValidateConfigurationSettingsRequest(input *ValidateC
 // Takes a set of configuration settings and either a configuration template
 // or environment, and determines whether those values are valid.
 //
-//  This action returns a list of messages indicating any errors or warnings
+// This action returns a list of messages indicating any errors or warnings
 // associated with the selection of option values.
 func (c *ElasticBeanstalk) ValidateConfigurationSettings(input *ValidateConfigurationSettingsInput) (*ValidateConfigurationSettingsOutput, error) {
 	req, out := c.ValidateConfigurationSettingsRequest(input)
@@ -2363,14 +2363,14 @@ type ConfigurationOptionDescription struct {
 
 	// An indication of whether the user defined this configuration option:
 	//
-	//    true : This configuration option was defined by the user. It is a valid
+	//   true : This configuration option was defined by the user. It is a valid
 	// choice for specifying if this as an Option to Remove when updating configuration
 	// settings.
 	//
-	//   false : This configuration was not defined by the user.    Constraint:
+	//   false : This configuration was not defined by the user.   Constraint:
 	// You can remove only UserDefined options from a configuration.
 	//
-	//  Valid Values: true | false
+	// Valid Values: true | false
 	UserDefined *bool `type:"boolean"`
 
 	// If specified, values for the configuration option are selected from this
@@ -2544,10 +2544,10 @@ type CreateApplicationVersionInput struct {
 	//
 	//   true : Automatically creates the specified application for this release
 	// if it does not already exist.   false : Throws an InvalidParameterValue if
-	// the specified application for this release does not already exist.    Default:
+	// the specified application for this release does not already exist.   Default:
 	// false
 	//
-	//  Valid Values: true | false
+	// Valid Values: true | false
 	AutoCreateApplication *bool `type:"boolean"`
 
 	// Describes this version.
@@ -2561,7 +2561,7 @@ type CreateApplicationVersionInput struct {
 	// The Amazon S3 bucket and key that identify the location of the source bundle
 	// for this version.
 	//
-	//  If data found at the Amazon S3 location exceeds the maximum allowed source
+	// If data found at the Amazon S3 location exceeds the maximum allowed source
 	// bundle size, AWS Elastic Beanstalk returns an InvalidParameterValue error.
 	// The maximum size allowed is 512 MB.
 	//
@@ -2636,27 +2636,26 @@ type CreateConfigurationTemplateInput struct {
 	// a configuration template. It determines the set of configuration options
 	// as well as the possible and default values.
 	//
-	//  Use ListAvailableSolutionStacks to obtain a list of available solution
-	// stacks.
+	// Use ListAvailableSolutionStacks to obtain a list of available solution stacks.
 	//
-	//  A solution stack name or a source configuration parameter must be specified,
+	// A solution stack name or a source configuration parameter must be specified,
 	// otherwise AWS Elastic Beanstalk returns an InvalidParameterValue error.
 	//
-	//  If a solution stack name is not specified and the source configuration
-	// parameter is specified, AWS Elastic Beanstalk uses the same solution stack
-	// as the source configuration template.
+	// If a solution stack name is not specified and the source configuration parameter
+	// is specified, AWS Elastic Beanstalk uses the same solution stack as the source
+	// configuration template.
 	SolutionStackName *string `type:"string"`
 
 	// If specified, AWS Elastic Beanstalk uses the configuration values from the
 	// specified configuration template to create a new configuration.
 	//
-	//  Values specified in the OptionSettings parameter of this call overrides
+	// Values specified in the OptionSettings parameter of this call overrides
 	// any values obtained from the SourceConfiguration.
 	//
-	//  If no configuration template is found, returns an InvalidParameterValue
+	// If no configuration template is found, returns an InvalidParameterValue
 	// error.
 	//
-	//  Constraint: If both the solution stack name parameter and the source configuration
+	// Constraint: If both the solution stack name parameter and the source configuration
 	// parameters are specified, the solution stack of the source configuration
 	// template must match the specified solution stack name or else AWS Elastic
 	// Beanstalk returns an InvalidParameterCombination error.
@@ -2723,7 +2722,7 @@ type CreateEnvironmentInput struct {
 
 	// The name of the application that contains the version to be deployed.
 	//
-	//  If no application is found with this name, CreateEnvironment returns an
+	// If no application is found with this name, CreateEnvironment returns an
 	// InvalidParameterValue error.
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
@@ -2767,7 +2766,7 @@ type CreateEnvironmentInput struct {
 	// Beanstalk sets the configuration values to the default values associated
 	// with the specified solution stack.
 	//
-	//  Condition: You must specify either this or a TemplateName, but not both.
+	// Condition: You must specify either this or a TemplateName, but not both.
 	// If you specify both, AWS Elastic Beanstalk returns an InvalidParameterCombination
 	// error. If you do not specify either, AWS Elastic Beanstalk returns a MissingRequiredParameter
 	// error.
@@ -2780,7 +2779,7 @@ type CreateEnvironmentInput struct {
 	// template is found with this name, AWS Elastic Beanstalk returns an InvalidParameterValue
 	// error.
 	//
-	//  Condition: You must specify either this parameter or a SolutionStackName,
+	// Condition: You must specify either this parameter or a SolutionStackName,
 	// but not both. If you specify both, AWS Elastic Beanstalk returns an InvalidParameterCombination
 	// error. If you do not specify either, AWS Elastic Beanstalk returns a MissingRequiredParameter
 	// error.
@@ -2791,10 +2790,10 @@ type CreateEnvironmentInput struct {
 
 	// The name of the application version to deploy.
 	//
-	//  If the specified application has no associated application versions, AWS
+	// If the specified application has no associated application versions, AWS
 	// Elastic Beanstalk UpdateEnvironment returns an InvalidParameterValue error.
 	//
-	//  Default: If not specified, AWS Elastic Beanstalk attempts to launch the
+	// Default: If not specified, AWS Elastic Beanstalk attempts to launch the
 	// sample application in the container.
 	VersionLabel *string `min:"1" type:"string"`
 }
@@ -2965,7 +2964,7 @@ type DeleteApplicationVersionInput struct {
 	//
 	//   true: An attempt is made to delete the associated Amazon S3 source bundle
 	// specified at time of creation.   false: No action is taken on the Amazon
-	// S3 source bundle specified at time of creation.    Valid Values: true | false
+	// S3 source bundle specified at time of creation.   Valid Values: true | false
 	DeleteSourceBundle *bool `type:"boolean"`
 
 	// The label of the version to delete.
@@ -3349,7 +3348,7 @@ type DescribeConfigurationSettingsInput struct {
 
 	// The name of the environment to describe.
 	//
-	//  Condition: You must specify either this or a TemplateName, but not both.
+	// Condition: You must specify either this or a TemplateName, but not both.
 	// If you specify both, AWS Elastic Beanstalk returns an InvalidParameterCombination
 	// error. If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
 	// error.
@@ -3357,7 +3356,7 @@ type DescribeConfigurationSettingsInput struct {
 
 	// The name of the configuration template to describe.
 	//
-	//  Conditional: You must specify either this parameter or an EnvironmentName,
+	// Conditional: You must specify either this parameter or an EnvironmentName,
 	// but not both. If you specify both, AWS Elastic Beanstalk returns an InvalidParameterCombination
 	// error. If you do not specify either, AWS Elastic Beanstalk returns a MissingRequiredParameter
 	// error.
@@ -3612,14 +3611,14 @@ type DescribeEnvironmentResourcesInput struct {
 
 	// The ID of the environment to retrieve AWS resource usage data.
 	//
-	//  Condition: You must specify either this or an EnvironmentName, or both.
+	// Condition: You must specify either this or an EnvironmentName, or both.
 	// If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
 	// error.
 	EnvironmentId *string `type:"string"`
 
 	// The name of the environment to retrieve AWS resource usage data.
 	//
-	//  Condition: You must specify either this or an EnvironmentId, or both. If
+	// Condition: You must specify either this or an EnvironmentId, or both. If
 	// you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
 	// error.
 	EnvironmentName *string `min:"4" type:"string"`
@@ -3684,10 +3683,10 @@ type DescribeEnvironmentsInput struct {
 
 	// Indicates whether to include deleted environments:
 	//
-	//  true: Environments that have been deleted after IncludedDeletedBackTo are
+	// true: Environments that have been deleted after IncludedDeletedBackTo are
 	// displayed.
 	//
-	//  false: Do not include deleted environments.
+	// false: Do not include deleted environments.
 	IncludeDeleted *bool `type:"boolean"`
 
 	// If specified when IncludeDeleted is set to true, then environments deleted
@@ -3905,9 +3904,9 @@ type EnvironmentDescription struct {
 	// Indicates if there is an in-progress environment configuration update or
 	// application version deployment that you can cancel.
 	//
-	//  true: There is an update in progress.
+	// true: There is an update in progress.
 	//
-	//  false: There are no updates currently in progress.
+	// false: There are no updates currently in progress.
 	AbortableOperationInProgress *bool `type:"boolean"`
 
 	// The name of the application associated with this environment.
@@ -3947,7 +3946,7 @@ type EnvironmentDescription struct {
 	//   Green: Indicates the environment is healthy and fully functional.   Grey:
 	// Default health for a new environment. The environment is not fully launched
 	// and health checks have not started or health checks are suspended during
-	// an UpdateEnvironment or RestartEnvironement request.    Default: Grey
+	// an UpdateEnvironment or RestartEnvironement request.   Default: Grey
 	Health *string `type:"string" enum:"EnvironmentHealth"`
 
 	// Returns the health status of the application running in your environment.
@@ -4562,14 +4561,14 @@ type RebuildEnvironmentInput struct {
 
 	// The ID of the environment to rebuild.
 	//
-	//  Condition: You must specify either this or an EnvironmentName, or both.
+	// Condition: You must specify either this or an EnvironmentName, or both.
 	// If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
 	// error.
 	EnvironmentId *string `type:"string"`
 
 	// The name of the environment to rebuild.
 	//
-	//  Condition: You must specify either this or an EnvironmentId, or both. If
+	// Condition: You must specify either this or an EnvironmentId, or both. If
 	// you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
 	// error.
 	EnvironmentName *string `min:"4" type:"string"`
@@ -4686,14 +4685,14 @@ type RestartAppServerInput struct {
 
 	// The ID of the environment to restart the server for.
 	//
-	//  Condition: You must specify either this or an EnvironmentName, or both.
+	// Condition: You must specify either this or an EnvironmentName, or both.
 	// If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
 	// error.
 	EnvironmentId *string `type:"string"`
 
 	// The name of the environment to restart the server for.
 	//
-	//  Condition: You must specify either this or an EnvironmentId, or both. If
+	// Condition: You must specify either this or an EnvironmentId, or both. If
 	// you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
 	// error.
 	EnvironmentName *string `min:"4" type:"string"`
@@ -4751,9 +4750,9 @@ type RetrieveEnvironmentInfoInput struct {
 
 	// The name of the data's environment.
 	//
-	//  If no such environment is found, returns an InvalidParameterValue error.
+	// If no such environment is found, returns an InvalidParameterValue error.
 	//
-	//  Condition: You must specify either this or an EnvironmentId, or both. If
+	// Condition: You must specify either this or an EnvironmentId, or both. If
 	// you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
 	// error.
 	EnvironmentName *string `min:"4" type:"string"`
@@ -4976,28 +4975,28 @@ type SwapEnvironmentCNAMEsInput struct {
 
 	// The ID of the destination environment.
 	//
-	//  Condition: You must specify at least the DestinationEnvironmentID or the
+	// Condition: You must specify at least the DestinationEnvironmentID or the
 	// DestinationEnvironmentName. You may also specify both. You must specify the
 	// SourceEnvironmentId with the DestinationEnvironmentId.
 	DestinationEnvironmentId *string `type:"string"`
 
 	// The name of the destination environment.
 	//
-	//  Condition: You must specify at least the DestinationEnvironmentID or the
+	// Condition: You must specify at least the DestinationEnvironmentID or the
 	// DestinationEnvironmentName. You may also specify both. You must specify the
 	// SourceEnvironmentName with the DestinationEnvironmentName.
 	DestinationEnvironmentName *string `min:"4" type:"string"`
 
 	// The ID of the source environment.
 	//
-	//  Condition: You must specify at least the SourceEnvironmentID or the SourceEnvironmentName.
+	// Condition: You must specify at least the SourceEnvironmentID or the SourceEnvironmentName.
 	// You may also specify both. If you specify the SourceEnvironmentId, you must
 	// specify the DestinationEnvironmentId.
 	SourceEnvironmentId *string `type:"string"`
 
 	// The name of the source environment.
 	//
-	//  Condition: You must specify at least the SourceEnvironmentID or the SourceEnvironmentName.
+	// Condition: You must specify at least the SourceEnvironmentID or the SourceEnvironmentName.
 	// You may also specify both. If you specify the SourceEnvironmentName, you
 	// must specify the DestinationEnvironmentName.
 	SourceEnvironmentName *string `min:"4" type:"string"`
@@ -5111,14 +5110,14 @@ type TerminateEnvironmentInput struct {
 
 	// The ID of the environment to terminate.
 	//
-	//  Condition: You must specify either this or an EnvironmentName, or both.
+	// Condition: You must specify either this or an EnvironmentName, or both.
 	// If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
 	// error.
 	EnvironmentId *string `type:"string"`
 
 	// The name of the environment to terminate.
 	//
-	//  Condition: You must specify either this or an EnvironmentId, or both. If
+	// Condition: You must specify either this or an EnvironmentId, or both. If
 	// you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
 	// error.
 	EnvironmentName *string `min:"4" type:"string"`
@@ -5133,12 +5132,12 @@ type TerminateEnvironmentInput struct {
 	//   true: The specified environment as well as the associated AWS resources,
 	// such as Auto Scaling group and LoadBalancer, are terminated.   false: AWS
 	// Elastic Beanstalk resource management is removed from the environment, but
-	// the AWS resources continue to operate.    For more information, see the
-	// AWS Elastic Beanstalk User Guide.  (http://docs.aws.amazon.com/elasticbeanstalk/latest/ug/)
+	// the AWS resources continue to operate.   For more information, see the  AWS
+	// Elastic Beanstalk User Guide.  (http://docs.aws.amazon.com/elasticbeanstalk/latest/ug/)
 	//
-	//  Default: true
+	// Default: true
 	//
-	//  Valid Values: true | false
+	// Valid Values: true | false
 	TerminateResources *bool `type:"boolean"`
 }
 
@@ -5228,7 +5227,7 @@ type UpdateApplicationVersionInput struct {
 
 	// The name of the application associated with this version.
 	//
-	//  If no application is found with this name, UpdateApplication returns an
+	// If no application is found with this name, UpdateApplication returns an
 	// InvalidParameterValue error.
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
@@ -5237,7 +5236,7 @@ type UpdateApplicationVersionInput struct {
 
 	// The name of the version to update.
 	//
-	//  If no application version is found with this label, UpdateApplication returns
+	// If no application version is found with this label, UpdateApplication returns
 	// an InvalidParameterValue error.
 	VersionLabel *string `min:"1" type:"string" required:"true"`
 }
@@ -5281,8 +5280,8 @@ type UpdateConfigurationTemplateInput struct {
 	// The name of the application associated with the configuration template to
 	// update.
 	//
-	//  If no application is found with this name, UpdateConfigurationTemplate
-	// returns an InvalidParameterValue error.
+	// If no application is found with this name, UpdateConfigurationTemplate returns
+	// an InvalidParameterValue error.
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// A new description for the configuration.
@@ -5294,12 +5293,12 @@ type UpdateConfigurationTemplateInput struct {
 
 	// A list of configuration options to remove from the configuration set.
 	//
-	//  Constraint: You can remove only UserDefined configuration options.
+	// Constraint: You can remove only UserDefined configuration options.
 	OptionsToRemove []*OptionSpecification `type:"list"`
 
 	// The name of the configuration template to update.
 	//
-	//  If no configuration template is found with this name, UpdateConfigurationTemplate
+	// If no configuration template is found with this name, UpdateConfigurationTemplate
 	// returns an InvalidParameterValue error.
 	TemplateName *string `min:"1" type:"string" required:"true"`
 }
@@ -5487,7 +5486,7 @@ type ValidateConfigurationSettingsInput struct {
 
 	// The name of the environment to validate the settings against.
 	//
-	//  Condition: You cannot specify both this and a configuration template name.
+	// Condition: You cannot specify both this and a configuration template name.
 	EnvironmentName *string `min:"4" type:"string"`
 
 	// A list of the options and desired values to evaluate.
@@ -5495,7 +5494,7 @@ type ValidateConfigurationSettingsInput struct {
 
 	// The name of the configuration template to validate the settings against.
 	//
-	//  Condition: You cannot specify both this and an environment name.
+	// Condition: You cannot specify both this and an environment name.
 	TemplateName *string `min:"1" type:"string"`
 }
 

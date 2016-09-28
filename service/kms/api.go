@@ -229,7 +229,7 @@ func (c *KMS) CreateKeyRequest(input *CreateKeyInput) (req *request.Request, out
 //
 //   The GenerateDataKey operation
 //
-//    AWS Key Management Service Concepts (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html)
+//   AWS Key Management Service Concepts (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html)
 // in the AWS Key Management Service Developer Guide
 func (c *KMS) CreateKey(input *CreateKeyInput) (*CreateKeyOutput, error) {
 	req, out := c.CreateKeyRequest(input)
@@ -281,11 +281,11 @@ func (c *KMS) DecryptRequest(input *DecryptInput) (req *request.Request, output 
 // Decrypts ciphertext. Ciphertext is plaintext that has been previously encrypted
 // by using any of the following functions:
 //
-//    GenerateDataKey
+//   GenerateDataKey
 //
-//    GenerateDataKeyWithoutPlaintext
+//   GenerateDataKeyWithoutPlaintext
 //
-//    Encrypt
+//   Encrypt
 //
 //   Note that if a caller has been granted access permissions to all keys
 // (through, for example, IAM user policies that grant Decrypt permission on
@@ -2133,23 +2133,23 @@ type CreateGrantInput struct {
 	// A list of operations that the grant permits. The list can contain any combination
 	// of one or more of the following values:
 	//
-	//    Decrypt
+	//   Decrypt
 	//
-	//    Encrypt
+	//   Encrypt
 	//
-	//    GenerateDataKey
+	//   GenerateDataKey
 	//
-	//    GenerateDataKeyWithoutPlaintext
+	//   GenerateDataKeyWithoutPlaintext
 	//
-	//    ReEncryptFrom (http://docs.aws.amazon.com/kms/latest/APIReference/API_ReEncrypt.html)
+	//   ReEncryptFrom (http://docs.aws.amazon.com/kms/latest/APIReference/API_ReEncrypt.html)
 	//
-	//    ReEncryptTo (http://docs.aws.amazon.com/kms/latest/APIReference/API_ReEncrypt.html)
+	//   ReEncryptTo (http://docs.aws.amazon.com/kms/latest/APIReference/API_ReEncrypt.html)
 	//
-	//    CreateGrant
+	//   CreateGrant
 	//
-	//    RetireGrant
+	//   RetireGrant
 	//
-	//    DescribeKey
+	//   DescribeKey
 	Operations []*string `type:"list"`
 
 	// The principal that is given permission to retire the grant by using RetireGrant

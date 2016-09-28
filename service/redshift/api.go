@@ -122,7 +122,7 @@ func (c *Redshift) AuthorizeSnapshotAccessRequest(input *AuthorizeSnapshotAccess
 
 // Authorizes the specified AWS customer account to restore the specified snapshot.
 //
-//  For more information about working with snapshots, go to Amazon Redshift
+// For more information about working with snapshots, go to Amazon Redshift
 // Snapshots (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html)
 // in the Amazon Redshift Cluster Management Guide.
 func (c *Redshift) AuthorizeSnapshotAccess(input *AuthorizeSnapshotAccessInput) (*AuthorizeSnapshotAccessOutput, error) {
@@ -182,7 +182,7 @@ func (c *Redshift) CopyClusterSnapshotRequest(input *CopyClusterSnapshotInput) (
 // snapshot for a longer period, you can make a manual copy of the snapshot.
 // Manual snapshots are retained until you delete them.
 //
-//  For more information about working with snapshots, go to Amazon Redshift
+// For more information about working with snapshots, go to Amazon Redshift
 // Snapshots (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html)
 // in the Amazon Redshift Cluster Management Guide.
 func (c *Redshift) CopyClusterSnapshot(input *CopyClusterSnapshotInput) (*CopyClusterSnapshotOutput, error) {
@@ -347,7 +347,7 @@ func (c *Redshift) CreateClusterSecurityGroupRequest(input *CreateClusterSecurit
 // Creates a new Amazon Redshift security group. You use security groups to
 // control access to non-VPC clusters.
 //
-//  For information about managing security groups, go to Amazon Redshift Cluster
+// For information about managing security groups, go to Amazon Redshift Cluster
 // Security Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-security-groups.html)
 // in the Amazon Redshift Cluster Management Guide.
 func (c *Redshift) CreateClusterSecurityGroup(input *CreateClusterSecurityGroupInput) (*CreateClusterSecurityGroupOutput, error) {
@@ -400,7 +400,7 @@ func (c *Redshift) CreateClusterSnapshotRequest(input *CreateClusterSnapshotInpu
 // Creates a manual snapshot of the specified cluster. The cluster must be in
 // the available state.
 //
-//  For more information about working with snapshots, go to Amazon Redshift
+// For more information about working with snapshots, go to Amazon Redshift
 // Snapshots (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html)
 // in the Amazon Redshift Cluster Management Guide.
 func (c *Redshift) CreateClusterSnapshot(input *CreateClusterSnapshotInput) (*CreateClusterSnapshotOutput, error) {
@@ -454,7 +454,7 @@ func (c *Redshift) CreateClusterSubnetGroupRequest(input *CreateClusterSubnetGro
 // or more subnets in your existing Amazon Virtual Private Cloud (Amazon VPC)
 // when creating Amazon Redshift subnet group.
 //
-//  For information about subnet groups, go to Amazon Redshift Cluster Subnet
+// For information about subnet groups, go to Amazon Redshift Cluster Subnet
 // Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-cluster-subnet-groups.html)
 // in the Amazon Redshift Cluster Management Guide.
 func (c *Redshift) CreateClusterSubnetGroup(input *CreateClusterSubnetGroupInput) (*CreateClusterSubnetGroupOutput, error) {
@@ -690,8 +690,8 @@ func (c *Redshift) CreateSnapshotCopyGrantRequest(input *CreateSnapshotCopyGrant
 // master key (CMK) from AWS Key Management Service (AWS KMS) to encrypt copied
 // snapshots in a destination region.
 //
-//  For more information about managing snapshot copy grants, go to Amazon
-// Redshift Database Encryption (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html)
+// For more information about managing snapshot copy grants, go to Amazon Redshift
+// Database Encryption (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html)
 // in the Amazon Redshift Cluster Management Guide.
 func (c *Redshift) CreateSnapshotCopyGrant(input *CreateSnapshotCopyGrantInput) (*CreateSnapshotCopyGrantOutput, error) {
 	req, out := c.CreateSnapshotCopyGrantRequest(input)
@@ -810,7 +810,7 @@ func (c *Redshift) DeleteClusterRequest(input *DeleteClusterInput) (req *request
 // snapshot is being taken, then it's "deleting" once Amazon Redshift begins
 // deleting the cluster.
 //
-//  For more information about managing clusters, go to Amazon Redshift Clusters
+// For more information about managing clusters, go to Amazon Redshift Clusters
 // (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html)
 // in the Amazon Redshift Cluster Management Guide.
 func (c *Redshift) DeleteCluster(input *DeleteClusterInput) (*DeleteClusterOutput, error) {
@@ -919,8 +919,8 @@ func (c *Redshift) DeleteClusterSecurityGroupRequest(input *DeleteClusterSecurit
 //  You cannot delete a security group that is associated with any clusters.
 // You cannot delete the default security group.
 //
-//   For information about managing security groups, go to Amazon Redshift
-// Cluster Security Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-security-groups.html)
+//  For information about managing security groups, go to Amazon Redshift Cluster
+// Security Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-security-groups.html)
 // in the Amazon Redshift Cluster Management Guide.
 func (c *Redshift) DeleteClusterSecurityGroup(input *DeleteClusterSecurityGroupInput) (*DeleteClusterSecurityGroupOutput, error) {
 	req, out := c.DeleteClusterSecurityGroupRequest(input)
@@ -1337,7 +1337,7 @@ func (c *Redshift) DescribeClusterParameterGroupsRequest(input *DescribeClusterP
 // family name. You can optionally specify a name to retrieve the description
 // of a specific parameter group.
 //
-//  For more information about parameters and parameter groups, go to Amazon
+// For more information about parameters and parameter groups, go to Amazon
 // Redshift Parameter Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html)
 // in the Amazon Redshift Cluster Management Guide.
 //
@@ -1437,7 +1437,7 @@ func (c *Redshift) DescribeClusterParametersRequest(input *DescribeClusterParame
 // For example, to retrieve parameters that were modified by a user action such
 // as from ModifyClusterParameterGroup, you can specify source equal to user.
 //
-//  For more information about parameters and parameter groups, go to Amazon
+// For more information about parameters and parameter groups, go to Amazon
 // Redshift Parameter Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html)
 // in the Amazon Redshift Cluster Management Guide.
 func (c *Redshift) DescribeClusterParameters(input *DescribeClusterParametersInput) (*DescribeClusterParametersOutput, error) {
@@ -1522,7 +1522,7 @@ func (c *Redshift) DescribeClusterSecurityGroupsRequest(input *DescribeClusterSe
 // a security group is specified, the response will contain only information
 // about only that security group.
 //
-//  For information about managing security groups, go to Amazon Redshift Cluster
+// For information about managing security groups, go to Amazon Redshift Cluster
 // Security Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-security-groups.html)
 // in the Amazon Redshift Cluster Management Guide.
 //
@@ -1975,7 +1975,7 @@ func (c *Redshift) DescribeDefaultClusterParametersRequest(input *DescribeDefaul
 
 // Returns a list of parameter settings for the specified parameter group family.
 //
-//  For more information about parameters and parameter groups, go to Amazon
+// For more information about parameters and parameter groups, go to Amazon
 // Redshift Parameter Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html)
 // in the Amazon Redshift Cluster Management Guide.
 func (c *Redshift) DescribeDefaultClusterParameters(input *DescribeDefaultClusterParametersInput) (*DescribeDefaultClusterParametersOutput, error) {
@@ -2594,7 +2594,7 @@ func (c *Redshift) DescribeReservedNodeOfferingsRequest(input *DescribeReservedN
 // to purchase. You then use the unique offering ID in you call to PurchaseReservedNodeOffering
 // to reserve one or more nodes for your Amazon Redshift cluster.
 //
-//  For more information about reserved node offerings, go to Purchasing Reserved
+// For more information about reserved node offerings, go to Purchasing Reserved
 // Nodes (http://docs.aws.amazon.com/redshift/latest/mgmt/purchase-reserved-node-instance.html)
 // in the Amazon Redshift Cluster Management Guide.
 func (c *Redshift) DescribeReservedNodeOfferings(input *DescribeReservedNodeOfferingsInput) (*DescribeReservedNodeOfferingsOutput, error) {
@@ -2805,8 +2805,8 @@ func (c *Redshift) DescribeSnapshotCopyGrantsRequest(input *DescribeSnapshotCopy
 // Returns a list of snapshot copy grants owned by the AWS account in the destination
 // region.
 //
-//  For more information about managing snapshot copy grants, go to Amazon
-// Redshift Database Encryption (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html)
+// For more information about managing snapshot copy grants, go to Amazon Redshift
+// Database Encryption (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html)
 // in the Amazon Redshift Cluster Management Guide.
 func (c *Redshift) DescribeSnapshotCopyGrants(input *DescribeSnapshotCopyGrantsInput) (*DescribeSnapshotCopyGrantsOutput, error) {
 	req, out := c.DescribeSnapshotCopyGrantsRequest(input)
@@ -3289,7 +3289,7 @@ func (c *Redshift) ModifyClusterParameterGroupRequest(input *ModifyClusterParame
 
 // Modifies the parameters of a parameter group.
 //
-//  For more information about parameters and parameter groups, go to Amazon
+// For more information about parameters and parameter groups, go to Amazon
 // Redshift Parameter Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html)
 // in the Amazon Redshift Cluster Management Guide.
 func (c *Redshift) ModifyClusterParameterGroup(input *ModifyClusterParameterGroupInput) (*ClusterParameterGroupNameMessage, error) {
@@ -3492,7 +3492,7 @@ func (c *Redshift) PurchaseReservedNodeOfferingRequest(input *PurchaseReservedNo
 // reserved node offerings. You can call this API by providing a specific reserved
 // node offering and the number of nodes you want to reserve.
 //
-//  For more information about reserved node offerings, go to Purchasing Reserved
+// For more information about reserved node offerings, go to Purchasing Reserved
 // Nodes (http://docs.aws.amazon.com/redshift/latest/mgmt/purchase-reserved-node-instance.html)
 // in the Amazon Redshift Cluster Management Guide.
 func (c *Redshift) PurchaseReservedNodeOffering(input *PurchaseReservedNodeOfferingInput) (*PurchaseReservedNodeOfferingOutput, error) {
@@ -3659,7 +3659,7 @@ func (c *Redshift) RestoreFromClusterSnapshotRequest(input *RestoreFromClusterSn
 // If you restore a cluster into a VPC, you must provide a cluster subnet group
 // where you want the cluster restored.
 //
-//  For more information about working with snapshots, go to Amazon Redshift
+// For more information about working with snapshots, go to Amazon Redshift
 // Snapshots (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html)
 // in the Amazon Redshift Cluster Management Guide.
 func (c *Redshift) RestoreFromClusterSnapshot(input *RestoreFromClusterSnapshotInput) (*RestoreFromClusterSnapshotOutput, error) {
@@ -3825,7 +3825,7 @@ func (c *Redshift) RevokeSnapshotAccessRequest(input *RevokeSnapshotAccessInput)
 // specified snapshot. If the account is currently restoring the snapshot, the
 // restore will run to completion.
 //
-//  For more information about working with snapshots, go to Amazon Redshift
+// For more information about working with snapshots, go to Amazon Redshift
 // Snapshots (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html)
 // in the Amazon Redshift Cluster Management Guide.
 func (c *Redshift) RevokeSnapshotAccess(input *RevokeSnapshotAccessInput) (*RevokeSnapshotAccessOutput, error) {
@@ -4085,37 +4085,37 @@ type Cluster struct {
 
 	// The current state of the cluster. Possible values are the following:
 	//
-	//    available
+	//   available
 	//
-	//    creating
+	//   creating
 	//
-	//    deleting
+	//   deleting
 	//
-	//    final-snapshot
+	//   final-snapshot
 	//
-	//    hardware-failure
+	//   hardware-failure
 	//
-	//    incompatible-hsm
+	//   incompatible-hsm
 	//
-	//    incompatible-network
+	//   incompatible-network
 	//
-	//    incompatible-parameters
+	//   incompatible-parameters
 	//
-	//    incompatible-restore
+	//   incompatible-restore
 	//
-	//    modifying
+	//   modifying
 	//
-	//    rebooting
+	//   rebooting
 	//
-	//    renaming
+	//   renaming
 	//
-	//    resizing
+	//   resizing
 	//
-	//    rotating-keys
+	//   rotating-keys
 	//
-	//    storage-full
+	//   storage-full
 	//
-	//    updating-hsm
+	//   updating-hsm
 	ClusterStatus *string `type:"string"`
 
 	// The name of the subnet group that is associated with the cluster. This parameter
@@ -4227,12 +4227,11 @@ type ClusterIamRole struct {
 	//
 	// The following are possible statuses and descriptions.
 	//
-	//    in-sync: The role is available for use by the cluster.
+	//   in-sync: The role is available for use by the cluster.
 	//
-	//    adding: The role is in the process of being associated with the cluster.
+	//   adding: The role is in the process of being associated with the cluster.
 	//
-	//    removing: The role is in the process of being disassociated with the
-	// cluster.
+	//   removing: The role is in the process of being disassociated with the cluster.
 	ApplyStatus *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the IAM role, for example, arn:aws:iam::123456789012:role/RedshiftCopyUnload.
@@ -4329,7 +4328,7 @@ type ClusterParameterGroupStatus struct {
 
 	// The list of parameter statuses.
 	//
-	//  For more information about parameters and parameter groups, go to Amazon
+	// For more information about parameters and parameter groups, go to Amazon
 	// Redshift Parameter Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html)
 	// in the Amazon Redshift Cluster Management Guide.
 	ClusterParameterStatusList []*ClusterParameterStatus `type:"list"`
@@ -4364,23 +4363,23 @@ type ClusterParameterStatus struct {
 	//
 	// The following are possible statuses and descriptions.
 	//
-	//    in-sync: The parameter value is in sync with the database.
+	//   in-sync: The parameter value is in sync with the database.
 	//
-	//    pending-reboot: The parameter value will be applied after the cluster
+	//   pending-reboot: The parameter value will be applied after the cluster
 	// reboots.
 	//
-	//    applying: The parameter value is being applied to the database.
+	//   applying: The parameter value is being applied to the database.
 	//
-	//    invalid-parameter: Cannot apply the parameter value because it has an
+	//   invalid-parameter: Cannot apply the parameter value because it has an
 	// invalid value or syntax.
 	//
-	//    apply-deferred: The parameter contains static property changes. The changes
+	//   apply-deferred: The parameter contains static property changes. The changes
 	// are deferred until the cluster reboots.
 	//
-	//    apply-error: Cannot connect to the cluster. The parameter change will
+	//   apply-error: Cannot connect to the cluster. The parameter change will
 	// be applied after the cluster reboots.
 	//
-	//    unknown-error: Cannot apply the parameter change right now. The change
+	//   unknown-error: Cannot apply the parameter change right now. The change
 	// will be applied after the cluster reboots.
 	ParameterApplyStatus *string `type:"string"`
 
@@ -4701,9 +4700,9 @@ type CreateClusterInput struct {
 
 	// The type of the cluster. When cluster type is specified as
 	//
-	//    single-node, the NumberOfNodes parameter is not required.
+	//   single-node, the NumberOfNodes parameter is not required.
 	//
-	//    multi-node, the NumberOfNodes parameter is required.
+	//   multi-node, the NumberOfNodes parameter is required.
 	//
 	//   Valid Values: multi-node | single-node
 	//
@@ -4853,11 +4852,11 @@ type CreateClusterInput struct {
 	// The weekly time range (in UTC) during which automated cluster maintenance
 	// can occur.
 	//
-	//  Format: ddd:hh24:mi-ddd:hh24:mi
+	// Format: ddd:hh24:mi-ddd:hh24:mi
 	//
-	//  Default: A 30-minute window selected at random from an 8-hour block of
-	// time per region, occurring on a random day of the week. For more information
-	// about the time blocks for each region, see Maintenance Windows (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-maintenance-windows)
+	// Default: A 30-minute window selected at random from an 8-hour block of time
+	// per region, occurring on a random day of the week. For more information about
+	// the time blocks for each region, see Maintenance Windows (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-maintenance-windows)
 	// in Amazon Redshift Cluster Management Guide.
 	//
 	// Valid Days: Mon | Tue | Wed | Thu | Fri | Sat | Sun
@@ -5519,8 +5518,8 @@ type CreateSnapshotCopyGrantOutput struct {
 	// copied snapshots with the specified customer master key (CMK) from AWS KMS
 	// in the destination region.
 	//
-	//  For more information about managing snapshot copy grants, go to Amazon
-	// Redshift Database Encryption (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html)
+	// For more information about managing snapshot copy grants, go to Amazon Redshift
+	// Database Encryption (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html)
 	// in the Amazon Redshift Cluster Management Guide.
 	SnapshotCopyGrant *SnapshotCopyGrant `type:"structure"`
 }
@@ -6292,7 +6291,7 @@ type DescribeClusterSecurityGroupsInput struct {
 	// You can specify either the Marker parameter or a ClusterSecurityGroupName
 	// parameter, but not both.
 	//
-	//  Example: securitygroup1
+	// Example: securitygroup1
 	ClusterSecurityGroupName *string `type:"string"`
 
 	// An optional parameter that specifies the starting point to return a set of
@@ -9367,9 +9366,9 @@ type RestoreFromClusterSnapshotInput struct {
 	// The weekly time range (in UTC) during which automated cluster maintenance
 	// can occur.
 	//
-	//  Format: ddd:hh24:mi-ddd:hh24:mi
+	// Format: ddd:hh24:mi-ddd:hh24:mi
 	//
-	//  Default: The value selected for the cluster from which the snapshot was
+	// Default: The value selected for the cluster from which the snapshot was
 	// taken. For more information about the time blocks for each region, see Maintenance
 	// Windows (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-maintenance-windows)
 	// in Amazon Redshift Cluster Management Guide.
@@ -9841,12 +9840,12 @@ type Snapshot struct {
 	// The snapshot status. The value of the status depends on the API operation
 	// used.
 	//
-	//    CreateClusterSnapshot and CopyClusterSnapshot returns status as "creating".
+	//   CreateClusterSnapshot and CopyClusterSnapshot returns status as "creating".
 	//
-	//    DescribeClusterSnapshots returns status as "creating", "available", "final
+	//   DescribeClusterSnapshots returns status as "creating", "available", "final
 	// snapshot", or "failed".
 	//
-	//    DeleteClusterSnapshot returns status as "deleted".
+	//   DeleteClusterSnapshot returns status as "deleted".
 	Status *string `type:"string"`
 
 	// The list of tags for the cluster snapshot.
@@ -9875,8 +9874,8 @@ func (s Snapshot) GoString() string {
 // copied snapshots with the specified customer master key (CMK) from AWS KMS
 // in the destination region.
 //
-//  For more information about managing snapshot copy grants, go to Amazon
-// Redshift Database Encryption (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html)
+// For more information about managing snapshot copy grants, go to Amazon Redshift
+// Database Encryption (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html)
 // in the Amazon Redshift Cluster Management Guide.
 type SnapshotCopyGrant struct {
 	_ struct{} `type:"structure"`

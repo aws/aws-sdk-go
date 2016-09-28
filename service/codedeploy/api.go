@@ -2531,7 +2531,7 @@ type CreateDeploymentGroupInput struct {
 	//
 	//  The predefined deployment configurations include the following:
 	//
-	//    CodeDeployDefault.AllAtOnce attempts to deploy an application revision
+	//   CodeDeployDefault.AllAtOnce attempts to deploy an application revision
 	// to as many instances as possible at once. The status of the overall deployment
 	// will be displayed as Succeeded if the application revision is deployed to
 	// one or more of the instances. The status of the overall deployment will be
@@ -2541,16 +2541,16 @@ type CreateDeploymentGroupInput struct {
 	// will succeed if deployment to even a single instance is successful; it will
 	// fail only if deployments to all nine instances fail.
 	//
-	//    CodeDeployDefault.HalfAtATime deploys to up to half of the instances
-	// at a time (with fractions rounded down). The overall deployment succeeds
-	// if the application revision is deployed to at least half of the instances
-	// (with fractions rounded up); otherwise, the deployment fails. In the example
-	// of nine instances, it will deploy to up to four instances at a time. The
-	// overall deployment succeeds if deployment to five or more instances succeed;
-	// otherwise, the deployment fails. The deployment may be successfully deployed
-	// to some instances even if the overall deployment fails.
+	//   CodeDeployDefault.HalfAtATime deploys to up to half of the instances at
+	// a time (with fractions rounded down). The overall deployment succeeds if
+	// the application revision is deployed to at least half of the instances (with
+	// fractions rounded up); otherwise, the deployment fails. In the example of
+	// nine instances, it will deploy to up to four instances at a time. The overall
+	// deployment succeeds if deployment to five or more instances succeed; otherwise,
+	// the deployment fails. The deployment may be successfully deployed to some
+	// instances even if the overall deployment fails.
 	//
-	//    CodeDeployDefault.OneAtATime deploys the application revision to only
+	//   CodeDeployDefault.OneAtATime deploys the application revision to only
 	// one instance at a time.
 	//
 	// For deployment groups that contain more than one instance:

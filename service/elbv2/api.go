@@ -2999,22 +2999,22 @@ type LoadBalancerAttribute struct {
 
 	// The name of the attribute.
 	//
-	//    access_logs.s3.enabled - Indicates whether access logs stored in Amazon
+	//   access_logs.s3.enabled - Indicates whether access logs stored in Amazon
 	// S3 are enabled.
 	//
-	//    access_logs.s3.bucket - The name of the S3 bucket for the access logs.
+	//   access_logs.s3.bucket - The name of the S3 bucket for the access logs.
 	// This attribute is required if access logs in Amazon S3 are enabled. The bucket
 	// must exist in the same region as the load balancer and have a bucket policy
 	// that grants Elastic Load Balancing permission to write to the bucket.
 	//
-	//    access_logs.s3.prefix - The prefix for the location in the S3 bucket.
+	//   access_logs.s3.prefix - The prefix for the location in the S3 bucket.
 	// If you don't specify a prefix, the access logs are stored in the root of
 	// the bucket.
 	//
-	//    deletion_protection.enabled - Indicates whether deletion protection is
+	//   deletion_protection.enabled - Indicates whether deletion protection is
 	// enabled.
 	//
-	//    idle_timeout.timeout_seconds - The idle timeout value, in seconds. The
+	//   idle_timeout.timeout_seconds - The idle timeout value, in seconds. The
 	// valid range is 1-3600. The default is 60 seconds.
 	Key *string `type:"string"`
 
@@ -4005,21 +4005,20 @@ type TargetGroupAttribute struct {
 
 	// The name of the attribute.
 	//
-	//    deregistration_delay.timeout_seconds - The amount time for Elastic Load
+	//   deregistration_delay.timeout_seconds - The amount time for Elastic Load
 	// Balancing to wait before changing the state of a deregistering target from
 	// draining to unused. The range is 0-3600 seconds. The default value is 300
 	// seconds.
 	//
-	//    stickiness.enabled - Indicates whether sticky sessions are enabled.
+	//   stickiness.enabled - Indicates whether sticky sessions are enabled.
 	//
-	//    stickiness.type - The type of sticky sessions. The possible value is
-	// lb_cookie.
+	//   stickiness.type - The type of sticky sessions. The possible value is lb_cookie.
 	//
-	//    stickiness.lb_cookie.duration_seconds - The time period, in seconds,
-	// during which requests from a client should be routed to the same target.
-	// After this time period expires, the load balancer-generated cookie is considered
-	// stale. The range is 1 second to 1 week (604800 seconds). The default value
-	// is 1 day (86400 seconds).
+	//   stickiness.lb_cookie.duration_seconds - The time period, in seconds, during
+	// which requests from a client should be routed to the same target. After this
+	// time period expires, the load balancer-generated cookie is considered stale.
+	// The range is 1 second to 1 week (604800 seconds). The default value is 1
+	// day (86400 seconds).
 	Key *string `type:"string"`
 
 	// The value of the attribute.
@@ -4049,40 +4048,40 @@ type TargetHealth struct {
 	// If the target state is initial, the reason code can be one of the following
 	// values:
 	//
-	//    Elb.RegistrationInProgress - The target is in the process of being registered
+	//   Elb.RegistrationInProgress - The target is in the process of being registered
 	// with the load balancer.
 	//
-	//    Elb.InitialHealthChecking - The load balancer is still sending the target
+	//   Elb.InitialHealthChecking - The load balancer is still sending the target
 	// the minimum number of health checks required to determine its health status.
 	//
 	//   If the target state is unhealthy, the reason code can be one of the following
 	// values:
 	//
-	//    Target.ResponseCodeMismatch - The health checks did not return an expected
+	//   Target.ResponseCodeMismatch - The health checks did not return an expected
 	// HTTP code.
 	//
-	//    Target.Timeout - The health check requests timed out.
+	//   Target.Timeout - The health check requests timed out.
 	//
-	//    Target.FailedHealthChecks - The health checks failed because the connection
+	//   Target.FailedHealthChecks - The health checks failed because the connection
 	// to the target timed out, the target response was malformed, or the target
 	// failed the health check for an unknown reason.
 	//
-	//    Elb.InternalError - The health checks failed due to an internal error.
+	//   Elb.InternalError - The health checks failed due to an internal error.
 	//
 	//   If the target state is unused, the reason code can be one of the following
 	// values:
 	//
-	//    Target.NotRegistered - The target is not registered with the target group.
+	//   Target.NotRegistered - The target is not registered with the target group.
 	//
-	//    Target.NotInUse - The target group is not used by any load balancer or
+	//   Target.NotInUse - The target group is not used by any load balancer or
 	// the target is in an Availability Zone that is not enabled for its load balancer.
 	//
-	//    Target.InvalidState - The target is in the stopped or terminated state.
+	//   Target.InvalidState - The target is in the stopped or terminated state.
 	//
 	//   If the target state is draining, the reason code can be the following
 	// value:
 	//
-	//    Target.DeregistrationInProgress - The target is in the process of being
+	//   Target.DeregistrationInProgress - The target is in the process of being
 	// deregistered and the deregistration delay period has not expired.
 	Reason *string `type:"string" enum:"TargetHealthReasonEnum"`
 

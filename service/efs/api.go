@@ -71,7 +71,7 @@ func (c *EFS) CreateFileSystemRequest(input *CreateFileSystemInput) (req *reques
 //  For basic use cases, you can use a randomly generated UUID for the creation
 // token.
 //
-//   The idempotent operation allows you to retry a CreateFileSystem call without
+//  The idempotent operation allows you to retry a CreateFileSystem call without
 // risk of creating an extra file system. This can happen when an initial call
 // fails in a way that leaves it uncertain whether or not a file system was
 // actually created. An example might be that a transport level timeout occurred
@@ -98,7 +98,7 @@ func (c *EFS) CreateFileSystemRequest(input *CreateFileSystemInput) (req *reques
 // You mount your Amazon EFS file system on an EC2 instances in your VPC via
 // the mount target. For more information, see Amazon EFS: How it Works (http://docs.aws.amazon.com/efs/latest/ug/how-it-works.html).
 //
-//  This operation requires permissions for the elasticfilesystem:CreateFileSystem
+// This operation requires permissions for the elasticfilesystem:CreateFileSystem
 // action.
 func (c *EFS) CreateFileSystem(input *CreateFileSystemInput) (*FileSystemDescription, error) {
 	req, out := c.CreateFileSystemRequest(input)
@@ -233,16 +233,16 @@ func (c *EFS) CreateMountTargetRequest(input *CreateMountTargetInput) (req *requ
 // This operation requires permissions for the following action on the file
 // system:
 //
-//    elasticfilesystem:CreateMountTarget
+//   elasticfilesystem:CreateMountTarget
 //
 //   This operation also requires permissions for the following Amazon EC2
 // actions:
 //
-//    ec2:DescribeSubnets
+//   ec2:DescribeSubnets
 //
-//    ec2:DescribeNetworkInterfaces
+//   ec2:DescribeNetworkInterfaces
 //
-//    ec2:CreateNetworkInterface
+//   ec2:CreateNetworkInterface
 func (c *EFS) CreateMountTarget(input *CreateMountTargetInput) (*MountTargetDescription, error) {
 	req, out := c.CreateMountTargetRequest(input)
 	err := req.Send()
@@ -353,7 +353,7 @@ func (c *EFS) DeleteFileSystemRequest(input *DeleteFileSystemInput) (req *reques
 // return, the file system no longer exists and you can't access any contents
 // of the deleted file system.
 //
-//  You can't delete a file system that is in use. That is, if the file system
+// You can't delete a file system that is in use. That is, if the file system
 // has any mount targets, you must first delete them. For more information,
 // see DescribeMountTargets and DeleteMountTarget.
 //
@@ -428,7 +428,7 @@ func (c *EFS) DeleteMountTargetRequest(input *DeleteMountTargetInput) (req *requ
 // This operation requires permissions for the following action on the file
 // system:
 //
-//    elasticfilesystem:DeleteMountTarget
+//   elasticfilesystem:DeleteMountTarget
 //
 //    The DeleteMountTarget call returns while the mount target state is still
 // deleting. You can check the mount target deletion by calling the DescribeMountTargets
@@ -438,7 +438,7 @@ func (c *EFS) DeleteMountTargetRequest(input *DeleteMountTargetInput) (req *requ
 //  The operation also requires permissions for the following Amazon EC2 action
 // on the mount target's network interface:
 //
-//    ec2:DeleteNetworkInterface
+//   ec2:DeleteNetworkInterface
 func (c *EFS) DeleteMountTarget(input *DeleteMountTargetInput) (*DeleteMountTargetOutput, error) {
 	req, out := c.DeleteMountTargetRequest(input)
 	err := req.Send()
@@ -548,7 +548,7 @@ func (c *EFS) DescribeFileSystemsRequest(input *DescribeFileSystemsInput) (req *
 // returns descriptions of all file systems owned by the caller's AWS account
 // in the AWS Region of the endpoint that you're calling.
 //
-//  When retrieving all file system descriptions, you can optionally specify
+// When retrieving all file system descriptions, you can optionally specify
 // the MaxItems parameter to limit the number of descriptions in a response.
 // If more file system descriptions remain, Amazon EFS returns a NextMarker,
 // an opaque token, in the response. In this case, you should send a subsequent
@@ -563,11 +563,11 @@ func (c *EFS) DescribeFileSystemsRequest(input *DescribeFileSystemsInput) (req *
 // The implementation may return fewer than MaxItems file system descriptions
 // while still including a NextMarker value.
 //
-//  The order of file systems returned in the response of one DescribeFileSystems
+// The order of file systems returned in the response of one DescribeFileSystems
 // call and the order of file systems returned across the responses of a multi-call
 // iteration is unspecified.
 //
-//  This operation requires permissions for the elasticfilesystem:DescribeFileSystems
+// This operation requires permissions for the elasticfilesystem:DescribeFileSystems
 // action.
 func (c *EFS) DescribeFileSystems(input *DescribeFileSystemsInput) (*DescribeFileSystemsOutput, error) {
 	req, out := c.DescribeFileSystemsRequest(input)
@@ -622,10 +622,10 @@ func (c *EFS) DescribeMountTargetSecurityGroupsRequest(input *DescribeMountTarge
 //
 // This operation requires permissions for the following actions:
 //
-//    elasticfilesystem:DescribeMountTargetSecurityGroups action on the mount
+//   elasticfilesystem:DescribeMountTargetSecurityGroups action on the mount
 // target's file system.
 //
-//    ec2:DescribeNetworkInterfaceAttribute action on the mount target's network
+//   ec2:DescribeNetworkInterfaceAttribute action on the mount target's network
 // interface.
 func (c *EFS) DescribeMountTargetSecurityGroups(input *DescribeMountTargetSecurityGroupsInput) (*DescribeMountTargetSecurityGroupsOutput, error) {
 	req, out := c.DescribeMountTargetSecurityGroupsRequest(input)
@@ -732,7 +732,7 @@ func (c *EFS) DescribeTagsRequest(input *DescribeTagsInput) (req *request.Reques
 // in the response of one DescribeTags call and the order of tags returned across
 // the responses of a multi-call iteration (when using pagination) is unspecified.
 //
-//  This operation requires permissions for the elasticfilesystem:DescribeTags
+// This operation requires permissions for the elasticfilesystem:DescribeTags
 // action.
 func (c *EFS) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutput, error) {
 	req, out := c.DescribeTagsRequest(input)
@@ -794,10 +794,10 @@ func (c *EFS) ModifyMountTargetSecurityGroupsRequest(input *ModifyMountTargetSec
 //
 // The operation requires permissions for the following actions:
 //
-//    elasticfilesystem:ModifyMountTargetSecurityGroups action on the mount
+//   elasticfilesystem:ModifyMountTargetSecurityGroups action on the mount
 // target's file system.
 //
-//    ec2:ModifyNetworkInterfaceAttribute action on the mount target's network
+//   ec2:ModifyNetworkInterfaceAttribute action on the mount target's network
 // interface.
 func (c *EFS) ModifyMountTargetSecurityGroups(input *ModifyMountTargetSecurityGroupsInput) (*ModifyMountTargetSecurityGroupsOutput, error) {
 	req, out := c.ModifyMountTargetSecurityGroupsRequest(input)

@@ -174,7 +174,7 @@ func (c *MachineLearning) CreateDataSourceFromRDSRequest(input *CreateDataSource
 // PENDING state can be used only to perform >CreateMLModel>, CreateEvaluation,
 // or CreateBatchPrediction operations.
 //
-//  If Amazon ML cannot accept the input source, it sets the Status parameter
+// If Amazon ML cannot accept the input source, it sets the Status parameter
 // to FAILED and includes an error message in the Message attribute of the GetDataSource
 // operation response.
 func (c *MachineLearning) CreateDataSourceFromRDS(input *CreateDataSourceFromRDSInput) (*CreateDataSourceFromRDSOutput, error) {
@@ -235,7 +235,7 @@ func (c *MachineLearning) CreateDataSourceFromRedshiftRequest(input *CreateDataS
 // DataSource in COMPLETED or PENDING states can be used to perform only CreateMLModel,
 // CreateEvaluation, or CreateBatchPrediction operations.
 //
-//  If Amazon ML can't accept the input source, it sets the Status parameter
+// If Amazon ML can't accept the input source, it sets the Status parameter
 // to FAILED and includes an error message in the Message attribute of the GetDataSource
 // operation response.
 //
@@ -314,7 +314,7 @@ func (c *MachineLearning) CreateDataSourceFromS3Request(input *CreateDataSourceF
 // COMPLETED or PENDING state can be used to perform only CreateMLModel, CreateEvaluation
 // or CreateBatchPrediction operations.
 //
-//  If Amazon ML can't accept the input source, it sets the Status parameter
+// If Amazon ML can't accept the input source, it sets the Status parameter
 // to FAILED and includes an error message in the Message attribute of the GetDataSource
 // operation response.
 //
@@ -456,7 +456,7 @@ func (c *MachineLearning) CreateMLModelRequest(input *CreateMLModelInput) (req *
 // You can use the GetMLModel operation to check the progress of the MLModel
 // during the creation operation.
 //
-//  CreateMLModel requires a DataSource with computed statistics, which can
+// CreateMLModel requires a DataSource with computed statistics, which can
 // be created by setting ComputeStatistics to true in CreateDataSourceFromRDS,
 // CreateDataSourceFromS3, or CreateDataSourceFromRedshift operations.
 func (c *MachineLearning) CreateMLModel(input *CreateMLModelInput) (*CreateMLModelOutput, error) {
@@ -1728,7 +1728,7 @@ func (s AddTagsOutput) GoString() string {
 
 // Represents the output of a GetBatchPrediction operation.
 //
-//  The content consists of the detailed metadata, the status, and the data
+// The content consists of the detailed metadata, the status, and the data
 // file information of a Batch Prediction.
 type BatchPrediction struct {
 	_ struct{} `type:"structure"`
@@ -1955,7 +1955,7 @@ type CreateDataSourceFromRDSInput struct {
 	//  DataRearrangement - A JSON string that represents the splitting and rearrangement
 	// requirements for the Datasource.
 	//
-	//   Sample -  "{\"splitting\":{\"percentBegin\":10,\"percentEnd\":60}}"
+	//  Sample -  "{\"splitting\":{\"percentBegin\":10,\"percentEnd\":60}}"
 	RDSData *RDSDataSpec `type:"structure" required:"true"`
 
 	// The role that Amazon ML assumes on behalf of the user to create and activate
@@ -2069,13 +2069,13 @@ type CreateDataSourceFromRedshiftInput struct {
 	//  DataRearrangement - A JSON string that represents the splitting and rearrangement
 	// requirements for the DataSource.
 	//
-	//  Sample -  "{\"splitting\":{\"percentBegin\":10,\"percentEnd\":60}}"
+	// Sample -  "{\"splitting\":{\"percentBegin\":10,\"percentEnd\":60}}"
 	DataSpec *RedshiftDataSpec `type:"structure" required:"true"`
 
 	// A fully specified role Amazon Resource Name (ARN). Amazon ML assumes the
 	// role on behalf of the user to create the following:
 	//
-	//   A security group to allow Amazon ML to execute the SelectSqlQuery query
+	//  A security group to allow Amazon ML to execute the SelectSqlQuery query
 	// on an Amazon Redshift cluster
 	//
 	// An Amazon S3 bucket policy to grant Amazon ML read/write permissions on
@@ -2174,7 +2174,7 @@ type CreateDataSourceFromS3Input struct {
 	//  DataRearrangement - A JSON string that represents the splitting and rearrangement
 	// requirements for the Datasource.
 	//
-	//  Sample -  "{\"splitting\":{\"percentBegin\":10,\"percentEnd\":60}}"
+	// Sample -  "{\"splitting\":{\"percentBegin\":10,\"percentEnd\":60}}"
 	DataSpec *S3DataSpec `type:"structure" required:"true"`
 }
 
@@ -2330,7 +2330,7 @@ type CreateMLModelInput struct {
 	//
 	//  Choose REGRESSION if the MLModel will be used to predict a numeric value.
 	// Choose BINARY if the MLModel result has two possible values. Choose MULTICLASS
-	// if the MLModel result has a limited number of values.    For more information,
+	// if the MLModel result has a limited number of values.   For more information,
 	// see the Amazon Machine Learning Developer Guide (http://docs.aws.amazon.com/machine-learning/latest/dg).
 	MLModelType *string `type:"string" required:"true" enum:"MLModelType"`
 
@@ -2342,7 +2342,7 @@ type CreateMLModelInput struct {
 	//   sgd.maxMLModelSizeInBytes - The maximum allowed size of the model. Depending
 	// on the input data, the size of the model might affect its performance.
 	//
-	//  The value is an integer that ranges from 100000 to 2147483648. The default
+	// The value is an integer that ranges from 100000 to 2147483648. The default
 	// value is 33554432.
 	//
 	//  sgd.maxPasses - The number of times that the training process traverses
@@ -2507,7 +2507,7 @@ func (s CreateRealtimeEndpointOutput) GoString() string {
 
 // Represents the output of the GetDataSource operation.
 //
-//  The content consists of the detailed metadata and data file information
+// The content consists of the detailed metadata and data file information
 // and the current status of the DataSource.
 type DataSource struct {
 	_ struct{} `type:"structure"`
@@ -3512,7 +3512,7 @@ type Evaluation struct {
 	//   MulticlassAvgFScore: A multiclass MLModel uses the F1 score technique
 	// to measure performance.
 	//
-	//    For more information about performance metrics, please see the Amazon
+	//   For more information about performance metrics, please see the Amazon
 	// Machine Learning Developer Guide (http://docs.aws.amazon.com/machine-learning/latest/dg).
 	PerformanceMetrics *PerformanceMetrics `type:"structure"`
 
@@ -3900,7 +3900,7 @@ type GetEvaluationOutput struct {
 	//   MulticlassAvgFScore: A multiclass MLModel uses the F1 score technique
 	// to measure performance.
 	//
-	//    For more information about performance metrics, please see the Amazon
+	//   For more information about performance metrics, please see the Amazon
 	// Machine Learning Developer Guide (http://docs.aws.amazon.com/machine-learning/latest/dg).
 	PerformanceMetrics *PerformanceMetrics `type:"structure"`
 
@@ -4075,7 +4075,7 @@ type GetMLModelOutput struct {
 	//   sgd.maxMLModelSizeInBytes - The maximum allowed size of the model. Depending
 	// on the input data, the size of the model might affect its performance.
 	//
-	//  The value is an integer that ranges from 100000 to 2147483648. The default
+	// The value is an integer that ranges from 100000 to 2147483648. The default
 	// value is 33554432.
 	//
 	//  sgd.maxPasses - The number of times that the training process traverses
@@ -4206,7 +4206,7 @@ type MLModel struct {
 	//   sgd.maxMLModelSizeInBytes - The maximum allowed size of the model. Depending
 	// on the input data, the size of the model might affect its performance.
 	//
-	//  The value is an integer that ranges from 100000 to 2147483648. The default
+	// The value is an integer that ranges from 100000 to 2147483648. The default
 	// value is 33554432.
 	//
 	//  sgd.maxPasses - The number of times that the training process traverses
@@ -4260,7 +4260,7 @@ func (s MLModel) GoString() string {
 //   MulticlassAvgFScore: The multiclass MLModel uses the F1 score technique
 // to measure performance.
 //
-//    For more information about performance metrics, please see the Amazon
+//   For more information about performance metrics, please see the Amazon
 // Machine Learning Developer Guide (http://docs.aws.amazon.com/machine-learning/latest/dg).
 type PerformanceMetrics struct {
 	_ struct{} `type:"structure"`
@@ -4327,15 +4327,15 @@ type PredictOutput struct {
 
 	// The output from a Predict operation:
 	//
-	//    Details - Contains the following attributes: DetailsAttributes.PREDICTIVE_MODEL_TYPE
+	//   Details - Contains the following attributes: DetailsAttributes.PREDICTIVE_MODEL_TYPE
 	// - REGRESSION | BINARY | MULTICLASS DetailsAttributes.ALGORITHM - SGD
 	//
-	//    PredictedLabel - Present for either a BINARY or MULTICLASS MLModel request.
+	//   PredictedLabel - Present for either a BINARY or MULTICLASS MLModel request.
 	//
-	//    PredictedScores - Contains the raw classification score corresponding
+	//   PredictedScores - Contains the raw classification score corresponding
 	// to each label.
 	//
-	//    PredictedValue - Present for a REGRESSION MLModel request.
+	//   PredictedValue - Present for a REGRESSION MLModel request.
 	Prediction *Prediction `type:"structure"`
 }
 
@@ -4351,15 +4351,15 @@ func (s PredictOutput) GoString() string {
 
 // The output from a Predict operation:
 //
-//    Details - Contains the following attributes: DetailsAttributes.PREDICTIVE_MODEL_TYPE
+//   Details - Contains the following attributes: DetailsAttributes.PREDICTIVE_MODEL_TYPE
 // - REGRESSION | BINARY | MULTICLASS DetailsAttributes.ALGORITHM - SGD
 //
-//    PredictedLabel - Present for either a BINARY or MULTICLASS MLModel request.
+//   PredictedLabel - Present for either a BINARY or MULTICLASS MLModel request.
 //
-//    PredictedScores - Contains the raw classification score corresponding
+//   PredictedScores - Contains the raw classification score corresponding
 // to each label.
 //
-//    PredictedValue - Present for a REGRESSION MLModel request.
+//   PredictedValue - Present for a REGRESSION MLModel request.
 type Prediction struct {
 	_ struct{} `type:"structure"`
 
@@ -4483,26 +4483,26 @@ type RDSDataSpec struct {
 	//
 	// { "version": "1.0",
 	//
-	//  "recordAnnotationFieldName": "F1",
+	// "recordAnnotationFieldName": "F1",
 	//
-	//  "recordWeightFieldName": "F2",
+	// "recordWeightFieldName": "F2",
 	//
-	//  "targetFieldName": "F3",
+	// "targetFieldName": "F3",
 	//
-	//  "dataFormat": "CSV",
+	// "dataFormat": "CSV",
 	//
-	//  "dataFileContainsHeader": true,
+	// "dataFileContainsHeader": true,
 	//
-	//  "attributes": [
+	// "attributes": [
 	//
-	//  { "fieldName": "F1", "fieldType": "TEXT" }, { "fieldName": "F2", "fieldType":
+	// { "fieldName": "F1", "fieldType": "TEXT" }, { "fieldName": "F2", "fieldType":
 	// "NUMERIC" }, { "fieldName": "F3", "fieldType": "CATEGORICAL" }, { "fieldName":
 	// "F4", "fieldType": "NUMERIC" }, { "fieldName": "F5", "fieldType": "CATEGORICAL"
 	// }, { "fieldName": "F6", "fieldType": "TEXT" }, { "fieldName": "F7", "fieldType":
 	// "WEIGHTED_INT_SEQUENCE" }, { "fieldName": "F8", "fieldType": "WEIGHTED_STRING_SEQUENCE"
 	// } ],
 	//
-	//  "excludedVariableNames": [ "F6" ] }
+	// "excludedVariableNames": [ "F6" ] }
 	DataSchema *string `type:"string"`
 
 	// The Amazon S3 location of the DataSchema.
@@ -4880,26 +4880,26 @@ type RedshiftDataSpec struct {
 	//
 	// { "version": "1.0",
 	//
-	//  "recordAnnotationFieldName": "F1",
+	// "recordAnnotationFieldName": "F1",
 	//
-	//  "recordWeightFieldName": "F2",
+	// "recordWeightFieldName": "F2",
 	//
-	//  "targetFieldName": "F3",
+	// "targetFieldName": "F3",
 	//
-	//  "dataFormat": "CSV",
+	// "dataFormat": "CSV",
 	//
-	//  "dataFileContainsHeader": true,
+	// "dataFileContainsHeader": true,
 	//
-	//  "attributes": [
+	// "attributes": [
 	//
-	//  { "fieldName": "F1", "fieldType": "TEXT" }, { "fieldName": "F2", "fieldType":
+	// { "fieldName": "F1", "fieldType": "TEXT" }, { "fieldName": "F2", "fieldType":
 	// "NUMERIC" }, { "fieldName": "F3", "fieldType": "CATEGORICAL" }, { "fieldName":
 	// "F4", "fieldType": "NUMERIC" }, { "fieldName": "F5", "fieldType": "CATEGORICAL"
 	// }, { "fieldName": "F6", "fieldType": "TEXT" }, { "fieldName": "F7", "fieldType":
 	// "WEIGHTED_INT_SEQUENCE" }, { "fieldName": "F8", "fieldType": "WEIGHTED_STRING_SEQUENCE"
 	// } ],
 	//
-	//  "excludedVariableNames": [ "F6" ] }
+	// "excludedVariableNames": [ "F6" ] }
 	DataSchema *string `type:"string"`
 
 	// Describes the schema location for an Amazon Redshift DataSource.
@@ -5190,26 +5190,26 @@ type S3DataSpec struct {
 	//
 	// { "version": "1.0",
 	//
-	//  "recordAnnotationFieldName": "F1",
+	// "recordAnnotationFieldName": "F1",
 	//
-	//  "recordWeightFieldName": "F2",
+	// "recordWeightFieldName": "F2",
 	//
-	//  "targetFieldName": "F3",
+	// "targetFieldName": "F3",
 	//
-	//  "dataFormat": "CSV",
+	// "dataFormat": "CSV",
 	//
-	//  "dataFileContainsHeader": true,
+	// "dataFileContainsHeader": true,
 	//
-	//  "attributes": [
+	// "attributes": [
 	//
-	//  { "fieldName": "F1", "fieldType": "TEXT" }, { "fieldName": "F2", "fieldType":
+	// { "fieldName": "F1", "fieldType": "TEXT" }, { "fieldName": "F2", "fieldType":
 	// "NUMERIC" }, { "fieldName": "F3", "fieldType": "CATEGORICAL" }, { "fieldName":
 	// "F4", "fieldType": "NUMERIC" }, { "fieldName": "F5", "fieldType": "CATEGORICAL"
 	// }, { "fieldName": "F6", "fieldType": "TEXT" }, { "fieldName": "F7", "fieldType":
 	// "WEIGHTED_INT_SEQUENCE" }, { "fieldName": "F8", "fieldType": "WEIGHTED_STRING_SEQUENCE"
 	// } ],
 	//
-	//  "excludedVariableNames": [ "F6" ] }
+	// "excludedVariableNames": [ "F6" ] }
 	DataSchema *string `type:"string"`
 
 	// Describes the schema location in Amazon S3. You must provide either the DataSchema

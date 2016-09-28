@@ -471,7 +471,7 @@ func (c *Route53Domains) GetDomainSuggestionsRequest(input *GetDomainSuggestions
 // given a string, which can either be a domain name or simply a word or phrase
 // (without spaces).
 //
-//  Parameters: DomainName (string): The basis for your domain suggestion search,
+// Parameters: DomainName (string): The basis for your domain suggestion search,
 // a string with (or without) top-level domain specified. SuggestionCount (int):
 // The number of domain suggestions to be returned, maximum 50, minimum 1. OnlyAvailable
 // (bool): If true, availability check will be performed on suggestion results,
